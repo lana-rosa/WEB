@@ -46,9 +46,11 @@ a { color: var(--rosa-principal); }
 .nav-principal a:hover { color: var(--rosa-principal); }
 .boton-whatsapp { background: var(--rosa-principal); color: var(--blanco) !important; padding: 10px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
 @media (max-width: 900px) { .nav-principal { display: none; } }
+@media (max-width: 900px) { .encabezado .boton-whatsapp { display: none; } }
 .encabezado-pagina { padding: 48px 0 16px; }
 .encabezado-pagina p { color: var(--tinta-suave); font-size: 1.05rem; max-width: 62ch; }
 .pasos-resumen { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+@media (max-width: 480px) { .galeria-tamanos-personalizado { gap: 8px; } }
 .paso-chip { background: var(--blanco); border-radius: 999px; padding: 8px 16px; font-size: 0.82rem; color: var(--tinta-suave); box-shadow: var(--sombra-suave); }
 .paso-chip b { color: var(--rosa-principal); }
 form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); padding: 32px; box-shadow: var(--sombra-suave); margin-bottom: 60px; }
@@ -123,7 +125,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
   .whatsapp-flotante svg { width: 26px; height: 26px; }
 }
 .menu-movil { display: none; background: none; border: none; font-size: 1.7rem; cursor: pointer; color: var(--tinta); padding: 4px 6px; line-height: 1; }
-.nav-movil-panel { display: none; flex-direction: column; background: var(--blanco); border-top: 1px solid rgba(69,69,74,0.08); }
+.nav-movil-panel { display: none; flex-direction: column; background: var(--blanco); border-top: 1px solid rgba(69,69,74,0.08); position: fixed; left: 0; right: 0; z-index: 500; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
 .nav-movil-panel.abierto { display: flex; }
 .nav-movil-panel a { padding: 15px 24px; text-decoration: none; color: var(--tinta); border-bottom: 1px solid rgba(69,69,74,0.06); font-weight: 500; font-size: 0.98rem; }
 .nav-movil-panel a:hover { background: var(--rosa-suave); color: var(--rosa-principal); }
@@ -254,6 +256,21 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
     <span class="paso-chip"><b>2.</b> Cuéntanos los detalles</span>
     <span class="paso-chip"><b>3.</b> Te cotizamos por WhatsApp</span>
     <span class="paso-chip"><b>4.</b> Confirmas y empezamos a tejer</span>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:28px 0;" class="galeria-tamanos-personalizado">
+    <div style="text-align:center;">
+      <img src="img/personalizado-13cm.jpg" alt="Ejemplo de amigurumi personalizado de 13 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;">
+      <p style="font-weight:600; margin:0;">13 cm</p>
+    </div>
+    <div style="text-align:center;">
+      <img src="img/personalizado-15cm.jpg" alt="Ejemplo de amigurumi personalizado de 15 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;">
+      <p style="font-weight:600; margin:0;">15 cm</p>
+    </div>
+    <div style="text-align:center;">
+      <img src="img/personalizado-20cm.jpg" alt="Ejemplo de amigurumi personalizado de 20 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;">
+      <p style="font-weight:600; margin:0;">20 cm</p>
+    </div>
   </div>
 
   <form class="tarjeta" id="form-personalizado">
@@ -553,8 +570,10 @@ form.addEventListener('submit', async (evento) => {
 (function() {
   var boton = document.getElementById('boton-menu-movil');
   var panel = document.getElementById('nav-movil-panel');
+  var encabezado = document.querySelector('.encabezado');
   if (boton && panel) {
     boton.addEventListener('click', function() {
+      if (encabezado) panel.style.top = encabezado.getBoundingClientRect().bottom + 'px';
       var abierto = panel.classList.toggle('abierto');
       boton.setAttribute('aria-expanded', abierto);
       boton.textContent = abierto ? '✕' : '☰';

@@ -42,8 +42,9 @@ a { color: var(--rosa-principal); }
 .nav-principal a { text-decoration: none; color: var(--tinta); font-weight: 500; font-size: 0.95rem; }
 .nav-principal a:hover { color: var(--rosa-principal); }
 @media (max-width: 900px) { .nav-principal { display: none; } }
+@media (max-width: 900px) { .encabezado .boton-whatsapp { display: none; } }
 .menu-movil { display: none; background: none; border: none; font-size: 1.7rem; cursor: pointer; color: var(--tinta); padding: 4px 6px; line-height: 1; }
-.nav-movil-panel { display: none; flex-direction: column; background: var(--blanco); border-top: 1px solid rgba(69,69,74,0.08); }
+.nav-movil-panel { display: none; flex-direction: column; background: var(--blanco); border-top: 1px solid rgba(69,69,74,0.08); position: fixed; left: 0; right: 0; z-index: 500; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
 .nav-movil-panel.abierto { display: flex; }
 .nav-movil-panel a { padding: 15px 24px; text-decoration: none; color: var(--tinta); border-bottom: 1px solid rgba(69,69,74,0.06); font-weight: 500; font-size: 0.98rem; }
 .nav-movil-panel a:hover { background: var(--rosa-suave); color: var(--rosa-principal); }
@@ -579,8 +580,10 @@ section.politica p { white-space: pre-line; margin-bottom: 14px; }
 (function() {
   var boton = document.getElementById('boton-menu-movil');
   var panel = document.getElementById('nav-movil-panel');
+  var encabezado = document.querySelector('.encabezado');
   if (boton && panel) {
     boton.addEventListener('click', function() {
+      if (encabezado) panel.style.top = encabezado.getBoundingClientRect().bottom + 'px';
       var abierto = panel.classList.toggle('abierto');
       boton.setAttribute('aria-expanded', abierto);
       boton.textContent = abierto ? '✕' : '☰';

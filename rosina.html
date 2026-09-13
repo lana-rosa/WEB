@@ -47,6 +47,7 @@ a { color: var(--rosa-principal); }
 .nav-principal a:hover { color: var(--rosa-principal); }
 .boton-whatsapp { background: var(--rosa-principal); color: var(--blanco) !important; padding: 10px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
 @media (max-width: 900px) { .nav-principal { display: none; } }
+@media (max-width: 900px) { .encabezado .boton-whatsapp { display: none; } }
 .hero-rosina { padding-top: 56px; padding-bottom: 56px; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 50px; align-items: center; }
 @media (max-width: 800px) { .hero-rosina { grid-template-columns: 1fr; text-align: center; } }
 .marco-rosina { background: var(--rosa-suave); border-radius: 32px; padding: 20px; box-shadow: var(--sombra-suave); }
@@ -54,6 +55,7 @@ a { color: var(--rosa-principal); }
 .hero-rosina .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 8px; }
 .hero-rosina p.intro { color: var(--tinta-suave); font-size: 1.08rem; max-width: 56ch; }
 section { padding: 20px 0 56px; }
+section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .seccion-suave { background: var(--rosa-suave); padding: 50px 0; }
 .roles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 @media (max-width: 700px) { .roles { grid-template-columns: 1fr; } }
@@ -103,7 +105,7 @@ section { padding: 20px 0 56px; }
   .whatsapp-flotante svg { width: 26px; height: 26px; }
 }
 .menu-movil { display: none; background: none; border: none; font-size: 1.7rem; cursor: pointer; color: var(--tinta); padding: 4px 6px; line-height: 1; }
-.nav-movil-panel { display: none; flex-direction: column; background: var(--blanco); border-top: 1px solid rgba(69,69,74,0.08); }
+.nav-movil-panel { display: none; flex-direction: column; background: var(--blanco); border-top: 1px solid rgba(69,69,74,0.08); position: fixed; left: 0; right: 0; z-index: 500; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
 .nav-movil-panel.abierto { display: flex; }
 .nav-movil-panel a { padding: 15px 24px; text-decoration: none; color: var(--tinta); border-bottom: 1px solid rgba(69,69,74,0.06); font-weight: 500; font-size: 0.98rem; }
 .nav-movil-panel a:hover { background: var(--rosa-suave); color: var(--rosa-principal); }
@@ -343,8 +345,10 @@ section { padding: 20px 0 56px; }
 (function() {
   var boton = document.getElementById('boton-menu-movil');
   var panel = document.getElementById('nav-movil-panel');
+  var encabezado = document.querySelector('.encabezado');
   if (boton && panel) {
     boton.addEventListener('click', function() {
+      if (encabezado) panel.style.top = encabezado.getBoundingClientRect().bottom + 'px';
       var abierto = panel.classList.toggle('abierto');
       boton.setAttribute('aria-expanded', abierto);
       boton.textContent = abierto ? '✕' : '☰';
