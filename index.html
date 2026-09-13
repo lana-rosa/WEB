@@ -239,7 +239,7 @@ section { padding: 72px 0; }
 .flecha-carrusel.anterior { left: 14px; }
 .flecha-carrusel.siguiente { right: 14px; }
 @media (max-width: 600px) { .flecha-carrusel { width: 34px; height: 34px; font-size: 1rem; } }
-@media (max-width: 700px) { .carrusel-banners { aspect-ratio: 4/3; } .slide-banner img { object-fit: contain; } }
+@media (max-width: 700px) { .carrusel-banners { aspect-ratio: 16/9; } }
 .banner-promo::before { width: 220px; height: 220px; top: -80px; right: -60px; }
 .banner-promo::after { width: 140px; height: 140px; bottom: -60px; left: 6%; }
 .banner-promo-contenido { position: relative; z-index: 1; text-align: center; max-width: 680px; margin: 0 auto; }
@@ -274,7 +274,7 @@ section { padding: 72px 0; }
 .nav-movil-panel.abierto { display: flex; }
 .nav-movil-panel a { padding: 15px 24px; text-decoration: none; color: var(--tinta); border-bottom: 1px solid rgba(69,69,74,0.06); font-weight: 500; font-size: 0.98rem; }
 .nav-movil-panel a:hover { background: var(--rosa-suave); color: var(--rosa-principal); }
-@media (max-width: 900px) { .menu-movil { display: inline-flex; align-items: center; } }
+@media (max-width: 900px) { .menu-movil { display: inline-flex; align-items: center; order: 20; } }
 .rosina-mini { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; margin-left: 10px; box-shadow: 0 2px 8px rgba(69,69,74,0.15); vertical-align: middle; }
 .boton-subir {
   position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); right: calc(92px + env(safe-area-inset-right, 0px)); z-index: 998;
