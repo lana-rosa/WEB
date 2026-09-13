@@ -1097,7 +1097,7 @@
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FCF8F1; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -1116,7 +1116,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 main { padding-bottom: 60px; }
 a { color: var(--rosa-principal); }
-.encabezado { position: sticky; top: 0; z-index: 20; background: rgba(252, 248, 241, 0.94); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(69,69,74,0.08); }
+.encabezado { position: sticky; top: 0; z-index: 20; background: rgba(250, 250, 247, 0.94); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(69,69,74,0.08); }
 .encabezado .contenedor { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
 .logo { font-family: var(--fuente-titulo); font-size: 1.4rem; color: var(--rosa-principal); text-decoration: none; font-weight: 600; }
 .nav-principal { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
@@ -1331,6 +1331,28 @@ a { color: var(--rosa-principal); }
 .boton-subir svg { width: 22px; height: 22px; fill: #fff; }
 .boton-subir:hover { background: #B83E78; }
 @media (max-width: 600px) { .boton-subir { width: 42px; height: 42px; right: calc(74px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); } }
+.contenedor-buscar-header { position: relative; }
+.boton-buscar-header {
+  background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 50%;
+  width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1.1rem; color: var(--tinta); flex-shrink: 0;
+}
+.boton-buscar-header:hover { border-color: var(--rosa-principal); }
+.panel-buscar-header {
+  position: absolute; top: calc(100% + 8px); right: 0; background: var(--blanco); border-radius: 999px;
+  box-shadow: var(--sombra-suave); padding: 6px; z-index: 50; width: 260px;
+  display: none; align-items: center; gap: 6px;
+}
+.panel-buscar-header.abierto { display: flex; }
+.panel-buscar-header input {
+  flex-grow: 1; padding: 8px 14px; border-radius: 999px; border: none; outline: none;
+  font-family: var(--fuente-cuerpo); font-size: 0.9rem; background: transparent; color: var(--tinta);
+}
+.panel-buscar-header button[type="submit"] {
+  background: var(--rosa-principal); color: #fff; border: none; border-radius: 50%;
+  width: 32px; height: 32px; cursor: pointer; font-size: 0.95rem; flex-shrink: 0;
+}
+@media (max-width: 600px) { .panel-buscar-header { width: 220px; right: -40px; } }
 </style>
 </head>
 <body>
@@ -1352,6 +1374,13 @@ a { color: var(--rosa-principal); }
     <button class="boton-carrito-header" id="boton-carrito" aria-label="Ver carrito de compras">
       🛒<span class="contador-carrito" id="contador-carrito">0</span>
     </button>
+    <div class="contenedor-buscar-header">
+      <button type="button" class="boton-buscar-header" id="boton-buscar-header" aria-label="Buscar productos">🔍</button>
+      <form class="panel-buscar-header" id="panel-buscar-header" action="tienda.html" method="get">
+        <input type="text" name="buscar" id="input-buscar-header" placeholder="Buscar productos...">
+        <button type="submit" aria-label="Buscar">🔍</button>
+      </form>
+    </div>
     <a class="boton-whatsapp" href="https://wa.me/573205072801" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
   </div>
 </header>
@@ -2677,6 +2706,19 @@ function manejarErrorFoto(img) {
     el.addEventListener('input', aplicarFiltro);
   });
 
+  var parametrosURL = new URLSearchParams(window.location.search);
+  var terminoBusqueda = parametrosURL.get('buscar');
+  if (terminoBusqueda) {
+    inputTexto.value = terminoBusqueda;
+    var panelFiltrosInicial = document.getElementById('filtros-desplegables');
+    if (panelFiltrosInicial) panelFiltrosInicial.setAttribute('open', '');
+    aplicarFiltro();
+    setTimeout(function() {
+      var primeraSeccionVisible = document.querySelector('.categoria-seccion');
+      if (primeraSeccionVisible) primeraSeccionVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+  }
+
   var selectorCategoria = document.getElementById('selector-categoria');
   if (selectorCategoria) {
     selectorCategoria.addEventListener('change', function() {
@@ -3107,6 +3149,25 @@ formResena.addEventListener('submit', async (evento) => {
     inputCalificacion.value = '0';
   }
 });
+</script>
+<script>
+(function() {
+  var botonBuscar = document.getElementById('boton-buscar-header');
+  var panelBuscar = document.getElementById('panel-buscar-header');
+  var inputBuscar = document.getElementById('input-buscar-header');
+  if (!botonBuscar || !panelBuscar) return;
+
+  botonBuscar.addEventListener('click', function(e) {
+    e.stopPropagation();
+    panelBuscar.classList.toggle('abierto');
+    if (panelBuscar.classList.contains('abierto')) inputBuscar.focus();
+  });
+  document.addEventListener('click', function(e) {
+    if (panelBuscar.classList.contains('abierto') && !panelBuscar.contains(e.target) && e.target !== botonBuscar) {
+      panelBuscar.classList.remove('abierto');
+    }
+  });
+})();
 </script>
 </body>
 </html>
