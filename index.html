@@ -227,6 +227,17 @@ section { padding: 72px 0; }
 .puntos-carrusel { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
 .puntos-carrusel span { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.55); }
 .puntos-carrusel span.activo { background: #fff; }
+.flecha-carrusel {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+  width: 40px; height: 40px; border-radius: 50%; border: none;
+  background: rgba(255,255,255,0.85); color: var(--tinta); font-size: 1.2rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.flecha-carrusel:hover { background: #fff; color: var(--rosa-principal); }
+.flecha-carrusel.anterior { left: 14px; }
+.flecha-carrusel.siguiente { right: 14px; }
+@media (max-width: 600px) { .flecha-carrusel { width: 34px; height: 34px; font-size: 1rem; } }
 @media (max-width: 700px) { .carrusel-banners { aspect-ratio: 4/3; } .slide-banner img { object-fit: contain; } }
 .banner-promo::before { width: 220px; height: 220px; top: -80px; right: -60px; }
 .banner-promo::after { width: 140px; height: 140px; bottom: -60px; left: 6%; }
@@ -337,6 +348,8 @@ section { padding: 72px 0; }
         <img src="img/banners/banner3.jpg" alt="Amigurumis personalizados Lana Rosa Crochet" onerror="this.parentElement.style.display='none'">
       </a>
       <div class="puntos-carrusel" id="puntos-carrusel"></div>
+      <button type="button" class="flecha-carrusel anterior" id="flecha-anterior" aria-label="Banner anterior">‹</button>
+      <button type="button" class="flecha-carrusel siguiente" id="flecha-siguiente" aria-label="Siguiente banner">›</button>
     </div>
   </section>
 
@@ -591,10 +604,32 @@ section { padding: 72px 0; }
   }
 
   // Esperar un instante a que las imágenes rotas se oculten (onerror) antes de armar los puntos
+  var temporizador = null;
+
+  function iniciarAutoAvance() {
+    if (temporizador) clearInterval(temporizador);
+    if (slidesVisibles().length <= 1) return;
+    temporizador = setInterval(function() { mostrarSlide(indice + 1); }, 4500);
+  }
+
   setTimeout(function() {
     construirPuntos();
-    if (slidesVisibles().length <= 1) return;
-    setInterval(function() { mostrarSlide(indice + 1); }, 4500);
+    iniciarAutoAvance();
+
+    var flechaAnterior = document.getElementById('flecha-anterior');
+    var flechaSiguiente = document.getElementById('flecha-siguiente');
+    if (flechaAnterior) {
+      flechaAnterior.addEventListener('click', function() {
+        mostrarSlide(indice - 1);
+        iniciarAutoAvance();
+      });
+    }
+    if (flechaSiguiente) {
+      flechaSiguiente.addEventListener('click', function() {
+        mostrarSlide(indice + 1);
+        iniciarAutoAvance();
+      });
+    }
   }, 300);
 })();
 </script>
