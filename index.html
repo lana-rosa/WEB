@@ -227,7 +227,7 @@ section { padding: 72px 0; }
 .puntos-carrusel { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
 .puntos-carrusel span { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.55); }
 .puntos-carrusel span.activo { background: #fff; }
-@media (max-width: 700px) { .carrusel-banners { aspect-ratio: 4/5; } }
+@media (max-width: 700px) { .carrusel-banners { aspect-ratio: 4/3; } .slide-banner img { object-fit: contain; } }
 .banner-promo::before { width: 220px; height: 220px; top: -80px; right: -60px; }
 .banner-promo::after { width: 140px; height: 140px; bottom: -60px; left: 6%; }
 .banner-promo-contenido { position: relative; z-index: 1; text-align: center; max-width: 680px; margin: 0 auto; }
