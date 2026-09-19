@@ -1418,16 +1418,11 @@ a { color: var(--rosa-principal); }
       <label for="selector-categoria">Ir a categoría</label>
       <select id="selector-categoria">
         <option value="">Todas las categorías</option>
-        <option value="#mundo-encantado">Mundo Encantado</option>
-        <option value="#mundo-animal">Mundo Animal</option>
-        <option value="#mundo-anime-y-peliculas">Mundo Anime y Películas</option>
-        <option value="#otros-amigurumis">Otros Amigurumis</option>
+        <option value="#amigurumis">Amigurumis</option>
         <option value="#peluches">Peluches</option>
-        <option value="#bolsos">Bolsos</option>
-        <option value="#charms">Charms</option>
-        <option value="#macetas">Macetas</option>
-        <option value="#flores">Flores</option>
-        <option value="#separadores-de-libros">Separadores de libros</option>
+        <option value="#llaveros">Llaveros</option>
+        <option value="#accesorios">Accesorios</option>
+        <option value="personaliza.html">Personalizados</option>
       </select>
     </div>
 
@@ -1453,27 +1448,9 @@ a { color: var(--rosa-principal); }
   <p id="sin-resultados" style="display:none; text-align:center; color:var(--tinta-suave); padding:20px;">No encontramos productos con esos filtros — prueba con otro nombre o rango de precio.</p>
 
 
-    <section class="categoria-seccion" id="mundo-encantado">
-      <h2>Mundo Encantado</h2>
-      <div class="grid-productos" id="grid-mundo-encantado">
-        <p class="cargando-merceria">Cargando productos...</p>
-      </div>
-    </section>
-    <section class="categoria-seccion" id="mundo-animal">
-      <h2>Mundo Animal</h2>
-      <div class="grid-productos" id="grid-mundo-animal">
-        <p class="cargando-merceria">Cargando productos...</p>
-      </div>
-    </section>
-    <section class="categoria-seccion" id="mundo-anime-y-peliculas">
-      <h2>Mundo Anime y Películas</h2>
-      <div class="grid-productos" id="grid-mundo-anime-y-peliculas">
-        <p class="cargando-merceria">Cargando productos...</p>
-      </div>
-    </section>
-    <section class="categoria-seccion" id="otros-amigurumis">
-      <h2>Otros Amigurumis</h2>
-      <div class="grid-productos" id="grid-otros-amigurumis">
+    <section class="categoria-seccion" id="amigurumis">
+      <h2>Amigurumis</h2>
+      <div class="grid-productos" id="grid-amigurumis">
         <p class="cargando-merceria">Cargando productos...</p>
       </div>
     </section>
@@ -1483,33 +1460,15 @@ a { color: var(--rosa-principal); }
         <p class="cargando-merceria">Cargando productos...</p>
       </div>
     </section>
-    <section class="categoria-seccion" id="bolsos">
-      <h2>Bolsos</h2>
-      <div class="grid-productos" id="grid-bolsos">
+    <section class="categoria-seccion" id="llaveros">
+      <h2>Llaveros</h2>
+      <div class="grid-productos" id="grid-llaveros">
         <p class="cargando-merceria">Cargando productos...</p>
       </div>
     </section>
-    <section class="categoria-seccion" id="charms">
-      <h2>Charms</h2>
-      <div class="grid-productos" id="grid-charms">
-        <p class="cargando-merceria">Cargando productos...</p>
-      </div>
-    </section>
-    <section class="categoria-seccion" id="macetas">
-      <h2>Macetas</h2>
-      <div class="grid-productos" id="grid-macetas">
-        <p class="cargando-merceria">Cargando productos...</p>
-      </div>
-    </section>
-    <section class="categoria-seccion" id="flores">
-      <h2>Flores</h2>
-      <div class="grid-productos" id="grid-flores">
-        <p class="cargando-merceria">Cargando productos...</p>
-      </div>
-    </section>
-    <section class="categoria-seccion" id="separadores-de-libros">
-      <h2>Separadores de libros</h2>
-      <div class="grid-productos" id="grid-separadores-de-libros">
+    <section class="categoria-seccion" id="accesorios">
+      <h2>Accesorios</h2>
+      <div class="grid-productos" id="grid-accesorios">
         <p class="cargando-merceria">Cargando productos...</p>
       </div>
     </section>
@@ -1666,16 +1625,10 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const supabase = createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD');
 
 var MAPA_GRID = {
-  'Mundo Encantado': 'grid-mundo-encantado',
-  'Mundo Animal': 'grid-mundo-animal',
-  'Mundo Anime y Películas': 'grid-mundo-anime-y-peliculas',
-  'Otros Amigurumis': 'grid-otros-amigurumis',
+  'Amigurumis': 'grid-amigurumis',
   'Peluches': 'grid-peluches',
-  'Bolsos': 'grid-bolsos',
-  'Charms': 'grid-charms',
-  'Macetas': 'grid-macetas',
-  'Flores': 'grid-flores',
-  'Separadores de libros': 'grid-separadores-de-libros'
+  'Llaveros': 'grid-llaveros',
+  'Accesorios': 'grid-accesorios'
 };
 
 function formatoCOP(valor) {
@@ -1866,6 +1819,10 @@ function inicializarBuscadorTienda() {
   if (selectorCategoria) {
     selectorCategoria.addEventListener('change', function() {
       if (!selectorCategoria.value) return;
+      if (selectorCategoria.value.indexOf('#') !== 0) {
+        window.location.href = selectorCategoria.value;
+        return;
+      }
       var destino = document.querySelector(selectorCategoria.value);
       if (destino) destino.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
