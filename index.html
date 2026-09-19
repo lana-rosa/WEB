@@ -239,6 +239,25 @@ section { padding: 72px 0; }
 .flecha-carrusel.anterior { left: 14px; }
 .flecha-carrusel.siguiente { right: 14px; }
 @media (max-width: 600px) { .flecha-carrusel { width: 34px; height: 34px; font-size: 1rem; } }
+
+.carrusel-testimonios-wrap { position: relative; margin-top: 32px; }
+.carrusel-testimonios {
+  display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 6px 4px 16px; scrollbar-width: thin;
+}
+.carrusel-testimonios::-webkit-scrollbar { height: 6px; }
+.carrusel-testimonios::-webkit-scrollbar-thumb { background: var(--rosa-suave); border-radius: 999px; }
+.tarjeta-testimonio {
+  flex: 0 0 240px; scroll-snap-align: start; background: var(--blanco); border-radius: var(--radio-suave);
+  box-shadow: var(--sombra-suave); overflow: hidden; display: flex; flex-direction: column;
+}
+.media-testimonio { aspect-ratio: 4/5; background: var(--rosa-suave); }
+.media-testimonio img, .media-testimonio video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.texto-testimonio { padding: 14px 16px; font-size: 0.88rem; color: var(--tinta-suave); margin: 0; font-style: italic; }
+.carrusel-testimonios-wrap .flecha-carrusel { top: 40%; }
+.carrusel-testimonios-wrap .flecha-carrusel.anterior { left: -10px; }
+.carrusel-testimonios-wrap .flecha-carrusel.siguiente { right: -10px; }
+@media (max-width: 700px) { .carrusel-testimonios-wrap .flecha-carrusel { display: none; } }
 .banner-promo::before { width: 220px; height: 220px; top: -80px; right: -60px; }
 .banner-promo::after { width: 140px; height: 140px; bottom: -60px; left: 6%; }
 .banner-promo-contenido { position: relative; z-index: 1; text-align: center; max-width: 680px; margin: 0 auto; }
@@ -482,10 +501,69 @@ section { padding: 72px 0; }
     <div class="contenedor">
       <div class="encabezado-seccion centrado">
         <h2>Historias reales de quienes ya tienen su Lana Rosa</h2>
-        <p style="text-align:center; color:var(--tinta-suave); max-width:60ch; margin:0 auto;">Cada pieza empieza con una foto de referencia — así se ven algunas de las personas detrás de sus amigurumis.</p>
+        <p style="text-align:center; color:var(--tinta-suave); max-width:60ch; margin:0 auto;">Cada pieza empieza con una foto de referencia — así se ven algunas de las personas detrás de sus amigurumis, en sus propias palabras.</p>
       </div>
-      <div style="max-width:640px; margin:32px auto 0;">
-        <img src="img/collage-testimonios.jpg" alt="Collage de clientas mostrando sus amigurumis personalizados junto a la foto de referencia usada para tejerlos" style="width:100%; border-radius:var(--radio-suave); box-shadow:var(--sombra-suave); display:block;">
+
+      <div class="carrusel-testimonios-wrap">
+        <button type="button" class="flecha-carrusel anterior" id="testimonios-anterior" aria-label="Testimonio anterior">‹</button>
+        <div class="carrusel-testimonios" id="carrusel-testimonios">
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-1.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_1</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-2.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_2</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-3.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_3</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-4.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_4</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-5.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_5</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-6.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_6</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-7.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_7</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-8.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_8</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio">
+              <video src="img/testimonios/testimonio-9.mp4" controls playsinline onerror="this.closest('.tarjeta-testimonio').style.display='none'"></video>
+            </div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_9</p>
+          </article>
+
+          <article class="tarjeta-testimonio">
+            <div class="media-testimonio">
+              <video src="img/testimonios/testimonio-10.mp4" controls playsinline onerror="this.closest('.tarjeta-testimonio').style.display='none'"></video>
+            </div>
+            <p class="texto-testimonio">PENDIENTE_MENSAJE_10</p>
+          </article>
+
+        </div>
+        <button type="button" class="flecha-carrusel siguiente" id="testimonios-siguiente" aria-label="Siguiente testimonio">›</button>
       </div>
     </div>
   </section>
@@ -917,6 +995,31 @@ formBono.addEventListener('submit', async (evento) => {
   });
 
   actualizarContador();
+})();
+</script>
+
+<script>
+(function() {
+  // Ocultar tarjetas que todavía no tienen un mensaje real cargado
+  document.querySelectorAll('.texto-testimonio').forEach(function(p) {
+    if (p.textContent.indexOf('PENDIENTE_MENSAJE') === 0) {
+      p.closest('.tarjeta-testimonio').style.display = 'none';
+    }
+  });
+
+  var carrusel = document.getElementById('carrusel-testimonios');
+  var anterior = document.getElementById('testimonios-anterior');
+  var siguiente = document.getElementById('testimonios-siguiente');
+  if (!carrusel) return;
+
+  function desplazar(direccion) {
+    var tarjeta = carrusel.querySelector('.tarjeta-testimonio');
+    var distancia = tarjeta ? tarjeta.offsetWidth + 18 : 260;
+    carrusel.scrollBy({ left: direccion * distancia * 2, behavior: 'smooth' });
+  }
+
+  if (anterior) anterior.addEventListener('click', function() { desplazar(-1); });
+  if (siguiente) siguiente.addEventListener('click', function() { desplazar(1); });
 })();
 </script>
 </body>

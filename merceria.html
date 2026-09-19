@@ -110,6 +110,13 @@ a { color: var(--rosa-principal); }
 .nota-presentacion { font-weight: 400; color: var(--tinta-suave); font-size: 0.78rem; }
 .ficha-merceria { font-size: 0.78rem; color: var(--tinta-suave); margin: 2px 0 8px; }
 .proximamente-merceria { background: var(--lila-suave); border-radius: 14px; padding: 20px; color: var(--tinta-suave); max-width: 480px; }
+.cargando-merceria { color: var(--tinta-suave); padding: 20px 0; }
+.producto-card.producto-agotado { opacity: 0.7; }
+.etiqueta-agotado {
+  position: absolute; top: 10px; right: 10px; background: var(--tinta); color: #fff;
+  font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+}
+.producto-foto { position: relative; }
 .categoria-seccion { padding: 20px 0 48px; scroll-margin-top: 130px; }
 .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 22px; }
 .producto-card { background: var(--blanco); border-radius: var(--radio-suave); overflow: hidden; box-shadow: var(--sombra-suave); display: flex; flex-direction: column; }
@@ -439,488 +446,16 @@ a { color: var(--rosa-principal); }
 
     <section class="categoria-seccion" id="lanas-merceria">
       <h2>Lanas</h2>
-      <div class="grid-productos">
-        <article class="producto-card" data-nombre="Lana Chelin — Almendra" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-almendra.jpg" alt="Lana Chelin — Almendra" loading="lazy" data-id="lana-chelin-kusi-kusi-almendra" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Almendra ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Almendra</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Almendra%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Amarillo" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-amarillo.jpg" alt="Lana Chelin — Amarillo" loading="lazy" data-id="lana-chelin-kusi-kusi-amarillo" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Amarillo ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Amarillo</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Amarillo%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Azul Rey" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-azul-rey.jpg" alt="Lana Chelin — Azul Rey" loading="lazy" data-id="lana-chelin-kusi-kusi-azul-rey" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Azul Rey ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Azul Rey</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Azul%20Rey%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Blanco" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-blanco.jpg" alt="Lana Chelin — Blanco" loading="lazy" data-id="lana-chelin-kusi-kusi-blanco" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Blanco ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Blanco</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Blanco%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Crema" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-crema.jpg" alt="Lana Chelin — Crema" loading="lazy" data-id="lana-chelin-kusi-kusi-crema" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Crema ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Crema</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Crema%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Gris Claro T18" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-gris-claro-t18.jpg" alt="Lana Chelin — Gris Claro T18" loading="lazy" data-id="lana-chelin-kusi-kusi-gris-claro-t18" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Gris Claro T18 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Gris Claro T18</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Gris%20Claro%20T18%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Gris Oscuro" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-gris-oscuro.jpg" alt="Lana Chelin — Gris Oscuro" loading="lazy" data-id="lana-chelin-kusi-kusi-gris-oscuro" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Gris Oscuro ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Gris Oscuro</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Gris%20Oscuro%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Manzana" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-manzana.jpg" alt="Lana Chelin — Manzana" loading="lazy" data-id="lana-chelin-kusi-kusi-manzana" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Manzana ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Manzana</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Manzana%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Naranja T17" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-naranja-t17.jpg" alt="Lana Chelin — Naranja T17" loading="lazy" data-id="lana-chelin-kusi-kusi-naranja-t17" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Naranja T17 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Naranja T17</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Naranja%20T17%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Piel" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-piel.jpg" alt="Lana Chelin — Piel" loading="lazy" data-id="lana-chelin-kusi-kusi-piel" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Piel ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Piel</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Piel%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Rosado Claro" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-rosado-claro.jpg" alt="Lana Chelin — Rosado Claro" loading="lazy" data-id="lana-chelin-kusi-kusi-rosado-claro" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Rosado Claro ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Rosado Claro</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Rosado%20Claro%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Chelin — Vinotinto T134" data-precio="17600">
-          <div class="producto-foto">
-            <img src="img/productos/lana-chelin-kusi-kusi-vinotinto-t134.jpg" alt="Lana Chelin — Vinotinto T134" loading="lazy" data-id="lana-chelin-kusi-kusi-vinotinto-t134" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Chelin — Vinotinto T134 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Chelin — Vinotinto T134</h3>
-            <p class="producto-precio">$17.600 COP <span class="nota-presentacion">/ madeja de 160 g</span></p>
-            <p class="ficha-merceria">Poliester · 125 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Chelin%20-%20Vinotinto%20T134%20%28160g%20-%20$17.600%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Ecological Cotton — 204" data-precio="12000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-ecological-cotton-papatya-204.jpg" alt="Lana Ecological Cotton — 204" loading="lazy" data-id="lana-ecological-cotton-papatya-204" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Ecological Cotton — 204 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Ecological Cotton — 204</h3>
-            <p class="producto-precio">$12.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Algodón · 300 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Ecological%20Cotton%20-%20204%20%28100g%20-%20$12.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Ecological Cotton — Gris Claro 106" data-precio="12000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-ecological-cotton-papatya-gris-claro-106.jpg" alt="Lana Ecological Cotton — Gris Claro 106" loading="lazy" data-id="lana-ecological-cotton-papatya-gris-claro-106" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Ecological Cotton — Gris Claro 106 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Ecological Cotton — Gris Claro 106</h3>
-            <p class="producto-precio">$12.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Algodón · 300 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Ecological%20Cotton%20-%20Gris%20Claro%20106%20%28100g%20-%20$12.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Ecological Cotton — Lila 505" data-precio="12000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-ecological-cotton-papatya-lila-505.jpg" alt="Lana Ecological Cotton — Lila 505" loading="lazy" data-id="lana-ecological-cotton-papatya-lila-505" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Ecological Cotton — Lila 505 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Ecological Cotton — Lila 505</h3>
-            <p class="producto-precio">$12.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Algodón · 300 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Ecological%20Cotton%20-%20Lila%20505%20%28100g%20-%20$12.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Ecological Cotton — Magenta 503" data-precio="12000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-ecological-cotton-papatya-magenta-503.jpg" alt="Lana Ecological Cotton — Magenta 503" loading="lazy" data-id="lana-ecological-cotton-papatya-magenta-503" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Ecological Cotton — Magenta 503 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Ecological Cotton — Magenta 503</h3>
-            <p class="producto-precio">$12.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Algodón · 300 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Ecological%20Cotton%20-%20Magenta%20503%20%28100g%20-%20$12.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Amarillo" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-amarillo.jpg" alt="Lana Happy Chenille — Amarillo" loading="lazy" data-id="lana-happy-chenille-dmc-amarillo" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Amarillo ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Amarillo</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Amarillo%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Azul Claro" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-azul-claro.jpg" alt="Lana Happy Chenille — Azul Claro" loading="lazy" data-id="lana-happy-chenille-dmc-azul-claro" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Azul Claro ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Azul Claro</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Azul%20Claro%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Azul" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-azul.jpg" alt="Lana Happy Chenille — Azul" loading="lazy" data-id="lana-happy-chenille-dmc-azul" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Azul ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Azul</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Azul%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Blanco" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-blanco.jpg" alt="Lana Happy Chenille — Blanco" loading="lazy" data-id="lana-happy-chenille-dmc-blanco" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Blanco ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Blanco</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Blanco%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Fucsia" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-fucsia.jpg" alt="Lana Happy Chenille — Fucsia" loading="lazy" data-id="lana-happy-chenille-dmc-fucsia" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Fucsia ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Fucsia</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Fucsia%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Magenta" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-magenta.jpg" alt="Lana Happy Chenille — Magenta" loading="lazy" data-id="lana-happy-chenille-dmc-magenta" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Magenta ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Magenta</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Magenta%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Morado" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-morado.jpg" alt="Lana Happy Chenille — Morado" loading="lazy" data-id="lana-happy-chenille-dmc-morado" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Morado ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Morado</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Morado%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Negro" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-negro.jpg" alt="Lana Happy Chenille — Negro" loading="lazy" data-id="lana-happy-chenille-dmc-negro" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Negro ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Negro</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Negro%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Rosado" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-rosado.jpg" alt="Lana Happy Chenille — Rosado" loading="lazy" data-id="lana-happy-chenille-dmc-rosado" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Rosado ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Rosado</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Rosado%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Turquesa" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-turquesa.jpg" alt="Lana Happy Chenille — Turquesa" loading="lazy" data-id="lana-happy-chenille-dmc-turquesa" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Turquesa ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Turquesa</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Turquesa%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Verde claro" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-verde-claro.jpg" alt="Lana Happy Chenille — Verde claro" loading="lazy" data-id="lana-happy-chenille-dmc-verde-claro" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Verde claro ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Verde claro</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Verde%20claro%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Verde Gris" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-verde-gris.jpg" alt="Lana Happy Chenille — Verde Gris" loading="lazy" data-id="lana-happy-chenille-dmc-verde-gris" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Verde Gris ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Verde Gris</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Verde%20Gris%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Papatya Love — Morado 4550" data-precio="13000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-papatya-love-papatya-morado-4550.jpg" alt="Lana Papatya Love — Morado 4550" loading="lazy" data-id="lana-papatya-love-papatya-morado-4550" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Papatya Love — Morado 4550 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Papatya Love — Morado 4550</h3>
-            <p class="producto-precio">$13.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Acrilico · 360 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Papatya%20Love%20-%20Morado%204550%20%28100g%20-%20$13.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Papatya Love — Rosado Claro 4020" data-precio="13000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-papatya-love-papatya-rosado-claro-4020.jpg" alt="Lana Papatya Love — Rosado Claro 4020" loading="lazy" data-id="lana-papatya-love-papatya-rosado-claro-4020" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Papatya Love — Rosado Claro 4020 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Papatya Love — Rosado Claro 4020</h3>
-            <p class="producto-precio">$13.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Acrilico · 360 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Papatya%20Love%20-%20Rosado%20Claro%204020%20%28100g%20-%20$13.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Papatya Love — Verde Esmeralda 6550" data-precio="13000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-papatya-love-papatya-verde-esmeralda-6550.jpg" alt="Lana Papatya Love — Verde Esmeralda 6550" loading="lazy" data-id="lana-papatya-love-papatya-verde-esmeralda-6550" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Papatya Love — Verde Esmeralda 6550 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Papatya Love — Verde Esmeralda 6550</h3>
-            <p class="producto-precio">$13.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Acrilico · 360 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Papatya%20Love%20-%20Verde%20Esmeralda%206550%20%28100g%20-%20$13.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Polar — Blanco 03" data-precio="13000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-polar-kusi-kusi-blanco-03.jpg" alt="Lana Polar — Blanco 03" loading="lazy" data-id="lana-polar-kusi-kusi-blanco-03" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Polar — Blanco 03 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Polar — Blanco 03</h3>
-            <p class="producto-precio">$13.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Poliester · 55 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Polar%20-%20Blanco%2003%20%28100g%20-%20$13.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
-        <article class="producto-card" data-nombre="Lana Papatya Love — Azul Claro 5050" data-precio="13000">
-          <div class="producto-foto">
-            <img src="img/productos/lana-papatya-love-papatya-azul-claro-5050.jpg" alt="Lana Papatya Love — Azul Claro 5050" loading="lazy" data-id="lana-papatya-love-papatya-azul-claro-5050" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Papatya Love — Azul Claro 5050 ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Papatya Love — Azul Claro 5050</h3>
-            <p class="producto-precio">$13.000 COP <span class="nota-presentacion">/ madeja de 100 g</span></p>
-            <p class="ficha-merceria">Acrilico · 360 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Papatya%20Love%20-%20Azul%20Claro%205050%20%28100g%20-%20$13.000%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
+      <div class="grid-productos" id="grid-lanas-merceria">
+        <p class="cargando-merceria">Cargando productos...</p>
       </div>
     </section>
     <section class="categoria-seccion" id="hilos-merceria">
       <h2>Hilos</h2>
-      <div class="grid-productos">
-        <article class="producto-card" data-nombre="Lana Happy Chenille — Verde Limón" data-precio="4500">
-          <div class="producto-foto">
-            <img src="img/productos/lana-happy-chenille-dmc-verde-limon.jpg" alt="Lana Happy Chenille — Verde Limón" loading="lazy" data-id="lana-happy-chenille-dmc-verde-limon" data-intento="0"
-                 onerror="manejarErrorFoto(this)">
-            <span class="foto-marcador" style="display:none;">[ Foto de Lana Happy Chenille — Verde Limón ]</span>
-          </div>
-          <div class="producto-info">
-            <h3>Lana Happy Chenille — Verde Limón</h3>
-            <p class="producto-precio">$4.500 COP <span class="nota-presentacion">/ madeja de 15 g</span></p>
-            <p class="ficha-merceria">Acrílico/Poliéster · 38 m</p>
-            <a class="boton-pedir" href="https://wa.me/573205072801?text=Hola!%20Me%20interesa%3A%20Lana%20Happy%20Chenille%20-%20Verde%20Limón%20%2815g%20-%20$4.500%29" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-            <button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>
-          </div>
-        </article>
+      <div class="grid-productos" id="grid-hilos-merceria">
+        <p class="cargando-merceria">Cargando productos...</p>
+      </div>
+    </section>
       </div>
     </section>
     <section class="categoria-seccion" id="agujas-merceria">
@@ -1051,8 +586,104 @@ function manejarErrorFoto(img) {
   }
 })();
 </script>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const supabase = createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD');
+
+function formatoCOP(valor) {
+  return '$' + Math.round(valor).toLocaleString('es-CO');
+}
+
+function crearTarjeta(item) {
+  const nombreLimpio = [item.marca, item.color].filter(Boolean).join(' — ') || item.nombre;
+  const peso = item.peso_gramos ? Number(item.peso_gramos) : null;
+  const precioPresentacion = peso ? Math.round(item.precio_gramo * peso / 100) * 100 : Math.round(item.precio_gramo);
+  const agotado = Number(item.stock_actual) <= 0;
+  const nombreAttr = nombreLimpio.replace(/"/g, '&quot;');
+
+  const mensaje = 'Hola! Me interesa: ' + nombreLimpio + (peso ? ' (' + peso + 'g - ' + formatoCOP(precioPresentacion) + ')' : '');
+  const urlWhatsapp = 'https://wa.me/573205072801?text=' + encodeURIComponent(mensaje);
+
+  const articulo = document.createElement('article');
+  articulo.className = 'producto-card' + (agotado ? ' producto-agotado' : '');
+  articulo.dataset.nombre = nombreLimpio;
+  articulo.dataset.precio = precioPresentacion;
+  articulo.innerHTML =
+    '<div class="producto-foto">' +
+      '<img src="img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + (item.id) + '" data-intento="0" onerror="manejarErrorFoto(this)">' +
+      '<span class="foto-marcador" style="display:none;">[ Foto de ' + nombreLimpio + ' ]</span>' +
+      (agotado ? '<span class="etiqueta-agotado">Agotado</span>' : '') +
+    '</div>' +
+    '<div class="producto-info">' +
+      '<h3>' + nombreLimpio + '</h3>' +
+      '<p class="producto-precio">' + formatoCOP(precioPresentacion) + ' COP' + (peso ? ' <span class="nota-presentacion">/ madeja de ' + peso + ' g</span>' : '') + '</p>' +
+      '<p class="ficha-merceria">' + (item.material || '') + (item.material ? ' · ' : '') + '</p>' +
+      (agotado
+        ? '<button type="button" class="boton-pedir" disabled style="opacity:0.5; cursor:not-allowed;">Agotado por ahora</button>'
+        : '<a class="boton-pedir" href="' + urlWhatsapp + '" target="_blank" rel="noopener">Pedir por WhatsApp</a><button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>'
+      ) +
+    '</div>';
+  return articulo;
+}
+
+(async function cargarMerceriaDesdeERP() {
+  const gridLanas = document.getElementById('grid-lanas-merceria');
+  const gridHilos = document.getElementById('grid-hilos-merceria');
+
+  try {
+    const { data, error } = await supabase.rpc('obtener_merceria_web');
+    if (error) throw error;
+
+    gridLanas.innerHTML = '';
+    gridHilos.innerHTML = '';
+
+    (data || []).forEach(function(item) {
+      const tarjeta = crearTarjeta(item);
+      if (item.categoria === 'Hilos') {
+        gridHilos.appendChild(tarjeta);
+      } else {
+        gridLanas.appendChild(tarjeta);
+      }
+    });
+
+    if (!gridLanas.children.length) {
+      gridLanas.innerHTML = '<p class="proximamente-merceria">🧵 Muy pronto vamos a tener lanas disponibles aquí. Mientras tanto, escríbenos por WhatsApp si buscas algo puntual.</p>';
+    }
+    if (!gridHilos.children.length) {
+      gridHilos.innerHTML = '<p class="proximamente-merceria">🧵 Muy pronto vamos a tener hilos disponibles aquí. Mientras tanto, escríbenos por WhatsApp si buscas algo puntual.</p>';
+    }
+  } catch (e) {
+    gridLanas.innerHTML = '<p class="proximamente-merceria">No pudimos cargar el catálogo en este momento. Escríbenos por WhatsApp o intenta de nuevo en un momento.</p>';
+    gridHilos.innerHTML = '';
+    console.error(e);
+  }
+
+  // Volver a activar los botones de agregar al carrito para las tarjetas recién insertadas
+  document.querySelectorAll('.boton-agregar-carrito').forEach(function(boton) {
+    boton.addEventListener('click', function() {
+      var tarjeta = boton.closest('.producto-card');
+      var id = tarjeta.querySelector('img').dataset.id;
+      var nombre = tarjeta.dataset.nombre;
+      var precio = parseInt(tarjeta.dataset.precio, 10);
+      var CLAVE_CARRITO = 'carritoLanaRosa';
+      var carrito = [];
+      try { carrito = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || []; } catch (e) {}
+      var existente = carrito.find(function(i) { return i.id === id; });
+      if (existente) { existente.cantidad++; } else { carrito.push({ id: id, nombre: nombre, precio: precio, cantidad: 1 }); }
+      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+      var contador = document.getElementById('contador-carrito');
+      if (contador) contador.textContent = carrito.reduce(function(s, i) { return s + i.cantidad; }, 0);
+      boton.textContent = '✓ Agregado';
+      boton.classList.add('agregado');
+      setTimeout(function() { boton.textContent = '🛒 Agregar al carrito'; boton.classList.remove('agregado'); }, 1200);
+    });
+  });
+
+  if (typeof inicializarBuscadorMerceria === 'function') inicializarBuscadorMerceria();
+})();
+</script>
 <script>
-(function() {
+function inicializarBuscadorMerceria() {
   var LIMITE_INICIAL = 8;
   var secciones = [];
 
@@ -1158,7 +789,7 @@ function manejarErrorFoto(img) {
       }
     });
   }
-})();
+}
 </script>
 <button class="boton-subir" id="boton-subir" aria-label="Subir al inicio de la página">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
