@@ -1698,7 +1698,7 @@ function crearTarjeta(item) {
         nombre: item.nombre, precio: item.precio, categoria: item.categoria_web,
         disponible: item.disponible_web, tiempo: item.tiempo_elaboracion,
         descripcion: item.descripcion_web, especificaciones: item.especificaciones_web || [],
-        cuidados: item.cuidados_web || []
+        cuidados: item.cuidados_web || [], foto_url: item.foto_url
       };
       var gridId = MAPA_GRID[item.categoria_web];
       var grid = gridId ? document.getElementById(gridId) : null;
@@ -2071,12 +2071,13 @@ var DATOS_PRODUCTOS = {};
 (function() {
   var extensionesProducto = ['.jpg', '.jpg.png', '.jpg.jpg', '.png', '.jpeg'];
 
-  function probarExtensiones(idBase, callback) {
+  function probarExtensiones(idBase, callback, listaExtensiones) {
+    var extensiones = listaExtensiones || extensionesProducto;
     var intento = 0;
     var img = new Image();
     function siguiente() {
-      if (intento >= extensionesProducto.length) { callback(null); return; }
-      img.src = 'img/productos/' + idBase + extensionesProducto[intento];
+      if (intento >= extensiones.length) { callback(null); return; }
+      img.src = 'img/productos/' + idBase + extensiones[intento];
     }
     img.onload = function() { callback(img.src); };
     img.onerror = function() { intento++; siguiente(); };
@@ -2131,8 +2132,13 @@ var DATOS_PRODUCTOS = {};
       setTimeout(function() { botonCarritoModal.textContent = '🛒 Agregar al carrito'; }, 1200);
     };
 
-    // Foto principal + hasta 2 fotos adicionales (id-2, id-3), si existen
-    var candidatos = [id, id + '-2', id + '-3'];
+    // Foto principal + hasta 2 fotos adicionales (nombre-2, nombre-3), si existen
+    var fotoBase = producto.foto_url || '';
+    var punto = fotoBase.lastIndexOf('.');
+    var nombreSinExt = punto > -1 ? fotoBase.substring(0, punto) : fotoBase;
+    var extension = punto > -1 ? fotoBase.substring(punto) : '.jpg';
+    var candidatos = [nombreSinExt, nombreSinExt + '-2', nombreSinExt + '-3'];
+    var extensionesCandidatos = [extension, '.jpg', '.jpg.png', '.jpg.jpg', '.png', '.jpeg'];
     var urlsEncontradas = [];
     var pendientes = candidatos.length;
 
@@ -2142,7 +2148,7 @@ var DATOS_PRODUCTOS = {};
         urlsEncontradas[i] = url;
         pendientes--;
         if (pendientes === 0) mostrarGaleria(urlsEncontradas.filter(Boolean));
-      });
+      }, extensionesCandidatos);
     });
 
     function mostrarGaleria(urls) {
