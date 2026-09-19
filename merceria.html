@@ -973,10 +973,26 @@ function inicializarBuscadorMerceria() {
   var inputBuscar = document.getElementById('input-buscar-header');
   if (!botonBuscar || !panelBuscar) return;
 
+  function irABuscar() {
+    var termino = inputBuscar.value.trim();
+    if (!termino) { inputBuscar.focus(); return; }
+    window.location.href = 'merceria.html?buscar=' + encodeURIComponent(termino);
+  }
+
   botonBuscar.addEventListener('click', function(e) {
     e.stopPropagation();
     panelBuscar.classList.toggle('abierto');
     if (panelBuscar.classList.contains('abierto')) inputBuscar.focus();
+  });
+  panelBuscar.addEventListener('submit', function(e) {
+    e.preventDefault();
+    irABuscar();
+  });
+  inputBuscar.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      irABuscar();
+    }
   });
   document.addEventListener('click', function(e) {
     if (panelBuscar.classList.contains('abierto') && !panelBuscar.contains(e.target) && e.target !== botonBuscar) {
