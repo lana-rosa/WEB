@@ -11,6 +11,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.lanarosacrochet.com/merceria.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.lanarosacrochet.com/personaliza.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
