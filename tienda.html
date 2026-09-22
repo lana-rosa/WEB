@@ -1153,6 +1153,12 @@ a { color: var(--rosa-principal); }
 }
 .filtros-desplegables summary::-webkit-details-marker { display: none; }
 .filtros-desplegables[open] summary { border-color: var(--rosa-principal); color: var(--rosa-principal); }
+@media (max-width: 600px) {
+  .barra-controles-tienda { margin-top: 10px; padding: 8px 0; gap: 8px; }
+  .selector-categorias label { display: none; }
+  .selector-categorias select { padding: 8px 12px; font-size: 0.82rem; }
+  .filtros-desplegables summary { padding: 8px 14px; font-size: 0.82rem; margin-top: 0; }
+}
 .filtros-desplegables .buscador-productos {
   position: absolute; top: calc(100% + 8px); right: 0; z-index: 20;
   background: var(--blanco); border-radius: 16px; box-shadow: var(--sombra-suave);
