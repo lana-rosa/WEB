@@ -14,4 +14,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://www.lanarosacrochet.com/sitemap.xml
+Sitemap: https://lanarosacrochet.com/sitemap.xml
