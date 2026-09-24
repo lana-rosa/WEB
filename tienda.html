@@ -1282,6 +1282,24 @@ a { color: var(--rosa-principal); }
 .tarjeta-resena .estrellas-resena { color: var(--rosa-principal); font-size: 1.1rem; margin-bottom: 6px; }
 .tarjeta-resena p.comentario-resena { color: var(--tinta-suave); font-size: 0.92rem; margin-bottom: 10px; }
 .tarjeta-resena .autor-resena { font-weight: 600; font-size: 0.88rem; }
+.tarjeta-resena .pieza-resena { display: inline-block; font-size: 0.78rem; font-weight: 600; color: var(--rosa-principal); background: var(--rosa-suave); border-radius: 999px; padding: 3px 10px; margin-bottom: 8px; }
+.resumen-resenas { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; background: var(--blanco); border-radius: 20px; padding: 20px 24px; box-shadow: var(--sombra-suave); margin-bottom: 24px; }
+.resumen-resenas .promedio-grande { font-family: var(--fuente-titulo); font-size: 2.6rem; color: var(--rosa-principal); line-height: 1; }
+.resumen-resenas .estrellas-grandes { color: var(--rosa-principal); font-size: 1.3rem; letter-spacing: 2px; }
+.resumen-resenas .total-resenas { color: var(--tinta-suave); font-size: 0.9rem; }
+.resumen-resenas .grupos-resenas { display: flex; flex-wrap: wrap; gap: 8px; }
+.resumen-resenas .grupo-resena { background: var(--rosa-suave); color: var(--tinta); border-radius: 999px; padding: 6px 14px; font-size: 0.85rem; }
+.resumen-resenas .grupo-resena strong { color: var(--rosa-principal); }
+.producto-calificacion { color: var(--rosa-principal); font-size: 0.85rem; font-weight: 600; margin: -4px 0 6px; }
+.producto-calificacion span { color: var(--tinta-suave); font-weight: 400; }
+.calificacion-modal { color: var(--rosa-principal); font-weight: 600; margin: -6px 0 12px; }
+.calificacion-modal span { color: var(--tinta-suave); font-weight: 400; }
+.resenas-modal { margin-top: 22px; }
+.resenas-modal h3 { font-size: 1rem; margin-bottom: 10px; }
+.resenas-modal .resena-modal-item { background: var(--blanco); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; font-size: 0.9rem; }
+.resenas-modal .resena-modal-item .estrellas-resena { color: var(--rosa-principal); }
+.resenas-modal .resena-modal-item p { margin: 4px 0; color: var(--tinta-suave); }
+#resena-producto { width: 100%; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--rosa-suave); font-family: var(--fuente-cuerpo); background: var(--blanco); color: var(--tinta); }
 .aviso-personalizado { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 28px 32px; margin: 20px 0 40px; max-width: 780px; }
 .aviso-personalizado a.boton-primario { display: inline-block; margin-top: 10px; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-weight: 600; }
 .pie { background: var(--tinta); color: var(--blanco-hueso); padding: 40px 0; text-align: center; font-size: 0.85rem; }
@@ -1524,6 +1542,7 @@ a { color: var(--rosa-principal); }
     <h2 style="font-size:1.4rem; margin-bottom:6px;">Reseñas de nuestras clientas</h2>
     <p style="color:var(--tinta-suave); margin-bottom:24px;">Comparte tu experiencia con tu pedido — verificamos que sea una compra real antes de publicarla.</p>
 
+    <div id="resumen-resenas" class="resumen-resenas" style="display:none;"></div>
     <div id="lista-resenas" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; margin-bottom:32px;"></div>
     <p id="sin-resenas" style="display:none; color:var(--tinta-suave);">Todavía no hay reseñas publicadas — ¡sé la primera en dejar una!</p>
 
@@ -1538,6 +1557,22 @@ a { color: var(--rosa-principal); }
           <label for="resena-telefono">Teléfono con el que compraste*</label>
           <input type="tel" id="resena-telefono" required style="width:100%; padding:11px 14px; border-radius:12px; border:1.5px solid var(--rosa-suave); font-family:var(--fuente-cuerpo);">
           <p style="font-size:0.78rem; color:var(--tinta-suave); margin-top:4px;">Solo lo usamos para confirmar que tuviste un pedido con nosotras — no se publica.</p>
+        </div>
+        <div class="campo">
+          <label for="resena-producto">¿Qué pieza compraste?*</label>
+          <select id="resena-producto" required>
+            <option value="">Elige la pieza…</option>
+            <optgroup label="Hecha a partir de mi foto (personalizada)">
+              <option value="personalizado-amigurumi">Amigurumi personalizado</option>
+              <option value="personalizado-peluche">Peluche personalizado</option>
+              <option value="personalizado-llavero">Llavero personalizado</option>
+              <option value="personalizado-otro">Otro personalizado</option>
+            </optgroup>
+            <optgroup label="Otra">
+              <option value="otra-pieza">Otra pieza / no la encuentro en la lista</option>
+            </optgroup>
+          </select>
+          <p style="font-size:0.78rem; color:var(--tinta-suave); margin-top:4px;">Si te tejimos una pieza desde tu foto, elige la opción "personalizado" que corresponda.</p>
         </div>
         <div class="campo">
           <label>Calificación*</label>
@@ -1722,6 +1757,8 @@ function crearTarjeta(item) {
         grid.innerHTML = '<p class="cargando-merceria">Muy pronto vamos a tener productos en esta categoría.</p>';
       }
     });
+    window.TIENDA_PRODUCTOS_LISTOS = true;
+    window.dispatchEvent(new Event('tienda:productos-listos'));
   } catch (e) {
     console.error(e);
     Object.keys(MAPA_GRID).forEach(function(cat) {
@@ -2066,12 +2103,14 @@ function inicializarBuscadorTienda() {
       <div class="modal-info-producto">
         <h2 id="modal-nombre"></h2>
         <p class="precio-modal" id="modal-precio"></p>
+        <p class="calificacion-modal" id="modal-calificacion"></p>
         <p class="descripcion-modal" id="modal-descripcion"></p>
         <ul class="ficha-tecnica" id="modal-ficha"></ul>
         <div class="modal-botones">
           <button type="button" class="boton-primario" id="modal-boton-carrito" style="border:none; cursor:pointer;">🛒 Agregar al carrito</button>
           <a class="boton-pedir" id="modal-boton-whatsapp" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
         </div>
+        <div class="resenas-modal" id="modal-resenas"></div>
       </div>
     </div>
   </div>
@@ -2079,6 +2118,7 @@ function inicializarBuscadorTienda() {
 
 <script>
 var DATOS_PRODUCTOS = {};
+var RESENAS_POR_PRODUCTO = {};
 (function() {
   var extensionesProducto = ['.jpg', '.jpg.png', '.jpg.jpg', '.png', '.jpeg'];
 
@@ -2113,6 +2153,7 @@ var DATOS_PRODUCTOS = {};
 
     nombreEl.textContent = producto.nombre;
     precioEl.textContent = formatoCOP(producto.precio) + ' COP';
+    mostrarResenasEnModal(id);
     descripcionEl.innerHTML = producto.descripcion.replace(/\n/g, '<br>');
 
     var especificacionesHtml = producto.especificaciones.map(function(e) { return '<li>' + e + '</li>'; }).join('');
@@ -2192,6 +2233,37 @@ var DATOS_PRODUCTOS = {};
     if (e.target === overlay) overlay.classList.remove('abierto');
   });
 
+  function mostrarResenasEnModal(id) {
+    var calEl = document.getElementById('modal-calificacion');
+    var resEl = document.getElementById('modal-resenas');
+    var info = RESENAS_POR_PRODUCTO[id];
+    calEl.innerHTML = '';
+    resEl.innerHTML = '';
+    if (!info || !info.cantidad) return;
+    var redondeado = Math.round(info.promedio);
+    calEl.textContent = '★'.repeat(redondeado) + '☆'.repeat(5 - redondeado) + ' ' + info.promedio.toFixed(1).replace('.', ',') + ' ';
+    var total = document.createElement('span');
+    total.textContent = '(' + info.cantidad + (info.cantidad === 1 ? ' reseña)' : ' reseñas)');
+    calEl.appendChild(total);
+    var titulo = document.createElement('h3');
+    titulo.textContent = 'Lo que dicen nuestras clientas';
+    resEl.appendChild(titulo);
+    info.resenas.slice(0, 3).forEach(function(r) {
+      var item = document.createElement('div');
+      item.className = 'resena-modal-item';
+      var est = document.createElement('div');
+      est.className = 'estrellas-resena';
+      est.textContent = '★'.repeat(r.calificacion) + '☆'.repeat(5 - r.calificacion);
+      var com = document.createElement('p');
+      com.textContent = '"' + r.comentario + '"';
+      var autor = document.createElement('p');
+      autor.style.fontWeight = '600';
+      autor.textContent = '— ' + r.cliente_nombre;
+      item.appendChild(est); item.appendChild(com); item.appendChild(autor);
+      resEl.appendChild(item);
+    });
+  }
+
   window.abrirModal = abrirModal;
 })();
 </script>
@@ -2205,33 +2277,113 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const listaResenas = document.getElementById('lista-resenas');
 const sinResenas = document.getElementById('sin-resenas');
+const resumenResenas = document.getElementById('resumen-resenas');
+const selectProducto = document.getElementById('resena-producto');
 
 function estrellasHtml(n) {
-  return '★'.repeat(n) + '☆'.repeat(5 - n);
+  const r = Math.max(0, Math.min(5, Math.round(n)));
+  return '★'.repeat(r) + '☆'.repeat(5 - r);
 }
+function escaparTexto(t) {
+  return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function formatoPromedio(n) {
+  return n.toFixed(1).replace('.', ',');
+}
+function resumir(lista) {
+  const suma = lista.reduce((s, r) => s + r.calificacion, 0);
+  return { cantidad: lista.length, promedio: lista.length ? suma / lista.length : 0 };
+}
+
+let resenasAprobadas = [];
 
 async function cargarResenas() {
   const { data, error } = await supabase
     .from('resenas_web')
-    .select('cliente_nombre, calificacion, comentario, created_at')
+    .select('producto_id, producto_nombre, producto_categoria, cliente_nombre, calificacion, comentario, created_at')
     .eq('estado', 'aprobada')
     .order('created_at', { ascending: false })
-    .limit(12);
+    .limit(500);
 
   if (error || !data || data.length === 0) {
     sinResenas.style.display = 'block';
     return;
   }
+  resenasAprobadas = data;
 
-  listaResenas.innerHTML = data.map(r => `
+  // Promedio por pieza (para las tarjetas y la ficha del producto)
+  data.forEach(r => {
+    if (!r.producto_id) return;
+    const info = RESENAS_POR_PRODUCTO[r.producto_id] || (RESENAS_POR_PRODUCTO[r.producto_id] = { resenas: [] });
+    info.resenas.push(r);
+  });
+  Object.values(RESENAS_POR_PRODUCTO).forEach(info => Object.assign(info, resumir(info.resenas)));
+
+  // Resumen general + personalizados
+  const general = resumir(data);
+  const personalizados = resumir(data.filter(r => r.producto_categoria === 'Personalizados'));
+  resumenResenas.innerHTML = `
+    <div class="promedio-grande">${formatoPromedio(general.promedio)}</div>
+    <div>
+      <div class="estrellas-grandes" aria-label="${formatoPromedio(general.promedio)} de 5 estrellas">${estrellasHtml(general.promedio)}</div>
+      <div class="total-resenas">${general.cantidad} ${general.cantidad === 1 ? 'reseña verificada' : 'reseñas verificadas'}</div>
+    </div>
+    ${personalizados.cantidad ? `<div class="grupos-resenas"><span class="grupo-resena">Personalizados <strong>★ ${formatoPromedio(personalizados.promedio)}</strong> (${personalizados.cantidad})</span></div>` : ''}
+  `;
+  resumenResenas.style.display = 'flex';
+
+  listaResenas.innerHTML = data.slice(0, 12).map(r => `
     <div class="tarjeta-resena">
       <div class="estrellas-resena">${estrellasHtml(r.calificacion)}</div>
-      <p class="comentario-resena">"${r.comentario.replace(/</g, '&lt;')}"</p>
-      <p class="autor-resena">— ${r.cliente_nombre.replace(/</g, '&lt;')}</p>
+      ${r.producto_nombre ? `<span class="pieza-resena">🧶 ${escaparTexto(r.producto_nombre)}</span>` : ''}
+      <p class="comentario-resena">"${escaparTexto(r.comentario)}"</p>
+      <p class="autor-resena">— ${escaparTexto(r.cliente_nombre)}</p>
     </div>
   `).join('');
+
+  pintarCalificacionEnTarjetas();
 }
 
+// Estrellas debajo del nombre de cada pieza que ya tiene reseñas
+function pintarCalificacionEnTarjetas() {
+  if (!window.TIENDA_PRODUCTOS_LISTOS) return;
+  Object.entries(RESENAS_POR_PRODUCTO).forEach(([id, info]) => {
+    const img = document.querySelector('.producto-card img[data-id="' + CSS.escape(id) + '"]');
+    const tarjeta = img && img.closest('.producto-card');
+    if (!tarjeta || tarjeta.querySelector('.producto-calificacion')) return;
+    const h3 = tarjeta.querySelector('.producto-info h3');
+    if (h3) h3.insertAdjacentHTML('afterend',
+      `<p class="producto-calificacion">★ ${formatoPromedio(info.promedio)} <span>(${info.cantidad})</span></p>`);
+  });
+}
+
+// Lista de piezas del catálogo en el formulario, agrupadas por categoría
+function llenarSelectorDePiezas() {
+  if (!window.TIENDA_PRODUCTOS_LISTOS || selectProducto.dataset.lleno) return;
+  const porCategoria = {};
+  Object.entries(DATOS_PRODUCTOS).forEach(([id, p]) => {
+    (porCategoria[p.categoria || 'Otros'] = porCategoria[p.categoria || 'Otros'] || []).push({ id, nombre: p.nombre });
+  });
+  const grupoOtra = selectProducto.querySelector('optgroup[label="Otra"]');
+  Object.keys(porCategoria).forEach(cat => {
+    const grupo = document.createElement('optgroup');
+    grupo.label = cat;
+    porCategoria[cat].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es')).forEach(p => {
+      const opcion = document.createElement('option');
+      opcion.value = p.id;
+      opcion.textContent = p.nombre;
+      grupo.appendChild(opcion);
+    });
+    selectProducto.insertBefore(grupo, grupoOtra);
+  });
+  selectProducto.dataset.lleno = '1';
+}
+
+window.addEventListener('tienda:productos-listos', () => {
+  pintarCalificacionEnTarjetas();
+  llenarSelectorDePiezas();
+});
+llenarSelectorDePiezas();
 cargarResenas();
 
 // Selector de estrellas
@@ -2255,7 +2407,15 @@ formResena.addEventListener('submit', async (evento) => {
   const telefono = document.getElementById('resena-telefono').value;
   const calificacion = parseInt(inputCalificacion.value, 10);
   const comentario = document.getElementById('resena-comentario').value;
+  const productoId = selectProducto.value;
 
+  if (!productoId) {
+    mensajeResena.style.display = 'block';
+    mensajeResena.style.background = '#fdecea';
+    mensajeResena.style.color = '#c62828';
+    mensajeResena.textContent = 'Por favor elige qué pieza compraste.';
+    return;
+  }
   if (calificacion < 1) {
     mensajeResena.style.display = 'block';
     mensajeResena.style.background = '#fdecea';
@@ -2265,8 +2425,8 @@ formResena.addEventListener('submit', async (evento) => {
   }
 
   const { error } = await supabase.rpc('crear_resena_web', {
-    p_producto_id: null,
-    p_producto_nombre: null,
+    p_producto_id: productoId,
+    p_producto_nombre: selectProducto.options[selectProducto.selectedIndex].textContent,
     p_cliente_nombre: nombre,
     p_cliente_telefono: telefono,
     p_calificacion: calificacion,
