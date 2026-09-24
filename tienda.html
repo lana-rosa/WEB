@@ -1523,25 +1523,8 @@ a { color: var(--rosa-principal); }
     </section>
 
 
-  <div class="aviso-personalizado" style="background:var(--blanco); box-shadow:var(--sombra-suave);">
-    <h2 style="font-size:1.2rem;">¿Cómo se paga?</h2>
-    <p>Escríbenos por WhatsApp el producto que quieres, y paga por cualquiera de estos medios — luego nos envías el comprobante para confirmar tu pedido:</p>
-    <p style="font-weight:600; color:var(--rosa-principal); margin-top:10px;">📦 El valor del producto no incluye el envío.</p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px; margin-top:14px;">
-      <div style="background:var(--rosa-suave); border-radius:14px; padding:16px;">
-        <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Nequi</p>
-        <p style="margin:0;">320 507 2801</p>
-      </div>
-      <div style="background:var(--rosa-suave); border-radius:14px; padding:16px;">
-        <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Bre-B</p>
-        <p style="margin:0;">Llave: 320 507 2801</p>
-      </div>
-    </div>
-    <p style="font-weight:600; color:var(--rosa-principal); margin-top:14px;">🕒 Entrega: 1 semana después de confirmar el pago, o con envío inmediato según disponibilidad.</p>
-  </div>
-
-  <section class="contenedor" id="resenas" style="padding:40px 0 60px;">
-    <h2 style="font-size:1.4rem; margin-bottom:6px;">Reseñas de nuestras clientas</h2>
+  <section class="contenedor" id="resenas" style="padding:40px 0 20px;">
+    <h2 style="font-size:1.4rem; margin-bottom:6px;">Reseñas de nuestros clientes</h2>
     <p style="color:var(--tinta-suave); margin-bottom:24px;">Comparte tu experiencia con tu pedido — verificamos que sea una compra real antes de publicarla.</p>
 
     <div id="resumen-resenas" class="resumen-resenas" style="display:none;"></div>
@@ -1592,6 +1575,24 @@ a { color: var(--rosa-principal); }
       </form>
     </details>
   </section>
+
+  <div class="aviso-personalizado" style="background:var(--blanco); box-shadow:var(--sombra-suave);">
+    <h2 style="font-size:1.2rem;">¿Cómo se paga?</h2>
+    <p>Escríbenos por WhatsApp el producto que quieres, y paga por cualquiera de estos medios — luego nos envías el comprobante para confirmar tu pedido:</p>
+    <p style="font-weight:600; color:var(--rosa-principal); margin-top:10px;">📦 El valor del producto no incluye el envío.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px; margin-top:14px;">
+      <div style="background:var(--rosa-suave); border-radius:14px; padding:16px;">
+        <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Nequi</p>
+        <p style="margin:0;">320 507 2801</p>
+      </div>
+      <div style="background:var(--rosa-suave); border-radius:14px; padding:16px;">
+        <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Bre-B</p>
+        <p style="margin:0;">Llave: 320 507 2801</p>
+      </div>
+    </div>
+    <p style="font-weight:600; color:var(--rosa-principal); margin-top:14px;">🕒 Entrega: 1 semana después de confirmar el pago, o con envío inmediato según disponibilidad.</p>
+  </div>
+
 </main>
 
 <footer class="pie-rico">
@@ -2248,7 +2249,7 @@ var RESENAS_POR_PRODUCTO = {};
     total.textContent = '(' + info.cantidad + (info.cantidad === 1 ? ' reseña)' : ' reseñas)');
     calEl.appendChild(total);
     var titulo = document.createElement('h3');
-    titulo.textContent = 'Lo que dicen nuestras clientas';
+    titulo.textContent = 'Lo que dicen nuestros clientes';
     resEl.appendChild(titulo);
     info.resenas.slice(0, 3).forEach(function(r) {
       var item = document.createElement('div');
@@ -2440,7 +2441,7 @@ formResena.addEventListener('submit', async (evento) => {
     mensajeResena.style.background = '#fdecea';
     mensajeResena.style.color = '#c62828';
     mensajeResena.textContent = error.message.indexOf('compra confirmada') > -1
-      ? 'No encontramos una compra confirmada con ese número. Las reseñas están reservadas para clientas verificadas — escríbenos por WhatsApp si crees que esto es un error.'
+      ? 'No encontramos una compra confirmada con ese número. Las reseñas están reservadas para clientes verificados — escríbenos por WhatsApp si crees que esto es un error.'
       : 'No se pudo enviar la reseña: ' + error.message;
   } else {
     mensajeResena.style.background = '#e6f4ea';
