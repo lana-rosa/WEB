@@ -249,11 +249,12 @@ section { padding: 72px 0; }
 .carrusel-testimonios::-webkit-scrollbar { height: 6px; }
 .carrusel-testimonios::-webkit-scrollbar-thumb { background: var(--rosa-suave); border-radius: 999px; }
 .tarjeta-testimonio {
-  flex: 0 0 240px; scroll-snap-align: start; background: var(--blanco); border-radius: var(--radio-suave);
+  flex: 0 0 auto; scroll-snap-align: start; background: #efebeb; border-radius: var(--radio-suave);
   box-shadow: var(--sombra-suave); overflow: hidden; display: flex; flex-direction: column;
 }
-.media-testimonio { aspect-ratio: 4/5; background: var(--rosa-suave); }
-.media-testimonio img, .media-testimonio video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media-testimonio { height: 380px; background: #efebeb; }
+.media-testimonio img, .media-testimonio video { height: 100%; width: auto; max-width: 86vw; object-fit: contain; display: block; }
+@media (max-width: 700px) { .media-testimonio { height: 320px; } }
 .texto-testimonio { padding: 14px 16px; font-size: 0.88rem; color: var(--tinta-suave); margin: 0; font-style: italic; }
 .carrusel-testimonios-wrap .flecha-carrusel { top: 40%; }
 .carrusel-testimonios-wrap .flecha-carrusel.anterior { left: -10px; }
@@ -489,8 +490,8 @@ section { padding: 72px 0; }
   <section class="seccion-lila">
     <div class="contenedor">
       <div class="encabezado-seccion centrado">
-        <h2>Historias reales de nuestra familia Lana Rosa</h2>
-        <p style="text-align:center; color:var(--tinta-suave); max-width:60ch; margin:0 auto;">Opiniones de nuestros usuarios, así se ven algunas de las personas detrás de sus amigurumis, en sus propias palabras.</p>
+        <h2>Ideas que cobraron vida en crochet</h2>
+        <p style="text-align:center; color:var(--tinta-suave); max-width:60ch; margin:0 auto;">Gracias a nuestros clientes por confiar en nosotros y permitirnos compartir estas referencias.</p>
       </div>
 
       <div class="carrusel-testimonios-wrap">
@@ -498,47 +499,43 @@ section { padding: 72px 0; }
         <div class="carrusel-testimonios" id="carrusel-testimonios">
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-1.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-1.jpg" alt="Familia de tres personas vestidas de blanco junto a sus amigurumis personalizados y el mensaje de agradecimiento del cliente" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-2.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-2.jpg" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-3.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-3.jpg" alt="Abuela con vestido de flores y gafas, junto a su amigurumi personalizado con los mismos detalles" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-4.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-4.jpg" alt="Pareja de novios el día de su boda, junto a sus amigurumis personalizados de novio y novia" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-5.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-5.jpg" alt="Mujer con blusa rosada y corazón rojo, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-6.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-6.jpg" alt="Hombre con camiseta lila, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-7.jpg" alt="Cliente con su amigurumi personalizado" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-7.jpg" alt="Hombre de barba y cabello canoso con chaqueta verde, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-8.jpg" alt="Familia que pidió un amigurumi personalizado de sus tres integrantes, junto al resultado final tejido a mano" style="object-fit:contain; background:var(--rosa-suave);" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-8.jpg" alt="Niña con conjunto beige, junto a su amigurumi personalizado de cabello largo" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio">
-              <video src="img/testimonios/testimonio-9.mp4" controls playsinline onerror="this.closest('.tarjeta-testimonio').style.display='none'"></video>
-            </div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-9.jpg" alt="Muñeca con sombrero de fresa usada como referencia, junto al amigurumi tejido a partir de ella" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio">
-              <video src="img/testimonios/testimonio-10.mp4" controls playsinline onerror="this.closest('.tarjeta-testimonio').style.display='none'"></video>
-            </div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-10.jpg" alt="Ovejita de referencia con tutú rosado, junto al peluche tejido a partir de ella" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
         </div>
