@@ -189,6 +189,8 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .indice-recursos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
 @media (max-width: 860px) { .indice-recursos { grid-template-columns: repeat(2, 1fr); } }
 .indice-recursos a { background: var(--blanco); border-radius: var(--radio-suave); padding: 18px; box-shadow: var(--sombra-suave); text-decoration: none; color: var(--tinta); display: flex; flex-direction: column; gap: 4px; border: 2px solid transparent; transition: border-color 0.2s, transform 0.2s; }
+.indice-recursos a:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
+@media (max-width: 860px) { .indice-recursos a:last-child:nth-child(3n+1) { grid-column: auto; } .indice-recursos a:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .indice-recursos a:hover { border-color: var(--rosa-medio); transform: translateY(-2px); }
 .indice-recursos .icono { font-size: 1.8rem; line-height: 1; }
 .indice-recursos strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.05rem; }
@@ -386,6 +388,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
         <a href="#stickers"><span class="icono">🌸</span><strong>Stickers</strong><span>Descárgalos o imprímelos</span></a>
         <a href="#fondos"><span class="icono">📱</span><strong>Fondos de pantalla</strong><span>Rosina en tu celular</span></a>
         <a href="#checklist"><span class="icono">✅</span><strong>Checklist</strong><span>Tu primer amigurumi</span></a>
+        <a href="glosario-rosina.html"><span class="icono">🔤</span><strong>Glosario ilustrado</strong><span>30 términos explicados</span></a>
         <a href="#abreviaturas"><span class="icono">📖</span><strong>Abreviaturas</strong><span>En 6 idiomas</span></a>
         <a href="#calculadora"><span class="icono">🧮</span><strong>Calculadora</strong><span>Aumentos, muestra y lana</span></a>
         <a href="#agenda"><span class="icono">🗓️</span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></a>
@@ -575,7 +578,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
       </div>
       <div class="aviso-rosina">
         <img src="img/rosina-saludo.jpg" alt="" aria-hidden="true">
-        <p><strong>¡Ojo con el inglés!</strong> Los patrones de EE. UU. y del Reino Unido usan los mismos nombres para puntos distintos: el <em>double crochet</em> americano es nuestro punto alto, pero el británico es punto bajo. Revisa siempre de dónde viene el patrón. Las abreviaturas en español también cambian un poco según el país; aquí usamos las más comunes en Latinoamérica.</p>
+        <p><strong>¡Ojo con el inglés!</strong> Los patrones de EE. UU. y del Reino Unido usan los mismos nombres para puntos distintos: el <em>double crochet</em> americano es nuestro punto alto, pero el británico es punto bajo. Revisa siempre de dónde viene el patrón. Las abreviaturas en español también cambian un poco según el país; aquí usamos las más comunes en Latinoamérica. ¿No sabes qué significa algún punto? Míralo en el <a href="glosario-rosina.html">glosario ilustrado</a>.</p>
       </div>
     </div>
   </section>
