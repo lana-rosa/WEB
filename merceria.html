@@ -358,6 +358,13 @@ a { color: var(--rosa-principal); }
   width: 32px; height: 32px; cursor: pointer; font-size: 0.95rem; flex-shrink: 0;
 }
 @media (max-width: 600px) { .panel-buscar-header { width: 220px; right: -40px; } }
+/* Menú principal con Rincón de Rosina */
+.nav-principal { gap: clamp(14px, 1.5vw, 26px); }
+.nav-principal a { white-space: nowrap; }
+.encabezado .logo, .encabezado .boton-whatsapp, .boton-buscar-header, .boton-carrito-header { flex-shrink: 0; }
+.encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
+@media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
+@media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
 </style>
 </head>
 <body>
@@ -371,6 +378,7 @@ a { color: var(--rosa-principal); }
         <li><a href="merceria.html">Mercería</a></li>
         <li><a href="personaliza.html">Personaliza el tuyo</a></li>
         <li><a href="aprende.html">Aprende</a></li>
+        <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
@@ -395,6 +403,7 @@ a { color: var(--rosa-principal); }
     <a href="merceria.html">Mercería</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
     <a href="aprende.html">Aprende</a>
+    <a href="recursos-rosina.html">Rincón de Rosina</a>
     <a href="revista.html">Revista</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>

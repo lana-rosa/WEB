@@ -182,12 +182,21 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .material-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 22px 0 26px; }
 @media (max-width: 860px) { .material-grid { grid-template-columns: repeat(2, 1fr); } }
 .material-card { background: var(--blanco); border-radius: var(--radio-suave); padding: 22px; box-shadow: var(--sombra-suave); text-decoration: none; color: var(--tinta); border: 2px solid transparent; transition: border-color 0.2s, transform 0.2s; }
+.material-card:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
+@media (max-width: 860px) { .material-card:last-child:nth-child(3n+1) { grid-column: auto; } .material-card:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .material-card:hover { border-color: var(--rosa-medio); transform: translateY(-2px); }
 .material-card .icono { font-size: 2rem; line-height: 1; display: block; margin-bottom: 10px; }
 .material-card h3 { color: var(--rosa-principal); font-size: 1.1rem; }
 .material-card p { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); }
 .boton-material { display: inline-block; background: var(--rosa-principal); color: var(--blanco); padding: 12px 28px; border-radius: 999px; text-decoration: none; font-weight: 600; }
 .boton-material:hover { background: #B83E78; }
+/* Menú principal con Rincón de Rosina */
+.nav-principal { gap: clamp(14px, 1.5vw, 26px); }
+.nav-principal a { white-space: nowrap; }
+.encabezado .logo, .encabezado .boton-whatsapp, .boton-buscar-header, .boton-carrito-header { flex-shrink: 0; }
+.encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
+@media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
+@media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -203,6 +212,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
         <li><a href="merceria.html">Mercería</a></li>
         <li><a href="personaliza.html">Personaliza el tuyo</a></li>
         <li><a href="aprende.html">Aprende</a></li>
+        <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
@@ -227,6 +237,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
     <a href="merceria.html">Mercería</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
     <a href="aprende.html">Aprende</a>
+    <a href="recursos-rosina.html">Rincón de Rosina</a>
     <a href="revista.html">Revista</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
@@ -296,6 +307,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
         <a class="material-card" href="recursos-rosina.html#stickers"><span class="icono">🌸</span><h3>Stickers</h3><p>Rosina en PNG para tus historias, etiquetas o papel adhesivo.</p></a>
         <a class="material-card" href="recursos-rosina.html#fondos"><span class="icono">📱</span><h3>Fondos de pantalla</h3><p>Rosina para la pantalla de tu celular, en 4 colores.</p></a>
         <a class="material-card" href="recursos-rosina.html#checklist"><span class="icono">✅</span><h3>Checklist</h3><p>Todo lo que necesitas para tu primer amigurumi.</p></a>
+        <a class="material-card" href="glosario-rosina.html"><span class="icono">🔤</span><h3>Glosario ilustrado</h3><p>30 términos de crochet con su símbolo, paso a paso y nombre en inglés.</p></a>
         <a class="material-card" href="recursos-rosina.html#abreviaturas"><span class="icono">📖</span><h3>Abreviaturas</h3><p>Plantilla de puntos en español, inglés, portugués, francés e italiano.</p></a>
         <a class="material-card" href="recursos-rosina.html#calculadora"><span class="icono">🧮</span><h3>Calculadora</h3><p>Aumentos, disminuciones, muestra, lana y contador de vueltas.</p></a>
         <a class="material-card" href="recursos-rosina.html#agenda"><span class="icono">🗓️</span><h3>Agenda</h3><p>Ficha de proyecto, semana tejiendo y control de pedidos.</p></a>
