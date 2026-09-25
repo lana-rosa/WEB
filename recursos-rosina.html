@@ -200,14 +200,14 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .nota { font-size: 0.86rem; color: var(--tinta-suave); margin-top: 14px; }
 
 /* Stickers */
-.hoja-stickers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.hoja-stickers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 28px; }
 @media (max-width: 760px) { .hoja-stickers { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
-.sticker { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.sticker-circulo { position: relative; width: 100%; max-width: 230px; aspect-ratio: 1; border-radius: 50%; background: var(--blanco); border: 5px solid var(--rosa-medio); box-shadow: 0 0 0 7px var(--blanco), 0 10px 26px rgba(58,42,46,0.16); overflow: hidden; }
-.sticker-circulo img { width: 100%; height: 100%; display: block; }
-.sticker-circulo img.contener { object-fit: contain; padding: 8% 8% 20%; }
+.sticker { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.sticker-circulo { position: relative; width: 100%; max-width: 230px; aspect-ratio: 1; border-radius: 50%; background: var(--blanco); border: 5px solid var(--rosa-medio); box-shadow: 0 0 0 7px var(--blanco), 0 10px 26px rgba(58,42,46,0.16); }
+.sticker-circulo img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; border-radius: 50%; }
+.sticker-circulo img.contener { object-fit: contain; padding: 8% 8% 16%; }
 .sticker-circulo img.cubrir { object-fit: cover; }
-.sticker-circulo .frase { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); background: var(--rosa-principal); color: var(--blanco); font-family: var(--fuente-titulo); font-weight: 600; font-size: clamp(0.72rem, 2.2vw, 0.95rem); padding: 4px 12px; border-radius: 999px; max-width: 84%; width: max-content; text-align: center; line-height: 1.25; }
+.sticker-circulo .frase { position: absolute; left: 50%; bottom: -5%; transform: translateX(-50%); background: var(--rosa-principal); color: var(--blanco); font-family: var(--fuente-titulo); font-weight: 600; font-size: clamp(0.7rem, 2vw, 0.9rem); padding: 4px 12px; border: 3px solid var(--blanco); border-radius: 999px; white-space: nowrap; text-align: center; line-height: 1.25; }
 
 /* Abreviaturas */
 .tabla-scroll { overflow-x: auto; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); }
@@ -263,9 +263,8 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .linea input:focus, .linea textarea:focus { outline: none; border-bottom-color: var(--rosa-principal); }
 .linea.ancha { grid-column: 1 / -1; }
 .linea textarea { min-height: 84px; background-image: repeating-linear-gradient(transparent, transparent 27px, rgba(69,69,74,0.15) 27px, rgba(69,69,74,0.15) 28px); line-height: 28px; border-bottom: none; }
-.vueltas-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; margin-top: 6px; }
-@media (max-width: 520px) { .vueltas-grid { grid-template-columns: repeat(6, 1fr); } }
-.vueltas-grid label { position: relative; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; border: 1.5px solid var(--rosa-medio); border-radius: 50%; font-size: 0.78rem; font-weight: 600; cursor: pointer; user-select: none; }
+.vueltas-grid { display: grid; grid-template-columns: repeat(auto-fill, 30px); gap: 5px; margin-top: 6px; }
+.vueltas-grid label { position: relative; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1.5px solid var(--rosa-medio); border-radius: 50%; font-size: 0.66rem; font-weight: 600; cursor: pointer; user-select: none; }
 .vueltas-grid input { position: absolute; opacity: 0; pointer-events: none; }
 .vueltas-grid input:checked + span { color: var(--blanco); }
 .vueltas-grid label:has(input:checked) { background: var(--rosa-principal); border-color: var(--rosa-principal); }
@@ -622,12 +621,12 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
       <form id="form-muestra" onsubmit="return false">
         <p style="margin-top:0;">Teje una muestra de al menos 12 × 12 cm y cuenta los puntos y vueltas que caben en 10 cm.</p>
         <div class="fila-campos">
-          <div class="campo"><label for="mu-puntos">Puntos en 10 cm</label><input type="number" id="mu-puntos" min="0.5" step="0.5" value="16" inputmode="decimal"></div>
-          <div class="campo"><label for="mu-vueltas">Vueltas en 10 cm</label><input type="number" id="mu-vueltas" min="0.5" step="0.5" value="18" inputmode="decimal"></div>
+          <div class="campo"><label for="mu-puntos">Puntos en 10 cm</label><input type="number" id="mu-puntos" min="0.5" step="0.5" value="24" inputmode="decimal"></div>
+          <div class="campo"><label for="mu-vueltas">Vueltas en 10 cm</label><input type="number" id="mu-vueltas" min="0.5" step="0.5" value="26" inputmode="decimal"></div>
         </div>
         <div class="fila-campos">
-          <div class="campo"><label for="mu-ancho">Ancho que quieres (cm)</label><input type="number" id="mu-ancho" min="1" step="0.5" value="30" inputmode="decimal"></div>
-          <div class="campo"><label for="mu-alto">Largo que quieres (cm)</label><input type="number" id="mu-alto" min="1" step="0.5" value="150" inputmode="decimal"></div>
+          <div class="campo"><label for="mu-ancho">Ancho que quieres (cm)</label><input type="number" id="mu-ancho" min="1" step="0.5" value="7" inputmode="decimal"></div>
+          <div class="campo"><label for="mu-alto">Alto que quieres (cm)</label><input type="number" id="mu-alto" min="1" step="0.5" value="15" inputmode="decimal"></div>
         </div>
         <div class="fila-campos">
           <div class="campo"><label for="mu-multiplo">Múltiplo del patrón</label><input type="number" id="mu-multiplo" min="1" value="1" inputmode="numeric"><small>Ej.: "múltiplo de 4 + 2". Déjalo en 1 si no aplica.</small></div>
@@ -710,7 +709,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
           <div class="linea"><label for="ag-muestra">Muestra (puntos × vueltas en 10 cm)</label><input id="ag-muestra" data-guardar></div>
           <div class="linea"><label for="ag-medidas">Medidas finales</label><input id="ag-medidas" data-guardar></div>
           <div class="linea ancha">
-            <label>Contador de vueltas — marca cada vuelta terminada</label>
+            <label>Contador de vueltas — marca cada vuelta terminada (hasta 100)</label>
             <div class="vueltas-grid" id="vueltas-grid"></div>
           </div>
           <div class="linea ancha"><label for="ag-notas">Notas y cambios al patrón</label><textarea id="ag-notas" rows="4" data-guardar></textarea></div>
@@ -1257,7 +1256,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
   /* ---------- Agenda ---------- */
   var CLAVE_AGENDA = 'rosinaAgenda';
   var vueltasGrid = document.getElementById('vueltas-grid');
-  for (var i = 1; i <= 40; i++) {
+  for (var i = 1; i <= 100; i++) {
     vueltasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-v' + i + '" data-guardar><span>' + i + '</span></label>');
   }
   var tablaPedidos = document.getElementById('tabla-pedidos');
