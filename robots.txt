@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /herramientas/
+Disallow: /PENDIENTES.md
+Disallow: /CLAUDE.md
 
 # Motores de respuesta / IA — permitidos explícitamente para AEO
 User-agent: GPTBot

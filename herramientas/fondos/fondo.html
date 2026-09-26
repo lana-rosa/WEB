@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:DP;src:url(dp.woff2) format('woff2');font-weight:600}
+html,body{margin:0}
+.w{width:1170px;height:100vh;position:relative;overflow:hidden;font-family:DP,sans-serif;font-weight:600}
+.pat{position:absolute;inset:0;width:100%;height:100%}
+.marco{position:absolute;left:50%;top:40vh;transform:translateX(-50%);width:640px;height:640px;border-radius:50%;background:#fff;border:13px solid var(--anillo);box-shadow:0 0 0 20px #fff,0 30px 70px rgba(58,42,46,.18);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.marco img{width:88%;height:88%;object-fit:contain;filter:brightness(1.035)}
+.marco.cubrir img{width:100%;height:100%;object-fit:cover;filter:none}
+.tarjeta{position:absolute;left:50%;top:36vh;transform:translateX(-50%) rotate(-2deg);width:600px;height:780px;border-radius:48px;overflow:hidden;border:18px solid #fff;box-shadow:0 30px 70px rgba(58,42,46,.18)}
+.tarjeta img{width:100%;height:100%;object-fit:cover}
+.sticker{position:absolute;left:50%;top:39vh;transform:translateX(-50%);width:600px;filter:drop-shadow(0 22px 30px rgba(58,42,46,.18))}
+.frase{position:absolute;left:0;right:0;text-align:center;font-size:84px;line-height:1.15;color:var(--texto);padding:0 110px;text-wrap:balance}
+.marca{position:absolute;left:0;right:0;bottom:9vh;text-align:center;font-size:38px;color:var(--texto);opacity:.75;letter-spacing:.02em}
+.mini{position:absolute;width:250px}
+</style></head><body><div class="w" id="w"><svg class="pat" id="pat" preserveAspectRatio="none"></svg><div id="centro"></div><div class="frase" id="frase"></div><div class="marca">♡ lanarosacrochet.com</div></div>
+<script>
+const q=new URLSearchParams(location.search);
+const IMG='file:///home/user/WEB/img/';
+const V={
+ rosa:{bg:'linear-gradient(180deg,#FBE4EF,#F9D3E5)',figura:'#F28FC0',op:.35,tipo:'marco',img:'rosina-saludo.jpg',frase:'Una vuelta a la vez',texto:'#B83E78',anillo:'#F28FC0',forma:'corazon'},
+ lila:{bg:'linear-gradient(180deg,#F0F1FE,#DCDDFD)',figura:'#9EA2F9',op:.35,tipo:'marco',img:'rosina-aprende.jpg',cubrir:1,frase:'Pequeños pasos, grandes creaciones',texto:'#5B5FC7',anillo:'#9EA2F9',forma:'estrella'},
+ fucsia:{bg:'linear-gradient(180deg,#E74E96,#F28FC0)',figura:'#FFFFFF',op:.28,tipo:'marco',img:'rosina-corazon.jpg',frase:'Tejido con amor',texto:'#FFFFFF',anillo:'#FBE4EF',forma:'corazon'},
+ cielo:{bg:'linear-gradient(180deg,#EAF4FE,#FAFAF7)',figura:'#93C7F9',op:.45,tipo:'marco',img:'rosina-abrazo.jpg',frase:'Hoy también tejo',texto:'#E74E96',anillo:'#93C7F9',forma:'corazon'},
+ crema:{bg:'linear-gradient(180deg,#FDF6F2,#FBE4EF)',figura:'#F28FC0',op:.3,tipo:'tarjeta',img:'conoce-a-rosina.webp',pos:'0% 55%',frase:'Todo lo bonito también se teje',texto:'#B83E78',forma:'corazon'},
+ cafe:{bg:'linear-gradient(180deg,#FFF1E8,#FFDCCB)',figura:'#F2A48F',op:.35,tipo:'sticker',img:'stickers/rosina-13-cafe.webp',frase:'Primero café, luego tejo',texto:'#B5543F',forma:'corazon'},
+ gorro:{bg:'linear-gradient(180deg,#F4EEFF,#E3DAFB)',figura:'#B69CF0',op:.35,tipo:'sticker',img:'stickers/rosina-17-gorro.webp',frase:'Temporada de tejer',texto:'#6B4FB8',forma:'estrella'},
+ terapia:{bg:'linear-gradient(180deg,#FFF0F6,#FBD0E3)',figura:'#E74E96',op:.22,tipo:'sticker',img:'stickers/rosina-03-ovillo-corazon.webp',frase:'Tejer es mi terapia',texto:'#B83E78',forma:'corazon'},
+ patron:{bg:'#FDEBF3',tipo:'patron',frase:'',texto:'#B83E78'}
+}[q.get('v')];
+const w=document.getElementById('w');w.style.background=V.bg;w.style.setProperty('--texto',V.texto);w.style.setProperty('--anillo',V.anillo||'#fff');
+const centro=document.getElementById('centro'); const H=innerHeight;
+let bajo=0;
+if(V.tipo==='marco'){centro.innerHTML=`<div class="marco ${V.cubrir?'cubrir':''}"><img src="${IMG+V.img}"></div>`; bajo=0.40*H+640+26+70;}
+if(V.tipo==='tarjeta'){centro.innerHTML=`<div class="tarjeta"><img src="${IMG+V.img}" style="object-position:${V.pos}"></div>`; bajo=0.36*H+780+36+60;}
+if(V.tipo==='sticker'){centro.innerHTML=`<img class="sticker" src="${IMG+V.img}">`; bajo=0.39*H+600+30;}
+const fr=document.getElementById('frase'); fr.textContent=V.frase; fr.style.top=bajo+'px';
+let s=11;const r=()=>{s=(s*9301+49297)%233280;return s/233280};
+if(V.tipo==='patron'){
+  const nombres=['01-saludo','02-corazon','03-ovillo-corazon','04-flor','05-ovillo-sentada','06-idea','07-leyendo','08-feliz','10-bolso','11-computador','12-pulgar-arriba','13-cafe','14-cantando','15-ramo','16-diadema','17-gorro','18-ovillo-abrazo','19-beso','20-sentada-saludo'];
+  let h='',k=0; const filas=Math.ceil(H/300)+1;
+  for(let f=0;f<filas;f++) for(let c=0;c<4;c++){ const x=(f%2?-60:40)+c*300+r()*30, y=-60+f*300+r()*30, rot=(r()*24-12)|0;
+    h+=`<img class="mini" src="${IMG}stickers/rosina-${nombres[(k++*7)%nombres.length]}.webp" style="left:${x}px;top:${y}px;transform:rotate(${rot}deg)">`; }
+  centro.innerHTML=h;
+  document.querySelector('.marca').style.cssText+='bottom:6vh;opacity:1;background:#fff;display:inline-block;left:50%;right:auto;transform:translateX(-50%);padding:14px 36px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.12)';
+} else {
+  const F={corazon:'M0,-6 C-6,-14 -18,-8 -12,2 L0,14 L12,2 C18,-8 6,-14 0,-6Z',estrella:'M0,-14 L4,-4 L14,-4 L6,3 L9,14 L0,7 L-9,14 L-6,3 L-14,-4 L-4,-4Z'};
+  const svg=document.getElementById('pat');svg.setAttribute('viewBox',`0 0 1170 ${H}`);let h='';
+  for(let y=60;y<H;y+=210){for(let x=(y/210%2?40:145);x<1170;x+=210){const sc=1.6+r()*1.4,rot=(r()*50-25)|0,dx=r()*40-20,dy=r()*40-20;
+   h+=`<path d="${F[V.forma]}" fill="${V.figura}" opacity="${V.op}" transform="translate(${x+dx},${y+dy}) rotate(${rot}) scale(${sc})"/>`}}
+  svg.innerHTML=h;
+}
+</script></body></html>
