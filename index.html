@@ -459,6 +459,14 @@ section { padding: 72px 0; }
 .encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
+/* Banner Conoce a Rosina */
+.rosina-banner { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.rosina-banner-img { display: block; width: 100%; max-width: 980px; border-radius: var(--radio-suave); overflow: hidden; box-shadow: var(--sombra-suave); transition: transform 0.2s; }
+.rosina-banner-img:hover { transform: translateY(-3px); }
+.rosina-banner-img img { width: 100%; height: auto; display: block; }
+.rosina-banner-texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.rosina-banner-texto h2 a { color: inherit; text-decoration: none; }
+.rosina-banner-botones { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -672,17 +680,17 @@ section { padding: 72px 0; }
 
   <!-- ============ ROSINA ============ -->
   <section class="seccion-lila">
-    <div class="contenedor rosina-bloque">
-      <a href="aprende.html#rosina" class="marco-foto" style="aspect-ratio:1; display:block;">
-        <img src="img/rosina-corazon.jpg" alt="Rosina, la ovejita embajadora de Lana Rosa Crochet, haciendo un corazón con las manos" style="width:100%;height:100%;object-fit:contain;border-radius:var(--radio-suave);">
+    <div class="contenedor rosina-banner">
+      <a href="rosina.html" class="rosina-banner-img">
+        <img src="img/conoce-a-rosina.webp" alt="Conoce a Rosina: ella es Rosina, nuestra ovejita creativa, tierna y soñadora. Siempre nos acompaña en cada puntada, recordándonos que todo lo bonito también se teje." width="1536" height="1024" loading="lazy">
       </a>
-      <div>
-        <h2><a href="aprende.html#rosina" style="color:inherit; text-decoration:none;">Conoce a Rosina</a></h2>
-        <p>Rosina es nuestra ovejita de lana esponjosa: la embajadora de calidad y la asistente de enseñanza de Lana Rosa. Ella prueba las lanas antes de venderlas y comparte sus "Tips de Rosina" para que cada puntada te salga mejor.</p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="recursos-rosina.html" class="boton-primario">Material gratis de Rosina</a>
-          <a href="aprende.html#rosina" class="boton-secundario">Conocer su historia</a>
-        </div>
+      <div class="rosina-banner-texto">
+        <h2><a href="rosina.html">Conoce a Rosina</a></h2>
+        <p>Ella es Rosina, nuestra ovejita creativa, tierna y soñadora. Siempre nos acompaña en cada puntada, recordándonos que todo lo bonito también se teje.</p>
+      </div>
+      <div class="rosina-banner-botones">
+        <a href="recursos-rosina.html" class="boton-primario">Material gratis de Rosina</a>
+        <a href="rosina.html" class="boton-secundario">Conocer su historia</a>
       </div>
     </div>
   </section>

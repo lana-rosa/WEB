@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Material gratuito de Rosina — Lana Rosa Crochet</title>
-<meta name="description" content="Material gratuito para tejedoras: stickers y fondos de pantalla de Rosina, checklist para tu primer amigurumi, abreviaturas de crochet en 6 idiomas, calculadora y agenda imprimible.">
+<meta name="description" content="Material gratuito para tejedoras: stickers y fondos de pantalla de Rosina, checklist para tu primer amigurumi, abreviaturas de crochet en 8 idiomas, calculadora y agenda imprimible.">
 <link rel="canonical" href="https://lanarosacrochet.com/recursos-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Material gratuito de Rosina — Lana Rosa Crochet">
-<meta property="og:description" content="Stickers, fondos de pantalla, checklist, abreviaturas en 6 idiomas, calculadora y agenda para tejedoras. ¡Gratis!">
+<meta property="og:description" content="Stickers, fondos de pantalla, checklist, abreviaturas en 8 idiomas, calculadora y agenda para tejedoras. ¡Gratis!">
 <meta property="og:url" content="https://lanarosacrochet.com/recursos-rosina.html">
 <meta property="og:image" content="https://lanarosacrochet.com/img/rosina-corazon.jpg">
 
@@ -202,14 +202,17 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .nota { font-size: 0.86rem; color: var(--tinta-suave); margin-top: 14px; }
 
 /* Stickers */
-.hoja-stickers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 28px; }
-@media (max-width: 760px) { .hoja-stickers { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
-.sticker { display: flex; flex-direction: column; align-items: center; gap: 22px; }
-.sticker-circulo { position: relative; width: 100%; max-width: 230px; aspect-ratio: 1; border-radius: 50%; background: var(--blanco); border: 5px solid var(--rosa-medio); box-shadow: 0 0 0 7px var(--blanco), 0 10px 26px rgba(58,42,46,0.16); }
-.sticker-circulo img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; border-radius: 50%; }
-.sticker-circulo img.contener { object-fit: contain; padding: 8% 8% 16%; }
-.sticker-circulo img.cubrir { object-fit: cover; }
-.sticker-circulo .frase { position: absolute; left: 50%; bottom: -5%; transform: translateX(-50%); background: var(--rosa-principal); color: var(--blanco); font-family: var(--fuente-titulo); font-weight: 600; font-size: clamp(0.7rem, 2vw, 0.9rem); padding: 4px 12px; border: 3px solid var(--blanco); border-radius: 999px; white-space: nowrap; text-align: center; line-height: 1.25; }
+.hoja-stickers { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; margin-bottom: 26px; }
+@media (max-width: 520px) { .hoja-stickers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; } }
+.subtitulo-stickers { font-size: 1.05rem; color: var(--rosa-principal); margin: 0 0 12px; }
+.sticker-mini { position: relative; display: block; background: var(--lila-suave); border-radius: 18px; padding: 8px; transition: transform 0.15s, background 0.15s; }
+.sticker-mini:hover { transform: translateY(-3px) rotate(-2deg); background: var(--rosa-suave); }
+.sticker-mini img { width: 100%; height: auto; display: block; }
+.sticker-mini span { position: absolute; right: 6px; bottom: 6px; width: 26px; height: 26px; border-radius: 50%; background: var(--rosa-principal); color: var(--blanco); font-size: 0.8rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+.como-whatsapp { background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 16px 22px; margin-bottom: 8px; }
+.como-whatsapp summary { cursor: pointer; font-weight: 700; color: var(--rosa-principal); }
+.como-whatsapp ol { margin: 12px 0 8px; padding-left: 20px; }
+.como-whatsapp p { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); }
 
 /* Abreviaturas */
 .tabla-scroll { overflow-x: auto; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); }
@@ -290,10 +293,11 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
   .hoja-agenda { break-inside: avoid; page-break-after: always; }
   .tabla-abrev { min-width: 0; font-size: 0.78rem; }
   .tabla-abrev thead th { position: static; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .sticker-circulo, .sticker-circulo .frase, .vueltas-grid label, .tabla-abrev thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .hoja-stickers { grid-template-columns: repeat(3, 1fr); gap: 10mm; }
-  .sticker-circulo { max-width: 55mm; box-shadow: none; }
-  .sticker .boton-secundario { display: none; }
+  .vueltas-grid label, .tabla-abrev thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .hoja-stickers { grid-template-columns: repeat(5, 1fr); gap: 4mm; }
+  .sticker-mini { background: none; padding: 0; }
+  .sticker-mini span { display: none; }
+  .subtitulo-stickers { display: none; }
   .linea textarea, .dia textarea { resize: none; }
 }
 #control-pedidos td { padding: 4px 8px; }
@@ -394,11 +398,11 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
       <h1>El rincón de Rosina</h1>
       <p class="intro">Rosina preparó estos regalos para toda la comunidad tejedora: stickers y fondos de pantalla, una checklist para tu primer amigurumi, una guía de abreviaturas en varios idiomas, calculadoras para tus proyectos y una agenda para organizar tus tejidos. Todo es gratis, úsalo cuantas veces quieras. 🐑💕</p>
       <nav class="indice-recursos" aria-label="Recursos de Rosina">
-        <a href="#stickers"><span class="icono">🌸</span><strong>Stickers</strong><span>Descárgalos o imprímelos</span></a>
+        <a href="#stickers"><span class="icono">🌸</span><strong>Stickers</strong><span>26 para WhatsApp</span></a>
         <a href="#fondos"><span class="icono">📱</span><strong>Fondos de pantalla</strong><span>Rosina en tu celular</span></a>
         <a href="#checklist"><span class="icono">✅</span><strong>Checklist</strong><span>Tu primer amigurumi</span></a>
         <a href="glosario-rosina.html"><span class="icono">🔤</span><strong>Glosario ilustrado</strong><span>30 términos explicados</span></a>
-        <a href="#abreviaturas"><span class="icono">📖</span><strong>Abreviaturas</strong><span>En 6 idiomas</span></a>
+        <a href="#abreviaturas"><span class="icono">📖</span><strong>Abreviaturas</strong><span>En 8 idiomas</span></a>
         <a href="#calculadora"><span class="icono">🧮</span><strong>Calculadora</strong><span>Aumentos, muestra y lana</span></a>
         <a href="#agenda"><span class="icono">🗓️</span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></a>
       </nav>
@@ -410,38 +414,55 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
     <div class="recurso-cabecera">
       <div>
         <h2>Stickers de Rosina</h2>
-        <p>Descarga cada sticker en PNG para usarlo en tus historias de Instagram, WhatsApp o tus etiquetas. También puedes imprimir la hoja completa en papel adhesivo.</p>
+        <p>26 stickers con fondo transparente en 512 × 512 px, el tamaño de los stickers de WhatsApp. Toca uno para descargarlo o baja el paquete completo. También puedes imprimir la hoja en papel adhesivo.</p>
       </div>
       <div class="acciones">
-        <button type="button" class="boton-primario" data-imprimir="stickers">🖨️ Imprimir hoja de stickers</button>
+        <a class="boton-primario" href="img/stickers/stickers-rosina-webp.zip" download>⬇ Paquete para WhatsApp (0,8 MB)</a>
+        <a class="boton-secundario" href="img/stickers/stickers-rosina-png.zip" download>⬇ Paquete PNG (5 MB)</a>
+        <button type="button" class="boton-secundario" data-imprimir="stickers">🖨️ Imprimir</button>
       </div>
     </div>
+    <h3 class="subtitulo-stickers">Con frase</h3>
     <div class="hoja-stickers">
-      <div class="sticker" data-sticker="img/rosina-saludo.jpg" data-ajuste="contener" data-frase="¡Hola, tejedora!">
-        <div class="sticker-circulo"><img class="contener" src="img/rosina-saludo.jpg" alt="Sticker de Rosina saludando: ¡Hola, tejedora!" loading="lazy"><span class="frase">¡Hola, tejedora!</span></div>
-        <button type="button" class="boton-secundario boton-chico">⬇ Descargar PNG</button>
-      </div>
-      <div class="sticker" data-sticker="img/rosina-corazon.jpg" data-ajuste="contener" data-frase="Tejido con amor">
-        <div class="sticker-circulo"><img class="contener" src="img/rosina-corazon.jpg" alt="Sticker de Rosina haciendo un corazón: Tejido con amor" loading="lazy"><span class="frase">Tejido con amor</span></div>
-        <button type="button" class="boton-secundario boton-chico">⬇ Descargar PNG</button>
-      </div>
-      <div class="sticker" data-sticker="img/rosina-checklist.jpg" data-ajuste="cubrir" data-frase="Aprobado por Rosina">
-        <div class="sticker-circulo"><img class="cubrir" src="img/rosina-checklist.jpg" alt="Sticker de Rosina con su lista de chequeo: Aprobado por Rosina" loading="lazy"><span class="frase">Aprobado por Rosina</span></div>
-        <button type="button" class="boton-secundario boton-chico">⬇ Descargar PNG</button>
-      </div>
-      <div class="sticker" data-sticker="img/rosina-aprende.jpg" data-ajuste="cubrir" data-frase="Una vuelta más">
-        <div class="sticker-circulo"><img class="cubrir" src="img/rosina-aprende.jpg" alt="Sticker de Rosina tejiendo en su escritorio: Una vuelta más" loading="lazy"><span class="frase">Una vuelta más</span></div>
-        <button type="button" class="boton-secundario boton-chico">⬇ Descargar PNG</button>
-      </div>
-      <div class="sticker" data-sticker="img/rosina-abrazo.jpg" data-ajuste="contener" data-frase="Abrazos de lana">
-        <div class="sticker-circulo"><img class="contener" src="img/rosina-abrazo.jpg" alt="Sticker de Rosina abrazando un corazón: Abrazos de lana" loading="lazy"><span class="frase">Abrazos de lana</span></div>
-        <button type="button" class="boton-secundario boton-chico">⬇ Descargar PNG</button>
-      </div>
-      <div class="sticker" data-sticker="img/rosina.jpg" data-ajuste="contener" data-frase="Hecho a mano">
-        <div class="sticker-circulo"><img class="contener" src="img/rosina.jpg" alt="Sticker de Rosina con su vestido de flores: Hecho a mano" loading="lazy"><span class="frase">Hecho a mano</span></div>
-        <button type="button" class="boton-secundario boton-chico">⬇ Descargar PNG</button>
-      </div>
+      <a class="sticker-mini" href="img/stickers/frase-hola-tejedora.png" download="sticker-frase-hola-tejedora.png" title="Descargar"><img src="img/stickers/frase-hola-tejedora.webp" alt="Sticker: Rosina saludando, con la frase ¡Hola, tejedora!" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/frase-tejido-con-amor.png" download="sticker-frase-tejido-con-amor.png" title="Descargar"><img src="img/stickers/frase-tejido-con-amor.webp" alt="Sticker: Rosina haciendo un corazón, con la frase Tejido con amor" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/frase-aprobado-por-rosina.png" download="sticker-frase-aprobado-por-rosina.png" title="Descargar"><img src="img/stickers/frase-aprobado-por-rosina.webp" alt="Sticker: Rosina con su lista de chequeo, con la frase Aprobado por Rosina" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/frase-una-vuelta-mas.png" download="sticker-frase-una-vuelta-mas.png" title="Descargar"><img src="img/stickers/frase-una-vuelta-mas.webp" alt="Sticker: Rosina tejiendo en su escritorio, con la frase Una vuelta más" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/frase-abrazos-de-lana.png" download="sticker-frase-abrazos-de-lana.png" title="Descargar"><img src="img/stickers/frase-abrazos-de-lana.webp" alt="Sticker: Rosina abrazando un corazón, con la frase Abrazos de lana" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/frase-hecho-a-mano.png" download="sticker-frase-hecho-a-mano.png" title="Descargar"><img src="img/stickers/frase-hecho-a-mano.webp" alt="Sticker: Rosina con su vestido de flores, con la frase Hecho a mano" loading="lazy" width="512" height="512"><span>⬇</span></a>
     </div>
+    <h3 class="subtitulo-stickers">Rosina en su día a día</h3>
+    <div class="hoja-stickers">
+      <a class="sticker-mini" href="img/stickers/rosina-01-saludo.png" download="sticker-rosina-01-saludo.png" title="Descargar"><img src="img/stickers/rosina-01-saludo.webp" alt="Sticker de Rosina saludando" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-02-corazon.png" download="sticker-rosina-02-corazon.png" title="Descargar"><img src="img/stickers/rosina-02-corazon.webp" alt="Sticker de Rosina con un corazón" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-03-ovillo-corazon.png" download="sticker-rosina-03-ovillo-corazon.png" title="Descargar"><img src="img/stickers/rosina-03-ovillo-corazon.webp" alt="Sticker de Rosina con un ovillo en forma de corazón" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-04-flor.png" download="sticker-rosina-04-flor.png" title="Descargar"><img src="img/stickers/rosina-04-flor.webp" alt="Sticker de Rosina con una flor" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-05-ovillo-sentada.png" download="sticker-rosina-05-ovillo-sentada.png" title="Descargar"><img src="img/stickers/rosina-05-ovillo-sentada.webp" alt="Sticker de Rosina sentada con su ovillo" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-06-idea.png" download="sticker-rosina-06-idea.png" title="Descargar"><img src="img/stickers/rosina-06-idea.webp" alt="Sticker de Rosina con una idea" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-07-leyendo.png" download="sticker-rosina-07-leyendo.png" title="Descargar"><img src="img/stickers/rosina-07-leyendo.webp" alt="Sticker de Rosina leyendo" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-08-feliz.png" download="sticker-rosina-08-feliz.png" title="Descargar"><img src="img/stickers/rosina-08-feliz.webp" alt="Sticker de Rosina feliz" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-09-cartel.png" download="sticker-rosina-09-cartel.png" title="Descargar"><img src="img/stickers/rosina-09-cartel.webp" alt="Sticker de Rosina con un cartel para escribir" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-10-bolso.png" download="sticker-rosina-10-bolso.png" title="Descargar"><img src="img/stickers/rosina-10-bolso.webp" alt="Sticker de Rosina con su bolso" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-11-computador.png" download="sticker-rosina-11-computador.png" title="Descargar"><img src="img/stickers/rosina-11-computador.webp" alt="Sticker de Rosina en el computador" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-12-pulgar-arriba.png" download="sticker-rosina-12-pulgar-arriba.png" title="Descargar"><img src="img/stickers/rosina-12-pulgar-arriba.webp" alt="Sticker de Rosina con el pulgar arriba" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-13-cafe.png" download="sticker-rosina-13-cafe.png" title="Descargar"><img src="img/stickers/rosina-13-cafe.webp" alt="Sticker de Rosina con su café" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-14-cantando.png" download="sticker-rosina-14-cantando.png" title="Descargar"><img src="img/stickers/rosina-14-cantando.webp" alt="Sticker de Rosina cantando" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-15-ramo.png" download="sticker-rosina-15-ramo.png" title="Descargar"><img src="img/stickers/rosina-15-ramo.webp" alt="Sticker de Rosina con un ramo de flores" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-16-diadema.png" download="sticker-rosina-16-diadema.png" title="Descargar"><img src="img/stickers/rosina-16-diadema.webp" alt="Sticker de Rosina con diadema" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-17-gorro.png" download="sticker-rosina-17-gorro.png" title="Descargar"><img src="img/stickers/rosina-17-gorro.webp" alt="Sticker de Rosina con gorro tejido" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-18-ovillo-abrazo.png" download="sticker-rosina-18-ovillo-abrazo.png" title="Descargar"><img src="img/stickers/rosina-18-ovillo-abrazo.webp" alt="Sticker de Rosina abrazando un ovillo" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-19-beso.png" download="sticker-rosina-19-beso.png" title="Descargar"><img src="img/stickers/rosina-19-beso.webp" alt="Sticker de Rosina mandando un beso" loading="lazy" width="512" height="512"><span>⬇</span></a>
+      <a class="sticker-mini" href="img/stickers/rosina-20-sentada-saludo.png" download="sticker-rosina-20-sentada-saludo.png" title="Descargar"><img src="img/stickers/rosina-20-sentada-saludo.webp" alt="Sticker de Rosina sentada saludando" loading="lazy" width="512" height="512"><span>⬇</span></a>
+    </div>
+    <details class="como-whatsapp no-imprimir">
+      <summary>¿Cómo los agrego a WhatsApp?</summary>
+      <ol>
+        <li>Descarga el sticker que quieras (o el paquete completo y descomprímelo).</li>
+        <li>En WhatsApp abre un chat, toca el ícono de stickers y luego <strong>Crear</strong> (o el botón <strong>+</strong>).</li>
+        <li>Elige la imagen de Rosina de tu galería y envíala: quedará guardada en tus stickers.</li>
+      </ol>
+      <p>Si tu versión de WhatsApp no tiene la opción <strong>Crear</strong>, puedes usar una app para crear paquetes de stickers y cargar ahí las imágenes.</p>
+    </details>
     <p class="nota no-imprimir">Uso personal y para compartir en redes. Si los publicas, etiquétanos en <a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener">@lanarosacrochet</a> — ¡a Rosina le encanta ver dónde viaja! No está permitido venderlos.</p>
   </section>
 
@@ -542,8 +563,8 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
     <div class="contenedor">
       <div class="recurso-cabecera">
         <div>
-          <h2>Abreviaturas de crochet en 6 idiomas</h2>
-          <p>¿Encontraste un patrón en inglés, portugués o francés? Usa esta plantilla para traducir cada punto. Elige los idiomas que quieres ver e imprímela para tenerla junto a tus agujas.</p>
+          <h2>Abreviaturas de crochet en 8 idiomas</h2>
+          <p>¿Encontraste un patrón en inglés, portugués, chino o ruso? Usa esta plantilla para traducir cada punto. Elige los idiomas que quieres ver e imprímela para tenerla junto a tus agujas.</p>
         </div>
         <div class="acciones">
           <button type="button" class="boton-primario" data-imprimir="abreviaturas">🖨️ Imprimir plantilla</button>
@@ -555,33 +576,35 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
         <label><input type="checkbox" value="pt" checked>Portugués</label>
         <label><input type="checkbox" value="fr" checked>Francés</label>
         <label><input type="checkbox" value="it" checked>Italiano</label>
+        <label><input type="checkbox" value="zh" checked>Chino</label>
+        <label><input type="checkbox" value="ru" checked>Ruso</label>
       </div>
       <div class="tabla-scroll">
         <table class="tabla-abrev" id="tabla-abrev">
           <thead>
-            <tr><th>Español</th><th data-idioma="en-us">Inglés (EE. UU.)</th><th data-idioma="en-uk">Inglés (Reino Unido)</th><th data-idioma="pt">Portugués</th><th data-idioma="fr">Francés</th><th data-idioma="it">Italiano</th></tr>
+            <tr><th>Español</th><th data-idioma="en-us">Inglés (EE. UU.)</th><th data-idioma="en-uk">Inglés (Reino Unido)</th><th data-idioma="pt">Portugués</th><th data-idioma="fr">Francés</th><th data-idioma="it">Italiano</th><th data-idioma="zh">Chino</th><th data-idioma="ru">Ruso</th></tr>
           </thead>
           <tbody>
-            <tr><td><b>cad</b><small>cadeneta</small></td><td data-idioma="en-us"><b>ch</b><small>chain</small></td><td data-idioma="en-uk"><b>ch</b><small>chain</small></td><td data-idioma="pt"><b>corr</b><small>correntinha</small></td><td data-idioma="fr"><b>ml</b><small>maille en l'air</small></td><td data-idioma="it"><b>cat</b><small>catenella</small></td></tr>
-            <tr><td><b>pd</b><small>punto deslizado (punto raso)</small></td><td data-idioma="en-us"><b>sl st</b><small>slip stitch</small></td><td data-idioma="en-uk"><b>ss</b><small>slip stitch</small></td><td data-idioma="pt"><b>pbx</b><small>ponto baixíssimo</small></td><td data-idioma="fr"><b>mc</b><small>maille coulée</small></td><td data-idioma="it"><b>mbss</b><small>maglia bassissima</small></td></tr>
-            <tr><td><b>pb</b><small>punto bajo</small></td><td data-idioma="en-us"><b>sc</b><small>single crochet</small></td><td data-idioma="en-uk"><b>dc</b><small>double crochet</small></td><td data-idioma="pt"><b>pb</b><small>ponto baixo</small></td><td data-idioma="fr"><b>ms</b><small>maille serrée</small></td><td data-idioma="it"><b>mb</b><small>maglia bassa</small></td></tr>
-            <tr><td><b>mpa</b><small>medio punto alto</small></td><td data-idioma="en-us"><b>hdc</b><small>half double crochet</small></td><td data-idioma="en-uk"><b>htr</b><small>half treble crochet</small></td><td data-idioma="pt"><b>mpa</b><small>meio ponto alto</small></td><td data-idioma="fr"><b>db</b><small>demi-bride</small></td><td data-idioma="it"><b>mma</b><small>mezza maglia alta</small></td></tr>
-            <tr><td><b>pa</b><small>punto alto</small></td><td data-idioma="en-us"><b>dc</b><small>double crochet</small></td><td data-idioma="en-uk"><b>tr</b><small>treble crochet</small></td><td data-idioma="pt"><b>pa</b><small>ponto alto</small></td><td data-idioma="fr"><b>br</b><small>bride</small></td><td data-idioma="it"><b>ma</b><small>maglia alta</small></td></tr>
-            <tr><td><b>pad</b><small>punto alto doble</small></td><td data-idioma="en-us"><b>tr</b><small>treble crochet</small></td><td data-idioma="en-uk"><b>dtr</b><small>double treble crochet</small></td><td data-idioma="pt"><b>pad</b><small>ponto alto duplo</small></td><td data-idioma="fr"><b>dbr</b><small>double bride</small></td><td data-idioma="it"><b>mad</b><small>maglia alta doppia</small></td></tr>
-            <tr><td><b>am</b><small>anillo mágico</small></td><td data-idioma="en-us"><b>MR</b><small>magic ring</small></td><td data-idioma="en-uk"><b>MR</b><small>magic ring</small></td><td data-idioma="pt"><b>am</b><small>anel mágico</small></td><td data-idioma="fr"><b>cm</b><small>cercle magique</small></td><td data-idioma="it"><b>am</b><small>anello magico</small></td></tr>
-            <tr><td><b>aum</b><small>aumento</small></td><td data-idioma="en-us"><b>inc</b><small>increase</small></td><td data-idioma="en-uk"><b>inc</b><small>increase</small></td><td data-idioma="pt"><b>aum</b><small>aumento</small></td><td data-idioma="fr"><b>aug</b><small>augmentation</small></td><td data-idioma="it"><b>aum</b><small>aumento</small></td></tr>
-            <tr><td><b>dism</b><small>disminución</small></td><td data-idioma="en-us"><b>dec</b><small>decrease</small></td><td data-idioma="en-uk"><b>dec</b><small>decrease</small></td><td data-idioma="pt"><b>dim</b><small>diminuição</small></td><td data-idioma="fr"><b>dim</b><small>diminution</small></td><td data-idioma="it"><b>dim</b><small>diminuzione</small></td></tr>
-            <tr><td><b>dism inv</b><small>disminución invisible</small></td><td data-idioma="en-us"><b>inv dec</b><small>invisible decrease</small></td><td data-idioma="en-uk"><b>inv dec</b><small>invisible decrease</small></td><td data-idioma="pt"><b>dim inv</b><small>diminuição invisível</small></td><td data-idioma="fr"><b>dim inv</b><small>diminution invisible</small></td><td data-idioma="it"><b>dim inv</b><small>diminuzione invisibile</small></td></tr>
-            <tr><td><b>pto</b><small>punto</small></td><td data-idioma="en-us"><b>st</b><small>stitch</small></td><td data-idioma="en-uk"><b>st</b><small>stitch</small></td><td data-idioma="pt"><b>pt</b><small>ponto</small></td><td data-idioma="fr"><b>m</b><small>maille</small></td><td data-idioma="it"><b>m</b><small>maglia</small></td></tr>
-            <tr><td><b>v</b><small>vuelta / hilera</small></td><td data-idioma="en-us"><b>rnd / row</b><small>round / row</small></td><td data-idioma="en-uk"><b>rnd / row</b><small>round / row</small></td><td data-idioma="pt"><b>carr</b><small>carreira / volta</small></td><td data-idioma="fr"><b>rg / t</b><small>rang / tour</small></td><td data-idioma="it"><b>g / f</b><small>giro / ferro</small></td></tr>
-            <tr><td><b>esp</b><small>espacio</small></td><td data-idioma="en-us"><b>sp</b><small>space</small></td><td data-idioma="en-uk"><b>sp</b><small>space</small></td><td data-idioma="pt"><b>esp</b><small>espaço</small></td><td data-idioma="fr"><b>esp</b><small>espace</small></td><td data-idioma="it"><b>sp</b><small>spazio</small></td></tr>
-            <tr><td><b>laz</b><small>lazada (hebra sobre la aguja)</small></td><td data-idioma="en-us"><b>yo</b><small>yarn over</small></td><td data-idioma="en-uk"><b>yrh</b><small>yarn round hook</small></td><td data-idioma="pt"><b>lç</b><small>laçada</small></td><td data-idioma="fr"><b>j</b><small>jeté</small></td><td data-idioma="it"><b>gett</b><small>gettato</small></td></tr>
-            <tr><td><b>hd</b><small>solo hebra delantera</small></td><td data-idioma="en-us"><b>FLO</b><small>front loop only</small></td><td data-idioma="en-uk"><b>FLO</b><small>front loop only</small></td><td data-idioma="pt"><small>só na alça da frente</small></td><td data-idioma="fr"><small>dans le brin avant</small></td><td data-idioma="it"><small>solo asola anteriore</small></td></tr>
-            <tr><td><b>ht</b><small>solo hebra trasera</small></td><td data-idioma="en-us"><b>BLO</b><small>back loop only</small></td><td data-idioma="en-uk"><b>BLO</b><small>back loop only</small></td><td data-idioma="pt"><small>só na alça de trás</small></td><td data-idioma="fr"><small>dans le brin arrière</small></td><td data-idioma="it"><small>solo asola posteriore</small></td></tr>
-            <tr><td><b>sal</b><small>saltar un punto</small></td><td data-idioma="en-us"><b>sk</b><small>skip</small></td><td data-idioma="en-uk"><b>miss</b><small>miss</small></td><td data-idioma="pt"><small>pular</small></td><td data-idioma="fr"><small>sauter</small></td><td data-idioma="it"><small>saltare</small></td></tr>
-            <tr><td><b>jts</b><small>juntos</small></td><td data-idioma="en-us"><b>tog</b><small>together</small></td><td data-idioma="en-uk"><b>tog</b><small>together</small></td><td data-idioma="pt"><b>jts</b><small>juntos</small></td><td data-idioma="fr"><b>ens</b><small>ensemble</small></td><td data-idioma="it"><b>ins</b><small>insieme</small></td></tr>
-            <tr><td><b>MP</b><small>marcador de puntos</small></td><td data-idioma="en-us"><b>PM / SM</b><small>place marker / stitch marker</small></td><td data-idioma="en-uk"><b>PM / SM</b><small>place marker / stitch marker</small></td><td data-idioma="pt"><small>marcador de pontos</small></td><td data-idioma="fr"><small>marqueur de mailles</small></td><td data-idioma="it"><small>segnapunti</small></td></tr>
-            <tr><td><b>rep / * *</b><small>repetir lo que está entre asteriscos</small></td><td data-idioma="en-us"><b>rep / * *</b><small>repeat</small></td><td data-idioma="en-uk"><b>rep / * *</b><small>repeat</small></td><td data-idioma="pt"><b>rep</b><small>repetir</small></td><td data-idioma="fr"><b>rép</b><small>répéter</small></td><td data-idioma="it"><b>rip</b><small>ripetere</small></td></tr>
+            <tr><td><b>cad</b><small>cadeneta</small></td><td data-idioma="en-us"><b>ch</b><small>chain</small></td><td data-idioma="en-uk"><b>ch</b><small>chain</small></td><td data-idioma="pt"><b>corr</b><small>correntinha</small></td><td data-idioma="fr"><b>ml</b><small>maille en l'air</small></td><td data-idioma="it"><b>cat</b><small>catenella</small></td><td data-idioma="zh" lang="zh"><b>锁</b><small>锁针</small></td><td data-idioma="ru" lang="ru"><b>ВП</b><small>воздушная петля</small></td></tr>
+            <tr><td><b>pd</b><small>punto deslizado (punto raso)</small></td><td data-idioma="en-us"><b>sl st</b><small>slip stitch</small></td><td data-idioma="en-uk"><b>ss</b><small>slip stitch</small></td><td data-idioma="pt"><b>pbx</b><small>ponto baixíssimo</small></td><td data-idioma="fr"><b>mc</b><small>maille coulée</small></td><td data-idioma="it"><b>mbss</b><small>maglia bassissima</small></td><td data-idioma="zh" lang="zh"><b>引</b><small>引拔针</small></td><td data-idioma="ru" lang="ru"><b>СС</b><small>соединительный столбик</small></td></tr>
+            <tr><td><b>pb</b><small>punto bajo</small></td><td data-idioma="en-us"><b>sc</b><small>single crochet</small></td><td data-idioma="en-uk"><b>dc</b><small>double crochet</small></td><td data-idioma="pt"><b>pb</b><small>ponto baixo</small></td><td data-idioma="fr"><b>ms</b><small>maille serrée</small></td><td data-idioma="it"><b>mb</b><small>maglia bassa</small></td><td data-idioma="zh" lang="zh"><b>X</b><small>短针</small></td><td data-idioma="ru" lang="ru"><b>СБН</b><small>столбик без накида</small></td></tr>
+            <tr><td><b>mpa</b><small>medio punto alto</small></td><td data-idioma="en-us"><b>hdc</b><small>half double crochet</small></td><td data-idioma="en-uk"><b>htr</b><small>half treble crochet</small></td><td data-idioma="pt"><b>mpa</b><small>meio ponto alto</small></td><td data-idioma="fr"><b>db</b><small>demi-bride</small></td><td data-idioma="it"><b>mma</b><small>mezza maglia alta</small></td><td data-idioma="zh" lang="zh"><b>T</b><small>中长针</small></td><td data-idioma="ru" lang="ru"><b>ПСН</b><small>полустолбик с накидом</small></td></tr>
+            <tr><td><b>pa</b><small>punto alto</small></td><td data-idioma="en-us"><b>dc</b><small>double crochet</small></td><td data-idioma="en-uk"><b>tr</b><small>treble crochet</small></td><td data-idioma="pt"><b>pa</b><small>ponto alto</small></td><td data-idioma="fr"><b>br</b><small>bride</small></td><td data-idioma="it"><b>ma</b><small>maglia alta</small></td><td data-idioma="zh" lang="zh"><b>F</b><small>长针</small></td><td data-idioma="ru" lang="ru"><b>СН</b><small>столбик с накидом</small></td></tr>
+            <tr><td><b>pad</b><small>punto alto doble</small></td><td data-idioma="en-us"><b>tr</b><small>treble crochet</small></td><td data-idioma="en-uk"><b>dtr</b><small>double treble crochet</small></td><td data-idioma="pt"><b>pad</b><small>ponto alto duplo</small></td><td data-idioma="fr"><b>dbr</b><small>double bride</small></td><td data-idioma="it"><b>mad</b><small>maglia alta doppia</small></td><td data-idioma="zh" lang="zh"><b>E</b><small>长长针</small></td><td data-idioma="ru" lang="ru"><b>С2Н</b><small>столбик с двумя накидами</small></td></tr>
+            <tr><td><b>am</b><small>anillo mágico</small></td><td data-idioma="en-us"><b>MR</b><small>magic ring</small></td><td data-idioma="en-uk"><b>MR</b><small>magic ring</small></td><td data-idioma="pt"><b>am</b><small>anel mágico</small></td><td data-idioma="fr"><b>cm</b><small>cercle magique</small></td><td data-idioma="it"><b>am</b><small>anello magico</small></td><td data-idioma="zh" lang="zh"><small>环形起针 / 魔术环</small></td><td data-idioma="ru" lang="ru"><b>КА</b><small>кольцо амигуруми</small></td></tr>
+            <tr><td><b>aum</b><small>aumento</small></td><td data-idioma="en-us"><b>inc</b><small>increase</small></td><td data-idioma="en-uk"><b>inc</b><small>increase</small></td><td data-idioma="pt"><b>aum</b><small>aumento</small></td><td data-idioma="fr"><b>aug</b><small>augmentation</small></td><td data-idioma="it"><b>aum</b><small>aumento</small></td><td data-idioma="zh" lang="zh"><b>V</b><small>加针</small></td><td data-idioma="ru" lang="ru"><b>пр</b><small>прибавка</small></td></tr>
+            <tr><td><b>dism</b><small>disminución</small></td><td data-idioma="en-us"><b>dec</b><small>decrease</small></td><td data-idioma="en-uk"><b>dec</b><small>decrease</small></td><td data-idioma="pt"><b>dim</b><small>diminuição</small></td><td data-idioma="fr"><b>dim</b><small>diminution</small></td><td data-idioma="it"><b>dim</b><small>diminuzione</small></td><td data-idioma="zh" lang="zh"><b>A</b><small>减针</small></td><td data-idioma="ru" lang="ru"><b>уб</b><small>убавка</small></td></tr>
+            <tr><td><b>dism inv</b><small>disminución invisible</small></td><td data-idioma="en-us"><b>inv dec</b><small>invisible decrease</small></td><td data-idioma="en-uk"><b>inv dec</b><small>invisible decrease</small></td><td data-idioma="pt"><b>dim inv</b><small>diminuição invisível</small></td><td data-idioma="fr"><b>dim inv</b><small>diminution invisible</small></td><td data-idioma="it"><b>dim inv</b><small>diminuzione invisibile</small></td><td data-idioma="zh" lang="zh"><small>隐形减针</small></td><td data-idioma="ru" lang="ru"><small>невидимая убавка</small></td></tr>
+            <tr><td><b>pto</b><small>punto</small></td><td data-idioma="en-us"><b>st</b><small>stitch</small></td><td data-idioma="en-uk"><b>st</b><small>stitch</small></td><td data-idioma="pt"><b>pt</b><small>ponto</small></td><td data-idioma="fr"><b>m</b><small>maille</small></td><td data-idioma="it"><b>m</b><small>maglia</small></td><td data-idioma="zh" lang="zh"><small>针</small></td><td data-idioma="ru" lang="ru"><b>п</b><small>петля</small></td></tr>
+            <tr><td><b>v</b><small>vuelta / hilera</small></td><td data-idioma="en-us"><b>rnd / row</b><small>round / row</small></td><td data-idioma="en-uk"><b>rnd / row</b><small>round / row</small></td><td data-idioma="pt"><b>carr</b><small>carreira / volta</small></td><td data-idioma="fr"><b>rg / t</b><small>rang / tour</small></td><td data-idioma="it"><b>g / f</b><small>giro / ferro</small></td><td data-idioma="zh" lang="zh"><b>R</b><small>圈 / 行</small></td><td data-idioma="ru" lang="ru"><b>р</b><small>ряд / круг</small></td></tr>
+            <tr><td><b>esp</b><small>espacio</small></td><td data-idioma="en-us"><b>sp</b><small>space</small></td><td data-idioma="en-uk"><b>sp</b><small>space</small></td><td data-idioma="pt"><b>esp</b><small>espaço</small></td><td data-idioma="fr"><b>esp</b><small>espace</small></td><td data-idioma="it"><b>sp</b><small>spazio</small></td><td data-idioma="zh" lang="zh"><small>空隙</small></td><td data-idioma="ru" lang="ru"><small>арка</small></td></tr>
+            <tr><td><b>laz</b><small>lazada (hebra sobre la aguja)</small></td><td data-idioma="en-us"><b>yo</b><small>yarn over</small></td><td data-idioma="en-uk"><b>yrh</b><small>yarn round hook</small></td><td data-idioma="pt"><b>lç</b><small>laçada</small></td><td data-idioma="fr"><b>j</b><small>jeté</small></td><td data-idioma="it"><b>gett</b><small>gettato</small></td><td data-idioma="zh" lang="zh"><small>绕线</small></td><td data-idioma="ru" lang="ru"><b>н</b><small>накид</small></td></tr>
+            <tr><td><b>hd</b><small>solo hebra delantera</small></td><td data-idioma="en-us"><b>FLO</b><small>front loop only</small></td><td data-idioma="en-uk"><b>FLO</b><small>front loop only</small></td><td data-idioma="pt"><small>só na alça da frente</small></td><td data-idioma="fr"><small>dans le brin avant</small></td><td data-idioma="it"><small>solo asola anteriore</small></td><td data-idioma="zh" lang="zh"><small>只钩前半针</small></td><td data-idioma="ru" lang="ru"><small>за переднюю полупетлю</small></td></tr>
+            <tr><td><b>ht</b><small>solo hebra trasera</small></td><td data-idioma="en-us"><b>BLO</b><small>back loop only</small></td><td data-idioma="en-uk"><b>BLO</b><small>back loop only</small></td><td data-idioma="pt"><small>só na alça de trás</small></td><td data-idioma="fr"><small>dans le brin arrière</small></td><td data-idioma="it"><small>solo asola posteriore</small></td><td data-idioma="zh" lang="zh"><small>只钩后半针</small></td><td data-idioma="ru" lang="ru"><small>за заднюю полупетлю</small></td></tr>
+            <tr><td><b>sal</b><small>saltar un punto</small></td><td data-idioma="en-us"><b>sk</b><small>skip</small></td><td data-idioma="en-uk"><b>miss</b><small>miss</small></td><td data-idioma="pt"><small>pular</small></td><td data-idioma="fr"><small>sauter</small></td><td data-idioma="it"><small>saltare</small></td><td data-idioma="zh" lang="zh"><small>跳过</small></td><td data-idioma="ru" lang="ru"><small>пропустить петлю</small></td></tr>
+            <tr><td><b>jts</b><small>juntos</small></td><td data-idioma="en-us"><b>tog</b><small>together</small></td><td data-idioma="en-uk"><b>tog</b><small>together</small></td><td data-idioma="pt"><b>jts</b><small>juntos</small></td><td data-idioma="fr"><b>ens</b><small>ensemble</small></td><td data-idioma="it"><b>ins</b><small>insieme</small></td><td data-idioma="zh" lang="zh"><small>并针</small></td><td data-idioma="ru" lang="ru"><small>вместе</small></td></tr>
+            <tr><td><b>MP</b><small>marcador de puntos</small></td><td data-idioma="en-us"><b>PM / SM</b><small>place marker / stitch marker</small></td><td data-idioma="en-uk"><b>PM / SM</b><small>place marker / stitch marker</small></td><td data-idioma="pt"><small>marcador de pontos</small></td><td data-idioma="fr"><small>marqueur de mailles</small></td><td data-idioma="it"><small>segnapunti</small></td><td data-idioma="zh" lang="zh"><small>记号扣</small></td><td data-idioma="ru" lang="ru"><small>маркер</small></td></tr>
+            <tr><td><b>rep / * *</b><small>repetir lo que está entre asteriscos</small></td><td data-idioma="en-us"><b>rep / * *</b><small>repeat</small></td><td data-idioma="en-uk"><b>rep / * *</b><small>repeat</small></td><td data-idioma="pt"><b>rep</b><small>repetir</small></td><td data-idioma="fr"><b>rép</b><small>répéter</small></td><td data-idioma="it"><b>rip</b><small>ripetere</small></td><td data-idioma="zh" lang="zh"><b>*…*</b><small>重复</small></td><td data-idioma="ru" lang="ru"><b>повт.</b><small>повторить</small></td></tr>
           </tbody>
         </table>
       </div>
@@ -1032,80 +1055,6 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
   window.addEventListener('afterprint', function() {
     document.body.classList.remove('imprimiendo');
     document.querySelectorAll('.imprimir-activa').forEach(function(s) { s.classList.remove('imprimir-activa'); });
-  });
-
-  /* ---------- Stickers: generar PNG con fondo transparente ---------- */
-  function cargarImagen(src) {
-    return new Promise(function(resolver, rechazar) {
-      var img = new Image();
-      img.onload = function() { resolver(img); };
-      img.onerror = rechazar;
-      img.src = src;
-    });
-  }
-  function nombreArchivo(frase) {
-    return 'sticker-rosina-' + frase.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.png';
-  }
-  function dibujarSticker(img, frase, ajuste) {
-    var T = 1000, c = T / 2, canvas = document.createElement('canvas');
-    canvas.width = T; canvas.height = T;
-    var ctx = canvas.getContext('2d');
-    // Borde blanco de troquel + anillo rosa
-    ctx.beginPath(); ctx.arc(c, c, 495, 0, Math.PI * 2); ctx.fillStyle = '#FFFFFF'; ctx.fill();
-    ctx.beginPath(); ctx.arc(c, c, 462, 0, Math.PI * 2); ctx.fillStyle = '#F28FC0'; ctx.fill();
-    ctx.beginPath(); ctx.arc(c, c, 444, 0, Math.PI * 2); ctx.fillStyle = '#FFFFFF'; ctx.fill();
-    // Ilustración recortada en círculo
-    ctx.save();
-    ctx.beginPath(); ctx.arc(c, c, 444, 0, Math.PI * 2); ctx.clip();
-    var caja, escala, w, h, x, y;
-    if (ajuste === 'cubrir') {
-      escala = Math.max(888 / img.width, 888 / img.height);
-      w = img.width * escala; h = img.height * escala;
-      x = c - w / 2; y = c - h / 2;
-    } else {
-      caja = { x: c - 360, y: 70, w: 720, h: 720 };
-      escala = Math.min(caja.w / img.width, caja.h / img.height);
-      w = img.width * escala; h = img.height * escala;
-      x = caja.x + (caja.w - w) / 2; y = caja.y + (caja.h - h) / 2;
-    }
-    ctx.drawImage(img, x, y, w, h);
-    ctx.restore();
-    // Frase en cinta rosa
-    ctx.font = '600 58px DynaPuff, sans-serif';
-    var anchoTexto = ctx.measureText(frase).width, pw = anchoTexto + 90, ph = 96, px = c - pw / 2, py = 800;
-    ctx.beginPath();
-    if (ctx.roundRect) { ctx.roundRect(px, py, pw, ph, ph / 2); } else { ctx.rect(px, py, pw, ph); }
-    ctx.fillStyle = '#E74E96'; ctx.fill();
-    ctx.lineWidth = 8; ctx.strokeStyle = '#FFFFFF'; ctx.stroke();
-    ctx.fillStyle = '#FFFFFF'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(frase, c, py + ph / 2 + 3);
-    return canvas;
-  }
-  document.querySelectorAll('.sticker').forEach(function(sticker) {
-    var boton = sticker.querySelector('button');
-    boton.addEventListener('click', function() {
-      var src = sticker.getAttribute('data-sticker');
-      var frase = sticker.getAttribute('data-frase');
-      var ajuste = sticker.getAttribute('data-ajuste');
-      var textoOriginal = boton.textContent;
-      boton.textContent = 'Preparando…';
-      var fuente = document.fonts && document.fonts.load ? document.fonts.load('600 58px DynaPuff') : Promise.resolve();
-      Promise.all([cargarImagen(src), fuente]).then(function(r) {
-        var canvas = dibujarSticker(r[0], frase, ajuste);
-        canvas.toBlob(function(blob) {
-          var url = URL.createObjectURL(blob);
-          var a = document.createElement('a');
-          a.href = url; a.download = nombreArchivo(frase);
-          document.body.appendChild(a); a.click(); a.remove();
-          setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
-          boton.textContent = '✓ Descargado';
-          setTimeout(function() { boton.textContent = textoOriginal; }, 2000);
-        }, 'image/png');
-      }).catch(function() {
-        window.open(src, '_blank');
-        boton.textContent = textoOriginal;
-      });
-    });
   });
 
   /* ---------- Filtro de idiomas de la tabla ---------- */

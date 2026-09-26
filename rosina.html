@@ -257,16 +257,6 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
     </div>
   </section>
 
-  <section class="contenedor" id="video-rosina">
-    <h2>Rosina en movimiento</h2>
-    <div class="marco-rosina" style="max-width:640px; margin:0 auto;">
-      <video id="video-rosina-el" controls playsinline poster="img/rosina.jpg" style="width:100%; border-radius:20px; display:block;">
-        <source src="video/rosina.mp4" type="video/mp4">
-      </video>
-      <p id="video-rosina-marcador" style="display:none; text-align:center; color:var(--rosa-principal); font-size:0.9rem; padding:30px;">[ Aquí va el video de Rosina — súbelo como video/rosina.mp4 ]</p>
-    </div>
-  </section>
-
   <section class="contenedor">
     <h2>¿Qué hace Rosina?</h2>
     <div class="roles">
@@ -304,11 +294,11 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
       <h2>Material gratuito de Rosina</h2>
       <p style="max-width:62ch; color:var(--tinta-suave);">Rosina preparó regalos para toda la comunidad tejedora. Descárgalos, imprímelos y compártelos — son gratis. 🎁</p>
       <div class="material-grid">
-        <a class="material-card" href="recursos-rosina.html#stickers"><span class="icono">🌸</span><h3>Stickers</h3><p>Rosina en PNG para tus historias, etiquetas o papel adhesivo.</p></a>
+        <a class="material-card" href="recursos-rosina.html#stickers"><span class="icono">🌸</span><h3>Stickers</h3><p>26 stickers de Rosina listos para WhatsApp, tus historias o papel adhesivo.</p></a>
         <a class="material-card" href="recursos-rosina.html#fondos"><span class="icono">📱</span><h3>Fondos de pantalla</h3><p>Rosina para la pantalla de tu celular, en 4 colores.</p></a>
         <a class="material-card" href="recursos-rosina.html#checklist"><span class="icono">✅</span><h3>Checklist</h3><p>Todo lo que necesitas para tu primer amigurumi.</p></a>
         <a class="material-card" href="glosario-rosina.html"><span class="icono">🔤</span><h3>Glosario ilustrado</h3><p>30 términos de crochet con su símbolo, paso a paso y nombre en inglés.</p></a>
-        <a class="material-card" href="recursos-rosina.html#abreviaturas"><span class="icono">📖</span><h3>Abreviaturas</h3><p>Plantilla de puntos en español, inglés, portugués, francés e italiano.</p></a>
+        <a class="material-card" href="recursos-rosina.html#abreviaturas"><span class="icono">📖</span><h3>Abreviaturas</h3><p>Plantilla de puntos en español, inglés, portugués, francés, italiano, chino y ruso.</p></a>
         <a class="material-card" href="recursos-rosina.html#calculadora"><span class="icono">🧮</span><h3>Calculadora</h3><p>Aumentos, disminuciones, muestra, lana y contador de vueltas.</p></a>
         <a class="material-card" href="recursos-rosina.html#agenda"><span class="icono">🗓️</span><h3>Agenda</h3><p>Ficha de proyecto, semana tejiendo y control de pedidos.</p></a>
       </div>
@@ -396,18 +386,6 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
       boton.setAttribute('aria-expanded', abierto);
       boton.textContent = abierto ? '✕' : '☰';
     });
-  }
-})();
-</script>
-<script>
-(function() {
-  var video = document.getElementById('video-rosina-el');
-  var marcador = document.getElementById('video-rosina-marcador');
-  if (video) {
-    video.addEventListener('error', function() {
-      video.style.display = 'none';
-      marcador.style.display = 'block';
-    }, true);
   }
 })();
 </script>
