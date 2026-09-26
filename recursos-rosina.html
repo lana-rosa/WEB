@@ -359,6 +359,22 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .intro-rincon .indice-recursos a:last-child:nth-child(3n+1) { grid-column: auto; }
 @media (max-width: 860px) { .intro-rincon .indice-recursos { grid-template-columns: repeat(2, minmax(0, 1fr)); } .intro-rincon .indice-recursos a:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 @media print { .banner-rincon, .intro-rincon { display: none !important; } }
+/* Calculadora de muestra explicada */
+.panel-muestra { grid-template-columns: 1.15fr 0.85fr; }
+@media (max-width: 760px) { .panel-muestra { grid-template-columns: 1fr; } }
+.explica-muestra { background: var(--lila-suave); border-radius: 16px; padding: 16px 18px; margin-bottom: 16px; font-size: 0.93rem; }
+.pasos-muestra { margin: 8px 0 10px; padding-left: 20px; }
+.pasos-muestra li { margin-bottom: 4px; }
+.dibujo-muestra { width: 100%; max-width: 330px; height: auto; display: block; margin: 0 auto; }
+.grupo-muestra { border: none; padding: 0; margin: 0 0 6px; }
+.grupo-muestra legend { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1rem; margin-bottom: 8px; padding: 0; }
+.avanzado-muestra { margin: 0 0 8px; }
+.avanzado-muestra summary, .por-que summary { cursor: pointer; font-weight: 700; color: var(--rosa-principal); font-size: 0.9rem; }
+.paso-res { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+.paso-res span { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-principal); color: var(--blanco); font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+.paso-res p { margin: 3px 0 0; font-size: 0.97rem; }
+.por-que { margin-top: 8px; background: var(--blanco); border-radius: 12px; padding: 10px 12px; }
+.por-que p { font-size: 0.88rem; margin: 8px 0 0; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -414,12 +430,13 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   </section>
   <section class="contenedor intro-rincon">
     <p class="eslogan">Material gratuito · Hecho con cariño</p>
-    <p class="intro">Rosina preparó estos regalos para toda la comunidad tejedora: stickers y fondos de pantalla, una checklist para tu primer amigurumi, un glosario ilustrado, abreviaturas en varios idiomas, calculadoras para tus proyectos y una agenda para organizar tus tejidos. Todo es gratis, úsalo cuantas veces quieras. 🐑💕</p>
+    <p class="intro">Rosina preparó estos regalos para toda la comunidad tejedora: stickers y fondos de pantalla, una checklist para tu primer amigurumi, un glosario ilustrado, paletas de colores, abreviaturas en varios idiomas, calculadoras para tus proyectos y una agenda para organizar tus tejidos. Todo es gratis, úsalo cuantas veces quieras. 🐑💕</p>
     <nav class="indice-recursos" aria-label="Recursos de Rosina">
         <a href="#stickers"><span class="icono">🌸</span><strong>Stickers</strong><span>26 para WhatsApp</span></a>
         <a href="#fondos"><span class="icono">📱</span><strong>Fondos de pantalla</strong><span>9 diseños, 4 tamaños</span></a>
         <a href="#checklist"><span class="icono">✅</span><strong>Checklist</strong><span>Tu primer amigurumi</span></a>
         <a href="glosario-rosina.html"><span class="icono">🔤</span><strong>Glosario ilustrado</strong><span>30 términos explicados</span></a>
+    <a href="paletas-rosina.html"><span class="icono">🎨</span><strong>Paletas de colores</strong><span>18 combinaciones y tu propia paleta</span></a>
         <a href="#abreviaturas"><span class="icono">📖</span><strong>Abreviaturas</strong><span>En 8 idiomas</span></a>
         <a href="#calculadora"><span class="icono">🧮</span><strong>Calculadora</strong><span>Aumentos, muestra y lana</span></a>
         <a href="#agenda"><span class="icono">🗓️</span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></a>
@@ -679,7 +696,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
     </div>
     <div class="pestanas" role="tablist" aria-label="Herramientas de la calculadora">
       <button type="button" role="tab" id="tab-aumentos" aria-controls="calc-aumentos" aria-selected="true">Aumentos y disminuciones</button>
-      <button type="button" role="tab" id="tab-muestra" aria-controls="calc-muestra" aria-selected="false">Muestra</button>
+      <button type="button" role="tab" id="tab-muestra" aria-controls="calc-muestra" aria-selected="false">Muestra (tamaño de tu pieza)</button>
       <button type="button" role="tab" id="tab-lana" aria-controls="calc-lana" aria-selected="false">¿Cuánta lana?</button>
       <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="false">Contador de vueltas</button>
     </div>
@@ -706,24 +723,59 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
       </div>
     </div>
 
-    <div class="panel-calc" role="tabpanel" id="calc-muestra" aria-labelledby="tab-muestra" hidden>
+    <div class="panel-calc panel-muestra" role="tabpanel" id="calc-muestra" aria-labelledby="tab-muestra" hidden>
       <form id="form-muestra" onsubmit="return false">
-        <p style="margin-top:0;">Teje una muestra de al menos 12 × 12 cm y cuenta los puntos y vueltas que caben en 10 cm.</p>
-        <div class="fila-campos">
-          <div class="campo"><label for="mu-puntos">Puntos en 10 cm</label><input type="number" id="mu-puntos" min="0.5" step="0.5" value="24" inputmode="decimal"></div>
-          <div class="campo"><label for="mu-vueltas">Vueltas en 10 cm</label><input type="number" id="mu-vueltas" min="0.5" step="0.5" value="26" inputmode="decimal"></div>
+        <div class="explica-muestra">
+          <p style="margin-top:0;"><strong>¿Para qué sirve?</strong> Cada tejedora teje más apretado o más suelto. Con tu muestra, Rosina te dice <strong>cuántos puntos montar</strong> y <strong>cuántas vueltas tejer</strong> para que tu pieza mida exactamente lo que quieres.</p>
+          <ol class="pasos-muestra">
+            <li><strong>Teje un cuadradito</strong> de unos 12 × 12 cm con la misma lana, aguja y punto de tu proyecto.</li>
+            <li><strong>Pon una regla</strong> en el centro (sin contar los bordes) y <strong>cuenta cuántos puntos</strong> caben en 10 cm de ancho.</li>
+            <li>Pon la regla de arriba abajo y <strong>cuenta cuántas vueltas</strong> caben en 10 cm de alto.</li>
+          </ol>
+          <svg class="dibujo-muestra" viewBox="0 0 310 206" role="img" aria-label="Dibujo de una muestra: una regla de 10 centímetros debajo de los puntos para contarlos">
+            <rect x="10" y="6" width="290" height="116" rx="10" fill="#FBE4EF"/>
+            <g stroke="#E74E96" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M24,18 L32,26 M32,18 L24,26"/><path d="M42,18 L50,26 M50,18 L42,26"/><path d="M60,18 L68,26 M68,18 L60,26"/><path d="M78,18 L86,26 M86,18 L78,26"/><path d="M96,18 L104,26 M104,18 L96,26"/><path d="M114,18 L122,26 M122,18 L114,26"/><path d="M132,18 L140,26 M140,18 L132,26"/><path d="M150,18 L158,26 M158,18 L150,26"/><path d="M168,18 L176,26 M176,18 L168,26"/><path d="M186,18 L194,26 M194,18 L186,26"/><path d="M204,18 L212,26 M212,18 L204,26"/><path d="M222,18 L230,26 M230,18 L222,26"/><path d="M240,18 L248,26 M248,18 L240,26"/><path d="M258,18 L266,26 M266,18 L258,26"/><path d="M276,18 L284,26 M284,18 L276,26"/><path d="M24,36 L32,44 M32,36 L24,44"/><path d="M42,36 L50,44 M50,36 L42,44"/><path d="M60,36 L68,44 M68,36 L60,44"/><path d="M78,36 L86,44 M86,36 L78,44"/><path d="M96,36 L104,44 M104,36 L96,44"/><path d="M114,36 L122,44 M122,36 L114,44"/><path d="M132,36 L140,44 M140,36 L132,44"/><path d="M150,36 L158,44 M158,36 L150,44"/><path d="M168,36 L176,44 M176,36 L168,44"/><path d="M186,36 L194,44 M194,36 L186,44"/><path d="M204,36 L212,44 M212,36 L204,44"/><path d="M222,36 L230,44 M230,36 L222,44"/><path d="M240,36 L248,44 M248,36 L240,44"/><path d="M258,36 L266,44 M266,36 L258,44"/><path d="M276,36 L284,44 M284,36 L276,44"/><path d="M24,54 L32,62 M32,54 L24,62"/><path d="M42,54 L50,62 M50,54 L42,62"/><path d="M60,54 L68,62 M68,54 L60,62"/><path d="M78,54 L86,62 M86,54 L78,62"/><path d="M96,54 L104,62 M104,54 L96,62"/><path d="M114,54 L122,62 M122,54 L114,62"/><path d="M132,54 L140,62 M140,54 L132,62"/><path d="M150,54 L158,62 M158,54 L150,62"/><path d="M168,54 L176,62 M176,54 L168,62"/><path d="M186,54 L194,62 M194,54 L186,62"/><path d="M204,54 L212,62 M212,54 L204,62"/><path d="M222,54 L230,62 M230,54 L222,62"/><path d="M240,54 L248,62 M248,54 L240,62"/><path d="M258,54 L266,62 M266,54 L258,62"/><path d="M276,54 L284,62 M284,54 L276,62"/><path d="M24,72 L32,80 M32,72 L24,80"/><path d="M42,72 L50,80 M50,72 L42,80"/><path d="M60,72 L68,80 M68,72 L60,80"/><path d="M78,72 L86,80 M86,72 L78,80"/><path d="M96,72 L104,80 M104,72 L96,80"/><path d="M114,72 L122,80 M122,72 L114,80"/><path d="M132,72 L140,80 M140,72 L132,80"/><path d="M150,72 L158,80 M158,72 L150,80"/><path d="M168,72 L176,80 M176,72 L168,80"/><path d="M186,72 L194,80 M194,72 L186,80"/><path d="M204,72 L212,80 M212,72 L204,80"/><path d="M222,72 L230,80 M230,72 L222,80"/><path d="M240,72 L248,80 M248,72 L240,80"/><path d="M258,72 L266,80 M266,72 L258,80"/><path d="M276,72 L284,80 M284,72 L276,80"/><path d="M24,90 L32,98 M32,90 L24,98"/><path d="M42,90 L50,98 M50,90 L42,98"/><path d="M60,90 L68,98 M68,90 L60,98"/><path d="M78,90 L86,98 M86,90 L78,98"/><path d="M96,90 L104,98 M104,90 L96,98"/><path d="M114,90 L122,98 M122,90 L114,98"/><path d="M132,90 L140,98 M140,90 L132,98"/><path d="M150,90 L158,98 M158,90 L150,98"/><path d="M168,90 L176,98 M176,90 L168,98"/><path d="M186,90 L194,98 M194,90 L186,98"/><path d="M204,90 L212,98 M212,90 L204,98"/><path d="M222,90 L230,98 M230,90 L222,98"/><path d="M240,90 L248,98 M248,90 L240,98"/><path d="M258,90 L266,98 M266,90 L258,98"/><path d="M276,90 L284,98 M284,90 L276,98"/><path d="M24,108 L32,116 M32,108 L24,116"/><path d="M42,108 L50,116 M50,108 L42,116"/><path d="M60,108 L68,116 M68,108 L60,116"/><path d="M78,108 L86,116 M86,108 L78,116"/><path d="M96,108 L104,116 M104,108 L96,116"/><path d="M114,108 L122,116 M122,108 L114,116"/><path d="M132,108 L140,116 M140,108 L132,116"/><path d="M150,108 L158,116 M158,108 L150,116"/><path d="M168,108 L176,116 M176,108 L168,116"/><path d="M186,108 L194,116 M194,108 L186,116"/><path d="M204,108 L212,116 M212,108 L204,116"/><path d="M222,108 L230,116 M230,108 L222,116"/><path d="M240,108 L248,116 M248,108 L240,116"/><path d="M258,108 L266,116 M266,108 L258,116"/><path d="M276,108 L284,116 M284,108 L276,116"/></g>
+            <rect x="46" y="10" width="190" height="108" rx="6" fill="none" stroke="#9EA2F9" stroke-width="2.5" stroke-dasharray="6 4"/>
+            <rect x="46" y="136" width="190" height="22" rx="4" fill="#FFF" stroke="#45454A" stroke-width="1.5"/>
+            <g stroke="#45454A" stroke-width="1.2"><path d="M46,136 v10"/><path d="M65,136 v6"/><path d="M84,136 v6"/><path d="M103,136 v6"/><path d="M122,136 v6"/><path d="M141,136 v10"/><path d="M160,136 v6"/><path d="M179,136 v6"/><path d="M198,136 v6"/><path d="M217,136 v6"/><path d="M236,136 v10"/></g>
+            <text x="46" y="176" font-size="11" fill="#45454A" text-anchor="middle">0</text><text x="236" y="176" font-size="11" fill="#45454A" text-anchor="middle">10 cm</text>
+            <text x="141" y="198" font-size="12" font-weight="700" fill="#5B5FC7" text-anchor="middle">Cuenta los puntos dentro del recuadro</text>
+          </svg>
         </div>
-        <div class="fila-campos">
-          <div class="campo"><label for="mu-ancho">Ancho que quieres (cm)</label><input type="number" id="mu-ancho" min="1" step="0.5" value="7" inputmode="decimal"></div>
-          <div class="campo"><label for="mu-alto">Alto que quieres (cm)</label><input type="number" id="mu-alto" min="1" step="0.5" value="15" inputmode="decimal"></div>
-        </div>
-        <div class="fila-campos">
-          <div class="campo"><label for="mu-multiplo">Múltiplo del patrón</label><input type="number" id="mu-multiplo" min="1" value="1" inputmode="numeric"><small>Ej.: "múltiplo de 4 + 2". Déjalo en 1 si no aplica.</small></div>
-          <div class="campo"><label for="mu-extra">Puntos extra (+)</label><input type="number" id="mu-extra" min="0" value="0" inputmode="numeric"></div>
-        </div>
+        <fieldset class="grupo-muestra">
+          <legend>1. Lo que contaste en tu muestra</legend>
+          <div class="fila-campos">
+            <div class="campo"><label for="mu-puntos">Puntos en 10 cm de ancho</label><input type="number" id="mu-puntos" min="0.5" step="0.5" value="24" inputmode="decimal"></div>
+            <div class="campo"><label for="mu-vueltas">Vueltas en 10 cm de alto</label><input type="number" id="mu-vueltas" min="0.5" step="0.5" value="26" inputmode="decimal"></div>
+          </div>
+        </fieldset>
+        <fieldset class="grupo-muestra">
+          <legend>2. El tamaño que quieres para tu pieza</legend>
+          <div class="fila-campos">
+            <div class="campo"><label for="mu-ancho">Ancho (cm)</label><input type="number" id="mu-ancho" min="1" step="0.5" value="7" inputmode="decimal"></div>
+            <div class="campo"><label for="mu-alto">Alto (cm)</label><input type="number" id="mu-alto" min="1" step="0.5" value="15" inputmode="decimal"></div>
+          </div>
+          <div class="campo">
+            <label for="mu-punto">¿Con qué punto vas a tejer?</label>
+            <select id="mu-punto">
+              <option value="pb">Punto bajo (pb)</option>
+              <option value="mpa">Medio punto alto (mpa)</option>
+              <option value="pa">Punto alto (pa)</option>
+            </select>
+          </div>
+        </fieldset>
+        <details class="avanzado-muestra">
+          <summary>¿Tu patrón pide un "múltiplo"? (opcional)</summary>
+          <p class="nota">Algunos patrones con dibujos dicen, por ejemplo, <em>"monta un múltiplo de 4 + 2"</em>: el número de puntos debe salir de la tabla del 4, más 2 (6, 10, 14, 18…). Si tu patrón no dice nada de esto, déjalo así.</p>
+          <div class="fila-campos">
+            <div class="campo"><label for="mu-multiplo">Múltiplo de</label><input type="number" id="mu-multiplo" min="1" value="1" inputmode="numeric"></div>
+            <div class="campo"><label for="mu-extra">Más (+)</label><input type="number" id="mu-extra" min="0" value="0" inputmode="numeric"></div>
+          </div>
+        </details>
+        <p class="nota">💡 Sirve para piezas planas: mantitas, bufandas, bolsos o ropita de muñeco. Si tejes en redondo, como un amigurumi, pon como ancho la medida del contorno completo (la vuelta entera).</p>
       </form>
       <div class="resultado" aria-live="polite">
-        <h3>Necesitas</h3>
+        <h3>Esto es lo que debes tejer</h3>
         <div id="res-muestra"></div>
       </div>
     </div>
@@ -1180,15 +1232,20 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   function calcularMuestra() {
     var p = num('mu-puntos'), v = num('mu-vueltas'), ancho = num('mu-ancho'), alto = num('mu-alto');
     var multiplo = Math.max(1, Math.round(num('mu-multiplo')) || 1), extra = Math.max(0, Math.round(num('mu-extra')) || 0);
+    var punto = document.getElementById('mu-punto').value;
     var res = document.getElementById('res-muestra');
-    if (![p, v, ancho, alto].every(valido)) { res.innerHTML = '<p class="error">Completa los cuatro primeros datos con números mayores que cero.</p>'; return; }
-    var puntosExactos = p * ancho / 10, vueltas = Math.round(v * alto / 10);
-    var repeticiones = Math.max(1, Math.round((puntosExactos - extra) / multiplo));
-    var puntos = multiplo > 1 || extra > 0 ? repeticiones * multiplo + extra : Math.round(puntosExactos);
-    var anchoReal = puntos * 10 / p;
-    var html = '<p class="grande">' + puntos + ' puntos × ' + vueltas + ' vueltas</p>';
-    html += '<p>Monta <strong>' + puntos + ' puntos</strong> de base (más las cadenetas de giro que pida tu punto) y teje <strong>' + vueltas + ' vueltas</strong>.</p>';
-    if (multiplo > 1 || extra > 0) html += '<p>Ajustado a múltiplo de ' + multiplo + (extra ? ' + ' + extra : '') + ': tu pieza medirá unos <strong>' + formato(anchoReal, 1) + ' cm</strong> de ancho.</p>';
+    if (![p, v, ancho, alto].every(valido)) { res.innerHTML = '<p class="error">Completa lo que contaste en tu muestra y el tamaño que quieres, con números mayores que cero.</p>'; return; }
+    var puntosExactos = p * ancho / 10, vueltas = Math.max(1, Math.round(v * alto / 10));
+    var conMultiplo = multiplo > 1 || extra > 0;
+    var puntos = conMultiplo ? Math.max(1, Math.round((puntosExactos - extra) / multiplo)) * multiplo + extra : Math.max(1, Math.round(puntosExactos));
+    var nombres = { pb: 'puntos bajos', mpa: 'medios puntos altos', pa: 'puntos altos' };
+    var subir = { pb: 1, mpa: 2, pa: 2 }[punto];
+    var cadena = puntos + subir;
+    var html = '<div class="paso-res"><span>1</span><p>Teje una cadena de <strong>' + cadena + ' cadenetas</strong> (' + puntos + ' + ' + subir + ' para subir).</p></div>';
+    html += '<div class="paso-res"><span>2</span><p>En la primera hilera quedarán <strong>' + puntos + ' ' + nombres[punto] + '</strong>: así tu pieza medirá ' + formato(ancho, 1) + ' cm de ancho.</p></div>';
+    html += '<div class="paso-res"><span>3</span><p>Teje <strong>' + vueltas + ' vueltas</strong> en total para llegar a ' + formato(alto, 1) + ' cm de alto.</p></div>';
+    if (punto === 'pa') html += '<p class="nota">En punto alto, las 3 primeras cadenetas de la base cuentan como el primer punto: empieza en la 4.ª cadeneta desde la aguja.</p>';
+    html += '<details class="por-que"><summary>¿De dónde salen estos números?</summary><p>En tu muestra caben ' + formato(p, 1) + ' puntos en 10 cm, o sea <strong>' + formato(p / 10, 2) + ' puntos por cada centímetro</strong>. Para ' + formato(ancho, 1) + ' cm: ' + formato(ancho, 1) + ' × ' + formato(p / 10, 2) + ' = ' + formato(puntosExactos, 1) + ' → <strong>' + puntos + ' puntos</strong>' + (conMultiplo ? ' (ajustado a múltiplo de ' + multiplo + (extra ? ' + ' + extra : '') + '; la pieza medirá unos ' + formato(puntos * 10 / p, 1) + ' cm)' : '') + '.</p><p>Con las vueltas es igual: ' + formato(v / 10, 2) + ' vueltas por centímetro × ' + formato(alto, 1) + ' cm = <strong>' + vueltas + ' vueltas</strong>.</p></details>';
     res.innerHTML = html;
   }
 
