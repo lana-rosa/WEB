@@ -365,6 +365,9 @@ a { color: var(--rosa-principal); }
 .encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
+.ayuda-rosina { display: flex; gap: 14px; align-items: center; background: var(--lila-suave, #F0F1FE); border-radius: 16px; padding: 12px 18px; margin: 0 0 20px; }
+.ayuda-rosina img { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; }
+.ayuda-rosina p { margin: 0; font-size: 0.95rem; }
 </style>
 </head>
 <body>
@@ -425,6 +428,11 @@ a { color: var(--rosa-principal); }
       <p>Los productos ya tejidos (amigurumis, peluches, bolsos y más) están en nuestra tienda principal, no aquí.</p>
       <a class="boton-primario" href="tienda.html">Ir a la tienda</a>
     </div>
+  </div>
+
+  <div class="ayuda-rosina">
+    <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" width="56" height="56">
+    <p><strong>¿No sabes qué elegir?</strong> Rosina te ayuda: mira sus <a href="paletas-rosina.html">paletas de colores</a> o la <a href="recursos-rosina.html#checklist">checklist de tu primer amigurumi</a> y pide todo por WhatsApp.</p>
   </div>
 
   <div class="barra-controles-tienda">

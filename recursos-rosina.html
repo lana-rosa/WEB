@@ -375,6 +375,16 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .paso-res p { margin: 3px 0 0; font-size: 0.97rem; }
 .por-que { margin-top: 8px; background: var(--blanco); border-radius: 12px; padding: 10px 12px; }
 .por-que p { font-size: 0.88rem; margin: 8px 0 0; }
+/* Pedidos desde el material gratis */
+.kit-rosina { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: center; background: var(--lila-suave); border: 2px dashed var(--lila); border-radius: var(--radio-suave); padding: 22px 26px; }
+@media (max-width: 760px) { .kit-rosina { grid-template-columns: 1fr; } }
+.kit-rosina h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--tinta); }
+.kit-rosina p { margin: 0; color: var(--tinta-suave); }
+.kit-acciones { display: flex; flex-direction: column; gap: 10px; align-items: stretch; text-align: center; }
+.enlace-merceria { font-weight: 600; font-size: 0.9rem; }
+.kit-acciones [hidden] { display: none; }
+.boton-whatsapp-res { display: inline-block; margin-top: 10px; background: #25D366; color: #fff; border-radius: 999px; padding: 10px 20px; font-weight: 700; text-decoration: none; font-size: 0.92rem; }
+.boton-whatsapp-res:hover { background: #1ebe5a; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -623,9 +633,16 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
         <p><strong>Tip de Rosina:</strong> si tu amigurumi es para un bebé o un niño menor de 3 años, borda los ojos con hilo en lugar de usar ojos de seguridad. Así no hay piezas pequeñas que se puedan soltar.</p>
       </div>
     </div>
-    <div class="cta-merceria no-imprimir">
-      <p><strong>¿Te falta algo?</strong> En nuestra mercería encuentras hilos, agujas, ojos de seguridad y relleno.</p>
-      <a class="boton-primario" href="merceria.html">Ir a la mercería</a>
+    <div class="kit-rosina no-imprimir">
+      <div class="kit-texto">
+        <h3>🧺 ¿Te falta algo? Rosina arma tu pedido</h3>
+        <p id="kit-resumen">Marca lo que ya tienes y te enviamos por WhatsApp solo lo que te falta: hilos, agujas, ojos de seguridad, relleno y más.</p>
+      </div>
+      <div class="kit-acciones">
+        <a class="boton-primario boton-whatsapp-kit" id="pedir-faltantes" href="https://wa.me/573205072801" target="_blank" rel="noopener">Pedir lo que me falta</a>
+        <a class="boton-secundario" id="pedir-kit" href="https://wa.me/573205072801" target="_blank" rel="noopener">Quiero el kit completo de principiante</a>
+        <a class="enlace-merceria" href="merceria.html">o mira la mercería →</a>
+      </div>
     </div>
   </section>
 
@@ -1185,6 +1202,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
     });
   });
 
+  function whatsapp(texto) { return 'https://wa.me/573205072801?text=' + encodeURIComponent(texto); }
   function num(id) { return parseFloat(document.getElementById(id).value); }
   function valido(n) { return isFinite(n) && n > 0; }
   function formato(n, dec) { return n.toLocaleString('es-CO', { maximumFractionDigits: dec || 0 }); }
@@ -1259,7 +1277,8 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
     var ovillos = Math.ceil(conMargen / ov);
     res.innerHTML = '<p class="grande">' + ovillos + ' ovillo' + (ovillos === 1 ? '' : 's') + ' de ' + formato(ov) + ' g</p>' +
       '<p>La pieza pesará unos <strong>' + formato(gramos) + ' g</strong>. Con un 10 % de margen para costuras y remates: <strong>' + formato(conMargen) + ' g</strong>.</p>' +
-      '<p class="nota">💡 Tip de Rosina: compra todos los ovillos del mismo lote de tinte para que el color no cambie a mitad de tu proyecto.</p>';
+      '<p class="nota">💡 Tip de Rosina: compra todos los ovillos del mismo lote de tinte para que el color no cambie a mitad de tu proyecto.</p>' +
+      '<a class="boton-whatsapp-res" target="_blank" rel="noopener" href="' + whatsapp('Hola! Vengo del Rincón de Rosina 🐑 Calculé que para mi proyecto de ' + formato(a, 1) + ' × ' + formato(l, 1) + ' cm necesito unos ' + formato(conMargen) + ' g de lana (' + ovillos + ' ovillo' + (ovillos === 1 ? '' : 's') + ' de ' + formato(ov) + ' g). ¿Qué colores tienen disponibles?') + '">🛒 Pedir ' + ovillos + ' ovillo' + (ovillos === 1 ? '' : 's') + ' por WhatsApp</a>';
   }
 
   [['form-aumentos', calcularAumentos], ['form-muestra', calcularMuestra], ['form-lana', calcularLana]].forEach(function(par) {
@@ -1343,11 +1362,33 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
       pintarChecklist();
     });
   });
+  var pedirFaltantes = document.getElementById('pedir-faltantes'), pedirKit = document.getElementById('pedir-kit'), kitResumen = document.getElementById('kit-resumen');
+  function nombreItem(c) { return c.closest('label').querySelector('strong').textContent.replace(/[.:]$/, ''); }
+  function actualizarPedido() {
+    var faltan = [];
+    document.querySelectorAll('#checklist .checklist').forEach(function(lista, k) {
+      if (k > 1) return; // solo materiales y herramientas, no los puntos
+      lista.querySelectorAll('[data-check]').forEach(function(c) { if (!c.checked) faltan.push(nombreItem(c)); });
+    });
+    if (faltan.length) {
+      pedirFaltantes.textContent = 'Pedir lo que me falta (' + faltan.length + ')';
+      pedirFaltantes.href = whatsapp('Hola! Vengo del Rincón de Rosina 🐑 Estoy preparando mi primer amigurumi y me falta:\n' + faltan.map(function(n) { return '• ' + n; }).join('\n') + '\n¿Me ayudan con esto?');
+      pedirFaltantes.hidden = false;
+      kitResumen.textContent = 'Según tu checklist te faltan ' + faltan.length + ' cosas. Te las enviamos por WhatsApp y te ayudamos a elegir.';
+    } else {
+      pedirFaltantes.hidden = true;
+      kitResumen.textContent = '¡Ya tienes todo lo necesario! Si quieres más hilos o colores, mira nuestra mercería.';
+    }
+  }
+  pedirKit.href = whatsapp('Hola! Vengo del Rincón de Rosina 🐑 Quiero el kit completo de principiante para tejer mi primer amigurumi (hilo, aguja, relleno, ojos de seguridad, aguja lanera y marcador). ¿Qué precio tiene?');
+  casillas.forEach(function(c) { c.addEventListener('change', actualizarPedido); });
+  actualizarPedido();
   document.getElementById('checklist-borrar').addEventListener('click', function() {
     casillas.forEach(function(c) { c.checked = false; });
     marcadas = {};
     borrar(CLAVE_CHECKLIST);
     pintarChecklist();
+    actualizarPedido();
   });
   pintarChecklist();
   var irContador = document.querySelector('[data-ir-contador]');
