@@ -25,7 +25,7 @@ def rayas(colores):
         orden = [0, 1, 0, 2, 0, 1, 0, 3 if n > 3 else 2, 0, 1]
         seq = [colores[i][1] for i in orden]
     else:
-        seq = [c[1] for c in colores] * 2
+        seq = [c[1] for c in colores] + [c[1] for c in colores][::-1]
     w = 100 / len(seq)
     return '<div class="manta" aria-hidden="true">' + ''.join(f'<span style="background:{c}"></span>' for c in seq) + '</div>'
 
@@ -61,7 +61,7 @@ main = f'''<main>
       <h1>Paletas de colores para tejer</h1>
       <p class="intro">¿No sabes qué colores combinar? Rosina armó {len(PALETAS)} paletas para fechas especiales, bebés, amigurumis y proyectos de hogar. Mira cómo se verían en una manta de rayas, guarda la paleta como imagen o pídenos los hilos por WhatsApp con un solo toque.</p>
       <p class="no-imprimir" style="display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 0;">
-        <a class="boton-primario" href="#crea-tu-paleta">🎨 Crea tu propia paleta</a>
+        <a class="boton-primario" href="#crea-tu-paleta">🎨 Arma tu propia paleta</a>
         <a class="boton-secundario" href="merceria.html#lanas-merceria">Ver lanas en la mercería</a>
       </p>
     </div>
@@ -76,15 +76,25 @@ main = f'''<main>
   <section class="seccion-suave no-imprimir" id="crea-tu-paleta">
     <div class="contenedor creador">
       <div>
-        <h2>🎨 Crea tu propia paleta</h2>
-        <p style="color:var(--tinta-suave);">Elige hasta 4 colores tocando cada ovillo y mira al instante cómo quedarían en una manta de rayas. El primero es tu color principal.</p>
-        <div class="selectores-color">
-          {''.join(f'<label class="selector-color"><input type="color" value="{c}" aria-label="Color {i+1}"><span>{"Principal" if i==0 else f"Color {i+1}"}</span></label>' for i, c in enumerate(creador_inicial))}
+        <h2>🎨 Arma tu paleta con Rosina</h2>
+        <p style="color:var(--tinta-suave);">Elige un color y Rosina te propone 5 colores que combinan con él. Si quieres, toca cualquier ovillo para ajustarlo a tu gusto.</p>
+        <p class="paso-creador">1. Elige tu color favorito</p>
+        <div class="muestras-rapidas" id="muestras-rapidas">
+          {''.join(f'<button type="button" style="background:{c}" data-color="{c}" aria-label="Usar el color {c}"></button>' for c in ['#E74E96', '#F28FC0', '#D72638', '#F29A38', '#FFD95A', '#8BC77A', '#2E7D52', '#2EC4B6', '#5DADE2', '#1B4F72', '#9EA2F9', '#7552B3', '#B98555', '#A3A2A8'])}
+          <label class="color-libre" title="Otro color"><input type="color" id="color-base" value="#E74E96" aria-label="Elegir otro color"><span>+</span></label>
+        </div>
+        <p class="paso-creador">2. ¿Qué tipo de combinación quieres?</p>
+        <div class="modos-creador" role="radiogroup" aria-label="Tipo de combinación">
+          <label><input type="radio" name="modo" value="tonos" checked><span><strong>Tonos</strong><small>El mismo color, de claro a oscuro</small></span></label>
+          <label><input type="radio" name="modo" value="vecinos"><span><strong>Colores vecinos</strong><small>Colores parecidos que armonizan</small></span></label>
+          <label><input type="radio" name="modo" value="contraste"><span><strong>Contraste</strong><small>Tu color con su opuesto, para resaltar</small></span></label>
         </div>
         <div class="campo" style="max-width:340px; margin-top:14px;"><label for="nombre-paleta">Nombre de tu paleta</label><input type="text" id="nombre-paleta" value="Mi paleta" maxlength="40"></div>
-        <div class="acciones-paleta"><a class="boton-primario" id="pedir-mia" href="https://wa.me/573205072801" target="_blank" rel="noopener">🛒 Pedir estos colores</a><button type="button" class="boton-secundario" id="guardar-mia">⬇ Guardar imagen</button><button type="button" class="boton-secundario" id="copiar-mia">📋 Copiar colores</button></div>
       </div>
-      <div class="vista-creador" id="vista-creador" aria-live="polite"></div>
+      <div>
+        <div class="vista-creador" id="vista-creador" aria-live="polite"></div>
+        <div class="acciones-paleta" style="margin-top:14px;"><a class="boton-primario" id="pedir-mia" href="https://wa.me/573205072801" target="_blank" rel="noopener">🛒 Pedir estos colores</a><button type="button" class="boton-secundario" id="guardar-mia">⬇ Guardar imagen</button><button type="button" class="boton-secundario" id="copiar-mia">📋 Copiar colores</button></div>
+      </div>
     </div>
   </section>
 
@@ -133,15 +143,24 @@ section.categoria-paletas { padding: 0 0 36px; }
 .manta { display: flex; height: 44px; border-radius: 10px; overflow: hidden; border: 1.5px solid #E6E3E8; }
 .manta span { flex: 1; }
 .uso { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); }
-#cat-marca .paleta { grid-column: span 2; border: 2px solid var(--rosa-medio); }
-@media (max-width: 620px) { #cat-marca .paleta { grid-column: auto; } }
-#cat-marca .manta { height: 60px; }
 .tip-paleta { margin: 0; display: flex; gap: 8px; align-items: flex-start; background: var(--lila-suave); border-radius: 12px; padding: 8px 10px; font-size: 0.84rem; }
 .tip-paleta img { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; }
 .acciones-paleta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
 .creador { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
 @media (max-width: 800px) { .creador { grid-template-columns: 1fr; } }
-.selectores-color { display: flex; gap: 14px; flex-wrap: wrap; }
+.paso-creador { font-weight: 700; margin: 16px 0 8px; }
+.muestras-rapidas { display: flex; flex-wrap: wrap; gap: 8px; }
+.muestras-rapidas button, .color-libre { width: 38px; height: 38px; border-radius: 50%; border: 3px solid var(--blanco); box-shadow: 0 2px 6px rgba(0,0,0,0.15); cursor: pointer; padding: 0; }
+.muestras-rapidas button[aria-pressed="true"] { outline: 3px solid var(--tinta); outline-offset: 1px; }
+.color-libre { position: relative; display: flex; align-items: center; justify-content: center; background: conic-gradient(#E74E96, #FFD95A, #8BC77A, #5DADE2, #7552B3, #E74E96); color: #fff; font-weight: 800; font-size: 1.2rem; text-shadow: 0 1px 2px rgba(0,0,0,0.4); }
+.color-libre input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.modos-creador { display: flex; flex-direction: column; gap: 8px; }
+.modos-creador label { display: flex; gap: 10px; align-items: flex-start; background: var(--blanco); border: 2px solid transparent; border-radius: 14px; padding: 10px 14px; cursor: pointer; }
+.modos-creador label:has(input:checked) { border-color: var(--rosa-principal); }
+.modos-creador input { accent-color: var(--rosa-principal); margin-top: 4px; }
+.modos-creador small { display: block; color: var(--tinta-suave); font-size: 0.82rem; }
+.ovillos-editables li { position: relative; }
+.ovillos-editables input[type="color"] { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 48px; height: 48px; opacity: 0; cursor: pointer; }
 .selector-color { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
 .selector-color input { width: 64px; height: 64px; border: 4px solid var(--blanco); border-radius: 50%; padding: 0; cursor: pointer; box-shadow: var(--sombra-suave); background: none; }
 .selector-color input::-webkit-color-swatch-wrapper { padding: 0; }
@@ -204,7 +223,7 @@ js = '''<div class="aviso-copiado" id="aviso-copiado" role="status"></div>
     });
     var y0 = 380 + filas * 300 - 40, alto = 170, seq = [];
     if (n <= 4) { seq = [0, 1, 0, 2, 0, 1, 0, n > 3 ? 3 : 2, 0, 1].map(function(i) { return p.colores[Math.min(i, n - 1)][1]; }); }
-    else { seq = p.colores.map(function(c) { return c[1]; }).concat(p.colores.map(function(c) { return c[1]; })); }
+    else { var cs = p.colores.map(function(c) { return c[1]; }); seq = cs.concat(cs.slice().reverse()); }
     var w = (W - 120) / seq.length;
     x.save(); x.beginPath(); if (x.roundRect) x.roundRect(60, y0, W - 120, alto, 24); else x.rect(60, y0, W - 120, alto); x.clip();
     seq.forEach(function(col, i) { x.fillStyle = col; x.fillRect(60 + i * w, y0, w + 1, alto); }); x.restore();
@@ -240,19 +259,55 @@ js = '''<div class="aviso-copiado" id="aviso-copiado" role="status"></div>
       document.querySelectorAll('.categoria-paletas').forEach(function(s) { s.hidden = !(ch.dataset.filtro === 'todos' || s.dataset.categoria === ch.dataset.filtro); });
     });
   });
-  /* Creador */
-  var inputs = document.querySelectorAll('.selector-color input'), nombre = document.getElementById('nombre-paleta'), vista = document.getElementById('vista-creador');
-  var CLAVE = 'rosinaMiPaleta';
-  try { var g = JSON.parse(localStorage.getItem(CLAVE)); if (g) { inputs.forEach(function(i, k) { if (g.c[k]) i.value = g.c[k]; }); nombre.value = g.n || nombre.value; } } catch (e) {}
-  function mia() { return { nombre: nombre.value.trim() || 'Mi paleta', colores: [].map.call(inputs, function(i, k) { return [k === 0 ? 'Principal' : 'Color ' + (k + 1), i.value.toUpperCase()]; }) }; }
-  function pintar() {
-    var p = mia(), seq = [0, 1, 0, 2, 0, 1, 0, 3, 0, 1];
-    vista.innerHTML = '<div class="paleta"><h3></h3><div class="manta">' + seq.map(function(i) { return '<span style="background:' + p.colores[i][1] + '"></span>'; }).join('') + '</div><p class="uso">Así se vería tu manta de rayas.</p></div>';
-    vista.querySelector('h3').textContent = p.nombre;
-    document.getElementById('pedir-mia').href = pedido(p);
-    try { localStorage.setItem(CLAVE, JSON.stringify({ c: p.colores.map(function(c) { return c[1]; }), n: nombre.value })); } catch (e) {}
+  /* Creador: genera 5 colores a partir de uno */
+  function hexAHsl(h) {
+    var r = parseInt(h.substr(1, 2), 16) / 255, gg = parseInt(h.substr(3, 2), 16) / 255, b = parseInt(h.substr(5, 2), 16) / 255;
+    var max = Math.max(r, gg, b), min = Math.min(r, gg, b), l = (max + min) / 2, s = 0, hh = 0, d = max - min;
+    if (d) { s = l > 0.5 ? d / (2 - max - min) : d / (max + min); hh = max === r ? (gg - b) / d + (gg < b ? 6 : 0) : max === gg ? (b - r) / d + 2 : (r - gg) / d + 4; hh *= 60; }
+    return [hh, s * 100, l * 100];
   }
-  inputs.forEach(function(i) { i.addEventListener('input', pintar); });
+  function hslAHex(h, s, l) {
+    h = ((h % 360) + 360) % 360; s = Math.max(0, Math.min(100, s)) / 100; l = Math.max(0, Math.min(100, l)) / 100;
+    var k = function(n) { return (n + h / 30) % 12; }, a = s * Math.min(l, 1 - l);
+    var f = function(n) { return Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1))))).toString(16).padStart(2, '0'); };
+    return ('#' + f(0) + f(8) + f(4)).toUpperCase();
+  }
+  function generar(base, modo) {
+    var c = hexAHsl(base), h = c[0], s = c[1], l = c[2];
+    if (modo === 'tonos') {
+      return [[h, Math.min(s, 70), l + (96 - l) * 0.8], [h, s, l + (96 - l) * 0.45], [h, s, l], [h, s, l * 0.72], [h, s, l * 0.45]].map(function(x, i) { return i === 2 ? base.toUpperCase() : hslAHex(x[0], x[1], x[2]); });
+    }
+    var lm = Math.max(38, Math.min(75, l));
+    if (modo === 'vecinos') {
+      return [[h - 40, s, lm + 8], [h - 20, s, lm], [h, s, l], [h + 20, s, lm], [h + 40, s, lm + 8]].map(function(x, i) { return i === 2 ? base.toUpperCase() : hslAHex(x[0], x[1], x[2]); });
+    }
+    return [base.toUpperCase(), hslAHex(h, s, l + (96 - l) * 0.6), hslAHex(h + 180, s, lm), hslAHex(h + 180, s * 0.8, lm + (96 - lm) * 0.55), '#FFF8F0'];
+  }
+  var nombre = document.getElementById('nombre-paleta'), vista = document.getElementById('vista-creador'), colorBase = document.getElementById('color-base');
+  var CLAVE = 'rosinaMiPaleta2', estado = { base: '#E74E96', modo: 'tonos', colores: [] };
+  try { var g0 = JSON.parse(localStorage.getItem(CLAVE)); if (g0 && g0.colores && g0.colores.length === 5) { estado = g0; nombre.value = g0.nombre || nombre.value; } } catch (e) {}
+  if (!estado.colores.length) estado.colores = generar(estado.base, estado.modo);
+  var radio = document.querySelector('input[name="modo"][value="' + estado.modo + '"]'); if (radio) radio.checked = true;
+  colorBase.value = estado.base;
+  function mia() { return { nombre: nombre.value.trim() || 'Mi paleta', colores: estado.colores.map(function(c, k) { return ['Color ' + (k + 1), c]; }) }; }
+  function marcarMuestra() { document.querySelectorAll('#muestras-rapidas button').forEach(function(b) { b.setAttribute('aria-pressed', b.dataset.color.toUpperCase() === estado.base.toUpperCase()); }); }
+  function pintar() {
+    var p = mia(), cs = estado.colores, seq = cs.concat(cs.slice().reverse());
+    vista.innerHTML = '<div class="paleta"><h3></h3><ul class="ovillos ovillos-editables">' + cs.map(function(c, k) {
+      return '<li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="' + c + '" stroke="#D9D9DE" stroke-width="1"/><g fill="none" stroke="rgba(0,0,0,.16)" stroke-width="2" stroke-linecap="round"><path d="M8,17 C18,22 30,22 40,15"/><path d="M5,27 C17,33 31,33 43,25"/><path d="M11,38 C20,41 30,41 38,35"/><path d="M17,5 C12,18 13,32 20,44"/></g></svg><input type="color" value="' + c + '" data-k="' + k + '" aria-label="Ajustar color ' + (k + 1) + '"><code>' + c + '</code></li>';
+    }).join('') + '</ul><div class="manta">' + seq.map(function(c) { return '<span style="background:' + c + '"></span>'; }).join('') + '</div><p class="uso">Toca un ovillo para ajustar su color. Así se vería tu manta de rayas.</p></div>';
+    vista.querySelector('h3').textContent = p.nombre;
+    vista.querySelectorAll('input[type="color"]').forEach(function(inp) {
+      inp.addEventListener('change', function() { estado.colores[+inp.dataset.k] = inp.value.toUpperCase(); pintar(); });
+    });
+    document.getElementById('pedir-mia').href = pedido(p);
+    marcarMuestra();
+    try { estado.nombre = nombre.value; localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch (e) {}
+  }
+  function regenerar() { estado.colores = generar(estado.base, estado.modo); pintar(); }
+  document.querySelectorAll('#muestras-rapidas button').forEach(function(b) { b.addEventListener('click', function() { estado.base = b.dataset.color; colorBase.value = b.dataset.color; regenerar(); }); });
+  colorBase.addEventListener('input', function() { estado.base = colorBase.value; regenerar(); });
+  document.querySelectorAll('input[name="modo"]').forEach(function(r) { r.addEventListener('change', function() { estado.modo = r.value; regenerar(); }); });
   nombre.addEventListener('input', pintar);
   document.getElementById('guardar-mia').addEventListener('click', function() { guardar(mia()); });
   document.getElementById('copiar-mia').addEventListener('click', function() { copiar(mia()); });
@@ -271,7 +326,7 @@ src = rep(src, '<meta name="description" content="Rosina es la ovejita de lana e
 src = src.replace('https://lanarosacrochet.com/rosina.html', 'https://lanarosacrochet.com/paletas-rosina.html')
 src = rep(src, '<meta property="og:title" content="Conoce a Rosina — Lana Rosa Crochet">', '<meta property="og:title" content="Paletas de colores para tejer — Rosina">')
 src = rep(src, '<meta property="og:description" content="La ovejita embajadora de Lana Rosa Crochet: curiosa, detallista y muy amable.">', f'<meta property="og:description" content="{e(desc)}">')
-src = rep(src, '<meta property="og:image" content="https://lanarosacrochet.com/img/rosina.jpg">', '<meta property="og:image" content="https://lanarosacrochet.com/img/rincon-de-rosina-og.jpg">')
+src = rep(src, '<meta property="og:image" content="https://lanarosacrochet.com/img/rosina.jpg">', '<meta property="og:image" content="https://lanarosacrochet.com/img/rincon-de-rosina-og.jpg?v=2">')
 i = src.index('</style>'); src = src[:i] + css + src[i:]
 a = src.index('<main>'); b = src.index('</main>') + len('</main>')
 src = src[:a] + main + src[b:]

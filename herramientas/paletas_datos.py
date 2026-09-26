@@ -1,5 +1,5 @@
 CATEGORIAS = [
-    ('marca', 'Nuestra paleta'),
+    ('tonos', 'Tonos de un mismo color'),
     ('fechas', 'Fechas especiales'),
     ('bebe', 'Para bebés'),
     ('amigurumi', 'Amigurumis'),
@@ -7,9 +7,31 @@ CATEGORIAS = [
 ]
 
 PALETAS = [
-    dict(id='lana-rosa', cat='marca', nombre='Lana Rosa',
-         colores=[('Rosa Lana Rosa', '#E74E96'), ('Rosa medio', '#F28FC0'), ('Rosa suave', '#FBE4EF'), ('Lila', '#9EA2F9'), ('Azul acero', '#93C7F9')],
-         uso='Los colores de nuestra marca, para quien ama el rosa tanto como nosotras.'),
+    # ---------- Tonos de un mismo color (del más claro al más oscuro) ----------
+    dict(id='tonos-azules', cat='tonos', nombre='Azules',
+         colores=[('Celeste', '#D6EAF8'), ('Azul cielo', '#A9CCE3'), ('Azul medio', '#5DADE2'), ('Azul rey', '#2E86C1'), ('Azul marino', '#1B4F72')],
+         uso='Mantas en degradé, ropa de bebé, olas y peces.',
+         tip='Un degradé queda precioso en mantas y bufandas: teje del tono más claro al más oscuro, o al revés.'),
+    dict(id='tonos-rosas', cat='tonos', nombre='Rosas',
+         colores=[('Rosa pálido', '#FDE2EC'), ('Rosa bebé', '#F9BCD3'), ('Rosa chicle', '#F28FC0'), ('Fucsia', '#E74E96'), ('Frambuesa', '#B8336A')],
+         uso='Flores, corazones, mantas y detalles románticos.'),
+    dict(id='tonos-verdes', cat='tonos', nombre='Verdes',
+         colores=[('Menta', '#D5F0E3'), ('Verde agua', '#A3DCC4'), ('Verde hoja', '#6FBF8E'), ('Verde pino', '#2E7D52'), ('Verde bosque', '#1E4D35')],
+         uso='Plantas, suculentas, hojas y cactus tejidos.',
+         tip='Para una planta que se vea real, usa el verde más oscuro por dentro y los claros en las puntas de las hojas.'),
+    dict(id='tonos-lilas', cat='tonos', nombre='Lilas y morados',
+         colores=[('Lavanda', '#EDE4FA'), ('Lila', '#D2C1F2'), ('Violeta', '#A98BDB'), ('Morado', '#7552B3'), ('Uva', '#4A2F7A')],
+         uso='Flores de lavanda, bolsos, unicornios y amigurumis de fantasía.'),
+    dict(id='tonos-tierra', cat='tonos', nombre='Tierra y cafés',
+         colores=[('Arena', '#F1E3D0'), ('Beige', '#DDC3A0'), ('Caramelo', '#B98555'), ('Café', '#7B4F2F'), ('Chocolate', '#4A2E1D')],
+         uso='Ositos, perritos, gatitos y todo lo que tenga pelaje.'),
+    dict(id='tonos-grises', cat='tonos', nombre='Grises y neutros',
+         colores=[('Blanco hueso', '#F5F3EF'), ('Gris perla', '#D9D8DC'), ('Gris medio', '#A3A2A8'), ('Gris oscuro', '#66656B'), ('Carbón', '#333236')],
+         uso='Elefantes, koalas, gatitos grises y decoración moderna.'),
+    dict(id='tonos-sol', cat='tonos', nombre='Amarillos y naranjas',
+         colores=[('Vainilla', '#FFF4CC'), ('Amarillo', '#FFE066'), ('Mostaza', '#E8B930'), ('Naranja', '#F29A38'), ('Naranja quemado', '#C8603F')],
+         uso='Soles, girasoles, pollitos, zorros y mantas cálidas.'),
+
     # ---------- Fechas especiales ----------
     dict(id='amor-amistad', cat='fechas', nombre='Amor y amistad',
          colores=[('Rojo cereza', '#D72638'), ('Rosa chicle', '#F28FC0'), ('Blanco', '#FFFFFF'), ('Lila', '#C8A2E8')],

@@ -385,6 +385,11 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .kit-acciones [hidden] { display: none; }
 .boton-whatsapp-res { display: inline-block; margin-top: 10px; background: #25D366; color: #fff; border-radius: 999px; padding: 10px 20px; font-weight: 700; text-decoration: none; font-size: 0.92rem; }
 .boton-whatsapp-res:hover { background: #1ebe5a; }
+/* Abreviaturas: columna de español fija al desplazar */
+.tabla-abrev th:first-child, .tabla-abrev td:first-child { position: sticky; left: 0; z-index: 1; background: var(--blanco); box-shadow: 2px 0 0 var(--rosa-medio); min-width: 150px; }
+.tabla-abrev tbody tr:nth-child(even) td:first-child { background: var(--blanco-hueso); }
+.tabla-abrev thead th:first-child { background: var(--rosa-principal); z-index: 3; box-shadow: 2px 0 0 #B83E78; }
+@media (max-width: 600px) { .tabla-abrev th:first-child, .tabla-abrev td:first-child { min-width: 118px; max-width: 130px; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -446,7 +451,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
         <a href="#fondos"><span class="icono">📱</span><strong>Fondos de pantalla</strong><span>9 diseños, 4 tamaños</span></a>
         <a href="#checklist"><span class="icono">✅</span><strong>Checklist</strong><span>Tu primer amigurumi</span></a>
         <a href="glosario-rosina.html"><span class="icono">🔤</span><strong>Glosario ilustrado</strong><span>30 términos explicados</span></a>
-    <a href="paletas-rosina.html"><span class="icono">🎨</span><strong>Paletas de colores</strong><span>16 combinaciones y tu propia paleta</span></a>
+    <a href="paletas-rosina.html"><span class="icono">🎨</span><strong>Paletas de colores</strong><span>22 combinaciones y tu propia paleta</span></a>
         <a href="#abreviaturas"><span class="icono">📖</span><strong>Abreviaturas</strong><span>En 8 idiomas</span></a>
         <a href="#calculadora"><span class="icono">🧮</span><strong>Calculadora</strong><span>Aumentos, muestra y lana</span></a>
         <a href="#agenda"><span class="icono">🗓️</span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></a>

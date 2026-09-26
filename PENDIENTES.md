@@ -1,14 +1,14 @@
 # Pendientes de la página web — Lana Rosa Crochet
 
-Última revisión: 26 de septiembre de 2026.
+Última revisión: 26 de septiembre de 2026 (actualizada con la auditoría).
 Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ---
 
 ## 🔴 Urgente (lo hace Sara)
 
-- [ ] **Actualizar las existencias de la mercería en el inventario (ERP en Supabase).**
-  Los 33 productos (lanas DMC, Kusi Kusi y Papatya) tienen existencias en 0, y por eso la web los muestra todos como "Agotado" y no se pueden agregar al carrito. Al actualizar las cantidades, la web los muestra disponibles sola, sin cambiar código.
+- [ ] **Subir los productos de la mercería al ERP (Supabase) con sus existencias.**
+  Hoy los 33 productos tienen existencias en 0. Mientras no haya ninguno disponible, la mercería muestra el aviso "Muy pronto" y oculta los productos agotados. Cuando haya al menos un producto con existencias, el aviso desaparece solo y el catálogo se muestra, sin cambiar código.
 - [ ] **Armar el "kit de principiante" con precio fijo.** El botón "Quiero el kit completo de principiante" (Rincón de Rosina → Checklist) hoy pregunta el precio por WhatsApp. Con el precio definido, se muestra en el botón.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
@@ -42,6 +42,28 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [ ] Patrocinio de una marca de hilos para "Aprobado por Rosina" (cuando haya visitas que mostrar; debe decir que es patrocinado).
 - [ ] Google AdSense: **no por ahora.** Paga poco con pocas visitas, hace la página lenta y puede mostrar anuncios de la competencia. Retomarlo con decenas de miles de visitas al mes.
 
+## 📋 Auditoría de la web (recibida el 26-sep-2026) — por implementar
+
+El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi todo es viable sobre la web actual, sin cambiar la arquitectura. Orden acordado: Prioridad 1 (conversión) → 2 (ecosistema) → 3 (marca) → 4 (optimización). Se muestran capturas antes de publicar la Prioridad 1.
+
+**Preguntas abiertas para Sara (responder antes de empezar la Prioridad 1):**
+- [ ] **Tiempo de entrega real.** Hay una contradicción: Personaliza y Precios dicen "se envía 1 semana después de confirmado el pago", y las Preguntas frecuentes dicen "depende de la complejidad y de la fila de pedidos". La auditoría propone la segunda.
+- [ ] **Pop-up del 10 %.** Hoy aplica a la primera compra de cualquier producto. Propuesta: 10 % solo en tienda y mercería; para personalizados, un beneficio que no toque el margen, como un pack exclusivo de Rosina o un mini llavero. La "tarjeta personalizada" no sirve como beneficio porque la FAQ dice que ya está incluida. Hay que respetar los bonos ya entregados.
+- [ ] **Casilla de autorización en el formulario de Personaliza** ("Autorizo compartir la historia y las fotos"). Toca el formulario y Supabase.
+- [ ] **Menú:** ¿desplegables por grupos (Comprar / Aprender / Universo Lana Rosa / Ayuda) o la propuesta ligera (mismo menú reordenado, "Personaliza el tuyo" como botón destacado y los grupos en el pie de página)?
+- [ ] **Proyectos especiales:** qué se ofrece a empresas, cantidades mínimas, tiempos y fotos de trabajos anteriores.
+- [ ] **Sostenibilidad y "las tejedoras":** solo con información real. Hoy la web no tiene datos de sostenibilidad ni fotos o información de las tejedoras.
+- [ ] **"Rosina te recuerda" (pausas activas):** ya existe el artículo de la Revista con la ilustración; se puede reutilizar en el Rincón.
+
+**Notas del análisis:**
+- "Foto → amigurumi" ya existe en el inicio ("Convierte cualquier foto…", con `img/triptico-testimonios.jpg`): mejorarlo, no duplicarlo.
+- "Ideas que cobraron vida" ya tiene fotos de clientes (`img/testimonios/`): evolucionarla a "Historias que tejimos".
+- "Tu personaje favorito": usar una redacción cuidadosa por derechos de autor, por ejemplo "Un personaje inspirado en lo que amas".
+- El formulario ofrece amigurumis de 10 cm, pero Precios solo menciona 13, 15 y 20 cm: unificar.
+- WhatsApp según la página: el mensaje "Ya envié mi solicitud" solo debe aparecer después de enviar el formulario de Personaliza.
+- Evitar que el inicio quede demasiado largo: integrar secciones en vez de sumarlas.
+- Analytics depende de que Sara cree las cuentas (ver arriba).
+
 ## ✅ Ya hecho (referencia)
 
 - Rincón de Rosina (`recursos-rosina.html`) con banner nuevo con logo:
@@ -51,8 +73,13 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
   - Calculadoras: aumentos, muestra explicada paso a paso, lana y contador.
   - Agenda imprimible.
 - Glosario ilustrado (`glosario-rosina.html`) con 30 términos.
-- Paletas de colores (`paletas-rosina.html`): 16 paletas con Lana Rosa primero, creador de paleta propia y guardar como imagen.
+- Paletas de colores (`paletas-rosina.html`): 22 paletas (7 de tonos de un mismo color; sin la paleta Lana Rosa), creador "Arma tu paleta con Rosina" (elige un color y genera tonos, colores vecinos o contraste) y guardar como imagen.
 - Pedidos por WhatsApp desde paletas, checklist y calculadora de lana. Los mensajes empiezan con "Vengo del Rincón de Rosina 🐑".
 - "Rincón de Rosina" en el menú de todas las páginas; banner "Conoce a Rosina" en el inicio; sin la sección de video vacía.
 - Imágenes optimizadas: las páginas pesan entre 40 % y 80 % menos al abrir.
 - Secuencia de 7 historias de Instagram para anunciar el material (entregada en el chat).
+- Revista: artículo "Pausas activas para tejedoras, con Rosina", con la ilustración numerada.
+- Conoce a Rosina: enlaces a Aprende y a la Tienda en sus roles, y sticker en "Su personalidad".
+- Abreviaturas: la columna de español queda fija al desplazar la tabla.
+- Glosario: nuevo dibujo de la aguja de crochet.
+- Mercería: aviso "Muy pronto" mientras no haya productos con existencias.

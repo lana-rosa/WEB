@@ -197,6 +197,11 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
+.enlace-rol { display: inline-block; margin-top: 4px; font-weight: 700; text-decoration: none; }
+.enlace-rol:hover { text-decoration: underline; }
+.personalidad-bloque { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.sticker-personalidad { width: 200px; height: auto; flex-shrink: 0; transform: rotate(4deg); filter: drop-shadow(0 10px 18px rgba(58,42,46,0.15)); }
+@media (max-width: 640px) { .personalidad-bloque { flex-direction: column-reverse; align-items: flex-start; } .sticker-personalidad { width: 150px; align-self: center; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -264,24 +269,31 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
         <img src="img/mini/rosina-saludo.webp" alt="Rosina saludando" style="width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:12px;" loading="lazy" decoding="async">
         <h3>En educación</h3>
         <p>Ella da los "Tips de Rosina" para mejorar la técnica de tejido — pequeños consejos prácticos que compartimos en nuestras redes y talleres.</p>
+        <a class="enlace-rol" href="aprende.html">Aprende con Rosina →</a>
       </div>
       <div class="rol-card">
         <img src="img/mini/rosina-checklist.webp" alt="Rosina con una lista de chequeo y una medalla de calidad" style="width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:12px;" loading="lazy" decoding="async">
         <h3>En insumos</h3>
         <p>Es la encargada de "probar" y recomendar las lanas que vendemos — si Rosina no la aprueba, no llega a la tienda.</p>
+        <a class="enlace-rol" href="tienda.html">Ir a la tienda →</a>
       </div>
     </div>
   </section>
 
   <section class="seccion-suave">
     <div class="contenedor">
-      <h2>Su personalidad</h2>
-      <p style="max-width:60ch; color:var(--tinta-suave);">Conoce profundamente el crochet, pero se expresa con sencillez y profesionalismo — nunca con lenguaje complicado.</p>
-      <ul class="personalidad-lista">
-        <li>Curiosa</li>
-        <li>Detallista</li>
-        <li>Muy amable</li>
-      </ul>
+      <div class="personalidad-bloque">
+        <div>
+          <h2>Su personalidad</h2>
+          <p style="max-width:60ch; color:var(--tinta-suave);">Conoce profundamente el crochet, pero se expresa con sencillez y profesionalismo — nunca con lenguaje complicado.</p>
+          <ul class="personalidad-lista">
+            <li>Curiosa</li>
+            <li>Detallista</li>
+            <li>Muy amable</li>
+          </ul>
+        </div>
+        <img class="sticker-personalidad" src="img/stickers/rosina-08-feliz.webp" alt="Sticker de Rosina feliz saludando con su vestido rosado de flores" width="512" height="512" loading="lazy" decoding="async">
+      </div>
     </div>
   </section>
 
@@ -298,7 +310,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
         <a class="material-card" href="recursos-rosina.html#fondos"><span class="icono">📱</span><h3>Fondos de pantalla</h3><p>9 fondos de Rosina en el tamaño exacto de tu celular.</p></a>
         <a class="material-card" href="recursos-rosina.html#checklist"><span class="icono">✅</span><h3>Checklist</h3><p>Todo lo que necesitas para tu primer amigurumi.</p></a>
         <a class="material-card" href="glosario-rosina.html"><span class="icono">🔤</span><h3>Glosario ilustrado</h3><p>30 términos de crochet con su símbolo, paso a paso y nombre en inglés.</p></a>
-        <a class="material-card" href="paletas-rosina.html"><span class="icono">🎨</span><h3>Paletas de colores</h3><p>16 combinaciones de hilos para fechas, bebés, amigurumis y hogar.</p></a>
+        <a class="material-card" href="paletas-rosina.html"><span class="icono">🎨</span><h3>Paletas de colores</h3><p>22 combinaciones de hilos: tonos de un color, fechas, bebés, amigurumis y hogar.</p></a>
         <a class="material-card" href="recursos-rosina.html#abreviaturas"><span class="icono">📖</span><h3>Abreviaturas</h3><p>Plantilla de puntos en español, inglés, portugués, francés, italiano, chino y ruso.</p></a>
         <a class="material-card" href="recursos-rosina.html#calculadora"><span class="icono">🧮</span><h3>Calculadora</h3><p>Aumentos, disminuciones, muestra, lana y contador de vueltas.</p></a>
         <a class="material-card" href="recursos-rosina.html#agenda"><span class="icono">🗓️</span><h3>Agenda</h3><p>Ficha de proyecto, semana tejiendo y control de pedidos.</p></a>

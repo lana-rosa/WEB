@@ -368,6 +368,15 @@ a { color: var(--rosa-principal); }
 .ayuda-rosina { display: flex; gap: 14px; align-items: center; background: var(--lila-suave, #F0F1FE); border-radius: 16px; padding: 12px 18px; margin: 0 0 20px; }
 .ayuda-rosina img { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; }
 .ayuda-rosina p { margin: 0; font-size: 0.95rem; }
+.aviso-proximamente { display: flex; gap: 22px; align-items: center; background: var(--rosa-suave); border: 2px dashed var(--rosa-medio); border-radius: 22px; padding: 20px 26px; margin: 0 0 22px; }
+.aviso-proximamente[hidden] { display: none; }
+.aviso-proximamente img { width: 130px; height: auto; flex-shrink: 0; }
+.aviso-proximamente h2 { font-size: 1.35rem; margin: 0 0 6px; }
+.aviso-proximamente p { margin: 0 0 12px; }
+.etiqueta-proximamente { color: var(--rosa-principal); font-weight: 800; margin: 0 0 4px !important; }
+.aviso-proximamente .boton-primario { display: inline-block; background: var(--rosa-principal); color: #fff; text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
+.aviso-proximamente .boton-primario:hover { background: #B83E78; }
+@media (max-width: 600px) { .aviso-proximamente { flex-direction: column; text-align: center; padding: 18px; } .aviso-proximamente img { width: 110px; } }
 </style>
 </head>
 <body>
@@ -427,6 +436,16 @@ a { color: var(--rosa-principal); }
       <h2 style="font-size:1.2rem;">¿Buscas amigurumis?</h2>
       <p>Los productos ya tejidos (amigurumis, peluches, bolsos y más) están en nuestra tienda principal, no aquí.</p>
       <a class="boton-primario" href="tienda.html">Ir a la tienda</a>
+    </div>
+  </div>
+
+  <div class="aviso-proximamente" id="aviso-proximamente" role="status">
+    <img src="img/stickers/rosina-09-cartel.webp" alt="" aria-hidden="true" width="512" height="512">
+    <div>
+      <p class="etiqueta-proximamente">✨ Muy pronto</p>
+      <h2>Nuestra mercería en línea está llegando</h2>
+      <p>Estamos subiendo nuestras lanas, hilos y materiales. Mientras tanto, escríbenos por WhatsApp y te contamos qué tenemos disponible.</p>
+      <a class="boton-primario" href="https://wa.me/573205072801?text=Hola%20Rosina%20%F0%9F%90%91%20Quiero%20consultar%20por%20un%20material%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener">Consultar por WhatsApp</a>
     </div>
   </div>
 
@@ -661,11 +680,17 @@ function crearTarjeta(item) {
   const gridHilos = document.getElementById('grid-hilos-merceria');
 
   try {
-    const { data, error } = await supabase.rpc('obtener_merceria_web');
+    let { data, error } = await supabase.rpc('obtener_merceria_web');
     if (error) throw error;
 
     gridLanas.innerHTML = '';
     gridHilos.innerHTML = '';
+
+    // Mientras no haya productos con existencias, se muestra el aviso de "Muy pronto"
+    // en lugar de un catálogo lleno de productos agotados.
+    const disponibles = (data || []).filter(function(item) { return Number(item.stock_actual) > 0; });
+    if (!disponibles.length) data = [];
+    else { const aviso = document.getElementById('aviso-proximamente'); if (aviso) aviso.hidden = true; }
 
     (data || []).forEach(function(item) {
       const tarjeta = crearTarjeta(item);
