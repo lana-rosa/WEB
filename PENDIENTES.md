@@ -9,6 +9,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 - [ ] **Subir los productos de la mercería al ERP (Supabase) con sus existencias.**
   Hoy los 33 productos tienen existencias en 0. Mientras no haya ninguno disponible, la mercería muestra el aviso "Muy pronto" y oculta los productos agotados. Cuando haya al menos un producto con existencias, el aviso desaparece solo y el catálogo se muestra, sin cambiar código.
+  - [ ] **Cuando la mercería ya tenga productos:** en `rosina.html` ("¿Qué hace Rosina?" → "En insumos"), cambiar el enlace "Ir a la tienda →" por "Ir a la mercería →" (`merceria.html`). Sara lo aprobó el 26-sep-2026.
 - [ ] **Armar el "kit de principiante" con precio fijo.** El botón "Quiero el kit completo de principiante" (Rincón de Rosina → Checklist) hoy pregunta el precio por WhatsApp. Con el precio definido, se muestra en el botón.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
