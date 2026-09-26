@@ -390,6 +390,16 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .tabla-abrev tbody tr:nth-child(even) td:first-child { background: var(--blanco-hueso); }
 .tabla-abrev thead th:first-child { background: var(--rosa-principal); z-index: 3; box-shadow: 2px 0 0 #B83E78; }
 @media (max-width: 600px) { .tabla-abrev th:first-child, .tabla-abrev td:first-child { min-width: 118px; max-width: 130px; } }
+/* Calculadora de precio */
+.panel-precio { grid-template-columns: 1.1fr 0.9fr; }
+@media (max-width: 760px) { .panel-precio { grid-template-columns: 1fr; } }
+@media (min-width: 761px) { .panel-precio .resultado { position: sticky; top: 120px; } }
+.barra-precio { display: flex; height: 16px; border-radius: 999px; overflow: hidden; margin: 12px 0; }
+.desglose-precio { list-style: none; padding: 0; margin: 0 0 10px; font-size: 0.92rem; }
+.desglose-precio li { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px dashed rgba(69,69,74,0.15); }
+.desglose-precio strong { margin-left: auto; }
+.punto-color { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.costo-minimo { background: var(--blanco); border-radius: 10px; padding: 8px 12px; font-size: 0.9rem; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -453,7 +463,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
         <a href="glosario-rosina.html"><span class="icono">🔤</span><strong>Glosario ilustrado</strong><span>30 términos explicados</span></a>
     <a href="paletas-rosina.html"><span class="icono">🎨</span><strong>Paletas de colores</strong><span>22 combinaciones y tu propia paleta</span></a>
         <a href="#abreviaturas"><span class="icono">📖</span><strong>Abreviaturas</strong><span>En 8 idiomas</span></a>
-        <a href="#calculadora"><span class="icono">🧮</span><strong>Calculadora</strong><span>Aumentos, muestra y lana</span></a>
+        <a href="#calculadora"><span class="icono">🧮</span><strong>Calculadora</strong><span>Aumentos, muestra, lana y precio</span></a>
         <a href="#agenda"><span class="icono">🗓️</span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></a>
       </nav>
   </section>
@@ -713,7 +723,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
     <div class="recurso-cabecera">
       <div>
         <h2>Calculadora de Rosina</h2>
-        <p>Rosina hace las cuentas por ti: reparte aumentos y disminuciones, adapta un patrón a tu muestra, estima cuánta lana necesitas y lleva la cuenta de tus vueltas.</p>
+        <p>Rosina hace las cuentas por ti: reparte aumentos y disminuciones, adapta un patrón a tu muestra, estima cuánta lana necesitas, lleva la cuenta de tus vueltas y te ayuda a ponerle precio a tu tejido.</p>
       </div>
     </div>
     <div class="pestanas" role="tablist" aria-label="Herramientas de la calculadora">
@@ -721,6 +731,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
       <button type="button" role="tab" id="tab-muestra" aria-controls="calc-muestra" aria-selected="false">Muestra (tamaño de tu pieza)</button>
       <button type="button" role="tab" id="tab-lana" aria-controls="calc-lana" aria-selected="false">¿Cuánta lana?</button>
       <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="false">Contador de vueltas</button>
+      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="false">💰 Precio de tu tejido</button>
     </div>
 
     <div class="panel-calc" role="tabpanel" id="calc-aumentos" aria-labelledby="tab-aumentos">
@@ -837,6 +848,44 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
         </div>
         <p id="co-progreso"></p>
         <button type="button" class="boton-secundario boton-chico" id="co-reiniciar">Reiniciar</button>
+      </div>
+    </div>
+
+    <div class="panel-calc panel-precio" role="tabpanel" id="calc-precio" aria-labelledby="tab-precio" hidden>
+      <form id="form-precio" onsubmit="return false">
+        <p style="margin-top:0;">¿Cuánto cobrar por tu amigurumi? Rosina suma tus materiales, tu tiempo y los gastos del taller, y le agrega tu ganancia. <strong>Los valores que ves son solo un ejemplo: cámbialos por los tuyos.</strong></p>
+        <fieldset class="grupo-muestra">
+          <legend>1. Materiales</legend>
+          <div class="fila-campos">
+            <div class="campo"><label for="pr-ovillo">Precio del ovillo ($)</label><input type="number" id="pr-ovillo" min="0" step="100" value="12000" inputmode="numeric"></div>
+            <div class="campo"><label for="pr-gramos-ovillo">Gramos del ovillo</label><input type="number" id="pr-gramos-ovillo" min="1" value="100" inputmode="numeric"></div>
+          </div>
+          <div class="campo"><label for="pr-gramos">Gramos de hilo que usaste</label><input type="number" id="pr-gramos" min="0" value="80" inputmode="numeric"><small>Tip: pesa el amigurumi terminado sin relleno, o pesa el ovillo antes y después.</small></div>
+          <div class="fila-campos">
+            <div class="campo"><label for="pr-relleno">Relleno ($)</label><input type="number" id="pr-relleno" min="0" step="100" value="3000" inputmode="numeric"></div>
+            <div class="campo"><label for="pr-accesorios">Ojos y accesorios ($)</label><input type="number" id="pr-accesorios" min="0" step="100" value="2000" inputmode="numeric"></div>
+          </div>
+          <div class="campo"><label for="pr-empaque">Empaque, tarjeta y etiqueta ($)</label><input type="number" id="pr-empaque" min="0" step="100" value="3000" inputmode="numeric"></div>
+        </fieldset>
+        <fieldset class="grupo-muestra">
+          <legend>2. Tu tiempo</legend>
+          <div class="fila-campos">
+            <div class="campo"><label for="pr-horas">Horas de trabajo</label><input type="number" id="pr-horas" min="0" step="0.5" value="6" inputmode="decimal"><small>Cuenta todo: tejer, rellenar, coser y armar.</small></div>
+            <div class="campo"><label for="pr-hora">Valor de tu hora ($)</label><input type="number" id="pr-hora" min="0" step="500" value="8000" inputmode="numeric"><small>Una forma de calcularlo: lo que quieres ganar al mes ÷ las horas que tejes al mes.</small></div>
+          </div>
+        </fieldset>
+        <fieldset class="grupo-muestra">
+          <legend>3. Gastos y ganancia</legend>
+          <div class="fila-campos">
+            <div class="campo"><label for="pr-indirectos">Gastos del taller (%)</label><input type="number" id="pr-indirectos" min="0" max="100" value="10" inputmode="numeric"><small>Luz, agujas, desgaste, transporte.</small></div>
+            <div class="campo"><label for="pr-ganancia">Ganancia (%)</label><input type="number" id="pr-ganancia" min="0" max="300" value="30" inputmode="numeric"><small>Lo que le queda a tu emprendimiento para crecer.</small></div>
+          </div>
+          <div class="campo"><label for="pr-comision">Comisión de venta (%) — opcional</label><input type="number" id="pr-comision" min="0" max="90" value="0" inputmode="numeric"><small>Si vendes por una plataforma o datáfono que cobra comisión.</small></div>
+        </fieldset>
+      </form>
+      <div class="resultado" aria-live="polite">
+        <h3>Precio sugerido</h3>
+        <div id="res-precio"></div>
       </div>
     </div>
   </section>
@@ -1292,6 +1341,39 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
     form.addEventListener('change', par[1]);
     par[1]();
   });
+
+  /* ---------- Precio de tu tejido ---------- */
+  var CLAVE_PRECIO = 'rosinaPrecio', camposPrecio = ['pr-ovillo', 'pr-gramos-ovillo', 'pr-gramos', 'pr-relleno', 'pr-accesorios', 'pr-empaque', 'pr-horas', 'pr-hora', 'pr-indirectos', 'pr-ganancia', 'pr-comision'];
+  try { var gp = JSON.parse(leer(CLAVE_PRECIO)); if (gp) camposPrecio.forEach(function(id) { if (gp[id] !== undefined) document.getElementById(id).value = gp[id]; }); } catch (e) {}
+  function pesos(n) { return '$' + Math.round(n).toLocaleString('es-CO'); }
+  function calcularPrecio() {
+    var v = {}; camposPrecio.forEach(function(id) { var x = parseFloat(document.getElementById(id).value); v[id] = isFinite(x) && x > 0 ? x : 0; });
+    var res = document.getElementById('res-precio');
+    var guardado = {}; camposPrecio.forEach(function(id) { guardado[id] = document.getElementById(id).value; }); escribir(CLAVE_PRECIO, JSON.stringify(guardado));
+    if (!v['pr-gramos-ovillo']) { res.innerHTML = '<p class="error">Escribe cuántos gramos trae el ovillo.</p>'; return; }
+    if (v['pr-comision'] >= 90) { res.innerHTML = '<p class="error">La comisión debe ser menor al 90 %.</p>'; return; }
+    var hilo = v['pr-gramos'] * v['pr-ovillo'] / v['pr-gramos-ovillo'];
+    var materiales = hilo + v['pr-relleno'] + v['pr-accesorios'] + v['pr-empaque'];
+    var mano = v['pr-horas'] * v['pr-hora'];
+    var indirectos = (materiales + mano) * v['pr-indirectos'] / 100;
+    var costo = materiales + mano + indirectos;
+    var ganancia = costo * v['pr-ganancia'] / 100;
+    var antesComision = costo + ganancia;
+    var precio = antesComision / (1 - v['pr-comision'] / 100);
+    var redondeado = Math.ceil(precio / 1000) * 1000;
+    if (!costo) { res.innerHTML = '<p class="error">Completa tus materiales y tu tiempo.</p>'; return; }
+    var partes = [['Materiales', materiales, '#F28FC0'], ['Tu tiempo', mano, '#E74E96'], ['Gastos del taller', indirectos, '#9EA2F9'], ['Ganancia', ganancia, '#93C7F9']];
+    if (v['pr-comision']) partes.push(['Comisión', precio - antesComision, '#C9C9CF']);
+    var html = '<p class="grande">' + pesos(redondeado) + '</p><p class="nota" style="margin-top:0;">Redondeado a los $1.000 siguientes (exacto: ' + pesos(precio) + ').</p>';
+    html += '<div class="barra-precio" aria-hidden="true">' + partes.map(function(p) { return '<span style="flex:' + Math.max(p[1], 0.0001) + ';background:' + p[2] + '"></span>'; }).join('') + '</div>';
+    html += '<ul class="desglose-precio">' + partes.map(function(p) { return '<li><span class="punto-color" style="background:' + p[2] + '"></span>' + p[0] + '<strong>' + pesos(p[1]) + '</strong></li>'; }).join('') + '</ul>';
+    html += '<p class="costo-minimo">Tu costo es <strong>' + pesos(costo) + '</strong>: por debajo de ese valor estarías perdiendo dinero.</p>';
+    html += '<p class="nota">💡 Tip de Rosina: tu tiempo también es trabajo. Si el precio te parece alto, revisa primero los materiales o las horas, no le quites valor a tu hora.</p>';
+    res.innerHTML = html;
+  }
+  var formPrecio = document.getElementById('form-precio');
+  formPrecio.addEventListener('input', calcularPrecio);
+  calcularPrecio();
 
   /* ---------- Contador de vueltas ---------- */
   var CLAVE_CONTADOR = 'rosinaContador';

@@ -84,3 +84,4 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - Abreviaturas: la columna de español queda fija al desplazar la tabla.
 - Glosario: nuevo dibujo de la aguja de crochet.
 - Mercería: aviso "Muy pronto" mientras no haya productos con existencias.
+- Calculadora "💰 Precio de tu tejido" en el Rincón de Rosina (materiales + tiempo + gastos del taller + ganancia + comisión opcional, con desglose y costo mínimo).
