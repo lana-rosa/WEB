@@ -124,7 +124,7 @@ TERMINOS = [
          enlace=('recursos-rosina.html#calculadora', 'Calcular con tu muestra')),
 
     # ---------- Materiales ----------
-    dict(id='aguja-crochet', cat='materiales', nombre='Aguja de crochet', abrev='', en='crochet hook', otros='También se llama ganchillo.', icono='🪝',
+    dict(id='aguja-crochet', cat='materiales', nombre='Aguja de crochet', abrev='', en='crochet hook', otros='También se llama ganchillo.', simbolo='<path d="M8,53 L43,14" stroke="#E74E96" stroke-width="6.5" stroke-linecap="round" fill="none"/><rect x="16" y="29.5" width="20" height="11" rx="5.5" transform="rotate(-48 26 35)" fill="#F28FC0" stroke="#E74E96" stroke-width="1.5"/><path d="M43,14 L48.5,8 C50.5,5.6 54.5,6.8 53.5,10.2" stroke="#E74E96" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',
          definicion='La aguja con ganchito en la punta. Su grosor se mide en milímetros: para amigurumi se usan agujas finas, de 2 a 3,5 mm, para que el tejido quede apretado.',
          enlace=('merceria.html#agujas-merceria', 'Ver agujas en la mercería')),
     dict(id='aguja-lanera', cat='materiales', nombre='Aguja lanera', abrev='', en='yarn needle / tapestry needle', icono='🪡',

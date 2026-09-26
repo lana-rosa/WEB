@@ -27,6 +27,13 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Pausas activas para tejedoras, con Rosina",
+      "datePublished": "2026-09-26",
+      "image": "https://lanarosacrochet.com/img/revista/pausas-activas-rosina.jpg",
+      "author": { "@type": "Organization", "name": "Lana Rosa Crochet" }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Cómo cuidar tu amigurumi para que dure toda la vida",
       "datePublished": "2026-09-01",
       "author": { "@type": "Person", "name": "Sara" }
@@ -214,6 +221,18 @@ article.post ul li { margin-bottom: 8px; }
 .encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
+/* Pausas activas */
+.figura-pausas { margin: 18px 0 20px; }
+.lamina-pausas { position: relative; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px rgba(58,42,46,0.12); }
+.lamina-pausas img { width: 100%; height: auto; display: block; }
+.marca-pausa { position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+@media (max-width: 600px) { .marca-pausa { width: 22px; height: 22px; font-size: 0.72rem; border-width: 2px; } }
+.figura-pausas figcaption { font-size: 0.85rem; color: var(--tinta-suave); text-align: center; margin-top: 8px; }
+.rutina-pausas { list-style: none; padding: 0 !important; margin: 0 0 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+@media (max-width: 700px) { .rutina-pausas { grid-template-columns: 1fr; } }
+.rutina-pausas li { display: flex; gap: 10px; align-items: flex-start; margin: 0 !important; }
+.num-pausa { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+.nota-pausas { font-size: 0.88rem; color: var(--tinta-suave); background: var(--rosa-suave); border-radius: 12px; padding: 10px 14px; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -270,10 +289,28 @@ article.post ul li { margin-bottom: 8px; }
   </div>
 
   <nav class="indice" aria-label="Artículos">
+    <a href="#pausas-activas">Pausas activas</a>
     <a href="#cuidado-amigurumi">Cuidado del amigurumi</a>
     <a href="#ideas-regalo">Ideas de regalo</a>
     <a href="#tejer-desconectar">Tejer para desconectar</a>
   </nav>
+
+  <article class="post" id="pausas-activas">
+    <p class="meta">Bienestar · Septiembre 2026</p>
+    <h2>Pausas activas para tejedoras, con Rosina</h2>
+    <p>Cuando el tejido está bueno, se nos pasan las horas sin darnos cuenta… y el cuello, los hombros y las manos lo sienten. Rosina te propone esta rutina corta para hacer cada 45 a 60 minutos de tejido: toma menos de 5 minutos y tu cuerpo te lo va a agradecer.</p>
+    <figure class="figura-pausas">
+      <div class="lamina-pausas">
+        <img src="img/revista/pausas-activas-rosina.webp" srcset="img/revista/pausas-activas-rosina-900.webp 900w, img/revista/pausas-activas-rosina.webp 1536w" sizes="(max-width: 860px) calc(100vw - 48px), 780px" width="1536" height="1024" alt="Ilustración de Rosina haciendo pausas activas en una sala llena de ovillos: respirando sentada, estirando el cuello, la espalda, los hombros, los brazos y las manos" loading="lazy" decoding="async">
+        <span class="marca-pausa" style="left:11.1%;top:71.7%">1</span><span class="marca-pausa" style="left:55.7%;top:38.6%">2</span><span class="marca-pausa" style="left:87.7%;top:77.4%">2</span><span class="marca-pausa" style="left:54.2%;top:81.8%">3</span><span class="marca-pausa" style="left:37.0%;top:70.3%">4</span><span class="marca-pausa" style="left:38.9%;top:38.6%">5</span><span class="marca-pausa" style="left:15.4%;top:38.6%">6</span><span class="marca-pausa" style="left:77.2%;top:38.6%">7</span><span class="marca-pausa" style="left:26.0%;top:51.6%">8</span><span class="marca-pausa" style="left:65.7%;top:58.8%">9</span>
+      </div>
+      <figcaption>Busca a Rosina con el número de cada ejercicio.</figcaption>
+    </figure>
+    <ol class="rutina-pausas"><li><span class="num-pausa">1</span><div><strong>Respira.</strong> Siéntate cómoda, cierra los ojos y respira profundo por la nariz 5 veces, soltando el aire despacio por la boca.</div></li><li><span class="num-pausa">2</span><div><strong>Cuello.</strong> Pon una mano sobre la cabeza e inclina la oreja hacia el hombro, sin forzar. Sostén 15 segundos y cambia de lado. Puedes hacerlo de pie o sentada.</div></li><li><span class="num-pausa">3</span><div><strong>Espalda y piernas.</strong> Sentada en el piso con las piernas estiradas, lleva las manos hacia los tobillos o los pies, hasta donde llegues cómoda. Sostén 15 segundos.</div></li><li><span class="num-pausa">4</span><div><strong>El gato.</strong> En cuatro apoyos, lleva la mirada hacia arriba arqueando la espalda y luego redondéala mirando hacia el ombligo. Repite 5 veces, despacio.</div></li><li><span class="num-pausa">5</span><div><strong>Hacia el cielo.</strong> De pie, une las manos sobre la cabeza y estírate hacia arriba como si quisieras tocar el techo. Sostén 10 segundos.</div></li><li><span class="num-pausa">6</span><div><strong>Inclinación lateral.</strong> Lleva un brazo por encima de la cabeza e inclina el cuerpo hacia el lado contrario. Sostén 10 segundos y cambia de lado.</div></li><li><span class="num-pausa">7</span><div><strong>Hombros.</strong> Cruza un brazo por delante del pecho y sostenlo con la otra mano, sin subir los hombros. 15 segundos por lado.</div></li><li><span class="num-pausa">8</span><div><strong>Manos y muñecas.</strong> Estira los brazos al frente, entrelaza los dedos y empuja suavemente las palmas hacia afuera. Tus manos trabajan mucho al tejer: ¡consiéntelas!</div></li><li><span class="num-pausa">9</span><div><strong>¡Celebra!</strong> Sube los brazos, sacude suavemente las manos y sonríe. Ya estás lista para volver a tu tejido.</div></li></ol>
+    <p class="nota-pausas">💡 Muévete despacio, sin rebotar y sin llegar al dolor. Si tienes alguna lesión o molestia, consulta primero con un profesional de la salud.</p>
+    <div class="cta-post">¿Quieres tejer sin prisa y en buena compañía? <a href="aprende.html">Conoce nuestros talleres →</a></div>
+    <p class="firma">— Rosina 🐑 y el equipo de Lana Rosa</p>
+  </article>
 
   <article class="post" id="cuidado-amigurumi">
     <p class="meta">Cuidados · Septiembre 2026</p>

@@ -82,7 +82,7 @@ def tarjeta(t, n):
         h.append('<details><summary>Cómo se hace</summary><ol>' + ''.join(f'<li>{e(p)}</li>' for p in t['pasos']) + '</ol></details>')
     if t.get('tip'):
         av = AVATARES[n % len(AVATARES)]
-        h.append(f'<div class="rosina-dice"><img src="img/mini/{av.replace('.jpg', '.webp')}" alt="" aria-hidden="true" loading="lazy"><p><strong>Rosina dice:</strong> {e(t["tip"])}</p></div>')
+        h.append(f'<div class="rosina-dice"><img src="img/mini/{av.replace(".jpg", ".webp")}" alt="" aria-hidden="true" loading="lazy"><p><strong>Rosina dice:</strong> {e(t["tip"])}</p></div>')
     if t.get('enlace'):
         url, txt = t['enlace']
         h.append(f'<a class="enlace-termino" href="{url}">{e(txt)} →</a>')
@@ -114,12 +114,12 @@ main = f'''<main>
       <h1>Glosario ilustrado de crochet</h1>
       <p class="intro">¿Qué es una disminución invisible? ¿En qué hebra tejo? Rosina te explica {len(TERMINOS)} términos de crochet y amigurumi con palabras sencillas, el símbolo que verás en los patrones, cómo se hacen paso a paso y su nombre en inglés.</p>
       <div class="leyenda">
-        <img src="img/rosina-saludo.jpg" alt="" aria-hidden="true">
+        <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <p>Los dibujos rosados son los <strong>símbolos internacionales</strong> que aparecen en los diagramas de crochet. ¡Aprende a reconocerlos y podrás leer patrones de cualquier país!</p>
       </div>
       <p class="no-imprimir" style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
         <button type="button" class="boton-primario" id="imprimir-glosario">🖨️ Imprimir glosario</button>
-        <a class="boton-secundario" href="recursos-rosina.html#abreviaturas">Abreviaturas en 6 idiomas</a>
+        <a class="boton-secundario" href="recursos-rosina.html#abreviaturas">Abreviaturas en 8 idiomas</a>
       </p>
     </div>
   </section>
@@ -209,8 +209,9 @@ i = src.index('</style>'); src = src[:i] + css + src[i:]
 i = src.index('</head>'); src = src[:i] + ldtag + src[i:]
 a = src.index('<main>'); b = src.index('</main>') + len('</main>')
 src = src[:a] + main + src[b:]
-v0 = src.index('<script>\n(function() {\n  var video'); v1 = src.index('</script>', v0) + len('</script>\n')
-src = src[:v0] + src[v1:]
+if '<script>\n(function() {\n  var video' in src:
+    v0 = src.index('<script>\n(function() {\n  var video'); v1 = src.index('</script>', v0) + len('</script>\n')
+    src = src[:v0] + src[v1:]
 i = src.rindex('</body>'); src = src[:i] + js + src[i:]
 open(WEB + 'glosario-rosina.html', 'w', encoding='utf-8').write(src)
 print('ok', len(TERMINOS), 'términos')
