@@ -14,7 +14,7 @@
 <meta property="og:title" content="Material gratuito de Rosina — Lana Rosa Crochet">
 <meta property="og:description" content="Stickers, fondos de pantalla, checklist, abreviaturas en 8 idiomas, calculadora y agenda para tejedoras. ¡Gratis!">
 <meta property="og:url" content="https://lanarosacrochet.com/recursos-rosina.html">
-<meta property="og:image" content="https://lanarosacrochet.com/img/rosina-corazon.jpg">
+<meta property="og:image" content="https://lanarosacrochet.com/img/rincon-de-rosina-og.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -305,12 +305,19 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 #control-pedidos td input:focus { outline: none; border-bottom-color: var(--rosa-principal); }
 
 /* Fondos de pantalla */
-.galeria-fondos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
-@media (max-width: 860px) { .galeria-fondos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }
-.fondo { display: flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; }
-.fondo img { width: 100%; height: auto; aspect-ratio: 1170 / 2532; object-fit: cover; border-radius: 26px; border: 6px solid var(--tinta); box-shadow: var(--sombra-suave); transition: transform 0.2s; }
-.fondo:hover img { transform: translateY(-4px); }
-.fondo .boton-chico { text-align: center; }
+.galeria-fondos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
+@media (max-width: 520px) { .galeria-fondos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
+.fondo { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.fondo img { width: 100%; height: auto; display: block; aspect-ratio: 300 / 650; object-fit: cover; border-radius: 22px; border: 5px solid var(--tinta); box-shadow: var(--sombra-suave); transition: transform 0.2s; }
+.fondo a:hover img { transform: translateY(-4px); }
+.fondo figcaption { font-family: var(--fuente-titulo); font-weight: 600; color: var(--tinta); font-size: 0.9rem; line-height: 1.25; min-height: 2.5em; }
+.selector-tamano { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.selector-tamano > span { font-weight: 700; margin-right: 4px; }
+.selector-tamano label { background: var(--blanco); border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 7px 14px; font-weight: 600; font-size: 0.88rem; cursor: pointer; }
+.selector-tamano label small { color: var(--tinta-suave); font-weight: 500; margin-left: 4px; }
+.selector-tamano input { accent-color: var(--rosa-principal); margin-right: 6px; }
+.selector-tamano label:has(input:checked) { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.selector-tamano label:has(input:checked) small { color: var(--rosa-suave); }
 
 /* Checklist */
 .checklist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
@@ -340,6 +347,18 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
+/* Banner del Rincón de Rosina */
+.oculto-visual { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+section.banner-rincon { padding-top: 28px; padding-bottom: 0; }
+.banner-rincon img { width: 100%; height: auto; display: block; border-radius: 28px; box-shadow: var(--sombra-suave); }
+@media (max-width: 600px) { section.banner-rincon { padding-top: 16px; } .banner-rincon img { border-radius: 18px; } }
+section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: center; }
+.intro-rincon .eslogan { color: var(--rosa-principal); font-weight: 600; margin: 0 0 8px; }
+.intro-rincon .intro { color: var(--tinta-suave); font-size: 1.08rem; max-width: 70ch; margin: 0 auto; }
+.intro-rincon .indice-recursos { grid-template-columns: repeat(4, minmax(0, 1fr)); text-align: left; }
+.intro-rincon .indice-recursos a:last-child:nth-child(3n+1) { grid-column: auto; }
+@media (max-width: 860px) { .intro-rincon .indice-recursos { grid-template-columns: repeat(2, minmax(0, 1fr)); } .intro-rincon .indice-recursos a:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+@media print { .banner-rincon, .intro-rincon { display: none !important; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -389,24 +408,22 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
   </nav>
 
 <main>
-  <section class="hero-rosina contenedor">
-    <div class="marco-rosina">
-      <img src="img/rosina-corazon.jpg" alt="Rosina, la ovejita de Lana Rosa Crochet, haciendo un corazón con las manos">
-    </div>
-    <div>
-      <p class="eslogan">Material gratuito · Hecho con cariño</p>
-      <h1>El rincón de Rosina</h1>
-      <p class="intro">Rosina preparó estos regalos para toda la comunidad tejedora: stickers y fondos de pantalla, una checklist para tu primer amigurumi, una guía de abreviaturas en varios idiomas, calculadoras para tus proyectos y una agenda para organizar tus tejidos. Todo es gratis, úsalo cuantas veces quieras. 🐑💕</p>
-      <nav class="indice-recursos" aria-label="Recursos de Rosina">
+  <section class="contenedor banner-rincon">
+    <h1 class="oculto-visual">El rincón de Rosina</h1>
+    <img src="img/rincon-de-rosina.webp" srcset="img/rincon-de-rosina-1000.webp 1000w, img/rincon-de-rosina.webp 2000w" sizes="(max-width: 1208px) calc(100vw - 48px), 1160px" width="2000" height="750" alt="El rincón de Rosina: Rosina sonriendo en su escritorio con ovillos de lana, un corazón tejido y libros que dicen Tejer, Crear, Soñar, Siempre" fetchpriority="high">
+  </section>
+  <section class="contenedor intro-rincon">
+    <p class="eslogan">Material gratuito · Hecho con cariño</p>
+    <p class="intro">Rosina preparó estos regalos para toda la comunidad tejedora: stickers y fondos de pantalla, una checklist para tu primer amigurumi, un glosario ilustrado, abreviaturas en varios idiomas, calculadoras para tus proyectos y una agenda para organizar tus tejidos. Todo es gratis, úsalo cuantas veces quieras. 🐑💕</p>
+    <nav class="indice-recursos" aria-label="Recursos de Rosina">
         <a href="#stickers"><span class="icono">🌸</span><strong>Stickers</strong><span>26 para WhatsApp</span></a>
-        <a href="#fondos"><span class="icono">📱</span><strong>Fondos de pantalla</strong><span>Rosina en tu celular</span></a>
+        <a href="#fondos"><span class="icono">📱</span><strong>Fondos de pantalla</strong><span>9 diseños, 4 tamaños</span></a>
         <a href="#checklist"><span class="icono">✅</span><strong>Checklist</strong><span>Tu primer amigurumi</span></a>
         <a href="glosario-rosina.html"><span class="icono">🔤</span><strong>Glosario ilustrado</strong><span>30 términos explicados</span></a>
         <a href="#abreviaturas"><span class="icono">📖</span><strong>Abreviaturas</strong><span>En 8 idiomas</span></a>
         <a href="#calculadora"><span class="icono">🧮</span><strong>Calculadora</strong><span>Aumentos, muestra y lana</span></a>
         <a href="#agenda"><span class="icono">🗓️</span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></a>
       </nav>
-    </div>
   </section>
 
   <!-- ============ STICKERS ============ -->
@@ -472,28 +489,65 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
       <div class="recurso-cabecera">
         <div>
           <h2>Fondos de pantalla de Rosina</h2>
-          <p>Lleva a Rosina en tu celular. Toca el fondo que más te guste para descargarlo y ponlo en tu pantalla de bloqueo o de inicio. Están hechos para que el reloj quede arriba, sin tapar a Rosina.</p>
+          <p>9 fondos para tu pantalla de bloqueo o de inicio, hechos para que el reloj quede arriba sin tapar a Rosina. Elige el tamaño de tu celular y toca el fondo que más te guste.</p>
         </div>
       </div>
-      <div class="galeria-fondos">
-        <a class="fondo" href="img/fondos/fondo-rosina-rosa.jpg" download="fondo-rosina-rosa.jpg">
-          <img src="img/fondos/fondo-rosina-rosa.jpg" alt="Fondo de pantalla rosa con corazones y Rosina saludando: Una vuelta a la vez" loading="lazy" width="1170" height="2532">
-          <span class="boton-secundario boton-chico">⬇ Una vuelta a la vez</span>
-        </a>
-        <a class="fondo" href="img/fondos/fondo-rosina-lila.jpg" download="fondo-rosina-lila.jpg">
-          <img src="img/fondos/fondo-rosina-lila.jpg" alt="Fondo de pantalla lila con estrellas y Rosina tejiendo: Pequeños pasos, grandes creaciones" loading="lazy" width="1170" height="2532">
-          <span class="boton-secundario boton-chico">⬇ Pequeños pasos</span>
-        </a>
-        <a class="fondo" href="img/fondos/fondo-rosina-fucsia.jpg" download="fondo-rosina-fucsia.jpg">
-          <img src="img/fondos/fondo-rosina-fucsia.jpg" alt="Fondo de pantalla fucsia con corazones y Rosina haciendo un corazón: Tejido con amor" loading="lazy" width="1170" height="2532">
-          <span class="boton-secundario boton-chico">⬇ Tejido con amor</span>
-        </a>
-        <a class="fondo" href="img/fondos/fondo-rosina-cielo.jpg" download="fondo-rosina-cielo.jpg">
-          <img src="img/fondos/fondo-rosina-cielo.jpg" alt="Fondo de pantalla azul cielo con corazones y Rosina abrazando un corazón: Hoy también tejo" loading="lazy" width="1170" height="2532">
-          <span class="boton-secundario boton-chico">⬇ Hoy también tejo</span>
-        </a>
+      <div class="selector-tamano" role="radiogroup" aria-label="Tamaño de tu celular">
+        <span>Mi celular es:</span>
+        <label><input type="radio" name="tamano-fondo" value="samsung" checked>Samsung Galaxy S <small>1080 × 2340</small></label>
+        <label><input type="radio" name="tamano-fondo" value="android">Otro Android <small>1080 × 2400</small></label>
+        <label><input type="radio" name="tamano-fondo" value="iphone">iPhone <small>1170 × 2532</small></label>
+        <label><input type="radio" name="tamano-fondo" value="iphone-max">iPhone Pro Max / Plus <small>1290 × 2796</small></label>
       </div>
-      <p class="nota">¿Desde el iPhone? Si el fondo se abre en vez de descargarse, mantenlo presionado y elige "Guardar en Fotos".</p>
+      <p class="nota" id="tamano-sugerido" hidden></p>
+      <div class="galeria-fondos">
+        <figure class="fondo" data-fondo="rosa">
+          <a href="img/fondos/fondo-rosina-rosa-samsung.jpg" download><img src="img/fondos/mini-rosa.webp" alt="Fondo de pantalla rosa con corazones y Rosina saludando: Una vuelta a la vez" loading="lazy" width="300" height="650"></a>
+          <figcaption>Una vuelta a la vez</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-rosa-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="lila">
+          <a href="img/fondos/fondo-rosina-lila-samsung.jpg" download><img src="img/fondos/mini-lila.webp" alt="Fondo de pantalla lila con estrellas y Rosina tejiendo: Pequeños pasos, grandes creaciones" loading="lazy" width="300" height="650"></a>
+          <figcaption>Pequeños pasos, grandes creaciones</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-lila-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="fucsia">
+          <a href="img/fondos/fondo-rosina-fucsia-samsung.jpg" download><img src="img/fondos/mini-fucsia.webp" alt="Fondo de pantalla fucsia con corazones y Rosina haciendo un corazón: Tejido con amor" loading="lazy" width="300" height="650"></a>
+          <figcaption>Tejido con amor</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-fucsia-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="cielo">
+          <a href="img/fondos/fondo-rosina-cielo-samsung.jpg" download><img src="img/fondos/mini-cielo.webp" alt="Fondo de pantalla azul cielo con corazones y Rosina abrazando un corazón: Hoy también tejo" loading="lazy" width="300" height="650"></a>
+          <figcaption>Hoy también tejo</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-cielo-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="crema">
+          <a href="img/fondos/fondo-rosina-crema-samsung.jpg" download><img src="img/fondos/mini-crema.webp" alt="Fondo de pantalla crema con Rosina y su ovillo: Todo lo bonito también se teje" loading="lazy" width="300" height="650"></a>
+          <figcaption>Todo lo bonito también se teje</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-crema-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="cafe">
+          <a href="img/fondos/fondo-rosina-cafe-samsung.jpg" download><img src="img/fondos/mini-cafe.webp" alt="Fondo de pantalla durazno con Rosina tomando café: Primero café, luego tejo" loading="lazy" width="300" height="650"></a>
+          <figcaption>Primero café, luego tejo</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-cafe-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="gorro">
+          <a href="img/fondos/fondo-rosina-gorro-samsung.jpg" download><img src="img/fondos/mini-gorro.webp" alt="Fondo de pantalla lila con Rosina y su gorro tejido: Temporada de tejer" loading="lazy" width="300" height="650"></a>
+          <figcaption>Temporada de tejer</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-gorro-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="terapia">
+          <a href="img/fondos/fondo-rosina-terapia-samsung.jpg" download><img src="img/fondos/mini-terapia.webp" alt="Fondo de pantalla rosa con Rosina abrazando un ovillo de corazón: Tejer es mi terapia" loading="lazy" width="300" height="650"></a>
+          <figcaption>Tejer es mi terapia</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-terapia-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="patron">
+          <a href="img/fondos/fondo-rosina-patron-samsung.jpg" download><img src="img/fondos/mini-patron.webp" alt="Fondo de pantalla rosa con muchas Rosinas: Rosina por todas partes" loading="lazy" width="300" height="650"></a>
+          <figcaption>Rosina por todas partes</figcaption>
+          <a class="boton-secundario boton-chico" href="img/fondos/fondo-rosina-patron-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+      </div>
+      <p class="nota">¿Desde el iPhone? Si el fondo se abre en vez de descargarse, mantenlo presionado y elige "Guardar en Fotos". En Samsung, al ponerlo como fondo puedes ajustarlo con los dedos si tu pantalla es distinta.</p>
     </div>
   </section>
 
@@ -511,7 +565,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
     </div>
     <div class="hoja-agenda hoja-checklist">
       <header>
-        <img src="img/rosina-checklist.jpg" alt="" aria-hidden="true">
+        <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div><h3>Qué necesitas para tu primer amigurumi</h3><p id="checklist-progreso">Llevas 0 de 0 listos</p></div>
       </header>
       <div class="checklist-grid">
@@ -548,7 +602,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
         </div>
       </div>
       <div class="aviso-rosina">
-        <img src="img/rosina-saludo.jpg" alt="" aria-hidden="true">
+        <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <p><strong>Tip de Rosina:</strong> si tu amigurumi es para un bebé o un niño menor de 3 años, borda los ojos con hilo en lugar de usar ojos de seguridad. Así no hay piezas pequeñas que se puedan soltar.</p>
       </div>
     </div>
@@ -609,7 +663,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
         </table>
       </div>
       <div class="aviso-rosina">
-        <img src="img/rosina-saludo.jpg" alt="" aria-hidden="true">
+        <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <p><strong>¡Ojo con el inglés!</strong> Los patrones de EE. UU. y del Reino Unido usan los mismos nombres para puntos distintos: el <em>double crochet</em> americano es nuestro punto alto, pero el británico es punto bajo. Revisa siempre de dónde viene el patrón. Las abreviaturas en español también cambian un poco según el país; aquí usamos las más comunes en Latinoamérica. ¿No sabes qué significa algún punto? Míralo en el <a href="glosario-rosina.html">glosario ilustrado</a>.</p>
       </div>
     </div>
@@ -729,7 +783,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
-          <img src="img/rosina-checklist.jpg" alt="" aria-hidden="true">
+          <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <div><h3>Ficha de proyecto</h3><p>Anota todo para poder repetirlo (¡o regalarlo!) cuando quieras.</p></div>
         </header>
         <div class="grid-ficha">
@@ -753,7 +807,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 
       <article class="hoja-agenda" id="semana-tejiendo">
         <header>
-          <img src="img/rosina-aprende.jpg" alt="" aria-hidden="true">
+          <img src="img/mini/rosina-aprende.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <div><h3>Mi semana tejiendo</h3><p>Semana del <input id="ag-semana" data-guardar style="border:none;border-bottom:1.5px solid rgba(69,69,74,0.25);background:transparent;font:inherit;width:12ch;" aria-label="Fecha de la semana"></p></div>
         </header>
         <div class="semana">
@@ -773,7 +827,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 
       <article class="hoja-agenda" id="control-pedidos">
         <header>
-          <img src="img/rosina-saludo.jpg" alt="" aria-hidden="true">
+          <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <div><h3>Control de pedidos</h3><p>Para tejedoras emprendedoras: que ningún pedido se te escape.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -799,7 +853,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 <footer class="pie-rico">
   <div class="contenedor pie-grid">
     <div>
-      <div class="pie-logo-wrap"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"></div>
+      <div class="pie-logo-wrap"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" loading="lazy" decoding="async"></div>
       <p>Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.</p>
     </div>
     <div>
@@ -847,8 +901,8 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
   </div>
   <div class="contenedor pie-apoyo">
     <span>Con el apoyo de:</span>
-    <img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'">
-    <img src="img/logo-fondo-emprender.png" alt="Fondo Emprender SENA" onerror="this.style.display='none'">
+    <img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+    <img src="img/logo-fondo-emprender.png" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
   </div>
   <div class="contenedor pie-legal">
     <a href="politicas.html#envios">Política de envíos</a>
@@ -1182,6 +1236,34 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
   coMeta.addEventListener('input', function() { estado.meta = coMeta.value; pintarContador(); });
   pintarContador();
 
+
+
+  /* ---------- Fondos: tamaño según el celular ---------- */
+  var radiosTamano = document.querySelectorAll('input[name="tamano-fondo"]');
+  function aplicarTamano(t) {
+    document.querySelectorAll('.fondo').forEach(function(f) {
+      var url = 'img/fondos/fondo-rosina-' + f.dataset.fondo + '-' + t + '.jpg';
+      f.querySelectorAll('a').forEach(function(a) {
+        a.href = url;
+        a.setAttribute('download', 'fondo-rosina-' + f.dataset.fondo + '-' + t + '.jpg');
+      });
+    });
+  }
+  radiosTamano.forEach(function(r) { r.addEventListener('change', function() { aplicarTamano(r.value); }); });
+  (function sugerir() {
+    var ancho = Math.round(Math.min(screen.width, screen.height) * (window.devicePixelRatio || 1));
+    var alto = Math.round(Math.max(screen.width, screen.height) * (window.devicePixelRatio || 1));
+    if (!('ontouchstart' in window) || ancho < 600) return;
+    var esIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    var t = esIOS ? (ancho >= 1240 ? 'iphone-max' : 'iphone') : (alto / ancho > 2.19 ? 'android' : 'samsung');
+    var radio = document.querySelector('input[name="tamano-fondo"][value="' + t + '"]');
+    if (!radio) return;
+    radio.checked = true;
+    aplicarTamano(t);
+    var aviso = document.getElementById('tamano-sugerido');
+    aviso.textContent = '✨ Rosina eligió el tamaño que mejor le queda a tu celular. Puedes cambiarlo si quieres.';
+    aviso.hidden = false;
+  })();
 
   /* ---------- Checklist primer amigurumi ---------- */
   var CLAVE_CHECKLIST = 'rosinaChecklist';
