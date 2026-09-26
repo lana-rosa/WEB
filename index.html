@@ -467,6 +467,32 @@ section { padding: 72px 0; }
 .rosina-banner-texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .rosina-banner-texto h2 a { color: inherit; text-decoration: none; }
 .rosina-banner-botones { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+/* Prioridad 1: qué tejemos, foto → amigurumi, proceso */
+.opciones-tejer { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 26px; }
+@media (max-width: 860px) { .opciones-tejer { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+.opcion-tejer { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
+.opcion-tejer:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
+.opcion-tejer .icono-opcion { font-size: 1.8rem; line-height: 1; margin-bottom: 4px; }
+.opcion-tejer strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.08rem; }
+.opcion-tejer span:last-child { font-size: 0.9rem; color: var(--tinta-suave); }
+.eslogan-seccion { text-align: center; color: var(--rosa-principal); font-weight: 600; margin: 0 0 6px; }
+.galeria-foto-amigurumi { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin-top: 26px; }
+@media (max-width: 1000px) { .galeria-foto-amigurumi { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .galeria-foto-amigurumi { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; } .ejemplo-foto { flex: 0 0 62%; scroll-snap-align: start; } }
+.ejemplo-foto { margin: 0; }
+.ejemplo-foto img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 16px; display: block; box-shadow: var(--sombra-suave); }
+.ejemplo-foto figcaption { font-size: 0.85rem; color: var(--tinta-suave); text-align: center; margin-top: 8px; line-height: 1.35; }
+.pasos-historia { list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: paso; }
+@media (max-width: 900px) { .pasos-historia { grid-template-columns: 1fr; gap: 10px; } }
+.pasos-historia li { position: relative; display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; padding: 16px 12px; }
+.pasos-historia li:not(:last-child)::after { content: ""; position: absolute; top: 40px; right: -14px; width: 28px; border-top: 2px dashed var(--rosa-medio); }
+@media (max-width: 900px) { .pasos-historia li { flex-direction: row; flex-wrap: wrap; text-align: left; align-items: center; column-gap: 10px; padding: 10px 4px; } .pasos-historia li:not(:last-child)::after { display: none; } .pasos-historia li > span:last-child { flex-basis: 100%; padding-left: 70px; margin-top: -4px; } }
+.icono-paso { font-size: 1.6rem; width: 52px; height: 52px; border-radius: 50%; background: var(--rosa-suave); display: flex; align-items: center; justify-content: center; }
+.num-paso { font-size: 0.75rem; font-weight: 800; color: var(--rosa-principal); letter-spacing: 0.06em; }
+.num-paso::before { content: "PASO "; }
+.pasos-historia strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--tinta); font-size: 1rem; }
+.pasos-historia li > span:last-child { font-size: 0.88rem; color: var(--tinta-suave); }
+.acciones-historias { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -556,8 +582,8 @@ section { padding: 72px 0; }
         <h1>Un recuerdo tejido a mano, con la cara de quien más quieres</h1>
         <p class="intro">Un amigurumi puede ser mucho más que un regalo: puede representar un ser querido, una mascota, un personaje o un recuerdo especial. Creamos piezas personalizadas que convierten historias e ideas en diseños tejidos llenos de significado.</p>
         <div class="cta-grupo">
-          <a href="tienda.html" class="boton-primario">Ver la tienda</a>
-          <a href="personaliza.html" class="boton-secundario">Personaliza el tuyo</a>
+          <a href="personaliza.html" class="boton-primario">Personaliza el tuyo</a>
+          <a href="tienda.html" class="boton-secundario">Ver la tienda</a>
         </div>
       </div>
       <div class="marco-foto" style="aspect-ratio:1582/932;">
@@ -566,30 +592,60 @@ section { padding: 72px 0; }
     </div>
   </section>
 
-  <div class="puntada" role="presentation"></div>
-
-  <!-- ============ RESPUESTA DIRECTA (AEO) ============ -->
+  <!-- ============ ¿QUÉ PODEMOS TEJER PARA TI? ============ -->
   <section class="seccion-clara">
     <div class="contenedor">
-      <div class="encabezado-seccion">
-        <h2>¿Quiénes somos?</h2>
+      <div class="encabezado-seccion centrado">
+        <h2>¿Qué podemos tejer para ti?</h2>
+        <p style="text-align:center; color:var(--tinta-suave); max-width:60ch; margin:0 auto;">Si lo puedes imaginar, lo podemos tejer. Elige tu idea y te ayudamos a convertirla en crochet.</p>
       </div>
-      <p class="respuesta-directa">Lana Rosa Crochet es un taller artesanal colombiano, con sede en Villamaría, Caldas, que teje a mano amigurumis, peluches, llaveros y accesorios completamente personalizados. Nuestro producto más pedido es el amigurumi hecho a partir de una foto de referencia: reproducimos en lana los detalles reales de una persona o mascota — gafas, ropa, color de ojos y accesorios — para convertir un recuerdo en un objeto tangible que se puede regalar.</p>
+      <div class="opciones-tejer">
+        <a class="opcion-tejer" href="personaliza.html?idea=persona"><span class="icono-opcion" aria-hidden="true">👩</span><strong>Una persona</strong><span>Convierte a alguien especial en un amigurumi.</span></a>
+        <a class="opcion-tejer" href="personaliza.html?idea=mascota"><span class="icono-opcion" aria-hidden="true">🐶</span><strong>Tu mascota</strong><span>Un recuerdo que puedes abrazar y conservar.</span></a>
+        <a class="opcion-tejer" href="personaliza.html?idea=pareja"><span class="icono-opcion" aria-hidden="true">❤️</span><strong>Una pareja</strong><span>Un regalo hecho especialmente para ustedes.</span></a>
+        <a class="opcion-tejer" href="personaliza.html?idea=personaje"><span class="icono-opcion" aria-hidden="true">⭐</span><strong>Un personaje que amas</strong><span>Una versión tejida inspirada en tu mundo favorito.</span></a>
+        <a class="opcion-tejer" href="personaliza.html?idea=regalo"><span class="icono-opcion" aria-hidden="true">🎁</span><strong>Un regalo especial</strong><span>Para cumpleaños, aniversarios, graduaciones y momentos importantes.</span></a>
+        <a class="opcion-tejer" href="personaliza.html?idea=detalle"><span class="icono-opcion" aria-hidden="true">🔑</span><strong>Un pequeño detalle</strong><span>Llaveros, charms y pequeños recuerdos.</span></a>
+      </div>
     </div>
   </section>
 
-  <!-- ============ DIFERENCIALES ============ -->
+  <!-- ============ DE LA FOTO AL AMIGURUMI ============ -->
   <section class="seccion-suave">
     <div class="contenedor">
-      <div class="encabezado-seccion">
-        <h2>Lo que nos hace diferentes</h2>
+      <div class="encabezado-seccion centrado">
+        <p class="eslogan-seccion">Nuestro producto estrella</p>
+        <h2>De la foto al amigurumi</h2>
+        <p style="text-align:center; color:var(--tinta-suave); max-width:62ch; margin:0 auto;">Envíanos una foto de esa persona, mascota o momento especial y la convertimos en un amigurumi único. Así se ven algunos de nuestros pedidos junto a su foto de referencia:</p>
       </div>
-      <ul class="diferenciales">
-        <li><span class="marca">✦</span><div><h3>Personalización total</h3><p>Cada pieza lleva los detalles específicos del cliente: gafas, ropa, color de ojos, accesorios únicos.</p></div></li>
-        <li><span class="marca">✦</span><div><h3>Un recuerdo, no solo un peluche</h3><p>Cada amigurumi representa un momento especial y tangible de la vida de quien lo recibe.</p></div></li>
-        <li><span class="marca">✦</span><div><h3>Experiencia completa</h3><p>Empaque a la medida y tarjeta con mensaje personalizado para quien lo recibe.</p></div></li>
-        <li><span class="marca">✦</span><div><h3>Acompañamiento cercano</h3><p>Atención personalizada desde el primer mensaje hasta la entrega en tus manos.</p></div></li>
-      </ul>
+      <div class="galeria-foto-amigurumi">
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/musico.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con su bajo y su camiseta favorita" loading="lazy" decoding="async"><figcaption>Con su bajo y su camiseta favorita</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/sombrero.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con su sombrero y su barba" loading="lazy" decoding="async"><figcaption>Con su sombrero y su barba</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/vestido-gala.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con su vestido de gala" loading="lazy" decoding="async"><figcaption>Con su vestido de gala</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/abuela.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con sus gafas y su vestido de flores" loading="lazy" decoding="async"><figcaption>Con sus gafas y su vestido de flores</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/camiseta-lila.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con su camiseta lila" loading="lazy" decoding="async"><figcaption>Con su camiseta lila</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/blusa-corazon.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: hasta el corazón de su blusa" loading="lazy" decoding="async"><figcaption>Hasta el corazón de su blusa</figcaption></figure>
+      </div>
+      <div class="acciones-historias"><a href="personaliza.html" class="boton-primario">Quiero crear el mío</a></div>
+    </div>
+  </section>
+
+  <div class="puntada" role="presentation"></div>
+
+  <!-- ============ DE UNA HISTORIA NACE UN TEJIDO ============ -->
+  <section class="seccion-clara">
+    <div class="contenedor">
+      <div class="encabezado-seccion centrado">
+        <h2>De una historia nace un tejido</h2>
+        <p style="text-align:center; color:var(--tinta-suave); max-width:60ch; margin:0 auto;">Tejemos emociones que permanecen en el tiempo.</p>
+      </div>
+      <ol class="pasos-historia">
+        <li><span class="icono-paso" aria-hidden="true">📸</span><span class="num-paso">1</span><strong>Nos cuentas tu historia</strong><span>Nos compartes tu idea y tus fotografías.</span></li>
+        <li><span class="icono-paso" aria-hidden="true">✏️</span><span class="num-paso">2</span><strong>Diseñamos tu idea</strong><span>Analizamos los detalles que hacen especial tu recuerdo.</span></li>
+        <li><span class="icono-paso" aria-hidden="true">🧶</span><span class="num-paso">3</span><strong>Tejemos a mano</strong><span>Cada pieza se crea cuidadosamente, puntada a puntada.</span></li>
+        <li><span class="icono-paso" aria-hidden="true">🎁</span><span class="num-paso">4</span><strong>Lo convertimos en un recuerdo</strong><span>Lo preparamos para que llegue a sus manos.</span></li>
+        <li><span class="icono-paso" aria-hidden="true">💌</span><span class="num-paso">5</span><strong>Tú nos cuentas la reacción</strong><span>Queremos conocer la historia que nació después.</span></li>
+      </ol>
     </div>
   </section>
 
@@ -599,8 +655,8 @@ section { padding: 72px 0; }
   <section class="seccion-lila">
     <div class="contenedor">
       <div class="encabezado-seccion centrado">
-        <h2>Ideas que cobraron vida en crochet</h2>
-        <p style="text-align:center; color:var(--tinta-suave); max-width:60ch; margin:0 auto;">Gracias a nuestros clientes por confiar en Lana Rosa Crochet y permitirnos compartir algunas de las historias e ideas que hemos tejido juntos.</p>
+        <h2>Historias que tejimos</h2>
+        <p style="text-align:center; color:var(--tinta-suave); max-width:60ch; margin:0 auto;">Cada amigurumi nace de una historia real. Gracias a nuestros clientes por confiar en Lana Rosa Crochet y permitirnos compartir algunas de las que tejimos juntos.</p>
       </div>
 
       <div class="carrusel-testimonios-wrap">
@@ -650,24 +706,43 @@ section { padding: 72px 0; }
         </div>
         <button type="button" class="flecha-carrusel siguiente" id="testimonios-siguiente" aria-label="Siguiente testimonio">›</button>
       </div>
+      <div class="acciones-historias">
+        <a href="personaliza.html" class="boton-primario">Quiero crear el mío</a>
+        <a href="https://share.google/GkcZvd8av8NjmRPPM" class="boton-secundario" target="_blank" rel="noopener">⭐ Ver reseñas en Google</a>
+      </div>
     </div>
   </section>
 
   <div class="puntada" role="presentation"></div>
 
-  <!-- ============ BANNER PROMOCIONAL — PERSONALIZADOS ============ -->
-  <section class="banner-promo">
-    <div class="contenedor banner-promo-contenido">
-      <p class="banner-promo-eslogan">Nuestro producto estrella</p>
-      <h2>Convierte cualquier foto en un recuerdo tejido a mano</h2>
-      <p>Envíanos una imagen de esa persona, mascota o momento especial — nosotras lo transformamos en un amigurumi único, hecho puntada a puntada, para regalar algo que de verdad no se olvida.</p>
-      <a href="personaliza.html" class="boton-banner-promo">Personaliza el tuyo →</a>
+  <!-- ============ RESPUESTA DIRECTA (AEO) ============ -->
+  <section class="seccion-clara">
+    <div class="contenedor">
+      <div class="encabezado-seccion">
+        <h2>¿Quiénes somos?</h2>
+      </div>
+      <p class="respuesta-directa">Lana Rosa Crochet es un taller artesanal colombiano, con sede en Villamaría, Caldas, que teje a mano amigurumis, peluches, llaveros y accesorios completamente personalizados. Nuestro producto más pedido es el amigurumi hecho a partir de una foto de referencia: reproducimos en lana los detalles reales de una persona o mascota — gafas, ropa, color de ojos y accesorios — para convertir un recuerdo en un objeto tangible que se puede regalar.</p>
+    </div>
+  </section>
+
+  <!-- ============ DIFERENCIALES ============ -->
+  <section class="seccion-suave">
+    <div class="contenedor">
+      <div class="encabezado-seccion">
+        <h2>Lo que nos hace diferentes</h2>
+      </div>
+      <ul class="diferenciales">
+        <li><span class="marca">✦</span><div><h3>Personalización total</h3><p>Cada pieza lleva los detalles específicos del cliente: gafas, ropa, color de ojos, accesorios únicos.</p></div></li>
+        <li><span class="marca">✦</span><div><h3>Un recuerdo, no solo un peluche</h3><p>Cada amigurumi representa un momento especial y tangible de la vida de quien lo recibe.</p></div></li>
+        <li><span class="marca">✦</span><div><h3>Experiencia completa</h3><p>Empaque a la medida y tarjeta con mensaje personalizado para quien lo recibe.</p></div></li>
+        <li><span class="marca">✦</span><div><h3>Acompañamiento cercano</h3><p>Atención personalizada desde el primer mensaje hasta la entrega en tus manos.</p></div></li>
+      </ul>
     </div>
   </section>
 
   <div class="puntada" role="presentation"></div>
 
-  <!-- ============ ACADEMY ============ -->
+<!-- ============ ACADEMY ============ -->
   <section class="seccion-clara">
     <div class="contenedor">
       <div class="encabezado-seccion">
