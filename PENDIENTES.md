@@ -47,6 +47,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [x] Google Merchant Center: feed en vivo listo (27-sep-2026) con 40 diseños propios (sin personajes de marcas), GTIN de GS1 y enlace directo a cada producto (`tienda.html?producto=ID`). Ver `herramientas/google-merchant/README.md`.
 - [ ] **Sara:** crear la cuenta de Merchant Center, verificar el sitio, configurar envíos y devoluciones, y agregar el feed `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/feed-google-merchant` (obtención programada diaria).
 - [ ] Productos nuevos de diseño propio: agregarlos a `web_google_shopping` para que salgan en Google Shopping.
+- [x] Envío en Merchant Center: tarifa fija de $18.000 COP (27-sep-2026). La web dice lo mismo en Precios, Preguntas frecuentes, Políticas, Tienda, Mercería, Personaliza y `llms.txt`: $18.000 a otras ciudades; en Manizales y Villamaría se confirma por WhatsApp.
+- [ ] Confirmar con Sara el valor del envío en Manizales y Villamaría para ponerlo exacto en la web.
 - [ ] Imágenes pensadas para Pinterest (paletas, fondos, stickers) que enlacen a la web.
 
 ### Ingresos
