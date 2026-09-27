@@ -24,6 +24,11 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [ ] **Ilustraciones nuevas (opcional):** Rosina haciendo cada punto, para el glosario, y versiones de Rosina solo con líneas, para el libro para colorear.
 - [ ] **Decidir cómo cobrar productos digitales** (Hotmart, o Nequi por WhatsApp) antes de crear material de pago.
 
+- [ ] **Prioridad 3 de la auditoría (marca), en pausa hasta tener la información** (Sara decidió saltarla el 27-sep-2026 y retomarla cuando la tenga):
+  - Equipo ("Las mujeres detrás de cada puntada"): foto y frase corta de Sara, Jennifer, Camila y las tejedoras que quieran aparecer.
+  - Proyectos especiales / empresas: qué se ofrece, cantidades mínimas, tiempos y fotos de trabajos anteriores. WhatsApp: "Hola Lana Rosa. Quiero consultar por un proyecto especial para mi empresa/evento."
+  - Sostenibilidad ("Nuestro hilo también tiene una historia"): lo que hacen hoy y lo que están construyendo, solo con información real.
+
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 
 ### Material de Rosina
