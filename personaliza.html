@@ -227,6 +227,17 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .boton-ir-form { display: inline-block; margin-top: 14px; background: var(--rosa-principal); color: #fff; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 700; }
 .boton-ir-form:hover { background: #B83E78; }
 #form-personalizado { scroll-margin-top: 110px; }
+
+/* Puentes entre secciones del ecosistema Lana Rosa */
+.puentes { margin: 0 0 56px; }
+.puentes > h2 { font-size: 1.25rem; margin: 0 0 14px; }
+.puentes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.puente { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); background: var(--blanco); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
+.puente:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
+.puente .icono-puente { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
+.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.02rem; margin-bottom: 2px; }
+.puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
+.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -417,6 +428,14 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
       </div>
     </div>
   </div>
+
+  <section class="puentes">
+    <div class="puentes-grid">
+      <a class="puente" href="aprende.html"><span class="icono-puente" aria-hidden="true">🎓</span><span><strong>¿Quieres aprender crochet?</strong><span class="texto-puente">En Lana Rosa Academy te enseñamos a tejer tus propios amigurumis, paso a paso.</span><span class="ir-puente">Ver talleres →</span></span></a>
+      <a class="puente" href="tienda.html"><span class="icono-puente" aria-hidden="true">🛍️</span><span><strong>¿Prefieres algo ya tejido?</strong><span class="texto-puente">Mira los productos disponibles en nuestra tienda, listos para regalar.</span><span class="ir-puente">Ir a la tienda →</span></span></a>
+      <a class="puente" href="index.html#de-la-foto"><span class="icono-puente" aria-hidden="true">💕</span><span><strong>¿Quieres ver más ejemplos?</strong><span class="texto-puente">Mira fotos reales de amigurumis junto a la foto que los inspiró.</span><span class="ir-puente">Ver historias →</span></span></a>
+    </div>
+  </section>
 </main>
 
 <footer class="pie-rico">
@@ -556,6 +575,19 @@ if (ideaElegida) {
   selectTipo.value = ideaElegida[0];
   selectTipo.dispatchEvent(new Event('change'));
   document.getElementById('descripcion').placeholder = ideaElegida[1];
+}
+
+// Si llega desde un producto de la tienda ("Personalízalo"), lo tomamos como inspiración
+const parametros = new URLSearchParams(location.search);
+const inspiracion = (parametros.get('inspiracion') || '').slice(0, 120);
+if (inspiracion) {
+  const tipoTienda = parametros.get('tipo');
+  if ([...selectTipo.options].some(o => o.value === tipoTienda && o.value)) {
+    selectTipo.value = tipoTienda;
+    selectTipo.dispatchEvent(new Event('change'));
+  }
+  const campoDescripcion = document.getElementById('descripcion');
+  if (!campoDescripcion.value) campoDescripcion.value = 'Me gusta el diseño "' + inspiracion + '" de la tienda, pero quiero cambiarle: ';
 }
 
 selectTamano.addEventListener('change', () => {

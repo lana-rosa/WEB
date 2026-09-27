@@ -91,3 +91,10 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
   - Inicio: "De la foto al amigurumi" con 7 fotos autorizadas, "De una historia nace un tejido" (5 pasos) e "Historias que tejimos" con enlace a las reseñas de Google.
   - Personaliza: respuestas rápidas, proceso en 6 pasos, tamaños de referencia, preselección por `?idea=` y WhatsApp después de enviar el formulario.
   - Tiempo de entrega unificado ("depende") y mensajes de WhatsApp según la página.
+- Prioridad 2 de la auditoría (conexión del ecosistema), publicada el 27-sep-2026:
+  - Tienda: franja "¿Quieres uno hecho especialmente para ti?" y botón "Personalízalo" en cada producto (abre Personaliza con el diseño como inspiración). Se arregló el estilo del botón "Agregar al carrito" de la ficha.
+  - Mercería: "Crea tu propio proyecto" (principiante, amigurumi, color, aprender, calcular) y enlaces a Revista y Rincón.
+  - Academy: organizada en Aprende / Crea / Conecta, con enlaces a Mercería, Rincón, paletas y pausas activas.
+  - Revista: filtro por 7 categorías (las vacías dicen "Muy pronto"). Para un artículo nuevo: agregar `data-categorias="..."` al `<article>`. Imagen de pausas activas más pequeña.
+  - Rincón de Rosina: índice en 5 grupos (te enseña, te acompaña, te recuerda, recursos gratuitos, herramientas).
+  - Conoce a Rosina: sección "¿Por qué Rosina nos acompaña?".

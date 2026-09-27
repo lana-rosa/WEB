@@ -400,6 +400,21 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .desglose-precio strong { margin-left: auto; }
 .punto-color { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
 .costo-minimo { background: var(--blanco); border-radius: 10px; padding: 8px 12px; font-size: 0.9rem; }
+
+/* Rincón agrupado: te enseña / te acompaña / te recuerda / recursos / herramientas */
+.grupos-rincon { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin-top: 26px; text-align: left; }
+.grupo-rincon { grid-column: span 2; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 18px 18px 14px; }
+.grupo-rincon:nth-child(4), .grupo-rincon:nth-child(5) { grid-column: span 3; }
+@media (max-width: 860px) { .grupos-rincon { grid-template-columns: 1fr; } .grupo-rincon, .grupo-rincon:nth-child(4), .grupo-rincon:nth-child(5) { grid-column: auto; } }
+.grupo-rincon h2 { font-size: 1.12rem; margin: 0 0 2px; color: var(--rosa-principal); }
+.grupo-rincon > p { font-size: 0.88rem; color: var(--tinta-suave); margin: 0 0 10px; }
+.enlaces-grupo { display: flex; flex-direction: column; gap: 4px; }
+.enlaces-grupo a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; text-decoration: none; color: var(--tinta); transition: background 0.2s; }
+.enlaces-grupo a:hover { background: var(--rosa-suave); }
+.enlaces-grupo .icono { font-size: 1.4rem; line-height: 1; width: 28px; text-align: center; flex-shrink: 0; }
+.enlaces-grupo strong { display: block; font-weight: 700; font-size: 0.95rem; }
+.enlaces-grupo strong + span { display: block; font-size: 0.82rem; color: var(--tinta-suave); }
+.grupo-rincon:nth-child(4) .enlaces-grupo, .grupo-rincon:nth-child(5) .enlaces-grupo { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -456,16 +471,49 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   <section class="contenedor intro-rincon">
     <p class="eslogan">Material gratuito · Hecho con cariño</p>
     <p class="intro">Descubre los regalos que Rosina preparó para ti: stickers, fondos de pantalla, recursos para tus proyectos y mucho más. 🐑💕</p>
-    <nav class="indice-recursos" aria-label="Recursos de Rosina">
-        <a href="#stickers"><span class="icono">🌸</span><strong>Stickers</strong><span>26 para WhatsApp</span></a>
-        <a href="#fondos"><span class="icono">📱</span><strong>Fondos de pantalla</strong><span>9 diseños, 4 tamaños</span></a>
-        <a href="#checklist"><span class="icono">✅</span><strong>Checklist</strong><span>Tu primer amigurumi</span></a>
-        <a href="glosario-rosina.html"><span class="icono">🔤</span><strong>Glosario ilustrado</strong><span>30 términos explicados</span></a>
-    <a href="paletas-rosina.html"><span class="icono">🎨</span><strong>Paletas de colores</strong><span>22 combinaciones y tu propia paleta</span></a>
-        <a href="#abreviaturas"><span class="icono">📖</span><strong>Abreviaturas</strong><span>En 8 idiomas</span></a>
-        <a href="#calculadora"><span class="icono">🧮</span><strong>Calculadora</strong><span>Aumentos, muestra, lana y precio</span></a>
-        <a href="#agenda"><span class="icono">🗓️</span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></a>
-      </nav>
+    <div class="grupos-rincon">
+      <section class="grupo-rincon" aria-label="Rosina te enseña">
+        <h2><span aria-hidden="true">📚</span> Rosina te enseña</h2>
+        <p>Tips y guías de crochet para tejer sin enredos.</p>
+        <nav class="enlaces-grupo" aria-label="Rosina te enseña">
+          <a href="glosario-rosina.html"><span class="icono" aria-hidden="true">🔤</span><span><strong>Glosario ilustrado</strong><span>30 términos explicados</span></span></a>
+          <a href="#abreviaturas"><span class="icono" aria-hidden="true">📖</span><span><strong>Abreviaturas</strong><span>En 8 idiomas</span></span></a>
+          <a href="#checklist"><span class="icono" aria-hidden="true">✅</span><span><strong>Checklist</strong><span>Tu primer amigurumi</span></span></a>
+        </nav>
+      </section>
+      <section class="grupo-rincon" aria-label="Rosina te acompaña">
+        <h2><span aria-hidden="true">💕</span> Rosina te acompaña</h2>
+        <p>Su historia, sus frases y sus tips, cerca de ti.</p>
+        <nav class="enlaces-grupo" aria-label="Rosina te acompaña">
+          <a href="rosina.html"><span class="icono" aria-hidden="true">🐑</span><span><strong>Conoce a Rosina</strong><span>Quién es y qué la hace feliz</span></span></a>
+          <a href="rosina.html#tip-rosina"><span class="icono" aria-hidden="true">💡</span><span><strong>Un tip de Rosina</strong><span>Su consejo favorito</span></span></a>
+        </nav>
+      </section>
+      <section class="grupo-rincon" aria-label="Rosina te recuerda">
+        <h2><span aria-hidden="true">🌿</span> Rosina te recuerda</h2>
+        <p>Cuidarte también es parte de tejer.</p>
+        <nav class="enlaces-grupo" aria-label="Rosina te recuerda">
+          <a href="revista.html#pausas-activas"><span class="icono" aria-hidden="true">🧘</span><span><strong>Pausas activas</strong><span>Estiramientos para tejedoras</span></span></a>
+        </nav>
+      </section>
+      <section class="grupo-rincon" aria-label="Recursos gratuitos">
+        <h2><span aria-hidden="true">🎁</span> Recursos gratuitos</h2>
+        <p>Descargables para llevar a Rosina contigo.</p>
+        <nav class="enlaces-grupo" aria-label="Recursos gratuitos">
+          <a href="#stickers"><span class="icono" aria-hidden="true">🌸</span><span><strong>Stickers</strong><span>26 para WhatsApp</span></span></a>
+          <a href="#fondos"><span class="icono" aria-hidden="true">📱</span><span><strong>Fondos de pantalla</strong><span>9 diseños, 4 tamaños</span></span></a>
+        </nav>
+      </section>
+      <section class="grupo-rincon" aria-label="Herramientas para tejedoras">
+        <h2><span aria-hidden="true">🧮</span> Herramientas para tejedoras</h2>
+        <p>Para planear, calcular y organizar tus proyectos.</p>
+        <nav class="enlaces-grupo" aria-label="Herramientas para tejedoras">
+          <a href="#calculadora"><span class="icono" aria-hidden="true">🧮</span><span><strong>Calculadoras</strong><span>Aumentos, muestra, lana y precio</span></span></a>
+          <a href="#agenda"><span class="icono" aria-hidden="true">🗓️</span><span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></span></a>
+          <a href="paletas-rosina.html"><span class="icono" aria-hidden="true">🎨</span><span><strong>Paletas de colores</strong><span>22 combinaciones y la tuya</span></span></a>
+        </nav>
+      </section>
+    </div>
   </section>
 
   <!-- ============ STICKERS ============ -->

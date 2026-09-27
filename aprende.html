@@ -256,6 +256,29 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
 .encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
+
+/* Puentes entre secciones del ecosistema Lana Rosa */
+.puentes { margin: 0 0 56px; }
+.puentes > h2 { font-size: 1.25rem; margin: 0 0 14px; }
+.puentes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.puente { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); background: var(--blanco); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
+.puente:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
+.puente .icono-puente { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
+.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.02rem; margin-bottom: 2px; }
+.puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
+.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
+
+/* Academy: Aprende / Crea / Conecta */
+.pilares-academy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 8px; margin-bottom: 36px; }
+.pilares-academy a { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; padding: 18px 12px; background: var(--rosa-suave); border-radius: var(--radio-suave); text-decoration: none; color: var(--tinta); transition: transform 0.2s; }
+.pilares-academy a:hover { transform: translateY(-2px); }
+.pilares-academy a > span:first-child { font-size: 1.8rem; }
+.pilares-academy strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.15rem; }
+.pilares-academy a > span:last-child { font-size: 0.88rem; color: var(--tinta-suave); }
+@media (max-width: 560px) { .pilares-academy { gap: 8px; } .pilares-academy a { padding: 14px 6px; } .pilares-academy a > span:last-child { font-size: 0.78rem; } }
+.pilar { scroll-margin-top: 90px; }
+.etiqueta-pilar { display: inline-block; background: var(--rosa-suave); color: var(--rosa-principal); font-weight: 700; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; margin: 0 0 10px; }
+.seccion-suave .etiqueta-pilar { background: var(--blanco); }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -310,8 +333,14 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
     <h1>Tejer para aprender, crear y conectar contigo</h1>
     <p class="intro">No necesitas experiencia ni tecnicismos. Enseñamos crochet paso a paso, con paciencia, para que cualquier persona pueda salir de un taller con un proyecto terminado en sus manos.</p>
   </section>
+  <nav class="pilares-academy contenedor" aria-label="Secciones de Lana Rosa Academy">
+    <a href="#aprende"><span aria-hidden="true">🎓</span><strong>Aprende</strong><span>Cursos y talleres</span></a>
+    <a href="#crea"><span aria-hidden="true">🧶</span><strong>Crea</strong><span>Proyectos y tutoriales</span></a>
+    <a href="#conecta"><span aria-hidden="true">🌸</span><strong>Conecta</strong><span>Bienestar, pausas activas y comunidad</span></a>
+  </nav>
 
-  <section class="contenedor">
+  <section class="contenedor pilar" id="aprende">
+    <p class="etiqueta-pilar">🎓 Aprende · Cursos y talleres</p>
     <h2>Nuestro taller</h2>
     <article class="tarjeta-curso">
       <div class="foto-curso" style="padding:8px; display:grid; grid-template-rows:1fr 1fr; gap:8px;">
@@ -338,8 +367,19 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
       </div>
     </article>
   </section>
-
-  <section class="contenedor" style="padding-top:28px;">
+  <section class="contenedor" style="padding-top:28px; padding-bottom:20px;">
+    <h2>Próximamente</h2>
+    <div class="aviso-proximamente">
+      <h3 style="font-size:1.05rem;">Curso gratuito de crochet para principiantes en YouTube</h3>
+      <p>Estamos preparando una serie completa para aprender crochet desde cero, totalmente gratis.</p>
+      <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:8px;">
+        <a href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener">Suscríbete al canal →</a>
+        <a href="https://www.instagram.com/lanarosa.academy" target="_blank" rel="noopener">Síguenos en Instagram →</a>
+      </div>
+    </div>
+  </section>
+  <section class="contenedor pilar" id="crea" style="padding-top:28px;">
+    <p class="etiqueta-pilar">🧶 Crea · Proyectos y tutoriales</p>
     <h2>Tutoriales de crochet paso a paso</h2>
     <p style="color:var(--tinta-suave); max-width:70ch; margin-bottom:24px;">Aprende con nuestros videos cortos en Instagram — desde tu primer punto hasta figuritas completas tejidas a mano.</p>
     <div class="grid-tutoriales">
@@ -388,10 +428,18 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
 
     </div>
   </section>
-
-
-  <section class="seccion-suave">
+  <div class="contenedor">
+    <section class="puentes">
+      <div class="puentes-grid">
+        <a class="puente" href="merceria.html"><span class="icono-puente" aria-hidden="true">🧵</span><span><strong>¿Necesitas materiales?</strong><span class="texto-puente">Lanas, hilos y relleno para tus proyectos en la mercería de Lana Rosa.</span><span class="ir-puente">Ir a la mercería →</span></span></a>
+        <a class="puente" href="recursos-rosina.html"><span class="icono-puente" aria-hidden="true">🐑</span><span><strong>Herramientas gratis de Rosina</strong><span class="texto-puente">Checklist, glosario, abreviaturas y calculadoras para tejer sin enredos.</span><span class="ir-puente">Ir al Rincón →</span></span></a>
+        <a class="puente" href="paletas-rosina.html"><span class="icono-puente" aria-hidden="true">🎨</span><span><strong>¿Qué colores uso?</strong><span class="texto-puente">Encuentra combinaciones que funcionan en las paletas de Rosina.</span><span class="ir-puente">Ver paletas →</span></span></a>
+      </div>
+    </section>
+  </div>
+  <section class="seccion-suave pilar" id="conecta">
     <div class="contenedor">
+      <p class="etiqueta-pilar">🌸 Conecta · Bienestar, pausas activas y comunidad</p>
       <h2>Nuestra forma de enseñar</h2>
       <div class="filosofia">
         <div class="filosofia-item">
@@ -410,20 +458,17 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
           <p>Tejer también es una forma de bajarle la velocidad al día — lo vivimos así en cada taller.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="contenedor" style="padding-top:28px; padding-bottom:60px;">
-    <h2>Próximamente</h2>
-    <div class="aviso-proximamente">
-      <h3 style="font-size:1.05rem;">Curso gratuito de crochet para principiantes en YouTube</h3>
-      <p>Estamos preparando una serie completa para aprender crochet desde cero, totalmente gratis.</p>
-      <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:8px;">
-        <a href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener">Suscríbete al canal →</a>
-        <a href="https://www.instagram.com/lanarosa.academy" target="_blank" rel="noopener">Síguenos en Instagram →</a>
+      <div class="puentes-grid" style="margin-top:26px;">
+        <a class="puente" href="revista.html#pausas-activas"><span class="icono-puente" aria-hidden="true">🧘</span><span><strong>Pausas activas para tejedoras</strong><span class="texto-puente">Rosina te recuerda estirar manos, cuello y espalda mientras tejes.</span><span class="ir-puente">Leer en la Revista →</span></span></a>
+        <a class="puente" href="revista.html#tejer-desconectar"><span class="icono-puente" aria-hidden="true">🌿</span><span><strong>Tejer para desconectar</strong><span class="texto-puente">Por qué tejer también es una forma de cuidarte.</span><span class="ir-puente">Leer en la Revista →</span></span></a>
+        <a class="puente" href="https://www.instagram.com/lanarosa.academy" target="_blank" rel="noopener"><span class="icono-puente" aria-hidden="true">💬</span><span><strong>Nuestra comunidad</strong><span class="texto-puente">Comparte tus proyectos y entérate de los próximos talleres.</span><span class="ir-puente">Síguenos en Instagram ↗</span></span></a>
       </div>
     </div>
   </section>
+
+
+
+
 
   <section class="contenedor" id="rosina" style="padding-top:28px; padding-bottom:20px;">
     <div class="rosina-resumen" style="display:grid; grid-template-columns:220px 1fr; gap:32px; align-items:center;">
