@@ -679,7 +679,8 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-feria { margin: 40px auto 0; max-width: 360px; text-align: center; }
 .ed-feria img { width: 100%; height: auto; border-radius: 18px; display: block; }
 .ed-feria figcaption { margin-top: 10px; color: var(--tinta-suave); font-size: 0.92rem; }
-.ed-rosina { position: relative; }
+.ed-rosina { position: relative; margin-bottom: 14%; }
+@media (min-width: 861px) { .ed-rosina { margin-bottom: 0; } .ed-rosina-tejida { bottom: -6% !important; } }
 .ed-rosina-tejida { position: absolute; right: 4%; bottom: -8%; width: 26% !important; height: auto; border-radius: 14px; box-shadow: 0 12px 30px rgba(58,42,46,0.18); border: 4px solid var(--blanco); z-index: 1; }
 .ed-rosina { overflow: visible !important; }
 .ed-rosina img:not(.ed-rosina-tejida) { border-radius: 22px; }
