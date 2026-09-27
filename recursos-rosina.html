@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
-  --lila-suave: #F0F1FE;
+  --lila-suave: #F0F1FE; --lila-claro: #E6E7FD;
   --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -66,6 +66,7 @@ a { color: var(--rosa-principal); }
 section { padding: 20px 0 56px; }
 section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .seccion-suave { background: var(--rosa-suave); padding: 50px 0; }
+.seccion-suave.seccion-lila { background: var(--lila-claro); }
 .roles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 @media (max-width: 700px) { .roles { grid-template-columns: 1fr; } }
 .rol-card { background: var(--blanco); border-radius: var(--radio-suave); padding: 26px; box-shadow: var(--sombra-suave); }
@@ -606,7 +607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ FONDOS DE PANTALLA ============ -->
-  <section class="seccion-suave recurso" id="fondos">
+  <section class="seccion-suave seccion-lila recurso" id="fondos">
     <div class="contenedor">
       <div class="recurso-cabecera">
         <img class="miniatura-recurso" src="img/rincon/fondos.webp" width="480" height="360" loading="lazy" alt="Muestra de los fondos de pantalla de Rosina en celulares">
@@ -976,7 +977,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ AGENDA ============ -->
-  <section class="seccion-suave recurso" id="agenda">
+  <section class="seccion-suave seccion-lila recurso" id="agenda">
     <div class="contenedor">
       <div class="recurso-cabecera">
         <img class="miniatura-recurso" src="img/rincon/agenda.webp" width="480" height="360" loading="lazy" alt="Vista de la ficha de proyecto de la agenda">
