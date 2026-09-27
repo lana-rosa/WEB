@@ -12,6 +12,8 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 - El menú está repetido en cada página (`.nav-principal` y `.nav-movil-panel`): los cambios del menú se hacen en todas.
 - La mercería y la tienda cargan productos en vivo desde Supabase (proyecto "Lana Rosa ERP + SO", función `obtener_merceria_web`).
 - WhatsApp de pedidos: 573205072801.
+- Google Shopping (Merchant Center): feed en vivo desde la Edge Function `feed-google-merchant` de Supabase; solo diseños propios (tabla `web_google_shopping`). Ver `herramientas/google-merchant/README.md`.
+- Medición: Google Tag Manager `GTM-M3MQ7XZD` en todas las páginas (Analytics `G-RSVSQV8Y9B` se configura dentro de GTM).
 
 ## Generadores (`herramientas/`)
 - `glosario-rosina.html` y `paletas-rosina.html` se **generan** con `generar_glosario.py` y `generar_paletas.py` a partir de `glosario_datos.py` y `paletas_datos.py`. Para cambiar términos o paletas, edita los datos y vuelve a generar (`python3 herramientas/generar_paletas.py herramientas`). Los scripts toman la cabecera y el pie de `rosina.html`.

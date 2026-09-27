@@ -2545,5 +2545,31 @@ formResena.addEventListener('submit', async (evento) => {
   });
 })();
 </script>
+<script>
+// Enlace directo a un producto (tienda.html?producto=ID), usado por Google Shopping:
+// abre la ficha del producto y agrega sus datos estructurados.
+(function () {
+  var id = new URLSearchParams(location.search).get('producto');
+  if (!id) return;
+  function abrir() {
+    var p = window.DATOS_PRODUCTOS && DATOS_PRODUCTOS[id];
+    if (!p || !window.abrirModal) return;
+    abrirModal(id);
+    document.title = p.nombre + ' — Tienda Lana Rosa Crochet';
+    var ld = {
+      '@context': 'https://schema.org', '@type': 'Product', name: p.nombre,
+      image: 'https://lanarosacrochet.com/img/productos/' + p.foto_url,
+      description: String(p.descripcion || p.nombre),
+      brand: { '@type': 'Brand', name: 'Lana Rosa Crochet' },
+      offers: { '@type': 'Offer', url: location.href, priceCurrency: 'COP', price: String(p.precio),
+        availability: p.disponible ? 'https://schema.org/InStock' : 'https://schema.org/BackOrder',
+        itemCondition: 'https://schema.org/NewCondition' }
+    };
+    var s = document.createElement('script'); s.type = 'application/ld+json'; s.textContent = JSON.stringify(ld);
+    document.head.appendChild(s);
+  }
+  if (window.TIENDA_PRODUCTOS_LISTOS) abrir(); else window.addEventListener('tienda:productos-listos', abrir);
+})();
+</script>
 </body>
 </html>
