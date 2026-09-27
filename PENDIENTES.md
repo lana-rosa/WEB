@@ -44,7 +44,9 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [x] Primeros 3 artículos de la Revista pensados para búsquedas (27-sep-2026): "Cómo empezar a tejer crochet desde cero", "Qué materiales necesitas para tu primer amigurumi" y "Cómo pedir un amigurumi personalizado a partir de una foto".
 - [ ] Seguir con un artículo cada 1 o 2 semanas (agregar `data-categorias` al `<article>` y el `BlogPosting` en el JSON-LD).
 - [ ] Patrones gratis (lo que más visitas trae en crochet).
-- [ ] Google Merchant Center: productos gratis en la pestaña "Shopping" (la tienda ya tiene los datos de producto).
+- [x] Google Merchant Center: feed en vivo listo (27-sep-2026) con 40 diseños propios (sin personajes de marcas), GTIN de GS1 y enlace directo a cada producto (`tienda.html?producto=ID`). Ver `herramientas/google-merchant/README.md`.
+- [ ] **Sara:** crear la cuenta de Merchant Center, verificar el sitio, configurar envíos y devoluciones, y agregar el feed `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/feed-google-merchant` (obtención programada diaria).
+- [ ] Productos nuevos de diseño propio: agregarlos a `web_google_shopping` para que salgan en Google Shopping.
 - [ ] Imágenes pensadas para Pinterest (paletas, fondos, stickers) que enlacen a la web.
 
 ### Ingresos
