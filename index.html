@@ -683,6 +683,8 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-rosina-tejida { position: absolute; right: 4%; bottom: -8%; width: 26% !important; height: auto; border-radius: 14px; box-shadow: 0 12px 30px rgba(58,42,46,0.18); border: 4px solid var(--blanco); z-index: 1; }
 .ed-rosina { overflow: visible !important; }
 .ed-rosina img:not(.ed-rosina-tejida) { border-radius: 22px; }
+.ed-historia.ed-historia-completa img, .ed-historias .ed-historia-completa:first-child img { aspect-ratio: auto; height: auto; object-fit: contain; background: #EFEEE9; }
+@media (max-width: 700px) { .ed-historia-completa:first-child img { max-height: none; } }
 /* Aparición suave al hacer scroll (se desactiva si la persona prefiere menos movimiento) */
 @media (prefers-reduced-motion: no-preference) {
   .ed-aparece { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -862,7 +864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Cada amigurumi nace de una historia real.</p>
       </header>
       <div class="ed-historias" id="ed-historias">
-        <figure class="ed-historia"><img src="img/inicio/historia-mascota.webp" alt="Perro labrador negro con pañoleta roja junto a su amigurumi personalizado, compartido por su dueña en Instagram" loading="lazy" decoding="async"><figcaption>“Mi novio me dio el regalito más lindo.” — Historia compartida por una clienta</figcaption></figure>
+        <figure class="ed-historia ed-historia-completa"><img src="img/inicio/historia-mascota.webp" width="720" height="1027" alt="Perro labrador negro con pañoleta roja junto a su amigurumi personalizado, compartido por su dueña en Instagram" loading="lazy" decoding="async"><figcaption>“Mi novio me dio el regalito más lindo.” — Historia compartida por una clienta</figcaption></figure>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-1.webp" alt="Abuela con vestido de flores y gafas, junto a su amigurumi personalizado con los mismos detalles" loading="lazy" decoding="async"><figcaption>Abuela con vestido de flores y gafas</figcaption></figure>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-7.webp" alt="Hombre de barba y cabello canoso con chaqueta verde, junto a su amigurumi personalizado" loading="lazy" decoding="async"><figcaption>Hombre de barba y cabello canoso con chaqueta verde</figcaption></figure>
         <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-2.webp" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" decoding="async"><figcaption>Niña con overol de jean y sombrero</figcaption></figure>
