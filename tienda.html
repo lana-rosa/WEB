@@ -1414,6 +1414,7 @@ a { color: var(--rosa-principal); }
 .nav-movil-panel a.nav-destacado { color: var(--rosa-principal); font-weight: 700; }
 button.boton-primario { background: var(--rosa-principal); color: var(--blanco); font: inherit; font-weight: 600; padding: 12px 20px; border-radius: 999px; }
 button.boton-primario:hover { filter: brightness(0.95); }
+.aviso-personaje { font-size: 0.82rem; color: var(--tinta-suave); background: var(--blanco-hueso); border-left: 3px solid var(--rosa-medio); border-radius: 8px; padding: 8px 12px; margin: 8px 0 12px; }
 </style>
 </head>
 <body>
@@ -1785,6 +1786,10 @@ function crearTarjeta(item) {
 
 (async function cargarTiendaDesdeERP() {
   try {
+    // Productos inspirados en personajes: se les muestra un aviso en la ficha
+    supabase.rpc('obtener_productos_personaje').then(function (r) {
+      window.PRODUCTOS_PERSONAJE = new Set(((r && r.data) || []).map(function (x) { return x.id; }));
+    });
     const { data, error } = await supabase.rpc('obtener_tienda_web');
     if (error) throw error;
 
@@ -2159,6 +2164,7 @@ function inicializarBuscadorTienda() {
         <p class="precio-modal" id="modal-precio"></p>
         <p class="calificacion-modal" id="modal-calificacion"></p>
         <p class="descripcion-modal" id="modal-descripcion"></p>
+        <p class="aviso-personaje" id="modal-aviso-personaje" hidden>Pieza artesanal tejida a mano e inspirada en un personaje. No es un producto oficial ni está asociada a la marca del personaje.</p>
         <ul class="ficha-tecnica" id="modal-ficha"></ul>
         <div class="modal-botones">
           <button type="button" class="boton-primario" id="modal-boton-carrito" style="border:none; cursor:pointer;">🛒 Agregar al carrito</button>
@@ -2213,6 +2219,7 @@ var RESENAS_POR_PRODUCTO = {};
     precioEl.textContent = formatoCOP(producto.precio) + ' COP';
     mostrarResenasEnModal(id);
     descripcionEl.innerHTML = producto.descripcion.replace(/\n/g, '<br>');
+    document.getElementById('modal-aviso-personaje').hidden = !(window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id));
 
     var especificacionesHtml = producto.especificaciones.map(function(e) { return '<li>' + e + '</li>'; }).join('');
     var cuidadosHtml = producto.cuidados.map(function(c) { return '<li>' + c + '</li>'; }).join('');
