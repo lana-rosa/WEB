@@ -535,7 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2><span aria-hidden="true">🧮</span> Herramientas para tejedoras</h2>
         <p>Para planear, calcular y organizar tus proyectos.</p>
         <nav class="enlaces-grupo" aria-label="Herramientas para tejedoras">
-          <a href="#calculadora"><span class="icono" aria-hidden="true">🧮</span><span><strong>Calculadoras</strong><span>Aumentos, muestra, lana y precio</span></span></a>
+          <a href="#calculadora"><span class="icono" aria-hidden="true">🧮</span><span><strong>Calculadoras</strong><span>Aumentos, muestra, lana y costos</span></span></a>
           <a href="#agenda"><span class="icono" aria-hidden="true">🗓️</span><span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></span></a>
           <a href="paletas-rosina.html"><span class="icono" aria-hidden="true">🎨</span><span><strong>Paletas de colores</strong><span>22 combinaciones y la tuya</span></span></a>
         </nav>
@@ -798,7 +798,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="recurso-cabecera">
       <div>
         <h2>Calculadora de Rosina</h2>
-        <p>Rosina hace las cuentas por ti: reparte aumentos y disminuciones, adapta un patrón a tu muestra, estima cuánta lana necesitas, lleva la cuenta de tus vueltas y te ayuda a ponerle precio a tu tejido.</p>
+        <p>Rosina hace las cuentas por ti: reparte aumentos y disminuciones, adapta un patrón a tu muestra, estima cuánta lana necesitas, lleva la cuenta de tus vueltas y calcula los costos de tu tejido.</p>
       </div>
     </div>
     <div class="pestanas" role="tablist" aria-label="Herramientas de la calculadora">
@@ -806,7 +806,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" role="tab" id="tab-muestra" aria-controls="calc-muestra" aria-selected="false">Muestra (tamaño de tu pieza)</button>
       <button type="button" role="tab" id="tab-lana" aria-controls="calc-lana" aria-selected="false">¿Cuánta lana?</button>
       <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="false">Contador de vueltas</button>
-      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="false">💰 Precio de tu tejido</button>
+      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="false">💰 Calculadora de costos</button>
     </div>
 
     <div class="panel-calc" role="tabpanel" id="calc-aumentos" aria-labelledby="tab-aumentos">
@@ -1417,7 +1417,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     par[1]();
   });
 
-  /* ---------- Precio de tu tejido ---------- */
+  /* ---------- Calculadora de costos ---------- */
   var CLAVE_PRECIO = 'rosinaPrecio', camposPrecio = ['pr-ovillo', 'pr-gramos-ovillo', 'pr-gramos', 'pr-relleno', 'pr-accesorios', 'pr-empaque', 'pr-horas', 'pr-hora', 'pr-indirectos', 'pr-ganancia', 'pr-comision'];
   try { var gp = JSON.parse(leer(CLAVE_PRECIO)); if (gp) camposPrecio.forEach(function(id) { if (gp[id] !== undefined) document.getElementById(id).value = gp[id]; }); } catch (e) {}
   function pesos(n) { return '$' + Math.round(n).toLocaleString('es-CO'); }
