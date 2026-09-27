@@ -313,6 +313,11 @@ article.post ol li { margin-bottom: 8px; }
 .nav-principal a.nav-destacado:hover { background: #B83E78; color: #fff; }
 .nav-movil-panel .grupo-nav { margin: 0; padding: 14px 24px 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rosa-principal); }
 .nav-movil-panel a.nav-destacado { color: var(--rosa-principal); font-weight: 700; }
+
+/* Artículos plegados: se ve el título y el primer párrafo, y se abren con "Leer el artículo completo" */
+article.post.plegado > *:not(.meta):not(h2):not(.intro-post):not(.boton-leer) { display: none !important; }
+.boton-leer { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-principal); background: var(--blanco); border: 2px solid var(--rosa-medio); border-radius: 999px; padding: 8px 18px; cursor: pointer; margin-top: 4px; }
+.boton-leer:hover { border-color: var(--rosa-principal); }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -797,6 +802,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   window.addEventListener('hashchange', mostrarDestino);
   document.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener('click', function () { setTimeout(mostrarDestino, 0); }); });
+})();
+</script>
+<script>
+// Revista: cada artículo muestra su inicio y se abre con "Leer el artículo completo" o al llegar desde un enlace
+(function () {
+  var articulos = document.querySelectorAll('article.post');
+  function poner(a, abierto) {
+    a.classList.toggle('plegado', !abierto);
+    var b = a.querySelector('.boton-leer');
+    b.textContent = abierto ? 'Cerrar el artículo ▴' : 'Leer el artículo completo ▾';
+    b.setAttribute('aria-expanded', abierto);
+    b.parentNode.removeChild(b);
+    if (abierto) a.appendChild(b); else a.querySelector('.intro-post').after(b);
+  }
+  articulos.forEach(function (a) {
+    var h = a.querySelector('h2');
+    var intro = h && h.nextElementSibling;
+    if (!intro || intro.tagName !== 'P') return;
+    intro.classList.add('intro-post');
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'boton-leer';
+    b.addEventListener('click', function () {
+      var abrir = a.classList.contains('plegado');
+      poner(a, abrir);
+      if (!abrir) a.scrollIntoView({ block: 'start' });
+    });
+    intro.after(b);
+    poner(a, false);
+  });
+  function abrirDestino() {
+    var d = location.hash && document.getElementById(location.hash.slice(1));
+    var a = d && d.closest('article.post');
+    if (a && a.classList.contains('plegado')) { poner(a, true); d.scrollIntoView(); }
+  }
+  abrirDestino();
+  window.addEventListener('hashchange', abrirDestino);
+  document.querySelectorAll('a[href^="#"]').forEach(function (l) {
+    l.addEventListener('click', function () { setTimeout(abrirDestino, 0); });
+  });
 })();
 </script>
 </body>
