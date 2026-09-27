@@ -33,9 +33,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 - [ ] **Pagos en línea dentro de la web.** Sara quiere que el carrito cobre directamente (tarjeta, PSE, Nequi). Recomendación: Wompi (Bancolombia). Sara abre la cuenta con RUT, cédula y cuenta bancaria; después Claude integra el pago con Supabase (llave pública en la web, secretos solo en Supabase, confirmación por webhook y envío según ciudad: $18.000 / $13.000 / $8.000).
 
-- [ ] **Inicio editorial (sin publicar, 27-sep-2026):** falta que Sara envíe
-  - una foto real de un amigurumi de mascota para la tarjeta "Tu mascota" (hoy va con fondo suave);
-  - el texto exacto de 3 reseñas de Google (nombre como aparece y estrellas) para la sección "Lo que dicen nuestras clientas" (hoy solo tiene el enlace a Google).
+- [ ] **Inicio editorial listo, sin publicar (27-sep-2026).** Ya tiene foto real de mascota, historia del perro labrador (usuario de Instagram borrado), llavero LUK, Rosina tejida, foto de feria y los mensajes reales de clientas sacados del video. Falta que Sara lo apruebe.
 
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 

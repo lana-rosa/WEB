@@ -673,6 +673,16 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-final h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); }
 .ed-final p { font-size: 1.12rem; }
 
+.ed-mensajes { list-style: none; padding: 0; margin: 28px auto 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 820px; }
+.ed-mensajes li { background: var(--crema); border: 1px solid var(--linea); border-radius: 20px 20px 20px 6px; padding: 12px 18px; font-size: 1rem; color: var(--tinta); }
+.ed-mensajes li:nth-child(even) { background: var(--rosa-suave); border-color: transparent; border-radius: 20px 20px 6px 20px; }
+.ed-feria { margin: 40px auto 0; max-width: 360px; text-align: center; }
+.ed-feria img { width: 100%; height: auto; border-radius: 18px; display: block; }
+.ed-feria figcaption { margin-top: 10px; color: var(--tinta-suave); font-size: 0.92rem; }
+.ed-rosina { position: relative; }
+.ed-rosina-tejida { position: absolute; right: 4%; bottom: -8%; width: 26% !important; height: auto; border-radius: 14px; box-shadow: 0 12px 30px rgba(58,42,46,0.18); border: 4px solid var(--blanco); z-index: 1; }
+.ed-rosina { overflow: visible !important; }
+.ed-rosina img:not(.ed-rosina-tejida) { border-radius: 22px; }
 /* Aparición suave al hacer scroll (se desactiva si la persona prefiere menos movimiento) */
 @media (prefers-reduced-motion: no-preference) {
   .ed-aparece { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -788,7 +798,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </header>
       <div class="ed-tejer">
         <a class="ed-tejer-item" href="personaliza.html?idea=persona"><img src="img/foto-amigurumi/blusa-blanca.webp" alt="Mujer con blusa blanca junto a su amigurumi personalizado" loading="lazy" decoding="async"><span>Una persona</span></a>
-        <a class="ed-tejer-item sin-foto" href="personaliza.html?idea=mascota"><span>Tu mascota</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=mascota"><img src="img/inicio/mascota-bulldog.webp" alt="Amigurumi de un perro bulldog francés con su placa de nombre, tejido a mano" loading="lazy" decoding="async"><span>Tu mascota</span></a>
         <a class="ed-tejer-item" href="personaliza.html?idea=pareja"><img src="img/inicio/tejer-pareja.webp" alt="Pareja de novios junto a sus amigurumis personalizados de novio y novia" loading="lazy" decoding="async"><span>Una pareja</span></a>
         <a class="ed-tejer-item" href="personaliza.html?idea=personaje"><img src="img/foto-amigurumi/personaje.webp" alt="Amigurumi de un ratoncito con uniforme de fútbol junto a la imagen del personaje que lo inspiró" loading="lazy" decoding="async"><span>Un personaje que amas</span></a>
         <a class="ed-tejer-item" href="personaliza.html?idea=regalo"><img src="img/testimonios/testimonio-5.webp" alt="Mujer con blusa rosada y corazón rojo, junto a su amigurumi personalizado" loading="lazy" decoding="async"><span>Un regalo especial</span></a>
@@ -852,14 +862,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Cada amigurumi nace de una historia real.</p>
       </header>
       <div class="ed-historias" id="ed-historias">
+        <figure class="ed-historia"><img src="img/inicio/historia-mascota.webp" alt="Perro labrador negro con pañoleta roja junto a su amigurumi personalizado, compartido por su dueña en Instagram" loading="lazy" decoding="async"><figcaption>“Mi novio me dio el regalito más lindo.” — Historia compartida por una clienta</figcaption></figure>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-1.webp" alt="Abuela con vestido de flores y gafas, junto a su amigurumi personalizado con los mismos detalles" loading="lazy" decoding="async"><figcaption>Abuela con vestido de flores y gafas</figcaption></figure>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-7.webp" alt="Hombre de barba y cabello canoso con chaqueta verde, junto a su amigurumi personalizado" loading="lazy" decoding="async"><figcaption>Hombre de barba y cabello canoso con chaqueta verde</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-2.webp" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" decoding="async"><figcaption>Niña con overol de jean y sombrero</figcaption></figure>
+        <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-2.webp" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" decoding="async"><figcaption>Niña con overol de jean y sombrero</figcaption></figure>
         <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-3.webp" alt="Familia de tres personas vestidas de blanco junto a sus amigurumis personalizados y el mensaje de agradecimiento del cliente" loading="lazy" decoding="async"><figcaption>Familia de tres personas vestidas de blanco</figcaption></figure>
         <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-6.webp" alt="Hombre con camiseta lila, junto a su amigurumi personalizado" loading="lazy" decoding="async"><figcaption>Hombre con camiseta lila</figcaption></figure>
         <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-8.webp" alt="Niña con conjunto beige, junto a su amigurumi personalizado de cabello largo" loading="lazy" decoding="async"><figcaption>Niña con conjunto beige</figcaption></figure>
         <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-9.webp" alt="Muñeca con sombrero de fresa usada como referencia, junto al amigurumi tejido a partir de ella" loading="lazy" decoding="async"><figcaption>Muñeca con sombrero de fresa usada como referencia</figcaption></figure>
         <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-10.jpg" alt="Ovejita de referencia con tutú rosado, junto al peluche tejido a partir de ella" loading="lazy" decoding="async"><figcaption>Ovejita de referencia con tutú rosado</figcaption></figure>
+        <figure class="ed-historia ed-extra"><img src="img/inicio/mascota-llavero.webp" alt="Llavero personalizado de un perro negro con pañoleta roja que dice LUK" loading="lazy" decoding="async"><figcaption>Llavero de su perrito, con su nombre</figcaption></figure>
       </div>
       <div class="ed-centro ed-botones-centro">
         <button type="button" class="boton-secundario" id="ed-mas-historias" aria-expanded="false" aria-controls="ed-historias">Conoce más historias</button>
@@ -913,7 +925,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="rosina.html" class="ed-enlace">Conocer a Rosina →</a>
         </div>
       </div>
-      <a href="rosina.html" class="ed-rosina"><img src="img/conoce-a-rosina.webp" alt="Conoce a Rosina: ella es Rosina, nuestra ovejita creativa, tierna y soñadora" width="1536" height="1024" loading="lazy" decoding="async"></a>
+      <a href="rosina.html" class="ed-rosina"><img class="ed-rosina-tejida" src="img/inicio/rosina-tejida.webp" alt="Rosina tejida a mano en crochet, con su vestido rosado de flores" width="640" height="905" loading="lazy" decoding="async"><img src="img/conoce-a-rosina.webp" alt="Conoce a Rosina: ella es Rosina, nuestra ovejita creativa, tierna y soñadora" width="1536" height="1024" loading="lazy" decoding="async"></a>
     </div>
   </section>
 
@@ -930,6 +942,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><img src="img/equipo/jennifer.jpg" alt="Jennifer, cofundadora y jefa de taller de Lana Rosa Crochet" width="440" height="440" loading="lazy" decoding="async"><strong>Jennifer</strong><span>Cofundadora · jefa de taller</span></li>
         <li><img src="img/equipo/camila.jpg" alt="Camila, cofundadora de Lana Rosa Crochet" width="390" height="390" loading="lazy" decoding="async"><strong>Camila</strong><span>Cofundadora</span></li>
       </ul>
+      <figure class="ed-feria"><img src="img/inicio/feria.webp" alt="Dos integrantes de Lana Rosa en su puesto de una feria, con amigurumis y flores tejidas" width="529" height="759" loading="lazy" decoding="async"><figcaption>También nos encuentras en ferias.</figcaption></figure>
       <p class="respuesta-directa ed-quienes">Lana Rosa Crochet es un taller artesanal de Villamaría, Caldas, junto a Manizales. Tejemos a mano amigurumis, peluches y llaveros personalizados a partir de una foto, con los detalles reales de cada persona o mascota.</p>
       <div class="ed-centro"><a href="sobre-nosotras.html" class="boton-secundario">Conócenos</a></div>
     </div>
@@ -940,8 +953,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="contenedor ed-centro-texto">
       <p class="ed-eyebrow">Reseñas</p>
       <h2>Lo que dicen nuestras clientas</h2>
-      <p>Lee las opiniones de quienes ya recibieron su tejido.</p>
-      <!-- Aquí van 3 reseñas reales de Google, textuales, cuando Sara las envíe -->
+      <p>Algunos de los mensajes que nos llegan cuando reciben su tejido.</p>
+      <ul class="ed-mensajes" aria-label="Mensajes de clientas">
+        <li>Ayyyy quedó precioso, muchas gracias ❤️</li>
+        <li>Ya llegaron los llaveros, están preciosos. Muchas gracias ❤️</li>
+        <li>Omggg, está preciosooooo</li>
+        <li>Oye, muchas gracias, está muy muy hermoso ❤️</li>
+        <li>Muchas gracias! Está precioso</li>
+        <li>Nooo, está hermoso 😭</li>
+      </ul>
       <a href="https://share.google/GkcZvd8av8NjmRPPM" class="boton-secundario" target="_blank" rel="noopener">Ver más reseñas en Google</a>
     </div>
   </section>
