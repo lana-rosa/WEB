@@ -235,6 +235,16 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .proceso-personaliza li span { width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
 .proceso-personaliza strong { font-size: 0.92rem; }
 .proceso-personaliza small { font-size: 0.76rem; color: var(--tinta-suave); line-height: 1.3; }
+.casos-personaliza { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 14px 0 18px; }
+.casos-personaliza figure { margin: 0; }
+.casos-personaliza img { width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: var(--sombra-suave); }
+.casos-personaliza figcaption { margin-top: 8px; font-size: 0.85rem; color: var(--tinta-suave); text-align: center; }
+@media (max-width: 700px) { .casos-personaliza { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-left: -24px; margin-right: -24px; padding: 0 24px 8px; scroll-padding-left: 24px; } .casos-personaliza figure { flex: 0 0 70%; scroll-snap-align: start; } }
+.mensajes-personaliza { list-style: none; padding: 0; margin: 8px 0 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+.mensajes-personaliza li { background: var(--blanco); border: 1px solid rgba(69,69,74,0.08); border-radius: 18px 18px 18px 6px; padding: 8px 14px; font-size: 0.9rem; }
+.mensajes-personaliza li:nth-child(even) { background: var(--rosa-suave); border-color: transparent; border-radius: 18px 18px 6px 18px; }
+.enlace-resenas { margin: 0 0 30px; font-size: 0.9rem; }
+.enlace-resenas a { color: var(--rosa-principal); font-weight: 700; text-decoration: none; }
 .nota-tamanos { color: var(--tinta-suave); font-size: 0.9rem; margin: -6px 0 0; }
 .desc-tamano { font-size: 0.82rem; color: var(--tinta-suave); margin: 2px 0 0; }
 .boton-wa-exito { display: inline-block; margin-top: 10px; background: #25D366; color: #fff !important; border-radius: 999px; padding: 8px 16px; font-weight: 700; text-decoration: none; }
@@ -389,6 +399,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><span>5</span><strong>Tejido</strong><small>Lo tejemos a mano</small></li>
     <li><span>6</span><strong>Entrega</strong><small>Llega a tus manos</small></li>
   </ol>
+
+  <h2 class="titulo-proceso">De la foto al amigurumi</h2>
+  <p class="nota-tamanos">Pedidos reales junto a la foto que los inspiró.</p>
+  <div class="casos-personaliza">
+    <figure><img src="img/foto-amigurumi/vestido-fucsia.webp" alt="Mujer con vestido fucsia junto a su amigurumi con el mismo vestido y cabello" width="600" height="848" loading="lazy" decoding="async"><figcaption>Con su vestido fucsia favorito</figcaption></figure>
+    <figure><img src="img/foto-amigurumi/blusa-blanca.webp" alt="Mujer con blusa blanca junto a su amigurumi personalizado" width="600" height="848" loading="lazy" decoding="async"><figcaption>Con su blusa blanca y su jean</figcaption></figure>
+    <figure><img src="img/foto-amigurumi/pareja.webp" alt="Pareja de adultos mayores junto a sus dos amigurumis personalizados" width="600" height="848" loading="lazy" decoding="async"><figcaption>Una pareja, cada uno con su estilo</figcaption></figure>
+    <figure><img src="img/foto-amigurumi/boina.webp" alt="Niña con boina y abrigo rosado junto a su amigurumi con los mismos detalles" width="600" height="848" loading="lazy" decoding="async"><figcaption>Con su boina y su abrigo rosado</figcaption></figure>
+  </div>
+  <ul class="mensajes-personaliza" aria-label="Mensajes de clientas">
+    <li>Ayyyy quedó precioso, muchas gracias ❤️</li>
+    <li>Nooo, está hermoso 😭</li>
+    <li>Omggg, está preciosooooo</li>
+    <li>Oye, muchas gracias, está muy muy hermoso ❤️</li>
+  </ul>
+  <p class="enlace-resenas"><a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
 
   <h2 class="titulo-proceso">Tamaños de referencia</h2>
   <p class="nota-tamanos">También tejemos de 10 cm, llaveros y peluches.</p>
