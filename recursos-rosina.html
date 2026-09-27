@@ -428,6 +428,12 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .nav-principal a.nav-destacado:hover { background: #B83E78; color: #fff; }
 .nav-movil-panel .grupo-nav { margin: 0; padding: 14px 24px 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rosa-principal); }
 .nav-movil-panel a.nav-destacado { color: var(--rosa-principal); font-weight: 700; }
+
+/* Secciones plegables: se ve la cabecera y se abre con "Ver" (al imprimir se muestra todo) */
+@media screen { .recurso.plegada .recurso-cabecera ~ *, .recurso.plegada .recurso-cabecera .acciones, .recurso.plegada .recurso-cabecera .descargas { display: none !important; } .recurso.plegada { padding-top: 34px !important; padding-bottom: 30px !important; } }
+.boton-plegar { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-principal); background: var(--blanco); border: 2px solid var(--rosa-medio); border-radius: 999px; padding: 8px 18px; cursor: pointer; margin-top: 12px; }
+.boton-plegar:hover { border-color: var(--rosa-principal); }
+@media print { .boton-plegar { display: none !important; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -1580,6 +1586,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     campos.forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
     datos = {};
     borrar(CLAVE_AGENDA);
+  });
+})();
+</script>
+<script>
+// Rincón de Rosina: cada recurso se muestra plegado y se abre con "Ver" o al llegar desde un enlace
+(function () {
+  var secciones = document.querySelectorAll('section.recurso');
+  function poner(seccion, abierta) {
+    seccion.classList.toggle('plegada', !abierta);
+    var b = seccion.querySelector('.boton-plegar');
+    if (b) { b.textContent = abierta ? 'Ocultar ▴' : 'Ver ' + (b.dataset.nombre || '') + ' ▾'; b.setAttribute('aria-expanded', abierta); }
+  }
+  secciones.forEach(function (seccion) {
+    var cab = seccion.querySelector('.recurso-cabecera');
+    if (!cab) return;
+    var titulo = cab.querySelector('h2');
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'boton-plegar';
+    b.dataset.nombre = { stickers: 'los stickers', fondos: 'los fondos', checklist: 'la checklist', abreviaturas: 'las abreviaturas', calculadora: 'las calculadoras', agenda: 'la agenda' }[seccion.id] || '';
+    b.addEventListener('click', function () { poner(seccion, seccion.classList.contains('plegada')); });
+    (titulo ? titulo.parentNode : cab).appendChild(b);
+    poner(seccion, false);
+  });
+  function abrirDestino() {
+    var id = location.hash.slice(1);
+    var destino = id && document.getElementById(id);
+    var seccion = destino && destino.closest('section.recurso');
+    if (seccion && seccion.classList.contains('plegada')) { poner(seccion, true); destino.scrollIntoView(); }
+  }
+  abrirDestino();
+  window.addEventListener('hashchange', abrirDestino);
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var d = document.getElementById(a.getAttribute('href').slice(1));
+      var s = d && d.closest('section.recurso');
+      if (s) poner(s, true);
+    });
   });
 })();
 </script>

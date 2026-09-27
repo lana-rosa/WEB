@@ -216,7 +216,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 /* Prioridad 1: respuestas rápidas y proceso */
 .respuestas-rapidas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 8px 0 30px; }
 @media (max-width: 860px) { .respuestas-rapidas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .respuestas-rapidas { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .respuestas-rapidas { gap: 10px; } .respuestas-rapidas > div { padding: 12px 12px; } .respuestas-rapidas h2 { font-size: 0.95rem; } .respuestas-rapidas p { font-size: 0.85rem; margin: 0; } }
 .respuestas-rapidas > div { background: var(--blanco); border-radius: 16px; padding: 16px 18px; box-shadow: var(--sombra-suave); }
 .respuestas-rapidas span { font-size: 1.4rem; }
 .respuestas-rapidas h2 { font-size: 1rem; color: var(--rosa-principal); margin: 4px 0; }
@@ -251,6 +251,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .nav-principal a.nav-destacado:hover { background: #B83E78; color: #fff; }
 .nav-movil-panel .grupo-nav { margin: 0; padding: 14px 24px 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rosa-principal); }
 .nav-movil-panel a.nav-destacado { color: var(--rosa-principal); font-weight: 700; }
+@media (max-width: 520px) { .rosina-encabezado { display: none; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -354,19 +355,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div style="flex:1; min-width:240px;">
       <p class="eslogan" style="color:var(--rosa-principal); font-weight:600; margin-bottom:8px;">Personaliza Lana Rosa</p>
       <h1>Personaliza tu amigurumi</h1>
-      <p>Sube una foto de referencia y cuéntanos los detalles — nosotras nos encargamos de convertirla en una pieza tejida a mano, única e irrepetible.</p>
+      <p>Envíanos una foto y los detalles: la convertimos en un amigurumi único, tejido a mano.</p>
       <a href="#form-personalizado" class="boton-ir-form">Quiero cotizar el mío ↓</a>
     </div>
-    <img src="img/rosina-abrazo.webp" alt="Rosina abrazando un corazón tejido" style="width:130px; height:130px; object-fit:cover; border-radius:50%; box-shadow:var(--sombra-suave); flex-shrink:0;">
+    <img class="rosina-encabezado" src="img/rosina-abrazo.webp" alt="Rosina abrazando un corazón tejido" style="width:130px; height:130px; object-fit:cover; border-radius:50%; box-shadow:var(--sombra-suave); flex-shrink:0;">
   </div>
 
   <div class="respuestas-rapidas">
-    <div><span aria-hidden="true">🧸</span><h2>¿Qué puedo pedir?</h2><p>Personas, mascotas, parejas, personajes, llaveros y peluches. Si lo puedes imaginar, lo tejemos.</p></div>
-    <div><span aria-hidden="true">💰</span><h2>¿Cuánto cuesta?</h2><p>Nuestros amigurumis personalizados parten desde <strong>$70.000 COP</strong>. El precio final depende del tamaño, la complejidad y el nivel de detalle.</p></div>
-    <div><span aria-hidden="true">🕒</span><h2>¿Cuánto tarda?</h2><p>El tiempo de elaboración depende del tamaño, la complejidad y la fila de pedidos. Te confirmamos la fecha estimada al aprobar tu cotización.</p></div>
-    <div><span aria-hidden="true">📸</span><h2>¿Qué debo enviar?</h2><p>Fotos claras de la persona, mascota o personaje, y los detalles que no pueden faltar: ropa, accesorios, colores.</p></div>
-    <div><span aria-hidden="true">📝</span><h2>¿Cómo hago el pedido?</h2><p>Llena el formulario de esta página. Te escribimos con la cotización y, al confirmar, empezamos a tejer.</p></div>
-    <div><span aria-hidden="true">📦</span><h2>¿Hacen envíos?</h2><p>Sí, a toda Colombia. El envío va aparte: $18.000 COP a otras ciudades; a Manizales, $13.000, y dentro de Villamaría, $8.000.</p></div>
+    <div><span aria-hidden="true">🧸</span><h2>¿Qué puedo pedir?</h2><p>Personas, mascotas, parejas, personajes, llaveros y peluches.</p></div>
+    <div><span aria-hidden="true">💰</span><h2>¿Cuánto cuesta?</h2><p>Desde <strong>$70.000 COP</strong>, según el tamaño y el detalle.</p></div>
+    <div><span aria-hidden="true">🕒</span><h2>¿Cuánto tarda?</h2><p>Depende del pedido. Te damos la fecha al aprobar la cotización.</p></div>
+    <div><span aria-hidden="true">📸</span><h2>¿Qué debo enviar?</h2><p>Fotos claras y los detalles que no pueden faltar.</p></div>
+    <div><span aria-hidden="true">📝</span><h2>¿Cómo hago el pedido?</h2><p>Llena el formulario y te enviamos la cotización.</p></div>
+    <div><span aria-hidden="true">📦</span><h2>¿Hacen envíos?</h2><p>A toda Colombia: Villamaría $8.000, Manizales $13.000 y otras ciudades $18.000.</p></div>
   </div>
 
   <h2 class="titulo-proceso">Así funciona</h2>
@@ -380,7 +381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </ol>
 
   <h2 class="titulo-proceso">Tamaños de referencia</h2>
-  <p class="nota-tamanos">Tamaños de referencia para amigurumis. También tejemos de 10 cm, llaveros y peluches: elígelos en el formulario.</p>
+  <p class="nota-tamanos">También tejemos de 10 cm, llaveros y peluches.</p>
   <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:16px 0 28px;" class="galeria-tamanos-personalizado">
     <div style="text-align:center;">
       <img src="img/personalizado-13cm.webp" alt="Ejemplo de amigurumi personalizado de 13 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;" loading="lazy" decoding="async">
@@ -438,7 +439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <option value="Neira">Neira</option>
           <option value="Otro (nacional)">Otra ciudad de Colombia</option>
         </select>
-        <p class="ayuda" style="font-weight:600; color:var(--rosa-principal);">📦 El valor del producto no incluye el envío ($18.000 COP a otras ciudades de Colombia; a Manizales, $13.000, y dentro de Villamaría, $8.000).</p>
+        <p class="ayuda" style="font-weight:600; color:var(--rosa-principal);">📦 El envío va aparte: Villamaría $8.000, Manizales $13.000, otras ciudades $18.000.</p>
       </div>
     </div>
 
@@ -478,8 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div style="background:var(--rosa-suave); border-radius:var(--radio-suave); padding:28px 32px; max-width:780px; margin-bottom:60px;">
     <h2 style="font-size:1.15rem;">¿Cómo se paga?</h2>
-    <p style="margin-bottom:16px;">Apenas te confirmemos el precio, puedes pagar por cualquiera de estos medios y enviarnos el comprobante por WhatsApp. El valor del producto no incluye el envío:</p>
-    <p style="font-weight:600; color:var(--rosa-principal); margin-bottom:16px;">🕒 El tiempo de elaboración depende del tamaño, la complejidad y la fila de pedidos. Te confirmamos la fecha estimada al aprobar tu cotización.</p>
+    <p style="margin-bottom:16px;">Cuando te confirmemos el precio, paga por Nequi o Bre-B y envíanos el comprobante por WhatsApp.</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
       <div style="background:var(--blanco); border-radius:14px; padding:16px;">
         <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Nequi</p>
