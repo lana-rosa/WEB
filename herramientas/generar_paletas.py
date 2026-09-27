@@ -73,7 +73,7 @@ main = f'''<main>
 {chr(10).join(partes)}
   </div>
 
-  <section class="seccion-suave no-imprimir" id="crea-tu-paleta">
+  <section class="seccion-suave seccion-lila no-imprimir" id="crea-tu-paleta">
     <div class="contenedor creador">
       <div>
         <h2>🎨 Arma tu paleta con Rosina</h2>
