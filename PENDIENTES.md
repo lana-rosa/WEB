@@ -14,6 +14,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
 
+- [ ] **Autorización de 3 fotos para la galería "De la foto al amigurumi" del inicio:** blusa blanca con jean, señor de canas con camisa blanca y señora saludando. Con la autorización se agregan (Sara tiene las fotos sin flores).
 - [ ] **Google Search Console y Google Analytics.** Hoy la web no tiene ninguna medición. Sara crea las cuentas y pasa el código de verificación y el ID de medición; Claude los instala en todas las páginas.
 - [ ] **Conectar las paletas con las lanas reales.** Sara pasa la lista de colores que maneja o agrega el código de color (por ejemplo `#E74E96`) a cada lana en el inventario. Así cada paleta puede mostrar las lanas de la mercería que más se parecen, con foto, precio y carrito.
 - [ ] **Mini-guía por correo "5 días para tejer tu primer amigurumi".** Sirve para armar lista de correos antes de vender Pattern AI o cursos. Sara elige y crea la cuenta en una herramienta de correo (MailerLite o Brevo, con plan gratis); Claude escribe los 5 correos y pone el formulario en la web.
