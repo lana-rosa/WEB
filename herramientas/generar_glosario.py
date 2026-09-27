@@ -107,7 +107,7 @@ chips = ''.join(f'<button type="button" data-filtro="{cid}" aria-pressed="false"
 main = f'''<main>
   <section class="hero-rosina contenedor">
     <div class="marco-rosina">
-      <img src="img/rosina-aprende.jpg" alt="Rosina, la ovejita de Lana Rosa Crochet, tejiendo en su escritorio">
+      <img src="img/rosina-aprende.webp" alt="Rosina, la ovejita de Lana Rosa Crochet, tejiendo en su escritorio">
     </div>
     <div>
       <p class="eslogan">Material gratuito · Aprende con Rosina</p>
