@@ -214,16 +214,20 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
 @media (min-width: 1101px) { .menu-movil { display: inline-flex; align-items: center; order: 20; } .nav-movil-panel { left: auto; right: max(16px, calc((100vw - 1320px) / 2 + 16px)); width: 340px; max-height: calc(100vh - 120px); border-radius: 0 0 18px 18px; } }
-@media (min-width: 1101px) { .encabezado > .contenedor { justify-content: flex-start; gap: 12px; } .encabezado nav[aria-label="Navegación principal"] { margin: 0 auto; } .menu-movil { order: -1; margin-right: 2px; } .nav-movil-panel { right: auto; left: max(16px, calc((100vw - 1320px) / 2 + 16px)); } }
+@media (min-width: 1101px) { .encabezado > .contenedor { justify-content: flex-start; gap: 12px; } .encabezado nav[aria-label="Navegación principal"] { margin: 0 auto; } .encabezado .logo { order: -2; } .menu-movil { order: -1; margin-left: 6px; } .nav-movil-panel { right: auto; left: max(16px, calc((100vw - 1320px) / 2 + 16px)); } }
 @media (min-width: 601px) { .encabezado .logo { flex-direction: column; gap: 3px; } .encabezado .logo-img { height: 60px; } .encabezado .texto-logo { font-size: 0.78rem; line-height: 1; } }
 /* Prioridad 1: respuestas rápidas y proceso */
-.respuestas-rapidas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 8px 0 30px; }
+.respuestas-rapidas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 8px 0 30px; align-items: start; }
 @media (max-width: 860px) { .respuestas-rapidas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .respuestas-rapidas { gap: 10px; } .respuestas-rapidas > div { padding: 12px 12px; } .respuestas-rapidas h2 { font-size: 0.95rem; } .respuestas-rapidas p { font-size: 0.85rem; margin: 0; } }
-.respuestas-rapidas > div { background: var(--blanco); border-radius: 16px; padding: 16px 18px; box-shadow: var(--sombra-suave); }
-.respuestas-rapidas span { font-size: 1.4rem; }
-.respuestas-rapidas h2 { font-size: 1rem; color: var(--rosa-principal); margin: 4px 0; }
-.respuestas-rapidas p { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); }
+.respuestas-rapidas details { background: var(--blanco); border-radius: 16px; box-shadow: var(--sombra-suave); }
+.respuestas-rapidas summary { display: flex; align-items: center; gap: 10px; padding: 14px 16px; cursor: pointer; list-style: none; }
+.respuestas-rapidas summary::-webkit-details-marker { display: none; }
+.respuestas-rapidas summary > span:first-child { font-size: 1.3rem; flex-shrink: 0; }
+.respuestas-rapidas h2 { font-size: 1rem; color: var(--rosa-principal); margin: 0; flex: 1; }
+.respuestas-rapidas .flecha-rapida { color: var(--rosa-principal); font-size: 1rem; transition: transform 0.2s; flex-shrink: 0; }
+.respuestas-rapidas details[open] .flecha-rapida { transform: rotate(180deg); }
+.respuestas-rapidas p { margin: 0; padding: 0 16px 14px; font-size: 0.9rem; color: var(--tinta-suave); }
+@media (max-width: 520px) { .respuestas-rapidas { gap: 8px; } .respuestas-rapidas summary { padding: 11px 12px; gap: 8px; } .respuestas-rapidas h2 { font-size: 0.9rem; } .respuestas-rapidas p { font-size: 0.85rem; padding: 0 12px 12px; } }
 .titulo-proceso { font-size: 1.2rem; margin: 0 0 12px; }
 .proceso-personaliza { list-style: none; padding: 0; margin: 0 0 30px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
 @media (max-width: 760px) { .proceso-personaliza { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -368,12 +372,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="respuestas-rapidas">
-    <div><span aria-hidden="true">🧸</span><h2>¿Qué puedo pedir?</h2><p>Personas, mascotas, parejas, personajes, llaveros y peluches.</p></div>
-    <div><span aria-hidden="true">💰</span><h2>¿Cuánto cuesta?</h2><p>Desde <strong>$70.000 COP</strong>, según el tamaño y el detalle.</p></div>
-    <div><span aria-hidden="true">🕒</span><h2>¿Cuánto tarda?</h2><p>Depende del pedido. Te damos la fecha al aprobar la cotización.</p></div>
-    <div><span aria-hidden="true">📸</span><h2>¿Qué debo enviar?</h2><p>Fotos claras y los detalles que no pueden faltar.</p></div>
-    <div><span aria-hidden="true">📝</span><h2>¿Cómo hago el pedido?</h2><p>Llena el formulario y te enviamos la cotización.</p></div>
-    <div><span aria-hidden="true">📦</span><h2>¿Hacen envíos?</h2><p>A toda Colombia: Villamaría $8.000, Manizales $13.000 y otras ciudades $18.000.</p></div>
+    <details><summary><span aria-hidden="true">🧸</span><h2>¿Qué puedo pedir?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Personas, mascotas, parejas, personajes, llaveros y peluches.</p></details>
+    <details><summary><span aria-hidden="true">💰</span><h2>¿Cuánto cuesta?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Desde <strong>$70.000 COP</strong>, según el tamaño y el detalle.</p></details>
+    <details><summary><span aria-hidden="true">🕒</span><h2>¿Cuánto tarda?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Depende del pedido. Te damos la fecha al aprobar la cotización.</p></details>
+    <details><summary><span aria-hidden="true">📸</span><h2>¿Qué debo enviar?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Fotos claras y los detalles que no pueden faltar.</p></details>
+    <details><summary><span aria-hidden="true">📝</span><h2>¿Cómo hago el pedido?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Llena el formulario y te enviamos la cotización.</p></details>
+    <details><summary><span aria-hidden="true">📦</span><h2>¿Hacen envíos?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>A toda Colombia: Villamaría $8.000, Manizales $13.000 y otras ciudades $18.000.</p></details>
   </div>
 
   <h2 class="titulo-proceso">Así funciona</h2>
