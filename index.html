@@ -2,9 +2,16 @@
 <html lang="es-CO">
 <head>
 <meta charset="UTF-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3MQ7XZD');</script>
+<!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Lana Rosa Crochet — Amigurumis personalizados hechos a mano en Manizales</title>
-<meta name="description" content="Amigurumis, peluches y accesorios tejidos a mano y personalizados con la imagen que tú quieras. Hechos con amor, punto a punto, en Villamaría, Caldas.">
+<title>Amigurumis personalizados en Manizales / Villamaría | Lana Rosa Crochet</title>
+<meta name="description" content="Amigurumis personalizados tejidos a mano desde una foto: personas, mascotas, parejas y regalos. Taller en Villamaría, junto a Manizales. Envíos a toda Colombia.">
 <link rel="canonical" href="https://lanarosacrochet.com/">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -13,7 +20,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Lana Rosa Crochet — Amigurumis personalizados hechos a mano">
-<meta property="og:description" content="Convertimos una foto de referencia en un amigurumi tejido a mano, único e irrepetible. Envíos a toda Colombia desde Manizales.">
+<meta property="og:description" content="Convertimos una foto en un amigurumi tejido a mano, único e irrepetible. Desde Manizales / Villamaría, con envíos a toda Colombia.">
 <meta property="og:url" content="https://lanarosacrochet.com/">
 <meta property="og:image" content="https://lanarosacrochet.com/img/og-lana-rosa.jpg">
 <meta property="og:locale" content="es_CO">
@@ -34,7 +41,10 @@
       "description": "Amigurumi tejido a mano a partir de una foto de referencia, con la ropa, gafas, peinado y accesorios de la persona o mascota. Incluye empaque hecho a la medida y tarjeta con mensaje personalizado.",
       "image": "https://lanarosacrochet.com/img/triptico-testimonios.jpg",
       "url": "https://lanarosacrochet.com/personaliza.html",
-      "brand": { "@type": "Brand", "name": "Lana Rosa Crochet" },
+      "brand": {
+        "@type": "Brand",
+        "name": "Lana Rosa Crochet"
+      },
       "offers": {
         "@type": "AggregateOffer",
         "priceCurrency": "COP",
@@ -42,7 +52,9 @@
         "highPrice": "200000",
         "availability": "https://schema.org/MadeToOrder",
         "url": "https://lanarosacrochet.com/precios.html",
-        "seller": { "@id": "https://lanarosacrochet.com/#organizacion" }
+        "seller": {
+          "@id": "https://lanarosacrochet.com/#organizacion"
+        }
       }
     },
     {
@@ -71,7 +83,9 @@
           "email": "contacto@lanarosacrochet.com",
           "url": "https://wa.me/573205072801",
           "areaServed": "CO",
-          "availableLanguage": ["es"]
+          "availableLanguage": [
+            "es"
+          ]
         }
       ],
       "sameAs": [
@@ -94,7 +108,9 @@
       "paymentAccepted": "Efectivo, Nequi, Bre-B, Tarjeta débito/crédito",
       "telephone": "+57 320 507 2801",
       "email": "contacto@lanarosacrochet.com",
-      "parentOrganization": { "@id": "https://lanarosacrochet.com/#organizacion" },
+      "parentOrganization": {
+        "@id": "https://lanarosacrochet.com/#organizacion"
+      },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Precios de Lana Rosa Crochet",
@@ -130,6 +146,20 @@
         "https://www.facebook.com/lana.rosa.2025",
         "https://www.tiktok.com/@lanarosacrochet",
         "https://www.youtube.com/@LanaRosaAcademy"
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Villamaría"
+        },
+        {
+          "@type": "City",
+          "name": "Manizales"
+        },
+        {
+          "@type": "Country",
+          "name": "Colombia"
+        }
       ]
     }
   ]
@@ -434,10 +464,10 @@ section { padding: 72px 0; }
 .overlay-carrito.abierto { display: block; }
 .panel-carrito {
   position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%;
-  background: var(--blanco-hueso); z-index: 1000; box-shadow: -6px 0 24px rgba(0,0,0,0.2);
-  transition: right 0.3s ease; display: flex; flex-direction: column;
+  background: var(--blanco-hueso); z-index: 1000; box-shadow: none;
+  transition: right 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column;
 }
-.panel-carrito.abierto { right: 0; }
+.panel-carrito.abierto { right: 0; box-shadow: -6px 0 24px rgba(0,0,0,0.2); }
 .panel-carrito-contenido { padding: 24px; display: flex; flex-direction: column; height: 100%; }
 .panel-carrito-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .panel-carrito-header h2 { margin: 0; }
@@ -499,6 +529,10 @@ section { padding: 72px 0; }
 </head>
 <body>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="franja-anuncios" role="banner" aria-label="Anuncios">
   <div class="cinta">
     <span>🚚 Envíos a toda Colombia</span>
@@ -560,13 +594,13 @@ section { padding: 72px 0; }
   <section class="carrusel-banners-seccion">
     <div class="carrusel-banners" id="carrusel-banners">
       <a href="tienda.html" class="slide-banner activo">
-        <img src="img/banners/banner1.jpg" alt="Amigurumis Lana Rosa Crochet" onerror="this.parentElement.style.display='none'">
+        <img src="img/banners/banner1.webp" srcset="img/banners/banner1-900.webp 900w, img/banners/banner1.webp 1600w" sizes="(max-width: 1208px) calc(100vw - 48px), 1160px" width="1600" height="585" alt="Amigurumis Lana Rosa Crochet" onerror="this.parentElement.style.display='none'">
       </a>
       <a href="tienda.html" class="slide-banner">
-        <img src="img/banners/banner2.jpg" alt="Amigurumis Lana Rosa Crochet" onerror="this.parentElement.style.display='none'" loading="lazy" decoding="async">
+        <img src="img/banners/banner2.webp" srcset="img/banners/banner2-900.webp 900w, img/banners/banner2.webp 1600w" sizes="(max-width: 1208px) calc(100vw - 48px), 1160px" width="1600" height="585" alt="Amigurumis Lana Rosa Crochet" onerror="this.parentElement.style.display='none'" loading="lazy" decoding="async">
       </a>
       <a href="tienda.html" class="slide-banner">
-        <img src="img/banners/banner3.jpg" alt="Amigurumis personalizados Lana Rosa Crochet" onerror="this.parentElement.style.display='none'" loading="lazy" decoding="async">
+        <img src="img/banners/banner3.webp" srcset="img/banners/banner3-900.webp 900w, img/banners/banner3.webp 1600w" sizes="(max-width: 1208px) calc(100vw - 48px), 1160px" width="1600" height="585" alt="Amigurumis personalizados Lana Rosa Crochet" onerror="this.parentElement.style.display='none'" loading="lazy" decoding="async">
       </a>
       <div class="puntos-carrusel" id="puntos-carrusel"></div>
       <button type="button" class="flecha-carrusel anterior" id="flecha-anterior" aria-label="Banner anterior">‹</button>
@@ -587,7 +621,7 @@ section { padding: 72px 0; }
         </div>
       </div>
       <div class="marco-foto" style="aspect-ratio:1582/932;">
-        <img src="img/triptico-testimonios.jpg" alt="Tres amigurumis personalizados terminados, cada uno sostenido junto a la foto de referencia usada para tejerlo" style="width:100%;height:100%;object-fit:contain;" loading="lazy" decoding="async">
+        <img src="img/triptico-testimonios.webp" srcset="img/triptico-testimonios-800.webp 800w, img/triptico-testimonios.webp 1400w" sizes="(max-width: 860px) calc(100vw - 48px), 500px" width="1400" height="825" alt="Tres amigurumis personalizados terminados, cada uno sostenido junto a la foto de referencia usada para tejerlo" style="width:100%;height:100%;object-fit:contain;" decoding="async">
       </div>
     </div>
   </section>
@@ -665,15 +699,15 @@ section { padding: 72px 0; }
         <div class="carrusel-testimonios" id="carrusel-testimonios">
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-1.jpg" alt="Familia de tres personas vestidas de blanco junto a sus amigurumis personalizados y el mensaje de agradecimiento del cliente" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-1.webp" alt="Familia de tres personas vestidas de blanco junto a sus amigurumis personalizados y el mensaje de agradecimiento del cliente" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-2.jpg" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-2.webp" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-3.jpg" alt="Abuela con vestido de flores y gafas, junto a su amigurumi personalizado con los mismos detalles" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-3.webp" alt="Abuela con vestido de flores y gafas, junto a su amigurumi personalizado con los mismos detalles" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
@@ -681,23 +715,23 @@ section { padding: 72px 0; }
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-5.jpg" alt="Mujer con blusa rosada y corazón rojo, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-5.webp" alt="Mujer con blusa rosada y corazón rojo, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-6.jpg" alt="Hombre con camiseta lila, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-6.webp" alt="Hombre con camiseta lila, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-7.jpg" alt="Hombre de barba y cabello canoso con chaqueta verde, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-7.webp" alt="Hombre de barba y cabello canoso con chaqueta verde, junto a su amigurumi personalizado" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-8.jpg" alt="Niña con conjunto beige, junto a su amigurumi personalizado de cabello largo" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-8.webp" alt="Niña con conjunto beige, junto a su amigurumi personalizado de cabello largo" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
-            <div class="media-testimonio"><img src="img/testimonios/testimonio-9.jpg" alt="Muñeca con sombrero de fresa usada como referencia, junto al amigurumi tejido a partir de ella" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
+            <div class="media-testimonio"><img src="img/testimonios/testimonio-9.webp" alt="Muñeca con sombrero de fresa usada como referencia, junto al amigurumi tejido a partir de ella" loading="lazy" onerror="this.closest('.tarjeta-testimonio').style.display='none'"></div>
           </article>
 
           <article class="tarjeta-testimonio">
@@ -849,7 +883,7 @@ section { padding: 72px 0; }
   <div class="contenedor pie-apoyo">
     <span>Con el apoyo de:</span>
     <img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
-    <img src="img/logo-fondo-emprender.png" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+    <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
   </div>
   <div class="contenedor pie-legal">
     <a href="politicas.html#envios">Política de envíos</a>

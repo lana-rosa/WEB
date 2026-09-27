@@ -15,7 +15,10 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 ## 🟡 Necesito algo de Sara para poder hacerlo
 
 - [ ] **Autorización de 3 fotos para la galería "De la foto al amigurumi" del inicio:** vestido blanco con balaca, señor de canas con camisa blanca y señora saludando. Con la autorización se agregan (Sara tiene las fotos sin flores).
-- [ ] **Google Search Console y Google Analytics.** Hoy la web no tiene ninguna medición. Sara crea las cuentas y pasa el código de verificación y el ID de medición; Claude los instala en todas las páginas.
+- [x] **Google Tag Manager instalado** en todas las páginas (contenedor `GTM-M3MQ7XZD`, 27-sep-2026). Los generadores del glosario y las paletas lo heredan de `rosina.html`.
+- [ ] **Terminar la medición (lo hace Sara en Google):**
+  - En Tag Manager: crear la etiqueta "Google Analytics: configuración de GA4" con el ID de medición (G-…), activador "All Pages", y **Publicar** el contenedor.
+  - En Search Console (propiedad `lanarosacrochet.com`): Sitemaps → enviar `sitemap.xml`.
 - [ ] **Conectar las paletas con las lanas reales.** Sara pasa la lista de colores que maneja o agrega el código de color (por ejemplo `#E74E96`) a cada lana en el inventario. Así cada paleta puede mostrar las lanas de la mercería que más se parecen, con foto, precio y carrito.
 - [ ] **Mini-guía por correo "5 días para tejer tu primer amigurumi".** Sirve para armar lista de correos antes de vender Pattern AI o cursos. Sara elige y crea la cuenta en una herramienta de correo (MailerLite o Brevo, con plan gratis); Claude escribe los 5 correos y pone el formulario en la web.
 - [ ] **Revisar las abreviaturas en chino y ruso** (Rincón → Abreviaturas) con una tejedora que hable esos idiomas.
@@ -103,3 +106,9 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
   - Revista: filtro por 7 categorías (las vacías dicen "Muy pronto"). Para un artículo nuevo: agregar `data-categorias="..."` al `<article>`. Imagen de pausas activas más pequeña.
   - Rincón de Rosina: índice en 5 grupos (te enseña, te acompaña, te recuerda, recursos gratuitos, herramientas).
   - Conoce a Rosina: sección "¿Por qué Rosina nos acompaña?".
+- Prioridad 4 de la auditoría (optimización), 27-sep-2026:
+  - Precios, Preguntas frecuentes, Personaliza y `llms.txt` con los mismos tamaños (amigurumis de 10, 13, 15 y 20 cm; llaveros de 4 a 6 cm; peluches de 12 a 32 cm) y el mismo texto del taller.
+  - Preguntas frecuentes nuevas: ubicación (Villamaría, junto a Manizales), medios de pago y talleres.
+  - SEO: títulos y descripciones con "Manizales / Villamaría", datos estructurados (zona de servicio, lugar del taller, servicio de personalizados), `lastmod` en el sitemap y `noindex` en la página 404.
+  - Velocidad: imágenes en WebP con tamaños para celular (el inicio pasó de 825 KB a unos 550 KB; Personaliza de 244 a 114 KB).
+  - Celular: se quitó la sombra del carrito que se veía en el borde derecho.
