@@ -31,6 +31,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
   - Proyectos especiales / empresas: qué se ofrece, cantidades mínimas, tiempos y fotos de trabajos anteriores. WhatsApp: "Hola Lana Rosa. Quiero consultar por un proyecto especial para mi empresa/evento."
   - Sostenibilidad ("Nuestro hilo también tiene una historia"): lo que hacen hoy y lo que están construyendo, solo con información real.
 
+- [ ] **Pagos en línea dentro de la web.** Sara quiere que el carrito cobre directamente (tarjeta, PSE, Nequi). Recomendación: Wompi (Bancolombia). Sara abre la cuenta con RUT, cédula y cuenta bancaria; después Claude integra el pago con Supabase (llave pública en la web, secretos solo en Supabase, confirmación por webhook y envío según ciudad: $18.000 / $13.000 / $8.000).
+
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 
 ### Material de Rosina
@@ -117,3 +119,4 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
   - SEO: títulos y descripciones con "Manizales / Villamaría", datos estructurados (zona de servicio, lugar del taller, servicio de personalizados), `lastmod` en el sitemap y `noindex` en la página 404.
   - Velocidad: imágenes en WebP con tamaños para celular (el inicio pasó de 825 KB a unos 550 KB; Personaliza de 244 a 114 KB).
   - Celular: se quitó la sombra del carrito que se veía en el borde derecho.
+- Menos texto en la web (27-sep-2026): Inicio (605 → 327 palabras), Personaliza, Aprende, Sobre nosotras y el Rincón de Rosina (secciones plegables con "Ver…", de 19 a unas 6 pantallas en celular).
