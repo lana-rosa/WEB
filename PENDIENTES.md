@@ -86,3 +86,8 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - Glosario: nuevo dibujo de la aguja de crochet.
 - Mercería: aviso "Muy pronto" mientras no haya productos con existencias.
 - Calculadora "💰 Precio de tu tejido" en el Rincón de Rosina (materiales + tiempo + gastos del taller + ganancia + comisión opcional, con desglose y costo mínimo).
+- Prioridad 1 de la auditoría (conversión), publicada el 27-sep-2026:
+  - Inicio: "Personaliza el tuyo" como botón principal y "¿Qué podemos tejer para ti?" con 6 ideas.
+  - Inicio: "De la foto al amigurumi" con 7 fotos autorizadas, "De una historia nace un tejido" (5 pasos) e "Historias que tejimos" con enlace a las reseñas de Google.
+  - Personaliza: respuestas rápidas, proceso en 6 pasos, tamaños de referencia, preselección por `?idea=` y WhatsApp después de enviar el formulario.
+  - Tiempo de entrega unificado ("depende") y mensajes de WhatsApp según la página.
