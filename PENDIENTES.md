@@ -45,10 +45,10 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [x] 1. Inventario de lanas e hilos.
 - [x] 2. Mis agujas (calibres de 2 a 10 mm).
 - [x] 3. Lista de compras con envío por WhatsApp.
-- [ ] 4. Proyectos en fila (por empezar, tejiendo, terminado).
-- [ ] 5. Mi colección de patrones.
-- [ ] 6. Mi año tejiendo (una página por mes).
-- [ ] 7. Fechas especiales (sin Navidad, santos ni Halloween).
+- [x] 4. Proyectos en fila (por empezar, tejiendo, terminado).
+- [x] 5. Mi colección de patrones.
+- [x] 6. Mi año tejiendo (una página por mes).
+- [x] 7. Fechas especiales (sin Navidad, santos ni Halloween).
 - [ ] 8. Ficha de cliente. ⚠️ Revisar con Sara: se cruza con la versión de pago de la plantilla de pedidos y clientas.
 - [ ] 9. Mis ventas del mes (conectar con la calculadora de costos). ⚠️ Mismo cruce.
 - [ ] 10. Catálogo de precios. ⚠️ Mismo cruce.
@@ -56,6 +56,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [ ] 12. Diario de tejido.
 - [ ] 13. Registro de pausas activas.
 - [ ] 14. Lo que aprendí.
+- [x] Hojas plegables: se ve el título y se abre al tocarlo.
 - [ ] Extras: portada con nombre, índice, imprimir hoja por hoja o completa, copia de seguridad (descargar y cargar lo escrito).
 
 ### Material de Rosina
