@@ -688,6 +688,10 @@ function manejarErrorFoto(img) {
       boton.setAttribute('aria-expanded', abierto);
       boton.textContent = abierto ? '✕' : '☰';
     });
+    panel.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { if (panel.classList.contains('abierto')) boton.click(); });
+    });
+    window.addEventListener('pageshow', function() { if (panel.classList.contains('abierto')) boton.click(); });
     document.addEventListener('click', function(e) {
       if (panel.classList.contains('abierto') && !panel.contains(e.target) && !boton.contains(e.target)) boton.click();
     });
