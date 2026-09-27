@@ -205,6 +205,10 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .recurso { scroll-margin-top: 110px; }
 .recurso-cabecera { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 .recurso-cabecera p { color: var(--tinta-suave); max-width: 62ch; margin: 0; }
+.recurso-cabecera > div:not(.acciones):not(.descargas) { flex: 1 1 320px; }
+.miniatura-recurso { flex: 0 0 auto; width: 220px; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; border: 3px solid #fff; box-shadow: 0 6px 18px rgba(231, 78, 150, .18); align-self: center; cursor: pointer; }
+@media (max-width: 600px) { .miniatura-recurso { width: 100%; max-width: 300px; margin: 0 auto; } }
+@media print { .miniatura-recurso { display: none !important; } }
 .acciones { display: flex; gap: 10px; flex-wrap: wrap; }
 .nota { font-size: 0.86rem; color: var(--tinta-suave); margin-top: 14px; }
 
@@ -546,6 +550,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============ STICKERS ============ -->
   <section class="contenedor recurso" id="stickers">
     <div class="recurso-cabecera">
+        <img class="miniatura-recurso" src="img/rincon/stickers.webp" width="480" height="360" loading="lazy" alt="Muestra de seis stickers de Rosina">
       <div>
         <h2>Stickers de Rosina</h2>
         <p>26 stickers con fondo transparente en 512 × 512 px, el tamaño de los stickers de WhatsApp. Toca uno para descargarlo o baja el paquete completo. También puedes imprimir la hoja en papel adhesivo.</p>
@@ -604,6 +609,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="seccion-suave recurso" id="fondos">
     <div class="contenedor">
       <div class="recurso-cabecera">
+        <img class="miniatura-recurso" src="img/rincon/fondos.webp" width="480" height="360" loading="lazy" alt="Muestra de los fondos de pantalla de Rosina en celulares">
         <div>
           <h2>Fondos de pantalla de Rosina</h2>
           <p>9 fondos para tu pantalla de bloqueo o de inicio, hechos para que el reloj quede arriba sin tapar a Rosina. Elige el tamaño de tu celular y toca el fondo que más te guste.</p>
@@ -671,6 +677,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============ CHECKLIST PRIMER AMIGURUMI ============ -->
   <section class="contenedor recurso" id="checklist">
     <div class="recurso-cabecera">
+        <img class="miniatura-recurso" src="img/rincon/checklist.webp" width="480" height="360" loading="lazy" alt="Vista de la checklist para tu primer amigurumi">
       <div>
         <h2>Checklist: tu primer amigurumi</h2>
         <p>Todo lo que necesitas antes de empezar, revisado por Rosina. Ve marcando lo que ya tienes (se guarda en tu dispositivo) o imprímela y llévala a la mercería.</p>
@@ -740,6 +747,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="seccion-suave recurso" id="abreviaturas">
     <div class="contenedor">
       <div class="recurso-cabecera">
+        <img class="miniatura-recurso" src="img/rincon/abreviaturas.webp" width="480" height="360" loading="lazy" alt="Vista de la tabla de abreviaturas de crochet en varios idiomas">
         <div>
           <h2>Abreviaturas de crochet en 8 idiomas</h2>
           <p>¿Encontraste un patrón en inglés, portugués, chino o ruso? Usa esta plantilla para traducir cada punto. Elige los idiomas que quieres ver e imprímela para tenerla junto a tus agujas.</p>
@@ -796,6 +804,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============ CALCULADORA ============ -->
   <section class="contenedor recurso" id="calculadora">
     <div class="recurso-cabecera">
+        <img class="miniatura-recurso" src="img/rincon/calculadora.webp" width="480" height="360" loading="lazy" alt="Vista de la calculadora de aumentos y disminuciones">
       <div>
         <h2>Calculadora de Rosina</h2>
         <p>Rosina hace las cuentas por ti: reparte aumentos y disminuciones, adapta un patrón a tu muestra, estima cuánta lana necesitas, lleva la cuenta de tus vueltas y calcula los costos de tu tejido.</p>
@@ -969,6 +978,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="seccion-suave recurso" id="agenda">
     <div class="contenedor">
       <div class="recurso-cabecera">
+        <img class="miniatura-recurso" src="img/rincon/agenda.webp" width="480" height="360" loading="lazy" alt="Vista de la ficha de proyecto de la agenda">
         <div>
           <h2>Agenda de Rosina</h2>
           <p>Tres hojas para organizar tu tejido: la ficha de cada proyecto, tu semana y el control de pedidos si vendes lo que tejes. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
@@ -1607,6 +1617,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     b.dataset.nombre = { stickers: 'los stickers', fondos: 'los fondos', checklist: 'la checklist', abreviaturas: 'las abreviaturas', calculadora: 'las calculadoras', agenda: 'la agenda' }[seccion.id] || '';
     b.addEventListener('click', function () { poner(seccion, seccion.classList.contains('plegada')); });
     (titulo ? titulo.parentNode : cab).appendChild(b);
+    var mini = cab.querySelector('.miniatura-recurso');
+    if (mini) mini.addEventListener('click', function () { poner(seccion, true); });
     poner(seccion, false);
   });
   function abrirDestino() {
