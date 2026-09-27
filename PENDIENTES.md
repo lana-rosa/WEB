@@ -14,6 +14,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
 
+- [ ] **Autorización de 3 fotos para la galería "De la foto al amigurumi" del inicio:** vestido blanco con balaca, señor de canas con camisa blanca y señora saludando. Con la autorización se agregan (Sara tiene las fotos sin flores).
 - [ ] **Google Search Console y Google Analytics.** Hoy la web no tiene ninguna medición. Sara crea las cuentas y pasa el código de verificación y el ID de medición; Claude los instala en todas las páginas.
 - [ ] **Conectar las paletas con las lanas reales.** Sara pasa la lista de colores que maneja o agrega el código de color (por ejemplo `#E74E96`) a cada lana en el inventario. Así cada paleta puede mostrar las lanas de la mercería que más se parecen, con foto, precio y carrito.
 - [ ] **Mini-guía por correo "5 días para tejer tu primer amigurumi".** Sirve para armar lista de correos antes de vender Pattern AI o cursos. Sara elige y crea la cuenta en una herramienta de correo (MailerLite o Brevo, con plan gratis); Claude escribe los 5 correos y pone el formulario en la web.
@@ -48,9 +49,9 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi todo es viable sobre la web actual, sin cambiar la arquitectura. Orden acordado: Prioridad 1 (conversión) → 2 (ecosistema) → 3 (marca) → 4 (optimización). Se muestran capturas antes de publicar la Prioridad 1.
 
 **Preguntas abiertas para Sara (responder antes de empezar la Prioridad 1):**
-- [ ] **Tiempo de entrega real.** Hay una contradicción: Personaliza y Precios dicen "se envía 1 semana después de confirmado el pago", y las Preguntas frecuentes dicen "depende de la complejidad y de la fila de pedidos". La auditoría propone la segunda.
+- [x] **Tiempo de entrega real.** Respuesta de Sara: "depende". Se unificó en Personaliza, Precios, Preguntas frecuentes y `llms.txt` con la frase de la auditoría. (La tienda mantiene su propio texto para productos del catálogo: "1 semana después de confirmar el pago, o envío inmediato según disponibilidad".) Antes decía: Hay una contradicción: Personaliza y Precios dicen "se envía 1 semana después de confirmado el pago", y las Preguntas frecuentes dicen "depende de la complejidad y de la fila de pedidos". La auditoría propone la segunda.
 - [ ] **Pop-up del 10 %.** Hoy aplica a la primera compra de cualquier producto. Propuesta: 10 % solo en tienda y mercería; para personalizados, un beneficio que no toque el margen, como un pack exclusivo de Rosina o un mini llavero. La "tarjeta personalizada" no sirve como beneficio porque la FAQ dice que ya está incluida. Hay que respetar los bonos ya entregados.
-- [ ] **Casilla de autorización en el formulario de Personaliza** ("Autorizo compartir la historia y las fotos"). Toca el formulario y Supabase.
+- [x] ~~**Casilla de autorización en el formulario de Personaliza**~~ Respuesta de Sara: **no por ahora**; la autorización se sigue pidiendo por WhatsApp. Era: ("Autorizo compartir la historia y las fotos"). Toca el formulario y Supabase.
 - [ ] **Menú:** ¿desplegables por grupos (Comprar / Aprender / Universo Lana Rosa / Ayuda) o la propuesta ligera (mismo menú reordenado, "Personaliza el tuyo" como botón destacado y los grupos en el pie de página)?
 - [ ] **Proyectos especiales:** qué se ofrece a empresas, cantidades mínimas, tiempos y fotos de trabajos anteriores.
 - [ ] **Sostenibilidad y "las tejedoras":** solo con información real. Hoy la web no tiene datos de sostenibilidad ni fotos o información de las tejedoras.
@@ -85,3 +86,8 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - Glosario: nuevo dibujo de la aguja de crochet.
 - Mercería: aviso "Muy pronto" mientras no haya productos con existencias.
 - Calculadora "💰 Precio de tu tejido" en el Rincón de Rosina (materiales + tiempo + gastos del taller + ganancia + comisión opcional, con desglose y costo mínimo).
+- Prioridad 1 de la auditoría (conversión), publicada el 27-sep-2026:
+  - Inicio: "Personaliza el tuyo" como botón principal y "¿Qué podemos tejer para ti?" con 6 ideas.
+  - Inicio: "De la foto al amigurumi" con 7 fotos autorizadas, "De una historia nace un tejido" (5 pasos) e "Historias que tejimos" con enlace a las reseñas de Google.
+  - Personaliza: respuestas rápidas, proceso en 6 pasos, tamaños de referencia, preselección por `?idea=` y WhatsApp después de enviar el formulario.
+  - Tiempo de entrega unificado ("depende") y mensajes de WhatsApp según la página.
