@@ -51,7 +51,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [x] Google Merchant Center: feed en vivo listo (27-sep-2026) con 40 diseños propios (sin personajes de marcas), GTIN de GS1 y enlace directo a cada producto (`tienda.html?producto=ID`). Ver `herramientas/google-merchant/README.md`.
 - [x] **Merchant Center configurado por Sara** (27-sep-2026): cuenta 5859686234, fuente "PRODUCTS SOURCE 1" con el feed (40 productos, sin problemas), envío y devoluciones listos.
 - [ ] Revisar en unos días que Google apruebe los productos. Si alguno sale "Rechazado" o "Requiere atención", corregirlo.
-- [ ] Productos nuevos de diseño propio: agregarlos a `web_google_shopping` para que salgan en Google Shopping.
+- [x] Títulos mejorados para Google en los 40 productos (27-sep-2026) y aviso "no es un producto oficial" en los 30 productos de personaje.
+- [ ] **Revisión semanal (lunes):** clasificar productos nuevos de la tienda (diseño propio → Google Shopping; personaje → aviso). Ver `herramientas/google-merchant/README.md`.
 - [x] Envío en Merchant Center: tarifa fija de $18.000 COP (27-sep-2026). La web dice lo mismo en Precios, Preguntas frecuentes, Políticas, Tienda, Mercería, Personaliza y `llms.txt`: $18.000 a otras ciudades, $13.000 a Manizales y $8.000 dentro de Villamaría.
 - [x] Devoluciones en Merchant Center: solo productos defectuosos, sin cambios, con la URL `politicas.html#cambios` (27-sep-2026).
 - [ ] Imágenes pensadas para Pinterest (paletas, fondos, stickers) que enlacen a la web.

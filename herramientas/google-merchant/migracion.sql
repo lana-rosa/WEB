@@ -40,3 +40,6 @@ as $$
 $$;
 revoke all on function public.obtener_feed_google() from public;
 grant execute on function public.obtener_feed_google() to anon, authenticated;
+
+-- 27-sep-2026, migración "web_personajes_y_titulos_google": columnas titulo_google/descripcion_google,
+-- tabla web_productos_personaje (30 productos) y RPC obtener_productos_personaje(); obtener_feed_google usa coalesce(titulo_google, nombre).
