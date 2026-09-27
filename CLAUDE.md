@@ -21,6 +21,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 - `separar_stickers.py` (recorta una hoja de stickers) y `stickers_frases.py` (stickers con frase) generan los archivos de `img/stickers/`.
 
 ## Convenciones
+- **Valores de la marca:** las fundadoras son cristianas, creyentes en Cristo Jesús y cumplidoras de la Biblia. **No se celebran ni se mencionan Navidad, fechas de santos (incluido San Valentín) ni Halloween** en la web, el contenido, las paletas, los artículos ni las promociones. Sí se usan otras fechas especiales: Amor y amistad, Día de la madre, Día del padre, cumpleaños, graduaciones, etc.
 - Colores de marca: `--rosa-principal #E74E96`, `--rosa-medio #F28FC0`, `--rosa-suave #FBE4EF`, `--lila #9EA2F9`, `--azul-acero #93C7F9`. Fuentes: DynaPuff (títulos) y Hanken Grotesk (texto).
 - Imágenes: preferir WebP liviano; las imágenes que están más abajo en la página llevan `loading="lazy"`; los avatares pequeños de Rosina están en `img/mini/`.
 - Verificar siempre en celular (390 px) y computador (1280 px), sin desplazamiento horizontal.
