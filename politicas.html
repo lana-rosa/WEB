@@ -637,7 +637,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var encabezado = document.querySelector('.encabezado');
   if (boton && panel) {
     boton.addEventListener('click', function() {
-      if (encabezado) panel.style.top = encabezado.getBoundingClientRect().bottom + 'px';
+      if (encabezado) { var abajo = encabezado.getBoundingClientRect().bottom; panel.style.top = abajo + 'px'; panel.style.maxHeight = (window.innerHeight - abajo - 12) + 'px'; }
       var abierto = panel.classList.toggle('abierto');
       boton.setAttribute('aria-expanded', abierto);
       boton.textContent = abierto ? '✕' : '☰';
