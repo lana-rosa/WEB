@@ -50,7 +50,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ### Que la web aparezca más en Google (SEO)
 - [x] Primeros 3 artículos de la Revista pensados para búsquedas (27-sep-2026): "Cómo empezar a tejer crochet desde cero", "Qué materiales necesitas para tu primer amigurumi" y "Cómo pedir un amigurumi personalizado a partir de una foto".
-- [ ] Seguir con un artículo cada 1 o 2 semanas (agregar `data-categorias` al `<article>` y el `BlogPosting` en el JSON-LD).
+- [ ] **Un artículo por semana (rutina de los miércoles):** temas y reglas en `herramientas/revista/temas.md`.
 - [ ] Patrones gratis (lo que más visitas trae en crochet).
 - [x] Google Merchant Center: feed en vivo listo (27-sep-2026) con 40 diseños propios (sin personajes de marcas), GTIN de GS1 y enlace directo a cada producto (`tienda.html?producto=ID`). Ver `herramientas/google-merchant/README.md`.
 - [x] **Merchant Center configurado por Sara** (27-sep-2026): cuenta 5859686234, fuente "PRODUCTS SOURCE 1" con el feed (40 productos, sin problemas), envío y devoluciones listos.
@@ -59,7 +59,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [ ] **Revisión semanal (lunes):** clasificar productos nuevos de la tienda (diseño propio → Google Shopping; personaje → aviso). Ver `herramientas/google-merchant/README.md`.
 - [x] Envío en Merchant Center: tarifa fija de $18.000 COP (27-sep-2026). La web dice lo mismo en Precios, Preguntas frecuentes, Políticas, Tienda, Mercería, Personaliza y `llms.txt`: $18.000 a otras ciudades, $13.000 a Manizales y $8.000 dentro de Villamaría.
 - [x] Devoluciones en Merchant Center: solo productos defectuosos, sin cambios, con la URL `politicas.html#cambios` (27-sep-2026).
-- [ ] Imágenes pensadas para Pinterest (paletas, fondos, stickers) que enlacen a la web.
+- [x] 7 pines para Pinterest listos en `herramientas/pinterest/` (27-sep-2026), con títulos, descripciones y enlaces. Sara los sube a su cuenta de Pinterest.
 
 ### Ingresos
 - [ ] Productos digitales pagos: patrones PDF, agenda completa, packs extra de stickers.
