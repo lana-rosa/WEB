@@ -239,7 +239,12 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .boton-secundario { background: transparent; color: var(--rosa-principal); }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .herramientas-glosario { position: sticky; top: 100px; z-index: 5; background: rgba(250, 250, 247, 0.96); backdrop-filter: blur(6px); padding: 14px 0; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; border-bottom: 1px solid rgba(69,69,74,0.08); margin-bottom: 26px; }
-@media (max-width: 600px) { .herramientas-glosario { top: 80px; } }
+@media (max-width: 760px) { .herramientas-glosario { position: static; padding: 10px 0; } .categoria-glosario { scroll-margin-top: 100px; } }
+main > .hero-rosina.contenedor { padding-bottom: 20px; }
+.chips { flex-wrap: nowrap !important; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.chips::-webkit-scrollbar { display: none; }
+.chips button { flex: 0 0 auto; white-space: nowrap; }
+@media (max-width: 760px) { .chips { margin: 0 -24px; padding: 0 24px; } }
 .buscador { flex: 1 1 240px; display: flex; align-items: center; gap: 8px; background: var(--blanco); border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 4px 6px 4px 16px; }
 .buscador input { flex: 1; border: none; outline: none; background: transparent; font-family: var(--fuente-cuerpo); font-size: 0.98rem; padding: 8px 0; color: var(--tinta); min-width: 0; }
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }

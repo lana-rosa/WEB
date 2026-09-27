@@ -402,6 +402,10 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .boton-whatsapp-res:hover { background: #1ebe5a; }
 /* Abreviaturas: columna de español fija al desplazar */
 .tabla-abrev th:first-child, .tabla-abrev td:first-child { position: sticky; left: 0; z-index: 1; background: var(--blanco); box-shadow: 2px 0 0 var(--rosa-medio); min-width: 150px; }
+.tabla-scroll-abrev { max-height: 72vh; overflow: auto; }
+.tabla-abrev thead th { z-index: 2; }
+.tabla-abrev thead th:first-child { z-index: 3; background: var(--rosa-principal); }
+@media print { .tabla-scroll-abrev { max-height: none; overflow: visible; } }
 .tabla-abrev tbody tr:nth-child(even) td:first-child { background: var(--blanco-hueso); }
 .tabla-abrev thead th:first-child { background: var(--rosa-principal); z-index: 3; box-shadow: 2px 0 0 #B83E78; }
 @media (max-width: 600px) { .tabla-abrev th:first-child, .tabla-abrev td:first-child { min-width: 118px; max-width: 130px; } }
@@ -524,7 +528,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Para planear, calcular y organizar tus proyectos.</p>
         <nav class="enlaces-grupo" aria-label="Herramientas para tejedoras">
           <a href="#calculadora"><span class="icono" aria-hidden="true">🧮</span><span><strong>Calculadoras</strong><span>Costos, vueltas, muestra y lana</span></span></a>
-          <a href="#agenda"><span class="icono" aria-hidden="true">🗓️</span><span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></span></a>
+          <a href="agenda-rosina.html"><span class="icono" aria-hidden="true">🗓️</span><span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></span></a>
           <a href="paletas-rosina.html"><span class="icono" aria-hidden="true">🎨</span><span><strong>Paletas de colores</strong><span>22 combinaciones y la tuya</span></span></a>
         </nav>
       </section>
@@ -773,7 +777,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label><input type="checkbox" value="ru" checked>Ruso</label>
         <label><input type="checkbox" value="tr" checked>Turco</label>
       </div>
-      <div class="tabla-scroll">
+      <div class="tabla-scroll tabla-scroll-abrev">
         <table class="tabla-abrev" id="tabla-abrev">
           <thead>
             <tr><th>Español</th><th data-idioma="en-us">Inglés (EE. UU.)</th><th data-idioma="en-uk">Inglés (Reino Unido)</th><th data-idioma="pt">Portugués</th><th data-idioma="fr">Francés</th><th data-idioma="it">Italiano</th><th data-idioma="zh">Chino</th><th data-idioma="ru">Ruso</th><th data-idioma="tr">Turco</th></tr>
@@ -982,77 +986,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ============ AGENDA ============ -->
-  <section class="seccion-suave seccion-lila recurso" id="agenda">
+  <!-- ============ AGENDA (página aparte: agenda-rosina.html) ============ -->
+  <section class="seccion-suave seccion-lila" id="agenda">
     <div class="contenedor">
-      <div class="recurso-cabecera">
-        <img class="miniatura-recurso" src="img/rincon/agenda.webp" width="480" height="360" loading="lazy" alt="Vista de la ficha de proyecto de la agenda">
+      <div class="recurso-cabecera" style="margin-bottom:0;">
+        <a href="agenda-rosina.html"><img class="miniatura-recurso" src="img/rincon/agenda.webp" width="480" height="360" loading="lazy" alt="Vista de la ficha de proyecto de la agenda"></a>
         <div>
           <h2>Agenda de Rosina</h2>
-          <p>Tres hojas para organizar tu tejido: la ficha de cada proyecto, tu semana y el control de pedidos si vendes lo que tejes. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
-        </div>
-        <div class="acciones">
-          <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
-          <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
+          <p>Tres hojas para organizar tu tejido: la ficha de cada proyecto, tu semana y el control de pedidos si vendes lo que tejes. Llénalas en línea o imprímelas.</p>
+          <a class="boton-primario" href="agenda-rosina.html" style="margin-top:12px;">Abrir la agenda →</a>
         </div>
       </div>
-
-      <article class="hoja-agenda" id="ficha-proyecto">
-        <header>
-          <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <div><h3>Ficha de proyecto</h3><p>Anota todo para poder repetirlo (¡o regalarlo!) cuando quieras.</p></div>
-        </header>
-        <div class="grid-ficha">
-          <div class="linea"><label for="ag-nombre">Proyecto</label><input id="ag-nombre" data-guardar></div>
-          <div class="linea"><label for="ag-para">Para quién</label><input id="ag-para" data-guardar></div>
-          <div class="linea"><label for="ag-inicio">Fecha de inicio</label><input id="ag-inicio" data-guardar></div>
-          <div class="linea"><label for="ag-fin">Fecha de entrega</label><input id="ag-fin" data-guardar></div>
-          <div class="linea"><label for="ag-patron">Patrón / fuente</label><input id="ag-patron" data-guardar></div>
-          <div class="linea"><label for="ag-aguja">Aguja (mm)</label><input id="ag-aguja" data-guardar></div>
-          <div class="linea"><label for="ag-lana">Lana (marca y grosor)</label><input id="ag-lana" data-guardar></div>
-          <div class="linea"><label for="ag-colores">Colores</label><input id="ag-colores" data-guardar></div>
-          <div class="linea"><label for="ag-muestra">Muestra (puntos × vueltas en 10 cm)</label><input id="ag-muestra" data-guardar></div>
-          <div class="linea"><label for="ag-medidas">Medidas finales</label><input id="ag-medidas" data-guardar></div>
-          <div class="linea ancha">
-            <label>Contador de vueltas — marca cada vuelta terminada (hasta 100)</label>
-            <div class="vueltas-grid" id="vueltas-grid"></div>
-          </div>
-          <div class="linea ancha"><label for="ag-notas">Notas y cambios al patrón</label><textarea id="ag-notas" rows="4" data-guardar></textarea></div>
-        </div>
-      </article>
-
-      <article class="hoja-agenda" id="semana-tejiendo">
-        <header>
-          <img src="img/mini/rosina-aprende.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <div><h3>Mi semana tejiendo</h3><p>Semana del <input id="ag-semana" data-guardar style="border:none;border-bottom:1.5px solid rgba(69,69,74,0.25);background:transparent;font:inherit;width:12ch;" aria-label="Fecha de la semana"></p></div>
-        </header>
-        <div class="semana">
-          <div class="dia"><strong>Lunes</strong><textarea aria-label="Lunes" data-guardar id="ag-lun"></textarea></div>
-          <div class="dia"><strong>Martes</strong><textarea aria-label="Martes" data-guardar id="ag-mar"></textarea></div>
-          <div class="dia"><strong>Miércoles</strong><textarea aria-label="Miércoles" data-guardar id="ag-mie"></textarea></div>
-          <div class="dia"><strong>Jueves</strong><textarea aria-label="Jueves" data-guardar id="ag-jue"></textarea></div>
-          <div class="dia"><strong>Viernes</strong><textarea aria-label="Viernes" data-guardar id="ag-vie"></textarea></div>
-          <div class="dia"><strong>Sábado</strong><textarea aria-label="Sábado" data-guardar id="ag-sab"></textarea></div>
-          <div class="dia"><strong>Domingo</strong><textarea aria-label="Domingo" data-guardar id="ag-dom"></textarea></div>
-        </div>
-        <div class="metas">
-          <div class="linea"><label for="ag-meta">Mi meta de la semana</label><textarea id="ag-meta" rows="3" data-guardar></textarea></div>
-          <div class="linea"><label for="ag-comprar">Materiales por comprar</label><textarea id="ag-comprar" rows="3" data-guardar></textarea></div>
-        </div>
-      </article>
-
-      <article class="hoja-agenda" id="control-pedidos">
-        <header>
-          <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <div><h3>Control de pedidos</h3><p>Para tejedoras emprendedoras: que ningún pedido se te escape.</p></div>
-        </header>
-        <div class="tabla-scroll" style="box-shadow:none;">
-          <table class="tabla-abrev" style="min-width:640px;">
-            <thead><tr><th>Cliente</th><th>Pedido</th><th>Entrega</th><th>Precio</th><th>Abono</th><th>Estado</th></tr></thead>
-            <tbody id="tabla-pedidos"></tbody>
-          </table>
-        </div>
-      </article>
     </div>
   </section>
 
@@ -1581,37 +1525,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var irContador = document.querySelector('[data-ir-contador]');
   if (irContador) irContador.addEventListener('click', function() { document.getElementById('tab-contador').click(); });
 
-  /* ---------- Agenda ---------- */
-  var CLAVE_AGENDA = 'rosinaAgenda';
-  var vueltasGrid = document.getElementById('vueltas-grid');
-  for (var i = 1; i <= 100; i++) {
-    vueltasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-v' + i + '" data-guardar><span>' + i + '</span></label>');
-  }
-  var tablaPedidos = document.getElementById('tabla-pedidos');
-  var columnas = ['cliente', 'pedido', 'entrega', 'precio', 'abono', 'estado'];
-  for (var f = 1; f <= 8; f++) {
-    tablaPedidos.insertAdjacentHTML('beforeend', '<tr>' + columnas.map(function(col) {
-      return '<td><input id="ag-p' + f + '-' + col + '" data-guardar aria-label="' + col + ' del pedido ' + f + '"></td>';
-    }).join('') + '</tr>');
-  }
-  var campos = document.querySelectorAll('#agenda [data-guardar]');
-  var datos = {};
-  try { datos = JSON.parse(leer(CLAVE_AGENDA)) || {}; } catch (e) {}
-  campos.forEach(function(campo) {
-    if (datos[campo.id] !== undefined) {
-      if (campo.type === 'checkbox') campo.checked = !!datos[campo.id]; else campo.value = datos[campo.id];
-    }
-    campo.addEventListener(campo.type === 'checkbox' ? 'change' : 'input', function() {
-      datos[campo.id] = campo.type === 'checkbox' ? campo.checked : campo.value;
-      escribir(CLAVE_AGENDA, JSON.stringify(datos));
-    });
-  });
-  document.getElementById('agenda-borrar').addEventListener('click', function() {
-    if (!confirm('¿Borrar todo lo que escribiste en la agenda?')) return;
-    campos.forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
-    datos = {};
-    borrar(CLAVE_AGENDA);
-  });
 })();
 </script>
 <script>
