@@ -1,0 +1,118 @@
+From c0338bd5a668e587387f11307989921698d63ad3 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 27 Sep 2026 13:13:05 +0000
+Subject: [PATCH] =?UTF-8?q?Rinc=C3=B3n=20de=20Rosina:=20Inv=C3=ADtale=20un?=
+ =?UTF-8?q?=20caf=C3=A9=20a=20Rosina?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01U9SAsfVct6L94yoocG63si
+---
+ PENDIENTES.md        |  2 +-
+ recursos-rosina.html | 55 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 56 insertions(+), 1 deletion(-)
+
+diff --git a/PENDIENTES.md b/PENDIENTES.md
+index 1cee6a0..3589ffd 100644
+--- a/PENDIENTES.md
++++ b/PENDIENTES.md
+@@ -39,7 +39,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
+ - [ ] Libro para colorear imprimible (necesita las ilustraciones solo con líneas).
+ - [ ] Cuaderno de práctica de puntos básicos, punto por punto con Rosina (freemium o de bajo costo).
+ - [ ] Versión completa, de pago, de la plantilla de pedidos y clientas, con precios, costos y ganancias. La versión gratis ya está en la Agenda.
+-- [ ] Botón "Invítale un café a Rosina" (aporte voluntario con Nequi o Ko-fi).
++- [x] Botón "Invítale un café a Rosina" (27-sep-2026): sección al final del Rincón (`recursos-rosina.html#cafe`) con 3 valores sugeridos ($3.000, $6.000 y $12.000), la llave de Nequi/Bre-B para copiar y un WhatsApp de aviso.
+ - [ ] Opcional: poner también la imagen "Conoce a Rosina" al principio de `rosina.html` (se ofreció; Sara no ha respondido).
+ 
+ ### Que la web aparezca más en Google (SEO)
+diff --git a/recursos-rosina.html b/recursos-rosina.html
+index bd57b77..799c6c1 100644
+--- a/recursos-rosina.html
++++ b/recursos-rosina.html
+@@ -434,6 +434,21 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
+ .boton-plegar { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-principal); background: var(--blanco); border: 2px solid var(--rosa-medio); border-radius: 999px; padding: 8px 18px; cursor: pointer; margin-top: 12px; }
+ .boton-plegar:hover { border-color: var(--rosa-principal); }
+ @media print { .boton-plegar { display: none !important; } }
++
++/* Invítale un café a Rosina */
++.cafe-rosina { display: grid; grid-template-columns: 200px 1fr; gap: 28px; align-items: center; background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 28px 32px; margin: 10px 0 20px; }
++@media (max-width: 700px) { .cafe-rosina { grid-template-columns: 1fr; text-align: center; padding: 24px 18px; gap: 10px; } .cafe-rosina img { max-width: 150px; margin: 0 auto; } }
++.cafe-rosina img { width: 100%; height: auto; display: block; }
++.cafe-texto h2 { margin: 0 0 8px; }
++.cafe-texto > p { color: var(--tinta-suave); margin: 0 0 14px; }
++.cafe-opciones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
++.cafe-opciones button { font: inherit; font-size: 0.88rem; line-height: 1.35; padding: 10px 8px; border-radius: 14px; border: 2px solid var(--rosa-medio); background: var(--blanco); color: var(--tinta); cursor: pointer; }
++.cafe-opciones button strong { color: var(--rosa-principal); font-size: 1rem; }
++.cafe-opciones button.activa { border-color: var(--rosa-principal); background: var(--rosa-principal); color: var(--blanco); }
++.cafe-opciones button.activa strong { color: var(--blanco); }
++.cafe-llave { background: var(--blanco); border-radius: 12px; padding: 10px 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 10px; }
++.cafe-llave button { font: inherit; font-size: 0.85rem; font-weight: 700; border: none; background: var(--rosa-suave); color: var(--rosa-principal); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
++.cafe-nota { font-size: 0.85rem; margin-top: 10px !important; }
+ </style>
+ <link rel="icon" type="image/png" href="img/favicon-256.png">
+ <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+@@ -514,6 +529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+         <nav class="enlaces-grupo" aria-label="Rosina te acompaña">
+           <a href="rosina.html"><span class="icono" aria-hidden="true">🐑</span><span><strong>Conoce a Rosina</strong><span>Quién es y qué la hace feliz</span></span></a>
+           <a href="rosina.html#tip-rosina"><span class="icono" aria-hidden="true">💡</span><span><strong>Un tip de Rosina</strong><span>Su consejo favorito</span></span></a>
++          <a href="#cafe"><span class="icono" aria-hidden="true">☕</span><span><strong>Invítale un café</strong><span>Apoya a Rosina, si quieres</span></span></a>
+         </nav>
+       </section>
+       <section class="grupo-rincon" aria-label="Rosina te recuerda">
+@@ -1038,6 +1054,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+     </div>
+   </section>
+ 
++  <!-- ============ INVÍTALE UN CAFÉ A ROSINA ============ -->
++  <section class="contenedor no-imprimir" id="cafe">
++    <div class="cafe-rosina">
++      <img src="img/stickers/rosina-13-cafe.webp" alt="Rosina tomando una taza de café" width="512" height="512" loading="lazy" decoding="async">
++      <div class="cafe-texto">
++        <h2>☕ Invítale un café a Rosina</h2>
++        <p>Todo el material del Rincón es gratis. Si te sirvió y quieres que Rosina siga creando más, puedes invitarle un café: es voluntario.</p>
++        <div class="cafe-opciones" role="radiogroup" aria-label="Elige tu café">
++          <button type="button" data-valor="3000" aria-pressed="true" class="activa">☕ Un tinto<br><strong>$3.000</strong></button>
++          <button type="button" data-valor="6000" aria-pressed="false">☕🥐 Café con pandebono<br><strong>$6.000</strong></button>
++          <button type="button" data-valor="12000" aria-pressed="false">🧶 Un ovillo nuevo<br><strong>$12.000</strong></button>
++        </div>
++        <p class="cafe-llave"><span>Por <strong>Nequi</strong> o <strong>Bre-B</strong> a la llave <strong id="cafe-numero">320 507 2801</strong></span> <button type="button" id="cafe-copiar">Copiar</button></p>
++        <a class="boton-primario" id="cafe-whatsapp" href="https://wa.me/573205072801" target="_blank" rel="noopener">Ya le invité el café 💕</a>
++        <p class="cafe-nota">O el valor que tú quieras. ¡Gracias por apoyar a Rosina!</p>
++      </div>
++    </div>
++  </section>
++
+   <section class="contenedor no-imprimir" style="text-align:center;">
+     <h2>¿Te gustó el material de Rosina?</h2>
+     <p style="color:var(--tinta-suave); max-width:56ch; margin:0 auto 20px;">Compártelo con tus amigas tejedoras y síguenos para recibir más tips. Si quieres aprender con nosotras en persona, mira nuestros talleres.</p>
+@@ -1626,5 +1661,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+   });
+ })();
+ </script>
++<script>
++// Invítale un café a Rosina: elegir el valor, copiar la llave y avisar por WhatsApp
++(function () {
++  var botones = document.querySelectorAll('.cafe-opciones button');
++  var wa = document.getElementById('cafe-whatsapp');
++  if (!wa) return;
++  function formato(v) { return '$' + Number(v).toLocaleString('es-CO'); }
++  function elegir(b) {
++    botones.forEach(function (x) { var on = x === b; x.classList.toggle('activa', on); x.setAttribute('aria-pressed', on); });
++    wa.href = 'https://wa.me/573205072801?text=' + encodeURIComponent('Hola Rosina 🐑☕ Te acabo de invitar un café de ' + formato(b.dataset.valor) + ' desde el Rincón de Rosina. ¡Gracias por el material!');
++  }
++  botones.forEach(function (b) { b.addEventListener('click', function () { elegir(b); }); });
++  elegir(document.querySelector('.cafe-opciones button.activa'));
++  var copiar = document.getElementById('cafe-copiar');
++  copiar.addEventListener('click', function () {
++    var ok = function () { copiar.textContent = '¡Copiada!'; setTimeout(function () { copiar.textContent = 'Copiar'; }, 1500); };
++    try { navigator.clipboard.writeText('3205072801').then(ok, ok); } catch (e) { ok(); }
++  });
++})();
++</script>
+ </body>
+ </html>
+-- 
+2.43.0
+
