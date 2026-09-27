@@ -39,7 +39,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [ ] Libro para colorear imprimible (necesita las ilustraciones solo con líneas).
 - [ ] Cuaderno de práctica de puntos básicos, punto por punto con Rosina (freemium o de bajo costo).
 - [ ] Versión completa, de pago, de la plantilla de pedidos y clientas, con precios, costos y ganancias. La versión gratis ya está en la Agenda.
-- [ ] Botón "Invítale un café a Rosina" (aporte voluntario con Nequi o Ko-fi).
+- [ ] **Botón "Invítale un café a Rosina": diseño listo y guardado, sin publicar** (27-sep-2026). Sara lo va a hablar con el equipo. Está en `herramientas/borradores/cafe-rosina.patch` (sección al final del Rincón con valores sugeridos de $3.000, $6.000 y $12.000, llave de Nequi/Bre-B para copiar y aviso por WhatsApp). Para publicarlo: `git apply herramientas/borradores/cafe-rosina.patch`.
 - [ ] Opcional: poner también la imagen "Conoce a Rosina" al principio de `rosina.html` (se ofreció; Sara no ha respondido).
 
 ### Que la web aparezca más en Google (SEO)
