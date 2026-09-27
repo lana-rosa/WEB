@@ -686,6 +686,8 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-rosina img:not(.ed-rosina-tejida) { border-radius: 22px; }
 .ed-historia.ed-historia-completa img, .ed-historias .ed-historia-completa:first-child img { aspect-ratio: auto; height: auto; object-fit: contain; background: #EFEEE9; }
 @media (max-width: 700px) { .ed-historia-completa:first-child img { max-height: none; } }
+.ed-rosina-par { display: grid !important; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; margin-bottom: 0 !important; overflow: hidden !important; }
+.ed-rosina-par img { width: 100% !important; height: auto !important; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px !important; position: static !important; border: none !important; box-shadow: none !important; }
 /* Aparición suave al hacer scroll (se desactiva si la persona prefiere menos movimiento) */
 @media (prefers-reduced-motion: no-preference) {
   .ed-aparece { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -928,7 +930,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="rosina.html" class="ed-enlace">Conocer a Rosina →</a>
         </div>
       </div>
-      <a href="rosina.html" class="ed-rosina"><img class="ed-rosina-tejida" src="img/inicio/rosina-tejida.webp" alt="Rosina tejida a mano en crochet, con su vestido rosado de flores" width="640" height="905" loading="lazy" decoding="async"><img src="img/conoce-a-rosina.webp" alt="Conoce a Rosina: ella es Rosina, nuestra ovejita creativa, tierna y soñadora" width="1536" height="1024" loading="lazy" decoding="async"></a>
+      <a href="rosina.html" class="ed-rosina ed-rosina-par">
+        <img src="img/inicio/rosina-ilustracion.webp" alt="Ilustración de Rosina, la ovejita de Lana Rosa, saludando con su vestido rosado de flores" width="600" height="723" loading="lazy" decoding="async">
+        <img src="img/inicio/rosina-tejida.webp" alt="Rosina tejida a mano en crochet, con su vestido rosado de flores" width="640" height="905" loading="lazy" decoding="async">
+      </a>
     </div>
   </section>
 
