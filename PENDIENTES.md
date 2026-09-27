@@ -35,6 +35,10 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 - [x] **Inicio editorial publicado (27-sep-2026):** 14 secciones con fotos grandes, mascotas, historias reales, mensajes de clientas, Rosina tejida, feria y equipo.
 
+- [x] **Dirección en la web:** Sara decidió dejarla como está (27-sep-2026), aunque en Google Maps el perfil quedó sin ubicación (solo envíos).
+- [ ] **Perfil de Google (lo hace Sara):** revisar en 1 o 2 semanas que vuelva a salir al buscar "Lana Rosa Crochet" y que se reactiven las reseñas, después de corregir la fecha de apertura; agregar horario y áreas de servicio si faltan.
+- [ ] **Foto de la feria en el Inicio:** confirmar si se ponen los nombres de las dos integrantes.
+
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 
 ### Material de Rosina
@@ -73,7 +77,7 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - [x] **Menú:** Decisión de Sara (27-sep-2026): mismo menú reordenado (Tienda · Mercería · Aprende · Revista · Rincón de Rosina · Sobre nosotras) con "Personaliza el tuyo" como botón rosado destacado. En celular, el panel se agrupa en Comprar / Aprender / Universo Lana Rosa / Ayuda.
 - [ ] **Proyectos especiales:** qué se ofrece a empresas, cantidades mínimas, tiempos y fotos de trabajos anteriores.
 - [ ] **Sostenibilidad y "las tejedoras":** solo con información real. Hoy la web no tiene datos de sostenibilidad ni fotos o información de las tejedoras.
-- [ ] **"Rosina te recuerda" (pausas activas):** ya existe el artículo de la Revista con la ilustración; se puede reutilizar en el Rincón.
+- [x] **"Rosina te recuerda" (pausas activas):** hecho, está en el índice del Rincón. Ya existe el artículo de la Revista con la ilustración; se puede reutilizar en el Rincón.
 
 **Notas del análisis:**
 - "Foto → amigurumi" ya existe en el inicio ("Convierte cualquier foto…", con `img/triptico-testimonios.jpg`): mejorarlo, no duplicarlo.
