@@ -205,6 +205,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .encabezado > .contenedor, .encabezado > .barra, .encabezado > .contenedor.barra { max-width: 1320px; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
+@media (min-width: 1101px) { .menu-movil { display: inline-flex; align-items: center; order: 20; } .nav-movil-panel { left: auto; right: max(16px, calc((100vw - 1320px) / 2 + 16px)); width: 340px; max-height: calc(100vh - 120px); border-radius: 0 0 18px 18px; } }
 .enlace-rol { display: inline-block; margin-top: 4px; font-weight: 700; text-decoration: none; }
 .enlace-rol:hover { text-decoration: underline; }
 .personalidad-bloque { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -228,8 +229,6 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 /* Etiqueta "material gratuito" del menú */
 .etiqueta-gratis { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: #E6E7FD; color: #4F53B8; font-size: 0.68rem; font-weight: 700; line-height: 1.4; vertical-align: 2px; white-space: nowrap; }
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
-.nav-principal li:has(.etiqueta-gratis) { position: relative; }
-.nav-principal .etiqueta-gratis { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin: 3px 0 0; padding: 1px 7px; font-size: 0.6rem; pointer-events: none; }
 
 /* ===== Paletas de colores ===== */
 .boton-primario, .boton-secundario { display: inline-block; padding: 12px 26px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: var(--fuente-cuerpo); cursor: pointer; border: 2px solid var(--rosa-principal); }
@@ -320,9 +319,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul class="nav-principal">
         <li><a href="tienda.html">Tienda</a></li>
         <li><a href="merceria.html">Mercería</a></li>
-        <li><a href="aprende.html">Aprende <span class="etiqueta-gratis">Material gratuito</span></a></li>
+        <li><a href="aprende.html">Aprende</a></li>
         <li><a href="revista.html">Revista</a></li>
-        <li><a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a></li>
+        <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
         <li><a href="personaliza.html" class="nav-destacado">Personaliza el tuyo</a></li>
       </ul>
@@ -348,7 +347,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="personaliza.html" class="nav-destacado">Personaliza el tuyo ✨</a>
     <a href="merceria.html">Mercería</a>
     <p class="grupo-nav">Aprender</p>
-    <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Material gratuito</span></a>
+    <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="revista.html">Revista</a>
     <p class="grupo-nav">Universo Lana Rosa</p>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
@@ -679,6 +678,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var abierto = panel.classList.toggle('abierto');
       boton.setAttribute('aria-expanded', abierto);
       boton.textContent = abierto ? '✕' : '☰';
+    });
+    document.addEventListener('click', function(e) {
+      if (panel.classList.contains('abierto') && !panel.contains(e.target) && !boton.contains(e.target)) boton.click();
     });
   }
 })();
