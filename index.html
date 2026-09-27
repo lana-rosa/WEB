@@ -492,6 +492,8 @@ section { padding: 72px 0; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
 @media (min-width: 1101px) { .menu-movil { display: inline-flex; align-items: center; order: 20; } .nav-movil-panel { left: auto; right: max(16px, calc((100vw - 1320px) / 2 + 16px)); width: 340px; max-height: calc(100vh - 120px); border-radius: 0 0 18px 18px; } }
+@media (min-width: 1101px) { .encabezado > .contenedor { justify-content: flex-start; gap: 12px; } .encabezado nav[aria-label="Navegación principal"] { margin: 0 auto; } .encabezado .logo { order: -2; } .menu-movil { order: -1; margin-left: 6px; } .nav-movil-panel { right: auto; left: max(16px, calc((100vw - 1320px) / 2 + 16px)); } }
+@media (min-width: 601px) { .encabezado .logo { flex-direction: column; gap: 3px; } .encabezado .logo-img { height: 60px; } .encabezado .texto-logo { font-size: 0.78rem; line-height: 1; } }
 /* Banner Conoce a Rosina */
 .rosina-banner { display: flex; flex-direction: column; align-items: center; gap: 22px; }
 .rosina-banner-img { display: block; width: 100%; max-width: 980px; border-radius: var(--radio-suave); overflow: hidden; box-shadow: var(--sombra-suave); transition: transform 0.2s; }
