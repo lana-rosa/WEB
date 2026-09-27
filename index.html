@@ -476,11 +476,11 @@ section { padding: 72px 0; }
 .opcion-tejer strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.08rem; }
 .opcion-tejer span:last-child { font-size: 0.9rem; color: var(--tinta-suave); }
 .eslogan-seccion { text-align: center; color: var(--rosa-principal); font-weight: 600; margin: 0 0 6px; }
-.galeria-foto-amigurumi { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin-top: 26px; }
-@media (max-width: 1000px) { .galeria-foto-amigurumi { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .galeria-foto-amigurumi { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; } .ejemplo-foto { flex: 0 0 62%; scroll-snap-align: start; } }
-.ejemplo-foto { margin: 0; }
-.ejemplo-foto img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 16px; display: block; box-shadow: var(--sombra-suave); }
+.galeria-foto-amigurumi { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin-top: 26px; }
+.ejemplo-foto { margin: 0; flex: 0 0 calc((100% - 54px) / 4); }
+@media (max-width: 1000px) { .ejemplo-foto { flex-basis: calc((100% - 36px) / 3); } }
+@media (max-width: 560px) { .galeria-foto-amigurumi { flex-wrap: nowrap; justify-content: flex-start; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 24px; padding-bottom: 8px; margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px; } .ejemplo-foto { flex: 0 0 72%; scroll-snap-align: start; } }
+.ejemplo-foto img { width: 100%; height: auto; aspect-ratio: 600 / 848; object-fit: cover; border-radius: 16px; display: block; box-shadow: var(--sombra-suave); }
 .ejemplo-foto figcaption { font-size: 0.85rem; color: var(--tinta-suave); text-align: center; margin-top: 8px; line-height: 1.35; }
 .pasos-historia { list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: paso; }
 @media (max-width: 900px) { .pasos-historia { grid-template-columns: 1fr; gap: 10px; } }
@@ -619,12 +619,13 @@ section { padding: 72px 0; }
         <p style="text-align:center; color:var(--tinta-suave); max-width:62ch; margin:0 auto;">Envíanos una foto de esa persona, mascota o momento especial y la convertimos en un amigurumi único. Así se ven algunos de nuestros pedidos junto a su foto de referencia:</p>
       </div>
       <div class="galeria-foto-amigurumi">
-        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/musico.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con su bajo y su camiseta favorita" loading="lazy" decoding="async"><figcaption>Con su bajo y su camiseta favorita</figcaption></figure>
-        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/sombrero.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con su sombrero y su barba" loading="lazy" decoding="async"><figcaption>Con su sombrero y su barba</figcaption></figure>
-        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/vestido-gala.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con su vestido de gala" loading="lazy" decoding="async"><figcaption>Con su vestido de gala</figcaption></figure>
-        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/abuela.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con sus gafas y su vestido de flores" loading="lazy" decoding="async"><figcaption>Con sus gafas y su vestido de flores</figcaption></figure>
-        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/camiseta-lila.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: con su camiseta lila" loading="lazy" decoding="async"><figcaption>Con su camiseta lila</figcaption></figure>
-        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/blusa-corazon.webp" alt="Amigurumi personalizado junto a la foto de referencia usada para tejerlo: hasta el corazón de su blusa" loading="lazy" decoding="async"><figcaption>Hasta el corazón de su blusa</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/pareja.webp" alt="Pareja de adultos mayores junto a sus dos amigurumis personalizados" width="600" height="848" loading="lazy" decoding="async"><figcaption>Una pareja, cada uno con su estilo</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/vestido-rojo.webp" alt="Mujer con vestido rojo y el amigurumi tejido con su mismo vestido y cabello" width="600" height="848" loading="lazy" decoding="async"><figcaption>Con su vestido rojo favorito</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/boina.webp" alt="Niña con boina y abrigo rosado junto a su amigurumi con los mismos detalles" width="600" height="848" loading="lazy" decoding="async"><figcaption>Con su boina y su abrigo rosado</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/blusa-blanca.webp" alt="Mujer con blusa blanca y jean junto a su amigurumi personalizado" width="600" height="848" loading="lazy" decoding="async"><figcaption>Con su blusa blanca y su jean</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/cantante.webp" alt="Amigurumi de un cantante con chaqueta roja junto a la foto de referencia" width="600" height="848" loading="lazy" decoding="async"><figcaption>Un ícono de la música, con su chaqueta roja</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/personaje.webp" alt="Amigurumi de un ratoncito con uniforme de fútbol junto a la imagen del personaje que lo inspiró" width="600" height="848" loading="lazy" decoding="async"><figcaption>Un personaje de la infancia, listo para el partido</figcaption></figure>
+        <figure class="ejemplo-foto"><img src="img/foto-amigurumi/rosina.webp" alt="Ilustración de Rosina, la ovejita de Lana Rosa, junto a su versión tejida en crochet" width="600" height="848" loading="lazy" decoding="async"><figcaption>Y hasta Rosina: de la ilustración al tejido</figcaption></figure>
       </div>
       <div class="acciones-historias"><a href="personaliza.html" class="boton-primario">Quiero crear el mío</a></div>
     </div>
