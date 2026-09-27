@@ -233,6 +233,25 @@ article.post ul li { margin-bottom: 8px; }
 .rutina-pausas li { display: flex; gap: 10px; align-items: flex-start; margin: 0 !important; }
 .num-pausa { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
 .nota-pausas { font-size: 0.88rem; color: var(--tinta-suave); background: var(--rosa-suave); border-radius: 12px; padding: 10px 14px; }
+
+/* Puentes entre secciones del ecosistema Lana Rosa */
+.puentes { margin: 0 0 56px; }
+.puentes > h2 { font-size: 1.25rem; margin: 0 0 14px; }
+.puentes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.puente { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); background: var(--blanco); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
+.puente:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
+.puente .icono-puente { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
+.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.02rem; margin-bottom: 2px; }
+.puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
+.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
+
+/* Categorías de la Revista */
+.categorias-revista { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+.categorias-revista button { font: inherit; font-size: 0.9rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 2px solid var(--rosa-suave); background: var(--blanco); color: var(--tinta); cursor: pointer; }
+.categorias-revista button:hover { border-color: var(--rosa-medio); }
+.categorias-revista button.activa { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.sin-articulos { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 18px 22px; margin: 0 0 40px; }
+.sin-articulos button { font: inherit; background: none; border: none; padding: 0; color: var(--rosa-principal); font-weight: 700; text-decoration: underline; cursor: pointer; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -288,14 +307,19 @@ article.post ul li { margin-bottom: 8px; }
     <p class="intro">Consejos, cuidados y aprendizajes que nacen en nuestro taller, para que tus amigurumis duren más y disfrutes cada puntada.</p>
   </div>
 
-  <nav class="indice" aria-label="Artículos">
-    <a href="#pausas-activas">Pausas activas</a>
-    <a href="#cuidado-amigurumi">Cuidado del amigurumi</a>
-    <a href="#ideas-regalo">Ideas de regalo</a>
-    <a href="#tejer-desconectar">Tejer para desconectar</a>
+  <nav class="categorias-revista" aria-label="Categorías de la Revista">
+    <button type="button" class="activa" data-filtro="todas" aria-pressed="true">Todo</button>
+    <button type="button" data-filtro="crochet" aria-pressed="false">🧶 Crochet</button>
+    <button type="button" data-filtro="historias" aria-pressed="false">💕 Historias</button>
+    <button type="button" data-filtro="regalos" aria-pressed="false">🎁 Ideas para regalar</button>
+    <button type="button" data-filtro="bienestar" aria-pressed="false">🌸 Bienestar</button>
+    <button type="button" data-filtro="emprendimiento" aria-pressed="false">💼 Emprendimiento</button>
+    <button type="button" data-filtro="sostenibilidad" aria-pressed="false">♻️ Sostenibilidad</button>
+    <button type="button" data-filtro="rosina" aria-pressed="false">🐑 Mundo Rosina</button>
   </nav>
+  <p class="sin-articulos" id="sin-articulos" hidden>Muy pronto vamos a publicar artículos en esta categoría. Mientras tanto, <button type="button" data-filtro="todas">mira todos los artículos</button>.</p>
 
-  <article class="post" id="pausas-activas">
+  <article class="post" id="pausas-activas" data-categorias="bienestar rosina">
     <p class="meta">Bienestar · Septiembre 2026</p>
     <h2>Pausas activas para tejedoras, con Rosina</h2>
     <p>Cuando el tejido está bueno, se nos pasan las horas sin darnos cuenta… y el cuello, los hombros y las manos lo sienten. Rosina te propone esta rutina corta para hacer cada 45 a 60 minutos de tejido: toma menos de 5 minutos y tu cuerpo te lo va a agradecer.</p>
@@ -312,7 +336,7 @@ article.post ul li { margin-bottom: 8px; }
     <p class="firma">— Rosina 🐑 y el equipo de Lana Rosa</p>
   </article>
 
-  <article class="post" id="cuidado-amigurumi">
+  <article class="post" id="cuidado-amigurumi" data-categorias="crochet">
     <p class="meta">Cuidados · Septiembre 2026</p>
     <h2>Cómo cuidar tu amigurumi para que dure toda la vida</h2>
     <p>Un amigurumi bien cuidado te puede acompañar por años — literal. Aquí te contamos lo que le decimos a cada clienta cuando le entregamos su pieza.</p>
@@ -323,10 +347,11 @@ article.post ul li { margin-bottom: 8px; }
       <li><strong>Si se le sale un hilito, no tires de él.</strong> Escríbenos por WhatsApp — muchas veces se arregla fácil y gratis si nos lo traes.</li>
     </ul>
     <p>La lana con la que trabajamos está pensada para durar, pero como con cualquier pieza artesanal, el cuidado que le das también cuenta.</p>
+    <div class="cta-post">¿Quieres uno hecho especialmente para ti? <a href="personaliza.html">Personaliza el tuyo →</a></div>
     <p class="firma">— Sara</p>
   </article>
 
-  <article class="post" id="ideas-regalo">
+  <article class="post" id="ideas-regalo" data-categorias="regalos">
     <p class="meta">Regalos · Septiembre 2026</p>
     <h2>5 ideas de regalos personalizados que sí van a sorprender</h2>
     <p>Sabemos lo difícil que es encontrar un regalo que no se sienta genérico. Aquí van cinco ideas que nos han pedido una y otra vez, y que siempre funcionan:</p>
@@ -342,7 +367,7 @@ article.post ul li { margin-bottom: 8px; }
     <p class="firma">— Sara</p>
   </article>
 
-  <article class="post" id="tejer-desconectar">
+  <article class="post" id="tejer-desconectar" data-categorias="bienestar">
     <p class="meta">Bienestar · Septiembre 2026</p>
     <h2>Por qué tejer se está volviendo la forma favorita de desconectar</h2>
     <p>No es casualidad que cada vez más personas nos escriban preguntando dónde pueden aprender a tejer. Después de un taller, casi todas dicen lo mismo: "no pensé que se me iba a olvidar el celular por tres horas".</p>
@@ -351,6 +376,14 @@ article.post ul li { margin-bottom: 8px; }
     <div class="cta-post">¿Quieres vivirlo tú misma? <a href="aprende.html">Conoce el taller →</a></div>
     <p class="firma">— Sara</p>
   </article>
+
+  <section class="puentes" style="margin-top:20px;">
+    <div class="puentes-grid">
+      <a class="puente" href="merceria.html"><span class="icono-puente" aria-hidden="true">🧵</span><span><strong>¿Quieres tejer tus propios proyectos?</strong><span class="texto-puente">Encuentra lanas, hilos y relleno en la mercería de Lana Rosa.</span><span class="ir-puente">Ir a la mercería →</span></span></a>
+      <a class="puente" href="aprende.html"><span class="icono-puente" aria-hidden="true">🎓</span><span><strong>¿Quieres aprender?</strong><span class="texto-puente">Tutoriales y talleres paso a paso en Lana Rosa Academy.</span><span class="ir-puente">Ir a Academy →</span></span></a>
+      <a class="puente" href="recursos-rosina.html"><span class="icono-puente" aria-hidden="true">🐑</span><span><strong>Recursos gratis de Rosina</strong><span class="texto-puente">Stickers, fondos, glosario, paletas y calculadoras para tejedoras.</span><span class="ir-puente">Ir al Rincón →</span></span></a>
+    </div>
+  </section>
 </main>
 
 <footer class="pie-rico">
@@ -590,6 +623,24 @@ article.post ul li { margin-bottom: 8px; }
   });
 
   actualizarContador();
+})();
+</script>
+<script>
+// Filtro de categorías de la Revista: cada artículo lleva data-categorias="..."
+(function () {
+  var botones = document.querySelectorAll('.categorias-revista button');
+  var articulos = document.querySelectorAll('article.post[data-categorias]');
+  var vacio = document.getElementById('sin-articulos');
+  function filtrar(cat) {
+    var visibles = 0;
+    articulos.forEach(function (a) {
+      var ok = cat === 'todas' || a.dataset.categorias.split(' ').indexOf(cat) > -1;
+      a.hidden = !ok; if (ok) visibles++;
+    });
+    botones.forEach(function (b) { var on = b.dataset.filtro === cat; b.classList.toggle('activa', on); b.setAttribute('aria-pressed', on); });
+    vacio.hidden = visibles > 0;
+  }
+  document.querySelectorAll('[data-filtro]').forEach(function (b) { b.addEventListener('click', function () { filtrar(b.dataset.filtro); }); });
 })();
 </script>
 </body>
