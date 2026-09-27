@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agenda de Rosina para tejedoras — Lana Rosa Crochet</title>
-<meta name="description" content="Agenda gratuita para tejedoras: ficha de proyecto, planeador semanal y control de pedidos. Llénala en línea o imprímela. Material de Rosina, de Lana Rosa Crochet.">
+<meta name="description" content="Agenda gratuita para tejedoras: ficha de proyecto, planeador semanal, control de pedidos, inventario de lanas, agujas y lista de compras. Llénala en línea o imprímela. Material de Rosina, de Lana Rosa Crochet.">
 <link rel="canonical" href="https://lanarosacrochet.com/agenda-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -459,6 +459,18 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .hoja-agenda { scroll-margin-top: 110px; }
 #agenda { padding-top: 40px; }
 @media print { .intro-agenda { display: none !important; } }
+.hoja-agenda header img.avatar-sticker { object-fit: contain; background: var(--rosa-suave); padding: 4px; }
+.tabla-agenda td input { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,0.2); background: transparent; font-family: var(--fuente-cuerpo); font-size: 0.9rem; padding: 6px 2px; }
+.tabla-agenda td input:focus { outline: none; border-bottom-color: var(--rosa-principal); }
+.tabla-agenda td.celda-check { text-align: center; }
+.tabla-agenda td.celda-check input { width: 20px; height: 20px; accent-color: var(--rosa-principal); }
+.tip-agenda { margin: 14px 0 0; font-size: 0.88rem; color: var(--tinta-suave); background: var(--lila-suave); border-radius: 12px; padding: 10px 14px; }
+.agujas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
+.agujas-grid label { position: relative; display: flex; align-items: center; justify-content: center; padding: 10px 6px; border: 1.5px solid var(--rosa-medio); border-radius: 999px; font-weight: 700; font-size: 0.9rem; cursor: pointer; user-select: none; color: var(--tinta); }
+.agujas-grid input { position: absolute; opacity: 0; pointer-events: none; }
+.agujas-grid label:has(input:checked) { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.agujas-grid label:has(input:focus-visible) { outline: 3px solid var(--lila); }
+@media print { .agujas-grid label { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -519,7 +531,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="volver-rincon"><a href="recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
     <p class="eslogan">Material gratuito · Rincón de Rosina</p>
     <h1>Agenda de Rosina</h1>
-    <p class="intro">Tres hojas para organizar tu tejido: la ficha de cada proyecto, tu semana y el control de pedidos si vendes lo que tejes. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
+    <p class="intro">Hojas para organizar tu tejido: tus proyectos, tu semana, tus pedidos, tus lanas, tus agujas y tu lista de compras. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
@@ -528,6 +540,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#ficha-proyecto">📋 Ficha de proyecto</a>
       <a href="#semana-tejiendo">🗓️ Mi semana tejiendo</a>
       <a href="#control-pedidos">📦 Control de pedidos</a>
+      <a href="#inventario-lanas">🧶 Inventario de lanas</a>
+      <a href="#mis-agujas">🪡 Mis agujas</a>
+      <a href="#lista-compras">🛍️ Lista de compras</a>
     </nav>
   </section>
 
@@ -588,6 +603,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <tbody id="tabla-pedidos"></tbody>
           </table>
         </div>
+      </article>
+
+      <article class="hoja-agenda" id="inventario-lanas">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-05-ovillo-sentada.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Inventario de lanas e hilos</h3><p>Sabe qué tienes antes de comprar: así no repites colores ni te quedas corta.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:640px;">
+            <thead><tr><th>Marca</th><th>Color</th><th>Grosor</th><th>Ovillos</th><th>Lo usé en</th></tr></thead>
+            <tbody id="tabla-lanas"></tbody>
+          </table>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> guarda la etiqueta de cada ovillo; ahí están la marca, el grosor y el número de tintura para comprar el mismo tono.</p>
+      </article>
+
+      <article class="hoja-agenda" id="mis-agujas">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Mis agujas</h3><p>Marca las que ya tienes y verás de un vistazo cuáles te faltan.</p></div>
+        </header>
+        <div class="agujas-grid" id="agujas-grid"></div>
+        <div class="linea ancha" style="margin-top:16px;"><label for="ag-agujas-notas">Otras agujas y accesorios (agujas lanera, de tunecino, marcadores…)</label><textarea id="ag-agujas-notas" rows="3" data-guardar></textarea></div>
+      </article>
+
+      <article class="hoja-agenda" id="lista-compras">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Lista de compras</h3><p>Anota lo que necesitas y, si quieres, envíasela a Lana Rosa por WhatsApp.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:560px;">
+            <thead><tr><th>Material</th><th>Color o referencia</th><th>Cantidad</th><th>Comprado</th></tr></thead>
+            <tbody id="tabla-compras"></tbody>
+          </table>
+        </div>
+        <p class="no-imprimir" style="margin:16px 0 0;"><a class="boton-primario" id="enviar-compras" href="https://wa.me/573205072801" target="_blank" rel="noopener">Enviar mi lista por WhatsApp</a></p>
       </article>
     </div>
   </section>
@@ -883,6 +935,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return '<td><input id="ag-p' + f + '-' + col + '" data-guardar aria-label="' + col + ' del pedido ' + f + '"></td>';
     }).join('') + '</tr>');
   }
+  function filasTabla(idTabla, prefijo, cols, n, etiqueta) {
+    var t = document.getElementById(idTabla);
+    for (var r = 1; r <= n; r++) {
+      t.insertAdjacentHTML('beforeend', '<tr>' + cols.map(function(col) {
+        var tipo = col === 'comprado' ? ' type="checkbox"' : '';
+        return '<td' + (tipo ? ' class="celda-check"' : '') + '><input' + tipo + ' id="' + prefijo + r + '-' + col + '" data-guardar aria-label="' + col + ' ' + etiqueta + ' ' + r + '"></td>';
+      }).join('') + '</tr>');
+    }
+  }
+  filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
+  filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', 'comprado'], 10, 'de la compra');
+  var agujasGrid = document.getElementById('agujas-grid');
+  ['2', '2,25', '2,5', '2,75', '3', '3,25', '3,5', '3,75', '4', '4,5', '5', '5,5', '6', '6,5', '7', '8', '9', '10'].forEach(function(mm) {
+    agujasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-a' + mm.replace(',', '-') + '" data-guardar><span>' + mm + ' mm</span></label>');
+  });
+  document.getElementById('enviar-compras').addEventListener('click', function(ev) {
+    var lineas = [];
+    for (var r = 1; r <= 10; r++) {
+      var m = document.getElementById('ag-c' + r + '-material').value.trim();
+      if (!m || document.getElementById('ag-c' + r + '-comprado').checked) continue;
+      var c = document.getElementById('ag-c' + r + '-color').value.trim();
+      var q = document.getElementById('ag-c' + r + '-cantidad').value.trim();
+      lineas.push('• ' + m + (c ? ' — ' + c : '') + (q ? ' (' + q + ')' : ''));
+    }
+    var texto = 'Hola Rosina 🐑 Quiero consultar estos materiales de la mercería:\n' + (lineas.length ? lineas.join('\n') : '(todavía no escribí mi lista)');
+    this.href = 'https://wa.me/573205072801?text=' + encodeURIComponent(texto);
+  });
   var campos = document.querySelectorAll('#agenda [data-guardar]');
   var datos = {};
   try { datos = JSON.parse(leer(CLAVE_AGENDA)) || {}; } catch (e) {}
