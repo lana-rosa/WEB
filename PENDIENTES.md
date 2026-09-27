@@ -41,7 +41,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [ ] Opcional: poner también la imagen "Conoce a Rosina" al principio de `rosina.html` (se ofreció; Sara no ha respondido).
 
 ### Que la web aparezca más en Google (SEO)
-- [ ] Escribir los primeros 3 artículos de la Revista pensados para búsquedas: aprender, materiales y comprar. Después, uno cada 1 o 2 semanas.
+- [x] Primeros 3 artículos de la Revista pensados para búsquedas (27-sep-2026): "Cómo empezar a tejer crochet desde cero", "Qué materiales necesitas para tu primer amigurumi" y "Cómo pedir un amigurumi personalizado a partir de una foto".
+- [ ] Seguir con un artículo cada 1 o 2 semanas (agregar `data-categorias` al `<article>` y el `BlogPosting` en el JSON-LD).
 - [ ] Patrones gratis (lo que más visitas trae en crochet).
 - [ ] Google Merchant Center: productos gratis en la pestaña "Shopping" (la tienda ya tiene los datos de producto).
 - [ ] Imágenes pensadas para Pinterest (paletas, fondos, stickers) que enlacen a la web.
