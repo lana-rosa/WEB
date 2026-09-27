@@ -173,6 +173,8 @@ section.politica p { white-space: pre-line; margin-bottom: 14px; }
 @media (max-width: 1360px) { .encabezado .boton-whatsapp { display: none; } }
 @media (max-width: 1100px) { .nav-principal { display: none; } .menu-movil { display: inline-flex; align-items: center; order: 20; } }
 @media (min-width: 1101px) { .menu-movil { display: inline-flex; align-items: center; order: 20; } .nav-movil-panel { left: auto; right: max(16px, calc((100vw - 1320px) / 2 + 16px)); width: 340px; max-height: calc(100vh - 120px); border-radius: 0 0 18px 18px; } }
+@media (min-width: 1101px) { .encabezado > .contenedor { justify-content: flex-start; gap: 12px; } .encabezado nav[aria-label="Navegación principal"] { margin: 0 auto; } .menu-movil { order: -1; margin-right: 2px; } .nav-movil-panel { right: auto; left: max(16px, calc((100vw - 1320px) / 2 + 16px)); } }
+@media (min-width: 601px) { .encabezado .logo { flex-direction: column; gap: 3px; } .encabezado .logo-img { height: 60px; } .encabezado .texto-logo { font-size: 0.78rem; line-height: 1; } }
 /* Menú: "Personaliza el tuyo" destacado y grupos en celular */
 .nav-principal { align-items: center; }
 .nav-principal a.nav-destacado { background: var(--rosa-principal); color: #fff; padding: 9px 18px; border-radius: 999px; font-weight: 600; box-shadow: 0 4px 12px rgba(231,78,150,0.25); }
