@@ -523,7 +523,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2><span aria-hidden="true">🧮</span> Herramientas para tejedoras</h2>
         <p>Para planear, calcular y organizar tus proyectos.</p>
         <nav class="enlaces-grupo" aria-label="Herramientas para tejedoras">
-          <a href="#calculadora"><span class="icono" aria-hidden="true">🧮</span><span><strong>Calculadoras</strong><span>Aumentos, muestra, lana y costos</span></span></a>
+          <a href="#calculadora"><span class="icono" aria-hidden="true">🧮</span><span><strong>Calculadoras</strong><span>Costos, vueltas, muestra y lana</span></span></a>
           <a href="#agenda"><span class="icono" aria-hidden="true">🗓️</span><span><strong>Agenda</strong><span>Proyectos, semana y pedidos</span></span></a>
           <a href="paletas-rosina.html"><span class="icono" aria-hidden="true">🎨</span><span><strong>Paletas de colores</strong><span>22 combinaciones y la tuya</span></span></a>
         </nav>
@@ -535,10 +535,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="revista.html#pausas-activas"><span class="icono" aria-hidden="true">🧘</span><span><strong>Pausas activas</strong><span>Estiramientos para tejedoras</span></span></a>
         </nav>
       </section>
-      <section class="grupo-rincon" aria-label="Recursos gratuitos">
-        <h2><span aria-hidden="true">🎁</span> Recursos gratuitos</h2>
+      <section class="grupo-rincon" aria-label="Rosina te regala">
+        <h2><span aria-hidden="true">🎁</span> Rosina te regala</h2>
         <p>Descargables para llevar a Rosina contigo.</p>
-        <nav class="enlaces-grupo" aria-label="Recursos gratuitos">
+        <nav class="enlaces-grupo" aria-label="Rosina te regala">
           <a href="#stickers"><span class="icono" aria-hidden="true">🌸</span><span><strong>Stickers</strong><span>26 para WhatsApp</span></span></a>
           <a href="#fondos"><span class="icono" aria-hidden="true">📱</span><span><strong>Fondos de pantalla</strong><span>9 diseños, 4 tamaños</span></span></a>
         </nav>
@@ -815,18 +815,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img class="miniatura-recurso" src="img/rincon/calculadora.webp" width="480" height="360" loading="lazy" alt="Vista de la calculadora de aumentos y disminuciones">
       <div>
         <h2>Calculadora de Rosina</h2>
-        <p>Rosina hace las cuentas por ti: reparte aumentos y disminuciones, adapta un patrón a tu muestra, estima cuánta lana necesitas, lleva la cuenta de tus vueltas y calcula los costos de tu tejido.</p>
+        <p>Rosina hace las cuentas por ti: calcula los costos de tu tejido, lleva la cuenta de tus vueltas, adapta un patrón a tu muestra, estima cuánta lana necesitas y reparte aumentos y disminuciones.</p>
       </div>
     </div>
     <div class="pestanas" role="tablist" aria-label="Herramientas de la calculadora">
-      <button type="button" role="tab" id="tab-aumentos" aria-controls="calc-aumentos" aria-selected="true">Aumentos y disminuciones</button>
+      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="true">💰 Calculadora de costos</button>
+      <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="false">Contador de vueltas</button>
       <button type="button" role="tab" id="tab-muestra" aria-controls="calc-muestra" aria-selected="false">Muestra (tamaño de tu pieza)</button>
       <button type="button" role="tab" id="tab-lana" aria-controls="calc-lana" aria-selected="false">¿Cuánta lana?</button>
-      <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="false">Contador de vueltas</button>
-      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="false">💰 Calculadora de costos</button>
+      <button type="button" role="tab" id="tab-aumentos" aria-controls="calc-aumentos" aria-selected="false">Aumentos y disminuciones</button>
     </div>
 
-    <div class="panel-calc" role="tabpanel" id="calc-aumentos" aria-labelledby="tab-aumentos">
+    <div class="panel-calc" role="tabpanel" id="calc-aumentos" aria-labelledby="tab-aumentos" hidden>
       <form id="form-aumentos" onsubmit="return false">
         <div class="fila-campos">
           <div class="campo"><label for="aum-actual">Puntos que tienes</label><input type="number" id="aum-actual" min="1" max="999" value="18" inputmode="numeric"></div>
@@ -943,7 +943,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="panel-calc panel-precio" role="tabpanel" id="calc-precio" aria-labelledby="tab-precio" hidden>
+    <div class="panel-calc panel-precio" role="tabpanel" id="calc-precio" aria-labelledby="tab-precio">
       <form id="form-precio" onsubmit="return false">
         <p style="margin-top:0;">¿Cuánto cobrar por tu amigurumi? Rosina suma tus materiales, tu tiempo y los gastos del taller, y le agrega tu ganancia. <strong>Los valores que ves son solo un ejemplo: cámbialos por los tuyos.</strong></p>
         <fieldset class="grupo-muestra">
