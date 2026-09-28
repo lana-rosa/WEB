@@ -517,6 +517,8 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .check-amigurumi input { accent-color: var(--rosa-principal); width: 18px; height: 18px; }
 .tabla-agujas tr.fila-activa td { background: var(--rosa-suave); }
 .tabla-agujas td, .tabla-agujas th { padding: 6px 12px; }
+.borrar-calcs { text-align: center; margin: 18px auto 0; }
+.borrar-calcs button { background: none; border: none; color: var(--tinta-suave); text-decoration: underline; font-family: var(--fuente-cuerpo); font-size: 0.85rem; cursor: pointer; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -577,7 +579,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="volver-rincon"><a href="recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
     <p class="eslogan">Material gratuito · Rincón de Rosina</p>
     <h1>Calculadoras de Rosina</h1>
-    <p class="intro">Rosina hace las cuentas por ti. Elige una herramienta: todo se calcula al instante, y tus costos y tu contador se guardan en tu dispositivo.</p>
+    <p class="intro">Rosina hace las cuentas por ti. Elige una herramienta: todo se calcula al instante y lo que escribes se guarda en tu dispositivo, para que lo encuentres cuando vuelvas.</p>
     <div class="pestanas herramientas-calc" role="tablist" aria-label="Calculadoras de Rosina">
       <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="true" data-ancla="costos"><span class="icono-herr" aria-hidden="true">💰</span><strong>Calculadora de costos</strong><small>Cuánto cobrar por tu tejido</small></button>
       <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="false" data-ancla="contador"><span class="icono-herr" aria-hidden="true">🔢</span><strong>Contador de vueltas</strong><small>Lleva la cuenta sin papel</small></button>
@@ -816,6 +818,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     </div>
   </section>
+
+  <p class="contenedor borrar-calcs"><button type="button" id="borrar-calcs">Borrar lo que escribí en todas las calculadoras</button></p>
 
   <section class="contenedor no-imprimir" style="text-align:center;">
     <h2>¿Te gustó el material de Rosina?</h2>
@@ -1186,6 +1190,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       '<a class="boton-whatsapp-res" target="_blank" rel="noopener" href="' + whatsapp('Hola! Vengo del Rincón de Rosina 🐑 Calculé que para mi proyecto de ' + formato(a, 1) + ' × ' + formato(l, 1) + ' cm necesito unos ' + formato(conMargen) + ' g de lana (' + ovillos + ' ovillo' + (ovillos === 1 ? '' : 's') + ' de ' + formato(ov) + ' g). ¿Qué colores tienen disponibles?') + '">🛒 Pedir ' + ovillos + ' ovillo' + (ovillos === 1 ? '' : 's') + ' por WhatsApp</a>';
   }
 
+  /* ---------- Recordar lo que escribes en cada calculadora ---------- */
+  var CLAVE_CALCS = 'rosinaCalculadoras', datosCalcs = {};
+  try { datosCalcs = JSON.parse(leer(CLAVE_CALCS)) || {}; } catch (e) {}
+  function claveCampo(el) { return el.type === 'radio' ? el.name + '=' + el.value : el.id; }
+  function recordarFormulario(idForm) {
+    var form = document.getElementById(idForm); if (!form) return;
+    var guardados = datosCalcs[idForm] || {};
+    form.querySelectorAll('input, select').forEach(function(el) {
+      var k = claveCampo(el); if (!k || guardados[k] === undefined) return;
+      if (el.type === 'checkbox' || el.type === 'radio') el.checked = !!guardados[k]; else el.value = guardados[k];
+    });
+    function guardar() {
+      var d = {};
+      form.querySelectorAll('input, select').forEach(function(el) { var k = claveCampo(el); if (k) d[k] = (el.type === 'checkbox' || el.type === 'radio') ? el.checked : el.value; });
+      datosCalcs[idForm] = d; escribir(CLAVE_CALCS, JSON.stringify(datosCalcs));
+    }
+    form.addEventListener('input', guardar); form.addEventListener('change', guardar);
+  }
+  ['form-aumentos', 'form-muestra', 'form-lana'].forEach(recordarFormulario);
+
   [['form-aumentos', calcularAumentos], ['form-muestra', calcularMuestra], ['form-lana', calcularLana]].forEach(function(par) {
     var form = document.getElementById(par[0]);
     form.addEventListener('input', par[1]);
@@ -1228,6 +1252,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('res-agujas').innerHTML = html;
     document.querySelectorAll('#tabla-agujas tr').forEach(function(tr) { tr.classList.toggle('fila-activa', parseFloat(tr.dataset.mm) === mm); });
   }
+  document.getElementById('borrar-calcs').addEventListener('click', function() {
+    if (!confirm('¿Borrar tus datos de todas las calculadoras (costos, contador y demás) en este dispositivo?')) return;
+    ['rosinaCalculadoras', 'rosinaPrecio', 'rosinaContador'].forEach(borrar);
+    location.reload();
+  });
+  recordarFormulario('form-agujas');
   document.getElementById('form-agujas').addEventListener('change', calcularAgujas);
   calcularAgujas();
 
@@ -1279,6 +1309,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     patronEsfera.vueltas = total;
     patronEsfera.texto = 'Esfera de ' + max + ' puntos (' + total + ' vueltas) — Calculadora de Rosina\n' + filas.map(function(f) { return 'V' + f[0] + ': ' + f[1] + ' (' + f[2] + ')'; }).join('\n') + '\nRellena y cierra.\nlanarosacrochet.com/calculadoras-rosina.html#esferas';
   }
+  recordarFormulario('form-esferas');
   var formEsferas = document.getElementById('form-esferas');
   formEsferas.addEventListener('input', calcularEsferas);
   formEsferas.addEventListener('change', calcularEsferas);
