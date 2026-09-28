@@ -506,6 +506,23 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .nota-copia { flex-basis: 100%; text-align: center; color: var(--tinta-suave); font-size: 0.8rem; }
 .enlace-copia { background: none; border: none; color: var(--rosa-principal); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; }
 @media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } }
+.barra-agenda { position: sticky; top: 108px; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; background: rgba(255,255,255,0.97); backdrop-filter: blur(6px); border-radius: 18px; box-shadow: var(--sombra-suave); padding: 10px 14px; margin: 0 0 18px; }
+@media (max-width: 1100px) { .barra-agenda { top: 80px; } }
+.buscar-agenda { flex: 1 1 260px; display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 4px 6px 4px 14px; background: var(--blanco); }
+.buscar-agenda input { flex: 1; min-width: 0; border: none; outline: none; font-family: var(--fuente-cuerpo); font-size: 0.95rem; padding: 6px 0; background: transparent; }
+.resultado-busqueda { font-size: 0.8rem; color: var(--tinta-suave); white-space: nowrap; }
+.buscar-agenda button { border: none; background: var(--rosa-principal); color: var(--blanco); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: 700; }
+.buscar-agenda button[hidden] { display: none; }
+.grupo-colores { display: flex; align-items: center; gap: 6px; }
+.etiqueta-colores { font-size: 0.78rem; font-weight: 700; color: var(--tinta-suave); margin-right: 2px; }
+.muestra-color, .muestra-resaltar { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--blanco); box-shadow: 0 0 0 1.5px rgba(69,69,74,0.25); background: var(--c); cursor: pointer; padding: 0; font-size: 0.7rem; color: var(--tinta-suave); }
+.muestra-resaltar { border-radius: 7px; }
+.ayuda-barra { flex-basis: 100%; margin: -4px 0 0; font-size: 0.78rem; color: var(--tinta-suave); }
+@media (max-width: 700px) { .barra-agenda { gap: 8px 12px; padding: 8px 10px; } .ayuda-barra { display: none; } }
+.coincide { outline: 2px dashed var(--lila); outline-offset: 2px; border-radius: 6px; }
+.coincide-actual { outline: 3px solid var(--rosa-principal) !important; outline-offset: 2px; border-radius: 6px; }
+.hoja-agenda { scroll-margin-top: 200px; }
+@media print { .tabla-agenda td input, .linea input, .linea textarea { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -570,7 +587,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
     </div>
-    <p class="intro">Hojas para organizar tu tejido: tus proyectos, tu semana, tus pedidos, tus lanas, tus agujas, tus compras, tus patrones, tus fechas especiales, tus clientas, tus ventas, tus ferias y tu bienestar. Toca el título de cada hoja para abrirla. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
+    <p class="intro">Hojas de tu agenda. Toca el título de cada hoja para abrirla. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
@@ -608,6 +625,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="seccion-suave seccion-lila" id="agenda">
     <div class="contenedor">
+      <div class="barra-agenda no-imprimir" role="toolbar" aria-label="Herramientas de la agenda">
+        <div class="buscar-agenda">
+          <span aria-hidden="true">🔍</span>
+          <input type="search" id="buscar-agenda" placeholder="Buscar en mi agenda…" aria-label="Buscar en mi agenda">
+          <span id="resultado-busqueda" class="resultado-busqueda" aria-live="polite"></span>
+          <button type="button" id="siguiente-busqueda" aria-label="Siguiente resultado" hidden>↓</button>
+        </div>
+        <div class="grupo-colores" aria-label="Color de la letra">
+          <span class="etiqueta-colores">Letra</span>
+          <button type="button" class="muestra-color" data-color="" style="--c:#45454A" aria-label="Letra normal"></button>
+          <button type="button" class="muestra-color" data-color="#E74E96" style="--c:#E74E96" aria-label="Letra rosada"></button>
+          <button type="button" class="muestra-color" data-color="#5B5FC7" style="--c:#5B5FC7" aria-label="Letra lila"></button>
+          <button type="button" class="muestra-color" data-color="#2F80C9" style="--c:#2F80C9" aria-label="Letra azul"></button>
+          <button type="button" class="muestra-color" data-color="#2E9E5B" style="--c:#2E9E5B" aria-label="Letra verde"></button>
+        </div>
+        <div class="grupo-colores" aria-label="Resaltar">
+          <span class="etiqueta-colores">Resaltar</span>
+          <button type="button" class="muestra-resaltar" data-resaltar="" style="--c:#FFFFFF" aria-label="Sin resaltar">✕</button>
+          <button type="button" class="muestra-resaltar" data-resaltar="#FFF3A3" style="--c:#FFF3A3" aria-label="Resaltar en amarillo"></button>
+          <button type="button" class="muestra-resaltar" data-resaltar="#FBE4EF" style="--c:#FBE4EF" aria-label="Resaltar en rosado"></button>
+          <button type="button" class="muestra-resaltar" data-resaltar="#E6E7FD" style="--c:#E6E7FD" aria-label="Resaltar en lila"></button>
+          <button type="button" class="muestra-resaltar" data-resaltar="#DDF3E4" style="--c:#DDF3E4" aria-label="Resaltar en verde"></button>
+        </div>
+        <p class="ayuda-barra" id="ayuda-barra">Toca una casilla y luego elige un color.</p>
+      </div>
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
           <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -1216,6 +1258,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     datos = {};
     borrar(CLAVE_AGENDA);
     duena.value = ''; tituloDuena();
+    estilos = {}; campos.forEach(function(el) { el.style.color = ''; el.style.backgroundColor = ''; });
   });
 
   /* ---------- Portada con nombre y copia de seguridad ---------- */
@@ -1288,6 +1331,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (history.replaceState) history.replaceState(null, '', '#' + selectorHoja.value);
     selectorHoja.value = '';
   });
+  /* ---------- Barra: colores, resaltar y buscador ---------- */
+  var estilos = datos._estilos || {};
+  function aplicarEstilo(el) { var e = estilos[el.id] || {}; el.style.color = e.c || ''; el.style.backgroundColor = e.r || ''; }
+  campos.forEach(function(el) { if (el.type !== 'checkbox') aplicarEstilo(el); });
+  var ultimoCampo = null, ayudaBarra = document.getElementById('ayuda-barra');
+  document.getElementById('agenda').addEventListener('focusin', function(e) {
+    var el = e.target;
+    if (el.matches && el.matches('[data-guardar]') && el.type !== 'checkbox') { ultimoCampo = el; ayudaBarra.textContent = 'Elige un color para la casilla que tocaste.'; }
+  });
+  function guardarEstilo(prop, valor) {
+    if (!ultimoCampo) { ayudaBarra.textContent = 'Primero toca la casilla que quieres pintar.'; return; }
+    var e = estilos[ultimoCampo.id] || {}; if (valor) e[prop] = valor; else delete e[prop];
+    if (e.c || e.r) estilos[ultimoCampo.id] = e; else delete estilos[ultimoCampo.id];
+    datos._estilos = estilos; escribir(CLAVE_AGENDA, JSON.stringify(datos)); aplicarEstilo(ultimoCampo);
+    ultimoCampo.focus({ preventScroll: true });
+  }
+  document.querySelectorAll('.muestra-color, .muestra-resaltar').forEach(function(b) {
+    b.addEventListener('mousedown', function(e) { e.preventDefault(); });
+    b.addEventListener('click', function() { if (b.dataset.color !== undefined) guardarEstilo('c', b.dataset.color); else guardarEstilo('r', b.dataset.resaltar); });
+  });
+  function sinTildes(t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  var inputBuscar = document.getElementById('buscar-agenda'), resBusqueda = document.getElementById('resultado-busqueda'), botonSiguiente = document.getElementById('siguiente-busqueda');
+  var coincidencias = [], posicion = -1;
+  function irA(i) {
+    if (!coincidencias.length) return;
+    posicion = (i + coincidencias.length) % coincidencias.length;
+    document.querySelectorAll('.coincide-actual').forEach(function(x) { x.classList.remove('coincide-actual'); });
+    var el = coincidencias[posicion]; el.classList.add('coincide-actual');
+    resBusqueda.textContent = (posicion + 1) + ' de ' + coincidencias.length;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function buscarAgenda() {
+    var q = sinTildes(inputBuscar.value.trim());
+    document.querySelectorAll('.coincide, .coincide-actual').forEach(function(x) { x.classList.remove('coincide', 'coincide-actual'); });
+    coincidencias = []; posicion = -1;
+    if (q.length < 2) { resBusqueda.textContent = ''; botonSiguiente.hidden = true; return; }
+    hojas.forEach(function(h) {
+      var enHoja = [];
+      h.querySelectorAll('[data-guardar]').forEach(function(el) {
+        var v = el.tagName === 'SELECT' ? el.value : (el.type === 'checkbox' ? '' : el.value);
+        if (v && sinTildes(v).indexOf(q) !== -1) enHoja.push(el);
+      });
+      if (!enHoja.length && sinTildes(h.querySelector('header').textContent).indexOf(q) !== -1) enHoja.push(h.querySelector('header'));
+      if (enHoja.length) { abrirHoja(h, true); enHoja.forEach(function(el) { el.classList.add('coincide'); coincidencias.push(el); }); }
+    });
+    botonSiguiente.hidden = coincidencias.length < 2;
+    if (coincidencias.length) irA(0); else resBusqueda.textContent = 'Sin resultados';
+  }
+  var esperaBusqueda;
+  inputBuscar.addEventListener('input', function() { clearTimeout(esperaBusqueda); esperaBusqueda = setTimeout(buscarAgenda, 250); });
+  inputBuscar.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (coincidencias.length) irA(posicion + 1); else buscarAgenda(); } });
+  botonSiguiente.addEventListener('click', function() { irA(posicion + 1); });
   abrirDesdeAncla();
   window.addEventListener('hashchange', abrirDesdeAncla);
   window.addEventListener('beforeprint', function() { hojas.forEach(function(h) { h.classList.add('imprimiendo-hoja'); }); });
