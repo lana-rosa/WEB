@@ -471,22 +471,8 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .agujas-grid label:has(input:checked) { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
 .agujas-grid label:has(input:focus-visible) { outline: 3px solid var(--lila); }
 @media print { .agujas-grid label { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
-.hoja-agenda header[role="button"] { cursor: pointer; margin-bottom: 0; border-bottom-color: transparent; }
-.hoja-agenda.abierta header[role="button"] { margin-bottom: 18px; border-bottom-color: var(--rosa-medio); }
-.hoja-agenda header .flecha-hoja { margin-left: auto; color: var(--rosa-principal); font-size: 1.3rem; transition: transform 0.2s; }
-.hoja-agenda.abierta header .flecha-hoja { transform: rotate(180deg); }
-.hoja-agenda header[role="button"]:focus-visible { outline: 3px solid var(--lila); outline-offset: 4px; border-radius: 12px; }
-.hoja-agenda:not(.abierta) { padding-top: 18px; padding-bottom: 18px; margin-bottom: 14px; }
-.hoja-agenda:not(.abierta) .cuerpo-hoja { display: none; }
-@media print { .hoja-agenda .cuerpo-hoja { display: block !important; } .hoja-agenda header .flecha-hoja { display: none; } .hoja-agenda header[role="button"] { margin-bottom: 18px; border-bottom-color: var(--rosa-medio); } }
-.tabla-agenda td select { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,0.2); background: transparent; font-family: var(--fuente-cuerpo); font-size: 0.9rem; padding: 6px 2px; color: var(--tinta); }
-.meses { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 860px) { .meses { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .mes textarea { min-height: 90px; }
-.selector-hoja { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 20px; }
-.selector-hoja label { font-weight: 700; color: var(--rosa-principal); font-size: 0.92rem; }
-.selector-hoja select { width: min(360px, 100%); padding: 12px 16px; border-radius: 999px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-family: var(--fuente-cuerpo); font-size: 1rem; font-weight: 600; color: var(--tinta); cursor: pointer; }
-.selector-hoja select:focus { outline: 3px solid var(--lila); }
 .lista-llevar { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px 14px; margin-top: 6px; }
 .lista-llevar label { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--tinta); cursor: pointer; }
 .lista-llevar input { width: 18px; height: 18px; accent-color: var(--rosa-principal); flex-shrink: 0; }
@@ -523,6 +509,28 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .coincide-actual { outline: 3px solid var(--rosa-principal) !important; outline-offset: 2px; border-radius: 6px; }
 .hoja-agenda { scroll-margin-top: 200px; }
 @media print { .tabla-agenda td input, .linea input, .linea textarea { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+.agenda-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 24px; align-items: start; }
+.menu-hojas { position: sticky; top: 210px; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 10px; max-height: calc(100vh - 230px); overflow-y: auto; }
+.menu-hojas-toggle { display: none; }
+.menu-hojas-lista { display: flex; flex-direction: column; }
+.menu-grupo { margin: 10px 10px 4px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-suave); }
+.menu-grupo:first-child { margin-top: 4px; }
+.menu-hojas-lista a { display: block; padding: 8px 10px; border-radius: 10px; text-decoration: none; color: var(--tinta); font-size: 0.92rem; font-weight: 600; border-left: 3px solid transparent; }
+.menu-hojas-lista a:hover { background: var(--rosa-suave); }
+.menu-hojas-lista a.activa { background: var(--rosa-suave); color: var(--rosa-principal); border-left-color: var(--rosa-principal); }
+.hojas-contenido .hoja-agenda { margin-bottom: 0; }
+@media screen { .hojas-contenido .hoja-agenda:not(.abierta) { display: none; } }
+@media (max-width: 900px) {
+  .agenda-layout { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .menu-hojas { position: relative; top: auto; max-height: none; overflow: visible; padding: 0; background: transparent; box-shadow: none; }
+  .menu-hojas-toggle { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-family: var(--fuente-titulo); font-size: 1rem; color: var(--rosa-principal); cursor: pointer; box-shadow: var(--sombra-suave); }
+  .menu-hojas-lista { display: none; position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 7; background: var(--blanco); border-radius: 14px; box-shadow: 0 14px 30px rgba(58,42,46,0.18); padding: 8px; max-height: 60vh; overflow-y: auto; }
+  .menu-hojas.abierto .menu-hojas-lista { display: flex; }
+}
+@media print { .agenda-layout { display: block; } .menu-hojas { display: none !important; } .hojas-contenido .hoja-agenda { display: block !important; margin-bottom: 24px; } }
+.agenda-layout { scroll-margin-top: 210px; }
+@media (max-width: 900px) { .agenda-layout { scroll-margin-top: 200px; } }
+@media (max-width: 900px) { .barra-agenda { position: static; } .menu-hojas { position: sticky; top: 80px; z-index: 8; } .agenda-layout { scroll-margin-top: 90px; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -587,7 +595,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
     </div>
-    <p class="intro">Hojas de tu agenda. Toca el título de cada hoja para abrirla. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
+    <p class="intro">Hojas de tu agenda. Elige una hoja en el menú. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
@@ -597,29 +605,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="enlace-copia" id="agenda-cargar">⬆️ Cargar una copia</button>
       <input type="file" id="agenda-archivo" accept=".json,application/json" hidden>
       <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular.</small>
-    </div>
-    <div class="selector-hoja">
-      <label for="ir-a-hoja">Ir a una hoja</label>
-      <select id="ir-a-hoja">
-        <option value="">Elige una hoja…</option>
-        <option value="ficha-proyecto">📋 Ficha de proyecto</option>
-        <option value="semana-tejiendo">🗓️ Mi semana tejiendo</option>
-        <option value="control-pedidos">📦 Control de pedidos</option>
-        <option value="inventario-lanas">🧶 Inventario de lanas</option>
-        <option value="mis-agujas">🪡 Mis agujas</option>
-        <option value="lista-compras">🛍️ Lista de compras</option>
-        <option value="proyectos-fila">🧵 Proyectos en fila</option>
-        <option value="coleccion-patrones">📚 Mis patrones</option>
-        <option value="anio-tejiendo">⭐ Mi año tejiendo</option>
-        <option value="fechas-especiales">🎁 Fechas especiales</option>
-        <option value="mis-clientas">💕 Mis clientas</option>
-        <option value="ventas-mes">💰 Mis ventas del mes</option>
-        <option value="catalogo-precios">🏷️ Mi catálogo de precios</option>
-        <option value="ferias-mercados">🎪 Ferias y mercados</option>
-        <option value="diario-tejido">📔 Diario de tejido</option>
-        <option value="registro-pausas">🧘 Registro de pausas activas</option>
-        <option value="lo-que-aprendi">🌟 Lo que aprendí</option>
-      </select>
     </div>
   </section>
 
@@ -650,6 +635,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="ayuda-barra" id="ayuda-barra">Toca una casilla y luego elige un color.</p>
       </div>
+      <div class="agenda-layout">
+      <aside class="menu-hojas" id="menu-hojas">
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span id="menu-hojas-actual">📋 Ficha de proyecto</span><span aria-hidden="true">▾</span></button>
+        <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
+          <p class="menu-grupo">Mis proyectos</p>
+          <a href="#ficha-proyecto" data-hoja="ficha-proyecto">📋 Ficha de proyecto</a>
+          <a href="#semana-tejiendo" data-hoja="semana-tejiendo">🗓️ Mi semana tejiendo</a>
+          <a href="#proyectos-fila" data-hoja="proyectos-fila">🧵 Proyectos en fila</a>
+          <a href="#coleccion-patrones" data-hoja="coleccion-patrones">📚 Mis patrones</a>
+          <a href="#anio-tejiendo" data-hoja="anio-tejiendo">⭐ Mi año tejiendo</a>
+          <a href="#lo-que-aprendi" data-hoja="lo-que-aprendi">🌟 Lo que aprendí</a>
+          <p class="menu-grupo">Mis materiales</p>
+          <a href="#inventario-lanas" data-hoja="inventario-lanas">🧶 Inventario de lanas</a>
+          <a href="#mis-agujas" data-hoja="mis-agujas">🪡 Mis agujas</a>
+          <a href="#lista-compras" data-hoja="lista-compras">🛍️ Lista de compras</a>
+          <p class="menu-grupo">Mi emprendimiento</p>
+          <a href="#control-pedidos" data-hoja="control-pedidos">📦 Control de pedidos</a>
+          <a href="#mis-clientas" data-hoja="mis-clientas">💕 Mis clientas</a>
+          <a href="#ventas-mes" data-hoja="ventas-mes">💰 Mis ventas del mes</a>
+          <a href="#catalogo-precios" data-hoja="catalogo-precios">🏷️ Mi catálogo de precios</a>
+          <a href="#ferias-mercados" data-hoja="ferias-mercados">🎪 Ferias y mercados</a>
+          <p class="menu-grupo">Fechas y bienestar</p>
+          <a href="#fechas-especiales" data-hoja="fechas-especiales">🎁 Fechas especiales</a>
+          <a href="#diario-tejido" data-hoja="diario-tejido">📔 Diario de tejido</a>
+          <a href="#registro-pausas" data-hoja="registro-pausas">🧘 Registro de pausas activas</a>
+        </nav>
+      </aside>
+      <div class="hojas-contenido">
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
           <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -906,6 +919,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </table>
         </div>
       </article>
+      </div>
+      </div>
     </div>
   </section>
 
@@ -1301,36 +1316,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   document.getElementById('tabla-ventas').addEventListener('input', totalesVentas);
   totalesVentas();
-  /* ---------- Hojas plegables: se ve el título y se abre al tocarlo ---------- */
+  /* ---------- Menú de hojas: se ve una hoja a la vez ---------- */
   var hojas = document.querySelectorAll('#agenda .hoja-agenda');
-  function abrirHoja(h, abrir) {
-    h.classList.toggle('abierta', abrir);
-    var cab = h.querySelector('header'); if (cab) cab.setAttribute('aria-expanded', abrir);
+  var enlacesMenu = document.querySelectorAll('#menu-hojas-lista a');
+  var menuHojas = document.getElementById('menu-hojas'), toggleMenu = document.getElementById('menu-hojas-toggle');
+  var CLAVE_HOJA = 'rosinaAgendaHoja';
+  function mostrarHoja(id, desplazar) {
+    var h = document.getElementById(id); if (!h || !h.classList.contains('hoja-agenda')) return;
+    hojas.forEach(function(x) { x.classList.toggle('abierta', x === h); });
+    enlacesMenu.forEach(function(a) { var activo = a.dataset.hoja === id; a.classList.toggle('activa', activo); if (activo) { a.setAttribute('aria-current', 'page'); document.getElementById('menu-hojas-actual').textContent = a.textContent; } else a.removeAttribute('aria-current'); });
+    escribir(CLAVE_HOJA, id);
+    menuHojas.classList.remove('abierto'); toggleMenu.setAttribute('aria-expanded', 'false');
+    if (desplazar) document.querySelector('.agenda-layout').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-  hojas.forEach(function(h) {
-    var cab = h.querySelector('header');
-    var cuerpo = document.createElement('div'); cuerpo.className = 'cuerpo-hoja';
-    while (cab.nextSibling) cuerpo.appendChild(cab.nextSibling);
-    h.appendChild(cuerpo);
-    cab.setAttribute('role', 'button'); cab.setAttribute('tabindex', '0');
-    cab.insertAdjacentHTML('beforeend', '<span class="flecha-hoja" aria-hidden="true">▾</span>');
-    cab.addEventListener('click', function(e) { if (e.target.closest('input, textarea, select, a')) return; abrirHoja(h, !h.classList.contains('abierta')); });
-    cab.addEventListener('keydown', function(e) { if (e.target !== cab) return; if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cab.click(); } });
-    abrirHoja(h, false);
+  function abrirHoja(h, abrir) { if (abrir) mostrarHoja(h.id); }
+  enlacesMenu.forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault(); mostrarHoja(a.dataset.hoja, window.innerWidth < 900);
+      if (history.replaceState) history.replaceState(null, '', '#' + a.dataset.hoja);
+    });
   });
+  toggleMenu.addEventListener('click', function() { var ab = menuHojas.classList.toggle('abierto'); toggleMenu.setAttribute('aria-expanded', ab); });
   function abrirDesdeAncla() {
-    var h = location.hash && document.querySelector('#agenda .hoja-agenda' + location.hash);
-    if (h) { abrirHoja(h, true); h.scrollIntoView(); }
+    var id = location.hash.slice(1);
+    if (id && document.getElementById(id) && document.getElementById(id).classList.contains('hoja-agenda')) { mostrarHoja(id); document.querySelector('.agenda-layout').scrollIntoView(); return true; }
+    return false;
   }
-  var selectorHoja = document.getElementById('ir-a-hoja');
-  selectorHoja.addEventListener('change', function() {
-    var h = selectorHoja.value && document.getElementById(selectorHoja.value);
-    if (!h) return;
-    abrirHoja(h, true);
-    h.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    if (history.replaceState) history.replaceState(null, '', '#' + selectorHoja.value);
-    selectorHoja.value = '';
-  });
+  if (!abrirDesdeAncla()) mostrarHoja(leer(CLAVE_HOJA) || 'ficha-proyecto');
   /* ---------- Barra: colores, resaltar y buscador ---------- */
   var estilos = datos._estilos || {};
   function aplicarEstilo(el) { var e = estilos[el.id] || {}; el.style.color = e.c || ''; el.style.backgroundColor = e.r || ''; }
@@ -1359,6 +1371,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     posicion = (i + coincidencias.length) % coincidencias.length;
     document.querySelectorAll('.coincide-actual').forEach(function(x) { x.classList.remove('coincide-actual'); });
     var el = coincidencias[posicion]; el.classList.add('coincide-actual');
+    var hojaEl = el.closest('.hoja-agenda'); if (hojaEl) mostrarHoja(hojaEl.id);
     resBusqueda.textContent = (posicion + 1) + ' de ' + coincidencias.length;
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -1374,7 +1387,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (v && sinTildes(v).indexOf(q) !== -1) enHoja.push(el);
       });
       if (!enHoja.length && sinTildes(h.querySelector('header').textContent).indexOf(q) !== -1) enHoja.push(h.querySelector('header'));
-      if (enHoja.length) { abrirHoja(h, true); enHoja.forEach(function(el) { el.classList.add('coincide'); coincidencias.push(el); }); }
+      if (enHoja.length) { enHoja.forEach(function(el) { el.classList.add('coincide'); coincidencias.push(el); }); }
     });
     botonSiguiente.hidden = coincidencias.length < 2;
     if (coincidencias.length) irA(0); else resBusqueda.textContent = 'Sin resultados';
@@ -1383,7 +1396,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   inputBuscar.addEventListener('input', function() { clearTimeout(esperaBusqueda); esperaBusqueda = setTimeout(buscarAgenda, 250); });
   inputBuscar.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (coincidencias.length) irA(posicion + 1); else buscarAgenda(); } });
   botonSiguiente.addEventListener('click', function() { irA(posicion + 1); });
-  abrirDesdeAncla();
   window.addEventListener('hashchange', abrirDesdeAncla);
   window.addEventListener('beforeprint', function() { hojas.forEach(function(h) { h.classList.add('imprimiendo-hoja'); }); });
   window.addEventListener('afterprint', function() { hojas.forEach(function(h) { h.classList.remove('imprimiendo-hoja'); }); });
