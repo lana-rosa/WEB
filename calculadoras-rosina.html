@@ -595,8 +595,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1>Calculadoras de Rosina</h1>
     <p class="intro">Rosina hace las cuentas por ti. Elige una herramienta: todo se calcula al instante y lo que escribes se guarda en tu dispositivo, para que lo encuentres cuando vuelvas.</p>
     <div class="pestanas herramientas-calc" role="tablist" aria-label="Calculadoras de Rosina">
-      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="true" data-ancla="costos"><span class="icono-herr" aria-hidden="true">💰</span><strong>Calculadora de costos</strong><small>Cuánto cobrar por tu tejido</small></button>
-      <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="false" data-ancla="contador"><span class="icono-herr" aria-hidden="true">🔢</span><strong>Contador de vueltas</strong><small>Lleva la cuenta sin papel</small></button>
+      <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="true" data-ancla="contador"><span class="icono-herr" aria-hidden="true">🔢</span><strong>Contador de vueltas digital</strong><small>Lleva la cuenta sin papel</small></button>
+      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="false" data-ancla="costos"><span class="icono-herr" aria-hidden="true">💰</span><strong>Calculadora de costos</strong><small>Cuánto cobrar por tu tejido</small></button>
       <button type="button" role="tab" id="tab-muestra" aria-controls="calc-muestra" aria-selected="false" data-ancla="muestra"><span class="icono-herr" aria-hidden="true">📏</span><strong>Muestra</strong><small>Cuántos puntos y vueltas tejer</small></button>
       <button type="button" role="tab" id="tab-lana" aria-controls="calc-lana" aria-selected="false" data-ancla="lana"><span class="icono-herr" aria-hidden="true">🧶</span><strong>¿Cuánta lana?</strong><small>Los ovillos que necesitas</small></button>
       <button type="button" role="tab" id="tab-aumentos" aria-controls="calc-aumentos" aria-selected="false" data-ancla="aumentos"><span class="icono-herr" aria-hidden="true">➕</span><strong>Aumentos y disminuciones</strong><small>Reparte los puntos de tu vuelta</small></button>
@@ -759,7 +759,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="panel-calc" role="tabpanel" id="calc-contador" aria-labelledby="tab-contador" hidden>
+    <div class="panel-calc" role="tabpanel" id="calc-contador" aria-labelledby="tab-contador">
       <div>
         <div class="campo"><label for="co-proyecto">¿Qué estás tejiendo?</label><input type="text" id="co-proyecto" placeholder="Ej.: pollito amarillo"></div>
         <p class="subtitulo-hilos">🧩 Piezas <small class="nota-piezas">Toca una para contar sus vueltas</small></p>
@@ -793,7 +793,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="panel-calc panel-precio" role="tabpanel" id="calc-precio" aria-labelledby="tab-precio">
+    <div class="panel-calc panel-precio" role="tabpanel" id="calc-precio" aria-labelledby="tab-precio" hidden>
       <form id="form-precio" onsubmit="return false">
         <p style="margin-top:0;">¿Cuánto cobrar por tu amigurumi? Rosina suma tus materiales, tu tiempo y los gastos del taller, y le agrega tu ganancia. <strong>Los valores que ves son solo un ejemplo: cámbialos por los tuyos.</strong></p>
         <fieldset class="grupo-muestra">

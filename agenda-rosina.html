@@ -534,6 +534,33 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .acciones-hoja { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-bottom: 10px; }
 @media print { body.imprimir-una .hojas-contenido .hoja-agenda:not(.abierta) { display: none !important; } body.imprimir-una .hoja-agenda { page-break-after: auto; } }
 body.en-blanco .totales-ventas strong { visibility: hidden; }
+/* Agenda en celular: cada renglón es una tarjeta, sin columna fija (28-sep-2026) */
+.tabla-agenda th:first-child, .tabla-agenda td:first-child { position: static; box-shadow: none; min-width: 0; max-width: none; }
+.tabla-agenda thead th { position: static; }
+.agregar-renglon-wrap { margin: 10px 0 0; }
+.acceso-contador { margin: 12px 0 0; }
+.elegir-anio { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 16px; margin-bottom: 14px; }
+.elegir-anio .linea { min-width: 140px; }
+.elegir-anio select, .elegir-tienda select { font: inherit; padding: 8px 10px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: var(--blanco); color: var(--tinta); max-width: 100%; }
+.elegir-tienda { background: var(--rosa-suave); border-radius: 16px; padding: 14px 16px; margin: 0 0 16px; }
+.elegir-tienda label { display: block; font-weight: 700; color: var(--rosa-principal); font-size: 0.9rem; margin-bottom: 8px; }
+.elegir-tienda-fila { display: flex; flex-wrap: wrap; gap: 10px; }
+.elegir-tienda-fila select { flex: 1 1 240px; min-width: 0; }
+.ayuda-tienda { margin: 8px 0 0; font-size: 0.85rem; color: var(--tinta-suave); min-height: 1em; }
+@media (max-width: 700px) {
+  .hoja-agenda .tabla-scroll { overflow: visible; }
+  .tabla-agenda { min-width: 0 !important; width: 100%; border: none; }
+  .tabla-agenda thead { display: none; }
+  .tabla-agenda, .tabla-agenda tbody { display: block; }
+  .tabla-agenda tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px 14px; background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 14px; padding: 10px 12px; margin: 0 0 10px; }
+  .tabla-agenda td { display: block; padding: 0; border: none; min-width: 0; background: transparent; }
+  .tabla-agenda td:first-child { grid-column: 1 / -1; }
+  .tabla-agenda td::before { content: attr(data-label); display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--rosa-principal); margin-bottom: 2px; }
+  .tabla-agenda td.celda-check { text-align: left; }
+  .tabla-agenda td select { width: 100%; }
+  .tabla-agenda td input { font-size: 1rem; }
+}
+@media print { .tabla-agenda tr { break-inside: avoid; } }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
@@ -704,6 +731,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="linea ancha">
             <label>Contador de vueltas — marca cada vuelta terminada (hasta 100)</label>
             <div class="vueltas-grid" id="vueltas-grid"></div>
+            <p class="no-imprimir acceso-contador"><a class="boton-secundario boton-chico" href="calculadoras-rosina.html#contador">🔢 Abrir el contador de vueltas digital</a></p>
           </div>
           <div class="linea ancha"><label for="ag-notas">Notas y cambios al patrón</label><textarea id="ag-notas" rows="4" data-guardar></textarea></div>
         </div>
@@ -735,7 +763,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Control de pedidos</h3><p>Para tejedoras emprendedoras: que ningún pedido se te escape.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
-          <table class="tabla-abrev" style="min-width:640px;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:640px;">
             <thead><tr><th>Cliente</th><th>Pedido</th><th>Entrega</th><th>Precio</th><th>Abono</th><th>Estado</th></tr></thead>
             <tbody id="tabla-pedidos"></tbody>
           </table>
@@ -770,6 +798,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <div><h3>Lista de compras</h3><p>Anota lo que necesitas y, si quieres, envíasela a Lana Rosa por WhatsApp.</p></div>
         </header>
+        <div class="elegir-tienda no-imprimir">
+          <label for="compras-tienda">Agregar un producto de la tienda Lana Rosa</label>
+          <div class="elegir-tienda-fila">
+            <select id="compras-tienda" disabled><option value="">Cargando productos…</option></select>
+            <button type="button" class="boton-primario boton-chico" id="compras-agregar" disabled>Agregar a mi lista</button>
+          </div>
+          <p class="ayuda-tienda" id="compras-ayuda" aria-live="polite"></p>
+        </div>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:560px;">
             <thead><tr><th>Material</th><th>Color o referencia</th><th>Cantidad</th><th>Comprado</th></tr></thead>
@@ -810,7 +846,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <div><h3>Mi año tejiendo</h3><p>Lo que terminaste cada mes.</p></div>
         </header>
-        <div class="linea" style="max-width:200px; margin-bottom:14px;"><label for="ag-anio">Año</label><input id="ag-anio" data-guardar inputmode="numeric"></div>
+        <div class="elegir-anio">
+          <div class="linea"><label for="ag-anio-sel">Año</label><select id="ag-anio-sel"></select></div>
+          <button type="button" class="boton-secundario boton-chico no-imprimir" id="ag-anio-agregar">➕ Agregar año</button>
+          <input type="hidden" id="ag-anio" data-guardar>
+        </div>
         <div class="meses">
           <div class="dia mes"><strong>Enero</strong><textarea aria-label="Lo que terminé en enero" data-guardar id="ag-mes-1"></textarea></div>
           <div class="dia mes"><strong>Febrero</strong><textarea aria-label="Lo que terminé en febrero" data-guardar id="ag-mes-2"></textarea></div>
@@ -1233,25 +1273,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   for (var i = 1; i <= 100; i++) {
     vueltasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-v' + i + '" data-guardar><span>' + i + '</span></label>');
   }
-  var tablaPedidos = document.getElementById('tabla-pedidos');
-  var columnas = ['cliente', 'pedido', 'entrega', 'precio', 'abono', 'estado'];
-  for (var f = 1; f <= 8; f++) {
-    tablaPedidos.insertAdjacentHTML('beforeend', '<tr>' + columnas.map(function(col) {
-      return '<td><input id="ag-p' + f + '-' + col + '" data-guardar aria-label="' + col + ' del pedido ' + f + '"></td>';
-    }).join('') + '</tr>');
+  var datos = {};
+  try { datos = JSON.parse(leer(CLAVE_AGENDA)) || {}; } catch (e) {}
+  function guardarDatos() { escribir(CLAVE_AGENDA, JSON.stringify(datos)); }
+  /* Tablas con renglones: se pueden agregar más al final de cada hoja */
+  var tablas = {};
+  function htmlFila(t, r) {
+    return '<tr>' + t.cols.map(function(c, i) {
+      var col = typeof c === 'string' ? c : c.id;
+      var id = t.prefijo + r + '-' + col, aria = ' aria-label="' + col + ' ' + t.etiqueta + ' ' + r + '"';
+      var et = ' data-label="' + (t.titulos[i] || '') + '"';
+      if (c.opciones) return '<td' + et + '><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select></td>';
+      if (c.check) return '<td class="celda-check"' + et + '><input type="checkbox" id="' + id + '" data-guardar' + aria + '></td>';
+      return '<td' + et + '><input id="' + id + '" data-guardar' + aria + '></td>';
+    }).join('') + '</tr>';
   }
   function filasTabla(idTabla, prefijo, cols, n, etiqueta) {
-    var t = document.getElementById(idTabla);
-    for (var r = 1; r <= n; r++) {
-      t.insertAdjacentHTML('beforeend', '<tr>' + cols.map(function(c) {
-        var col = typeof c === 'string' ? c : c.id;
-        var id = prefijo + r + '-' + col, aria = ' aria-label="' + col + ' ' + etiqueta + ' ' + r + '"';
-        if (c.opciones) return '<td><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select></td>';
-        if (c.check) return '<td class="celda-check"><input type="checkbox" id="' + id + '" data-guardar' + aria + '></td>';
-        return '<td><input id="' + id + '" data-guardar' + aria + '></td>';
-      }).join('') + '</tr>');
-    }
+    var cuerpo = document.getElementById(idTabla);
+    var titulos = Array.prototype.map.call(cuerpo.closest('table').querySelectorAll('thead th'), function(th) { return th.textContent.replace(/"/g, ''); });
+    var guardadas = (datos._filas && datos._filas[idTabla]) || 0;
+    var t = tablas[idTabla] = { cuerpo: cuerpo, prefijo: prefijo, cols: cols, etiqueta: etiqueta, titulos: titulos, n: Math.max(n, guardadas) };
+    var html = '';
+    for (var r = 1; r <= t.n; r++) html += htmlFila(t, r);
+    cuerpo.insertAdjacentHTML('beforeend', html);
+    var caja = cuerpo.closest('.tabla-scroll');
+    caja.insertAdjacentHTML('afterend', '<p class="no-imprimir agregar-renglon-wrap"><button type="button" class="boton-secundario boton-chico agregar-renglon" data-tabla="' + idTabla + '">➕ Agregar renglón</button></p>');
   }
+  function agregarRenglon(idTabla) {
+    var t = tablas[idTabla]; if (!t || t.n >= 200) return null;
+    t.n++;
+    t.cuerpo.insertAdjacentHTML('beforeend', htmlFila(t, t.n));
+    datos._filas = datos._filas || {}; datos._filas[idTabla] = t.n; guardarDatos();
+    return t.cuerpo.lastElementChild;
+  }
+  document.getElementById('agenda').addEventListener('click', function(e) {
+    var b = e.target.closest('.agregar-renglon'); if (!b) return;
+    var fila = agregarRenglon(b.dataset.tabla);
+    if (fila) { var primero = fila.querySelector('input, select'); if (primero) primero.focus(); }
+  });
+  filasTabla('tabla-pedidos', 'ag-p', ['cliente', 'pedido', 'entrega', 'precio', 'abono', 'estado'], 8, 'del pedido');
   filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
   filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
   filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }], 10, 'del proyecto');
@@ -1263,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   document.getElementById('enviar-compras').addEventListener('click', function(ev) {
     var lineas = [];
-    for (var r = 1; r <= 10; r++) {
+    for (var r = 1; r <= tablas['tabla-compras'].n; r++) {
       var m = document.getElementById('ag-c' + r + '-material').value.trim();
       if (!m || document.getElementById('ag-c' + r + '-comprado').checked) continue;
       var c = document.getElementById('ag-c' + r + '-color').value.trim();
@@ -1280,25 +1340,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   filasTabla('tabla-aprendi', 'ag-ap', ['fecha', 'tecnica', 'donde', { id: 'domino', check: true }], 10, 'de lo aprendido');
   var pausasGrid = document.getElementById('pausas-grid');
   for (var dp = 1; dp <= 31; dp++) pausasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-pa' + dp + '" data-guardar><span>' + dp + '</span></label>');
-  var campos = document.querySelectorAll('#agenda [data-guardar]');
-  var datos = {};
-  try { datos = JSON.parse(leer(CLAVE_AGENDA)) || {}; } catch (e) {}
-  campos.forEach(function(campo) {
+  function camposAgenda() { return document.querySelectorAll('#agenda [data-guardar]'); }
+  camposAgenda().forEach(function(campo) {
     if (datos[campo.id] !== undefined) {
       if (campo.type === 'checkbox') campo.checked = !!datos[campo.id]; else campo.value = datos[campo.id];
     }
-    campo.addEventListener(campo.type === 'checkbox' || campo.tagName === 'SELECT' ? 'change' : 'input', function() {
-      datos[campo.id] = campo.type === 'checkbox' ? campo.checked : campo.value;
-      escribir(CLAVE_AGENDA, JSON.stringify(datos));
-    });
   });
+  function guardarCampo(e) {
+    var campo = e.target;
+    if (!campo.matches || !campo.matches('[data-guardar]')) return;
+    var porCambio = campo.type === 'checkbox' || campo.tagName === 'SELECT';
+    if ((e.type === 'change') !== porCambio) return;
+    datos[campo.id] = campo.type === 'checkbox' ? campo.checked : campo.value;
+    guardarDatos();
+  }
+  document.getElementById('agenda').addEventListener('input', guardarCampo);
+  document.getElementById('agenda').addEventListener('change', guardarCampo);
   document.getElementById('agenda-borrar').addEventListener('click', function() {
     if (!confirm('¿Borrar todo lo que escribiste en la agenda?')) return;
-    campos.forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
+    camposAgenda().forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
     datos = {};
     borrar(CLAVE_AGENDA);
     duena.value = ''; tituloDuena();
-    estilos = {}; campos.forEach(function(el) { el.style.color = ''; el.style.backgroundColor = ''; });
+    estilos = {}; camposAgenda().forEach(function(el) { el.style.color = ''; el.style.backgroundColor = ''; });
+    iniciarAnios();
   });
 
   /* ---------- Portada con nombre y copia de seguridad ---------- */
@@ -1328,11 +1393,98 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     };
     lector.readAsText(f);
   });
+  /* ---------- Mi año tejiendo: varios años ---------- */
+  var selAnio = document.getElementById('ag-anio-sel'), inputAnio = document.getElementById('ag-anio');
+  var mesesAnio = []; for (var mi = 1; mi <= 12; mi++) mesesAnio.push(document.getElementById('ag-mes-' + mi));
+  function guardarAnioActual() {
+    datos._anios = datos._anios || {};
+    datos._anios[inputAnio.value] = mesesAnio.map(function(t) { return t.value; });
+  }
+  function pintarAnios() {
+    var lista = Object.keys(datos._anios || {}).sort();
+    selAnio.innerHTML = lista.map(function(a) { return '<option' + (a === inputAnio.value ? ' selected' : '') + '>' + a + '</option>'; }).join('');
+  }
+  function cambiarAnio(a) {
+    guardarAnioActual();
+    inputAnio.value = a; datos['ag-anio'] = a;
+    var v = (datos._anios && datos._anios[a]) || [];
+    mesesAnio.forEach(function(t, i) { t.value = v[i] || ''; datos[t.id] = t.value; });
+    guardarAnioActual(); guardarDatos(); pintarAnios();
+  }
+  function iniciarAnios() {
+    var hoy = String(new Date().getFullYear());
+    var actual = /^\d{4}$/.test(String(inputAnio.value).trim()) ? String(inputAnio.value).trim() : hoy;
+    inputAnio.value = actual; datos['ag-anio'] = actual;
+    guardarAnioActual(); guardarDatos(); pintarAnios();
+  }
+  iniciarAnios();
+  selAnio.addEventListener('change', function() { cambiarAnio(selAnio.value); });
+  document.getElementById('ag-anio-agregar').addEventListener('click', function() {
+    var lista = Object.keys(datos._anios || {}).map(Number);
+    var sugerido = String(Math.max.apply(null, lista.concat([new Date().getFullYear()])) + 1);
+    var a = prompt('¿Qué año quieres agregar?', sugerido);
+    if (a === null) return;
+    a = String(a).trim();
+    if (!/^\d{4}$/.test(a)) { alert('Escribe el año con 4 números, por ejemplo ' + sugerido + '.'); return; }
+    if (!datos._anios[a]) datos._anios[a] = [];
+    cambiarAnio(a);
+  });
+  mesesAnio.forEach(function(t) { t.addEventListener('input', function() { guardarAnioActual(); guardarDatos(); }); });
+
+  /* ---------- Lista de compras: productos de la tienda Lana Rosa ---------- */
+  (function() {
+    var sel = document.getElementById('compras-tienda'), boton = document.getElementById('compras-agregar'), ayuda = document.getElementById('compras-ayuda');
+    var productos = [];
+    function pesos(x) { return '$' + Math.round(Number(x) || 0).toLocaleString('es-CO'); }
+    function rpc(nombre) {
+      return fetch('https://ngjoognzvehwjtpqwrqe.supabase.co/rest/v1/rpc/' + nombre, {
+        method: 'POST',
+        headers: { 'apikey': 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', 'Authorization': 'Bearer sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', 'Content-Type': 'application/json' },
+        body: '{}'
+      }).then(function(r) { if (!r.ok) throw r.status; return r.json(); });
+    }
+    Promise.all([
+      rpc('obtener_tienda_web').catch(function() { return []; }),
+      rpc('obtener_merceria_web').catch(function() { return []; })
+    ]).then(function(res) {
+      var grupos = {};
+      (res[0] || []).forEach(function(p) { if (!p || !p.nombre) return; var g = p.categoria_web || p.categoria || 'Tienda'; (grupos[g] = grupos[g] || []).push({ nombre: p.nombre, precio: p.precio }); });
+      (res[1] || []).forEach(function(p) { if (!p || !(Number(p.stock_actual) > 0)) return; var peso = Number(p.peso_gramos) || 0; (grupos['Mercería'] = grupos['Mercería'] || []).push({ nombre: [p.marca, p.color].filter(Boolean).join(' — ') || p.nombre, precio: peso ? Math.round(p.precio_gramo * peso / 100) * 100 : Math.round(p.precio_gramo || 0) }); });
+      var html = '<option value="">Elige un producto…</option>';
+      Object.keys(grupos).sort().forEach(function(g) {
+        html += '<optgroup label="' + g.replace(/"/g, '') + '">' + grupos[g].sort(function(a, b) { return a.nombre.localeCompare(b.nombre, 'es'); }).map(function(p) {
+          productos.push(p);
+          return '<option value="' + (productos.length - 1) + '">' + p.nombre.replace(/</g, '') + (p.precio ? ' — ' + pesos(p.precio) : '') + '</option>';
+        }).join('') + '</optgroup>';
+      });
+      if (!productos.length) throw 0;
+      sel.innerHTML = html; sel.disabled = false;
+    }).catch(function() {
+      sel.innerHTML = '<option value="">No pudimos cargar la tienda ahora</option>';
+      ayuda.innerHTML = 'Puedes ver los productos en la <a href="tienda.html">tienda</a> y escribirlos en tu lista.';
+    });
+    sel.addEventListener('change', function() { boton.disabled = !sel.value; ayuda.textContent = ''; });
+    boton.addEventListener('click', function() {
+      var p = productos[sel.value]; if (!p) return;
+      var t = tablas['tabla-compras'], fila = 0;
+      for (var r = 1; r <= t.n; r++) { if (!document.getElementById('ag-c' + r + '-material').value.trim()) { fila = r; break; } }
+      if (!fila) { agregarRenglon('tabla-compras'); fila = t.n; }
+      var campos = { material: p.nombre + (p.precio ? ' (' + pesos(p.precio) + ')' : ''), cantidad: '1' };
+      Object.keys(campos).forEach(function(k) {
+        var el = document.getElementById('ag-c' + fila + '-' + k);
+        if (k === 'cantidad' && el.value) return;
+        el.value = campos[k]; datos[el.id] = el.value;
+      });
+      guardarDatos();
+      ayuda.textContent = '✓ Agregado en el renglón ' + fila + '.';
+      sel.value = ''; boton.disabled = true;
+    });
+  })();
   /* ---------- Totales de ventas del mes ---------- */
   function valorPesos(t) { var n = parseInt(String(t || '').replace(/[^0-9]/g, ''), 10); return isFinite(n) ? n : 0; }
   function totalesVentas() {
     var v = 0, c = 0, n = 0;
-    for (var r = 1; r <= 12; r++) {
+    for (var r = 1; r <= tablas['tabla-ventas'].n; r++) {
       var pv = valorPesos(document.getElementById('ag-vt' + r + '-precio').value), cv = valorPesos(document.getElementById('ag-vt' + r + '-costo').value);
       if (pv) n++; v += pv; c += cv;
     }
@@ -1371,7 +1523,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* ---------- Barra: colores, resaltar y buscador ---------- */
   var estilos = datos._estilos || {};
   function aplicarEstilo(el) { var e = estilos[el.id] || {}; el.style.color = e.c || ''; el.style.backgroundColor = e.r || ''; }
-  campos.forEach(function(el) { if (el.type !== 'checkbox') aplicarEstilo(el); });
+  camposAgenda().forEach(function(el) { if (el.type !== 'checkbox') aplicarEstilo(el); });
   var ultimoCampo = null, ayudaBarra = document.getElementById('ayuda-barra');
   document.getElementById('agenda').addEventListener('focusin', function(e) {
     var el = e.target;
