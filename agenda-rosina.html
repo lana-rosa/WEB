@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agenda de Rosina para tejedoras — Lana Rosa Crochet</title>
-<meta name="description" content="Agenda gratuita para tejedoras: ficha de proyecto, planeador semanal, control de pedidos, inventario de lanas, agujas y lista de compras. Llénala en línea o imprímela. Material de Rosina, de Lana Rosa Crochet.">
+<meta name="description" content="Agenda gratuita para tejedoras: ficha de proyecto, planeador semanal, control de pedidos, inventario de lanas, agujas, lista de compras, patrones y fechas especiales. Llénala en línea o imprímela. Material de Rosina, de Lana Rosa Crochet.">
 <link rel="canonical" href="https://lanarosacrochet.com/agenda-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -471,6 +471,22 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .agujas-grid label:has(input:checked) { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
 .agujas-grid label:has(input:focus-visible) { outline: 3px solid var(--lila); }
 @media print { .agujas-grid label { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+.hoja-agenda header[role="button"] { cursor: pointer; margin-bottom: 0; border-bottom-color: transparent; }
+.hoja-agenda.abierta header[role="button"] { margin-bottom: 18px; border-bottom-color: var(--rosa-medio); }
+.hoja-agenda header .flecha-hoja { margin-left: auto; color: var(--rosa-principal); font-size: 1.3rem; transition: transform 0.2s; }
+.hoja-agenda.abierta header .flecha-hoja { transform: rotate(180deg); }
+.hoja-agenda header[role="button"]:focus-visible { outline: 3px solid var(--lila); outline-offset: 4px; border-radius: 12px; }
+.hoja-agenda:not(.abierta) { padding-top: 18px; padding-bottom: 18px; margin-bottom: 14px; }
+.hoja-agenda:not(.abierta) .cuerpo-hoja { display: none; }
+@media print { .hoja-agenda .cuerpo-hoja { display: block !important; } .hoja-agenda header .flecha-hoja { display: none; } .hoja-agenda header[role="button"] { margin-bottom: 18px; border-bottom-color: var(--rosa-medio); } }
+.tabla-agenda td select { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,0.2); background: transparent; font-family: var(--fuente-cuerpo); font-size: 0.9rem; padding: 6px 2px; color: var(--tinta); }
+.meses { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 860px) { .meses { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.mes textarea { min-height: 90px; }
+.selector-hoja { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 20px; }
+.selector-hoja label { font-weight: 700; color: var(--rosa-principal); font-size: 0.92rem; }
+.selector-hoja select { width: min(360px, 100%); padding: 12px 16px; border-radius: 999px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-family: var(--fuente-cuerpo); font-size: 1rem; font-weight: 600; color: var(--tinta); cursor: pointer; }
+.selector-hoja select:focus { outline: 3px solid var(--lila); }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -531,19 +547,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="volver-rincon"><a href="recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
     <p class="eslogan">Material gratuito · Rincón de Rosina</p>
     <h1>Agenda de Rosina</h1>
-    <p class="intro">Hojas para organizar tu tejido: tus proyectos, tu semana, tus pedidos, tus lanas, tus agujas y tu lista de compras. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
+    <p class="intro">Hojas para organizar tu tejido: tus proyectos, tu semana, tus pedidos, tus lanas, tus agujas, tus compras, tus patrones y tus fechas especiales. Toca el título de cada hoja para abrirla. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
     </div>
-    <nav class="saltos-agenda" aria-label="Hojas de la agenda">
-      <a href="#ficha-proyecto">📋 Ficha de proyecto</a>
-      <a href="#semana-tejiendo">🗓️ Mi semana tejiendo</a>
-      <a href="#control-pedidos">📦 Control de pedidos</a>
-      <a href="#inventario-lanas">🧶 Inventario de lanas</a>
-      <a href="#mis-agujas">🪡 Mis agujas</a>
-      <a href="#lista-compras">🛍️ Lista de compras</a>
-    </nav>
+    <div class="selector-hoja">
+      <label for="ir-a-hoja">Ir a una hoja</label>
+      <select id="ir-a-hoja">
+        <option value="">Elige una hoja…</option>
+        <option value="ficha-proyecto">📋 Ficha de proyecto</option>
+        <option value="semana-tejiendo">🗓️ Mi semana tejiendo</option>
+        <option value="control-pedidos">📦 Control de pedidos</option>
+        <option value="inventario-lanas">🧶 Inventario de lanas</option>
+        <option value="mis-agujas">🪡 Mis agujas</option>
+        <option value="lista-compras">🛍️ Lista de compras</option>
+        <option value="proyectos-fila">🧵 Proyectos en fila</option>
+        <option value="coleccion-patrones">📚 Mis patrones</option>
+        <option value="anio-tejiendo">⭐ Mi año tejiendo</option>
+        <option value="fechas-especiales">🎁 Fechas especiales</option>
+      </select>
+    </div>
   </section>
 
   <section class="seccion-suave seccion-lila" id="agenda">
@@ -640,6 +664,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </table>
         </div>
         <p class="no-imprimir" style="margin:16px 0 0;"><a class="boton-primario" id="enviar-compras" href="https://wa.me/573205072801" target="_blank" rel="noopener">Enviar mi lista por WhatsApp</a></p>
+      </article>
+
+      <article class="hoja-agenda" id="proyectos-fila">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Proyectos en fila</h3><p>Todo lo que quieres tejer, en orden: así sabes qué sigue.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
+            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th></tr></thead>
+            <tbody id="tabla-fila"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="hoja-agenda" id="coleccion-patrones">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-11-computador.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Mi colección de patrones</h3><p>Guarda dónde encontraste cada patrón para no perderlo.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
+            <thead><tr><th>Patrón</th><th>Dónde lo encontré</th><th>Dificultad</th><th>Ya lo tejí</th></tr></thead>
+            <tbody id="tabla-patrones"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="hoja-agenda" id="anio-tejiendo">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Mi año tejiendo</h3><p>Lo que terminaste cada mes.</p></div>
+        </header>
+        <div class="linea" style="max-width:200px; margin-bottom:14px;"><label for="ag-anio">Año</label><input id="ag-anio" data-guardar inputmode="numeric"></div>
+        <div class="meses">
+          <div class="dia mes"><strong>Enero</strong><textarea aria-label="Lo que terminé en enero" data-guardar id="ag-mes-1"></textarea></div>
+          <div class="dia mes"><strong>Febrero</strong><textarea aria-label="Lo que terminé en febrero" data-guardar id="ag-mes-2"></textarea></div>
+          <div class="dia mes"><strong>Marzo</strong><textarea aria-label="Lo que terminé en marzo" data-guardar id="ag-mes-3"></textarea></div>
+          <div class="dia mes"><strong>Abril</strong><textarea aria-label="Lo que terminé en abril" data-guardar id="ag-mes-4"></textarea></div>
+          <div class="dia mes"><strong>Mayo</strong><textarea aria-label="Lo que terminé en mayo" data-guardar id="ag-mes-5"></textarea></div>
+          <div class="dia mes"><strong>Junio</strong><textarea aria-label="Lo que terminé en junio" data-guardar id="ag-mes-6"></textarea></div>
+          <div class="dia mes"><strong>Julio</strong><textarea aria-label="Lo que terminé en julio" data-guardar id="ag-mes-7"></textarea></div>
+          <div class="dia mes"><strong>Agosto</strong><textarea aria-label="Lo que terminé en agosto" data-guardar id="ag-mes-8"></textarea></div>
+          <div class="dia mes"><strong>Septiembre</strong><textarea aria-label="Lo que terminé en septiembre" data-guardar id="ag-mes-9"></textarea></div>
+          <div class="dia mes"><strong>Octubre</strong><textarea aria-label="Lo que terminé en octubre" data-guardar id="ag-mes-10"></textarea></div>
+          <div class="dia mes"><strong>Noviembre</strong><textarea aria-label="Lo que terminé en noviembre" data-guardar id="ag-mes-11"></textarea></div>
+          <div class="dia mes"><strong>Diciembre</strong><textarea aria-label="Lo que terminé en diciembre" data-guardar id="ag-mes-12"></textarea></div>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota cada pieza que termines, aunque sea pequeña. Al final del año te vas a sorprender de todo lo que tejiste.</p>
+      </article>
+
+      <article class="hoja-agenda" id="fechas-especiales">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-03-ovillo-corazon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Fechas especiales</h3><p>Para tejer los regalos con tiempo y sin carreras.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:700px;">
+            <thead><tr><th>Fecha</th><th>Ocasión</th><th>Para quién</th><th>Idea de regalo</th><th>Listo</th></tr></thead>
+            <tbody id="tabla-fechas"></tbody>
+          </table>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> en Colombia el Día de la madre es el segundo domingo de mayo, el Día del padre el tercer domingo de junio y Amor y amistad el tercer sábado de septiembre. ¡Empieza a tejer al menos un mes antes!</p>
       </article>
     </div>
   </section>
@@ -938,14 +1025,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function filasTabla(idTabla, prefijo, cols, n, etiqueta) {
     var t = document.getElementById(idTabla);
     for (var r = 1; r <= n; r++) {
-      t.insertAdjacentHTML('beforeend', '<tr>' + cols.map(function(col) {
-        var tipo = col === 'comprado' ? ' type="checkbox"' : '';
-        return '<td' + (tipo ? ' class="celda-check"' : '') + '><input' + tipo + ' id="' + prefijo + r + '-' + col + '" data-guardar aria-label="' + col + ' ' + etiqueta + ' ' + r + '"></td>';
+      t.insertAdjacentHTML('beforeend', '<tr>' + cols.map(function(c) {
+        var col = typeof c === 'string' ? c : c.id;
+        var id = prefijo + r + '-' + col, aria = ' aria-label="' + col + ' ' + etiqueta + ' ' + r + '"';
+        if (c.opciones) return '<td><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select></td>';
+        if (c.check) return '<td class="celda-check"><input type="checkbox" id="' + id + '" data-guardar' + aria + '></td>';
+        return '<td><input id="' + id + '" data-guardar' + aria + '></td>';
       }).join('') + '</tr>');
     }
   }
   filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
-  filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', 'comprado'], 10, 'de la compra');
+  filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
+  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }], 10, 'del proyecto');
+  filasTabla('tabla-patrones', 'ag-pt', ['patron', 'fuente', { id: 'dificultad', opciones: ['Fácil', 'Media', 'Difícil'] }, { id: 'tejido', check: true }], 10, 'del patrón');
+  filasTabla('tabla-fechas', 'ag-fe', ['fecha', { id: 'ocasion', opciones: ['Cumpleaños', 'Día de la madre', 'Día del padre', 'Amor y amistad', 'Graduación', 'Aniversario', 'Otra'] }, 'para', 'idea', { id: 'listo', check: true }], 10, 'de la fecha');
   var agujasGrid = document.getElementById('agujas-grid');
   ['2', '2,25', '2,5', '2,75', '3', '3,25', '3,5', '3,75', '4', '4,5', '5', '5,5', '6', '6,5', '7', '8', '9', '10'].forEach(function(mm) {
     agujasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-a' + mm.replace(',', '-') + '" data-guardar><span>' + mm + ' mm</span></label>');
@@ -969,7 +1062,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (datos[campo.id] !== undefined) {
       if (campo.type === 'checkbox') campo.checked = !!datos[campo.id]; else campo.value = datos[campo.id];
     }
-    campo.addEventListener(campo.type === 'checkbox' ? 'change' : 'input', function() {
+    campo.addEventListener(campo.type === 'checkbox' || campo.tagName === 'SELECT' ? 'change' : 'input', function() {
       datos[campo.id] = campo.type === 'checkbox' ? campo.checked : campo.value;
       escribir(CLAVE_AGENDA, JSON.stringify(datos));
     });
@@ -980,6 +1073,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     datos = {};
     borrar(CLAVE_AGENDA);
   });
+
+  /* ---------- Hojas plegables: se ve el título y se abre al tocarlo ---------- */
+  var hojas = document.querySelectorAll('#agenda .hoja-agenda');
+  function abrirHoja(h, abrir) {
+    h.classList.toggle('abierta', abrir);
+    var cab = h.querySelector('header'); if (cab) cab.setAttribute('aria-expanded', abrir);
+  }
+  hojas.forEach(function(h) {
+    var cab = h.querySelector('header');
+    var cuerpo = document.createElement('div'); cuerpo.className = 'cuerpo-hoja';
+    while (cab.nextSibling) cuerpo.appendChild(cab.nextSibling);
+    h.appendChild(cuerpo);
+    cab.setAttribute('role', 'button'); cab.setAttribute('tabindex', '0');
+    cab.insertAdjacentHTML('beforeend', '<span class="flecha-hoja" aria-hidden="true">▾</span>');
+    cab.addEventListener('click', function(e) { if (e.target.closest('input, textarea, select, a')) return; abrirHoja(h, !h.classList.contains('abierta')); });
+    cab.addEventListener('keydown', function(e) { if (e.target !== cab) return; if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cab.click(); } });
+    abrirHoja(h, false);
+  });
+  function abrirDesdeAncla() {
+    var h = location.hash && document.querySelector('#agenda .hoja-agenda' + location.hash);
+    if (h) { abrirHoja(h, true); h.scrollIntoView(); }
+  }
+  var selectorHoja = document.getElementById('ir-a-hoja');
+  selectorHoja.addEventListener('change', function() {
+    var h = selectorHoja.value && document.getElementById(selectorHoja.value);
+    if (!h) return;
+    abrirHoja(h, true);
+    h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (history.replaceState) history.replaceState(null, '', '#' + selectorHoja.value);
+    selectorHoja.value = '';
+  });
+  abrirDesdeAncla();
+  window.addEventListener('hashchange', abrirDesdeAncla);
+  window.addEventListener('beforeprint', function() { hojas.forEach(function(h) { h.classList.add('imprimiendo-hoja'); }); });
+  window.addEventListener('afterprint', function() { hojas.forEach(function(h) { h.classList.remove('imprimiendo-hoja'); }); });
 })();
 </script>
 

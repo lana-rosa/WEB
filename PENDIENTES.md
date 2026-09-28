@@ -42,26 +42,28 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden
+Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. Más adelante se puede hacer una mini app con este servicio.
 - [x] 1. Inventario de lanas e hilos.
 - [x] 2. Mis agujas (calibres de 2 a 10 mm).
 - [x] 3. Lista de compras con envío por WhatsApp.
-- [ ] 4. Proyectos en fila (por empezar, tejiendo, terminado).
-- [ ] 5. Mi colección de patrones.
-- [ ] 6. Mi año tejiendo (una página por mes).
-- [ ] 7. Fechas especiales (sin Navidad, santos ni Halloween).
-- [ ] 8. Ficha de cliente. ⚠️ Revisar con Sara: se cruza con la versión de pago de la plantilla de pedidos y clientas.
-- [ ] 9. Mis ventas del mes (conectar con la calculadora de costos). ⚠️ Mismo cruce.
-- [ ] 10. Catálogo de precios. ⚠️ Mismo cruce.
+- [x] 4. Proyectos en fila (por empezar, tejiendo, terminado).
+- [x] 5. Mi colección de patrones.
+- [x] 6. Mi año tejiendo (una página por mes).
+- [x] 7. Fechas especiales (sin Navidad, santos ni Halloween).
+- [ ] 8. Ficha de cliente.
+- [ ] 9. Mis ventas del mes (conectar con la calculadora de costos).
+- [ ] 10. Catálogo de precios.
 - [ ] 11. Ferias y mercados.
 - [ ] 12. Diario de tejido.
 - [ ] 13. Registro de pausas activas.
 - [ ] 14. Lo que aprendí.
+- [x] Hojas plegables: se ve el título y se abre al tocarlo. Menú desplegable "Ir a una hoja".
 - [ ] Extras: portada con nombre, índice, imprimir hoja por hoja o completa, copia de seguridad (descargar y cargar lo escrito).
 
 ### Material de Rosina
 - [ ] Libro para colorear imprimible (necesita las ilustraciones solo con líneas).
 - [ ] Cuaderno de práctica de puntos básicos, punto por punto con Rosina (freemium o de bajo costo).
-- [ ] Versión completa, de pago, de la plantilla de pedidos y clientas, con precios, costos y ganancias. La versión gratis ya está en la Agenda.
+- [ ] Mini app de la agenda (idea a futuro). La agenda en la web queda gratis con todas sus hojas.
 - [ ] **Botón "Invítale un café a Rosina": diseño listo y guardado, sin publicar** (27-sep-2026). Sara lo va a hablar con el equipo. Está en `herramientas/borradores/cafe-rosina.patch` (sección al final del Rincón con valores sugeridos de $3.000, $6.000 y $12.000, llave de Nequi/Bre-B para copiar y aviso por WhatsApp). Para publicarlo: `git apply herramientas/borradores/cafe-rosina.patch`.
 - [ ] Opcional: poner también la imagen "Conoce a Rosina" al principio de `rosina.html` (se ofreció; Sara no ha respondido).
 
