@@ -59,7 +59,7 @@ Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. 
 - [x] 14. Lo que aprendí.
 - [x] Hojas plegables: se ve el título y se abre al tocarlo. Menú desplegable "Ir a una hoja".
 - [x] Extras: portada con nombre, índice (menú "Ir a una hoja") y copia de seguridad (guardar y cargar una copia).
-- [ ] Opcional: imprimir hoja por hoja (hoy se imprime la agenda completa).
+- [x] Imprimir hoja por hoja, llena o en blanco.
 
 ### Calculadoras de Rosina (`calculadoras-rosina.html`), página propia desde el 28-sep-2026
 - [x] 1. Varios hilos en la calculadora de costos y compartir el resultado (copiar o WhatsApp).
