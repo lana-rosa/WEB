@@ -218,5 +218,7 @@ if '<script>\n(function() {\n  var video' in src:
     v0 = src.index('<script>\n(function() {\n  var video'); v1 = src.index('</script>', v0) + len('</script>\n')
     src = src[:v0] + src[v1:]
 i = src.rindex('</body>'); src = src[:i] + js + src[i:]
+sys.path.insert(0, WEB + 'herramientas'); from marca_impresion import aplicar as marca_impresion
+src = marca_impresion(src)
 open(WEB + 'glosario-rosina.html', 'w', encoding='utf-8').write(src)
 print('ok', len(TERMINOS), 'términos')

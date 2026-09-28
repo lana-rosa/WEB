@@ -388,14 +388,14 @@ a { color: var(--rosa-principal); }
 .materiales-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 @media (max-width: 760px) { .materiales-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
 .material-merceria { display: flex; flex-direction: column; gap: 4px; padding: 18px; background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); text-decoration: none; color: var(--tinta); transition: border-color 0.15s, transform 0.15s; }
-.material-merceria:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
+a.material-merceria:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
 .material-merceria .icono-material { font-size: 1.8rem; line-height: 1; margin-bottom: 4px; }
 .material-merceria strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.1rem; }
 .material-merceria > span:not(.icono-material):not(.consultar-material) { font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
 .material-merceria .consultar-material { margin-top: auto; padding-top: 6px; font-size: 0.85rem; font-weight: 700; color: var(--rosa-principal); }
 @media (max-width: 520px) { .material-merceria { padding: 14px 12px; } .material-merceria strong { font-size: 1rem; } .material-merceria > span:not(.icono-material):not(.consultar-material) { font-size: 0.82rem; } }
 .aviso-proximamente { display: flex; gap: 22px; align-items: center; background: var(--rosa-suave); border: 2px dashed var(--rosa-medio); border-radius: 22px; padding: 20px 26px; margin: 0 0 22px; }
-.aviso-proximamente[hidden] { display: none; }
+.aviso-proximamente[hidden], #como-se-paga[hidden] { display: none; }
 .aviso-proximamente img { width: 130px; height: auto; flex-shrink: 0; }
 .aviso-proximamente h2 { font-size: 1.35rem; margin: 0 0 6px; }
 .aviso-proximamente p { margin: 0 0 12px; }
@@ -441,12 +441,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="personaliza.html">Personaliza el tuyo</a></li>
         <li><a href="merceria.html">Mercería</a></li>
         <li><a href="aprende.html">Aprende</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
-        <li><a href="personaliza.html" class="nav-destacado">Personaliza el tuyo</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -466,7 +466,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="index.html">Inicio</a>
     <p class="grupo-nav">Comprar</p>
     <a href="tienda.html">Tienda</a>
-    <a href="personaliza.html" class="nav-destacado">Personaliza el tuyo ✨</a>
+    <a href="personaliza.html">Personaliza el tuyo</a>
     <a href="merceria.html">Mercería</a>
     <p class="grupo-nav">Aprender</p>
     <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
@@ -491,16 +491,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </div>
 
+  <section class="aviso-proximamente" id="aviso-proximamente">
+    <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" width="130" height="130">
+    <div>
+      <p class="etiqueta-proximamente">Muy pronto</p>
+      <h2>Nuestra mercería en línea está por abrir</h2>
+      <p>Muy pronto podrás comprar aquí las lanas, hilos, agujas y accesorios que usamos en Lana Rosa.</p>
+    </div>
+  </section>
+
   <section class="materiales-merceria" id="materiales-merceria" aria-label="Los materiales que usamos">
     <h2 class="titulo-con-rosina"><img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" width="44" height="44"> Los materiales que usamos en Lana Rosa</h2>
-    <p class="nota-materiales">Pronto podrás comprarlos aquí. Mientras tanto, te los vendemos por WhatsApp: toca el que necesitas y te respondemos.</p>
     <div class="materiales-grid">
-      <a class="material-merceria" href="https://wa.me/573205072801?text=Hola%20Rosina%20%F0%9F%90%91%20Quiero%20consultar%20por%20lanas%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener"><span class="icono-material" aria-hidden="true">🧶</span><strong>Lanas</strong><span>Suaves, para amigurumis y peluches.</span><span class="consultar-material">Consultar por WhatsApp →</span></a>
-      <a class="material-merceria" href="https://wa.me/573205072801?text=Hola%20Rosina%20%F0%9F%90%91%20Quiero%20consultar%20por%20hilos%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener"><span class="icono-material" aria-hidden="true">🧵</span><strong>Hilos</strong><span>Para piezas de puntos firmes y definidos.</span><span class="consultar-material">Consultar por WhatsApp →</span></a>
-      <a class="material-merceria" href="https://wa.me/573205072801?text=Hola%20Rosina%20%F0%9F%90%91%20Quiero%20consultar%20por%20agujas%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener"><span class="icono-material" aria-hidden="true">🪡</span><strong>Agujas</strong><span>Una para cada grosor de hilo.</span><span class="consultar-material">Consultar por WhatsApp →</span></a>
-      <a class="material-merceria" href="https://wa.me/573205072801?text=Hola%20Rosina%20%F0%9F%90%91%20Quiero%20consultar%20por%20herrajes%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener"><span class="icono-material" aria-hidden="true">🔗</span><strong>Herrajes</strong><span>Argollas y cadenas para llaveros.</span><span class="consultar-material">Consultar por WhatsApp →</span></a>
-      <a class="material-merceria" href="https://wa.me/573205072801?text=Hola%20Rosina%20%F0%9F%90%91%20Quiero%20consultar%20por%20accesorios%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener"><span class="icono-material" aria-hidden="true">✨</span><strong>Accesorios</strong><span>Los detalles para terminar tus piezas.</span><span class="consultar-material">Consultar por WhatsApp →</span></a>
-      <a class="material-merceria" href="https://wa.me/573205072801?text=Hola%20Rosina%20%F0%9F%90%91%20Quiero%20consultar%20por%20relleno%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener"><span class="icono-material" aria-hidden="true">☁️</span><strong>Relleno</strong><span>Fibra siliconada para tus amigurumis.</span><span class="consultar-material">Consultar por WhatsApp →</span></a>
+      <div class="material-merceria"><span class="icono-material" aria-hidden="true">🧶</span><strong>Lanas</strong><span>Suaves, para amigurumis y peluches.</span></div>
+      <div class="material-merceria"><span class="icono-material" aria-hidden="true">🧵</span><strong>Hilos</strong><span>Para piezas de puntos firmes y definidos.</span></div>
+      <div class="material-merceria"><span class="icono-material" aria-hidden="true">🪡</span><strong>Agujas</strong><span>Una para cada grosor de hilo.</span></div>
+      <div class="material-merceria"><span class="icono-material" aria-hidden="true">🔗</span><strong>Herrajes</strong><span>Argollas y cadenas para llaveros.</span></div>
+      <div class="material-merceria"><span class="icono-material" aria-hidden="true">✨</span><strong>Accesorios</strong><span>Los detalles para terminar tus piezas.</span></div>
+      <div class="material-merceria"><span class="icono-material" aria-hidden="true">☁️</span><strong>Relleno</strong><span>Fibra siliconada para tus amigurumis.</span></div>
     </div>
   </section>
 
@@ -588,7 +596,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <div class="aviso-personalizado" style="background:var(--blanco); box-shadow:var(--sombra-suave);">
+  <div class="aviso-personalizado" id="como-se-paga" hidden style="background:var(--blanco); box-shadow:var(--sombra-suave);">
     <h2 style="font-size:1.2rem;">¿Cómo se paga?</h2>
     <p>Agrega al carrito y envía tu pedido por WhatsApp; ahí confirmamos tus datos y el envío: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000.</p>
     <p style="font-weight:600; margin-top:14px;">Paga por:</p>
@@ -742,7 +750,7 @@ function crearTarjeta(item) {
       '<p class="ficha-merceria">' + (item.material || '') + (item.material ? ' · ' : '') + '</p>' +
       (agotado
         ? '<button type="button" class="boton-pedir" disabled style="opacity:0.5; cursor:not-allowed;">Agotado por ahora</button>'
-        : '<a class="boton-pedir" href="' + urlWhatsapp + '" target="_blank" rel="noopener">Pedir por WhatsApp</a><button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>'
+        : '<button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>'
       ) +
     '</div>';
   return articulo;
@@ -763,7 +771,7 @@ function crearTarjeta(item) {
     // en lugar de un catálogo lleno de productos agotados.
     const disponibles = (data || []).filter(function(item) { return Number(item.stock_actual) > 0; });
     if (!disponibles.length) data = [];
-    else { const materiales = document.getElementById('materiales-merceria'); if (materiales) materiales.hidden = true; const catalogo = document.getElementById('catalogo-merceria'); if (catalogo) catalogo.hidden = false; }
+    else { const materiales = document.getElementById('materiales-merceria'); if (materiales) materiales.hidden = true; const aviso = document.getElementById('aviso-proximamente'); if (aviso) aviso.hidden = true; const pago = document.getElementById('como-se-paga'); if (pago) pago.hidden = false; const catalogo = document.getElementById('catalogo-merceria'); if (catalogo) catalogo.hidden = false; }
 
     (data || []).forEach(function(item) {
       const tarjeta = crearTarjeta(item);
@@ -781,7 +789,7 @@ function crearTarjeta(item) {
       document.getElementById('hilos-merceria').hidden = true;
     }
   } catch (e) {
-    gridLanas.innerHTML = '<p class="proximamente-merceria">No pudimos cargar el catálogo en este momento. Escríbenos por WhatsApp o intenta de nuevo en un momento.</p>';
+    gridLanas.innerHTML = '<p class="proximamente-merceria">No pudimos cargar el catálogo en este momento. Intenta de nuevo en un momento.</p>';
     gridHilos.innerHTML = '';
     console.error(e);
   }

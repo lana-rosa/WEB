@@ -227,6 +227,14 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 /* Etiqueta "material gratuito" del menú */
 .etiqueta-gratis { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: #E6E7FD; color: #4F53B8; font-size: 0.68rem; font-weight: 700; line-height: 1.4; vertical-align: 2px; white-space: nowrap; }
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
+/* Espacios más compactos (28-sep-2026) */
+.sobre-compacta .hero { padding-bottom: 8px; }
+.sobre-compacta > section.contenedor { padding-top: 24px; padding-bottom: 24px; }
+.sobre-compacta .seccion-suave { padding-top: 40px; padding-bottom: 40px; }
+.sobre-compacta .historia p + p { margin-top: 12px; }
+.cierre-historia { text-align: center; margin: 32px auto 0; max-width: 560px; }
+.cierre-historia p { margin: 4px 0; font-size: 1.08rem; color: var(--tinta-suave); }
+.cierre-historia .cierre-fuerte { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.35rem; margin-top: 10px; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -243,12 +251,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="personaliza.html">Personaliza el tuyo</a></li>
         <li><a href="merceria.html">Mercería</a></li>
         <li><a href="aprende.html">Aprende</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
-        <li><a href="personaliza.html" class="nav-destacado">Personaliza el tuyo</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -268,7 +276,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="index.html">Inicio</a>
     <p class="grupo-nav">Comprar</p>
     <a href="tienda.html">Tienda</a>
-    <a href="personaliza.html" class="nav-destacado">Personaliza el tuyo ✨</a>
+    <a href="personaliza.html">Personaliza el tuyo</a>
     <a href="merceria.html">Mercería</a>
     <p class="grupo-nav">Aprender</p>
     <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
@@ -282,23 +290,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="contacto.html">Contacto</a>
   </nav>
 
-<main>
+<main class="sobre-compacta">
   <section class="hero contenedor">
     <p class="eslogan">Nuestra historia</p>
-    <h1>Somos Sara, Jennifer y Camila</h1>
-    <p class="intro">Un emprendimiento familiar que convierte recuerdos en tejidos que se pueden abrazar.</p>
+    <h1>De una tradición familiar a un equipo que sigue creciendo</h1>
+    <p class="intro">Un emprendimiento familiar que nació entre hilos y sueños, y que hoy convierte recuerdos, historias y emociones en tejidos que se pueden abrazar.</p>
   </section>
 
   <section class="contenedor">
     <div class="historia">
       <h2>Cómo empezó todo</h2>
-      <p>El tejido se ha pasado de generación en generación en nuestra familia. Hoy Lana Rosa es un trabajo en equipo: Sara al frente de la marca, Jennifer liderando el taller y Camila en la producción.</p>
+      <p>El tejido ha pasado de generación en generación en nuestra familia. Lo que comenzó con Sara aprendiendo a tejer a los 10 años, hoy se ha convertido en una empresa que crece, genera oportunidades para otras mujeres y conserva el amor por lo hecho a mano.</p>
+      <p>Sara está al frente de la marca, Jennifer lidera nuestro taller y Camila hace parte esencial de la producción. Junto a ellas, un equipo de mujeres teje cada día las historias que llegan a Lana Rosa.</p>
     </div>
   </section>
 
   <section class="seccion-suave seccion-lila">
     <div class="contenedor">
-      <h2>Quiénes somos</h2>
       <div class="equipo">
         <div class="persona-card">
           <div class="avatar-placeholder" style="overflow:hidden; padding:0;">
@@ -307,8 +315,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">[ Foto de Sara ]</span>
           </div>
           <h3>Sara</h3>
-          <p class="rol">Fundadora — cara pública</p>
-          <p style="font-size:0.9rem; color:var(--tinta-suave);">Ingeniera aplicando sus conocimientos técnicos a la administración del negocio. Tejedora desde los 10 años.</p>
+          <p class="rol">Fundadora</p>
+          <p style="font-size:0.9rem; color:var(--tinta-suave);">Ingeniera que aplica sus conocimientos técnicos y creativos al crecimiento de Lana Rosa. Tejedora desde los 10 años.</p>
         </div>
         <div class="persona-card">
           <div class="avatar-placeholder" style="overflow:hidden; padding:0;">
@@ -318,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <h3>Jennifer</h3>
           <p class="rol">Co-fundadora — jefa de taller</p>
-          <p style="font-size:0.9rem; color:var(--tinta-suave);">Al frente de la producción y la técnica de cada pieza que tejemos.</p>
+          <p style="font-size:0.9rem; color:var(--tinta-suave);">Lidera la producción y cuida la técnica y calidad de cada pieza que tejemos.</p>
         </div>
         <div class="persona-card">
           <div class="avatar-placeholder" style="overflow:hidden; padding:0;">
@@ -328,7 +336,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <h3>Camila</h3>
           <p class="rol">Co-fundadora</p>
-          <p style="font-size:0.9rem; color:var(--tinta-suave);">Parte esencial del equipo detrás de cada amigurumi personalizado.</p>
+          <p style="font-size:0.9rem; color:var(--tinta-suave);">Parte esencial del equipo que hace realidad cada amigurumi personalizado.</p>
         </div>
       </div>
     </div>
@@ -339,7 +347,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <ul class="valores">
       <li><span class="marca">Tierna</span> — Calidez y cuidado en cada detalle.</li>
       <li><span class="marca">Empática</span> — Detrás de cada pedido hay una historia.</li>
-      <li><span class="marca">Conocedora</span> — Conocemos la técnica y los materiales.</li>
+      <li><span class="marca">Conocedora</span> — Creamos diseños propios, conocemos la técnica y los materiales.</li>
       <li><span class="marca">Auténtica</span> — Mostramos el proceso real detrás de cada pieza.</li>
     </ul>
   </section>
@@ -350,20 +358,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="linea-tiempo">
         <div class="hito">
           <p class="fecha">Antes de 2025</p>
-          <p>Sara aprende a tejer a los 10 años y a los 18 vende sus primeros charms a compañeros de colegio.</p>
+          <p>Sara aprende a tejer a los 10 años y comienza a vender sus primeros charms a sus compañeros de colegio.</p>
         </div>
         <div class="hito">
           <p class="fecha">Enero 2025</p>
-          <p>Nace oficialmente Lana Rosa Crochet en Manizales, Colombia.</p>
+          <p>Nace oficialmente Lana Rosa Crochet en Villamaría, Caldas.</p>
         </div>
         <div class="hito">
           <p class="fecha">2025 – 2026</p>
-          <p>Registramos la marca, entramos a Artesanías de Caldas, somos beneficiarias de Fondo Emprender del SENA y abrimos nuestro taller.</p>
+          <p>Registramos nuestra marca, hacemos parte de Artesanías de Caldas, somos beneficiarias de Fondo Emprender del SENA y nuestro emprendimiento comienza a crecer.</p>
         </div>
         <div class="hito">
           <p class="fecha">Hoy</p>
-          <p>Seguimos tejiendo a mano, creciendo con Lana Rosa Academy y soñando con un punto físico.</p>
+          <p>Lana Rosa es un equipo de mujeres que sigue creciendo, creando oportunidades y llevando historias a la vida a través del tejido.</p>
+          <p>También estamos a punto de abrir las puertas de nuestro primer espacio físico: un lugar donde se encontrarán la mercería, nuestros productos, los talleres y nuestra pasión por enseñar.</p>
         </div>
+      </div>
+      <div class="cierre-historia">
+        <p>Y esto apenas comienza.</p>
+        <p>Porque en Lana Rosa no solo tejemos figuras.</p>
+        <p class="cierre-fuerte">Tejemos emociones que permanecen en el tiempo.</p>
       </div>
     </div>
   </section>

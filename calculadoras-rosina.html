@@ -524,6 +524,20 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 </head>
 <body>
+<!-- marca-impresion -->
+<style>
+.marca-impresion { display: none; }
+@media print {
+  .marca-impresion { display: flex !important; align-items: center; gap: 12px; font-family: 'Hanken Grotesk', Arial, sans-serif; color: #45454A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .marca-imp-arriba { justify-content: space-between; border-bottom: 2px solid #E74E96; padding: 0 0 8px; margin: 0 0 14px; }
+  .marca-imp-arriba img { height: 46px; width: auto; border-radius: 8px; }
+  .marca-imp-arriba span { font-size: 11px; color: #E74E96; font-weight: 700; }
+  .marca-imp-abajo { justify-content: center; flex-wrap: wrap; gap: 4px 14px; border-top: 2px solid #E74E96; padding: 8px 0 0; margin: 18px 0 0; font-size: 10.5px; break-inside: avoid; }
+  .marca-imp-abajo strong { color: #E74E96; }
+}
+</style>
+<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="img/logo-lana-rosa.jpg" alt=""><span>Rincón de Rosina · lanarosacrochet.com</span></div>
+<!-- /marca-impresion -->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
@@ -535,12 +549,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="personaliza.html">Personaliza el tuyo</a></li>
         <li><a href="merceria.html">Mercería</a></li>
         <li><a href="aprende.html">Aprende</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
-        <li><a href="personaliza.html" class="nav-destacado">Personaliza el tuyo</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -560,7 +574,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="index.html">Inicio</a>
     <p class="grupo-nav">Comprar</p>
     <a href="tienda.html">Tienda</a>
-    <a href="personaliza.html" class="nav-destacado">Personaliza el tuyo ✨</a>
+    <a href="personaliza.html">Personaliza el tuyo</a>
     <a href="merceria.html">Mercería</a>
     <p class="grupo-nav">Aprender</p>
     <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
@@ -581,8 +595,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1>Calculadoras de Rosina</h1>
     <p class="intro">Rosina hace las cuentas por ti. Elige una herramienta: todo se calcula al instante y lo que escribes se guarda en tu dispositivo, para que lo encuentres cuando vuelvas.</p>
     <div class="pestanas herramientas-calc" role="tablist" aria-label="Calculadoras de Rosina">
-      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="true" data-ancla="costos"><span class="icono-herr" aria-hidden="true">💰</span><strong>Calculadora de costos</strong><small>Cuánto cobrar por tu tejido</small></button>
-      <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="false" data-ancla="contador"><span class="icono-herr" aria-hidden="true">🔢</span><strong>Contador de vueltas</strong><small>Lleva la cuenta sin papel</small></button>
+      <button type="button" role="tab" id="tab-contador" aria-controls="calc-contador" aria-selected="true" data-ancla="contador"><span class="icono-herr" aria-hidden="true">🔢</span><strong>Contador de vueltas digital</strong><small>Lleva la cuenta sin papel</small></button>
+      <button type="button" role="tab" id="tab-precio" aria-controls="calc-precio" aria-selected="false" data-ancla="costos"><span class="icono-herr" aria-hidden="true">💰</span><strong>Calculadora de costos</strong><small>Cuánto cobrar por tu tejido</small></button>
       <button type="button" role="tab" id="tab-muestra" aria-controls="calc-muestra" aria-selected="false" data-ancla="muestra"><span class="icono-herr" aria-hidden="true">📏</span><strong>Muestra</strong><small>Cuántos puntos y vueltas tejer</small></button>
       <button type="button" role="tab" id="tab-lana" aria-controls="calc-lana" aria-selected="false" data-ancla="lana"><span class="icono-herr" aria-hidden="true">🧶</span><strong>¿Cuánta lana?</strong><small>Los ovillos que necesitas</small></button>
       <button type="button" role="tab" id="tab-aumentos" aria-controls="calc-aumentos" aria-selected="false" data-ancla="aumentos"><span class="icono-herr" aria-hidden="true">➕</span><strong>Aumentos y disminuciones</strong><small>Reparte los puntos de tu vuelta</small></button>
@@ -745,7 +759,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="panel-calc" role="tabpanel" id="calc-contador" aria-labelledby="tab-contador" hidden>
+    <div class="panel-calc" role="tabpanel" id="calc-contador" aria-labelledby="tab-contador">
       <div>
         <div class="campo"><label for="co-proyecto">¿Qué estás tejiendo?</label><input type="text" id="co-proyecto" placeholder="Ej.: pollito amarillo"></div>
         <p class="subtitulo-hilos">🧩 Piezas <small class="nota-piezas">Toca una para contar sus vueltas</small></p>
@@ -779,7 +793,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="panel-calc panel-precio" role="tabpanel" id="calc-precio" aria-labelledby="tab-precio">
+    <div class="panel-calc panel-precio" role="tabpanel" id="calc-precio" aria-labelledby="tab-precio" hidden>
       <form id="form-precio" onsubmit="return false">
         <p style="margin-top:0;">¿Cuánto cobrar por tu amigurumi? Rosina suma tus materiales, tu tiempo y los gastos del taller, y le agrega tu ganancia. <strong>Los valores que ves son solo un ejemplo: cámbialos por los tuyos.</strong></p>
         <fieldset class="grupo-muestra">
@@ -830,6 +844,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 </main>
+<!-- marca-impresion -->
+<div class="marca-impresion marca-imp-abajo" aria-hidden="true"><strong>Lana Rosa Crochet</strong><span>WhatsApp 320 507 2801</span><span>contacto@lanarosacrochet.com</span><span>lanarosacrochet.com</span><span>Instagram @lanarosacrochet</span><span>Villamaría, Caldas</span></div>
+<!-- /marca-impresion -->
 
 <footer class="pie-rico">
   <div class="contenedor pie-grid">

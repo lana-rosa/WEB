@@ -39,6 +39,24 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 - [ ] **Perfil de Google (lo hace Sara):** revisar en 1 o 2 semanas que vuelva a salir al buscar "Lana Rosa Crochet" y que se reactiven las reseñas, después de corregir la fecha de apertura; agregar horario y áreas de servicio si faltan.
 - [ ] **Foto de la feria en el Inicio:** confirmar si se ponen los nombres de las dos integrantes.
 
+## 📝 Observaciones de Sara del 28-sep-2026
+
+Hecho (28-sep-2026):
+- [x] Inicio: nuevo orden (tienda primero), "¿Qué podemos tejer?" con fotos de producto (flores, peluche y otra foto de persona), sin "De la foto al amigurumi", menos espacio en "De una historia nace un tejido", 13 historias con su texto, del mismo tamaño y en el orden pedido, foto de Rosina más iluminada y "Lo que dicen nuestros clientes".
+- [x] Tienda: fotos de productos más grandes y tarjetas uniformes.
+- [x] Personaliza: textos nuevos de las respuestas rápidas, peluches desde $35.000, "De la foto al amigurumi" (Betty, los novios, la pareja) y "Otros personalizados" lado a lado con desplazamiento.
+- [x] Mercería: un solo aviso "Muy pronto", sin "Pedir por WhatsApp"; el catálogo y "¿Cómo se paga?" aparecen solos cuando haya existencias.
+- [x] Rincón: logo arriba y contacto abajo en todo lo que se imprime o se guarda en PDF (`herramientas/marca_impresion.py`); abreviaturas sin fila fija; contador de vueltas digital como primera calculadora.
+- [x] Agenda: en celular cada renglón es una tarjeta (sin columna fija); "Agregar renglón" en todas las tablas; lista de compras con productos de la tienda; "Mi año tejiendo" con varios años; acceso al contador desde la ficha de proyecto.
+- [x] Sobre nosotras: texto nuevo y espacios más compactos.
+- [x] Menú: "Personaliza el tuyo" sin destacar, al lado de "Tienda".
+
+Falta (necesito algo de Sara):
+- [ ] **Enlaces de YouTube** para el glosario (por término) y para la Revista (por artículo). Sara los pasa.
+- [ ] **Imágenes de la Revista:** Sara envía las imágenes de cada artículo.
+- [ ] **Comentarios nuevos de clientes** para "Lo que dicen nuestros clientes" (capturas o textos reales, sin inventar).
+- [ ] **Medios de pago Wompi, PayPal y Google Pay:** Sara abre las cuentas (Wompi con RUT y cuenta bancaria; PayPal empresarial). Las llaves secretas van solo en Supabase, nunca en el chat. Después se integran en el carrito.
+
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden

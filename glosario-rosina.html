@@ -504,6 +504,20 @@ main > .hero-rosina.contenedor { padding-bottom: 20px; }
 </script>
 </head>
 <body>
+<!-- marca-impresion -->
+<style>
+.marca-impresion { display: none; }
+@media print {
+  .marca-impresion { display: flex !important; align-items: center; gap: 12px; font-family: 'Hanken Grotesk', Arial, sans-serif; color: #45454A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .marca-imp-arriba { justify-content: space-between; border-bottom: 2px solid #E74E96; padding: 0 0 8px; margin: 0 0 14px; }
+  .marca-imp-arriba img { height: 46px; width: auto; border-radius: 8px; }
+  .marca-imp-arriba span { font-size: 11px; color: #E74E96; font-weight: 700; }
+  .marca-imp-abajo { justify-content: center; flex-wrap: wrap; gap: 4px 14px; border-top: 2px solid #E74E96; padding: 8px 0 0; margin: 18px 0 0; font-size: 10.5px; break-inside: avoid; }
+  .marca-imp-abajo strong { color: #E74E96; }
+}
+</style>
+<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="img/logo-lana-rosa.jpg" alt=""><span>Rincón de Rosina · lanarosacrochet.com</span></div>
+<!-- /marca-impresion -->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
@@ -515,12 +529,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="personaliza.html">Personaliza el tuyo</a></li>
         <li><a href="merceria.html">Mercería</a></li>
         <li><a href="aprende.html">Aprende</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
-        <li><a href="personaliza.html" class="nav-destacado">Personaliza el tuyo</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -540,7 +554,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="index.html">Inicio</a>
     <p class="grupo-nav">Comprar</p>
     <a href="tienda.html">Tienda</a>
-    <a href="personaliza.html" class="nav-destacado">Personaliza el tuyo ✨</a>
+    <a href="personaliza.html">Personaliza el tuyo</a>
     <a href="merceria.html">Mercería</a>
     <p class="grupo-nav">Aprender</p>
     <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
@@ -860,6 +874,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
   </section>
 </main>
+<!-- marca-impresion -->
+<div class="marca-impresion marca-imp-abajo" aria-hidden="true"><strong>Lana Rosa Crochet</strong><span>WhatsApp 320 507 2801</span><span>contacto@lanarosacrochet.com</span><span>lanarosacrochet.com</span><span>Instagram @lanarosacrochet</span><span>Villamaría, Caldas</span></div>
+<!-- /marca-impresion -->
 
 <footer class="pie-rico">
   <div class="contenedor pie-grid">

@@ -244,6 +244,19 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .mensajes-personaliza li { background: var(--blanco); border: 1px solid rgba(69,69,74,0.08); border-radius: 18px 18px 18px 6px; padding: 8px 14px; font-size: 0.9rem; }
 .mensajes-personaliza li:nth-child(even) { background: var(--rosa-suave); border-color: transparent; border-radius: 18px 18px 6px 18px; }
 .entregados-personaliza { margin-bottom: 30px; }
+.dos-galerias { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin: 8px 0 18px; }
+.galeria-col { min-width: 0; background: var(--blanco); border-radius: 20px; padding: 18px; box-shadow: var(--sombra-suave); }
+.galeria-col .nota-tamanos { margin: 0 0 12px; }
+.carrusel-wrap { position: relative; }
+.carrusel { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
+.carrusel::-webkit-scrollbar { height: 8px; } .carrusel::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 8px; } .carrusel::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 8px; }
+.carrusel figure { flex: 0 0 100%; margin: 0; scroll-snap-align: start; }
+.carrusel img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: contain; background: #FBF7F2; display: block; border-radius: 16px; }
+.carrusel figcaption { margin-top: 10px; font-size: 0.92rem; color: var(--tinta-suave); text-align: center; line-height: 1.4; min-height: 2.8em; }
+.carrusel-flecha { position: absolute; top: calc(50% - 40px); transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(255,255,255,0.92); color: var(--rosa-principal); font-size: 1.6rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(58,42,46,0.15); }
+.carrusel-flecha.ant { left: 8px; } .carrusel-flecha.sig { right: 8px; }
+.carrusel-flecha[disabled] { opacity: 0.35; cursor: default; }
+@media (max-width: 760px) { .dos-galerias { grid-template-columns: minmax(0, 1fr); gap: 18px; } .galeria-col { padding: 14px; } }
 .casos-personaliza.casos-tres { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin-left: auto; margin-right: auto; align-items: center; }
 @media (max-width: 700px) { .casos-personaliza.casos-tres { margin-left: -24px; margin-right: -24px; } }
 @media (min-width: 701px) { .entregados-personaliza { display: flex; flex-wrap: wrap; justify-content: center; } .entregados-personaliza figure { flex: 0 0 calc((100% - 64px) / 5); } }
@@ -336,12 +349,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="personaliza.html">Personaliza el tuyo</a></li>
         <li><a href="merceria.html">Mercería</a></li>
         <li><a href="aprende.html">Aprende</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
-        <li><a href="personaliza.html" class="nav-destacado">Personaliza el tuyo</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -361,7 +374,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="index.html">Inicio</a>
     <p class="grupo-nav">Comprar</p>
     <a href="tienda.html">Tienda</a>
-    <a href="personaliza.html" class="nav-destacado">Personaliza el tuyo ✨</a>
+    <a href="personaliza.html">Personaliza el tuyo</a>
     <a href="merceria.html">Mercería</a>
     <p class="grupo-nav">Aprender</p>
     <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
@@ -387,11 +400,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="respuestas-rapidas">
-    <details><summary><span aria-hidden="true">🧸</span><h2>¿Qué puedo pedir?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Personas, mascotas, parejas, personajes, llaveros, peluches y mucho más.</p></details>
-    <details><summary><span aria-hidden="true">💰</span><h2>¿Cuánto cuesta?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Amigurumis desde <strong>$70.000 COP</strong> y llaveros personalizados desde <strong>$12.000 COP</strong>, según el tamaño y el detalle.</p></details>
+    <details><summary><span aria-hidden="true">🧸</span><h2>¿Qué puedo pedir?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Personas, mascotas, parejas, personajes, llaveros, peluches, flores y mucho más, tu imaginación es el límite.</p></details>
+    <details><summary><span aria-hidden="true">💰</span><h2>¿Cuánto cuesta?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Amigurumis desde <strong>$70.000 COP</strong>, peluches desde <strong>$35.000 COP</strong> y llaveros personalizados desde <strong>$12.000 COP</strong>, según el tamaño y el detalle.</p></details>
     <details><summary><span aria-hidden="true">🕒</span><h2>¿Cuánto tarda?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Depende del pedido. Te damos la fecha al aprobar la cotización.</p></details>
-    <details><summary><span aria-hidden="true">📸</span><h2>¿Qué debo enviar?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Fotos claras y los detalles que no pueden faltar.</p></details>
-    <details><summary><span aria-hidden="true">📝</span><h2>¿Cómo hago el pedido?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Llena el formulario y te enviamos la cotización.</p></details>
+    <details><summary><span aria-hidden="true">📸</span><h2>¿Qué debo enviar?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Fotos claras y los detalles que no pueden faltar, o la descripción de lo que quieres.</p></details>
+    <details><summary><span aria-hidden="true">📝</span><h2>¿Cómo hago el pedido?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Llena el formulario y te enviamos la cotización, o escríbenos por <a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Quiero%20cotizar%20un%20amigurumi%20personalizado." target="_blank" rel="noopener">WhatsApp</a>.</p></details>
     <details><summary><span aria-hidden="true">📦</span><h2>¿Hacen envíos?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>A toda Colombia: Villamaría $8.000, Manizales $13.000 y otras ciudades $18.000.</p></details>
   </div>
 
@@ -405,11 +418,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><span>6</span><strong>Entrega</strong><small>Llega a tus manos</small></li>
   </ol>
 
-  <h2 class="titulo-proceso">De la foto al amigurumi</h2>
-  <p class="nota-tamanos">Pedidos reales junto a la foto que los inspiró.</p>
-  <div class="casos-personaliza casos-tres">
-    <figure><img src="img/foto-amigurumi/betty.webp?v=3" alt="Amigurumi de Betty con gafas rojas, chaleco y falda roja junto a la foto del personaje" width="600" height="578" loading="lazy" decoding="async"><figcaption>Betty, con sus gafas rojas</figcaption></figure>
-    <figure><img src="img/foto-amigurumi/novios.webp?v=3" alt="Amigurumis de una pareja de novios junto a la foto de su boda" width="581" height="468" loading="lazy" decoding="async"><figcaption>Los novios, el día de su boda</figcaption></figure>
+  <div class="dos-galerias">
+    <section class="galeria-col">
+      <h2 class="titulo-proceso">De la foto al amigurumi</h2>
+      <p class="nota-tamanos">Pedidos reales junto a la foto que los inspiró.</p>
+      <div class="carrusel-wrap">
+        <button type="button" class="carrusel-flecha ant" data-carrusel="carrusel-foto" aria-label="Anterior">‹</button>
+        <div class="carrusel" id="carrusel-foto" tabindex="0">
+      <figure><img src="img/foto-amigurumi/betty.webp?v=3" alt="Amigurumi de Betty con gafas rojas, chaleco y falda roja junto a la foto del personaje" width="600" height="578" loading="lazy" decoding="async"><figcaption>Un personaje muy especial: Betty en amigurumi, más bonita de lo habitual.</figcaption></figure>
+      <figure><img src="img/foto-amigurumi/novios.webp?v=3" alt="Amigurumis de una pareja de novios junto a la foto de su boda" width="581" height="468" loading="lazy" decoding="async"><figcaption>Un regalo de aniversario de una esposa que le dice: “Siempre volvería a decirte sí”.</figcaption></figure>
+      <figure><img src="img/foto-amigurumi/pareja.webp?v=4" alt="Dos amigurumis personalizados de una pareja junto a su foto de referencia" width="700" height="700" loading="lazy" decoding="async"><figcaption>Amigurumis de unos padres para su hijo que está lejos, diciéndole que siempre lo llevan en su corazón.</figcaption></figure>
+        </div>
+        <button type="button" class="carrusel-flecha sig" data-carrusel="carrusel-foto" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+    <section class="galeria-col">
+      <h2 class="titulo-proceso">Otros personalizados que hemos entregado</h2>
+      <p class="nota-tamanos">Desliza para ver más.</p>
+      <div class="carrusel-wrap">
+        <button type="button" class="carrusel-flecha ant" data-carrusel="carrusel-otros" aria-label="Anterior">‹</button>
+        <div class="carrusel" id="carrusel-otros" tabindex="0">
+      <figure><img src="img/personalizados/howl-sophie.webp?v=5" alt="Amigurumis de Howl y Sophie tomados de la mano" width="600" height="750" loading="lazy" decoding="async"><figcaption>Howl y Sophie, tomados de la mano</figcaption></figure>
+      <figure><img src="img/personalizados/reina.webp?v=6" alt="Amigurumi personalizado de una mujer con corona y vestido rojo" width="600" height="750" loading="lazy" decoding="async"><figcaption>Con su corona y su vestido rojo</figcaption></figure>
+      <figure><img src="img/personalizados/gafas.webp?v=5" alt="Amigurumi personalizado de una mujer rubia con gafas y vestido blanco" width="600" height="750" loading="lazy" decoding="async"><figcaption>Con sus gafas y su vestido blanco</figcaption></figure>
+      <figure><img src="img/personalizados/duo.webp?v=6" alt="Dos amigurumis personalizados de hombres, cada uno con su ropa" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un dúo, cada uno con su estilo</figcaption></figure>
+      <figure><img src="img/personalizados/sombrero.webp?v=5" alt="Amigurumi personalizado con sombrero y poncho blanco" width="600" height="750" loading="lazy" decoding="async"><figcaption>Con su sombrero y su poncho</figcaption></figure>
+      <figure><img src="img/personalizados/ave.webp?v=5" alt="Barranquero tejido en crochet con plumas verdes, azules y negras" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un barranquero tejido a pedido</figcaption></figure>
+      <figure><img src="img/personalizados/casco.webp?v=5" alt="Amigurumi personalizado de un ingeniero civil con casco blanco y chaleco naranja" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un ingeniero civil con su casco y su chaleco</figcaption></figure>
+      <figure><img src="img/personalizados/ingeniero.webp?v=6" alt="Amigurumi personalizado de un ingeniero de sistemas con gafas y su portátil" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un ingeniero de sistemas con su portátil</figcaption></figure>
+      <figure><img src="img/personalizados/policia.webp?v=6" alt="Amigurumi personalizado de un policía con uniforme y gorra" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un policía con su uniforme</figcaption></figure>
+        </div>
+        <button type="button" class="carrusel-flecha sig" data-carrusel="carrusel-otros" aria-label="Siguiente">›</button>
+      </div>
+    </section>
   </div>
   <ul class="mensajes-personaliza" aria-label="Mensajes de clientas">
     <li>Ayyyy quedó precioso, muchas gracias ❤️</li>
@@ -418,19 +459,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li>Oye, muchas gracias, está muy muy hermoso ❤️</li>
   </ul>
   <p class="enlace-resenas"><a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
-
-  <h2 class="titulo-proceso">Otros personalizados que hemos entregado</h2>
-  <div class="casos-personaliza entregados-personaliza">
-    <figure><img src="img/personalizados/howl-sophie.webp?v=5" alt="Amigurumis de Howl y Sophie tomados de la mano" width="600" height="750" loading="lazy" decoding="async"><figcaption>Howl y Sophie, tomados de la mano</figcaption></figure>
-    <figure><img src="img/personalizados/reina.webp?v=6" alt="Amigurumi personalizado de una mujer con corona y vestido rojo" width="600" height="750" loading="lazy" decoding="async"><figcaption>Con su corona y su vestido rojo</figcaption></figure>
-    <figure><img src="img/personalizados/gafas.webp?v=5" alt="Amigurumi personalizado de una mujer rubia con gafas y vestido blanco" width="600" height="750" loading="lazy" decoding="async"><figcaption>Con sus gafas y su vestido blanco</figcaption></figure>
-    <figure><img src="img/personalizados/duo.webp?v=6" alt="Dos amigurumis personalizados de hombres, cada uno con su ropa" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un dúo, cada uno con su estilo</figcaption></figure>
-    <figure><img src="img/personalizados/sombrero.webp?v=5" alt="Amigurumi personalizado con sombrero y poncho blanco" width="600" height="750" loading="lazy" decoding="async"><figcaption>Con su sombrero y su poncho</figcaption></figure>
-    <figure><img src="img/personalizados/ave.webp?v=5" alt="Barranquero tejido en crochet con plumas verdes, azules y negras" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un barranquero tejido a pedido</figcaption></figure>
-    <figure><img src="img/personalizados/casco.webp?v=5" alt="Amigurumi personalizado de un ingeniero civil con casco blanco y chaleco naranja" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un ingeniero civil con su casco y su chaleco</figcaption></figure>
-    <figure><img src="img/personalizados/ingeniero.webp?v=6" alt="Amigurumi personalizado de un ingeniero de sistemas con gafas y su portátil" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un ingeniero de sistemas con su portátil</figcaption></figure>
-    <figure><img src="img/personalizados/policia.webp?v=6" alt="Amigurumi personalizado de un policía con uniforme y gorra" width="600" height="750" loading="lazy" decoding="async"><figcaption>Un policía con su uniforme</figcaption></figure>
-  </div>
 
   <h2 class="titulo-proceso">Tamaños de referencia</h2>
   <p class="nota-tamanos">También tejemos de 10 cm, llaveros y peluches.</p>
@@ -970,6 +998,15 @@ form.addEventListener('submit', async (evento) => {
 
   actualizarContador();
 })();
+</script>
+<script>
+document.querySelectorAll('.carrusel').forEach(function (c) {
+  var wrap = c.parentNode, ant = wrap.querySelector('.ant'), sig = wrap.querySelector('.sig');
+  function estado() { ant.disabled = c.scrollLeft < 5; sig.disabled = c.scrollLeft + c.clientWidth > c.scrollWidth - 5; }
+  ant.addEventListener('click', function () { c.scrollBy({ left: -c.clientWidth, behavior: 'smooth' }); });
+  sig.addEventListener('click', function () { c.scrollBy({ left: c.clientWidth, behavior: 'smooth' }); });
+  c.addEventListener('scroll', estado, { passive: true }); window.addEventListener('resize', estado); estado();
+});
 </script>
 </body>
 </html>

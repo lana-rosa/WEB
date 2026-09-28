@@ -231,7 +231,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .tabla-scroll { overflow-x: auto; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); }
 .tabla-abrev { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 720px; }
 .tabla-abrev th, .tabla-abrev td { padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(69,69,74,0.08); vertical-align: top; }
-.tabla-abrev thead th { background: var(--rosa-principal); color: var(--blanco); font-family: var(--fuente-titulo); font-weight: 600; position: sticky; top: 0; }
+.tabla-abrev thead th { background: var(--rosa-principal); color: var(--blanco); font-family: var(--fuente-titulo); font-weight: 600; }
 .tabla-abrev tbody tr:nth-child(even) { background: var(--blanco-hueso); }
 .tabla-abrev td b { color: var(--rosa-principal); }
 .tabla-abrev td small { display: block; color: var(--tinta-suave); font-size: 0.78rem; }
@@ -403,7 +403,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .boton-whatsapp-res:hover { background: #1ebe5a; }
 /* Abreviaturas: columna de español fija al desplazar */
 .tabla-abrev th:first-child, .tabla-abrev td:first-child { position: sticky; left: 0; z-index: 1; background: var(--blanco); box-shadow: 2px 0 0 var(--rosa-medio); min-width: 150px; }
-.tabla-scroll-abrev { max-height: 72vh; overflow: auto; }
+.tabla-scroll-abrev { overflow-x: auto; }
 .tabla-abrev thead th { z-index: 2; }
 .tabla-abrev thead th:first-child { z-index: 3; background: var(--rosa-principal); }
 @media print { .tabla-scroll-abrev { max-height: none; overflow: visible; } }
@@ -456,6 +456,20 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 </head>
 <body>
+<!-- marca-impresion -->
+<style>
+.marca-impresion { display: none; }
+@media print {
+  .marca-impresion { display: flex !important; align-items: center; gap: 12px; font-family: 'Hanken Grotesk', Arial, sans-serif; color: #45454A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .marca-imp-arriba { justify-content: space-between; border-bottom: 2px solid #E74E96; padding: 0 0 8px; margin: 0 0 14px; }
+  .marca-imp-arriba img { height: 46px; width: auto; border-radius: 8px; }
+  .marca-imp-arriba span { font-size: 11px; color: #E74E96; font-weight: 700; }
+  .marca-imp-abajo { justify-content: center; flex-wrap: wrap; gap: 4px 14px; border-top: 2px solid #E74E96; padding: 8px 0 0; margin: 18px 0 0; font-size: 10.5px; break-inside: avoid; }
+  .marca-imp-abajo strong { color: #E74E96; }
+}
+</style>
+<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="img/logo-lana-rosa.jpg" alt=""><span>Rincón de Rosina · lanarosacrochet.com</span></div>
+<!-- /marca-impresion -->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
@@ -467,12 +481,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="personaliza.html">Personaliza el tuyo</a></li>
         <li><a href="merceria.html">Mercería</a></li>
         <li><a href="aprende.html">Aprende</a></li>
         <li><a href="revista.html">Revista</a></li>
         <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
-        <li><a href="personaliza.html" class="nav-destacado">Personaliza el tuyo</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -492,7 +506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="index.html">Inicio</a>
     <p class="grupo-nav">Comprar</p>
     <a href="tienda.html">Tienda</a>
-    <a href="personaliza.html" class="nav-destacado">Personaliza el tuyo ✨</a>
+    <a href="personaliza.html">Personaliza el tuyo</a>
     <a href="merceria.html">Mercería</a>
     <p class="grupo-nav">Aprender</p>
     <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
@@ -820,7 +834,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="calculadoras-rosina.html"><img class="miniatura-recurso" src="img/rincon/calculadora.webp?v=2" width="480" height="360" loading="lazy" alt="Vista de la calculadora de costos"></a>
       <div>
         <h2>Calculadoras de Rosina</h2>
-        <p>Rosina hace las cuentas por ti: cuánto cobrar por tu tejido, contador de vueltas, muestra, cuánta lana necesitas y aumentos y disminuciones.</p>
+        <p>Rosina hace las cuentas por ti: contador de vueltas digital, cuánto cobrar por tu tejido, muestra, cuánta lana necesitas y aumentos y disminuciones.</p>
         <a class="boton-primario" href="calculadoras-rosina.html" style="margin-top:12px;">Abrir las calculadoras →</a>
       </div>
     </div>
@@ -849,6 +863,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 </main>
+<!-- marca-impresion -->
+<div class="marca-impresion marca-imp-abajo" aria-hidden="true"><strong>Lana Rosa Crochet</strong><span>WhatsApp 320 507 2801</span><span>contacto@lanarosacrochet.com</span><span>lanarosacrochet.com</span><span>Instagram @lanarosacrochet</span><span>Villamaría, Caldas</span></div>
+<!-- /marca-impresion -->
 
 <footer class="pie-rico">
   <div class="contenedor pie-grid">
