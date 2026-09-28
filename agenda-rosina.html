@@ -531,6 +531,10 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .agenda-layout { scroll-margin-top: 210px; }
 @media (max-width: 900px) { .agenda-layout { scroll-margin-top: 200px; } }
 @media (max-width: 900px) { .barra-agenda { position: static; } .menu-hojas { position: sticky; top: 80px; z-index: 8; } .agenda-layout { scroll-margin-top: 90px; } }
+.acciones-hoja { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-bottom: 10px; }
+@media print { body.imprimir-una .hojas-contenido .hoja-agenda:not(.abierta) { display: none !important; } body.imprimir-una .hoja-agenda { page-break-after: auto; } }
+body.en-blanco .totales-ventas strong { visibility: hidden; }
+@media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -595,7 +599,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
     </div>
-    <p class="intro">Hojas de tu agenda. Elige una hoja en el menú. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
+    <p class="intro">Hojas de tu agenda. Elige una hoja en el menú. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas, llenas o en blanco, para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
@@ -663,6 +667,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </nav>
       </aside>
       <div class="hojas-contenido">
+        <div class="acciones-hoja no-imprimir">
+          <button type="button" class="boton-secundario boton-chico" id="imprimir-hoja">🖨️ Imprimir esta hoja</button>
+          <button type="button" class="boton-secundario boton-chico" id="imprimir-hoja-blanco">📄 Imprimir en blanco</button>
+        </div>
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
           <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -1397,6 +1405,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   inputBuscar.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (coincidencias.length) irA(posicion + 1); else buscarAgenda(); } });
   botonSiguiente.addEventListener('click', function() { irA(posicion + 1); });
   window.addEventListener('hashchange', abrirDesdeAncla);
+  /* ---------- Imprimir solo la hoja abierta (llena o en blanco) ---------- */
+  var respaldoBlanco = null;
+  function imprimirHoja(enBlanco) {
+    var hoja = document.querySelector('#agenda .hoja-agenda.abierta'); if (!hoja) return;
+    if (enBlanco) {
+      respaldoBlanco = [];
+      hoja.querySelectorAll('input, textarea, select').forEach(function(el) {
+        respaldoBlanco.push([el, el.type === 'checkbox' ? el.checked : el.value, el.style.color, el.style.backgroundColor]);
+        if (el.type === 'checkbox') el.checked = false; else el.value = '';
+        el.style.color = ''; el.style.backgroundColor = '';
+      });
+      document.body.classList.add('en-blanco');
+    }
+    document.getElementById('agenda').classList.add('imprimir-activa');
+    document.body.classList.add('imprimiendo', 'imprimir-una');
+    window.print();
+  }
+  window.addEventListener('afterprint', function() {
+    document.body.classList.remove('imprimir-una', 'en-blanco');
+    if (respaldoBlanco) {
+      respaldoBlanco.forEach(function(r) { if (r[0].type === 'checkbox') r[0].checked = r[1]; else r[0].value = r[1]; r[0].style.color = r[2]; r[0].style.backgroundColor = r[3]; });
+      respaldoBlanco = null;
+    }
+  });
+  document.getElementById('imprimir-hoja').addEventListener('click', function() { imprimirHoja(false); });
+  document.getElementById('imprimir-hoja-blanco').addEventListener('click', function() { imprimirHoja(true); });
   window.addEventListener('beforeprint', function() { hojas.forEach(function(h) { h.classList.add('imprimiendo-hoja'); }); });
   window.addEventListener('afterprint', function() { hojas.forEach(function(h) { h.classList.remove('imprimiendo-hoja'); }); });
 })();
