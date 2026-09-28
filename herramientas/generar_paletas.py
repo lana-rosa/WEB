@@ -331,5 +331,7 @@ i = src.index('</style>'); src = src[:i] + css + src[i:]
 a = src.index('<main>'); b = src.index('</main>') + len('</main>')
 src = src[:a] + main + src[b:]
 i = src.rindex('</body>'); src = src[:i] + js + src[i:]
+sys.path.insert(0, WEB + 'herramientas'); from marca_impresion import aplicar as marca_impresion
+src = marca_impresion(src)
 open(WEB + 'paletas-rosina.html', 'w', encoding='utf-8').write(src)
 print('ok', len(PALETAS), 'paletas')

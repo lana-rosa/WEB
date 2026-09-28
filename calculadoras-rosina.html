@@ -524,6 +524,20 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 </head>
 <body>
+<!-- marca-impresion -->
+<style>
+.marca-impresion { display: none; }
+@media print {
+  .marca-impresion { display: flex !important; align-items: center; gap: 12px; font-family: 'Hanken Grotesk', Arial, sans-serif; color: #45454A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .marca-imp-arriba { justify-content: space-between; border-bottom: 2px solid #E74E96; padding: 0 0 8px; margin: 0 0 14px; }
+  .marca-imp-arriba img { height: 46px; width: auto; border-radius: 8px; }
+  .marca-imp-arriba span { font-size: 11px; color: #E74E96; font-weight: 700; }
+  .marca-imp-abajo { justify-content: center; flex-wrap: wrap; gap: 4px 14px; border-top: 2px solid #E74E96; padding: 8px 0 0; margin: 18px 0 0; font-size: 10.5px; break-inside: avoid; }
+  .marca-imp-abajo strong { color: #E74E96; }
+}
+</style>
+<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="img/logo-lana-rosa.jpg" alt=""><span>Rincón de Rosina · lanarosacrochet.com</span></div>
+<!-- /marca-impresion -->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
@@ -830,6 +844,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 </main>
+<!-- marca-impresion -->
+<div class="marca-impresion marca-imp-abajo" aria-hidden="true"><strong>Lana Rosa Crochet</strong><span>WhatsApp 320 507 2801</span><span>contacto@lanarosacrochet.com</span><span>lanarosacrochet.com</span><span>Instagram @lanarosacrochet</span><span>Villamaría, Caldas</span></div>
+<!-- /marca-impresion -->
 
 <footer class="pie-rico">
   <div class="contenedor pie-grid">
