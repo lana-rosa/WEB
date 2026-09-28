@@ -475,6 +475,33 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .detalle-hilos li strong { margin-left: auto; }
 .compartir-precio { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
 .compartir-precio .boton-whatsapp-res { margin-top: 0; }
+.nota-piezas { font-weight: 400; color: var(--tinta-suave); font-size: 0.8rem; margin-left: 6px; }
+.lista-piezas { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.lista-piezas .pieza { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.9rem; color: var(--tinta); cursor: pointer; }
+.lista-piezas .pieza span { font-weight: 600; font-size: 0.8rem; color: var(--tinta-suave); background: var(--rosa-suave); border-radius: 999px; padding: 1px 8px; }
+.lista-piezas .pieza.activa { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.lista-piezas .pieza.activa span { background: rgba(255,255,255,0.25); color: var(--blanco); }
+.fila-agregar { display: flex; gap: 8px; margin-bottom: 16px; }
+.fila-agregar input { flex: 1; min-width: 0; font-family: var(--fuente-cuerpo); font-size: 1rem; padding: 9px 14px; border-radius: 12px; border: 1.5px solid rgba(69,69,74,0.18); background: var(--blanco-hueso); }
+.enlace-quitar { background: none; border: none; color: var(--tinta-suave); text-decoration: underline; font-family: var(--fuente-cuerpo); font-size: 0.85rem; cursor: pointer; padding: 0; margin-bottom: 8px; }
+.enlace-quitar[hidden] { display: none; }
+.resultado-contador { text-align: center; }
+.resultado-contador h3 { font-size: 1.3rem; margin-bottom: 2px; }
+.resultado-contador .contador button { width: 68px; height: 68px; font-size: 2.2rem; }
+.resultado-contador .contador #co-mas { width: 84px; height: 84px; font-size: 2.6rem; box-shadow: 0 8px 20px rgba(231,78,150,0.35); }
+.resultado-contador .contador output { font-size: 4rem; }
+.barra-vueltas { height: 10px; background: var(--blanco); border-radius: 999px; overflow: hidden; margin: 6px auto 0; max-width: 260px; }
+.barra-vueltas[hidden] { display: none; }
+.barra-vueltas span { display: block; height: 100%; width: 0; background: var(--rosa-principal); border-radius: 999px; transition: width 0.2s; }
+.acciones-contador { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.acciones-contador [hidden] { display: none; }
+#co-pantalla[aria-pressed="true"] { background: var(--rosa-principal); color: var(--blanco); border-color: var(--rosa-principal); }
+.panel-calc > * { min-width: 0; }
+.campo input, .campo select { min-width: 0; width: 100%; box-sizing: border-box; }
+.fila-agregar button { flex-shrink: 0; }
+@media (max-width: 760px) { #calc-contador .resultado-contador { order: -1; } }
+.resultado-contador .contador button { flex-shrink: 0; }
+@media (max-width: 400px) { .resultado-contador .contador { gap: 12px; } .resultado-contador .contador output { font-size: 3.2rem; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -648,19 +675,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="panel-calc" role="tabpanel" id="calc-contador" aria-labelledby="tab-contador" hidden>
       <div>
-        <div class="campo"><label for="co-proyecto">¿Qué estás tejiendo?</label><input type="text" id="co-proyecto" placeholder="Ej.: cabeza del pollito"></div>
-        <div class="campo"><label for="co-meta">¿Cuántas vueltas son en total? (opcional)</label><input type="number" id="co-meta" min="1" inputmode="numeric"></div>
-        <p class="nota">Rosina recuerda tu cuenta en este dispositivo, aunque cierres la página.</p>
+        <div class="campo"><label for="co-proyecto">¿Qué estás tejiendo?</label><input type="text" id="co-proyecto" placeholder="Ej.: pollito amarillo"></div>
+        <p class="subtitulo-hilos">🧩 Piezas <small class="nota-piezas">Toca una para contar sus vueltas</small></p>
+        <div class="lista-piezas" id="lista-piezas"></div>
+        <form class="fila-agregar" id="form-pieza" onsubmit="return false">
+          <input type="text" id="nueva-pieza" placeholder="Ej.: cabeza, cuerpo, brazo…" aria-label="Nombre de la nueva pieza" maxlength="30">
+          <button type="submit" class="boton-secundario boton-chico">+ Agregar</button>
+        </form>
+        <div class="fila-campos">
+          <div class="campo"><label for="co-nombre">Nombre de esta pieza</label><input type="text" id="co-nombre" maxlength="30"></div>
+          <div class="campo"><label for="co-meta">Vueltas en total (opcional)</label><input type="number" id="co-meta" min="1" inputmode="numeric"></div>
+        </div>
+        <button type="button" class="enlace-quitar" id="co-quitar">Quitar esta pieza</button>
+        <p class="nota">Rosina recuerda tus cuentas en este dispositivo, aunque cierres la página.</p>
       </div>
-      <div class="resultado" style="text-align:center;">
-        <h3>Vuelta actual</h3>
+      <div class="resultado resultado-contador">
+        <h3 id="co-titulo">Vuelta actual</h3>
+        <p class="nota" style="margin:0;">Vuelta actual</p>
         <div class="contador">
           <button type="button" class="menos" id="co-menos" aria-label="Restar una vuelta">−</button>
           <output id="co-valor" aria-live="polite">0</output>
           <button type="button" id="co-mas" aria-label="Sumar una vuelta">+</button>
         </div>
+        <div class="barra-vueltas" id="co-barra" hidden><span></span></div>
         <p id="co-progreso"></p>
-        <button type="button" class="boton-secundario boton-chico" id="co-reiniciar">Reiniciar</button>
+        <div class="acciones-contador">
+          <button type="button" class="boton-secundario boton-chico" id="co-reiniciar">Reiniciar</button>
+          <button type="button" class="boton-secundario boton-chico" id="co-pantalla" hidden aria-pressed="false">🔆 Pantalla siempre encendida</button>
+        </div>
+        <p class="nota" id="co-total"></p>
       </div>
     </div>
 
@@ -1176,32 +1219,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   pintarHilos();
   calcularPrecio();
 
-  /* ---------- Contador de vueltas ---------- */
+  /* ---------- Contador de vueltas (varias piezas) ---------- */
   var CLAVE_CONTADOR = 'rosinaContador';
-  var estado = { valor: 0, proyecto: '', meta: '' };
-  try { estado = Object.assign(estado, JSON.parse(leer(CLAVE_CONTADOR)) || {}); } catch (e) {}
-  var coValor = document.getElementById('co-valor'), coProyecto = document.getElementById('co-proyecto');
-  var coMeta = document.getElementById('co-meta'), coProgreso = document.getElementById('co-progreso');
-  coProyecto.value = estado.proyecto; coMeta.value = estado.meta;
+  var estado = { proyecto: '', activa: 0, piezas: [{ nombre: 'Cabeza', valor: 0, meta: '' }, { nombre: 'Cuerpo', valor: 0, meta: '' }] };
+  try {
+    var ec = JSON.parse(leer(CLAVE_CONTADOR));
+    if (ec && Array.isArray(ec.piezas) && ec.piezas.length) estado = ec;
+    else if (ec && (ec.valor || ec.proyecto || ec.meta)) estado = { proyecto: '', activa: 0, piezas: [{ nombre: ec.proyecto || 'Pieza 1', valor: ec.valor || 0, meta: ec.meta || '' }] };
+  } catch (e) {}
+  var coValor = document.getElementById('co-valor'), coProyecto = document.getElementById('co-proyecto'), coNombre = document.getElementById('co-nombre');
+  var coMeta = document.getElementById('co-meta'), coProgreso = document.getElementById('co-progreso'), coBarra = document.getElementById('co-barra');
+  var listaPiezas = document.getElementById('lista-piezas');
+  function pieza() { if (estado.activa >= estado.piezas.length) estado.activa = 0; return estado.piezas[estado.activa]; }
+  function textoPieza(t) { return String(t || '').replace(/[&<>"]/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function pintarContador() {
-    coValor.textContent = estado.valor;
-    var meta = parseInt(estado.meta, 10);
+    var pz = pieza(), meta = parseInt(pz.meta, 10);
+    coValor.textContent = pz.valor;
+    document.getElementById('co-titulo').textContent = pz.nombre || 'Pieza ' + (estado.activa + 1);
+    coNombre.value = pz.nombre; coMeta.value = pz.meta;
     if (meta > 0) {
-      coProgreso.textContent = estado.valor >= meta ? '¡Terminaste! 🎉 Rosina está orgullosa.' : 'Te faltan ' + (meta - estado.valor) + ' de ' + meta + ' vueltas.';
-    } else {
-      coProgreso.textContent = '';
-    }
+      coBarra.hidden = false; coBarra.firstChild.style.width = Math.min(100, pz.valor / meta * 100) + '%';
+      coProgreso.textContent = pz.valor >= meta ? '¡Terminaste esta pieza! 🎉 Rosina está orgullosa.' : 'Te faltan ' + (meta - pz.valor) + ' de ' + meta + ' vueltas.';
+    } else { coBarra.hidden = true; coProgreso.textContent = ''; }
+    listaPiezas.innerHTML = estado.piezas.map(function(p, i) {
+      var m = parseInt(p.meta, 10), lista = m > 0 && p.valor >= m;
+      return '<button type="button" class="pieza' + (i === estado.activa ? ' activa' : '') + (lista ? ' lista' : '') + '" data-pieza="' + i + '" aria-pressed="' + (i === estado.activa) + '">' + (lista ? '✅ ' : '') + textoPieza(p.nombre || 'Pieza ' + (i + 1)) + '<span>' + p.valor + (m > 0 ? '/' + m : '') + '</span></button>';
+    }).join('');
+    var total = estado.piezas.reduce(function(a, p) { return a + (p.valor || 0); }, 0);
+    document.getElementById('co-total').textContent = estado.piezas.length > 1 ? 'En total llevas ' + total + ' vueltas en ' + estado.piezas.length + ' piezas.' : '';
+    document.getElementById('co-quitar').hidden = estado.piezas.length < 2;
     escribir(CLAVE_CONTADOR, JSON.stringify(estado));
   }
-  document.getElementById('co-mas').addEventListener('click', function() { estado.valor++; pintarContador(); });
-  document.getElementById('co-menos').addEventListener('click', function() { estado.valor = Math.max(0, estado.valor - 1); pintarContador(); });
-  document.getElementById('co-reiniciar').addEventListener('click', function() { estado.valor = 0; pintarContador(); });
-  coProyecto.addEventListener('input', function() { estado.proyecto = coProyecto.value; pintarContador(); });
-  coMeta.addEventListener('input', function() { estado.meta = coMeta.value; pintarContador(); });
+  function vibrar() { try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {} }
+  document.getElementById('co-mas').addEventListener('click', function() { pieza().valor++; vibrar(); pintarContador(); });
+  document.getElementById('co-menos').addEventListener('click', function() { pieza().valor = Math.max(0, pieza().valor - 1); vibrar(); pintarContador(); });
+  document.getElementById('co-reiniciar').addEventListener('click', function() { if (pieza().valor && !confirm('¿Volver a cero la cuenta de "' + (pieza().nombre || 'esta pieza') + '"?')) return; pieza().valor = 0; pintarContador(); });
+  listaPiezas.addEventListener('click', function(e) { var b = e.target.closest('[data-pieza]'); if (!b) return; estado.activa = +b.dataset.pieza; pintarContador(); });
+  document.getElementById('form-pieza').addEventListener('submit', function() {
+    var campo = document.getElementById('nueva-pieza'), nombre = campo.value.trim();
+    if (estado.piezas.length >= 20) return;
+    estado.piezas.push({ nombre: nombre || 'Pieza ' + (estado.piezas.length + 1), valor: 0, meta: '' });
+    estado.activa = estado.piezas.length - 1; campo.value = ''; pintarContador();
+  });
+  document.getElementById('co-quitar').addEventListener('click', function() {
+    if (estado.piezas.length < 2 || !confirm('¿Quitar la pieza "' + (pieza().nombre || '') + '"?')) return;
+    estado.piezas.splice(estado.activa, 1); estado.activa = Math.max(0, estado.activa - 1); pintarContador();
+  });
+  coProyecto.value = estado.proyecto || '';
+  coProyecto.addEventListener('input', function() { estado.proyecto = coProyecto.value; escribir(CLAVE_CONTADOR, JSON.stringify(estado)); });
+  coNombre.addEventListener('change', function() { pieza().nombre = coNombre.value.trim(); pintarContador(); });
+  coMeta.addEventListener('input', function() { pieza().meta = coMeta.value; pintarContador(); });
+  /* Pantalla siempre encendida (si el celular lo permite) */
+  var botonPantalla = document.getElementById('co-pantalla'), bloqueo = null;
+  if ('wakeLock' in navigator) {
+    botonPantalla.hidden = false;
+    function pedirPantalla() { return navigator.wakeLock.request('screen').then(function(l) { bloqueo = l; botonPantalla.setAttribute('aria-pressed', 'true'); botonPantalla.textContent = '🔆 Pantalla encendida: sí'; l.addEventListener('release', function() { if (bloqueo === l) { bloqueo = null; botonPantalla.setAttribute('aria-pressed', 'false'); botonPantalla.textContent = '🔆 Pantalla siempre encendida'; } }); }).catch(function() {}); }
+    botonPantalla.addEventListener('click', function() { if (bloqueo) { var l = bloqueo; bloqueo = null; l.release(); botonPantalla.setAttribute('aria-pressed', 'false'); botonPantalla.textContent = '🔆 Pantalla siempre encendida'; } else pedirPantalla(); });
+    document.addEventListener('visibilitychange', function() { if (document.visibilityState === 'visible' && botonPantalla.getAttribute('aria-pressed') === 'true' && !bloqueo) pedirPantalla(); });
+  }
   pintarContador();
-
-
-
 
   /* ---------- Abrir la calculadora según el enlace (#costos, #contador…) ---------- */
   function abrirHerramienta(ancla, desplazar) {
