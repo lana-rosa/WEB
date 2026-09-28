@@ -462,6 +462,19 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .herramientas-calc strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1rem; line-height: 1.2; }
 .herramientas-calc small { font-size: 0.82rem; color: var(--tinta-suave); line-height: 1.3; }
 #calculadora { padding-top: 40px; scroll-margin-top: 90px; }
+.subtitulo-hilos { font-weight: 700; margin: 4px 0 8px; }
+.fila-hilo { position: relative; display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 10px; background: var(--blanco-hueso); border: 1.5px solid var(--rosa-suave); border-radius: 14px; padding: 12px 40px 0 12px; margin-bottom: 10px; }
+.fila-hilo .campo { margin-bottom: 12px; }
+.fila-hilo .campo input { background: var(--blanco); }
+@media (max-width: 700px) { .fila-hilo { grid-template-columns: 1.35fr 1fr 1fr; gap: 8px; padding: 10px 38px 0 10px; align-items: end; } .fila-hilo .campo-nombre { grid-column: 1 / -1; } .fila-hilo .campo label { font-size: 0.8rem; } .fila-hilo .campo input { padding: 8px 10px; min-width: 0; } }
+.quitar-hilo { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--rosa-medio); background: var(--blanco); color: var(--rosa-principal); font-weight: 700; cursor: pointer; }
+.detalle-hilos { font-size: 0.88rem; margin: 0 0 10px; }
+.detalle-hilos summary { cursor: pointer; color: var(--rosa-principal); font-weight: 700; }
+.detalle-hilos ul { list-style: none; padding: 0; margin: 6px 0 0; }
+.detalle-hilos li { display: flex; gap: 8px; padding: 3px 0; }
+.detalle-hilos li strong { margin-left: auto; }
+.compartir-precio { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
+.compartir-precio .boton-whatsapp-res { margin-top: 0; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -656,11 +669,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="margin-top:0;">¿Cuánto cobrar por tu amigurumi? Rosina suma tus materiales, tu tiempo y los gastos del taller, y le agrega tu ganancia. <strong>Los valores que ves son solo un ejemplo: cámbialos por los tuyos.</strong></p>
         <fieldset class="grupo-muestra">
           <legend>1. Materiales</legend>
-          <div class="fila-campos">
-            <div class="campo"><label for="pr-ovillo">Precio del ovillo ($)</label><input type="number" id="pr-ovillo" min="0" step="100" value="12000" inputmode="numeric"></div>
-            <div class="campo"><label for="pr-gramos-ovillo">Gramos del ovillo</label><input type="number" id="pr-gramos-ovillo" min="1" value="100" inputmode="numeric"></div>
-          </div>
-          <div class="campo"><label for="pr-gramos">Gramos de hilo que usaste</label><input type="number" id="pr-gramos" min="0" value="80" inputmode="numeric"><small>Tip: pesa el amigurumi terminado sin relleno, o pesa el ovillo antes y después.</small></div>
+          <div class="campo"><label for="pr-proyecto">¿Qué tejiste? (opcional)</label><input type="text" id="pr-proyecto" placeholder="Ej.: amigurumi de 15 cm con vestido"></div>
+          <p class="subtitulo-hilos">🧶 Hilos que usaste</p>
+          <div id="lista-hilos"></div>
+          <button type="button" class="boton-secundario boton-chico" id="agregar-hilo">+ Agregar otro hilo</button>
+          <p class="nota" style="margin:8px 0 14px;">Tip: pesa lo que usaste de cada color (el ovillo antes y después) o el amigurumi terminado sin relleno.</p>
           <div class="fila-campos">
             <div class="campo"><label for="pr-relleno">Relleno ($)</label><input type="number" id="pr-relleno" min="0" step="100" value="3000" inputmode="numeric"></div>
             <div class="campo"><label for="pr-accesorios">Ojos y accesorios ($)</label><input type="number" id="pr-accesorios" min="0" step="100" value="2000" inputmode="numeric"></div>
@@ -1068,16 +1081,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 
   /* ---------- Calculadora de costos ---------- */
-  var CLAVE_PRECIO = 'rosinaPrecio', camposPrecio = ['pr-ovillo', 'pr-gramos-ovillo', 'pr-gramos', 'pr-relleno', 'pr-accesorios', 'pr-empaque', 'pr-horas', 'pr-hora', 'pr-indirectos', 'pr-ganancia', 'pr-comision'];
-  try { var gp = JSON.parse(leer(CLAVE_PRECIO)); if (gp) camposPrecio.forEach(function(id) { if (gp[id] !== undefined) document.getElementById(id).value = gp[id]; }); } catch (e) {}
+  var CLAVE_PRECIO = 'rosinaPrecio', camposPrecio = ['pr-proyecto', 'pr-relleno', 'pr-accesorios', 'pr-empaque', 'pr-horas', 'pr-hora', 'pr-indirectos', 'pr-ganancia', 'pr-comision'];
+  var listaHilos = document.getElementById('lista-hilos');
+  var hilos = [{ nombre: 'Color principal', precio: '12000', gramosOvillo: '100', usados: '60' }, { nombre: 'Segundo color', precio: '12000', gramosOvillo: '100', usados: '20' }];
+  try {
+    var gp = JSON.parse(leer(CLAVE_PRECIO));
+    if (gp) {
+      camposPrecio.forEach(function(id) { if (gp[id] !== undefined) document.getElementById(id).value = gp[id]; });
+      if (Array.isArray(gp.hilos) && gp.hilos.length) hilos = gp.hilos;
+      else if (gp['pr-ovillo'] !== undefined) hilos = [{ nombre: 'Hilo', precio: gp['pr-ovillo'], gramosOvillo: gp['pr-gramos-ovillo'], usados: gp['pr-gramos'] }];
+    }
+  } catch (e) {}
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function pintarHilos() {
+    listaHilos.innerHTML = hilos.map(function(h, i) {
+      return '<div class="fila-hilo" data-i="' + i + '">' +
+        '<div class="campo campo-nombre"><label for="hi-nombre-' + i + '">Color o hilo</label><input type="text" id="hi-nombre-' + i + '" data-k="nombre" value="' + esc(h.nombre) + '"></div>' +
+        '<div class="campo"><label for="hi-precio-' + i + '">Precio ovillo ($)</label><input type="number" id="hi-precio-' + i + '" data-k="precio" min="0" step="100" inputmode="numeric" value="' + esc(h.precio) + '"></div>' +
+        '<div class="campo"><label for="hi-gov-' + i + '">Ovillo (g)</label><input type="number" id="hi-gov-' + i + '" data-k="gramosOvillo" min="1" inputmode="numeric" value="' + esc(h.gramosOvillo) + '"></div>' +
+        '<div class="campo"><label for="hi-usados-' + i + '">Usaste (g)</label><input type="number" id="hi-usados-' + i + '" data-k="usados" min="0" inputmode="numeric" value="' + esc(h.usados) + '"></div>' +
+        (hilos.length > 1 ? '<button type="button" class="quitar-hilo" data-quitar="' + i + '" aria-label="Quitar ' + esc(h.nombre || 'este hilo') + '">✕</button>' : '') +
+        '</div>';
+    }).join('');
+  }
+  listaHilos.addEventListener('input', function(e) {
+    var fila = e.target.closest('.fila-hilo'); if (!fila || !e.target.dataset.k) return;
+    hilos[+fila.dataset.i][e.target.dataset.k] = e.target.value;
+  });
+  listaHilos.addEventListener('click', function(e) {
+    var b = e.target.closest('[data-quitar]'); if (!b) return;
+    hilos.splice(+b.dataset.quitar, 1); pintarHilos(); calcularPrecio();
+  });
+  document.getElementById('agregar-hilo').addEventListener('click', function() {
+    if (hilos.length >= 8) return;
+    hilos.push({ nombre: '', precio: '', gramosOvillo: '100', usados: '' }); pintarHilos(); calcularPrecio();
+    document.getElementById('hi-nombre-' + (hilos.length - 1)).focus();
+  });
   function pesos(n) { return '$' + Math.round(n).toLocaleString('es-CO'); }
+  function numero(x) { x = parseFloat(x); return isFinite(x) && x > 0 ? x : 0; }
+  var resumenPrecio = '';
   function calcularPrecio() {
-    var v = {}; camposPrecio.forEach(function(id) { var x = parseFloat(document.getElementById(id).value); v[id] = isFinite(x) && x > 0 ? x : 0; });
+    var v = {}; camposPrecio.forEach(function(id) { if (id !== 'pr-proyecto') v[id] = numero(document.getElementById(id).value); });
     var res = document.getElementById('res-precio');
-    var guardado = {}; camposPrecio.forEach(function(id) { guardado[id] = document.getElementById(id).value; }); escribir(CLAVE_PRECIO, JSON.stringify(guardado));
-    if (!v['pr-gramos-ovillo']) { res.innerHTML = '<p class="error">Escribe cuántos gramos trae el ovillo.</p>'; return; }
+    var guardado = { hilos: hilos }; camposPrecio.forEach(function(id) { guardado[id] = document.getElementById(id).value; }); escribir(CLAVE_PRECIO, JSON.stringify(guardado));
     if (v['pr-comision'] >= 90) { res.innerHTML = '<p class="error">La comisión debe ser menor al 90 %.</p>'; return; }
-    var hilo = v['pr-gramos'] * v['pr-ovillo'] / v['pr-gramos-ovillo'];
+    var costoHilos = [], faltaOvillo = false;
+    hilos.forEach(function(h, i) {
+      var pr = numero(h.precio), go = numero(h.gramosOvillo), us = numero(h.usados);
+      if (us && pr && !go) faltaOvillo = true;
+      costoHilos.push({ nombre: (h.nombre || '').trim() || 'Hilo ' + (i + 1), gramos: us, costo: go ? us * pr / go : 0 });
+    });
+    if (faltaOvillo) { res.innerHTML = '<p class="error">Escribe cuántos gramos trae cada ovillo.</p>'; return; }
+    var hilo = costoHilos.reduce(function(a, h) { return a + h.costo; }, 0);
+    var gramosTotal = costoHilos.reduce(function(a, h) { return a + h.gramos; }, 0);
     var materiales = hilo + v['pr-relleno'] + v['pr-accesorios'] + v['pr-empaque'];
     var mano = v['pr-horas'] * v['pr-hora'];
     var indirectos = (materiales + mano) * v['pr-indirectos'] / 100;
@@ -1092,12 +1148,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var html = '<p class="grande">' + pesos(redondeado) + '</p><p class="nota" style="margin-top:0;">Redondeado a los $1.000 siguientes (exacto: ' + pesos(precio) + ').</p>';
     html += '<div class="barra-precio" aria-hidden="true">' + partes.map(function(p) { return '<span style="flex:' + Math.max(p[1], 0.0001) + ';background:' + p[2] + '"></span>'; }).join('') + '</div>';
     html += '<ul class="desglose-precio">' + partes.map(function(p) { return '<li><span class="punto-color" style="background:' + p[2] + '"></span>' + p[0] + '<strong>' + pesos(p[1]) + '</strong></li>'; }).join('') + '</ul>';
+    html += '<details class="detalle-hilos"><summary>Hilos: ' + pesos(hilo) + ' (' + Math.round(gramosTotal) + ' g)</summary><ul>' + costoHilos.map(function(h) { return '<li>' + esc(h.nombre) + ' · ' + Math.round(h.gramos) + ' g<strong>' + pesos(h.costo) + '</strong></li>'; }).join('') + '</ul></details>';
     html += '<p class="costo-minimo">Tu costo es <strong>' + pesos(costo) + '</strong>: por debajo de ese valor estarías perdiendo dinero.</p>';
+    var proyecto = document.getElementById('pr-proyecto').value.trim();
+    resumenPrecio = '🧶 ' + (proyecto || 'Mi tejido') + '\n' +
+      'Hilos (' + Math.round(gramosTotal) + ' g): ' + pesos(hilo) + '\n' +
+      'Relleno, ojos y empaque: ' + pesos(materiales - hilo) + '\n' +
+      'Mi tiempo (' + v['pr-horas'] + ' h): ' + pesos(mano) + '\n' +
+      'Gastos del taller: ' + pesos(indirectos) + '\n' +
+      'Ganancia: ' + pesos(ganancia) + '\n' +
+      (v['pr-comision'] ? 'Comisión: ' + pesos(precio - antesComision) + '\n' : '') +
+      'Costo: ' + pesos(costo) + '\n' +
+      '💰 Precio sugerido: ' + pesos(redondeado) + '\n\n' +
+      'Calculado con la Calculadora de Rosina · lanarosacrochet.com/calculadoras-rosina.html#costos';
+    html += '<div class="compartir-precio"><button type="button" class="boton-secundario boton-chico" id="copiar-precio">📋 Copiar resumen</button><a class="boton-whatsapp-res" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(resumenPrecio) + '">Compartir por WhatsApp</a></div>';
     html += '<p class="nota">💡 Tip de Rosina: tu tiempo también es trabajo. Si el precio te parece alto, revisa primero los materiales o las horas, no le quites valor a tu hora.</p>';
     res.innerHTML = html;
   }
+  document.getElementById('res-precio').addEventListener('click', function(e) {
+    var b = e.target.closest('#copiar-precio'); if (!b) return;
+    function listo() { b.textContent = '✅ Copiado'; setTimeout(function() { b.textContent = '📋 Copiar resumen'; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(resumenPrecio).then(listo, function() { window.prompt('Copia el resumen:', resumenPrecio); });
+    else window.prompt('Copia el resumen:', resumenPrecio);
+  });
   var formPrecio = document.getElementById('form-precio');
   formPrecio.addEventListener('input', calcularPrecio);
+  pintarHilos();
   calcularPrecio();
 
   /* ---------- Contador de vueltas ---------- */
