@@ -64,7 +64,8 @@ Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. 
 - [x] 1. Varios hilos en la calculadora de costos y compartir el resultado (copiar o WhatsApp).
 - [x] 2. Contador con varias piezas, pantalla siempre encendida y botones más grandes.
 - [x] 3. Esferas y cabezas: patrón vuelta por vuelta (por tamaño o por puntos, redonda o alargada), copiar y enviar al contador.
-- [ ] Ideas siguientes aprobadas por Sara, en orden: conversor de agujas (mm, US, UK) y de grosores de lana; guardar los cálculos de muestra, lana y aumentos.
+- [x] 4. Agujas y grosores: equivalencias mm, EE. UU. y Reino Unido, y qué aguja usar según el grosor (y para amigurumi).
+- [ ] Ideas siguientes aprobadas por Sara, en orden: guardar los cálculos de muestra, lana y aumentos.
 
 ### Material de Rosina
 - [ ] Libro para colorear imprimible (necesita las ilustraciones solo con líneas).

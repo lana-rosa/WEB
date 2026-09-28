@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Calculadoras de Rosina para tejedoras — Lana Rosa Crochet">
-<meta property="og:description" content="Costos, contador de vueltas, muestra, lana, aumentos y esferas vuelta por vuelta: Rosina hace las cuentas por ti. ¡Gratis!">
+<meta property="og:description" content="Costos, contador de vueltas, muestra, lana, aumentos, esferas vuelta por vuelta y equivalencias de agujas: Rosina hace las cuentas por ti. ¡Gratis!">
 <meta property="og:url" content="https://lanarosacrochet.com/calculadoras-rosina.html">
 <meta property="og:image" content="https://lanarosacrochet.com/img/rincon-de-rosina-og.jpg?v=2">
 
@@ -453,9 +453,8 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .intro-agenda h1 { margin: 6px 0 10px; font-size: clamp(2rem, 5vw, 2.8rem); }
 .volver-rincon { margin: 0 0 12px; font-size: 0.92rem; }
 .volver-rincon a { color: var(--rosa-principal); font-weight: 700; text-decoration: none; }
-.herramientas-calc { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin: 26px 0 0; text-align: left; }
-@media (max-width: 1100px) { .herramientas-calc { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 700px) { .herramientas-calc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.herramientas-calc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 26px 0 0; text-align: left; }
+@media (max-width: 700px) { .herramientas-calc { grid-template-columns: repeat(2, minmax(0, 1fr)); } .herramientas-calc button:last-child { grid-column: 1 / -1; } }
 .herramientas-calc button { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 14px 16px; border-radius: 18px; border: 2px solid var(--rosa-suave); background: var(--blanco); color: var(--tinta); font-family: var(--fuente-cuerpo); cursor: pointer; text-align: left; box-shadow: var(--sombra-suave); transition: border-color 0.15s, transform 0.15s; }
 .herramientas-calc button:hover { border-color: var(--rosa-medio); transform: translateY(-2px); }
 .herramientas-calc button[aria-selected="true"] { background: var(--rosa-suave); border-color: var(--rosa-principal); color: var(--tinta); }
@@ -514,6 +513,10 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .patron-vueltas .pts-v { color: var(--tinta-suave); font-weight: 600; }
 .patron-vueltas em { display: block; font-style: normal; font-size: 0.82rem; color: #5B5FC7; margin-top: 2px; }
 @media (max-width: 520px) { .patron-vueltas li { grid-template-columns: 54px 1fr auto; padding: 8px 10px; } }
+.check-amigurumi { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; }
+.check-amigurumi input { accent-color: var(--rosa-principal); width: 18px; height: 18px; }
+.tabla-agujas tr.fila-activa td { background: var(--rosa-suave); }
+.tabla-agujas td, .tabla-agujas th { padding: 6px 12px; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -582,6 +585,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" role="tab" id="tab-lana" aria-controls="calc-lana" aria-selected="false" data-ancla="lana"><span class="icono-herr" aria-hidden="true">🧶</span><strong>¿Cuánta lana?</strong><small>Los ovillos que necesitas</small></button>
       <button type="button" role="tab" id="tab-aumentos" aria-controls="calc-aumentos" aria-selected="false" data-ancla="aumentos"><span class="icono-herr" aria-hidden="true">➕</span><strong>Aumentos y disminuciones</strong><small>Reparte los puntos de tu vuelta</small></button>
       <button type="button" role="tab" id="tab-esferas" aria-controls="calc-esferas" aria-selected="false" data-ancla="esferas"><span class="icono-herr" aria-hidden="true">🟠</span><strong>Esferas y cabezas</strong><small>El patrón vuelta por vuelta</small></button>
+      <button type="button" role="tab" id="tab-agujas" aria-controls="calc-agujas" aria-selected="false" data-ancla="agujas"><span class="icono-herr" aria-hidden="true">🪡</span><strong>Agujas y grosores</strong><small>Equivalencias y qué aguja usar</small></button>
     </div>
   </section>
 
@@ -617,6 +621,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="resultado" aria-live="polite">
         <h3>Tu patrón</h3>
         <div id="res-esferas"></div>
+      </div>
+    </div>
+
+    <div class="panel-calc" role="tabpanel" id="calc-agujas" aria-labelledby="tab-agujas" hidden>
+      <form id="form-agujas" onsubmit="return false">
+        <p style="margin-top:0;">¿Tu patrón está en inglés o tu aguja trae otra medida? Rosina te dice la equivalencia y qué aguja va con cada grosor de lana.</p>
+        <fieldset class="grupo-muestra">
+          <legend>1. Mi aguja</legend>
+          <div class="campo"><label for="ag-mm">Medida de la aguja</label><select id="ag-mm"></select></div>
+        </fieldset>
+        <fieldset class="grupo-muestra">
+          <legend>2. Mi lana</legend>
+          <div class="campo"><label for="ag-grosor">¿Qué grosor dice la etiqueta?</label><select id="ag-grosor"></select><small>Busca en la etiqueta un ovillito con un número del 0 al 7, o palabras como DK, worsted o chunky.</small></div>
+          <label class="check-amigurumi"><input type="checkbox" id="ag-amigurumi" checked> Es para un amigurumi</label>
+        </fieldset>
+        <details class="por-que"><summary>Ver la tabla completa de agujas</summary><div class="tabla-scroll" style="box-shadow:none; margin-top:10px;"><table class="tabla-abrev tabla-agujas"><thead><tr><th>mm</th><th>EE. UU.</th><th>Reino Unido</th></tr></thead><tbody id="tabla-agujas"></tbody></table></div></details>
+      </form>
+      <div class="resultado" aria-live="polite">
+        <h3>Equivalencias</h3>
+        <div id="res-agujas"></div>
       </div>
     </div>
 
@@ -1168,6 +1192,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     form.addEventListener('change', par[1]);
     par[1]();
   });
+
+  /* ---------- Agujas y grosores ---------- */
+  var AGUJAS = [[2, '—', '14'], [2.25, 'B-1', '13'], [2.5, '—', '12'], [2.75, 'C-2', '—'], [3, '—', '11'], [3.25, 'D-3', '10'], [3.5, 'E-4', '9'], [3.75, 'F-5', '—'], [4, 'G-6', '8'], [4.5, '7', '7'], [5, 'H-8', '6'], [5.5, 'I-9', '5'], [6, 'J-10', '4'], [6.5, 'K-10½', '3'], [7, '—', '2'], [8, 'L-11', '0'], [9, 'M/N-13', '00'], [10, 'N/P-15', '000'], [12, '—', '—'], [15, 'P/Q', '—']];
+  var GROSORES = [
+    [0, 'Encaje (lace)', 'lace, crochet thread', 1.5, 2.25, 'de encaje'],
+    [1, 'Súper fino', 'fingering, sock, baby', 2.25, 3.5, 'súper fina'],
+    [2, 'Fino', 'sport, baby', 3.5, 4.5, 'fina'],
+    [3, 'Ligero', 'DK, light worsted', 4.5, 5.5, 'ligera (DK)'],
+    [4, 'Medio', 'worsted, aran', 5.5, 6.5, 'media (worsted)'],
+    [5, 'Grueso', 'chunky, bulky', 6.5, 9, 'gruesa'],
+    [6, 'Súper grueso', 'super bulky, roving', 9, 15, 'súper gruesa'],
+    [7, 'Jumbo', 'jumbo, roving', 15, 25, 'jumbo']
+  ];
+  var selMm = document.getElementById('ag-mm'), selGrosor = document.getElementById('ag-grosor');
+  AGUJAS.forEach(function(a) { selMm.insertAdjacentHTML('beforeend', '<option value="' + a[0] + '"' + (a[0] === 3.5 ? ' selected' : '') + '>' + formato(a[0], 2) + ' mm</option>'); });
+  GROSORES.forEach(function(g) { selGrosor.insertAdjacentHTML('beforeend', '<option value="' + g[0] + '"' + (g[0] === 3 ? ' selected' : '') + '>' + g[0] + ' · ' + g[1] + ' (' + g[2] + ')</option>'); });
+  document.getElementById('tabla-agujas').innerHTML = AGUJAS.map(function(a) { return '<tr data-mm="' + a[0] + '"><td><b>' + formato(a[0], 2) + ' mm</b></td><td>' + a[1] + '</td><td>' + a[2] + '</td></tr>'; }).join('');
+  function calcularAgujas() {
+    var mm = parseFloat(selMm.value), a = AGUJAS.filter(function(x) { return x[0] === mm; })[0];
+    var g = GROSORES[parseInt(selGrosor.value, 10)], ami = document.getElementById('ag-amigurumi').checked;
+    var usa = a[1] === '—' ? 'no tiene número exacto' : a[1], uk = a[2] === '—' ? 'no tiene número exacto' : a[2];
+    var sirve = GROSORES.filter(function(x) { return mm >= x[3] - 0.01 && mm <= x[4] + 0.01; }).map(function(x) { return x[5] + ' (' + x[0] + ')'; });
+    var html = '<p class="grande">' + formato(mm, 2) + ' mm</p><ul class="desglose-precio"><li>Estados Unidos<strong>' + usa + '</strong></li><li>Reino Unido<strong>' + uk + '</strong></li></ul>';
+    html += '<p style="font-size:0.92rem;">Para tejer prendas y mantas, esta aguja va bien con lana ' + (sirve.length ? sirve.join(' o ') : 'más fina o más gruesa que las de la tabla') + '.</p>';
+    var desde = g[3], hasta = g[4];
+    html += '<h3 style="margin-top:18px;">Para tu lana ' + g[5] + '</h3>';
+    if (ami) {
+      var aDesde = Math.max(1.5, desde - 2), aHasta = Math.max(aDesde + 0.5, hasta - 1);
+      html += '<p class="grande">' + formato(aDesde, 2) + ' a ' + formato(aHasta, 2) + ' mm</p><p class="nota" style="margin-top:0;">Para amigurumi se usa una aguja entre 1 y 2 mm más pequeña de lo que dice la etiqueta, así los puntos quedan cerrados y el relleno no se ve. La etiqueta sugiere de ' + formato(desde, 2) + ' a ' + formato(hasta, 2) + ' mm.</p>';
+    } else {
+      html += '<p class="grande">' + formato(desde, 2) + ' a ' + formato(hasta, 2) + ' mm</p><p class="nota" style="margin-top:0;">Es la medida que suele sugerir la etiqueta. Si tu tejido queda muy apretado, sube media medida; si queda flojo, baja.</p>';
+    }
+    html += '<p class="nota">💡 Tip de Rosina: la etiqueta de tu ovillo casi siempre dice la aguja recomendada. Haz una muestra pequeña antes de empezar tu proyecto.</p>';
+    document.getElementById('res-agujas').innerHTML = html;
+    document.querySelectorAll('#tabla-agujas tr').forEach(function(tr) { tr.classList.toggle('fila-activa', parseFloat(tr.dataset.mm) === mm); });
+  }
+  document.getElementById('form-agujas').addEventListener('change', calcularAgujas);
+  calcularAgujas();
 
   /* ---------- Esferas y cabezas: patrón vuelta por vuelta ---------- */
   var patronEsfera = { texto: '', vueltas: 0 };
