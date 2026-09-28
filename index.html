@@ -702,6 +702,14 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-historias:not(.abiertas) .ed-historia:nth-child(n+5) { display: none; }
 @media (max-width: 860px) { .ed-historias:not(.abiertas) .ed-historia:nth-child(n+4) { display: none; } }
 @media (max-width: 700px) { .ed-historias:not(.abiertas) .ed-historia:nth-child(n+3) { display: none; } }
+/* Espacios entre secciones más compactos (29-sep-2026) */
+.ed-seccion { padding: clamp(44px, 5.5vw, 64px) 0; }
+.ed-cabecera { margin-bottom: clamp(24px, 3.5vw, 40px); }
+.ed-manifiesto { padding: clamp(40px, 5vw, 64px) 0 clamp(20px, 2.5vw, 32px); }
+.ed-manifiesto + .ed-seccion { padding-top: clamp(20px, 2.5vw, 32px); }
+.ed-centro { margin-top: 28px; }
+.inicio-editorial > .seccion-suave { padding: clamp(44px, 5.5vw, 64px) 0; }
+.ed-final { padding: clamp(52px, 6.5vw, 80px) 0; }
 .ed-rosina-par img { width: 100% !important; height: auto !important; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px !important; position: static !important; border: none !important; box-shadow: none !important; }
 /* Aparición suave al hacer scroll (se desactiva si la persona prefiere menos movimiento) */
 @media (prefers-reduced-motion: no-preference) {
@@ -840,11 +848,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Si lo puedes imaginar, lo podemos tejer.</p>
       </header>
       <div class="ed-tejer">
-        <a class="ed-tejer-item" href="personaliza.html?idea=persona"><img src="img/personalizados/reina.webp" alt="Amigurumi personalizado de una mujer de cabello largo con vestido rojo y corona" loading="lazy" decoding="async"><span>Una persona</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=persona"><img src="img/inicio/tejer-persona.webp?v=2" alt="Amigurumi personalizado de un hombre con barba, camiseta polo blanca y jean, tejido a mano" loading="lazy" decoding="async"><span>Una persona</span></a>
         <a class="ed-tejer-item" href="personaliza.html?idea=mascota"><img src="img/inicio/mascota-bulldog.webp?v=3" alt="Amigurumi de un bulldog francés con su placa de nombre, tejido a mano" loading="lazy" decoding="async"><span>Tu mascota</span></a>
         <a class="ed-tejer-item" href="personaliza.html?idea=pareja"><img src="img/inicio/tejer-pareja.webp?v=4" alt="Amigurumis personalizados de una pareja de novios junto a su foto de referencia" loading="lazy" decoding="async"><span>Una pareja</span></a>
-        <a class="ed-tejer-item" href="personaliza.html?idea=personaje"><img src="img/inicio/tejer-peluche.webp" alt="Peluche de cerdito rosado tejido a mano" loading="lazy" decoding="async"><span>Un personaje que amas</span></a>
-        <a class="ed-tejer-item" href="personaliza.html?idea=regalo"><img src="img/inicio/tejer-flores.webp" alt="Maceta con tulipán rosado tejido a mano" loading="lazy" decoding="async"><span>Un regalo especial</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=personaje"><img src="img/inicio/tejer-peluche.webp?v=2" alt="Peluche de perrito blanco con orejas negras y collar rojo, tejido a mano" loading="lazy" decoding="async"><span>Un personaje que amas</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=regalo"><img src="img/inicio/tejer-flores.webp?v=2" alt="Ramo de tulipanes rojos y lilas tejidos a mano, con cinta morada" loading="lazy" decoding="async"><span>Un regalo especial</span></a>
         <a class="ed-tejer-item" href="personaliza.html?idea=detalle"><img src="img/inicio/tejer-detalle.webp" alt="Llavero de ballena azul tejido a mano" loading="lazy" decoding="async"><span>Un pequeño detalle</span></a>
       </div>
     </div>
@@ -891,7 +899,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-1.webp" alt="Abuela con vestido de flores y gafas, junto a su amigurumi personalizado con los mismos detalles" loading="lazy" decoding="async"><figcaption>Amigurumi de una abuela que ya no está.</figcaption></figure>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-7.webp" alt="Hombre de barba y cabello canoso con chaqueta verde, junto a su amigurumi personalizado" loading="lazy" decoding="async"><figcaption>Amigurumi de Mario Mendoza.</figcaption></figure>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-2.webp" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" decoding="async"><figcaption>Amigurumi de una niña muy tierna.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-3.webp?v=3" alt="Tres amigurumis personalizados de una familia, todos vestidos de blanco" loading="lazy" decoding="async"><figcaption>Amigurumis de familiares que siempre recordarán.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-3.webp?v=3" alt="Tres amigurumis personalizados de una familia, todos vestidos de blanco" loading="lazy" decoding="async"><figcaption>Amigurumis de familiares que siempre se recordarán.</figcaption></figure>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-5.webp?v=3" alt="Amigurumi con blusa rosada y corazón rojo junto a su tarjeta de regalo personalizada" loading="lazy" decoding="async"><figcaption>Amigurumi de una mamá para su hijo que está lejos.</figcaption></figure>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-6.webp?v=4" alt="Amigurumi de un señor con camiseta morada y corazón junto a su foto de referencia" loading="lazy" decoding="async"><figcaption>Amigurumi de un papá para su hijo que está lejos.</figcaption></figure>
         <figure class="ed-historia"><img src="img/foto-amigurumi/vestido-fucsia.webp?v=5" alt="Amigurumi con vestido fucsia junto a la foto de la mujer que lo inspiró" loading="lazy" decoding="async"><figcaption>Amigurumi para una hija en su cumpleaños.</figcaption></figure>
