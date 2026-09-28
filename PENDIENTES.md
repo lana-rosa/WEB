@@ -60,6 +60,9 @@ Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. 
 - [x] Hojas plegables: se ve el título y se abre al tocarlo. Menú desplegable "Ir a una hoja".
 - [ ] Extras: portada con nombre, índice, imprimir hoja por hoja o completa, copia de seguridad (descargar y cargar lo escrito).
 
+### Calculadoras de Rosina (`calculadoras-rosina.html`), página propia desde el 28-sep-2026
+- [ ] Ideas propuestas a Sara para hacerlas más completas (esperando su elección): varios hilos en la calculadora de costos y compartir el resultado; contador con varias piezas y pantalla siempre encendida; plan vuelta por vuelta para esferas y cabezas de amigurumi; conversor de agujas (mm, US, UK) y de grosores de lana; guardar los cálculos de muestra, lana y aumentos.
+
 ### Material de Rosina
 - [ ] Libro para colorear imprimible (necesita las ilustraciones solo con líneas).
 - [ ] Cuaderno de práctica de puntos básicos, punto por punto con Rosina (freemium o de bajo costo).

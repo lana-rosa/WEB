@@ -8,7 +8,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 
 ## Estructura
 - Páginas principales: `index.html`, `tienda.html`, `merceria.html`, `personaliza.html`, `aprende.html`, `revista.html`, `sobre-nosotras.html`, etc.
-- Rincón de Rosina (material gratuito): `recursos-rosina.html`, `glosario-rosina.html`, `paletas-rosina.html`, `agenda-rosina.html`, `rosina.html`.
+- Rincón de Rosina (material gratuito): `recursos-rosina.html`, `glosario-rosina.html`, `paletas-rosina.html`, `agenda-rosina.html`, `calculadoras-rosina.html`, `rosina.html`.
 - El menú está repetido en cada página (`.nav-principal` y `.nav-movil-panel`): los cambios del menú se hacen en todas.
 - La mercería y la tienda cargan productos en vivo desde Supabase (proyecto "Lana Rosa ERP + SO", función `obtener_merceria_web`).
 - WhatsApp de pedidos: 573205072801.
