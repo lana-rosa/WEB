@@ -56,7 +56,7 @@ TERMINOS = [
          definicion='Tejer 2 puntos en el mismo punto de la vuelta anterior. Así la pieza crece y se va abriendo, como la parte de arriba de una cabeza.',
          pasos=['Teje un punto bajo.', 'Teje otro punto bajo en ese mismo punto.'],
          tip='Si los aumentos caen siempre en el mismo sitio, la pieza queda hexagonal. Cámbialos de lugar en cada vuelta y usa la calculadora de Rosina para repartirlos.',
-         enlace=('recursos-rosina.html#calculadora', 'Abrir la calculadora de aumentos')),
+         enlace=('calculadoras-rosina.html#aumentos', 'Abrir la calculadora de aumentos')),
     dict(id='disminucion', cat='amigurumi', nombre='Disminución', abrev='dism', en='decrease (dec) / single crochet two together (sc2tog)',
          simbolo=f'<path d="M30,12 L19,38 M30,12 L41,38" {S}/>' + x(17, 46, 5) + x(43, 46, 5),
          definicion='Unir 2 puntos de la vuelta anterior en uno solo. La pieza se va cerrando, como la parte de abajo de una cabeza o el final de un brazo.',
@@ -121,7 +121,7 @@ TERMINOS = [
     dict(id='muestra', cat='tejido', nombre='Muestra', abrev='', en='gauge / tension',
          simbolo=f'<rect x="14" y="14" width="32" height="32" rx="3" {S}/><path d="M14,24.7 H46 M14,35.3 H46 M24.7,14 V46 M35.3,14 V46" {G}/><path d="M14,52 H46 M14,49 V55 M46,49 V55" {L}/>',
          definicion='Un cuadrado de prueba tejido con la misma lana, aguja y punto de tu proyecto. Contando cuántos puntos y vueltas caben en 10 cm sabes si tu pieza saldrá del tamaño del patrón.',
-         enlace=('recursos-rosina.html#calculadora', 'Calcular con tu muestra')),
+         enlace=('calculadoras-rosina.html#muestra', 'Calcular con tu muestra')),
 
     # ---------- Materiales ----------
     dict(id='aguja-crochet', cat='materiales', nombre='Aguja de crochet', abrev='', en='crochet hook', otros='También se llama ganchillo.', simbolo='<path d="M8,53 L43,14" stroke="#E74E96" stroke-width="6.5" stroke-linecap="round" fill="none"/><rect x="16" y="29.5" width="20" height="11" rx="5.5" transform="rotate(-48 26 35)" fill="#F28FC0" stroke="#E74E96" stroke-width="1.5"/><path d="M43,14 L48.5,8 C50.5,5.6 54.5,6.8 53.5,10.2" stroke="#E74E96" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>',

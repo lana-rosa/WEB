@@ -12,7 +12,7 @@ Al subir cada pin: título, descripción y **enlace de destino** (el enlace es l
 | 04-checklist-amigurumi | Checklist: materiales para tu primer amigurumi | https://lanarosacrochet.com/recursos-rosina.html#checklist | Aprende crochet |
 | 05-amigurumi-personalizado | Amigurumi personalizado desde una foto | https://lanarosacrochet.com/personaliza.html | Amigurumis personalizados |
 | 06-glosario-crochet | Glosario ilustrado de crochet para principiantes | https://lanarosacrochet.com/glosario-rosina.html | Aprende crochet |
-| 07-calculadora-costos | ¿Cuánto cobrar por tu amigurumi? Calculadora gratis | https://lanarosacrochet.com/recursos-rosina.html#calculadora | Emprender tejiendo |
+| 07-calculadora-costos | ¿Cuánto cobrar por tu amigurumi? Calculadora gratis | https://lanarosacrochet.com/calculadoras-rosina.html#costos | Emprender tejiendo |
 
 Descripciones sugeridas (una por pin, se pueden reutilizar):
 - 01: Stickers de Rosina, la ovejita tejedora de Lana Rosa Crochet, listos para WhatsApp. Descárgalos gratis. #crochet #amigurumi #stickers
