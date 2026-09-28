@@ -65,7 +65,7 @@ Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. 
 - [x] 2. Contador con varias piezas, pantalla siempre encendida y botones más grandes.
 - [x] 3. Esferas y cabezas: patrón vuelta por vuelta (por tamaño o por puntos, redonda o alargada), copiar y enviar al contador.
 - [x] 4. Agujas y grosores: equivalencias mm, EE. UU. y Reino Unido, y qué aguja usar según el grosor (y para amigurumi).
-- [ ] Ideas siguientes aprobadas por Sara, en orden: guardar los cálculos de muestra, lana y aumentos.
+- [x] 5. Se guarda lo que escriben en todas las calculadoras; botón para borrar los datos guardados.
 
 ### Material de Rosina
 - [ ] Libro para colorear imprimible (necesita las ilustraciones solo con líneas).
