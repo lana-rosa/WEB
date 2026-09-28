@@ -50,15 +50,16 @@ Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. 
 - [x] 5. Mi colección de patrones.
 - [x] 6. Mi año tejiendo (una página por mes).
 - [x] 7. Fechas especiales (sin Navidad, santos ni Halloween).
-- [ ] 8. Ficha de cliente.
-- [ ] 9. Mis ventas del mes (conectar con la calculadora de costos).
-- [ ] 10. Catálogo de precios.
-- [ ] 11. Ferias y mercados.
-- [ ] 12. Diario de tejido.
-- [ ] 13. Registro de pausas activas.
-- [ ] 14. Lo que aprendí.
+- [x] 8. Ficha de cliente.
+- [x] 9. Mis ventas del mes (conectar con la calculadora de costos).
+- [x] 10. Catálogo de precios.
+- [x] 11. Ferias y mercados.
+- [x] 12. Diario de tejido.
+- [x] 13. Registro de pausas activas.
+- [x] 14. Lo que aprendí.
 - [x] Hojas plegables: se ve el título y se abre al tocarlo. Menú desplegable "Ir a una hoja".
-- [ ] Extras: portada con nombre, índice, imprimir hoja por hoja o completa, copia de seguridad (descargar y cargar lo escrito).
+- [x] Extras: portada con nombre, índice (menú "Ir a una hoja") y copia de seguridad (guardar y cargar una copia).
+- [ ] Opcional: imprimir hoja por hoja (hoy se imprime la agenda completa).
 
 ### Calculadoras de Rosina (`calculadoras-rosina.html`), página propia desde el 28-sep-2026
 - [x] 1. Varios hilos en la calculadora de costos y compartir el resultado (copiar o WhatsApp).

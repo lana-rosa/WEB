@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agenda de Rosina para tejedoras — Lana Rosa Crochet</title>
-<meta name="description" content="Agenda gratuita para tejedoras: ficha de proyecto, planeador semanal, control de pedidos, inventario de lanas, agujas, lista de compras, patrones y fechas especiales. Llénala en línea o imprímela. Material de Rosina, de Lana Rosa Crochet.">
+<meta name="description" content="Agenda gratuita para tejedoras: ficha de proyecto, planeador semanal, control de pedidos, inventario de lanas, agujas, lista de compras, patrones, fechas especiales, clientas, ventas, ferias y diario de tejido. Llénala en línea o imprímela. Material de Rosina, de Lana Rosa Crochet.">
 <link rel="canonical" href="https://lanarosacrochet.com/agenda-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -487,6 +487,25 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .selector-hoja label { font-weight: 700; color: var(--rosa-principal); font-size: 0.92rem; }
 .selector-hoja select { width: min(360px, 100%); padding: 12px 16px; border-radius: 999px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-family: var(--fuente-cuerpo); font-size: 1rem; font-weight: 600; color: var(--tinta); cursor: pointer; }
 .selector-hoja select:focus { outline: 3px solid var(--lila); }
+.lista-llevar { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px 14px; margin-top: 6px; }
+.lista-llevar label { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--tinta); cursor: pointer; }
+.lista-llevar input { width: 18px; height: 18px; accent-color: var(--rosa-principal); flex-shrink: 0; }
+.totales-ventas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+.totales-ventas div { background: var(--rosa-suave); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; }
+.totales-ventas span { font-size: 0.8rem; color: var(--tinta-suave); font-weight: 600; }
+.totales-ventas strong { font-family: var(--fuente-titulo); font-size: 1.2rem; color: var(--tinta); }
+.totales-ventas .ganancia { background: var(--rosa-principal); }
+.totales-ventas .ganancia span, .totales-ventas .ganancia strong { color: var(--blanco); }
+@media (max-width: 520px) { .totales-ventas { grid-template-columns: 1fr; } }
+.tip-agenda a { color: var(--rosa-principal); font-weight: 700; }
+.portada-agenda { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 4px auto 14px; }
+.portada-agenda label { font-size: 0.85rem; color: var(--tinta-suave); font-weight: 600; }
+.portada-agenda input { text-align: center; font-family: var(--fuente-titulo); font-size: 1.2rem; color: var(--rosa-principal); border: none; border-bottom: 2px dashed var(--rosa-medio); background: transparent; padding: 4px 8px; width: min(320px, 100%); }
+.portada-agenda input:focus { outline: none; border-bottom-color: var(--rosa-principal); }
+.copia-agenda { display: flex; justify-content: center; gap: 4px 16px; flex-wrap: wrap; margin-top: 10px; }
+.nota-copia { flex-basis: 100%; text-align: center; color: var(--tinta-suave); font-size: 0.8rem; }
+.enlace-copia { background: none; border: none; color: var(--rosa-principal); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; }
+@media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -547,10 +566,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="volver-rincon"><a href="recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
     <p class="eslogan">Material gratuito · Rincón de Rosina</p>
     <h1>Agenda de Rosina</h1>
-    <p class="intro">Hojas para organizar tu tejido: tus proyectos, tu semana, tus pedidos, tus lanas, tus agujas, tus compras, tus patrones y tus fechas especiales. Toca el título de cada hoja para abrirla. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
+    <div class="portada-agenda">
+      <label for="ag-duena">Esta agenda es de</label>
+      <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
+    </div>
+    <p class="intro">Hojas para organizar tu tejido: tus proyectos, tu semana, tus pedidos, tus lanas, tus agujas, tus compras, tus patrones, tus fechas especiales, tus clientas, tus ventas, tus ferias y tu bienestar. Toca el título de cada hoja para abrirla. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas en blanco para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
+    </div>
+    <div class="copia-agenda">
+      <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
+      <button type="button" class="enlace-copia" id="agenda-cargar">⬆️ Cargar una copia</button>
+      <input type="file" id="agenda-archivo" accept=".json,application/json" hidden>
+      <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular.</small>
     </div>
     <div class="selector-hoja">
       <label for="ir-a-hoja">Ir a una hoja</label>
@@ -566,6 +595,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <option value="coleccion-patrones">📚 Mis patrones</option>
         <option value="anio-tejiendo">⭐ Mi año tejiendo</option>
         <option value="fechas-especiales">🎁 Fechas especiales</option>
+        <option value="mis-clientas">💕 Mis clientas</option>
+        <option value="ventas-mes">💰 Mis ventas del mes</option>
+        <option value="catalogo-precios">🏷️ Mi catálogo de precios</option>
+        <option value="ferias-mercados">🎪 Ferias y mercados</option>
+        <option value="diario-tejido">📔 Diario de tejido</option>
+        <option value="registro-pausas">🧘 Registro de pausas activas</option>
+        <option value="lo-que-aprendi">🌟 Lo que aprendí</option>
       </select>
     </div>
   </section>
@@ -727,6 +763,106 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </table>
         </div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> en Colombia el Día de la madre es el segundo domingo de mayo, el Día del padre el tercer domingo de junio y Amor y amistad el tercer sábado de septiembre. ¡Empieza a tejer al menos un mes antes!</p>
+      </article>
+
+      <article class="hoja-agenda" id="mis-clientas">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-02-corazon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Mis clientas</h3><p>Quién te compra, qué le gusta y cuándo es su cumpleaños.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:760px;">
+            <thead><tr><th>Nombre</th><th>WhatsApp</th><th>Cumpleaños</th><th>Qué me ha comprado</th><th>Notas</th></tr></thead>
+            <tbody id="tabla-clientas"></tbody>
+          </table>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> escríbeles en su cumpleaños; un mensaje cariñoso hace que vuelvan a comprarte.</p>
+      </article>
+
+      <article class="hoja-agenda" id="ventas-mes">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-12-pulgar-arriba.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Mis ventas del mes</h3><p>Lo que vendiste, lo que te costó y lo que ganaste.</p></div>
+        </header>
+        <div class="linea" style="max-width:240px; margin-bottom:14px;"><label for="ag-vt-mes">Mes</label><input id="ag-vt-mes" data-guardar></div>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:720px;">
+            <thead><tr><th>Fecha</th><th>Producto</th><th>Cliente</th><th>Precio de venta</th><th>Costo de materiales</th></tr></thead>
+            <tbody id="tabla-ventas"></tbody>
+          </table>
+        </div>
+        <div class="totales-ventas" id="totales-ventas" aria-live="polite"></div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> para saber cuánto cobrar por cada pieza usa la <a href="calculadoras-rosina.html#costos">calculadora de costos</a>.</p>
+      </article>
+
+      <article class="hoja-agenda" id="catalogo-precios">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-09-cartel.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Mi catálogo de precios</h3><p>Tus productos con su precio, para responder rápido cuando te pregunten.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
+            <thead><tr><th>Producto</th><th>Tamaño</th><th>Precio</th><th>Horas de tejido</th></tr></thead>
+            <tbody id="tabla-catalogo"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="hoja-agenda" id="ferias-mercados">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-15-ramo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Ferias y mercados</h3><p>Prepara tu puesto y anota cómo te fue.</p></div>
+        </header>
+        <div class="grid-ficha">
+          <div class="linea"><label for="ag-fr-nombre">Feria o mercado</label><input id="ag-fr-nombre" data-guardar></div>
+          <div class="linea"><label for="ag-fr-fecha">Fecha</label><input id="ag-fr-fecha" data-guardar></div>
+          <div class="linea"><label for="ag-fr-lugar">Lugar</label><input id="ag-fr-lugar" data-guardar></div>
+          <div class="linea"><label for="ag-fr-costo">Costo del puesto</label><input id="ag-fr-costo" data-guardar inputmode="numeric"></div>
+          <div class="linea ancha"><label>Qué llevar</label><div class="lista-llevar"><label><input type="checkbox" id="ag-fr-l1" data-guardar> Mesa y mantel</label><label><input type="checkbox" id="ag-fr-l2" data-guardar> Productos con su precio</label><label><input type="checkbox" id="ag-fr-l3" data-guardar> Código QR de Nequi o Bre-B</label><label><input type="checkbox" id="ag-fr-l4" data-guardar> Cambio (sencillo)</label><label><input type="checkbox" id="ag-fr-l5" data-guardar> Bolsas y empaques</label><label><input type="checkbox" id="ag-fr-l6" data-guardar> Tarjetas de presentación</label><label><input type="checkbox" id="ag-fr-l7" data-guardar> Exhibidores o canastas</label><label><input type="checkbox" id="ag-fr-l8" data-guardar> Libreta para anotar ventas y pedidos</label><label><input type="checkbox" id="ag-fr-l9" data-guardar> Agua y algo de comer</label><label><input type="checkbox" id="ag-fr-l10" data-guardar> Cargador del celular</label></div></div>
+          <div class="linea"><label for="ag-fr-vendido">Total vendido</label><input id="ag-fr-vendido" data-guardar inputmode="numeric"></div>
+          <div class="linea"><label for="ag-fr-pedidos">Pedidos que salieron</label><input id="ag-fr-pedidos" data-guardar></div>
+          <div class="linea ancha"><label for="ag-fr-mas">Lo que más se vendió</label><textarea id="ag-fr-mas" rows="3" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-fr-mejorar">Qué mejorar para la próxima</label><textarea id="ag-fr-mejorar" rows="3" data-guardar></textarea></div>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> lleva piezas pequeñas y de precio bajo, como llaveros; son las que más se venden por impulso y atraen a la gente a tu puesto.</p>
+      </article>
+
+      <article class="hoja-agenda" id="diario-tejido">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-13-cafe.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Diario de tejido</h3><p>Cómo te sentiste tejiendo hoy.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:720px;">
+            <thead><tr><th>Fecha</th><th>¿Cómo me sentí?</th><th>Qué tejí</th><th>Una frase para recordar</th></tr></thead>
+            <tbody id="tabla-diario"></tbody>
+          </table>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> tejer también es un momento para ti. Respira, disfruta cada vuelta y no te afanes.</p>
+      </article>
+
+      <article class="hoja-agenda" id="registro-pausas">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-16-diadema.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Registro de pausas activas</h3><p>Cuidar tus manos también es parte de tejer.</p></div>
+        </header>
+        <div class="linea" style="max-width:240px; margin-bottom:14px;"><label for="ag-pa-mes">Mes</label><input id="ag-pa-mes" data-guardar></div>
+        <p style="margin:0 0 8px; font-size:0.9rem;">Marca los días en que hiciste tus pausas activas mientras tejías.</p>
+        <div class="vueltas-grid dias-pausas" id="pausas-grid"></div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> cada 30 o 40 minutos de tejido, estira manos, cuello y espalda. Mira las <a href="revista.html#pausas-activas">pausas activas de Rosina</a>.</p>
+      </article>
+
+      <article class="hoja-agenda" id="lo-que-aprendi">
+        <header>
+          <img class="avatar-sticker" src="img/stickers/rosina-17-gorro.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div><h3>Lo que aprendí</h3><p>Puntos y técnicas nuevas: mira todo lo que has avanzado.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
+            <thead><tr><th>Fecha</th><th>Punto o técnica</th><th>Dónde lo aprendí</th><th>Ya lo domino</th></tr></thead>
+            <tbody id="tabla-aprendi"></tbody>
+          </table>
+        </div>
       </article>
     </div>
   </section>
@@ -1055,6 +1191,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var texto = 'Hola Rosina 🐑 Quiero consultar estos materiales de la mercería:\n' + (lineas.length ? lineas.join('\n') : '(todavía no escribí mi lista)');
     this.href = 'https://wa.me/573205072801?text=' + encodeURIComponent(texto);
   });
+  filasTabla('tabla-clientas', 'ag-cl', ['nombre', 'whatsapp', 'cumpleanos', 'compras', 'notas'], 12, 'de la clienta');
+  filasTabla('tabla-ventas', 'ag-vt', ['fecha', 'producto', 'cliente', 'precio', 'costo'], 12, 'de la venta');
+  filasTabla('tabla-catalogo', 'ag-ct', ['producto', 'tamano', 'precio', 'horas'], 12, 'del producto');
+  filasTabla('tabla-diario', 'ag-dr', ['fecha', { id: 'animo', opciones: ['😊 Feliz', '😌 Tranquila', '🥰 Inspirada', '😴 Cansada', '😣 Frustrada'] }, 'teji', 'frase'], 10, 'del día');
+  filasTabla('tabla-aprendi', 'ag-ap', ['fecha', 'tecnica', 'donde', { id: 'domino', check: true }], 10, 'de lo aprendido');
+  var pausasGrid = document.getElementById('pausas-grid');
+  for (var dp = 1; dp <= 31; dp++) pausasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-pa' + dp + '" data-guardar><span>' + dp + '</span></label>');
   var campos = document.querySelectorAll('#agenda [data-guardar]');
   var datos = {};
   try { datos = JSON.parse(leer(CLAVE_AGENDA)) || {}; } catch (e) {}
@@ -1072,8 +1215,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     campos.forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
     datos = {};
     borrar(CLAVE_AGENDA);
+    duena.value = ''; tituloDuena();
   });
 
+  /* ---------- Portada con nombre y copia de seguridad ---------- */
+  var duena = document.getElementById('ag-duena');
+  duena.value = datos['ag-duena'] || '';
+  function tituloDuena() { document.querySelector('.intro-agenda h1').textContent = duena.value.trim() ? 'Agenda de ' + duena.value.trim() : 'Agenda de Rosina'; }
+  duena.addEventListener('input', function() { datos['ag-duena'] = duena.value; escribir(CLAVE_AGENDA, JSON.stringify(datos)); tituloDuena(); });
+  tituloDuena();
+  document.getElementById('agenda-descargar').addEventListener('click', function() {
+    var blob = new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+  });
+  var archivo = document.getElementById('agenda-archivo');
+  document.getElementById('agenda-cargar').addEventListener('click', function() { archivo.click(); });
+  archivo.addEventListener('change', function() {
+    var f = archivo.files && archivo.files[0]; if (!f) return;
+    var lector = new FileReader();
+    lector.onload = function() {
+      try {
+        var c = JSON.parse(lector.result);
+        if (!c || !c.agendaRosina || typeof c.datos !== 'object') throw 0;
+        if (!confirm('¿Reemplazar lo que tienes en esta agenda por la copia del ' + (c.fecha || 'archivo') + '?')) return;
+        escribir(CLAVE_AGENDA, JSON.stringify(c.datos)); location.reload();
+      } catch (e) { alert('Ese archivo no es una copia de la Agenda de Rosina.'); }
+      archivo.value = '';
+    };
+    lector.readAsText(f);
+  });
+  /* ---------- Totales de ventas del mes ---------- */
+  function valorPesos(t) { var n = parseInt(String(t || '').replace(/[^0-9]/g, ''), 10); return isFinite(n) ? n : 0; }
+  function totalesVentas() {
+    var v = 0, c = 0, n = 0;
+    for (var r = 1; r <= 12; r++) {
+      var pv = valorPesos(document.getElementById('ag-vt' + r + '-precio').value), cv = valorPesos(document.getElementById('ag-vt' + r + '-costo').value);
+      if (pv) n++; v += pv; c += cv;
+    }
+    var f = function(x) { return '$' + x.toLocaleString('es-CO'); };
+    document.getElementById('totales-ventas').innerHTML = '<div><span>Ventas (' + n + ')</span><strong>' + f(v) + '</strong></div><div><span>Materiales</span><strong>' + f(c) + '</strong></div><div class="ganancia"><span>Te quedó</span><strong>' + f(v - c) + '</strong></div>';
+  }
+  document.getElementById('tabla-ventas').addEventListener('input', totalesVentas);
+  totalesVentas();
   /* ---------- Hojas plegables: se ve el título y se abre al tocarlo ---------- */
   var hojas = document.querySelectorAll('#agenda .hoja-agenda');
   function abrirHoja(h, abrir) {
