@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Calculadoras de Rosina para tejedoras — Lana Rosa Crochet">
-<meta property="og:description" content="Costos, contador de vueltas, muestra, lana y aumentos: Rosina hace las cuentas por ti. ¡Gratis!">
+<meta property="og:description" content="Costos, contador de vueltas, muestra, lana, aumentos y esferas vuelta por vuelta: Rosina hace las cuentas por ti. ¡Gratis!">
 <meta property="og:url" content="https://lanarosacrochet.com/calculadoras-rosina.html">
 <meta property="og:image" content="https://lanarosacrochet.com/img/rincon-de-rosina-og.jpg?v=2">
 
@@ -453,8 +453,9 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .intro-agenda h1 { margin: 6px 0 10px; font-size: clamp(2rem, 5vw, 2.8rem); }
 .volver-rincon { margin: 0 0 12px; font-size: 0.92rem; }
 .volver-rincon a { color: var(--rosa-principal); font-weight: 700; text-decoration: none; }
-.herramientas-calc { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 26px 0 0; text-align: left; }
-@media (max-width: 900px) { .herramientas-calc { grid-template-columns: repeat(2, minmax(0, 1fr)); } .herramientas-calc button:first-child { grid-column: 1 / -1; } }
+.herramientas-calc { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin: 26px 0 0; text-align: left; }
+@media (max-width: 1100px) { .herramientas-calc { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .herramientas-calc { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .herramientas-calc button { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 14px 16px; border-radius: 18px; border: 2px solid var(--rosa-suave); background: var(--blanco); color: var(--tinta); font-family: var(--fuente-cuerpo); cursor: pointer; text-align: left; box-shadow: var(--sombra-suave); transition: border-color 0.15s, transform 0.15s; }
 .herramientas-calc button:hover { border-color: var(--rosa-medio); transform: translateY(-2px); }
 .herramientas-calc button[aria-selected="true"] { background: var(--rosa-suave); border-color: var(--rosa-principal); color: var(--tinta); }
@@ -502,6 +503,17 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 @media (max-width: 760px) { #calc-contador .resultado-contador { order: -1; } }
 .resultado-contador .contador button { flex-shrink: 0; }
 @media (max-width: 400px) { .resultado-contador .contador { gap: 12px; } .resultado-contador .contador output { font-size: 3.2rem; } }
+.opciones-modo { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 12px; }
+.opciones-modo label { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; cursor: pointer; }
+.opciones-modo input { accent-color: var(--rosa-principal); width: 18px; height: 18px; }
+#es-por-cm[hidden], #es-por-pts[hidden] { display: none; }
+.patron-vueltas { list-style: none; padding: 0; margin: 8px 0 0; background: var(--blanco); border-radius: 14px; overflow: hidden; }
+.patron-vueltas li { display: grid; grid-template-columns: 70px 1fr auto; gap: 8px; padding: 8px 12px; border-bottom: 1px dashed rgba(69,69,74,0.12); font-size: 0.92rem; align-items: start; }
+.patron-vueltas li:last-child { border-bottom: none; }
+.patron-vueltas .num-v { font-weight: 800; color: var(--rosa-principal); white-space: nowrap; }
+.patron-vueltas .pts-v { color: var(--tinta-suave); font-weight: 600; }
+.patron-vueltas em { display: block; font-style: normal; font-size: 0.82rem; color: #5B5FC7; margin-top: 2px; }
+@media (max-width: 520px) { .patron-vueltas li { grid-template-columns: 54px 1fr auto; padding: 8px 10px; } }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -569,11 +581,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" role="tab" id="tab-muestra" aria-controls="calc-muestra" aria-selected="false" data-ancla="muestra"><span class="icono-herr" aria-hidden="true">📏</span><strong>Muestra</strong><small>Cuántos puntos y vueltas tejer</small></button>
       <button type="button" role="tab" id="tab-lana" aria-controls="calc-lana" aria-selected="false" data-ancla="lana"><span class="icono-herr" aria-hidden="true">🧶</span><strong>¿Cuánta lana?</strong><small>Los ovillos que necesitas</small></button>
       <button type="button" role="tab" id="tab-aumentos" aria-controls="calc-aumentos" aria-selected="false" data-ancla="aumentos"><span class="icono-herr" aria-hidden="true">➕</span><strong>Aumentos y disminuciones</strong><small>Reparte los puntos de tu vuelta</small></button>
+      <button type="button" role="tab" id="tab-esferas" aria-controls="calc-esferas" aria-selected="false" data-ancla="esferas"><span class="icono-herr" aria-hidden="true">🟠</span><strong>Esferas y cabezas</strong><small>El patrón vuelta por vuelta</small></button>
     </div>
   </section>
 
   <section class="seccion-suave seccion-lila" id="calculadora">
     <div class="contenedor">
+    <div class="panel-calc" role="tabpanel" id="calc-esferas" aria-labelledby="tab-esferas" hidden>
+      <form id="form-esferas" onsubmit="return false">
+        <p style="margin-top:0;">Para cabezas, cuerpos y bolitas de amigurumi en punto bajo. Rosina te da el patrón completo, vuelta por vuelta.</p>
+        <fieldset class="grupo-muestra">
+          <legend>1. ¿Cómo quieres calcularla?</legend>
+          <div class="opciones-modo">
+            <label><input type="radio" name="es-modo" value="cm" checked> Por tamaño (cm)</label>
+            <label><input type="radio" name="es-modo" value="pts"> Por puntos</label>
+          </div>
+          <div class="fila-campos" id="es-por-cm">
+            <div class="campo"><label for="es-diametro">Ancho de la bola (cm)</label><input type="number" id="es-diametro" min="1" step="0.5" value="6" inputmode="decimal"></div>
+            <div class="campo"><label for="es-muestra">Puntos bajos en 10 cm</label><input type="number" id="es-muestra" min="5" step="0.5" value="26" inputmode="decimal"><small>De tu muestra. Si no la tienes, 26 es común con algodón y aguja de 2,5 mm.</small></div>
+          </div>
+          <div class="campo" id="es-por-pts" hidden><label for="es-max">Puntos en la vuelta más ancha</label><input type="number" id="es-max" min="12" step="6" value="42" inputmode="numeric"><small>Se ajusta a un múltiplo de 6 (36, 42, 48…).</small></div>
+        </fieldset>
+        <fieldset class="grupo-muestra">
+          <legend>2. Forma</legend>
+          <div class="campo">
+            <label for="es-forma">¿Qué vas a tejer?</label>
+            <select id="es-forma">
+              <option value="0">Bola redonda (cabeza)</option>
+              <option value="0.5">Un poco alargada</option>
+              <option value="1">Alargada (cuerpo)</option>
+            </select>
+          </div>
+        </fieldset>
+      </form>
+      <div class="resultado" aria-live="polite">
+        <h3>Tu patrón</h3>
+        <div id="res-esferas"></div>
+      </div>
+    </div>
+
     <div class="panel-calc" role="tabpanel" id="calc-aumentos" aria-labelledby="tab-aumentos" hidden>
       <form id="form-aumentos" onsubmit="return false">
         <div class="fila-campos">
@@ -1123,6 +1169,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     par[1]();
   });
 
+  /* ---------- Esferas y cabezas: patrón vuelta por vuelta ---------- */
+  var patronEsfera = { texto: '', vueltas: 0 };
+  function vueltaEscalonada(n, accion, par) {
+    // n = puntos sencillos por grupo; en vueltas pares se parte el grupo para que no se formen esquinas
+    if (n <= 0) return '6 ' + accion;
+    if (par && n >= 2) { var a = Math.floor(n / 2), b = n - a; return '(' + a + ' pb, 1 ' + accion + ', ' + b + ' pb) × 6'; }
+    return '(' + n + ' pb, 1 ' + accion + ') × 6';
+  }
+  function calcularEsferas() {
+    var res = document.getElementById('res-esferas');
+    var modo = document.querySelector('input[name="es-modo"]:checked').value;
+    document.getElementById('es-por-cm').hidden = modo !== 'cm';
+    document.getElementById('es-por-pts').hidden = modo !== 'pts';
+    var max, spc = num('es-muestra') / 10;
+    if (modo === 'cm') {
+      var d = num('es-diametro');
+      if (!valido(d) || !valido(spc)) { res.innerHTML = '<p class="error">Escribe el ancho y tu muestra con números mayores que cero.</p>'; return; }
+      max = Math.round(Math.PI * d * spc / 6) * 6;
+    } else {
+      max = Math.round(num('es-max') / 6) * 6;
+    }
+    if (!(max >= 12)) { res.innerHTML = '<p class="error">La bola necesita al menos 12 puntos en la vuelta más ancha.</p>'; return; }
+    if (max > 150) { res.innerHTML = '<p class="error">Es una bola muy grande (' + max + ' puntos). Revisa el ancho o tu muestra.</p>'; return; }
+    var n = max / 6, forma = parseFloat(document.getElementById('es-forma').value) || 0;
+    var rectas = Math.max(1, Math.round(n * (1 + forma)));
+    var filas = [], v = 1;
+    filas.push([v++, '6 pb en el anillo mágico', 6]);
+    for (var k = 2; k <= n; k++) filas.push([v++, k === 2 ? '6 aum' : vueltaEscalonada(k - 2, 'aum', k % 2 === 0), 6 * k]);
+    var inicioRectas = v; v += rectas;
+    filas.push([inicioRectas + (rectas > 1 ? '–' + (v - 1) : ''), 'pb en cada punto' + (rectas > 1 ? ' (' + rectas + ' vueltas)' : ''), max]);
+    var marcaRelleno = null;
+    for (var j = n - 1; j >= 1; j--) {
+      if (j === 3) marcaRelleno = v;
+      filas.push([v++, j === 1 ? '6 dism' : vueltaEscalonada(j - 1, 'dism', j % 2 === 0), 6 * j]);
+    }
+    var total = v - 1;
+    var html = '<p class="grande">' + max + ' puntos · ' + total + ' vueltas</p>';
+    if (spc) html += '<p class="nota" style="margin-top:0;">Medirá unos <strong>' + formato(max / spc / Math.PI, 1) + ' cm</strong> de ancho' + (valido(spc) ? '' : '') + '.</p>';
+    html += '<ol class="patron-vueltas">' + filas.map(function(f) {
+      var extra = (marcaRelleno && f[0] === marcaRelleno) ? '<em>🐑 Si lleva ojos de seguridad, ponlos antes de esta vuelta y empieza a rellenar.</em>' : '';
+      return '<li><span class="num-v">V' + f[0] + '</span><span class="txt-v">' + f[1] + extra + '</span><span class="pts-v">(' + f[2] + ')</span></li>';
+    }).join('') + '<li><span class="num-v">✂️</span><span class="txt-v">Termina de rellenar, corta la hebra y cierra el agujero pasando la aguja lanera por la hebra delantera de los 6 puntos.</span><span class="pts-v"></span></li></ol>';
+    html += '<div class="compartir-precio"><button type="button" class="boton-secundario boton-chico" id="copiar-esfera">📋 Copiar patrón</button><button type="button" class="boton-secundario boton-chico" id="esfera-contador">🔢 Contar en el contador</button></div>';
+    html += '<p class="nota">💡 Tip de Rosina: las vueltas con el aumento en el medio del grupo evitan que la bola quede con forma de hexágono. Usa un marcador al inicio de cada vuelta.</p>';
+    res.innerHTML = html;
+    patronEsfera.vueltas = total;
+    patronEsfera.texto = 'Esfera de ' + max + ' puntos (' + total + ' vueltas) — Calculadora de Rosina\n' + filas.map(function(f) { return 'V' + f[0] + ': ' + f[1] + ' (' + f[2] + ')'; }).join('\n') + '\nRellena y cierra.\nlanarosacrochet.com/calculadoras-rosina.html#esferas';
+  }
+  var formEsferas = document.getElementById('form-esferas');
+  formEsferas.addEventListener('input', calcularEsferas);
+  formEsferas.addEventListener('change', calcularEsferas);
+  calcularEsferas();
+  document.getElementById('res-esferas').addEventListener('click', function(e) {
+    var b = e.target.closest('#copiar-esfera');
+    if (b) {
+      var listo = function() { b.textContent = '✅ Copiado'; setTimeout(function() { b.textContent = '📋 Copiar patrón'; }, 2000); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(patronEsfera.texto).then(listo, function() { window.prompt('Copia el patrón:', patronEsfera.texto); });
+      else window.prompt('Copia el patrón:', patronEsfera.texto);
+    }
+    if (e.target.closest('#esfera-contador') && window.agregarPiezaContador) {
+      window.agregarPiezaContador('Esfera', patronEsfera.vueltas);
+      var t = document.getElementById('tab-contador'); if (t) { t.click(); document.getElementById('calculadora').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+
   /* ---------- Calculadora de costos ---------- */
   var CLAVE_PRECIO = 'rosinaPrecio', camposPrecio = ['pr-proyecto', 'pr-relleno', 'pr-accesorios', 'pr-empaque', 'pr-horas', 'pr-hora', 'pr-indirectos', 'pr-ganancia', 'pr-comision'];
   var listaHilos = document.getElementById('lista-hilos');
@@ -1277,6 +1388,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     botonPantalla.addEventListener('click', function() { if (bloqueo) { var l = bloqueo; bloqueo = null; l.release(); botonPantalla.setAttribute('aria-pressed', 'false'); botonPantalla.textContent = '🔆 Pantalla siempre encendida'; } else pedirPantalla(); });
     document.addEventListener('visibilitychange', function() { if (document.visibilityState === 'visible' && botonPantalla.getAttribute('aria-pressed') === 'true' && !bloqueo) pedirPantalla(); });
   }
+  window.agregarPiezaContador = function(nombre, meta) {
+    if (estado.piezas.length >= 20) return;
+    estado.piezas.push({ nombre: nombre, valor: 0, meta: String(meta || '') });
+    estado.activa = estado.piezas.length - 1; pintarContador();
+  };
   pintarContador();
 
   /* ---------- Abrir la calculadora según el enlace (#costos, #contador…) ---------- */
