@@ -710,6 +710,10 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-centro { margin-top: 28px; }
 .inicio-editorial > .seccion-suave { padding: clamp(44px, 5.5vw, 64px) 0; }
 .ed-final { padding: clamp(52px, 6.5vw, 80px) 0; }
+/* Fondos alternados entre secciones (29-sep-2026) */
+.ed-lila { background: #E6E7FD; }
+.ed-rosa { background: var(--rosa-suave); }
+.ed-lila .ed-eyebrow, .ed-rosa .ed-eyebrow { color: #C23A7E; }
 .ed-rosina-par img { width: 100% !important; height: auto !important; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px !important; position: static !important; border: none !important; box-shadow: none !important; }
 /* Aparición suave al hacer scroll (se desactiva si la persona prefiere menos movimiento) */
 @media (prefers-reduced-motion: no-preference) {
@@ -840,7 +844,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ 3. ¿QUÉ PODEMOS TEJER PARA TI? ============ -->
-  <section class="ed-seccion">
+  <section class="ed-seccion ed-lila">
     <div class="contenedor">
       <header class="ed-cabecera">
         <p class="ed-eyebrow">Personalizados</p>
@@ -888,7 +892,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ 7. HISTORIAS QUE TEJIMOS ============ -->
-  <section class="ed-seccion ed-crema" id="historias" style="scroll-margin-top:90px;">
+  <section class="ed-seccion ed-rosa" id="historias" style="scroll-margin-top:90px;">
     <div class="contenedor">
       <header class="ed-cabecera">
         <p class="ed-eyebrow">Historias reales</p>
@@ -950,7 +954,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ============ 11. LAS MUJERES DETRÁS DE CADA PUNTADA ============ -->
-  <section class="ed-seccion ed-crema">
+  <section class="ed-seccion ed-lila">
     <div class="contenedor">
       <header class="ed-cabecera">
         <p class="ed-eyebrow">Quiénes somos</p>
