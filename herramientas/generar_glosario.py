@@ -27,7 +27,7 @@ main > .hero-rosina.contenedor { padding-bottom: 20px; }
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }
 .chips button { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: var(--tinta); border-radius: 999px; padding: 7px 14px; font-family: var(--fuente-cuerpo); font-weight: 600; font-size: 0.85rem; cursor: pointer; }
 .chips button[aria-pressed="true"] { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
-.categoria-glosario { margin-bottom: 40px; scroll-margin-top: 190px; }
+.categoria-glosario { margin-bottom: 0; padding-bottom: 32px; scroll-margin-top: 190px; }
 .categoria-glosario > h2 { display: flex; align-items: center; gap: 10px; }
 .categoria-glosario > h2 small { font-family: var(--fuente-cuerpo); font-size: 0.85rem; color: var(--tinta-suave); font-weight: 500; }
 .tarjetas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
