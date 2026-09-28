@@ -698,6 +698,10 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-historia figcaption { font-size: 0.92rem; line-height: 1.35; }
 @media (max-width: 860px) { .ed-historias { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .ed-historias { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ed-historia:first-child { grid-column: auto; } .ed-historia:first-child img { aspect-ratio: 1 / 1; } }
+/* Historias: una sola línea visible; el resto con "Conoce más historias" */
+.ed-historias:not(.abiertas) .ed-historia:nth-child(n+5) { display: none; }
+@media (max-width: 860px) { .ed-historias:not(.abiertas) .ed-historia:nth-child(n+4) { display: none; } }
+@media (max-width: 700px) { .ed-historias:not(.abiertas) .ed-historia:nth-child(n+3) { display: none; } }
 .ed-rosina-par img { width: 100% !important; height: auto !important; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px !important; position: static !important; border: none !important; box-shadow: none !important; }
 /* Aparición suave al hacer scroll (se desactiva si la persona prefiere menos movimiento) */
 @media (prefers-reduced-motion: no-preference) {
@@ -812,7 +816,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="contenedor">
       <header class="ed-cabecera">
         <p class="ed-eyebrow">Visita nuestra tienda</p>
-        <h2>También puedes llevarte un pedacito de Lana Rosa</h2>
+        <h2>Amigurumis, peluches, llaveros y mucho más</h2>
       </header>
       <div class="ed-tienda">
         <a href="tienda.html#amigurumis"><img src="img/inicio/tienda-amigurumis.webp" alt="Amigurumi de ovejita con vestido rosado tejido a mano" width="640" height="800" loading="lazy" decoding="async"><span>Amigurumis</span></a>
@@ -892,11 +896,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figure class="ed-historia"><img src="img/testimonios/testimonio-6.webp?v=4" alt="Amigurumi de un señor con camiseta morada y corazón junto a su foto de referencia" loading="lazy" decoding="async"><figcaption>Amigurumi de un papá para su hijo que está lejos.</figcaption></figure>
         <figure class="ed-historia"><img src="img/foto-amigurumi/vestido-fucsia.webp?v=5" alt="Amigurumi con vestido fucsia junto a la foto de la mujer que lo inspiró" loading="lazy" decoding="async"><figcaption>Amigurumi para una hija en su cumpleaños.</figcaption></figure>
         <figure class="ed-historia"><img src="img/foto-amigurumi/blusa-blanca.webp?v=3" alt="Amigurumi con blusa blanca y jean junto a la foto de la mujer que lo inspiró" loading="lazy" decoding="async"><figcaption>Amigurumi para una hija en su cumpleaños.</figcaption></figure>
-        <figure class="ed-historia ed-extra"><img src="img/foto-amigurumi/boina.webp?v=4" alt="Amigurumi con boina y abrigo rosado junto a la foto de la niña que lo inspiró" loading="lazy" decoding="async"><figcaption>Amigurumi para una nieta muy amada que vive lejos.</figcaption></figure>
-        <figure class="ed-historia ed-extra"><img src="img/inicio/mascota-llavero.webp" alt="Llavero personalizado de un perro negro con pañoleta roja que dice LUK" loading="lazy" decoding="async"><figcaption>Llavero de Luk, un perrito que siempre van a recordar.</figcaption></figure>
-        <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-9.webp" alt="Muñeca con sombrero de fresa usada como referencia, junto al amigurumi tejido a partir de ella" loading="lazy" decoding="async"><figcaption>Amigurumi de Rosita Fresita, un regalo para una amiga muy querida.</figcaption></figure>
-        <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-10.jpg" alt="Ovejita de referencia con tutú rosado, junto al peluche tejido a partir de ella" loading="lazy" decoding="async"><figcaption>Amigurumi de Lambi para una novia muy consentida.</figcaption></figure>
-        <figure class="ed-historia ed-extra"><img src="img/testimonios/testimonio-8.webp" alt="Niña con conjunto beige, junto a su amigurumi personalizado de cabello largo" loading="lazy" decoding="async"><figcaption>Amigurumi de una sobrina muy especial.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/foto-amigurumi/boina.webp?v=4" alt="Amigurumi con boina y abrigo rosado junto a la foto de la niña que lo inspiró" loading="lazy" decoding="async"><figcaption>Amigurumi para una nieta muy amada que vive lejos.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/inicio/mascota-llavero.webp" alt="Llavero personalizado de un perro negro con pañoleta roja que dice LUK" loading="lazy" decoding="async"><figcaption>Llavero de Luk, un perrito que siempre van a recordar.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-9.webp" alt="Muñeca con sombrero de fresa usada como referencia, junto al amigurumi tejido a partir de ella" loading="lazy" decoding="async"><figcaption>Amigurumi de Rosita Fresita, un regalo para una amiga muy querida.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-10.jpg" alt="Ovejita de referencia con tutú rosado, junto al peluche tejido a partir de ella" loading="lazy" decoding="async"><figcaption>Amigurumi de Lambi para una novia muy consentida.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-8.webp" alt="Niña con conjunto beige, junto a su amigurumi personalizado de cabello largo" loading="lazy" decoding="async"><figcaption>Amigurumi de una sobrina muy especial.</figcaption></figure>
       </div>
       <div class="ed-centro ed-botones-centro">
         <button type="button" class="boton-secundario" id="ed-mas-historias" aria-expanded="false" aria-controls="ed-historias">Conoce más historias</button>
