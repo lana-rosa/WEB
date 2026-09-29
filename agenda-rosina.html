@@ -471,6 +471,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .agujas-grid label:has(input:checked) { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
 .agujas-grid label:has(input:focus-visible) { outline: 3px solid var(--lila); }
 @media print { .agujas-grid label { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+.meses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 860px) { .meses { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .mes textarea { min-height: 90px; }
 .lista-llevar { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px 14px; margin-top: 6px; }
@@ -533,6 +534,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 @media (max-width: 900px) { .barra-agenda { position: static; } .menu-hojas { position: sticky; top: 80px; z-index: 8; } .agenda-layout { scroll-margin-top: 90px; } }
 .acciones-hoja { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-bottom: 10px; }
 .acciones-hoja-abajo { margin: 14px 0 0; }
+.opciones-imp { display: none; }
 @media print { body.imprimir-una .hojas-contenido .hoja-agenda:not(.abierta) { display: none !important; } body.imprimir-una .hoja-agenda { page-break-after: auto; } }
 body.en-blanco .totales-ventas strong { visibility: hidden; }
 /* Agenda en celular: cada renglón es una tarjeta, sin columna fija (28-sep-2026) */
@@ -548,7 +550,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .elegir-tienda-fila { display: flex; flex-wrap: wrap; gap: 10px; }
 .elegir-tienda-fila select { flex: 1 1 240px; min-width: 0; }
 .ayuda-tienda { margin: 8px 0 0; font-size: 0.85rem; color: var(--tinta-suave); min-height: 1em; }
-@media (max-width: 700px) {
+@media screen and (max-width: 700px) {
   .hoja-agenda .tabla-scroll { overflow: visible; }
   .tabla-agenda { min-width: 0 !important; width: 100%; border: none; }
   .tabla-agenda thead { display: none; }
@@ -565,6 +567,41 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 40px !important; }
+/* Impresión de la agenda: hojas completas, sin barras de desplazamiento ni flechas (29-sep-2026) */
+@media print {
+  html, body { overflow: visible !important; width: auto !important; min-width: 0 !important; }
+  main, .contenedor, .agenda-layout, .hojas-contenido { max-width: none !important; width: auto !important; overflow: visible !important; margin: 0 !important; padding-left: 0 !important; padding-right: 0 !important; }
+  .seccion-suave, .seccion-lila { background: #fff !important; padding: 0 !important; }
+  .hoja-agenda { box-shadow: none !important; border: 1px solid #ddd !important; border-radius: 10px !important; padding: 12px 14px !important; margin: 0 0 10px !important; overflow: visible !important; }
+  .hoja-agenda { zoom: 0.84; }
+  .hojas-contenido .hoja-agenda:last-of-type { page-break-after: auto !important; }
+  #fechas-especiales.hoja-agenda, #diario-tejido.hoja-agenda { zoom: 0.78; }
+  #fechas-especiales .opciones-imp, #diario-tejido .opciones-imp { font-size: 0.76rem; line-height: 1.25; }
+  .hoja-agenda header { margin-bottom: 8px; }
+  .tabla-scroll, .hoja-agenda .tabla-scroll { overflow: visible !important; border: none !important; box-shadow: none !important; }
+  .hoja-agenda table, .tabla-agenda { width: 100% !important; min-width: 0 !important; max-width: 100% !important; table-layout: fixed !important; display: table !important; }
+  .tabla-agenda thead { display: table-header-group !important; }
+  .tabla-agenda tbody { display: table-row-group !important; }
+  .tabla-agenda tr { display: table-row !important; break-inside: avoid; background: transparent !important; border: none !important; padding: 0 !important; margin: 0 !important; }
+  .tabla-agenda th, .tabla-agenda td { display: table-cell !important; padding: 5px 6px !important; min-width: 0 !important; max-width: none !important; position: static !important; box-shadow: none !important; overflow-wrap: anywhere; }
+  .tabla-agenda td::before { content: none !important; }
+  .tabla-agenda td { background: transparent !important; }
+  .tabla-agenda td input:not([type=checkbox]), .tabla-agenda td select { width: 100% !important; min-width: 0 !important; font-size: 0.85rem; }
+  select { -webkit-appearance: none !important; -moz-appearance: none !important; appearance: none !important; background-image: none !important; background-color: transparent !important; border: none !important; border-bottom: 1.5px solid rgba(69,69,74,0.25) !important; border-radius: 0 !important; padding: 6px 2px !important; color: var(--tinta); font-family: var(--fuente-cuerpo); }
+  .opciones-imp { display: block !important; font-size: 0.68rem; line-height: 1.35; color: #6f6f75; margin-top: 3px; }
+  .opciones-imp i { font-style: normal; white-space: nowrap; margin-right: 4px; display: inline-block; }
+  td.con-valor .opciones-imp { display: none !important; }
+  #fechas-especiales th:nth-child(1) { width: 14%; } #fechas-especiales th:nth-child(2) { width: 38%; } #fechas-especiales th:nth-child(3) { width: 17%; } #fechas-especiales th:nth-child(4) { width: 22%; } #fechas-especiales th:nth-child(5) { width: 9%; }
+  #diario-tejido th:nth-child(1) { width: 14%; } #diario-tejido th:nth-child(2) { width: 34%; } #diario-tejido th:nth-child(3) { width: 26%; }
+  textarea { resize: none !important; overflow: hidden !important; }
+  .meses { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px !important; }
+  .meses .dia textarea { min-height: 78px !important; }
+  .semana { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px !important; }
+  .semana .dia textarea { min-height: 88px !important; }
+  .agujas-grid, .pausas-grid { break-inside: avoid; }
+  input, textarea, select { scrollbar-width: none; }
+  ::-webkit-scrollbar { display: none; }
+}
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -1286,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var col = typeof c === 'string' ? c : c.id;
       var id = t.prefijo + r + '-' + col, aria = ' aria-label="' + col + ' ' + t.etiqueta + ' ' + r + '"';
       var et = ' data-label="' + (t.titulos[i] || '') + '"';
-      if (c.opciones) return '<td' + et + '><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select></td>';
+      if (c.opciones) return '<td' + et + '><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select><span class="opciones-imp" aria-hidden="true">' + c.opciones.map(function(o) { return '<i>○ ' + o + '</i>'; }).join(' ') + '</span></td>';
       if (c.check) return '<td class="celda-check"' + et + '><input type="checkbox" id="' + id + '" data-guardar' + aria + '></td>';
       return '<td' + et + '><input id="' + id + '" data-guardar' + aria + '></td>';
     }).join('') + '</tr>';
@@ -1356,7 +1393,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if ((e.type === 'change') !== porCambio) return;
     datos[campo.id] = campo.type === 'checkbox' ? campo.checked : campo.value;
     guardarDatos();
+    if (campo.tagName === 'SELECT') actualizarOpciones();
   }
+  function actualizarOpciones() {
+    document.querySelectorAll('#agenda td select').forEach(function(sel) { sel.parentNode.classList.toggle('con-valor', !!sel.value); });
+  }
+  actualizarOpciones();
   document.getElementById('agenda').addEventListener('input', guardarCampo);
   document.getElementById('agenda').addEventListener('change', guardarCampo);
   document.getElementById('agenda-borrar').addEventListener('click', function() {
@@ -1589,6 +1631,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         el.style.color = ''; el.style.backgroundColor = '';
       });
       document.body.classList.add('en-blanco');
+      actualizarOpciones();
     }
     document.getElementById('agenda').classList.add('imprimir-activa');
     document.body.classList.add('imprimiendo', 'imprimir-una');
@@ -1599,6 +1642,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (respaldoBlanco) {
       respaldoBlanco.forEach(function(r) { if (r[0].type === 'checkbox') r[0].checked = r[1]; else r[0].value = r[1]; r[0].style.color = r[2]; r[0].style.backgroundColor = r[3]; });
       respaldoBlanco = null;
+      actualizarOpciones();
     }
   });
   document.querySelectorAll('[data-imprimir-hoja]').forEach(function(b) { b.addEventListener('click', function() { imprimirHoja(b.dataset.imprimirHoja === 'blanco'); }); });
