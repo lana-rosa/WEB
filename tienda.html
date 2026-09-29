@@ -175,10 +175,11 @@ a { color: var(--rosa-principal); }
 .carrito-total span:last-child { color: var(--rosa-principal); }
 
 .producto-foto { cursor: pointer; }
-.boton-favorito { position: absolute; top: 8px; right: 8px; z-index: 3; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(255,255,255,0.95); box-shadow: 0 2px 8px rgba(0,0,0,0.25); border: 2px solid var(--rosa-principal); color: var(--rosa-principal); font-size: 1.5rem; line-height: 1; font-family: Arial, sans-serif; padding-bottom: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.boton-favorito { position: absolute; top: 8px; right: 8px; z-index: 3; width: 38px; height: 38px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.25); border: 2.5px solid var(--rosa-principal); color: var(--rosa-principal); padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .boton-favorito:hover { transform: scale(1.08); }
 .boton-favorito[aria-pressed="true"] { color: #E0182D; border-color: #E0182D; }
-.boton-favorito-modal { position: static; width: auto; height: auto; border-radius: 999px; padding: 8px 16px; font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-principal); border: 2px solid var(--rosa-medio); background: var(--blanco); box-shadow: none; margin: 4px 0 12px; }
+.boton-favorito svg { display: block; }
+.boton-favorito-modal { display: inline-flex; align-items: center; gap: 6px; position: static; width: auto; height: auto; border-radius: 999px; padding: 8px 16px; font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-principal); border: 2px solid var(--rosa-medio); background: var(--blanco); box-shadow: none; margin: 4px 0 12px; }
 .boton-favorito-modal.activo { background: #FDE8EA; }
 .aviso-favorito { position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%); z-index: 2000; background: #45454A; color: #fff; padding: 12px 18px; border-radius: 16px; max-width: calc(100vw - 32px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); font-size: 0.92rem; }
 .aviso-favorito a { color: #F8C3DC; font-weight: 700; margin-left: 6px; }
@@ -788,7 +789,7 @@ function crearTarjeta(item) {
     '<div class="producto-foto">' +
       '<img src="img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + item.id + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
       '<span class="foto-marcador" style="display:none;">[ Foto de ' + item.nombre + ' ]</span>' +
-      '<button type="button" class="boton-favorito" data-id="' + item.id + '" aria-pressed="false" aria-label="Guardar en favoritos">♡</button>' +
+      '<button type="button" class="boton-favorito" data-id="' + item.id + '" aria-pressed="false" aria-label="Guardar en favoritos">' + corazonSVG(false, 21) + '</button>' +
     '</div>' +
     '<div class="producto-info">' +
       '<h3>' + item.nombre + '</h3>' +
@@ -807,17 +808,19 @@ function crearTarjeta(item) {
 /* ---------- Favoritos (solo con sesión iniciada) ---------- */
 var FAVORITOS = new Set();
 var usuarioFav = null;
+var SVG_CORAZON = '<svg viewBox="0 0 24 24" width="%TAM%" height="%TAM%" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%REL%" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>';
+function corazonSVG(activo, tam) { return SVG_CORAZON.replace(/%TAM%/g, tam).replace('%REL%', activo ? 'currentColor' : 'none'); }
 function pintarFavoritos() {
   document.querySelectorAll('.boton-favorito:not(.boton-favorito-modal)').forEach(function (b) {
     var act = FAVORITOS.has(b.dataset.id);
-    b.textContent = act ? '♥' : '♡';
+    b.innerHTML = corazonSVG(act, 21);
     b.setAttribute('aria-pressed', String(act));
     b.setAttribute('aria-label', act ? 'Quitar de favoritos' : 'Guardar en favoritos');
   });
   var m = document.getElementById('modal-favorito');
   if (m && m.dataset.id) {
     var actM = FAVORITOS.has(m.dataset.id);
-    m.textContent = actM ? '♥ En tus favoritos' : '♡ Guardar en favoritos';
+    m.innerHTML = corazonSVG(actM, 18) + (actM ? ' En tus favoritos' : ' Guardar en favoritos');
     m.classList.toggle('activo', actM);
     m.setAttribute('aria-pressed', String(actM));
   }
@@ -1252,7 +1255,7 @@ function inicializarBuscadorTienda() {
       </div>
       <div class="modal-info-producto">
         <h2 id="modal-nombre"></h2>
-        <button type="button" class="boton-favorito boton-favorito-modal" id="modal-favorito" aria-pressed="false">♡ Guardar en favoritos</button>
+        <button type="button" class="boton-favorito boton-favorito-modal" id="modal-favorito" aria-pressed="false"></button>
         <p class="precio-modal" id="modal-precio"></p>
         <p class="calificacion-modal" id="modal-calificacion"></p>
         <p class="descripcion-modal" id="modal-descripcion"></p>
