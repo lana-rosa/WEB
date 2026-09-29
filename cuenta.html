@@ -236,6 +236,8 @@ main > :first-child { padding-top: 22px !important; }
 .boton-google:hover { border-color: var(--rosa-principal); }
 .separador-o { display: flex; align-items: center; gap: 12px; color: var(--tinta-suave); font-size: 0.9rem; margin: 16px 0 6px; }
 .separador-o::before, .separador-o::after { content: ''; flex: 1; height: 1px; background: rgba(69,69,74,0.15); }
+.campo-codigo { max-width: 260px; margin: 18px auto 14px; text-align: left; }
+.campo-codigo input { text-align: center; font-size: 1.5rem; letter-spacing: 0.35em; font-weight: 700; }
 .pestanas-cuenta { display: flex; gap: 8px; margin: 0 0 16px; flex-wrap: wrap; }
 .pestanas-cuenta button { font: inherit; font-weight: 700; padding: 10px 20px; border-radius: 999px; border: 2px solid var(--rosa-medio); background: var(--blanco); color: var(--rosa-principal); cursor: pointer; }
 .pestanas-cuenta button[aria-selected="true"] { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
@@ -386,8 +388,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="tarjeta-cuenta centrada">
       <p class="icono-grande" aria-hidden="true">💌</p>
       <h2>Revisa tu correo</h2>
-      <p>Te enviamos un enlace a <strong id="correo-enviado"></strong>. Ábrelo en este mismo dispositivo y entrarás a tu cuenta.</p>
-      <p class="nota-cuenta">Si no lo ves en unos minutos, mira en Spam o Promociones. El enlace sirve una sola vez.</p>
+      <p>Te enviamos un código a <strong id="correo-enviado"></strong>. Escríbelo aquí para entrar. También puedes usar el enlace que viene en el correo.</p>
+      <form id="panel-codigo" novalidate>
+        <div class="campo-cuenta campo-codigo"><label for="codigo">Código del correo</label><input type="text" id="codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="123456"></div>
+        <button type="submit" class="boton-cuenta" id="boton-codigo">Entrar</button>
+        <p class="aviso-cuenta" id="aviso-codigo" role="alert" hidden></p>
+      </form>
+      <p class="nota-cuenta">Si no lo ves en unos minutos, mira en Spam o Promociones.</p>
       <button type="button" class="boton-cuenta secundario" id="boton-otro-correo">Usar otro correo</button>
     </div>
   </section>
@@ -811,6 +818,24 @@ $('panel-entrar').addEventListener('submit', async (e) => {
     aviso('aviso-entrar', traducirError(err));
   }
   boton.disabled = false; boton.textContent = 'Enviarme el enlace';
+});
+$('panel-codigo').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const token = $('codigo').value.replace(/\s/g, '');
+  const correo = $('correo-enviado').textContent;
+  if (token.length < 6) return aviso('aviso-codigo', 'Escribe el código completo del correo.');
+  aviso('aviso-codigo', '');
+  const boton = $('boton-codigo');
+  boton.disabled = true; boton.textContent = 'Entrando…';
+  try {
+    const sb = await obtenerCliente();
+    const { error } = await sb.auth.verifyOtp({ email: correo, token, type: 'email' });
+    if (error) throw error;
+    location.reload();
+  } catch (err) {
+    aviso('aviso-codigo', 'El código no es correcto o ya venció. Revisa el correo o pide uno nuevo.');
+    boton.disabled = false; boton.textContent = 'Entrar';
+  }
 });
 $('boton-otro-correo').addEventListener('click', () => mostrar('visitante'));
 
