@@ -242,7 +242,7 @@ main > :first-child { padding-top: 22px !important; }
 .vista-cuenta[hidden], .tarjeta-cuenta[hidden], .aviso-cuenta[hidden], #estado-cargando[hidden] { display: none; }
 .texto-estado { color: var(--tinta-suave); }
 .vista-cuenta { max-width: 760px; }
-#vista-panel { max-width: 1000px; }
+#vista-panel { max-width: 860px; }
 .bloque-google[hidden] { display: none; }
 .bloque-google { margin: 0 0 6px; }
 .boton-google { font: inherit; font-weight: 700; width: 100%; max-width: 420px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; border-radius: 999px; border: 2px solid rgba(69,69,74,0.2); background: var(--blanco); color: var(--tinta); cursor: pointer; }
@@ -278,6 +278,54 @@ main > :first-child { padding-top: 22px !important; }
 .nota-cuenta { color: var(--tinta-suave); font-size: 0.9rem; margin: 16px 0 0; }
 .barra-sesion { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 18px; }
 .barra-sesion p { margin: 0; color: var(--tinta-suave); overflow-wrap: anywhere; }
+.menu-cuenta { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 10px; margin: 0 0 18px; }
+.item-menu { position: relative; font: inherit; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 4px 10px; border-radius: 16px; border: 2px solid transparent; background: var(--blanco); box-shadow: var(--sombra-suave); color: var(--tinta); cursor: pointer; font-weight: 700; font-size: 0.78rem; min-width: 0; }
+.item-menu .ico { font-size: 1.5rem; line-height: 1; }
+.item-menu:hover { border-color: var(--rosa-medio); }
+.item-menu[aria-current="true"] { background: var(--rosa-principal); color: var(--blanco); border-color: var(--rosa-principal); }
+.insignia { position: absolute; top: 4px; right: 8px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: #E74E96; color: #fff; font-size: 0.72rem; display: inline-flex; align-items: center; justify-content: center; border: 2px solid #fff; }
+.insignia[hidden] { display: none; }
+.item-menu[aria-current="true"] .insignia { background: #fff; color: var(--rosa-principal); border-color: var(--rosa-principal); }
+.pestanas-cuenta.filtros { margin-bottom: 14px; gap: 6px; }
+.pestanas-cuenta.filtros button { padding: 7px 14px; font-size: 0.85rem; }
+.tarjeta-pedido { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(69,69,74,0.10); }
+.tarjeta-pedido:last-child { border-bottom: none; }
+.foto-mini { width: 76px; height: 76px; flex-shrink: 0; border-radius: 14px; overflow: hidden; background: var(--rosa-suave); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+.foto-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.info-pedido { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.info-pedido .linea { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.info-pedido .codigo { font-weight: 800; color: var(--rosa-principal); }
+.info-pedido .fecha { color: var(--tinta-suave); font-size: 0.85rem; }
+.info-pedido .detalle { overflow-wrap: anywhere; }
+.info-pedido .total { font-weight: 800; }
+.info-pedido .pequeno { color: var(--tinta-suave); font-size: 0.85rem; }
+.info-pedido .acciones-carrito { margin-top: 4px; }
+.etiqueta-estado.pago { background: #fff3d6; color: #8a5a00; }
+.etiqueta-estado.prep { background: var(--lila-suave); color: #4a4fb0; }
+.estrellas-sel { display: flex; gap: 2px; }
+.estrella { font: inherit; font-size: 1.8rem; line-height: 1; background: none; border: none; padding: 2px 3px; color: #d5d5d8; cursor: pointer; }
+.estrella.activa { color: #f5a623; }
+.estrellas-fijas { color: #f5a623; letter-spacing: 2px; }
+.form-resena { margin-top: 8px; display: flex; flex-direction: column; gap: 10px; }
+.form-resena textarea, .campo-cuenta textarea { font: inherit; padding: 11px 14px; border-radius: 12px; border: 1.5px solid rgba(69,69,74,0.18); background: var(--blanco-hueso); color: var(--tinta); width: 100%; min-height: 90px; resize: vertical; }
+.form-resena[hidden] { display: none; }
+.rejilla-fav { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.tarjeta-fav { display: flex; flex-direction: column; gap: 8px; border: 1px solid rgba(69,69,74,0.10); border-radius: 16px; padding: 10px; min-width: 0; }
+.tarjeta-fav .foto-mini { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+.tarjeta-fav h3 { font-size: 0.95rem; margin: 0; overflow-wrap: anywhere; }
+.tarjeta-fav .precio { font-weight: 800; color: var(--rosa-principal); }
+.tarjeta-dir { padding: 14px 0; border-bottom: 1px solid rgba(69,69,74,0.10); display: flex; flex-direction: column; gap: 4px; }
+.tarjeta-dir:last-of-type { border-bottom: none; }
+.tarjeta-dir .alias { font-weight: 800; }
+.tarjeta-dir p { margin: 0; color: var(--tinta); overflow-wrap: anywhere; }
+.tarjeta-dir .pequeno { color: var(--tinta-suave); font-size: 0.88rem; }
+.etiqueta-principal { display: inline-block; margin-left: 8px; padding: 2px 10px; border-radius: 999px; font-size: 0.75rem; background: var(--rosa-suave); color: var(--rosa-principal); }
+.mensaje-cuenta { padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(69,69,74,0.10); margin-bottom: 10px; }
+.mensaje-cuenta.nuevo { background: var(--rosa-suave); border-color: var(--rosa-medio); }
+.mensaje-cuenta h3 { font-size: 1rem; margin: 0 0 4px; }
+.mensaje-cuenta p { margin: 0 0 4px; }
+.mensaje-cuenta .fecha { color: var(--tinta-suave); font-size: 0.82rem; }
+@media (max-width: 600px) { .foto-mini { width: 64px; height: 64px; } }
 .rejilla-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
 .item-carrito, .item-historial { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(69,69,74,0.10); }
 .item-carrito:last-of-type, .item-historial:last-child { border-bottom: none; }
@@ -435,33 +483,85 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="boton-cuenta secundario chico" id="boton-salir">Cerrar sesión</button>
     </div>
 
-    <div class="rejilla-panel">
-      <div class="tarjeta-cuenta">
-        <h2>🛒 Mi carrito guardado</h2>
-        <div id="lista-carrito"></div>
-      </div>
+    <nav class="menu-cuenta" aria-label="Secciones de mi cuenta">
+      <button type="button" class="item-menu" id="menu-pedidos"><span class="ico" aria-hidden="true">🧾</span><span>Pedidos</span></button>
+      <button type="button" class="item-menu" id="menu-mensajes"><span class="ico" aria-hidden="true">💬</span><span>Mensajes</span><b class="insignia" id="ins-mensajes" hidden></b></button>
+      <button type="button" class="item-menu" id="menu-resenas"><span class="ico" aria-hidden="true">⭐</span><span>Reseñas</span><b class="insignia" id="ins-resenas" hidden></b></button>
+      <button type="button" class="item-menu" id="menu-favoritos"><span class="ico" aria-hidden="true">💗</span><span>Favoritos</span></button>
+      <button type="button" class="item-menu" id="menu-direcciones"><span class="ico" aria-hidden="true">📍</span><span>Direcciones</span></button>
+      <button type="button" class="item-menu" id="menu-carrito"><span class="ico" aria-hidden="true">🛒</span><span>Carrito</span></button>
+      <button type="button" class="item-menu" id="menu-solicitudes"><span class="ico" aria-hidden="true">✨</span><span>Personalizados</span></button>
+      <button type="button" class="item-menu" id="menu-datos"><span class="ico" aria-hidden="true">👤</span><span>Mis datos</span></button>
+    </nav>
 
-      <div class="tarjeta-cuenta">
-        <h2>🧾 Mis pedidos</h2>
-        <div id="lista-pedidos"><p class="texto-estado">Cargando…</p></div>
-      </div>
+    <div class="tarjeta-cuenta" id="sec-pedidos">
+      <h2>🧾 Mis pedidos</h2>
+      <div class="pestanas-cuenta filtros" id="filtros-pedidos" role="tablist" aria-label="Estado del pedido"></div>
+      <div id="lista-pedidos"><p class="texto-estado">Cargando…</p></div>
+    </div>
 
-      <div class="tarjeta-cuenta">
-        <h2>✨ Mis solicitudes de personalizados</h2>
-        <div id="lista-solicitudes"><p class="texto-estado">Cargando…</p></div>
-      </div>
+    <div class="tarjeta-cuenta" id="sec-mensajes" hidden>
+      <h2>💬 Mensajes</h2>
+      <div id="lista-mensajes"><p class="texto-estado">Cargando…</p></div>
+    </div>
 
-      <form class="tarjeta-cuenta" id="panel-datos" novalidate>
-        <h2>👤 Mis datos</h2>
-        <div class="campo-cuenta"><label for="d-nombre">Nombre</label><input type="text" id="d-nombre" autocomplete="name"></div>
-        <div class="campo-cuenta"><label for="d-telefono">Teléfono / WhatsApp</label><input type="tel" id="d-telefono" autocomplete="tel"></div>
-        <div class="campo-cuenta"><label for="d-ciudad">Ciudad</label><input type="text" id="d-ciudad" list="ciudades" autocomplete="address-level2"></div>
-        <div class="campo-cuenta"><label for="d-correo">Correo (no se puede cambiar aquí)</label><input type="email" id="d-correo" readonly></div>
-        <button type="submit" class="boton-cuenta" id="boton-datos">Guardar cambios</button>
-        <p class="aviso-cuenta" id="aviso-datos" role="status" hidden></p>
-        <p class="nota-cuenta">Para cambiar tu correo o eliminar tus datos, escríbenos a <a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a>.</p>
+    <div class="tarjeta-cuenta" id="sec-resenas" hidden>
+      <h2>⭐ Reseñas</h2>
+      <p class="nota-cuenta" style="margin:0 0 12px;">Cuéntanos cómo te fue con lo que recibiste. Publicamos tu reseña con tu nombre y la inicial de tu apellido, después de revisarla.</p>
+      <div class="pestanas-cuenta filtros" id="filtros-resenas" role="tablist" aria-label="Reseñas"></div>
+      <div id="lista-resenas"><p class="texto-estado">Cargando…</p></div>
+    </div>
+
+    <div class="tarjeta-cuenta" id="sec-favoritos" hidden>
+      <h2>💗 Mis favoritos</h2>
+      <div id="lista-favoritos"><p class="texto-estado">Cargando…</p></div>
+    </div>
+
+    <div class="tarjeta-cuenta" id="sec-direcciones" hidden>
+      <h2>📍 Mis direcciones</h2>
+      <div id="lista-direcciones"><p class="texto-estado">Cargando…</p></div>
+      <button type="button" class="boton-cuenta chico" id="boton-nueva-direccion" style="margin-top:14px;">+ Agregar dirección</button>
+      <form id="form-direccion" novalidate hidden style="margin-top:18px;">
+        <div class="fila-cuenta">
+          <div class="campo-cuenta"><label for="dir-alias">Nombre de la dirección*</label><input type="text" id="dir-alias" maxlength="40" placeholder="Ej: Casa, Trabajo"></div>
+          <div class="campo-cuenta"><label for="dir-nombre">Quién recibe</label><input type="text" id="dir-nombre" maxlength="80" autocomplete="name"></div>
+        </div>
+        <div class="fila-cuenta">
+          <div class="campo-cuenta"><label for="dir-telefono">Teléfono / WhatsApp</label><input type="tel" id="dir-telefono" maxlength="30" autocomplete="tel"></div>
+          <div class="campo-cuenta"><label for="dir-ciudad">Ciudad*</label><input type="text" id="dir-ciudad" list="ciudades" maxlength="60" placeholder="Escribe o elige tu ciudad"></div>
+        </div>
+        <div class="campo-cuenta"><label for="dir-direccion">Dirección*</label><input type="text" id="dir-direccion" maxlength="200" placeholder="Calle, número, barrio" autocomplete="street-address"></div>
+        <div class="campo-cuenta"><label for="dir-indicaciones">Indicaciones para la entrega</label><input type="text" id="dir-indicaciones" maxlength="200" placeholder="Ej: portería, apartamento, punto de referencia"></div>
+        <label class="acepto"><input type="checkbox" id="dir-principal"> <span>Usar como mi dirección principal</span></label>
+        <div class="acciones-carrito">
+          <button type="submit" class="boton-cuenta chico" id="boton-guardar-direccion">Guardar dirección</button>
+          <button type="button" class="boton-cuenta secundario chico" id="boton-cancelar-direccion">Cancelar</button>
+        </div>
+        <p class="aviso-cuenta" id="aviso-direccion" role="alert" hidden></p>
       </form>
     </div>
+
+    <div class="tarjeta-cuenta" id="sec-carrito" hidden>
+      <h2>🛒 Mi carrito guardado</h2>
+      <div id="lista-carrito"></div>
+    </div>
+
+    <div class="tarjeta-cuenta" id="sec-solicitudes" hidden>
+      <h2>✨ Mis solicitudes de personalizados</h2>
+      <div id="lista-solicitudes"><p class="texto-estado">Cargando…</p></div>
+      <p style="margin:14px 0 0;"><a href="personaliza.html">Pedir un amigurumi personalizado →</a></p>
+    </div>
+
+    <form class="tarjeta-cuenta" id="panel-datos" novalidate hidden>
+      <h2>👤 Mis datos</h2>
+      <div class="campo-cuenta"><label for="d-nombre">Nombre</label><input type="text" id="d-nombre" autocomplete="name"></div>
+      <div class="campo-cuenta"><label for="d-telefono">Teléfono / WhatsApp</label><input type="tel" id="d-telefono" autocomplete="tel"></div>
+      <div class="campo-cuenta"><label for="d-ciudad">Ciudad</label><input type="text" id="d-ciudad" list="ciudades" autocomplete="address-level2"></div>
+      <div class="campo-cuenta"><label for="d-correo">Correo (no se puede cambiar aquí)</label><input type="email" id="d-correo" readonly></div>
+      <button type="submit" class="boton-cuenta" id="boton-datos">Guardar cambios</button>
+      <p class="aviso-cuenta" id="aviso-datos" role="status" hidden></p>
+      <p class="nota-cuenta">Para cambiar tu correo o eliminar tus datos, escríbenos a <a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a>.</p>
+    </form>
   </section>
 
   <datalist id="ciudades">
@@ -903,58 +1003,345 @@ function pintarCarrito() {
   cont.append(acc);
 }
 
-function pintarLista(idContenedor, filas, vacio, construir) {
-  const cont = $(idContenedor);
-  cont.replaceChildren();
-  if (!filas.length) { cont.append(nodo('p', 'texto-estado', vacio)); return; }
-  filas.forEach((f) => cont.append(construir(f)));
+/* ---------- Secciones del panel ---------- */
+const SECCIONES = ['pedidos', 'mensajes', 'resenas', 'favoritos', 'direcciones', 'carrito', 'solicitudes', 'datos'];
+let sbPanel = null;
+let usuarioPanel = null;
+function irSeccion(cual, actualizarUrl) {
+  if (SECCIONES.indexOf(cual) < 0) cual = 'pedidos';
+  SECCIONES.forEach((s) => {
+    $(s === 'datos' ? 'panel-datos' : 'sec-' + s).hidden = s !== cual;
+    $('menu-' + s).setAttribute('aria-current', s === cual ? 'true' : 'false');
+  });
+  if (actualizarUrl !== false) { try { history.replaceState(null, '', '#' + cual); } catch (e) {} }
+  if (cual === 'mensajes') abrirMensajes();
 }
-function itemHistorial(codigo, fecha, detalle, estado, valor, listo) {
+SECCIONES.forEach((s) => $('menu-' + s).addEventListener('click', () => irSeccion(s)));
+function insignia(id, n) { const e = $(id); e.textContent = n > 99 ? '99+' : String(n); e.hidden = !n; }
+function fotoProducto(foto) {
+  const c = nodo('div', 'foto-mini');
+  if (foto) {
+    const im = document.createElement('img');
+    im.src = 'img/productos/' + foto; im.alt = ''; im.loading = 'lazy';
+    im.addEventListener('error', () => { im.remove(); c.textContent = '🧶'; });
+    c.append(im);
+  } else { c.textContent = '🧶'; }
+  return c;
+}
+function mensajeEn(caja, texto, exito) { caja.textContent = texto || ''; caja.hidden = !texto; caja.classList.toggle('exito', !!exito); }
+function mensajeVacio(cont, texto) { cont.replaceChildren(nodo('p', 'texto-estado', texto)); }
+
+/* ---------- Pedidos por estado ---------- */
+const FILTROS_PEDIDO = [['todos', 'Todos'], ['esperando_pago', 'Por pagar'], ['en_preparacion', 'En preparación'], ['listo_despacho', 'Listos'], ['entregado', 'Entregados']];
+const TEXTO_ESTADO = { esperando_pago: 'Por pagar', en_preparacion: 'En preparación', listo_despacho: 'Listo para entrega', entregado: 'Entregado' };
+const CLASE_ESTADO = { esperando_pago: 'pago', en_preparacion: 'prep', listo_despacho: 'listo', entregado: 'listo' };
+let pedidosDatos = [], filtroPedidos = 'todos';
+const claveEstado = (p) => p.origen === 'tienda' ? 'entregado' : p.estado;
+function textoPago(p) {
+  if (p.origen === 'tienda' || p.estado === 'entregado') return '';
+  if (p.saldo_pagado) return 'Pago completo';
+  if (p.anticipo_pagado) return 'Anticipo pagado, falta el saldo';
+  return 'Pago pendiente';
+}
+function pintarPedidos() {
+  const tabs = $('filtros-pedidos');
+  tabs.replaceChildren();
+  FILTROS_PEDIDO.forEach(([clave, texto]) => {
+    const n = clave === 'todos' ? pedidosDatos.length : pedidosDatos.filter((p) => claveEstado(p) === clave).length;
+    const b = nodo('button', null, texto + (n ? ' (' + n + ')' : ''));
+    b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', String(clave === filtroPedidos));
+    b.addEventListener('click', () => { filtroPedidos = clave; pintarPedidos(); });
+    tabs.append(b);
+  });
+  const cont = $('lista-pedidos');
+  const lista = pedidosDatos.filter((p) => filtroPedidos === 'todos' || claveEstado(p) === filtroPedidos);
+  if (!lista.length) return mensajeVacio(cont, pedidosDatos.length ? 'No tienes pedidos en este estado.' : 'Cuando hagas un pedido, aparecerá aquí.');
+  cont.replaceChildren();
+  lista.forEach((p) => {
+    const enTienda = p.origen === 'tienda';
+    const clave = claveEstado(p);
+    const tarjeta = nodo('div', 'tarjeta-pedido');
+    tarjeta.append(fotoProducto(p.foto));
+    const info = nodo('div', 'info-pedido');
+    const l1 = nodo('div', 'linea'); l1.append(nodo('span', 'codigo', p.consecutivo || ''), nodo('span', 'fecha', fechaLarga(p.fecha)));
+    info.append(l1);
+    const detalle = (p.producto || '') + (p.cantidad && Number(p.cantidad) > 1 ? ' (x' + Number(p.cantidad) + ')' : '');
+    if (detalle) info.append(nodo('div', 'detalle', detalle));
+    const l2 = nodo('div', 'linea');
+    l2.append(nodo('span', 'etiqueta-estado ' + (CLASE_ESTADO[clave] || ''), enTienda ? 'Compra en tienda' : (TEXTO_ESTADO[p.estado] || etiqueta(p.estado))), nodo('span', 'total', pesos(p.total)));
+    info.append(l2);
+    if (p.entrega && p.estado !== 'entregado') info.append(nodo('div', 'pequeno', 'Entrega estimada: ' + fechaLarga(p.entrega)));
+    const pago = textoPago(p);
+    if (pago) info.append(nodo('div', 'pequeno', pago));
+    if (clave === 'entregado') {
+      const acc = nodo('div', 'acciones-carrito');
+      const b = nodo('button', 'boton-cuenta secundario chico', 'Escribir reseña'); b.type = 'button';
+      b.addEventListener('click', () => irSeccion('resenas'));
+      acc.append(b); info.append(acc);
+    }
+    tarjeta.append(info);
+    cont.append(tarjeta);
+  });
+}
+
+function itemHistorial(codigo, fecha, detalle, estado) {
   const it = nodo('div', 'item-historial');
   const l1 = nodo('div', 'linea'); l1.append(nodo('span', 'codigo', codigo || ''), nodo('span', 'fecha', fechaLarga(fecha)));
   it.append(l1);
   if (detalle) it.append(nodo('div', 'detalle', detalle));
-  const l2 = nodo('div', 'linea');
-  if (estado) l2.append(nodo('span', 'etiqueta-estado' + (listo ? ' listo' : ''), estado));
-  if (valor != null) l2.append(nodo('span', 'valor', valor));
-  if (l2.children.length) it.append(l2);
+  if (estado) { const l2 = nodo('div', 'linea'); l2.append(nodo('span', 'etiqueta-estado', estado)); it.append(l2); }
   return it;
 }
-
-async function cargarHistorial(sb) {
+async function cargarHistorial() {
   try {
-    const { data, error } = await sb.rpc('mis_pedidos');
+    const { data, error } = await sbPanel.rpc('mis_pedidos');
     if (error) throw error;
-    const pedidos = (data && data.pedidos) || [], solicitudes = (data && data.solicitudes) || [];
-    pintarLista('lista-pedidos', pedidos, 'Cuando hagas un pedido, aparecerá aquí.', (p) => {
-      const enTienda = p.origen === 'tienda';
-      const estado = enTienda ? 'Compra en tienda' : etiqueta(p.estado);
-      const detalle = (p.producto || '') + (p.cantidad && Number(p.cantidad) > 1 ? ' (x' + Number(p.cantidad) + ')' : '');
-      return itemHistorial(p.consecutivo, p.fecha, detalle, estado, pesos(p.total), enTienda || p.estado === 'entregado');
-    });
-    pintarLista('lista-solicitudes', solicitudes, 'Aquí verás las solicitudes de amigurumis personalizados que envíes.', (s) => {
-      const etapa = s.etapa === 'prospecto' ? 'Recibida' : etiqueta(s.etapa);
-      return itemHistorial(s.consecutivo, s.fecha, s.descripcion, etapa, null, false);
-    });
+    pedidosDatos = (data && data.pedidos) || [];
+    const solicitudes = (data && data.solicitudes) || [];
+    pintarPedidos();
+    const cont = $('lista-solicitudes');
+    if (!solicitudes.length) mensajeVacio(cont, 'Aquí verás las solicitudes de amigurumis personalizados que envíes.');
+    else { cont.replaceChildren(); solicitudes.forEach((s) => cont.append(itemHistorial(s.consecutivo, s.fecha, s.descripcion, s.etapa === 'prospecto' ? 'Recibida' : etiqueta(s.etapa)))); }
   } catch (err) {
-    ['lista-pedidos', 'lista-solicitudes'].forEach((id) => { $(id).replaceChildren(nodo('p', 'texto-estado', 'No pudimos cargar tu historial ahora. Intenta de nuevo en un momento.')); });
+    ['lista-pedidos', 'lista-solicitudes'].forEach((id) => mensajeVacio($(id), 'No pudimos cargar tu historial ahora. Intenta de nuevo en un momento.'));
   }
 }
 
+/* ---------- Mensajes ---------- */
+let mensajesDatos = [];
+async function cargarMensajes() {
+  try {
+    const { data, error } = await sbPanel.from('mensajes_cuenta').select('id, titulo, cuerpo, leido, created_at').order('created_at', { ascending: false }).limit(50);
+    if (error) throw error;
+    mensajesDatos = data || [];
+    insignia('ins-mensajes', mensajesDatos.filter((m) => !m.leido).length);
+  } catch (e) { mensajesDatos = []; }
+}
+function abrirMensajes() {
+  const cont = $('lista-mensajes');
+  if (!mensajesDatos.length) mensajeVacio(cont, 'Aquí aparecerán los avisos de tus pedidos: cuando los recibamos, los estemos tejiendo y cuando estén listos.');
+  else {
+    cont.replaceChildren();
+    mensajesDatos.forEach((m) => {
+      const c = nodo('div', 'mensaje-cuenta' + (m.leido ? '' : ' nuevo'));
+      c.append(nodo('h3', null, m.titulo));
+      if (m.cuerpo) c.append(nodo('p', null, m.cuerpo));
+      c.append(nodo('span', 'fecha', fechaLarga(m.created_at)));
+      cont.append(c);
+    });
+  }
+  if (mensajesDatos.some((m) => !m.leido)) {
+    sbPanel.rpc('marcar_mensajes_leidos').then(() => { insignia('ins-mensajes', 0); mensajesDatos.forEach((m) => { m.leido = true; }); });
+  }
+}
+
+/* ---------- Reseñas ---------- */
+let resenasDatos = { pendientes: [], hechas: [] }, subResenas = 'pendientes';
+const estrellasTxt = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+function selectorEstrellas() {
+  const caja = nodo('div', 'estrellas-sel');
+  caja.setAttribute('role', 'group'); caja.setAttribute('aria-label', 'Calificación');
+  let valor = 0; const btns = [];
+  for (let i = 1; i <= 5; i++) {
+    const b = nodo('button', 'estrella', '★'); b.type = 'button'; b.setAttribute('aria-label', i + ' de 5');
+    b.addEventListener('click', () => { valor = i; btns.forEach((x, k) => x.classList.toggle('activa', k < i)); });
+    btns.push(b); caja.append(b);
+  }
+  caja.valor = () => valor;
+  return caja;
+}
+async function cargarResenas() {
+  try {
+    const { data, error } = await sbPanel.rpc('mis_resenas');
+    if (error) throw error;
+    resenasDatos = { pendientes: (data && data.pendientes) || [], hechas: (data && data.hechas) || [] };
+    insignia('ins-resenas', resenasDatos.pendientes.length);
+    pintarResenas();
+  } catch (e) { mensajeVacio($('lista-resenas'), 'No pudimos cargar tus reseñas ahora. Intenta de nuevo en un momento.'); }
+}
+function formularioResena(item) {
+  const form = nodo('div', 'form-resena'); form.hidden = true;
+  const est = selectorEstrellas();
+  const ta = document.createElement('textarea'); ta.maxLength = 600; ta.placeholder = 'Cuéntanos cómo te fue con tu pieza';
+  ta.setAttribute('aria-label', 'Tu reseña');
+  const aviso = nodo('p', 'aviso-cuenta'); aviso.hidden = true;
+  const enviar = nodo('button', 'boton-cuenta chico', 'Enviar reseña'); enviar.type = 'button';
+  enviar.addEventListener('click', async () => {
+    const cal = est.valor(), txt = ta.value.trim();
+    if (!cal) return mensajeEn(aviso, 'Elige cuántas estrellas le das.');
+    if (txt.length < 5) return mensajeEn(aviso, 'Escribe un comentario un poco más largo.');
+    mensajeEn(aviso, ''); enviar.disabled = true;
+    const { error } = await sbPanel.rpc('crear_mi_resena', { p_clave: item.clave, p_calificacion: cal, p_comentario: txt });
+    if (error) { mensajeEn(aviso, /Ya rese/.test(error.message) ? 'Ya reseñaste esta pieza. ¡Gracias!' : 'No pudimos enviar tu reseña. Intenta de nuevo.'); enviar.disabled = false; return; }
+    mensajeEn(aviso, '¡Gracias! La publicaremos cuando el equipo la revise.', true);
+    setTimeout(cargarResenas, 1500);
+  });
+  form.append(est, ta, enviar, aviso);
+  return form;
+}
+function pintarResenas() {
+  const tabs = $('filtros-resenas');
+  tabs.replaceChildren();
+  [['pendientes', 'Por reseñar (' + resenasDatos.pendientes.length + ')'], ['hechas', 'Mis reseñas (' + resenasDatos.hechas.length + ')']].forEach(([clave, texto]) => {
+    const b = nodo('button', null, texto); b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', String(clave === subResenas));
+    b.addEventListener('click', () => { subResenas = clave; pintarResenas(); });
+    tabs.append(b);
+  });
+  const cont = $('lista-resenas');
+  const lista = resenasDatos[subResenas];
+  if (!lista.length) return mensajeVacio(cont, subResenas === 'pendientes' ? 'No tienes piezas por reseñar. Cuando recibas un pedido, aparecerá aquí.' : 'Todavía no has escrito reseñas.');
+  cont.replaceChildren();
+  lista.forEach((x) => {
+    const tarjeta = nodo('div', 'tarjeta-pedido');
+    const info = nodo('div', 'info-pedido');
+    if (subResenas === 'pendientes') {
+      tarjeta.append(fotoProducto(x.foto));
+      info.append(nodo('div', 'detalle', x.nombre), nodo('div', 'pequeno', 'Recibido el ' + fechaLarga(x.fecha)));
+      const form = formularioResena(x);
+      const b = nodo('button', 'boton-cuenta secundario chico', 'Escribir reseña'); b.type = 'button';
+      b.addEventListener('click', () => { form.hidden = !form.hidden; });
+      info.append(b, form);
+    } else {
+      tarjeta.append(fotoProducto(null));
+      info.append(nodo('div', 'detalle', x.nombre || 'Pieza'), nodo('div', 'estrellas-fijas', estrellasTxt(Number(x.calificacion) || 0)), nodo('div', null, x.comentario));
+      const estado = x.estado === 'aprobada' ? 'Publicada' : x.estado === 'pendiente' ? 'En revisión' : 'No publicada';
+      const l = nodo('div', 'linea'); l.append(nodo('span', 'etiqueta-estado' + (x.estado === 'aprobada' ? ' listo' : ''), estado), nodo('span', 'fecha', fechaLarga(x.fecha)));
+      info.append(l);
+    }
+    tarjeta.append(info);
+    cont.append(tarjeta);
+  });
+}
+
+/* ---------- Favoritos ---------- */
+async function cargarFavoritos() {
+  const cont = $('lista-favoritos');
+  try {
+    const [favs, prods] = await Promise.all([
+      sbPanel.from('favoritos_web').select('producto_id, created_at').order('created_at', { ascending: false }),
+      sbPanel.rpc('obtener_tienda_web')
+    ]);
+    if (favs.error || prods.error) throw (favs.error || prods.error);
+    const mapa = new Map((prods.data || []).map((p) => [p.id, p]));
+    const lista = (favs.data || []).map((f) => mapa.get(f.producto_id)).filter(Boolean);
+    if (!lista.length) return mensajeVacio(cont, 'Toca el corazón 💗 de un producto en la tienda y lo guardamos aquí.');
+    const rej = nodo('div', 'rejilla-fav');
+    lista.forEach((p) => {
+      const t = nodo('div', 'tarjeta-fav');
+      t.append(fotoProducto(p.foto_url), nodo('h3', null, p.nombre), nodo('div', 'precio', pesos(p.precio)));
+      const ver = nodo('a', 'boton-cuenta secundario chico', 'Ver en la tienda'); ver.href = 'tienda.html?buscar=' + encodeURIComponent(p.nombre); ver.style.textDecoration = 'none'; ver.style.textAlign = 'center';
+      const quitar = nodo('button', 'boton-cuenta secundario chico', 'Quitar'); quitar.type = 'button';
+      quitar.addEventListener('click', async () => { quitar.disabled = true; await sbPanel.from('favoritos_web').delete().eq('producto_id', p.id); cargarFavoritos(); });
+      t.append(ver, quitar);
+      rej.append(t);
+    });
+    cont.replaceChildren(rej);
+  } catch (e) { mensajeVacio(cont, 'No pudimos cargar tus favoritos ahora. Intenta de nuevo en un momento.'); }
+}
+
+/* ---------- Direcciones ---------- */
+let direccionesDatos = [], editandoDireccion = null;
+async function cargarDirecciones() {
+  try {
+    const { data, error } = await sbPanel.from('direcciones_web').select('*').order('es_principal', { ascending: false }).order('created_at', { ascending: false });
+    if (error) throw error;
+    direccionesDatos = data || [];
+    pintarDirecciones();
+  } catch (e) { mensajeVacio($('lista-direcciones'), 'No pudimos cargar tus direcciones ahora. Intenta de nuevo en un momento.'); }
+}
+function pintarDirecciones() {
+  const cont = $('lista-direcciones');
+  if (!direccionesDatos.length) return mensajeVacio(cont, 'Guarda tus direcciones y no tendrás que escribirlas cada vez que pidas.');
+  cont.replaceChildren();
+  direccionesDatos.forEach((d) => {
+    const t = nodo('div', 'tarjeta-dir');
+    const titulo = nodo('div', 'alias', d.alias);
+    if (d.es_principal) titulo.append(nodo('span', 'etiqueta-principal', 'Principal'));
+    t.append(titulo);
+    if (d.nombre_receptor) t.append(nodo('p', null, d.nombre_receptor + (d.telefono ? ' · ' + d.telefono : '')));
+    else if (d.telefono) t.append(nodo('p', null, d.telefono));
+    t.append(nodo('p', null, d.direccion + ', ' + d.ciudad));
+    if (d.indicaciones) t.append(nodo('p', 'pequeno', d.indicaciones));
+    const acc = nodo('div', 'acciones-carrito');
+    const ed = nodo('button', 'boton-cuenta secundario chico', 'Editar'); ed.type = 'button'; ed.addEventListener('click', () => abrirFormDireccion(d));
+    const el = nodo('button', 'boton-cuenta secundario chico', 'Eliminar'); el.type = 'button';
+    el.addEventListener('click', async () => { if (!confirm('¿Eliminar esta dirección?')) return; await sbPanel.from('direcciones_web').delete().eq('id', d.id); cargarDirecciones(); });
+    acc.append(ed, el);
+    if (!d.es_principal) {
+      const pr = nodo('button', 'boton-cuenta secundario chico', 'Hacer principal'); pr.type = 'button';
+      pr.addEventListener('click', async () => {
+        await sbPanel.from('direcciones_web').update({ es_principal: false }).eq('user_id', usuarioPanel);
+        await sbPanel.from('direcciones_web').update({ es_principal: true }).eq('id', d.id);
+        cargarDirecciones();
+      });
+      acc.append(pr);
+    }
+    t.append(acc);
+    cont.append(t);
+  });
+}
+function abrirFormDireccion(d) {
+  editandoDireccion = d ? d.id : null;
+  $('dir-alias').value = d ? d.alias : (direccionesDatos.length ? '' : 'Casa');
+  $('dir-nombre').value = d ? (d.nombre_receptor || '') : '';
+  $('dir-telefono').value = d ? (d.telefono || '') : ($('d-telefono').value || '');
+  $('dir-ciudad').value = d ? d.ciudad : ($('d-ciudad').value || '');
+  $('dir-direccion').value = d ? d.direccion : '';
+  $('dir-indicaciones').value = d ? (d.indicaciones || '') : '';
+  $('dir-principal').checked = d ? !!d.es_principal : !direccionesDatos.length;
+  mensajeEn($('aviso-direccion'), '');
+  $('form-direccion').hidden = false;
+  $('boton-nueva-direccion').hidden = true;
+  $('dir-alias').focus();
+}
+function cerrarFormDireccion() { $('form-direccion').hidden = true; $('boton-nueva-direccion').hidden = false; editandoDireccion = null; }
+$('boton-nueva-direccion').addEventListener('click', () => abrirFormDireccion(null));
+$('boton-cancelar-direccion').addEventListener('click', cerrarFormDireccion);
+$('form-direccion').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const datos = {
+    alias: $('dir-alias').value.trim(), nombre_receptor: $('dir-nombre').value.trim() || null, telefono: $('dir-telefono').value.trim() || null,
+    ciudad: $('dir-ciudad').value.trim(), direccion: $('dir-direccion').value.trim(), indicaciones: $('dir-indicaciones').value.trim() || null,
+    es_principal: $('dir-principal').checked
+  };
+  if (!datos.alias) return mensajeEn($('aviso-direccion'), 'Ponle un nombre a la dirección, por ejemplo "Casa".');
+  if (datos.ciudad.length < 2) return mensajeEn($('aviso-direccion'), 'Escribe la ciudad.');
+  if (datos.direccion.length < 4) return mensajeEn($('aviso-direccion'), 'Escribe la dirección completa.');
+  const boton = $('boton-guardar-direccion'); boton.disabled = true;
+  try {
+    if (datos.es_principal) await sbPanel.from('direcciones_web').update({ es_principal: false }).eq('user_id', usuarioPanel);
+    const res = editandoDireccion
+      ? await sbPanel.from('direcciones_web').update(datos).eq('id', editandoDireccion)
+      : await sbPanel.from('direcciones_web').insert(Object.assign({ user_id: usuarioPanel }, datos));
+    if (res.error) throw res.error;
+    cerrarFormDireccion();
+    cargarDirecciones();
+  } catch (err) {
+    mensajeEn($('aviso-direccion'), /hasta 10/.test(err.message || '') ? 'Puedes guardar hasta 10 direcciones.' : 'No pudimos guardar la dirección. Intenta de nuevo.');
+  }
+  boton.disabled = false;
+});
+
 async function abrirPanel(sb, session, perfil) {
+  sbPanel = sb; usuarioPanel = session.user.id;
   $('titulo-cuenta').textContent = 'Hola, ' + primerNombre(perfil.nombre);
-  $('sub-cuenta').textContent = 'Aquí están tu carrito, tus pedidos y tus datos.';
+  $('sub-cuenta').textContent = 'Aquí están tus pedidos, mensajes, reseñas, favoritos y datos.';
   $('panel-correo').textContent = session.user.email || perfil.email || '';
   $('d-nombre').value = perfil.nombre || '';
   $('d-telefono').value = perfil.telefono || '';
   $('d-ciudad').value = perfil.ciudad || '';
   $('d-correo').value = session.user.email || perfil.email || '';
   mostrar('panel');
+  irSeccion((location.hash || '').slice(1), false);
   pintarCarrito();
   document.addEventListener('cuenta:carrito-listo', pintarCarrito);
   marcarEncabezado();
   iniciarSincronizacion();
-  cargarHistorial(sb);
+  cargarHistorial();
+  cargarResenas();
+  cargarFavoritos();
+  cargarDirecciones();
+  cargarMensajes();
 }
 
 $('panel-datos').addEventListener('submit', async (e) => {
