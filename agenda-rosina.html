@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agenda de Rosina para tejedoras — Lana Rosa Crochet</title>
-<meta name="description" content="Agenda gratuita para tejedoras: ficha de proyecto, planeador semanal, control de pedidos, inventario de lanas, agujas, lista de compras, patrones, fechas especiales, clientas, ventas, ferias y diario de tejido. Llénala en línea o imprímela. Material de Rosina, de Lana Rosa Crochet.">
+<meta name="description" content="Agenda gratuita con cuenta para tejedoras: ficha de proyecto, planeador semanal, control de pedidos, inventario de lanas, agujas, lista de compras, patrones, fechas especiales, clientas, ventas, ferias y diario de tejido. Llénala en línea o imprímela. Material de Rosina, de Lana Rosa Crochet.">
 <link rel="canonical" href="https://lanarosacrochet.com/agenda-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -553,6 +553,22 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .opciones-imp { display: none; }
 @media print { body.imprimir-una .hojas-contenido .hoja-agenda:not(.abierta) { display: none !important; } body.imprimir-una .hoja-agenda { page-break-after: auto; } }
 body.en-blanco .totales-ventas strong { visibility: hidden; }
+/* Agenda solo para quienes tienen cuenta (30-sep-2026) */
+.zona-agenda { position: relative; }
+.candado-agenda { display: none; }
+.zona-agenda.bloqueada .contenido-agenda { max-height: 640px; overflow: hidden; filter: blur(4px); pointer-events: none; user-select: none; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+.zona-agenda.bloqueada .candado-agenda { display: block; position: absolute; top: 90px; left: 50%; transform: translateX(-50%); width: min(560px, calc(100% - 24px)); background: var(--blanco); border-radius: 22px; box-shadow: 0 12px 40px rgba(0,0,0,0.22); padding: 26px 24px; text-align: center; z-index: 6; }
+.candado-agenda h2 { font-size: 1.35rem; margin: 0 0 10px; }
+.candado-agenda p { margin: 0 0 16px; color: var(--tinta-suave); }
+.candado-agenda .candado-icono { font-size: 2.2rem; margin: 0 0 6px; }
+@media (max-width: 600px) { .zona-agenda.bloqueada .candado-agenda { top: 40px; padding: 20px 16px; } .zona-agenda.bloqueada .contenido-agenda { max-height: 560px; } }
+@media print { .zona-agenda.bloqueada { display: none !important; } }
+/* Columnas de casillas (Comprado, Ya lo tejí, Ya lo domino, Listo): angostas */
+@media screen and (min-width: 701px) {
+  .tabla-agenda th.col-check, .tabla-agenda td.celda-check { width: 96px; min-width: 96px; max-width: 96px; padding-left: 6px; padding-right: 6px; text-align: center !important; }
+  .tabla-agenda th.col-check { white-space: nowrap; }
+}
+@media print { .tabla-agenda th.col-check { width: 11% !important; } }
 /* Agenda en celular: cada renglón es una tarjeta, sin columna fija (28-sep-2026) */
 .tabla-agenda th:first-child, .tabla-agenda td:first-child { position: static; box-shadow: none; min-width: 0; max-width: none; }
 .tabla-agenda thead th { position: static; }
@@ -579,6 +595,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
   .tabla-agenda td select { width: 100%; }
   .tabla-agenda td input { font-size: 1rem; }
 }
+@media screen and (max-width: 700px) { .tabla-agenda td.celda-check { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; } .tabla-agenda td.celda-check::before { margin-bottom: 0; } }
 @media print { .tabla-agenda tr { break-inside: avoid; } }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
@@ -692,7 +709,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main>
   <section class="contenedor intro-rincon intro-agenda">
     <p class="volver-rincon"><a href="recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
-    <p class="eslogan">Material gratuito · Rincón de Rosina</p>
+    <p class="eslogan">Gratis con tu cuenta · Rincón de Rosina</p>
     <h1>Agenda de Rosina</h1>
     <div class="portada-agenda">
       <label for="ag-duena">Esta agenda es de</label>
@@ -713,6 +730,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="seccion-suave seccion-lila" id="agenda">
     <div class="contenedor">
+      <div class="zona-agenda" id="zona-agenda">
+      <div class="contenido-agenda" id="contenido-agenda">
       <div class="barra-agenda no-imprimir" role="toolbar" aria-label="Herramientas de la agenda">
         <div class="buscar-agenda">
           <span aria-hidden="true">🔍</span>
@@ -1041,6 +1060,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       </div>
+      </div>
+      <div class="candado-agenda no-imprimir" role="region" aria-label="Agenda solo para quienes tienen cuenta">
+        <p class="candado-icono" aria-hidden="true">🔒</p>
+        <h2>La agenda de Rosina es gratis con tu cuenta</h2>
+        <p>Crea tu cuenta gratis con tu nombre, WhatsApp y correo, y usa las 17 hojas: proyectos, pedidos, lanas, ventas y más. Entras con un código que te llega al correo, sin contraseñas.</p>
+        <div class="acciones" style="justify-content:center;">
+          <a class="boton-primario" href="cuenta.html?volver=agenda-rosina.html">Crear mi cuenta gratis</a>
+          <a class="boton-secundario" href="cuenta.html?entrar&amp;volver=agenda-rosina.html">Iniciar sesión</a>
+        </div>
+      </div>
+      </div>
     </div>
   </section>
 
@@ -1354,6 +1384,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var html = '';
     for (var r = 1; r <= t.n; r++) html += htmlFila(t, r);
     cuerpo.insertAdjacentHTML('beforeend', html);
+    cols.forEach(function(c, i) { if (c.check) { var th = cuerpo.closest('table').querySelectorAll('thead th')[i]; if (th) th.classList.add('col-check'); } });
     var caja = cuerpo.closest('.tabla-scroll');
     caja.insertAdjacentHTML('afterend', '<p class="no-imprimir agregar-renglon-wrap"><button type="button" class="boton-secundario boton-chico agregar-renglon" data-tabla="' + idTabla + '">➕ Agregar renglón</button></p>');
   }
@@ -1669,6 +1700,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
+<script>
+// La agenda es gratis pero solo para quienes tienen cuenta (30-sep-2026)
+(function () {
+  var tiene = false;
+  try { tiene = !!localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token'); } catch (e) {}
+  if (tiene) return;
+  var z = document.getElementById('zona-agenda'), c = document.getElementById('contenido-agenda');
+  if (!z || !c) return;
+  z.classList.add('bloqueada');
+  c.setAttribute('inert', '');
+  c.setAttribute('aria-hidden', 'true');
+})();
+</script>
 <script type="module" src="js/cuenta.js"></script>
 </body>
 </html>
