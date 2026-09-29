@@ -1184,6 +1184,7 @@ a { color: var(--rosa-principal); }
 .ficha-merceria { font-size: 0.78rem; color: var(--tinta-suave); margin: 2px 0 8px; }
 .proximamente-merceria { background: var(--lila-suave); border-radius: 14px; padding: 20px; color: var(--tinta-suave); max-width: 480px; }
 .categoria-seccion { padding: 20px 0 48px; scroll-margin-top: 130px; }
+@media (max-width: 700px) { .categoria-seccion { scroll-margin-top: 180px; } }
 .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
 @media (max-width: 700px) { .grid-productos { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 22px; } }
 .producto-card { background: var(--blanco); border-radius: var(--radio-suave); overflow: hidden; box-shadow: var(--sombra-suave); display: flex; flex-direction: column; }
@@ -1828,6 +1829,11 @@ function crearTarjeta(item) {
     });
     window.TIENDA_PRODUCTOS_LISTOS = true;
     window.dispatchEvent(new Event('tienda:productos-listos'));
+    // Si se llegó con #peluches, #llaveros, etc., ir a esa categoría ahora que los productos ya se cargaron
+    var destino = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (destino && destino.classList.contains('categoria-seccion')) {
+      requestAnimationFrame(function () { destino.scrollIntoView({ block: 'start' }); });
+    }
   } catch (e) {
     console.error(e);
     Object.keys(MAPA_GRID).forEach(function(cat) {
