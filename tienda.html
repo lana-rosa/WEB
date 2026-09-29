@@ -355,6 +355,20 @@ button.boton-primario:hover { filter: brightness(0.95); }
 /* Etiqueta "material gratuito" del menú */
 .etiqueta-gratis { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: #E6E7FD; color: #4F53B8; font-size: 0.68rem; font-weight: 700; line-height: 1.4; vertical-align: 2px; white-space: nowrap; }
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
+
+/* Categorías con foto, como en el Inicio (29-sep-2026) */
+.categorias-visual { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 14px; margin: 24px 0 18px; }
+.categorias-visual a { display: block; text-decoration: none; color: var(--tinta); text-align: center; }
+.categorias-visual img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.categorias-visual a:hover img { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(58,42,46,0.12); }
+.categorias-visual span { display: block; margin-top: 8px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 0.95rem; }
+.categorias-visual .cat-personaliza span { color: var(--rosa-principal); }
+@media (max-width: 900px) { .categorias-visual { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-left: -24px; margin-right: -24px; padding: 0 24px 8px; scroll-padding-left: 24px; scrollbar-width: thin; } .categorias-visual a { flex: 0 0 28%; scroll-snap-align: start; } }
+@media (max-width: 520px) { .categorias-visual a { flex-basis: 36%; } .categorias-visual span { font-size: 0.88rem; } }
+.confianza-tienda { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 0; }
+.confianza-tienda li { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; color: var(--tinta); padding: 0 16px; }
+.confianza-tienda li:first-child { padding-left: 0; }
+.confianza-tienda li + li { border-left: 1px solid var(--rosa-medio); }
 </style>
 </head>
 <body>
@@ -413,11 +427,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="encabezado-pagina" style="padding-top:0;">
       <p class="eslogan">Tienda Lana Rosa</p>
       <h1>Tejidos a mano, listos para regalar</h1>
-      <p>Amigurumis, peluches, llaveros y detalles que ya tejimos para ti.</p>
-      <p style="font-weight:600; color:var(--rosa-principal);">🚚 Envíos a toda Colombia.</p>
+      <ul class="confianza-tienda" aria-label="Por qué Lana Rosa">
+        <li>Hecho a mano</li>
+        <li>Envíos a toda Colombia</li>
+      </ul>
     </div>
 
   </div>
+
+  <nav class="categorias-visual" aria-label="Categorías de la tienda">
+    <a href="#amigurumis"><img src="img/tienda-categorias/amigurumis.webp" alt="Amigurumi de ovejita con vestido rosado" width="320" height="400" decoding="async"><span>Amigurumis</span></a>
+    <a href="#peluches"><img src="img/tienda-categorias/peluches.webp" alt="Peluche de oso café" width="320" height="400" decoding="async"><span>Peluches</span></a>
+    <a href="#llaveros"><img src="img/tienda-categorias/llaveros.webp" alt="Llavero de abeja" width="320" height="400" decoding="async"><span>Llaveros</span></a>
+    <a href="#macetas"><img src="img/tienda-categorias/macetas.webp" alt="Maceta con margarita" width="320" height="400" decoding="async"><span>Macetas</span></a>
+    <a href="#flores"><img src="img/tienda-categorias/flores.webp" alt="Rosa tejida" width="320" height="400" decoding="async"><span>Flores</span></a>
+    <a href="#separadores-de-libros"><img src="img/tienda-categorias/separadores-de-libros.webp" alt="Separador de libros de gato" width="320" height="400" decoding="async"><span>Separadores</span></a>
+    <a href="#bolsos"><img src="img/tienda-categorias/bolsos.webp" alt="Bolso tejido" width="320" height="400" decoding="async"><span>Bolsos</span></a>
+    <a href="personaliza.html" class="cat-personaliza"><img src="img/tienda-categorias/personalizados.webp" alt="Amigurumi personalizado de un hombre con camiseta polo" width="320" height="400" decoding="async"><span>Personalizados</span></a>
+  </nav>
 
   <div class="barra-controles-tienda">
     <div class="selector-categorias">
