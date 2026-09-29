@@ -353,13 +353,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="separador-o"><span>o con tu correo</span></p>
       <p class="aviso-cuenta" id="aviso-google" role="alert" hidden></p>
     </div>
-    <div class="pestanas-cuenta" role="tablist" aria-label="Crear cuenta o entrar">
+    <div class="pestanas-cuenta" role="tablist" aria-label="Crear cuenta o iniciar sesión">
       <button type="button" role="tab" id="tab-crear" aria-selected="true" aria-controls="panel-crear">Crear mi cuenta</button>
-      <button type="button" role="tab" id="tab-entrar" aria-selected="false" aria-controls="panel-entrar">Ya tengo cuenta</button>
+      <button type="button" role="tab" id="tab-entrar" aria-selected="false" aria-controls="panel-entrar">Iniciar sesión</button>
     </div>
 
     <form id="panel-crear" class="tarjeta-cuenta" role="tabpanel" aria-labelledby="tab-crear" novalidate>
-      <p class="intro-form">Sin contraseñas: te enviamos un enlace a tu correo y con un clic entras.</p>
+      <p class="intro-form">Sin contraseñas: te enviamos un código a tu correo y con él entras.</p>
       <div class="fila-cuenta">
         <div class="campo-cuenta"><label for="c-nombre">Tu nombre*</label><input type="text" id="c-nombre" autocomplete="name" required></div>
         <div class="campo-cuenta"><label for="c-telefono">Teléfono / WhatsApp*</label><input type="tel" id="c-telefono" autocomplete="tel" placeholder="Ej: 3001234567" required></div>
@@ -374,9 +374,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </form>
 
     <form id="panel-entrar" class="tarjeta-cuenta" role="tabpanel" aria-labelledby="tab-entrar" hidden novalidate>
-      <p class="intro-form">Escribe el correo con el que te registraste y te enviamos un enlace para entrar.</p>
+      <p class="intro-form">Escribe el correo con el que te registraste y te enviamos un código para entrar.</p>
       <div class="campo-cuenta"><label for="e-correo">Correo*</label><input type="email" id="e-correo" autocomplete="email" required></div>
-      <button type="submit" class="boton-cuenta" id="boton-entrar">Enviarme el enlace</button>
+      <button type="submit" class="boton-cuenta" id="boton-entrar">Enviarme el código</button>
       <p class="aviso-cuenta" id="aviso-entrar" role="alert" hidden></p>
     </form>
 
@@ -817,7 +817,7 @@ $('panel-entrar').addEventListener('submit', async (e) => {
   } catch (err) {
     aviso('aviso-entrar', traducirError(err));
   }
-  boton.disabled = false; boton.textContent = 'Enviarme el enlace';
+  boton.disabled = false; boton.textContent = 'Enviarme el código';
 });
 $('panel-codigo').addEventListener('submit', async (e) => {
   e.preventDefault();
