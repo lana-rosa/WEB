@@ -1190,6 +1190,8 @@ a { color: var(--rosa-principal); }
 .producto-card { background: var(--blanco); border-radius: var(--radio-suave); overflow: hidden; box-shadow: var(--sombra-suave); display: flex; flex-direction: column; }
 .producto-foto { background: var(--rosa-suave); aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; padding: 0; overflow: hidden; position: relative; }
 .producto-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.producto-foto.foto-ancha::before { content: ''; position: absolute; inset: -24px; background: var(--foto) center / cover no-repeat; filter: blur(18px); opacity: 0.75; }
+.producto-foto.foto-ancha img { position: relative; z-index: 1; object-fit: contain; }
 .producto-foto .foto-marcador { font-size: 0.78rem; color: var(--rosa-principal); text-align: center; padding: 12px; align-items: center; justify-content: center; height: 100%; }
 .producto-info { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1; }
 .producto-info h3 { font-size: 1.08rem; line-height: 1.3; margin: 0; min-height: 2.6em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -1720,6 +1722,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
 <script>
 var extensionesProducto = ['.jpg', '.jpg.png', '.jpg.jpg', '.png', '.jpeg'];
+// Fotos horizontales: se ven completas (sin cortar los lados) sobre un fondo difuminado de la misma foto
+function ajustarFoto(img) {
+  if (!img.naturalWidth || img.naturalWidth <= img.naturalHeight * 1.1) return;
+  var caja = img.parentNode;
+  caja.style.setProperty('--foto', 'url("' + img.currentSrc + '")');
+  caja.classList.add('foto-ancha');
+}
 function manejarErrorFoto(img) {
   var intento = parseInt(img.dataset.intento || '0', 10) + 1;
   if (intento < extensionesProducto.length) {
@@ -1782,7 +1791,7 @@ function crearTarjeta(item) {
   articulo.dataset.precio = item.precio;
   articulo.innerHTML =
     '<div class="producto-foto">' +
-      '<img src="img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + item.id + '" data-intento="0" onerror="manejarErrorFoto(this)">' +
+      '<img src="img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + item.id + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
       '<span class="foto-marcador" style="display:none;">[ Foto de ' + item.nombre + ' ]</span>' +
     '</div>' +
     '<div class="producto-info">' +
