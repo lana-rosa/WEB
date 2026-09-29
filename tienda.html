@@ -357,14 +357,20 @@ button.boton-primario:hover { filter: brightness(0.95); }
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
 
 /* Categorías con foto, como en el Inicio (29-sep-2026) */
-.categorias-visual { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 14px; margin: 24px 0 18px; }
+.categorias-visual { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 28px 0 8px; }
 .categorias-visual a { display: block; text-decoration: none; color: var(--tinta); text-align: center; }
-.categorias-visual img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.categorias-visual a:hover img { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(58,42,46,0.12); }
-.categorias-visual span { display: block; margin-top: 8px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 0.95rem; }
+.categorias-visual img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; border-radius: 18px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.categorias-visual a:hover img { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(58,42,46,0.12); }
+.categorias-visual span { display: block; margin-top: 12px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1.1rem; }
 .categorias-visual .cat-personaliza span { color: var(--rosa-principal); }
-@media (max-width: 900px) { .categorias-visual { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-left: -24px; margin-right: -24px; padding: 0 24px 8px; scroll-padding-left: 24px; scrollbar-width: thin; } .categorias-visual a { flex: 0 0 28%; scroll-snap-align: start; } }
-@media (max-width: 520px) { .categorias-visual a { flex-basis: 36%; } .categorias-visual span { font-size: 0.88rem; } }
+.ver-mas-categorias { display: none; margin: 6px auto 18px; background: transparent; color: var(--rosa-principal); border: 2px solid var(--rosa-principal); border-radius: 999px; padding: 12px 28px; font-family: inherit; font-size: 0.95rem; font-weight: 700; cursor: pointer; }
+.ver-mas-categorias:hover { background: var(--rosa-suave); }
+@media (max-width: 700px) {
+  .categorias-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
+  .categorias-visual span { font-size: 1rem; margin-top: 8px; }
+  .categorias-visual:not(.abiertas) a:nth-child(n+5) { display: none; }
+  .ver-mas-categorias { display: block; }
+}
 .confianza-tienda { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 0; }
 .confianza-tienda li { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; color: var(--tinta); padding: 0 16px; }
 .confianza-tienda li:first-child { padding-left: 0; }
@@ -435,16 +441,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </div>
 
-  <nav class="categorias-visual" aria-label="Categorías de la tienda">
-    <a href="#amigurumis"><img src="img/tienda-categorias/amigurumis.webp" alt="Amigurumi de ovejita con vestido rosado" width="320" height="400" decoding="async"><span>Amigurumis</span></a>
-    <a href="#peluches"><img src="img/tienda-categorias/peluches.webp" alt="Peluche de oso café" width="320" height="400" decoding="async"><span>Peluches</span></a>
-    <a href="#llaveros"><img src="img/tienda-categorias/llaveros.webp" alt="Llavero de abeja" width="320" height="400" decoding="async"><span>Llaveros</span></a>
-    <a href="#macetas"><img src="img/tienda-categorias/macetas.webp" alt="Maceta con margarita" width="320" height="400" decoding="async"><span>Macetas</span></a>
-    <a href="#flores"><img src="img/tienda-categorias/flores.webp" alt="Rosa tejida" width="320" height="400" decoding="async"><span>Flores</span></a>
-    <a href="#separadores-de-libros"><img src="img/tienda-categorias/separadores-de-libros.webp" alt="Separador de libros de gato" width="320" height="400" decoding="async"><span>Separadores</span></a>
-    <a href="#bolsos"><img src="img/tienda-categorias/bolsos.webp" alt="Bolso tejido" width="320" height="400" decoding="async"><span>Bolsos</span></a>
-    <a href="personaliza.html" class="cat-personaliza"><img src="img/tienda-categorias/personalizados.webp" alt="Amigurumi personalizado de un hombre con camiseta polo" width="320" height="400" decoding="async"><span>Personalizados</span></a>
+  <nav class="categorias-visual" id="categorias-visual" aria-label="Categorías de la tienda">
+    <a href="#amigurumis"><img src="img/tienda-categorias/amigurumis.webp?v=2" alt="Amigurumi de ovejita con vestido rosado" width="560" height="700" decoding="async"><span>Amigurumis</span></a>
+    <a href="#peluches"><img src="img/tienda-categorias/peluches.webp?v=2" alt="Peluche de oso café" width="560" height="700" decoding="async"><span>Peluches</span></a>
+    <a href="#llaveros"><img src="img/tienda-categorias/llaveros.webp?v=2" alt="Llavero de abeja" width="560" height="700" decoding="async"><span>Llaveros</span></a>
+    <a href="#macetas"><img src="img/tienda-categorias/macetas.webp?v=2" alt="Maceta con margarita" width="560" height="700" decoding="async"><span>Macetas</span></a>
+    <a href="#flores"><img src="img/tienda-categorias/flores.webp?v=2" alt="Rosa tejida" width="560" height="700" decoding="async"><span>Flores</span></a>
+    <a href="#separadores-de-libros"><img src="img/tienda-categorias/separadores-de-libros.webp?v=2" alt="Separador de libros de gato" width="560" height="700" decoding="async"><span>Separadores</span></a>
+    <a href="#bolsos"><img src="img/tienda-categorias/bolsos.webp?v=2" alt="Bolso tejido" width="560" height="700" decoding="async"><span>Bolsos</span></a>
+    <a href="personaliza.html" class="cat-personaliza"><img src="img/tienda-categorias/personalizados.webp?v=2" alt="Amigurumi personalizado de un hombre con camiseta polo" width="560" height="700" decoding="async"><span>Personalizados</span></a>
   </nav>
+  <button type="button" class="boton-secundario ver-mas-categorias" id="ver-mas-categorias" aria-expanded="false" aria-controls="categorias-visual">Ver más categorías</button>
 
   <div class="barra-controles-tienda">
     <div class="selector-categorias">
@@ -1587,6 +1594,16 @@ formResena.addEventListener('submit', async (evento) => {
     document.head.appendChild(s);
   }
   if (window.TIENDA_PRODUCTOS_LISTOS) construir(); else window.addEventListener('tienda:productos-listos', construir);
+})();
+</script>
+<script>
+(function () {
+  var b = document.getElementById('ver-mas-categorias'), n = document.getElementById('categorias-visual');
+  if (b && n) b.addEventListener('click', function () {
+    var abiertas = n.classList.toggle('abiertas');
+    b.setAttribute('aria-expanded', abiertas);
+    b.textContent = abiertas ? 'Ver menos categorías' : 'Ver más categorías';
+  });
 })();
 </script>
 </body>
