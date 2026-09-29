@@ -8,8 +8,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 ## 🔴 Urgente (lo hace Sara)
 
 - [x] **Cuentas de clientes activas (29-sep-2026).** Correo con código y enlace (SMTP de Resend, plantillas en español) y entrada con Google funcionando. Pasos y plantillas en `herramientas/cuentas-clientes/`.
-  - [ ] Opcional: enviar la verificación de marca de la app en Google Auth Platform (Centro de verificación) para que salga con nombre y logo verificados.
-  - [ ] Revisar en el ERP (tabla `terceros`) los clientes creados en las pruebas y borrar los que sobren.
+  - [x] Verificación de marca de la app enviada en Google Auth Platform (Centro de verificación); Google avisa por correo cuando la apruebe.
+  - [x] Clientes de prueba revisados (29-sep-2026): no quedó ninguno; la única cuenta es la de Jennifer, vinculada a su cliente ya existente.
 - [ ] **Subir los productos de la mercería al ERP (Supabase) con sus existencias.**
   Hoy los 33 productos tienen existencias en 0. Mientras no haya ninguno disponible, la mercería muestra el aviso "Muy pronto" y oculta los productos agotados. Cuando haya al menos un producto con existencias, el aviso desaparece solo y el catálogo se muestra, sin cambiar código.
   - [ ] **Cuando la mercería ya tenga productos:** en `rosina.html` ("¿Qué hace Rosina?" → "En insumos"), cambiar el enlace "Ir a la tienda →" por "Ir a la mercería →" (`merceria.html`). Sara lo aprobó el 26-sep-2026.
