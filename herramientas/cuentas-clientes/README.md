@@ -25,3 +25,10 @@ Las plantillas usan `{{ .ConfirmationURL }}` (no borrarlo).
 2. En "URI de redireccionamiento autorizados" pegar la URL de callback que muestra Supabase en Authentication → Sign In / Providers → Google (termina en `/auth/v1/callback`).
 3. Copiar el Client ID y el Client Secret en Supabase (Providers → Google) y activar. El secreto solo se pega en Supabase, nunca en el chat.
 4. En `cuenta.html`, cambiar `const GOOGLE_ACTIVO = false;` por `true` para mostrar el botón.
+
+## Secciones del panel (parte 2)
+`migracion-2-secciones.sql` agrega: `favoritos_web`, `direcciones_web` (máx. 10 por clienta), `mensajes_cuenta`, la columna `user_id` en `resenas_web`, y las funciones `mis_resenas`, `crear_mi_resena`, `marcar_mensajes_leidos`. `mis_pedidos` ahora trae la foto y el estado de pago.
+- **Pedidos por estado:** usa `pedidos_canal_venta.estado` (esperando_pago → Por pagar, en_preparacion, listo_despacho → Listos, entregado). Las compras de tienda (`ventas_pos`) salen como "Compra en tienda".
+- **Mensajes:** un trigger en `pedidos_canal_venta` crea un aviso cuando el equipo registra un pedido o cambia su estado (solo si la clienta tiene cuenta vinculada).
+- **Reseñas:** la clienta solo puede reseñar piezas de pedidos entregados o compras en tienda. Quedan `pendiente` y el equipo las aprueba en el ERP (llega el correo de aviso de siempre). En público se muestra "Nombre A.".
+- **Favoritos:** corazón en las tarjetas y la ficha de la tienda (requiere sesión).

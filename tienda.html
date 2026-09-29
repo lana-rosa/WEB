@@ -175,6 +175,13 @@ a { color: var(--rosa-principal); }
 .carrito-total span:last-child { color: var(--rosa-principal); }
 
 .producto-foto { cursor: pointer; }
+.boton-favorito { position: absolute; top: 8px; right: 8px; z-index: 3; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(255,255,255,0.92); box-shadow: 0 2px 8px rgba(0,0,0,0.18); font-size: 1.15rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.boton-favorito:hover { transform: scale(1.08); }
+.boton-favorito-modal { position: static; width: auto; height: auto; border-radius: 999px; padding: 8px 16px; font: inherit; font-weight: 700; font-size: 0.9rem; color: var(--rosa-principal); border: 2px solid var(--rosa-medio); background: var(--blanco); box-shadow: none; margin: 4px 0 12px; }
+.boton-favorito-modal.activo { background: var(--rosa-suave); }
+.aviso-favorito { position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%); z-index: 2000; background: #45454A; color: #fff; padding: 12px 18px; border-radius: 16px; max-width: calc(100vw - 32px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); font-size: 0.92rem; }
+.aviso-favorito a { color: #F8C3DC; font-weight: 700; margin-left: 6px; }
+
 
 .overlay-modal-producto { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1001; display: none; align-items: center; justify-content: center; padding: 20px; }
 .overlay-modal-producto.abierto { display: flex; }
@@ -780,6 +787,7 @@ function crearTarjeta(item) {
     '<div class="producto-foto">' +
       '<img src="img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + item.id + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
       '<span class="foto-marcador" style="display:none;">[ Foto de ' + item.nombre + ' ]</span>' +
+      '<button type="button" class="boton-favorito" data-id="' + item.id + '" aria-pressed="false" aria-label="Guardar en favoritos">🤍</button>' +
     '</div>' +
     '<div class="producto-info">' +
       '<h3>' + item.nombre + '</h3>' +
@@ -788,8 +796,78 @@ function crearTarjeta(item) {
       '<a class="boton-pedir" href="' + urlWhatsapp + '" target="_blank" rel="noopener">Pedir por WhatsApp</a>' +
       '<button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>' +
     '</div>';
+  articulo.querySelector('.boton-favorito').addEventListener('click', function (e) {
+    e.stopPropagation();
+    alternarFavorito(item.id);
+  });
   return articulo;
 }
+
+/* ---------- Favoritos (solo con sesión iniciada) ---------- */
+var FAVORITOS = new Set();
+var usuarioFav = null;
+function pintarFavoritos() {
+  document.querySelectorAll('.boton-favorito:not(.boton-favorito-modal)').forEach(function (b) {
+    var act = FAVORITOS.has(b.dataset.id);
+    b.textContent = act ? '💗' : '🤍';
+    b.setAttribute('aria-pressed', String(act));
+    b.setAttribute('aria-label', act ? 'Quitar de favoritos' : 'Guardar en favoritos');
+  });
+  var m = document.getElementById('modal-favorito');
+  if (m && m.dataset.id) {
+    var actM = FAVORITOS.has(m.dataset.id);
+    m.textContent = actM ? '💗 En tus favoritos' : '🤍 Guardar en favoritos';
+    m.classList.toggle('activo', actM);
+    m.setAttribute('aria-pressed', String(actM));
+  }
+}
+function avisarSesionFavoritos() {
+  var previo = document.querySelector('.aviso-favorito');
+  if (previo) previo.remove();
+  var aviso = document.createElement('div');
+  aviso.className = 'aviso-favorito';
+  aviso.setAttribute('role', 'status');
+  aviso.append('Inicia sesión para guardar tus favoritos.');
+  var a = document.createElement('a'); a.href = 'cuenta.html?entrar'; a.textContent = 'Iniciar sesión';
+  aviso.append(a);
+  document.body.append(aviso);
+  setTimeout(function () { aviso.remove(); }, 6000);
+}
+async function alternarFavorito(id) {
+  if (!usuarioFav) return avisarSesionFavoritos();
+  var estaba = FAVORITOS.has(id);
+  if (estaba) FAVORITOS.delete(id); else FAVORITOS.add(id);
+  pintarFavoritos();
+  var res = estaba
+    ? await supabase.from('favoritos_web').delete().eq('producto_id', id)
+    : await supabase.from('favoritos_web').insert({ user_id: usuarioFav, producto_id: id });
+  if (res.error) {
+    if (estaba) FAVORITOS.add(id); else FAVORITOS.delete(id);
+    pintarFavoritos();
+  }
+}
+async function cargarFavoritosTienda() {
+  try {
+    if (!localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token')) return;
+    var s = await supabase.auth.getSession();
+    if (!s.data.session) return;
+    usuarioFav = s.data.session.user.id;
+    var r = await supabase.from('favoritos_web').select('producto_id');
+    FAVORITOS = new Set((r.data || []).map(function (f) { return f.producto_id; }));
+    pintarFavoritos();
+  } catch (e) {}
+}
+window.pintarFavoritoModal = function (id) {
+  var m = document.getElementById('modal-favorito');
+  if (!m) return;
+  m.dataset.id = id;
+  pintarFavoritos();
+};
+window.addEventListener('tienda:productos-listos', cargarFavoritosTienda);
+document.addEventListener('DOMContentLoaded', function () {
+  var m = document.getElementById('modal-favorito');
+  if (m) m.addEventListener('click', function () { if (m.dataset.id) alternarFavorito(m.dataset.id); });
+});
 
 (async function cargarTiendaDesdeERP() {
   try {
@@ -1173,6 +1251,7 @@ function inicializarBuscadorTienda() {
       </div>
       <div class="modal-info-producto">
         <h2 id="modal-nombre"></h2>
+        <button type="button" class="boton-favorito boton-favorito-modal" id="modal-favorito" aria-pressed="false">🤍 Guardar en favoritos</button>
         <p class="precio-modal" id="modal-precio"></p>
         <p class="calificacion-modal" id="modal-calificacion"></p>
         <p class="descripcion-modal" id="modal-descripcion"></p>
@@ -1228,6 +1307,7 @@ var RESENAS_POR_PRODUCTO = {};
     if (!producto) return;
 
     nombreEl.textContent = producto.nombre;
+    if (window.pintarFavoritoModal) window.pintarFavoritoModal(id);
     precioEl.textContent = formatoCOP(producto.precio) + ' COP';
     mostrarResenasEnModal(id);
     descripcionEl.innerHTML = producto.descripcion.replace(/\n/g, '<br>');
