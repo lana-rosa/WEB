@@ -220,5 +220,6 @@ if '<script>\n(function() {\n  var video' in src:
 i = src.rindex('</body>'); src = src[:i] + js + src[i:]
 sys.path.insert(0, WEB + 'herramientas'); from marca_impresion import aplicar as marca_impresion
 src = marca_impresion(src)
+src = src.replace('</style>', '/* Mismo espacio arriba en todas las páginas (29-sep-2026) */\nmain > :first-child { padding-top: 41px !important; }\n</style>', 1)
 open(WEB + 'glosario-rosina.html', 'w', encoding='utf-8').write(src)
 print('ok', len(TERMINOS), 'términos')

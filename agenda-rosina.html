@@ -532,6 +532,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 @media (max-width: 900px) { .agenda-layout { scroll-margin-top: 200px; } }
 @media (max-width: 900px) { .barra-agenda { position: static; } .menu-hojas { position: sticky; top: 80px; z-index: 8; } .agenda-layout { scroll-margin-top: 90px; } }
 .acciones-hoja { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-bottom: 10px; }
+.acciones-hoja-abajo { margin: 14px 0 0; }
 @media print { body.imprimir-una .hojas-contenido .hoja-agenda:not(.abierta) { display: none !important; } body.imprimir-una .hoja-agenda { page-break-after: auto; } }
 body.en-blanco .totales-ventas strong { visibility: hidden; }
 /* Agenda en celular: cada renglón es una tarjeta, sin columna fija (28-sep-2026) */
@@ -562,6 +563,8 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 }
 @media print { .tabla-agenda tr { break-inside: avoid; } }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
+/* Mismo espacio arriba en todas las páginas (29-sep-2026) */
+main > :first-child { padding-top: 57px !important; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -981,6 +984,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </table>
         </div>
       </article>
+        <div class="acciones-hoja acciones-hoja-abajo no-imprimir">
+          <button type="button" class="boton-secundario boton-chico" data-imprimir-hoja="llena">🖨️ Imprimir esta hoja</button>
+          <button type="button" class="boton-secundario boton-chico" data-imprimir-hoja="blanco">📄 Imprimir en blanco</button>
+        </div>
       </div>
       </div>
     </div>
@@ -1600,6 +1607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   document.getElementById('imprimir-hoja').addEventListener('click', function() { imprimirHoja(false); });
   document.getElementById('imprimir-hoja-blanco').addEventListener('click', function() { imprimirHoja(true); });
+  document.querySelectorAll('[data-imprimir-hoja]').forEach(function(b) { b.addEventListener('click', function() { imprimirHoja(b.dataset.imprimirHoja === 'blanco'); }); });
   window.addEventListener('beforeprint', function() { hojas.forEach(function(h) { h.classList.add('imprimiendo-hoja'); }); });
   window.addEventListener('afterprint', function() { hojas.forEach(function(h) { h.classList.remove('imprimiendo-hoja'); }); });
 })();
