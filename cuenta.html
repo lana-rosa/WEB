@@ -709,7 +709,7 @@ const $ = (id) => document.getElementById(id);
 const VISTAS = ['visitante', 'enlace', 'completar', 'panel'];
 const CLAVE_CARRITO = 'carritoLanaRosa';
 const REDIRECCION = location.origin + '/cuenta.html';
-const GOOGLE_ACTIVO = false; // se pone en true cuando Google esté activado en Supabase
+const GOOGLE_ACTIVO = true; // Google ya está activado en Supabase
 const CLAVE_PENDIENTE = 'lrRegistroPendiente';
 function guardarPendiente(d) { try { localStorage.setItem(CLAVE_PENDIENTE, JSON.stringify(d)); } catch (e) {} }
 function leerPendiente() { try { return JSON.parse(localStorage.getItem(CLAVE_PENDIENTE)) || {}; } catch (e) { return {}; } }
