@@ -529,6 +529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <option value="Neira">Neira</option>
           <option value="Otro (nacional)">Otra ciudad de Colombia</option>
         </select>
+        <input type="text" id="ciudad-otra" name="ciudad-otra" placeholder="Escribe tu ciudad o municipio" autocomplete="address-level2" style="display:none; margin-top:10px;">
         <p class="ayuda" style="font-weight:600; color:var(--rosa-principal);">📦 El envío va aparte: Villamaría $8.000, Manizales $13.000, otras ciudades $18.000.</p>
       </div>
     </div>
@@ -543,6 +544,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <option value="Peluche">Peluche</option>
           <option value="Otro">Otro</option>
         </select>
+        <input type="text" id="tipo-otro" name="tipo-otro" placeholder="Escribe qué tipo de producto quieres" style="display:none; margin-top:10px;">
       </div>
       <div class="campo">
         <label for="tamano">Tamaño*</label>
@@ -555,7 +557,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="campo">
       <label for="descripcion">¿Qué quieres que tejamos?*</label>
-      <textarea id="descripcion" name="descripcion" required placeholder="Ej: Un amigurumi de mi perrita, con su collar rojo y las orejas caídas, tamaño mediano."></textarea>
+      <textarea id="descripcion" name="descripcion" required placeholder="Ej: Un amigurumi de mi perrita, con su collar rojo y las orejas caídas, tamaño de 10 cm."></textarea>
     </div>
 
     <div class="campo">
@@ -683,12 +685,25 @@ const tamanosPorTipo = {
   'Otro': []
 };
 
+// Campos "otro": aparece una casilla para escribir cuando se elige "Otro"
+const selectCiudad = document.getElementById('ciudad');
+const inputCiudadOtra = document.getElementById('ciudad-otra');
+const inputTipoOtro = document.getElementById('tipo-otro');
+function alternarOtro(select, valorOtro, input) {
+  const mostrar = select.value === valorOtro;
+  input.style.display = mostrar ? 'block' : 'none';
+  input.required = mostrar;
+  if (!mostrar) input.value = '';
+}
+selectCiudad.addEventListener('change', () => alternarOtro(selectCiudad, 'Otro (nacional)', inputCiudadOtra));
+
 const selectTipo = document.getElementById('tipo-producto');
 const selectTamano = document.getElementById('tamano');
 const inputTamanoOtro = document.getElementById('tamano-otro');
 
 selectTipo.addEventListener('change', () => {
   const tipo = selectTipo.value;
+  alternarOtro(selectTipo, 'Otro', inputTipoOtro);
   selectTamano.innerHTML = '';
   inputTamanoOtro.style.display = 'none';
   inputTamanoOtro.value = '';
@@ -782,7 +797,9 @@ form.addEventListener('submit', async (evento) => {
       fotosUrls.push(urlPublica.publicUrl);
     }
 
-    const tipoProducto = document.getElementById('tipo-producto').value;
+    const tipoProducto = selectTipo.value === 'Otro'
+      ? (inputTipoOtro.value.trim() || 'Otro (sin especificar)')
+      : selectTipo.value;
     const tamanoSeleccionado = document.getElementById('tamano').value === 'Otro'
       ? (document.getElementById('tamano-otro').value || 'Otro (sin especificar)')
       : document.getElementById('tamano').value;
@@ -794,7 +811,7 @@ form.addEventListener('submit', async (evento) => {
       p_telefono: document.getElementById('telefono').value,
       p_correo: document.getElementById('correo').value || null,
       p_descripcion: descripcionCompleta,
-      p_ciudad: document.getElementById('ciudad').value || null,
+      p_ciudad: (selectCiudad.value === 'Otro (nacional)' ? inputCiudadOtra.value.trim() : selectCiudad.value) || null,
       p_fotos_urls: fotosUrls.length > 0 ? fotosUrls : null,
       p_mensaje: document.getElementById('mensaje').value || null
     });
@@ -813,6 +830,8 @@ form.addEventListener('submit', async (evento) => {
     mensajeEstado.appendChild(document.createElement('br'));
     mensajeEstado.appendChild(enlaceWa);
     form.reset();
+    alternarOtro(selectCiudad, 'Otro (nacional)', inputCiudadOtra);
+    selectTipo.dispatchEvent(new Event('change'));
     previsualizacion.innerHTML = '';
     boton.textContent = 'Enviar mi solicitud';
     boton.disabled = false;
