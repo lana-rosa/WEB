@@ -7,7 +7,9 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ## 🔴 Urgente (lo hace Sara)
 
-- [ ] **Activar las cuentas de clientes en Supabase (una sola vez, lo hace Sara).** El código ya está listo (`cuenta.html`, `js/cuenta.js`), pero los enlaces al correo no llegan hasta configurar: Authentication → URL Configuration (Site URL `https://lanarosacrochet.com`, Redirect URL `https://lanarosacrochet.com/cuenta.html`), Authentication → SMTP (correo propio, por ejemplo Brevo o Resend) y Providers → Email con registros permitidos. Pasos en `herramientas/cuentas-clientes/README.md`.
+- [x] **Cuentas de clientes activas (29-sep-2026).** Correo con código y enlace (SMTP de Resend, plantillas en español) y entrada con Google funcionando. Pasos y plantillas en `herramientas/cuentas-clientes/`.
+  - [ ] Opcional: enviar la verificación de marca de la app en Google Auth Platform (Centro de verificación) para que salga con nombre y logo verificados.
+  - [ ] Revisar en el ERP (tabla `terceros`) los clientes creados en las pruebas y borrar los que sobren.
 - [ ] **Subir los productos de la mercería al ERP (Supabase) con sus existencias.**
   Hoy los 33 productos tienen existencias en 0. Mientras no haya ninguno disponible, la mercería muestra el aviso "Muy pronto" y oculta los productos agotados. Cuando haya al menos un producto con existencias, el aviso desaparece solo y el catálogo se muestra, sin cambiar código.
   - [ ] **Cuando la mercería ya tenga productos:** en `rosina.html` ("¿Qué hace Rosina?" → "En insumos"), cambiar el enlace "Ir a la tienda →" por "Ir a la mercería →" (`merceria.html`). Sara lo aprobó el 26-sep-2026.
