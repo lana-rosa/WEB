@@ -132,6 +132,9 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .boton-subir svg { width: 22px; height: 22px; fill: #fff; }
 .boton-subir:hover { background: #B83E78; }
 @media (max-width: 600px) { .boton-subir { width: 42px; height: 42px; right: calc(74px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); } }
+.boton-cuenta-header { position: relative; background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1rem; color: var(--tinta); flex-shrink: 0; }
+.boton-cuenta-header:hover { border-color: var(--rosa-principal); }
+.boton-cuenta-header.con-sesion::after { content: ''; position: absolute; top: 1px; right: 1px; width: 11px; height: 11px; border-radius: 50%; background: #2e9e57; border: 2px solid var(--blanco); }
 .contenedor-buscar-header { position: relative; }
 .boton-buscar-header {
   background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 50%;
@@ -648,6 +651,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button type="submit" aria-label="Buscar">🔍</button>
       </form>
     </div>
+    <a href="cuenta.html" class="boton-cuenta-header" aria-label="Mi cuenta">👤</a>
     <button class="boton-carrito-header" id="boton-carrito" aria-label="Ver carrito de compras">
       🛒<span class="contador-carrito" id="contador-carrito">0</span>
     </button>
@@ -655,6 +659,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
+    <a href="cuenta.html">👤 Mi cuenta</a>
     <p class="grupo-nav">Comprar</p>
     <a href="tienda.html">Tienda</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
@@ -1651,5 +1656,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
+<script type="module" src="js/cuenta.js"></script>
 </body>
 </html>
