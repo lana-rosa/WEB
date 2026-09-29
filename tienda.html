@@ -375,6 +375,13 @@ button.boton-primario:hover { filter: brightness(0.95); }
 .confianza-tienda li { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; color: var(--tinta); padding: 0 16px; }
 .confianza-tienda li:first-child { padding-left: 0; }
 .confianza-tienda li + li { border-left: 1px solid var(--rosa-medio); }
+.encabezado-pagina h1 { line-height: 1.15; }
+@media (max-width: 700px) {
+  .encabezado-pagina h1 { line-height: 1.1; margin-bottom: 12px; }
+  .confianza-tienda { flex-wrap: nowrap; }
+  .confianza-tienda li { white-space: nowrap; font-size: 0.8rem; letter-spacing: 0.02em; padding: 0 10px; }
+  .confianza-tienda li:first-child { padding-left: 0; }
+}
 </style>
 </head>
 <body>
