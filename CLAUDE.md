@@ -11,6 +11,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 - Rincón de Rosina (material gratuito): `recursos-rosina.html`, `glosario-rosina.html`, `paletas-rosina.html`, `agenda-rosina.html`, `calculadoras-rosina.html`, `rosina.html`.
 - El menú está repetido en cada página (`.nav-principal` y `.nav-movil-panel`): los cambios del menú se hacen en todas.
 - La mercería y la tienda cargan productos en vivo desde Supabase (proyecto "Lana Rosa ERP + SO", función `obtener_merceria_web`).
+- Cuentas de clientes (opcionales): `cuenta.html` + `js/cuenta.js` (enlace al correo con Supabase Auth, carrito guardado en `carritos_web`, historial con `mis_pedidos`); tablas `cuentas_clientes_web` y `carritos_web`. Al registrarse se crea/vincula un `terceros` (por correo). Ver `herramientas/cuentas-clientes/README.md`. `js/cuenta.js` se carga en todas las páginas.
 - WhatsApp de pedidos: 573205072801.
 - Google Shopping (Merchant Center): feed en vivo desde la Edge Function `feed-google-merchant` de Supabase; solo diseños propios (tabla `web_google_shopping`). Ver `herramientas/google-merchant/README.md`.
 - Medición: Google Tag Manager `GTM-M3MQ7XZD` en todas las páginas (Analytics `G-RSVSQV8Y9B` se configura dentro de GTM).
