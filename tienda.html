@@ -2282,39 +2282,37 @@ var RESENAS_POR_PRODUCTO = {};
     var punto = fotoBase.lastIndexOf('.');
     var nombreSinExt = punto > -1 ? fotoBase.substring(0, punto) : fotoBase;
     var extension = punto > -1 ? fotoBase.substring(punto) : '.jpg';
-    var candidatos = [nombreSinExt, nombreSinExt + '-2', nombreSinExt + '-3'];
-    var extensionesCandidatos = [extension, '.jpg', '.jpg.png', '.jpg.jpg', '.png', '.jpeg'];
-    var urlsEncontradas = [];
-    var pendientes = candidatos.length;
-
-    urlsEncontradas = new Array(candidatos.length).fill(null);
-    candidatos.forEach(function(idBase, i) {
+    // La foto principal se muestra de inmediato (es la misma de la tarjeta, ya descargada).
+    // Las fotos adicionales (nombre-2, nombre-3) se buscan después, sin hacer esperar.
+    var tarjetaImg = document.querySelector('.producto-foto img[data-id="' + id + '"]');
+    var urlPrincipal = (tarjetaImg && tarjetaImg.currentSrc && tarjetaImg.style.display !== 'none') ? tarjetaImg.currentSrc : 'img/productos/' + fotoBase;
+    var turno = abrirModal.turno = (abrirModal.turno || 0) + 1;
+    fotoPrincipal.src = urlPrincipal;
+    fotoPrincipal.alt = producto.nombre;
+    miniaturas.innerHTML = '';
+    var extensionesExtra = extension === '.jpg' ? ['.jpg'] : [extension, '.jpg'];
+    var extras = [null, null], pendientes = 2;
+    [nombreSinExt + '-2', nombreSinExt + '-3'].forEach(function(idBase, i) {
       probarExtensiones(idBase, function(url) {
-        urlsEncontradas[i] = url;
-        pendientes--;
-        if (pendientes === 0) mostrarGaleria(urlsEncontradas.filter(Boolean));
-      }, extensionesCandidatos);
+        extras[i] = url;
+        if (--pendientes === 0 && turno === abrirModal.turno) mostrarMiniaturas([urlPrincipal].concat(extras.filter(Boolean)));
+      }, extensionesExtra);
     });
 
-    function mostrarGaleria(urls) {
-      if (urls.length === 0) return;
-      fotoPrincipal.src = urls[0];
-      fotoPrincipal.alt = producto.nombre;
-      miniaturas.innerHTML = '';
-      if (urls.length > 1) {
-        urls.forEach(function(url, i) {
-          var mini = document.createElement('img');
-          mini.src = url;
-          mini.alt = producto.nombre + ' — foto ' + (i + 1);
-          mini.className = i === 0 ? 'activa' : '';
-          mini.addEventListener('click', function() {
-            fotoPrincipal.src = url;
-            miniaturas.querySelectorAll('img').forEach(function(m) { m.classList.remove('activa'); });
-            mini.classList.add('activa');
-          });
-          miniaturas.appendChild(mini);
+    function mostrarMiniaturas(urls) {
+      if (urls.length < 2) return;
+      urls.forEach(function(url, i) {
+        var mini = document.createElement('img');
+        mini.src = url;
+        mini.alt = producto.nombre + ' — foto ' + (i + 1);
+        mini.className = i === 0 ? 'activa' : '';
+        mini.addEventListener('click', function() {
+          fotoPrincipal.src = url;
+          miniaturas.querySelectorAll('img').forEach(function(m) { m.classList.remove('activa'); });
+          mini.classList.add('activa');
         });
-      }
+        miniaturas.appendChild(mini);
+      });
     }
 
     overlay.classList.add('abierto');
