@@ -711,10 +711,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </nav>
       </aside>
       <div class="hojas-contenido">
-        <div class="acciones-hoja no-imprimir">
-          <button type="button" class="boton-secundario boton-chico" id="imprimir-hoja">🖨️ Imprimir esta hoja</button>
-          <button type="button" class="boton-secundario boton-chico" id="imprimir-hoja-blanco">📄 Imprimir en blanco</button>
-        </div>
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
           <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -1605,8 +1601,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       respaldoBlanco = null;
     }
   });
-  document.getElementById('imprimir-hoja').addEventListener('click', function() { imprimirHoja(false); });
-  document.getElementById('imprimir-hoja-blanco').addEventListener('click', function() { imprimirHoja(true); });
   document.querySelectorAll('[data-imprimir-hoja]').forEach(function(b) { b.addEventListener('click', function() { imprimirHoja(b.dataset.imprimirHoja === 'blanco'); }); });
   window.addEventListener('beforeprint', function() { hojas.forEach(function(h) { h.classList.add('imprimiendo-hoja'); }); });
   window.addEventListener('afterprint', function() { hojas.forEach(function(h) { h.classList.remove('imprimiendo-hoja'); }); });
