@@ -822,6 +822,8 @@ const $ = (id) => document.getElementById(id);
 const VISTAS = ['visitante', 'enlace', 'completar', 'panel'];
 const CLAVE_CARRITO = 'carritoLanaRosa';
 const REDIRECCION = location.origin + '/cuenta.html';
+const PAGINA_VOLVER = /^[a-z0-9-]+\.html$/;
+try { const v = new URLSearchParams(location.search).get('volver'); if (v && PAGINA_VOLVER.test(v)) localStorage.setItem('lrVolver', v); } catch (e) {}
 const GOOGLE_ACTIVO = true; // Google ya está activado en Supabase
 const CLAVE_PENDIENTE = 'lrRegistroPendiente';
 function guardarPendiente(d) { try { localStorage.setItem(CLAVE_PENDIENTE, JSON.stringify(d)); } catch (e) {} }
@@ -1419,6 +1421,10 @@ async function iniciar() {
       return mostrar('completar');
     }
   }
+  try {
+    const v = localStorage.getItem('lrVolver');
+    if (v) { localStorage.removeItem('lrVolver'); if (PAGINA_VOLVER.test(v)) { location.replace(v); return; } }
+  } catch (e) {}
   abrirPanel(sb, session, perfil);
 }
 iniciar().catch(() => mostrar('visitante'));

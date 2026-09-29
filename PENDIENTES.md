@@ -63,7 +63,7 @@ Falta (necesito algo de Sara):
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden
-Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. Más adelante se puede hacer una mini app con este servicio.
+Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. Desde el 30-sep-2026 la agenda es gratis **solo con cuenta**: quien no ha iniciado sesión ve una vista previa bloqueada (candado en `agenda-rosina.html`, solo en el navegador). El resto del Rincón de Rosina sigue abierto. Más adelante se puede hacer una mini app con este servicio.
 - [x] 1. Inventario de lanas e hilos.
 - [x] 2. Mis agujas (calibres de 2 a 10 mm).
 - [x] 3. Lista de compras con envío por WhatsApp.
@@ -92,7 +92,7 @@ Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. 
 ### Material de Rosina
 - [ ] Libro para colorear imprimible (necesita las ilustraciones solo con líneas).
 - [ ] Cuaderno de práctica de puntos básicos, punto por punto con Rosina (freemium o de bajo costo).
-- [ ] Mini app de la agenda (idea a futuro). La agenda en la web queda gratis con todas sus hojas.
+- [ ] Mini app de la agenda (idea a futuro). La agenda en la web queda gratis (con cuenta) con todas sus hojas.
 - [ ] **Botón "Invítale un café a Rosina": diseño listo y guardado, sin publicar** (27-sep-2026). Sara lo va a hablar con el equipo. Está en `herramientas/borradores/cafe-rosina.patch` (sección al final del Rincón con valores sugeridos de $3.000, $6.000 y $12.000, llave de Nequi/Bre-B para copiar y aviso por WhatsApp). Para publicarlo: `git apply herramientas/borradores/cafe-rosina.patch`.
 - [ ] Opcional: poner también la imagen "Conoce a Rosina" al principio de `rosina.html` (se ofreció; Sara no ha respondido).
 
