@@ -57,7 +57,7 @@
     var num = el('span', null, '1'); var mas = el('button', null, '+'); mas.type = 'button'; mas.setAttribute('aria-label', 'Una más');
     cant.append(menos, num, mas);
     var total = el('p', 'lr-ag-total');
-    var pagar = el('button', 'lr-ag-pagar', 'Ir a pagar'); pagar.type = 'button';
+    var pagar = el('button', 'lr-ag-pagar', 'Continuar compra'); pagar.type = 'button';
     var masProd = el('button', 'lr-ag-mas', 'Agregar más productos'); masProd.type = 'button';
     h.append(el('div', 'lr-ag-asa'), x, tit, fila, cant, total, pagar, masProd);
     fondo.append(h); document.body.append(fondo);
@@ -100,7 +100,7 @@
     var n = carrito.reduce(function (s, i) { return s + i.cantidad; }, 0);
     var suma = carrito.reduce(function (s, i) { return s + i.cantidad * i.precio; }, 0);
     hoja.total.textContent = 'Tu carrito: ' + n + (n === 1 ? ' producto' : ' productos') + ' · ' + pesos(suma) + ' (el envío se calcula al pagar)';
-    hoja.pagar.textContent = document.getElementById('boton-pagar-wompi') ? 'Ir a pagar' : 'Ir al carrito';
+    hoja.pagar.textContent = document.getElementById('boton-pagar-wompi') ? 'Continuar compra' : 'Ir al carrito';
   }
   function cambiar(d) {
     var carrito = leer();
