@@ -33,6 +33,7 @@ const CSS = `
 .pago-resumen { background: #FBE4EF; border-radius: 14px; padding: 12px 14px; margin: 0 0 16px; font-size: 0.95rem; }
 .pago-resumen div { display: flex; justify-content: space-between; gap: 10px; padding: 2px 0; }
 .pago-resumen .total { font-weight: 800; border-top: 1px solid rgba(231,78,150,0.35); margin-top: 6px; padding-top: 6px; }
+.pago-resumen .descuento { color: #B83E78; font-weight: 700; }
 .pago-campo { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
 .pago-campo[hidden] { display: none; }
 .pago-campo label { font-weight: 700; font-size: 0.88rem; }
@@ -124,6 +125,7 @@ function construirModal() {
   overlay.addEventListener('click', (e) => { if (e.target === overlay) cerrar(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !overlay.hidden) cerrar(); });
   overlay.querySelector('#pg-ciudad').addEventListener('change', actualizarResumen);
+  ['pg-correo', 'pg-telefono'].forEach((id) => { const c = overlay.querySelector('#' + id); c.addEventListener('input', cotizarDescuento); c.addEventListener('change', cotizarDescuento); });
   overlay.querySelector('#pago-form').addEventListener('submit', enviar);
 }
 function cerrar() { if (overlay) overlay.hidden = true; document.body.style.overflow = ''; }
@@ -134,15 +136,40 @@ function tarifaElegida() {
   const t = (tarifas || []).find((x) => x.ciudad === ciudad);
   return t ? Number(t.valor) : null;
 }
+// Descuento de primera compra: lo decide el servidor (por correo/teléfono); aquí solo se consulta y se muestra.
+let cot = null, cotClave = '', cotTimer = null;
+function cotizarDescuento() {
+  clearTimeout(cotTimer);
+  cotTimer = setTimeout(async () => {
+    const correo = $('pg-correo').value.trim().toLowerCase(), telefono = $('pg-telefono').value.trim();
+    const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo) || !items.length) { if (cot) { cot = null; cotClave = ''; actualizarResumen(); } return; }
+    const clave = correo + '|' + telefono + '|' + JSON.stringify(items);
+    if (clave === cotClave) return;
+    cotClave = clave;
+    try {
+      const token = await tokenSesion();
+      const headers = { 'Content-Type': 'application/json', apikey: SUPABASE_KEY };
+      if (token) headers.Authorization = 'Bearer ' + token;
+      const res = await fetch(SUPABASE_URL + '/functions/v1/crear-pago-wompi', { method: 'POST', headers, body: JSON.stringify({ accion: 'cotizar', correo, telefono, items }) });
+      const d = await res.json().catch(() => null);
+      if (clave !== cotClave) return;
+      cot = res.ok && d && d.primera ? d : null;
+    } catch (e) { cot = null; }
+    actualizarResumen();
+  }, 500);
+}
 function actualizarResumen() {
   const carrito = leerCarrito();
   const sub = carrito.reduce((s, i) => s + (Number(i.precio) || 0) * (Number(i.cantidad) || 0), 0);
+  const desc = cot && cot.descuento > 0 ? Number(cot.descuento) : 0;
   const envio = tarifaElegida();
   $('pg-otra-caja').hidden = $('pg-ciudad').value !== 'Otro (nacional)';
   const r = $('pago-resumen'); r.replaceChildren();
   carrito.forEach((i) => { const f = nodo('div'); f.append(nodo('span', null, (i.cantidad || 1) + ' × ' + (i.nombre || 'Producto')), nodo('span', null, pesos((Number(i.precio) || 0) * (Number(i.cantidad) || 0)))); r.append(f); });
+  if (desc) { const fd = nodo('div', 'descuento'); fd.append(nodo('span', null, '🎁 Primera compra (' + cot.pct + '% de descuento)'), nodo('span', null, '−' + pesos(desc))); r.append(fd); }
   const fe = nodo('div'); fe.append(nodo('span', null, 'Envío'), nodo('span', null, envio == null ? 'Elige tu ciudad' : pesos(envio))); r.append(fe);
-  const ft = nodo('div', 'total'); ft.append(nodo('span', null, 'Total'), nodo('span', null, envio == null ? pesos(sub) + ' + envío' : pesos(sub + envio))); r.append(ft);
+  const ft = nodo('div', 'total'); ft.append(nodo('span', null, 'Total'), nodo('span', null, envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio))); r.append(ft);
 }
 function aviso(html) {
   const a = $('pago-aviso');
@@ -178,6 +205,7 @@ async function abrirPago() {
     if (hay) sel.value = d.ciudad; else if (Array.from(sel.options).some((o) => o.value === 'Otro (nacional)')) { sel.value = 'Otro (nacional)'; poner('pg-otra', d.ciudad); }
     actualizarResumen();
   }
+  cot = null; cotClave = ''; cotizarDescuento();
   $('pg-nombre').focus();
 }
 

@@ -180,3 +180,5 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
   - Velocidad: imágenes en WebP con tamaños para celular (el inicio pasó de 825 KB a unos 550 KB; Personaliza de 244 a 114 KB).
   - Celular: se quitó la sombra del carrito que se veía en el borde derecho.
 - Menos texto en la web (27-sep-2026): Inicio (605 → 327 palabras), Personaliza, Aprende, Sobre nosotras y el Rincón de Rosina (secciones plegables con "Ver…", de 19 a unas 6 pantallas en celular).
+- Descuento de primera compra (10 %) en el pago en línea, aviso "te falta calificar" en la cuenta, hoja "Producto agregado" en el carrito y menú Tienda/Personaliza más oscuro (30-sep-2026): listos en rama, pendientes de la aprobación de Sara.
+- [ ] Opcional: correo que invite a calificar el pedido entregado (hoy solo aviso e insignia dentro de la cuenta).
