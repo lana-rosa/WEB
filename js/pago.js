@@ -3,8 +3,10 @@
 // "crear-pago-wompi" de Supabase con los datos del ERP. Las llaves de Wompi viven solo en Supabase.
 import { haySesionGuardada, obtenerCliente } from './cuenta.js';
 
-// Se pone en true cuando Sara guarda las llaves de Wompi en Supabase (Edge Functions → Secrets).
-export const PAGOS_ACTIVOS = false;
+// El botón "Pagar en línea" está habilitado en el código, pero el servidor decide si se muestra:
+// solo aparece para el público cuando las llaves guardadas en Supabase (Edge Functions → Secrets) son de
+// PRODUCCIÓN (pub_prod_…). Con llaves de pruebas (pub_test_…) solo lo ve quien abre ?pagosprueba=1.
+export const PAGOS_ACTIVOS = true;
 
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
@@ -225,11 +227,28 @@ function modoPrueba() {
   } catch (e) { return false; }
 }
 
-function iniciar() {
-  const prueba = !PAGOS_ACTIVOS && modoPrueba();
-  if (!PAGOS_ACTIVOS && !prueba) return;
+// El servidor dice en qué modo están los pagos según las llaves guardadas en Supabase:
+// 'produccion' (llaves pub_prod_), 'pruebas' (pub_test_) o null (apagado / sin conexión).
+async function modoPagos() {
+  try {
+    const res = await fetch(SUPABASE_URL + '/functions/v1/crear-pago-wompi', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY }, body: JSON.stringify({ accion: 'estado' })
+    });
+    if (!res.ok) return null;
+    const d = await res.json();
+    return d.modo === 'produccion' || d.modo === 'pruebas' ? d.modo : null;
+  } catch (e) { return null; }
+}
+
+async function iniciar() {
+  if (!PAGOS_ACTIVOS && !modoPrueba()) return;
   const wa = document.getElementById('boton-checkout-whatsapp');
   if (!wa || document.getElementById('boton-pagar-wompi')) return;
+  // El público solo ve el botón con llaves de PRODUCCIÓN. Con llaves de pruebas solo lo ve quien abrió ?pagosprueba=1.
+  const modo = await modoPagos();
+  if (!modo || document.getElementById('boton-pagar-wompi')) return;
+  if (modo === 'pruebas' && !modoPrueba()) return;
+  const prueba = modo === 'pruebas';
   const b = nodo('button', 'boton-primario', prueba ? '💳 Pagar en línea (PRUEBA)' : '💳 Pagar en línea');
   b.type = 'button'; b.id = 'boton-pagar-wompi';
   b.style.cssText = 'text-align:center;border:none;cursor:pointer;width:100%;margin-bottom:8px;font:inherit;font-weight:700;';

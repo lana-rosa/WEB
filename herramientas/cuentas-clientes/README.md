@@ -46,3 +46,36 @@ Piezas: `js/pago.js` (botón "Pagar en línea" del carrito y formulario de enví
 3. Wompi → Desarrolladores → URL de eventos: `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/wompi-webhook`.
 4. Probar en privado: abrir `lanarosacrochet.com/tienda.html?pagosprueba=1` (muestra el botón solo en ese navegador; `?pagosprueba=0` lo quita) y pagar con la tarjeta de pruebas de Wompi. Al terminar, cambiar las tres llaves por las de producción (`pub_prod_…`) y poner `PAGOS_ACTIVOS = true` en `js/pago.js` para que lo vea todo el público.
 5. ERP → Conciliación bancaria: la cuenta predeterminada debe ser la que recibe los depósitos de Wompi (Bancolombia). Si el Nequi es otra cuenta, crearla y asignarle el medio Nequi.
+
+**Pagos de prueba:** si `WOMPI_PUBLIC_KEY` no empieza por `pub_prod_`, el webhook marca el pedido como `es_prueba` y **no** lo registra en el ERP (no mueve caja, bancos ni inventario). Solo los pagos hechos con llaves de producción pasan al ERP. La función `crear-pago-wompi` se niega a generar pagos si `WOMPI_PUBLIC_KEY` no es una llave pública (`pub_test_` o `pub_prod_`). En el ERP el pedido aparece en Punto de Venta → "Pedidos Web/Redes" (canal 🛍️ Tienda virtual).
+
+
+## Conexión ERP ↔ CRM para pedidos web (30-sep-2026, fase 1)
+El CRM tiene su propia base de datos de Supabase ("Lana Rosa CRM", `wcqdkccvtywiutzknskr`), separada de la del ERP. Un pedido pagado en la web (llaves de producción) ahora también llega al CRM, sin botones:
+
+`wompi-webhook` (ERP) → `enviar-pedido-web-crm` (ERP) → `recibir-pedido-web` (CRM)
+
+- **`enviar-pedido-web-crm`** (proyecto ERP): arma el envío con el pedido web y sus productos, y llama al CRM. Después guarda `referencia_crm_id` en cada pedido del ERP (y `crm_cliente_id` en el tercero), que es la marca que usa el Worker `lana-rosa-os-pos` para no volver a importar ese pedido al tocar "Cargar pedidos nuevos del CRM". Deja `pedidos_web.crm_enviado_at` o el motivo en `pedidos_web.crm_error`. Si falla, el pago y el ERP no se afectan; el siguiente evento de Wompi lo reintenta y no duplica.
+- **`recibir-pedido-web`** (proyecto CRM): busca al cliente por correo y luego por teléfono (si no existe lo crea con canal `otro` y "Página web"), y crea un pedido por producto (estado `listo` si había stock, `en proceso` si hay que tejerlo; entrega `envio`, con dirección) y su pago `anticipo` con medio `Wompi`. Cada pedido lleva en las notas un marcador `[ERP:PED-…]` que evita duplicados.
+- **Seguridad:** la llamada lleva el secreto `crm_puente_secreto` (guardado en la bóveda del ERP; en el código del CRM solo está su huella SHA-256). Los pedidos de prueba (`es_prueba`) no se envían.
+- Verificado con una llamada de prueba (creó cliente, pedido y pago; repetirla no duplicó; una clave equivocada fue rechazada) y luego se borró. **Falta probar el recorrido completo con un pago real de producción.**
+- Pendiente (fase 2): arreglar el Worker para que no duplique clientes (busca solo por cédula) y para normalizar los medios de pago ("Nequi" del CRM vs `nequi` del ERP).
+
+## Sincronización de cobros y estados ERP ↔ CRM (fase 2b, 30-sep-2026)
+Aplica a los pedidos que ya están vinculados (`pedidos_canal_venta.referencia_crm_id`): los de la web y los traídos del CRM.
+
+- **Cobros, ERP → CRM:** cada cobro que se registra en el ERP (`pedidos_canal_pagos`) avisa al CRM (`recibir-actualizacion-erp`). Se comparan **totales**: si el ERP tiene cobrado más de lo que el CRM tiene en `pagos`, se registra la diferencia (marcador `[ERP-PAGO:…]`). Por eso un pago que ya está en el CRM nunca se duplica.
+- **Estados, ERP → CRM:** ERP "listo para despachar" → CRM `listo`; ERP "entregado" → CRM `entregado` (con `fecha_entrega_real`). Solo avanzan, nunca retroceden.
+- **Estados, CRM → ERP** (`actualizar-pedido-desde-crm`): CRM `listo`/`enviado`/`entregado` con el pedido "en preparación" → ERP "listo para despachar". CRM `entregado` con el pedido "listo" y **sin saldo pendiente** → ERP "entregado" (reconoce el ingreso, igual que el botón). Si queda saldo por cobrar **no** se entrega: el cobro final se registra en el ERP.
+- **Cobros, CRM → ERP: no se automatizan.** El ERP es el sistema del dinero (anticipo y saldo fijos, con caja y asientos); los pagos que se anotan solo en el CRM no mueven la contabilidad solos. El cobro final se hace en el ERP y de ahí pasa al CRM.
+- **Mecanismo:** triggers `trg_pago_pedido_a_crm` y `trg_estado_pedido_a_crm` (ERP) y `trg_estado_pedido_a_erp` (CRM) con `pg_net`; los dos sentidos usan secretos distintos (`crm_puente_secreto` en la bóveda del ERP, `erp_puente_secreto` en la del CRM; en las funciones solo hay su huella). Si un aviso falla, el cambio original (cobro, estado) no se ve afectado.
+- Verificado con pedidos de prueba en ambas bases (cobros anticipo y saldo, "listo", "entregado" en ambos sentidos, sin duplicar ni entrar en bucle) y luego borrados. En el libro diario queda un asiento de prueba con su reversión (PED-2026-00530), que suma cero.
+
+## Salida a producción de Wompi (30-sep-2026)
+`PAGOS_ACTIVOS = true` en `js/pago.js` **no** abre los pagos al público por sí solo: el botón le pregunta al servidor (`crear-pago-wompi` con `{ accion: 'estado' }`) en qué modo están las llaves y se muestra así:
+- llaves `pub_prod_…` → lo ve todo el público;
+- llaves `pub_test_…` → solo quien abre `?pagosprueba=1` (con la etiqueta PRUEBA);
+- sin llaves o llave inválida → nadie.
+
+**Para abrir los pagos:** Wompi debe haber aprobado el comercio para producción. Luego, en Supabase → Edge Functions → Secrets, reemplazar `WOMPI_PUBLIC_KEY` (`pub_prod_…`), `WOMPI_INTEGRITY_SECRET` y `WOMPI_EVENTS_SECRET` por los de producción, y en Wompi (producción) registrar la URL de eventos `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/wompi-webhook`. No hay que publicar nada más en la web.
+El envío a "otras ciudades" en el ERP (`tarifas_envio_ciudad`, "Otro (nacional)") quedó en $18.000, igual que en la web y en las políticas.
