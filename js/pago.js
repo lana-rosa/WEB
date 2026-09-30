@@ -214,11 +214,23 @@ async function enviar(e) {
   }
 }
 
+// Modo de pruebas privado: abrir cualquier página con ?pagosprueba=1 muestra el botón solo en ese navegador
+// (con ?pagosprueba=0 se quita). Sirve para probar con las llaves de pruebas sin que lo vea el público.
+function modoPrueba() {
+  try {
+    const v = new URLSearchParams(location.search).get('pagosprueba');
+    if (v === '1') localStorage.setItem('lrPagosPrueba', '1');
+    if (v === '0') localStorage.removeItem('lrPagosPrueba');
+    return localStorage.getItem('lrPagosPrueba') === '1';
+  } catch (e) { return false; }
+}
+
 function iniciar() {
-  if (!PAGOS_ACTIVOS) return;
+  const prueba = !PAGOS_ACTIVOS && modoPrueba();
+  if (!PAGOS_ACTIVOS && !prueba) return;
   const wa = document.getElementById('boton-checkout-whatsapp');
   if (!wa || document.getElementById('boton-pagar-wompi')) return;
-  const b = nodo('button', 'boton-primario', '💳 Pagar en línea');
+  const b = nodo('button', 'boton-primario', prueba ? '💳 Pagar en línea (PRUEBA)' : '💳 Pagar en línea');
   b.type = 'button'; b.id = 'boton-pagar-wompi';
   b.style.cssText = 'text-align:center;border:none;cursor:pointer;width:100%;margin-bottom:8px;font:inherit;font-weight:700;';
   b.addEventListener('click', () => {

@@ -44,5 +44,5 @@ Piezas: `js/pago.js` (botón "Pagar en línea" del carrito y formulario de enví
 1. Wompi → Desarrolladores: copiar la llave pública, el secreto de integridad y el secreto de eventos (primero las de pruebas, `pub_test_…`).
 2. Supabase → Edge Functions → Secrets: `WOMPI_PUBLIC_KEY`, `WOMPI_INTEGRITY_SECRET`, `WOMPI_EVENTS_SECRET`. Las llaves nunca van en el chat ni en el código.
 3. Wompi → Desarrolladores → URL de eventos: `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/wompi-webhook`.
-4. Cambiar `PAGOS_ACTIVOS` a `true` en `js/pago.js`, probar con tarjeta de pruebas y, al terminar, cambiar las tres llaves por las de producción (`pub_prod_…`).
+4. Probar en privado: abrir `lanarosacrochet.com/tienda.html?pagosprueba=1` (muestra el botón solo en ese navegador; `?pagosprueba=0` lo quita) y pagar con la tarjeta de pruebas de Wompi. Al terminar, cambiar las tres llaves por las de producción (`pub_prod_…`) y poner `PAGOS_ACTIVOS = true` en `js/pago.js` para que lo vea todo el público.
 5. ERP → Conciliación bancaria: la cuenta predeterminada debe ser la que recibe los depósitos de Wompi (Bancolombia). Si el Nequi es otra cuenta, crearla y asignarle el medio Nequi.
