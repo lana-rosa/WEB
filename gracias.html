@@ -241,6 +241,9 @@ main > :first-child { padding-top: 22px !important; }
 .gr-ref { font-weight: 800; color: var(--rosa-principal); margin: 12px 0 0; }
 .gr-acciones { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
 .gr-acciones a { text-decoration: none; }
+.gr-invita { background: var(--rosa-suave); border-radius: 16px; padding: 16px 18px; margin: 20px auto 0; max-width: 520px; text-align: left; }
+.gr-invita h2 { font-size: 1.05rem; margin: 0 0 6px; color: var(--rosa-principal); }
+.gr-invita p { margin: 0; font-size: 0.92rem; color: var(--tinta); line-height: 1.5; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -308,6 +311,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="gr-icono" id="gr-icono" aria-hidden="true">⏳</p>
     <p id="gr-detalle">Esto suele tardar unos segundos. No cierres esta página.</p>
     <p class="gr-ref" id="gr-ref" hidden></p>
+    <div class="gr-invita" id="gr-invita" hidden>
+      <h2>¿Quieres seguir tu pedido desde tu cuenta?</h2>
+      <p>Crea tu cuenta gratis con el mismo correo con el que compraste: verás el estado de este pedido, guardarás tu dirección y tus favoritos. No necesitas contraseña: te enviamos un código a tu correo. Es opcional.</p>
+    </div>
     <div class="gr-acciones" id="gr-acciones"></div>
   </section>
 </main>
@@ -561,6 +568,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="module" src="js/cuenta.js"></script>
 <script type="module" src="js/pago.js"></script>
 <script type="module">
+import { haySesionGuardada } from './js/cuenta.js';
 const URL_SB = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
 const $ = (id) => document.getElementById(id);
@@ -578,7 +586,15 @@ function pintar(icono, titulo, sub, detalle, acciones) {
   $('gr-icono').textContent = icono; $('gr-titulo').textContent = titulo; $('gr-sub').textContent = sub; $('gr-detalle').textContent = detalle;
   $('gr-acciones').replaceChildren(...acciones);
 }
-const accionesOk = () => [enlace('Ver mis pedidos', 'cuenta.html#pedidos', 'boton-primario'), enlace('Seguir comprando', 'tienda.html', 'boton-secundario'), enlace('Escribirnos por WhatsApp', WA, 'boton-secundario', true)];
+const accionesOk = () => {
+  const conCuenta = haySesionGuardada();
+  $('gr-invita').hidden = conCuenta;
+  return [
+    conCuenta ? enlace('Ver mis pedidos', 'cuenta.html#pedidos', 'boton-primario') : enlace('Crear mi cuenta', 'cuenta.html?prefill=1', 'boton-primario'),
+    enlace('Seguir comprando', 'tienda.html', 'boton-secundario'),
+    enlace('Escribirnos por WhatsApp', WA, 'boton-secundario', true)
+  ];
+};
 
 async function consultar() {
   const r = await fetch(URL_SB + '/rest/v1/rpc/estado_pedido_web', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY }, body: JSON.stringify({ p_referencia: ref }) });

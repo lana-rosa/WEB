@@ -209,6 +209,8 @@ async function enviar(e) {
       boton.disabled = false; boton.textContent = 'Ir a pagar con Wompi';
       return;
     }
+    // Solo queda en este navegador: sirve para rellenar el formulario si después crea su cuenta (gracias.html).
+    try { localStorage.setItem('lrPrefillCuenta', JSON.stringify({ nombre, correo, telefono, ciudad: ciudad === 'Otro (nacional)' ? otra : ciudad })); } catch (e) {}
     window.location.href = data.url;
   } catch (err) {
     aviso(avisoConWhatsApp('No pudimos conectar con el pago.'));
