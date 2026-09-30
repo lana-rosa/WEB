@@ -1110,6 +1110,19 @@ function pintarPedidos() {
       b.addEventListener('click', () => irSeccion('resenas'));
       acc.append(b); info.append(acc);
     }
+    if (p.borrable) {
+      const acc = nodo('div', 'acciones-carrito');
+      const b = nodo('button', 'boton-cuenta secundario chico', 'Quitar pedido'); b.type = 'button';
+      b.addEventListener('click', async () => {
+        if (!confirm('¿Quitar este pedido que aún no has pagado? Los pedidos pagados no se pueden quitar.')) return;
+        b.disabled = true; b.textContent = 'Quitando…';
+        const { error } = await sbPanel.rpc('quitar_pedido_pendiente', { p_referencia: p.consecutivo });
+        if (error) { b.disabled = false; b.textContent = 'Quitar pedido'; alert('No pudimos quitar el pedido. Solo se pueden quitar los que aún no están pagados.'); return; }
+        pedidosDatos = pedidosDatos.filter((x) => x !== p);
+        pintarPedidos();
+      });
+      acc.append(b); info.append(acc);
+    }
     tarjeta.append(info);
     cont.append(tarjeta);
   });
