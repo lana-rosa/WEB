@@ -34,8 +34,11 @@ begin
   end if;
 
   -- Medio de pago en los nombres que ya usa el ERP para asignar banco
-  v_metodo := case upper(coalesce(w.metodo_pago, ''))
-    when 'CARD' then 'tarjeta_credito' when 'NEQUI' then 'nequi' when 'DAVIPLATA' then 'daviplata' else 'transferencia' end;
+  -- Medio "wompi_…": no coincide con ningún medio asignado a una cuenta en el ERP, así que el dinero va a la
+  -- cuenta predeterminada (donde consigna Wompi) sin mezclarse con los pagos directos por Nequi o transferencia.
+  v_metodo := 'wompi_' || case upper(coalesce(w.metodo_pago, ''))
+    when 'CARD' then 'tarjeta' when 'BANCOLOMBIA_TRANSFER' then 'bancolombia' when 'BANCOLOMBIA_COLLECT' then 'bancolombia'
+    when 'BANCOLOMBIA_QR' then 'qr' when '' then 'otro' else lower(w.metodo_pago) end;
 
   v_obs := 'PEDIDO WEB ' || w.referencia || ' · Pagó por Wompi (' || coalesce(w.metodo_pago, 'sin dato') || '), transacción ' || coalesce(w.wompi_transaction_id, 'sin dato')
         || ' · Cliente: ' || w.nombre || ', WhatsApp ' || w.telefono || ', ' || w.correo
