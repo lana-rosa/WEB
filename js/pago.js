@@ -32,7 +32,13 @@ const CSS = `
 .pago-cerrar { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 1.8rem; line-height: 1; cursor: pointer; color: #45454A; }
 .pago-resumen { background: #FBE4EF; border-radius: 14px; padding: 12px 14px; margin: 0 0 16px; font-size: 0.95rem; }
 .pago-resumen div { display: flex; justify-content: space-between; gap: 10px; padding: 2px 0; }
+.pago-resumen div span:last-child { white-space: nowrap; text-align: right; }
 .pago-resumen .total { font-weight: 800; border-top: 1px solid rgba(231,78,150,0.35); margin-top: 6px; padding-top: 6px; }
+.pago-entrega { display: grid; gap: 8px; margin: 0 0 14px; }
+.pago-opcion { display: flex; gap: 10px; align-items: flex-start; border: 1.5px solid #F28FC0; border-radius: 12px; padding: 10px 12px; cursor: pointer; }
+.pago-opcion:has(input:checked) { background: #FBE4EF; border-color: #E74E96; }
+.pago-opcion input { margin-top: 4px; }
+.pago-opcion small { display: block; color: #6E6E73; font-size: 0.8rem; margin-top: 2px; }
 .pago-resumen .descuento { color: #B83E78; font-weight: 700; }
 .pago-resumen .pista { color: #6E6E73; font-size: 0.85rem; }
 .pago-campo { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
@@ -110,9 +116,15 @@ function construirModal() {
           '<div class="pago-campo"><label for="pg-telefono">WhatsApp*</label><input id="pg-telefono" type="tel" autocomplete="tel" maxlength="20" placeholder="Ej: 3001234567"></div>' +
         '</div>' +
         '<div class="pago-campo"><label for="pg-correo">Correo*</label><input id="pg-correo" type="email" autocomplete="email" maxlength="120"></div>' +
+        '<div class="pago-entrega" role="radiogroup" aria-label="¿Cómo quieres recibir tu pedido?">' +
+          '<label class="pago-opcion"><input type="radio" name="pg-entrega" value="domicilio" checked><span><strong>Envío a domicilio</strong><small>El valor del envío se calcula cuando escribes tu ciudad y dirección.</small></span></label>' +
+          '<label class="pago-opcion"><input type="radio" name="pg-entrega" value="recogida"><span><strong>Recoger en tienda</strong><small>Sin costo de envío. Te escribimos por WhatsApp para acordar cuándo y dónde recogerlo.</small></span></label>' +
+        '</div>' +
+        '<div id="pg-domicilio">' +
         '<div class="pago-campo"><label for="pg-ciudad">Ciudad de envío*</label><select id="pg-ciudad"></select></div>' +
         '<div class="pago-campo" id="pg-otra-caja" hidden><label for="pg-otra">¿Cuál ciudad o municipio?*</label><input id="pg-otra" maxlength="60" autocomplete="address-level2"></div>' +
         '<div class="pago-campo"><label for="pg-direccion">Dirección*</label><input id="pg-direccion" autocomplete="street-address" maxlength="200" placeholder="Calle, número, barrio"></div>' +
+        '</div>' +
         '<div class="pago-campo"><label for="pg-notas">Indicaciones o notas (opcional)</label><textarea id="pg-notas" maxlength="400" placeholder="Ej: portería, apartamento, mensaje para la tarjeta"></textarea></div>' +
         '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
         '<label class="pago-acepto" id="pg-cuenta-caja"><input type="checkbox" id="pg-cuenta" checked><span>Crear mi cuenta con este correo para ver el estado de mi pedido. Sin contraseña: te enviamos un correo para activarla cuando pagues.</span></label>' +
@@ -126,12 +138,15 @@ function construirModal() {
   overlay.addEventListener('click', (e) => { if (e.target === overlay) cerrar(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !overlay.hidden) cerrar(); });
   overlay.querySelector('#pg-ciudad').addEventListener('change', actualizarResumen);
+  overlay.querySelector('#pg-direccion').addEventListener('input', actualizarResumen);
+  overlay.querySelectorAll('input[name="pg-entrega"]').forEach((r) => r.addEventListener('change', () => { actualizarResumen(); cotClave = ''; cotizarDescuento(); }));
   ['pg-correo', 'pg-telefono'].forEach((id) => { const c = overlay.querySelector('#' + id); c.addEventListener('input', cotizarDescuento); c.addEventListener('change', cotizarDescuento); });
   overlay.querySelector('#pago-form').addEventListener('submit', enviar);
 }
 function cerrar() { if (overlay) overlay.hidden = true; document.body.style.overflow = ''; }
 const $ = (id) => overlay.querySelector('#' + id);
 
+const entregaElegida = () => (overlay.querySelector('input[name="pg-entrega"]:checked') || {}).value || 'domicilio';
 function tarifaElegida() {
   const ciudad = $('pg-ciudad').value;
   const t = (tarifas || []).find((x) => x.ciudad === ciudad);
@@ -152,7 +167,7 @@ function cotizarDescuento() {
       const token = await tokenSesion();
       const headers = { 'Content-Type': 'application/json', apikey: SUPABASE_KEY };
       if (token) headers.Authorization = 'Bearer ' + token;
-      const res = await fetch(SUPABASE_URL + '/functions/v1/crear-pago-wompi', { method: 'POST', headers, body: JSON.stringify({ accion: 'cotizar', correo, telefono, items }) });
+      const res = await fetch(SUPABASE_URL + '/functions/v1/crear-pago-wompi', { method: 'POST', headers, body: JSON.stringify({ accion: 'cotizar', correo, telefono, entrega: entregaElegida(), items }) });
       const d = await res.json().catch(() => null);
       if (clave !== cotClave) return;
       cot = res.ok && d && d.primera ? d : null;
@@ -164,15 +179,19 @@ function actualizarResumen() {
   const carrito = leerCarrito();
   const sub = carrito.reduce((s, i) => s + (Number(i.precio) || 0) * (Number(i.cantidad) || 0), 0);
   const desc = cot && cot.descuento > 0 ? Number(cot.descuento) : 0;
-  const envio = tarifaElegida();
-  $('pg-otra-caja').hidden = $('pg-ciudad').value !== 'Otro (nacional)';
+  const recoge = entregaElegida() === 'recogida';
+  $('pg-domicilio').hidden = recoge;
+  $('pg-otra-caja').hidden = recoge || $('pg-ciudad').value !== 'Otro (nacional)';
+  // El envío se muestra cuando ya hay ciudad y dirección (o $0 si recoge en tienda).
+  const hayDireccion = $('pg-direccion').value.trim().length >= 6 && (($('pg-ciudad').value !== 'Otro (nacional)') || $('pg-otra').value.trim().length >= 2);
+  const envio = recoge ? 0 : (hayDireccion ? tarifaElegida() : null);
   const r = $('pago-resumen'); r.replaceChildren();
   carrito.forEach((i) => { const f = nodo('div'); f.append(nodo('span', null, (i.cantidad || 1) + ' × ' + (i.nombre || 'Producto')), nodo('span', null, pesos((Number(i.precio) || 0) * (Number(i.cantidad) || 0)))); r.append(f); });
   const fila = (clase, t, v) => { const f = nodo('div', clase); f.append(nodo('span', null, t), nodo('span', null, v)); r.append(f); };
   fila('subtotal', 'Valor del pedido', pesos(sub));
   if (desc) fila('descuento', '🎁 Descuento aplicado por primera compra (' + cot.pct + '%)', '−' + pesos(desc));
   else if (!cotClave) fila('pista', '🎁 Primera compra: 10% de descuento', 'Escribe tu correo');
-  fila('', 'Envío', envio == null ? 'Elige tu ciudad' : pesos(envio));
+  fila('', recoge ? 'Recoger en tienda' : 'Envío', recoge ? 'Sin costo' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula al escribir tu dirección') : pesos(envio)));
   fila('total', 'Valor total', envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio));
 }
 function aviso(html) {
@@ -216,14 +235,17 @@ async function abrirPago() {
 async function enviar(e) {
   e.preventDefault();
   const nombre = $('pg-nombre').value.trim(), correo = $('pg-correo').value.trim(), telefono = $('pg-telefono').value.trim();
+  const recoge = entregaElegida() === 'recogida';
   let ciudad = $('pg-ciudad').value; const otra = $('pg-otra').value.trim();
   let direccion = $('pg-direccion').value.trim(); const notas = $('pg-notas').value.trim();
   if (nombre.length < 2) return aviso('Escribe tu nombre.');
   if (telefono.replace(/\D/g, '').length < 10) return aviso('Escribe un WhatsApp de 10 dígitos.');
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) return aviso('Escribe un correo válido.');
-  if (!ciudad) return aviso('Elige tu ciudad de envío.');
-  if (ciudad === 'Otro (nacional)') { if (otra.length < 2) return aviso('Escribe tu ciudad o municipio.'); direccion = otra + ' — ' + direccion; }
-  if (direccion.length < 6) return aviso('Escribe tu dirección completa.');
+  if (!recoge) {
+    if (!ciudad) return aviso('Elige tu ciudad de envío.');
+    if (ciudad === 'Otro (nacional)') { if (otra.length < 2) return aviso('Escribe tu ciudad o municipio.'); direccion = otra + ' — ' + direccion; }
+    if (direccion.length < 6) return aviso('Escribe tu dirección completa.');
+  }
   if (!$('pg-acepto').checked) return aviso('Para continuar, acepta la política de datos y de envíos.');
   aviso(null);
   const boton = $('pago-enviar'); boton.disabled = true; boton.textContent = 'Preparando tu pago…';
@@ -233,7 +255,7 @@ async function enviar(e) {
     if (token) headers.Authorization = 'Bearer ' + token;
     const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
     const res = await fetch(SUPABASE_URL + '/functions/v1/crear-pago-wompi', {
-      method: 'POST', headers, body: JSON.stringify({ cliente: { nombre, correo, telefono, ciudad, direccion, notas }, items })
+      method: 'POST', headers, body: JSON.stringify({ cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: recoge ? 'recogida' : 'domicilio' }, items })
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.url) {
@@ -244,7 +266,7 @@ async function enviar(e) {
       return;
     }
     // Solo queda en este navegador: sirve para rellenar el formulario si después crea su cuenta (gracias.html).
-    try { localStorage.setItem('lrPrefillCuenta', JSON.stringify({ nombre, correo, telefono, ciudad: ciudad === 'Otro (nacional)' ? otra : ciudad, crear: !haySesionGuardada() && $('pg-cuenta').checked })); } catch (e) {}
+    try { localStorage.setItem('lrPrefillCuenta', JSON.stringify({ nombre, correo, telefono, ciudad: recoge ? '' : (ciudad === 'Otro (nacional)' ? otra : ciudad), crear: !haySesionGuardada() && $('pg-cuenta').checked })); } catch (e) {}
     window.location.href = data.url;
   } catch (err) {
     aviso(avisoConWhatsApp('No pudimos conectar con el pago.'));
