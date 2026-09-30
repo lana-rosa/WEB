@@ -515,7 +515,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="tarjeta-cuenta" id="sec-resenas" hidden>
       <h2>⭐ Reseñas</h2>
-      <p class="nota-cuenta" style="margin:0 0 12px;">Cuéntanos cómo te fue con lo que recibiste. Publicamos tu reseña con tu nombre y la inicial de tu apellido, después de revisarla.</p>
+      <p class="nota-cuenta" style="margin:0 0 12px;">Cuéntanos cómo te fue con tu compra. Publicamos tu reseña con tu nombre y la inicial de tu apellido, después de revisarla.</p>
       <div class="pestanas-cuenta filtros" id="filtros-resenas" role="tablist" aria-label="Reseñas"></div>
       <div id="lista-resenas"><p class="texto-estado">Cargando…</p></div>
     </div>
@@ -1038,7 +1038,7 @@ function irSeccion(cual, actualizarUrl) {
   avisoCalificar();
 }
 SECCIONES.forEach((s) => $('menu-' + s).addEventListener('click', () => irSeccion(s)));
-// Aviso arriba del panel: compras entregadas que todavía no ha calificado (se oculta dentro de Reseñas).
+// Aviso arriba del panel: compras con pago verificado que todavía no ha calificado (se oculta dentro de Reseñas).
 function avisoCalificar() {
   try {
     const n = resenasDatos.pendientes.length;
@@ -1222,7 +1222,7 @@ function pintarResenas() {
   });
   const cont = $('lista-resenas');
   const lista = resenasDatos[subResenas];
-  if (!lista.length) return mensajeVacio(cont, subResenas === 'pendientes' ? 'No tienes piezas por reseñar. Cuando recibas un pedido, aparecerá aquí.' : 'Todavía no has escrito reseñas.');
+  if (!lista.length) return mensajeVacio(cont, subResenas === 'pendientes' ? 'No tienes piezas por reseñar. Cuando verifiquemos el pago de un pedido, aparecerá aquí.' : 'Todavía no has escrito reseñas.');
   cont.replaceChildren();
   lista.forEach((x) => {
     const tarjeta = nodo('div', 'tarjeta-pedido');
