@@ -12,6 +12,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 - El menú está repetido en cada página (`.nav-principal` y `.nav-movil-panel`): los cambios del menú se hacen en todas.
 - La mercería y la tienda cargan productos en vivo desde Supabase (proyecto "Lana Rosa ERP + SO", función `obtener_merceria_web`).
 - Cuentas de clientes (opcionales): `cuenta.html` + `js/cuenta.js` (enlace al correo con Supabase Auth, carrito guardado en `carritos_web`, historial con `mis_pedidos`); tablas `cuentas_clientes_web`, `carritos_web`, `favoritos_web`, `direcciones_web` y `mensajes_cuenta` (panel con pedidos por estado, mensajes, reseñas, favoritos y direcciones). Al registrarse se crea/vincula un `terceros` (por correo). Ver `herramientas/cuentas-clientes/README.md`. `js/cuenta.js` se carga en todas las páginas.
+- Pagos con Wompi: `js/pago.js` (apagado con `PAGOS_ACTIVOS = false` hasta que Sara guarde las llaves en Supabase), `gracias.html`, funciones `crear-pago-wompi` y `wompi-webhook`; los pedidos pagados pasan solos al ERP como pedidos de "Tienda virtual" (`fn_registrar_pedido_web_en_erp`). Ver `herramientas/cuentas-clientes/README.md`.
 - WhatsApp de pedidos: 573205072801.
 - Google Shopping (Merchant Center): feed en vivo desde la Edge Function `feed-google-merchant` de Supabase; solo diseños propios (tabla `web_google_shopping`). Ver `herramientas/google-merchant/README.md`.
 - Medición: Google Tag Manager `GTM-M3MQ7XZD` en todas las páginas (Analytics `G-RSVSQV8Y9B` se configura dentro de GTM).
