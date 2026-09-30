@@ -96,6 +96,34 @@ export async function iniciarSincronizacion() {
   document.dispatchEvent(new CustomEvent('cuenta:carrito-listo'));
 }
 
+// Número de compras por calificar, en el ícono de la cuenta de cualquier página (se recuerda 10 min por pestaña).
+const CLAVE_PENDIENTES = 'lrPendResenas';
+export function actualizarInsigniaCuenta(n) {
+  try { sessionStorage.setItem(CLAVE_PENDIENTES, JSON.stringify({ n: n, t: Date.now() })); } catch (e) {}
+  if (!document.getElementById('estilo-insignia-cuenta')) {
+    const st = document.createElement('style'); st.id = 'estilo-insignia-cuenta';
+    st.textContent = '.insignia-cuenta{position:absolute;bottom:-4px;right:-4px;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:#E74E96;color:#fff;font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff;line-height:1}';
+    document.head.append(st);
+  }
+  document.querySelectorAll('.boton-cuenta-header').forEach(function (a) {
+    let b = a.querySelector('.insignia-cuenta');
+    if (!n) { if (b) b.remove(); a.setAttribute('title', 'Mi cuenta'); return; }
+    if (!b) { b = document.createElement('span'); b.className = 'insignia-cuenta'; b.setAttribute('aria-hidden', 'true'); a.append(b); }
+    b.textContent = n > 9 ? '9+' : String(n);
+    a.setAttribute('title', 'Mi cuenta · te falta calificar ' + n + (n === 1 ? ' compra' : ' compras'));
+  });
+}
+async function revisarPendientes() {
+  try {
+    const c = JSON.parse(sessionStorage.getItem(CLAVE_PENDIENTES) || 'null');
+    if (c && Date.now() - c.t < 600000) return actualizarInsigniaCuenta(c.n);
+  } catch (e) {}
+  const sb = await obtenerCliente();
+  const { data, error } = await sb.rpc('mis_resenas');
+  if (error) return;
+  actualizarInsigniaCuenta(((data && data.pendientes) || []).length);
+}
+
 export function marcarEncabezado() {
   document.querySelectorAll('.boton-cuenta-header').forEach(function (a) {
     a.classList.add('con-sesion');
@@ -104,6 +132,10 @@ export function marcarEncabezado() {
 }
 
 if (haySesionGuardada()) {
-  const arrancar = function () { marcarEncabezado(); iniciarSincronizacion().catch(function (e) { console.warn('Carrito de la cuenta:', e); }); };
+  const arrancar = function () {
+    marcarEncabezado();
+    iniciarSincronizacion().catch(function (e) { console.warn('Carrito de la cuenta:', e); });
+    revisarPendientes().catch(function () {});
+  };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrancar); else arrancar();
 }

@@ -285,6 +285,9 @@ main > :first-child { padding-top: 22px !important; }
 .item-menu[aria-current="true"] { background: var(--rosa-principal); color: var(--blanco); border-color: var(--rosa-principal); }
 .insignia { position: absolute; top: 4px; right: 8px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: #E74E96; color: #fff; font-size: 0.72rem; display: inline-flex; align-items: center; justify-content: center; border: 2px solid #fff; }
 .insignia[hidden] { display: none; }
+.aviso-calificar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--rosa-suave); border-radius: 14px; padding: 12px 16px; margin: 0 0 14px; }
+.aviso-calificar[hidden] { display: none; }
+.aviso-calificar p { margin: 0; font-weight: 600; color: var(--tinta); }
 .item-menu[aria-current="true"] .insignia { background: #fff; color: var(--rosa-principal); border-color: var(--rosa-principal); }
 .pestanas-cuenta.filtros { margin-bottom: 14px; gap: 6px; }
 .pestanas-cuenta.filtros button { padding: 7px 14px; font-size: 0.85rem; }
@@ -481,6 +484,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="barra-sesion">
       <p>Sesión iniciada como <strong id="panel-correo"></strong></p>
       <button type="button" class="boton-cuenta secundario chico" id="boton-salir">Cerrar sesión</button>
+    </div>
+
+    <div class="aviso-calificar" id="aviso-calificar" role="status" hidden>
+      <p id="aviso-calificar-texto"></p>
+      <button type="button" class="boton-cuenta chico" id="boton-calificar">Calificar ahora</button>
     </div>
 
     <nav class="menu-cuenta" aria-label="Secciones de mi cuenta">
@@ -817,7 +825,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script type="module" src="js/pago.js"></script>
 <script type="module">
-import { haySesionGuardada, obtenerCliente, iniciarSincronizacion, marcarEncabezado } from './js/cuenta.js';
+import { haySesionGuardada, obtenerCliente, iniciarSincronizacion, marcarEncabezado, actualizarInsigniaCuenta } from './js/cuenta.js';
 
 const $ = (id) => document.getElementById(id);
 const VISTAS = ['visitante', 'enlace', 'completar', 'panel'];
@@ -1027,8 +1035,19 @@ function irSeccion(cual, actualizarUrl) {
   });
   if (actualizarUrl !== false) { try { history.replaceState(null, '', '#' + cual); } catch (e) {} }
   if (cual === 'mensajes') abrirMensajes();
+  avisoCalificar();
 }
 SECCIONES.forEach((s) => $('menu-' + s).addEventListener('click', () => irSeccion(s)));
+// Aviso arriba del panel: compras entregadas que todavía no ha calificado (se oculta dentro de Reseñas).
+function avisoCalificar() {
+  try {
+    const n = resenasDatos.pendientes.length;
+    const enResenas = !$('sec-resenas').hidden;
+    $('aviso-calificar').hidden = !n || enResenas;
+    $('aviso-calificar-texto').textContent = n === 1 ? '⭐ Te falta calificar 1 compra. Cuéntanos cómo te fue.' : '⭐ Te faltan ' + n + ' compras por calificar. Cuéntanos cómo te fue.';
+  } catch (e) {}
+}
+$('boton-calificar').addEventListener('click', () => { irSeccion('resenas'); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 function insignia(id, n) { const e = $(id); e.textContent = n > 99 ? '99+' : String(n); e.hidden = !n; }
 function fotoProducto(foto) {
   const c = nodo('div', 'foto-mini');
@@ -1168,6 +1187,8 @@ async function cargarResenas() {
     if (error) throw error;
     resenasDatos = { pendientes: (data && data.pendientes) || [], hechas: (data && data.hechas) || [] };
     insignia('ins-resenas', resenasDatos.pendientes.length);
+    actualizarInsigniaCuenta(resenasDatos.pendientes.length);
+    avisoCalificar();
     pintarResenas();
   } catch (e) { mensajeVacio($('lista-resenas'), 'No pudimos cargar tus reseñas ahora. Intenta de nuevo en un momento.'); }
 }
