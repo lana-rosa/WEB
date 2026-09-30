@@ -132,6 +132,12 @@ a { color: var(--rosa-principal); }
   font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;
 }
 .producto-foto { position: relative; }
+/* Vista de una sola categoría (#peluches, #lanas-merceria...) */
+.volver-categorias { display: none; align-items: center; gap: 6px; margin: 18px 0 0; font-weight: 700; color: var(--rosa-principal); text-decoration: none; font-size: 0.95rem; }
+.volver-categorias:hover { text-decoration: underline; }
+body.vista-categoria .volver-categorias { display: inline-flex; }
+body.vista-categoria .categoria-seccion:not(.categoria-activa) { display: none !important; }
+body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categorias, body.vista-categoria .puentes-cinco, body.vista-categoria .banda-personaliza { display: none !important; }
 .categoria-seccion { padding: 20px 0 48px; scroll-margin-top: 130px; }
 .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 22px; }
 .producto-card { background: var(--blanco); border-radius: var(--radio-suave); overflow: hidden; box-shadow: var(--sombra-suave); display: flex; flex-direction: column; }
@@ -542,6 +548,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <div id="catalogo-merceria" hidden>
+  <a class="volver-categorias" id="volver-categorias" href="#catalogo-merceria">← Todas las categorías</a>
   <div class="barra-controles-tienda">
     <div class="selector-categorias">
       <label for="selector-categoria">Ir a categoría</label>
@@ -926,8 +933,7 @@ function inicializarBuscadorMerceria() {
   if (selectorCategoria) {
     selectorCategoria.addEventListener('change', function() {
       if (!selectorCategoria.value) return;
-      var destino = document.querySelector(selectorCategoria.value);
-      if (destino) destino.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // lo maneja la vista de categoría (hashchange)
     });
   }
 
@@ -1152,6 +1158,33 @@ function inicializarBuscadorMerceria() {
     if (panelBuscar.classList.contains('abierto') && !panelBuscar.contains(e.target) && e.target !== botonBuscar) {
       panelBuscar.classList.remove('abierto');
     }
+  });
+})();
+</script>
+<script>
+(function () {
+  var selector = document.getElementById('selector-categoria');
+  function idActual() { try { return decodeURIComponent(location.hash.slice(1)); } catch (e) { return ''; } }
+  function aplicar(irArriba) {
+    var id = idActual();
+    var sec = id && document.getElementById(id);
+    if (sec && !sec.classList.contains('categoria-seccion')) sec = null;
+    document.querySelectorAll('.categoria-seccion').forEach(function (s) { s.classList.toggle('categoria-activa', s === sec); });
+    document.body.classList.toggle('vista-categoria', !!sec);
+    if (selector) selector.value = sec ? '#' + id : '';
+    if (irArriba) {
+      var destino = sec ? document.getElementById('volver-categorias') : null;
+      var y = destino ? destino.getBoundingClientRect().top + window.pageYOffset - 110 : 0;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'instant' });
+    }
+  }
+  window.aplicarVistaCategoria = aplicar;
+  aplicar(false);
+  window.addEventListener('hashchange', function () { aplicar(true); });
+  if (selector) selector.addEventListener('change', function () {
+    var v = selector.value;
+    if (v.indexOf('#') === 0) location.hash = v;
+    else if (v === '') { history.pushState(null, '', location.pathname + location.search); aplicar(true); }
   });
 })();
 </script>
