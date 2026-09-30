@@ -825,6 +825,15 @@ const CLAVE_CARRITO = 'carritoLanaRosa';
 const REDIRECCION = location.origin + '/cuenta.html';
 const PAGINA_VOLVER = /^[a-z0-9-]+\.html$/;
 try { const v = new URLSearchParams(location.search).get('volver'); if (v && PAGINA_VOLVER.test(v)) localStorage.setItem('lrVolver', v); } catch (e) {}
+// Viene de la página de "Gracias" (?prefill=1): rellena el registro con los datos de la compra (quedan solo en este navegador).
+try {
+  if (new URLSearchParams(location.search).get('prefill') === '1') {
+    const d = JSON.parse(localStorage.getItem('lrPrefillCuenta') || '{}');
+    const poner = (id, v) => { if (v && $(id) && !$(id).value) $(id).value = String(v).slice(0, 120); };
+    poner('c-nombre', d.nombre); poner('c-correo', d.correo); poner('c-telefono', d.telefono); poner('c-ciudad', d.ciudad);
+    localStorage.removeItem('lrPrefillCuenta');
+  }
+} catch (e) {}
 const GOOGLE_ACTIVO = true; // Google ya está activado en Supabase
 const CLAVE_PENDIENTE = 'lrRegistroPendiente';
 function guardarPendiente(d) { try { localStorage.setItem(CLAVE_PENDIENTE, JSON.stringify(d)); } catch (e) {} }

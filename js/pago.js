@@ -113,6 +113,7 @@ function construirModal() {
         '<div class="pago-campo"><label for="pg-direccion">Dirección*</label><input id="pg-direccion" autocomplete="street-address" maxlength="200" placeholder="Calle, número, barrio"></div>' +
         '<div class="pago-campo"><label for="pg-notas">Indicaciones o notas (opcional)</label><textarea id="pg-notas" maxlength="400" placeholder="Ej: portería, apartamento, mensaje para la tarjeta"></textarea></div>' +
         '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
+        '<label class="pago-acepto" id="pg-cuenta-caja"><input type="checkbox" id="pg-cuenta" checked><span>Crear mi cuenta con este correo para ver el estado de mi pedido. Sin contraseña: te enviamos un correo para activarla cuando pagues.</span></label>' +
         '<button type="submit" class="pago-enviar" id="pago-enviar">Ir a pagar con Wompi</button>' +
         '<p class="pago-aviso" id="pago-aviso" role="alert" hidden></p>' +
         '<p class="pago-nota">🔒 Pagas en el sitio seguro de Wompi con tarjeta, PSE, Nequi y más. Nosotras no guardamos los datos de tu tarjeta.</p>' +
@@ -167,6 +168,7 @@ async function abrirPago() {
   const vacia = document.createElement('option'); vacia.value = ''; vacia.textContent = 'Selecciona tu ciudad'; sel.append(vacia);
   lista.forEach((t) => { const o = document.createElement('option'); o.value = t.ciudad; o.textContent = t.ciudad === 'Otro (nacional)' ? 'Otra ciudad de Colombia' : t.ciudad; sel.append(o); });
   overlay.hidden = false; document.body.style.overflow = 'hidden';
+  $('pg-cuenta-caja').hidden = haySesionGuardada();
   actualizarResumen();
   const d = await datosCuenta();
   const poner = (id, v) => { if (v && !$(id).value) $(id).value = v; };
@@ -209,6 +211,8 @@ async function enviar(e) {
       boton.disabled = false; boton.textContent = 'Ir a pagar con Wompi';
       return;
     }
+    // Solo queda en este navegador: sirve para rellenar el formulario si después crea su cuenta (gracias.html).
+    try { localStorage.setItem('lrPrefillCuenta', JSON.stringify({ nombre, correo, telefono, ciudad: ciudad === 'Otro (nacional)' ? otra : ciudad, crear: !haySesionGuardada() && $('pg-cuenta').checked })); } catch (e) {}
     window.location.href = data.url;
   } catch (err) {
     aviso(avisoConWhatsApp('No pudimos conectar con el pago.'));
