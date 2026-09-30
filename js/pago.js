@@ -298,6 +298,6 @@ async function iniciar() {
   if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#6E6E73;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
   wa.before(b, nota);
   wa.textContent = 'Pedir por WhatsApp';
-  wa.style.background = 'transparent'; wa.style.color = '#E74E96'; wa.style.border = '2px solid #E74E96'; wa.style.boxShadow = 'none';
+  wa.style.cssText = 'display:block;box-sizing:border-box;width:100%;text-align:center;text-decoration:none;background:#fff;color:#E74E96;border:2px solid #E74E96;border-radius:999px;padding:12px 20px;font-weight:700;box-shadow:none;';
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
