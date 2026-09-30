@@ -433,6 +433,41 @@ button.boton-primario:hover { filter: brightness(0.95); }
   .ficha-merceria { font-size: 0.7rem; }
   .nota-presentacion { display: block; }
 }
+/* Ficha de producto en página completa (foto grande apilada, precio, cantidad y compra) */
+html.producto-abierto { overflow: hidden; }
+.overlay-modal-producto { background: var(--blanco); align-items: stretch; justify-content: stretch; padding: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.overlay-modal-producto.abierto { display: block; }
+.modal-producto { background: var(--blanco); border-radius: 0; max-width: 1120px; width: auto; margin: 0 auto; max-height: none; overflow: visible; padding: 0 16px 90px; }
+.pagina-producto-barra { position: sticky; top: 0; z-index: 5; background: var(--blanco); padding: 12px 0; border-bottom: 1px solid rgba(69,69,74,0.08); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.modal-producto-cerrar { position: static; width: auto; height: auto; border-radius: 999px; padding: 8px 16px; font: inherit; font-size: 0.9rem; font-weight: 700; color: var(--rosa-principal); background: var(--rosa-suave); box-shadow: none; }
+.migas-producto { font-size: 0.85rem; color: var(--tinta-suave); }
+.migas-producto .actual { color: var(--rosa-principal); font-weight: 600; }
+.modal-producto-grid { display: grid; grid-template-columns: 1fr; gap: 22px; margin-top: 16px; }
+@media (min-width: 900px) { .modal-producto-grid { grid-template-columns: 1.1fr 0.9fr; gap: 44px; } .modal-info-producto { position: sticky; top: 76px; align-self: start; } }
+.modal-galeria { padding: 0; background: transparent; gap: 14px; }
+.modal-galeria .foto-principal { border-radius: 12px; }
+.modal-galeria .miniaturas { flex-direction: column; gap: 14px; }
+.modal-galeria .miniaturas img { width: 100%; height: auto; aspect-ratio: 4 / 5; border: none; border-radius: 12px; cursor: default; }
+.modal-galeria .miniaturas img:first-child { display: none; }
+.modal-info-producto { padding: 0; }
+.modal-info-producto h2 { font-size: 1.7rem; line-height: 1.2; margin-bottom: 8px; }
+.modal-info-producto .calificacion-modal { margin: 0 0 12px; }
+.modal-info-producto .precio-modal { font-size: 1.7rem; color: var(--tinta); margin-bottom: 14px; }
+.modal-info-producto .descripcion-modal { font-size: 1rem; line-height: 1.6; }
+.fila-compra { display: flex; gap: 12px; align-items: stretch; margin-bottom: 12px; }
+.cantidad-producto { display: flex; border: 1.5px solid rgba(69,69,74,0.2); border-radius: 12px; overflow: hidden; flex: 0 0 auto; }
+.cantidad-producto button { width: 40px; background: var(--blanco); border: none; font-size: 1.3rem; cursor: pointer; color: var(--tinta); }
+.cantidad-producto input { width: 46px; text-align: center; border: none; border-left: 1.5px solid rgba(69,69,74,0.2); border-right: 1.5px solid rgba(69,69,74,0.2); font: inherit; font-weight: 600; -moz-appearance: textfield; }
+.cantidad-producto input::-webkit-outer-spin-button, .cantidad-producto input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.fila-compra .boton-primario { flex: 1; margin: 0; background: var(--blanco) !important; color: var(--tinta) !important; border: 1.5px solid var(--tinta) !important; border-radius: 999px; padding: 12px 10px; font-weight: 700; }
+.modal-botones { margin-bottom: 14px; }
+.modal-botones .boton-pedir { padding: 15px; font-size: 1.05rem; }
+.caja-confianza-producto { list-style: none; margin: 18px 0 22px; padding: 16px 18px; background: var(--rosa-suave); border-radius: 14px; display: grid; gap: 12px; }
+.caja-confianza-producto li { display: flex; gap: 12px; align-items: center; font-size: 0.85rem; color: var(--tinta-suave); }
+.caja-confianza-producto .ico { width: 38px; height: 38px; border-radius: 50%; background: var(--blanco); display: grid; place-items: center; font-size: 1.1rem; flex: 0 0 auto; }
+.caja-confianza-producto strong { display: block; color: var(--tinta); font-size: 0.95rem; }
+.titulo-detalles { text-transform: uppercase; letter-spacing: 0.04em; font-size: 1rem; margin: 6px 0 8px; padding-bottom: 6px; border-bottom: 3px solid var(--rosa-principal); display: inline-block; }
+@media (max-width: 700px) { .modal-info-producto h2 { font-size: 1.5rem; } }
 </style>
 </head>
 <body>
@@ -1273,9 +1308,12 @@ function inicializarBuscadorTienda() {
   actualizarContador();
 })();
 </script>
-<div class="overlay-modal-producto" id="overlay-modal-producto">
+<div class="overlay-modal-producto" id="overlay-modal-producto" role="dialog" aria-modal="true" aria-label="Detalle del producto">
   <div class="modal-producto" id="modal-producto">
-    <button class="modal-producto-cerrar" id="cerrar-modal-producto" aria-label="Cerrar">&times;</button>
+    <div class="pagina-producto-barra">
+      <button type="button" class="modal-producto-cerrar" id="cerrar-modal-producto" aria-label="Volver a la tienda">← Volver a la tienda</button>
+      <nav class="migas-producto" id="modal-migas" aria-label="Ruta"></nav>
+    </div>
     <div class="modal-producto-grid">
       <div class="modal-galeria">
         <div class="foto-principal"><img id="modal-foto-principal" src="" alt=""></div>
@@ -1284,15 +1322,28 @@ function inicializarBuscadorTienda() {
       <div class="modal-info-producto">
         <h2 id="modal-nombre"></h2>
         <button type="button" class="boton-favorito boton-favorito-modal" id="modal-favorito" aria-pressed="false"></button>
-        <p class="precio-modal" id="modal-precio"></p>
         <p class="calificacion-modal" id="modal-calificacion"></p>
+        <p class="precio-modal" id="modal-precio"></p>
         <p class="descripcion-modal" id="modal-descripcion"></p>
         <p class="aviso-personaje" id="modal-aviso-personaje" hidden>Pieza artesanal tejida a mano e inspirada en un personaje. No es un producto oficial ni está asociada a la marca del personaje.</p>
-        <ul class="ficha-tecnica" id="modal-ficha"></ul>
-        <div class="modal-botones">
-          <button type="button" class="boton-primario" id="modal-boton-carrito" style="border:none; cursor:pointer;">🛒 Agregar al carrito</button>
-          <a class="boton-pedir" id="modal-boton-whatsapp" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+        <div class="fila-compra">
+          <div class="cantidad-producto">
+            <button type="button" id="modal-menos" aria-label="Menos">−</button>
+            <input type="number" id="modal-cantidad" value="1" min="1" max="99" inputmode="numeric" aria-label="Cantidad">
+            <button type="button" id="modal-mas" aria-label="Más">+</button>
+          </div>
+          <button type="button" class="boton-primario" id="modal-boton-carrito" style="cursor:pointer;">Añadir al carrito</button>
         </div>
+        <div class="modal-botones">
+          <a class="boton-pedir" id="modal-boton-whatsapp" href="#" target="_blank" rel="noopener">Comprar ahora por WhatsApp</a>
+        </div>
+        <ul class="caja-confianza-producto">
+          <li><span class="ico" aria-hidden="true">🤍</span><span><strong>Hecho a mano en Colombia</strong>Cada pieza, tejida con amor</span></li>
+          <li><span class="ico" aria-hidden="true">🚚</span><span><strong>Envíos a toda Colombia</strong>Entregas a nivel nacional</span></li>
+          <li><span class="ico" aria-hidden="true">💬</span><span><strong>Pago fácil</strong>Por WhatsApp con Nequi o Bre-B</span></li>
+        </ul>
+        <h3 class="titulo-detalles">Detalles del producto</h3>
+        <ul class="ficha-tecnica" id="modal-ficha"></ul>
         <div class="personalizalo-modal">
           <p>¿Te gusta este diseño pero quieres cambiarlo?</p>
           <a id="modal-boton-personalizalo" href="personaliza.html">✨ Personalízalo</a>
@@ -1331,6 +1382,9 @@ var RESENAS_POR_PRODUCTO = {};
   var fichaEl = document.getElementById('modal-ficha');
   var botonCarritoModal = document.getElementById('modal-boton-carrito');
   var botonWhatsappModal = document.getElementById('modal-boton-whatsapp');
+  var cantidadEl = document.getElementById('modal-cantidad');
+  document.getElementById('modal-menos').addEventListener('click', function() { cantidadEl.value = Math.max(1, (parseInt(cantidadEl.value, 10) || 1) - 1); });
+  document.getElementById('modal-mas').addEventListener('click', function() { cantidadEl.value = Math.min(99, (parseInt(cantidadEl.value, 10) || 1) + 1); });
 
   function formatoCOP(valor) { return '$' + valor.toLocaleString('es-CO'); }
 
@@ -1339,6 +1393,17 @@ var RESENAS_POR_PRODUCTO = {};
     if (!producto) return;
 
     nombreEl.textContent = producto.nombre;
+    cantidadEl.value = 1;
+    botonCarritoModal.textContent = 'Añadir al carrito';
+    var migas = document.getElementById('modal-migas');
+    migas.textContent = '';
+    [['Inicio', 'index.html'], ['Tienda', null], [producto.categoria || '', null]].forEach(function(m) {
+      if (!m[0]) return;
+      var el = document.createElement('a'); el.textContent = m[0]; el.style.color = 'inherit'; el.style.textDecoration = 'none';
+      if (m[1]) el.href = m[1]; else { el.href = '#'; el.addEventListener('click', function(e) { e.preventDefault(); cerrarModal(); }); }
+      migas.appendChild(el); migas.appendChild(document.createTextNode(' / '));
+    });
+    var actual = document.createElement('span'); actual.className = 'actual'; actual.textContent = producto.nombre; migas.appendChild(actual);
     if (window.pintarFavoritoModal) window.pintarFavoritoModal(id);
     precioEl.textContent = formatoCOP(producto.precio) + ' COP';
     mostrarResenasEnModal(id);
@@ -1366,14 +1431,15 @@ var RESENAS_POR_PRODUCTO = {};
       var CLAVE_CARRITO = 'carritoLanaRosa';
       var carrito = [];
       try { carrito = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || []; } catch (e) {}
+      var cant = Math.max(1, Math.min(99, parseInt(cantidadEl.value, 10) || 1));
       var existente = carrito.find(function(i) { return i.id === id; });
-      if (existente) existente.cantidad++;
-      else carrito.push({ id: id, nombre: producto.nombre, precio: producto.precio, cantidad: 1 });
+      if (existente) existente.cantidad += cant;
+      else carrito.push({ id: id, nombre: producto.nombre, precio: producto.precio, cantidad: cant });
       localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
       var contador = document.getElementById('contador-carrito');
       if (contador) contador.textContent = carrito.reduce(function(s,i){return s+i.cantidad;}, 0);
       botonCarritoModal.textContent = '✓ Agregado';
-      setTimeout(function() { botonCarritoModal.textContent = '🛒 Agregar al carrito'; }, 1200);
+      setTimeout(function() { botonCarritoModal.textContent = 'Añadir al carrito'; }, 1200);
     };
 
     // Foto principal + hasta 2 fotos adicionales (nombre-2, nombre-3), si existen
@@ -1417,14 +1483,21 @@ var RESENAS_POR_PRODUCTO = {};
     }
 
     overlay.classList.add('abierto');
+    overlay.scrollTop = 0;
+    document.documentElement.classList.add('producto-abierto');
+    if (!history.state || !history.state.productoAbierto) history.pushState({ productoAbierto: id }, '', location.href);
   }
 
-  document.getElementById('cerrar-modal-producto').addEventListener('click', function() {
+  function cerrarModal(desdeHistorial) {
+    if (!overlay.classList.contains('abierto')) return;
     overlay.classList.remove('abierto');
-  });
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) overlay.classList.remove('abierto');
-  });
+    document.documentElement.classList.remove('producto-abierto');
+    if (!desdeHistorial && history.state && history.state.productoAbierto) history.back();
+  }
+  window.addEventListener('popstate', function() { cerrarModal(true); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') cerrarModal(); });
+
+  document.getElementById('cerrar-modal-producto').addEventListener('click', function() { cerrarModal(); });
 
   function mostrarResenasEnModal(id) {
     var calEl = document.getElementById('modal-calificacion');
