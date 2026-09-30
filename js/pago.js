@@ -102,7 +102,7 @@ function construirModal() {
   overlay.innerHTML =
     '<div class="pago-modal" role="dialog" aria-modal="true" aria-labelledby="pago-titulo">' +
       '<button type="button" class="pago-cerrar" aria-label="Cerrar">&times;</button>' +
-      '<h2 id="pago-titulo">Pagar en línea</h2>' +
+      '<h2 id="pago-titulo">Continuar compra</h2>' +
       '<div class="pago-resumen" id="pago-resumen"></div>' +
       '<form id="pago-form" novalidate>' +
         '<div class="pago-fila">' +
@@ -286,7 +286,7 @@ async function iniciar() {
   if (!modo || document.getElementById('boton-pagar-wompi')) return;
   if (modo === 'pruebas' && !modoPrueba()) return;
   const prueba = modo === 'pruebas';
-  const b = nodo('button', 'boton-primario', prueba ? '💳 Pagar en línea (PRUEBA)' : '💳 Pagar en línea');
+  const b = nodo('button', 'boton-primario', prueba ? 'Continuar compra (PRUEBA)' : 'Continuar compra');
   b.type = 'button'; b.id = 'boton-pagar-wompi';
   b.style.cssText = 'text-align:center;border:none;cursor:pointer;width:100%;margin-bottom:8px;font:inherit;font-weight:700;';
   b.addEventListener('click', () => {
@@ -294,7 +294,7 @@ async function iniciar() {
     if (p) p.classList.remove('abierto'); if (o) o.classList.remove('abierto');
     abrirPago();
   });
-  const nota = nodo('p', 'nota-pago-carrito', 'Tarjeta, PSE, Nequi y más con Wompi.');
+  const nota = nodo('p', 'nota-pago-carrito', '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi y más.');
   if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#6E6E73;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
   wa.before(b, nota);
   wa.textContent = 'Pedir por WhatsApp';

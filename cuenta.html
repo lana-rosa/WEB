@@ -291,6 +291,9 @@ main > :first-child { padding-top: 22px !important; }
 .item-menu[aria-current="true"] .insignia { background: #fff; color: var(--rosa-principal); border-color: var(--rosa-principal); }
 .pestanas-cuenta.filtros { margin-bottom: 14px; gap: 6px; }
 .pestanas-cuenta.filtros button { padding: 7px 14px; font-size: 0.85rem; }
+.tarjeta-pedido.con-x { position: relative; }
+.cancelar-pedido-x { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #E74E96; background: #fff; color: #E74E96; font-size: 1.4rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.cancelar-pedido-x:hover { background: #FBE4EF; }
 .tarjeta-pedido { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(69,69,74,0.10); }
 .tarjeta-pedido:last-child { border-bottom: none; }
 .foto-mini { width: 76px; height: 76px; flex-shrink: 0; border-radius: 14px; overflow: hidden; background: var(--rosa-suave); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
@@ -823,7 +826,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   actualizarContador();
 })();
 </script>
-<script type="module" src="js/pago.js?v=5"></script>
+<script type="module" src="js/pago.js?v=6"></script>
 <script type="module">
 import { haySesionGuardada, obtenerCliente, iniciarSincronizacion, marcarEncabezado, actualizarInsigniaCuenta } from './js/cuenta.js';
 
@@ -1111,17 +1114,18 @@ function pintarPedidos() {
       acc.append(b); info.append(acc);
     }
     if (p.borrable) {
-      const acc = nodo('div', 'acciones-carrito');
-      const b = nodo('button', 'boton-cuenta secundario chico', 'Quitar pedido'); b.type = 'button';
-      b.addEventListener('click', async () => {
-        if (!confirm('¿Quitar este pedido que aún no has pagado? Los pedidos pagados no se pueden quitar.')) return;
-        b.disabled = true; b.textContent = 'Quitando…';
+      tarjeta.classList.add('con-x');
+      const x = nodo('button', 'cancelar-pedido-x', '×'); x.type = 'button';
+      x.setAttribute('aria-label', 'Cancelar pedido'); x.title = 'Cancelar pedido';
+      x.addEventListener('click', async () => {
+        if (!confirm('¿Estás segura de cancelar este pedido? Aún no está pagado.')) return;
+        x.disabled = true;
         const { error } = await sbPanel.rpc('quitar_pedido_pendiente', { p_referencia: p.consecutivo });
-        if (error) { b.disabled = false; b.textContent = 'Quitar pedido'; alert('No pudimos quitar el pedido. Solo se pueden quitar los que aún no están pagados.'); return; }
-        pedidosDatos = pedidosDatos.filter((x) => x !== p);
+        if (error) { x.disabled = false; alert('No pudimos cancelar el pedido. Solo se pueden cancelar los que aún no están pagados.'); return; }
+        pedidosDatos = pedidosDatos.filter((y) => y !== p);
         pintarPedidos();
       });
-      acc.append(b); info.append(acc);
+      tarjeta.append(x);
     }
     tarjeta.append(info);
     cont.append(tarjeta);
