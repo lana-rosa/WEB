@@ -181,4 +181,4 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
   - Celular: se quitó la sombra del carrito que se veía en el borde derecho.
 - Menos texto en la web (27-sep-2026): Inicio (605 → 327 palabras), Personaliza, Aprende, Sobre nosotras y el Rincón de Rosina (secciones plegables con "Ver…", de 19 a unas 6 pantallas en celular).
 - Descuento de primera compra (10 %) en el pago en línea, aviso "te falta calificar" en la cuenta, hoja "Producto agregado" en el carrito y menú Tienda/Personaliza más oscuro (30-sep-2026): listos en rama, pendientes de la aprobación de Sara.
-- [ ] Opcional: correo que invite a calificar el pedido entregado (hoy solo aviso e insignia dentro de la cuenta).
+- [x] Correo que invita a calificar cuando el pedido pasa a entregado (solo clientas con cuenta, una vez por pedido; `fn_correo_calificar` + trigger en `pedidos_canal_venta`, por Resend). Sin probar con un pedido real: verificarlo la primera vez que se entregue uno.
