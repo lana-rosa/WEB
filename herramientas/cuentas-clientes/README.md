@@ -86,3 +86,9 @@ El envío a "otras ciudades" en el ERP (`tarifas_envio_ciudad`, "Otro (nacional)
 - Si desmarca la casilla, o el envío falla, `gracias.html` muestra la invitación "Crear mi cuenta" (`cuenta.html?prefill=1`, formulario relleno).
 - Comprar sin cuenta sigue siendo posible (la casilla se puede desmarcar).
 - Tienda: las tarjetas ya no llevan enlace de WhatsApp; en la ficha queda "¿Dudas? Escríbenos por WhatsApp". El carrito conserva "Pedir por WhatsApp" como alternativa, y Personaliza sigue por WhatsApp.
+
+## Descuento de primera compra, aviso de calificar y carrito (30-sep-2026)
+- **Descuento 10 % en la primera compra** (solo sobre productos, no sobre el envío). Lo decide el servidor: `crear-pago-wompi` (`PCT_PRIMERA_COMPRA = 10`; 0 la apaga) usa `fn_es_primera_compra_web` (por correo o teléfono, en web, pedidos por WhatsApp/redes y tienda). `{accion:'cotizar'}` devuelve el resumen sin crear nada; `js/pago.js` lo consulta al escribir el correo/teléfono y muestra la fila "🎁 Primera compra". El pedido guarda `descuento_pct` y `descuento`; `enviar-pedido-web-crm` manda al CRM cada producto ya con descuento.
+- **Calificar el pedido:** cuando un pedido pasa a entregado, en `cuenta.html` sale un aviso "te falta calificar" y una insignia con el número en el ícono de cuenta (`actualizarInsigniaCuenta` en `js/cuenta.js`, datos de `mis_resenas`). Falta (opcional): correo de invitación.
+- **Carrito:** `js/carrito-agregado.js` abre la hoja "Producto agregado" con Ir a pagar / Agregar más productos (tienda y mercería).
+- Menú: "Tienda" y "Personaliza" van en el color más oscuro de la marca (`.g-tienda`).
