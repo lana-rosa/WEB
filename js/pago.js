@@ -266,10 +266,11 @@ async function modoPagos() {
     const res = await fetch(SUPABASE_URL + '/functions/v1/crear-pago-wompi', {
       method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY }, body: JSON.stringify({ accion: 'estado' })
     });
-    if (!res.ok) return null;
+    if (res.status === 503) return null; // el servidor dice: pagos apagados
+    if (!res.ok) return 'produccion'; // error pasajero: se muestra el botón y el pago avisa si algo falla
     const d = await res.json();
-    return d.modo === 'produccion' || d.modo === 'pruebas' ? d.modo : null;
-  } catch (e) { return null; }
+    return d.modo === 'pruebas' ? 'pruebas' : 'produccion';
+  } catch (e) { return 'produccion'; } // sin conexión al consultar: no se esconde el botón de pago
 }
 
 async function iniciar() {
