@@ -38,6 +38,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 - [x] **Inicio editorial publicado (27-sep-2026):** 14 secciones con fotos grandes, mascotas, historias reales, mensajes de clientas, Rosina tejida, feria y equipo.
 
+- [x] **Categorías de la tienda y la mercería en vista propia (30-sep-2026).** Al elegir una categoría (tarjetas, enlaces `#peluches`, menú "Ir a categoría") se muestra solo esa categoría, con enlace "← Todas las categorías", sin desplazarse por las demás. Igual en la mercería (Lanas, Hilos).
+
 - [x] **Dirección en la web:** Sara decidió dejarla como está (27-sep-2026), aunque en Google Maps el perfil quedó sin ubicación (solo envíos).
 - [ ] **Perfil de Google (lo hace Sara):** revisar en 1 o 2 semanas que vuelva a salir al buscar "Lana Rosa Crochet" y que se reactiven las reseñas, después de corregir la fecha de apertura; agregar horario y áreas de servicio si faltan.
 - [ ] **Foto de la feria en el Inicio:** confirmar si se ponen los nombres de las dos integrantes.
