@@ -9,9 +9,9 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 - [x] Qué materiales necesitas para tu primer amigurumi (crochet)
 - [x] Cómo pedir un amigurumi personalizado a partir de una foto (regalos)
 - [x] Qué fotos enviar para que tu amigurumi personalizado quede idéntico (regalos) — 27-sep-2026
+- [x] Amigurumi de tu mascota: cómo lo tejemos y qué detalles podemos incluir (regalos) — 30-sep-2026
 
 ## Próximos (en este orden)
-- [ ] Amigurumi de tu mascota: cómo lo tejemos y qué detalles podemos incluir (regalos)
 - [ ] Cómo leer un patrón de crochet: abreviaturas y símbolos (crochet) → glosario y abreviaturas
 - [ ] Regalos para graduaciones hechos a mano (regalos)
 - [ ] Cómo elegir el hilo para amigurumis: algodón, acrílico y grosor (crochet) → mercería
