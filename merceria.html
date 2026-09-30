@@ -449,6 +449,20 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 /* Etiqueta "material gratuito" del menú */
 .etiqueta-gratis { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: #E6E7FD; color: #4F53B8; font-size: 0.68rem; font-weight: 700; line-height: 1.4; vertical-align: 2px; white-space: nowrap; }
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
+/* Celular: productos de a 2 por fila, como en las tiendas de referencia */
+@media (max-width: 700px) {
+  .grid-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .producto-foto { aspect-ratio: 4 / 5; }
+  .producto-info { padding: 10px 10px 12px; gap: 3px; }
+  .producto-info h3 { font-size: 0.92rem; min-height: 2.5em; }
+  .producto-titulo { gap: 4px; }
+  .producto-precio { font-size: 0.95rem; }
+  .producto-estado { font-size: 0.72rem; margin-bottom: 6px; }
+  .boton-pedir, .boton-agregar-carrito { font-size: 0.72rem; padding: 8px 4px; line-height: 1.2; }
+  .boton-agregar-carrito { margin-top: 6px; }
+  .ficha-merceria { font-size: 0.7rem; }
+  .nota-presentacion { display: block; }
+}
 </style>
 </head>
 <body>
