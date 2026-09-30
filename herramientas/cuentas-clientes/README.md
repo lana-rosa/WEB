@@ -47,4 +47,16 @@ Piezas: `js/pago.js` (botón "Pagar en línea" del carrito y formulario de enví
 4. Probar en privado: abrir `lanarosacrochet.com/tienda.html?pagosprueba=1` (muestra el botón solo en ese navegador; `?pagosprueba=0` lo quita) y pagar con la tarjeta de pruebas de Wompi. Al terminar, cambiar las tres llaves por las de producción (`pub_prod_…`) y poner `PAGOS_ACTIVOS = true` en `js/pago.js` para que lo vea todo el público.
 5. ERP → Conciliación bancaria: la cuenta predeterminada debe ser la que recibe los depósitos de Wompi (Bancolombia). Si el Nequi es otra cuenta, crearla y asignarle el medio Nequi.
 
-**Pagos de prueba:** si `WOMPI_PUBLIC_KEY` no empieza por `pub_prod_`, el webhook marca el pedido como `es_prueba` y **no** lo registra en el ERP (no mueve caja, bancos ni inventario). Solo los pagos hechos con llaves de producción pasan al ERP. La función `crear-pago-wompi` se niega a generar pagos si `WOMPI_PUBLIC_KEY` no es una llave pública (`pub_test_` o `pub_prod_`). En el ERP el pedido aparece en Punto de Venta → "Pedidos WhatsApp/Redes" (canal 🛍️ Tienda virtual).
+**Pagos de prueba:** si `WOMPI_PUBLIC_KEY` no empieza por `pub_prod_`, el webhook marca el pedido como `es_prueba` y **no** lo registra en el ERP (no mueve caja, bancos ni inventario). Solo los pagos hechos con llaves de producción pasan al ERP. La función `crear-pago-wompi` se niega a generar pagos si `WOMPI_PUBLIC_KEY` no es una llave pública (`pub_test_` o `pub_prod_`). En el ERP el pedido aparece en Punto de Venta → "Pedidos Web/Redes" (canal 🛍️ Tienda virtual).
+
+
+## Conexión ERP ↔ CRM para pedidos web (30-sep-2026, fase 1)
+El CRM tiene su propia base de datos de Supabase ("Lana Rosa CRM", `wcqdkccvtywiutzknskr`), separada de la del ERP. Un pedido pagado en la web (llaves de producción) ahora también llega al CRM, sin botones:
+
+`wompi-webhook` (ERP) → `enviar-pedido-web-crm` (ERP) → `recibir-pedido-web` (CRM)
+
+- **`enviar-pedido-web-crm`** (proyecto ERP): arma el envío con el pedido web y sus productos, y llama al CRM. Después guarda `referencia_crm_id` en cada pedido del ERP (y `crm_cliente_id` en el tercero), que es la marca que usa el Worker `lana-rosa-os-pos` para no volver a importar ese pedido al tocar "Cargar pedidos nuevos del CRM". Deja `pedidos_web.crm_enviado_at` o el motivo en `pedidos_web.crm_error`. Si falla, el pago y el ERP no se afectan; el siguiente evento de Wompi lo reintenta y no duplica.
+- **`recibir-pedido-web`** (proyecto CRM): busca al cliente por correo y luego por teléfono (si no existe lo crea con canal `otro` y "Página web"), y crea un pedido por producto (estado `listo` si había stock, `en proceso` si hay que tejerlo; entrega `envio`, con dirección) y su pago `anticipo` con medio `Wompi`. Cada pedido lleva en las notas un marcador `[ERP:PED-…]` que evita duplicados.
+- **Seguridad:** la llamada lleva el secreto `crm_puente_secreto` (guardado en la bóveda del ERP; en el código del CRM solo está su huella SHA-256). Los pedidos de prueba (`es_prueba`) no se envían.
+- Verificado con una llamada de prueba (creó cliente, pedido y pago; repetirla no duplicó; una clave equivocada fue rechazada) y luego se borró. **Falta probar el recorrido completo con un pago real de producción.**
+- Pendiente (fase 2): arreglar el Worker para que no duplique clientes (busca solo por cédula) y para normalizar los medios de pago ("Nequi" del CRM vs `nequi` del ERP).
