@@ -60,3 +60,13 @@ El CRM tiene su propia base de datos de Supabase ("Lana Rosa CRM", `wcqdkccvtywi
 - **Seguridad:** la llamada lleva el secreto `crm_puente_secreto` (guardado en la bóveda del ERP; en el código del CRM solo está su huella SHA-256). Los pedidos de prueba (`es_prueba`) no se envían.
 - Verificado con una llamada de prueba (creó cliente, pedido y pago; repetirla no duplicó; una clave equivocada fue rechazada) y luego se borró. **Falta probar el recorrido completo con un pago real de producción.**
 - Pendiente (fase 2): arreglar el Worker para que no duplique clientes (busca solo por cédula) y para normalizar los medios de pago ("Nequi" del CRM vs `nequi` del ERP).
+
+## Sincronización de cobros y estados ERP ↔ CRM (fase 2b, 30-sep-2026)
+Aplica a los pedidos que ya están vinculados (`pedidos_canal_venta.referencia_crm_id`): los de la web y los traídos del CRM.
+
+- **Cobros, ERP → CRM:** cada cobro que se registra en el ERP (`pedidos_canal_pagos`) avisa al CRM (`recibir-actualizacion-erp`). Se comparan **totales**: si el ERP tiene cobrado más de lo que el CRM tiene en `pagos`, se registra la diferencia (marcador `[ERP-PAGO:…]`). Por eso un pago que ya está en el CRM nunca se duplica.
+- **Estados, ERP → CRM:** ERP "listo para despachar" → CRM `listo`; ERP "entregado" → CRM `entregado` (con `fecha_entrega_real`). Solo avanzan, nunca retroceden.
+- **Estados, CRM → ERP** (`actualizar-pedido-desde-crm`): CRM `listo`/`enviado`/`entregado` con el pedido "en preparación" → ERP "listo para despachar". CRM `entregado` con el pedido "listo" y **sin saldo pendiente** → ERP "entregado" (reconoce el ingreso, igual que el botón). Si queda saldo por cobrar **no** se entrega: el cobro final se registra en el ERP.
+- **Cobros, CRM → ERP: no se automatizan.** El ERP es el sistema del dinero (anticipo y saldo fijos, con caja y asientos); los pagos que se anotan solo en el CRM no mueven la contabilidad solos. El cobro final se hace en el ERP y de ahí pasa al CRM.
+- **Mecanismo:** triggers `trg_pago_pedido_a_crm` y `trg_estado_pedido_a_crm` (ERP) y `trg_estado_pedido_a_erp` (CRM) con `pg_net`; los dos sentidos usan secretos distintos (`crm_puente_secreto` en la bóveda del ERP, `erp_puente_secreto` en la del CRM; en las funciones solo hay su huella). Si un aviso falla, el cambio original (cobro, estado) no se ve afectado.
+- Verificado con pedidos de prueba en ambas bases (cobros anticipo y saldo, "listo", "entregado" en ambos sentidos, sin duplicar ni entrar en bucle) y luego borrados. En el libro diario queda un asiento de prueba con su reversión (PED-2026-00530), que suma cero.
