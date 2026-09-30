@@ -79,3 +79,10 @@ Aplica a los pedidos que ya están vinculados (`pedidos_canal_venta.referencia_c
 
 **Para abrir los pagos:** Wompi debe haber aprobado el comercio para producción. Luego, en Supabase → Edge Functions → Secrets, reemplazar `WOMPI_PUBLIC_KEY` (`pub_prod_…`), `WOMPI_INTEGRITY_SECRET` y `WOMPI_EVENTS_SECRET` por los de producción, y en Wompi (producción) registrar la URL de eventos `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/wompi-webhook`. No hay que publicar nada más en la web.
 El envío a "otras ciudades" en el ERP (`tarifas_envio_ciudad`, "Otro (nacional)") quedó en $18.000, igual que en la web y en las políticas.
+
+## Cuenta al comprar (30-sep-2026)
+- En el formulario de pago (`js/pago.js`) hay una casilla **marcada por defecto**: "Crear mi cuenta con este correo para ver el estado de mi pedido" (no aparece si ya hay sesión). Al enviar, los datos de la compra quedan solo en el navegador (`lrPrefillCuenta`, con `crear: true/false`).
+- En `gracias.html`, cuando Wompi confirma el pago y la casilla estaba marcada, se envía el correo de activación (`signInWithOtp` con `shouldCreateUser: true` y los datos en `user_metadata`; no se reenvía si recarga). Al abrir el enlace, `cuenta.html` completa el registro sola con esos datos (ya aceptó la política de datos en el formulario de pago) y `mis_pedidos` muestra el pedido por coincidencia de correo.
+- Si desmarca la casilla, o el envío falla, `gracias.html` muestra la invitación "Crear mi cuenta" (`cuenta.html?prefill=1`, formulario relleno).
+- Comprar sin cuenta sigue siendo posible (la casilla se puede desmarcar).
+- Tienda: las tarjetas ya no llevan enlace de WhatsApp; en la ficha queda "¿Dudas? Escríbenos por WhatsApp". El carrito conserva "Pedir por WhatsApp" como alternativa, y Personaliza sigue por WhatsApp.

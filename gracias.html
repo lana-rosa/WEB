@@ -568,7 +568,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="module" src="js/cuenta.js"></script>
 <script type="module" src="js/pago.js"></script>
 <script type="module">
-import { haySesionGuardada } from './js/cuenta.js';
+import { haySesionGuardada, obtenerCliente } from './js/cuenta.js';
 const URL_SB = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
 const $ = (id) => document.getElementById(id);
@@ -586,12 +586,35 @@ function pintar(icono, titulo, sub, detalle, acciones) {
   $('gr-icono').textContent = icono; $('gr-titulo').textContent = titulo; $('gr-sub').textContent = sub; $('gr-detalle').textContent = detalle;
   $('gr-acciones').replaceChildren(...acciones);
 }
-const accionesOk = () => {
+// Si en el formulario de pago dejó marcada "Crear mi cuenta", al confirmarse el pago se le envía el correo de activación.
+// Los datos viven solo en este navegador (clave lrPrefillCuenta); el correo no se reenvía si recarga la página.
+const leerJSON = (k) => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
+async function enviarActivacion() {
+  const prev = leerJSON('lrPrefillCuenta');
+  const hecho = leerJSON('lrCuentaEnviada');
+  if (hecho && hecho.ref === ref) return hecho.correo;
+  if (!prev || !prev.crear || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(prev.correo || '')) return null;
+  try {
+    const sb = await obtenerCliente();
+    const datos = { nombre: prev.nombre, telefono: prev.telefono, ciudad: prev.ciudad || '', acepta: true };
+    localStorage.setItem('lrRegistroPendiente', JSON.stringify(Object.assign({ correo: prev.correo }, datos)));
+    const { error } = await sb.auth.signInWithOtp({ email: prev.correo, options: { shouldCreateUser: true, emailRedirectTo: location.origin + '/cuenta.html', data: datos } });
+    if (error) return null;
+    localStorage.setItem('lrCuentaEnviada', JSON.stringify({ ref, correo: prev.correo }));
+    return prev.correo;
+  } catch (e) { return null; }
+}
+const accionesOk = (correoActivacion) => {
   const conCuenta = haySesionGuardada();
-  $('gr-invita').hidden = conCuenta;
+  const caja = $('gr-invita');
+  caja.hidden = conCuenta;
+  if (correoActivacion && !conCuenta) {
+    caja.querySelector('h2').textContent = 'Revisa tu correo para activar tu cuenta';
+    caja.querySelector('p').textContent = 'Te enviamos un correo a ' + correoActivacion + '. Ábrelo y toca el enlace: así entrarás a tu cuenta y verás el estado de tu pedido. Si no lo ves, revisa la carpeta de spam.';
+  }
   return [
-    conCuenta ? enlace('Ver mis pedidos', 'cuenta.html#pedidos', 'boton-primario') : enlace('Crear mi cuenta', 'cuenta.html?prefill=1', 'boton-primario'),
-    enlace('Seguir comprando', 'tienda.html', 'boton-secundario'),
+    conCuenta ? enlace('Ver mis pedidos', 'cuenta.html#pedidos', 'boton-primario') : (correoActivacion ? enlace('Seguir comprando', 'tienda.html', 'boton-primario') : enlace('Crear mi cuenta', 'cuenta.html?prefill=1', 'boton-primario')),
+    ...(correoActivacion && !conCuenta ? [] : [enlace('Seguir comprando', 'tienda.html', 'boton-secundario')]),
     enlace('Escribirnos por WhatsApp', WA, 'boton-secundario', true)
   ];
 };
@@ -615,7 +638,8 @@ async function iniciar() {
     if (p && p.estado === 'pagado') {
       try { localStorage.setItem('carritoLanaRosa', '[]'); } catch (e) {}
       const nombre = p.nombre ? ', ' + p.nombre : '';
-      return pintar('💗', '¡Gracias' + nombre + '! Recibimos tu pago', 'Tu pedido ya quedó registrado.', 'Pagaste ' + pesos(p.total) + '. Te escribiremos por WhatsApp o correo para coordinar la entrega. Guarda tu número de pedido.', accionesOk());
+      const correoActivacion = haySesionGuardada() ? null : await enviarActivacion();
+      return pintar('💗', '¡Gracias' + nombre + '! Recibimos tu pago', 'Tu pedido ya quedó registrado.', 'Pagaste ' + pesos(p.total) + '. Te escribiremos por WhatsApp o correo para coordinar la entrega. Guarda tu número de pedido.', accionesOk(correoActivacion));
     }
     if (p && (p.estado === 'rechazado' || p.estado === 'error' || p.estado === 'anulado')) {
       return pintar('😕', 'No se completó tu pago', 'Tu carrito sigue guardado.', 'El pago no fue aprobado. Puedes intentarlo de nuevo con otro medio de pago o escribirnos y te ayudamos.', [enlace('Volver a la tienda', 'tienda.html', 'boton-primario'), enlace('Escribirnos por WhatsApp', WA, 'boton-secundario', true)]);
