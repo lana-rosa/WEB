@@ -34,7 +34,9 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
   - Proyectos especiales / empresas: qué se ofrece, cantidades mínimas, tiempos y fotos de trabajos anteriores. WhatsApp: "Hola Lana Rosa. Quiero consultar por un proyecto especial para mi empresa/evento."
   - Sostenibilidad ("Nuestro hilo también tiene una historia"): lo que hacen hoy y lo que están construyendo, solo con información real.
 
-- [ ] **Pagos en línea dentro de la web.** Sara quiere que el carrito cobre directamente (tarjeta, PSE, Nequi). Recomendación: Wompi (Bancolombia). Sara abre la cuenta con RUT, cédula y cuenta bancaria; después Claude integra el pago con Supabase (llave pública en la web, secretos solo en Supabase, confirmación por webhook y envío según ciudad: $18.000 / $13.000 / $8.000).
+- [ ] **Pagos en línea dentro de la web (Wompi).** Ya está construido: botón en el carrito, formulario de envío, página de gracias, funciones de Supabase y registro automático en el ERP (pedido de Tienda virtual, pago y asiento en bancos). Falta que Sara cree/abra la cuenta de Wompi, guarde las tres llaves en Supabase (Edge Functions → Secrets), registre la URL de eventos en Wompi y luego Claude enciende `PAGOS_ACTIVOS` y se prueba con la tarjeta de pruebas. Pasos en `herramientas/cuentas-clientes/README.md`.
+  - [ ] Revisar tarifas de envío en el ERP (`tarifas_envio_ciudad`): hoy "Otra ciudad" está en $15.000 y la web dice $18.000; también hay tarifas para Chinchiná, Neira y Palestina.
+  - [ ] ERP → Bancos: crear la cuenta bancaria y asignar los medios de pago para que el dinero de la web no quede en "sin asignar".
 
 - [x] **Inicio editorial publicado (27-sep-2026):** 14 secciones con fotos grandes, mascotas, historias reales, mensajes de clientas, Rosina tejida, feria y equipo.
 

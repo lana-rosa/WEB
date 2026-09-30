@@ -32,3 +32,17 @@ Las plantillas usan `{{ .ConfirmationURL }}` (no borrarlo).
 - **Mensajes:** un trigger en `pedidos_canal_venta` crea un aviso cuando el equipo registra un pedido o cambia su estado (solo si la clienta tiene cuenta vinculada).
 - **Reseñas:** la clienta solo puede reseñar piezas de pedidos entregados o compras en tienda. Quedan `pendiente` y el equipo las aprueba en el ERP (llega el correo de aviso de siempre). En público se muestra "Nombre A.".
 - **Favoritos:** corazón en las tarjetas y la ficha de la tienda (requiere sesión).
+
+## Pagos en línea con Wompi (30-sep-2026)
+Piezas: `js/pago.js` (botón "Pagar en línea" del carrito y formulario de envío), `gracias.html` (estado del pedido), funciones de Supabase `crear-pago-wompi` y `wompi-webhook`, tablas `pedidos_web` y `pedidos_web_items`, y `migracion-3-pagos-web.sql` / `migracion-4-pedidos-web-erp.sql`.
+
+**Flujo:** el carrito manda solo ids y cantidades → `crear-pago-wompi` calcula precios y envío con datos del ERP, crea el pedido web y devuelve la URL de Wompi → la clienta paga en Wompi → Wompi avisa a `wompi-webhook` (firma verificada y consulta directa a la API de Wompi) → el pedido pasa a `pagado`, se avisa por correo al equipo y se registra en el ERP.
+
+**En el ERP:** cada producto del pedido web queda como pedido del canal "🛍️ Tienda virtual" (100% pagado, en preparación), con el cliente, la fecha, el medio de pago (wompi_tarjeta, wompi_pse, wompi_nequi, wompi_daviplata… según lo que usó en Wompi) y en las observaciones la referencia LRW-…, el número de transacción, el WhatsApp y la dirección de envío. El dinero entra a la caja de Tienda y se contabiliza como anticipo recibido (2805) contra la cuenta bancaria predeterminada (la que recibe los depósitos de Wompi); los medios wompi_… no se asignan en Bancos, para que no se mezclen con los pagos directos por Nequi o transferencia. Si un pedido no se pudo pasar al ERP, queda el motivo en `pedidos_web.erp_error` y `fn_reintentar_pedidos_web_erp()` lo reintenta.
+
+**Para activarlo (Sara):**
+1. Wompi → Desarrolladores: copiar la llave pública, el secreto de integridad y el secreto de eventos (primero las de pruebas, `pub_test_…`).
+2. Supabase → Edge Functions → Secrets: `WOMPI_PUBLIC_KEY`, `WOMPI_INTEGRITY_SECRET`, `WOMPI_EVENTS_SECRET`. Las llaves nunca van en el chat ni en el código.
+3. Wompi → Desarrolladores → URL de eventos: `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/wompi-webhook`.
+4. Probar en privado: abrir `lanarosacrochet.com/tienda.html?pagosprueba=1` (muestra el botón solo en ese navegador; `?pagosprueba=0` lo quita) y pagar con la tarjeta de pruebas de Wompi. Al terminar, cambiar las tres llaves por las de producción (`pub_prod_…`) y poner `PAGOS_ACTIVOS = true` en `js/pago.js` para que lo vea todo el público.
+5. ERP → Conciliación bancaria: la cuenta predeterminada debe ser la que recibe los depósitos de Wompi (Bancolombia). Si el Nequi es otra cuenta, crearla y asignarle el medio Nequi.
