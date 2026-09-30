@@ -198,8 +198,8 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .boton-favorito svg { display: block; }
 .boton-favorito:not(.boton-favorito-modal) { width: 36px; height: 34px; flex-shrink: 0; margin: -4px -6px -4px 0; }
 .boton-favorito:not(.boton-favorito-modal) svg { width: 32px; height: 30px; }
-.boton-favorito:not(.boton-favorito-modal) svg path { fill: none; stroke: #1F1F23; stroke-width: 2.2; }
-.boton-favorito:not(.boton-favorito-modal) svg .mas { stroke-width: 2.4; }
+.boton-favorito:not(.boton-favorito-modal) svg path { fill: none; stroke: #1F1F23; stroke-width: 1.4; }
+.boton-favorito:not(.boton-favorito-modal) svg .mas { stroke-width: 1.6; }
 .boton-favorito[aria-pressed="true"]:not(.boton-favorito-modal) svg .cora { fill: #E0182D; stroke: #E0182D; }
 .boton-favorito[aria-pressed="true"] svg .mas { display: none; }
 .boton-favorito-modal { display: inline-flex; align-items: center; gap: 6px; position: static; width: auto; height: auto; color: var(--rosa-principal); border-radius: 999px; padding: 8px 16px; font: inherit; font-weight: 700; font-size: 0.95rem; color: #1F1F23; border: 2px solid #1F1F23; background: var(--blanco); box-shadow: none; margin: 4px 0 12px; }
@@ -885,7 +885,7 @@ function crearTarjeta(item) {
 /* ---------- Favoritos (solo con sesión iniciada) ---------- */
 var FAVORITOS = new Set();
 var usuarioFav = null;
-var SVG_CORAZON = '<svg viewBox="0 0 30 28" width="%TAM%" height="%TAM%" aria-hidden="true" focusable="false"><path class="mas" d="M5 1.8v6.4M1.8 5h6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><g transform="translate(6 3.6)"><path class="cora" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%REL%" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></g></svg>';
+var SVG_CORAZON = '<svg viewBox="0 0 30 28" width="%TAM%" height="%TAM%" aria-hidden="true" focusable="false"><path class="mas" d="M5 1.8v6.4M1.8 5h6.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><g transform="translate(6 3.6)"><path class="cora" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%REL%" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></g></svg>';
 function corazonSVG(activo, tam) { return SVG_CORAZON.replace(/%TAM%/g, tam).replace('%REL%', activo ? 'currentColor' : 'none'); }
 function pintarFavoritos() {
   document.querySelectorAll('.boton-favorito:not(.boton-favorito-modal)').forEach(function (b) {
