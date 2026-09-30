@@ -34,6 +34,7 @@ const CSS = `
 .pago-resumen div { display: flex; justify-content: space-between; gap: 10px; padding: 2px 0; }
 .pago-resumen .total { font-weight: 800; border-top: 1px solid rgba(231,78,150,0.35); margin-top: 6px; padding-top: 6px; }
 .pago-resumen .descuento { color: #B83E78; font-weight: 700; }
+.pago-resumen .pista { color: #6E6E73; font-size: 0.85rem; }
 .pago-campo { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
 .pago-campo[hidden] { display: none; }
 .pago-campo label { font-weight: 700; font-size: 0.88rem; }
@@ -167,9 +168,12 @@ function actualizarResumen() {
   $('pg-otra-caja').hidden = $('pg-ciudad').value !== 'Otro (nacional)';
   const r = $('pago-resumen'); r.replaceChildren();
   carrito.forEach((i) => { const f = nodo('div'); f.append(nodo('span', null, (i.cantidad || 1) + ' × ' + (i.nombre || 'Producto')), nodo('span', null, pesos((Number(i.precio) || 0) * (Number(i.cantidad) || 0)))); r.append(f); });
-  if (desc) { const fd = nodo('div', 'descuento'); fd.append(nodo('span', null, '🎁 Primera compra (' + cot.pct + '% de descuento)'), nodo('span', null, '−' + pesos(desc))); r.append(fd); }
-  const fe = nodo('div'); fe.append(nodo('span', null, 'Envío'), nodo('span', null, envio == null ? 'Elige tu ciudad' : pesos(envio))); r.append(fe);
-  const ft = nodo('div', 'total'); ft.append(nodo('span', null, 'Total'), nodo('span', null, envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio))); r.append(ft);
+  const fila = (clase, t, v) => { const f = nodo('div', clase); f.append(nodo('span', null, t), nodo('span', null, v)); r.append(f); };
+  fila('subtotal', 'Valor del pedido', pesos(sub));
+  if (desc) fila('descuento', '🎁 Descuento aplicado por primera compra (' + cot.pct + '%)', '−' + pesos(desc));
+  else if (!cotClave) fila('pista', '🎁 Primera compra: 10% de descuento', 'Escribe tu correo');
+  fila('', 'Envío', envio == null ? 'Elige tu ciudad' : pesos(envio));
+  fila('total', 'Valor total', envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio));
 }
 function aviso(html) {
   const a = $('pago-aviso');
