@@ -70,3 +70,12 @@ Aplica a los pedidos que ya están vinculados (`pedidos_canal_venta.referencia_c
 - **Cobros, CRM → ERP: no se automatizan.** El ERP es el sistema del dinero (anticipo y saldo fijos, con caja y asientos); los pagos que se anotan solo en el CRM no mueven la contabilidad solos. El cobro final se hace en el ERP y de ahí pasa al CRM.
 - **Mecanismo:** triggers `trg_pago_pedido_a_crm` y `trg_estado_pedido_a_crm` (ERP) y `trg_estado_pedido_a_erp` (CRM) con `pg_net`; los dos sentidos usan secretos distintos (`crm_puente_secreto` en la bóveda del ERP, `erp_puente_secreto` en la del CRM; en las funciones solo hay su huella). Si un aviso falla, el cambio original (cobro, estado) no se ve afectado.
 - Verificado con pedidos de prueba en ambas bases (cobros anticipo y saldo, "listo", "entregado" en ambos sentidos, sin duplicar ni entrar en bucle) y luego borrados. En el libro diario queda un asiento de prueba con su reversión (PED-2026-00530), que suma cero.
+
+## Salida a producción de Wompi (30-sep-2026)
+`PAGOS_ACTIVOS = true` en `js/pago.js` **no** abre los pagos al público por sí solo: el botón le pregunta al servidor (`crear-pago-wompi` con `{ accion: 'estado' }`) en qué modo están las llaves y se muestra así:
+- llaves `pub_prod_…` → lo ve todo el público;
+- llaves `pub_test_…` → solo quien abre `?pagosprueba=1` (con la etiqueta PRUEBA);
+- sin llaves o llave inválida → nadie.
+
+**Para abrir los pagos:** Wompi debe haber aprobado el comercio para producción. Luego, en Supabase → Edge Functions → Secrets, reemplazar `WOMPI_PUBLIC_KEY` (`pub_prod_…`), `WOMPI_INTEGRITY_SECRET` y `WOMPI_EVENTS_SECRET` por los de producción, y en Wompi (producción) registrar la URL de eventos `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/wompi-webhook`. No hay que publicar nada más en la web.
+El envío a "otras ciudades" en el ERP (`tarifas_envio_ciudad`, "Otro (nacional)") quedó en $18.000, igual que en la web y en las políticas.
