@@ -196,8 +196,8 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .boton-favorito { border: none; background: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .boton-favorito:hover { transform: scale(1.12); }
 .boton-favorito svg { display: block; }
-.boton-favorito:not(.boton-favorito-modal) { width: 36px; height: 34px; flex-shrink: 0; margin: -4px -6px -4px 0; }
-.boton-favorito:not(.boton-favorito-modal) svg { width: 32px; height: 30px; }
+.boton-favorito:not(.boton-favorito-modal) { width: 30px; height: 28px; flex-shrink: 0; margin: -2px -4px -2px 0; }
+.boton-favorito:not(.boton-favorito-modal) svg { width: 26px; height: 24px; }
 .boton-favorito:not(.boton-favorito-modal) svg path { fill: none; stroke: #1F1F23; stroke-width: 1.4; }
 .boton-favorito:not(.boton-favorito-modal) svg .mas { stroke-width: 1.6; }
 .boton-favorito[aria-pressed="true"]:not(.boton-favorito-modal) svg .cora { fill: #E0182D; stroke: #E0182D; }
@@ -897,7 +897,7 @@ function pintarFavoritos() {
   var m = document.getElementById('modal-favorito');
   if (m && m.dataset.id) {
     var actM = FAVORITOS.has(m.dataset.id);
-    m.innerHTML = corazonSVG(actM, 26) + (actM ? ' En tus favoritos' : ' Guardar en favoritos');
+    m.innerHTML = corazonSVG(actM, 22) + (actM ? ' En tus favoritos' : ' Guardar en favoritos');
     m.classList.toggle('activo', actM);
     m.setAttribute('aria-pressed', String(actM));
   }
