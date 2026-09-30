@@ -419,6 +419,20 @@ button.boton-primario:hover { filter: brightness(0.95); }
   .confianza-tienda li { white-space: nowrap; font-size: 0.8rem; letter-spacing: 0.02em; padding: 0 10px; }
   .confianza-tienda li:first-child { padding-left: 0; }
 }
+/* Celular: productos de a 2 por fila, como en las tiendas de referencia */
+@media (max-width: 700px) {
+  .grid-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .producto-foto { aspect-ratio: 4 / 5; }
+  .producto-info { padding: 10px 10px 12px; gap: 3px; }
+  .producto-info h3 { font-size: 0.92rem; min-height: 2.5em; }
+  .producto-titulo { gap: 4px; }
+  .producto-precio { font-size: 0.95rem; }
+  .producto-estado { font-size: 0.72rem; margin-bottom: 6px; }
+  .boton-pedir, .boton-agregar-carrito { font-size: 0.72rem; padding: 8px 4px; line-height: 1.2; }
+  .boton-agregar-carrito { margin-top: 6px; }
+  .ficha-merceria { font-size: 0.7rem; }
+  .nota-presentacion { display: block; }
+}
 </style>
 </head>
 <body>
