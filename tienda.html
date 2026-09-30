@@ -129,16 +129,26 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .producto-info { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1; }
 .producto-info h3 { font-size: 1.08rem; line-height: 1.3; margin: 0; min-height: 2.6em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .producto-precio { font-weight: 600; color: var(--tinta); margin: 0; }
-.producto-estado { font-size: 0.8rem; margin: 0 0 10px; font-weight: 500; }
+.producto-estado { font-size: 0.8rem; font-weight: 500; }
 .producto-estado.disponible { color: #2e7d32; }
 .producto-estado.bajo-pedido { color: var(--tinta-suave); }
 .boton-pedir { margin-top: auto; text-align: center; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
 .boton-pedir:hover { background: #B83E78; }
-.boton-agregar-carrito {
-  margin-top: 8px; text-align: center; background: var(--blanco); color: var(--rosa-principal);
-  border: 1.5px solid var(--rosa-principal); padding: 9px; border-radius: 999px; font-size: 0.85rem;
-  font-weight: 600; cursor: pointer; width: 100%;
+.producto-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 28px; }
+.producto-marca { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-suave); font-weight: 600; }
+.producto-precio { font-size: 1.18rem; font-weight: 700; color: var(--rosa-principal); }
+.producto-precio .moneda { font-size: 0.7rem; font-weight: 500; color: var(--tinta-suave); }
+.producto-estado { display: inline-block; align-self: flex-start; padding: 3px 10px; border-radius: 8px; margin: 2px 0 10px; }
+.producto-estado.disponible { background: #E8F5E9; }
+.producto-estado.bajo-pedido { background: var(--rosa-suave); }
+.producto-card .boton-agregar-carrito {
+  margin-top: auto; background: var(--rosa-principal); color: #fff; border: none; padding: 12px; font-size: 1rem;
+  width: 100%; border-radius: 999px; font-weight: 700; text-align: center; cursor: pointer;
 }
+.producto-card .boton-agregar-carrito:hover { background: #B83E78; }
+.producto-card .boton-agregar-carrito.agregado { background: #2e7d32; }
+.producto-card .boton-pedir { margin-top: 6px; background: none; color: var(--tinta-suave) !important; text-decoration: underline; padding: 4px 0 0; font-weight: 500; font-size: 0.8rem; }
+.producto-card .boton-pedir:hover { background: none; color: var(--rosa-principal) !important; }
 .boton-agregar-carrito:hover { background: var(--rosa-suave); }
 .boton-agregar-carrito.agregado { background: #2e7d32; border-color: #2e7d32; color: #fff; }
 
@@ -186,10 +196,12 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .boton-favorito { border: none; background: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .boton-favorito:hover { transform: scale(1.12); }
 .boton-favorito svg { display: block; }
-.boton-favorito:not(.boton-favorito-modal) { width: 34px; height: 34px; flex-shrink: 0; margin: -4px -6px 0 0; }
-.boton-favorito:not(.boton-favorito-modal) svg { width: 28px; height: 28px; }
+.boton-favorito:not(.boton-favorito-modal) { width: 36px; height: 34px; flex-shrink: 0; margin: -4px -6px -4px 0; }
+.boton-favorito:not(.boton-favorito-modal) svg { width: 32px; height: 30px; }
 .boton-favorito:not(.boton-favorito-modal) svg path { fill: none; stroke: #1F1F23; stroke-width: 2.2; }
-.boton-favorito[aria-pressed="true"]:not(.boton-favorito-modal) svg path { fill: #E0182D; stroke: #E0182D; }
+.boton-favorito:not(.boton-favorito-modal) svg .mas { stroke-width: 2.4; }
+.boton-favorito[aria-pressed="true"]:not(.boton-favorito-modal) svg .cora { fill: #E0182D; stroke: #E0182D; }
+.boton-favorito[aria-pressed="true"] svg .mas { display: none; }
 .boton-favorito-modal { display: inline-flex; align-items: center; gap: 6px; position: static; width: auto; height: auto; color: var(--rosa-principal); border-radius: 999px; padding: 8px 16px; font: inherit; font-weight: 700; font-size: 0.95rem; color: #1F1F23; border: 2px solid #1F1F23; background: var(--blanco); box-shadow: none; margin: 4px 0 12px; }
 .boton-favorito-modal[aria-pressed="true"] { color: #E0182D; border-color: #E0182D; }
 .boton-favorito-modal.activo { background: #FDE8EA; }
@@ -425,11 +437,11 @@ button.boton-primario:hover { filter: brightness(0.95); }
   .producto-foto { aspect-ratio: 4 / 5; }
   .producto-info { padding: 10px 10px 12px; gap: 3px; }
   .producto-info h3 { font-size: 0.92rem; min-height: 2.5em; }
-  .producto-titulo { gap: 4px; }
-  .producto-precio { font-size: 0.95rem; }
-  .producto-estado { font-size: 0.72rem; margin-bottom: 6px; }
-  .boton-pedir, .boton-agregar-carrito { font-size: 0.72rem; padding: 8px 4px; line-height: 1.2; }
-  .boton-agregar-carrito { margin-top: 6px; }
+  .producto-marca { font-size: 0.64rem; }
+  .producto-precio { font-size: 1.02rem; }
+  .producto-estado { font-size: 0.7rem; margin-bottom: 8px; padding: 2px 8px; }
+  .producto-card .boton-agregar-carrito { font-size: 0.92rem; padding: 11px 4px; line-height: 1.2; }
+  .producto-card .boton-pedir { font-size: 0.7rem; }
   .ficha-merceria { font-size: 0.7rem; }
   .nota-presentacion { display: block; }
 }
@@ -853,14 +865,15 @@ function crearTarjeta(item) {
       '<span class="foto-marcador" style="display:none;">[ Foto de ' + item.nombre + ' ]</span>' +
     '</div>' +
     '<div class="producto-info">' +
-      '<div class="producto-titulo">' +
-        '<h3>' + item.nombre + '</h3>' +
+      '<div class="producto-cabecera">' +
+        '<span class="producto-marca">' + (item.categoria_web || 'Lana Rosa') + '</span>' +
         '<button type="button" class="boton-favorito" data-id="' + item.id + '" aria-pressed="false" aria-label="Guardar en favoritos">' + corazonSVG(false, 21) + '</button>' +
       '</div>' +
-      '<p class="producto-precio">' + formatoCOP(item.precio) + ' COP</p>' +
+      '<h3>' + item.nombre + '</h3>' +
+      '<p class="producto-precio">' + formatoCOP(item.precio) + ' <span class="moneda">COP</span></p>' +
       '<p class="producto-estado ' + (item.disponible_web ? 'disponible' : 'bajo-pedido') + '">' + (item.disponible_web ? 'Disponible' : 'Bajo pedido') + '</p>' +
-      '<a class="boton-pedir" href="' + urlWhatsapp + '" target="_blank" rel="noopener">Pedir por WhatsApp</a>' +
-      '<button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>' +
+      '<button type="button" class="boton-agregar-carrito">Agregar 🛒</button>' +
+      '<a class="boton-pedir" href="' + urlWhatsapp + '" target="_blank" rel="noopener">o pídelo por WhatsApp</a>' +
     '</div>';
   articulo.querySelector('.boton-favorito').addEventListener('click', function (e) {
     e.stopPropagation();
@@ -872,7 +885,7 @@ function crearTarjeta(item) {
 /* ---------- Favoritos (solo con sesión iniciada) ---------- */
 var FAVORITOS = new Set();
 var usuarioFav = null;
-var SVG_CORAZON = '<svg viewBox="0 0 24 24" width="%TAM%" height="%TAM%" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%REL%" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>';
+var SVG_CORAZON = '<svg viewBox="0 0 30 28" width="%TAM%" height="%TAM%" aria-hidden="true" focusable="false"><path class="mas" d="M5 1.8v6.4M1.8 5h6.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><g transform="translate(6 3.6)"><path class="cora" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%REL%" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></g></svg>';
 function corazonSVG(activo, tam) { return SVG_CORAZON.replace(/%TAM%/g, tam).replace('%REL%', activo ? 'currentColor' : 'none'); }
 function pintarFavoritos() {
   document.querySelectorAll('.boton-favorito:not(.boton-favorito-modal)').forEach(function (b) {
@@ -884,7 +897,7 @@ function pintarFavoritos() {
   var m = document.getElementById('modal-favorito');
   if (m && m.dataset.id) {
     var actM = FAVORITOS.has(m.dataset.id);
-    m.innerHTML = corazonSVG(actM, 18) + (actM ? ' En tus favoritos' : ' Guardar en favoritos');
+    m.innerHTML = corazonSVG(actM, 26) + (actM ? ' En tus favoritos' : ' Guardar en favoritos');
     m.classList.toggle('activo', actM);
     m.setAttribute('aria-pressed', String(actM));
   }
@@ -1000,7 +1013,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (contador) contador.textContent = carrito.reduce(function(s, i) { return s + i.cantidad; }, 0);
       boton.textContent = '✓ Agregado';
       boton.classList.add('agregado');
-      setTimeout(function() { boton.textContent = '🛒 Agregar al carrito'; boton.classList.remove('agregado'); }, 1200);
+      setTimeout(function() { boton.textContent = 'Agregar 🛒'; boton.classList.remove('agregado'); }, 1200);
     });
   });
 
@@ -1299,7 +1312,7 @@ function inicializarBuscadorTienda() {
       boton.textContent = '✓ Agregado';
       boton.classList.add('agregado');
       setTimeout(function() {
-        boton.textContent = '🛒 Agregar al carrito';
+        boton.textContent = 'Agregar 🛒';
         boton.classList.remove('agregado');
       }, 1200);
     });
