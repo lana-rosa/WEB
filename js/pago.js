@@ -77,6 +77,7 @@ const CSS = `
 @media (min-width: 880px) { .pg-resumen-movil > summary { display: none; } }
 @media (max-width: 879px) { .pg-resumen-movil[open] .pg-tarjeta { border-radius: 0 0 16px 16px; border-top: none; } }
 .pago-opcion { display: flex; gap: 12px; align-items: flex-start; border: 1.5px solid rgba(69,69,74,0.18); border-radius: 12px; padding: 13px 14px; cursor: pointer; margin-bottom: 10px; background: #fff; }
+.pago-opcion[hidden] { display: none; }
 .pago-opcion:has(input:checked) { background: #FBE4EF; border-color: #E74E96; }
 .pago-opcion input { margin-top: 3px; accent-color: #E74E96; width: 18px; height: 18px; flex-shrink: 0; }
 .pago-opcion > span { flex: 1; display: block; }
@@ -175,7 +176,9 @@ function construirModal() {
             '<p class="pago-aviso" role="alert" hidden></p>' +
           '</div></section>' +
           '<section class="pg-sec" data-paso="2" hidden><header>Direcciones <button type="button" class="pg-atras" data-ir="1">← Atrás</button></header><div class="pg-cuerpo">' +
-            '<div class="pago-campo"><label for="pg-ciudad">Ciudad de envío*</label><select id="pg-ciudad"></select></div>' +
+            '<div class="pago-campo" id="pg-pais-caja" hidden><label for="pg-pais">País de envío*</label><select id="pg-pais"><option value="Colombia">Colombia</option></select></div>' +
+            '<div class="pago-campo" id="pg-ciudad-caja"><label for="pg-ciudad">Ciudad de envío*</label><select id="pg-ciudad"></select></div>' +
+            '<div class="pago-campo" id="pg-ciudad-intl-caja" hidden><label for="pg-ciudad-intl">Ciudad y estado o provincia*</label><input id="pg-ciudad-intl" maxlength="80" autocomplete="address-level2"></div>' +
             '<div class="pago-campo" id="pg-otra-caja" hidden><label for="pg-otra">¿Cuál ciudad o municipio?*</label><input id="pg-otra" maxlength="60" autocomplete="address-level2"></div>' +
             '<div class="pago-campo"><label for="pg-direccion">Dirección*</label><input id="pg-direccion" autocomplete="street-address" maxlength="200" placeholder="Calle, número, barrio"></div>' +
             '<div class="pago-campo"><label for="pg-notas">Indicaciones o notas (opcional)</label><textarea id="pg-notas" maxlength="400" placeholder="Ej: portería, apartamento, mensaje para la tarjeta"></textarea></div>' +
@@ -185,14 +188,16 @@ function construirModal() {
           '</div></section>' +
           '<section class="pg-sec" data-paso="3" hidden><header>Envío <button type="button" class="pg-atras" data-ir="2">← Atrás</button></header><div class="pg-cuerpo">' +
             '<div role="radiogroup" aria-label="¿Cómo quieres recibir tu pedido?">' +
-              '<label class="pago-opcion"><input type="radio" name="pg-entrega" value="domicilio" checked><span><span class="pg-valor" id="pg-env-valor"></span><strong>Envío a domicilio</strong><small id="pg-env-detalle">Lo llevamos a tu dirección.</small></span></label>' +
-              '<label class="pago-opcion"><input type="radio" name="pg-entrega" value="recogida"><span><span class="pg-valor">Gratis</span><strong>Recoger en tienda</strong><small>Te escribimos por WhatsApp para acordar cuándo y dónde recogerlo.</small></span></label>' +
+              '<label class="pago-opcion" id="pg-opc-dom"><input type="radio" name="pg-entrega" value="domicilio" checked><span><span class="pg-valor" id="pg-env-valor"></span><strong>Envío a domicilio</strong><small id="pg-env-detalle">Lo llevamos a tu dirección.</small></span></label>' +
+              '<label class="pago-opcion" id="pg-opc-rec"><input type="radio" name="pg-entrega" value="recogida"><span><span class="pg-valor">Gratis</span><strong>Recoger en tienda</strong><small>Te escribimos por WhatsApp para acordar cuándo y dónde recogerlo.</small></span></label>' +
             '</div>' +
+            '<div class="pago-opcion" id="pg-opc-intl" hidden style="cursor:default;background:#FBE4EF;border-color:#E74E96;"><span><span class="pg-valor" id="pg-intl-valor"></span><strong>Envío internacional</strong><small id="pg-intl-detalle">Lo enviamos a tu dirección.</small></span></div>' +
             '<button type="button" class="pg-btn" data-ir="4">Continuar →</button>' +
             '<p class="pago-aviso" role="alert" hidden></p>' +
           '</div></section>' +
           '<section class="pg-sec" data-paso="4" hidden><header>Método de pago <button type="button" class="pg-atras" data-ir="3">← Atrás</button></header><div class="pg-cuerpo">' +
-            '<label class="pago-opcion"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Nequi, Bancolombia y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
+            '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Nequi, Bancolombia y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
+            '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Para pedidos fuera de Colombia.</small></span></label>' +
             '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
             '<label class="pago-acepto" id="pg-confirma-caja"><input type="checkbox" id="pg-confirma"><span id="pg-confirma-texto">Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.</span></label>' +
             '<label class="pago-acepto" id="pg-cuenta-caja"><input type="checkbox" id="pg-cuenta" checked><span>Crear mi cuenta con este correo para ver el estado de mi pedido. Sin contraseña: te enviamos un correo para activarla cuando pagues.</span></label>' +
@@ -210,6 +215,8 @@ function construirModal() {
   overlay.querySelector('#pg-ir-recoger').addEventListener('click', () => { overlay.querySelector('input[name="pg-entrega"][value="recogida"]').checked = true; actualizarResumen(); cotClave = ''; cotizarDescuento(); irAPaso(4, true); });
   overlay.querySelector('#pg-ciudad').addEventListener('change', actualizarResumen);
   overlay.querySelector('#pg-direccion').addEventListener('input', actualizarResumen);
+  overlay.querySelector('#pg-pais').addEventListener('change', () => { actualizarResumen(); cotClave = ''; cotizarDescuento(); });
+  overlay.querySelector('#pg-ciudad-intl').addEventListener('input', actualizarResumen);
   overlay.querySelector('#pg-otra').addEventListener('input', () => {
     const c = ciudadConocida($('pg-otra').value);
     if (c) { $('pg-ciudad').value = c; $('pg-otra').value = ''; actualizarResumen(); $('pg-direccion').focus(); } else actualizarResumen();
@@ -246,7 +253,11 @@ function validarPaso(n) {
     if ($('pg-nombre').value.trim().length < 2) return 'Escribe tu nombre.';
     if ($('pg-telefono').value.replace(/\D/g, '').length < 10) return 'Escribe un WhatsApp de 10 dígitos.';
   }
-  if (n === 2 && entregaElegida() !== 'recogida') {
+  if (n === 2 && esIntl()) {
+    if (!zonaPais()) return 'Elige tu país de envío.';
+    if ($('pg-ciudad-intl').value.trim().length < 2) return 'Escribe tu ciudad y estado o provincia.';
+    if ($('pg-direccion').value.trim().length < 6) return 'Escribe tu dirección completa.';
+  } else if (n === 2 && entregaElegida() !== 'recogida') {
     if (!$('pg-ciudad').value) return 'Elige tu ciudad de envío.';
     if ($('pg-ciudad').value === 'Otro (nacional)' && $('pg-otra').value.trim().length < 2) return 'Escribe tu ciudad o municipio.';
     if ($('pg-direccion').value.trim().length < 6) return 'Escribe tu dirección completa.';
@@ -271,7 +282,18 @@ function irAPaso(destino, saltarDireccion) {
   pintarPasos(); actualizarResumen();
   overlay.scrollTo({ top: 0, behavior: 'smooth' });
 }
-const entregaElegida = () => (overlay.querySelector('input[name="pg-entrega"]:checked') || {}).value || 'domicilio';
+// PayPal (pedidos fuera de Colombia): el servidor dice si está activo, la tasa USD→COP y el envío por zona.
+let pp = null;
+async function cargarPaypal() {
+  try {
+    const r = await fetch(SUPABASE_URL + '/functions/v1/paypal-pagos', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY }, body: JSON.stringify({ accion: 'estado' }) });
+    const d = await r.json();
+    pp = r.ok && d && d.activo && (d.modo === 'live' || modoPrueba()) ? d : null;
+  } catch (e) { pp = null; }
+}
+const esIntl = () => !!pp && ($('pg-pais').value || 'Colombia') !== 'Colombia';
+const zonaPais = () => { if (!pp) return null; const f = pp.paises.find((x) => x.pais === $('pg-pais').value); return f ? pp.zonas.find((z) => z.zona === f.zona) || null : null; };
+const entregaElegida = () => esIntl() ? 'internacional' : ((overlay.querySelector('input[name="pg-entrega"]:checked') || {}).value || 'domicilio');
 // Compara ciudades sin tildes ni mayúsculas ("Villamaria", "villamaría, Caldas" → Villamaría) para aplicar la tarifa correcta.
 const normCiudad = (t) => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\bcaldas\b/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
 function ciudadConocida(texto) {
@@ -279,6 +301,7 @@ function ciudadConocida(texto) {
   const t = (tarifas || []).find((x) => x.ciudad !== 'Otro (nacional)' && normCiudad(x.ciudad) === n);
   return t ? t.ciudad : '';
 }
+const textoBoton = () => (esIntl() ? 'Pagar con PayPal →' : 'Completar mi pedido →');
 function tarifaElegida() {
   const ciudad = $('pg-ciudad').value;
   const t = (tarifas || []).find((x) => x.ciudad === ciudad);
@@ -339,11 +362,20 @@ function actualizarResumen() {
   const carrito = leerCarrito();
   const sub = carrito.reduce((s, i) => s + (Number(i.precio) || 0) * (Number(i.cantidad) || 0), 0);
   const desc = cot && cot.descuento > 0 ? Number(cot.descuento) : 0;
+  const intl = esIntl();
   const recoge = entregaElegida() === 'recogida';
-  $('pg-otra-caja').hidden = $('pg-ciudad').value !== 'Otro (nacional)';
+  $('pg-pais-caja').hidden = !pp;
+  $('pg-ciudad-caja').hidden = intl; $('pg-ciudad-intl-caja').hidden = !intl;
+  $('pg-otra-caja').hidden = intl || $('pg-ciudad').value !== 'Otro (nacional)';
+  $('pg-ir-recoger').hidden = intl;
+  $('pg-opc-dom').hidden = intl; $('pg-opc-rec').hidden = intl; $('pg-opc-intl').hidden = !intl;
+  $('pg-met-wompi').hidden = intl; $('pg-met-paypal').hidden = !intl;
+  overlay.querySelector('input[name="pg-metodo"][value="' + (intl ? 'paypal' : 'wompi') + '"]').checked = true;
+  $('pago-enviar').textContent = textoBoton();
   // El envío se muestra cuando ya hay ciudad y dirección (o $0 si recoge en tienda).
-  const hayDireccion = $('pg-direccion').value.trim().length >= 6 && (($('pg-ciudad').value !== 'Otro (nacional)') || $('pg-otra').value.trim().length >= 2);
-  const envio = recoge ? 0 : (hayDireccion ? tarifaElegida() : null);
+  const hayDireccion = $('pg-direccion').value.trim().length >= 6 && (intl ? $('pg-ciudad-intl').value.trim().length >= 2 : (($('pg-ciudad').value !== 'Otro (nacional)') || $('pg-otra').value.trim().length >= 2));
+  const zona = intl ? zonaPais() : null;
+  const envio = intl ? (hayDireccion && zona ? Math.round(zona.valor_usd * pp.tasa) : null) : (recoge ? 0 : (hayDireccion ? tarifaElegida() : null));
 
   // Productos
   const items = $('pg-items'); items.replaceChildren();
@@ -373,13 +405,20 @@ function actualizarResumen() {
   fila('subtotal', 'Valor del pedido', pesos(sub));
   if (desc) fila('descuento', '🎁 Descuento aplicado por primera compra (' + cot.pct + '%)', '−' + pesos(desc));
   else if (!cotClave) fila('pista', '🎁 Primera compra: 10% de descuento', 'Escribe tu correo');
-  const textoEnvio = recoge ? 'Gratis (recoges en tienda)' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula con tu dirección') : pesos(envio));
+  const textoEnvio = recoge ? 'Gratis (recoges en tienda)' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula con tu dirección') : pesos(envio) + (intl && zona ? ' (US$ ' + Number(zona.valor_usd).toFixed(2) + ')' : ''));
   fila('', recoge ? 'Recoger en tienda' : 'Envío', textoEnvio);
   const total = envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio);
-  fila('total', 'Valor total', total);
+  fila('total', 'Valor total', total + (intl ? ' COP' : ''));
+  if (intl && envio != null) fila('pista', 'Se cobra en dólares con PayPal', 'US$ ' + (Math.round(((sub - desc + envio) / pp.tasa) * 100) / 100).toFixed(2));
   $('pg-resumen-titulo').textContent = 'Mi carrito (' + unidades + ')';
   $('pg-resumen-total').textContent = total;
 
+  // Paso 3: envío internacional
+  if (intl) {
+    $('pg-intl-valor').textContent = zona ? 'US$ ' + Number(zona.valor_usd).toFixed(2) : '';
+    const pa = $('pg-pais').value, ci = $('pg-ciudad-intl').value.trim(), di = $('pg-direccion').value.trim();
+    $('pg-intl-detalle').textContent = (zona ? zona.etiqueta + '. ' : '') + (di ? 'Lo enviamos a: ' + di + (ci ? ', ' + ci : '') + ', ' + pa + '.' : 'Lo enviamos a tu dirección.');
+  }
   // Paso 3: valor del envío a domicilio
   $('pg-env-valor').textContent = envio == null || recoge ? (hayDireccion ? '' : '') : pesos(envio);
   if (!recoge || envio === 0) {
@@ -389,7 +428,8 @@ function actualizarResumen() {
   const dir = $('pg-direccion').value.trim(), ciu = $('pg-ciudad').value === 'Otro (nacional)' ? $('pg-otra').value.trim() : $('pg-ciudad').value;
   $('pg-env-detalle').textContent = dir ? 'Lo llevamos a: ' + dir + (ciu ? ', ' + ciu : '') + '.' : 'Lo llevamos a tu dirección.';
   $('pg-confirma-caja').hidden = recoge;
-  $('pg-confirma-texto').textContent = 'Confirmo que mi dirección de envío' + (dir ? ' (' + dir + (ciu ? ', ' + ciu : '') + ')' : '') + ' es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.';
+  const ciuTxt = intl ? $('pg-ciudad-intl').value.trim() + ', ' + $('pg-pais').value : ciu;
+  $('pg-confirma-texto').textContent = 'Confirmo que mi dirección de envío' + (dir ? ' (' + dir + (ciuTxt ? ', ' + ciuTxt : '') + ')' : '') + ' es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.' + (intl ? ' Entiendo que los impuestos o aranceles de importación de mi país, si aplican, corren por mi cuenta.' : '');
 }
 function aviso(html) {
   const a = $('pago-aviso');
@@ -413,6 +453,11 @@ async function abrirPago() {
   carritoCambiado = false; pasoActual = 1; pasoMaximo = 1;
   overlay.querySelector('input[name="pg-entrega"][value="domicilio"]').checked = true;
   const lista = await cargarTarifas();
+  await cargarPaypal();
+  const selPais = $('pg-pais'); selPais.replaceChildren();
+  const oc = document.createElement('option'); oc.value = 'Colombia'; oc.textContent = 'Colombia'; selPais.append(oc);
+  if (pp) pp.paises.forEach((x) => { const o = document.createElement('option'); o.value = x.pais; o.textContent = x.pais; selPais.append(o); });
+  selPais.value = 'Colombia';
   const sel = $('pg-ciudad'); sel.replaceChildren();
   const vacia = document.createElement('option'); vacia.value = ''; vacia.textContent = 'Selecciona tu ciudad'; sel.append(vacia);
   lista.forEach((t) => { const o = document.createElement('option'); o.value = t.ciudad; o.textContent = t.ciudad === 'Otro (nacional)' ? 'Otra ciudad de Colombia' : t.ciudad; sel.append(o); });
@@ -441,30 +486,34 @@ async function enviar(e) {
   let ciudad = $('pg-ciudad').value; const otra = $('pg-otra').value.trim();
   let direccion = $('pg-direccion').value.trim(); const notas = $('pg-notas').value.trim();
   for (let n = 1; n <= 3; n++) { const m = validarPaso(n); if (m) { pasoActual = n; pintarPasos(); avisoPaso(n, m); return; } }
-  if (!recoge && ciudad === 'Otro (nacional)') direccion = otra + ' — ' + direccion;
+  const intl = esIntl();
+  if (!recoge && !intl && ciudad === 'Otro (nacional)') direccion = otra + ' — ' + direccion;
   if (!$('pg-acepto').checked) return aviso('Para continuar, acepta la política de datos y de envíos.');
   if (!recoge && !$('pg-confirma').checked) return aviso('Confirma que tu dirección de envío es correcta.');
   aviso(null);
   const boton = $('pago-enviar'); boton.disabled = true; boton.textContent = 'Preparando tu pago…';
-  const restaurar = () => { boton.disabled = false; boton.textContent = 'Completar mi pedido →'; };
+  const restaurar = () => { boton.disabled = false; boton.textContent = textoBoton(); };
   try {
     const token = await tokenSesion();
     const headers = { 'Content-Type': 'application/json', apikey: SUPABASE_KEY };
     if (token) headers.Authorization = 'Bearer ' + token;
     const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
-    const res = await fetch(SUPABASE_URL + '/functions/v1/crear-pago-wompi', {
-      method: 'POST', headers, body: JSON.stringify({ cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: recoge ? 'recogida' : 'domicilio' }, items })
+    const cuerpo = intl
+      ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas }, items }
+      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: recoge ? 'recogida' : 'domicilio' }, items };
+    const res = await fetch(SUPABASE_URL + (intl ? '/functions/v1/paypal-pagos' : '/functions/v1/crear-pago-wompi'), {
+      method: 'POST', headers, body: JSON.stringify(intl ? { accion: 'crear', ...cuerpo } : cuerpo)
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.url) {
-      if (res.status === 503) aviso(avisoConWhatsApp('Los pagos en línea estarán listos muy pronto.'));
+      if (res.status === 503) aviso(avisoConWhatsApp(intl ? 'El pago con PayPal estará listo muy pronto.' : 'Los pagos en línea estarán listos muy pronto.'));
       else if (res.status === 409) aviso(avisoConWhatsApp((data.error || 'Algún producto ya no está disponible.') + ' Revisa tu carrito o'));
       else aviso(data.error ? document.createTextNode(data.error) : avisoConWhatsApp('No pudimos preparar tu pago.'));
       restaurar();
       return;
     }
     // Solo queda en este navegador: sirve para rellenar el formulario si después crea su cuenta (gracias.html).
-    try { localStorage.setItem('lrPrefillCuenta', JSON.stringify({ nombre, correo, telefono, ciudad: recoge ? '' : (ciudad === 'Otro (nacional)' ? otra : ciudad), crear: !haySesionGuardada() && $('pg-cuenta').checked })); } catch (e) {}
+    try { localStorage.setItem('lrPrefillCuenta', JSON.stringify({ nombre, correo, telefono, ciudad: recoge ? '' : (intl ? $('pg-ciudad-intl').value.trim() : (ciudad === 'Otro (nacional)' ? otra : ciudad)), crear: !haySesionGuardada() && $('pg-cuenta').checked })); } catch (e) {}
     carritoCambiado = false;
     window.location.href = data.url;
   } catch (err) {
