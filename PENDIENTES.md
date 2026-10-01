@@ -70,7 +70,7 @@ Falta (necesito algo de Sara):
 ### Un solo sistema para producción y envíos: el ERP (aprobado el 1-oct-2026)
 - [x] **Paso a paso de producción en el ERP:** publicado el 1-oct-2026 (ERP PR #30). Está en "Órdenes de producción", con la tabla `produccion_fichas` y las fotos en el bucket `produccion-fotos`.
 - [x] **Datos de envío en el ERP:** publicado el 1-oct-2026 (ERP PR #31). Está en Pedidos Web/Redes → "🚚 Registrar envío o entrega" (funciones `fn_pedidos_envio` y `fn_pedido_guardar_envio`, guías en el bucket `guias-envio`). El puente del CRM (`actualizar-pedido-desde-crm` v13) ya no borra estos datos.
-- [ ] Vista "trazabilidad del pedido" en el ERP: pago → orden → paso a paso → envío → entrega.
+- [ ] **Trazabilidad del pedido en el ERP:** hecha en la rama `claude/pedidos-medio-pago` del ERP (Pedidos Web/Redes → "🧭 Trazabilidad de un pedido" y botón "🧭 Ver trazabilidad"; funciones `fn_pedido_trazabilidad` y `fn_buscar_pedidos_traza`; fechas de cada estado en `pedidos_canal_historial` desde el 1-oct-2026). Falta que Sara vea las capturas y lo apruebe para publicarlo.
 - [ ] Honorarios de tejedoras calculados con los tiempos del paso a paso.
 - [ ] Pasar al ERP el historial del CRM (29 fichas de `produccion_progreso`).
 - [ ] Apagar los puentes y quitar del CRM los formularios de producción y de envíos (Sara confirmó que ya no se usarán allá).
