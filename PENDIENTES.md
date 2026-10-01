@@ -67,6 +67,14 @@ Falta (necesito algo de Sara):
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 - [ ] **Conectar CRM y ERP (fase 2):** la fase 1 (pedidos de la web → CRM) ya está hecha, falta probarla con un pago real de producción. Fase 2: el código corregido del Worker ya está en `herramientas/cuentas-clientes/worker/` (falta que Sara lo pegue en Cloudflare, instrucciones en el README de esa carpeta) para que no duplique clientes (busca solo por cédula) y normalice los medios de pago; después, pagos y estados en ambos sentidos. Ver `herramientas/cuentas-clientes/README.md`. **Fase 2b (cobros y estados entre ERP y CRM) ya está hecha y probada.** Falta solo probar el recorrido completo de la web con un pago real de producción.
 
+### Un solo sistema para producción y envíos: el ERP (aprobado el 1-oct-2026)
+- [x] **Paso a paso de producción en el ERP:** publicado el 1-oct-2026 (ERP PR #30). Está en "Órdenes de producción", con la tabla `produccion_fichas` y las fotos en el bucket `produccion-fotos`.
+- [ ] Datos de envío (transportadora, guía, fecha) editables en el ERP, que lleguen a "Mis pedidos" de la web.
+- [ ] Vista "trazabilidad del pedido" en el ERP: pago → orden → paso a paso → envío → entrega.
+- [ ] Honorarios de tejedoras calculados con los tiempos del paso a paso.
+- [ ] Pasar al ERP el historial del CRM (29 fichas de `produccion_progreso`).
+- [ ] Apagar los puentes y quitar del CRM los formularios de producción y de envíos (Sara confirmó que ya no se usarán allá).
+
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden
 Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. Desde el 30-sep-2026 la agenda es gratis **solo con cuenta**: quien no ha iniciado sesión ve una vista previa bloqueada (candado en `agenda-rosina.html`, solo en el navegador). El resto del Rincón de Rosina sigue abierto. Más adelante se puede hacer una mini app con este servicio.
 - [x] 1. Inventario de lanas e hilos.
