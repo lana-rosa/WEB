@@ -209,7 +209,11 @@ function construirModal() {
   overlay.querySelectorAll('[data-ir]').forEach((b) => b.addEventListener('click', () => irAPaso(Number(b.dataset.ir))));
   overlay.querySelector('#pg-ir-recoger').addEventListener('click', () => { overlay.querySelector('input[name="pg-entrega"][value="recogida"]').checked = true; actualizarResumen(); cotClave = ''; cotizarDescuento(); irAPaso(4, true); });
   overlay.querySelector('#pg-ciudad').addEventListener('change', actualizarResumen);
-  ['pg-direccion', 'pg-otra'].forEach((id) => overlay.querySelector('#' + id).addEventListener('input', actualizarResumen));
+  overlay.querySelector('#pg-direccion').addEventListener('input', actualizarResumen);
+  overlay.querySelector('#pg-otra').addEventListener('input', () => {
+    const c = ciudadConocida($('pg-otra').value);
+    if (c) { $('pg-ciudad').value = c; $('pg-otra').value = ''; actualizarResumen(); $('pg-direccion').focus(); } else actualizarResumen();
+  });
   overlay.querySelectorAll('input[name="pg-entrega"]').forEach((r) => r.addEventListener('change', () => { actualizarResumen(); cotClave = ''; cotizarDescuento(); }));
   ['pg-correo', 'pg-telefono'].forEach((id) => { const c = overlay.querySelector('#' + id); c.addEventListener('input', cotizarDescuento); c.addEventListener('change', cotizarDescuento); });
   overlay.querySelector('#pago-form').addEventListener('submit', enviar);
@@ -268,6 +272,13 @@ function irAPaso(destino, saltarDireccion) {
   overlay.scrollTo({ top: 0, behavior: 'smooth' });
 }
 const entregaElegida = () => (overlay.querySelector('input[name="pg-entrega"]:checked') || {}).value || 'domicilio';
+// Compara ciudades sin tildes ni mayúsculas ("Villamaria", "villamaría, Caldas" → Villamaría) para aplicar la tarifa correcta.
+const normCiudad = (t) => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\bcaldas\b/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+function ciudadConocida(texto) {
+  const n = normCiudad(texto); if (!n) return '';
+  const t = (tarifas || []).find((x) => x.ciudad !== 'Otro (nacional)' && normCiudad(x.ciudad) === n);
+  return t ? t.ciudad : '';
+}
 function tarifaElegida() {
   const ciudad = $('pg-ciudad').value;
   const t = (tarifas || []).find((x) => x.ciudad === ciudad);
@@ -413,8 +424,9 @@ async function abrirPago() {
   const poner = (id, v) => { if (v && !$(id).value) $(id).value = v; };
   poner('pg-nombre', d.nombre); poner('pg-correo', d.correo); poner('pg-telefono', d.telefono); poner('pg-direccion', d.direccion); poner('pg-notas', d.indicaciones);
   if (d.ciudad && !sel.value) {
-    const hay = Array.from(sel.options).some((o) => o.value === d.ciudad);
-    if (hay) sel.value = d.ciudad; else if (Array.from(sel.options).some((o) => o.value === 'Otro (nacional)')) { sel.value = 'Otro (nacional)'; poner('pg-otra', d.ciudad); }
+    const conocida = ciudadConocida(d.ciudad) || d.ciudad;
+    const hay = Array.from(sel.options).some((o) => o.value === conocida);
+    if (hay) sel.value = conocida; else if (Array.from(sel.options).some((o) => o.value === 'Otro (nacional)')) { sel.value = 'Otro (nacional)'; poner('pg-otra', d.ciudad); }
   }
   actualizarResumen();
   cot = null; cotClave = ''; cotizarDescuento();
