@@ -566,7 +566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script type="module" src="js/cuenta.js"></script>
-<script type="module" src="js/pago.js?v=10"></script>
+<script type="module" src="js/pago.js?v=11"></script>
 <script type="module">
 import { haySesionGuardada, obtenerCliente } from './js/cuenta.js';
 const URL_SB = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
@@ -630,6 +630,11 @@ async function iniciar() {
     return pintar('🤔', 'No encontramos ese pedido', 'Revisa el enlace o escríbenos.', 'Si acabas de pagar, tu pedido queda registrado igual. Escríbenos y lo confirmamos.', [enlace('Escribirnos por WhatsApp', 'https://wa.me/573205072801', 'boton-primario', true), enlace('Ir a la tienda', 'tienda.html', 'boton-secundario')]);
   }
   $('gr-ref').textContent = 'Pedido ' + ref; $('gr-ref').hidden = false;
+  // Pago con PayPal: al volver de PayPal se confirma (captura) el pago en el servidor antes de consultar el estado.
+  const conPaypal = new URLSearchParams(location.search).get('pp') === '1';
+  if (conPaypal) {
+    try { await fetch(URL_SB + '/functions/v1/paypal-pagos', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY }, body: JSON.stringify({ accion: 'capturar', ref }) }); } catch (e) {}
+  }
   let intentos = 0;
   const vuelta = async () => {
     let p = null;
@@ -639,7 +644,7 @@ async function iniciar() {
       try { localStorage.setItem('carritoLanaRosa', '[]'); } catch (e) {}
       const nombre = p.nombre ? ', ' + p.nombre : '';
       const correoActivacion = haySesionGuardada() ? null : await enviarActivacion();
-      return pintar('💗', '¡Gracias' + nombre + '! Recibimos tu pago', 'Tu pedido ya quedó registrado.', 'Pagaste ' + pesos(p.total) + '. Te escribiremos por WhatsApp o correo para coordinar la entrega. Guarda tu número de pedido.', accionesOk(correoActivacion));
+      return pintar('💗', '¡Gracias' + nombre + '! Recibimos tu pago', 'Tu pedido ya quedó registrado.', (conPaypal ? 'Pagaste con PayPal (equivale a ' + pesos(p.total) + ' COP).' : 'Pagaste ' + pesos(p.total) + '.') + ' Te escribiremos por WhatsApp o correo para coordinar la entrega. Guarda tu número de pedido.', accionesOk(correoActivacion));
     }
     if (p && (p.estado === 'rechazado' || p.estado === 'error' || p.estado === 'anulado')) {
       return pintar('😕', 'No se completó tu pago', 'Tu carrito sigue guardado.', 'El pago no fue aprobado. Puedes intentarlo de nuevo con otro medio de pago o escribirnos y te ayudamos.', [enlace('Volver a la tienda', 'tienda.html', 'boton-primario'), enlace('Escribirnos por WhatsApp', WA, 'boton-secundario', true)]);
