@@ -161,7 +161,7 @@ function construirModal() {
         '<details class="pg-resumen-movil" id="pg-resumen-movil"><summary><span id="pg-resumen-titulo">Mi carrito</span><span id="pg-resumen-total"></span></summary>' +
           '<div class="pg-tarjeta"><header>Mi carrito <span class="pg-badge" id="pg-badge"></span></header><div id="pg-items"></div><div class="pg-totales" id="pago-resumen"></div>' +
           '<div class="pg-confianza">' +
-            '<div><span>🔒</span><span><b>Pago seguro</b><small>Checkout protegido con Wompi</small></span></div>' +
+            '<div><span>🔒</span><span><b>Pago seguro</b><small>Pagas en el sitio seguro de Wompi o PayPal</small></span></div>' +
             '<div><span>💗</span><span><b>Hecho a mano en Colombia</b><small>Cada pieza, tejida con amor</small></span></div>' +
             '<div><span>🚚</span><span><b>Envíos a toda Colombia</b><small>Entregas a nivel nacional</small></span></div>' +
           '</div></div></details>' +
@@ -197,7 +197,7 @@ function construirModal() {
           '</div></section>' +
           '<section class="pg-sec" data-paso="4" hidden><header>Método de pago <button type="button" class="pg-atras" data-ir="3">← Atrás</button></header><div class="pg-cuerpo">' +
             '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Nequi, Bancolombia y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
-            '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Para pedidos fuera de Colombia.</small></span></label>' +
+            '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Disponible desde cualquier país.</small></span></label>' +
             '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
             '<label class="pago-acepto" id="pg-confirma-caja"><input type="checkbox" id="pg-confirma"><span id="pg-confirma-texto">Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.</span></label>' +
             '<label class="pago-acepto" id="pg-cuenta-caja"><input type="checkbox" id="pg-cuenta" checked><span>Crear mi cuenta con este correo para ver el estado de mi pedido. Sin contraseña: te enviamos un correo para activarla cuando pagues.</span></label>' +
@@ -221,6 +221,7 @@ function construirModal() {
     const c = ciudadConocida($('pg-otra').value);
     if (c) { $('pg-ciudad').value = c; $('pg-otra').value = ''; actualizarResumen(); $('pg-direccion').focus(); } else actualizarResumen();
   });
+  overlay.querySelectorAll('input[name="pg-metodo"]').forEach((r) => r.addEventListener('change', actualizarResumen));
   overlay.querySelectorAll('input[name="pg-entrega"]').forEach((r) => r.addEventListener('change', () => { actualizarResumen(); cotClave = ''; cotizarDescuento(); }));
   ['pg-correo', 'pg-telefono'].forEach((id) => { const c = overlay.querySelector('#' + id); c.addEventListener('input', cotizarDescuento); c.addEventListener('change', cotizarDescuento); });
   overlay.querySelector('#pago-form').addEventListener('submit', enviar);
@@ -301,7 +302,8 @@ function ciudadConocida(texto) {
   const t = (tarifas || []).find((x) => x.ciudad !== 'Otro (nacional)' && normCiudad(x.ciudad) === n);
   return t ? t.ciudad : '';
 }
-const textoBoton = () => (esIntl() ? 'Pagar con PayPal →' : 'Completar mi pedido →');
+const metodoElegido = () => esIntl() ? 'paypal' : ((overlay.querySelector('input[name="pg-metodo"]:checked') || {}).value || 'wompi');
+const textoBoton = () => (metodoElegido() === 'paypal' ? 'Pagar con PayPal →' : 'Completar mi pedido →');
 function tarifaElegida() {
   const ciudad = $('pg-ciudad').value;
   const t = (tarifas || []).find((x) => x.ciudad === ciudad);
@@ -369,8 +371,10 @@ function actualizarResumen() {
   $('pg-otra-caja').hidden = intl || $('pg-ciudad').value !== 'Otro (nacional)';
   $('pg-ir-recoger').hidden = intl;
   $('pg-opc-dom').hidden = intl; $('pg-opc-rec').hidden = intl; $('pg-opc-intl').hidden = !intl;
-  $('pg-met-wompi').hidden = intl; $('pg-met-paypal').hidden = !intl;
-  overlay.querySelector('input[name="pg-metodo"][value="' + (intl ? 'paypal' : 'wompi') + '"]').checked = true;
+  // Método de pago: Colombia elige entre Wompi y (si está activo) PayPal; otros países solo PayPal.
+  $('pg-met-wompi').hidden = intl; $('pg-met-paypal').hidden = !pp;
+  if (intl || !pp) overlay.querySelector('input[name="pg-metodo"][value="' + (intl ? 'paypal' : 'wompi') + '"]').checked = true;
+  const conPaypal = metodoElegido() === 'paypal';
   $('pago-enviar').textContent = textoBoton();
   // El envío se muestra cuando ya hay ciudad y dirección (o $0 si recoge en tienda).
   const hayDireccion = $('pg-direccion').value.trim().length >= 6 && (intl ? $('pg-ciudad-intl').value.trim().length >= 2 : (($('pg-ciudad').value !== 'Otro (nacional)') || $('pg-otra').value.trim().length >= 2));
@@ -408,8 +412,8 @@ function actualizarResumen() {
   const textoEnvio = recoge ? 'Gratis (recoges en tienda)' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula con tu dirección') : pesos(envio) + (intl && zona ? ' (US$ ' + Number(zona.valor_usd).toFixed(2) + ')' : ''));
   fila('', recoge ? 'Recoger en tienda' : 'Envío', textoEnvio);
   const total = envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio);
-  fila('total', 'Valor total', total + (intl ? ' COP' : ''));
-  if (intl && envio != null) fila('pista', 'Se cobra en dólares con PayPal', 'US$ ' + (Math.round(((sub - desc + envio) / pp.tasa) * 100) / 100).toFixed(2));
+  fila('total', 'Valor total', total + (conPaypal ? ' COP' : ''));
+  if (conPaypal && envio != null) fila('pista', 'Se cobra en dólares con PayPal', 'US$ ' + (Math.round(((sub - desc + envio) / pp.tasa) * 100) / 100).toFixed(2));
   $('pg-resumen-titulo').textContent = 'Mi carrito (' + unidades + ')';
   $('pg-resumen-total').textContent = total;
 
@@ -487,6 +491,7 @@ async function enviar(e) {
   let direccion = $('pg-direccion').value.trim(); const notas = $('pg-notas').value.trim();
   for (let n = 1; n <= 3; n++) { const m = validarPaso(n); if (m) { pasoActual = n; pintarPasos(); avisoPaso(n, m); return; } }
   const intl = esIntl();
+  const conPaypal = metodoElegido() === 'paypal';
   if (!recoge && !intl && ciudad === 'Otro (nacional)') direccion = otra + ' — ' + direccion;
   if (!$('pg-acepto').checked) return aviso('Para continuar, acepta la política de datos y de envíos.');
   if (!recoge && !$('pg-confirma').checked) return aviso('Confirma que tu dirección de envío es correcta.');
@@ -500,13 +505,13 @@ async function enviar(e) {
     const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
     const cuerpo = intl
       ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas }, items }
-      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: recoge ? 'recogida' : 'domicilio' }, items };
-    const res = await fetch(SUPABASE_URL + (intl ? '/functions/v1/paypal-pagos' : '/functions/v1/crear-pago-wompi'), {
-      method: 'POST', headers, body: JSON.stringify(intl ? { accion: 'crear', ...cuerpo } : cuerpo)
+      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: recoge ? 'recogida' : 'domicilio', pais: conPaypal ? 'Colombia' : undefined }, items };
+    const res = await fetch(SUPABASE_URL + (conPaypal ? '/functions/v1/paypal-pagos' : '/functions/v1/crear-pago-wompi'), {
+      method: 'POST', headers, body: JSON.stringify(conPaypal ? { accion: 'crear', ...cuerpo } : cuerpo)
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.url) {
-      if (res.status === 503) aviso(avisoConWhatsApp(intl ? 'El pago con PayPal estará listo muy pronto.' : 'Los pagos en línea estarán listos muy pronto.'));
+      if (res.status === 503) aviso(avisoConWhatsApp(conPaypal ? 'El pago con PayPal estará listo muy pronto.' : 'Los pagos en línea estarán listos muy pronto.'));
       else if (res.status === 409) aviso(avisoConWhatsApp((data.error || 'Algún producto ya no está disponible.') + ' Revisa tu carrito o'));
       else aviso(data.error ? document.createTextNode(data.error) : avisoConWhatsApp('No pudimos preparar tu pago.'));
       restaurar();
