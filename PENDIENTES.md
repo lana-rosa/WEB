@@ -69,7 +69,7 @@ Falta (necesito algo de Sara):
 
 ### Un solo sistema para producción y envíos: el ERP (aprobado el 1-oct-2026)
 - [x] **Paso a paso de producción en el ERP:** publicado el 1-oct-2026 (ERP PR #30). Está en "Órdenes de producción", con la tabla `produccion_fichas` y las fotos en el bucket `produccion-fotos`.
-- [ ] Datos de envío (transportadora, guía, fecha) editables en el ERP, que lleguen a "Mis pedidos" de la web.
+- [ ] **Datos de envío en el ERP:** hechos en la rama `claude/pedidos-medio-pago` del ERP (Pedidos Web/Redes → "🚚 Registrar envío o entrega"; funciones `fn_pedidos_envio` y `fn_pedido_guardar_envio`, guías en el bucket `guias-envio`). El puente del CRM (`actualizar-pedido-desde-crm` v13) ya no borra estos datos. Falta que Sara vea las capturas y lo apruebe para publicarlo.
 - [ ] Vista "trazabilidad del pedido" en el ERP: pago → orden → paso a paso → envío → entrega.
 - [ ] Honorarios de tejedoras calculados con los tiempos del paso a paso.
 - [ ] Pasar al ERP el historial del CRM (29 fichas de `produccion_progreso`).
