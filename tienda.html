@@ -474,6 +474,8 @@ html.producto-abierto { overflow: hidden; }
 .cantidad-producto input { width: 46px; text-align: center; border: none; border-left: 1.5px solid rgba(69,69,74,0.2); border-right: 1.5px solid rgba(69,69,74,0.2); font: inherit; font-weight: 600; -moz-appearance: textfield; }
 .cantidad-producto input::-webkit-outer-spin-button, .cantidad-producto input::-webkit-inner-spin-button { -webkit-appearance: none; }
 .fila-compra .boton-primario { flex: 1; margin: 0; background: var(--blanco) !important; color: var(--tinta) !important; border: 1.5px solid var(--tinta) !important; border-radius: 999px; padding: 12px 10px; font-weight: 700; }
+.boton-comprar-ahora { display: block; width: 100%; margin: 0 0 12px; padding: 13px 20px; border: none; border-radius: 999px; background: var(--rosa-principal); color: var(--blanco); font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; }
+.boton-comprar-ahora:hover { background: #B83E78; }
 .modal-botones { margin-bottom: 14px; }
 .modal-botones .enlace-whatsapp-ficha { display: block; text-align: center; color: var(--tinta-suave); text-decoration: underline; font-size: 0.92rem; padding: 6px 0; }
 .modal-botones .enlace-whatsapp-ficha:hover { color: var(--rosa-principal); }
@@ -1347,13 +1349,14 @@ function inicializarBuscadorTienda() {
           </div>
           <button type="button" class="boton-primario" id="modal-boton-carrito" style="cursor:pointer;">Añadir al carrito</button>
         </div>
+        <button type="button" class="boton-comprar-ahora" id="modal-boton-comprar">🛒 Comprar ahora</button>
         <div class="modal-botones">
           <a class="enlace-whatsapp-ficha" id="modal-boton-whatsapp" href="#" target="_blank" rel="noopener">¿Dudas? Escríbenos por WhatsApp</a>
         </div>
         <ul class="caja-confianza-producto">
           <li><span class="ico" aria-hidden="true">🤍</span><span><strong>Hecho a mano en Colombia</strong>Cada pieza, tejida con amor</span></li>
           <li><span class="ico" aria-hidden="true">🚚</span><span><strong>Envíos a toda Colombia</strong>Entregas a nivel nacional</span></li>
-          <li><span class="ico" aria-hidden="true">💬</span><span><strong>Pago fácil</strong>Por WhatsApp con Nequi o Bre-B</span></li>
+          <li><span class="ico" aria-hidden="true">💬</span><span><strong>Pago fácil y seguro</strong>Tarjeta, PSE, Nequi y más con Wompi</span></li>
         </ul>
         <h3 class="titulo-detalles">Detalles del producto</h3>
         <ul class="ficha-tecnica" id="modal-ficha"></ul>
@@ -1440,7 +1443,7 @@ var RESENAS_POR_PRODUCTO = {};
     var tipoPersonaliza = { 'Amigurumis': 'Amigurumi', 'Peluches': 'Peluche', 'Llaveros': 'Llavero' }[producto.categoria] || 'Otro';
     document.getElementById('modal-boton-personalizalo').href = 'personaliza.html?tipo=' + encodeURIComponent(tipoPersonaliza) + '&inspiracion=' + encodeURIComponent(producto.nombre) + '#form-personalizado';
 
-    botonCarritoModal.onclick = function() {
+    function agregarDesdeFicha() {
       var CLAVE_CARRITO = 'carritoLanaRosa';
       var carrito = [];
       try { carrito = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || []; } catch (e) {}
@@ -1451,8 +1454,18 @@ var RESENAS_POR_PRODUCTO = {};
       localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
       var contador = document.getElementById('contador-carrito');
       if (contador) contador.textContent = carrito.reduce(function(s,i){return s+i.cantidad;}, 0);
+    }
+    botonCarritoModal.onclick = function() {
+      agregarDesdeFicha();
       botonCarritoModal.textContent = '✓ Agregado';
       setTimeout(function() { botonCarritoModal.textContent = 'Añadir al carrito'; }, 1200);
+    };
+    // Comprar ahora: agrega y va directo a "Continuar compra" (si los pagos no están disponibles, abre el carrito).
+    document.getElementById('modal-boton-comprar').onclick = function() {
+      agregarDesdeFicha();
+      var cerrarFicha = document.querySelector('#overlay-modal-producto .modal-producto-cerrar'); if (cerrarFicha) cerrarFicha.click();
+      var pagar = document.getElementById('boton-pagar-wompi');
+      if (pagar) pagar.click(); else { var c = document.getElementById('boton-carrito'); if (c) c.click(); }
     };
 
     // Foto principal + hasta 2 fotos adicionales (nombre-2, nombre-3), si existen
