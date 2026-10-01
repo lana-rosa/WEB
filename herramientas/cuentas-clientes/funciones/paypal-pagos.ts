@@ -3,7 +3,7 @@
 // Los ajustes (activo, tasa USD→COP) y el envío por zona se editan en el ERP: Configuración empresa → PayPal y envío internacional.
 //   { accion: 'estado' }                  -> { activo, modo, tasa, zonas, paises }  (la web decide si muestra PayPal)
 //   { accion: 'verificar' }               -> { llaves: 'ok' | 'rechazadas' | 'faltan', modo }  (prueba las llaves contra PayPal sin mostrarlas)
-//   { accion: 'crear', cliente, items }   -> crea el pedido (en USD con la tasa del ERP) y la orden de PayPal; devuelve la URL de pago
+//   { accion: 'crear', cliente, items }   -> (cliente.pais = 'Colombia' + entrega 'domicilio'|'recogida', o cualquier país de la lista) crea el pedido (en USD con la tasa del ERP) y la orden de PayPal; devuelve la URL de pago
 //   { accion: 'capturar', ref }           -> la llama gracias.html al volver de PayPal: captura el pago, verifica el monto y marca el pedido como pagado
 // Al quedar 'pagado', los triggers de la base registran el pedido en el ERP (medio 'paypal') y avisan al equipo; aquí se envía también al CRM.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
@@ -69,11 +69,14 @@ Deno.serve(async (req) => {
     const c = body?.cliente || {};
     const nombre = limpio(c.nombre, 120), correo = limpio(c.correo, 120).toLowerCase(), telefono = limpio(c.telefono, 20);
     const pais = limpio(c.pais, 60), ciudad = limpio(c.ciudad, 80), direccion = limpio(c.direccion, 250), notas = limpio(c.notas, 500);
-    if (!nombre || !CORREO_OK.test(correo) || telefono.replace(/\D/g, '').length < 7 || !pais || !ciudad || direccion.length < 6)
+    // Colombia también puede pagar con PayPal: el envío sale de las tarifas por ciudad (o $0 si recoge en tienda); otros países usan la zona.
+    const colombia = pais === 'Colombia';
+    const recoge = colombia && c.entrega === 'recogida';
+    if (!nombre || !CORREO_OK.test(correo) || telefono.replace(/\D/g, '').length < 7 || !pais || (!recoge && (!ciudad || direccion.length < 6)))
       return json({ error: 'Revisa tus datos: nombre, correo, teléfono, país, ciudad y dirección.' }, 400);
     const paisFila = paises.find((p: any) => p.pais === pais);
     const zona = paisFila && zonas.find((z: any) => z.zona === paisFila.zona);
-    if (!zona) return json({ error: 'Por ahora no enviamos a ese país con PayPal. Escríbenos por WhatsApp.' }, 400);
+    if (!colombia && !zona) return json({ error: 'Por ahora no enviamos a ese país con PayPal. Escríbenos por WhatsApp.' }, 400);
 
     const items: { id: string; cantidad: number }[] = (Array.isArray(body?.items) ? body.items : [])
       .map((i: any) => ({ id: String(i?.id || ''), cantidad: Math.floor(Number(i?.cantidad)) }))
@@ -91,7 +94,15 @@ Deno.serve(async (req) => {
     const valores = items.map((i) => Number(mapa.get(i.id).precio_venta) * i.cantidad);
     const subtotal = valores.reduce((s, v) => s + v, 0);
     const descuento = subtotal - valores.reduce((s, v) => s + conDescuento(v, pct), 0);
-    const envioCop = Math.round(Number(zona.valor_usd) * tasa);
+    let envioCop = 0;
+    if (colombia) {
+      if (!recoge) {
+        const { data: tarifas } = await sb.from('tarifas_envio_ciudad').select('ciudad, valor').eq('activo', true);
+        const t = (tarifas || []).find((x: any) => x.ciudad === ciudad) || (tarifas || []).find((x: any) => x.ciudad === 'Otro (nacional)');
+        if (!t) return json({ error: 'No pudimos calcular el envío.' }, 500);
+        envioCop = Math.round(Number(t.valor));
+      }
+    } else envioCop = Math.round(Number(zona!.valor_usd) * tasa);
     const totalCop = subtotal - descuento + envioCop;
     const totalUsd = Math.round((totalCop / tasa) * 100) / 100;
     if (totalUsd < 1) return json({ error: 'El valor mínimo de pago es US$ 1.' }, 400);
@@ -103,7 +114,8 @@ Deno.serve(async (req) => {
     const { data: ref } = await sb.rpc('fn_referencia_pedido_web');
     const referencia = String(ref);
     const { data: pedido, error: e2 } = await sb.from('pedidos_web').insert({
-      referencia, user_id: userId, nombre, correo, telefono, ciudad: `${ciudad}, ${pais}`, direccion, notas: notas || null,
+      referencia, user_id: userId, nombre, correo, telefono,
+      ciudad: recoge ? 'Recoger en tienda' : (colombia ? ciudad : `${ciudad}, ${pais}`), direccion: recoge ? 'Recoger en tienda' : direccion, notas: notas || null,
       subtotal, envio: envioCop, total: totalCop, descuento_pct: pct, descuento,
       pais, moneda: 'USD', total_usd: totalUsd, tasa_usd_cop: tasa,
     }).select('id').single();
@@ -135,7 +147,7 @@ Deno.serve(async (req) => {
       const url = (orden.links || []).find((l: any) => l.rel === 'payer-action' || l.rel === 'approve')?.href;
       if (!r.ok || !orden.id || !url) { console.error('PayPal crear orden:', JSON.stringify(orden)); await sb.from('pedidos_web').update({ estado: 'error' }).eq('id', pedido.id); return json({ error: 'No pudimos preparar tu pago con PayPal.' }, 502); }
       await sb.from('pedidos_web').update({ paypal_order_id: orden.id }).eq('id', pedido.id);
-      return json({ url, referencia, total_usd: totalUsd, total: totalCop, envio_usd: Number(zona.valor_usd), descuento });
+      return json({ url, referencia, total_usd: totalUsd, total: totalCop, envio_usd: zona ? Number(zona.valor_usd) : null, descuento });
     } catch (e) {
       console.error('PayPal crear:', e);
       await sb.from('pedidos_web').update({ estado: 'error' }).eq('id', pedido.id);
