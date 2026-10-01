@@ -632,12 +632,14 @@ async function iniciar() {
   $('gr-ref').textContent = 'Pedido ' + ref; $('gr-ref').hidden = false;
   // Pago con PayPal: al volver de PayPal se confirma (captura) el pago en el servidor antes de consultar el estado.
   const conPaypal = new URLSearchParams(location.search).get('pp') === '1';
-  if (conPaypal) {
+  const capturarPaypal = async () => {
     try { await fetch(URL_SB + '/functions/v1/paypal-pagos', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY }, body: JSON.stringify({ accion: 'capturar', ref }) }); } catch (e) {}
-  }
+  };
   let intentos = 0;
   const vuelta = async () => {
     let p = null;
+    // PayPal puede tardar unos segundos en dejar la orden lista: se reintenta la confirmación en cada vuelta hasta que quede pagada.
+    if (conPaypal && intentos < 15) await capturarPaypal();
     try { p = await consultar(); } catch (e) {}
     intentos++;
     if (p && p.estado === 'pagado') {
@@ -650,7 +652,7 @@ async function iniciar() {
       return pintar('😕', 'No se completó tu pago', 'Tu carrito sigue guardado.', 'El pago no fue aprobado. Puedes intentarlo de nuevo con otro medio de pago o escribirnos y te ayudamos.', [enlace('Volver a la tienda', 'tienda.html', 'boton-primario'), enlace('Escribirnos por WhatsApp', WA, 'boton-secundario', true)]);
     }
     if (intentos < 30) return setTimeout(vuelta, 4000);
-    pintar('⏳', 'Seguimos esperando la confirmación', 'A veces el banco demora unos minutos.', 'Si ya pagaste, no te preocupes: apenas Wompi nos avise, tu pedido queda confirmado y te lo notificamos. Si tienes dudas, escríbenos.', [enlace('Escribirnos por WhatsApp', WA, 'boton-primario', true), enlace('Ver mis pedidos', 'cuenta.html#pedidos', 'boton-secundario')]);
+    pintar('⏳', 'Seguimos esperando la confirmación', 'A veces el banco demora unos minutos.', 'Si ya pagaste, no te preocupes: apenas ' + (conPaypal ? 'PayPal' : 'Wompi') + ' nos avise, tu pedido queda confirmado y te lo notificamos. Si tienes dudas, escríbenos.', [enlace('Escribirnos por WhatsApp', WA, 'boton-primario', true), enlace('Ver mis pedidos', 'cuenta.html#pedidos', 'boton-secundario')]);
   };
   vuelta();
 }
