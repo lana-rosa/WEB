@@ -291,6 +291,24 @@ main > :first-child { padding-top: 22px !important; }
 .item-menu[aria-current="true"] .insignia { background: #fff; color: var(--rosa-principal); border-color: var(--rosa-principal); }
 .pestanas-cuenta.filtros { margin-bottom: 14px; gap: 6px; }
 .pestanas-cuenta.filtros button { padding: 7px 14px; font-size: 0.85rem; }
+.pedido-t { border: 1px solid rgba(69,69,74,0.14); border-radius: 14px; margin: 0 0 16px; background: var(--blanco); overflow: hidden; }
+.pt-cab { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px; background: #FBF7F8; border-bottom: 1px solid rgba(69,69,74,0.10); }
+.pt-estado { font-weight: 700; font-size: 0.9rem; }
+.pt-estado.pago { color: #8a5a00; } .pt-estado.prep { color: #4a4fb0; } .pt-estado.listo { color: #256b3a; }
+.pt-cuerpo { display: flex; gap: 16px; justify-content: space-between; align-items: flex-start; padding: 14px 16px; flex-wrap: wrap; }
+.pt-prod { display: flex; gap: 12px; align-items: flex-start; flex: 1 1 260px; min-width: 0; }
+.pt-txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+.pt-txt .pequeno { color: var(--tinta-suave); font-size: 0.85rem; }
+.pt-botones { display: flex; flex-direction: column; gap: 8px; flex: 0 1 190px; width: 100%; max-width: 230px; }
+@media (max-width: 560px) { .pt-botones { max-width: none; flex: 1 1 100%; flex-direction: row; flex-wrap: wrap; } .pt-botones .pt-btn { flex: 1 1 140px; } }
+.pt-btn { display: block; text-align: center; text-decoration: none; font: inherit; font-weight: 700; font-size: 0.88rem; padding: 9px 14px; border-radius: 999px; border: 1.5px solid rgba(69,69,74,0.3); background: var(--blanco); color: var(--tinta); cursor: pointer; }
+.pt-btn:hover { background: var(--rosa-suave); }
+.pt-btn.primario { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.pt-btn.primario:hover { background: #B83E78; }
+.pt-detalle { margin: 0 16px 12px; padding: 10px 14px; background: var(--rosa-suave); border-radius: 12px; font-size: 0.88rem; }
+.pt-detalle div { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; }
+.pt-pie { display: flex; flex-wrap: wrap; gap: 4px 22px; justify-content: flex-end; padding: 10px 16px; border-top: 1px solid rgba(69,69,74,0.10); font-size: 0.8rem; color: var(--tinta-suave); }
+.pedido-t .cancelar-pedido-x { position: static; flex: 0 0 auto; }
 .tarjeta-pedido.con-x { position: relative; }
 .cancelar-pedido-x { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #E74E96; background: #fff; color: #E74E96; font-size: 1.4rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
 .cancelar-pedido-x:hover { background: #FBE4EF; }
@@ -1094,27 +1112,12 @@ function pintarPedidos() {
   lista.forEach((p) => {
     const enTienda = p.origen === 'tienda';
     const clave = claveEstado(p);
-    const tarjeta = nodo('div', 'tarjeta-pedido');
-    tarjeta.append(fotoProducto(p.foto));
-    const info = nodo('div', 'info-pedido');
-    const l1 = nodo('div', 'linea'); l1.append(nodo('span', 'codigo', p.consecutivo || ''), nodo('span', 'fecha', fechaLarga(p.fecha)));
-    info.append(l1);
-    const detalle = (p.producto || '') + (p.cantidad && Number(p.cantidad) > 1 ? ' (x' + Number(p.cantidad) + ')' : '');
-    if (detalle) info.append(nodo('div', 'detalle', detalle));
-    const l2 = nodo('div', 'linea');
-    l2.append(nodo('span', 'etiqueta-estado ' + (CLASE_ESTADO[clave] || ''), enTienda ? 'Compra en tienda' : (TEXTO_ESTADO[p.estado] || etiqueta(p.estado))), nodo('span', 'total', pesos(p.total)));
-    info.append(l2);
-    if (p.entrega && p.estado !== 'entregado') info.append(nodo('div', 'pequeno', 'Entrega estimada: ' + fechaLarga(p.entrega)));
-    const pago = textoPago(p);
-    if (pago) info.append(nodo('div', 'pequeno', pago));
-    if (clave === 'entregado') {
-      const acc = nodo('div', 'acciones-carrito');
-      const b = nodo('button', 'boton-cuenta secundario chico', 'Escribir reseña'); b.type = 'button';
-      b.addEventListener('click', () => irSeccion('resenas'));
-      acc.append(b); info.append(acc);
-    }
+    const verificado = p.estado !== 'esperando_pago';
+    const art = nodo('article', 'pedido-t');
+    // Encabezado: estado + fecha, equis para cancelar si aún no está pagado
+    const cab = nodo('header', 'pt-cab');
+    cab.append(nodo('span', 'pt-estado ' + (CLASE_ESTADO[clave] || ''), (enTienda ? 'Compra en tienda' : (TEXTO_ESTADO[p.estado] || etiqueta(p.estado))) + ' · ' + fechaLarga(p.fecha)));
     if (p.borrable) {
-      tarjeta.classList.add('con-x');
       const x = nodo('button', 'cancelar-pedido-x', '×'); x.type = 'button';
       x.setAttribute('aria-label', 'Cancelar pedido'); x.title = 'Cancelar pedido';
       x.addEventListener('click', async () => {
@@ -1125,10 +1128,42 @@ function pintarPedidos() {
         pedidosDatos = pedidosDatos.filter((y) => y !== p);
         pintarPedidos();
       });
-      tarjeta.append(x);
+      cab.append(x);
     }
-    tarjeta.append(info);
-    cont.append(tarjeta);
+    art.append(cab);
+    // Cuerpo: foto + producto a la izquierda, botones a la derecha
+    const cuerpo = nodo('div', 'pt-cuerpo');
+    const izq = nodo('div', 'pt-prod');
+    izq.append(fotoProducto(p.foto));
+    const txt = nodo('div', 'pt-txt');
+    txt.append(nodo('div', 'detalle', (p.producto || 'Pedido') + (p.cantidad && Number(p.cantidad) > 1 ? ' (x' + Number(p.cantidad) + ')' : '')));
+    const pago = textoPago(p);
+    if (pago) txt.append(nodo('div', 'pequeno', pago));
+    if (p.entrega && p.estado !== 'entregado') txt.append(nodo('div', 'pequeno', 'Entrega estimada: ' + fechaLarga(p.entrega)));
+    izq.append(txt);
+    const botones = nodo('div', 'pt-botones');
+    if (verificado) { const b = nodo('button', 'pt-btn primario', 'Dejar una reseña'); b.type = 'button'; b.addEventListener('click', () => { irSeccion('resenas'); window.scrollTo({ top: 0, behavior: 'smooth' }); }); botones.append(b); }
+    const otra = nodo('a', 'pt-btn', 'Comprar de nuevo'); otra.href = 'tienda.html'; botones.append(otra);
+    const ver = nodo('button', 'pt-btn', 'Ver detalles'); ver.type = 'button'; botones.append(ver);
+    cuerpo.append(izq, botones);
+    art.append(cuerpo);
+    // Detalles (se abren con el botón)
+    const det = nodo('div', 'pt-detalle'); det.hidden = true;
+    const fila = (t, v) => { if (v == null || v === '') return; const f = nodo('div'); f.append(nodo('span', null, t), nodo('strong', null, v)); det.append(f); };
+    fila('Producto', p.producto);
+    fila('Cantidad', p.cantidad ? String(Number(p.cantidad)) : '');
+    if (p.envio != null) fila('Envío', Number(p.envio) > 0 ? pesos(p.envio) : 'Sin costo');
+    fila('Total', pesos(p.total));
+    fila('Estado del pago', pago || (enTienda ? 'Pagado en tienda' : 'Pagado'));
+    fila('Entrega estimada', p.entrega ? fechaLarga(p.entrega) : '');
+    art.append(det);
+    ver.addEventListener('click', () => { det.hidden = !det.hidden; ver.textContent = det.hidden ? 'Ver detalles' : 'Ocultar detalles'; });
+    // Pie
+    const pie = nodo('footer', 'pt-pie');
+    const n = p.cantidad ? Number(p.cantidad) : 1;
+    pie.append(nodo('span', null, n + (n === 1 ? ' artículo: ' : ' artículos: ') + pesos(p.total)), nodo('span', null, 'Fecha del pedido: ' + fechaLarga(p.fecha)), nodo('span', null, 'ID de pedido: ' + (p.consecutivo || '')));
+    art.append(pie);
+    cont.append(art);
   });
 }
 
