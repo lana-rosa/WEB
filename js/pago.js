@@ -197,7 +197,7 @@ function construirModal() {
           '</div></section>' +
           '<section class="pg-sec" data-paso="4" hidden><header>Método de pago <button type="button" class="pg-atras" data-ir="3">← Atrás</button></header><div class="pg-cuerpo">' +
             '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Nequi, Bancolombia y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
-            '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Disponible desde cualquier país.</small></span></label>' +
+            '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Para pedidos fuera de Colombia.</small></span></label>' +
             '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
             '<label class="pago-acepto" id="pg-confirma-caja"><input type="checkbox" id="pg-confirma"><span id="pg-confirma-texto">Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.</span></label>' +
             '<label class="pago-acepto" id="pg-cuenta-caja"><input type="checkbox" id="pg-cuenta" checked><span>Crear mi cuenta con este correo para ver el estado de mi pedido. Sin contraseña: te enviamos un correo para activarla cuando pagues.</span></label>' +
@@ -302,7 +302,8 @@ function ciudadConocida(texto) {
   const t = (tarifas || []).find((x) => x.ciudad !== 'Otro (nacional)' && normCiudad(x.ciudad) === n);
   return t ? t.ciudad : '';
 }
-const metodoElegido = () => esIntl() ? 'paypal' : ((overlay.querySelector('input[name="pg-metodo"]:checked') || {}).value || 'wompi');
+// PayPal solo para direcciones fuera de Colombia: PayPal no permite pagos entre dos cuentas colombianas, así que Colombia paga con Wompi.
+const metodoElegido = () => esIntl() ? 'paypal' : 'wompi';
 const textoBoton = () => (metodoElegido() === 'paypal' ? 'Pagar con PayPal →' : 'Completar mi pedido →');
 function tarifaElegida() {
   const ciudad = $('pg-ciudad').value;
@@ -371,9 +372,9 @@ function actualizarResumen() {
   $('pg-otra-caja').hidden = intl || $('pg-ciudad').value !== 'Otro (nacional)';
   $('pg-ir-recoger').hidden = intl;
   $('pg-opc-dom').hidden = intl; $('pg-opc-rec').hidden = intl; $('pg-opc-intl').hidden = !intl;
-  // Método de pago: Colombia elige entre Wompi y (si está activo) PayPal; otros países solo PayPal.
-  $('pg-met-wompi').hidden = intl; $('pg-met-paypal').hidden = !pp;
-  if (intl || !pp) overlay.querySelector('input[name="pg-metodo"][value="' + (intl ? 'paypal' : 'wompi') + '"]').checked = true;
+  // Método de pago: Colombia solo Wompi; otros países solo PayPal.
+  $('pg-met-wompi').hidden = intl; $('pg-met-paypal').hidden = !intl;
+  overlay.querySelector('input[name="pg-metodo"][value="' + (intl ? 'paypal' : 'wompi') + '"]').checked = true;
   const conPaypal = metodoElegido() === 'paypal';
   $('pago-enviar').textContent = textoBoton();
   // El envío se muestra cuando ya hay ciudad y dirección (o $0 si recoge en tienda).
@@ -505,7 +506,7 @@ async function enviar(e) {
     const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
     const cuerpo = intl
       ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas }, items }
-      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: recoge ? 'recogida' : 'domicilio', pais: conPaypal ? 'Colombia' : undefined }, items };
+      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: recoge ? 'recogida' : 'domicilio' }, items };
     const res = await fetch(SUPABASE_URL + (conPaypal ? '/functions/v1/paypal-pagos' : '/functions/v1/crear-pago-wompi'), {
       method: 'POST', headers, body: JSON.stringify(conPaypal ? { accion: 'crear', ...cuerpo } : cuerpo)
     });
