@@ -406,19 +406,20 @@ button.boton-primario:hover { filter: brightness(0.95); }
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
 
 /* Categorías con foto, como en el Inicio (29-sep-2026) */
-.categorias-visual { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin: 28px 0 8px; }
-.categorias-visual a { display: block; text-decoration: none; color: var(--tinta); text-align: center; }
-.categorias-visual img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; border-radius: 18px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.categorias-visual a:hover img { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(58,42,46,0.12); }
-.categorias-visual span { display: block; margin-top: 12px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1.1rem; }
+.categorias-visual { display: flex; flex-wrap: nowrap; gap: 16px; margin: 22px 0 8px; padding: 4px 2px 12px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
+.categorias-visual::-webkit-scrollbar { height: 6px; }
+.categorias-visual::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
+.categorias-visual::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 999px; }
+.categorias-visual a { flex: 0 0 auto; width: 104px; display: block; text-decoration: none; color: var(--tinta); text-align: center; scroll-snap-align: start; }
+.categorias-visual img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; display: block; border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.categorias-visual a:hover img { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(58,42,46,0.12); }
+.categorias-visual span { display: block; margin-top: 7px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 0.82rem; line-height: 1.2; }
 .categorias-visual .cat-personaliza span { color: var(--rosa-principal); }
-.ver-mas-categorias { display: none; margin: 6px auto 18px; background: transparent; color: var(--rosa-principal); border: 2px solid var(--rosa-principal); border-radius: 999px; padding: 12px 28px; font-family: inherit; font-size: 0.95rem; font-weight: 700; cursor: pointer; }
-.ver-mas-categorias:hover { background: var(--rosa-suave); }
+.ver-mas-categorias { display: none !important; }
 @media (max-width: 700px) {
-  .categorias-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
-  .categorias-visual span { font-size: 1rem; margin-top: 8px; }
-  .categorias-visual:not(.abiertas) a:nth-child(n+5) { display: none; }
-  .ver-mas-categorias { display: block; }
+  .categorias-visual { gap: 12px; margin-top: 16px; }
+  .categorias-visual a { width: 82px; }
+  .categorias-visual span { font-size: 0.76rem; }
 }
 .confianza-tienda { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 0; }
 .confianza-tienda li { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; color: var(--tinta); padding: 0 16px; }
