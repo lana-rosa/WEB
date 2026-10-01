@@ -68,7 +68,7 @@ Falta (necesito algo de Sara):
 - [ ] **Conectar CRM y ERP (fase 2):** la fase 1 (pedidos de la web → CRM) ya está hecha, falta probarla con un pago real de producción. Fase 2: el código corregido del Worker ya está en `herramientas/cuentas-clientes/worker/` (falta que Sara lo pegue en Cloudflare, instrucciones en el README de esa carpeta) para que no duplique clientes (busca solo por cédula) y normalice los medios de pago; después, pagos y estados en ambos sentidos. Ver `herramientas/cuentas-clientes/README.md`. **Fase 2b (cobros y estados entre ERP y CRM) ya está hecha y probada.** Falta solo probar el recorrido completo de la web con un pago real de producción.
 
 ### Un solo sistema para producción y envíos: el ERP (aprobado el 1-oct-2026)
-- [ ] **Paso a paso de producción en el ERP:** hecho en la rama `claude/pedidos-medio-pago` del ERP (tabla `produccion_fichas`, fotos en el bucket `produccion-fotos`), en "Órdenes de producción". Falta que Sara vea las capturas y lo apruebe para publicarlo.
+- [x] **Paso a paso de producción en el ERP:** publicado el 1-oct-2026 (ERP PR #30). Está en "Órdenes de producción", con la tabla `produccion_fichas` y las fotos en el bucket `produccion-fotos`.
 - [ ] Datos de envío (transportadora, guía, fecha) editables en el ERP, que lleguen a "Mis pedidos" de la web.
 - [ ] Vista "trazabilidad del pedido" en el ERP: pago → orden → paso a paso → envío → entrega.
 - [ ] Honorarios de tejedoras calculados con los tiempos del paso a paso.
