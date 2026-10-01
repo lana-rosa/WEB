@@ -1084,11 +1084,25 @@ function mensajeEn(caja, texto, exito) { caja.textContent = texto || ''; caja.hi
 function mensajeVacio(cont, texto) { cont.replaceChildren(nodo('p', 'texto-estado', texto)); }
 
 /* ---------- Pedidos por estado ---------- */
-const FILTROS_PEDIDO = [['todos', 'Todos'], ['esperando_pago', 'Por pagar'], ['en_preparacion', 'En preparación'], ['listo_despacho', 'Listos'], ['entregado', 'Entregados']];
-const TEXTO_ESTADO = { esperando_pago: 'Por pagar', en_preparacion: 'En preparación', listo_despacho: 'Listo para entrega', entregado: 'Entregado' };
-const CLASE_ESTADO = { esperando_pago: 'pago', en_preparacion: 'prep', listo_despacho: 'listo', entregado: 'listo' };
+const FILTROS_PEDIDO = [['todos', 'Todos'], ['esperando_pago', 'Por pagar'], ['en_preparacion', 'En preparación'], ['listos', 'Listos'], ['enviado', 'Enviados'], ['entregado', 'Entregados']];
+const TEXTO_ESTADO = { esperando_pago: 'Por pagar', en_preparacion: 'En preparación', listo_despacho: 'Listo para despachar', listo: 'Listo para despachar', listo_recoger: 'Listo para recoger en tienda', enviado: 'Enviado', en_camino: 'En camino a tu domicilio', entregado: 'Entregado' };
+const CLASE_ESTADO = { esperando_pago: 'pago', en_preparacion: 'prep', listo: 'listo', listo_despacho: 'listo', listo_recoger: 'listo', enviado: 'prep', en_camino: 'prep', entregado: 'listo' };
 let pedidosDatos = [], filtroPedidos = 'todos';
-const claveEstado = (p) => p.origen === 'tienda' ? 'entregado' : p.estado;
+// Etapa que ve la clienta: el ERP solo tiene "listo para despachar"; con los datos de envío del CRM se distingue enviado / listo para recoger.
+const ESTADOS_ENVIADO = ['enviado', 'en camino', 'en transito', 'en tránsito', 'despachado'];
+const recogeEnTienda = (p) => !!p.recoge_web || p.tipo_entrega === 'recogida';
+const fueEnviado = (p) => ESTADOS_ENVIADO.includes(String(p.envio_estado || '').toLowerCase()) || !!p.numero_guia || !!p.fecha_envio;
+function etapaPedido(p) {
+  if (p.origen === 'tienda' || p.estado === 'entregado') return 'entregado';
+  if (p.estado === 'listo_despacho') {
+    if (recogeEnTienda(p)) return 'listo_recoger';
+    if (fueEnviado(p)) return p.tipo_entrega === 'domicilio' ? 'en_camino' : 'enviado';
+    return 'listo';
+  }
+  return p.estado;
+}
+const claveEstado = (p) => { const e = etapaPedido(p); return e === 'listo_recoger' ? 'listos' : e === 'listo' ? 'listos' : e === 'en_camino' ? 'enviado' : e; };
+const textoEntrega = (p) => recogeEnTienda(p) ? 'Recoger en tienda' : p.tipo_entrega === 'domicilio' ? 'Domicilio (Manizales / Villamaría)' : (p.tipo_entrega === 'envio' || p.tipo_entrega === 'nacional') ? 'Envío por transportadora' : '';
 function textoPago(p) {
   if (p.origen === 'tienda' || p.estado === 'entregado') return '';
   if (p.saldo_pagado) return 'Pago completo';
@@ -1111,12 +1125,12 @@ function pintarPedidos() {
   cont.replaceChildren();
   lista.forEach((p) => {
     const enTienda = p.origen === 'tienda';
-    const clave = claveEstado(p);
+    const etapa = etapaPedido(p);
     const verificado = p.estado !== 'esperando_pago';
     const art = nodo('article', 'pedido-t');
     // Encabezado: estado + fecha, equis para cancelar si aún no está pagado
     const cab = nodo('header', 'pt-cab');
-    cab.append(nodo('span', 'pt-estado ' + (CLASE_ESTADO[clave] || ''), (enTienda ? 'Compra en tienda' : (TEXTO_ESTADO[p.estado] || etiqueta(p.estado))) + ' · ' + fechaLarga(p.fecha)));
+    cab.append(nodo('span', 'pt-estado ' + (CLASE_ESTADO[etapa] || ''), (enTienda ? 'Compra en tienda' : (TEXTO_ESTADO[etapa] || etiqueta(p.estado))) + ' · ' + fechaLarga(p.fecha)));
     if (p.borrable) {
       const x = nodo('button', 'cancelar-pedido-x', '×'); x.type = 'button';
       x.setAttribute('aria-label', 'Cancelar pedido'); x.title = 'Cancelar pedido';
@@ -1139,10 +1153,16 @@ function pintarPedidos() {
     txt.append(nodo('div', 'detalle', (p.producto || 'Pedido') + (p.cantidad && Number(p.cantidad) > 1 ? ' (x' + Number(p.cantidad) + ')' : '')));
     const pago = textoPago(p);
     if (pago) txt.append(nodo('div', 'pequeno', pago));
+    if (etapa === 'listo_recoger') txt.append(nodo('div', 'pequeno', '🛍️ Tu pedido está listo: te esperamos en la tienda.'));
+    if (etapa === 'enviado' || etapa === 'en_camino') {
+      const emp = [p.transportadora, p.numero_guia ? 'guía ' + p.numero_guia : ''].filter(Boolean).join(' · ');
+      txt.append(nodo('div', 'pequeno', (etapa === 'en_camino' ? '🛵 Va en camino a tu domicilio' : '📦 Enviado') + (p.fecha_envio ? ' el ' + fechaLarga(p.fecha_envio) : '') + (emp ? ' · ' + emp : '')));
+    }
     if (p.entrega && p.estado !== 'entregado') txt.append(nodo('div', 'pequeno', 'Entrega estimada: ' + fechaLarga(p.entrega)));
     izq.append(txt);
     const botones = nodo('div', 'pt-botones');
     if (verificado) { const b = nodo('button', 'pt-btn primario', 'Dejar una reseña'); b.type = 'button'; b.addEventListener('click', () => { irSeccion('resenas'); window.scrollTo({ top: 0, behavior: 'smooth' }); }); botones.append(b); }
+    if (p.guia_url && /^https?:\/\//i.test(p.guia_url)) { const r = nodo('a', 'pt-btn', 'Rastrear pedido'); r.href = p.guia_url; r.target = '_blank'; r.rel = 'noopener'; botones.append(r); }
     const otra = nodo('a', 'pt-btn', 'Comprar de nuevo'); otra.href = 'tienda.html'; botones.append(otra);
     const ver = nodo('button', 'pt-btn', 'Ver detalles'); ver.type = 'button'; botones.append(ver);
     cuerpo.append(izq, botones);
@@ -1155,6 +1175,10 @@ function pintarPedidos() {
     if (p.envio != null) fila('Envío', Number(p.envio) > 0 ? pesos(p.envio) : 'Sin costo');
     fila('Total', pesos(p.total));
     fila('Estado del pago', pago || (enTienda ? 'Pagado en tienda' : 'Pagado'));
+    fila('Tipo de entrega', textoEntrega(p));
+    fila('Empresa de envío', p.transportadora);
+    fila('Número de guía', p.numero_guia);
+    fila('Fecha de envío', p.fecha_envio ? fechaLarga(p.fecha_envio) : '');
     fila('Entrega estimada', p.entrega ? fechaLarga(p.entrega) : '');
     art.append(det);
     ver.addEventListener('click', () => { det.hidden = !det.hidden; ver.textContent = det.hidden ? 'Ver detalles' : 'Ocultar detalles'; });
