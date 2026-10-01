@@ -2,6 +2,7 @@
 // Secretos (Supabase → Edge Functions → Secrets): PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAYPAL_MODO ('sandbox' | 'live').
 // Los ajustes (activo, tasa USD→COP) y el envío por zona se editan en el ERP: Configuración empresa → PayPal y envío internacional.
 //   { accion: 'estado' }                  -> { activo, modo, tasa, zonas, paises }  (la web decide si muestra PayPal)
+//   { accion: 'verificar' }               -> { llaves: 'ok' | 'rechazadas' | 'faltan', modo }  (prueba las llaves contra PayPal sin mostrarlas)
 //   { accion: 'crear', cliente, items }   -> crea el pedido (en USD con la tasa del ERP) y la orden de PayPal; devuelve la URL de pago
 //   { accion: 'capturar', ref }           -> la llama gracias.html al volver de PayPal: captura el pago, verifica el monto y marca el pedido como pagado
 // Al quedar 'pagado', los triggers de la base registran el pedido en el ERP (medio 'paypal') y avisan al equipo; aquí se envía también al CRM.
@@ -53,6 +54,13 @@ Deno.serve(async (req) => {
 
   if (body?.accion === 'estado') {
     return json({ activo, modo: MODO(), tasa: activo ? tasa : null, zonas: activo ? zonas.map((z: any) => ({ zona: z.zona, etiqueta: z.etiqueta, valor_usd: Number(z.valor_usd) })) : [], paises: activo ? paises : [] });
+  }
+
+  // ---------- Verificar llaves (no devuelve ningún secreto) ----------
+  if (body?.accion === 'verificar') {
+    if (!tieneLlaves()) return json({ llaves: 'faltan', modo: MODO() });
+    try { await tokenPaypal(); return json({ llaves: 'ok', modo: MODO(), configuracion_activa: activo }); }
+    catch (e) { return json({ llaves: 'rechazadas', modo: MODO(), detalle: String(e).slice(0, 120) }); }
   }
 
   // ---------- Crear pedido + orden de PayPal ----------
