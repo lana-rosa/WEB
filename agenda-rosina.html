@@ -560,6 +560,10 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .zona-agenda.bloqueada .candado-agenda { display: block; position: absolute; top: 90px; left: 50%; transform: translateX(-50%); width: min(560px, calc(100% - 24px)); background: var(--blanco); border-radius: 22px; box-shadow: 0 12px 40px rgba(0,0,0,0.22); padding: 26px 24px; text-align: center; z-index: 6; }
 .candado-agenda h2 { font-size: 1.35rem; margin: 0 0 10px; }
 .candado-agenda p { margin: 0 0 16px; color: var(--tinta-suave); }
+.boton-google-agenda { display: flex; align-items: center; justify-content: center; gap: 10px; max-width: 360px; margin: 0 auto; padding: 12px 20px; border-radius: 999px; border: 2px solid rgba(69,69,74,0.2); background: var(--blanco); color: var(--tinta); font-weight: 700; text-decoration: none; }
+.boton-google-agenda:hover { border-color: var(--rosa-principal); }
+.separador-candado { display: flex; align-items: center; gap: 10px; margin: 14px auto !important; max-width: 360px; font-size: 0.85rem; }
+.separador-candado::before, .separador-candado::after { content: ""; flex: 1; height: 1px; background: rgba(69,69,74,0.18); }
 .candado-agenda .candado-icono { font-size: 2.2rem; margin: 0 0 6px; }
 @media (max-width: 600px) { .zona-agenda.bloqueada .candado-agenda { top: 40px; padding: 20px 16px; } .zona-agenda.bloqueada .contenido-agenda { max-height: 560px; } }
 @media print { .zona-agenda.bloqueada { display: none !important; } }
@@ -1064,7 +1068,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="candado-agenda no-imprimir" role="region" aria-label="Agenda solo para quienes tienen cuenta">
         <p class="candado-icono" aria-hidden="true">🔒</p>
         <h2>La agenda de Rosina es gratis con tu cuenta</h2>
-        <p>Crea tu cuenta gratis con tu nombre, WhatsApp y correo, y usa las 17 hojas: proyectos, pedidos, lanas, ventas y más. Entras con un código que te llega al correo, sin contraseñas.</p>
+        <p>Usa las 17 hojas: proyectos, pedidos, lanas, ventas y más. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.</p>
+        <a class="boton-google-agenda" href="cuenta.html?google=1&amp;volver=agenda-rosina.html"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.4-4.7 7l7.3 5.7c4.3-4 6.8-9.9 6.8-17.2z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-2.9-.8-4.7s.3-3.3.8-4.7l-7.9-6.1C.9 16.4 0 20.100 0 24s.9 7.600 2.600 10.800l7.900-6.100z"/><path fill="#34A853" d="M24 48c6.3 0 11.600-2.100 15.500-5.700l-7.300-5.700c-2 1.400-4.700 2.300-8.200 2.300-6.300 0-11.600-4.100-13.500-9.800l-7.900 6.100C6.500 42.600 14.600 48 24 48z"/></svg> Continuar con Google</a>
+        <p class="separador-candado"><span>o con tu correo</span></p>
         <div class="acciones" style="justify-content:center;">
           <a class="boton-primario" href="cuenta.html?volver=agenda-rosina.html">Crear mi cuenta gratis</a>
           <a class="boton-secundario" href="cuenta.html?entrar&amp;volver=agenda-rosina.html">Iniciar sesión</a>
