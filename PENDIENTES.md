@@ -90,6 +90,15 @@ Falta (necesito algo de Sara):
 
 - [ ] **Correo de compra y promociones (3-oct-2026):** ya se envía el correo de gracias, pago confirmado y recibo desde contacto@lanarosacrochet.com, y el pago tiene la casilla para recibir promociones. Falta: (1) probarlo con la primera compra real o un pago de producción; (2) construir el envío de promociones y la baja (los correos de promoción deben llevar enlace para darse de baja); (3) decidir si se agregan a esa lista las clientas que ya compraron.
 
+### Corte de apertura para la inauguración (estimada en noviembre de 2026)
+Decisión de Sara (2-oct-2026): NO empezar el sistema desde cero. Se conserva la historia (ley, DIAN y Fondo Emprender) y se hace un corte limpio. No usar "🧹 Reinicio antes de producción": borra todas las ventas, pedidos, turnos, nómina y ejecución de Fondo Emprender, también los reales.
+- [ ] Sara confirma qué registros son de prueba (lista revisada el 2-oct-2026: casi todo es real; dudas: venta POS-2026-00015 del 26-ago por $335.000, pedido web LRW-2026-0005 / PED-2026-00531 por $15.200 y el turno de caja abierto desde el 28-jul). Claude anula o reversa solo esos (con asiento contrario, sin borrar).
+- [ ] Cerrar el turno de caja que sigue abierto desde el 28-jul-2026 (con el arqueo real).
+- [ ] Unos días antes de abrir: conteo físico de todo el inventario de la Tienda y del Taller; Claude ajusta el Kardex a esas cantidades.
+- [ ] Cierre del mes con el contador: caja, bancos, cartera y cuentas por pagar; saldos de apertura confirmados.
+- [ ] Día de la inauguración: abrir el primer turno con el efectivo contado.
+- [ ] Después de revisar que todo cuadra: Sara activa "🔒 Modo producción" (Configuración → 🛡️ Respaldo y auditoría → Reinicio antes de producción). Es permanente.
+
 ### Costos y precios en el ERP (decisiones de Sara, 2-oct-2026)
 - [ ] **Módulo "Mi producción" para tejedoras** (publicado el 2-oct-2026, ERP PR #35). Sara, Jennifer y Manuela ya están unidas a su usuario. Falta crear los usuarios de María Camila y Gloria Inés (rol Taller) y marcarlas "Solo producción". La tejedora registra el material gastado (sale del inventario del Taller) y el peso de la pieza.
 - [ ] **Ficha de costos y precios por producto:**
