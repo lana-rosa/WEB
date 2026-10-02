@@ -84,6 +84,8 @@ Falta (necesito algo de Sara):
 - [ ] **Contador:** confirmar el costo mensual de un empleado con salario mínimo ($2.715.498), la tarifa del SIMPLE y si Sara debe presentar cuenta de cobro.
 - [ ] **Usuarios de las tejedoras externas:** crear los usuarios de María Camila y Gloria Inés (rol Taller) para vincularlas en el ERP y marcarlas "Solo producción".
 - [ ] **PayPal:** avisar el resultado de la prueba real para configurar su comisión.
+- [ ] **ERP → Contabilidad → 💲 Reglas de precios (⚙️ Valores de la regla):** escribir cuánta mercancía se espera vender al mes en la Mercería (a costo) y cuántas horas de clase se dictan al mes en la Academia. Sin esos datos no se reparten los costos fijos en los precios sugeridos.
+- [ ] **ERP → 📥 Entrada mercancía:** registrar la compra de las bolsas de papel y de tela (ya están en el inventario de la Tienda con precio $1.000 y $2.000, en 0 unidades) para poder cobrarlas en la venta.
 - [ ] **Google:** pasar el enlace para "ver reseñas" desde el Perfil de Empresa en Google (Compartir perfil / Obtener más reseñas), para ponerlo en la web.
 
 - [ ] **Correo de compra y promociones (3-oct-2026):** ya se envía el correo de gracias, pago confirmado y recibo desde contacto@lanarosacrochet.com, y el pago tiene la casilla para recibir promociones. Falta: (1) probarlo con la primera compra real o un pago de producción; (2) construir el envío de promociones y la baja (los correos de promoción deben llevar enlace para darse de baja); (3) decidir si se agregan a esa lista las clientas que ya compraron.
