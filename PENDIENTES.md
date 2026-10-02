@@ -76,7 +76,7 @@ Falta (necesito algo de Sara):
 - [x] **Formularios de producción y envíos quitados del CRM** (2-oct-2026, CRM PR #1). Si alguien abre esas secciones, ve un aviso que indica dónde quedaron en el ERP. Los puentes ERP↔CRM se dejan prendidos: los cambios de estado del ERP siguen llegando al CRM. Ese mismo día se cerraron como entregados los pedidos LR-2026-028 y LR-2026-031, que se entregaron a tiempo pero habían quedado "en producción".
 
 ### Costos y precios en el ERP (decisiones de Sara, 2-oct-2026)
-- [ ] **Módulo "Mi producción" para tejedoras** (hecho en la rama del ERP, por publicar). Sara, Jennifer y Manuela ya están unidas a su usuario. Falta crear los usuarios de María Camila y Gloria Inés (rol Taller) y marcarlas "Solo producción". La tejedora registra el material gastado (sale del inventario del Taller) y el peso de la pieza.
+- [ ] **Módulo "Mi producción" para tejedoras** (publicado el 2-oct-2026, ERP PR #35). Sara, Jennifer y Manuela ya están unidas a su usuario. Falta crear los usuarios de María Camila y Gloria Inés (rol Taller) y marcarlas "Solo producción". La tejedora registra el material gastado (sale del inventario del Taller) y el peso de la pieza.
 - [ ] **Ficha de costos y precios por producto:**
   - **Costo de producción:** mano de obra (horas × valor de la hora) + materia prima registrada por la tejedora + etiqueta ($1.000) + CIF.
   - **CIF:** arriendo y servicios públicos se reparten 1/3 a Mercería, 1/3 a Taller y 1/3 a Academia. La depreciación va a la línea que usa cada equipo (hay que registrar los activos fijos con su línea).
@@ -89,6 +89,7 @@ Falta (necesito algo de Sara):
     - software (Claude US$20) $80.000;
     - pauta en Meta $200.000.
   - **Impuestos:** régimen SIMPLE, no responsables de IVA. Las tarifas del SIMPLE no están configuradas en el ERP: el contador debe confirmar el grupo y la tarifa.
+  - **Comisión de Wompi** (según el reporte de desembolsos): 2,65 % + $700 por transacción, + 19 % de IVA sobre la comisión. Guardada en la configuración del ERP.
   - **Faltan datos de Sara:**
     - honorarios mensuales de Sara como contratista (y aclarar si sigue en nómina como tejedora);
     - valores de los servicios públicos;
