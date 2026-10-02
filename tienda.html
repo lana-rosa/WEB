@@ -497,6 +497,9 @@ html.producto-abierto { overflow: hidden; }
 .como-se-paga .flecha-paga { color: var(--rosa-principal); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
 .como-se-paga[open] .flecha-paga { transform: rotate(180deg); }
 .como-se-paga[open] > summary { margin-bottom: 12px; }
+.opcion-base { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0 4px; padding: 10px 12px; border-radius: 12px; background: var(--rosa-suave); font-size: 0.9rem; cursor: pointer; }
+.opcion-base[hidden] { display: none; }
+.opcion-base input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--rosa-principal); flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -1354,6 +1357,7 @@ function inicializarBuscadorTienda() {
           </div>
           <button type="button" class="boton-primario" id="modal-boton-carrito" style="cursor:pointer;">Añadir al carrito</button>
         </div>
+        <label class="opcion-base" id="modal-opcion-base" hidden><input type="checkbox" id="modal-con-base"> <span>Agregar la base de exhibición que se ve en la foto <strong>(+$7.000)</strong></span></label>
         <button type="button" class="boton-comprar-ahora" id="modal-boton-comprar">🛒 Comprar ahora</button>
         <div class="modal-botones">
           <a class="enlace-whatsapp-ficha" id="modal-boton-whatsapp" href="#" target="_blank" rel="noopener">¿Dudas? Escríbenos por WhatsApp</a>
@@ -1430,6 +1434,12 @@ var RESENAS_POR_PRODUCTO = {};
     mostrarResenasEnModal(id);
     descripcionEl.innerHTML = producto.descripcion.replace(/\n/g, '<br>');
     document.getElementById('modal-aviso-personaje').hidden = !(window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id));
+    // Amigurumis de 10 a 20 cm: la base de la foto no viene incluida; se puede agregar al carrito.
+    var idBase = Object.keys(DATOS_PRODUCTOS).find(function(k) { return DATOS_PRODUCTOS[k].nombre === 'Base para amigurumi'; });
+    var llevaBase = !!idBase && producto.especificaciones.some(function(e) { return /^Base de exhibici/i.test(e); });
+    document.getElementById('modal-opcion-base').hidden = !llevaBase;
+    document.getElementById('modal-con-base').checked = false;
+    if (idBase) { var pb = DATOS_PRODUCTOS[idBase].precio; document.querySelector('#modal-opcion-base strong').textContent = '(+' + formatoCOP(pb) + ')'; }
 
     var especificacionesHtml = producto.especificaciones.map(function(e) { return '<li>' + e + '</li>'; }).join('');
     var cuidadosHtml = producto.cuidados.map(function(c) { return '<li>' + c + '</li>'; }).join('');
@@ -1456,6 +1466,10 @@ var RESENAS_POR_PRODUCTO = {};
       var existente = carrito.find(function(i) { return i.id === id; });
       if (existente) existente.cantidad += cant;
       else carrito.push({ id: id, nombre: producto.nombre, precio: producto.precio, cantidad: cant });
+      if (llevaBase && document.getElementById('modal-con-base').checked) {
+        var base = DATOS_PRODUCTOS[idBase], conBase = carrito.find(function(i) { return i.id === idBase; });
+        if (conBase) conBase.cantidad += cant; else carrito.push({ id: idBase, nombre: base.nombre, precio: base.precio, cantidad: cant });
+      }
       localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
       var contador = document.getElementById('contador-carrito');
       if (contador) contador.textContent = carrito.reduce(function(s,i){return s+i.cantidad;}, 0);
@@ -1815,7 +1829,7 @@ formResena.addEventListener('submit', async (evento) => {
   var intentos = 0;
   function construir() {
     if (!window.PRODUCTOS_PERSONAJE) { if (intentos++ < 50) setTimeout(construir, 100); return; }
-    var ids = Object.keys(window.DATOS_PRODUCTOS || {}).filter(function (id) { return !PRODUCTOS_PERSONAJE.has(id); });
+    var ids = Object.keys(window.DATOS_PRODUCTOS || {}).filter(function (id) { return !PRODUCTOS_PERSONAJE.has(id) && DATOS_PRODUCTOS[id].categoria !== 'Complementos'; });
     if (!ids.length) return;
     var lista = ids.map(function (id, i) {
       var p = DATOS_PRODUCTOS[id];
