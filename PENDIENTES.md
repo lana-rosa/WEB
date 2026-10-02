@@ -72,7 +72,7 @@ Falta (necesito algo de Sara):
 - [x] **Datos de envío en el ERP:** publicado el 1-oct-2026 (ERP PR #31). Está en Pedidos Web/Redes → "🚚 Registrar envío o entrega" (funciones `fn_pedidos_envio` y `fn_pedido_guardar_envio`, guías en el bucket `guias-envio`). El puente del CRM (`actualizar-pedido-desde-crm` v13) ya no borra estos datos.
 - [x] **Trazabilidad del pedido en el ERP:** publicado el 1-oct-2026 (ERP PR #32). Está en Pedidos Web/Redes → "🧭 Trazabilidad de un pedido" y en el botón "🧭 Ver trazabilidad" (funciones `fn_pedido_trazabilidad` y `fn_buscar_pedidos_traza`). Las fechas de cada estado se guardan en `pedidos_canal_historial` desde el 1-oct-2026.
 - [ ] Honorarios de tejedoras calculados con los tiempos del paso a paso. Antes, Sara debe decir cómo se les paga hoy (por hora o por pieza, y si es igual para todas).
-- [ ] Pasar al ERP el historial del CRM (29 fichas de `produccion_progreso`).
+- [x] **Historial del CRM en el ERP** (2-oct-2026): las 29 fichas de `produccion_progreso` quedaron como órdenes de producción "Historial traído del CRM" (23 entregadas y 6 para inventario, con costo de material $0, así que no mueven la contabilidad), cada una con su paso a paso, tejedora, tiempos y foto. Las fotos se copiaron al bucket `produccion-fotos/crm/` con la función `copiar-fotos-crm`. La migración no duplica si se vuelve a correr: hay que repetirla antes de apagar el CRM si allá se llenan fichas nuevas.
 - [ ] Apagar los puentes y quitar del CRM los formularios de producción y de envíos (Sara confirmó que ya no se usarán allá).
 
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden
