@@ -83,7 +83,18 @@ Falta (necesito algo de Sara):
   - **Gastos variables de venta:** comisión de Wompi o PayPal, envío si lo asume la empresa, etc.
   - **Empaque o bolsa:** NO es costo; se le cobra al cliente si la quiere (papel $1.000, tela $2.000). Propuesta: crearlas como productos de la Tienda para el punto de venta y la web.
   - **Utilidad bruta:** 35 % del precio de venta (precio = costo ÷ 0,65).
-  - **Faltan datos de Sara:** % del SIMPLE, comisión real de Wompi y de PayPal, si el 35 % va antes o después de comisión e impuesto, y el arriendo y los servicios del mes.
+  - **Gastos fijos ya cargados en Presupuesto empresa del ERP (2-oct-2026):**
+    - arriendo $1.800.000 (1/3 por línea);
+    - contador $600.000 (1/3 por línea);
+    - software (Claude US$20) $80.000;
+    - pauta en Meta $200.000.
+  - **Impuestos:** régimen SIMPLE, no responsables de IVA. Las tarifas del SIMPLE no están configuradas en el ERP: el contador debe confirmar el grupo y la tarifa.
+  - **Faltan datos de Sara:**
+    - honorarios mensuales de Sara como contratista (y aclarar si sigue en nómina como tejedora);
+    - valores de los servicios públicos;
+    - cómo repartir software, publicidad y el sueldo de Sara entre las líneas;
+    - comisión real de Wompi y de PayPal;
+    - si el 35 % de utilidad va antes o después de la comisión y el impuesto.
 
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden
 Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. Desde el 30-sep-2026 la agenda es gratis **solo con cuenta**: quien no ha iniciado sesión ve una vista previa bloqueada (candado en `agenda-rosina.html`, solo en el navegador). El resto del Rincón de Rosina sigue abierto. Más adelante se puede hacer una mini app con este servicio.
