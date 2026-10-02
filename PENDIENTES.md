@@ -75,6 +75,16 @@ Falta (necesito algo de Sara):
 - [x] **Historial del CRM en el ERP** (2-oct-2026): las 29 fichas de `produccion_progreso` quedaron como órdenes de producción "Historial traído del CRM" (23 entregadas y 6 para inventario, con costo de material $0, así que no mueven la contabilidad), cada una con su paso a paso, tejedora, tiempos y foto. Las fotos se copiaron al bucket `produccion-fotos/crm/` con la función `copiar-fotos-crm`. La migración no duplica si se vuelve a correr: hay que repetirla antes de apagar el CRM si allá se llenan fichas nuevas.
 - [x] **Formularios de producción y envíos quitados del CRM** (2-oct-2026, CRM PR #1). Si alguien abre esas secciones, ve un aviso que indica dónde quedaron en el ERP. Los puentes ERP↔CRM se dejan prendidos: los cambios de estado del ERP siguen llegando al CRM. Ese mismo día se cerraron como entregados los pedidos LR-2026-028 y LR-2026-031, que se entregaron a tiempo pero habían quedado "en producción".
 
+### Costos y precios en el ERP (decisiones de Sara, 2-oct-2026)
+- [ ] **Módulo "Mi producción" para tejedoras** (hecho en la rama del ERP, por publicar). Sara, Jennifer y Manuela ya están unidas a su usuario. Falta crear los usuarios de María Camila y Gloria Inés (rol Taller) y marcarlas "Solo producción". La tejedora registra el material gastado (sale del inventario del Taller) y el peso de la pieza.
+- [ ] **Ficha de costos y precios por producto:**
+  - **Costo de producción:** mano de obra (horas × valor de la hora) + materia prima registrada por la tejedora + etiqueta ($1.000) + CIF.
+  - **CIF:** arriendo y servicios públicos se reparten 1/3 a Mercería, 1/3 a Taller y 1/3 a Academia. La depreciación va a la línea que usa cada equipo (hay que registrar los activos fijos con su línea).
+  - **Gastos variables de venta:** comisión de Wompi o PayPal, envío si lo asume la empresa, etc.
+  - **Empaque o bolsa:** NO es costo; se le cobra al cliente si la quiere (papel $1.000, tela $2.000). Propuesta: crearlas como productos de la Tienda para el punto de venta y la web.
+  - **Utilidad bruta:** 35 % del precio de venta (precio = costo ÷ 0,65).
+  - **Faltan datos de Sara:** % del SIMPLE, comisión real de Wompi y de PayPal, si el 35 % va antes o después de comisión e impuesto, y el arriendo y los servicios del mes.
+
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden
 Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. Desde el 30-sep-2026 la agenda es gratis **solo con cuenta**: quien no ha iniciado sesión ve una vista previa bloqueada (candado en `agenda-rosina.html`, solo en el navegador). El resto del Rincón de Rosina sigue abierto. Más adelante se puede hacer una mini app con este servicio.
 - [x] 1. Inventario de lanas e hilos.
