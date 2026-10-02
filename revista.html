@@ -340,7 +340,11 @@ article.post ol li { margin-bottom: 8px; }
 .puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
 
 /* Categorías de la Revista */
-.categorias-revista { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+.categorias-revista { display: flex; flex-wrap: nowrap; gap: 8px; margin: 0 0 22px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; padding: 2px 2px 12px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
+.categorias-revista::-webkit-scrollbar { height: 6px; }
+.categorias-revista::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
+.categorias-revista::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 999px; }
+.categorias-revista button { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; }
 .categorias-revista button { font: inherit; font-size: 0.9rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 2px solid var(--rosa-suave); background: var(--blanco); color: var(--tinta); cursor: pointer; }
 .categorias-revista button:hover { border-color: var(--rosa-medio); }
 .categorias-revista button.activa { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
@@ -430,12 +434,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="categorias-revista" aria-label="Categorías de la Revista">
     <button type="button" class="activa" data-filtro="todas" aria-pressed="true">Todo</button>
     <button type="button" data-filtro="crochet" aria-pressed="false">🧶 Crochet</button>
-    <button type="button" data-filtro="historias" aria-pressed="false">💕 Historias</button>
     <button type="button" data-filtro="regalos" aria-pressed="false">🎁 Ideas para regalar</button>
     <button type="button" data-filtro="bienestar" aria-pressed="false">🌸 Bienestar</button>
+    <button type="button" data-filtro="rosina" aria-pressed="false">🐑 Mundo Rosina</button>
+    <button type="button" data-filtro="historias" aria-pressed="false">💕 Historias</button>
     <button type="button" data-filtro="emprendimiento" aria-pressed="false">💼 Emprendimiento</button>
     <button type="button" data-filtro="sostenibilidad" aria-pressed="false">♻️ Sostenibilidad</button>
-    <button type="button" data-filtro="rosina" aria-pressed="false">🐑 Mundo Rosina</button>
   </nav>
   <p class="sin-articulos" id="sin-articulos" hidden>Muy pronto vamos a publicar artículos en esta categoría. Mientras tanto, <button type="button" data-filtro="todas">mira todos los artículos</button>.</p>
 
