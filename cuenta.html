@@ -1116,6 +1116,24 @@ function textoPago(p) {
   if (p.anticipo_pagado) return 'Anticipo pagado, falta el saldo';
   return 'Pago pendiente';
 }
+// Páginas oficiales de rastreo de las transportadoras (el número de guía se copia para pegarlo allá).
+const RASTREO_TRANSPORTADORAS = {
+  'servientrega': 'https://www.servientrega.com/wps/portal/rastreo-envio',
+  'coordinadora': 'https://coordinadora.com/rastreo/',
+  'interrapidisimo': 'https://interrapidisimo.com/sigue-tu-envio/',
+  'tcc': 'https://tcc.com.co/rastreo/',
+  'deprisa': 'https://www.deprisa.com/es/rastrea',
+  'envia': 'https://envia.co/'
+};
+function urlRastreo(transportadora) {
+  const clave = String(transportadora || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '');
+  return RASTREO_TRANSPORTADORAS[clave] || null;
+}
+function avisoGuiaCopiada(art, p) {
+  let av = art.querySelector('.aviso-guia');
+  if (!av) { av = nodo('div', 'pequeno aviso-guia'); av.style.cssText = 'margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--rosa-suave);'; art.append(av); }
+  av.textContent = '📋 Copiamos tu número de guía ' + p.numero_guia + '. En la página de ' + p.transportadora + ', pégalo en el buscador de rastreo para ver dónde va tu pedido.';
+}
 function pintarPedidos() {
   const tabs = $('filtros-pedidos');
   tabs.replaceChildren();
@@ -1169,7 +1187,15 @@ function pintarPedidos() {
     izq.append(txt);
     const botones = nodo('div', 'pt-botones');
     if (verificado) { const b = nodo('button', 'pt-btn primario', 'Dejar una reseña'); b.type = 'button'; b.addEventListener('click', () => { irSeccion('resenas'); window.scrollTo({ top: 0, behavior: 'smooth' }); }); botones.append(b); }
-    if (p.guia_url && /^https?:\/\//i.test(p.guia_url)) { const r = nodo('a', 'pt-btn', 'Rastrear pedido'); r.href = p.guia_url; r.target = '_blank'; r.rel = 'noopener'; botones.append(r); }
+    const rastreo = urlRastreo(p.transportadora);
+    if (rastreo && p.numero_guia) {
+      // Abre la página oficial de rastreo de la transportadora y copia el número de guía para pegarlo allá.
+      const r = nodo('a', 'pt-btn primario', 'Rastrear mi envío'); r.href = rastreo; r.target = '_blank'; r.rel = 'noopener';
+      r.title = 'Abre la página de ' + p.transportadora + '. Tu número de guía queda copiado: pégalo en su buscador.';
+      r.addEventListener('click', () => { try { navigator.clipboard.writeText(String(p.numero_guia)); } catch (e) {} avisoGuiaCopiada(art, p); });
+      botones.append(r);
+    }
+    if (p.guia_url && /^https?:\/\//i.test(p.guia_url)) { const r = nodo('a', 'pt-btn', 'Ver guía'); r.href = p.guia_url; r.target = '_blank'; r.rel = 'noopener'; botones.append(r); }
     const otra = nodo('a', 'pt-btn', 'Comprar de nuevo'); otra.href = 'tienda.html'; botones.append(otra);
     const ver = nodo('button', 'pt-btn', 'Ver detalles'); ver.type = 'button'; botones.append(ver);
     cuerpo.append(izq, botones);
