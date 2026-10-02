@@ -1186,7 +1186,6 @@ function pintarPedidos() {
     if (p.entrega && p.estado !== 'entregado') txt.append(nodo('div', 'pequeno', 'Entrega estimada: ' + fechaLarga(p.entrega)));
     izq.append(txt);
     const botones = nodo('div', 'pt-botones');
-    if (verificado) { const b = nodo('button', 'pt-btn primario', 'Dejar una reseña'); b.type = 'button'; b.addEventListener('click', () => { irSeccion('resenas'); window.scrollTo({ top: 0, behavior: 'smooth' }); }); botones.append(b); }
     const rastreo = urlRastreo(p.transportadora);
     if (rastreo && p.numero_guia) {
       // Abre la página oficial de rastreo de la transportadora y copia el número de guía para pegarlo allá.
@@ -1198,6 +1197,7 @@ function pintarPedidos() {
     if (p.guia_url && /^https?:\/\//i.test(p.guia_url)) { const r = nodo('a', 'pt-btn', 'Ver guía'); r.href = p.guia_url; r.target = '_blank'; r.rel = 'noopener'; botones.append(r); }
     const otra = nodo('a', 'pt-btn', 'Comprar de nuevo'); otra.href = 'tienda.html'; botones.append(otra);
     const ver = nodo('button', 'pt-btn', 'Ver detalles'); ver.type = 'button'; botones.append(ver);
+    if (verificado) { const b = nodo('button', 'pt-btn', 'Dejar una reseña'); b.type = 'button'; b.addEventListener('click', () => { irSeccion('resenas'); window.scrollTo({ top: 0, behavior: 'smooth' }); }); botones.append(b); }
     cuerpo.append(izq, botones);
     art.append(cuerpo);
     // Detalles (se abren con el botón)
