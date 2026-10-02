@@ -320,12 +320,6 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 23px !important; }
-.como-se-paga > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none; }
-.como-se-paga > summary::-webkit-details-marker { display: none; }
-.como-se-paga > summary h2 { margin: 0; }
-.como-se-paga .flecha-paga { color: var(--rosa-principal); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
-.como-se-paga[open] .flecha-paga { transform: rotate(180deg); }
-.como-se-paga[open] > summary { margin-bottom: 12px; }
 </style>
 <link rel="icon" type="image/png" href="img/favicon-256.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -601,7 +595,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </form>
 
   <div style="background:var(--rosa-suave); border-radius:var(--radio-suave); padding:28px 32px; max-width:780px; margin-bottom:60px;">
-    <details class="como-se-paga"><summary><h2 style="font-size:1.15rem;">¿Cómo se paga?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
+    <h2 style="font-size:1.15rem;">¿Cómo se paga?</h2>
     <p style="margin-bottom:16px;">Cuando te confirmemos el precio, paga por Nequi o Bre-B y envíanos el comprobante por WhatsApp.</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
       <div style="background:var(--blanco); border-radius:14px; padding:16px;">
@@ -613,7 +607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="margin:0;">Llave: 320 507 2801</p>
       </div>
     </div>
-  </details>
+  
   </div>
 
   <section class="puentes">
