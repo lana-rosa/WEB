@@ -75,6 +75,19 @@ Falta (necesito algo de Sara):
 - [x] **Historial del CRM en el ERP** (2-oct-2026): las 29 fichas de `produccion_progreso` quedaron como órdenes de producción "Historial traído del CRM" (23 entregadas y 6 para inventario, con costo de material $0, así que no mueven la contabilidad), cada una con su paso a paso, tejedora, tiempos y foto. Las fotos se copiaron al bucket `produccion-fotos/crm/` con la función `copiar-fotos-crm`. La migración no duplica si se vuelve a correr: hay que repetirla antes de apagar el CRM si allá se llenan fichas nuevas.
 - [x] **Formularios de producción y envíos quitados del CRM** (2-oct-2026, CRM PR #1). Si alguien abre esas secciones, ve un aviso que indica dónde quedaron en el ERP. Los puentes ERP↔CRM se dejan prendidos: los cambios de estado del ERP siguen llegando al CRM. Ese mismo día se cerraron como entregados los pedidos LR-2026-028 y LR-2026-031, que se entregaron a tiempo pero habían quedado "en producción".
 
+### Lo que Sara debe hacer (anotado el 2-oct-2026)
+- [ ] **ERP → Cotizador (⚙️ Valores del cotizador):** llenar la tabla de tamaño → peso, las horas de producción al mes del Taller y la tarifa del SIMPLE (la da el contador).
+- [ ] **ERP → Pagos → Gastos del local:** registrar los servicios públicos del mes (luz, agua, internet, celular) y el arriendo, para que los costos fijos salgan de datos reales. Cada mes, el valor en pesos de Claude (US$20).
+- [ ] **ERP → Inventario:** crear el insumo "Módulo de sonido" en el Taller y registrar su compra ($35.000 cada uno) para que las tejedoras lo puedan gastar en las piezas con audio.
+- [ ] **ERP → Inventario:** escribir el alto y el ancho (cm) de cada producto de la Tienda; la ficha de la web los muestra sola.
+- [ ] **Fondo Emprender:** subir cada mes el comprobante de pago de seguridad social y ARL (PILA) de Sara.
+- [ ] **Contador:** confirmar el costo mensual de un empleado con salario mínimo ($2.715.498), la tarifa del SIMPLE y si Sara debe presentar cuenta de cobro.
+- [ ] **Usuarios de las tejedoras externas:** crear los usuarios de María Camila y Gloria Inés (rol Taller) para vincularlas en el ERP y marcarlas "Solo producción".
+- [ ] **PayPal:** avisar el resultado de la prueba real para configurar su comisión.
+- [ ] **Google:** pasar el enlace para "ver reseñas" desde el Perfil de Empresa en Google (Compartir perfil / Obtener más reseñas), para ponerlo en la web.
+
+- [ ] **Correo de compra y promociones (3-oct-2026):** ya se envía el correo de gracias, pago confirmado y recibo desde contacto@lanarosacrochet.com, y el pago tiene la casilla para recibir promociones. Falta: (1) probarlo con la primera compra real o un pago de producción; (2) construir el envío de promociones y la baja (los correos de promoción deben llevar enlace para darse de baja); (3) decidir si se agregan a esa lista las clientas que ya compraron.
+
 ### Costos y precios en el ERP (decisiones de Sara, 2-oct-2026)
 - [ ] **Módulo "Mi producción" para tejedoras** (publicado el 2-oct-2026, ERP PR #35). Sara, Jennifer y Manuela ya están unidas a su usuario. Falta crear los usuarios de María Camila y Gloria Inés (rol Taller) y marcarlas "Solo producción". La tejedora registra el material gastado (sale del inventario del Taller) y el peso de la pieza.
 - [ ] **Ficha de costos y precios por producto:**
@@ -90,12 +103,13 @@ Falta (necesito algo de Sara):
     - pauta en Meta $200.000.
   - **Impuestos:** régimen SIMPLE, no responsables de IVA. Las tarifas del SIMPLE no están configuradas en el ERP: el contador debe confirmar el grupo y la tarifa.
   - **Comisión de Wompi** (según el reporte de desembolsos): 2,65 % + $700 por transacción, + 19 % de IVA sobre la comisión. Guardada en la configuración del ERP.
+  - **Costo de un empleado con salario mínimo 2026 (decidido el 2-oct-2026): $2.715.498 al mes.** Pagos directos $2.000.000 + prestaciones $426.213 + seguridad social y parafiscales $289.285. Es la base de la hora de trabajo ($15.086,10 = ÷ 180 h) y de los honorarios de Sara (repartidos 1/3 por línea; 50 % tejido y 50 % administración). La cifra de $2.692.192 de Fondo Emprender sale de una fórmula simplificada (salario × 1,5376, sin auxilio de transporte); Sara decidió dejar el cálculo preciso.
+  - **Cotizador de amigurumis:** lleva alto y ancho, y una lista de "otros materiales que no están en la tienda" (ej. módulo de sonido de $35.000 en las piezas con audio). El ancho ya está en el paso a paso, el inventario y la ficha de la Tienda web (falta publicar la rama `claude/ancho-amigurumi` del ERP). Decidido por Sara: materiales como el módulo de sonido van como insumo del inventario del Taller, registrando primero la compra para que ingresen al inventario y la tejedora los pueda gastar en el paso a paso.
   - **Faltan datos de Sara:**
-    - honorarios mensuales de Sara como contratista (y aclarar si sigue en nómina como tejedora);
-    - valores de los servicios públicos;
-    - cómo repartir software, publicidad y el sueldo de Sara entre las líneas;
-    - comisión real de Wompi y de PayPal;
-    - si el 35 % de utilidad va antes o después de la comisión y el impuesto.
+    - comprobante mensual de seguridad social y ARL (PILA) de Sara, que exige Fondo Emprender;
+    - valores de los servicios públicos (luz, agua, internet, celular) registrados en el módulo de gastos del ERP;
+    - tabla de tamaño → peso para el cotizador y horas de producción del Taller al mes;
+    - comisión real de PayPal (con el primer pago).
 
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden
 Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. Desde el 30-sep-2026 la agenda es gratis **solo con cuenta**: quien no ha iniciado sesión ve una vista previa bloqueada (candado en `agenda-rosina.html`, solo en el navegador). El resto del Rincón de Rosina sigue abierto. Más adelante se puede hacer una mini app con este servicio.

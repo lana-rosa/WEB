@@ -278,7 +278,14 @@ main > :first-child { padding-top: 22px !important; }
 .nota-cuenta { color: var(--tinta-suave); font-size: 0.9rem; margin: 16px 0 0; }
 .barra-sesion { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 18px; }
 .barra-sesion p { margin: 0; color: var(--tinta-suave); overflow-wrap: anywhere; }
-.menu-cuenta { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 10px; margin: 0 0 18px; }
+/* Menús en una sola línea con barra deslizable */
+.menu-cuenta, .pestanas-cuenta.filtros { display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; padding: 4px 2px 12px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
+.menu-cuenta::-webkit-scrollbar, .pestanas-cuenta.filtros::-webkit-scrollbar { height: 6px; }
+.menu-cuenta::-webkit-scrollbar-track, .pestanas-cuenta.filtros::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
+.menu-cuenta::-webkit-scrollbar-thumb, .pestanas-cuenta.filtros::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 999px; }
+.menu-cuenta { gap: 10px; margin: 0 0 6px; }
+.menu-cuenta .item-menu { flex: 0 0 auto; min-width: 88px; scroll-snap-align: start; }
+.pestanas-cuenta.filtros button { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; }
 .item-menu { position: relative; font: inherit; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 4px 10px; border-radius: 16px; border: 2px solid transparent; background: var(--blanco); box-shadow: var(--sombra-suave); color: var(--tinta); cursor: pointer; font-weight: 700; font-size: 0.78rem; min-width: 0; }
 .item-menu .ico { font-size: 1.5rem; line-height: 1; }
 .item-menu:hover { border-color: var(--rosa-medio); }
@@ -844,7 +851,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   actualizarContador();
 })();
 </script>
-<script type="module" src="js/pago.js?v=13"></script>
+<script type="module" src="js/pago.js?v=14"></script>
 <script type="module">
 import { haySesionGuardada, obtenerCliente, iniciarSincronizacion, marcarEncabezado, actualizarInsigniaCuenta } from './js/cuenta.js';
 

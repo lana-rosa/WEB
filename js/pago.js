@@ -201,6 +201,7 @@ function construirModal() {
             '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
             '<label class="pago-acepto" id="pg-confirma-caja"><input type="checkbox" id="pg-confirma"><span id="pg-confirma-texto">Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.</span></label>' +
             '<label class="pago-acepto" id="pg-cuenta-caja"><input type="checkbox" id="pg-cuenta" checked><span>Crear mi cuenta con este correo para ver el estado de mi pedido. Sin contraseña: te enviamos un correo para activarla cuando pagues.</span></label>' +
+            '<label class="pago-acepto" id="pg-promos-caja"><input type="checkbox" id="pg-promos"><span>Quiero recibir información de Lana Rosa: promociones, nuevos productos y novedades. Puedes darte de baja cuando quieras.</span></label>' +
             '<p class="pago-aviso" id="pago-aviso" role="alert" hidden></p>' +
             '<button type="submit" class="pg-btn" id="pago-enviar">Completar mi pedido →</button>' +
             '<p class="pago-nota">🔒 Nosotras no guardamos los datos de tu tarjeta.</p>' +
@@ -517,6 +518,10 @@ async function enviar(e) {
       else aviso(data.error ? document.createTextNode(data.error) : avisoConWhatsApp('No pudimos preparar tu pago.'));
       restaurar();
       return;
+    }
+    // Si marcó recibir promociones, se registra (solo se guarda con la referencia y el correo de este pedido).
+    if ($('pg-promos').checked && data.referencia) {
+      try { await fetch(SUPABASE_URL + '/rest/v1/rpc/registrar_promos_pedido', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY }, body: JSON.stringify({ p_referencia: data.referencia, p_correo: correo }) }); } catch (e) {}
     }
     // Solo queda en este navegador: sirve para rellenar el formulario si después crea su cuenta (gracias.html).
     try { localStorage.setItem('lrPrefillCuenta', JSON.stringify({ nombre, correo, telefono, ciudad: recoge ? '' : (intl ? $('pg-ciudad-intl').value.trim() : (ciudad === 'Otro (nacional)' ? otra : ciudad)), crear: !haySesionGuardada() && $('pg-cuenta').checked })); } catch (e) {}

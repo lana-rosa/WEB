@@ -1,0 +1,10 @@
+-- Correo de compra (3-oct-2026): al pasar un pedido web a 'pagado' se envía desde contacto@lanarosacrochet.com
+-- la confirmación del pago, el recibo, el aviso de la cuenta y el enlace para dejar una reseña en Google.
+-- Ya aplicada en el proyecto Supabase "Lana Rosa ERP + SO". Resumen de lo creado:
+--   * pedidos_web.acepta_promos (boolean) y tabla promociones_suscriptores (correo, nombre, teléfono, origen, aceptado_at, baja_at).
+--   * registrar_promos_pedido(p_referencia, p_correo): la llama js/pago.js si la clienta marcó recibir promociones.
+--   * avisos_compra_web: un solo correo por pedido.
+--   * fn_correo_compra_web(p_pedido, p_enviar) arma y envía el correo con Resend (llave en la bóveda: resend_api_key).
+--     No envía pedidos de prueba (es_prueba). Con p_enviar = false solo devuelve el HTML (para revisarlo).
+--   * trigger trg_pedido_web_pagado (pedidos_web, después de actualizar estado) y trg_pedido_web_promos (después de insertar).
+--   * fn_correo_calificar ya no envía su correo a los pedidos de la web (los cubre este correo); sigue igual para los demás pedidos.

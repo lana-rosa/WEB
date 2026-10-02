@@ -264,6 +264,12 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .campo label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.92rem; }
 .tarjeta { background: var(--blanco); border-radius: var(--radio-suave); padding: 26px; box-shadow: var(--sombra-suave); }
 #selector-estrellas span.activa { color: var(--rosa-principal); }
+/* Fila deslizable (reseñas) */
+.fila-deslizable { display: flex; flex-wrap: nowrap; gap: 16px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; padding: 4px 2px 14px; margin-bottom: 24px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
+.fila-deslizable::-webkit-scrollbar { height: 6px; }
+.fila-deslizable::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
+.fila-deslizable::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 999px; }
+.fila-deslizable > * { flex: 0 0 min(300px, 82%); scroll-snap-align: start; }
 .tarjeta-resena { background: var(--blanco); border-radius: 16px; padding: 18px; box-shadow: var(--sombra-suave); }
 .tarjeta-resena .estrellas-resena { color: var(--rosa-principal); font-size: 1.1rem; margin-bottom: 6px; }
 .tarjeta-resena p.comentario-resena { color: var(--tinta-suave); font-size: 0.92rem; margin-bottom: 10px; }
@@ -661,7 +667,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="color:var(--tinta-suave); margin-bottom:24px;">Cuéntanos cómo te fue con tu pedido. Verificamos cada compra antes de publicar la reseña.</p>
 
     <div id="resumen-resenas" class="resumen-resenas" style="display:none;"></div>
-    <div id="lista-resenas" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; margin-bottom:32px;"></div>
+    <div id="lista-resenas" class="fila-deslizable"></div>
+    <p style="margin:-8px 0 24px;"><a href="https://share.google/n6K8HLUVxId3Km0k4" target="_blank" rel="noopener" style="color:var(--rosa-principal);font-weight:700;">Ver reseñas en Google →</a> · <a href="https://g.page/r/Cae2iIji5j_XEAE/review" target="_blank" rel="noopener" style="color:var(--rosa-principal);font-weight:700;">Dejar mi reseña en Google ⭐</a></p>
     <p id="sin-resenas" style="display:none; color:var(--tinta-suave);">Todavía no hay reseñas publicadas — ¡sé la primera en dejar una!</p>
 
     <details style="max-width:520px;">
@@ -711,18 +718,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="aviso-personalizado" style="background:var(--blanco); box-shadow:var(--sombra-suave);">
     <h2 style="font-size:1.2rem;">¿Cómo se paga?</h2>
-    <p>Pide por WhatsApp y paga por Nequi o Bre-B; luego nos envías el comprobante.</p>
-    <p style="font-weight:600; color:var(--rosa-principal); margin-top:10px;">📦 Envío: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000.</p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px; margin-top:14px;">
-      <div style="background:var(--rosa-suave); border-radius:14px; padding:16px;">
-        <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Nequi</p>
-        <p style="margin:0;">320 507 2801</p>
-      </div>
-      <div style="background:var(--rosa-suave); border-radius:14px; padding:16px;">
-        <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Bre-B</p>
-        <p style="margin:0;">Llave: 320 507 2801</p>
-      </div>
-    </div>
+    <p>Agrega tus productos al carrito, toca <strong>Continuar compra</strong> y paga en línea de forma segura con Wompi: tarjeta crédito o débito, PSE, Nequi o Bancolombia. Si compras desde otro país, también puedes pagar con PayPal. No necesitas crear una cuenta.</p>
+    <p style="font-weight:600; color:var(--rosa-principal); margin-top:10px;">📦 Envío: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000. Recoger en la tienda es gratis.</p>
+    <p style="margin-top:10px;">¿Prefieres pagar por transferencia? Escríbenos por <a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp</a> y te damos los datos de Nequi o Bre-B.</p>
     <p style="font-weight:600; color:var(--rosa-principal); margin-top:14px;">🕒 Entrega: 1 semana después de confirmar el pago, o con envío inmediato según disponibilidad.</p>
   </div>
 
@@ -1870,7 +1868,7 @@ formResena.addEventListener('submit', async (evento) => {
 })();
 </script>
 <script type="module" src="js/cuenta.js"></script>
-<script type="module" src="js/pago.js?v=13"></script>
+<script type="module" src="js/pago.js?v=14"></script>
 <script src="js/carrito-agregado.js?v=2" defer></script>
 </body>
 </html>
