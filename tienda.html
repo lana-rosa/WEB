@@ -491,6 +491,12 @@ html.producto-abierto { overflow: hidden; }
 .caja-confianza-producto strong { display: block; color: var(--tinta); font-size: 0.95rem; }
 .titulo-detalles { text-transform: uppercase; letter-spacing: 0.04em; font-size: 1rem; margin: 6px 0 8px; padding-bottom: 6px; border-bottom: 3px solid var(--rosa-principal); display: inline-block; }
 @media (max-width: 700px) { .modal-info-producto h2 { font-size: 1.5rem; } }
+.como-se-paga > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none; }
+.como-se-paga > summary::-webkit-details-marker { display: none; }
+.como-se-paga > summary h2 { margin: 0; }
+.como-se-paga .flecha-paga { color: var(--rosa-principal); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
+.como-se-paga[open] .flecha-paga { transform: rotate(180deg); }
+.como-se-paga[open] > summary { margin-bottom: 12px; }
 </style>
 </head>
 <body>
@@ -717,11 +723,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <div class="aviso-personalizado" style="background:var(--blanco); box-shadow:var(--sombra-suave);">
-    <h2 style="font-size:1.2rem;">¿Cómo se paga?</h2>
+    <details class="como-se-paga"><summary><h2 style="font-size:1.2rem;">¿Cómo se paga?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
     <p>Agrega tus productos al carrito, toca <strong>Continuar compra</strong> y paga en línea de forma segura con Wompi: tarjeta crédito o débito, PSE, Nequi o Bancolombia. Si compras desde otro país, también puedes pagar con PayPal. No necesitas crear una cuenta.</p>
     <p style="font-weight:600; color:var(--rosa-principal); margin-top:10px;">📦 Envío: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000. Recoger en la tienda es gratis.</p>
     <p style="margin-top:10px;">¿Prefieres pagar por transferencia? Escríbenos por <a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp</a> y te damos los datos de Nequi o Bre-B.</p>
     <p style="font-weight:600; color:var(--rosa-principal); margin-top:14px;">🕒 Entrega: 1 semana después de confirmar el pago, o con envío inmediato según disponibilidad.</p>
+  </details>
   </div>
 
 </main>

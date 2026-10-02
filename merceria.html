@@ -463,6 +463,12 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
   .ficha-merceria { font-size: 0.7rem; }
   .nota-presentacion { display: block; }
 }
+.como-se-paga > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none; }
+.como-se-paga > summary::-webkit-details-marker { display: none; }
+.como-se-paga > summary h2 { margin: 0; }
+.como-se-paga .flecha-paga { color: var(--rosa-principal); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
+.como-se-paga[open] .flecha-paga { transform: rotate(180deg); }
+.como-se-paga[open] > summary { margin-bottom: 12px; }
 </style>
 </head>
 <body>
@@ -636,7 +642,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <div class="aviso-personalizado" id="como-se-paga" hidden style="background:var(--blanco); box-shadow:var(--sombra-suave);">
-    <h2 style="font-size:1.2rem;">¿Cómo se paga?</h2>
+    <details class="como-se-paga"><summary><h2 style="font-size:1.2rem;">¿Cómo se paga?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
     <p>Agrega al carrito y envía tu pedido por WhatsApp; ahí confirmamos tus datos y el envío: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000.</p>
     <p style="font-weight:600; margin-top:14px;">Paga por:</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px; margin-top:10px;">
@@ -650,6 +656,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <p style="font-weight:600; color:var(--rosa-principal); margin-top:14px;">🕒 Una vez confirmado el pago, tu pedido será despachado el siguiente día hábil.</p>
+  </details>
   </div>
 </main>
 
