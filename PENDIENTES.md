@@ -90,12 +90,13 @@ Falta (necesito algo de Sara):
     - pauta en Meta $200.000.
   - **Impuestos:** régimen SIMPLE, no responsables de IVA. Las tarifas del SIMPLE no están configuradas en el ERP: el contador debe confirmar el grupo y la tarifa.
   - **Comisión de Wompi** (según el reporte de desembolsos): 2,65 % + $700 por transacción, + 19 % de IVA sobre la comisión. Guardada en la configuración del ERP.
+  - **Costo de un empleado con salario mínimo 2026 (decidido el 2-oct-2026): $2.715.498 al mes.** Pagos directos $2.000.000 + prestaciones $426.213 + seguridad social y parafiscales $289.285. Es la base de la hora de trabajo ($15.086,10 = ÷ 180 h) y de los honorarios de Sara (repartidos 1/3 por línea; 50 % tejido y 50 % administración). La cifra de $2.692.192 de Fondo Emprender sale de una fórmula simplificada (salario × 1,5376, sin auxilio de transporte); Sara decidió dejar el cálculo preciso.
+  - **Cotizador de amigurumis:** lleva alto y ancho, y una lista de "otros materiales que no están en la tienda" (ej. módulo de sonido de $35.000 en las piezas con audio). Falta el ancho en el paso a paso y en la ficha de la Tienda web, y definir si esos materiales se registran como insumos del Taller.
   - **Faltan datos de Sara:**
-    - honorarios mensuales de Sara como contratista (y aclarar si sigue en nómina como tejedora);
-    - valores de los servicios públicos;
-    - cómo repartir software, publicidad y el sueldo de Sara entre las líneas;
-    - comisión real de Wompi y de PayPal;
-    - si el 35 % de utilidad va antes o después de la comisión y el impuesto.
+    - comprobante mensual de seguridad social y ARL (PILA) de Sara, que exige Fondo Emprender;
+    - valores de los servicios públicos (luz, agua, internet, celular) registrados en el módulo de gastos del ERP;
+    - tabla de tamaño → peso para el cotizador y horas de producción del Taller al mes;
+    - comisión real de PayPal (con el primer pago).
 
 ### Agenda de Rosina pro (`agenda-rosina.html`), aprobada el 27-sep-2026, en este orden
 Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. Desde el 30-sep-2026 la agenda es gratis **solo con cuenta**: quien no ha iniciado sesión ve una vista previa bloqueada (candado en `agenda-rosina.html`, solo en el navegador). El resto del Rincón de Rosina sigue abierto. Más adelante se puede hacer una mini app con este servicio.
