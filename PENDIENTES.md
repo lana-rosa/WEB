@@ -34,7 +34,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
   - Proyectos especiales / empresas: qué se ofrece, cantidades mínimas, tiempos y fotos de trabajos anteriores. WhatsApp: "Hola Lana Rosa. Quiero consultar por un proyecto especial para mi empresa/evento."
   - Sostenibilidad ("Nuestro hilo también tiene una historia"): lo que hacen hoy y lo que están construyendo, solo con información real.
 
-- [ ] **Pagos en línea dentro de la web (Wompi).** Ya está construido: botón en el carrito, formulario de envío, página de gracias, funciones de Supabase y registro automático en el ERP (pedido de Tienda virtual, pago y asiento en bancos). Falta que Sara cree/abra la cuenta de Wompi, guarde las tres llaves en Supabase (Edge Functions → Secrets), registre la URL de eventos en Wompi y luego Claude enciende `PAGOS_ACTIVOS` y se prueba con la tarjeta de pruebas. Pasos en `herramientas/cuentas-clientes/README.md`.
+- [x] **Pagos en línea dentro de la web (Wompi): activos** (ya hay pedidos web pagados que entran solos al ERP). Ya está construido: botón en el carrito, formulario de envío, página de gracias, funciones de Supabase y registro automático en el ERP (pedido de Tienda virtual, pago y asiento en bancos). Falta que Sara cree/abra la cuenta de Wompi, guarde las tres llaves en Supabase (Edge Functions → Secrets), registre la URL de eventos en Wompi y luego Claude enciende `PAGOS_ACTIVOS` y se prueba con la tarjeta de pruebas. Pasos en `herramientas/cuentas-clientes/README.md`.
   - [ ] Revisar tarifas de envío en el ERP (`tarifas_envio_ciudad`): hoy "Otra ciudad" está en $15.000 y la web dice $18.000; también hay tarifas para Chinchiná, Neira y Palestina.
   - [ ] ERP → Bancos: crear la cuenta bancaria y asignar los medios de pago para que el dinero de la web no quede en "sin asignar".
 
@@ -62,7 +62,7 @@ Falta (necesito algo de Sara):
 - [ ] **Enlaces de YouTube** para el glosario (por término) y para la Revista (por artículo). Sara los pasa.
 - [ ] **Imágenes de la Revista:** Sara envía las imágenes de cada artículo.
 - [ ] **Comentarios nuevos de clientes** para "Lo que dicen nuestros clientes" (capturas o textos reales, sin inventar).
-- [ ] **Medios de pago Wompi, PayPal y Google Pay:** Sara abre las cuentas (Wompi con RUT y cuenta bancaria; PayPal empresarial). Las llaves secretas van solo en Supabase, nunca en el chat. Después se integran en el carrito.
+- [ ] **Medios de pago PayPal y Google Pay** (Wompi ya está activo): Sara abre las cuentas (Wompi con RUT y cuenta bancaria; PayPal empresarial). Las llaves secretas van solo en Supabase, nunca en el chat. Después se integran en el carrito.
 
 ## 🟢 Ideas aprobadas o propuestas que faltan por hacer (Claude)
 - [ ] **Conectar CRM y ERP (fase 2):** la fase 1 (pedidos de la web → CRM) ya está hecha, falta probarla con un pago real de producción. Fase 2: el código corregido del Worker ya está en `herramientas/cuentas-clientes/worker/` (falta que Sara lo pegue en Cloudflare, instrucciones en el README de esa carpeta) para que no duplique clientes (busca solo por cédula) y normalice los medios de pago; después, pagos y estados en ambos sentidos. Ver `herramientas/cuentas-clientes/README.md`. **Fase 2b (cobros y estados entre ERP y CRM) ya está hecha y probada.** Falta solo probar el recorrido completo de la web con un pago real de producción.
@@ -86,7 +86,7 @@ Falta (necesito algo de Sara):
 - [ ] **PayPal:** avisar el resultado de la prueba real para configurar su comisión.
 - [ ] **ERP → Contabilidad → 💲 Reglas de precios (⚙️ Valores de la regla):** escribir cuánta mercancía se espera vender al mes en la Mercería (a costo) y cuántas horas de clase se dictan al mes en la Academia. Sin esos datos no se reparten los costos fijos en los precios sugeridos.
 - [ ] **ERP → 📥 Entrada mercancía:** registrar la compra de las bolsas de papel y de tela (ya están en el inventario de la Tienda con precio $1.000 y $2.000, en 0 unidades) para poder cobrarlas en la venta.
-- [ ] **Google:** pasar el enlace para "ver reseñas" desde el Perfil de Empresa en Google (Compartir perfil / Obtener más reseñas), para ponerlo en la web.
+- [x] **Google:** pasar el enlace para "ver reseñas" (hecho el 2-oct-2026: "Ver reseñas" usa el enlace compartido del perfil y "Dejar mi reseña" va solo en el correo de compra) desde el Perfil de Empresa en Google (Compartir perfil / Obtener más reseñas), para ponerlo en la web.
 
 - [ ] **Correo de compra y promociones (3-oct-2026):** ya se envía el correo de gracias, pago confirmado y recibo desde contacto@lanarosacrochet.com, y el pago tiene la casilla para recibir promociones. Falta: (1) probarlo con la primera compra real o un pago de producción; (2) construir el envío de promociones y la baja (los correos de promoción deben llevar enlace para darse de baja); (3) decidir si se agregan a esa lista las clientas que ya compraron.
 
