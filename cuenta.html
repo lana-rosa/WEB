@@ -887,6 +887,10 @@ if (GOOGLE_ACTIVO) {
     }
   });
 }
+// Desde otra página (por ejemplo la agenda) con ?google=1: si no hay sesión, se abre Google de una vez.
+try {
+  if (GOOGLE_ACTIVO && new URLSearchParams(location.search).has('google') && !haySesionGuardada()) $('boton-google').click();
+} catch (e) {}
 
 function mostrar(vista) {
   $('estado-cargando').hidden = true;
