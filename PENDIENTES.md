@@ -75,6 +75,17 @@ Falta (necesito algo de Sara):
 - [x] **Historial del CRM en el ERP** (2-oct-2026): las 29 fichas de `produccion_progreso` quedaron como órdenes de producción "Historial traído del CRM" (23 entregadas y 6 para inventario, con costo de material $0, así que no mueven la contabilidad), cada una con su paso a paso, tejedora, tiempos y foto. Las fotos se copiaron al bucket `produccion-fotos/crm/` con la función `copiar-fotos-crm`. La migración no duplica si se vuelve a correr: hay que repetirla antes de apagar el CRM si allá se llenan fichas nuevas.
 - [x] **Formularios de producción y envíos quitados del CRM** (2-oct-2026, CRM PR #1). Si alguien abre esas secciones, ve un aviso que indica dónde quedaron en el ERP. Los puentes ERP↔CRM se dejan prendidos: los cambios de estado del ERP siguen llegando al CRM. Ese mismo día se cerraron como entregados los pedidos LR-2026-028 y LR-2026-031, que se entregaron a tiempo pero habían quedado "en producción".
 
+### Lo que Sara debe hacer (anotado el 2-oct-2026)
+- [ ] **ERP → Cotizador (⚙️ Valores del cotizador):** llenar la tabla de tamaño → peso, las horas de producción al mes del Taller y la tarifa del SIMPLE (la da el contador).
+- [ ] **ERP → Pagos → Gastos del local:** registrar los servicios públicos del mes (luz, agua, internet, celular) y el arriendo, para que los costos fijos salgan de datos reales. Cada mes, el valor en pesos de Claude (US$20).
+- [ ] **ERP → Inventario:** crear el insumo "Módulo de sonido" en el Taller y registrar su compra ($35.000 cada uno) para que las tejedoras lo puedan gastar en las piezas con audio.
+- [ ] **ERP → Inventario:** escribir el alto y el ancho (cm) de cada producto de la Tienda; la ficha de la web los muestra sola.
+- [ ] **Fondo Emprender:** subir cada mes el comprobante de pago de seguridad social y ARL (PILA) de Sara.
+- [ ] **Contador:** confirmar el costo mensual de un empleado con salario mínimo ($2.715.498), la tarifa del SIMPLE y si Sara debe presentar cuenta de cobro.
+- [ ] **Usuarios de las tejedoras externas:** crear los usuarios de María Camila y Gloria Inés (rol Taller) para vincularlas en el ERP y marcarlas "Solo producción".
+- [ ] **PayPal:** avisar el resultado de la prueba real para configurar su comisión.
+- [ ] **Google:** pasar el enlace para "ver reseñas" desde el Perfil de Empresa en Google (Compartir perfil / Obtener más reseñas), para ponerlo en la web.
+
 ### Costos y precios en el ERP (decisiones de Sara, 2-oct-2026)
 - [ ] **Módulo "Mi producción" para tejedoras** (publicado el 2-oct-2026, ERP PR #35). Sara, Jennifer y Manuela ya están unidas a su usuario. Falta crear los usuarios de María Camila y Gloria Inés (rol Taller) y marcarlas "Solo producción". La tejedora registra el material gastado (sale del inventario del Taller) y el peso de la pieza.
 - [ ] **Ficha de costos y precios por producto:**

@@ -251,6 +251,13 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .proceso-personaliza li span { width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
 .proceso-personaliza strong { font-size: 0.92rem; }
 .proceso-personaliza small { font-size: 0.76rem; color: var(--tinta-suave); line-height: 1.3; }
+/* Filas deslizables: preguntas rápidas y pasos */
+.respuestas-rapidas, .proceso-personaliza { display: flex !important; flex-wrap: nowrap; gap: 12px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; padding: 4px 2px 14px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
+.respuestas-rapidas::-webkit-scrollbar, .proceso-personaliza::-webkit-scrollbar { height: 6px; }
+.respuestas-rapidas::-webkit-scrollbar-track, .proceso-personaliza::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
+.respuestas-rapidas::-webkit-scrollbar-thumb, .proceso-personaliza::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 999px; }
+.respuestas-rapidas > details { flex: 0 0 min(270px, 78%); scroll-snap-align: start; align-self: flex-start; }
+.proceso-personaliza > li { flex: 0 0 min(150px, 40%); scroll-snap-align: start; }
 .casos-personaliza { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 14px 0 18px; }
 .casos-personaliza figure { margin: 0; }
 .casos-personaliza img { width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: var(--sombra-suave); }
@@ -472,7 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li>Omggg, está preciosooooo</li>
     <li>Oye, muchas gracias, está muy muy hermoso ❤️</li>
   </ul>
-  <p class="enlace-resenas"><a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
+  <p class="enlace-resenas"><a href="https://www.google.com/search?q=Lana+Rosa+Crochet+Villamar%C3%ADa+rese%C3%B1as" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
 
   <h2 class="titulo-proceso">Así funciona</h2>
   <ol class="proceso-personaliza">
