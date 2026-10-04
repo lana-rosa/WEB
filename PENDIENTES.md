@@ -91,6 +91,14 @@ Falta (necesito algo de Sara):
 
 - [ ] **Correo de compra y promociones (3-oct-2026):** ya se envía el correo de gracias, pago confirmado y recibo desde contacto@lanarosacrochet.com, y el pago tiene la casilla para recibir promociones. Falta: (1) probarlo con la primera compra real o un pago de producción; (2) construir el envío de promociones y la baja (los correos de promoción deben llevar enlace para darse de baja); (3) decidir si se agregan a esa lista las clientas que ya compraron.
 
+### Ecosistema Lana Rosa: tres casas en un solo dominio (decidido el 4-oct-2026)
+Documento de la Fase 0 (auditoría y arquitectura): https://claude.ai/artifact/QWqgS14BrGbEqBokYkhxob
+- **Decisiones de Sara:** opción A, una sola web con tres casas: Crochet (`lanarosacrochet.com`), Mercería (`/merceria/`) y Academy (`/academy/`). Una sola Revista con categorías. El pop-up del 10 % de primera compra sigue y aplica a las tres casas. Autorizó usar nombres en las historias (incluida la de Mario Mendoza). La tienda física queda en la misma dirección: calle 10 #5-37, barrio Centro, Villamaría, Caldas.
+- **Orden:** Fase 1 sistema de diseño (CSS, menú y pie compartidos, franja de líneas) → Fase 2 Crochet → Fase 3 Mercería y tienda física (antes de noviembre) → Fase 4 apertura → Fase 5 Academy → Fase 6 medición.
+- [ ] Sara pasa las fotos de "Una persona", "Un regalo especial" y Empresas (corregido el 4-oct-2026: son las tres), y la información de Empresas.
+- [ ] Sara confirma el horario y la fecha de apertura de la tienda física.
+- [ ] Pregunta abierta: ¿el 10 % de primera compra aplica también a amigurumis personalizados y talleres? (el pop-up de hoy dice que no).
+
 ### Corte de apertura para la inauguración (estimada en noviembre de 2026)
 Decisión de Sara (2-oct-2026): NO empezar el sistema desde cero. Se conserva la historia (ley, DIAN y Fondo Emprender) y se hace un corte limpio. No usar "🧹 Reinicio antes de producción": borra todas las ventas, pedidos, turnos, nómina y ejecución de Fondo Emprender, también los reales.
 - [ ] Sara confirma qué registros son de prueba (lista revisada el 2-oct-2026: casi todo es real; dudas: venta POS-2026-00015 del 26-ago por $335.000, pedido web LRW-2026-0005 / PED-2026-00531 por $15.200 y el turno de caja abierto desde el 28-jul). Claude anula o reversa solo esos (con asiento contrario, sin borrar).
