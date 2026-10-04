@@ -251,3 +251,5 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - [ ] Fase 1b (hecha en la rama `claude/fase1-diseno`, esperando OK de Sara para publicar): franja Crochet · Mercería · Academy, menú por casa y pie desde una sola fuente (`herramientas/sincronizar_encabezado.py`). Para cambiar menú/pie: editar el script y volver a correrlo.
 
 - [ ] Animaciones sutiles (hechas en la rama `claude/animaciones`, esperando OK de Sara tras ver el video): `css/animaciones.css` + `js/animaciones.js`. Se apagan con "reducir movimiento".
+
+- [ ] Fase 2 Crochet, parte sin fotos (hecha en la rama `claude/fase2-crochet`, esperando OK de Sara): Personaliza en 5 pasos y título de Sobre nosotras "Nacimos en familia. Hoy tejemos en equipo." (la Tienda ya muestra Disponible / Bajo pedido en cada tarjeta). Siguen con fotos: Inicio reordenado, "Una persona", "Un regalo especial" y página de Empresas.
