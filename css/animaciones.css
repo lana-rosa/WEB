@@ -1,0 +1,40 @@
+/* Animaciones sutiles. Solo opacity/transform; se apagan con prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  /* aparición al hacer scroll (la clase la pone js/animaciones.js solo en lo que está más abajo) */
+  .rev { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; transition-delay: var(--rev-d, 0ms); }
+  .rev.rev-in { opacity: 1; transform: none; }
+
+  /* botones y tarjetas */
+  @media (hover: hover) {
+    .boton-primario, .boton-secundario { transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease; }
+    .boton-primario:hover, .boton-secundario:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(231,78,150,0.22); }
+    .boton-primario:active, .boton-secundario:active { transform: translateY(0); }
+    .ed-historia img, .ed-tienda a img { transition: transform .5s ease; }
+    .ed-historia:hover img, .ed-tienda a:hover img { transform: scale(1.03); }
+    .ed-historia, .ed-tienda a { overflow: hidden; border-radius: 18px; }
+  }
+
+  /* encabezado: sombra suave al bajar */
+  .encabezado { transition: box-shadow .25s ease; }
+  .encabezado.compacto { box-shadow: 0 6px 18px rgba(69,69,74,0.10); }
+  .encabezado .logo-img { transition: transform .25s ease; transform-origin: left center; }
+  .encabezado.compacto .logo-img { transform: scale(.88); }
+
+  /* menú móvil: entra suave */
+  .nav-movil-panel.abierto { animation: panel-entra .22s ease-out; }
+  @keyframes panel-entra { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+  /* contador del carrito */
+  .contador-carrito.rebote { animation: rebote .45s ease; }
+  @keyframes rebote { 0% { transform: scale(1); } 40% { transform: scale(1.45); } 70% { transform: scale(.9); } 100% { transform: scale(1); } }
+
+  /* saludo de Rosina */
+  .saludo-rosina { animation: saludo-entra .5s ease-out both; }
+  @keyframes saludo-entra { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+}
+
+.saludo-rosina { position: fixed; left: calc(16px + env(safe-area-inset-left, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 997; display: flex; align-items: center; gap: 10px; max-width: min(300px, calc(100vw - 100px)); background: var(--blanco, #fff); border: 1px solid rgba(231,78,150,0.25); border-radius: 18px; padding: 8px 30px 8px 8px; box-shadow: 0 8px 22px rgba(0,0,0,0.14); text-decoration: none; color: var(--tinta, #45454A); font-size: 0.9rem; line-height: 1.3; }
+.saludo-rosina img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: none; background: var(--rosa-suave, #FBE4EF); }
+.saludo-rosina b { color: var(--rosa-principal, #E74E96); }
+.saludo-rosina .saludo-cerrar { position: absolute; top: 2px; right: 4px; background: none; border: none; font-size: 1.1rem; line-height: 1; color: #888; cursor: pointer; padding: 4px; }
+.saludo-rosina[hidden] { display: none; }

@@ -249,3 +249,5 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - [ ] **PayPal (clientas de otros países):** código listo y apagado (3-oct-2026). Falta: Sara abre/verifica la cuenta empresarial de PayPal, crea la app en developer.paypal.com y guarda `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_MODO` en Supabase; define en el ERP la tasa y el envío por zona (US$); probar en `sandbox` con `?pagosprueba=1`; pasar a `live`. Ver `herramientas/cuentas-clientes/README.md`.
 
 - [ ] Fase 1b (hecha en la rama `claude/fase1-diseno`, esperando OK de Sara para publicar): franja Crochet · Mercería · Academy, menú por casa y pie desde una sola fuente (`herramientas/sincronizar_encabezado.py`). Para cambiar menú/pie: editar el script y volver a correrlo.
+
+- [ ] Animaciones sutiles (hechas en la rama `claude/animaciones`, esperando OK de Sara tras ver el video): `css/animaciones.css` + `js/animaciones.js`. Se apagan con "reducir movimiento".
