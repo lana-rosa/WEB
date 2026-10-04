@@ -21,7 +21,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/comun.css?v=1">
+<link rel="stylesheet" href="css/comun.css?v=2">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -54,18 +54,23 @@ main.contenedor { padding-top: 24px; }
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<header class="encabezado">
+<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
+<nav class="franja-casas" aria-label="Casas Lana Rosa">
+  <div class="contenedor">
+    <a href="index.html" data-casa="crochet">Crochet</a>
+    <a href="merceria.html" data-casa="merceria">Mercería</a>
+    <a href="aprende.html" data-casa="academy">Academy</a>
+  </div>
+</nav>
+<header class="encabezado" data-casa="comun">
   <div class="contenedor">
     <a href="index.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Inicio</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
-        <li class="g-tienda"><a href="tienda.html">Tienda</a></li>
+        <li class="g-tienda grupo-inicio"><a href="tienda.html">Tienda</a></li>
         <li class="g-tienda"><a href="personaliza.html">Personaliza el tuyo</a></li>
-        <li class="g-merceria grupo-inicio"><a href="merceria.html">Mercería</a></li>
-        <li class="g-merceria"><a href="revista.html">Revista</a></li>
-        <li class="g-aprende grupo-inicio"><a href="aprende.html">Aprende</a></li>
-        <li class="g-aprende"><a href="recursos-rosina.html">Rincón de Rosina</a></li>
-        <li class="g-sobre grupo-inicio"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
+        <li class="g-comun"><a href="revista.html">Revista</a></li>
+        <li class="g-comun"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -85,21 +90,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Comprar</p>
+    <p class="grupo-nav">Crochet</p>
     <a href="tienda.html">Tienda</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
+    <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
-    <p class="grupo-nav">Aprender</p>
-    <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
-    <a href="revista.html">Revista</a>
-    <p class="grupo-nav">Universo Lana Rosa</p>
+    <p class="grupo-nav">Academy</p>
+    <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
+    <p class="grupo-nav">Lana Rosa</p>
+    <a href="revista.html">Revista</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="precios.html">Precios</a>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
   </nav>
+<!-- CASAS:FIN -->
 
 <main class="contenedor">
   <p class="eslogan" style="color:var(--rosa-principal); font-weight:600; margin-bottom:8px;">Políticas Lana Rosa</p>
@@ -407,10 +414,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 </main>
 
+<!-- PIE:INICIO (generado) -->
 <footer class="pie-rico">
   <div class="contenedor pie-grid">
     <div>
-      <div class="pie-logo-wrap"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"></div>
+      <div class="pie-logo-wrap"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" loading="lazy" decoding="async"></div>
       <p>Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.</p>
     </div>
     <div>
@@ -470,6 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <p class="derechos contenedor">© 2026 Lana Rosa Crochet. Todos los derechos reservados.</p>
 </footer>
+<!-- PIE:FIN -->
 
 <a href="https://wa.me/573205072801" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.484 2 2.004 6.48 2.004 12c0 1.85.51 3.63 1.44 5.19L2 22l4.94-1.42A9.94 9.94 0 0012.004 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18a8.14 8.14 0 01-4.36-1.26l-.31-.18-3.05.87.87-3-.2-.32A8.17 8.17 0 013.82 12c0-4.51 3.67-8.18 8.18-8.18 4.51 0 8.18 3.67 8.18 8.18 0 4.51-3.67 8.18-8.18 8.18z"/></svg>
