@@ -95,7 +95,7 @@ Falta (necesito algo de Sara):
 Documento de la Fase 0 (auditoría y arquitectura): https://claude.ai/artifact/QWqgS14BrGbEqBokYkhxob
 - **Decisiones de Sara:** opción A, una sola web con tres casas: Crochet (`lanarosacrochet.com`), Mercería (`/merceria/`) y Academy (`/academy/`). Una sola Revista con categorías. El pop-up del 10 % de primera compra sigue y aplica a las tres casas. Autorizó usar nombres en las historias (incluida la de Mario Mendoza). La tienda física queda en la misma dirección: calle 10 #5-37, barrio Centro, Villamaría, Caldas.
 - **Orden:** Fase 1 sistema de diseño (CSS, menú y pie compartidos, franja de líneas) → Fase 2 Crochet → Fase 3 Mercería y tienda física (antes de noviembre) → Fase 4 apertura → Fase 5 Academy → Fase 6 medición.
-- [ ] Sara pasa las fotos nuevas ("Una persona" y "Un regalo especial") y la información y fotos de Empresas.
+- [ ] Sara pasa las fotos y la información de Empresas. Las fotos de "Una persona" y "Un regalo especial" se dejan como están (aclarado el 4-oct-2026).
 - [ ] Sara confirma el horario y la fecha de apertura de la tienda física.
 - [ ] Pregunta abierta: ¿el 10 % de primera compra aplica también a amigurumis personalizados y talleres? (el pop-up de hoy dice que no).
 
