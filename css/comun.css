@@ -120,3 +120,16 @@ main { padding-bottom: 60px; }
 .nav-movil-panel a.nav-destacado { color: var(--rosa-principal); font-weight: 700; }
 .etiqueta-gratis { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: #E6E7FD; color: #4F53B8; font-size: 0.68rem; font-weight: 700; line-height: 1.4; vertical-align: 2px; white-space: nowrap; }
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
+
+/* ===== Franja de casas (Crochet · Mercería · Academy) y menú por casa ===== */
+.franja-casas { background: var(--blanco); border-bottom: 1px solid rgba(69,69,74,0.08); font-size: 0.82rem; }
+.franja-casas .contenedor { display: flex; justify-content: center; gap: 6px; padding-top: 6px; padding-bottom: 6px; }
+.franja-casas a { text-decoration: none; color: var(--tinta); font-weight: 600; padding: 4px 16px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+.franja-casas a:hover { background: var(--rosa-suave); }
+.franja-casas a[data-casa="crochet"].casa-actual { background: var(--rosa-principal); color: #fff; }
+.franja-casas a[data-casa="merceria"].casa-actual { background: #8E55D6; color: #fff; }
+.franja-casas a[data-casa="academy"].casa-actual { background: #2F7FE0; color: #fff; }
+.nav-principal li.g-comun a { background: #F1F0EC; color: var(--tinta); }
+.nav-principal li.g-comun a:hover { background: var(--tinta); color: #fff; }
+.nav-movil-panel a.casa-actual { background: var(--rosa-suave); color: var(--rosa-principal); font-weight: 700; }
+@media (max-width: 480px) { .franja-casas .contenedor { gap: 2px; } .franja-casas a { padding: 4px 12px; } }

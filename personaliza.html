@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/comun.css?v=1">
+<link rel="stylesheet" href="css/comun.css?v=2">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -211,18 +211,23 @@ main > :first-child { padding-top: 23px !important; }
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<header class="encabezado">
+<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
+<nav class="franja-casas" aria-label="Casas Lana Rosa">
+  <div class="contenedor">
+    <a href="index.html" data-casa="crochet" class="casa-actual" aria-current="true">Crochet</a>
+    <a href="merceria.html" data-casa="merceria">Mercería</a>
+    <a href="aprende.html" data-casa="academy">Academy</a>
+  </div>
+</nav>
+<header class="encabezado" data-casa="crochet">
   <div class="contenedor">
     <a href="index.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Inicio</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
-        <li class="g-tienda"><a href="tienda.html">Tienda</a></li>
+        <li class="g-tienda grupo-inicio"><a href="tienda.html">Tienda</a></li>
         <li class="g-tienda"><a href="personaliza.html">Personaliza el tuyo</a></li>
-        <li class="g-merceria grupo-inicio"><a href="merceria.html">Mercería</a></li>
-        <li class="g-merceria"><a href="revista.html">Revista</a></li>
-        <li class="g-aprende grupo-inicio"><a href="aprende.html">Aprende</a></li>
-        <li class="g-aprende"><a href="recursos-rosina.html">Rincón de Rosina</a></li>
-        <li class="g-sobre grupo-inicio"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
+        <li class="g-comun"><a href="revista.html">Revista</a></li>
+        <li class="g-comun"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -242,21 +247,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Comprar</p>
+    <p class="grupo-nav">Crochet</p>
     <a href="tienda.html">Tienda</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
+    <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
-    <p class="grupo-nav">Aprender</p>
-    <a href="aprende.html">Aprende (Academy) <span class="etiqueta-gratis">Tutoriales gratis</span></a>
-    <a href="revista.html">Revista</a>
-    <p class="grupo-nav">Universo Lana Rosa</p>
+    <p class="grupo-nav">Academy</p>
+    <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
+    <p class="grupo-nav">Lana Rosa</p>
+    <a href="revista.html">Revista</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="precios.html">Precios</a>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
   </nav>
+<!-- CASAS:FIN -->
 
 <main class="contenedor">
   <div class="encabezado-pagina" style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
@@ -458,6 +465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 </main>
 
+<!-- PIE:INICIO (generado) -->
 <footer class="pie-rico">
   <div class="contenedor pie-grid">
     <div>
@@ -521,6 +529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <p class="derechos contenedor">© 2026 Lana Rosa Crochet. Todos los derechos reservados.</p>
 </footer>
+<!-- PIE:FIN -->
 
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
