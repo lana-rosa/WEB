@@ -16,7 +16,7 @@ CASA_DE = {
     'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
-CASAS = [('crochet', 'Tienda de amigurumis', 'index.html'), ('merceria', 'Mercería', 'merceria.html'), ('academy', 'Academia de Crochet', 'aprende.html')]
+CASAS = [('crochet', 'Tienda de amigurumis', 'index.html'), ('merceria', 'Mercería', 'merceria.html'), ('academy', 'Academy', 'aprende.html')]
 CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'comun': 'g-comun'}
 
 # (texto, enlace, clase de color)
@@ -33,7 +33,7 @@ MENUS = {
 }
 
 # nombre bajo el logo y destino del logo por casa
-LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria.html'), 'academy': ('Academia', 'aprende.html'),
+LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria.html'), 'academy': ('Academy', 'aprende.html'),
         None: ('Inicio', 'index.html')}
 
 # pie por casa: (frase, titulo de columna, enlaces)  — Crochet usa el pie original
@@ -41,7 +41,7 @@ PIE = {
     'merceria': ('Mercería Lana Rosa: todo para tejer, lanas, hilos, agujas y accesorios. Villamaría, Caldas.', 'Mercería',
                  [('Lanas', 'merceria.html#lanas-merceria'), ('Hilos', 'merceria.html#hilos-merceria'), ('Agujas', 'merceria.html#agujas-merceria'),
                   ('Herrajes', 'merceria.html#herrajes-merceria'), ('Accesorios', 'merceria.html#accesorios-merceria')]),
-    'academy': ('Academia de Crochet Lana Rosa: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academia de Crochet',
+    'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
                 [('Aprende', 'aprende.html'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html'),
                  ('Glosario', 'glosario-rosina.html'), ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
 }
@@ -72,7 +72,7 @@ def encabezado(pagina):
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
-    <p class="grupo-nav">Academia de Crochet</p>
+    <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
     <p class="grupo-nav">Lana Rosa</p>
