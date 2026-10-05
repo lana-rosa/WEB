@@ -13,10 +13,10 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 CASA_DE = {
     'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
     'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria',
-    'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
+    'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
-CASAS = [('crochet', 'Tienda de amigurumis', 'index.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'aprende.html')]
+CASAS = [('crochet', 'Tienda de amigurumis', 'index.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/')]
 CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'comun': 'g-comun'}
 
 # (texto, enlace, clase de color)
@@ -26,14 +26,13 @@ MENUS = {
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria', 'merceria'),
                  ('Agujas', 'merceria/catalogo/#agujas-merceria', 'merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria')],
-    'academy': [('Aprende', 'aprende.html', 'academy'), ('Tutoriales', 'aprende.html#crea', 'academy'),
-                ('Rincón de Rosina', 'recursos-rosina.html', 'academy'), ('Glosario', 'glosario-rosina.html', 'academy'),
-                ('Paletas', 'paletas-rosina.html', 'academy'), ('Calculadoras', 'calculadoras-rosina.html', 'academy'),
-                ('Agenda', 'agenda-rosina.html', 'academy'), ('Revista', 'revista.html', 'comun')],
+    'academy': [('Talleres', 'aprende.html#aprende', 'academy'), ('Tutoriales', 'aprende.html#crea', 'academy'),
+                ('Recursos gratis', 'recursos-rosina.html', 'academy'), ('Glosario', 'glosario-rosina.html', 'academy'),
+                ('Paletas', 'paletas-rosina.html', 'academy'), ('Calculadoras', 'calculadoras-rosina.html', 'academy')],
 }
 
 # nombre bajo el logo y destino del logo por casa
-LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria/'), 'academy': ('Academy', 'aprende.html'),
+LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria/'), 'academy': ('Academy', 'academy/'),
         None: ('Inicio', 'index.html')}
 
 # pie por casa: (frase, titulo de columna, enlaces)  — Crochet usa el pie original
@@ -44,8 +43,9 @@ PIE = {
                   ('Tienda física', 'merceria/tienda-fisica/'),
                   ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
-                [('Aprende', 'aprende.html'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html'),
-                 ('Glosario', 'glosario-rosina.html'), ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
+                [('Inicio de Academy', 'academy/'), ('Talleres', 'aprende.html#aprende'), ('Tutoriales', 'aprende.html#crea'),
+                 ('Rincón de Rosina', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas de color', 'paletas-rosina.html'),
+                 ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html')]),
 }
 
 # Menú del celular propio de cada casa (las casas sin entrada usan el menú general).
@@ -72,6 +72,30 @@ MOVIL = {
     <p class="grupo-nav otras-casas">Otras casas de Lana Rosa</p>
     <a class="otras-casas" href="index.html">Tienda de amigurumis</a>
     <a class="otras-casas" href="aprende.html">Lana Rosa Academy</a>
+  </nav>''',
+    'academy': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
+    <a href="academy/">Inicio de Academy</a>
+    <a href="cuenta.html">👤 Mi cuenta</a>
+    <p class="grupo-nav">Aprende</p>
+    <a href="aprende.html#aprende">Talleres presenciales</a>
+    <a href="aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
+    <a href="aprende.html#conecta">Nuestra forma de enseñar</a>
+    <p class="grupo-nav">Recursos gratis de Rosina</p>
+    <a href="recursos-rosina.html">Rincón de Rosina</a>
+    <a href="glosario-rosina.html">Glosario</a>
+    <a href="paletas-rosina.html">Paletas de color</a>
+    <a href="calculadoras-rosina.html">Calculadoras</a>
+    <a href="agenda-rosina.html">Agenda de proyectos</a>
+    <a href="rosina.html">Conoce a Rosina</a>
+    <p class="grupo-nav">Materiales e ideas</p>
+    <a href="merceria/">Mercería</a>
+    <a href="revista.html">Revista</a>
+    <p class="grupo-nav">Ayuda</p>
+    <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+    <a href="contacto.html">Contacto</a>
+    <p class="grupo-nav otras-casas">Otras casas de Lana Rosa</p>
+    <a class="otras-casas" href="index.html">Tienda de amigurumis</a>
+    <a class="otras-casas" href="merceria/">Mercería</a>
   </nav>''',
 }
 
@@ -155,7 +179,7 @@ def main():
     # el pie modelo vive en index.html la primera vez; luego se toma del marcador
     idx = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
     modelo = pie(idx)
-    archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True))
+    archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True)) + sorted(glob.glob(os.path.join(RAIZ, 'academy', '**', 'index.html'), recursive=True))
     for f in archivos:
         rel = os.path.relpath(f, RAIZ).replace(os.sep, '/')
         # merceria/index.html -> merceria; merceria/catalogo/index.html -> merceria-catalogo
