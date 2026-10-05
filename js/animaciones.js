@@ -45,7 +45,7 @@
   // saludo de Rosina (una vez por visita, solo en páginas de navegación)
   try {
     var pag = location.pathname.split('/').filter(Boolean).pop() || 'index.html';
-    if (/^(index|tienda|personaliza|merceria|aprende|recursos-rosina|sobre-nosotras)(\.html)?$/.test(pag) && !sessionStorage.getItem('saludo-rosina')) {
+    if (/^(index|tienda|personaliza|merceria|academy|aprende|recursos-rosina|sobre-nosotras)(\.html)?$/.test(pag) && !sessionStorage.getItem('saludo-rosina')) {
       setTimeout(function () {
         if (document.querySelector('.panel-carrito.abierto, .nav-movil-panel.abierto')) return;
         sessionStorage.setItem('saludo-rosina', '1');
