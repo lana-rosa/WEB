@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-CO">
+<html lang="es-CO" data-casa="academy">
 <head>
 <meta charset="UTF-8">
 <!-- Google Tag Manager -->
@@ -66,7 +66,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 /* ===== Material gratuito de Rosina ===== */
 .boton-primario, .boton-secundario { display: inline-block; padding: 12px 26px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: var(--fuente-cuerpo); cursor: pointer; border: 2px solid var(--rosa-principal); }
 .boton-primario { background: var(--rosa-principal); color: var(--blanco); }
-.boton-primario:hover { background: #B83E78; border-color: #B83E78; }
+.boton-primario:hover { background: var(--rosa-hover); border-color: var(--rosa-hover); }
 .boton-secundario { background: transparent; color: var(--rosa-principal); }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .boton-chico { padding: 7px 16px; font-size: 0.85rem; }
@@ -83,7 +83,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .recurso-cabecera { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 .recurso-cabecera p { color: var(--tinta-suave); max-width: 62ch; margin: 0; }
 .recurso-cabecera > div:not(.acciones):not(.descargas) { flex: 1 1 320px; }
-.miniatura-recurso { flex: 0 0 auto; width: 220px; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; border: 3px solid #fff; box-shadow: 0 6px 18px rgba(231, 78, 150, .18); align-self: center; cursor: pointer; }
+.miniatura-recurso { flex: 0 0 auto; width: 220px; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 18px; border: 3px solid #fff; box-shadow: 0 6px 18px rgba(var(--rosa-rgb), .18); align-self: center; cursor: pointer; }
 @media (max-width: 600px) { .miniatura-recurso { width: 100%; max-width: 300px; margin: 0 auto; } }
 @media print { .miniatura-recurso { display: none !important; } }
 .acciones { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -131,7 +131,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .resultado h3 { font-size: 1rem; color: var(--rosa-principal); margin-bottom: 8px; }
 .resultado .grande { font-family: var(--fuente-titulo); font-size: 1.35rem; color: var(--tinta); margin: 0 0 8px; line-height: 1.35; word-break: break-word; }
 .resultado p { margin: 0 0 6px; font-size: 0.92rem; }
-.resultado .error { color: #B83E78; font-weight: 600; }
+.resultado .error { color: var(--rosa-hover); font-weight: 600; }
 /* Contador de vueltas */
 .contador { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 10px 0; }
 .contador button { width: 56px; height: 56px; border-radius: 50%; border: none; background: var(--rosa-principal); color: var(--blanco); font-size: 1.8rem; cursor: pointer; line-height: 1; }
@@ -265,7 +265,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .tabla-abrev thead th:first-child { z-index: 3; background: var(--rosa-principal); }
 @media print { .tabla-scroll-abrev { max-height: none; overflow: visible; } }
 .tabla-abrev tbody tr:nth-child(even) td:first-child { background: var(--blanco-hueso); }
-.tabla-abrev thead th:first-child { background: var(--rosa-principal); z-index: 3; box-shadow: 2px 0 0 #B83E78; }
+.tabla-abrev thead th:first-child { background: var(--rosa-principal); z-index: 3; box-shadow: 2px 0 0 var(--rosa-hover); }
 @media (max-width: 600px) { .tabla-abrev th:first-child, .tabla-abrev td:first-child { min-width: 118px; max-width: 130px; } }
 /* Calculadora de precio */
 .panel-precio { grid-template-columns: 1.1fr 0.9fr; }
@@ -308,11 +308,11 @@ main > :first-child { padding-top: 40px !important; }
 .marca-impresion { display: none; }
 @media print {
   .marca-impresion { display: flex !important; align-items: center; gap: 12px; font-family: 'Hanken Grotesk', Arial, sans-serif; color: #45454A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .marca-imp-arriba { justify-content: space-between; border-bottom: 2px solid #E74E96; padding: 0 0 8px; margin: 0 0 14px; }
+  .marca-imp-arriba { justify-content: space-between; border-bottom: 2px solid var(--rosa-principal); padding: 0 0 8px; margin: 0 0 14px; }
   .marca-imp-arriba img { height: 46px; width: auto; border-radius: 8px; }
-  .marca-imp-arriba span { font-size: 11px; color: #E74E96; font-weight: 700; }
-  .marca-imp-abajo { justify-content: center; flex-wrap: wrap; gap: 4px 14px; border-top: 2px solid #E74E96; padding: 8px 0 0; margin: 18px 0 0; font-size: 10.5px; break-inside: avoid; }
-  .marca-imp-abajo strong { color: #E74E96; }
+  .marca-imp-arriba span { font-size: 11px; color: var(--rosa-principal); font-weight: 700; }
+  .marca-imp-abajo { justify-content: center; flex-wrap: wrap; gap: 4px 14px; border-top: 2px solid var(--rosa-principal); padding: 8px 0 0; margin: 18px 0 0; font-size: 10.5px; break-inside: avoid; }
+  .marca-imp-abajo strong { color: var(--rosa-principal); }
 }
 </style>
 <div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="img/logo-lana-rosa.jpg" alt=""><span>Rincón de Rosina · lanarosacrochet.com</span></div>
@@ -325,20 +325,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet">Crochet</a>
+    <a href="index.html" data-casa="crochet">Tienda de amigurumis</a>
     <a href="merceria.html" data-casa="merceria">Mercería</a>
     <a href="aprende.html" data-casa="academy" class="casa-actual" aria-current="true">Academy</a>
   </div>
 </nav>
 <header class="encabezado" data-casa="academy">
   <div class="contenedor">
-    <a href="index.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Inicio</span></a>
+    <a href="aprende.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Academy</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li class="g-aprende grupo-inicio"><a href="aprende.html">Aprende</a></li>
+        <li class="g-aprende"><a href="aprende.html#crea">Tutoriales</a></li>
         <li class="g-aprende"><a href="recursos-rosina.html">Rincón de Rosina</a></li>
+        <li class="g-aprende"><a href="glosario-rosina.html">Glosario</a></li>
+        <li class="g-aprende"><a href="paletas-rosina.html">Paletas</a></li>
+        <li class="g-aprende"><a href="calculadoras-rosina.html">Calculadoras</a></li>
+        <li class="g-aprende"><a href="agenda-rosina.html">Agenda</a></li>
         <li class="g-comun"><a href="revista.html">Revista</a></li>
-        <li class="g-comun"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -358,12 +362,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Crochet</p>
+    <p class="grupo-nav">Tienda de amigurumis</p>
     <a href="tienda.html">Tienda</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
-    <p class="grupo-nav">Academy</p>
+    <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
     <p class="grupo-nav">Lana Rosa</p>
@@ -728,7 +732,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="contenedor pie-grid">
     <div>
       <div class="pie-logo-wrap"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" loading="lazy" decoding="async"></div>
-      <p>Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.</p>
+      <p>Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.</p>
     </div>
     <div>
       <h3>Nosotros</h3>
@@ -739,13 +743,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div>
-      <h3>Tienda</h3>
+      <h3>Academy</h3>
       <ul>
-        <li><a href="tienda.html">Ver catálogo</a></li>
-        <li><a href="merceria.html">Mercería</a></li>
-        <li><a href="personaliza.html">Personalizados</a></li>
-        <li><a href="aprende.html">Talleres</a></li>
-        <li><a href="https://lana-rosa-crochet.cercia.co/" target="_blank" rel="noopener">Comprar en línea</a></li>
+        <li><a href="aprende.html">Aprende</a></li>
+        <li><a href="aprende.html#crea">Tutoriales</a></li>
+        <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
+        <li><a href="glosario-rosina.html">Glosario</a></li>
+        <li><a href="paletas-rosina.html">Paletas de color</a></li>
+        <li><a href="calculadoras-rosina.html">Calculadoras</a></li>
       </ul>
     </div>
     <div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-CO">
+<html lang="es-CO" data-casa="academy">
 <head>
 <meta charset="UTF-8">
 <!-- Google Tag Manager -->
@@ -98,6 +98,7 @@ h2 { font-size: 1.6rem; }
 h3 { font-size: 1.1rem; }
 .hero { padding-top: 60px; padding-bottom: 14px; }
 .hero .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 10px; }
+.hero .eslogan .subtitulo-casa { color: var(--tinta-suave); font-weight: 500; }
 .hero p.intro { max-width: 62ch; color: var(--tinta-suave); font-size: 1.08rem; margin-bottom: 0; }
 section { padding: 20px 0 60px; }
 section.contenedor { padding-top: 20px; padding-bottom: 60px; }
@@ -123,7 +124,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
   display: inline-block; background: var(--rosa-principal); color: var(--blanco) !important;
   text-decoration: none; padding: 13px 28px; border-radius: 999px; font-weight: 600;
 }
-.boton-primario:hover { background: #B83E78; }
+.boton-primario:hover { background: var(--rosa-hover); }
 .boton-secundario { display: inline-block; background: transparent; color: var(--rosa-principal); border: 2px solid var(--rosa-principal); text-decoration: none; padding: 11px 26px; border-radius: 999px; font-weight: 600; }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .filosofia { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 30px; }
@@ -196,20 +197,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet">Crochet</a>
+    <a href="index.html" data-casa="crochet">Tienda de amigurumis</a>
     <a href="merceria.html" data-casa="merceria">Mercería</a>
     <a href="aprende.html" data-casa="academy" class="casa-actual" aria-current="true">Academy</a>
   </div>
 </nav>
 <header class="encabezado" data-casa="academy">
   <div class="contenedor">
-    <a href="index.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Inicio</span></a>
+    <a href="aprende.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Academy</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li class="g-aprende grupo-inicio"><a href="aprende.html">Aprende</a></li>
+        <li class="g-aprende"><a href="aprende.html#crea">Tutoriales</a></li>
         <li class="g-aprende"><a href="recursos-rosina.html">Rincón de Rosina</a></li>
+        <li class="g-aprende"><a href="glosario-rosina.html">Glosario</a></li>
+        <li class="g-aprende"><a href="paletas-rosina.html">Paletas</a></li>
+        <li class="g-aprende"><a href="calculadoras-rosina.html">Calculadoras</a></li>
+        <li class="g-aprende"><a href="agenda-rosina.html">Agenda</a></li>
         <li class="g-comun"><a href="revista.html">Revista</a></li>
-        <li class="g-comun"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -229,12 +234,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Crochet</p>
+    <p class="grupo-nav">Tienda de amigurumis</p>
     <a href="tienda.html">Tienda</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
-    <p class="grupo-nav">Academy</p>
+    <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
     <p class="grupo-nav">Lana Rosa</p>
@@ -249,7 +254,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main>
   <section class="hero contenedor">
-    <p class="eslogan">Lana Rosa Academy</p>
+    <p class="eslogan">Lana Rosa Academy <span class="subtitulo-casa">· Academia de Crochet</span></p>
     <h1>Tejer para aprender, crear y conectar contigo</h1>
     <p class="intro">Aprende crochet paso a paso, sin experiencia y sin tecnicismos.</p>
   </section>
@@ -421,7 +426,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="contenedor pie-grid">
     <div>
       <div class="pie-logo-wrap"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" loading="lazy" decoding="async"></div>
-      <p>Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.</p>
+      <p>Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.</p>
     </div>
     <div>
       <h3>Nosotros</h3>
@@ -432,13 +437,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div>
-      <h3>Tienda</h3>
+      <h3>Academy</h3>
       <ul>
-        <li><a href="tienda.html">Ver catálogo</a></li>
-        <li><a href="merceria.html">Mercería</a></li>
-        <li><a href="personaliza.html">Personalizados</a></li>
-        <li><a href="aprende.html">Talleres</a></li>
-        <li><a href="https://lana-rosa-crochet.cercia.co/" target="_blank" rel="noopener">Comprar en línea</a></li>
+        <li><a href="aprende.html">Aprende</a></li>
+        <li><a href="aprende.html#crea">Tutoriales</a></li>
+        <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
+        <li><a href="glosario-rosina.html">Glosario</a></li>
+        <li><a href="paletas-rosina.html">Paletas de color</a></li>
+        <li><a href="calculadoras-rosina.html">Calculadoras</a></li>
       </ul>
     </div>
     <div>

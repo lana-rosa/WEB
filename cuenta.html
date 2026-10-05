@@ -106,7 +106,7 @@ main > :first-child { padding-top: 22px !important; }
 .acepto { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; margin: 4px 0 18px; }
 .acepto input { margin-top: 4px; accent-color: var(--rosa-principal); flex-shrink: 0; width: 18px; height: 18px; }
 .boton-cuenta { font: inherit; font-weight: 700; padding: 13px 28px; border-radius: 999px; border: 2px solid var(--rosa-principal); background: var(--rosa-principal); color: var(--blanco); cursor: pointer; }
-.boton-cuenta:hover { background: #B83E78; border-color: #B83E78; }
+.boton-cuenta:hover { background: var(--rosa-hover); border-color: var(--rosa-hover); }
 .boton-cuenta:disabled { opacity: 0.6; cursor: wait; }
 .boton-cuenta.secundario { background: transparent; color: var(--rosa-principal); }
 .boton-cuenta.secundario:hover { background: var(--rosa-suave); }
@@ -128,7 +128,7 @@ main > :first-child { padding-top: 22px !important; }
 .item-menu .ico { font-size: 1.5rem; line-height: 1; }
 .item-menu:hover { border-color: var(--rosa-medio); }
 .item-menu[aria-current="true"] { background: var(--rosa-principal); color: var(--blanco); border-color: var(--rosa-principal); }
-.insignia { position: absolute; top: 4px; right: 8px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: #E74E96; color: #fff; font-size: 0.72rem; display: inline-flex; align-items: center; justify-content: center; border: 2px solid #fff; }
+.insignia { position: absolute; top: 4px; right: 8px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: var(--rosa-principal); color: #fff; font-size: 0.72rem; display: inline-flex; align-items: center; justify-content: center; border: 2px solid #fff; }
 .insignia[hidden] { display: none; }
 .aviso-calificar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--rosa-suave); border-radius: 14px; padding: 12px 16px; margin: 0 0 14px; }
 .aviso-calificar[hidden] { display: none; }
@@ -151,14 +151,14 @@ main > :first-child { padding-top: 22px !important; }
 .pt-btn { display: block; text-align: center; text-decoration: none; font: inherit; font-weight: 700; font-size: 0.88rem; padding: 9px 14px; border-radius: 999px; border: 1.5px solid rgba(69,69,74,0.3); background: var(--blanco); color: var(--tinta); cursor: pointer; }
 .pt-btn:hover { background: var(--rosa-suave); }
 .pt-btn.primario { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
-.pt-btn.primario:hover { background: #B83E78; }
+.pt-btn.primario:hover { background: var(--rosa-hover); }
 .pt-detalle { margin: 0 16px 12px; padding: 10px 14px; background: var(--rosa-suave); border-radius: 12px; font-size: 0.88rem; }
 .pt-detalle div { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; }
 .pt-pie { display: flex; flex-wrap: wrap; gap: 4px 22px; justify-content: flex-end; padding: 10px 16px; border-top: 1px solid rgba(69,69,74,0.10); font-size: 0.8rem; color: var(--tinta-suave); }
 .pedido-t .cancelar-pedido-x { position: static; flex: 0 0 auto; }
 .tarjeta-pedido.con-x { position: relative; }
-.cancelar-pedido-x { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #E74E96; background: #fff; color: #E74E96; font-size: 1.4rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
-.cancelar-pedido-x:hover { background: #FBE4EF; }
+.cancelar-pedido-x { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--rosa-principal); background: #fff; color: var(--rosa-principal); font-size: 1.4rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.cancelar-pedido-x:hover { background: var(--rosa-suave); }
 .tarjeta-pedido { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(69,69,74,0.10); }
 .tarjeta-pedido:last-child { border-bottom: none; }
 .foto-mini { width: 76px; height: 76px; flex-shrink: 0; border-radius: 14px; overflow: hidden; background: var(--rosa-suave); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
@@ -225,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet">Crochet</a>
+    <a href="index.html" data-casa="crochet">Tienda de amigurumis</a>
     <a href="merceria.html" data-casa="merceria">Mercería</a>
     <a href="aprende.html" data-casa="academy">Academy</a>
   </div>
@@ -258,12 +258,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Crochet</p>
+    <p class="grupo-nav">Tienda de amigurumis</p>
     <a href="tienda.html">Tienda</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
-    <p class="grupo-nav">Academy</p>
+    <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
     <p class="grupo-nav">Lana Rosa</p>

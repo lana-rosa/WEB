@@ -16,17 +16,34 @@ CASA_DE = {
     'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
-CASAS = [('crochet', 'Crochet', 'index.html'), ('merceria', 'Mercería', 'merceria.html'), ('academy', 'Academy', 'aprende.html')]
+CASAS = [('crochet', 'Tienda de amigurumis', 'index.html'), ('merceria', 'Mercería', 'merceria.html'), ('academy', 'Academy', 'aprende.html')]
 CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'comun': 'g-comun'}
 
 # (texto, enlace, clase de color)
 MENUS = {
     'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Personaliza el tuyo', 'personaliza.html', 'crochet'),
                 ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
-    'merceria': [('Mercería', 'merceria.html', 'merceria'),
-                 ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
-    'academy': [('Aprende', 'aprende.html', 'academy'), ('Rincón de Rosina', 'recursos-rosina.html', 'academy'),
-                ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
+    'merceria': [('Lanas', 'merceria.html#lanas-merceria', 'merceria'), ('Hilos', 'merceria.html#hilos-merceria', 'merceria'),
+                 ('Agujas', 'merceria.html#agujas-merceria', 'merceria'), ('Accesorios', 'merceria.html#accesorios-merceria', 'merceria'),
+                 ('Revista', 'revista.html', 'comun')],
+    'academy': [('Aprende', 'aprende.html', 'academy'), ('Tutoriales', 'aprende.html#crea', 'academy'),
+                ('Rincón de Rosina', 'recursos-rosina.html', 'academy'), ('Glosario', 'glosario-rosina.html', 'academy'),
+                ('Paletas', 'paletas-rosina.html', 'academy'), ('Calculadoras', 'calculadoras-rosina.html', 'academy'),
+                ('Agenda', 'agenda-rosina.html', 'academy'), ('Revista', 'revista.html', 'comun')],
+}
+
+# nombre bajo el logo y destino del logo por casa
+LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria.html'), 'academy': ('Academy', 'aprende.html'),
+        None: ('Inicio', 'index.html')}
+
+# pie por casa: (frase, titulo de columna, enlaces)  — Crochet usa el pie original
+PIE = {
+    'merceria': ('Mercería Lana Rosa: todo para tejer, lanas, hilos, agujas y accesorios. Villamaría, Caldas.', 'Mercería',
+                 [('Lanas', 'merceria.html#lanas-merceria'), ('Hilos', 'merceria.html#hilos-merceria'), ('Agujas', 'merceria.html#agujas-merceria'),
+                  ('Herrajes', 'merceria.html#herrajes-merceria'), ('Accesorios', 'merceria.html#accesorios-merceria')]),
+    'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
+                [('Aprende', 'aprende.html'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html'),
+                 ('Glosario', 'glosario-rosina.html'), ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
 }
 
 def franja(casa):
@@ -50,12 +67,12 @@ def encabezado(pagina):
     movil = f'''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Crochet</p>
+    <p class="grupo-nav">Tienda de amigurumis</p>
     <a href="tienda.html">Tienda</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
-    <p class="grupo-nav">Academy</p>
+    <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
     <p class="grupo-nav">Lana Rosa</p>
@@ -66,11 +83,12 @@ def encabezado(pagina):
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
   </nav>'''
+    texto, enlace = LOGO[casa]
     return f'''<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 {franja(casa)}
 <header class="encabezado" data-casa="{casa or 'comun'}">
   <div class="contenedor">
-    <a href="index.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Inicio</span></a>
+    <a href="{enlace}" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">{texto}</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
 {chr(10).join(lis)}
@@ -97,6 +115,14 @@ def pie(origen):
     m = re.search(r'<footer class="pie-rico".*?</footer>', origen, re.S)
     return m.group(0)
 
+def pie_casa(modelo, casa):
+    if casa not in PIE:
+        return modelo
+    frase, titulo, enlaces = PIE[casa]
+    m = modelo.replace('Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.', frase, 1)
+    lis = ''.join(f'\n        <li><a href="{h}">{t}</a></li>' for t, h in enlaces)
+    return re.sub(r'<h3>Tienda</h3>\s*<ul>.*?</ul>', lambda _: f'<h3>{titulo}</h3>\n      <ul>{lis}\n      </ul>', m, count=1, flags=re.S)
+
 def main():
     # el pie modelo vive en index.html la primera vez; luego se toma del marcador
     idx = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
@@ -114,11 +140,13 @@ def main():
             if a < 0 or b < 10:
                 print('sin encabezado:', n); continue
             s = s[:a] + encabezado(n) + s[b:]
-        bloque = f'<!-- PIE:INICIO (generado) -->\n{modelo}\n<!-- PIE:FIN -->'
+        bloque = f'<!-- PIE:INICIO (generado) -->\n{pie_casa(modelo, CASA_DE.get(n))}\n<!-- PIE:FIN -->'
         if '<!-- PIE:INICIO' in s:
             s = re.sub(r'<!-- PIE:INICIO.*?<!-- PIE:FIN -->', lambda m: bloque, s, flags=re.S)
         else:
             s = re.sub(r'<footer class="pie-rico".*?</footer>', lambda m: bloque, s, count=1, flags=re.S)
+        casa = CASA_DE.get(n)
+        s = re.sub(r'<html lang="es-CO"[^>]*>', '<html lang="es-CO"' + (f' data-casa="{casa}"' if casa else '') + '>', s, count=1)
         open(f, 'w', encoding='utf-8').write(s)
         print('ok', n)
 
