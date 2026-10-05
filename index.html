@@ -583,6 +583,21 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-trio span { font-family: var(--fuente-titulo); font-weight: 600; color: var(--tinta); font-size: 1.15rem; padding: 0 16px; }
 .ed-trio span:first-child { padding-left: 0; }
 .ed-trio span + span { border-left: 1px solid var(--rosa-medio); }
+/* Otras casas de Lana Rosa (Mercería y Academy) */
+.ed-otras-casas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.ed-casa { display: flex; flex-direction: column; gap: 6px; padding: 22px; border-radius: 22px; background: var(--blanco); text-decoration: none; color: var(--tinta); box-shadow: var(--sombra-suave); border: 2px solid transparent; transition: transform .2s ease, border-color .2s ease; }
+.ed-casa:hover { transform: translateY(-3px); }
+.ed-casa img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; border-radius: 16px; margin-bottom: 6px; }
+.ed-casa-icono { font-size: 2.4rem; line-height: 1; margin-bottom: 4px; }
+.ed-casa strong { font-family: var(--fuente-titulo); font-size: 1.25rem; }
+.ed-casa-merceria strong, .ed-casa-merceria .ed-casa-ir { color: #8E55D6; }
+.ed-casa-merceria { background: #F4EEFC; }
+.ed-casa-merceria:hover { border-color: #B99AEA; }
+.ed-casa-academy strong, .ed-casa-academy .ed-casa-ir { color: #2A6FCB; }
+.ed-casa-academy { background: #EAF2FD; }
+.ed-casa-academy:hover { border-color: #8DB8F0; }
+.ed-casa-ir { font-weight: 700; margin-top: auto; padding-top: 6px; }
+@media (max-width: 760px) { .ed-otras-casas { grid-template-columns: 1fr; } }
 .ed-rosina { display: block; border-radius: 22px; overflow: hidden; }
 .ed-rosina img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
 .ed-rosina:hover img { transform: scale(1.02); }
@@ -683,7 +698,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul class="nav-principal">
         <li class="g-tienda grupo-inicio"><a href="tienda.html">Tienda</a></li>
         <li class="g-tienda"><a href="personaliza.html">Personaliza el tuyo</a></li>
-        <li class="g-comun"><a href="revista.html">Revista</a></li>
+        <li class="g-tienda"><a href="precios.html">Precios</a></li>
         <li class="g-comun"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
     </nav>
@@ -704,22 +719,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Tienda de amigurumis</p>
-    <a href="tienda.html">Tienda</a>
+    <p class="grupo-nav">Tienda</p>
+    <a href="tienda.html">Todo el catálogo</a>
+    <a href="tienda.html#amigurumis">Amigurumis</a>
+    <a href="tienda.html#peluches">Peluches</a>
+    <a href="tienda.html#llaveros">Llaveros</a>
+    <a href="tienda.html#macetas">Macetas y flores</a>
+    <p class="grupo-nav">Personalizados</p>
     <a href="personaliza.html">Personaliza el tuyo</a>
-    <p class="grupo-nav">Mercería</p>
-    <a href="merceria/">Mercería</a>
-    <a href="merceria/tienda-fisica/">Tienda física</a>
-    <p class="grupo-nav">Lana Rosa Academy</p>
-    <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
-    <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
-    <p class="grupo-nav">Lana Rosa</p>
-    <a href="revista.html">Revista</a>
-    <a href="sobre-nosotras.html">Sobre nosotras</a>
-    <p class="grupo-nav">Ayuda</p>
     <a href="precios.html">Precios</a>
+    <a href="index.html#historias">Historias que tejimos</a>
+    <p class="grupo-nav">Lana Rosa</p>
+    <a href="sobre-nosotras.html">Sobre nosotras</a>
+    <a href="revista.html">Revista</a>
+    <p class="grupo-nav">Ayuda</p>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
+    <p class="grupo-nav otras-casas">Otras casas de Lana Rosa</p>
+    <a class="otras-casas" href="merceria/">Mercería</a>
+    <a class="otras-casas" href="academy/">Lana Rosa Academy</a>
   </nav>
 <!-- CASAS:FIN -->
 
@@ -850,16 +868,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ============ 9. ACADEMY ============ -->
-  <section class="ed-seccion ed-crema">
-    <div class="contenedor ed-dos">
-      <img class="ed-foto-redonda" src="img/taller-grupo.webp" alt="Grupo de participantes del taller de crochet mostrando sus posavasos tejidos" width="800" height="450" loading="lazy" decoding="async">
-      <div>
-        <p class="ed-eyebrow">Lana Rosa Academy</p>
-        <h2>No solo tejemos. También enseñamos a tejer.</h2>
-        <p>Aprende, crea y conecta contigo a través del crochet.</p>
-        <p class="ed-trio"><span>Aprende</span><span>Crea</span><span>Conecta</span></p>
-        <a href="aprende.html" class="boton-primario">Conocer Lana Rosa Academy</a>
+  <!-- ============ 9. OTRAS CASAS DE LANA ROSA ============ -->
+  <section class="ed-seccion ed-crema" aria-label="Otras casas de Lana Rosa">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Más de Lana Rosa</p>
+        <h2>¿Quieres tejer tus propias piezas?</h2>
+      </header>
+      <div class="ed-otras-casas">
+        <a class="ed-casa ed-casa-merceria" href="merceria/"><span class="ed-casa-icono" aria-hidden="true">🧶</span><strong>Mercería</strong><span>Lanas, hilos, agujas y accesorios: los materiales que usamos en el taller.</span><span class="ed-casa-ir">Ir a la Mercería →</span></a>
+        <a class="ed-casa ed-casa-academy" href="academy/"><span class="ed-casa-icono" aria-hidden="true">🎓</span><strong>Lana Rosa Academy</strong><span>Talleres presenciales, tutoriales gratis y recursos para aprender crochet.</span><span class="ed-casa-ir">Ir a Academy →</span></a>
       </div>
     </div>
   </section>
@@ -975,12 +993,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div>
-      <h3>Tienda</h3>
+      <h3>Tienda de amigurumis</h3>
       <ul>
         <li><a href="tienda.html">Ver catálogo</a></li>
-        <li><a href="merceria/">Mercería</a></li>
-        <li><a href="personaliza.html">Personalizados</a></li>
-        <li><a href="aprende.html">Talleres</a></li>
+        <li><a href="personaliza.html">Personaliza el tuyo</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="index.html#historias">Historias que tejimos</a></li>
         <li><a href="https://lana-rosa-crochet.cercia.co/" target="_blank" rel="noopener">Comprar en línea</a></li>
       </ul>
     </div>

@@ -22,7 +22,10 @@ CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende'
 # (texto, enlace, clase de color)
 MENUS = {
     'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Personaliza el tuyo', 'personaliza.html', 'crochet'),
-                ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
+                ('Precios', 'precios.html', 'crochet'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
+    # páginas comunes (contacto, preguntas, políticas, cuenta, Revista): menú de marca con las tres casas
+    'comun': [('Tienda de amigurumis', 'index.html', 'crochet'), ('Mercería', 'merceria/', 'merceria'),
+              ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria', 'merceria'),
                  ('Agujas', 'merceria/catalogo/#agujas-merceria', 'merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria')],
@@ -37,6 +40,9 @@ LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria
 
 # pie por casa: (frase, titulo de columna, enlaces)  — Crochet usa el pie original
 PIE = {
+    'crochet': ('Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.', 'Tienda de amigurumis',
+                [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Precios', 'precios.html'),
+                 ('Historias que tejimos', 'index.html#historias'), ('Comprar en línea', 'https://lana-rosa-crochet.cercia.co/')]),
     'merceria': ('Mercería Lana Rosa: todo para tejer, lanas, hilos, agujas y accesorios. Villamaría, Caldas.', 'Mercería',
                  [('Catálogo', 'merceria/catalogo/'), ('Lanas', 'merceria/catalogo/#lanas-merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria'), ('Agujas', 'merceria/catalogo/#agujas-merceria'),
                   ('Herrajes', 'merceria/catalogo/#herrajes-merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria'),
@@ -50,6 +56,29 @@ PIE = {
 
 # Menú del celular propio de cada casa (las casas sin entrada usan el menú general).
 MOVIL = {
+    'crochet': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
+    <a href="index.html">Inicio</a>
+    <a href="cuenta.html">👤 Mi cuenta</a>
+    <p class="grupo-nav">Tienda</p>
+    <a href="tienda.html">Todo el catálogo</a>
+    <a href="tienda.html#amigurumis">Amigurumis</a>
+    <a href="tienda.html#peluches">Peluches</a>
+    <a href="tienda.html#llaveros">Llaveros</a>
+    <a href="tienda.html#macetas">Macetas y flores</a>
+    <p class="grupo-nav">Personalizados</p>
+    <a href="personaliza.html">Personaliza el tuyo</a>
+    <a href="precios.html">Precios</a>
+    <a href="index.html#historias">Historias que tejimos</a>
+    <p class="grupo-nav">Lana Rosa</p>
+    <a href="sobre-nosotras.html">Sobre nosotras</a>
+    <a href="revista.html">Revista</a>
+    <p class="grupo-nav">Ayuda</p>
+    <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+    <a href="contacto.html">Contacto</a>
+    <p class="grupo-nav otras-casas">Otras casas de Lana Rosa</p>
+    <a class="otras-casas" href="merceria/">Mercería</a>
+    <a class="otras-casas" href="academy/">Lana Rosa Academy</a>
+  </nav>''',
     'merceria': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="merceria/">Inicio de la Mercería</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
@@ -109,7 +138,7 @@ def franja(casa):
 
 def encabezado(pagina):
     casa = CASA_DE.get(pagina)
-    menu = MENUS[casa or 'crochet']
+    menu = MENUS[casa or 'comun']
     lis = []
     for i, (t, h, g) in enumerate(menu):
         ini = ' grupo-inicio' if i == 0 else ''
@@ -172,12 +201,16 @@ def pie_casa(modelo, casa):
         return modelo
     frase, titulo, enlaces = PIE[casa]
     m = modelo.replace('Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.', frase, 1)
-    lis = ''.join((f'\n        <li><a href="{h}">{t}</a></li>' if h else f'\n        <li>{t}</li>') for t, h in enlaces)
+    def li(t, h):
+        if not h: return f'\n        <li>{t}</li>'
+        ext = ' target="_blank" rel="noopener"' if h.startswith('http') else ''
+        return f'\n        <li><a href="{h}"{ext}>{t}</a></li>'
+    lis = ''.join(li(t, h) for t, h in enlaces)
     return re.sub(r'<h3>Tienda</h3>\s*<ul>.*?</ul>', lambda _: f'<h3>{titulo}</h3>\n      <ul>{lis}\n      </ul>', m, count=1, flags=re.S)
 
 def main():
-    # el pie modelo vive en index.html la primera vez; luego se toma del marcador
-    idx = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
+    # el pie modelo es el de las páginas comunes (contacto.html no tiene casa, así que nunca se modifica)
+    idx = open(os.path.join(RAIZ, 'contacto.html'), encoding='utf-8').read()
     modelo = pie(idx)
     archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True)) + sorted(glob.glob(os.path.join(RAIZ, 'academy', '**', 'index.html'), recursive=True))
     for f in archivos:
