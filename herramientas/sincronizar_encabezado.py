@@ -34,6 +34,9 @@ MENUS = {
                 ('Paletas', 'paletas-rosina.html', 'academy'), ('Calculadoras', 'calculadoras-rosina.html', 'academy')],
 }
 
+# imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
+LOGO_IMG = {'merceria': ('img/logo-merceria.webp', 'Lana Rosa Mercería'), 'academy': ('img/logo-academy.webp', 'Lana Rosa Academy')}
+
 # nombre bajo el logo y destino del logo por casa
 LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria/'), 'academy': ('Academy', 'academy/'),
         None: ('Inicio', 'index.html')}
@@ -165,11 +168,12 @@ def encabezado(pagina):
     <a href="contacto.html">Contacto</a>
   </nav>'''
     texto, enlace = LOGO[casa]
+    img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
     return f'''<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 {franja(casa)}
 <header class="encabezado" data-casa="{casa or 'comun'}">
   <div class="contenedor">
-    <a href="{enlace}" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">{texto}</span></a>
+    <a href="{enlace}" class="logo"><img src="{img}" alt="{alt}" class="logo-img" width="600" height="384"><span class="texto-logo">{texto}</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
 {chr(10).join(lis)}
@@ -200,6 +204,9 @@ def pie_casa(modelo, casa):
     if casa not in PIE:
         return modelo
     frase, titulo, enlaces = PIE[casa]
+    if casa in LOGO_IMG:
+        img, alt = LOGO_IMG[casa]
+        modelo = modelo.replace('<img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"', f'<img src="{img}" alt="{alt}"', 1)
     m = modelo.replace('Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.', frase, 1)
     def li(t, h):
         if not h: return f'\n        <li>{t}</li>'
