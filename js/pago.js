@@ -161,7 +161,7 @@ function construirModal() {
         '<details class="pg-resumen-movil" id="pg-resumen-movil"><summary><span id="pg-resumen-titulo">Mi carrito</span><span id="pg-resumen-total"></span></summary>' +
           '<div class="pg-tarjeta"><header>Mi carrito <span class="pg-badge" id="pg-badge"></span></header><div id="pg-items"></div><div class="pg-totales" id="pago-resumen"></div>' +
           '<div class="pg-confianza">' +
-            '<div><span>🔒</span><span><b>Pago seguro</b><small>Pagas en el sitio seguro de Wompi o PayPal</small></span></div>' +
+            '<div><span>🔒</span><span><b>Pago seguro</b><small>Pagas en el sitio seguro de Wompi</small></span></div>' +
             '<div><span>💗</span><span><b>Hecho a mano en Colombia</b><small>Cada pieza, tejida con amor</small></span></div>' +
             '<div><span>🚚</span><span><b>Envíos a toda Colombia</b><small>Entregas a nivel nacional</small></span></div>' +
           '</div></div></details>' +

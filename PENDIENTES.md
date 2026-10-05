@@ -268,3 +268,5 @@ El 15 de noviembre de 2026 cae **domingo**. Decisión de Sara (5-oct-2026): la i
 - **9 a 11-nov:** conteo físico de todo el inventario (Tienda y Taller); Claude ajusta el Kardex a lo contado.
 - **12 a 14-nov:** ensayo de caja con una venta real pequeña; revisar permisos de usuarias del POS; aviso de apertura en redes y en la web.
 - **Día de apertura:** abrir el primer turno con el efectivo contado. Después de revisar que todo cuadra, Sara activa el "Modo producción" (permanente).
+
+- [ ] PayPal quitado de la web el 5-oct-2026 (Sara: no se ha podido probar con una compra real): se apagó `paypal_ajustes.activo` en Supabase y se quitaron los textos de la tienda y del pago. El código (`js/pago.js`, función `paypal-pagos`, página `gracias.html`) queda dormido. Para volver a activarlo: probar una compra real, poner `activo = true` en `paypal_ajustes` y volver a escribir la frase en `tienda.html`.
