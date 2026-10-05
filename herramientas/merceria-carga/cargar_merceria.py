@@ -6,6 +6,7 @@
 No ejecuta nada: genera el SQL y un resumen (en stderr). El SQL corre en una sola transacción:
   * productos existentes (con ID): actualiza cómo se venden, código, stock mínimo y proveedor;
   * productos nuevos (sin ID): los crea en el centro "Tienda/Mercería" (tipo merceria);
+  * lanas e hilos "Por ovillo y por gramo": la existencia queda en gramos (ovillos × peso) y el costo por gramo;
   * entradas: suma la cantidad al stock, recalcula el costo promedio ponderado y deja el
     movimiento "compra_proveedor" en el Kardex con costo, proveedor, factura y fecha
     (marca inventario.mov_manual para que el disparador no duplique el movimiento).
@@ -41,9 +42,17 @@ def main(ruta):
             continue
         id_ = v(fila, 'ID (no tocar)')
         cat = v(fila, 'Categoría')
-        unidad = 'gramo' if v(fila, '¿Cómo se vende?') == 'Por gramo' else 'unidad'
-        cant = v(fila, 'Cantidad comprada') or 0
-        costo = v(fila, 'Costo de compra por unidad (COP)')
+        por_gramo = (v(fila, '¿Cómo se vende?') or '').startswith('Por ovillo') or v(fila, '¿Cómo se vende?') == 'Por gramo'
+        unidad = 'gramo' if por_gramo else 'unidad'
+        cant = v(fila, 'Cantidad comprada (ovillos o unidades)') or 0
+        costo = v(fila, 'Costo de compra por ovillo o por unidad (COP)')
+        peso = v(fila, 'Peso por unidad (g)')
+        if por_gramo and cant:
+            # lanas e hilos: la existencia se guarda en gramos y el costo por gramo
+            if not peso:
+                res['errores'].append(f'Fila {n}: se vende por ovillo y por gramo pero no tiene el peso del ovillo ({nombre[:40]}).')
+                continue
+            cant, costo = round(float(cant) * float(peso), 2), (round(float(costo) / float(peso), 4) if costo else costo)
         prov = v(fila, 'Proveedor')
         prov = None if not prov or prov.startswith('(') else prov
         fecha = v(fila, 'Fecha de compra')
