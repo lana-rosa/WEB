@@ -54,8 +54,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "email": "contacto@lanarosacrochet.com",
   "address": {"@type": "PostalAddress", "streetAddress": "Calle 10 #5-37, Centro", "addressLocality": "Villamaría", "addressRegion": "Caldas", "addressCountry": "CO"},
   "openingHoursSpecification": [
-    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:30", "closes": "18:15", "validFrom": "2026-11-15"},
-    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "12:00", "validFrom": "2026-11-15"}
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:30", "closes": "18:15", "validFrom": "2026-11-16"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "12:00", "validFrom": "2026-11-16"}
   ]
 }
 </script>
@@ -382,7 +382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="visitanos" id="visitanos" aria-label="Nuestra tienda física">
     <div class="visitanos-texto">
-      <p class="etiqueta-proximamente" id="visita-estado">Abrimos el 15 de noviembre de 2026</p>
+      <p class="etiqueta-proximamente" id="visita-estado">Inauguración prevista: domingo 15 de noviembre de 2026</p>
       <h2>Nuestra tienda física en Villamaría</h2>
       <p>Mercería, productos tejidos y talleres en un solo lugar.</p>
       <ul class="visita-datos">
@@ -1070,13 +1070,13 @@ function inicializarBuscadorMerceria() {
 <script src="js/carrito-agregado.js?v=2" defer></script>
 <script src="js/animaciones.js?v=1" defer></script>
 <script>
-// Estado de la tienda física (hora de Colombia, UTC-5): antes de abrir muestra la fecha; después, si está abierta o cerrada.
+// Estado de la tienda física (hora de Colombia, UTC-5): antes de la atención normal (lunes 16-nov-2026) muestra la inauguración; después, si está abierta o cerrada.
 (function () {
   var el = document.getElementById('visita-estado'); if (!el) return;
   try {
     var c = new Date(Date.now() - 5 * 3600 * 1000);
     var hoy = Date.UTC(c.getUTCFullYear(), c.getUTCMonth(), c.getUTCDate());
-    if (hoy < Date.UTC(2026, 10, 15)) return;
+    if (hoy < Date.UTC(2026, 10, 16)) return;
     var d = c.getUTCDay(), m = c.getUTCHours() * 60 + c.getUTCMinutes();
     var abierto = (d >= 1 && d <= 5 && m >= 450 && m < 1095) || (d === 6 && m >= 480 && m < 720);
     el.textContent = abierto ? 'Abierto ahora' : 'Cerrado ahora';
