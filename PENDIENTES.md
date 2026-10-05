@@ -253,3 +253,5 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - [ ] Animaciones sutiles (hechas en la rama `claude/animaciones`, esperando OK de Sara tras ver el video): `css/animaciones.css` + `js/animaciones.js`. Se apagan con "reducir movimiento".
 
 - [ ] Fase 2 Crochet, parte sin fotos (hecha en la rama `claude/fase2-crochet`, esperando OK de Sara): Personaliza en 5 pasos y título de Sobre nosotras "Nacimos en familia. Hoy tejemos en equipo." (la Tienda ya muestra Disponible / Bajo pedido en cada tarjeta). Siguen con fotos: Inicio reordenado, "Una persona", "Un regalo especial" y página de Empresas.
+
+- [ ] Identidad por casa (hecha en la rama `claude/casas-identidad`, esperando OK de Sara): nombres Tienda de amigurumis · Mercería · Academia de Crochet, color propio por casa (rosa / morado / azul), menú y pie de cada casa. Pendiente: decidir si el nombre "Lana Rosa Academy" dentro de los textos y títulos SEO pasa a "Academia de Crochet" (el canal de YouTube se llama Lana Rosa Academy); logos propios de Mercería y Academia (hoy el logo sigue rosa); fotos de portada por casa; menú de Crochet con Empresas cuando exista la página.

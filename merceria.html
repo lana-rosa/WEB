@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-CO">
+<html lang="es-CO" data-casa="merceria">
 <head>
 <meta charset="UTF-8">
 <!-- Google Tag Manager -->
@@ -134,7 +134,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .producto-estado.disponible { color: #2e7d32; }
 .producto-estado.bajo-pedido { color: var(--tinta-suave); }
 .boton-pedir { margin-top: auto; text-align: center; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
-.boton-pedir:hover { background: #B83E78; }
+.boton-pedir:hover { background: var(--rosa-hover); }
 .boton-agregar-carrito {
   margin-top: 8px; text-align: center; background: var(--blanco); color: var(--rosa-principal);
   border: 1.5px solid var(--rosa-principal); padding: 9px; border-radius: 999px; font-size: 0.85rem;
@@ -155,7 +155,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
   display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
-.boton-carrito-flotante:hover { background: #B83E78; }
+.boton-carrito-flotante:hover { background: var(--rosa-hover); }
 @media (max-width: 600px) { .boton-carrito-flotante { width: 48px; height: 48px; left: calc(16px + env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); font-size: 1.3rem; } }
 .producto-foto { cursor: pointer; }
 .overlay-modal-producto { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1001; display: none; align-items: center; justify-content: center; padding: 20px; }
@@ -189,7 +189,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
   color: var(--blanco); padding: 12px 30px; border-radius: 999px;
   font-weight: 700; font-size: 0.95rem; cursor: pointer;
 }
-.boton-ver-mas:hover { background: #B83E78; color: var(--blanco); }
+.boton-ver-mas:hover { background: var(--rosa-hover); color: var(--blanco); }
 .boton-ver-mas::after { content: '↓'; font-size: 1.1rem; }
 .buscador-productos { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; margin: 20px 0 24px; }
 @media (max-width: 700px) { .buscador-productos { grid-template-columns: 1fr; } }
@@ -232,7 +232,7 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .aviso-proximamente p { margin: 0 0 12px; }
 .etiqueta-proximamente { color: var(--rosa-principal); font-weight: 800; margin: 0 0 4px !important; }
 .aviso-proximamente .boton-primario { display: inline-block; background: var(--rosa-principal); color: #fff; text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
-.aviso-proximamente .boton-primario:hover { background: #B83E78; }
+.aviso-proximamente .boton-primario:hover { background: var(--rosa-hover); }
 @media (max-width: 600px) { .aviso-proximamente { flex-direction: column; text-align: center; padding: 18px; } .aviso-proximamente img { width: 110px; } }
 /* Puentes entre secciones del ecosistema Lana Rosa */
 .puentes { margin: 0 0 56px; }
@@ -278,19 +278,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet">Crochet</a>
+    <a href="index.html" data-casa="crochet">Tienda de amigurumis</a>
     <a href="merceria.html" data-casa="merceria" class="casa-actual" aria-current="true">Mercería</a>
-    <a href="aprende.html" data-casa="academy">Academy</a>
+    <a href="aprende.html" data-casa="academy">Academia de Crochet</a>
   </div>
 </nav>
 <header class="encabezado" data-casa="merceria">
   <div class="contenedor">
-    <a href="index.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Inicio</span></a>
+    <a href="merceria.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img"><span class="texto-logo">Mercería</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
-        <li class="g-merceria grupo-inicio"><a href="merceria.html">Mercería</a></li>
+        <li class="g-merceria grupo-inicio"><a href="merceria.html#lanas-merceria">Lanas</a></li>
+        <li class="g-merceria"><a href="merceria.html#hilos-merceria">Hilos</a></li>
+        <li class="g-merceria"><a href="merceria.html#agujas-merceria">Agujas</a></li>
+        <li class="g-merceria"><a href="merceria.html#accesorios-merceria">Accesorios</a></li>
         <li class="g-comun"><a href="revista.html">Revista</a></li>
-        <li class="g-comun"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -310,12 +312,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Crochet</p>
+    <p class="grupo-nav">Tienda de amigurumis</p>
     <a href="tienda.html">Tienda</a>
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
-    <p class="grupo-nav">Academy</p>
+    <p class="grupo-nav">Academia de Crochet</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
     <p class="grupo-nav">Lana Rosa</p>
@@ -469,7 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="contenedor pie-grid">
     <div>
       <div class="pie-logo-wrap"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" loading="lazy" decoding="async"></div>
-      <p>Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.</p>
+      <p>Mercería Lana Rosa: todo para tejer, lanas, hilos, agujas y accesorios. Villamaría, Caldas.</p>
     </div>
     <div>
       <h3>Nosotros</h3>
@@ -480,13 +482,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div>
-      <h3>Tienda</h3>
+      <h3>Mercería</h3>
       <ul>
-        <li><a href="tienda.html">Ver catálogo</a></li>
-        <li><a href="merceria.html">Mercería</a></li>
-        <li><a href="personaliza.html">Personalizados</a></li>
-        <li><a href="aprende.html">Talleres</a></li>
-        <li><a href="https://lana-rosa-crochet.cercia.co/" target="_blank" rel="noopener">Comprar en línea</a></li>
+        <li><a href="merceria.html#lanas-merceria">Lanas</a></li>
+        <li><a href="merceria.html#hilos-merceria">Hilos</a></li>
+        <li><a href="merceria.html#agujas-merceria">Agujas</a></li>
+        <li><a href="merceria.html#herrajes-merceria">Herrajes</a></li>
+        <li><a href="merceria.html#accesorios-merceria">Accesorios</a></li>
       </ul>
     </div>
     <div>
