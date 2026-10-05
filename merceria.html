@@ -43,6 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Lana Rosa Crochet — Mercería y tienda",
+  "url": "https://lanarosacrochet.com/merceria.html",
+  "telephone": "+57 320 507 2801",
+  "email": "contacto@lanarosacrochet.com",
+  "address": {"@type": "PostalAddress", "streetAddress": "Calle 10 #5-37, Centro", "addressLocality": "Villamaría", "addressRegion": "Caldas", "addressCountry": "CO"},
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:30", "closes": "18:15", "validFrom": "2026-11-15"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "12:00", "validFrom": "2026-11-15"}
+  ]
+}
+</script>
+
 <link rel="stylesheet" href="css/comun.css?v=2">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
@@ -246,6 +262,17 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
 @media (max-width: 560px) { .puentes-cinco .puentes-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .puentes-cinco .puente { flex-direction: column; gap: 4px; padding: 12px; } .puentes-cinco .puente:last-child { grid-column: 1 / -1; } .puentes-cinco .ir-puente { display: none; } .puentes-cinco .puente strong { font-size: 0.95rem; } }
 .encabezado-tienda-grid + .aviso-proximamente { margin-top: 20px; }
+.visitanos { background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: 22px; padding: 24px 28px; margin: 0 0 28px; box-shadow: var(--sombra-suave); }
+.visitanos h2 { font-size: 1.4rem; margin: 0 0 6px; }
+.visitanos p { margin: 0 0 10px; }
+.visita-datos { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 6px; }
+.visita-datos li { display: flex; gap: 10px; align-items: flex-start; }
+.visita-botones { display: flex; gap: 12px; flex-wrap: wrap; }
+.visita-botones a { display: inline-block; text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
+.visita-botones .boton-primario { background: var(--rosa-principal); color: #fff; }
+.visita-botones .boton-primario:hover { background: var(--rosa-hover); }
+.visita-botones .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-principal); }
+@media (max-width: 600px) { .visitanos { padding: 18px; } .visita-botones a { flex: 1 1 100%; text-align: center; } }
 .aviso-proximamente + .puentes { margin-top: 28px; }
 /* Celular: productos de a 2 por fila, como en las tiendas de referencia */
 @media (max-width: 700px) {
@@ -292,6 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li class="g-merceria"><a href="merceria.html#hilos-merceria">Hilos</a></li>
         <li class="g-merceria"><a href="merceria.html#agujas-merceria">Agujas</a></li>
         <li class="g-merceria"><a href="merceria.html#accesorios-merceria">Accesorios</a></li>
+        <li class="g-merceria"><a href="merceria.html#visitanos">Tienda física</a></li>
         <li class="g-comun"><a href="revista.html">Revista</a></li>
       </ul>
     </nav>
@@ -317,6 +345,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
+    <a href="merceria.html#visitanos">Tienda física</a>
     <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
@@ -347,6 +376,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="etiqueta-proximamente">Muy pronto</p>
       <h2>Nuestra mercería en línea está por abrir</h2>
       <p>Muy pronto podrás comprar aquí las lanas, hilos, agujas y accesorios que usamos en Lana Rosa.</p>
+    </div>
+  </section>
+
+  <section class="visitanos" id="visitanos" aria-label="Nuestra tienda física">
+    <div class="visitanos-texto">
+      <p class="etiqueta-proximamente" id="visita-estado">Abrimos el 15 de noviembre de 2026</p>
+      <h2>Nuestra tienda física en Villamaría</h2>
+      <p>Mercería, productos tejidos y talleres en un solo lugar.</p>
+      <ul class="visita-datos">
+        <li><span aria-hidden="true">📍</span> Calle 10 #5-37, barrio Centro, Villamaría, Caldas</li>
+        <li><span aria-hidden="true">🕒</span> <span><strong>Lunes a viernes:</strong> 7:30 a.m. a 6:15 p.m.</span></li>
+        <li><span aria-hidden="true">🕒</span> <span><strong>Sábados:</strong> 8:00 a.m. a 12:00 m.</span></li>
+      </ul>
+      <div class="visita-botones">
+        <a class="boton-primario" href="https://www.google.com/maps/search/?api=1&amp;query=Lana+Rosa+Crochet+Calle+10+5-37+Villamar%C3%ADa+Caldas" target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="boton-secundario" href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Quiero%20informaci%C3%B3n%20sobre%20la%20tienda." target="_blank" rel="noopener">Escribirnos por WhatsApp</a>
+      </div>
     </div>
   </section>
 
@@ -489,6 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><a href="merceria.html#agujas-merceria">Agujas</a></li>
         <li><a href="merceria.html#herrajes-merceria">Herrajes</a></li>
         <li><a href="merceria.html#accesorios-merceria">Accesorios</a></li>
+        <li><a href="merceria.html#visitanos">Tienda física</a></li>
       </ul>
     </div>
     <div>
@@ -1021,5 +1068,19 @@ function inicializarBuscadorMerceria() {
 <script type="module" src="js/pago.js?v=14"></script>
 <script src="js/carrito-agregado.js?v=2" defer></script>
 <script src="js/animaciones.js?v=1" defer></script>
+<script>
+// Estado de la tienda física (hora de Colombia, UTC-5): antes de abrir muestra la fecha; después, si está abierta o cerrada.
+(function () {
+  var el = document.getElementById('visita-estado'); if (!el) return;
+  try {
+    var c = new Date(Date.now() - 5 * 3600 * 1000);
+    var hoy = Date.UTC(c.getUTCFullYear(), c.getUTCMonth(), c.getUTCDate());
+    if (hoy < Date.UTC(2026, 10, 15)) return;
+    var d = c.getUTCDay(), m = c.getUTCHours() * 60 + c.getUTCMinutes();
+    var abierto = (d >= 1 && d <= 5 && m >= 450 && m < 1095) || (d === 6 && m >= 480 && m < 720);
+    el.textContent = abierto ? 'Abierto ahora' : 'Cerrado ahora';
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>
