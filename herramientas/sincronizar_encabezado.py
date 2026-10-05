@@ -12,7 +12,7 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 # página -> casa (las que no están aquí son comunes: sin casa resaltada)
 CASA_DE = {
     'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
-    'merceria': 'merceria',
+    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria',
     'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
@@ -23,10 +23,9 @@ CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende'
 MENUS = {
     'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Personaliza el tuyo', 'personaliza.html', 'crochet'),
                 ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
-    'merceria': [('Lanas', 'merceria/#lanas-merceria', 'merceria'), ('Hilos', 'merceria/#hilos-merceria', 'merceria'),
-                 ('Agujas', 'merceria/#agujas-merceria', 'merceria'), ('Accesorios', 'merceria/#accesorios-merceria', 'merceria'),
-                 ('Tienda física', 'merceria/#visitanos', 'merceria'),
-                 ('Revista', 'revista.html', 'comun')],
+    'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria', 'merceria'),
+                 ('Agujas', 'merceria/catalogo/#agujas-merceria', 'merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria', 'merceria'),
+                 ('Tienda física', 'merceria/tienda-fisica/', 'merceria')],
     'academy': [('Aprende', 'aprende.html', 'academy'), ('Tutoriales', 'aprende.html#crea', 'academy'),
                 ('Rincón de Rosina', 'recursos-rosina.html', 'academy'), ('Glosario', 'glosario-rosina.html', 'academy'),
                 ('Paletas', 'paletas-rosina.html', 'academy'), ('Calculadoras', 'calculadoras-rosina.html', 'academy'),
@@ -40,12 +39,40 @@ LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria
 # pie por casa: (frase, titulo de columna, enlaces)  — Crochet usa el pie original
 PIE = {
     'merceria': ('Mercería Lana Rosa: todo para tejer, lanas, hilos, agujas y accesorios. Villamaría, Caldas.', 'Mercería',
-                 [('Lanas', 'merceria/#lanas-merceria'), ('Hilos', 'merceria/#hilos-merceria'), ('Agujas', 'merceria/#agujas-merceria'),
-                  ('Herrajes', 'merceria/#herrajes-merceria'), ('Accesorios', 'merceria/#accesorios-merceria'),
-                  ('Tienda física', 'merceria/#visitanos')]),
+                 [('Catálogo', 'merceria/catalogo/'), ('Lanas', 'merceria/catalogo/#lanas-merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria'), ('Agujas', 'merceria/catalogo/#agujas-merceria'),
+                  ('Herrajes', 'merceria/catalogo/#herrajes-merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria'),
+                  ('Tienda física', 'merceria/tienda-fisica/'),
+                  ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
                 [('Aprende', 'aprende.html'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html'),
                  ('Glosario', 'glosario-rosina.html'), ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
+}
+
+# Menú del celular propio de cada casa (las casas sin entrada usan el menú general).
+MOVIL = {
+    'merceria': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
+    <a href="merceria/">Inicio de la Mercería</a>
+    <a href="cuenta.html">👤 Mi cuenta</a>
+    <p class="grupo-nav">Catálogo</p>
+    <a href="merceria/catalogo/">Todo el catálogo</a>
+    <a href="merceria/catalogo/#lanas-merceria">Lanas</a>
+    <a href="merceria/catalogo/#hilos-merceria">Hilos</a>
+    <a href="merceria/catalogo/#agujas-merceria">Agujas</a>
+    <a href="merceria/catalogo/#herrajes-merceria">Herrajes</a>
+    <a href="merceria/catalogo/#accesorios-merceria">Accesorios</a>
+    <a href="merceria/catalogo/#relleno-merceria">Relleno</a>
+    <p class="grupo-nav">Visítanos</p>
+    <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
+    <p class="grupo-nav">Ideas para tejer</p>
+    <a href="revista.html">Revista</a>
+    <a href="recursos-rosina.html">Recursos gratis de Rosina</a>
+    <p class="grupo-nav">Ayuda</p>
+    <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+    <a href="contacto.html">Contacto</a>
+    <p class="grupo-nav otras-casas">Otras casas de Lana Rosa</p>
+    <a class="otras-casas" href="index.html">Tienda de amigurumis</a>
+    <a class="otras-casas" href="aprende.html">Lana Rosa Academy</a>
+  </nav>''',
 }
 
 def franja(casa):
@@ -63,10 +90,8 @@ def encabezado(pagina):
     for i, (t, h, g) in enumerate(menu):
         ini = ' grupo-inicio' if i == 0 else ''
         lis.append(f'        <li class="{CLASE[g]}{ini}"><a href="{h}">{t}</a></li>')
-    buscar = 'merceria/' if pagina == 'merceria' else 'tienda.html'
-    def act(h):
-        return ' class="casa-actual"' if h.split('.')[0] == pagina else ''
-    movil = f'''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
+    buscar = 'merceria/catalogo/' if casa == 'merceria' else 'tienda.html'
+    movil = MOVIL.get(casa) or f'''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="index.html">Inicio</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
     <p class="grupo-nav">Tienda de amigurumis</p>
@@ -74,7 +99,7 @@ def encabezado(pagina):
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria/">Mercería</a>
-    <a href="merceria/#visitanos">Tienda física</a>
+    <a href="merceria/tienda-fisica/">Tienda física</a>
     <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
@@ -123,19 +148,20 @@ def pie_casa(modelo, casa):
         return modelo
     frase, titulo, enlaces = PIE[casa]
     m = modelo.replace('Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.', frase, 1)
-    lis = ''.join(f'\n        <li><a href="{h}">{t}</a></li>' for t, h in enlaces)
+    lis = ''.join((f'\n        <li><a href="{h}">{t}</a></li>' if h else f'\n        <li>{t}</li>') for t, h in enlaces)
     return re.sub(r'<h3>Tienda</h3>\s*<ul>.*?</ul>', lambda _: f'<h3>{titulo}</h3>\n      <ul>{lis}\n      </ul>', m, count=1, flags=re.S)
 
 def main():
     # el pie modelo vive en index.html la primera vez; luego se toma del marcador
     idx = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
     modelo = pie(idx)
-    archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + [os.path.join(RAIZ, 'merceria', 'index.html')]
+    archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True))
     for f in archivos:
-        n = os.path.basename(f)[:-5]
-        if n == 'index' and os.path.basename(os.path.dirname(os.path.abspath(f))) == 'merceria':
-            n = 'merceria'
-        if n == '404':
+        rel = os.path.relpath(f, RAIZ).replace(os.sep, '/')
+        # merceria/index.html -> merceria; merceria/catalogo/index.html -> merceria-catalogo
+        n = rel[:-len('/index.html')].replace('/', '-') if rel.endswith('/index.html') else rel[:-5]
+        if n in ('404', 'merceria') and rel == n + '.html':
+            continue  # 404 y la redirección merceria.html no llevan menú
             continue
         s = open(f, encoding='utf-8').read()
         if '<!-- CASAS:INICIO' in s:

@@ -62,7 +62,7 @@ main = f'''<main>
       <p class="intro">¿No sabes qué colores combinar? Rosina armó {len(PALETAS)} paletas para fechas especiales, bebés, amigurumis y proyectos de hogar. Mira cómo se verían en una manta de rayas, guarda la paleta como imagen o pídenos los hilos por WhatsApp con un solo toque.</p>
       <p class="no-imprimir" style="display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 0;">
         <a class="boton-primario" href="#crea-tu-paleta">🎨 Arma tu propia paleta</a>
-        <a class="boton-secundario" href="merceria/#lanas-merceria">Ver lanas en la mercería</a>
+        <a class="boton-secundario" href="merceria/catalogo/#lanas-merceria">Ver lanas en la mercería</a>
       </p>
     </div>
     <div class="intro-paletas-ovillos" aria-hidden="true">{''.join(ovillo(h) for h in ['#E74E96', '#F28FC0', '#9EA2F9', '#93C7F9', '#FFD95A', '#B7C9A8', '#C8603F', '#FFF8F0'])}</div>

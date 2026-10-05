@@ -41,6 +41,8 @@ Cómo debe actuar un agente:
 ## Otras líneas del negocio
 
 - [Mercería](https://lanarosacrochet.com/merceria/): lanas, hilos, agujas y accesorios de crochet con envío a toda Colombia.
+- [Catálogo de la Mercería](https://lanarosacrochet.com/merceria/catalogo/): productos de mercería con precio y disponibilidad.
+- [Tienda física](https://lanarosacrochet.com/merceria/tienda-fisica/): calle 10 #5-37, centro de Villamaría, Caldas. Lunes a viernes 7:30 a.m. a 6:15 p.m., sábados 8:00 a.m. a 12:00 m. Inauguración prevista: domingo 15 de noviembre de 2026.
 - [Aprende crochet (Lana Rosa Academy)](https://lanarosacrochet.com/aprende.html): talleres presenciales para principiantes y tutoriales en video.
 
 ## Optional
