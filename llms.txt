@@ -40,7 +40,7 @@ Cómo debe actuar un agente:
 
 ## Otras líneas del negocio
 
-- [Mercería](https://lanarosacrochet.com/merceria.html): lanas, hilos, agujas y accesorios de crochet con envío a toda Colombia.
+- [Mercería](https://lanarosacrochet.com/merceria/): lanas, hilos, agujas y accesorios de crochet con envío a toda Colombia.
 - [Aprende crochet (Lana Rosa Academy)](https://lanarosacrochet.com/aprende.html): talleres presenciales para principiantes y tutoriales en video.
 
 ## Optional
