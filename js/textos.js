@@ -26,7 +26,7 @@
       intro.split(/(\[[^\]]+\])/).forEach(function (parte) {
         var n = parte.toLowerCase();
         if (n === '[tienda]' || n === '[mercería]' || n === '[merceria]') {
-          var a = document.createElement('a'); a.href = n === '[tienda]' ? 'tienda.html' : 'merceria.html'; a.textContent = n.slice(1, -1) === 'merceria' ? 'mercería' : n.slice(1, -1); ie.append(a);
+          var a = document.createElement('a'); a.href = n === '[tienda]' ? 'tienda.html' : 'merceria/'; a.textContent = n.slice(1, -1) === 'merceria' ? 'mercería' : n.slice(1, -1); ie.append(a);
         } else if (parte) ie.append(document.createTextNode(parte));
       });
     }
