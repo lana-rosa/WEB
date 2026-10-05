@@ -25,6 +25,7 @@ MENUS = {
                 ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
     'merceria': [('Lanas', 'merceria.html#lanas-merceria', 'merceria'), ('Hilos', 'merceria.html#hilos-merceria', 'merceria'),
                  ('Agujas', 'merceria.html#agujas-merceria', 'merceria'), ('Accesorios', 'merceria.html#accesorios-merceria', 'merceria'),
+                 ('Tienda física', 'merceria.html#visitanos', 'merceria'),
                  ('Revista', 'revista.html', 'comun')],
     'academy': [('Aprende', 'aprende.html', 'academy'), ('Tutoriales', 'aprende.html#crea', 'academy'),
                 ('Rincón de Rosina', 'recursos-rosina.html', 'academy'), ('Glosario', 'glosario-rosina.html', 'academy'),
@@ -40,7 +41,8 @@ LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria
 PIE = {
     'merceria': ('Mercería Lana Rosa: todo para tejer, lanas, hilos, agujas y accesorios. Villamaría, Caldas.', 'Mercería',
                  [('Lanas', 'merceria.html#lanas-merceria'), ('Hilos', 'merceria.html#hilos-merceria'), ('Agujas', 'merceria.html#agujas-merceria'),
-                  ('Herrajes', 'merceria.html#herrajes-merceria'), ('Accesorios', 'merceria.html#accesorios-merceria')]),
+                  ('Herrajes', 'merceria.html#herrajes-merceria'), ('Accesorios', 'merceria.html#accesorios-merceria'),
+                  ('Tienda física', 'merceria.html#visitanos')]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
                 [('Aprende', 'aprende.html'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html'),
                  ('Glosario', 'glosario-rosina.html'), ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
@@ -72,6 +74,7 @@ def encabezado(pagina):
     <a href="personaliza.html">Personaliza el tuyo</a>
     <p class="grupo-nav">Mercería</p>
     <a href="merceria.html">Mercería</a>
+    <a href="merceria.html#visitanos">Tienda física</a>
     <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
