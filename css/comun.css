@@ -231,3 +231,7 @@ html[data-casa="merceria"] .encabezado, html[data-casa="academy"] .encabezado { 
 .fondo-rosa.materiales-academy { border-radius: 0; }
 html[data-casa="merceria"] main.contenedor, html[data-casa="academy"] main.contenedor { padding-top: 0 !important; }
 html[data-casa="merceria"] main.contenedor > :first-child, html[data-casa="academy"] main.contenedor > :first-child { margin-top: 0; }
+
+/* Iconos del encabezado (lupa, cuenta, carrito): dibujados en el rosa de la marca, iguales en todos los dispositivos */
+.boton-buscar-header, .boton-cuenta-header, .boton-carrito-header, .panel-buscar-header button[type="submit"] { color: var(--rosa-texto); }
+.boton-buscar-header svg, .boton-cuenta-header svg, .boton-carrito-header svg, .panel-buscar-header button svg { display: block; }
