@@ -194,3 +194,18 @@ input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px
 html[data-casa="merceria"] .banda-apertura, html[data-casa="academy"] .banda-apertura, html[data-casa="academy"] .materiales-academy { background: #FBE4EF; color: #8E1457; }
 html[data-casa="merceria"] .banda-apertura:hover { background: #F6C9DF; color: #8E1457; }
 html[data-casa="merceria"] .banda-apertura *, html[data-casa="academy"] .materiales-academy h2 { color: inherit; }
+
+/* Títulos de los menús laterales: más visibles */
+.nav-movil-panel .grupo-nav { margin: 8px 0 2px; padding: 9px 24px 9px 20px; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.07em; color: var(--rosa-texto); background: var(--rosa-suave); border-left: 5px solid var(--rosa-principal); }
+.nav-movil-panel .grupo-nav:first-of-type { margin-top: 0; }
+.nav-movil-panel .grupo-nav.otras-casas { color: var(--tinta); background: #F1F0EC; border-left-color: rgba(69,69,74,0.35); margin-top: 8px; }
+
+/* Buscador del encabezado en celular: ocupa el ancho de la pantalla, sin salirse */
+@media (max-width: 700px) {
+  .contenedor-buscar-header { position: static; }
+  .panel-buscar-header { left: 12px; right: 12px; width: auto; top: calc(100% + 6px); border-radius: 18px; padding: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+  .panel-buscar-header input { font-size: 16px; }
+  .panel-buscar-header button[type="submit"] { width: 38px; height: 38px; }
+}
+.panel-buscar-header input:focus-visible { outline: none !important; }
+.panel-buscar-header:focus-within { box-shadow: 0 0 0 3px var(--rosa-texto); }
