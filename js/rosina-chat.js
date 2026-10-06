@@ -8,8 +8,9 @@
 
   var css = document.createElement('style');
   css.textContent =
-    '.rc-boton{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:996;width:58px;height:58px;border-radius:50%;border:3px solid #fff;background:var(--rosa-suave,#FBE4EF);box-shadow:0 6px 18px rgba(0,0,0,.2);padding:0;cursor:pointer;overflow:hidden}' +
+    '.rc-boton{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(94px + env(safe-area-inset-bottom,0px));z-index:996;width:58px;height:58px;border-radius:50%;border:3px solid #fff;background:var(--rosa-suave,#FBE4EF);box-shadow:0 6px 18px rgba(0,0,0,.2);padding:0;cursor:pointer;overflow:hidden}' +
     '.rc-boton img{width:100%;height:100%;object-fit:cover;display:block}' +
+    '@media(max-width:600px){.rc-boton{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(80px + env(safe-area-inset-bottom,0px));width:52px;height:52px}}' +
     '.rc-panel{position:fixed;z-index:1001;left:0;right:0;bottom:0;top:0;display:none;flex-direction:column;background:#fff;font-family:"Hanken Grotesk",system-ui,sans-serif;color:#45454A}' +
     '.rc-panel.abierto{display:flex}' +
     '.rc-cab{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--rosa-principal,#E74E96);color:#fff}' +
@@ -28,7 +29,7 @@
     '.rc-form input{flex:1;min-width:0;border:1px solid #ddd;border-radius:999px;padding:10px 14px;font-size:16px;font-family:inherit}' +
     '.rc-form button{border:none;border-radius:999px;background:var(--rosa-principal,#E74E96);color:#fff;padding:0 18px;font-weight:600;cursor:pointer;font-family:inherit}' +
     '.rc-form button:disabled{opacity:.5}' +
-    '@media(min-width:700px){.rc-panel{left:16px;right:auto;top:auto;bottom:20px;width:380px;height:min(600px,calc(100vh - 40px));border-radius:18px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.28)}}';
+    '@media(min-width:700px){.rc-panel{right:16px;left:auto;top:auto;bottom:20px;width:380px;height:min(600px,calc(100vh - 40px));border-radius:18px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.28)}}';
   document.head.appendChild(css);
 
   var casa = /^\/merceria(\/|$)/.test(location.pathname) ? 'merceria' : /^\/academy(\/|$)/.test(location.pathname) ? 'academy' : 'tienda';
