@@ -208,6 +208,7 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - Analytics depende de que Sara cree las cuentas (ver arriba).
 
 ## ✅ Ya hecho (referencia)
+- [x] Confirmado por Sara el 6-oct-2026: **recoger en la tienda es gratis** (ya lo dicen la tienda y Mercería → Cómo comprar) y **los talleres por ahora los dicta Sara** (agregado a Academy → Talleres y a sus preguntas frecuentes).
 
 - Rincón de Rosina (`recursos-rosina.html`) con banner nuevo con logo:
   - 26 stickers para WhatsApp y 9 fondos de pantalla en 4 tamaños.
