@@ -12,7 +12,7 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 # página -> casa (las que no están aquí son comunes: sin casa resaltada)
 CASA_DE = {
     'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
-    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria',
+    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy',
     'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
@@ -107,7 +107,7 @@ MOVIL = {
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="revista.html">Revista</a>
     <p class="grupo-nav">Ayuda</p>
-    <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+    <a href="merceria/preguntas-frecuentes/">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
   </nav>''',
     'academy': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
@@ -127,7 +127,7 @@ MOVIL = {
     <p class="grupo-nav">Ideas</p>
     <a href="revista.html">Revista</a>
     <p class="grupo-nav">Ayuda</p>
-    <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
+    <a href="academy/preguntas-frecuentes/">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
   </nav>''',
 }
