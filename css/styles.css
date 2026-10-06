@@ -50,7 +50,7 @@ h3 { font-size: 1.25rem; }
 
 p { max-width: 62ch; }
 
-a { color: var(--rosa-principal); }
+a { color: var(--rosa-texto); }
 
 img { max-width: 100%; display: block; }
 
@@ -87,7 +87,7 @@ a:focus-visible, button:focus-visible {
 .logo {
   font-family: var(--fuente-titulo);
   font-size: 1.4rem;
-  color: var(--rosa-principal);
+  color: var(--rosa-texto);
   text-decoration: none;
   font-weight: 600;
 }
@@ -107,11 +107,11 @@ a:focus-visible, button:focus-visible {
   font-size: 0.95rem;
 }
 
-.nav-principal a:hover { color: var(--rosa-principal); }
+.nav-principal a:hover { color: var(--rosa-texto); }
 
 .boton-whatsapp {
-  background: var(--rosa-principal);
-  color: var(--blanco) !important;
+  background: var(--rosa-boton);
+  color: var(--sobre-principal) !important;
   padding: 10px 22px;
   border-radius: 999px;
   text-decoration: none;
@@ -166,7 +166,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .hero-texto .eslogan {
-  color: var(--rosa-principal);
+  color: var(--rosa-texto);
   font-weight: 600;
   font-size: 1.05rem;
   margin-bottom: 14px;
@@ -194,14 +194,14 @@ a:focus-visible, button:focus-visible {
 }
 
 .boton-primario {
-  background: var(--rosa-principal);
-  color: var(--blanco);
+  background: var(--rosa-boton);
+  color: var(--sobre-principal);
 }
 .boton-primario:hover { background: #b40167; }
 
 .boton-secundario {
   background: transparent;
-  color: var(--rosa-principal);
+  color: var(--rosa-texto);
   border: 2px solid var(--rosa-principal);
 }
 .boton-secundario:hover { background: var(--rosa-suave); }
@@ -220,7 +220,7 @@ a:focus-visible, button:focus-visible {
 
 .marco-foto .marcador {
   text-align: center;
-  color: var(--rosa-principal);
+  color: var(--rosa-texto);
   font-size: 0.9rem;
   padding: 20px;
 }
@@ -272,7 +272,7 @@ section { padding: 72px 0; }
 }
 
 .diferenciales .marca {
-  color: var(--rosa-principal);
+  color: var(--rosa-texto);
   font-family: var(--fuente-titulo);
   font-size: 1.4rem;
   line-height: 1;
@@ -298,7 +298,7 @@ section { padding: 72px 0; }
 }
 
 .testimonio p { font-style: italic; color: var(--tinta-suave); }
-.testimonio .autor { font-weight: 600; color: var(--rosa-principal); margin-top: 12px; font-style: normal; }
+.testimonio .autor { font-weight: 600; color: var(--rosa-texto); margin-top: 12px; font-style: normal; }
 
 /* Rosina */
 .rosina-bloque {
@@ -336,7 +336,7 @@ section { padding: 72px 0; }
   position: absolute;
   right: 0;
   top: 0;
-  color: var(--rosa-principal);
+  color: var(--rosa-texto);
   font-size: 1.4rem;
 }
 

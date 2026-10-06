@@ -58,14 +58,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=14">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 28px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -75,17 +75,17 @@ body { margin: 0; font-family: var(--fuente-cuerpo); color: var(--tinta); backgr
 h1, h2 { font-family: var(--fuente-titulo); font-weight: 600; margin: 0 0 0.5em; }
 h1 { font-size: clamp(2.2rem, 4.5vw, 3rem); }
 .encabezado-pagina { padding: 56px 0 24px; max-width: 700px; }
-.encabezado-pagina .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 8px; }
+.encabezado-pagina .eslogan { color: var(--rosa-texto); font-weight: 600; margin-bottom: 8px; }
 .encabezado-pagina p { color: var(--tinta-suave); font-size: 1.1rem; }
 .faq-lista { max-width: 780px; padding-bottom: 80px; }
 .faq-item { border-bottom: 1px solid rgba(69,69,74,0.12); padding: 24px 0; }
 .faq-item summary { font-family: var(--fuente-titulo); font-size: 1.15rem; cursor: pointer; list-style: none; position: relative; padding-right: 32px; }
 .faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after { content: '+'; position: absolute; right: 0; top: 0; color: var(--rosa-principal); font-size: 1.4rem; }
+.faq-item summary::after { content: '+'; position: absolute; right: 0; top: 0; color: var(--rosa-texto); font-size: 1.4rem; }
 .faq-item[open] summary::after { content: '–'; }
 .faq-item p { margin-top: 14px; color: var(--tinta-suave); max-width: 65ch; }
 .cta-final { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 40px; text-align: center; margin-top: 24px; }
-.boton-primario { display: inline-block; padding: 14px 30px; border-radius: 999px; text-decoration: none; font-weight: 600; background: var(--rosa-principal); color: var(--blanco) !important; margin-top: 12px; }
+.boton-primario { display: inline-block; padding: 14px 30px; border-radius: 999px; text-decoration: none; font-weight: 600; background: var(--rosa-boton); color: var(--sobre-principal) !important; margin-top: 12px; }
 .bloque { max-width: 820px; margin: 0 0 44px; }
 .bloque h2 { font-size: 1.45rem; }
 .bloque p, .bloque li { color: var(--tinta-suave); }
@@ -99,22 +99,22 @@ h1 { font-size: clamp(2.2rem, 4.5vw, 3rem); }
 .tabla-precios { width: 100%; border-collapse: collapse; background: var(--blanco); border-radius: 16px; overflow: hidden; font-size: 0.95rem; }
 .tabla-precios th, .tabla-precios td { text-align: left; padding: 12px 16px; border-bottom: 1px solid rgba(69,69,74,0.08); }
 .tabla-precios th { background: var(--rosa-suave); color: var(--tinta); font-weight: 600; }
-.tabla-precios td.valor { white-space: nowrap; font-weight: 600; color: var(--rosa-principal); }
-.bloque .precio-destacado { font-family: var(--fuente-titulo); font-size: 1.6rem; color: var(--rosa-principal); margin: 4px 0 10px; }
+.tabla-precios td.valor { white-space: nowrap; font-weight: 600; color: var(--rosa-texto); }
+.bloque .precio-destacado { font-family: var(--fuente-titulo); font-size: 1.6rem; color: var(--rosa-texto); margin: 4px 0 10px; }
 .bloque .nota-precios { font-size: 0.9rem; }
 details.lista-completa { margin-top: 14px; }
-details.lista-completa summary { cursor: pointer; font-weight: 600; color: var(--rosa-principal); }
+details.lista-completa summary { cursor: pointer; font-weight: 600; color: var(--rosa-texto); }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 22px !important; }
 
 /* ===== Páginas de las casas: pasos, tarjetas y bloques ===== */
 .hero-pagina { padding: 30px 0 6px; max-width: 760px; }
-.hero-pagina .eslogan { color: var(--rosa-principal); font-weight: 700; margin: 0; }
+.hero-pagina .eslogan { color: var(--rosa-texto); font-weight: 700; margin: 0; }
 .hero-pagina h1 { font-size: clamp(1.9rem, 4.6vw, 2.7rem); line-height: 1.15; margin: 4px 0 12px; }
 .hero-pagina .intro { font-size: 1.05rem; color: var(--tinta-suave); margin: 0 0 22px; }
 .pasos-casa { list-style: none; padding: 0; margin: 0 0 40px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; counter-reset: paso; }
 .pasos-casa li { counter-increment: paso; background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: 18px; padding: 18px; box-shadow: var(--sombra-suave); }
-.pasos-casa li::before { content: counter(paso); display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; margin-bottom: 8px; }
+.pasos-casa li::before { content: counter(paso); display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--rosa-boton); color: var(--sobre-principal); font-weight: 800; margin-bottom: 8px; }
 .pasos-casa strong { display: block; font-family: var(--fuente-titulo); font-size: 1.05rem; margin-bottom: 4px; }
 .pasos-casa span { font-size: 0.92rem; color: var(--tinta-suave); }
 .bloque-casa { margin: 0 0 40px; }
@@ -129,14 +129,14 @@ main > :first-child { padding-top: 22px !important; }
 .tabla-envios th { background: var(--rosa-suave); color: var(--rosa-hover); font-size: 0.9rem; }
 .tabla-envios td:last-child { font-weight: 700; white-space: nowrap; }
 .proximo-taller { background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: 22px; padding: 24px 28px; box-shadow: var(--sombra-suave); margin: 0 0 40px; }
-.proximo-taller .etiqueta { color: var(--rosa-principal); font-weight: 800; margin: 0 0 4px; }
+.proximo-taller .etiqueta { color: var(--rosa-texto); font-weight: 800; margin: 0 0 4px; }
 .proximo-taller h2 { font-size: 1.4rem; margin: 0 0 8px; }
 .proximo-taller ul { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 6px; }
 .botones-pagina { display: flex; gap: 12px; flex-wrap: wrap; }
 .botones-pagina a { display: inline-block; text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
-.botones-pagina .boton-primario { background: var(--rosa-principal); color: #fff; }
+.botones-pagina .boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
 .botones-pagina .boton-primario:hover { background: var(--rosa-hover); }
-.botones-pagina .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-principal); background: transparent; }
+.botones-pagina .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-texto); background: transparent; }
 @media (max-width: 860px) { .pasos-casa { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tarjetas-casa { grid-template-columns: 1fr; } }
 @media (max-width: 480px) { .pasos-casa { grid-template-columns: 1fr; } .proximo-taller { padding: 18px; } .botones-pagina a { flex: 1 1 100%; text-align: center; } }
 </style>
@@ -153,9 +153,19 @@ main > :first-child { padding-top: 22px !important; }
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
+<div class="franja-anuncios" role="region" aria-label="Anuncios"><div class="cinta">
+    <span>🚚 Envíos a toda Colombia</span>
+    <span>🧶 Los mismos materiales con los que tejemos cada amigurumi</span>
+    <span>📍 Tienda física en Villamaría, Caldas</span>
+    <span>💕 Todo para tejer, en un solo lugar</span>
+    <span>🚚 Envíos a toda Colombia</span>
+    <span>🧶 Los mismos materiales con los que tejemos cada amigurumi</span>
+    <span>📍 Tienda física en Villamaría, Caldas</span>
+    <span>💕 Todo para tejer, en un solo lugar</span>
+  </div></div>
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet">Tienda de amigurumis</a>
+    <a href="tienda.html" data-casa="crochet">Tienda de amigurumis</a>
     <a href="merceria/" data-casa="merceria" class="casa-actual" aria-current="true">Mercería</a>
     <a href="academy/" data-casa="academy">Academy</a>
   </div>
@@ -276,7 +286,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="pie-col">
-      <h3>Mercería</h3>
+      <p class="pie-h3">Mercería</p>
       <ul>
         <li><a href="merceria/catalogo/">Catálogo</a></li>
         <li><a href="merceria/catalogo/#lanas-merceria">Lanas</a></li>
@@ -288,7 +298,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col">
-      <h3>Lana Rosa</h3>
+      <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
         <li><a href="revista.html?casa=merceria">Revista</a></li>
@@ -298,7 +308,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col pie-contacto">
-      <h3>Contáctanos</h3>
+      <p class="pie-h3">Contáctanos</p>
       <ul>
         <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
@@ -326,9 +336,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- PIE:FIN -->
 
-<a href="https://wa.me/573205072801" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<div role="complementary" aria-label="WhatsApp"><a href="https://wa.me/573205072801" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.484 2 2.004 6.48 2.004 12c0 1.85.51 3.63 1.44 5.19L2 22l4.94-1.42A9.94 9.94 0 0012.004 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18a8.14 8.14 0 01-4.36-1.26l-.31-.18-3.05.87.87-3-.2-.32A8.17 8.17 0 013.82 12c0-4.51 3.67-8.18 8.18-8.18 4.51 0 8.18 3.67 8.18 8.18 0 4.51-3.67 8.18-8.18 8.18z"/></svg>
-</a>
+</a></div>
 <script>
 (function() {
   var boton = document.getElementById('boton-menu-movil');
@@ -402,7 +412,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <div class="overlay-carrito" id="overlay-carrito"></div>
-<div class="panel-carrito" id="panel-carrito">
+<div role="region" aria-label="Tu carrito" class="panel-carrito" id="panel-carrito">
   <div class="panel-carrito-contenido">
     <div class="panel-carrito-header">
       <h2>Tu carrito</h2>

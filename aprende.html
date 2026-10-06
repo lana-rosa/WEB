@@ -78,14 +78,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=14">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -97,7 +97,7 @@ h1 { font-size: clamp(2.2rem, 4.4vw, 3.1rem); }
 h2 { font-size: 1.6rem; }
 h3 { font-size: 1.1rem; }
 .hero { padding-top: 60px; padding-bottom: 14px; }
-.hero .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 10px; }
+.hero .eslogan { color: var(--rosa-texto); font-weight: 600; margin-bottom: 10px; }
 .hero .eslogan .subtitulo-casa { color: var(--tinta-suave); font-weight: 500; }
 .hero p.intro { max-width: 62ch; color: var(--tinta-suave); font-size: 1.08rem; margin-bottom: 0; }
 section { padding: 20px 0 60px; }
@@ -110,28 +110,28 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
 }
 @media (max-width: 800px) { .tarjeta-curso { grid-template-columns: 1fr; } }
 .foto-curso { background: var(--rosa-suave); display: flex; align-items: center; justify-content: center; padding: 20px; }
-.foto-curso span { font-size: 0.85rem; color: var(--rosa-principal); text-align: center; }
+.foto-curso span { font-size: 0.85rem; color: var(--rosa-texto); text-align: center; }
 .info-curso { padding: 32px; }
 .etiqueta-nivel {
-  display: inline-block; background: var(--rosa-suave); color: var(--rosa-principal);
+  display: inline-block; background: var(--rosa-suave); color: var(--rosa-texto);
   font-size: 0.78rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px;
 }
 .detalles-curso { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 8px; font-size: 0.92rem; }
 .detalles-curso li { display: flex; gap: 8px; }
 .detalles-curso .etiqueta { font-weight: 600; min-width: 110px; }
-.precio-curso { font-size: 1.4rem; font-weight: 700; color: var(--rosa-principal); margin: 14px 0; }
+.precio-curso { font-size: 1.4rem; font-weight: 700; color: var(--rosa-texto); margin: 14px 0; }
 .boton-primario {
-  display: inline-block; background: var(--rosa-principal); color: var(--blanco) !important;
+  display: inline-block; background: var(--rosa-boton); color: var(--sobre-principal) !important;
   text-decoration: none; padding: 13px 28px; border-radius: 999px; font-weight: 600;
 }
 .boton-primario:hover { background: var(--rosa-hover); }
-.boton-secundario { display: inline-block; background: transparent; color: var(--rosa-principal); border: 2px solid var(--rosa-principal); text-decoration: none; padding: 11px 26px; border-radius: 999px; font-weight: 600; }
+.boton-secundario { display: inline-block; background: transparent; color: var(--rosa-texto); border: 2px solid var(--rosa-principal); text-decoration: none; padding: 11px 26px; border-radius: 999px; font-weight: 600; }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .filosofia { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 30px; }
 @media (max-width: 700px) { .rosina-resumen { grid-template-columns: 1fr !important; } .rosina-resumen .marco-foto { width: 160px !important; margin: 0 auto; } }
 @media (max-width: 800px) { .filosofia { grid-template-columns: 1fr; } }
 .filosofia-item { background: var(--blanco); border-radius: var(--radio-suave); padding: 24px; box-shadow: var(--sombra-suave); }
-.filosofia-item .marca { color: var(--rosa-principal); font-family: var(--fuente-titulo); font-size: 1.6rem; }
+.filosofia-item .marca { color: var(--rosa-texto); font-family: var(--fuente-titulo); font-size: 1.6rem; }
 .grid-tutoriales { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
 .tarjeta-tutorial {
   display: flex; flex-direction: column; gap: 10px; background: var(--blanco); border-radius: var(--radio-suave);
@@ -139,8 +139,8 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
 }
 .tarjeta-tutorial:hover { transform: translateY(-3px); }
 .tarjeta-tutorial h3 { font-size: 1rem; margin: 0; line-height: 1.4; flex-grow: 1; }
-.numero-tutorial { display: inline-block; background: var(--rosa-suave); color: var(--rosa-principal); font-weight: 700; font-size: 0.75rem; padding: 3px 10px; border-radius: 999px; width: fit-content; }
-.ver-en-instagram { color: var(--rosa-principal); font-weight: 600; font-size: 0.88rem; }
+.numero-tutorial { display: inline-block; background: var(--rosa-suave); color: var(--rosa-texto); font-weight: 700; font-size: 0.75rem; padding: 3px 10px; border-radius: 999px; width: fit-content; }
+.ver-en-instagram { color: var(--rosa-texto); font-weight: 600; font-size: 0.88rem; }
 .aviso-proximamente {
   background: var(--blanco); border-left: 6px solid var(--azul-acero); border-radius: 12px;
   padding: 26px 30px; max-width: 780px; margin-top: 10px;
@@ -152,19 +152,19 @@ section.contenedor { padding-top: 20px; padding-bottom: 60px; }
 .puente { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); background: var(--blanco); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
 .puente:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
 .puente .icono-puente { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
-.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.02rem; margin-bottom: 2px; }
+.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.02rem; margin-bottom: 2px; }
 .puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
-.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
+.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-texto); }
 /* Academy: Aprende / Crea / Conecta */
 .pilares-academy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 8px; margin-bottom: 36px; }
 .pilares-academy a { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; padding: 18px 12px; background: var(--rosa-suave); border-radius: var(--radio-suave); text-decoration: none; color: var(--tinta); transition: transform 0.2s; }
 .pilares-academy a:hover { transform: translateY(-2px); }
 .pilares-academy a > span:first-child { font-size: 1.8rem; }
-.pilares-academy strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.15rem; }
+.pilares-academy strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.15rem; }
 .pilares-academy a > span:last-child { font-size: 0.88rem; color: var(--tinta-suave); }
 @media (max-width: 560px) { .pilares-academy { gap: 8px; } .pilares-academy a { padding: 14px 6px; } .pilares-academy a > span:last-child { font-size: 0.78rem; } }
 .pilar { scroll-margin-top: 90px; }
-.etiqueta-pilar { display: inline-block; background: var(--rosa-suave); color: var(--rosa-principal); font-weight: 700; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; margin: 0 0 10px; }
+.etiqueta-pilar { display: inline-block; background: var(--rosa-suave); color: var(--rosa-texto); font-weight: 700; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; margin: 0 0 10px; }
 .seccion-suave .etiqueta-pilar { background: var(--blanco); }
 /* Menos texto en celular */
 @media (max-width: 560px) {
@@ -200,7 +200,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet">Tienda de amigurumis</a>
+    <a href="tienda.html" data-casa="crochet">Tienda de amigurumis</a>
     <a href="merceria/" data-casa="merceria">Mercería</a>
     <a href="academy/" data-casa="academy" class="casa-actual" aria-current="true">Academy</a>
   </div>
@@ -272,8 +272,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>Nuestro taller</h2>
     <article class="tarjeta-curso">
       <div class="foto-curso" style="padding:8px; display:grid; grid-template-rows:1fr 1fr; gap:8px;">
-        <img src="img/taller-tejiendo.webp" alt="Participantes tejiendo sus posavasos durante el taller Desconecta para Conectar" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
-        <img src="img/taller-grupo.webp" alt="Grupo de participantes mostrando sus posavasos en forma de flor tejidos a mano" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy" decoding="async">
+        <img src="img/taller-tejiendo.webp" alt="Participantes tejiendo sus posavasos durante el taller Desconecta para Conectar" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" width="800" height="570">
+        <img src="img/taller-grupo.webp" alt="Grupo de participantes mostrando sus posavasos en forma de flor tejidos a mano" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" loading="lazy" decoding="async" width="800" height="450">
       </div>
       <div class="info-curso">
         <span class="etiqueta-nivel">Nivel principiante</span>
@@ -411,10 +411,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="contenedor" id="rosina" style="padding-top:28px; padding-bottom:20px;">
     <div class="rosina-resumen" style="display:grid; grid-template-columns:220px 1fr; gap:32px; align-items:center;">
       <div class="marco-foto" style="width:220px; aspect-ratio:1; border-radius:var(--radio-suave); overflow:hidden; box-shadow:var(--sombra-suave); background:var(--lila-suave);">
-        <img src="img/rosina-aprende.webp" alt="Rosina, la ovejita embajadora de Lana Rosa Crochet, tejiendo un corazón en su escritorio" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">
+        <img src="img/rosina-aprende.webp" alt="Rosina, la ovejita embajadora de Lana Rosa Crochet, tejiendo un corazón en su escritorio" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async" width="500" height="500">
       </div>
       <div>
-        <p class="eslogan" style="color:var(--rosa-principal); font-weight:600; margin-bottom:6px;">Nuestra embajadora</p>
+        <p class="eslogan" style="color: var(--rosa-texto); font-weight:600; margin-bottom:6px;">Nuestra embajadora</p>
         <h2 style="margin-bottom:10px;">Conoce a Rosina</h2>
         <p style="color:var(--tinta-suave); margin-bottom:16px;">Nuestra ovejita te acompaña con tips y material gratis para tejer.</p>
         <p class="tip-rosina" style="background:var(--blanco); border-left:6px solid var(--rosa-principal); border-radius:12px; padding:16px 20px; font-size:0.95rem; margin:0;">💡 <strong>Tip de Rosina:</strong> "Antes de un proyecto nuevo, teje una muestra pequeña con la misma lana y aguja."</p>
@@ -438,7 +438,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="pie-col">
-      <h3>Academy</h3>
+      <p class="pie-h3">Academy</p>
       <ul>
         <li><a href="academy/talleres/">Calendario de talleres</a></li>
         <li><a href="academy/sobre-academy/">Sobre Academy</a></li>
@@ -449,7 +449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col">
-      <h3>Lana Rosa</h3>
+      <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
         <li><a href="revista.html?casa=academy">Revista</a></li>
@@ -459,7 +459,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col pie-contacto">
-      <h3>Contáctanos</h3>
+      <p class="pie-h3">Contáctanos</p>
       <ul>
         <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
@@ -485,9 +485,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- PIE:FIN -->
 
-<a href="https://wa.me/573205072801?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20talleres%20de%20Lana%20Rosa%20Academy." class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<div role="complementary" aria-label="WhatsApp"><a href="https://wa.me/573205072801?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20talleres%20de%20Lana%20Rosa%20Academy." class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.484 2 2.004 6.48 2.004 12c0 1.85.51 3.63 1.44 5.19L2 22l4.94-1.42A9.94 9.94 0 0012.004 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18a8.14 8.14 0 01-4.36-1.26l-.31-.18-3.05.87.87-3-.2-.32A8.17 8.17 0 013.82 12c0-4.51 3.67-8.18 8.18-8.18 4.51 0 8.18 3.67 8.18 8.18 0 4.51-3.67 8.18-8.18 8.18z"/></svg>
-</a>
+</a></div>
 <script>
 (function() {
   var boton = document.getElementById('boton-menu-movil');
@@ -561,7 +561,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <div class="overlay-carrito" id="overlay-carrito"></div>
-<div class="panel-carrito" id="panel-carrito">
+<div role="region" aria-label="Tu carrito" class="panel-carrito" id="panel-carrito">
   <div class="panel-carrito-contenido">
     <div class="panel-carrito-header">
       <h2>Tu carrito</h2>

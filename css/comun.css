@@ -1,20 +1,20 @@
 /* CSS común de las tres casas de Lana Rosa (Crochet, Mercería y Academy): variables, base, encabezado, menú, carrito y pie.
    Cada página conserva en su propio <style> solo lo que es suyo. */
 * { box-sizing: border-box; }
-a { color: var(--rosa-principal); }
+a { color: var(--rosa-texto); }
 .contenedor { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 main { padding-bottom: 60px; }
 .encabezado { position: sticky; top: 0; z-index: 20; background: rgba(250, 250, 247, 0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(69,69,74,0.08); }
 .encabezado .contenedor { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
-.logo { font-family: var(--fuente-titulo); font-size: 1.4rem; color: var(--rosa-principal); text-decoration: none; font-weight: 600; }
+.logo { font-family: var(--fuente-titulo); font-size: 1.4rem; color: var(--rosa-texto); text-decoration: none; font-weight: 600; }
 .logo-img { height: 68px; width: auto; display: block; border-radius: 12px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; }
 .texto-logo { font-weight: 700; color: var(--tinta); font-size: 1rem; }
 @media (max-width: 600px) { .logo-img { height: 48px; } .texto-logo { display: none; } }
 .nav-principal { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
 .nav-principal a { text-decoration: none; color: var(--tinta); font-weight: 500; font-size: 0.95rem; }
-.nav-principal a:hover { color: var(--rosa-principal); }
-.boton-whatsapp { background: var(--rosa-principal); color: var(--blanco) !important; padding: 10px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+.nav-principal a:hover { color: var(--rosa-texto); }
+.boton-whatsapp { background: var(--rosa-boton); color: var(--sobre-principal) !important; padding: 10px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
 @media (max-width: 860px) { .nav-principal { display: none; } }
 @media (max-width: 900px) { .encabezado .boton-whatsapp { display: none; } }
 .pie { background: var(--tinta); color: var(--blanco-hueso); padding: 56px 0 28px; }
@@ -35,7 +35,7 @@ main { padding-bottom: 60px; }
 .nav-movil-panel { display: none; flex-direction: column; background: var(--blanco); border-top: 1px solid rgba(69,69,74,0.08); position: fixed; left: 0; right: 0; z-index: 500; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
 .nav-movil-panel.abierto { display: flex; }
 .nav-movil-panel a { padding: 15px 24px; text-decoration: none; color: var(--tinta); border-bottom: 1px solid rgba(69,69,74,0.06); font-weight: 500; font-size: 0.98rem; }
-.nav-movil-panel a:hover { background: var(--rosa-suave); color: var(--rosa-principal); }
+.nav-movil-panel a:hover { background: var(--rosa-suave); color: var(--rosa-texto); }
 @media (max-width: 900px) { .menu-movil { display: inline-flex; align-items: center; order: 20; } }
 .rosina-mini { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; margin-left: 10px; box-shadow: 0 2px 8px rgba(69,69,74,0.15); vertical-align: middle; }
 .boton-subir { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); right: calc(92px + env(safe-area-inset-right, 0px)); z-index: 998; width: 48px; height: 48px; background: var(--rosa-principal); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.2); opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s; }
@@ -52,11 +52,11 @@ main { padding-bottom: 60px; }
 .panel-buscar-header { position: absolute; top: calc(100% + 8px); right: 0; background: var(--blanco); border-radius: 999px; box-shadow: var(--sombra-suave); padding: 6px; z-index: 50; width: 260px; display: none; align-items: center; gap: 6px; }
 .panel-buscar-header.abierto { display: flex; }
 .panel-buscar-header input { flex-grow: 1; padding: 8px 14px; border-radius: 999px; border: none; outline: none; font-family: var(--fuente-cuerpo); font-size: 0.9rem; background: transparent; color: var(--tinta); }
-.panel-buscar-header button[type="submit"] { background: var(--rosa-principal); color: #fff; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 0.95rem; flex-shrink: 0; }
+.panel-buscar-header button[type="submit"] { background: var(--rosa-boton); color: var(--sobre-principal); border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 0.95rem; flex-shrink: 0; }
 @media (max-width: 600px) { .panel-buscar-header { width: 220px; right: -40px; } }
 .boton-carrito-header { position: relative; background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.15rem; color: var(--tinta); flex-shrink: 0; }
 .boton-carrito-header:hover { border-color: var(--rosa-principal); }
-.contador-carrito { position: absolute; top: -4px; right: -4px; background: var(--rosa-principal); color: #fff; font-size: 0.68rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.contador-carrito { position: absolute; top: -4px; right: -4px; background: var(--rosa-boton); color: var(--sobre-principal); font-size: 0.68rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .overlay-carrito { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; display: none; }
 .overlay-carrito.abierto { display: block; }
 .panel-carrito { position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%; background: var(--blanco-hueso); z-index: 1000; box-shadow: none; transition: right 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
@@ -69,19 +69,19 @@ main { padding-bottom: 60px; }
 .item-carrito { display: flex; gap: 12px; background: var(--blanco); border-radius: 14px; padding: 12px; align-items: center; }
 .item-carrito .info-item-carrito { flex-grow: 1; }
 .item-carrito h4 { margin: 0 0 4px; font-size: 0.92rem; }
-.item-carrito .precio-item-carrito { color: var(--rosa-principal); font-weight: 600; font-size: 0.88rem; margin: 0; }
+.item-carrito .precio-item-carrito { color: var(--rosa-texto); font-weight: 600; font-size: 0.88rem; margin: 0; }
 .controles-cantidad { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
 .controles-cantidad button { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--rosa-suave); background: var(--blanco); cursor: pointer; font-weight: 700; }
 .boton-eliminar-item { background: none; border: none; color: var(--tinta-suave); font-size: 1.2rem; cursor: pointer; align-self: flex-start; }
 .carrito-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; padding: 16px 0; border-top: 1px solid rgba(69,69,74,0.12); margin-top: 12px; }
-.carrito-total span:last-child { color: var(--rosa-principal); }
+.carrito-total span:last-child { color: var(--rosa-texto); }
 .nav-principal { gap: clamp(14px, 1.5vw, 26px); }
 .nav-principal a { white-space: nowrap; }
 .nav-principal { gap: 4px; }
 .nav-principal li { display: flex; }
 .nav-principal li.grupo-inicio { margin-left: clamp(8px, 1vw, 16px); }
 .nav-principal li a { padding: 8px clamp(10px, 1vw, 14px); border-radius: 999px; }
-.nav-principal li.g-tienda a { background: #E74E96; color: #fff; }
+.nav-principal li.g-tienda a { background: #E01E79; color: #fff; }
 .nav-principal li.g-tienda a:hover { background: #B83E78; color: #fff; }
 .nav-principal li.g-merceria a { background: #EADFFB; color: #6A2FB5; }
 .nav-principal li.g-merceria a:hover { background: #9A7EDD; color: #fff; }
@@ -98,38 +98,38 @@ main { padding-bottom: 60px; }
 @media (min-width: 1101px) { .encabezado > .contenedor { justify-content: flex-start; gap: 12px; } .encabezado nav[aria-label="Navegación principal"] { margin: 0 auto; } .encabezado .logo { order: -2; } .menu-movil { order: -1; margin-left: 6px; } .nav-movil-panel { right: auto; left: max(16px, calc((100vw - 1320px) / 2 + 16px)); } }
 @media (min-width: 601px) { .encabezado .logo { flex-direction: column; gap: 3px; } .encabezado .logo-img { height: 60px; } .encabezado .texto-logo { font-size: 0.78rem; line-height: 1; } }
 .nav-principal { align-items: center; }
-.nav-principal a.nav-destacado { background: var(--rosa-principal); color: #fff; padding: 9px 18px; border-radius: 999px; font-weight: 600; box-shadow: 0 4px 12px rgba(var(--rosa-rgb),0.25); }
+.nav-principal a.nav-destacado { background: var(--rosa-boton); color: var(--sobre-principal); padding: 9px 18px; border-radius: 999px; font-weight: 600; box-shadow: 0 4px 12px rgba(var(--rosa-rgb),0.25); }
 .nav-principal a.nav-destacado:hover { background: var(--rosa-hover); color: #fff; }
-.nav-movil-panel .grupo-nav { margin: 0; padding: 14px 24px 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rosa-principal); }
-.nav-movil-panel a.nav-destacado { color: var(--rosa-principal); font-weight: 700; }
+.nav-movil-panel .grupo-nav { margin: 0; padding: 14px 24px 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rosa-texto); }
+.nav-movil-panel a.nav-destacado { color: var(--rosa-texto); font-weight: 700; }
 .etiqueta-gratis { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: #E6E7FD; color: #4F53B8; font-size: 0.68rem; font-weight: 700; line-height: 1.4; vertical-align: 2px; white-space: nowrap; }
 .nav-movil-panel .etiqueta-gratis { font-size: 0.72rem; }
 
 /* ===== Franja de casas (Crochet · Mercería · Academy) y menú por casa ===== */
 .franja-casas { background: var(--blanco-hueso, #FAFAF7); border-bottom: 1px solid rgba(69,69,74,0.06); font-size: 0.74rem; }
 .franja-casas .contenedor { display: flex; justify-content: flex-end; align-items: center; gap: 2px; padding-top: 3px; padding-bottom: 3px; }
-.franja-casas a { text-decoration: none; color: var(--tinta-suave, #6E6E73); font-weight: 500; padding: 2px 10px; border-radius: 6px; white-space: nowrap; opacity: 0.85; }
+.franja-casas a { text-decoration: none; color: var(--tinta-suave, #64646A); font-weight: 500; padding: 2px 10px; border-radius: 6px; white-space: nowrap; }
 .franja-casas a + a { border-left: 1px solid rgba(69,69,74,0.15); border-radius: 0; }
 .franja-casas a:hover { color: var(--tinta, #45454A); opacity: 1; }
-.franja-casas a.casa-actual { color: var(--rosa-principal); font-weight: 700; opacity: 1; }
+.franja-casas a.casa-actual { color: var(--rosa-texto); font-weight: 700; opacity: 1; }
 .nav-principal li.g-comun a { background: #F1F0EC; color: var(--tinta); }
 .nav-principal li.g-comun a:hover { background: var(--tinta); color: #fff; }
-.nav-movil-panel a.casa-actual { background: var(--rosa-suave); color: var(--rosa-principal); font-weight: 700; }
+.nav-movil-panel a.casa-actual { background: var(--rosa-suave); color: var(--rosa-texto); font-weight: 700; }
 @media (max-width: 560px) { .franja-casas { font-size: 0.7rem; } .franja-casas .contenedor { justify-content: center; padding-left: 8px; padding-right: 8px; } .franja-casas a { padding: 2px 8px; } }
 
 /* ===== Identidad por casa: cada casa cambia la paleta de toda la página (html[data-casa]) ===== */
-:root { --rosa-hover: #B83E78; --rosa-rgb: 231, 78, 150; }
-html[data-casa="merceria"] { --rosa-principal: #9A7EDD; --rosa-medio: #D3C3F5; --rosa-suave: #F4EEFD; --rosa-hover: #7C5CC4; --rosa-rgb: 154, 126, 221; }
-html[data-casa="academy"]  { --rosa-principal: #5A98E2; --rosa-medio: #BBD6F7; --rosa-suave: #EBF3FD; --rosa-hover: #3F7FCB; --rosa-rgb: 90, 152, 226; }
-html[data-casa="merceria"] .encabezado { background: rgba(239, 230, 251, 0.92); }
-html[data-casa="academy"] .encabezado { background: rgba(227, 238, 252, 0.92); }
-.logo .texto-logo { color: var(--rosa-principal); }
+:root { --rosa-hover: #B0356F; --rosa-rgb: 231, 78, 150; --rosa-texto: #C81B6D; --rosa-boton: #E01E79; --sobre-principal: #fff; }
+html[data-casa="merceria"] { --rosa-principal: #9A7EDD; --rosa-medio: #D3C3F5; --rosa-suave: #F5F1F7; --rosa-hover: #7A59C3; --rosa-rgb: 154, 126, 221; --rosa-texto: #3F2B73; --rosa-boton: #9A7EDD; --sobre-principal: #1F1440; }
+html[data-casa="academy"]  { --rosa-principal: #5A98E2; --rosa-medio: #BBD6F7; --rosa-suave: #F1F5F9; --rosa-hover: #3270B9; --rosa-rgb: 90, 152, 226; --rosa-texto: #1D3F72; --rosa-boton: #5A98E2; --sobre-principal: #0E2547; }
+html[data-casa="merceria"] .encabezado { background: rgba(255, 255, 255, 0.96); border-bottom: 3px solid var(--rosa-medio); }
+html[data-casa="academy"] .encabezado { background: rgba(255, 255, 255, 0.96); border-bottom: 3px solid var(--rosa-medio); }
+.logo .texto-logo { color: var(--rosa-texto); }
 html[data-casa="merceria"] .logo, html[data-casa="academy"] .logo { text-align: center; }
 html[data-casa="merceria"] .texto-logo, html[data-casa="academy"] .texto-logo { font-weight: 700; }
-html[data-casa="merceria"] .nav-principal li.g-merceria a { background: var(--rosa-principal); color: #fff; }
-html[data-casa="merceria"] .nav-principal li.g-merceria a:hover { background: var(--rosa-hover); }
-html[data-casa="academy"] .nav-principal li.g-aprende a { background: var(--rosa-principal); color: #fff; }
-html[data-casa="academy"] .nav-principal li.g-aprende a:hover { background: var(--rosa-hover); }
+html[data-casa="merceria"] .nav-principal li.g-merceria a { background: #fff; color: var(--rosa-texto); box-shadow: inset 0 0 0 1.5px var(--rosa-medio); }
+html[data-casa="merceria"] .nav-principal li.g-merceria a:hover, html[data-casa="merceria"] .nav-principal li.g-merceria a:focus-visible { background: var(--rosa-boton); color: var(--sobre-principal); box-shadow: none; }
+html[data-casa="academy"] .nav-principal li.g-aprende a { background: #fff; color: var(--rosa-texto); box-shadow: inset 0 0 0 1.5px var(--rosa-medio); }
+html[data-casa="academy"] .nav-principal li.g-aprende a:hover, html[data-casa="academy"] .nav-principal li.g-aprende a:focus-visible { background: var(--rosa-boton); color: var(--sobre-principal); box-shadow: none; }
 .nav-movil-panel .grupo-nav.otras-casas { color: var(--tinta-suave); margin-top: 8px; }
 .nav-movil-panel a.otras-casas { font-size: 0.88rem; color: var(--tinta-suave); padding-top: 10px; padding-bottom: 10px; }
 
@@ -138,7 +138,7 @@ html[data-casa="academy"] .nav-principal li.g-aprende a:hover { background: var(
 .pie-logo-wrap { background: #fff; display: inline-block; padding: 4px 8px; border-radius: 12px; margin-bottom: 12px; }
 .pie-logo-wrap img { height: 52px; display: block; }
 .pie-rico p { opacity: 0.85; margin: 0 0 12px; max-width: 34ch; }
-.pie-rico h3 { color: var(--rosa-medio); font-size: 0.88rem; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; }
+.pie-rico h3, .pie-rico .pie-h3 { color: #F7A6CC; font-size: 0.88rem; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; }
 .pie-rico ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
 .pie-rico a { color: var(--blanco-hueso); opacity: 0.85; text-decoration: none; }
 .pie-rico a:hover { opacity: 1; color: var(--rosa-medio); }
@@ -162,3 +162,35 @@ html[data-casa="academy"] .nav-principal li.g-aprende a:hover { background: var(
 @media (max-width: 600px) { .encabezado .logo-img { height: 38px; } }
 .encabezado .boton-buscar-header, .encabezado .boton-carrito-header { width: 38px; height: 38px; }
 .nav-principal li a { padding-top: 6px; padding-bottom: 6px; }
+html[data-casa="merceria"] .pie-rico .pie-h3, html[data-casa="academy"] .pie-rico .pie-h3 { color: var(--rosa-medio); }
+/* Imágenes con ancho y alto en el HTML: reservan su espacio al cargar, pero el CSS de cada página sigue mandando */
+:where(img[width][height]) { width: auto; height: auto; max-width: 100%; }
+
+/* Barra de anuncios que se desplaza (Tienda y Mercería) */
+.franja-anuncios {
+  background: var(--tinta); color: var(--blanco); overflow: hidden;
+  white-space: nowrap; padding: 9px 0; font-size: 0.85rem; font-weight: 500;
+}
+.franja-anuncios .cinta {
+  display: flex; width: max-content;
+  animation: desplazar-anuncios 24s linear infinite;
+}
+.franja-anuncios .cinta span { margin: 0 36px; white-space: nowrap; }
+@keyframes desplazar-anuncios {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .franja-anuncios .cinta { animation: none; padding-left: 24px; }
+}
+
+/* Foco visible para quien navega con teclado (Tab) */
+:where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid var(--rosa-texto); outline-offset: 2px; border-radius: 6px; }
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--rosa-texto) !important; outline-offset: 2px; }
+.franja-casas a:focus-visible, .nav-principal a:focus-visible { outline-offset: 1px; }
+@media (prefers-reduced-motion: reduce) { .franja-anuncios .cinta { animation: none; } }
+
+/* Mercería y Academy: color de la casa solo como acento; fondos neutros y una nota cálida de la marca (rosa) */
+html[data-casa="merceria"] .banda-apertura, html[data-casa="academy"] .banda-apertura, html[data-casa="academy"] .materiales-academy { background: #FBE4EF; color: #8E1457; }
+html[data-casa="merceria"] .banda-apertura:hover { background: #F6C9DF; color: #8E1457; }
+html[data-casa="merceria"] .banda-apertura *, html[data-casa="academy"] .materiales-academy h2 { color: inherit; }

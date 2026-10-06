@@ -19,14 +19,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=14">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -34,14 +34,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 body { margin: 0; font-family: var(--fuente-cuerpo); color: var(--tinta); background: var(--blanco-hueso); line-height: 1.7; }
 h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; margin: 0 0 0.4em; }
 h1 { font-size: clamp(2rem, 4vw, 2.6rem); }
-h2 { font-size: 1.3rem; color: var(--rosa-principal); }
+h2 { font-size: 1.3rem; color: var(--rosa-texto); }
 h3 { font-size: 1.05rem; }
 main { padding: 50px 0 70px; }
 section.politica { background: var(--blanco); border-radius: var(--radio-suave); padding: 32px; box-shadow: var(--sombra-suave); margin-bottom: 30px; scroll-margin-top: 90px; }
 section.politica p { white-space: pre-line; margin-bottom: 14px; }
 .indice-politicas { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
 .indice-politicas a { background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: 999px; padding: 8px 14px; text-decoration: none; color: var(--tinta); font-weight: 600; font-size: 0.9rem; }
-.indice-politicas a:hover { border-color: var(--rosa-principal); color: var(--rosa-principal); }
+.indice-politicas a:hover { border-color: var(--rosa-principal); color: var(--rosa-texto); }
 .politica { scroll-margin-top: 90px; }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main.contenedor { padding-top: 24px; }
@@ -61,7 +61,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet">Tienda de amigurumis</a>
+    <a href="tienda.html" data-casa="crochet">Tienda de amigurumis</a>
     <a href="merceria/" data-casa="merceria">Mercería</a>
     <a href="academy/" data-casa="academy">Academy</a>
   </div>
@@ -115,7 +115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:FIN -->
 
 <main class="contenedor">
-  <p class="eslogan" style="color:var(--rosa-principal); font-weight:600; margin-bottom:8px;">Políticas Lana Rosa</p>
+  <p class="eslogan" style="color: var(--rosa-texto); font-weight:600; margin-bottom:8px;">Políticas Lana Rosa</p>
   <h1>Políticas</h1>
   <nav class="indice-politicas" aria-label="Índice de políticas">
     <a href="#envios">Envíos</a>
@@ -151,7 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h3 style="margin-bottom:8px;">Importante</h3>
     <p style="white-space:normal;">Lana Rosa se encarga de preparar y entregar correctamente cada pedido a la transportadora. Una vez despachado, los tiempos y condiciones de transporte dependen de la empresa encargada de la entrega.</p>
     <p style="white-space:normal;">Para pedidos personalizados o de varias unidades, recomendamos realizar la compra con anticipación para contar con el tiempo necesario de elaboración y envío.</p>
-    <p style="font-weight:600; color:var(--rosa-principal);">🚚 Envíos a toda Colombia.</p>
+    <p style="font-weight:600; color: var(--rosa-texto);">🚚 Envíos a toda Colombia.</p>
   </section>
 
   <section class="politica" id="cambios">
@@ -434,7 +434,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="pie-col">
-      <h3>Nuestras casas</h3>
+      <p class="pie-h3">Nuestras casas</p>
       <ul>
         <li><a href="tienda.html">Tienda de amigurumis</a></li>
         <li><a href="personaliza.html">Personaliza el tuyo</a></li>
@@ -444,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col">
-      <h3>Lana Rosa</h3>
+      <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
         <li><a href="revista.html">Revista</a></li>
@@ -454,7 +454,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col pie-contacto">
-      <h3>Contáctanos</h3>
+      <p class="pie-h3">Contáctanos</p>
       <ul>
         <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
@@ -480,9 +480,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- PIE:FIN -->
 
-<a href="https://wa.me/573205072801" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<div role="complementary" aria-label="WhatsApp"><a href="https://wa.me/573205072801" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.484 2 2.004 6.48 2.004 12c0 1.85.51 3.63 1.44 5.19L2 22l4.94-1.42A9.94 9.94 0 0012.004 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18a8.14 8.14 0 01-4.36-1.26l-.31-.18-3.05.87.87-3-.2-.32A8.17 8.17 0 013.82 12c0-4.51 3.67-8.18 8.18-8.18 4.51 0 8.18 3.67 8.18 8.18 0 4.51-3.67 8.18-8.18 8.18z"/></svg>
-</a>
+</a></div>
 <button class="boton-subir" id="boton-subir" aria-label="Subir al inicio de la página">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
 </button>
@@ -556,7 +556,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <div class="overlay-carrito" id="overlay-carrito"></div>
-<div class="panel-carrito" id="panel-carrito">
+<div role="region" aria-label="Tu carrito" class="panel-carrito" id="panel-carrito">
   <div class="panel-carrito-contenido">
     <div class="panel-carrito-header">
       <h2>Tu carrito</h2>

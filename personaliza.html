@@ -25,14 +25,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=14">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -40,13 +40,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 body { margin: 0; font-family: var(--fuente-cuerpo); color: var(--tinta); background: var(--blanco-hueso); line-height: 1.6; }
 h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; margin: 0 0 0.4em; }
 h1 { font-size: clamp(2.1rem, 4.2vw, 2.8rem); }
-h2 { font-size: 1.3rem; color: var(--rosa-principal); }
+h2 { font-size: 1.3rem; color: var(--rosa-texto); }
 .encabezado-pagina { padding: 48px 0 16px; }
 .encabezado-pagina p { color: var(--tinta-suave); font-size: 1.05rem; max-width: 62ch; }
 .pasos-resumen { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
 @media (max-width: 480px) { .galeria-tamanos-personalizado { gap: 8px; } }
 .paso-chip { background: var(--blanco); border-radius: 999px; padding: 8px 16px; font-size: 0.82rem; color: var(--tinta-suave); box-shadow: var(--sombra-suave); }
-.paso-chip b { color: var(--rosa-principal); }
+.paso-chip b { color: var(--rosa-texto); }
 form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); padding: 32px; box-shadow: var(--sombra-suave); margin-bottom: 60px; }
 .campo { margin-bottom: 22px; }
 .campo label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem; }
@@ -68,12 +68,12 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
   background: var(--rosa-suave); cursor: pointer;
 }
 .zona-foto input[type="file"] { display: none; }
-.zona-foto .texto-zona { color: var(--rosa-principal); font-weight: 600; }
+.zona-foto .texto-zona { color: var(--rosa-texto); font-weight: 600; }
 .zona-foto .subtexto { font-size: 0.82rem; color: var(--tinta-suave); margin-top: 6px; }
 .previsualizacion-grid { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
 .previsualizacion-grid img { width: 90px; height: 90px; object-fit: cover; border-radius: 12px; box-shadow: var(--sombra-suave); }
 .boton-enviar {
-  width: 100%; background: var(--rosa-principal); color: var(--blanco); border: none;
+  width: 100%; background: var(--rosa-boton); color: var(--sobre-principal); border: none;
   padding: 16px; border-radius: 999px; font-weight: 600; font-size: 1.02rem; cursor: pointer;
 }
 .boton-enviar:hover { background: var(--rosa-hover); }
@@ -88,8 +88,8 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .respuestas-rapidas summary { display: flex; align-items: center; gap: 10px; padding: 14px 16px; cursor: pointer; list-style: none; }
 .respuestas-rapidas summary::-webkit-details-marker { display: none; }
 .respuestas-rapidas summary > span:first-child { font-size: 1.3rem; flex-shrink: 0; }
-.respuestas-rapidas h2 { font-size: 1rem; color: var(--rosa-principal); margin: 0; flex: 1; }
-.respuestas-rapidas .flecha-rapida { color: var(--rosa-principal); font-size: 1rem; transition: transform 0.2s; flex-shrink: 0; }
+.respuestas-rapidas h2 { font-size: 1rem; color: var(--rosa-texto); margin: 0; flex: 1; }
+.respuestas-rapidas .flecha-rapida { color: var(--rosa-texto); font-size: 1rem; transition: transform 0.2s; flex-shrink: 0; }
 .respuestas-rapidas details[open] .flecha-rapida { transform: rotate(180deg); }
 .respuestas-rapidas p { margin: 0; padding: 0 16px 14px; font-size: 0.9rem; color: var(--tinta-suave); }
 @media (max-width: 520px) { .respuestas-rapidas { gap: 8px; } .respuestas-rapidas summary { padding: 11px 12px; gap: 8px; } .respuestas-rapidas h2 { font-size: 0.9rem; } .respuestas-rapidas p { font-size: 0.85rem; padding: 0 12px 12px; } }
@@ -97,7 +97,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .proceso-personaliza { list-style: none; padding: 0; margin: 0 0 30px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
 @media (max-width: 760px) { .proceso-personaliza { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .proceso-personaliza li { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; background: var(--rosa-suave); border-radius: 14px; padding: 12px 8px; }
-.proceso-personaliza li span { width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+.proceso-personaliza li span { width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-boton); color: var(--sobre-principal); font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
 .proceso-personaliza strong { font-size: 0.92rem; }
 .proceso-personaliza small { font-size: 0.76rem; color: var(--tinta-suave); line-height: 1.3; }
 /* Filas deslizables: preguntas rápidas y pasos */
@@ -127,7 +127,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .carrusel figure { flex: 0 0 100%; margin: 0; scroll-snap-align: start; }
 .carrusel img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: contain; background: #FBF7F2; display: block; border-radius: 16px; }
 .carrusel figcaption { margin-top: 10px; font-size: 0.92rem; color: var(--tinta-suave); text-align: center; line-height: 1.4; min-height: 2.8em; }
-.carrusel-flecha { position: absolute; top: calc(50% - 40px); transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(255,255,255,0.92); color: var(--rosa-principal); font-size: 1.6rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(58,42,46,0.15); }
+.carrusel-flecha { position: absolute; top: calc(50% - 40px); transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(255,255,255,0.92); color: var(--rosa-texto); font-size: 1.6rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(58,42,46,0.15); }
 .carrusel-flecha.ant { left: 8px; }
 .carrusel-flecha.sig { right: 8px; }
 .carrusel-flecha[disabled] { opacity: 0.35; cursor: default; }
@@ -136,16 +136,16 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 @media (max-width: 700px) { .casos-personaliza.casos-tres { margin-left: -24px; margin-right: -24px; } }
 @media (min-width: 701px) { .entregados-personaliza { display: flex; flex-wrap: wrap; justify-content: center; } .entregados-personaliza figure { flex: 0 0 calc((100% - 64px) / 5); } }
 .enlace-resenas { margin: 0 0 30px; font-size: 0.9rem; }
-.enlace-resenas a { color: var(--rosa-principal); font-weight: 700; text-decoration: none; }
+.enlace-resenas a { color: var(--rosa-texto); font-weight: 700; text-decoration: none; }
 .nota-tamanos { color: var(--tinta-suave); font-size: 0.9rem; margin: -6px 0 0; }
 .desc-tamano { font-size: 0.82rem; color: var(--tinta-suave); margin: 2px 0 0; }
 .boton-wa-exito { display: inline-block; margin-top: 10px; background: #25D366; color: #fff !important; border-radius: 999px; padding: 8px 16px; font-weight: 700; text-decoration: none; }
-.boton-ir-form { display: inline-block; margin-top: 14px; background: var(--rosa-principal); color: #fff; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 700; }
+.boton-ir-form { display: inline-block; margin-top: 14px; background: var(--rosa-boton); color: var(--sobre-principal); text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 700; }
 .boton-ir-form:hover { background: var(--rosa-hover); }
 #form-personalizado { scroll-margin-top: 110px; }
 #pide-el-tuyo { scroll-margin-top: 100px; }
 .titulo-formulario { text-align: center; margin: 36px 0 16px; }
-.titulo-formulario h2 { color: var(--rosa-principal); font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin: 0 0 6px; }
+.titulo-formulario h2 { color: var(--rosa-texto); font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin: 0 0 6px; }
 .titulo-formulario p { margin: 0; color: var(--tinta-suave); }
 /* Puentes entre secciones del ecosistema Lana Rosa */
 .puentes { margin: 0 0 56px; }
@@ -154,9 +154,9 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .puente { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); background: var(--blanco); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
 .puente:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
 .puente .icono-puente { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
-.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.02rem; margin-bottom: 2px; }
+.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.02rem; margin-bottom: 2px; }
 .puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
-.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
+.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-texto); }
 @media (max-width: 520px) { .rosina-encabezado { display: none; } }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 23px !important; }
@@ -218,7 +218,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet" class="casa-actual" aria-current="true">Tienda de amigurumis</a>
+    <a href="tienda.html" data-casa="crochet" class="casa-actual" aria-current="true">Tienda de amigurumis</a>
     <a href="merceria/" data-casa="merceria">Mercería</a>
     <a href="academy/" data-casa="academy">Academy</a>
   </div>
@@ -275,12 +275,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main class="contenedor">
   <div class="encabezado-pagina" style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
     <div style="flex:1; min-width:240px;">
-      <p class="eslogan" style="color:var(--rosa-principal); font-weight:600; margin-bottom:8px;">Personaliza Lana Rosa</p>
+      <p class="eslogan" style="color: var(--rosa-texto); font-weight:600; margin-bottom:8px;">Personaliza Lana Rosa</p>
       <h1>Personaliza tu amigurumi</h1>
       <p>Envíanos una foto y los detalles: la convertimos en un amigurumi único, tejido a mano.</p>
       <a href="#pide-el-tuyo" class="boton-ir-form">Quiero cotizar el mío ↓</a>
     </div>
-    <img class="rosina-encabezado" src="img/rosina-abrazo.webp" alt="Rosina abrazando un corazón tejido" style="width:130px; height:130px; object-fit:cover; border-radius:50%; box-shadow:var(--sombra-suave); flex-shrink:0;">
+    <img class="rosina-encabezado" src="img/rosina-abrazo.webp" alt="Rosina abrazando un corazón tejido" style="width:130px; height:130px; object-fit:cover; border-radius:50%; box-shadow:var(--sombra-suave); flex-shrink:0;" width="320" height="350">
   </div>
 
   <div class="respuestas-rapidas">
@@ -335,7 +335,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="enlace-resenas"><a href="https://share.google/n6K8HLUVxId3Km0k4" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
 
   <h2 class="titulo-proceso">Así funciona</h2>
-  <ol class="proceso-personaliza">
+  <ol class="proceso-personaliza" tabindex="0" aria-label="Pasos para personalizar tu amigurumi">
     <li><span>1</span><strong>Tu idea</strong><small>Nos envías fotos y detalles</small></li>
     <li><span>2</span><strong>Cotización</strong><small>Analizamos y te enviamos el precio</small></li>
     <li><span>3</span><strong>Confirmación</strong><small>Apruebas y confirmas el pago</small></li>
@@ -347,17 +347,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="nota-tamanos">También tejemos de 10 cm, llaveros y peluches.</p>
   <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:16px 0 28px;" class="galeria-tamanos-personalizado">
     <div style="text-align:center;">
-      <img src="img/personalizado-13cm.webp" alt="Ejemplo de amigurumi personalizado de 13 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;" loading="lazy" decoding="async">
+      <img src="img/personalizado-13cm.webp" alt="Ejemplo de amigurumi personalizado de 13 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;" loading="lazy" decoding="async" width="500" height="625">
       <p style="font-weight:600; margin:0;">13 cm</p>
       <p class="desc-tamano">Ideal para detalles y regalos pequeños.</p>
     </div>
     <div style="text-align:center;">
-      <img src="img/personalizado-15cm.webp" alt="Ejemplo de amigurumi personalizado de 15 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;" loading="lazy" decoding="async">
+      <img src="img/personalizado-15cm.webp" alt="Ejemplo de amigurumi personalizado de 15 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;" loading="lazy" decoding="async" width="500" height="625">
       <p style="font-weight:600; margin:0;">15 cm</p>
       <p class="desc-tamano">Una opción equilibrada para regalar y conservar.</p>
     </div>
     <div style="text-align:center;">
-      <img src="img/personalizado-20cm.webp" alt="Ejemplo de amigurumi personalizado de 20 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;" loading="lazy" decoding="async">
+      <img src="img/personalizado-20cm.webp" alt="Ejemplo de amigurumi personalizado de 20 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;" loading="lazy" decoding="async" width="500" height="625">
       <p style="font-weight:600; margin:0;">20 cm</p>
       <p class="desc-tamano">Mayor tamaño y presencia.</p>
     </div>
@@ -407,7 +407,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <option value="Otro (nacional)">Otra ciudad de Colombia</option>
         </select>
         <input type="text" id="ciudad-otra" name="ciudad-otra" placeholder="Escribe tu ciudad o municipio" autocomplete="address-level2" style="display:none; margin-top:10px;">
-        <p class="ayuda" style="font-weight:600; color:var(--rosa-principal);">📦 El envío va aparte: Villamaría $8.000, Manizales $13.000, otras ciudades $18.000.</p>
+        <p class="ayuda" style="font-weight:600; color: var(--rosa-texto);">📦 El envío va aparte: Villamaría $8.000, Manizales $13.000, otras ciudades $18.000.</p>
       </div>
     </div>
 
@@ -451,11 +451,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="margin-bottom:16px;">Cuando te confirmemos el precio, paga por Nequi o Bre-B y envíanos el comprobante por WhatsApp.</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
       <div style="background:var(--blanco); border-radius:14px; padding:16px;">
-        <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Nequi</p>
+        <p style="font-weight:600; margin:0 0 4px; color: var(--rosa-texto);">Nequi</p>
         <p style="margin:0;">320 507 2801</p>
       </div>
       <div style="background:var(--blanco); border-radius:14px; padding:16px;">
-        <p style="font-weight:600; margin:0 0 4px; color:var(--rosa-principal);">Bre-B</p>
+        <p style="font-weight:600; margin:0 0 4px; color: var(--rosa-texto);">Bre-B</p>
         <p style="margin:0;">Llave: 320 507 2801</p>
       </div>
     </div>
@@ -485,7 +485,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="pie-col">
-      <h3>Tienda de amigurumis</h3>
+      <p class="pie-h3">Tienda de amigurumis</p>
       <ul>
         <li><a href="tienda.html">Ver catálogo</a></li>
         <li><a href="personaliza.html">Personaliza el tuyo</a></li>
@@ -493,7 +493,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col">
-      <h3>Lana Rosa</h3>
+      <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
         <li><a href="revista.html?casa=crochet">Revista</a></li>
@@ -503,7 +503,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col pie-contacto">
-      <h3>Contáctanos</h3>
+      <p class="pie-h3">Contáctanos</p>
       <ul>
         <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
@@ -718,9 +718,9 @@ form.addEventListener('submit', async (evento) => {
 });
 </script>
 
-<a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Quiero%20cotizar%20un%20amigurumi%20personalizado." class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<div role="complementary" aria-label="WhatsApp"><a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Quiero%20cotizar%20un%20amigurumi%20personalizado." class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.484 2 2.004 6.48 2.004 12c0 1.85.51 3.63 1.44 5.19L2 22l4.94-1.42A9.94 9.94 0 0012.004 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18a8.14 8.14 0 01-4.36-1.26l-.31-.18-3.05.87.87-3-.2-.32A8.17 8.17 0 013.82 12c0-4.51 3.67-8.18 8.18-8.18 4.51 0 8.18 3.67 8.18 8.18 0 4.51-3.67 8.18-8.18 8.18z"/></svg>
-</a>
+</a></div>
 <script>
 (function() {
   var boton = document.getElementById('boton-menu-movil');
@@ -794,7 +794,7 @@ form.addEventListener('submit', async (evento) => {
 })();
 </script>
 <div class="overlay-carrito" id="overlay-carrito"></div>
-<div class="panel-carrito" id="panel-carrito">
+<div role="region" aria-label="Tu carrito" class="panel-carrito" id="panel-carrito">
   <div class="panel-carrito-contenido">
     <div class="panel-carrito-header">
       <h2>Tu carrito</h2>

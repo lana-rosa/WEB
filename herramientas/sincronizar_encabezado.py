@@ -16,7 +16,7 @@ CASA_DE = {
     'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
-CASAS = [('crochet', 'Tienda de amigurumis', 'index.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/')]
+CASAS = [('crochet', 'Tienda de amigurumis', 'tienda.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/')]
 CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'comun': 'g-comun'}
 
 # (texto, enlace, clase de color)
@@ -136,6 +136,15 @@ MOVIL = {
   </nav>''',
 }
 
+ANUNCIOS = {
+    'merceria': ['🚚 Envíos a toda Colombia', '🧶 Los mismos materiales con los que tejemos cada amigurumi', '📍 Tienda física en Villamaría, Caldas', '💕 Todo para tejer, en un solo lugar'],
+}
+
+def anuncios(casa):
+    if casa not in ANUNCIOS: return ''
+    spans = ''.join(f'\n    <span>{t}</span>' for t in ANUNCIOS[casa] * 2)
+    return f'<div class="franja-anuncios" role="region" aria-label="Anuncios"><div class="cinta">{spans}\n  </div></div>\n'
+
 def franja(casa):
     items = []
     for k, nombre, href in CASAS:
@@ -175,7 +184,7 @@ def encabezado(pagina):
     texto, enlace = LOGO[casa]
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
     return f'''<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
-{franja(casa)}
+{anuncios(casa)}{franja(casa)}
 <header class="encabezado" data-casa="{casa or 'comun'}">
   <div class="contenedor">
     <a href="{enlace}" class="logo"><img src="{img}" alt="{alt}" class="logo-img" width="600" height="384"><span class="texto-logo">{texto}</span></a>
@@ -235,12 +244,12 @@ def pie_casa(modelo, casa):
       </div>
     </div>
     <div class="pie-col">
-      <h3>{titulo}</h3>
+      <p class="pie-h3">{titulo}</p>
       <ul>{lis}
       </ul>
     </div>
     <div class="pie-col">
-      <h3>Lana Rosa</h3>
+      <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
         <li><a href="{rev}">Revista</a></li>
@@ -250,7 +259,7 @@ def pie_casa(modelo, casa):
       </ul>
     </div>
     <div class="pie-col pie-contacto">
-      <h3>Contáctanos</h3>
+      <p class="pie-h3">Contáctanos</p>
       <ul>
         <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>

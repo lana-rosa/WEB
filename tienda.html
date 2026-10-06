@@ -36,14 +36,14 @@ window.__rpcLR = {};
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=14">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -52,10 +52,10 @@ html { scroll-behavior: smooth; }
 body { margin: 0; font-family: var(--fuente-cuerpo); color: var(--tinta); background: var(--blanco-hueso); line-height: 1.6; }
 h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; margin: 0 0 0.4em; }
 h1 { font-size: clamp(2.1rem, 4.2vw, 2.8rem); }
-h2 { font-size: 1.6rem; color: var(--rosa-principal); }
+h2 { font-size: 1.6rem; color: var(--rosa-texto); }
 h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .encabezado-pagina { padding: 0 0 8px; max-width: 700px; }
-.encabezado-pagina .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 8px; }
+.encabezado-pagina .eslogan { color: var(--rosa-texto); font-weight: 600; margin-bottom: 8px; }
 .encabezado-tienda-grid { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; padding-top: 23px; }
 @media (max-width: 800px) { .encabezado-tienda-grid { grid-template-columns: 1fr; } }
 .encabezado-pagina p { color: var(--tinta-suave); font-size: 1.05rem; }
@@ -80,7 +80,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
   font-size: 0.92rem; color: var(--tinta); white-space: nowrap; margin-top: 20px;
 }
 .filtros-desplegables summary::-webkit-details-marker { display: none; }
-.filtros-desplegables[open] summary { border-color: var(--rosa-principal); color: var(--rosa-principal); }
+.filtros-desplegables[open] summary { border-color: var(--rosa-principal); color: var(--rosa-texto); }
 @media (max-width: 600px) {
   .barra-controles-tienda { margin-top: 10px; padding: 8px 0; gap: 8px; }
   .selector-categorias label { display: none; }
@@ -95,7 +95,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 }
 .cerrar-filtros { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 1.4rem; line-height: 1; cursor: pointer; color: var(--tinta-suave); }
 @media (max-width: 600px) { .filtros-desplegables .buscador-productos { right: auto; left: 0; } }
-.chip-categoria:hover { border-color: var(--rosa-principal); color: var(--rosa-principal); }
+.chip-categoria:hover { border-color: var(--rosa-principal); color: var(--rosa-texto); }
 .separador-nav-categorias { display: flex; align-items: center; font-weight: 700; color: var(--lila); font-size: 0.85rem; padding: 8px 6px 8px 14px; margin-left: 4px; border-left: 2px solid var(--lila-suave); }
 .chip-merceria { border-color: var(--lila-suave); }
 .chip-merceria:hover { border-color: var(--lila); color: var(--lila); }
@@ -103,7 +103,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .ficha-merceria { font-size: 0.78rem; color: var(--tinta-suave); margin: 2px 0 8px; }
 .proximamente-merceria { background: var(--lila-suave); border-radius: 14px; padding: 20px; color: var(--tinta-suave); max-width: 480px; }
 /* Vista de una sola categoría (#peluches, #lanas-merceria...) */
-.volver-categorias { display: none; align-items: center; gap: 6px; margin: 18px 0 0; font-weight: 700; color: var(--rosa-principal); text-decoration: none; font-size: 0.95rem; }
+.volver-categorias { display: none; align-items: center; gap: 6px; margin: 18px 0 0; font-weight: 700; color: var(--rosa-texto); text-decoration: none; font-size: 0.95rem; }
 .volver-categorias:hover { text-decoration: underline; }
 body.vista-categoria .volver-categorias { display: inline-flex; }
 body.vista-categoria .categoria-seccion:not(.categoria-activa) { display: none !important; }
@@ -117,30 +117,30 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .producto-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .producto-foto.foto-ancha::before { content: ''; position: absolute; inset: -24px; background: var(--foto) center / cover no-repeat; filter: blur(18px); opacity: 0.75; }
 .producto-foto.foto-ancha img { position: relative; z-index: 1; object-fit: contain; }
-.producto-foto .foto-marcador { font-size: 0.78rem; color: var(--rosa-principal); text-align: center; padding: 12px; align-items: center; justify-content: center; height: 100%; }
+.producto-foto .foto-marcador { font-size: 0.78rem; color: var(--rosa-texto); text-align: center; padding: 12px; align-items: center; justify-content: center; height: 100%; }
 .producto-info { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1; }
 .producto-info h3 { font-size: 1.08rem; line-height: 1.3; margin: 0; min-height: 2.6em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .producto-precio { font-weight: 600; color: var(--tinta); margin: 0; }
 .producto-estado { font-size: 0.8rem; font-weight: 500; }
 .producto-estado.disponible { color: #2e7d32; }
 .producto-estado.bajo-pedido { color: var(--tinta-suave); }
-.boton-pedir { margin-top: auto; text-align: center; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
+.boton-pedir { margin-top: auto; text-align: center; background: var(--rosa-boton); color: var(--sobre-principal) !important; text-decoration: none; padding: 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
 .boton-pedir:hover { background: var(--rosa-hover); }
 .producto-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 28px; }
 .producto-marca { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-suave); font-weight: 600; }
-.producto-precio { font-size: 1.18rem; font-weight: 700; color: var(--rosa-principal); }
+.producto-precio { font-size: 1.18rem; font-weight: 700; color: var(--rosa-texto); }
 .producto-precio .moneda { font-size: 0.7rem; font-weight: 500; color: var(--tinta-suave); }
 .producto-estado { display: inline-block; align-self: flex-start; padding: 3px 10px; border-radius: 8px; margin: 2px 0 10px; }
 .producto-estado.disponible { background: #E8F5E9; }
 .producto-estado.bajo-pedido { background: var(--rosa-suave); }
 .producto-card .boton-agregar-carrito {
-  margin-top: auto; background: var(--rosa-principal); color: #fff; border: none; padding: 12px; font-size: 1rem;
+  margin-top: auto; background: var(--rosa-boton); color: var(--sobre-principal); border: none; padding: 12px; font-size: 1rem;
   width: 100%; border-radius: 999px; font-weight: 700; text-align: center; cursor: pointer;
 }
 .producto-card .boton-agregar-carrito:hover { background: var(--rosa-hover); }
 .producto-card .boton-agregar-carrito.agregado { background: #2e7d32; }
 .producto-card .boton-pedir { margin-top: 6px; background: none; color: var(--tinta-suave) !important; text-decoration: underline; padding: 4px 0 0; font-weight: 500; font-size: 0.8rem; }
-.producto-card .boton-pedir:hover { background: none; color: var(--rosa-principal) !important; }
+.producto-card .boton-pedir:hover { background: none; color: var(--rosa-texto) !important; }
 .boton-agregar-carrito:hover { background: var(--rosa-suave); }
 .boton-agregar-carrito.agregado { background: #2e7d32; border-color: #2e7d32; color: #fff; }
 .producto-foto { cursor: pointer; }
@@ -155,7 +155,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .boton-favorito:not(.boton-favorito-modal) svg .mas { stroke-width: 1.6; }
 .boton-favorito[aria-pressed="true"]:not(.boton-favorito-modal) svg .cora { fill: #E0182D; stroke: #E0182D; }
 .boton-favorito[aria-pressed="true"] svg .mas { display: none; }
-.boton-favorito-modal { display: inline-flex; align-items: center; gap: 6px; position: static; width: auto; height: auto; color: var(--rosa-principal); border-radius: 999px; padding: 8px 16px; font: inherit; font-weight: 700; font-size: 0.95rem; color: #1F1F23; border: 2px solid #1F1F23; background: var(--blanco); box-shadow: none; margin: 4px 0 12px; }
+.boton-favorito-modal { display: inline-flex; align-items: center; gap: 6px; position: static; width: auto; height: auto; color: var(--rosa-texto); border-radius: 999px; padding: 8px 16px; font: inherit; font-weight: 700; font-size: 0.95rem; color: #1F1F23; border: 2px solid #1F1F23; background: var(--blanco); box-shadow: none; margin: 4px 0 12px; }
 .boton-favorito-modal[aria-pressed="true"] { color: #E0182D; border-color: #E0182D; }
 .boton-favorito-modal.activo { background: #FDE8EA; }
 .aviso-favorito { position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%); z-index: 2000; background: #45454A; color: #fff; padding: 12px 18px; border-radius: 16px; max-width: calc(100vw - 32px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); font-size: 0.92rem; }
@@ -175,7 +175,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .modal-galeria .miniaturas img.activa { border-color: var(--rosa-principal); }
 .modal-info-producto { padding: 28px; }
 .modal-info-producto h2 { font-size: 1.4rem; margin-bottom: 8px; }
-.modal-info-producto .precio-modal { font-size: 1.3rem; font-weight: 700; color: var(--rosa-principal); margin-bottom: 10px; }
+.modal-info-producto .precio-modal { font-size: 1.3rem; font-weight: 700; color: var(--rosa-texto); margin-bottom: 10px; }
 .modal-info-producto .descripcion-modal { margin-bottom: 18px; color: var(--tinta-suave); }
 .ficha-tecnica { list-style: none; padding: 0; margin: 0 0 20px; font-size: 0.9rem; }
 .ficha-tecnica > li { padding: 4px 0; }
@@ -185,16 +185,16 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .ficha-tecnica li.ficha-lista ul { margin: 0; padding-left: 20px; }
 .ficha-tecnica li.ficha-lista ul li { margin-bottom: 4px; color: var(--tinta-suave); }
 .modal-botones { display: flex; flex-direction: column; gap: 10px; }
-.modal-botones button.boton-primario { background: var(--rosa-principal); color: var(--blanco); font: inherit; font-weight: 600; padding: 12px 20px; border-radius: 999px; }
+.modal-botones button.boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); font: inherit; font-weight: 600; padding: 12px 20px; border-radius: 999px; }
 .modal-botones button.boton-primario:hover { filter: brightness(0.95); }
 .personalizalo-modal { margin-top: 14px; padding: 12px 14px; border: 2px dashed var(--rosa-medio); border-radius: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
 .personalizalo-modal p { margin: 0; font-size: 0.92rem; color: var(--tinta-suave); }
-.personalizalo-modal a { color: var(--rosa-principal); font-weight: 700; text-decoration: none; white-space: nowrap; }
+.personalizalo-modal a { color: var(--rosa-texto); font-weight: 700; text-decoration: none; white-space: nowrap; }
 .personalizalo-modal a:hover { text-decoration: underline; }
 .banda-personaliza { display: flex; align-items: center; justify-content: space-between; gap: 18px 32px; flex-wrap: wrap; background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 26px 32px; margin: 10px 0 20px; }
 .banda-personaliza h2 { font-size: 1.3rem; margin: 0 0 6px; }
 .banda-personaliza p { margin: 0; color: var(--tinta-suave); max-width: 60ch; }
-.banda-personaliza .boton-primario { display: inline-block; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+.banda-personaliza .boton-primario { display: inline-block; background: var(--rosa-boton); color: var(--sobre-principal) !important; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 600; white-space: nowrap; }
 @media (max-width: 560px) { .banda-personaliza { padding: 22px 20px; } }
 .cargando-merceria { color: var(--tinta-suave); padding: 20px 0; }
 .producto-card.esqueleto { box-shadow: none; border: 1px solid rgba(var(--rosa-rgb),0.12); padding-bottom: 18px; gap: 10px; }
@@ -208,8 +208,8 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .boton-ver-mas {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   width: fit-content; max-width: 100%; margin: 20px auto 8px;
-  background: var(--rosa-principal); border: none;
-  color: var(--blanco); padding: 12px 30px; border-radius: 999px;
+  background: var(--rosa-boton); border: none;
+  color: var(--sobre-principal); padding: 12px 30px; border-radius: 999px;
   font-weight: 700; font-size: 0.95rem; cursor: pointer;
 }
 .boton-ver-mas:hover { background: var(--rosa-hover); color: var(--blanco); }
@@ -222,7 +222,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .campo { margin-bottom: 18px; }
 .campo label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.92rem; }
 .tarjeta { background: var(--blanco); border-radius: var(--radio-suave); padding: 26px; box-shadow: var(--sombra-suave); }
-#selector-estrellas span.activa { color: var(--rosa-principal); }
+#selector-estrellas span.activa { color: var(--rosa-texto); }
 /* Fila deslizable (reseñas) */
 .fila-deslizable { display: flex; flex-wrap: nowrap; gap: 16px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; padding: 4px 2px 14px; margin-bottom: 24px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
 .fila-deslizable::-webkit-scrollbar { height: 6px; }
@@ -230,30 +230,30 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .fila-deslizable::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 999px; }
 .fila-deslizable > * { flex: 0 0 min(300px, 82%); scroll-snap-align: start; }
 .tarjeta-resena { background: var(--blanco); border-radius: 16px; padding: 18px; box-shadow: var(--sombra-suave); }
-.tarjeta-resena .estrellas-resena { color: var(--rosa-principal); font-size: 1.1rem; margin-bottom: 6px; }
+.tarjeta-resena .estrellas-resena { color: var(--rosa-texto); font-size: 1.1rem; margin-bottom: 6px; }
 .tarjeta-resena p.comentario-resena { color: var(--tinta-suave); font-size: 0.92rem; margin-bottom: 10px; }
 .tarjeta-resena .autor-resena { font-weight: 600; font-size: 0.88rem; }
-.tarjeta-resena .pieza-resena { display: inline-block; font-size: 0.78rem; font-weight: 600; color: var(--rosa-principal); background: var(--rosa-suave); border-radius: 999px; padding: 3px 10px; margin-bottom: 8px; }
+.tarjeta-resena .pieza-resena { display: inline-block; font-size: 0.78rem; font-weight: 600; color: var(--rosa-texto); background: var(--rosa-suave); border-radius: 999px; padding: 3px 10px; margin-bottom: 8px; }
 .resumen-resenas { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; background: var(--blanco); border-radius: 20px; padding: 20px 24px; box-shadow: var(--sombra-suave); margin-bottom: 24px; }
-.resumen-resenas .promedio-grande { font-family: var(--fuente-titulo); font-size: 2.6rem; color: var(--rosa-principal); line-height: 1; }
-.resumen-resenas .estrellas-grandes { color: var(--rosa-principal); font-size: 1.3rem; letter-spacing: 2px; }
+.resumen-resenas .promedio-grande { font-family: var(--fuente-titulo); font-size: 2.6rem; color: var(--rosa-texto); line-height: 1; }
+.resumen-resenas .estrellas-grandes { color: var(--rosa-texto); font-size: 1.3rem; letter-spacing: 2px; }
 .resumen-resenas .total-resenas { color: var(--tinta-suave); font-size: 0.9rem; }
 .resumen-resenas .grupos-resenas { display: flex; flex-wrap: wrap; gap: 8px; }
 .resumen-resenas .grupo-resena { background: var(--rosa-suave); color: var(--tinta); border-radius: 999px; padding: 6px 14px; font-size: 0.85rem; }
-.resumen-resenas .grupo-resena strong { color: var(--rosa-principal); }
-.producto-calificacion { color: var(--rosa-principal); font-size: 0.85rem; font-weight: 600; margin: -4px 0 6px; }
+.resumen-resenas .grupo-resena strong { color: var(--rosa-texto); }
+.producto-calificacion { color: var(--rosa-texto); font-size: 0.85rem; font-weight: 600; margin: -4px 0 6px; }
 .producto-calificacion span { color: var(--tinta-suave); font-weight: 400; }
-.calificacion-modal { color: var(--rosa-principal); font-weight: 600; margin: -6px 0 12px; }
+.calificacion-modal { color: var(--rosa-texto); font-weight: 600; margin: -6px 0 12px; }
 .calificacion-modal span { color: var(--tinta-suave); font-weight: 400; }
 .resenas-modal { margin-top: 22px; }
 .resenas-modal h3 { font-size: 1rem; margin-bottom: 10px; }
 .resenas-modal .resena-modal-item { background: var(--blanco); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; font-size: 0.9rem; }
-.resenas-modal .resena-modal-item .estrellas-resena { color: var(--rosa-principal); }
+.resenas-modal .resena-modal-item .estrellas-resena { color: var(--rosa-texto); }
 .resenas-modal .resena-modal-item p { margin: 4px 0; color: var(--tinta-suave); }
 #resena-producto { width: 100%; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--rosa-suave); font-family: var(--fuente-cuerpo); background: var(--blanco); color: var(--tinta); }
 .aviso-personalizado { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 28px 32px; margin: 20px 0 40px; max-width: 780px; }
-.aviso-personalizado a.boton-primario { display: inline-block; margin-top: 10px; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-weight: 600; }
-button.boton-primario { background: var(--rosa-principal); color: var(--blanco); font: inherit; font-weight: 600; padding: 12px 20px; border-radius: 999px; }
+.aviso-personalizado a.boton-primario { display: inline-block; margin-top: 10px; background: var(--rosa-boton); color: var(--sobre-principal) !important; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-weight: 600; }
+button.boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); font: inherit; font-weight: 600; padding: 12px 20px; border-radius: 999px; }
 button.boton-primario:hover { filter: brightness(0.95); }
 .aviso-personaje { font-size: 0.82rem; color: var(--tinta-suave); background: var(--blanco-hueso); border-left: 3px solid var(--rosa-medio); border-radius: 8px; padding: 8px 12px; margin: 8px 0 12px; }
 /* Categorías con foto, como en el Inicio (29-sep-2026) */
@@ -265,7 +265,7 @@ button.boton-primario:hover { filter: brightness(0.95); }
 .categorias-visual img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; display: block; border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .categorias-visual a:hover img { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(58,42,46,0.12); }
 .categorias-visual span { display: block; margin-top: 7px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 0.82rem; line-height: 1.2; }
-.categorias-visual .cat-personaliza span { color: var(--rosa-principal); }
+.categorias-visual .cat-personaliza span { color: var(--rosa-texto); }
 .categorias-visual .cat-personaliza img { object-fit: contain; background: #FFF8FA; }
 .ver-mas-categorias { display: none !important; }
 @media (max-width: 700px) {
@@ -304,9 +304,9 @@ html.producto-abierto { overflow: hidden; }
 .overlay-modal-producto.abierto { display: block; }
 .modal-producto { background: var(--blanco); border-radius: 0; max-width: 1120px; width: auto; margin: 0 auto; max-height: none; overflow: visible; padding: 0 16px 90px; }
 .pagina-producto-barra { position: sticky; top: 0; z-index: 5; background: var(--blanco); padding: 12px 0; border-bottom: 1px solid rgba(69,69,74,0.08); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
-.modal-producto-cerrar { position: static; width: auto; height: auto; border-radius: 999px; padding: 8px 16px; font: inherit; font-size: 0.9rem; font-weight: 700; color: var(--rosa-principal); background: var(--rosa-suave); box-shadow: none; }
+.modal-producto-cerrar { position: static; width: auto; height: auto; border-radius: 999px; padding: 8px 16px; font: inherit; font-size: 0.9rem; font-weight: 700; color: var(--rosa-texto); background: var(--rosa-suave); box-shadow: none; }
 .migas-producto { font-size: 0.85rem; color: var(--tinta-suave); }
-.migas-producto .actual { color: var(--rosa-principal); font-weight: 600; }
+.migas-producto .actual { color: var(--rosa-texto); font-weight: 600; }
 .modal-producto-grid { display: grid; grid-template-columns: 1fr; gap: 22px; margin-top: 16px; }
 @media (min-width: 900px) { .modal-producto-grid { grid-template-columns: 1.1fr 0.9fr; gap: 44px; } .modal-info-producto { position: sticky; top: 76px; align-self: start; } }
 .modal-galeria { padding: 0; background: transparent; gap: 14px; }
@@ -325,11 +325,11 @@ html.producto-abierto { overflow: hidden; }
 .cantidad-producto input { width: 46px; text-align: center; border: none; border-left: 1.5px solid rgba(69,69,74,0.2); border-right: 1.5px solid rgba(69,69,74,0.2); font: inherit; font-weight: 600; -moz-appearance: textfield; }
 .cantidad-producto input::-webkit-outer-spin-button, .cantidad-producto input::-webkit-inner-spin-button { -webkit-appearance: none; }
 .fila-compra .boton-primario { flex: 1; margin: 0; background: var(--blanco) !important; color: var(--tinta) !important; border: 1.5px solid var(--tinta) !important; border-radius: 999px; padding: 12px 10px; font-weight: 700; }
-.boton-comprar-ahora { display: block; width: 100%; margin: 0 0 12px; padding: 13px 20px; border: none; border-radius: 999px; background: var(--rosa-principal); color: var(--blanco); font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; }
+.boton-comprar-ahora { display: block; width: 100%; margin: 0 0 12px; padding: 13px 20px; border: none; border-radius: 999px; background: var(--rosa-boton); color: var(--sobre-principal); font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; }
 .boton-comprar-ahora:hover { background: var(--rosa-hover); }
 .modal-botones { margin-bottom: 14px; }
 .modal-botones .enlace-whatsapp-ficha { display: block; text-align: center; color: var(--tinta-suave); text-decoration: underline; font-size: 0.92rem; padding: 6px 0; }
-.modal-botones .enlace-whatsapp-ficha:hover { color: var(--rosa-principal); }
+.modal-botones .enlace-whatsapp-ficha:hover { color: var(--rosa-texto); }
 .caja-confianza-producto { list-style: none; margin: 18px 0 22px; padding: 16px 18px; background: var(--rosa-suave); border-radius: 14px; display: grid; gap: 12px; }
 .caja-confianza-producto li { display: flex; gap: 12px; align-items: center; font-size: 0.85rem; color: var(--tinta-suave); }
 .caja-confianza-producto .ico { width: 38px; height: 38px; border-radius: 50%; background: var(--blanco); display: grid; place-items: center; font-size: 1.1rem; flex: 0 0 auto; }
@@ -339,7 +339,7 @@ html.producto-abierto { overflow: hidden; }
 .como-se-paga > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none; }
 .como-se-paga > summary::-webkit-details-marker { display: none; }
 .como-se-paga > summary h2 { margin: 0; }
-.como-se-paga .flecha-paga { color: var(--rosa-principal); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
+.como-se-paga .flecha-paga { color: var(--rosa-texto); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
 .como-se-paga[open] .flecha-paga { transform: rotate(180deg); }
 .como-se-paga[open] > summary { margin-bottom: 12px; }
 </style>
@@ -358,7 +358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <nav class="franja-casas" aria-label="Casas Lana Rosa">
   <div class="contenedor">
-    <a href="index.html" data-casa="crochet" class="casa-actual" aria-current="true">Tienda de amigurumis</a>
+    <a href="tienda.html" data-casa="crochet" class="casa-actual" aria-current="true">Tienda de amigurumis</a>
     <a href="merceria/" data-casa="merceria">Mercería</a>
     <a href="academy/" data-casa="academy">Academy</a>
   </div>
@@ -441,7 +441,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="barra-controles-tienda">
     <div class="selector-categorias">
       <label for="selector-categoria">Ir a categoría</label>
-      <select id="selector-categoria">
+      <select id="selector-categoria" aria-label="Elegir categoría">
         <option value="">Todas las categorías</option>
         <option value="#amigurumis">Amigurumis</option>
         <option value="#peluches">Peluches</option>
@@ -534,11 +534,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div id="resumen-resenas" class="resumen-resenas" style="display:none;"></div>
     <div id="lista-resenas" class="fila-deslizable"></div>
-    <p style="margin:-8px 0 24px;"><a href="https://share.google/n6K8HLUVxId3Km0k4" target="_blank" rel="noopener" style="color:var(--rosa-principal);font-weight:700;">Ver reseñas en Google →</a></p>
+    <p style="margin:-8px 0 24px;"><a href="https://share.google/n6K8HLUVxId3Km0k4" target="_blank" rel="noopener" style="color: var(--rosa-texto);font-weight:700;">Ver reseñas en Google →</a></p>
     <p id="sin-resenas" style="display:none; color:var(--tinta-suave);">Todavía no hay reseñas publicadas — ¡sé la primera en dejar una!</p>
 
     <details style="max-width:520px;">
-      <summary style="cursor:pointer; font-weight:600; color:var(--rosa-principal); margin-bottom:16px;">✍️ Dejar una reseña</summary>
+      <summary style="cursor:pointer; font-weight:600; color: var(--rosa-texto); margin-bottom:16px;">✍️ Dejar una reseña</summary>
       <form id="form-resena" class="tarjeta" style="margin-top:14px;">
         <div class="campo">
           <label for="resena-nombre">Tu nombre*</label>
@@ -585,9 +585,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="aviso-personalizado" style="background:var(--blanco); box-shadow:var(--sombra-suave);">
     <details class="como-se-paga"><summary><h2 style="font-size:1.2rem;">¿Cómo se paga?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
     <p>Agrega tus productos al carrito, toca <strong>Continuar compra</strong> y paga en línea de forma segura con Wompi: tarjeta crédito o débito, PSE, Nequi o Bancolombia. No necesitas crear una cuenta.</p>
-    <p style="font-weight:600; color:var(--rosa-principal); margin-top:10px;">📦 Envío: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000. Recoger en la tienda es gratis.</p>
+    <p style="font-weight:600; color: var(--rosa-texto); margin-top:10px;">📦 Envío: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000. Recoger en la tienda es gratis.</p>
     <p style="margin-top:10px;">¿Prefieres pagar por transferencia? Escríbenos por <a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp</a> y te damos los datos de Nequi o Bre-B.</p>
-    <p style="font-weight:600; color:var(--rosa-principal); margin-top:14px;">🕒 Entrega: 1 semana después de confirmar el pago, o con envío inmediato según disponibilidad.</p>
+    <p style="font-weight:600; color: var(--rosa-texto); margin-top:14px;">🕒 Entrega: 1 semana después de confirmar el pago, o con envío inmediato según disponibilidad.</p>
   </details>
   </div>
 
@@ -607,7 +607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="pie-col">
-      <h3>Tienda de amigurumis</h3>
+      <p class="pie-h3">Tienda de amigurumis</p>
       <ul>
         <li><a href="tienda.html">Ver catálogo</a></li>
         <li><a href="personaliza.html">Personaliza el tuyo</a></li>
@@ -615,7 +615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col">
-      <h3>Lana Rosa</h3>
+      <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
         <li><a href="revista.html?casa=crochet">Revista</a></li>
@@ -625,7 +625,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div class="pie-col pie-contacto">
-      <h3>Contáctanos</h3>
+      <p class="pie-h3">Contáctanos</p>
       <ul>
         <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
@@ -651,9 +651,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- PIE:FIN -->
 
-<a href="https://wa.me/573205072801" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<div role="complementary" aria-label="WhatsApp"><a href="https://wa.me/573205072801" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.484 2 2.004 6.48 2.004 12c0 1.85.51 3.63 1.44 5.19L2 22l4.94-1.42A9.94 9.94 0 0012.004 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18a8.14 8.14 0 01-4.36-1.26l-.31-.18-3.05.87.87-3-.2-.32A8.17 8.17 0 013.82 12c0-4.51 3.67-8.18 8.18-8.18 4.51 0 8.18 3.67 8.18 8.18 0 4.51-3.67 8.18-8.18 8.18z"/></svg>
-</a>
+</a></div>
 <script>
 var extensionesProducto = ['.jpg', '.jpg.png', '.jpg.jpg', '.png', '.jpeg'];
 // Fotos horizontales: se ven completas (sin cortar los lados) sobre un fondo difuminado de la misma foto
@@ -1028,7 +1028,7 @@ function inicializarBuscadorTienda() {
 </script>
 
 <div class="overlay-carrito" id="overlay-carrito"></div>
-<div class="panel-carrito" id="panel-carrito">
+<div role="region" aria-label="Tu carrito" class="panel-carrito" id="panel-carrito">
   <div class="panel-carrito-contenido">
     <div class="panel-carrito-header">
       <h2>Tu carrito</h2>
