@@ -135,7 +135,7 @@ main { padding-bottom: 60px; }
 
 /* ===== Identidad por casa: cada casa cambia la paleta de toda la página (html[data-casa]) ===== */
 :root { --rosa-hover: #B83E78; --rosa-rgb: 231, 78, 150; }
-html[data-casa="merceria"] { --rosa-principal: #8E55D6; --rosa-medio: #B99AEA; --rosa-suave: #EFE6FB; --rosa-hover: #6A2FB5; --rosa-rgb: 142, 85, 214; }
+html[data-casa="merceria"] { --rosa-principal: #8E55D6; --rosa-medio: #C4A9F0; --rosa-suave: #EFE6FB; --rosa-hover: #6A2FB5; --rosa-rgb: 142, 85, 214; }
 html[data-casa="academy"]  { --rosa-principal: #2A6FCB; --rosa-medio: #8DB8F0; --rosa-suave: #E3EEFC; --rosa-hover: #0B4FA3; --rosa-rgb: 42, 111, 203; }
 html[data-casa="merceria"] .encabezado { background: rgba(239, 230, 251, 0.92); }
 html[data-casa="academy"] .encabezado { background: rgba(227, 238, 252, 0.92); }
