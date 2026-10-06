@@ -35,7 +35,8 @@
 .overlay-bono { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1002; display: none; align-items: center; justify-content: center; padding: 20px; }
 .overlay-bono.abierto { display: flex; }
 .modal-bono { background: var(--blanco-hueso); border-radius: var(--radio-suave); max-width: 420px; width: 100%; padding: 34px 28px; position: relative; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-.modal-bono-cerrar { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--tinta-suave); }
+.modal-bono-cerrar { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; background: none; border: none; font-size: 1.8rem; line-height: 1; cursor: pointer; color: var(--tinta); border-radius: 50%; }
+.modal-bono-cerrar:hover { background: var(--rosa-suave); }
 .modal-bono .etiqueta-bono { display: inline-block; background: var(--rosa-principal); color: #fff; font-weight: 700; padding: 6px 16px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 14px; }
 .modal-bono h2 { font-size: 1.4rem; margin-bottom: 8px; }
 .modal-bono p.intro-bono { color: var(--tinta-suave); margin-bottom: 6px; font-size: 0.95rem; }
@@ -78,12 +79,22 @@
   var form = document.getElementById('form-bono'), error = document.getElementById('bono-error');
   var resultado = document.getElementById('resultado-bono'), codigo = document.getElementById('codigo-bono-texto');
 
-  // Aparece una sola vez: a los 20 segundos o al bajar media página, lo que ocurra primero
-  var mostrado = false;
+  // Aparece una sola vez: a los 20 segundos o al bajar media página (nunca antes de los 8 segundos), lo que ocurra primero.
+  // Si la persona está haciendo otra cosa (menú, carrito, chat de Rosina o escribiendo), espera a que termine.
+  var mostrado = false, inicio = Date.now(), previo = null;
+  function ocupada() {
+    var a = document.activeElement;
+    return !!document.querySelector('.panel-carrito.abierto, .nav-movil-panel.abierto, .rc-panel.abierto, .rc-ventana.abierto, .panel-buscar-header.abierto') ||
+      (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && !overlay.contains(a));
+  }
   function mostrar() {
-    if (mostrado) return; mostrado = true;
+    if (mostrado) return;
+    if (Date.now() - inicio < 8000 || ocupada()) { setTimeout(mostrar, 4000); return; }
+    mostrado = true;
     window.removeEventListener('scroll', revisarScroll);
+    previo = document.activeElement;
     overlay.classList.add('abierto');
+    document.getElementById('cerrar-modal-bono').focus();
   }
   function revisarScroll() {
     var total = document.documentElement.scrollHeight - window.innerHeight;
@@ -93,10 +104,19 @@
   window.addEventListener('scroll', revisarScroll, { passive: true });
 
   function visto() { try { localStorage.setItem(CLAVE_VISTO, '1'); } catch (e) {} }
-  function cerrar() { overlay.classList.remove('abierto'); visto(); }
+  function cerrar() { overlay.classList.remove('abierto'); visto(); if (previo && previo.focus) { try { previo.focus(); } catch (e) {} } }
   document.getElementById('cerrar-modal-bono').addEventListener('click', cerrar);
   overlay.addEventListener('click', function (e) { if (e.target === overlay) cerrar(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('abierto')) cerrar(); });
+  document.addEventListener('keydown', function (e) {
+    if (!overlay.classList.contains('abierto')) return;
+    if (e.key === 'Escape') { cerrar(); return; }
+    if (e.key !== 'Tab') return; // el foco se queda dentro del cuadro mientras está abierto
+    var f = Array.prototype.filter.call(overlay.querySelectorAll('a[href], button, input'), function (x) { return x.offsetParent !== null && !x.disabled; });
+    if (!f.length) return;
+    var p = f[0], u = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === p) { e.preventDefault(); u.focus(); }
+    else if (!e.shiftKey && document.activeElement === u) { e.preventDefault(); p.focus(); }
+  });
 
   form.addEventListener('submit', function (ev) {
     ev.preventDefault(); error.style.display = 'none';
