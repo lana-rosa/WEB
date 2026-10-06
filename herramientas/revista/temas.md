@@ -15,13 +15,13 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 - [x] Qué aguja de crochet usar con cada grosor de hilo (crochet, Mercería y Academy) — 6-oct-2026
 
 - [x] Cómo leer un patrón de crochet: abreviaturas y símbolos (crochet, Academy) — 6-oct-2026
+- [x] Anillo mágico paso a paso y errores comunes (crochet, Academy) — 6-oct-2026
 
 ## Próximos (en este orden)
 
 - [ ] Regalos para graduaciones hechos a mano (regalos)
 - [ ] Cuánto cobrar por tus tejidos: guía para tejedoras que venden (emprendimiento) → calculadora de costos
 - [ ] Conoce a Rosina: la historia de nuestra ovejita (mundo Rosina)
-- [ ] Anillo mágico paso a paso y errores comunes (crochet) → tutorial de Instagram
 - [ ] Cómo cuidar y lavar tus prendas y peluches tejidos (crochet)
 - [ ] Ideas de regalo para el Día de la madre (regalos) — publicar en abril
 - [ ] Ideas de regalo para el Día del padre (regalos) — publicar en mayo o junio
