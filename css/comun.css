@@ -138,7 +138,7 @@ html[data-casa="academy"] .nav-principal li.g-aprende a:hover { background: var(
 .pie-logo-wrap { background: #fff; display: inline-block; padding: 4px 8px; border-radius: 12px; margin-bottom: 12px; }
 .pie-logo-wrap img { height: 52px; display: block; }
 .pie-rico p { opacity: 0.85; margin: 0 0 12px; max-width: 34ch; }
-.pie-rico h3 { color: #F7A6CC; font-size: 0.88rem; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; }
+.pie-rico h3, .pie-rico .pie-h3 { color: #F7A6CC; font-size: 0.88rem; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; }
 .pie-rico ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
 .pie-rico a { color: var(--blanco-hueso); opacity: 0.85; text-decoration: none; }
 .pie-rico a:hover { opacity: 1; color: var(--rosa-medio); }
@@ -162,6 +162,30 @@ html[data-casa="academy"] .nav-principal li.g-aprende a:hover { background: var(
 @media (max-width: 600px) { .encabezado .logo-img { height: 38px; } }
 .encabezado .boton-buscar-header, .encabezado .boton-carrito-header { width: 38px; height: 38px; }
 .nav-principal li a { padding-top: 6px; padding-bottom: 6px; }
-html[data-casa="merceria"] .pie-rico h3, html[data-casa="academy"] .pie-rico h3 { color: var(--rosa-medio); }
+html[data-casa="merceria"] .pie-rico .pie-h3, html[data-casa="academy"] .pie-rico .pie-h3 { color: var(--rosa-medio); }
 /* Imágenes con ancho y alto en el HTML: reservan su espacio al cargar, pero el CSS de cada página sigue mandando */
 :where(img[width][height]) { width: auto; height: auto; max-width: 100%; }
+
+/* Barra de anuncios que se desplaza (Tienda y Mercería) */
+.franja-anuncios {
+  background: var(--tinta); color: var(--blanco); overflow: hidden;
+  white-space: nowrap; padding: 9px 0; font-size: 0.85rem; font-weight: 500;
+}
+.franja-anuncios .cinta {
+  display: flex; width: max-content;
+  animation: desplazar-anuncios 24s linear infinite;
+}
+.franja-anuncios .cinta span { margin: 0 36px; white-space: nowrap; }
+@keyframes desplazar-anuncios {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .franja-anuncios .cinta { animation: none; padding-left: 24px; }
+}
+
+/* Foco visible para quien navega con teclado (Tab) */
+:where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid var(--rosa-texto); outline-offset: 2px; border-radius: 6px; }
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--rosa-texto) !important; outline-offset: 2px; }
+.franja-casas a:focus-visible, .nav-principal a:focus-visible { outline-offset: 1px; }
+@media (prefers-reduced-motion: reduce) { .franja-anuncios .cinta { animation: none; } }
