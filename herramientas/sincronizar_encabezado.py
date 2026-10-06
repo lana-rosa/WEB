@@ -37,6 +37,18 @@ MENUS = {
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
 LOGO_IMG = {'merceria': ('img/logo-merceria.webp', 'Lana Rosa Mercería'), 'academy': ('img/logo-academy.webp', 'Lana Rosa Academy')}
 
+# íconos de la pestaña y color de la barra del celular por casa
+ICONOS = {
+    'merceria': ('/img/favicon-merceria-256.png', '/img/apple-touch-icon-merceria.png', '#8E55D6'),
+    'academy': ('/img/favicon-academy-256.png', '/img/apple-touch-icon-academy.png', '#2A6FCB'),
+}
+ICONOS_BASE = ('/img/favicon-256.png', '/img/apple-touch-icon.png', '#E74E96')
+
+def iconos(casa):
+    ico, apple, color = ICONOS.get(casa, ICONOS_BASE)
+    return (f'<!-- ICONOS:INICIO (generado) -->\n<link rel="icon" type="image/png" href="{ico}">\n'
+            f'<link rel="apple-touch-icon" href="{apple}">\n<meta name="theme-color" content="{color}">\n<!-- ICONOS:FIN -->')
+
 # nombre bajo el logo y destino del logo por casa
 LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria/'), 'academy': ('Academy', 'academy/'),
         None: ('Inicio', 'index.html')}
@@ -78,9 +90,6 @@ MOVIL = {
     <p class="grupo-nav">Ayuda</p>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
-    <p class="grupo-nav otras-casas">Otras casas de Lana Rosa</p>
-    <a class="otras-casas" href="merceria/">Mercería</a>
-    <a class="otras-casas" href="academy/">Lana Rosa Academy</a>
   </nav>''',
     'merceria': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="merceria/">Inicio de la Mercería</a>
@@ -97,13 +106,9 @@ MOVIL = {
     <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="revista.html">Revista</a>
-    <a href="recursos-rosina.html">Recursos gratis de Rosina</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
-    <p class="grupo-nav otras-casas">Otras casas de Lana Rosa</p>
-    <a class="otras-casas" href="index.html">Tienda de amigurumis</a>
-    <a class="otras-casas" href="aprende.html">Lana Rosa Academy</a>
   </nav>''',
     'academy': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="academy/">Inicio de Academy</a>
@@ -119,15 +124,11 @@ MOVIL = {
     <a href="calculadoras-rosina.html">Calculadoras</a>
     <a href="agenda-rosina.html">Agenda de proyectos</a>
     <a href="rosina.html">Conoce a Rosina</a>
-    <p class="grupo-nav">Materiales e ideas</p>
-    <a href="merceria/">Mercería</a>
+    <p class="grupo-nav">Ideas</p>
     <a href="revista.html">Revista</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
-    <p class="grupo-nav otras-casas">Otras casas de Lana Rosa</p>
-    <a class="otras-casas" href="index.html">Tienda de amigurumis</a>
-    <a class="otras-casas" href="merceria/">Mercería</a>
   </nav>''',
 }
 
@@ -242,6 +243,10 @@ def main():
         else:
             s = re.sub(r'<footer class="pie-rico".*?</footer>', lambda m: bloque, s, count=1, flags=re.S)
         casa = CASA_DE.get(n)
+        # íconos de pestaña y color de la barra: quita los que había y pone los de la casa
+        s = re.sub(r'<!-- ICONOS:INICIO.*?<!-- ICONOS:FIN -->\n?', '', s, flags=re.S)
+        s = re.sub(r'<link rel="icon"[^>]*>\n?|<link rel="apple-touch-icon"[^>]*>\n?|<meta name="theme-color"[^>]*>\n?', '', s)
+        s = s.replace('</head>', iconos(casa) + '\n</head>', 1)
         s = re.sub(r'<html lang="es-CO"[^>]*>', '<html lang="es-CO"' + (f' data-casa="{casa}"' if casa else '') + '>', s, count=1)
         open(f, 'w', encoding='utf-8').write(s)
         print('ok', n)
