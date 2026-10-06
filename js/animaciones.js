@@ -14,7 +14,7 @@
 
   // aparición al hacer scroll: solo lo que está debajo de la pantalla y dentro del ancho visible
   if ('IntersectionObserver' in window) {
-    var SEL = 'main section .contenedor > *, main .ed-historia, main .ed-tejer-item, main .ed-tienda > a, main .faq-item, .pie-rico .pie-grid > div';
+    var SEL = 'main section .contenedor > *, main .ed-historia, main .ed-tejer-item, main .ed-tienda > a, main .faq-item, .pie-rico .pie-grid > div, main .cat-merceria, main .puente, main .razon, main .banda-apertura, main .aviso-personalizado, main .puerta, main .herramienta, main .mat-pasos li, main .rosina-academy, main .materiales-academy, main .seccion-merceria > h2, main .seccion-academy > h2';
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('rev-in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });

@@ -38,3 +38,21 @@
 .saludo-rosina b { color: var(--rosa-principal, var(--rosa-principal)); }
 .saludo-rosina .saludo-cerrar { position: absolute; top: 2px; right: 4px; background: none; border: none; font-size: 1.1rem; line-height: 1; color: #888; cursor: pointer; padding: 4px; }
 .saludo-rosina[hidden] { display: none; }
+
+/* Mercería y Academy: entrada suave del encabezado de la página y tarjetas que se elevan al pasar el mouse */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-merceria .hero-texto > *, .hero-academy > div > * { animation: hero-entra .7s ease-out both; }
+  .hero-merceria .hero-texto > :nth-child(2), .hero-academy > div > :nth-child(2) { animation-delay: .08s; }
+  .hero-merceria .hero-texto > :nth-child(3), .hero-academy > div > :nth-child(3) { animation-delay: .16s; }
+  .hero-merceria .hero-texto > :nth-child(4), .hero-academy > div > :nth-child(4) { animation-delay: .24s; }
+  .hero-merceria .hero-foto, .hero-academy > figure, .hero-academy > picture, .hero-academy .hero-foto { animation: hero-foto-entra .9s ease-out .15s both; }
+  @keyframes hero-entra { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes hero-foto-entra { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+  @media (hover: hover) {
+    .cat-merceria, .puente, .razon, .puerta, .herramienta, .mat-pasos a { transition: transform .25s ease, box-shadow .25s ease; }
+    .cat-merceria:hover, .puente:hover, .puerta:hover, .herramienta:hover, .mat-pasos a:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(150, 90, 70, 0.18); }
+    .puerta img, .hero-merceria .hero-foto img { transition: transform .6s ease; }
+    .puerta:hover img { transform: scale(1.04); }
+    .puerta { overflow: hidden; }
+  }
+}
