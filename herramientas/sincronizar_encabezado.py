@@ -200,29 +200,83 @@ def encabezado(pagina):
 {movil}
 <!-- CASAS:FIN -->'''
 
-def pie(origen):
-    m = re.search(r'<footer class="pie-rico".*?</footer>', origen, re.S)
-    return m.group(0)
+PIE_FAQ = {'crochet': 'preguntas-frecuentes.html', 'merceria': 'merceria/preguntas-frecuentes/', 'academy': 'academy/preguntas-frecuentes/'}
+PIE_REVISTA = {'crochet': 'revista.html?casa=crochet', 'merceria': 'revista.html?casa=merceria', 'academy': 'revista.html?casa=academy'}
+PIE_COMUN = ('Tres casas, una sola familia: amigurumis, mercería y academia de crochet en Manizales / Villamaría, Colombia.', 'Nuestras casas',
+             [('Tienda de amigurumis', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'),
+              ('Lana Rosa Academy', 'academy/'), ('Revista', 'revista.html')])
+PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
 
 def pie_casa(modelo, casa):
-    if casa not in PIE:
-        return modelo
-    frase, titulo, enlaces = PIE[casa]
-    if casa in LOGO_IMG:
-        img, alt = LOGO_IMG[casa]
-        modelo = modelo.replace('<img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"', f'<img src="{img}" alt="{alt}"', 1)
-    m = modelo.replace('Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.', frase, 1)
+    """Pie compacto: marca + redes, enlaces de la casa, Lana Rosa, contacto; luego pagos/apoyo y legal en una franja."""
+    frase, titulo, enlaces = PIE.get(casa) or PIE_COMUN
+    img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
     def li(t, h):
         if not h: return f'\n        <li>{t}</li>'
         ext = ' target="_blank" rel="noopener"' if h.startswith('http') else ''
         return f'\n        <li><a href="{h}"{ext}>{t}</a></li>'
-    lis = ''.join(li(t, h) for t, h in enlaces)
-    return re.sub(r'<h3>Tienda</h3>\s*<ul>.*?</ul>', lambda _: f'<h3>{titulo}</h3>\n      <ul>{lis}\n      </ul>', m, count=1, flags=re.S)
+    # los enlaces de la casa: sin duplicados de Precios, sin horarios sueltos (van en Contáctanos)
+    enl = [(t, h) for t, h in enlaces if h and t not in ('Precios', 'Herrajes', 'Comprar en línea', 'Inicio de Academy', 'Calculadoras', 'Agenda')]
+    lis = ''.join(li(t, h) for t, h in enl)
+    faq = PIE_FAQ.get(casa, 'preguntas-frecuentes.html')
+    rev = PIE_REVISTA.get(casa, 'revista.html')
+    horario = ''.join(li(t, None) for t in PIE_HORARIO) if casa == 'merceria' else ''
+    return f'''<footer class="pie-rico">
+  <div class="contenedor pie-grid">
+    <div class="pie-marca">
+      <div class="pie-logo-wrap"><img src="{img}" alt="{alt}" loading="lazy" decoding="async"></div>
+      <p>{frase}</p>
+      <div class="pie-redes" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/lana.rosa.2025" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.tiktok.com/@lanarosacrochet" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div class="pie-col">
+      <h3>{titulo}</h3>
+      <ul>{lis}
+      </ul>
+    </div>
+    <div class="pie-col">
+      <h3>Lana Rosa</h3>
+      <ul>
+        <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
+        <li><a href="{rev}">Revista</a></li>
+        <li><a href="{faq}">Preguntas frecuentes</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="pie-col pie-contacto">
+      <h3>Contáctanos</h3>
+      <ul>
+        <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
+        <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
+        <li>Calle 10 #5-37 Centro, Villamaría, Caldas · <a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver en Google ↗</a></li>{horario}
+      </ul>
+    </div>
+  </div>
+  <div class="contenedor pie-franja">
+    <div class="pie-pagos"><span class="pie-etiqueta">Pagos</span><span>Efectivo</span><span>Nequi</span><span>Bre-B</span><span>Tarjeta débito/crédito</span></div>
+    <div class="pie-apoyo"><span>Con el apoyo de</span>
+      <img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+      <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+    </div>
+  </div>
+  <div class="contenedor pie-legal">
+    <a href="politicas.html#envios">Envíos</a>
+    <a href="politicas.html#cambios">Cambios</a>
+    <a href="politicas.html#datos">Datos personales</a>
+    <a href="politicas.html#uso">Uso del sitio</a>
+    <a href="politicas.html#cookies">Cookies</a>
+    <span class="derechos">© 2026 Lana Rosa Crochet</span>
+  </div>
+</footer>'''
 
 def main():
     # el pie modelo es el de las páginas comunes (contacto.html no tiene casa, así que nunca se modifica)
-    idx = open(os.path.join(RAIZ, 'contacto.html'), encoding='utf-8').read()
-    modelo = pie(idx)
+    modelo = None
     archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True)) + sorted(glob.glob(os.path.join(RAIZ, 'academy', '**', 'index.html'), recursive=True))
     for f in archivos:
         rel = os.path.relpath(f, RAIZ).replace(os.sep, '/')
