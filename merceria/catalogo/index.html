@@ -24,6 +24,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:url" content="https://lanarosacrochet.com/merceria/catalogo/">
 <meta property="og:image" content="https://lanarosacrochet.com/img/logo-merceria.jpg">
 
+<link rel="preconnect" href="https://ngjoognzvehwjtpqwrqe.supabase.co" crossorigin>
+<script>
+window.__rpcLR = {};
+['obtener_merceria_web'].forEach(function (n) {
+  window.__rpcLR[n] = fetch('https://ngjoognzvehwjtpqwrqe.supabase.co/rest/v1/rpc/' + n, { method: 'POST', headers: { apikey: 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', Authorization: 'Bearer sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', 'Content-Type': 'application/json' }, body: '{}' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  window.__rpcLR[n].catch(function () {});
+});
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -110,6 +119,13 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .ficha-merceria { font-size: 0.78rem; color: var(--tinta-suave); margin: 2px 0 8px; }
 .proximamente-merceria { background: var(--lila-suave); border-radius: 14px; padding: 20px; color: var(--tinta-suave); max-width: 480px; }
 .cargando-merceria { color: var(--tinta-suave); padding: 20px 0; }
+.producto-card.esqueleto { box-shadow: none; border: 1px solid rgba(var(--rosa-rgb),0.12); padding-bottom: 18px; gap: 10px; }
+.esqueleto .sk-foto { aspect-ratio: 1 / 1; background: linear-gradient(100deg, var(--rosa-suave) 30%, #fff 50%, var(--rosa-suave) 70%) 0 0 / 300% 100%; animation: sk-brillo 1.4s linear infinite; }
+.esqueleto .sk-linea { height: 14px; margin: 0 16px; border-radius: 8px; background: var(--rosa-suave); }
+.esqueleto .sk-linea.corta { width: 40%; }
+.solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+@keyframes sk-brillo { to { background-position: -150% 0; } }
+@media (prefers-reduced-motion: reduce) { .esqueleto .sk-foto { animation: none; } }
 .producto-card.producto-agotado { opacity: 0.7; }
 .etiqueta-agotado {
   position: absolute; top: 10px; right: 10px; background: var(--tinta); color: #fff;
@@ -418,13 +434,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="categoria-seccion" id="lanas-merceria">
       <h2>Lanas</h2>
       <div class="grid-productos" id="grid-lanas-merceria">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
     <section class="categoria-seccion" id="hilos-merceria">
       <h2>Hilos</h2>
       <div class="grid-productos" id="grid-hilos-merceria">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
     <section class="categoria-seccion" id="agujas-merceria" hidden>
@@ -577,8 +593,15 @@ function manejarErrorFoto(img) {
 })();
 </script>
 <script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-const supabase = createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD');
+// Los productos se piden con fetch directo (sin esperar la librería de Supabase), que ya arrancó en el <head>.
+let _clienteSb = null;
+function clienteSb() {
+  return _clienteSb || (_clienteSb = import('https://esm.sh/@supabase/supabase-js@2').then(function (m) { return m.createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD'); }));
+}
+const supabase = { rpc: async function (nombre) {
+  try { return { data: await window.__rpcLR[nombre], error: null }; }
+  catch (e) { return (await clienteSb()).rpc(nombre); }
+} };
 
 function formatoCOP(valor) {
   return '$' + Math.round(valor).toLocaleString('es-CO');
