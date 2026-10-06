@@ -217,10 +217,6 @@ article.post ol li { margin-bottom: 8px; }
 .puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
 .puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-texto); }
 /* Categorías de la Revista */
-.casas-revista { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
-.casas-revista button { font: inherit; font-size: 0.82rem; font-weight: 600; padding: 5px 14px; border-radius: 8px; border: 1px solid rgba(69,69,74,0.18); background: transparent; color: var(--tinta-suave); cursor: pointer; }
-.casas-revista button:hover { color: var(--tinta); border-color: var(--tinta-suave); }
-.casas-revista button.activa { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
 .categorias-revista { display: flex; flex-wrap: nowrap; gap: 8px; margin: 0 0 22px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; padding: 2px 2px 12px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
 .categorias-revista::-webkit-scrollbar { height: 6px; }
 .categorias-revista::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
@@ -313,13 +309,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="intro">Consejos, cuidados y aprendizajes que nacen en nuestro taller, para que tus amigurumis duren más y disfrutes cada puntada.</p>
   </div>
 
-  <nav class="casas-revista" aria-label="Revista por casa">
-    <button type="button" class="activa" data-casa-filtro="todas" aria-pressed="true">Todas las casas</button>
-    <button type="button" data-casa-filtro="crochet" aria-pressed="false">Tienda de amigurumis</button>
-    <button type="button" data-casa-filtro="merceria" aria-pressed="false">Mercería</button>
-    <button type="button" data-casa-filtro="academy" aria-pressed="false">Academy</button>
-  </nav>
-
   <nav class="categorias-revista" aria-label="Categorías de la Revista">
     <button type="button" class="activa" data-filtro="todas" aria-pressed="true">Todo</button>
     <button type="button" data-filtro="crochet" aria-pressed="false">🧶 Crochet</button>
@@ -330,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button type="button" data-filtro="emprendimiento" aria-pressed="false">💼 Emprendimiento</button>
     <button type="button" data-filtro="sostenibilidad" aria-pressed="false">♻️ Sostenibilidad</button>
   </nav>
-  <p class="sin-articulos" id="sin-articulos" hidden>Muy pronto vamos a publicar más artículos aquí. Mientras tanto, <button type="button" data-filtro="todas">mira todos los artículos</button>.</p>
+  <p class="sin-articulos" id="sin-articulos" hidden>Muy pronto vamos a publicar más artículos aquí. Mientras tanto, <button type="button" data-filtro="todas">mira todas las categorías</button>.</p>
 
   <article class="post" id="leer-patron-crochet" data-categorias="crochet" data-casas="academy">
     <p class="meta">Crochet · Octubre 2026</p>
@@ -854,39 +843,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script>
-// Filtro de la Revista: por casa (data-casas) y por categoría (data-categorias). Con ?casa=merceria entra ya filtrada.
+// Filtro de la Revista: cada casa muestra solo sus artículos (data-casas). La casa viene de ?casa=merceria|academy|crochet (sin parámetro: Tienda de amigurumis).
 (function () {
   var botones = document.querySelectorAll('.categorias-revista button');
-  var botonesCasa = document.querySelectorAll('[data-casa-filtro]');
   var articulos = document.querySelectorAll('article.post[data-categorias]');
   var vacio = document.getElementById('sin-articulos');
-  var cat = 'todas', casa = 'todas';
+  var CASAS = ['crochet', 'merceria', 'academy'];
+  var q = new URLSearchParams(location.search).get('casa');
+  var cat = 'todas', casa = CASAS.indexOf(q) > -1 ? q : 'crochet';
+  function deCasa(a) { return (a.dataset.casas || '').split(' ').indexOf(casa) > -1; }
   function aplicar() {
     var visibles = 0;
     articulos.forEach(function (a) {
       var okCat = cat === 'todas' || a.dataset.categorias.split(' ').indexOf(cat) > -1;
-      var okCasa = casa === 'todas' || (a.dataset.casas || '').split(' ').indexOf(casa) > -1;
-      a.hidden = !(okCat && okCasa); if (!a.hidden) visibles++;
+      a.hidden = !(okCat && deCasa(a)); if (!a.hidden) visibles++;
     });
-    botones.forEach(function (b) { var on = b.dataset.filtro === cat; b.classList.toggle('activa', on); b.setAttribute('aria-pressed', on); });
-    botonesCasa.forEach(function (b) { var on = b.dataset.casaFiltro === casa; b.classList.toggle('activa', on); b.setAttribute('aria-pressed', on); });
-    // los colores de la página siguen a la casa elegida
-    if (casa === 'todas') document.documentElement.removeAttribute('data-casa'); else document.documentElement.setAttribute('data-casa', casa);
+    botones.forEach(function (b) {
+      var f = b.dataset.filtro, on = f === cat;
+      b.classList.toggle('activa', on); b.setAttribute('aria-pressed', on);
+      // solo se ofrecen las categorías que tienen artículos en esta casa
+      b.hidden = f !== 'todas' && !Array.prototype.some.call(articulos, function (a) { return deCasa(a) && a.dataset.categorias.split(' ').indexOf(f) > -1; });
+    });
+    document.documentElement.setAttribute('data-casa', casa); // los colores siguen a la casa
     vacio.hidden = visibles > 0;
   }
-  function filtrar(c) { cat = c; aplicar(); }
-  document.querySelectorAll('[data-filtro]').forEach(function (b) { b.addEventListener('click', function () { filtrar(b.dataset.filtro); }); });
-  botonesCasa.forEach(function (b) { b.addEventListener('click', function () { casa = b.dataset.casaFiltro; aplicar(); }); });
-  var q = new URLSearchParams(location.search).get('casa');
-  if (q && ['crochet', 'merceria', 'academy'].indexOf(q) > -1) { casa = q; aplicar(); }
-  // Si un enlace lleva a un artículo oculto por el filtro, se muestra todo otra vez
+  document.querySelectorAll('[data-filtro]').forEach(function (b) { b.addEventListener('click', function () { cat = b.dataset.filtro; aplicar(); }); });
+  // Si un enlace lleva a un artículo de otra casa, se abre en la casa a la que pertenece
   function mostrarDestino() {
     var destino = location.hash && document.getElementById(location.hash.slice(1));
-    if (destino && destino.hidden) { cat = 'todas'; casa = 'todas'; aplicar(); destino.scrollIntoView(); }
+    if (destino && destino.matches('article.post') && destino.hidden) {
+      if (!deCasa(destino)) casa = (destino.dataset.casas || casa).split(' ')[0];
+      cat = 'todas'; aplicar(); destino.scrollIntoView();
+    }
   }
   window.addEventListener('hashchange', mostrarDestino);
   document.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener('click', function () { setTimeout(mostrarDestino, 0); }); });
-  mostrarDestino();
+  aplicar(); mostrarDestino();
 })();
 </script>
 <script>
