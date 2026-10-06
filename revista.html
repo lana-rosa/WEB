@@ -156,14 +156,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=11">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -174,11 +174,11 @@ h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; margin: 0 0 0.
 h1 { font-size: clamp(2.2rem, 4.4vw, 3.1rem); }
 h2 { font-size: 1.5rem; }
 .hero { padding: 50px 0 20px; }
-.hero .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 8px; }
+.hero .eslogan { color: var(--rosa-texto); font-weight: 600; margin-bottom: 8px; }
 .hero p.intro { color: var(--tinta-suave); font-size: 1.05rem; }
 .indice { display: flex; gap: 10px; flex-wrap: wrap; margin: 24px 0 40px; }
 .indice a { background: var(--blanco); border: 1.5px solid var(--rosa-suave); text-decoration: none; color: var(--tinta); padding: 8px 16px; border-radius: 999px; font-size: 0.85rem; }
-.indice a:hover { border-color: var(--rosa-principal); color: var(--rosa-principal); }
+.indice a:hover { border-color: var(--rosa-principal); color: var(--rosa-texto); }
 article.post {
   background: var(--blanco); border-radius: var(--radio-suave); padding: 34px; box-shadow: var(--sombra-suave);
   margin-bottom: 34px; scroll-margin-top: 90px;
@@ -188,7 +188,7 @@ article.post h2 { margin-bottom: 14px; }
 article.post p { margin-bottom: 14px; }
 article.post ul { margin: 0 0 14px; padding-left: 20px; }
 article.post ul li { margin-bottom: 8px; }
-article.post h3 { font-size: 1.1rem; margin: 22px 0 8px; color: var(--rosa-principal); }
+article.post h3 { font-size: 1.1rem; margin: 22px 0 8px; color: var(--rosa-texto); }
 article.post ol { margin: 0 0 14px; padding-left: 22px; }
 article.post ol li { margin-bottom: 8px; }
 .firma { font-style: italic; color: var(--tinta-suave); margin-top: 20px; font-size: 0.92rem; }
@@ -198,13 +198,13 @@ article.post ol li { margin-bottom: 8px; }
 .figura-pausas { margin: 18px auto 20px; max-width: 600px; }
 .lamina-pausas { position: relative; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px rgba(58,42,46,0.12); }
 .lamina-pausas img { width: 100%; height: auto; display: block; }
-.marca-pausa { position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+.marca-pausa { position: absolute; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; background: var(--rosa-boton); color: var(--sobre-principal); font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
 @media (max-width: 600px) { .marca-pausa { width: 22px; height: 22px; font-size: 0.72rem; border-width: 2px; } }
 .figura-pausas figcaption { font-size: 0.85rem; color: var(--tinta-suave); text-align: center; margin-top: 8px; }
 .rutina-pausas { list-style: none; padding: 0 !important; margin: 0 0 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
 @media (max-width: 700px) { .rutina-pausas { grid-template-columns: 1fr; } }
 .rutina-pausas li { display: flex; gap: 10px; align-items: flex-start; margin: 0 !important; }
-.num-pausa { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-principal); color: #fff; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+.num-pausa { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-boton); color: var(--sobre-principal); font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
 .nota-pausas { font-size: 0.88rem; color: var(--tinta-suave); background: var(--rosa-suave); border-radius: 12px; padding: 10px 14px; }
 /* Puentes entre secciones del ecosistema Lana Rosa */
 .puentes { margin: 0 0 56px; }
@@ -213,14 +213,14 @@ article.post ol li { margin-bottom: 8px; }
 .puente { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); background: var(--blanco); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
 .puente:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
 .puente .icono-puente { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
-.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.02rem; margin-bottom: 2px; }
+.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.02rem; margin-bottom: 2px; }
 .puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
-.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
+.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-texto); }
 /* Categorías de la Revista */
 .casas-revista { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
 .casas-revista button { font: inherit; font-size: 0.82rem; font-weight: 600; padding: 5px 14px; border-radius: 8px; border: 1px solid rgba(69,69,74,0.18); background: transparent; color: var(--tinta-suave); cursor: pointer; }
 .casas-revista button:hover { color: var(--tinta); border-color: var(--tinta-suave); }
-.casas-revista button.activa { background: var(--rosa-principal); border-color: var(--rosa-principal); color: #fff; }
+.casas-revista button.activa { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
 .categorias-revista { display: flex; flex-wrap: nowrap; gap: 8px; margin: 0 0 22px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; padding: 2px 2px 12px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
 .categorias-revista::-webkit-scrollbar { height: 6px; }
 .categorias-revista::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
@@ -228,12 +228,12 @@ article.post ol li { margin-bottom: 8px; }
 .categorias-revista button { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; }
 .categorias-revista button { font: inherit; font-size: 0.9rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 2px solid var(--rosa-suave); background: var(--blanco); color: var(--tinta); cursor: pointer; }
 .categorias-revista button:hover { border-color: var(--rosa-medio); }
-.categorias-revista button.activa { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.categorias-revista button.activa { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
 .sin-articulos { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 18px 22px; margin: 0 0 40px; }
-.sin-articulos button { font: inherit; background: none; border: none; padding: 0; color: var(--rosa-principal); font-weight: 700; text-decoration: underline; cursor: pointer; }
+.sin-articulos button { font: inherit; background: none; border: none; padding: 0; color: var(--rosa-texto); font-weight: 700; text-decoration: underline; cursor: pointer; }
 /* Artículos plegados: se ve el título y el primer párrafo, y se abren con "Leer el artículo completo" */
 article.post.plegado > *:not(.meta):not(h2):not(.intro-post):not(.boton-leer) { display: none !important; }
-.boton-leer { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-principal); background: var(--blanco); border: 2px solid var(--rosa-medio); border-radius: 999px; padding: 8px 18px; cursor: pointer; margin-top: 4px; }
+.boton-leer { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-texto); background: var(--blanco); border: 2px solid var(--rosa-medio); border-radius: 999px; padding: 8px 18px; cursor: pointer; margin-top: 4px; }
 .boton-leer:hover { border-color: var(--rosa-principal); }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 24px !important; }

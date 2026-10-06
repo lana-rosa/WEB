@@ -213,6 +213,7 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - Analytics depende de que Sara cree las cuentas (ver arriba).
 
 ## ✅ Ya hecho (referencia)
+- [x] **Contraste y tamaño de imágenes (6-oct-2026):** revisadas 27 páginas con una herramienta de accesibilidad (axe): de ~340 textos con poco contraste quedaron 0. Colores nuevos: `--rosa-texto` (texto rosa/lila/azul sobre fondo claro), `--rosa-boton` y `--sobre-principal` (texto de los botones; en Mercería y Academy el texto de botón es oscuro sobre el color pastel). Las 164 imágenes que no tenían ancho y alto ahora los llevan (no cambia cómo se ven, evita saltos al cargar). Ojo: el glosario y las paletas se generan con `generar_glosario.py` / `generar_paletas.py`; sus imágenes sin tamaño se volverían a perder si se regeneran.
 - [x] **Pop-up del 10 % por casa (6-oct-2026):** ahora es un solo archivo (`js/bono.js`) que sale una vez por visitante en la casa por la que entra (inicio de la Tienda, de la Mercería o de Academy), con el mensaje y el color de esa casa. Mismas condiciones: primera compra en la tienda o la mercería, no aplica a personalizados ni talleres. Para cambiar textos: `TEXTOS` en `js/bono.js`.
 - [x] Confirmado por Sara el 6-oct-2026: **recoger en la tienda es gratis** (ya lo dicen la tienda y Mercería → Cómo comprar) y **los talleres por ahora los dicta Sara** (agregado a Academy → Talleres y a sus preguntas frecuentes).
 

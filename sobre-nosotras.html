@@ -43,14 +43,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=11">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -60,7 +60,7 @@ h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; margin: 0 0 0.
 h1 { font-size: clamp(2.2rem, 4.4vw, 3.1rem); }
 h2 { font-size: 1.5rem; }
 .hero { padding-top: 56px; padding-bottom: 40px; }
-.hero .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 8px; }
+.hero .eslogan { color: var(--rosa-texto); font-weight: 600; margin-bottom: 8px; }
 .hero p.intro { color: var(--tinta-suave); font-size: 1.08rem; max-width: 68ch; }
 section { padding: 20px 0 56px; }
 section.contenedor { padding-top: 20px; padding-bottom: 56px; }
@@ -71,17 +71,17 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .equipo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px; }
 @media (max-width: 800px) { .equipo { grid-template-columns: 1fr; } }
 .persona-card { background: var(--blanco); border-radius: var(--radio-suave); padding: 24px; box-shadow: var(--sombra-suave); text-align: center; }
-.avatar-placeholder { width: 90px; height: 90px; border-radius: 50%; background: var(--rosa-suave); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--rosa-principal); text-align: center; padding: 8px; }
+.avatar-placeholder { width: 90px; height: 90px; border-radius: 50%; background: var(--rosa-suave); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--rosa-texto); text-align: center; padding: 8px; }
 .persona-card h3 { margin-bottom: 4px; }
-.persona-card .rol { color: var(--rosa-principal); font-weight: 600; font-size: 0.85rem; margin-bottom: 10px; }
+.persona-card .rol { color: var(--rosa-texto); font-weight: 600; font-size: 0.85rem; margin-bottom: 10px; }
 .valores { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 20px; }
 @media (max-width: 700px) { .valores { grid-template-columns: 1fr; } }
 .valores li { background: var(--blanco); border-radius: 14px; padding: 18px 20px; box-shadow: var(--sombra-suave); }
-.valores .marca { color: var(--rosa-principal); font-weight: 700; }
+.valores .marca { color: var(--rosa-texto); font-weight: 700; }
 .linea-tiempo { border-left: 3px solid var(--rosa-medio); padding-left: 24px; margin-top: 20px; }
 .hito { margin-bottom: 24px; }
 @media (max-width: 700px) { .rosina-resumen { grid-template-columns: 1fr !important; } .rosina-resumen .marco-foto { width: 160px !important; margin: 0 auto; } }
-.hito .fecha { color: var(--rosa-principal); font-weight: 700; font-size: 0.85rem; }
+.hito .fecha { color: var(--rosa-texto); font-weight: 700; font-size: 0.85rem; }
 /* Espacios más compactos (28-sep-2026) */
 .sobre-compacta .hero { padding-bottom: 8px; }
 .sobre-compacta > section.contenedor { padding-top: 24px; padding-bottom: 24px; }
@@ -89,7 +89,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .sobre-compacta .historia p + p { margin-top: 12px; }
 .cierre-historia { text-align: center; margin: 32px auto 0; max-width: 560px; }
 .cierre-historia p { margin: 4px 0; font-size: 1.08rem; color: var(--tinta-suave); }
-.cierre-historia .cierre-fuerte { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.35rem; margin-top: 10px; }
+.cierre-historia .cierre-fuerte { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.35rem; margin-top: 10px; }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 24px !important; }
 </style>
@@ -183,7 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="persona-card">
           <div class="avatar-placeholder" style="overflow:hidden; padding:0;">
             <img src="img/equipo/sara.jpg" alt="Sara" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="520" height="520">
             <span style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">[ Foto de Sara ]</span>
           </div>
           <h3>Sara</h3>
@@ -193,7 +193,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="persona-card">
           <div class="avatar-placeholder" style="overflow:hidden; padding:0;">
             <img src="img/equipo/jennifer.jpg" alt="Jennifer" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy" decoding="async">
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy" decoding="async" width="440" height="440">
             <span style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">[ Foto de Jennifer ]</span>
           </div>
           <h3>Jennifer</h3>
@@ -203,7 +203,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="persona-card">
           <div class="avatar-placeholder" style="overflow:hidden; padding:0;">
             <img src="img/equipo/camila.jpg" alt="Camila" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy" decoding="async">
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy" decoding="async" width="390" height="390">
             <span style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">[ Foto de Camila ]</span>
           </div>
           <h3>Camila</h3>
