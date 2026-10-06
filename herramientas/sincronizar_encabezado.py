@@ -12,7 +12,7 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 # página -> casa (las que no están aquí son comunes: sin casa resaltada)
 CASA_DE = {
     'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
-    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy',
+    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy',
     'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
@@ -28,7 +28,8 @@ MENUS = {
               ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria', 'merceria'),
                  ('Agujas', 'merceria/catalogo/#agujas-merceria', 'merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria', 'merceria'),
-                 ('Tienda física', 'merceria/tienda-fisica/', 'merceria')],
+                 ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
+                 ('Cómo comprar', 'merceria/como-comprar/', 'merceria')],
     'academy': [('Talleres', 'aprende.html#aprende', 'academy'), ('Tutoriales', 'aprende.html#crea', 'academy'),
                 ('Recursos gratis', 'recursos-rosina.html', 'academy'), ('Glosario', 'glosario-rosina.html', 'academy'),
                 ('Paletas', 'paletas-rosina.html', 'academy'), ('Calculadoras', 'calculadoras-rosina.html', 'academy')],
@@ -61,10 +62,10 @@ PIE = {
     'merceria': ('Mercería Lana Rosa: todo para tejer, lanas, hilos, agujas y accesorios. Villamaría, Caldas.', 'Mercería',
                  [('Catálogo', 'merceria/catalogo/'), ('Lanas', 'merceria/catalogo/#lanas-merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria'), ('Agujas', 'merceria/catalogo/#agujas-merceria'),
                   ('Herrajes', 'merceria/catalogo/#herrajes-merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria'),
-                  ('Tienda física', 'merceria/tienda-fisica/'),
+                  ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'),
                   ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
-                [('Inicio de Academy', 'academy/'), ('Talleres', 'aprende.html#aprende'), ('Tutoriales', 'aprende.html#crea'),
+                [('Inicio de Academy', 'academy/'), ('Calendario de talleres', 'academy/talleres/'), ('Sobre Academy', 'academy/sobre-academy/'), ('Tutoriales', 'aprende.html#crea'),
                  ('Rincón de Rosina', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas de color', 'paletas-rosina.html'),
                  ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html')]),
 }
@@ -107,6 +108,7 @@ MOVIL = {
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="revista.html?casa=merceria">Revista</a>
     <p class="grupo-nav">Ayuda</p>
+    <a href="merceria/como-comprar/">Cómo comprar y envíos</a>
     <a href="merceria/preguntas-frecuentes/">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
   </nav>''',
@@ -115,8 +117,9 @@ MOVIL = {
     <a href="cuenta.html">👤 Mi cuenta</a>
     <p class="grupo-nav">Aprende</p>
     <a href="aprende.html#aprende">Talleres presenciales</a>
+    <a href="academy/talleres/">Calendario de talleres</a>
     <a href="aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
-    <a href="aprende.html#conecta">Nuestra forma de enseñar</a>
+    <a href="academy/sobre-academy/">Sobre Academy</a>
     <p class="grupo-nav">Recursos gratis de Rosina</p>
     <a href="recursos-rosina.html">Rincón de Rosina</a>
     <a href="glosario-rosina.html">Glosario</a>
