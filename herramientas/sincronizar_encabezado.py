@@ -82,8 +82,7 @@ MOVIL = {
     <a href="tienda.html#llaveros">Llaveros</a>
     <a href="tienda.html#macetas">Macetas y flores</a>
     <p class="grupo-nav">Personalizados</p>
-    <a href="personaliza.html">Personaliza el tuyo</a>
-    <a href="precios.html">Precios</a>
+    <a href="personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="index.html#historias">Historias que tejimos</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
@@ -91,6 +90,7 @@ MOVIL = {
     <p class="grupo-nav">Ayuda</p>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
+    <a href="precios.html">Precios</a>
   </nav>''',
     'merceria': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="merceria/">Inicio de la Mercería</a>
@@ -167,9 +167,9 @@ def encabezado(pagina):
     <a href="revista.html">Revista</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <p class="grupo-nav">Ayuda</p>
-    <a href="precios.html">Precios</a>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
+    <a href="precios.html">Precios</a>
   </nav>'''
     texto, enlace = LOGO[casa]
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
