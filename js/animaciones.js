@@ -10,6 +10,59 @@
     window.addEventListener('scroll', f, { passive: true }); f();
   }
 
+
+  // Medición (Google Tag Manager): eventos limpios en dataLayer. No cambia nada visible.
+  try {
+    var dl = (window.dataLayer = window.dataLayer || []);
+    var ev = function (nombre, datos) { var o = { event: nombre, pagina: location.pathname }; for (var k in datos) o[k] = datos[k]; dl.push(o); };
+    var casaDe = function (ruta) { return /\/merceria(\/|\.html)/.test(ruta) ? 'merceria' : /\/academy(\/|$)|aprende|rosina|recursos|glosario|paletas|calculadoras|agenda/.test(ruta) ? 'academy' : /tienda|personaliza/.test(ruta) ? 'tienda' : ''; };
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href], button');
+      if (!a) return;
+      var h = a.getAttribute('href') || '';
+      if (/wa\.me|api\.whatsapp\.com/.test(h)) ev('clic_whatsapp', { ubicacion: a.closest('.whatsapp-flotante') ? 'flotante' : (a.closest('footer, .pie-rico') ? 'pie' : 'pagina') });
+      else if (/personaliza/.test(h)) ev('clic_personalizar', { destino: h });
+      else if (/(^|\/)academy\//.test(h) && !/\/academy\//.test(location.pathname)) ev('clic_academy', { destino: h });
+      else if (/(^|\/)merceria\//.test(h) && !/\/merceria\//.test(location.pathname)) ev('clic_merceria', { destino: h });
+      else if (/(^|\/)tienda\.html/.test(h) && !/tienda\.html/.test(location.pathname)) ev('clic_tienda', { destino: h });
+      if (a.id === 'boton-pagar-wompi' || /pagar/i.test(a.id || '')) ev('begin_checkout', {});
+    }, true);
+    // agregar al carrito (tienda y mercería): se detecta cuando sube la cantidad del carrito guardado
+    var setItem = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (k, v) {
+      try {
+        if (k === 'carritoLanaRosa' && this === window.localStorage) {
+          var antes = JSON.parse(this.getItem(k) || '[]'), nuevo = JSON.parse(v || '[]');
+          var cant = function (l) { return l.reduce(function (s, i) { return s + (i.cantidad || 0); }, 0); };
+          if (cant(nuevo) > cant(antes)) {
+            var it = nuevo.filter(function (n) { var o = antes.filter(function (x) { return x.id === n.id; })[0]; return !o || n.cantidad > o.cantidad; })[0] || {};
+            ev('add_to_cart', { producto: it.nombre || '', valor: it.precio || 0, area: casaDe(location.pathname) });
+          }
+        }
+      } catch (er) {}
+      return setItem.apply(this, arguments);
+    };
+    // búsqueda y filtros
+    var tBus;
+    document.addEventListener('input', function (e) {
+      var t = e.target; if (!t || t.tagName !== 'INPUT' || !/busca/i.test(t.id + ' ' + (t.name || ''))) return;
+      clearTimeout(tBus); tBus = setTimeout(function () { if (t.value && t.value.length > 2) ev('search', { termino: t.value.slice(0, 60), area: casaDe(location.pathname) }); }, 1200);
+    });
+    document.addEventListener('change', function (e) {
+      var t = e.target; if (!t || !t.closest || !t.closest('.filtros, .filtros-desplegables, .buscador-productos, .filtro-categoria, #filtros-merceria')) return;
+      ev('filtro_producto', { filtro: t.id || t.name || '', valor: String(t.value).slice(0, 40) });
+    });
+    // formularios enviados (contacto, reseñas, cuenta, personalizados)
+    document.addEventListener('submit', function (e) { var f = e.target; if (f && f.tagName === 'FORM') ev('form_enviado', { formulario: f.id || f.getAttribute('aria-label') || 'form' }); }, true);
+    // ficha de producto abierta (clic en la foto o el nombre de una tarjeta)
+    document.addEventListener('click', function (e) {
+      var c = e.target.closest && e.target.closest('.producto-card');
+      if (!c || e.target.closest('.boton-agregar-carrito, button')) return;
+      var im = c.querySelector('img[data-id]'), p = (window.DATOS_PRODUCTOS || {})[im && im.dataset.id];
+      ev('view_item', { producto: p ? p.nombre : (im && im.alt) || '', valor: p ? p.precio : 0 });
+    }, true);
+  } catch (e) {}
+
   // botones "Hablar con Rosina": abren el chat; si no cargó, siguen el enlace
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest && ev.target.closest('[data-abrir-rosina]');
