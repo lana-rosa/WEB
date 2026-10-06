@@ -17,6 +17,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
 
+- [ ] **Rosina en la web (chat de ayuda)** — listo y probado en rama `claude/rosina-web`, falta publicar. **Sara debe guardar la llave de Anthropic** en Supabase → Edge Functions → Secrets con el nombre `ANTHROPIC_API_KEY` (la función `rosina-web` ya está desplegada; sin la llave, Rosina responde que descansa y manda al WhatsApp). Reglas: habla como la asistente de Lana Rosa ("nuestra tienda"), asesora según la casa (amigurumis en Tienda, hilos/agujas/insumos en Mercería, tejido y patrones en Academy), usa solo el texto público de la web y el catálogo público, y NO da información de cómo se hizo la web, seguridad ni datos internos. Límite: 20 mensajes por hora por visitante y 1.500 por día en total. Código en `herramientas/rosina-web/index.ts`.
+
 - [ ] **Autorización de 3 fotos para la galería "De la foto al amigurumi" del inicio:** vestido blanco con balaca, señor de canas con camisa blanca y señora saludando. Con la autorización se agregan (Sara tiene las fotos sin flores).
 - [x] **Google Tag Manager instalado** en todas las páginas (contenedor `GTM-M3MQ7XZD`, 27-sep-2026). Los generadores del glosario y las paletas lo heredan de `rosina.html`.
 - [x] **Google Analytics 4** conectado por Sara en Tag Manager (ID de medición `G-RSVSQV8Y9B`, 27-sep-2026). Para comprobarlo: Analytics → Informes → Tiempo real.

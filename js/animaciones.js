@@ -50,11 +50,15 @@
         if (document.querySelector('.panel-carrito.abierto, .nav-movil-panel.abierto')) return;
         sessionStorage.setItem('saludo-rosina', '1');
         var a = document.createElement('a'); a.className = 'saludo-rosina'; a.href = 'rosina.html';
-        a.innerHTML = '<img src="img/mini/rosina-saludo.webp" alt="" width="46" height="46"><span><b>¡Hola!</b> Soy Rosina. ¿Te ayudo a empezar?</span><button type="button" class="saludo-cerrar" aria-label="Cerrar">×</button>';
+        a.addEventListener('click', function (ev) { if (window.abrirRosinaChat) { ev.preventDefault(); window.abrirRosinaChat(); } });
+        a.innerHTML = '<img src="img/mini/rosina-saludo.webp" alt="" width="46" height="46"><span><b>¡Hola!</b> Soy Rosina, la asistente de Lana Rosa. ¿Te ayudo?</span><button type="button" class="saludo-cerrar" aria-label="Cerrar">×</button>';
         a.querySelector('button').addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); a.remove(); });
         document.body.appendChild(a);
         setTimeout(function () { if (a.parentNode) a.remove(); }, 9000);
       }, 6000);
     }
   } catch (e) {}
+
+  // chat de ayuda de Rosina (botón flotante)
+  try { var sc = document.createElement('script'); sc.src = '/js/rosina-chat.js?v=2'; sc.defer = true; document.body.appendChild(sc); } catch (e) {}
 })();
