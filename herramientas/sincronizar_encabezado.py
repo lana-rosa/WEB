@@ -137,6 +137,7 @@ MOVIL = {
 }
 
 ANUNCIOS = {
+    'crochet': ['🚚 Envíos a toda Colombia', '🧶 Amigurumis 100% personalizados', '🐑 Tejido a mano en Manizales y Villamaría', '💕 Hechos con amor, punto a punto'],
     'merceria': ['🚚 Envíos a toda Colombia', '🧶 Los mismos materiales con los que tejemos cada amigurumi', '📍 Tienda física en Villamaría, Caldas', '💕 Todo para tejer, en un solo lugar'],
 }
 
