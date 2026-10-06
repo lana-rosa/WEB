@@ -22,6 +22,8 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 - `herramientas/fondos/`: plantilla y script de Playwright para los fondos de pantalla (necesita la fuente DynaPuff en `.woff2` junto a `fondo.html`).
 - `separar_stickers.py` (recorta una hoja de stickers) y `stickers_frases.py` (stickers con frase) generan los archivos de `img/stickers/`.
 
+- Enlaces: las páginas de `/merceria/` y `/academy/` usan `<base href="/">`; los enlaces del menú, el pie y los de esas páginas llevan ruta desde la raíz (`/tienda.html`). Para revisar todo: `python3 herramientas/revisar_enlaces.py` (debe dar 0 rotos).
+
 ## Convenciones
 - **Valores de la marca:** las fundadoras son cristianas, creyentes en Cristo Jesús y cumplidoras de la Biblia. **No se celebran ni se mencionan Navidad, fechas de santos (incluido San Valentín) ni Halloween** en la web, el contenido, las paletas, los artículos ni las promociones. Sí se usan otras fechas especiales: Amor y amistad, Día de la madre, Día del padre, cumpleaños, graduaciones, etc.
 - Colores de marca: `--rosa-principal #E74E96`, `--rosa-medio #F28FC0`, `--rosa-suave #FBE4EF`, `--lila #9EA2F9`, `--azul-acero #93C7F9`. Fuentes: DynaPuff (títulos) y Hanken Grotesk (texto).

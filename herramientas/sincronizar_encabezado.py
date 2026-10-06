@@ -285,6 +285,12 @@ def pie_casa(modelo, casa):
   </div>
 </footer>'''
 
+def absolutas(html):
+    """Enlaces del menú y del pie con ruta desde la raíz (/tienda.html, /merceria/...): funcionan igual desde cualquier página,
+    con o sin <base href="/">, y no generan /merceria/merceria/... en rastreadores que ignoran <base>."""
+    return re.sub(r'(<(?:a|form)\b[^>]*?\s(?:href|action)=")(?!/|#|\?|https?:|mailto:|tel:|javascript:|data:)([^"]+)"', lambda m: m.group(1) + '/' + m.group(2) + '"', html)
+
+
 def main():
     # el pie modelo es el de las páginas comunes (contacto.html no tiene casa, así que nunca se modifica)
     modelo = None
@@ -298,14 +304,14 @@ def main():
             continue
         s = open(f, encoding='utf-8').read()
         if '<!-- CASAS:INICIO' in s:
-            s = re.sub(r'<!-- CASAS:INICIO.*?<!-- CASAS:FIN -->', lambda m: encabezado(n), s, flags=re.S)
+            s = re.sub(r'<!-- CASAS:INICIO.*?<!-- CASAS:FIN -->', lambda m: absolutas(encabezado(n)), s, flags=re.S)
         else:
             a = s.find('<header class="encabezado"')
             b = s.find('</nav>', s.find('id="nav-movil-panel"')) + len('</nav>')
             if a < 0 or b < 10:
                 print('sin encabezado:', n); continue
-            s = s[:a] + encabezado(n) + s[b:]
-        bloque = f'<!-- PIE:INICIO (generado) -->\n{pie_casa(modelo, CASA_DE.get(n))}\n<!-- PIE:FIN -->'
+            s = s[:a] + absolutas(encabezado(n)) + s[b:]
+        bloque = f'<!-- PIE:INICIO (generado) -->\n{absolutas(pie_casa(modelo, CASA_DE.get(n)))}\n<!-- PIE:FIN -->'
         if '<!-- PIE:INICIO' in s:
             s = re.sub(r'<!-- PIE:INICIO.*?<!-- PIE:FIN -->', lambda m: bloque, s, flags=re.S)
         else:
