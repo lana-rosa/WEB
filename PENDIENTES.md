@@ -17,7 +17,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
 
-- [ ] **Sara: confirmar la base de Winnie the Pooh** — en la foto aparece una base rosa que parece tejida; la ficha dice "base no incluida, se puede agregar por $7.000". Si la base rosa va incluida con el muñeco, hay que quitar esa línea. (Revisión de bases del 6-oct: se quitó la línea a Bulbasaur, Goku, Vegueta, Hello Kitty y Mickey porque en la foto no tienen base; se agregó a Sanji y Usopp porque en la foto sí tienen.)
+- [x] **Bases de los amigurumis (6-oct, regla de Sara):** las bases sirven para amigurumis de 10 a 20 cm (no para los de cuatro patas como Bulbasaur) y nunca van incluidas en el precio, ni las tejidas. Los 20 amigurumis de 10–20 cm muestran "Base de exhibición (opcional): si deseas incluirla, se agrega por $7.000. No está incluida en el precio del muñeco." aunque no salga en la foto. Al agregar un amigurumi nuevo de 10–20 cm, ponerle esa línea en especificaciones.
 
 - [ ] **Autorización de 3 fotos para la galería "De la foto al amigurumi" del inicio:** vestido blanco con balaca, señor de canas con camisa blanca y señora saludando. Con la autorización se agregan (Sara tiene las fotos sin flores).
 - [x] **Google Tag Manager instalado** en todas las páginas (contenedor `GTM-M3MQ7XZD`, 27-sep-2026). Los generadores del glosario y las paletas lo heredan de `rosina.html`.
