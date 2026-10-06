@@ -39,8 +39,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=16">
-<link rel="stylesheet" href="css/animaciones.css?v=2">
+<link rel="stylesheet" href="css/comun.css?v=17">
+<link rel="stylesheet" href="css/animaciones.css?v=3">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -278,6 +278,11 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 /* ===== Inicio de la Mercería ===== */
 .hero-merceria .eslogan, .hero-fisica .eslogan { color: var(--rosa-texto); font-weight: 700; margin: 0; }
 .hero-merceria { padding: 34px 0 10px; max-width: 760px; }
+.hero-merceria { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: center; max-width: none; }
+.hero-merceria .hero-foto { margin: 0; }
+.hero-merceria .hero-foto img { width: 100%; height: auto; max-height: 420px; object-fit: cover; border-radius: 28px; box-shadow: var(--sombra-suave); display: block; }
+@media (max-width: 800px) { .hero-merceria { grid-template-columns: 1fr; gap: 20px; } .hero-merceria .hero-foto img { max-height: 280px; } }
+
 .hero-merceria h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 4px 0 14px; }
 .hero-merceria .intro { font-size: 1.08rem; color: var(--tinta-suave); margin: 0 0 22px; }
 .botones-hero { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
@@ -387,6 +392,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main class="contenedor">
   <section class="hero-merceria">
+    <div class="hero-texto">
     <p class="eslogan">Mercería Lana Rosa</p>
     <h1>Todo para tejer, en un solo lugar</h1>
     <p class="intro">Lanas, hilos, agujas, herrajes y accesorios: los mismos materiales con los que tejemos cada amigurumi en Lana Rosa.</p>
@@ -399,13 +405,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li>🧶 Materiales probados en nuestro taller</li>
       <li>📍 Tienda física en Villamaría</li>
     </ul>
+    </div>
+    <figure class="hero-foto"><img src="img/inicio/tejer-detalle.webp" alt="Llavero de ballena tejido a mano en crochet sobre una mesa de madera" width="640" height="800" decoding="async"></figure>
   </section>
 
   <a class="banda-apertura" href="merceria/tienda-fisica/"><span data-apertura="antes">Inauguración prevista de la tienda física: domingo 15 de noviembre de 2026 · Ver horario →</span><span data-apertura="despues" hidden>📍 Visítanos en Villamaría · Calle 10 #5-37, Centro · Ver horario y cómo llegar →</span></a>
 
   <section class="seccion-merceria" aria-label="Compra por categoría">
-    <h2>Compra por categoría</h2>
-    <p>Elige qué necesitas para tu próximo proyecto.</p>
+    <h2>¿Qué vas a tejer hoy?</h2>
+    <p>Elige por dónde empezar; si dudas, te ayudamos a escoger.</p>
     <div class="categorias-merceria">
       <a class="cat-merceria" href="merceria/catalogo/#lanas-merceria"><span class="icono" aria-hidden="true">🧶</span><strong>Lanas</strong><span>Suaves, para amigurumis y peluches.</span></a>
       <a class="cat-merceria" href="merceria/catalogo/#hilos-merceria"><span class="icono" aria-hidden="true">🧵</span><strong>Hilos</strong><span>Para puntos firmes y definidos.</span></a>
@@ -416,7 +424,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <section class="puentes puentes-cinco" aria-label="Crea tu propio proyecto">
+  <section class="puentes puentes-cinco" aria-label="Empecemos tu proyecto juntas">
     <h2 class="titulo-con-rosina"><img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" width="44" height="44"> Crea tu propio proyecto</h2>
     <div class="puentes-grid">
       <a class="puente" href="recursos-rosina.html#checklist"><span class="icono-puente" aria-hidden="true">🌱</span><span><strong>Soy principiante</strong><span class="texto-puente">La checklist de tu primer amigurumi.</span><span class="ir-puente">Ver la checklist →</span></span></a>
@@ -428,7 +436,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <section class="seccion-merceria" aria-label="Por qué comprar en nuestra mercería">
-    <h2>¿Por qué comprar aquí?</h2>
+    <h2>Aquí te acompañamos</h2>
     <div class="razones-merceria">
       <div class="razon"><span aria-hidden="true">🧶</span><h3>Lo que usamos nosotras</h3><p>Vendemos los materiales con los que tejemos todos los días en nuestro taller.</p></div>
       <div class="razon"><span aria-hidden="true">💬</span><h3>Te asesoramos</h3><p>Cuéntanos qué quieres tejer y te ayudamos a elegir. <a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Necesito%20asesor%C3%ADa%20con%20materiales%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener">Escríbenos →</a></p></div>
@@ -691,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script type="module" src="js/cuenta.js"></script>
 <script type="module" src="js/pago.js?v=16"></script>
-<script src="js/animaciones.js?v=4" defer></script>
+<script src="js/animaciones.js?v=5" defer></script>
 <script src="js/bono.js?v=1" defer></script>
 <script src="js/apertura.js?v=1" defer></script>
 <script>

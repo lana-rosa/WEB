@@ -117,7 +117,7 @@ Deno.serve(async (req) => {
   await sb.from("rosina_web_uso").insert({ ip_hash: ipHash });
   if (Math.random() < 0.02) await sb.from("rosina_web_uso").delete().lt("creado", dia);
 
-  const llave = Deno.env.get("ANTHROPIC_API_KEY");
+  const llave = Deno.env.get("ANTHROPIC_API_KEY") || Deno.env.get("rosina-web-2") || Deno.env.get("rosina-web");
   if (!llave) return json({ error: "Rosina descansa un momento. Escríbenos por WhatsApp: https://wa.me/573205072801" }, 503, h);
 
   const saber = await conocimiento();
