@@ -36,7 +36,7 @@ window.__rpcLR = {};
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
-<link rel="stylesheet" href="css/comun.css?v=15">
+<link rel="stylesheet" href="css/comun.css?v=16">
 <link rel="stylesheet" href="css/animaciones.css?v=2">
 <style>
 :root {
@@ -73,6 +73,8 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
   position: sticky; top: 56px; background: var(--blanco-hueso); z-index: 10; padding: 14px 0;
 }
 .barra-controles-tienda .selector-categorias { flex: 1 1 220px; min-width: 200px; }
+.resumen-busqueda { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px; background: var(--rosa-suave); border-radius: 14px; padding: 10px 16px; margin: 8px 0 4px; font-size: 0.92rem; }
+.resumen-busqueda a { color: var(--rosa-texto); font-weight: 700; text-decoration: none; white-space: nowrap; }
 .filtros-desplegables { flex: 0 0 auto; position: relative; }
 .filtros-desplegables summary {
   list-style: none; cursor: pointer; padding: 11px 20px; border-radius: 999px;
@@ -460,6 +462,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button type="button" class="boton-secundario ver-mas-categorias" id="ver-mas-categorias" aria-expanded="false" aria-controls="categorias-visual">Ver más categorías</button>
 
   <a class="volver-categorias" id="volver-categorias" href="#categorias-visual">← Todas las categorías</a>
+  <div class="resumen-busqueda" id="resumen-busqueda" hidden role="status"><span>Resultados para “<strong></strong>”</span><a href="tienda.html">Quitar búsqueda ✕</a></div>
   <div class="barra-controles-tienda">
     <div class="selector-categorias">
       <label for="selector-categoria">Ir a categoría</label>
@@ -1000,9 +1003,10 @@ function inicializarBuscadorTienda() {
   var terminoBusqueda = parametrosURL.get('buscar');
   if (terminoBusqueda) {
     inputTexto.value = terminoBusqueda;
-    var panelFiltrosInicial = document.getElementById('filtros-desplegables');
-    if (panelFiltrosInicial) panelFiltrosInicial.setAttribute('open', '');
     aplicarFiltro();
+    // Resumen compacto de la búsqueda (el cuadro de filtros se queda cerrado para ver los productos)
+    var resumenBusqueda = document.getElementById('resumen-busqueda');
+    if (resumenBusqueda) { resumenBusqueda.querySelector('strong').textContent = terminoBusqueda; resumenBusqueda.hidden = false; }
     setTimeout(function() {
       var primeraSeccionVisible = document.querySelector('.categoria-seccion');
       if (primeraSeccionVisible) primeraSeccionVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
