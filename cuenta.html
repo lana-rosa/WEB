@@ -302,7 +302,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" role="tab" id="tab-entrar" aria-selected="false" aria-controls="panel-entrar">Iniciar sesión</button>
     </div>
 
-    <form id="panel-crear" class="tarjeta-cuenta" role="tabpanel" aria-labelledby="tab-crear" novalidate>
+    <form id="panel-crear" class="tarjeta-cuenta" aria-label="Crear mi cuenta" novalidate>
       <p class="intro-form">Sin contraseñas: te enviamos un código a tu correo y con él entras.</p>
       <div class="fila-cuenta">
         <div class="campo-cuenta"><label for="c-nombre">Tu nombre*</label><input type="text" id="c-nombre" autocomplete="name" required></div>
@@ -317,7 +317,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="aviso-cuenta" id="aviso-crear" role="alert" hidden></p>
     </form>
 
-    <form id="panel-entrar" class="tarjeta-cuenta" role="tabpanel" aria-labelledby="tab-entrar" hidden novalidate>
+    <form id="panel-entrar" class="tarjeta-cuenta" aria-label="Iniciar sesión" hidden novalidate>
       <p class="intro-form">Escribe el correo con el que te registraste y te enviamos un código para entrar.</p>
       <div class="campo-cuenta"><label for="e-correo">Correo*</label><input type="email" id="e-correo" autocomplete="email" required></div>
       <button type="submit" class="boton-cuenta" id="boton-entrar">Enviarme el código</button>
