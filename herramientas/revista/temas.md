@@ -11,10 +11,12 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 - [x] Qué fotos enviar para que tu amigurumi personalizado quede idéntico (regalos) — 27-sep-2026
 - [x] Amigurumi de tu mascota: cómo lo tejemos y qué detalles podemos incluir (regalos) — 30-sep-2026
 
+- [x] Cómo elegir el hilo para tu amigurumi: algodón, acrílico y chenille (crochet, Mercería y Academy) — 6-oct-2026
+- [x] Qué aguja de crochet usar con cada grosor de hilo (crochet, Mercería y Academy) — 6-oct-2026
+
 ## Próximos (en este orden)
 - [ ] Cómo leer un patrón de crochet: abreviaturas y símbolos (crochet) → glosario y abreviaturas
 - [ ] Regalos para graduaciones hechos a mano (regalos)
-- [ ] Cómo elegir el hilo para amigurumis: algodón, acrílico y grosor (crochet) → mercería
 - [ ] Cuánto cobrar por tus tejidos: guía para tejedoras que venden (emprendimiento) → calculadora de costos
 - [ ] Conoce a Rosina: la historia de nuestra ovejita (mundo Rosina)
 - [ ] Anillo mágico paso a paso y errores comunes (crochet) → tutorial de Instagram
