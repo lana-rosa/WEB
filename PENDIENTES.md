@@ -17,6 +17,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
 
+- [ ] **El 16-nov-2026 (después de la inauguración):** la franja de la Mercería y la pregunta "¿Tienen tienda física?" ya cambian solas a "Visítanos en Villamaría". Falta cambiar a mano, cuando abra, estas cosas que no se pueden cambiar solas: la respuesta de esa pregunta en los datos para Google (`merceria/preguntas-frecuentes/index.html`), la línea de la tienda física en `llms.txt`, y el texto de `merceria/tienda-fisica/index.html` (hoy muestra "Abierto ahora / Cerrado ahora" desde esa fecha).
+
 - [ ] **Colores pastel de Mercería y Academy (6-oct-2026):** propuesta lista en la rama `claude/colores-pastel` (lila `#9A7EDD` y azul `#5A98E2`, con fondos más suaves). Esperando que Sara la apruebe o pida ajustes. Ojo: el texto blanco sobre un color pastel pierde contraste (queda cerca de 3:1; el rosa de marca está en 3,6:1).
 - [ ] **Análisis externo de la web (6-oct-2026), revisado sin cambios:** ya está hecho lo de las tres casas, Rosina transversal, historias, Wompi + WhatsApp, SEO base, pop-up y carga de productos. Pendiente de decidir con Sara: (1) que la franja "Inauguración prevista" de la Mercería cambie sola después del 15-nov; (2) mover "Conoce Lana Rosa" antes de la entrada a Mercería/Academy en el inicio; (3) atributos width/height en imágenes y revisión de contraste; (4) revisar enlaces con una herramienta externa (el análisis habla de /merceria/merceria/, que no existe en el código).
 
