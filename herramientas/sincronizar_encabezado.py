@@ -86,7 +86,7 @@ MOVIL = {
     <a href="index.html#historias">Historias que tejimos</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
-    <a href="revista.html">Revista</a>
+    <a href="revista.html?casa=crochet">Revista</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
@@ -105,7 +105,7 @@ MOVIL = {
     <p class="grupo-nav">Visítanos</p>
     <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
     <p class="grupo-nav">Ideas para tejer</p>
-    <a href="revista.html">Revista</a>
+    <a href="revista.html?casa=merceria">Revista</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="merceria/preguntas-frecuentes/">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
@@ -125,7 +125,7 @@ MOVIL = {
     <a href="agenda-rosina.html">Agenda de proyectos</a>
     <a href="rosina.html">Conoce a Rosina</a>
     <p class="grupo-nav">Ideas</p>
-    <a href="revista.html">Revista</a>
+    <a href="revista.html?casa=academy">Revista</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="academy/preguntas-frecuentes/">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>

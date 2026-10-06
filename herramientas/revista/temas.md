@@ -22,3 +22,8 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 - [ ] Ideas de regalo para el Día de la madre (regalos) — publicar en abril
 - [ ] Ideas de regalo para el Día del padre (regalos) — publicar en mayo o junio
 - [ ] Regalos de Amor y amistad tejidos a mano (regalos) — publicar en agosto
+
+## Temas para la Mercería y para Academy (agregados el 6-oct-2026)
+La Revista ya se puede ver por casa (`revista.html?casa=merceria` y `?casa=academy`). Hoy la Mercería tiene 2 artículos y Academy 4; estos temas llenan lo que falta (solo con información real, sin inventar):
+- **Mercería:** cómo elegir la lana para un amigurumi (algodón, acrílico, chenille: qué cambia en el tejido); qué aguja de crochet usar con cada grosor de hilo; cuántos ovillos necesito para un amigurumi de 13 cm; colores que combinan (con las paletas de Rosina); cómo guardar y cuidar la lana.
+- **Academy:** qué se aprende en el taller "Desconecta para Conectar"; los 5 puntos básicos del crochet; errores comunes de principiantes y cómo arreglarlos; cómo leer un patrón (con el glosario de Rosina).
