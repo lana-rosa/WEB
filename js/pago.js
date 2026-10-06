@@ -168,6 +168,7 @@ function construirModal() {
         '<form id="pago-form" novalidate class="pg-tarjeta">' +
           '<section class="pg-sec" data-paso="1"><header>Contacto</header><div class="pg-cuerpo">' +
             '<div class="pago-campo"><label for="pg-correo">Correo electrónico*</label><input id="pg-correo" type="email" autocomplete="email" maxlength="120"></div>' +
+            '<p class="nota-pago-carrito" style="margin:-6px 0 10px;text-align:left">Si no terminas tu compra, te escribiremos un recordatorio a este correo. Puedes darte de baja desde el mismo correo.</p>' +
             '<div class="pago-fila">' +
               '<div class="pago-campo"><label for="pg-nombre">Tu nombre*</label><input id="pg-nombre" autocomplete="name" maxlength="120"></div>' +
               '<div class="pago-campo"><label for="pg-telefono">WhatsApp*</label><input id="pg-telefono" type="tel" autocomplete="tel" maxlength="20" placeholder="Ej: 3001234567"></div>' +
@@ -224,7 +225,7 @@ function construirModal() {
   });
   overlay.querySelectorAll('input[name="pg-metodo"]').forEach((r) => r.addEventListener('change', actualizarResumen));
   overlay.querySelectorAll('input[name="pg-entrega"]').forEach((r) => r.addEventListener('change', () => { actualizarResumen(); cotClave = ''; cotizarDescuento(); }));
-  ['pg-correo', 'pg-telefono'].forEach((id) => { const c = overlay.querySelector('#' + id); c.addEventListener('input', cotizarDescuento); c.addEventListener('change', cotizarDescuento); });
+  ['pg-correo', 'pg-telefono'].forEach((id) => { const c = overlay.querySelector('#' + id); if (id === 'pg-correo') c.addEventListener('change', guardarCarritoAbandonado); c.addEventListener('input', cotizarDescuento); c.addEventListener('change', cotizarDescuento); });
   overlay.querySelector('#pago-form').addEventListener('submit', enviar);
   const mq = window.matchMedia('(min-width: 880px)');
   const ajustar = () => { overlay.querySelector('#pg-resumen-movil').open = mq.matches; };
@@ -271,6 +272,39 @@ function avisoPaso(n, msg) {
   if (!a) return;
   a.replaceChildren(); if (msg) { a.append(msg); a.hidden = false; } else a.hidden = true;
 }
+// Carrito abandonado: al escribir el correo se guarda el carrito para poder mandar un recordatorio (a las 3 y a las 24 horas, sin descuento).
+async function guardarCarritoAbandonado() {
+  try {
+    if (modoPrueba()) return;
+    const correo = ($('pg-correo') ? $('pg-correo').value : '').trim().toLowerCase();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) return;
+    const items = leerCarrito().map((i) => ({ id: i.id, nombre: i.nombre, precio: i.precio, cantidad: i.cantidad }));
+    if (!items.length) return;
+    await fetch(SUPABASE_URL + '/rest/v1/rpc/registrar_carrito_abandonado', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY }, keepalive: true,
+      body: JSON.stringify({ p_correo: correo, p_nombre: ($('pg-nombre') ? $('pg-nombre').value : '').trim(), p_items: items })
+    });
+  } catch (e) {}
+}
+// Enlace del correo (?retomar=...): vuelve a cargar el carrito y lo abre.
+async function retomarCarrito() {
+  try {
+    const t = new URLSearchParams(location.search).get('retomar');
+    if (!t || !/^[0-9a-f-]{36}$/i.test(t)) return;
+    const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/obtener_carrito_abandonado', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY }, body: JSON.stringify({ p_token: t })
+    });
+    const items = r.ok ? await r.json() : [];
+    const u = new URL(location.href); u.searchParams.delete('retomar'); history.replaceState(null, '', u.pathname + u.search + u.hash);
+    if (!Array.isArray(items) || !items.length) return;
+    const actual = leerCarrito();
+    items.forEach((it) => { if (!actual.some((x) => String(x.id) === String(it.id))) actual.push({ id: it.id, nombre: it.nombre, precio: Number(it.precio) || 0, cantidad: Number(it.cantidad) || 1 }); });
+    localStorage.setItem(CLAVE_CARRITO, JSON.stringify(actual));
+    const ct = document.getElementById('contador-carrito'); if (ct) ct.textContent = actual.reduce((n, x) => n + (Number(x.cantidad) || 0), 0);
+    const abrir = document.querySelector('.boton-carrito-header'); if (abrir) abrir.click();
+  } catch (e) {}
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', retomarCarrito); else retomarCarrito();
 function irAPaso(destino, saltarDireccion) {
   if (destino > pasoActual) {
     for (let n = pasoActual; n < destino; n++) {
@@ -280,6 +314,7 @@ function irAPaso(destino, saltarDireccion) {
     }
   }
   pasoActual = destino; pasoMaximo = Math.max(pasoMaximo, destino);
+  if (destino > 1) guardarCarritoAbandonado();
   overlay.querySelectorAll('.pago-aviso').forEach((a) => { a.hidden = true; });
   pintarPasos(); actualizarResumen();
   overlay.scrollTo({ top: 0, behavior: 'smooth' });

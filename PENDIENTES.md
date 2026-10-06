@@ -17,6 +17,8 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
 
+- [ ] **Correos de carrito abandonado (6-oct-2026):** armado y probado, falta publicar el código de la web (rama `claude/carrito-abandonado`) y una prueba real de envío a un correo de Sara. 3 horas + 1 recordatorio a las 24 horas, sin descuento. Detalles y cómo apagarlo: `herramientas/carrito-abandonado/README.md`. Falta agregar el aviso en la política de datos si el contador lo pide.
+
 - [ ] **El 16-nov-2026 (después de la inauguración):** la franja de la Mercería y la pregunta "¿Tienen tienda física?" ya cambian solas a "Visítanos en Villamaría". Falta cambiar a mano, cuando abra, estas cosas que no se pueden cambiar solas: la respuesta de esa pregunta en los datos para Google (`merceria/preguntas-frecuentes/index.html`), la línea de la tienda física en `llms.txt`, y el texto de `merceria/tienda-fisica/index.html` (hoy muestra "Abierto ahora / Cerrado ahora" desde esa fecha).
 
 - [ ] **Colores pastel de Mercería y Academy (6-oct-2026):** propuesta lista en la rama `claude/colores-pastel` (lila `#9A7EDD` y azul `#5A98E2`, con fondos más suaves). Esperando que Sara la apruebe o pida ajustes. Ojo: el texto blanco sobre un color pastel pierde contraste (queda cerca de 3:1; el rosa de marca está en 3,6:1).
