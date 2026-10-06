@@ -16,10 +16,10 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 
 - [x] Cómo leer un patrón de crochet: abreviaturas y símbolos (crochet, Academy) — 6-oct-2026
 - [x] Anillo mágico paso a paso y errores comunes (crochet, Academy) — 6-oct-2026
+- [x] Regalos para graduaciones hechos a mano (regalos, Tienda) — 6-oct-2026
 
 ## Próximos (en este orden)
 
-- [ ] Regalos para graduaciones hechos a mano (regalos)
 - [ ] Cuánto cobrar por tus tejidos: guía para tejedoras que venden (emprendimiento) → calculadora de costos
 - [ ] Conoce a Rosina: la historia de nuestra ovejita (mundo Rosina)
 - [ ] Cómo cuidar y lavar tus prendas y peluches tejidos (crochet)
