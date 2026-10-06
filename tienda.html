@@ -22,11 +22,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:description" content="Amigurumis, peluches, llaveros y macetas tejidas a mano, listas para enviar a toda Colombia.">
 <meta property="og:url" content="https://lanarosacrochet.com/tienda.html">
 
+<link rel="preconnect" href="https://ngjoognzvehwjtpqwrqe.supabase.co" crossorigin>
+<script>
+/* Los productos se piden de una vez, sin esperar a ninguna librería (así aparecen más rápido). */
+window.__rpcLR = {};
+['obtener_tienda_web', 'obtener_productos_personaje'].forEach(function (n) {
+  window.__rpcLR[n] = fetch('https://ngjoognzvehwjtpqwrqe.supabase.co/rest/v1/rpc/' + n, { method: 'POST', headers: { apikey: 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', Authorization: 'Bearer sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', 'Content-Type': 'application/json' }, body: '{}' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  window.__rpcLR[n].catch(function () {});
+});
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
-<link rel="stylesheet" href="css/comun.css?v=6">
+<link rel="stylesheet" href="css/comun.css?v=9">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
@@ -60,7 +70,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .barra-controles-tienda {
   margin-top: 20px;
   display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px;
-  position: sticky; top: 66px; background: var(--blanco-hueso); z-index: 10; padding: 14px 0;
+  position: sticky; top: 56px; background: var(--blanco-hueso); z-index: 10; padding: 14px 0;
 }
 .barra-controles-tienda .selector-categorias { flex: 1 1 220px; min-width: 200px; }
 .filtros-desplegables { flex: 0 0 auto; position: relative; }
@@ -187,6 +197,14 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .banda-personaliza .boton-primario { display: inline-block; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 600; white-space: nowrap; }
 @media (max-width: 560px) { .banda-personaliza { padding: 22px 20px; } }
 .cargando-merceria { color: var(--tinta-suave); padding: 20px 0; }
+.producto-card.esqueleto { box-shadow: none; border: 1px solid rgba(var(--rosa-rgb),0.12); padding-bottom: 18px; gap: 10px; }
+.esqueleto .sk-foto { aspect-ratio: 1 / 1; background: linear-gradient(100deg, var(--rosa-suave) 30%, #fff 50%, var(--rosa-suave) 70%) 0 0 / 300% 100%; animation: sk-brillo 1.4s linear infinite; }
+.esqueleto .sk-linea { height: 14px; margin: 0 16px; border-radius: 8px; background: var(--rosa-suave); }
+.esqueleto .sk-linea.corta { width: 40%; }
+.solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+@keyframes sk-brillo { to { background-position: -150% 0; } }
+@media (prefers-reduced-motion: reduce) { .esqueleto .sk-foto { animation: none; } }
+
 .boton-ver-mas {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   width: fit-content; max-width: 100%; margin: 20px auto 8px;
@@ -350,9 +368,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="index.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img" width="600" height="384"><span class="texto-logo">Inicio</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
-        <li class="g-tienda grupo-inicio"><a href="tienda.html">Tienda</a></li>
+        <li class="g-tienda grupo-inicio"><a href="tienda.html#amigurumis">Amigurumis</a></li>
+        <li class="g-tienda"><a href="tienda.html#peluches">Peluches</a></li>
+        <li class="g-tienda"><a href="tienda.html#llaveros">Llaveros</a></li>
+        <li class="g-tienda"><a href="tienda.html#macetas">Flores y macetas</a></li>
         <li class="g-tienda"><a href="personaliza.html">Personaliza el tuyo</a></li>
-        <li class="g-tienda"><a href="precios.html">Precios</a></li>
         <li class="g-comun"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
     </nav>
@@ -459,43 +479,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="categoria-seccion" id="amigurumis">
       <h2>Amigurumis</h2>
       <div class="grid-productos" id="grid-amigurumis">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
     <section class="categoria-seccion" id="peluches">
       <h2>Peluches</h2>
       <div class="grid-productos" id="grid-peluches">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
     <section class="categoria-seccion" id="llaveros">
       <h2>Llaveros</h2>
       <div class="grid-productos" id="grid-llaveros">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
     <section class="categoria-seccion" id="macetas">
       <h2>Macetas</h2>
       <div class="grid-productos" id="grid-macetas">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
     <section class="categoria-seccion" id="flores">
       <h2>Flores</h2>
       <div class="grid-productos" id="grid-flores">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
     <section class="categoria-seccion" id="separadores-de-libros">
       <h2>Separadores de libros</h2>
       <div class="grid-productos" id="grid-separadores-de-libros">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
     <section class="categoria-seccion" id="bolsos">
       <h2>Bolsos</h2>
       <div class="grid-productos" id="grid-bolsos">
-        <p class="cargando-merceria">Cargando productos...</p>
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
 
@@ -677,8 +697,15 @@ function manejarErrorFoto(img) {
 })();
 </script>
 <script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-const supabase = createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD');
+// La librería de Supabase solo se descarga cuando hace falta (favoritos); los productos no la esperan.
+let _clienteSb = null;
+function clienteSb() {
+  return _clienteSb || (_clienteSb = import('https://esm.sh/@supabase/supabase-js@2').then(function (m) { return m.createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD'); }));
+}
+async function rpcTienda(nombre) {
+  try { return { data: await window.__rpcLR[nombre], error: null }; }
+  catch (e) { return (await clienteSb()).rpc(nombre); }
+}
 
 var MAPA_GRID = {
   'Amigurumis': 'grid-amigurumis',
@@ -761,8 +788,8 @@ async function alternarFavorito(id) {
   if (estaba) FAVORITOS.delete(id); else FAVORITOS.add(id);
   pintarFavoritos();
   var res = estaba
-    ? await supabase.from('favoritos_web').delete().eq('producto_id', id)
-    : await supabase.from('favoritos_web').insert({ user_id: usuarioFav, producto_id: id });
+    ? await (await clienteSb()).from('favoritos_web').delete().eq('producto_id', id)
+    : await (await clienteSb()).from('favoritos_web').insert({ user_id: usuarioFav, producto_id: id });
   if (res.error) {
     if (estaba) FAVORITOS.add(id); else FAVORITOS.delete(id);
     pintarFavoritos();
@@ -771,10 +798,10 @@ async function alternarFavorito(id) {
 async function cargarFavoritosTienda() {
   try {
     if (!localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token')) return;
-    var s = await supabase.auth.getSession();
+    var sb = await clienteSb(); var s = await sb.auth.getSession();
     if (!s.data.session) return;
     usuarioFav = s.data.session.user.id;
-    var r = await supabase.from('favoritos_web').select('producto_id');
+    var r = await sb.from('favoritos_web').select('producto_id');
     FAVORITOS = new Set((r.data || []).map(function (f) { return f.producto_id; }));
     pintarFavoritos();
   } catch (e) {}
@@ -794,10 +821,10 @@ document.addEventListener('DOMContentLoaded', function () {
 (async function cargarTiendaDesdeERP() {
   try {
     // Productos inspirados en personajes: se les muestra un aviso en la ficha
-    supabase.rpc('obtener_productos_personaje').then(function (r) {
+    rpcTienda('obtener_productos_personaje').then(function (r) {
       window.PRODUCTOS_PERSONAJE = new Set(((r && r.data) || []).map(function (x) { return x.id; }));
     });
-    const { data, error } = await supabase.rpc('obtener_tienda_web');
+    const { data, error } = await rpcTienda('obtener_tienda_web');
     if (error) throw error;
 
     Object.keys(MAPA_GRID).forEach(function(cat) {

@@ -282,7 +282,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=6">
+<link rel="stylesheet" href="css/comun.css?v=9">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
@@ -351,22 +351,6 @@ section { padding: 72px 0; }
 .faq-item summary::after { content: '+'; position: absolute; right: 0; top: 0; color: var(--rosa-principal); font-size: 1.4rem; }
 .faq-item[open] summary::after { content: '–'; }
 .faq-item p { margin-top: 14px; color: var(--tinta-suave); }
-.overlay-bono { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1002; display: none; align-items: center; justify-content: center; padding: 20px; }
-.overlay-bono.abierto { display: flex; }
-.modal-bono { background: var(--blanco-hueso); border-radius: var(--radio-suave); max-width: 420px; width: 100%; padding: 34px 28px; position: relative; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-.modal-bono-cerrar { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--tinta-suave); }
-.modal-bono .etiqueta-bono { display: inline-block; background: var(--rosa-principal); color: #fff; font-weight: 700; padding: 6px 16px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 14px; }
-.modal-bono h2 { font-size: 1.4rem; margin-bottom: 8px; }
-.modal-bono p.intro-bono { color: var(--tinta-suave); margin-bottom: 6px; font-size: 0.95rem; }
-.modal-bono p.intro-bono a { color: var(--rosa-principal); font-weight: 600; }
-.modal-bono p.nota-bono { color: var(--tinta-suave); font-size: 0.8rem; margin: 0 0 18px; }
-.modal-bono .campo-bono { margin-bottom: 12px; text-align: left; }
-.modal-bono .campo-bono input { width: 100%; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--rosa-suave); font-family: var(--fuente-cuerpo); font-size: 0.92rem; }
-.modal-bono .campo-checkbox { display: flex; align-items: flex-start; gap: 8px; text-align: left; font-size: 0.8rem; color: var(--tinta-suave); margin: 14px 0; }
-.modal-bono .campo-checkbox input { margin-top: 3px; }
-.modal-bono .campo-checkbox a { color: var(--rosa-principal); }
-.modal-bono .resultado-bono { display: none; background: var(--rosa-suave); border-radius: 14px; padding: 20px; margin-top: 10px; }
-.modal-bono .codigo-bono { font-size: 1.3rem; font-weight: 700; color: var(--rosa-principal); letter-spacing: 0.03em; margin: 8px 0; }
 .franja-anuncios {
   background: var(--tinta); color: var(--blanco); overflow: hidden;
   white-space: nowrap; padding: 9px 0; font-size: 0.85rem; font-weight: 500;
@@ -699,9 +683,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="index.html" class="logo"><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" class="logo-img" width="600" height="384"><span class="texto-logo">Inicio</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
-        <li class="g-tienda grupo-inicio"><a href="tienda.html">Tienda</a></li>
+        <li class="g-tienda grupo-inicio"><a href="tienda.html#amigurumis">Amigurumis</a></li>
+        <li class="g-tienda"><a href="tienda.html#peluches">Peluches</a></li>
+        <li class="g-tienda"><a href="tienda.html#llaveros">Llaveros</a></li>
+        <li class="g-tienda"><a href="tienda.html#macetas">Flores y macetas</a></li>
         <li class="g-tienda"><a href="personaliza.html">Personaliza el tuyo</a></li>
-        <li class="g-tienda"><a href="precios.html">Precios</a></li>
         <li class="g-comun"><a href="sobre-nosotras.html">Sobre nosotras</a></li>
       </ul>
     </nav>
@@ -1139,111 +1125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<div class="overlay-bono" id="overlay-bono">
-  <div class="modal-bono">
-    <button class="modal-bono-cerrar" id="cerrar-modal-bono" aria-label="Cerrar">&times;</button>
-    <span class="etiqueta-bono">🎁 10% de descuento</span>
-    <h2>¡Bienvenida a Lana Rosa!</h2>
-    <p class="intro-bono">Regístrate y recibe un bono del 10% para tu primera compra en la <a href="tienda.html">tienda</a> o la <a href="merceria/">mercería</a>.</p>
-    <p class="nota-bono">No aplica para amigurumis personalizados ni talleres.</p>
-
-    <form id="form-bono">
-      <div class="campo-bono">
-        <input type="text" id="bono-nombre" placeholder="Tu nombre" required>
-      </div>
-      <div class="campo-bono">
-        <input type="email" id="bono-correo" placeholder="Tu correo electrónico" required>
-      </div>
-      <div class="campo-bono">
-        <input type="tel" id="bono-whatsapp" placeholder="Tu WhatsApp" required>
-      </div>
-      <label class="campo-checkbox">
-        <input type="checkbox" id="bono-acepta" required>
-        <span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> de Lana Rosa Crochet.</span>
-      </label>
-      <button type="submit" class="boton-primario" style="border:none; cursor:pointer; width:100%;">Obtener mi bono</button>
-      <p id="bono-error" style="display:none; color:#c62828; font-size:0.85rem; margin-top:10px;"></p>
-    </form>
-
-    <div class="resultado-bono" id="resultado-bono">
-      <p style="margin:0;">¡Listo! Este es tu código:</p>
-      <p class="codigo-bono" id="codigo-bono-texto"></p>
-      <p style="font-size:0.85rem; color:var(--tinta-suave); margin:0;">Menciónalo por WhatsApp al momento de tu compra en la tienda o la mercería para aplicar el 10% de descuento.</p>
-      <a id="bono-whatsapp-enlace" href="https://wa.me/573205072801" target="_blank" rel="noopener" class="boton-primario" style="display:inline-block; margin-top:14px;">Escribir por WhatsApp</a>
-    </div>
-  </div>
-</div>
-
-<script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-
-const supabaseBono = createClient(
-  'https://ngjoognzvehwjtpqwrqe.supabase.co',
-  'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD'
-);
-
-const overlayBono = document.getElementById('overlay-bono');
-const formBono = document.getElementById('form-bono');
-const errorBono = document.getElementById('bono-error');
-const resultadoBono = document.getElementById('resultado-bono');
-const codigoBonoTexto = document.getElementById('codigo-bono-texto');
-
-const CLAVE_VISTO = 'bonoBienvenidaVisto';
-
-// Aparece una sola vez: a los 20 segundos o al bajar media página, lo que ocurra primero
-if (!localStorage.getItem(CLAVE_VISTO)) {
-  let bonoMostrado = false;
-  const mostrarBono = () => {
-    if (bonoMostrado) return;
-    bonoMostrado = true;
-    window.removeEventListener('scroll', revisarScroll);
-    overlayBono.classList.add('abierto');
-  };
-  const revisarScroll = () => {
-    const recorrido = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-    if (recorrido > 0.5) mostrarBono();
-  };
-  setTimeout(mostrarBono, 20000);
-  window.addEventListener('scroll', revisarScroll, { passive: true });
-}
-
-function cerrarModalBono() {
-  overlayBono.classList.remove('abierto');
-  localStorage.setItem(CLAVE_VISTO, '1');
-}
-
-document.getElementById('cerrar-modal-bono').addEventListener('click', cerrarModalBono);
-overlayBono.addEventListener('click', (e) => { if (e.target === overlayBono) cerrarModalBono(); });
-
-formBono.addEventListener('submit', async (evento) => {
-  evento.preventDefault();
-  errorBono.style.display = 'none';
-
-  const nombre = document.getElementById('bono-nombre').value;
-  const correo = document.getElementById('bono-correo').value;
-  const whatsapp = document.getElementById('bono-whatsapp').value;
-  const acepta = document.getElementById('bono-acepta').checked;
-
-  const { data, error } = await supabaseBono.rpc('registrar_bono_bienvenida', {
-    p_nombre: nombre,
-    p_correo: correo,
-    p_telefono: whatsapp,
-    p_acepta_politicas: acepta
-  });
-
-  if (error) {
-    errorBono.textContent = 'No pudimos registrar tu bono: ' + error.message;
-    errorBono.style.display = 'block';
-    return;
-  }
-
-  formBono.style.display = 'none';
-  resultadoBono.style.display = 'block';
-  codigoBonoTexto.textContent = data;
-  document.getElementById('bono-whatsapp-enlace').href = 'https://wa.me/573205072801?text=' + encodeURIComponent('Hola Lana Rosa 💕 Tengo el bono de bienvenida ' + data + ' para mi primera compra en la tienda o la mercería.');
-  localStorage.setItem(CLAVE_VISTO, '1');
-});
-</script>
+<script src="js/bono.js?v=1" defer></script>
 <script>
 (function() {
   var botonBuscar = document.getElementById('boton-buscar-header');
