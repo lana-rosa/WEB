@@ -218,3 +218,16 @@ html[data-casa="merceria"] .encabezado, html[data-casa="academy"] .encabezado { 
 html[data-casa="merceria"] .franja-casas, html[data-casa="academy"] .franja-casas { background: #FFF1E2; }
 html[data-casa="merceria"] .pie-rico, html[data-casa="academy"] .pie-rico { background: #4B3C41; }
 html[data-casa="merceria"] .categoria-card, html[data-casa="merceria"] .tarjeta-casa, html[data-casa="academy"] .tarjeta-casa, html[data-casa="academy"] .puerta { border: 1px solid rgba(200, 140, 110, 0.18); }
+
+/* Mercería y Academy con los mismos fondos del inicio: blanco, crema, lila y rosado a todo lo ancho (versión de prueba) */
+html[data-casa="merceria"], html[data-casa="academy"] { --blanco-hueso: #FFFFFF; }
+html[data-casa="merceria"] body, html[data-casa="academy"] body { background: #FFFFFF; }
+html[data-casa="merceria"] .franja-casas, html[data-casa="academy"] .franja-casas { background: #FBF7F2; }
+html[data-casa="merceria"] .encabezado, html[data-casa="academy"] .encabezado { background: rgba(255, 255, 255, 0.97); }
+.fondo-crema, .fondo-lila, .fondo-rosa { padding: 40px 0; margin-bottom: 0 !important; clip-path: inset(0 -100vmax); }
+.fondo-crema { background: #FBF7F2; box-shadow: 0 0 0 100vmax #FBF7F2; }
+.fondo-lila { background: #E6E7FD; box-shadow: 0 0 0 100vmax #E6E7FD; }
+.fondo-rosa { background: #FBE4EF; box-shadow: 0 0 0 100vmax #FBE4EF; }
+.fondo-rosa.materiales-academy { border-radius: 0; }
+html[data-casa="merceria"] main.contenedor, html[data-casa="academy"] main.contenedor { padding-top: 0 !important; }
+html[data-casa="merceria"] main.contenedor > :first-child, html[data-casa="academy"] main.contenedor > :first-child { margin-top: 0; }
