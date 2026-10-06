@@ -126,7 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=3">
+<link rel="stylesheet" href="css/comun.css?v=4">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
@@ -187,6 +187,10 @@ article.post ol li { margin-bottom: 8px; }
 .puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
 .puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
 /* Categorías de la Revista */
+.casas-revista { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.casas-revista button { font: inherit; font-size: 0.82rem; font-weight: 600; padding: 5px 14px; border-radius: 8px; border: 1px solid rgba(69,69,74,0.18); background: transparent; color: var(--tinta-suave); cursor: pointer; }
+.casas-revista button:hover { color: var(--tinta); border-color: var(--tinta-suave); }
+.casas-revista button.activa { background: var(--rosa-principal); border-color: var(--rosa-principal); color: #fff; }
 .categorias-revista { display: flex; flex-wrap: nowrap; gap: 8px; margin: 0 0 22px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; padding: 2px 2px 12px; scrollbar-width: thin; scrollbar-color: var(--rosa-medio) var(--rosa-suave); }
 .categorias-revista::-webkit-scrollbar { height: 6px; }
 .categorias-revista::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
@@ -279,6 +283,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="intro">Consejos, cuidados y aprendizajes que nacen en nuestro taller, para que tus amigurumis duren más y disfrutes cada puntada.</p>
   </div>
 
+  <nav class="casas-revista" aria-label="Revista por casa">
+    <button type="button" class="activa" data-casa-filtro="todas" aria-pressed="true">Todas las casas</button>
+    <button type="button" data-casa-filtro="crochet" aria-pressed="false">Tienda de amigurumis</button>
+    <button type="button" data-casa-filtro="merceria" aria-pressed="false">Mercería</button>
+    <button type="button" data-casa-filtro="academy" aria-pressed="false">Academy</button>
+  </nav>
+
   <nav class="categorias-revista" aria-label="Categorías de la Revista">
     <button type="button" class="activa" data-filtro="todas" aria-pressed="true">Todo</button>
     <button type="button" data-filtro="crochet" aria-pressed="false">🧶 Crochet</button>
@@ -289,9 +300,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button type="button" data-filtro="emprendimiento" aria-pressed="false">💼 Emprendimiento</button>
     <button type="button" data-filtro="sostenibilidad" aria-pressed="false">♻️ Sostenibilidad</button>
   </nav>
-  <p class="sin-articulos" id="sin-articulos" hidden>Muy pronto vamos a publicar artículos en esta categoría. Mientras tanto, <button type="button" data-filtro="todas">mira todos los artículos</button>.</p>
+  <p class="sin-articulos" id="sin-articulos" hidden>Muy pronto vamos a publicar más artículos aquí. Mientras tanto, <button type="button" data-filtro="todas">mira todos los artículos</button>.</p>
 
-  <article class="post" id="amigurumi-de-tu-mascota" data-categorias="regalos">
+  <article class="post" id="amigurumi-de-tu-mascota" data-categorias="regalos" data-casas="crochet">
     <p class="meta">Regalos · Septiembre 2026</p>
     <h2>Amigurumi de tu mascota: cómo lo tejemos y qué detalles podemos incluir</h2>
     <p>Las mascotas son de la familia, y también se pueden tejer. Tomamos la foto de tu perro, tu gato o tu ave y la convertimos en un amigurumi hecho a mano, con lo que la hace única. Así funciona.</p>
@@ -315,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="firma">— El equipo de Lana Rosa</p>
   </article>
 
-  <article class="post" id="fotos-amigurumi-personalizado" data-categorias="regalos">
+  <article class="post" id="fotos-amigurumi-personalizado" data-categorias="regalos" data-casas="crochet">
     <p class="meta">Regalos · Septiembre 2026</p>
     <h2>Qué fotos enviar para que tu amigurumi personalizado quede idéntico</h2>
     <p>La foto es el punto de partida de cada amigurumi personalizado. Entre más clara sea, más detalles podemos llevar al tejido. Estos consejos te ayudan a elegir bien antes de enviarla.</p>
@@ -338,7 +349,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="firma">— El equipo de Lana Rosa</p>
   </article>
 
-  <article class="post" id="empezar-crochet" data-categorias="crochet">
+  <article class="post" id="empezar-crochet" data-categorias="crochet" data-casas="academy merceria">
     <p class="meta">Crochet · Septiembre 2026</p>
     <h2>Cómo empezar a tejer crochet desde cero: guía para principiantes</h2>
     <p>Si siempre has querido aprender a tejer pero no sabes por dónde empezar, esta guía es para ti. No necesitas experiencia ni tecnicismos: con un hilo, una aguja y un poco de paciencia puedes tener tu primera pieza en pocos días.</p>
@@ -369,7 +380,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="firma">— Rosina 🐑 y el equipo de Lana Rosa</p>
   </article>
 
-  <article class="post" id="materiales-primer-amigurumi" data-categorias="crochet">
+  <article class="post" id="materiales-primer-amigurumi" data-categorias="crochet" data-casas="merceria academy">
     <p class="meta">Crochet · Septiembre 2026</p>
     <h2>Qué materiales necesitas para tejer tu primer amigurumi</h2>
     <p>Un amigurumi es un muñeco tejido a crochet, casi siempre en punto bajo y en espiral. La buena noticia: no necesitas muchos materiales para empezar. Esta es la lista que Rosina revisa antes de cada proyecto.</p>
@@ -396,7 +407,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="firma">— Rosina 🐑 y el equipo de Lana Rosa</p>
   </article>
 
-  <article class="post" id="pedir-amigurumi-personalizado" data-categorias="regalos">
+  <article class="post" id="pedir-amigurumi-personalizado" data-categorias="regalos" data-casas="crochet">
     <p class="meta">Regalos · Septiembre 2026</p>
     <h2>Cómo pedir un amigurumi personalizado a partir de una foto</h2>
     <p>Un amigurumi personalizado es un muñeco tejido a mano que se parece a alguien especial: una persona, tu mascota, una pareja o un personaje que amas. Así funciona el pedido en Lana Rosa, paso a paso.</p>
@@ -418,7 +429,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="firma">— El equipo de Lana Rosa</p>
   </article>
 
-  <article class="post" id="pausas-activas" data-categorias="bienestar rosina">
+  <article class="post" id="pausas-activas" data-categorias="bienestar rosina" data-casas="academy">
     <p class="meta">Bienestar · Septiembre 2026</p>
     <h2>Pausas activas para tejedoras, con Rosina</h2>
     <p>Cuando el tejido está bueno, se nos pasan las horas sin darnos cuenta… y el cuello, los hombros y las manos lo sienten. Rosina te propone esta rutina corta para hacer cada 45 a 60 minutos de tejido: toma menos de 5 minutos y tu cuerpo te lo va a agradecer.</p>
@@ -435,7 +446,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="firma">— Rosina 🐑 y el equipo de Lana Rosa</p>
   </article>
 
-  <article class="post" id="cuidado-amigurumi" data-categorias="crochet">
+  <article class="post" id="cuidado-amigurumi" data-categorias="crochet" data-casas="crochet">
     <p class="meta">Cuidados · Septiembre 2026</p>
     <h2>Cómo cuidar tu amigurumi para que dure toda la vida</h2>
     <p>Un amigurumi bien cuidado te puede acompañar por años — literal. Aquí te contamos lo que le decimos a cada clienta cuando le entregamos su pieza.</p>
@@ -450,7 +461,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="firma">— Sara</p>
   </article>
 
-  <article class="post" id="ideas-regalo" data-categorias="regalos">
+  <article class="post" id="ideas-regalo" data-categorias="regalos" data-casas="crochet">
     <p class="meta">Regalos · Septiembre 2026</p>
     <h2>5 ideas de regalos personalizados que sí van a sorprender</h2>
     <p>Sabemos lo difícil que es encontrar un regalo que no se sienta genérico. Aquí van cinco ideas que nos han pedido una y otra vez, y que siempre funcionan:</p>
@@ -466,7 +477,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="firma">— Sara</p>
   </article>
 
-  <article class="post" id="tejer-desconectar" data-categorias="bienestar">
+  <article class="post" id="tejer-desconectar" data-categorias="bienestar" data-casas="academy">
     <p class="meta">Bienestar · Septiembre 2026</p>
     <h2>Por qué tejer se está volviendo la forma favorita de desconectar</h2>
     <p>No es casualidad que cada vez más personas nos escriban preguntando dónde pueden aprender a tejer. Después de un taller, casi todas dicen lo mismo: "no pensé que se me iba a olvidar el celular por tres horas".</p>
@@ -734,28 +745,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script>
-// Filtro de categorías de la Revista: cada artículo lleva data-categorias="..."
+// Filtro de la Revista: por casa (data-casas) y por categoría (data-categorias). Con ?casa=merceria entra ya filtrada.
 (function () {
   var botones = document.querySelectorAll('.categorias-revista button');
+  var botonesCasa = document.querySelectorAll('[data-casa-filtro]');
   var articulos = document.querySelectorAll('article.post[data-categorias]');
   var vacio = document.getElementById('sin-articulos');
-  function filtrar(cat) {
+  var cat = 'todas', casa = 'todas';
+  function aplicar() {
     var visibles = 0;
     articulos.forEach(function (a) {
-      var ok = cat === 'todas' || a.dataset.categorias.split(' ').indexOf(cat) > -1;
-      a.hidden = !ok; if (ok) visibles++;
+      var okCat = cat === 'todas' || a.dataset.categorias.split(' ').indexOf(cat) > -1;
+      var okCasa = casa === 'todas' || (a.dataset.casas || '').split(' ').indexOf(casa) > -1;
+      a.hidden = !(okCat && okCasa); if (!a.hidden) visibles++;
     });
     botones.forEach(function (b) { var on = b.dataset.filtro === cat; b.classList.toggle('activa', on); b.setAttribute('aria-pressed', on); });
+    botonesCasa.forEach(function (b) { var on = b.dataset.casaFiltro === casa; b.classList.toggle('activa', on); b.setAttribute('aria-pressed', on); });
+    // los colores de la página siguen a la casa elegida
+    if (casa === 'todas') document.documentElement.removeAttribute('data-casa'); else document.documentElement.setAttribute('data-casa', casa);
     vacio.hidden = visibles > 0;
   }
+  function filtrar(c) { cat = c; aplicar(); }
   document.querySelectorAll('[data-filtro]').forEach(function (b) { b.addEventListener('click', function () { filtrar(b.dataset.filtro); }); });
+  botonesCasa.forEach(function (b) { b.addEventListener('click', function () { casa = b.dataset.casaFiltro; aplicar(); }); });
+  var q = new URLSearchParams(location.search).get('casa');
+  if (q && ['crochet', 'merceria', 'academy'].indexOf(q) > -1) { casa = q; aplicar(); }
   // Si un enlace lleva a un artículo oculto por el filtro, se muestra todo otra vez
   function mostrarDestino() {
     var destino = location.hash && document.getElementById(location.hash.slice(1));
-    if (destino && destino.hidden) { filtrar('todas'); destino.scrollIntoView(); }
+    if (destino && destino.hidden) { cat = 'todas'; casa = 'todas'; aplicar(); destino.scrollIntoView(); }
   }
   window.addEventListener('hashchange', mostrarDestino);
   document.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener('click', function () { setTimeout(mostrarDestino, 0); }); });
+  mostrarDestino();
 })();
 </script>
 <script>
