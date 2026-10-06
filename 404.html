@@ -34,8 +34,8 @@ a { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight
   var p = location.pathname, c = p.indexOf('/merceria') === 0 ? 'merceria' : (p.indexOf('/academy') === 0 ? 'academy' : '');
   if (!c) return;
   var D = {
-    merceria: { color: '#8E55D6', suave: '#EFE6FB', icono: '/img/favicon-merceria-256.png', titulo: 'Esta página de la Mercería se nos destejió', a: ['Ir a la Mercería', '/merceria/'], b: ['Ver el catálogo', '/merceria/catalogo/'] },
-    academy: { color: '#2A6FCB', suave: '#E3EEFC', icono: '/img/favicon-academy-256.png', titulo: 'Esta página de Academy se nos destejió', a: ['Ir a Academy', '/academy/'], b: ['Ver los talleres', '/aprende.html'] }
+    merceria: { color: '#9A7EDD', suave: '#F4EEFD', icono: '/img/favicon-merceria-256.png', titulo: 'Esta página de la Mercería se nos destejió', a: ['Ir a la Mercería', '/merceria/'], b: ['Ver el catálogo', '/merceria/catalogo/'] },
+    academy: { color: '#5A98E2', suave: '#EBF3FD', icono: '/img/favicon-academy-256.png', titulo: 'Esta página de Academy se nos destejió', a: ['Ir a Academy', '/academy/'], b: ['Ver los talleres', '/aprende.html'] }
   }[c];
   var r = document.documentElement.style;
   r.setProperty('--rosa-principal', D.color); r.setProperty('--rosa-suave', D.suave);

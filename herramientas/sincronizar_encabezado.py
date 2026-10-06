@@ -41,8 +41,8 @@ LOGO_IMG = {'merceria': ('img/logo-merceria.webp', 'Lana Rosa Mercería'), 'acad
 
 # íconos de la pestaña y color de la barra del celular por casa
 ICONOS = {
-    'merceria': ('/img/favicon-merceria-256.png', '/img/apple-touch-icon-merceria.png', '#8E55D6'),
-    'academy': ('/img/favicon-academy-256.png', '/img/apple-touch-icon-academy.png', '#2A6FCB'),
+    'merceria': ('/img/favicon-merceria-256.png', '/img/apple-touch-icon-merceria.png', '#9A7EDD'),
+    'academy': ('/img/favicon-academy-256.png', '/img/apple-touch-icon-academy.png', '#5A98E2'),
 }
 ICONOS_BASE = ('/img/favicon-256.png', '/img/apple-touch-icon.png', '#E74E96')
 
