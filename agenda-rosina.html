@@ -26,7 +26,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/comun.css?v=5">
+<link rel="stylesheet" href="css/comun.css?v=6">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
@@ -373,6 +373,21 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   .menu-hojas-lista { display: none; position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 7; background: var(--blanco); border-radius: 14px; box-shadow: 0 14px 30px rgba(58,42,46,0.18); padding: 8px; max-height: 60vh; overflow-y: auto; }
   .menu-hojas.abierto .menu-hojas-lista { display: flex; }
 }
+
+.hojas-pasos { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; }
+.hojas-pasos button { flex: 1; max-width: 50%; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 14px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); color: var(--rosa-principal); font-family: var(--fuente-titulo); font-size: 0.95rem; cursor: pointer; text-align: left; }
+.hojas-pasos button small { font-family: var(--fuente-texto, inherit); font-size: 0.74rem; color: var(--tinta-suave); font-weight: 500; }
+.hojas-pasos .paso-sig { text-align: right; margin-left: auto; background: var(--rosa-principal); color: #fff; border-color: var(--rosa-principal); }
+.hojas-pasos .paso-sig small { color: rgba(255,255,255,0.85); }
+.hojas-pasos .paso-ant:only-child, .hojas-pasos .paso-sig:only-child { max-width: 50%; }
+@media (max-width: 900px) {
+  .menu-hojas-toggle { background: var(--rosa-suave) !important; border-width: 2px !important; padding: 10px 12px 10px 16px !important; text-align: left; }
+  .menu-hojas-toggle .mh-texto { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .menu-hojas-toggle small { font-family: var(--fuente-texto, inherit); font-size: 0.74rem; color: var(--tinta-suave); }
+  .menu-hojas-toggle .mh-pildora { flex: none; background: var(--rosa-principal); color: #fff; border-radius: 999px; padding: 7px 12px; font-size: 0.82rem; font-weight: 700; font-family: var(--fuente-texto, inherit); white-space: nowrap; }
+  .menu-hojas.abierto .mh-pildora { background: var(--tinta); }
+}
+@media print { .hojas-pasos { display: none !important; } }
 @media print { .agenda-layout { display: block; } .menu-hojas { display: none !important; } .hojas-contenido .hoja-agenda { display: block !important; margin-bottom: 24px; } }
 .agenda-layout { scroll-margin-top: 210px; }
 @media (max-width: 900px) { .agenda-layout { scroll-margin-top: 200px; } }
@@ -606,7 +621,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span id="menu-hojas-actual">📋 Ficha de proyecto</span><span aria-hidden="true">▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 17</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 17 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Mis proyectos</p>
           <a href="#ficha-proyecto" data-hoja="ficha-proyecto">📋 Ficha de proyecto</a>
@@ -939,70 +954,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PIE:INICIO (generado) -->
 <footer class="pie-rico">
   <div class="contenedor pie-grid">
-    <div>
+    <div class="pie-marca">
       <div class="pie-logo-wrap"><img src="img/logo-academy.webp" alt="Lana Rosa Academy" loading="lazy" decoding="async"></div>
       <p>Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.</p>
+      <div class="pie-redes" aria-label="Redes sociales">
+        <a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/lana.rosa.2025" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.tiktok.com/@lanarosacrochet" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener">YouTube</a>
+      </div>
     </div>
-    <div>
-      <h3>Nosotros</h3>
-      <ul>
-        <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="precios.html">Precios</a></li>
-      </ul>
-    </div>
-    <div>
+    <div class="pie-col">
       <h3>Academy</h3>
       <ul>
-        <li><a href="academy/">Inicio de Academy</a></li>
         <li><a href="academy/talleres/">Calendario de talleres</a></li>
         <li><a href="academy/sobre-academy/">Sobre Academy</a></li>
         <li><a href="aprende.html#crea">Tutoriales</a></li>
         <li><a href="recursos-rosina.html">Rincón de Rosina</a></li>
         <li><a href="glosario-rosina.html">Glosario</a></li>
         <li><a href="paletas-rosina.html">Paletas de color</a></li>
-        <li><a href="calculadoras-rosina.html">Calculadoras</a></li>
-        <li><a href="agenda-rosina.html">Agenda</a></li>
       </ul>
     </div>
-    <div>
+    <div class="pie-col">
+      <h3>Lana Rosa</h3>
+      <ul>
+        <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
+        <li><a href="revista.html?casa=academy">Revista</a></li>
+        <li><a href="academy/preguntas-frecuentes/">Preguntas frecuentes</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="pie-col pie-contacto">
       <h3>Contáctanos</h3>
       <ul>
+        <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
-        <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">320 507 2801</a></li>
-        <li>Calle 10 #5-37 Centro, Villamaría, Caldas</li>
-        <li><a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver en Google ↗</a></li>
+        <li>Calle 10 #5-37 Centro, Villamaría, Caldas · <a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver en Google ↗</a></li>
       </ul>
-    </div>
-    <div>
-      <h3>Síguenos</h3>
-      <ul>
-        <li><a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://www.facebook.com/lana.rosa.2025" target="_blank" rel="noopener">Facebook</a></li>
-        <li><a href="https://www.tiktok.com/@lanarosacrochet" target="_blank" rel="noopener">TikTok</a></li>
-        <li><a href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener">YouTube</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Medios de pago</h3>
-      <div class="pie-pagos">
-        <span>Efectivo</span><span>Nequi</span><span>Bre-B</span><span>Tarjeta débito/crédito</span>
-      </div>
     </div>
   </div>
-  <div class="contenedor pie-apoyo">
-    <span>Con el apoyo de:</span>
-    <img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
-    <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+  <div class="contenedor pie-franja">
+    <div class="pie-pagos"><span class="pie-etiqueta">Pagos</span><span>Efectivo</span><span>Nequi</span><span>Bre-B</span><span>Tarjeta débito/crédito</span></div>
+    <div class="pie-apoyo"><span>Con el apoyo de</span>
+      <img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+      <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+    </div>
   </div>
   <div class="contenedor pie-legal">
-    <a href="politicas.html#envios">Política de envíos</a>
-    <a href="politicas.html#cambios">Política de cambios</a>
-    <a href="politicas.html#datos">Tratamiento de datos</a>
+    <a href="politicas.html#envios">Envíos</a>
+    <a href="politicas.html#cambios">Cambios</a>
+    <a href="politicas.html#datos">Datos personales</a>
     <a href="politicas.html#uso">Uso del sitio</a>
     <a href="politicas.html#cookies">Cookies</a>
+    <span class="derechos">© 2026 Lana Rosa Crochet</span>
   </div>
-  <p class="derechos contenedor">© 2026 Lana Rosa Crochet. Todos los derechos reservados.</p>
 </footer>
 <!-- PIE:FIN -->
 
@@ -1452,9 +1458,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     hojas.forEach(function(x) { x.classList.toggle('abierta', x === h); });
     enlacesMenu.forEach(function(a) { var activo = a.dataset.hoja === id; a.classList.toggle('activa', activo); if (activo) { a.setAttribute('aria-current', 'page'); document.getElementById('menu-hojas-actual').textContent = a.textContent; } else a.removeAttribute('aria-current'); });
     escribir(CLAVE_HOJA, id);
+    var pos = ordenMenu.indexOf(id);
+    document.getElementById('menu-hojas-cuenta').textContent = 'Hoja ' + (pos + 1) + ' de ' + hojas.length + '';
+    hojas.forEach(function(x) { var barra = x.querySelector('.hojas-pasos'); if (barra) barra.hidden = x !== h; });
     menuHojas.classList.remove('abierto'); toggleMenu.setAttribute('aria-expanded', 'false');
     if (desplazar) document.querySelector('.agenda-layout').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+  function nombreHoja(i) { return enlacesMenu[i] ? enlacesMenu[i].textContent : ''; }
+  var ordenMenu = Array.prototype.map.call(enlacesMenu, function(a) { return a.dataset.hoja; });
+  hojas.forEach(function(h) {
+    var i = ordenMenu.indexOf(h.id), ant = ordenMenu[i - 1], sig = ordenMenu[i + 1], barra = document.createElement('div');
+    barra.className = 'hojas-pasos'; barra.hidden = true;
+    if (ant) { var b = document.createElement('button'); b.type = 'button'; b.className = 'paso-ant'; b.innerHTML = '<small>← Hoja anterior</small>' + nombreHoja(i - 1); b.addEventListener('click', function() { mostrarHoja(ant, true); }); barra.appendChild(b); }
+    if (sig) { var c = document.createElement('button'); c.type = 'button'; c.className = 'paso-sig'; c.innerHTML = '<small>Siguiente hoja →</small>' + nombreHoja(i + 1); c.addEventListener('click', function() { mostrarHoja(sig, true); }); barra.appendChild(c); }
+    h.appendChild(barra);
+  });
   function abrirHoja(h, abrir) { if (abrir) mostrarHoja(h.id); }
   enlacesMenu.forEach(function(a) {
     a.addEventListener('click', function(e) {

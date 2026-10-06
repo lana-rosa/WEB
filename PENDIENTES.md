@@ -19,6 +19,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 - [ ] **Sara: comprar créditos y crear la llave de Anthropic (hacer más tarde)** — 1) En platform.claude.com comprar créditos: elegir **US$ 5**, **apagar la recarga automática**, completar dirección y tarjeta (NIT opcional) y pulsar *Comprar créditos*. 2) Settings → API Keys → *Create Key*, nombre `rosina-web`, copiar la llave `sk-ant-…` (se muestra una sola vez). 3) En Supabase → Edge Functions → Secrets → *Add new secret*, nombre `ANTHROPIC_API_KEY`, pegar la llave y guardar. No pasarla por el chat. Opcional: límite mensual en Settings → Limits. Cuando esté lista, avisar a Claude para publicar el chat de Rosina y probarlo con respuestas reales.
 - [ ] **Rosina en la web (chat de ayuda)** — listo y probado en rama `claude/rosina-web`, falta publicar. **Sara debe guardar la llave de Anthropic** en Supabase → Edge Functions → Secrets con el nombre `ANTHROPIC_API_KEY` (la función `rosina-web` ya está desplegada; sin la llave, Rosina responde que descansa y manda al WhatsApp). Reglas: habla como la asistente de Lana Rosa ("nuestra tienda"), asesora según la casa (amigurumis en Tienda, hilos/agujas/insumos en Mercería, tejido y patrones en Academy), usa solo el texto público de la web y el catálogo público, y NO da información de cómo se hizo la web, seguridad ni datos internos. Límite: 20 mensajes por hora por visitante y 1.500 por día en total. Código en `herramientas/rosina-web/index.ts`.
+- [x] **Bases de los amigurumis (6-oct, regla de Sara):** las bases sirven para amigurumis de 10 a 20 cm (no para los de cuatro patas como Bulbasaur) y nunca van incluidas en el precio, ni las tejidas. Los 20 amigurumis de 10–20 cm muestran "Base de exhibición (opcional): si deseas incluirla, se agrega por $7.000. No está incluida en el precio del muñeco." aunque no salga en la foto. Solo para amigurumis (nunca peluches, llaveros, macetas ni otros). Al agregar un amigurumi nuevo de 10–20 cm, ponerle esa línea en especificaciones.
 
 - [ ] **Autorización de 3 fotos para la galería "De la foto al amigurumi" del inicio:** vestido blanco con balaca, señor de canas con camisa blanca y señora saludando. Con la autorización se agregan (Sara tiene las fotos sin flores).
 - [x] **Google Tag Manager instalado** en todas las páginas (contenedor `GTM-M3MQ7XZD`, 27-sep-2026). Los generadores del glosario y las paletas lo heredan de `rosina.html`.
@@ -209,6 +210,7 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - Analytics depende de que Sara cree las cuentas (ver arriba).
 
 ## ✅ Ya hecho (referencia)
+- [x] Confirmado por Sara el 6-oct-2026: **recoger en la tienda es gratis** (ya lo dicen la tienda y Mercería → Cómo comprar) y **los talleres por ahora los dicta Sara** (agregado a Academy → Talleres y a sus preguntas frecuentes).
 
 - Rincón de Rosina (`recursos-rosina.html`) con banner nuevo con logo:
   - 26 stickers para WhatsApp y 9 fondos de pantalla en 4 tamaños.

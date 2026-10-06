@@ -25,22 +25,6 @@ main { padding-bottom: 60px; }
 .pie a:hover { opacity: 1; color: var(--rosa-medio); }
 .pie ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .pie .logo-pie { font-family: var(--fuente-titulo); color: var(--rosa-medio); font-size: 1.5rem; }
-.pie-rico { background: var(--tinta); color: var(--blanco-hueso); padding: 50px 0 24px; font-size: 0.88rem; }
-.pie-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1fr 1fr 0.9fr 1fr; gap: 26px; margin-bottom: 34px; }
-.pie-apoyo { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 18px; margin-bottom: 18px; font-size: 0.82rem; opacity: 0.9; }
-.pie-apoyo img { height: 40px; width: auto; background: #fff; border-radius: 8px; padding: 4px 8px; }
-@media (max-width: 900px) { .pie-grid { grid-template-columns: 1fr 1fr; } }
-.pie-logo-wrap { background: #fff; display: inline-block; padding: 4px 8px; border-radius: 12px; margin-bottom: 14px; }
-.pie-logo-wrap img { height: 56px; display: block; }
-.pie-rico p { opacity: 0.85; margin: 0 0 6px; }
-.pie-rico h3 { color: var(--rosa-medio); font-size: 0.88rem; margin: 0 0 12px; font-family: var(--fuente-titulo); font-weight: 600; }
-.pie-rico ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-.pie-rico a { color: var(--blanco-hueso); opacity: 0.85; text-decoration: none; }
-.pie-rico a:hover { opacity: 1; color: var(--rosa-medio); }
-.pie-pagos { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-.pie-pagos span { background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 999px; font-size: 0.76rem; }
-.pie-legal { display: flex; gap: 20px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 18px; margin-bottom: 16px; font-size: 0.82rem; }
-.pie-legal a { opacity: 0.85; }
 .derechos { text-align: center; font-size: 0.78rem; opacity: 0.6; margin: 0; }
 .whatsapp-flotante { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); right: calc(24px + env(safe-area-inset-right, 0px)); z-index: 999; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0,0,0,0.25); animation: whatsapp-pulso 2.4s infinite; }
 .whatsapp-flotante svg { width: 30px; height: 30px; fill: #fff; }
@@ -148,3 +132,25 @@ html[data-casa="academy"] .nav-principal li.g-aprende a { background: var(--rosa
 html[data-casa="academy"] .nav-principal li.g-aprende a:hover { background: var(--rosa-hover); }
 .nav-movil-panel .grupo-nav.otras-casas { color: var(--tinta-suave); margin-top: 8px; }
 .nav-movil-panel a.otras-casas { font-size: 0.88rem; color: var(--tinta-suave); padding-top: 10px; padding-bottom: 10px; }
+
+.pie-rico { background: var(--tinta); color: var(--blanco-hueso); padding: 44px 0 20px; font-size: 0.88rem; }
+.pie-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.4fr; gap: 28px 32px; margin-bottom: 28px; }
+.pie-logo-wrap { background: #fff; display: inline-block; padding: 4px 8px; border-radius: 12px; margin-bottom: 12px; }
+.pie-logo-wrap img { height: 52px; display: block; }
+.pie-rico p { opacity: 0.85; margin: 0 0 12px; max-width: 34ch; }
+.pie-rico h3 { color: var(--rosa-medio); font-size: 0.88rem; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; }
+.pie-rico ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+.pie-rico a { color: var(--blanco-hueso); opacity: 0.85; text-decoration: none; }
+.pie-rico a:hover { opacity: 1; color: var(--rosa-medio); }
+.pie-redes { display: flex; flex-wrap: wrap; gap: 8px; }
+.pie-redes a { border: 1px solid rgba(255,255,255,0.28); border-radius: 999px; padding: 5px 12px; font-size: 0.8rem; opacity: 0.95; }
+.pie-franja { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 28px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; margin-bottom: 14px; }
+.pie-pagos { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.pie-pagos span { background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 999px; font-size: 0.76rem; }
+.pie-pagos .pie-etiqueta { background: none; padding: 4px 4px 4px 0; opacity: 0.8; }
+.pie-apoyo { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; opacity: 0.9; }
+.pie-apoyo img { height: 34px; width: auto; background: #fff; border-radius: 8px; padding: 3px 7px; }
+.pie-legal { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 14px; font-size: 0.78rem; }
+.pie-legal a { opacity: 0.8; }
+.pie-legal .derechos { margin-left: auto; opacity: 0.7; }
+@media (max-width: 900px) { .pie-grid { grid-template-columns: 1fr 1fr; gap: 24px 20px; } .pie-marca, .pie-contacto { grid-column: 1 / -1; } .pie-rico p { max-width: none; } .pie-franja { flex-direction: column; align-items: flex-start; } .pie-legal .derechos { margin-left: 0; width: 100%; } }
