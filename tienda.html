@@ -73,8 +73,8 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
   position: sticky; top: 56px; background: var(--blanco-hueso); z-index: 10; padding: 14px 0;
 }
 .barra-controles-tienda .selector-categorias { flex: 1 1 220px; min-width: 200px; }
-.resumen-busqueda { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px; background: var(--rosa-suave); border-radius: 14px; padding: 10px 16px; margin: 8px 0 4px; font-size: 0.92rem; }
-.resumen-busqueda a { color: var(--rosa-texto); font-weight: 700; text-decoration: none; white-space: nowrap; }
+.quitar-filtros { flex: 0 0 auto; font: inherit; font-size: 0.82rem; font-weight: 700; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--rosa-medio); background: var(--rosa-suave); color: var(--rosa-texto); cursor: pointer; white-space: nowrap; }
+.quitar-filtros:hover { border-color: var(--rosa-principal); }
 .filtros-desplegables { flex: 0 0 auto; position: relative; }
 .filtros-desplegables summary {
   list-style: none; cursor: pointer; padding: 11px 20px; border-radius: 999px;
@@ -109,7 +109,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .volver-categorias:hover { text-decoration: underline; }
 body.vista-categoria .volver-categorias { display: inline-flex; }
 body.vista-categoria .categoria-seccion:not(.categoria-activa) { display: none !important; }
-body.vista-categoria .categorias-visual, body.vista-categoria .categorias-secundarias, body.vista-categoria .mas-categorias-titulo, body.vista-categoria .ver-mas-categorias, body.vista-categoria .puentes-cinco, body.vista-categoria .banda-personaliza { display: none !important; }
+body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categorias, body.vista-categoria .puentes-cinco, body.vista-categoria .banda-personaliza { display: none !important; }
 .categoria-seccion { padding: 20px 0 48px; scroll-margin-top: 130px; }
 @media (max-width: 700px) { .categoria-seccion { scroll-margin-top: 180px; } }
 .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
@@ -270,15 +270,6 @@ button.boton-primario:hover { filter: brightness(0.95); }
 .categorias-visual .cat-personaliza span { color: var(--rosa-texto); }
 .categorias-visual .cat-personaliza img { object-fit: contain; background: #FFF8FA; }
 .ver-mas-categorias { display: none !important; }
-.categorias-principales { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; overflow: visible; max-width: 760px; padding-bottom: 4px; }
-.categorias-principales a { width: auto !important; min-width: 0; }
-.categorias-principales span { font-size: 0.95rem; }
-.categorias-secundarias { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 6px 0 14px; font-size: 0.88rem; color: var(--tinta-suave); }
-.categorias-secundarias a { text-decoration: none; color: var(--tinta); border: 1px solid rgba(69,69,74,0.2); border-radius: 999px; padding: 6px 14px; font-weight: 600; background: var(--blanco); }
-.categorias-secundarias a:hover { border-color: var(--rosa-principal); color: var(--rosa-texto); }
-.categorias-secundarias a.cat-personaliza { color: var(--rosa-texto); border-color: var(--rosa-medio); }
-.mas-categorias-titulo { margin: 8px 0 0; padding-top: 28px; border-top: 1px solid rgba(69,69,74,0.12); font-family: var(--fuente-titulo); font-size: 0.95rem; color: var(--tinta-suave); }
-@media (max-width: 560px) { .categorias-principales { gap: 10px; } .categorias-principales span { font-size: 0.8rem; } }
 
 @media (max-width: 700px) {
   .categorias-visual { gap: 12px; margin-top: 16px; }
@@ -447,22 +438,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </div>
 
-  <nav class="categorias-visual categorias-principales" id="categorias-visual" aria-label="Categorías principales de la tienda">
+  <nav class="categorias-visual" id="categorias-visual" aria-label="Categorías de la tienda">
     <a href="#amigurumis"><img src="img/tienda-categorias/amigurumis.webp?v=2" alt="Amigurumi de ovejita con vestido rosado" width="560" height="700" decoding="async"><span>Amigurumis</span></a>
     <a href="#peluches"><img src="img/tienda-categorias/peluches.webp?v=2" alt="Peluche de oso café" width="560" height="700" decoding="async"><span>Peluches</span></a>
     <a href="#llaveros"><img src="img/tienda-categorias/llaveros.webp?v=2" alt="Llavero de abeja" width="560" height="700" decoding="async"><span>Llaveros</span></a>
-    <a href="#macetas"><img src="img/tienda-categorias/macetas.webp?v=2" alt="Maceta con margarita" width="560" height="700" decoding="async"><span>Flores y macetas</span></a>
-  </nav>
-  <nav class="categorias-secundarias" id="categorias-secundarias" aria-label="Más categorías">
-    <span>También tenemos:</span>
-    <a href="#separadores-de-libros">Separadores de libros</a>
-    <a href="#bolsos">Bolsos</a>
-    <a href="personaliza.html" class="cat-personaliza">✨ Personalizados</a>
+    <a href="#macetas"><img src="img/tienda-categorias/macetas.webp?v=2" alt="Maceta con margarita" width="560" height="700" decoding="async"><span>Macetas</span></a>
+    <a href="#flores"><img src="img/tienda-categorias/flores.webp?v=2" alt="Rosa tejida" width="560" height="700" decoding="async"><span>Flores</span></a>
+    <a href="#separadores-de-libros"><img src="img/tienda-categorias/separadores-de-libros.webp?v=2" alt="Separador de libros de gato" width="560" height="700" decoding="async"><span>Separadores</span></a>
+    <a href="#bolsos"><img src="img/tienda-categorias/bolsos.webp?v=2" alt="Bolso tejido" width="560" height="700" decoding="async"><span>Bolsos</span></a>
+    <a href="personaliza.html" class="cat-personaliza"><img src="img/tienda-categorias/personalizados.webp?v=2" alt="Amigurumi personalizado de un hombre con camiseta polo" width="560" height="700" decoding="async"><span>Personalizados</span></a>
   </nav>
   <button type="button" class="boton-secundario ver-mas-categorias" id="ver-mas-categorias" aria-expanded="false" aria-controls="categorias-visual">Ver más categorías</button>
 
   <a class="volver-categorias" id="volver-categorias" href="#categorias-visual">← Todas las categorías</a>
-  <div class="resumen-busqueda" id="resumen-busqueda" hidden role="status"><span>Resultados para “<strong></strong>”</span><a href="tienda.html">Quitar búsqueda ✕</a></div>
   <div class="barra-controles-tienda">
     <div class="selector-categorias">
       <label for="selector-categoria">Ir a categoría</label>
@@ -471,12 +459,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <option value="#amigurumis">Amigurumis</option>
         <option value="#peluches">Peluches</option>
         <option value="#llaveros">Llaveros</option>
-        <option value="#macetas">Flores y macetas</option>
-        <optgroup label="Más categorías">
-          <option value="#separadores-de-libros">Separadores de libros</option>
-          <option value="#bolsos">Bolsos</option>
-          <option value="personaliza.html">Personalizados</option>
-        </optgroup>
+        <option value="#macetas">Macetas</option>
+        <option value="#flores">Flores</option>
+        <option value="#separadores-de-libros">Separadores de libros</option>
+        <option value="#bolsos">Bolsos</option>
+        <option value="personaliza.html">Personalizados</option>
       </select>
     </div>
 
@@ -498,6 +485,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
     </details>
+    <button type="button" class="quitar-filtros" id="quitar-filtros" hidden>Quitar filtros ✕</button>
   </div>
   <p id="sin-resultados" style="display:none; text-align:center; color:var(--tinta-suave); padding:20px;">No encontramos productos con esos filtros — prueba con otro nombre o rango de precio.</p>
 
@@ -532,7 +520,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
-    <p class="mas-categorias-titulo" id="mas-categorias">Más categorías</p>
     <section class="categoria-seccion" id="separadores-de-libros">
       <h2>Separadores de libros</h2>
       <div class="grid-productos" id="grid-separadores-de-libros">
@@ -993,7 +980,15 @@ function inicializarBuscadorTienda() {
     if (mensajeSinResultados) {
       mensajeSinResultados.style.display = (filtroActivo && totalVisible === 0) ? 'block' : 'none';
     }
+    var botonQuitar = document.getElementById('quitar-filtros');
+    if (botonQuitar) botonQuitar.hidden = !filtroActivo;
   }
+  var botonQuitarFiltros = document.getElementById('quitar-filtros');
+  if (botonQuitarFiltros) botonQuitarFiltros.addEventListener('click', function() {
+    inputTexto.value = ''; inputMin.value = ''; inputMax.value = '';
+    if (history.replaceState) history.replaceState(null, '', location.pathname + location.hash);
+    aplicarFiltro();
+  });
 
   [inputTexto, inputMin, inputMax].forEach(function(el) {
     el.addEventListener('input', aplicarFiltro);
@@ -1004,9 +999,7 @@ function inicializarBuscadorTienda() {
   if (terminoBusqueda) {
     inputTexto.value = terminoBusqueda;
     aplicarFiltro();
-    // Resumen compacto de la búsqueda (el cuadro de filtros se queda cerrado para ver los productos)
-    var resumenBusqueda = document.getElementById('resumen-busqueda');
-    if (resumenBusqueda) { resumenBusqueda.querySelector('strong').textContent = terminoBusqueda; resumenBusqueda.hidden = false; }
+
     setTimeout(function() {
       var primeraSeccionVisible = document.querySelector('.categoria-seccion');
       if (primeraSeccionVisible) primeraSeccionVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1744,10 +1737,10 @@ formResena.addEventListener('submit', async (evento) => {
     var id = idActual();
     var sec = id && document.getElementById(id);
     if (sec && !sec.classList.contains('categoria-seccion')) sec = null;
-    var grupo = (id === 'macetas' || id === 'flores') ? ['macetas', 'flores'] : [id];
+    var grupo = [id];
     document.querySelectorAll('.categoria-seccion').forEach(function (s) { s.classList.toggle('categoria-activa', !!sec && grupo.indexOf(s.id) > -1); });
     document.body.classList.toggle('vista-categoria', !!sec);
-    if (selector) selector.value = sec ? '#' + (id === 'flores' ? 'macetas' : id) : '';
+    if (selector) selector.value = sec ? '#' + id : '';
     if (irArriba) {
       var destino = sec ? document.getElementById('volver-categorias') : null;
       var y = destino ? destino.getBoundingClientRect().top + window.pageYOffset - 110 : 0;
