@@ -28,6 +28,26 @@ a { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight
 .primario { background: var(--rosa-principal); color: #fff; }
 .secundario { background: var(--rosa-suave); color: var(--rosa-principal); }
 </style>
+<script>
+// La página de error toma el color, el ícono y los enlaces de la casa donde se perdió la persona.
+(function () {
+  var p = location.pathname, c = p.indexOf('/merceria') === 0 ? 'merceria' : (p.indexOf('/academy') === 0 ? 'academy' : '');
+  if (!c) return;
+  var D = {
+    merceria: { color: '#8E55D6', suave: '#EFE6FB', icono: '/img/favicon-merceria-256.png', titulo: 'Esta página de la Mercería se nos destejió', a: ['Ir a la Mercería', '/merceria/'], b: ['Ver el catálogo', '/merceria/catalogo/'] },
+    academy: { color: '#2A6FCB', suave: '#E3EEFC', icono: '/img/favicon-academy-256.png', titulo: 'Esta página de Academy se nos destejió', a: ['Ir a Academy', '/academy/'], b: ['Ver los talleres', '/aprende.html'] }
+  }[c];
+  var r = document.documentElement.style;
+  r.setProperty('--rosa-principal', D.color); r.setProperty('--rosa-suave', D.suave);
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('h1').textContent = D.titulo;
+    var l = document.querySelectorAll('.acciones a');
+    l[0].textContent = D.a[0]; l[0].href = D.a[1]; l[1].textContent = D.b[0]; l[1].href = D.b[1];
+    document.querySelector('main p').textContent = 'La dirección que buscas no existe o cambió de lugar. Desde el inicio de esta casa puedes encontrar lo que necesitas.';
+    var i = document.querySelector('link[rel=icon]'); if (i) i.href = D.icono;
+  });
+})();
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
