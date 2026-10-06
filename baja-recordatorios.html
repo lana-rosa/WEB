@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Baja de recordatorios — Lana Rosa Crochet</title>
+<link rel="icon" href="/img/favicon-256.png">
+<link rel="canonical" href="https://lanarosacrochet.com/baja-recordatorios.html">
+<style>
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 20px; box-sizing: border-box; background: #FAFAF7; color: #45454A; font-family: 'Hanken Grotesk', Arial, sans-serif; line-height: 1.5; }
+.tarjeta { max-width: 460px; background: #fff; border-radius: 22px; padding: 34px 28px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+.tarjeta img { height: 56px; border-radius: 10px; margin-bottom: 14px; }
+h1 { color: #C81B6D; font-size: 1.4rem; margin: 0 0 10px; }
+p { margin: 0 0 18px; }
+a.boton { display: inline-block; background: #E01E79; color: #fff; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 700; }
+a.boton:focus-visible { outline: 3px solid #C81B6D; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<main class="tarjeta" role="status" aria-live="polite">
+  <img src="/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" width="150" height="56">
+  <h1 id="titulo">Un momento…</h1>
+  <p id="texto">Estamos procesando tu solicitud.</p>
+  <a class="boton" href="https://lanarosacrochet.com/">Volver a Lana Rosa</a>
+</main>
+<script>
+(function () {
+  var t = new URLSearchParams(location.search).get('t') || '';
+  var titulo = document.getElementById('titulo'), texto = document.getElementById('texto');
+  function ok() { titulo.textContent = 'Listo, no te escribiremos más'; texto.textContent = 'Ya no recibirás recordatorios de tu carrito. Gracias por visitarnos 💗'; }
+  function mal() { titulo.textContent = 'No pudimos procesar el enlace'; texto.textContent = 'Si quieres dejar de recibir correos, escríbenos a contacto@lanarosacrochet.com y lo hacemos por ti.'; }
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(t)) return mal();
+  fetch('https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/carrito-baja?t=' + encodeURIComponent(t), { method: 'POST' })
+    .then(function (r) { return r.json(); }).then(function (d) { d && d.ok ? ok() : mal(); }).catch(mal);
+})();
+</script>
+</body>
+</html>
