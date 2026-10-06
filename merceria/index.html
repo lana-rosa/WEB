@@ -39,7 +39,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=16">
+<link rel="stylesheet" href="css/comun.css?v=17">
 <link rel="stylesheet" href="css/animaciones.css?v=2">
 <style>
 :root {
@@ -278,6 +278,11 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 /* ===== Inicio de la Mercería ===== */
 .hero-merceria .eslogan, .hero-fisica .eslogan { color: var(--rosa-texto); font-weight: 700; margin: 0; }
 .hero-merceria { padding: 34px 0 10px; max-width: 760px; }
+.hero-merceria { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: center; max-width: none; }
+.hero-merceria .hero-foto { margin: 0; }
+.hero-merceria .hero-foto img { width: 100%; height: auto; max-height: 420px; object-fit: cover; border-radius: 28px; box-shadow: var(--sombra-suave); display: block; }
+@media (max-width: 800px) { .hero-merceria { grid-template-columns: 1fr; gap: 20px; } .hero-merceria .hero-foto img { max-height: 280px; } }
+
 .hero-merceria h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 4px 0 14px; }
 .hero-merceria .intro { font-size: 1.08rem; color: var(--tinta-suave); margin: 0 0 22px; }
 .botones-hero { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
@@ -387,6 +392,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main class="contenedor">
   <section class="hero-merceria">
+    <div class="hero-texto">
     <p class="eslogan">Mercería Lana Rosa</p>
     <h1>Todo para tejer, en un solo lugar</h1>
     <p class="intro">Lanas, hilos, agujas, herrajes y accesorios: los mismos materiales con los que tejemos cada amigurumi en Lana Rosa.</p>
@@ -399,6 +405,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li>🧶 Materiales probados en nuestro taller</li>
       <li>📍 Tienda física en Villamaría</li>
     </ul>
+    </div>
+    <figure class="hero-foto"><img src="img/inicio/tejer-detalle.webp" alt="Llavero de ballena tejido a mano en crochet sobre una mesa de madera" width="640" height="800" decoding="async"></figure>
   </section>
 
   <a class="banda-apertura" href="merceria/tienda-fisica/"><span data-apertura="antes">Inauguración prevista de la tienda física: domingo 15 de noviembre de 2026 · Ver horario →</span><span data-apertura="despues" hidden>📍 Visítanos en Villamaría · Calle 10 #5-37, Centro · Ver horario y cómo llegar →</span></a>
