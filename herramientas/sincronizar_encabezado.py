@@ -16,7 +16,7 @@ CASA_DE = {
     'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
-CASAS = [('crochet', 'Tienda de amigurumis', 'index.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/')]
+CASAS = [('crochet', 'Tienda de amigurumis', 'tienda.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/')]
 CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'comun': 'g-comun'}
 
 # (texto, enlace, clase de color)

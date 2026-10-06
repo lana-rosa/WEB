@@ -119,17 +119,17 @@ main { padding-bottom: 60px; }
 
 /* ===== Identidad por casa: cada casa cambia la paleta de toda la página (html[data-casa]) ===== */
 :root { --rosa-hover: #B0356F; --rosa-rgb: 231, 78, 150; --rosa-texto: #C81B6D; --rosa-boton: #E01E79; --sobre-principal: #fff; }
-html[data-casa="merceria"] { --rosa-principal: #9A7EDD; --rosa-medio: #D3C3F5; --rosa-suave: #F4EEFD; --rosa-hover: #7A59C3; --rosa-rgb: 154, 126, 221; --rosa-texto: #7A56D2; --rosa-boton: #9A7EDD; --sobre-principal: #1F1440; }
-html[data-casa="academy"]  { --rosa-principal: #5A98E2; --rosa-medio: #BBD6F7; --rosa-suave: #EBF3FD; --rosa-hover: #3270B9; --rosa-rgb: 90, 152, 226; --rosa-texto: #236EC7; --rosa-boton: #5A98E2; --sobre-principal: #0E2547; }
-html[data-casa="merceria"] .encabezado { background: rgba(239, 230, 251, 0.92); }
-html[data-casa="academy"] .encabezado { background: rgba(227, 238, 252, 0.92); }
+html[data-casa="merceria"] { --rosa-principal: #9A7EDD; --rosa-medio: #D3C3F5; --rosa-suave: #F5F1F7; --rosa-hover: #7A59C3; --rosa-rgb: 154, 126, 221; --rosa-texto: #3F2B73; --rosa-boton: #9A7EDD; --sobre-principal: #1F1440; }
+html[data-casa="academy"]  { --rosa-principal: #5A98E2; --rosa-medio: #BBD6F7; --rosa-suave: #F1F5F9; --rosa-hover: #3270B9; --rosa-rgb: 90, 152, 226; --rosa-texto: #1D3F72; --rosa-boton: #5A98E2; --sobre-principal: #0E2547; }
+html[data-casa="merceria"] .encabezado { background: rgba(255, 255, 255, 0.96); border-bottom: 3px solid var(--rosa-medio); }
+html[data-casa="academy"] .encabezado { background: rgba(255, 255, 255, 0.96); border-bottom: 3px solid var(--rosa-medio); }
 .logo .texto-logo { color: var(--rosa-texto); }
 html[data-casa="merceria"] .logo, html[data-casa="academy"] .logo { text-align: center; }
 html[data-casa="merceria"] .texto-logo, html[data-casa="academy"] .texto-logo { font-weight: 700; }
-html[data-casa="merceria"] .nav-principal li.g-merceria a { background: var(--rosa-boton); color: var(--sobre-principal); }
-html[data-casa="merceria"] .nav-principal li.g-merceria a:hover { background: var(--rosa-hover); }
-html[data-casa="academy"] .nav-principal li.g-aprende a { background: var(--rosa-boton); color: var(--sobre-principal); }
-html[data-casa="academy"] .nav-principal li.g-aprende a:hover { background: var(--rosa-hover); }
+html[data-casa="merceria"] .nav-principal li.g-merceria a { background: #fff; color: var(--rosa-texto); box-shadow: inset 0 0 0 1.5px var(--rosa-medio); }
+html[data-casa="merceria"] .nav-principal li.g-merceria a:hover, html[data-casa="merceria"] .nav-principal li.g-merceria a:focus-visible { background: var(--rosa-boton); color: var(--sobre-principal); box-shadow: none; }
+html[data-casa="academy"] .nav-principal li.g-aprende a { background: #fff; color: var(--rosa-texto); box-shadow: inset 0 0 0 1.5px var(--rosa-medio); }
+html[data-casa="academy"] .nav-principal li.g-aprende a:hover, html[data-casa="academy"] .nav-principal li.g-aprende a:focus-visible { background: var(--rosa-boton); color: var(--sobre-principal); box-shadow: none; }
 .nav-movil-panel .grupo-nav.otras-casas { color: var(--tinta-suave); margin-top: 8px; }
 .nav-movil-panel a.otras-casas { font-size: 0.88rem; color: var(--tinta-suave); padding-top: 10px; padding-bottom: 10px; }
 
@@ -189,3 +189,8 @@ html[data-casa="merceria"] .pie-rico .pie-h3, html[data-casa="academy"] .pie-ric
 input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--rosa-texto) !important; outline-offset: 2px; }
 .franja-casas a:focus-visible, .nav-principal a:focus-visible { outline-offset: 1px; }
 @media (prefers-reduced-motion: reduce) { .franja-anuncios .cinta { animation: none; } }
+
+/* Mercería y Academy: color de la casa solo como acento; fondos neutros y una nota cálida de la marca (rosa) */
+html[data-casa="merceria"] .banda-apertura, html[data-casa="academy"] .banda-apertura, html[data-casa="academy"] .materiales-academy { background: #FBE4EF; color: #8E1457; }
+html[data-casa="merceria"] .banda-apertura:hover { background: #F6C9DF; color: #8E1457; }
+html[data-casa="merceria"] .banda-apertura *, html[data-casa="academy"] .materiales-academy h2 { color: inherit; }
