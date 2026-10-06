@@ -17,6 +17,9 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ## 🟡 Necesito algo de Sara para poder hacerlo
 
+- [ ] **Colores pastel de Mercería y Academy (6-oct-2026):** propuesta lista en la rama `claude/colores-pastel` (lila `#9A7EDD` y azul `#5A98E2`, con fondos más suaves). Esperando que Sara la apruebe o pida ajustes. Ojo: el texto blanco sobre un color pastel pierde contraste (queda cerca de 3:1; el rosa de marca está en 3,6:1).
+- [ ] **Análisis externo de la web (6-oct-2026), revisado sin cambios:** ya está hecho lo de las tres casas, Rosina transversal, historias, Wompi + WhatsApp, SEO base, pop-up y carga de productos. Pendiente de decidir con Sara: (1) que la franja "Inauguración prevista" de la Mercería cambie sola después del 15-nov; (2) mover "Conoce Lana Rosa" antes de la entrada a Mercería/Academy en el inicio; (3) atributos width/height en imágenes y revisión de contraste; (4) revisar enlaces con una herramienta externa (el análisis habla de /merceria/merceria/, que no existe en el código).
+
 - [x] **Bases de los amigurumis (6-oct, regla de Sara):** las bases sirven para amigurumis de 10 a 20 cm (no para los de cuatro patas como Bulbasaur) y nunca van incluidas en el precio, ni las tejidas. Los 20 amigurumis de 10–20 cm muestran "Base de exhibición (opcional): si deseas incluirla, se agrega por $7.000. No está incluida en el precio del muñeco." aunque no salga en la foto. Solo para amigurumis (nunca peluches, llaveros, macetas ni otros). Al agregar un amigurumi nuevo de 10–20 cm, ponerle esa línea en especificaciones.
 
 - [ ] **Autorización de 3 fotos para la galería "De la foto al amigurumi" del inicio:** vestido blanco con balaca, señor de canas con camisa blanca y señora saludando. Con la autorización se agregan (Sara tiene las fotos sin flores).
