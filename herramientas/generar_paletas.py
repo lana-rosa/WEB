@@ -114,21 +114,21 @@ main = f'''<main>
 css = '''
 /* ===== Paletas de colores ===== */
 .boton-primario, .boton-secundario { display: inline-block; padding: 12px 26px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: var(--fuente-cuerpo); cursor: pointer; border: 2px solid var(--rosa-principal); }
-.boton-primario { background: var(--rosa-principal); color: var(--blanco); }
+.boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
 .boton-primario:hover { background: #B83E78; border-color: #B83E78; }
-.boton-secundario { background: var(--blanco); color: var(--rosa-principal); }
+.boton-secundario { background: var(--blanco); color: var(--rosa-texto); }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .boton-chico { padding: 7px 14px; font-size: 0.83rem; }
 section.intro-paletas { padding-top: 48px; padding-bottom: 24px; display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 30px; align-items: center; }
 @media (max-width: 800px) { section.intro-paletas { grid-template-columns: 1fr; padding-top: 28px; } }
-.intro-paletas .eslogan { color: var(--rosa-principal); font-weight: 600; margin: 0 0 8px; }
+.intro-paletas .eslogan { color: var(--rosa-texto); font-weight: 600; margin: 0 0 8px; }
 .intro-paletas .intro { color: var(--tinta-suave); font-size: 1.06rem; max-width: 60ch; }
 .intro-paletas-ovillos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 320px; justify-self: center; }
 .intro-paletas-ovillos svg { width: 100%; height: auto; filter: drop-shadow(0 6px 10px rgba(58,42,46,0.15)); }
 @media (max-width: 800px) { .intro-paletas-ovillos { grid-template-columns: repeat(8, 1fr); max-width: 100%; } }
 .chips-paletas { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0 26px; }
 .chips-paletas button { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: var(--tinta); border-radius: 999px; padding: 7px 16px; font-family: var(--fuente-cuerpo); font-weight: 600; font-size: 0.88rem; cursor: pointer; }
-.chips-paletas button[aria-pressed="true"] { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.chips-paletas button[aria-pressed="true"] { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
 section.categoria-paletas { padding: 0 0 36px; }
 .grid-paletas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 @media (max-width: 980px) { .grid-paletas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -175,7 +175,7 @@ section.categoria-paletas { padding: 0 0 36px; }
 .grid-tips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 860px) { .grid-tips { grid-template-columns: 1fr; } }
 .grid-tips div { background: var(--blanco); border-radius: var(--radio-suave); padding: 18px; box-shadow: var(--sombra-suave); }
-.grid-tips strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); }
+.grid-tips strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); }
 .grid-tips p { margin: 6px 0 0; font-size: 0.92rem; color: var(--tinta-suave); }
 .aviso-copiado { position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%); background: var(--tinta); color: var(--blanco); padding: 10px 18px; border-radius: 999px; font-size: 0.9rem; z-index: 2000; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
 .aviso-copiado.visible { opacity: 1; }
@@ -219,7 +219,7 @@ js = '''<div class="aviso-copiado" id="aviso-copiado" role="status"></div>
         x.beginPath(); x.moveTo(cx + l[0] * r, cy + l[1] * r); x.quadraticCurveTo(cx, cy + (l[1] + 0.22) * r, cx + l[2] * r, cy + l[3] * r); x.stroke();
       });
       x.fillStyle = '#45454A'; x.font = '700 32px "Hanken Grotesk", sans-serif'; x.fillText(col[0], cx, cy + r + 50, paso - 20);
-      x.fillStyle = '#6E6E73'; x.font = '500 28px monospace'; x.fillText(col[1], cx, cy + r + 88);
+      x.fillStyle = '#64646A'; x.font = '500 28px monospace'; x.fillText(col[1], cx, cy + r + 88);
     });
     var y0 = 380 + filas * 300 - 40, alto = 170, seq = [];
     if (n <= 4) { seq = [0, 1, 0, 2, 0, 1, 0, n > 3 ? 3 : 2, 0, 1].map(function(i) { return p.colores[Math.min(i, n - 1)][1]; }); }
@@ -227,7 +227,7 @@ js = '''<div class="aviso-copiado" id="aviso-copiado" role="status"></div>
     var w = (W - 120) / seq.length;
     x.save(); x.beginPath(); if (x.roundRect) x.roundRect(60, y0, W - 120, alto, 24); else x.rect(60, y0, W - 120, alto); x.clip();
     seq.forEach(function(col, i) { x.fillStyle = col; x.fillRect(60 + i * w, y0, w + 1, alto); }); x.restore();
-    x.fillStyle = '#6E6E73'; x.font = '500 28px "Hanken Grotesk", sans-serif'; x.fillText('Así se vería en una manta de rayas', W / 2, y0 + alto + 48);
+    x.fillStyle = '#64646A'; x.font = '500 28px "Hanken Grotesk", sans-serif'; x.fillText('Así se vería en una manta de rayas', W / 2, y0 + alto + 48);
     x.fillStyle = '#E74E96'; x.font = '600 36px DynaPuff, sans-serif'; x.fillText('♡ lanarosacrochet.com', W / 2, H - 60);
     return c;
   }

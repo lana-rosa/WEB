@@ -282,7 +282,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=11">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
@@ -294,7 +294,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --azul-acero: #93C7F9;
   --blanco-hueso: #FAFAF7;
   --tinta: #45454A;
-  --tinta-suave: #6E6E73;
+  --tinta-suave: #64646A;
   --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -315,16 +315,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--azul-acero); ou
 .hero { padding: 64px 0 80px; }
 .hero .contenedor { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
 @media (max-width: 860px) { .hero .contenedor { grid-template-columns: 1fr; } }
-.hero-texto .eslogan { color: var(--rosa-principal); font-weight: 600; font-size: 1.05rem; margin-bottom: 14px; }
+.hero-texto .eslogan { color: var(--rosa-texto); font-weight: 600; font-size: 1.05rem; margin-bottom: 14px; }
 .hero-texto p.intro { font-size: 1.15rem; color: var(--tinta-suave); }
 .cta-grupo { display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap; }
 .boton-primario, .boton-secundario { display: inline-block; padding: 14px 30px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 1rem; }
-.boton-primario { background: var(--rosa-principal); color: var(--blanco); }
+.boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
 .boton-primario:hover { background: var(--rosa-hover); }
-.boton-secundario { background: transparent; color: var(--rosa-principal); border: 2px solid var(--rosa-principal); }
+.boton-secundario { background: transparent; color: var(--rosa-texto); border: 2px solid var(--rosa-principal); }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .marco-foto { position: relative; background: var(--rosa-suave); border-radius: var(--radio-suave); aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: var(--sombra-suave); }
-.marco-foto .marcador { text-align: center; color: var(--rosa-principal); font-size: 0.9rem; padding: 20px; }
+.marco-foto .marcador { text-align: center; color: var(--rosa-texto); font-size: 0.9rem; padding: 20px; }
 .ovillo { position: absolute; border-radius: 50%; background: var(--rosa-medio); opacity: 0.35; }
 section { padding: 72px 0; }
 .seccion-suave { background: var(--rosa-suave); }
@@ -336,19 +336,19 @@ section { padding: 72px 0; }
 .diferenciales { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 40px; }
 @media (max-width: 700px) { .diferenciales { grid-template-columns: 1fr; } }
 .diferenciales li { display: flex; gap: 16px; align-items: flex-start; }
-.diferenciales .marca { color: var(--rosa-principal); font-family: var(--fuente-titulo); font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+.diferenciales .marca { color: var(--rosa-texto); font-family: var(--fuente-titulo); font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
 .testimonios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 @media (max-width: 900px) { .testimonios { grid-template-columns: 1fr; } }
 .testimonio { background: var(--blanco); border-radius: var(--radio-suave); padding: 28px; box-shadow: var(--sombra-suave); }
 .testimonio p { font-style: italic; color: var(--tinta-suave); }
-.testimonio .autor { font-weight: 600; color: var(--rosa-principal); margin-top: 12px; font-style: normal; }
+.testimonio .autor { font-weight: 600; color: var(--rosa-texto); margin-top: 12px; font-style: normal; }
 .rosina-bloque { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 48px; align-items: center; }
 @media (max-width: 860px) { .rosina-bloque { grid-template-columns: 1fr; } }
 .faq-lista { max-width: 780px; }
 .faq-item { border-bottom: 1px solid rgba(69,69,74,0.12); padding: 22px 0; }
 .faq-item summary { font-family: var(--fuente-titulo); font-size: 1.1rem; cursor: pointer; list-style: none; position: relative; padding-right: 32px; }
 .faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after { content: '+'; position: absolute; right: 0; top: 0; color: var(--rosa-principal); font-size: 1.4rem; }
+.faq-item summary::after { content: '+'; position: absolute; right: 0; top: 0; color: var(--rosa-texto); font-size: 1.4rem; }
 .faq-item[open] summary::after { content: '–'; }
 .faq-item p { margin-top: 14px; color: var(--tinta-suave); }
 .franja-anuncios {
@@ -389,7 +389,7 @@ section { padding: 72px 0; }
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-.flecha-carrusel:hover { background: #fff; color: var(--rosa-principal); }
+.flecha-carrusel:hover { background: #fff; color: var(--rosa-texto); }
 .flecha-carrusel.anterior { left: 14px; }
 .flecha-carrusel.siguiente { right: 14px; }
 @media (max-width: 600px) { .flecha-carrusel { width: 34px; height: 34px; font-size: 1rem; } }
@@ -419,7 +419,7 @@ section { padding: 72px 0; }
 .banner-promo h2 { color: var(--blanco); margin-bottom: 14px; }
 .banner-promo p { color: rgba(255,255,255,0.92); font-size: 1.05rem; margin: 0 auto 26px; max-width: 56ch; }
 .boton-banner-promo {
-  display: inline-block; background: var(--blanco); color: var(--rosa-principal) !important;
+  display: inline-block; background: var(--blanco); color: var(--rosa-texto) !important;
   text-decoration: none; padding: 15px 34px; border-radius: 999px; font-weight: 700; font-size: 1.02rem;
 }
 .boton-banner-promo:hover { background: var(--rosa-suave); }
@@ -437,9 +437,9 @@ section { padding: 72px 0; }
 .opcion-tejer { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
 .opcion-tejer:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
 .opcion-tejer .icono-opcion { font-size: 1.8rem; line-height: 1; margin-bottom: 4px; }
-.opcion-tejer strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.08rem; }
+.opcion-tejer strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.08rem; }
 .opcion-tejer span:last-child { font-size: 0.9rem; color: var(--tinta-suave); }
-.eslogan-seccion { text-align: center; color: var(--rosa-principal); font-weight: 600; margin: 0 0 6px; }
+.eslogan-seccion { text-align: center; color: var(--rosa-texto); font-weight: 600; margin: 0 0 6px; }
 .galeria-foto-amigurumi { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin-top: 26px; }
 .ejemplo-foto { margin: 0; flex: 0 0 calc((100% - 54px) / 4); }
 @media (max-width: 1000px) { .ejemplo-foto { flex-basis: calc((100% - 36px) / 3); } }
@@ -452,7 +452,7 @@ section { padding: 72px 0; }
 .pasos-historia li:not(:last-child)::after { content: ""; position: absolute; top: 40px; right: -14px; width: 28px; border-top: 2px dashed var(--rosa-medio); }
 @media (max-width: 900px) { .pasos-historia li { flex-direction: row; flex-wrap: wrap; text-align: left; align-items: center; column-gap: 10px; padding: 10px 4px; } .pasos-historia li:not(:last-child)::after { display: none; } .pasos-historia li > span:last-child { flex-basis: 100%; padding-left: 70px; margin-top: -4px; } }
 .icono-paso { font-size: 1.6rem; width: 52px; height: 52px; border-radius: 50%; background: var(--rosa-suave); display: flex; align-items: center; justify-content: center; }
-.num-paso { font-size: 0.75rem; font-weight: 800; color: var(--rosa-principal); letter-spacing: 0.06em; }
+.num-paso { font-size: 0.75rem; font-weight: 800; color: var(--rosa-texto); letter-spacing: 0.06em; }
 .num-paso::before { content: "PASO "; }
 .pasos-historia strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--tinta); font-size: 1rem; }
 .pasos-historia li > span:last-child { font-size: 0.88rem; color: var(--tinta-suave); }
@@ -471,20 +471,20 @@ section { padding: 72px 0; }
 .tarjeta-mas:hover { transform: translateY(-3px); }
 .tarjeta-mas img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
 .texto-mas { display: flex; flex-direction: column; gap: 4px; padding: 16px 20px 20px; }
-.texto-mas strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.15rem; }
+.texto-mas strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.15rem; }
 .texto-mas span { color: var(--tinta-suave); font-size: 0.95rem; }
-.texto-mas em { font-style: normal; font-weight: 700; color: var(--rosa-principal); margin-top: 4px; }
+.texto-mas em { font-style: normal; font-weight: 700; color: var(--rosa-texto); margin-top: 4px; }
 .nota-pasos { text-align: center; color: var(--tinta-suave); font-size: 0.92rem; margin: 18px auto 0; max-width: 52ch; }
 /* =================== INICIO EDITORIAL =================== */
 .inicio-editorial { --crema: #FBF7F2; --linea: rgba(69,69,74,0.10); background: var(--blanco); }
 .inicio-editorial h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); letter-spacing: -0.01em; }
 .inicio-editorial p { max-width: 62ch; }
-.ed-eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rosa-principal); margin: 0 0 12px; }
+.ed-eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rosa-texto); margin: 0 0 12px; }
 .ed-seccion { padding: clamp(64px, 9vw, 112px) 0; }
 .ed-crema { background: var(--crema); }
 .ed-cabecera { text-align: center; margin: 0 auto clamp(32px, 5vw, 56px); }
 .ed-cabecera p { margin: 0 auto; color: var(--tinta-suave); font-size: 1.08rem; }
-.inicio-editorial .ed-eyebrow { color: var(--rosa-principal); font-size: 0.78rem; margin-bottom: 12px; }
+.inicio-editorial .ed-eyebrow { color: var(--rosa-texto); font-size: 0.78rem; margin-bottom: 12px; }
 .ed-centro { text-align: center; margin-top: 40px; }
 .ed-centro-texto { text-align: center; }
 .ed-centro-texto p { margin-left: auto; margin-right: auto; color: var(--tinta-suave); }
@@ -492,7 +492,7 @@ section { padding: 72px 0; }
 .ed-botones-centrados { justify-content: center; }
 .ed-botones-centro { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .ed-enlace { font-weight: 700; color: var(--tinta); text-decoration: none; border-bottom: 2px solid var(--rosa-medio); padding: 6px 0 2px; }
-.ed-enlace:hover { color: var(--rosa-principal); }
+.ed-enlace:hover { color: var(--rosa-texto); }
 .inicio-editorial .boton-secundario { background: transparent; }
 button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-nota { color: var(--tinta-suave); margin: 0; }
@@ -500,7 +500,7 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-hero { padding: clamp(40px, 7vw, 96px) 0 clamp(48px, 7vw, 88px); background: var(--crema); }
 .ed-hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .ed-hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.2rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 20px; }
-.ed-hero h1 span { display: block; color: var(--rosa-principal); font-size: 0.62em; margin-top: 12px; line-height: 1.15; }
+.ed-hero h1 span { display: block; color: var(--rosa-texto); font-size: 0.62em; margin-top: 12px; line-height: 1.15; }
 .ed-intro { font-size: 1.18rem; color: var(--tinta-suave); margin: 0; }
 .ed-hero-foto { margin: 0; }
 .ed-hero-foto img { width: 100%; height: auto; display: block; border-radius: 22px; box-shadow: 0 24px 60px rgba(58,42,46,0.12); }
@@ -520,7 +520,7 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-tejer-item:hover img { transform: scale(1.04); }
 .ed-tejer-item span { position: absolute; left: 0; right: 0; bottom: 0; padding: 48px 18px 18px; color: #fff; font-family: var(--fuente-titulo); font-weight: 600; font-size: clamp(1rem, 1.8vw, 1.35rem); background: linear-gradient(to top, rgba(40,28,32,0.62), rgba(40,28,32,0)); }
 .ed-tejer-item.sin-foto { background: linear-gradient(160deg, var(--rosa-suave), #F6E9F7); }
-.ed-tejer-item.sin-foto span { color: var(--rosa-principal); background: none; }
+.ed-tejer-item.sin-foto span { color: var(--rosa-texto); background: none; }
 @media (max-width: 700px) { .ed-tejer { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ed-tejer-item span { padding: 36px 12px 12px; } }
 /* 4. Casos foto → amigurumi */
 .ed-casos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 36px); }
@@ -534,7 +534,7 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-manifiesto img { width: 100%; height: auto; border-radius: 22px; display: block; }
 .ed-manifiesto blockquote { margin: 0; }
 .ed-manifiesto-titulo { font-family: var(--fuente-titulo); font-weight: 600; font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.1; color: var(--tinta); margin: 0 0 18px; }
-.ed-manifiesto blockquote p:last-child { font-size: 1.2rem; color: var(--rosa-principal); margin: 0; }
+.ed-manifiesto blockquote p:last-child { font-size: 1.2rem; color: var(--rosa-texto); margin: 0; }
 @media (max-width: 860px) { .ed-manifiesto-grid { grid-template-columns: 1fr; } .ed-manifiesto blockquote { text-align: center; } .ed-manifiesto blockquote p { margin-left: auto; margin-right: auto; } }
 /* 6. Proceso editorial */
 .ed-proceso { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--linea); }
@@ -787,12 +787,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Si lo puedes imaginar, lo podemos tejer.</p>
       </header>
       <div class="ed-tejer">
-        <a class="ed-tejer-item" href="personaliza.html?idea=persona"><img src="img/inicio/tejer-persona.webp?v=2" alt="Amigurumi personalizado de un hombre con barba, camiseta polo blanca y jean, tejido a mano" loading="lazy" decoding="async"><span>Una persona</span></a>
-        <a class="ed-tejer-item" href="personaliza.html?idea=mascota"><img src="img/inicio/mascota-bulldog.webp?v=3" alt="Amigurumi de un bulldog francés con su placa de nombre, tejido a mano" loading="lazy" decoding="async"><span>Tu mascota</span></a>
-        <a class="ed-tejer-item" href="personaliza.html?idea=pareja"><img src="img/inicio/tejer-pareja.webp?v=4" alt="Amigurumis personalizados de una pareja de novios junto a su foto de referencia" loading="lazy" decoding="async"><span>Una pareja</span></a>
-        <a class="ed-tejer-item" href="personaliza.html?idea=personaje"><img src="img/inicio/tejer-peluche.webp?v=2" alt="Peluche de perrito blanco con orejas negras y collar rojo, tejido a mano" loading="lazy" decoding="async"><span>Un personaje que amas</span></a>
-        <a class="ed-tejer-item" href="personaliza.html?idea=regalo"><img src="img/inicio/tejer-flores.webp?v=2" alt="Ramo de tulipanes rojos y lilas tejidos a mano, con cinta morada" loading="lazy" decoding="async"><span>Un regalo especial</span></a>
-        <a class="ed-tejer-item" href="personaliza.html?idea=detalle"><img src="img/inicio/tejer-detalle.webp" alt="Llavero de ballena azul tejido a mano" loading="lazy" decoding="async"><span>Un pequeño detalle</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=persona"><img src="img/inicio/tejer-persona.webp?v=2" alt="Amigurumi personalizado de un hombre con barba, camiseta polo blanca y jean, tejido a mano" loading="lazy" decoding="async" width="640" height="800"><span>Una persona</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=mascota"><img src="img/inicio/mascota-bulldog.webp?v=3" alt="Amigurumi de un bulldog francés con su placa de nombre, tejido a mano" loading="lazy" decoding="async" width="640" height="800"><span>Tu mascota</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=pareja"><img src="img/inicio/tejer-pareja.webp?v=4" alt="Amigurumis personalizados de una pareja de novios junto a su foto de referencia" loading="lazy" decoding="async" width="640" height="800"><span>Una pareja</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=personaje"><img src="img/inicio/tejer-peluche.webp?v=2" alt="Peluche de perrito blanco con orejas negras y collar rojo, tejido a mano" loading="lazy" decoding="async" width="640" height="800"><span>Un personaje que amas</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=regalo"><img src="img/inicio/tejer-flores.webp?v=2" alt="Ramo de tulipanes rojos y lilas tejidos a mano, con cinta morada" loading="lazy" decoding="async" width="640" height="800"><span>Un regalo especial</span></a>
+        <a class="ed-tejer-item" href="personaliza.html?idea=detalle"><img src="img/inicio/tejer-detalle.webp" alt="Llavero de ballena azul tejido a mano" loading="lazy" decoding="async" width="640" height="800"><span>Un pequeño detalle</span></a>
       </div>
     </div>
   </section>
@@ -835,18 +835,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Cada amigurumi nace de una historia real.</p>
       </header>
       <div class="ed-historias" id="ed-historias">
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-1.webp" alt="Abuela con vestido de flores y gafas, junto a su amigurumi personalizado con los mismos detalles" loading="lazy" decoding="async"><figcaption>Amigurumi de una abuela que ya no está.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-7.webp" alt="Hombre de barba y cabello canoso con chaqueta verde, junto a su amigurumi personalizado" loading="lazy" decoding="async"><figcaption>Amigurumi de Mario Mendoza.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-2.webp" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" decoding="async"><figcaption>Amigurumi de una niña muy tierna.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-3.webp?v=3" alt="Tres amigurumis personalizados de una familia, todos vestidos de blanco" loading="lazy" decoding="async"><figcaption>Amigurumis de familiares que siempre se recordarán.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-5-cuadrada.webp" alt="Amigurumi con blusa rosada y corazón rojo junto a su tarjeta de regalo personalizada" loading="lazy" decoding="async"><figcaption>Amigurumi de una mamá para su hijo que está lejos.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-6-cuadrada.webp" alt="Amigurumi de un señor con camiseta morada y corazón junto a su foto de referencia" loading="lazy" decoding="async"><figcaption>Amigurumi de un papá para su hijo que está lejos.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/foto-amigurumi/vestido-fucsia.webp?v=5" alt="Amigurumi con vestido fucsia junto a la foto de la mujer que lo inspiró" loading="lazy" decoding="async"><figcaption>Amigurumi para una hija en su cumpleaños.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/foto-amigurumi/blusa-blanca.webp?v=3" alt="Amigurumi con blusa blanca y jean junto a la foto de la mujer que lo inspiró" loading="lazy" decoding="async"><figcaption>Amigurumi para una hija en su cumpleaños.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/foto-amigurumi/boina.webp?v=4" alt="Amigurumi con boina y abrigo rosado junto a la foto de la niña que lo inspiró" loading="lazy" decoding="async"><figcaption>Amigurumi para una nieta muy amada que vive lejos.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/inicio/mascota-llavero.webp" alt="Llavero personalizado de un perro negro con pañoleta roja que dice LUK" loading="lazy" decoding="async"><figcaption>Llavero de Luk, un perrito que siempre van a recordar.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-9.webp" alt="Muñeca con sombrero de fresa usada como referencia, junto al amigurumi tejido a partir de ella" loading="lazy" decoding="async"><figcaption>Amigurumi de Rosita Fresita, un regalo para una amiga muy querida.</figcaption></figure>
-        <figure class="ed-historia"><img src="img/testimonios/testimonio-10.jpg" alt="Ovejita de referencia con tutú rosado, junto al peluche tejido a partir de ella" loading="lazy" decoding="async"><figcaption>Amigurumi de Lambi para una novia muy consentida.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-1.webp" alt="Abuela con vestido de flores y gafas, junto a su amigurumi personalizado con los mismos detalles" loading="lazy" decoding="async" width="521" height="634"><figcaption>Amigurumi de una abuela que ya no está.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-7.webp" alt="Hombre de barba y cabello canoso con chaqueta verde, junto a su amigurumi personalizado" loading="lazy" decoding="async" width="574" height="662"><figcaption>Amigurumi de Mario Mendoza.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-2.webp" alt="Niña con overol de jean y sombrero, junto a su amigurumi personalizado tejido a mano" loading="lazy" decoding="async" width="450" height="666"><figcaption>Amigurumi de una niña muy tierna.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-3.webp?v=3" alt="Tres amigurumis personalizados de una familia, todos vestidos de blanco" loading="lazy" decoding="async" width="800" height="1000"><figcaption>Amigurumis de familiares que siempre se recordarán.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-5-cuadrada.webp" alt="Amigurumi con blusa rosada y corazón rojo junto a su tarjeta de regalo personalizada" loading="lazy" decoding="async" width="800" height="800"><figcaption>Amigurumi de una mamá para su hijo que está lejos.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-6-cuadrada.webp" alt="Amigurumi de un señor con camiseta morada y corazón junto a su foto de referencia" loading="lazy" decoding="async" width="800" height="800"><figcaption>Amigurumi de un papá para su hijo que está lejos.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/foto-amigurumi/vestido-fucsia.webp?v=5" alt="Amigurumi con vestido fucsia junto a la foto de la mujer que lo inspiró" loading="lazy" decoding="async" width="700" height="700"><figcaption>Amigurumi para una hija en su cumpleaños.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/foto-amigurumi/blusa-blanca.webp?v=3" alt="Amigurumi con blusa blanca y jean junto a la foto de la mujer que lo inspiró" loading="lazy" decoding="async" width="600" height="848"><figcaption>Amigurumi para una hija en su cumpleaños.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/foto-amigurumi/boina.webp?v=4" alt="Amigurumi con boina y abrigo rosado junto a la foto de la niña que lo inspiró" loading="lazy" decoding="async" width="700" height="700"><figcaption>Amigurumi para una nieta muy amada que vive lejos.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/inicio/mascota-llavero.webp" alt="Llavero personalizado de un perro negro con pañoleta roja que dice LUK" loading="lazy" decoding="async" width="640" height="635"><figcaption>Llavero de Luk, un perrito que siempre van a recordar.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-9.webp" alt="Muñeca con sombrero de fresa usada como referencia, junto al amigurumi tejido a partir de ella" loading="lazy" decoding="async" width="576" height="609"><figcaption>Amigurumi de Rosita Fresita, un regalo para una amiga muy querida.</figcaption></figure>
+        <figure class="ed-historia"><img src="img/testimonios/testimonio-10.jpg" alt="Ovejita de referencia con tutú rosado, junto al peluche tejido a partir de ella" loading="lazy" decoding="async" width="515" height="453"><figcaption>Amigurumi de Lambi para una novia muy consentida.</figcaption></figure>
       </div>
       <div class="ed-centro ed-botones-centro">
         <button type="button" class="boton-secundario" id="ed-mas-historias" aria-expanded="false" aria-controls="ed-historias">Conoce más historias</button>

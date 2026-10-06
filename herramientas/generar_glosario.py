@@ -11,9 +11,9 @@ src = open(WEB + 'rosina.html', encoding='utf-8').read()
 css = '''
 /* ===== Glosario ilustrado ===== */
 .boton-primario, .boton-secundario { display: inline-block; padding: 12px 26px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: var(--fuente-cuerpo); cursor: pointer; border: 2px solid var(--rosa-principal); }
-.boton-primario { background: var(--rosa-principal); color: var(--blanco); }
+.boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
 .boton-primario:hover { background: #B83E78; border-color: #B83E78; }
-.boton-secundario { background: transparent; color: var(--rosa-principal); }
+.boton-secundario { background: transparent; color: var(--rosa-texto); }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .herramientas-glosario { position: sticky; top: 100px; z-index: 5; background: rgba(250, 250, 247, 0.96); backdrop-filter: blur(6px); padding: 14px 0; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; border-bottom: 1px solid rgba(69,69,74,0.08); margin-bottom: 26px; }
 @media (max-width: 760px) { .herramientas-glosario { top: 80px; padding: 8px 0; gap: 8px; } .herramientas-glosario .buscador input { padding: 6px 0; } .categoria-glosario { scroll-margin-top: 200px; } }
@@ -26,7 +26,7 @@ main > .hero-rosina.contenedor { padding-bottom: 20px; }
 .buscador input { flex: 1; border: none; outline: none; background: transparent; font-family: var(--fuente-cuerpo); font-size: 0.98rem; padding: 8px 0; color: var(--tinta); min-width: 0; }
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }
 .chips button { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: var(--tinta); border-radius: 999px; padding: 7px 14px; font-family: var(--fuente-cuerpo); font-weight: 600; font-size: 0.85rem; cursor: pointer; }
-.chips button[aria-pressed="true"] { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.chips button[aria-pressed="true"] { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
 .categoria-glosario { margin-bottom: 0; padding-bottom: 32px; scroll-margin-top: 190px; }
 .categoria-glosario > h2 { display: flex; align-items: center; gap: 10px; }
 .categoria-glosario > h2 small { font-family: var(--fuente-cuerpo); font-size: 0.85rem; color: var(--tinta-suave); font-weight: 500; }
@@ -38,13 +38,13 @@ main > .hero-rosina.contenedor { padding-bottom: 20px; }
 .ilustracion svg { width: 60px; height: 60px; }
 .termino h3 { margin: 0; font-size: 1.2rem; color: var(--tinta); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .termino h3 a { color: inherit; text-decoration: none; }
-.abrev { font-family: var(--fuente-cuerpo); font-size: 0.8rem; font-weight: 700; background: var(--rosa-principal); color: var(--blanco); border-radius: 999px; padding: 2px 10px; }
+.abrev { font-family: var(--fuente-cuerpo); font-size: 0.8rem; font-weight: 700; background: var(--rosa-boton); color: var(--sobre-principal); border-radius: 999px; padding: 2px 10px; }
 .ingles { font-size: 0.82rem; color: var(--tinta-suave); margin: 4px 0 0; }
-.ingles span { font-weight: 700; color: var(--lila); }
+.ingles span { font-weight: 700; color: #5A5ED8; }
 .termino p.def { margin: 10px 0 0; font-size: 0.95rem; }
 .termino .otros { font-size: 0.85rem; color: var(--tinta-suave); font-style: italic; margin: 6px 0 0; }
 .termino details { margin-top: 10px; }
-.termino summary { cursor: pointer; font-weight: 700; color: var(--rosa-principal); font-size: 0.9rem; }
+.termino summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); font-size: 0.9rem; }
 .termino ol { margin: 8px 0 0; padding-left: 20px; font-size: 0.92rem; }
 .termino ol li { margin-bottom: 4px; }
 .rosina-dice { display: flex; gap: 10px; align-items: flex-start; background: var(--lila-suave); border-radius: 14px; padding: 10px 12px; margin-top: 12px; font-size: 0.88rem; }

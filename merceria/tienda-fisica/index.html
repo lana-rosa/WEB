@@ -43,14 +43,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=11">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -59,10 +59,10 @@ html { scroll-behavior: smooth; }
 body { margin: 0; font-family: var(--fuente-cuerpo); color: var(--tinta); background: var(--blanco-hueso); line-height: 1.6; }
 h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; margin: 0 0 0.4em; }
 h1 { font-size: clamp(2.1rem, 4.2vw, 2.8rem); }
-h2 { font-size: 1.6rem; color: var(--rosa-principal); }
+h2 { font-size: 1.6rem; color: var(--rosa-texto); }
 h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .encabezado-pagina { padding: 0 0 8px; max-width: 700px; }
-.encabezado-pagina .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 8px; }
+.encabezado-pagina .eslogan { color: var(--rosa-texto); font-weight: 600; margin-bottom: 8px; }
 .encabezado-tienda-grid { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; padding-top: 23px; }
 @media (max-width: 800px) { .encabezado-tienda-grid { grid-template-columns: 1fr; } }
 .encabezado-pagina p { color: var(--tinta-suave); font-size: 1.05rem; }
@@ -87,7 +87,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
   font-size: 0.92rem; color: var(--tinta); white-space: nowrap; margin-top: 20px;
 }
 .filtros-desplegables summary::-webkit-details-marker { display: none; }
-.filtros-desplegables[open] summary { border-color: var(--rosa-principal); color: var(--rosa-principal); }
+.filtros-desplegables[open] summary { border-color: var(--rosa-principal); color: var(--rosa-texto); }
 @media (max-width: 600px) {
   .barra-controles-tienda { margin-top: 10px; padding: 8px 0; gap: 8px; }
   .selector-categorias label { display: none; }
@@ -102,7 +102,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 }
 .cerrar-filtros { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 1.4rem; line-height: 1; cursor: pointer; color: var(--tinta-suave); }
 @media (max-width: 600px) { .filtros-desplegables .buscador-productos { right: auto; left: 0; } }
-.chip-categoria:hover { border-color: var(--rosa-principal); color: var(--rosa-principal); }
+.chip-categoria:hover { border-color: var(--rosa-principal); color: var(--rosa-texto); }
 .separador-nav-categorias { display: flex; align-items: center; font-weight: 700; color: var(--lila); font-size: 0.85rem; padding: 8px 6px 8px 14px; margin-left: 4px; border-left: 2px solid var(--lila-suave); }
 .chip-merceria { border-color: var(--lila-suave); }
 .chip-merceria:hover { border-color: var(--lila); color: var(--lila); }
@@ -117,7 +117,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 }
 .producto-foto { position: relative; }
 /* Vista de una sola categoría (#peluches, #lanas-merceria...) */
-.volver-categorias { display: none; align-items: center; gap: 6px; margin: 18px 0 0; font-weight: 700; color: var(--rosa-principal); text-decoration: none; font-size: 0.95rem; }
+.volver-categorias { display: none; align-items: center; gap: 6px; margin: 18px 0 0; font-weight: 700; color: var(--rosa-texto); text-decoration: none; font-size: 0.95rem; }
 .volver-categorias:hover { text-decoration: underline; }
 body.vista-categoria .volver-categorias { display: inline-flex; }
 body.vista-categoria .categoria-seccion:not(.categoria-activa) { display: none !important; }
@@ -127,23 +127,23 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .producto-card { background: var(--blanco); border-radius: var(--radio-suave); overflow: hidden; box-shadow: var(--sombra-suave); display: flex; flex-direction: column; }
 .producto-foto { background: var(--rosa-suave); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; padding: 0; overflow: hidden; position: relative; }
 .producto-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.producto-foto .foto-marcador { font-size: 0.78rem; color: var(--rosa-principal); text-align: center; padding: 12px; align-items: center; justify-content: center; height: 100%; }
+.producto-foto .foto-marcador { font-size: 0.78rem; color: var(--rosa-texto); text-align: center; padding: 12px; align-items: center; justify-content: center; height: 100%; }
 .producto-info { padding: 16px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1; }
 .producto-precio { font-weight: 600; color: var(--tinta); margin: 0; }
 .producto-estado { font-size: 0.8rem; margin: 0 0 10px; font-weight: 500; }
 .producto-estado.disponible { color: #2e7d32; }
 .producto-estado.bajo-pedido { color: var(--tinta-suave); }
-.boton-pedir { margin-top: auto; text-align: center; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
+.boton-pedir { margin-top: auto; text-align: center; background: var(--rosa-boton); color: var(--sobre-principal) !important; text-decoration: none; padding: 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
 .boton-pedir:hover { background: var(--rosa-hover); }
 .boton-agregar-carrito {
-  margin-top: 8px; text-align: center; background: var(--blanco); color: var(--rosa-principal);
+  margin-top: 8px; text-align: center; background: var(--blanco); color: var(--rosa-texto);
   border: 1.5px solid var(--rosa-principal); padding: 9px; border-radius: 999px; font-size: 0.85rem;
   font-weight: 600; cursor: pointer; width: 100%;
 }
 .boton-agregar-carrito:hover { background: var(--rosa-suave); }
 .boton-agregar-carrito.agregado { background: #2e7d32; border-color: #2e7d32; color: #fff; }
 .boton-agregar-carrito {
-  margin-top: 8px; text-align: center; background: var(--blanco); color: var(--rosa-principal);
+  margin-top: 8px; text-align: center; background: var(--blanco); color: var(--rosa-texto);
   border: 1.5px solid var(--rosa-principal); padding: 9px; border-radius: 999px; font-size: 0.85rem;
   font-weight: 600; cursor: pointer; width: 100%;
 }
@@ -172,7 +172,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .modal-galeria .miniaturas img.activa { border-color: var(--rosa-principal); }
 .modal-info-producto { padding: 28px; }
 .modal-info-producto h2 { font-size: 1.4rem; margin-bottom: 8px; }
-.modal-info-producto .precio-modal { font-size: 1.3rem; font-weight: 700; color: var(--rosa-principal); margin-bottom: 10px; }
+.modal-info-producto .precio-modal { font-size: 1.3rem; font-weight: 700; color: var(--rosa-texto); margin-bottom: 10px; }
 .modal-info-producto .descripcion-modal { margin-bottom: 18px; color: var(--tinta-suave); }
 .ficha-tecnica { list-style: none; padding: 0; margin: 0 0 20px; font-size: 0.9rem; }
 .ficha-tecnica > li { padding: 4px 0; }
@@ -185,8 +185,8 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .boton-ver-mas {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   width: fit-content; max-width: 100%; margin: 20px auto 8px;
-  background: var(--rosa-principal); border: none;
-  color: var(--blanco); padding: 12px 30px; border-radius: 999px;
+  background: var(--rosa-boton); border: none;
+  color: var(--sobre-principal); padding: 12px 30px; border-radius: 999px;
   font-weight: 700; font-size: 0.95rem; cursor: pointer;
 }
 .boton-ver-mas:hover { background: var(--rosa-hover); color: var(--blanco); }
@@ -199,13 +199,13 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .campo { margin-bottom: 18px; }
 .campo label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.92rem; }
 .tarjeta { background: var(--blanco); border-radius: var(--radio-suave); padding: 26px; box-shadow: var(--sombra-suave); }
-#selector-estrellas span.activa { color: var(--rosa-principal); }
+#selector-estrellas span.activa { color: var(--rosa-texto); }
 .tarjeta-resena { background: var(--blanco); border-radius: 16px; padding: 18px; box-shadow: var(--sombra-suave); }
-.tarjeta-resena .estrellas-resena { color: var(--rosa-principal); font-size: 1.1rem; margin-bottom: 6px; }
+.tarjeta-resena .estrellas-resena { color: var(--rosa-texto); font-size: 1.1rem; margin-bottom: 6px; }
 .tarjeta-resena p.comentario-resena { color: var(--tinta-suave); font-size: 0.92rem; margin-bottom: 10px; }
 .tarjeta-resena .autor-resena { font-weight: 600; font-size: 0.88rem; }
 .aviso-personalizado { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 28px 32px; margin: 20px 0 40px; max-width: 780px; }
-.aviso-personalizado a.boton-primario { display: inline-block; margin-top: 10px; background: var(--rosa-principal); color: var(--blanco) !important; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-weight: 600; }
+.aviso-personalizado a.boton-primario { display: inline-block; margin-top: 10px; background: var(--rosa-boton); color: var(--sobre-principal) !important; text-decoration: none; padding: 10px 24px; border-radius: 999px; font-weight: 600; }
 @media (min-width: 1000px) { .puentes-cinco .puentes-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } .puentes-cinco .puente { flex-direction: column; gap: 8px; } }
 .titulo-con-rosina { display: flex; align-items: center; gap: 10px; }
 .titulo-con-rosina img { width: 44px; height: 44px; border-radius: 50%; }
@@ -221,17 +221,17 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .material-merceria { display: flex; flex-direction: column; gap: 4px; padding: 18px; background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); text-decoration: none; color: var(--tinta); transition: border-color 0.15s, transform 0.15s; }
 a.material-merceria:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
 .material-merceria .icono-material { font-size: 1.8rem; line-height: 1; margin-bottom: 4px; }
-.material-merceria strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.1rem; }
+.material-merceria strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.1rem; }
 .material-merceria > span:not(.icono-material):not(.consultar-material) { font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
-.material-merceria .consultar-material { margin-top: auto; padding-top: 6px; font-size: 0.85rem; font-weight: 700; color: var(--rosa-principal); }
+.material-merceria .consultar-material { margin-top: auto; padding-top: 6px; font-size: 0.85rem; font-weight: 700; color: var(--rosa-texto); }
 @media (max-width: 520px) { .material-merceria { padding: 14px 12px; } .material-merceria strong { font-size: 1rem; } .material-merceria > span:not(.icono-material):not(.consultar-material) { font-size: 0.82rem; } }
 .aviso-proximamente { display: flex; gap: 22px; align-items: center; background: var(--rosa-suave); border: 2px dashed var(--rosa-medio); border-radius: 22px; padding: 20px 26px; margin: 0 0 22px; }
 .aviso-proximamente[hidden], #como-se-paga[hidden] { display: none; }
 .aviso-proximamente img { width: 130px; height: auto; flex-shrink: 0; }
 .aviso-proximamente h2 { font-size: 1.35rem; margin: 0 0 6px; }
 .aviso-proximamente p { margin: 0 0 12px; }
-.etiqueta-proximamente { color: var(--rosa-principal); font-weight: 800; margin: 0 0 4px !important; }
-.aviso-proximamente .boton-primario { display: inline-block; background: var(--rosa-principal); color: #fff; text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
+.etiqueta-proximamente { color: var(--rosa-texto); font-weight: 800; margin: 0 0 4px !important; }
+.aviso-proximamente .boton-primario { display: inline-block; background: var(--rosa-boton); color: var(--sobre-principal); text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
 .aviso-proximamente .boton-primario:hover { background: var(--rosa-hover); }
 @media (max-width: 600px) { .aviso-proximamente { flex-direction: column; text-align: center; padding: 18px; } .aviso-proximamente img { width: 110px; } }
 /* Puentes entre secciones del ecosistema Lana Rosa */
@@ -241,9 +241,9 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .puente { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); background: var(--blanco); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
 .puente:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
 .puente .icono-puente { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
-.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.02rem; margin-bottom: 2px; }
+.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.02rem; margin-bottom: 2px; }
 .puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
-.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-principal); }
+.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-texto); }
 @media (max-width: 560px) { .puentes-cinco .puentes-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .puentes-cinco .puente { flex-direction: column; gap: 4px; padding: 12px; } .puentes-cinco .puente:last-child { grid-column: 1 / -1; } .puentes-cinco .ir-puente { display: none; } .puentes-cinco .puente strong { font-size: 0.95rem; } }
 .encabezado-tienda-grid + .aviso-proximamente { margin-top: 20px; }
 .visitanos { background: var(--blanco); border: 2px solid var(--rosa-suave); border-radius: 22px; padding: 24px 28px; margin: 0 0 28px; box-shadow: var(--sombra-suave); }
@@ -253,9 +253,9 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .visita-datos li { display: flex; gap: 10px; align-items: flex-start; }
 .visita-botones { display: flex; gap: 12px; flex-wrap: wrap; }
 .visita-botones a { display: inline-block; text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
-.visita-botones .boton-primario { background: var(--rosa-principal); color: #fff; }
+.visita-botones .boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
 .visita-botones .boton-primario:hover { background: var(--rosa-hover); }
-.visita-botones .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-principal); }
+.visita-botones .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-texto); }
 @media (max-width: 600px) { .visitanos { padding: 18px; } .visita-botones a { flex: 1 1 100%; text-align: center; } }
 .aviso-proximamente + .puentes { margin-top: 28px; }
 /* Celular: productos de a 2 por fila, como en las tiendas de referencia */
@@ -275,20 +275,20 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .como-se-paga > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none; }
 .como-se-paga > summary::-webkit-details-marker { display: none; }
 .como-se-paga > summary h2 { margin: 0; }
-.como-se-paga .flecha-paga { color: var(--rosa-principal); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
+.como-se-paga .flecha-paga { color: var(--rosa-texto); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
 .como-se-paga[open] .flecha-paga { transform: rotate(180deg); }
 .como-se-paga[open] > summary { margin-bottom: 12px; }
 
 /* ===== Inicio de la Mercería ===== */
-.hero-merceria .eslogan, .hero-fisica .eslogan { color: var(--rosa-principal); font-weight: 700; margin: 0; }
+.hero-merceria .eslogan, .hero-fisica .eslogan { color: var(--rosa-texto); font-weight: 700; margin: 0; }
 .hero-merceria { padding: 34px 0 10px; max-width: 760px; }
 .hero-merceria h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 4px 0 14px; }
 .hero-merceria .intro { font-size: 1.08rem; color: var(--tinta-suave); margin: 0 0 22px; }
 .botones-hero { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
 .botones-hero a { display: inline-block; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 700; }
-.botones-hero .boton-primario { background: var(--rosa-principal); color: #fff; }
+.botones-hero .boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
 .botones-hero .boton-primario:hover { background: var(--rosa-hover); }
-.botones-hero .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-principal); background: transparent; }
+.botones-hero .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-texto); background: transparent; }
 .sellos { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.92rem; color: var(--tinta-suave); font-weight: 600; }
 .banda-apertura { display: block; margin: 26px 0 40px; padding: 14px 20px; border-radius: 16px; background: var(--rosa-suave); color: var(--rosa-hover); font-weight: 700; text-decoration: none; text-align: center; }
 .banda-apertura:hover { background: var(--rosa-medio); color: #fff; }
@@ -299,7 +299,7 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .cat-merceria { display: flex; flex-direction: column; gap: 4px; padding: 20px; border-radius: 18px; background: var(--blanco); border: 2px solid var(--rosa-suave); text-decoration: none; color: var(--tinta); box-shadow: var(--sombra-suave); transition: transform .2s ease, border-color .2s ease; }
 .cat-merceria:hover { transform: translateY(-2px); border-color: var(--rosa-medio); }
 .cat-merceria .icono { font-size: 2rem; line-height: 1; }
-.cat-merceria strong { font-family: var(--fuente-titulo); font-size: 1.15rem; color: var(--rosa-principal); margin-top: 6px; }
+.cat-merceria strong { font-family: var(--fuente-titulo); font-size: 1.15rem; color: var(--rosa-texto); margin-top: 6px; }
 .cat-merceria span { color: var(--tinta-suave); font-size: 0.92rem; }
 .razones-merceria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .razon { background: var(--rosa-suave); border-radius: 18px; padding: 20px; }

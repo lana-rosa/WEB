@@ -26,14 +26,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/comun.css?v=9">
+<link rel="stylesheet" href="css/comun.css?v=11">
 <link rel="stylesheet" href="css/animaciones.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE; --lila-claro: #E6E7FD;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #6E6E73; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -46,7 +46,7 @@ h2 { font-size: 1.5rem; }
 @media (max-width: 800px) { .hero-rosina { grid-template-columns: 1fr; text-align: center; } }
 .marco-rosina { background: var(--rosa-suave); border-radius: 32px; padding: 20px; box-shadow: var(--sombra-suave); }
 .marco-rosina img { width: 100%; display: block; border-radius: 20px; }
-.hero-rosina .eslogan { color: var(--rosa-principal); font-weight: 600; margin-bottom: 8px; }
+.hero-rosina .eslogan { color: var(--rosa-texto); font-weight: 600; margin-bottom: 8px; }
 .hero-rosina p.intro { color: var(--tinta-suave); font-size: 1.08rem; max-width: 56ch; }
 section { padding: 20px 0 56px; }
 section.contenedor { padding-top: 20px; padding-bottom: 56px; }
@@ -55,18 +55,18 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .roles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 @media (max-width: 700px) { .roles { grid-template-columns: 1fr; } }
 .rol-card { background: var(--blanco); border-radius: var(--radio-suave); padding: 26px; box-shadow: var(--sombra-suave); }
-.rol-card .marca { color: var(--rosa-principal); font-family: var(--fuente-titulo); font-size: 1.5rem; }
+.rol-card .marca { color: var(--rosa-texto); font-family: var(--fuente-titulo); font-size: 1.5rem; }
 .personalidad-lista { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-.personalidad-lista li { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: var(--rosa-principal); font-weight: 600; padding: 8px 18px; border-radius: 999px; font-size: 0.9rem; }
+.personalidad-lista li { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: var(--rosa-texto); font-weight: 600; padding: 8px 18px; border-radius: 999px; font-size: 0.9rem; }
 .tip-rosina {
   background: var(--blanco); border-left: 6px solid var(--rosa-principal); border-radius: 12px;
   padding: 24px 28px; max-width: 780px; font-size: 1.02rem;
 }
 /* ===== Material gratuito de Rosina ===== */
 .boton-primario, .boton-secundario { display: inline-block; padding: 12px 26px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: var(--fuente-cuerpo); cursor: pointer; border: 2px solid var(--rosa-principal); }
-.boton-primario { background: var(--rosa-principal); color: var(--blanco); }
+.boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
 .boton-primario:hover { background: var(--rosa-hover); border-color: var(--rosa-hover); }
-.boton-secundario { background: transparent; color: var(--rosa-principal); }
+.boton-secundario { background: transparent; color: var(--rosa-texto); }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .boton-chico { padding: 7px 16px; font-size: 0.85rem; }
 .indice-recursos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
@@ -76,7 +76,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 @media (max-width: 860px) { .indice-recursos a:last-child:nth-child(3n+1) { grid-column: auto; } .indice-recursos a:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .indice-recursos a:hover { border-color: var(--rosa-medio); transform: translateY(-2px); }
 .indice-recursos .icono { font-size: 1.8rem; line-height: 1; }
-.indice-recursos strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.05rem; }
+.indice-recursos strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.05rem; }
 .indice-recursos span { font-size: 0.86rem; color: var(--tinta-suave); }
 .recurso { scroll-margin-top: 110px; }
 .recurso-cabecera { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
@@ -90,22 +90,22 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 /* Stickers */
 .hoja-stickers { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; margin-bottom: 26px; }
 @media (max-width: 520px) { .hoja-stickers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; } }
-.subtitulo-stickers { font-size: 1.05rem; color: var(--rosa-principal); margin: 0 0 12px; }
+.subtitulo-stickers { font-size: 1.05rem; color: var(--rosa-texto); margin: 0 0 12px; }
 .sticker-mini { position: relative; display: block; background: var(--lila-suave); border-radius: 18px; padding: 8px; transition: transform 0.15s, background 0.15s; }
 .sticker-mini:hover { transform: translateY(-3px) rotate(-2deg); background: var(--rosa-suave); }
 .sticker-mini img { width: 100%; height: auto; display: block; }
-.sticker-mini span { position: absolute; right: 6px; bottom: 6px; width: 26px; height: 26px; border-radius: 50%; background: var(--rosa-principal); color: var(--blanco); font-size: 0.8rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+.sticker-mini span { position: absolute; right: 6px; bottom: 6px; width: 26px; height: 26px; border-radius: 50%; background: var(--rosa-boton); color: var(--sobre-principal); font-size: 0.8rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
 .como-whatsapp { background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 16px 22px; margin-bottom: 8px; }
-.como-whatsapp summary { cursor: pointer; font-weight: 700; color: var(--rosa-principal); }
+.como-whatsapp summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); }
 .como-whatsapp ol { margin: 12px 0 8px; padding-left: 20px; }
 .como-whatsapp p { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); }
 /* Abreviaturas */
 .tabla-scroll { overflow-x: auto; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); }
 .tabla-abrev { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 720px; }
 .tabla-abrev th, .tabla-abrev td { padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(69,69,74,0.08); vertical-align: top; }
-.tabla-abrev thead th { background: var(--rosa-principal); color: var(--blanco); font-family: var(--fuente-titulo); font-weight: 600; position: sticky; top: 0; }
+.tabla-abrev thead th { background: var(--rosa-boton); color: var(--sobre-principal); font-family: var(--fuente-titulo); font-weight: 600; position: sticky; top: 0; }
 .tabla-abrev tbody tr:nth-child(even) { background: var(--blanco-hueso); }
-.tabla-abrev td b { color: var(--rosa-principal); }
+.tabla-abrev td b { color: var(--rosa-texto); }
 .tabla-abrev td small { display: block; color: var(--tinta-suave); font-size: 0.78rem; }
 .filtro-idiomas { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .filtro-idiomas label { background: var(--blanco); border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 5px 14px; font-size: 0.85rem; font-weight: 600; cursor: pointer; user-select: none; }
@@ -116,7 +116,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 /* Calculadora */
 .pestanas { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
 .pestanas button { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: var(--tinta); border-radius: 999px; padding: 8px 18px; font-family: var(--fuente-cuerpo); font-weight: 600; font-size: 0.9rem; cursor: pointer; }
-.pestanas button[aria-selected="true"] { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.pestanas button[aria-selected="true"] { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
 .panel-calc { background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 .panel-calc[hidden] { display: none; }
 @media (max-width: 760px) { .panel-calc { grid-template-columns: 1fr; padding: 20px; } }
@@ -127,25 +127,25 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .campo input:focus, .campo select:focus { outline: 2px solid var(--rosa-medio); border-color: var(--rosa-principal); }
 .fila-campos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .resultado { background: var(--rosa-suave); border-radius: 16px; padding: 20px; align-self: start; }
-.resultado h3 { font-size: 1rem; color: var(--rosa-principal); margin-bottom: 8px; }
+.resultado h3 { font-size: 1rem; color: var(--rosa-texto); margin-bottom: 8px; }
 .resultado .grande { font-family: var(--fuente-titulo); font-size: 1.35rem; color: var(--tinta); margin: 0 0 8px; line-height: 1.35; word-break: break-word; }
 .resultado p { margin: 0 0 6px; font-size: 0.92rem; }
 .resultado .error { color: var(--rosa-hover); font-weight: 600; }
 /* Contador de vueltas */
 .contador { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 10px 0; }
-.contador button { width: 56px; height: 56px; border-radius: 50%; border: none; background: var(--rosa-principal); color: var(--blanco); font-size: 1.8rem; cursor: pointer; line-height: 1; }
-.contador button.menos { background: var(--blanco); color: var(--rosa-principal); border: 2px solid var(--rosa-principal); }
+.contador button { width: 56px; height: 56px; border-radius: 50%; border: none; background: var(--rosa-boton); color: var(--sobre-principal); font-size: 1.8rem; cursor: pointer; line-height: 1; }
+.contador button.menos { background: var(--blanco); color: var(--rosa-texto); border: 2px solid var(--rosa-principal); }
 .contador output { font-family: var(--fuente-titulo); font-size: 3.4rem; min-width: 2.4ch; text-align: center; color: var(--tinta); }
 /* Agenda */
 .hoja-agenda { background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 28px; margin-bottom: 24px; }
 .hoja-agenda header { display: flex; align-items: center; gap: 14px; border-bottom: 2px dashed var(--rosa-medio); padding-bottom: 14px; margin-bottom: 18px; }
 .hoja-agenda header img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
-.hoja-agenda header h3 { margin: 0; color: var(--rosa-principal); font-size: 1.3rem; }
+.hoja-agenda header h3 { margin: 0; color: var(--rosa-texto); font-size: 1.3rem; }
 .hoja-agenda header p { margin: 0; font-size: 0.85rem; color: var(--tinta-suave); }
 .grid-ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; }
 @media (max-width: 640px) { .grid-ficha { grid-template-columns: 1fr; } }
 .linea { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.linea label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--rosa-principal); }
+.linea label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--rosa-texto); }
 .linea input, .linea textarea { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,0.25); background: transparent; font-family: var(--fuente-cuerpo); font-size: 0.98rem; padding: 4px 2px; color: var(--tinta); resize: vertical; }
 .linea input:focus, .linea textarea:focus { outline: none; border-bottom-color: var(--rosa-principal); }
 .linea.ancha { grid-column: 1 / -1; }
@@ -158,7 +158,7 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .semana { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 860px) { .semana { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .dia { border: 1.5px solid var(--rosa-suave); border-radius: 14px; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
-.dia strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 0.95rem; }
+.dia strong { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 0.95rem; }
 .dia textarea { width: 100%; min-width: 0; border: none; font-family: var(--fuente-cuerpo); font-size: 0.88rem; min-height: 120px; resize: vertical; background-image: repeating-linear-gradient(transparent, transparent 23px, rgba(69,69,74,0.13) 23px, rgba(69,69,74,0.13) 24px); line-height: 24px; color: var(--tinta); }
 .dia textarea:focus { outline: none; }
 .metas { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
@@ -196,12 +196,12 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .selector-tamano label { background: var(--blanco); border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 7px 14px; font-weight: 600; font-size: 0.88rem; cursor: pointer; }
 .selector-tamano label small { color: var(--tinta-suave); font-weight: 500; margin-left: 4px; }
 .selector-tamano input { accent-color: var(--rosa-principal); margin-right: 6px; }
-.selector-tamano label:has(input:checked) { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.selector-tamano label:has(input:checked) { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
 .selector-tamano label:has(input:checked) small { color: var(--rosa-suave); }
 /* Checklist */
 .checklist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
 @media (max-width: 860px) { .checklist-grid { grid-template-columns: 1fr; gap: 10px; } }
-.checklist-grid h4 { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1.05rem; margin: 0 0 10px; }
+.checklist-grid h4 { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.05rem; margin: 0 0 10px; }
 .checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .checklist label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; font-size: 0.93rem; line-height: 1.45; }
 .checklist input { appearance: none; -webkit-appearance: none; flex-shrink: 0; width: 24px; height: 24px; margin: 1px 0 0; border: 2px solid var(--rosa-medio); border-radius: 7px; background: var(--blanco); cursor: pointer; display: grid; place-content: center; }
@@ -225,7 +225,7 @@ section.banner-rincon { padding-top: 28px; padding-bottom: 0; }
 .banner-rincon img { width: 100%; height: auto; display: block; border-radius: 28px; box-shadow: var(--sombra-suave); }
 @media (max-width: 600px) { section.banner-rincon { padding-top: 16px; } .banner-rincon img { border-radius: 18px; } }
 section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: center; }
-.intro-rincon .eslogan { color: var(--rosa-principal); font-weight: 600; margin: 0 0 8px; }
+.intro-rincon .eslogan { color: var(--rosa-texto); font-weight: 600; margin: 0 0 8px; }
 .intro-rincon .intro { color: var(--tinta-suave); font-size: 1.08rem; max-width: 70ch; margin: 0 auto; }
 .intro-rincon .indice-recursos { grid-template-columns: repeat(4, minmax(0, 1fr)); text-align: left; }
 .intro-rincon .indice-recursos a:last-child:nth-child(3n+1) { grid-column: auto; }
@@ -239,11 +239,11 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .pasos-muestra li { margin-bottom: 4px; }
 .dibujo-muestra { width: 100%; max-width: 330px; height: auto; display: block; margin: 0 auto; }
 .grupo-muestra { border: none; padding: 0; margin: 0 0 6px; }
-.grupo-muestra legend { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-principal); font-size: 1rem; margin-bottom: 8px; padding: 0; }
+.grupo-muestra legend { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1rem; margin-bottom: 8px; padding: 0; }
 .avanzado-muestra { margin: 0 0 8px; }
-.avanzado-muestra summary, .por-que summary { cursor: pointer; font-weight: 700; color: var(--rosa-principal); font-size: 0.9rem; }
+.avanzado-muestra summary, .por-que summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); font-size: 0.9rem; }
 .paso-res { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
-.paso-res span { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-principal); color: var(--blanco); font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+.paso-res span { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-boton); color: var(--sobre-principal); font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
 .paso-res p { margin: 3px 0 0; font-size: 0.97rem; }
 .por-que { margin-top: 8px; background: var(--blanco); border-radius: 12px; padding: 10px 12px; }
 .por-que p { font-size: 0.88rem; margin: 8px 0 0; }
@@ -281,7 +281,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .grupo-rincon { grid-column: span 2; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 18px 18px 14px; }
 .grupo-rincon:nth-child(4), .grupo-rincon:nth-child(5) { grid-column: span 3; }
 @media (max-width: 860px) { .grupos-rincon { grid-template-columns: 1fr; } .grupo-rincon, .grupo-rincon:nth-child(4), .grupo-rincon:nth-child(5) { grid-column: auto; } }
-.grupo-rincon h2 { font-size: 1.12rem; margin: 0 0 2px; color: var(--rosa-principal); }
+.grupo-rincon h2 { font-size: 1.12rem; margin: 0 0 2px; color: var(--rosa-texto); }
 .grupo-rincon > p { font-size: 0.88rem; color: var(--tinta-suave); margin: 0 0 10px; }
 .enlaces-grupo { display: flex; flex-direction: column; gap: 4px; }
 .enlaces-grupo a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; text-decoration: none; color: var(--tinta); transition: background 0.2s; }
@@ -292,14 +292,14 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .grupo-rincon:nth-child(4) .enlaces-grupo, .grupo-rincon:nth-child(5) .enlaces-grupo { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
 /* Secciones plegables: se ve la cabecera y se abre con "Ver" (al imprimir se muestra todo) */
 @media screen { .recurso.plegada .recurso-cabecera ~ *, .recurso.plegada .recurso-cabecera .acciones, .recurso.plegada .recurso-cabecera .descargas { display: none !important; } .recurso.plegada { padding-top: 34px !important; padding-bottom: 30px !important; } }
-.boton-plegar { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-principal); background: var(--blanco); border: 2px solid var(--rosa-medio); border-radius: 999px; padding: 8px 18px; cursor: pointer; margin-top: 12px; }
+.boton-plegar { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--rosa-texto); background: var(--blanco); border: 2px solid var(--rosa-medio); border-radius: 999px; padding: 8px 18px; cursor: pointer; margin-top: 12px; }
 .boton-plegar:hover { border-color: var(--rosa-principal); }
 @media print { .boton-plegar { display: none !important; } }
 .intro-agenda h1 { margin: 6px 0 10px; font-size: clamp(2rem, 5vw, 2.8rem); }
 .volver-rincon { margin: 0 0 12px; font-size: 0.92rem; }
-.volver-rincon a { color: var(--rosa-principal); font-weight: 700; text-decoration: none; }
+.volver-rincon a { color: var(--rosa-texto); font-weight: 700; text-decoration: none; }
 .saltos-agenda { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 18px; }
-.saltos-agenda a { padding: 7px 16px; border-radius: 999px; background: var(--blanco); border: 1.5px solid var(--rosa-suave); color: var(--rosa-principal); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+.saltos-agenda a { padding: 7px 16px; border-radius: 999px; background: var(--blanco); border: 1.5px solid var(--rosa-suave); color: var(--rosa-texto); font-weight: 700; font-size: 0.9rem; text-decoration: none; }
 .saltos-agenda a:hover { border-color: var(--rosa-principal); }
 .hoja-agenda { scroll-margin-top: 110px; }
 #agenda { padding-top: 40px; }
@@ -313,7 +313,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .agujas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
 .agujas-grid label { position: relative; display: flex; align-items: center; justify-content: center; padding: 10px 6px; border: 1.5px solid var(--rosa-medio); border-radius: 999px; font-weight: 700; font-size: 0.9rem; cursor: pointer; user-select: none; color: var(--tinta); }
 .agujas-grid input { position: absolute; opacity: 0; pointer-events: none; }
-.agujas-grid label:has(input:checked) { background: var(--rosa-principal); border-color: var(--rosa-principal); color: var(--blanco); }
+.agujas-grid label:has(input:checked) { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
 .agujas-grid label:has(input:focus-visible) { outline: 3px solid var(--lila); }
 @media print { .agujas-grid label { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 .meses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
@@ -329,21 +329,21 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .totales-ventas .ganancia { background: var(--rosa-principal); }
 .totales-ventas .ganancia span, .totales-ventas .ganancia strong { color: var(--blanco); }
 @media (max-width: 520px) { .totales-ventas { grid-template-columns: 1fr; } }
-.tip-agenda a { color: var(--rosa-principal); font-weight: 700; }
+.tip-agenda a { color: var(--rosa-texto); font-weight: 700; }
 .portada-agenda { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 4px auto 14px; }
 .portada-agenda label { font-size: 0.85rem; color: var(--tinta-suave); font-weight: 600; }
-.portada-agenda input { text-align: center; font-family: var(--fuente-titulo); font-size: 1.2rem; color: var(--rosa-principal); border: none; border-bottom: 2px dashed var(--rosa-medio); background: transparent; padding: 4px 8px; width: min(320px, 100%); }
+.portada-agenda input { text-align: center; font-family: var(--fuente-titulo); font-size: 1.2rem; color: var(--rosa-texto); border: none; border-bottom: 2px dashed var(--rosa-medio); background: transparent; padding: 4px 8px; width: min(320px, 100%); }
 .portada-agenda input:focus { outline: none; border-bottom-color: var(--rosa-principal); }
 .copia-agenda { display: flex; justify-content: center; gap: 4px 16px; flex-wrap: wrap; margin-top: 10px; }
 .nota-copia { flex-basis: 100%; text-align: center; color: var(--tinta-suave); font-size: 0.8rem; }
-.enlace-copia { background: none; border: none; color: var(--rosa-principal); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; }
+.enlace-copia { background: none; border: none; color: var(--rosa-texto); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; }
 @media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } }
 .barra-agenda { position: sticky; top: 68px; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; background: rgba(255,255,255,0.97); backdrop-filter: blur(6px); border-radius: 18px; box-shadow: var(--sombra-suave); padding: 10px 14px; margin: 0 0 18px; }
 @media (max-width: 1100px) { .barra-agenda { top: 80px; } }
 .buscar-agenda { flex: 1 1 260px; display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 4px 6px 4px 14px; background: var(--blanco); }
 .buscar-agenda input { flex: 1; min-width: 0; border: none; outline: none; font-family: var(--fuente-cuerpo); font-size: 0.95rem; padding: 6px 0; background: transparent; }
 .resultado-busqueda { font-size: 0.8rem; color: var(--tinta-suave); white-space: nowrap; }
-.buscar-agenda button { border: none; background: var(--rosa-principal); color: var(--blanco); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: 700; }
+.buscar-agenda button { border: none; background: var(--rosa-boton); color: var(--sobre-principal); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: 700; }
 .buscar-agenda button[hidden] { display: none; }
 .grupo-colores { display: flex; align-items: center; gap: 6px; }
 .etiqueta-colores { font-size: 0.78rem; font-weight: 700; color: var(--tinta-suave); margin-right: 2px; }
@@ -363,28 +363,28 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .menu-grupo:first-child { margin-top: 4px; }
 .menu-hojas-lista a { display: block; padding: 8px 10px; border-radius: 10px; text-decoration: none; color: var(--tinta); font-size: 0.92rem; font-weight: 600; border-left: 3px solid transparent; }
 .menu-hojas-lista a:hover { background: var(--rosa-suave); }
-.menu-hojas-lista a.activa { background: var(--rosa-suave); color: var(--rosa-principal); border-left-color: var(--rosa-principal); }
+.menu-hojas-lista a.activa { background: var(--rosa-suave); color: var(--rosa-texto); border-left-color: var(--rosa-principal); }
 .hojas-contenido .hoja-agenda { margin-bottom: 0; }
 @media screen { .hojas-contenido .hoja-agenda:not(.abierta) { display: none; } }
 @media (max-width: 900px) {
   .agenda-layout { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .menu-hojas { position: relative; top: auto; max-height: none; overflow: visible; padding: 0; background: transparent; box-shadow: none; }
-  .menu-hojas-toggle { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-family: var(--fuente-titulo); font-size: 1rem; color: var(--rosa-principal); cursor: pointer; box-shadow: var(--sombra-suave); }
+  .menu-hojas-toggle { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-family: var(--fuente-titulo); font-size: 1rem; color: var(--rosa-texto); cursor: pointer; box-shadow: var(--sombra-suave); }
   .menu-hojas-lista { display: none; position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 7; background: var(--blanco); border-radius: 14px; box-shadow: 0 14px 30px rgba(58,42,46,0.18); padding: 8px; max-height: 60vh; overflow-y: auto; }
   .menu-hojas.abierto .menu-hojas-lista { display: flex; }
 }
 
 .hojas-pasos { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; }
-.hojas-pasos button { flex: 1; max-width: 50%; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 14px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); color: var(--rosa-principal); font-family: var(--fuente-titulo); font-size: 0.95rem; cursor: pointer; text-align: left; }
+.hojas-pasos button { flex: 1; max-width: 50%; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 14px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); color: var(--rosa-texto); font-family: var(--fuente-titulo); font-size: 0.95rem; cursor: pointer; text-align: left; }
 .hojas-pasos button small { font-family: var(--fuente-texto, inherit); font-size: 0.74rem; color: var(--tinta-suave); font-weight: 500; }
-.hojas-pasos .paso-sig { text-align: right; margin-left: auto; background: var(--rosa-principal); color: #fff; border-color: var(--rosa-principal); }
+.hojas-pasos .paso-sig { text-align: right; margin-left: auto; background: var(--rosa-boton); color: var(--sobre-principal); border-color: var(--rosa-principal); }
 .hojas-pasos .paso-sig small { color: rgba(255,255,255,0.85); }
 .hojas-pasos .paso-ant:only-child, .hojas-pasos .paso-sig:only-child { max-width: 50%; }
 @media (max-width: 900px) {
   .menu-hojas-toggle { background: var(--rosa-suave) !important; border-width: 2px !important; padding: 10px 12px 10px 16px !important; text-align: left; }
   .menu-hojas-toggle .mh-texto { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
   .menu-hojas-toggle small { font-family: var(--fuente-texto, inherit); font-size: 0.74rem; color: var(--tinta-suave); }
-  .menu-hojas-toggle .mh-pildora { flex: none; background: var(--rosa-principal); color: #fff; border-radius: 999px; padding: 7px 12px; font-size: 0.82rem; font-weight: 700; font-family: var(--fuente-texto, inherit); white-space: nowrap; }
+  .menu-hojas-toggle .mh-pildora { flex: none; background: var(--rosa-boton); color: var(--sobre-principal); border-radius: 999px; padding: 7px 12px; font-size: 0.82rem; font-weight: 700; font-family: var(--fuente-texto, inherit); white-space: nowrap; }
   .menu-hojas.abierto .mh-pildora { background: var(--tinta); }
 }
 @media print { .hojas-pasos { display: none !important; } }
@@ -426,7 +426,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .elegir-anio .linea { min-width: 140px; }
 .elegir-anio select, .elegir-tienda select { font: inherit; padding: 8px 10px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: var(--blanco); color: var(--tinta); max-width: 100%; }
 .elegir-tienda { background: var(--rosa-suave); border-radius: 16px; padding: 14px 16px; margin: 0 0 16px; }
-.elegir-tienda label { display: block; font-weight: 700; color: var(--rosa-principal); font-size: 0.9rem; margin-bottom: 8px; }
+.elegir-tienda label { display: block; font-weight: 700; color: var(--rosa-texto); font-size: 0.9rem; margin-bottom: 8px; }
 .elegir-tienda-fila { display: flex; flex-wrap: wrap; gap: 10px; }
 .elegir-tienda-fila select { flex: 1 1 240px; min-width: 0; }
 .ayuda-tienda { margin: 8px 0 0; font-size: 0.85rem; color: var(--tinta-suave); min-height: 1em; }
@@ -438,7 +438,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
   .tabla-agenda tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px 14px; background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 14px; padding: 10px 12px; margin: 0 0 10px; }
   .tabla-agenda td { display: block; padding: 0; border: none; min-width: 0; background: transparent; }
   .tabla-agenda td:first-child { grid-column: 1 / -1; }
-  .tabla-agenda td::before { content: attr(data-label); display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--rosa-principal); margin-bottom: 2px; }
+  .tabla-agenda td::before { content: attr(data-label); display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--rosa-texto); margin-bottom: 2px; }
   .tabla-agenda td.celda-check { text-align: left; }
   .tabla-agenda td select { width: 100%; }
   .tabla-agenda td input { font-size: 1rem; }
@@ -498,12 +498,12 @@ main > :first-child { padding-top: 40px !important; }
   .marca-impresion { display: flex !important; align-items: center; gap: 12px; font-family: 'Hanken Grotesk', Arial, sans-serif; color: #45454A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .marca-imp-arriba { justify-content: space-between; border-bottom: 2px solid var(--rosa-principal); padding: 0 0 8px; margin: 0 0 14px; }
   .marca-imp-arriba img { height: 46px; width: auto; border-radius: 8px; }
-  .marca-imp-arriba span { font-size: 11px; color: var(--rosa-principal); font-weight: 700; }
+  .marca-imp-arriba span { font-size: 11px; color: var(--rosa-texto); font-weight: 700; }
   .marca-imp-abajo { justify-content: center; flex-wrap: wrap; gap: 4px 14px; border-top: 2px solid var(--rosa-principal); padding: 8px 0 0; margin: 18px 0 0; font-size: 10.5px; break-inside: avoid; }
-  .marca-imp-abajo strong { color: var(--rosa-principal); }
+  .marca-imp-abajo strong { color: var(--rosa-texto); }
 }
 </style>
-<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="img/logo-lana-rosa.jpg" alt=""><span>Rincón de Rosina · lanarosacrochet.com</span></div>
+<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="img/logo-lana-rosa.jpg" alt="" width="1142" height="731"><span>Rincón de Rosina · lanarosacrochet.com</span></div>
 <!-- /marca-impresion -->
 
 <!-- Google Tag Manager (noscript) -->
@@ -649,7 +649,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hojas-contenido">
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
-          <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img src="img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Ficha de proyecto</h3><p>Anota todo para poder repetirlo (¡o regalarlo!) cuando quieras.</p></div>
         </header>
         <div class="grid-ficha">
@@ -674,7 +674,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="semana-tejiendo">
         <header>
-          <img src="img/mini/rosina-aprende.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img src="img/mini/rosina-aprende.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Mi semana tejiendo</h3><p>Semana del <input id="ag-semana" data-guardar style="border:none;border-bottom:1.5px solid rgba(69,69,74,0.25);background:transparent;font:inherit;width:12ch;" aria-label="Fecha de la semana"></p></div>
         </header>
         <div class="semana">
@@ -694,7 +694,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="control-pedidos">
         <header>
-          <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img src="img/mini/rosina-saludo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Control de pedidos</h3><p>Para tejedoras emprendedoras: que ningún pedido se te escape.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -707,7 +707,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="inventario-lanas">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-05-ovillo-sentada.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-05-ovillo-sentada.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Inventario de lanas e hilos</h3><p>Sabe qué tienes antes de comprar: así no repites colores ni te quedas corta.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -721,7 +721,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="mis-agujas">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mis agujas</h3><p>Marca las que ya tienes y verás de un vistazo cuáles te faltan.</p></div>
         </header>
         <div class="agujas-grid" id="agujas-grid"></div>
@@ -730,7 +730,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="lista-compras">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Lista de compras</h3><p>Anota lo que necesitas y, si quieres, envíasela a Lana Rosa por WhatsApp.</p></div>
         </header>
         <div class="elegir-tienda no-imprimir">
@@ -752,7 +752,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="proyectos-fila">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Proyectos en fila</h3><p>Todo lo que quieres tejer, en orden: así sabes qué sigue.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -765,7 +765,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="coleccion-patrones">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-11-computador.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-11-computador.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mi colección de patrones</h3><p>Guarda dónde encontraste cada patrón para no perderlo.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -778,7 +778,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="anio-tejiendo">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mi año tejiendo</h3><p>Lo que terminaste cada mes.</p></div>
         </header>
         <div class="elegir-anio">
@@ -805,7 +805,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="fechas-especiales">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-03-ovillo-corazon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-03-ovillo-corazon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Fechas especiales</h3><p>Para tejer los regalos con tiempo y sin carreras.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -819,7 +819,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="mis-clientas">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-02-corazon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-02-corazon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mis clientas</h3><p>Quién te compra, qué le gusta y cuándo es su cumpleaños.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -833,7 +833,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="ventas-mes">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-12-pulgar-arriba.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-12-pulgar-arriba.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mis ventas del mes</h3><p>Lo que vendiste, lo que te costó y lo que ganaste.</p></div>
         </header>
         <div class="linea" style="max-width:240px; margin-bottom:14px;"><label for="ag-vt-mes">Mes</label><input id="ag-vt-mes" data-guardar></div>
@@ -849,7 +849,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="catalogo-precios">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-09-cartel.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-09-cartel.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mi catálogo de precios</h3><p>Tus productos con su precio, para responder rápido cuando te pregunten.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -862,7 +862,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="ferias-mercados">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-15-ramo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-15-ramo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Ferias y mercados</h3><p>Prepara tu puesto y anota cómo te fue.</p></div>
         </header>
         <div class="grid-ficha">
@@ -881,7 +881,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="diario-tejido">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-13-cafe.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-13-cafe.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Diario de tejido</h3><p>Cómo te sentiste tejiendo hoy.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
@@ -895,7 +895,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="registro-pausas">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-16-diadema.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-16-diadema.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Registro de pausas activas</h3><p>Cuidar tus manos también es parte de tejer.</p></div>
         </header>
         <div class="linea" style="max-width:240px; margin-bottom:14px;"><label for="ag-pa-mes">Mes</label><input id="ag-pa-mes" data-guardar></div>
@@ -906,7 +906,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="hoja-agenda" id="lo-que-aprendi">
         <header>
-          <img class="avatar-sticker" src="img/stickers/rosina-17-gorro.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="avatar-sticker" src="img/stickers/rosina-17-gorro.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Lo que aprendí</h3><p>Puntos y técnicas nuevas: mira todo lo que has avanzado.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
