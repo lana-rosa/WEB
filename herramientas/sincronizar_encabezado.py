@@ -21,8 +21,9 @@ CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende'
 
 # (texto, enlace, clase de color)
 MENUS = {
-    'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Personaliza el tuyo', 'personaliza.html', 'crochet'),
-                ('Precios', 'precios.html', 'crochet'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
+    'crochet': [('Amigurumis', 'tienda.html#amigurumis', 'crochet'), ('Peluches', 'tienda.html#peluches', 'crochet'),
+                ('Llaveros', 'tienda.html#llaveros', 'crochet'), ('Flores y macetas', 'tienda.html#macetas', 'crochet'),
+                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
     # páginas comunes (contacto, preguntas, políticas, cuenta, Revista): menú de marca con las tres casas
     'comun': [('Tienda de amigurumis', 'index.html', 'crochet'), ('Mercería', 'merceria/', 'merceria'),
               ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
