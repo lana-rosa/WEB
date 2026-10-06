@@ -10,6 +10,12 @@
     window.addEventListener('scroll', f, { passive: true }); f();
   }
 
+  // botones "Hablar con Rosina": abren el chat; si no cargó, siguen el enlace
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('[data-abrir-rosina]');
+    if (b && window.abrirRosinaChat) { ev.preventDefault(); window.abrirRosinaChat(); }
+  });
+
   if (quieto) return;
 
   // aparición al hacer scroll: solo lo que está debajo de la pantalla y dentro del ancho visible
