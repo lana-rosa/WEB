@@ -8,7 +8,7 @@ Estados usados: **IMPLEMENTADO Y VERIFICADO** · **PENDIENTE DE VALIDACIÓN JUR�
 
 | Tecnología | Clasificación | Dónde se activa | Antes del consentimiento |
 |---|---|---|---|
-| Cookies de Google Analytics (`_ga`, `_ga_*`), vía GTM | Analítica | Todas las páginas con GTM, si la etiqueta GA4 se dispara | Bloqueadas (consentimiento `analytics_storage` en "denegado"). **Verificado** el estado inicial; el bloqueo real de la etiqueta depende de la configuración en GTM (ver 6). |
+| Cookies de Google Analytics (`_ga`, `_ga_*`), vía GTM | Analítica | Todas las páginas con GTM, si la etiqueta GA4 se dispara | Bloqueadas (consentimiento `analytics_storage` en "denegado"). **Verificado** el estado inicial y, el 7-oct-2026, el bloqueo real en GTM: las dos etiquetas de eventos GA4 exigen `analytics_storage`; en Tag Assistant no se activan sin aceptar y sí se activan al aceptar. |
 | `localStorage.lrConsent` | Necesario (guarda la decisión) | Aviso de cookies | Se crea solo al decidir |
 | `localStorage.carritoLanaRosa`, `lrFotosCarrito` | Necesario (carrito) | Tienda, Mercería, pago | Solo al agregar productos |
 | `localStorage.sb-ngjoognzvehwjtpqwrqe-auth-token` | Necesario (sesión) | Solo si la persona inicia sesión | No existe sin sesión |
