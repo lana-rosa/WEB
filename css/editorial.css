@@ -203,3 +203,4 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .franja-corta a.franja-chip { padding: 9px 16px; height: auto; width: auto; background: var(--blanco); font-size: 1rem; }
 .franja-corta a.franja-chip { border-radius: 999px !important; font-weight: 700; }
 .franja-corta a.franja-merceria { color: #8E55D6; } .franja-corta a.franja-academy { color: #2A6FCB; } .franja-corta a.franja-rosina { color: var(--rosa-texto); }
+.franja-corta a.franja-tienda { color: #B0246C; }
