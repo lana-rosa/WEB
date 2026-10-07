@@ -1739,7 +1739,7 @@ formResena.addEventListener('submit', async (evento) => {
     document.title = p.nombre + ' — Tienda Lana Rosa Crochet';
     var ld = {
       '@context': 'https://schema.org', '@type': 'Product', name: p.nombre,
-      image: 'https://lanarosacrochet.com/img/productos/' + p.foto_url,
+      image: p.foto_url ? 'https://lanarosacrochet.com/img/productos/' + p.foto_url : undefined,
       description: String(p.descripcion || p.nombre),
       brand: { '@type': 'Brand', name: 'Lana Rosa Crochet' },
       offers: { '@type': 'Offer', url: location.href, priceCurrency: 'COP', price: String(p.precio),
@@ -1766,11 +1766,11 @@ formResena.addEventListener('submit', async (evento) => {
       var url = 'https://lanarosacrochet.com/tienda.html?producto=' + encodeURIComponent(id);
       return { '@type': 'ListItem', position: i + 1, item: {
         '@type': 'Product', name: p.nombre, url: url,
-        image: 'https://lanarosacrochet.com/img/productos/' + p.foto_url,
+        image: p.foto_url ? 'https://lanarosacrochet.com/img/productos/' + p.foto_url : undefined,
         description: String(p.descripcion || p.nombre).replace(/\s+/g, ' ').trim(),
         category: p.categoria, brand: { '@type': 'Brand', name: 'Lana Rosa Crochet' },
         offers: { '@type': 'Offer', url: url, priceCurrency: 'COP', price: String(Math.round(Number(p.precio))),
-          availability: p.disponible ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+          availability: p.disponible ? 'https://schema.org/InStock' : 'https://schema.org/BackOrder',
           itemCondition: 'https://schema.org/NewCondition' }
       } };
     });
