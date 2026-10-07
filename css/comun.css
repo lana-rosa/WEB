@@ -235,3 +235,9 @@ html[data-casa="merceria"] main.contenedor > :first-child, html[data-casa="acade
 /* Iconos del encabezado (lupa, cuenta, carrito): dibujados en el rosa de la marca, iguales en todos los dispositivos */
 .boton-buscar-header, .boton-cuenta-header, .boton-carrito-header, .panel-buscar-header button[type="submit"] { color: var(--rosa-texto); }
 .boton-buscar-header svg, .boton-cuenta-header svg, .boton-carrito-header svg, .panel-buscar-header button svg { display: block; }
+
+/* Botón discreto "Instalar app" en el pie (solo aparece cuando el navegador permite instalar) */
+.boton-instalar { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--blanco-hueso); border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 0.78rem; cursor: pointer; opacity: 0.9; }
+.boton-instalar:hover { opacity: 1; border-color: var(--rosa-medio); color: var(--rosa-medio); }
+.boton-instalar[hidden], .instalar-ayuda[hidden] { display: none; }
+.instalar-ayuda { flex-basis: 100%; font-size: 0.78rem; opacity: 0.85; }

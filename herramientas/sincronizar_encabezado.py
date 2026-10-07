@@ -45,11 +45,16 @@ ICONOS = {
     'academy': ('/img/favicon-academy-256.png', '/img/apple-touch-icon-academy.png', '#5A98E2'),
 }
 ICONOS_BASE = ('/img/favicon-256.png', '/img/apple-touch-icon.png', '#E74E96')
+# app instalable: manifiesto y nombre en la pantalla por casa (las páginas sin casa usan Crochet)
+APP = {'merceria': ('merceria', 'Mercería Lana Rosa'), 'academy': ('academy', 'Lana Rosa Academy')}
+APP_BASE = ('crochet', 'Lana Rosa Crochet')
 
 def iconos(casa):
     ico, apple, color = ICONOS.get(casa, ICONOS_BASE)
     return (f'<!-- ICONOS:INICIO (generado) -->\n<link rel="icon" type="image/png" href="{ico}">\n'
-            f'<link rel="apple-touch-icon" href="{apple}">\n<meta name="theme-color" content="{color}">\n<!-- ICONOS:FIN -->')
+            f'<link rel="apple-touch-icon" href="{apple}">\n<meta name="theme-color" content="{color}">\n'
+            f'<link rel="manifest" href="/manifest-{APP.get(casa, APP_BASE)[0]}.webmanifest">\n'
+            f'<meta name="apple-mobile-web-app-title" content="{APP.get(casa, APP_BASE)[1]}">\n<!-- ICONOS:FIN -->')
 
 # nombre bajo el logo y destino del logo por casa
 LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria/'), 'academy': ('Academy', 'academy/'),
@@ -232,6 +237,7 @@ def pie_casa(modelo, casa):
     faq = PIE_FAQ.get(casa, 'preguntas-frecuentes.html')
     rev = PIE_REVISTA.get(casa, 'revista.html')
     horario = ''.join(li(t, None) for t in PIE_HORARIO) if casa == 'merceria' else ''
+    nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
   <div class="contenedor pie-grid">
     <div class="pie-marca">
@@ -281,6 +287,8 @@ def pie_casa(modelo, casa):
     <a href="politicas.html#datos">Datos personales</a>
     <a href="politicas.html#uso">Uso del sitio</a>
     <a href="politicas.html#cookies">Cookies</a>
+    <button type="button" class="boton-instalar" data-instalar hidden aria-label="Instalar la app de {nombre_app}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Instalar app</button>
+    <span class="instalar-ayuda" role="status" hidden>En iPhone: toca el botón Compartir y luego «Agregar a pantalla de inicio».</span>
     <span class="derechos">© 2026 Lana Rosa Crochet</span>
   </div>
 </footer>'''
@@ -300,7 +308,7 @@ def main():
         rel = os.path.relpath(f, RAIZ).replace(os.sep, '/')
         # merceria/index.html -> merceria; merceria/catalogo/index.html -> merceria-catalogo
         n = rel[:-len('/index.html')].replace('/', '-') if rel.endswith('/index.html') else rel[:-5]
-        if n in ('404', 'merceria') and rel == n + '.html':
+        if n in ('404', 'merceria', 'offline') and rel == n + '.html':
             continue  # 404 y la redirección merceria.html no llevan menú
             continue
         s = open(f, encoding='utf-8').read()
