@@ -28,8 +28,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/comun.css?v=20">
-<link rel="stylesheet" href="css/animaciones.css?v=3">
+<link rel="stylesheet" href="/css/comun.css?v=20">
+<link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -388,7 +388,7 @@ main > :first-child { padding-top: 40px !important; }
   .marca-imp-abajo strong { color: var(--rosa-texto); }
 }
 </style>
-<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="img/logo-lana-rosa.jpg" alt="" width="1142" height="731"><span>Rincón de Rosina · lanarosacrochet.com</span></div>
+<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="/img/logo-lana-rosa.jpg" alt="" width="1142" height="731"><span>Rincón de Rosina · lanarosacrochet.com</span></div>
 <!-- /marca-impresion -->
 
 <!-- Google Tag Manager (noscript) -->
@@ -405,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 <header class="encabezado" data-casa="academy">
   <div class="contenedor">
-    <a href="/academy/" class="logo"><img src="img/logo-academy.webp" alt="Lana Rosa Academy" class="logo-img" width="600" height="384"><span class="texto-logo">Academy</span></a>
+    <a href="/academy/" class="logo"><img src="/img/logo-academy.webp" alt="Lana Rosa Academy" class="logo-img" width="600" height="384"><span class="texto-logo">Academy</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li class="g-aprende grupo-inicio"><a href="/aprende.html#aprende">Talleres</a></li>
@@ -455,7 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main>
   <section class="contenedor intro-rincon intro-agenda">
-    <p class="volver-rincon"><a href="recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
+    <p class="volver-rincon"><a href="/recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
     <p class="eslogan">Material gratuito · Rincón de Rosina</p>
     <h1>Calculadoras de Rosina</h1>
     <p class="intro">Rosina hace las cuentas por ti. Elige una herramienta: todo se calcula al instante y lo que escribes se guarda en tu dispositivo, para que lo encuentres cuando vuelvas.</p>
@@ -704,8 +704,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>¿Te gustó el material de Rosina?</h2>
     <p style="color:var(--tinta-suave); max-width:56ch; margin:0 auto 20px;">Compártelo con tus amigas tejedoras y síguenos para recibir más tips. Si quieres aprender con nosotras en persona, mira nuestros talleres.</p>
     <div class="acciones" style="justify-content:center;">
-      <a class="boton-primario" href="aprende.html">Ver talleres</a>
-      <a class="boton-secundario" href="rosina.html">Conocer a Rosina</a>
+      <a class="boton-primario" href="/aprende.html">Ver talleres</a>
+      <a class="boton-secundario" href="/rosina.html">Conocer a Rosina</a>
     </div>
   </section>
 </main>
@@ -717,7 +717,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="pie-rico">
   <div class="contenedor pie-grid">
     <div class="pie-marca">
-      <div class="pie-logo-wrap"><img src="img/logo-academy.webp" alt="Lana Rosa Academy" loading="lazy" decoding="async"></div>
+      <div class="pie-logo-wrap"><img src="/img/logo-academy.webp" alt="Lana Rosa Academy" loading="lazy" decoding="async"></div>
       <p>Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.</p>
       <div class="pie-redes" aria-label="Redes sociales">
         <a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener">Instagram</a>
@@ -759,8 +759,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="contenedor pie-franja">
     <div class="pie-pagos"><span class="pie-etiqueta">Pagos</span><span>Efectivo</span><span>Nequi</span><span>Bre-B</span><span>Tarjeta débito/crédito</span></div>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
-      <img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
-      <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+      <img src="/img/logo-sena.png" alt="SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+      <img src="/img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
     </div>
   </div>
   <div class="contenedor pie-legal">
@@ -824,7 +824,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function irABuscar() {
     var termino = inputBuscar.value.trim();
     if (!termino) { inputBuscar.focus(); return; }
-    window.location.href = 'tienda.html?buscar=' + encodeURIComponent(termino);
+    window.location.href = '/tienda.html?buscar=' + encodeURIComponent(termino);
   }
 
   botonBuscar.addEventListener('click', function(e) {
@@ -1384,8 +1384,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<script type="module" src="js/cuenta.js"></script>
-<script type="module" src="js/pago.js?v=16"></script>
-<script src="js/animaciones.js?v=7" defer></script>
+<script type="module" src="/js/cuenta.js"></script>
+<script type="module" src="/js/pago.js?v=16"></script>
+<script src="/js/animaciones.js?v=7" defer></script>
 </body>
 </html>

@@ -1,0 +1,26 @@
+name: Revisar enlaces en producción
+
+# Rastrea https://lanarosacrochet.com como lo haría un visitante o un buscador: páginas, enlaces internos,
+# recursos (CSS, JS, imágenes), canonical y sitemap. Falla si encuentra un 404, una ruta con prefijo duplicado
+# (/merceria/merceria/, /academy/academy/) o un error de red. No cambia nada del sitio.
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+  workflow_dispatch:
+  schedule:
+    - cron: "17 11 * * 1"   # los lunes
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Esperar a que la publicación llegue a todos los servidores
+        if: github.event_name == 'workflow_run'
+        run: sleep 90
+      - name: Rastrear la web publicada
+        run: python3 herramientas/revisar_enlaces.py --produccion

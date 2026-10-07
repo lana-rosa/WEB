@@ -2,7 +2,6 @@
 <html lang="es-CO" data-casa="merceria">
 <head>
 <meta charset="UTF-8">
-<base href="/">
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -388,7 +387,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function irABuscar() {
     var termino = inputBuscar.value.trim();
     if (!termino) { inputBuscar.focus(); return; }
-    window.location.href = 'tienda.html?buscar=' + encodeURIComponent(termino);
+    window.location.href = '/tienda.html?buscar=' + encodeURIComponent(termino);
   }
 
   botonBuscar.addEventListener('click', function(e) {
@@ -524,7 +523,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="module" src="/js/pago.js?v=16"></script>
 <script src="/js/animaciones.js?v=7" defer></script>
 <script>
-// La página usa <base href="/">: los enlaces internos "#..." se resuelven aquí en vez de ir al inicio.
+// La página usa : los enlaces internos "#..." se resuelven aquí en vez de ir al inicio.
 document.addEventListener('click', function (e) {
   var a = e.target.closest && e.target.closest('a[href^="#"]');
   if (!a || a.getAttribute('href') === '#') return;

@@ -154,7 +154,7 @@ function construirModal() {
   overlay = nodo('div', 'pago-overlay'); overlay.hidden = true;
   overlay.setAttribute('role', 'dialog'); overlay.setAttribute('aria-modal', 'true'); overlay.setAttribute('aria-label', 'Continuar compra');
   overlay.innerHTML =
-    '<div class="pg-cab"><button type="button" class="pg-volver" aria-label="Volver a la tienda" title="Volver">&#8249;</button><img src="img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"></div>' +
+    '<div class="pg-cab"><button type="button" class="pg-volver" aria-label="Volver a la tienda" title="Volver">&#8249;</button><img src="/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"></div>' +
     '<div class="pg-cont">' +
       '<div class="pg-pasos" id="pg-pasos"></div>' +
       '<div class="pg-grid">' +
@@ -199,7 +199,7 @@ function construirModal() {
           '<section class="pg-sec" data-paso="4" hidden><header>Método de pago <button type="button" class="pg-atras" data-ir="3">← Atrás</button></header><div class="pg-cuerpo">' +
             '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Nequi, Bancolombia y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
             '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Para pedidos fuera de Colombia.</small></span></label>' +
-            '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
+            '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="/politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
             '<label class="pago-acepto" id="pg-confirma-caja"><input type="checkbox" id="pg-confirma"><span id="pg-confirma-texto">Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.</span></label>' +
             '<label class="pago-acepto" id="pg-cuenta-caja"><input type="checkbox" id="pg-cuenta" checked><span>Crear mi cuenta con este correo para ver el estado de mi pedido. Sin contraseña: te enviamos un correo para activarla cuando pagues.</span></label>' +
             '<label class="pago-acepto" id="pg-promos-caja"><input type="checkbox" id="pg-promos"><span>Quiero recibir información de Lana Rosa: promociones, nuevos productos y novedades. Puedes darte de baja cuando quieras.</span></label>' +

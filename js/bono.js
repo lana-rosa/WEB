@@ -11,17 +11,17 @@
   var TEXTOS = {
     crochet: {
       titulo: '¡Bienvenida a Lana Rosa!',
-      intro: 'Regístrate y recibe un bono del 10% para tu primera compra en la <a href="tienda.html">tienda de amigurumis</a> o en la <a href="merceria/">mercería</a>.',
+      intro: 'Regístrate y recibe un bono del 10% para tu primera compra en la <a href="/tienda.html">tienda de amigurumis</a> o en la <a href="/merceria/">mercería</a>.',
       lugar: 'la tienda de amigurumis o la mercería'
     },
     merceria: {
       titulo: '¡Bienvenida a la Mercería Lana Rosa!',
-      intro: 'Regístrate y recibe un bono del 10% para tu primera compra de lanas, hilos, agujas y accesorios en la <a href="merceria/catalogo/">mercería</a> o en la <a href="tienda.html">tienda de amigurumis</a>.',
+      intro: 'Regístrate y recibe un bono del 10% para tu primera compra de lanas, hilos, agujas y accesorios en la <a href="/merceria/catalogo/">mercería</a> o en la <a href="/tienda.html">tienda de amigurumis</a>.',
       lugar: 'la mercería o la tienda de amigurumis'
     },
     academy: {
       titulo: '¡Bienvenida a Lana Rosa Academy!',
-      intro: 'Aprende con nosotras y estrena con descuento: regístrate y recibe un bono del 10% para tu primera compra en la <a href="merceria/">mercería</a> (lanas, hilos y agujas) o en la <a href="tienda.html">tienda de amigurumis</a>.',
+      intro: 'Aprende con nosotras y estrena con descuento: regístrate y recibe un bono del 10% para tu primera compra en la <a href="/merceria/">mercería</a> (lanas, hilos y agujas) o en la <a href="/tienda.html">tienda de amigurumis</a>.',
       lugar: 'la mercería o la tienda de amigurumis'
     }
   };
@@ -64,7 +64,7 @@
     '<div class="campo-bono"><input type="text" id="bono-nombre" placeholder="Tu nombre" required></div>' +
     '<div class="campo-bono"><input type="email" id="bono-correo" placeholder="Tu correo electrónico" required></div>' +
     '<div class="campo-bono"><input type="tel" id="bono-whatsapp" placeholder="Tu WhatsApp" required></div>' +
-    '<label class="campo-checkbox"><input type="checkbox" id="bono-acepta" required><span>Acepto la <a href="politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> de Lana Rosa Crochet.</span></label>' +
+    '<label class="campo-checkbox"><input type="checkbox" id="bono-acepta" required><span>Acepto la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> de Lana Rosa Crochet.</span></label>' +
     '<button type="submit" class="boton-bono">Obtener mi bono</button>' +
     '<p id="bono-error" style="display:none; color:#c62828; font-size:0.85rem; margin-top:10px;"></p>' +
     '</form>' +

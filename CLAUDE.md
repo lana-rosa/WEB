@@ -22,7 +22,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 - `herramientas/fondos/`: plantilla y script de Playwright para los fondos de pantalla (necesita la fuente DynaPuff en `.woff2` junto a `fondo.html`).
 - `separar_stickers.py` (recorta una hoja de stickers) y `stickers_frases.py` (stickers con frase) generan los archivos de `img/stickers/`.
 
-- Enlaces: las páginas de `/merceria/` y `/academy/` usan `<base href="/">`; los enlaces del menú, el pie y los de esas páginas llevan ruta desde la raíz (`/tienda.html`). Para revisar todo: `python3 herramientas/revisar_enlaces.py` (debe dar 0 rotos).
+- Enlaces (regla de arquitectura): **ningún `<base>` y todo enlace o recurso interno empieza con `/`** (`/tienda.html`, `/merceria/catalogo/`, `/img/...`, `/css/...`), también en el JavaScript. Así funciona igual en la raíz, en `/merceria/` y en `/academy/`, y también para rastreadores, conversores a Markdown y verificadores de enlaces que no respetan `<base>`. El menú y el pie se generan con `herramientas/sincronizar_encabezado.py` (ya salen con `/`). Para una página nueva en una carpeta, copia una existente y corre `python3 herramientas/revisar_enlaces.py` (debe dar 0 rotos y 0 rutas relativas); con `--produccion` revisa la web publicada desde una red con internet.
 
 ## Convenciones
 - **Valores de la marca:** las fundadoras son cristianas, creyentes en Cristo Jesús y cumplidoras de la Biblia. **No se celebran ni se mencionan Navidad, fechas de santos (incluido San Valentín) ni Halloween** en la web, el contenido, las paletas, los artículos ni las promociones. Sí se usan otras fechas especiales: Amor y amistad, Día de la madre, Día del padre, cumpleaños, graduaciones, etc.
