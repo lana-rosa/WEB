@@ -21,19 +21,20 @@ CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende'
 
 # (texto, enlace, clase de color)
 MENUS = {
-    'crochet': [('Amigurumis', 'tienda.html#amigurumis', 'crochet'), ('Peluches', 'tienda.html#peluches', 'crochet'),
+    'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Amigurumis', 'tienda.html#amigurumis', 'crochet'), ('Peluches', 'tienda.html#peluches', 'crochet'),
                 ('Llaveros', 'tienda.html#llaveros', 'crochet'), ('Flores y macetas', 'tienda.html#macetas', 'crochet'),
-                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
+                ('Personaliza el tuyo', 'personaliza.html', 'crochet')],
     # páginas comunes (contacto, preguntas, políticas, cuenta, Revista): menú de marca con las tres casas
     'comun': [('Tienda de amigurumis', 'index.html', 'crochet'), ('Mercería', 'merceria/', 'merceria'),
               ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria', 'merceria'),
-                 ('Agujas', 'merceria/catalogo/#agujas-merceria', 'merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria', 'merceria'),
+                 ('Agujas', 'merceria/catalogo/#agujas-merceria', 'merceria'), ('Herrajes', 'merceria/catalogo/#herrajes-merceria', 'merceria'),
+                 ('Accesorios', 'merceria/catalogo/#accesorios-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria')],
-    'academy': [('Talleres', 'aprende.html#aprende', 'academy'), ('Tutoriales', 'aprende.html#crea', 'academy'),
-                ('Recursos gratis', 'recursos-rosina.html', 'academy'), ('Glosario', 'glosario-rosina.html', 'academy'),
-                ('Paletas', 'paletas-rosina.html', 'academy'), ('Calculadoras', 'calculadoras-rosina.html', 'academy')],
+    'academy': [('Empieza aquí', 'academy/#empieza', 'academy'), ('Talleres', 'aprende.html#aprende', 'academy'),
+                ('Tutoriales', 'aprende.html#crea', 'academy'), ('Recursos gratis', 'recursos-rosina.html', 'academy'),
+                ('Sobre Academy', 'academy/sobre-academy/', 'academy')],
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
