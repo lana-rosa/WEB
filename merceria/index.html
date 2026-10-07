@@ -342,6 +342,10 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .inicio-editorial .banda-apertura { margin: 22px 0 8px; }
 .inicio-editorial .titulo-con-rosina { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
 @media (max-width: 860px) { .merc-lanas, .merc-visita { grid-template-columns: 1fr; } .merc-pasos { grid-template-columns: 1fr; } }
+.merc-ruta a { color: inherit; text-decoration: none; }
+.merc-ruta a:hover { color: var(--rosa-texto); text-decoration: underline; }
+.merc-ruta-cierre { text-align: center; margin: 28px 0 0; font-size: 1.02rem; }
+.merc-ruta-cierre a { font-weight: 700; color: var(--rosa-texto); }
 </style>
 <script type="application/ld+json">
 {
@@ -531,16 +535,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="contenedor">
       <header class="ed-cabecera">
         <p class="ed-eyebrow">De la lana al amigurumi</p>
-        <h2 class="titulo-con-rosina"><img src="/img/mini/rosina-saludo.webp" alt="" aria-hidden="true" width="44" height="44"> Empecemos tu proyecto juntas</h2>
-        <p>Cuéntanos en qué punto estás y Rosina te muestra por dónde seguir.</p>
+        <h2 class="titulo-con-rosina"><img src="/img/mini/rosina-saludo.webp" alt="" aria-hidden="true" width="44" height="44"> De la idea a tu proyecto, paso a paso</h2>
+        <p>Sigue el orden o entra por el paso que necesites.</p>
       </header>
-      <div class="puentes-grid merc-puentes">
-        <a class="puente" href="/recursos-rosina.html#checklist"><span class="icono-puente" aria-hidden="true">🌱</span><span><strong>Soy principiante</strong><span class="texto-puente">La checklist de tu primer amigurumi.</span><span class="ir-puente">Ver la checklist →</span></span></a>
-        <a class="puente" href="/merceria/catalogo/"><span class="icono-puente" aria-hidden="true">🧶</span><span><strong>Quiero hacer un amigurumi</strong><span class="texto-puente">Lanas, hilos y relleno.</span><span class="ir-puente">Ver materiales →</span></span></a>
-        <a class="puente" href="/paletas-rosina.html"><span class="icono-puente" aria-hidden="true">🎨</span><span><strong>Busco un color</strong><span class="texto-puente">Inspírate con las paletas de Rosina.</span><span class="ir-puente">Ver paletas →</span></span></a>
-        <a class="puente" href="/academy/"><span class="icono-puente" aria-hidden="true">🎓</span><span><strong>Necesito aprender</strong><span class="texto-puente">Talleres y tutoriales de Lana Rosa Academy.</span><span class="ir-puente">Ir a Academy →</span></span></a>
-        <a class="puente" href="/calculadoras-rosina.html"><span class="icono-puente" aria-hidden="true">🧮</span><span><strong>Necesito calcular mi proyecto</strong><span class="texto-puente">Lana, aumentos, muestra y costos.</span><span class="ir-puente">Usar calculadoras →</span></span></a>
-      </div>
+      <ol class="ed-proceso merc-ruta">
+        <li><span class="ed-num">01</span><strong><a href="/recursos-rosina.html#checklist">Elige tu proyecto</a></strong><p>¿Principiante? Empieza por la checklist de tu primer amigurumi.</p></li>
+        <li><span class="ed-num">02</span><strong><a href="/calculadoras-rosina.html#lana">Calcula lo que necesitas</a></strong><p>Cuánta lana, aumentos, muestra y costos.</p></li>
+        <li><span class="ed-num">03</span><strong><a href="/paletas-rosina.html">Escoge tus colores</a></strong><p>Inspírate con las paletas de Rosina.</p></li>
+        <li><span class="ed-num">04</span><strong><a href="/merceria/catalogo/">Consigue tus materiales</a></strong><p>Lanas, hilos, agujas, herrajes y relleno.</p></li>
+        <li><span class="ed-num">05</span><strong><a href="/academy/">Aprende a tejerlo</a></strong><p>Tutoriales y talleres de Lana Rosa Academy.</p></li>
+      </ol>
+      <p class="merc-ruta-cierre">¿Prefieres uno ya tejido? <a href="/tienda.html">Visita la tienda de amigurumis →</a></p>
     </div>
   </section>
 
