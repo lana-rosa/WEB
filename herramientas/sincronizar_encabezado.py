@@ -249,7 +249,7 @@ def pie_casa(modelo, casa):
     return f'''<footer class="pie-rico">
 {casas_pie(casa)}  <div class="contenedor pie-grid">
     <div class="pie-marca">
-      <div class="pie-logo-wrap"><img src="{img}" alt="{alt}" loading="lazy" decoding="async"></div>
+      <div class="pie-logo-wrap"><img src="{img}" alt="{alt}" width="81" height="52" loading="lazy" decoding="async"></div>
       <p>{frase}</p>
       <div class="pie-redes" aria-label="Redes sociales">
         <a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener">Instagram</a>
@@ -285,8 +285,8 @@ def pie_casa(modelo, casa):
   <div class="contenedor pie-franja">
     <div class="pie-pagos"><span class="pie-etiqueta">Pagos</span><span>Tarjeta débito/crédito</span><span>PSE</span><span>Nequi</span><span>Bancolombia</span><span>Bre-B</span><span>Efectivo</span></div>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
-      <img src="img/logo-sena.png" alt="SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
-      <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" onerror="this.style.display='none'" loading="lazy" decoding="async">
+      <img src="img/logo-sena.png" alt="SENA" width="328" height="320" onerror="this.style.display='none'" loading="lazy" decoding="async">
+      <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" width="420" height="94" onerror="this.style.display='none'" loading="lazy" decoding="async">
     </div>
   </div>
   <div class="contenedor pie-legal">

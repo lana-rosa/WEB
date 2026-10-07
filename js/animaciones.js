@@ -27,6 +27,26 @@
       else if (/(^|\/)tienda\.html/.test(h) && !/tienda\.html/.test(location.pathname)) ev('clic_tienda', { destino: h });
       if (a.id === 'boton-pagar-wompi' || /pagar/i.test(a.id || '')) ev('begin_checkout', {});
     }, true);
+    // clics con significado de negocio: tienda física, taller, recursos, descargas, reseñas, contacto de la Mercería
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      var h = a.getAttribute('href') || '';
+      var enMerceria = /^\/merceria\//.test(location.pathname);
+      if (/\/merceria\/tienda-fisica|maps\.app\.goo|google\.com\/maps|g\.page|goo\.gl\/maps/.test(h)) ev('store_physical_click', { destino: h.slice(0, 80) });
+      if (/\/academy\/talleres/.test(h) || (/wa\.me/.test(h) && /taller/i.test(decodeURIComponent(h)))) ev('academy_taller_click', { destino: h.slice(0, 80) });
+      if (/(glosario|paletas|calculadoras|agenda|recursos)-rosina\.html/.test(h)) ev('resource_use', { recurso: (h.match(/(glosario|paletas|calculadoras|agenda|recursos)-rosina/) || [])[1] });
+      if (a.hasAttribute('download') || /\/img\/(fondos|stickers)\/|\.pdf(\?|$)/i.test(h)) ev('resource_download', { archivo: h.split('/').pop().slice(0, 60) });
+      if (/share\.google|g\.page\/r|search\.google\.com\/local\/(write)?review/.test(h)) ev('review_click', {});
+      if (enMerceria && /wa\.me|api\.whatsapp\.com/.test(h)) ev('merceria_contacto', {});
+    }, true);
+    // personalizados: primera vez que alguien empieza a llenar el formulario
+    var iniciado = false;
+    document.addEventListener('focusin', function (e) {
+      if (iniciado || !/personaliza/.test(location.pathname)) return;
+      var f = e.target.closest && e.target.closest('form');
+      if (f && f.id === 'form-personalizado') { iniciado = true; ev('personalizacion_inicio', {}); }
+    });
     // agregar al carrito (tienda y mercería): se detecta cuando sube la cantidad del carrito guardado
     var setItem = Storage.prototype.setItem;
     Storage.prototype.setItem = function (k, v) {
@@ -37,6 +57,10 @@
           if (cant(nuevo) > cant(antes)) {
             var it = nuevo.filter(function (n) { var o = antes.filter(function (x) { return x.id === n.id; })[0]; return !o || n.cantidad > o.cantidad; })[0] || {};
             ev('add_to_cart', { producto: it.nombre || '', valor: it.precio || 0, area: casaDe(location.pathname) });
+          }
+          else if (cant(nuevo) < cant(antes)) {
+            var q = antes.filter(function (o) { var n = nuevo.filter(function (x) { return x.id === o.id; })[0]; return !n || n.cantidad < o.cantidad; })[0] || {};
+            ev('remove_from_cart', { producto: q.nombre || '', valor: q.precio || 0, area: casaDe(location.pathname) });
           }
         }
       } catch (er) {}
@@ -59,6 +83,7 @@
       var c = e.target.closest && e.target.closest('.producto-card');
       if (!c || e.target.closest('.boton-agregar-carrito, button')) return;
       var im = c.querySelector('img[data-id]'), p = (window.DATOS_PRODUCTOS || {})[im && im.dataset.id];
+      ev('select_item', { producto: p ? p.nombre : (im && im.alt) || '', area: casaDe(location.pathname) });
       ev('view_item', { producto: p ? p.nombre : (im && im.alt) || '', valor: p ? p.precio : 0 });
     }, true);
   } catch (e) {}

@@ -15,7 +15,8 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 - Pagos con Wompi: `js/pago.js` (apagado con `PAGOS_ACTIVOS = false` hasta que Sara guarde las llaves en Supabase), `gracias.html`, funciones `crear-pago-wompi` y `wompi-webhook`; los pedidos pagados pasan solos al ERP como pedidos de "Tienda virtual" (`fn_registrar_pedido_web_en_erp`). Ver `herramientas/cuentas-clientes/README.md`.
 - WhatsApp de pedidos: 573205072801.
 - Google Shopping (Merchant Center): feed en vivo desde la Edge Function `feed-google-merchant` de Supabase; solo diseños propios (tabla `web_google_shopping`). Ver `herramientas/google-merchant/README.md`.
-- Medición: Google Tag Manager `GTM-M3MQ7XZD` en todas las páginas (Analytics `G-RSVSQV8Y9B` se configura dentro de GTM).
+- Fotos extra de productos (`nombre-2.jpg`, `nombre-3.jpg` en `img/productos/`): al subirlas, correr `python3 herramientas/generar_extras_productos.py` (genera `img/productos/extras.json`; la ficha solo pide las fotos que figuran ahí).
+- Medición: Google Tag Manager `GTM-M3MQ7XZD` en todas las páginas (Analytics `G-RSVSQV8Y9B` se configura dentro de GTM). Eventos en `js/animaciones.js`: view_item, select_item, add_to_cart, remove_from_cart, begin_checkout, purchase (gracias.html), search, filtro_producto, clic_whatsapp, merceria_contacto, personalizacion_inicio, form_enviado, academy_taller_click, store_physical_click, resource_use, resource_download, review_click.
 
 ## Generadores (`herramientas/`)
 - `glosario-rosina.html` y `paletas-rosina.html` se **generan** con `generar_glosario.py` y `generar_paletas.py` a partir de `glosario_datos.py` y `paletas_datos.py`. Para cambiar términos o paletas, edita los datos y vuelve a generar (`python3 herramientas/generar_paletas.py herramientas`). Los scripts toman la cabecera y el pie de `rosina.html`.
