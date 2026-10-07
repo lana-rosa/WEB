@@ -288,7 +288,8 @@ def pie_casa(modelo, casa):
 def absolutas(html):
     """Enlaces del menú y del pie con ruta desde la raíz (/tienda.html, /merceria/...): funcionan igual desde cualquier página,
     con o sin <base href="/">, y no generan /merceria/merceria/... en rastreadores que ignoran <base>."""
-    return re.sub(r'(<(?:a|form)\b[^>]*?\s(?:href|action)=")(?!/|#|\?|https?:|mailto:|tel:|javascript:|data:)([^"]+)"', lambda m: m.group(1) + '/' + m.group(2) + '"', html)
+    html = re.sub(r'(<(?:a|form)\b[^>]*?\s(?:href|action)=")/?index\.html(?=[#?"])', lambda m: m.group(1) + '/', html)   # el inicio es "/" (index.html sería una URL duplicada)
+    return re.sub(r'(<(?:a|form|img|source|link|script)\b[^>]*?\s(?:href|src|action)=")(?!/|#|\?|https?:|mailto:|tel:|javascript:|data:)([^"]+)"', lambda m: m.group(1) + '/' + m.group(2) + '"', html)
 
 
 def main():
