@@ -30,9 +30,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:locale" content="es_CO">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/dynapuff-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/fuentes.css?v=1">
 
 <link rel="stylesheet" href="/css/comun.css?v=24">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
@@ -81,6 +81,10 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .zona-foto .subtexto { font-size: 0.82rem; color: var(--tinta-suave); margin-top: 6px; }
 .previsualizacion-grid { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
 .previsualizacion-grid img { width: 90px; height: 90px; object-fit: cover; border-radius: 12px; box-shadow: var(--sombra-suave); }
+.acepto-p { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; margin: 0 0 12px; line-height: 1.45; color: var(--tinta-suave); }
+.acepto-p input { margin-top: 3px; accent-color: var(--rosa-principal); flex-shrink: 0; width: 20px; height: 20px; }
+.acepto-p a { color: var(--rosa-texto); font-weight: 700; }
+.acepto-p small { display: block; font-size: 0.82rem; opacity: .9; }
 .boton-enviar {
   width: 100%; background: var(--rosa-boton); color: var(--sobre-principal); border: none;
   padding: 16px; border-radius: 999px; font-weight: 600; font-size: 1.02rem; cursor: pointer;
@@ -456,6 +460,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <textarea id="mensaje" name="mensaje" placeholder="Ej: Es un regalo de cumpleaños para mi mamá, sería genial tenerlo antes del 20 de este mes."></textarea>
     </div>
 
+    <label class="acepto-p"><input type="checkbox" id="acepto-datos" required> <span>Acepto que Lana Rosa use mis datos y mis fotos <strong>solo para cotizar y elaborar mi pedido</strong>, según la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos personales</a>.</span></label>
+    <label class="acepto-p"><input type="checkbox" id="acepto-publicar"> <span>Autorizo a Lana Rosa a mostrar la foto de mi pedido terminado en su web y redes sociales. <small>Es opcional: no cambia el precio ni tu pedido, y puedes retirarlo cuando quieras escribiendo a contacto@lanarosacrochet.com.</small></span></label>
     <button type="submit" class="boton-enviar" id="boton-enviar">Enviar mi solicitud</button>
     <div id="mensaje-estado"></div>
   </form>
@@ -710,7 +716,9 @@ form.addEventListener('submit', async (evento) => {
       p_descripcion: descripcionCompleta,
       p_ciudad: (selectCiudad.value === 'Otro (nacional)' ? inputCiudadOtra.value.trim() : selectCiudad.value) || null,
       p_fotos_urls: fotosUrls.length > 0 ? fotosUrls : null,
-      p_mensaje: document.getElementById('mensaje').value || null
+      p_mensaje: ((document.getElementById('mensaje').value || '') +
+        '\n[Autorizaciones registradas el ' + new Date().toISOString().slice(0, 10) + ' — tratamiento de datos para el pedido: SÍ; ' +
+        'publicar la foto del pedido terminado en web y redes: ' + (document.getElementById('acepto-publicar').checked ? 'SÍ' : 'NO') + ']').trim()
     });
 
     if (error) throw new Error(error.message);
