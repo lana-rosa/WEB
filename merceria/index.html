@@ -40,7 +40,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="/css/comun.css?v=22">
+<link rel="stylesheet" href="/css/comun.css?v=24">
+<link rel="stylesheet" href="/css/editorial.css?v=2">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
@@ -310,6 +311,31 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .razon a { font-weight: 700; }
 @media (max-width: 760px) { .categorias-merceria { grid-template-columns: repeat(2, minmax(0, 1fr)); } .razones-merceria { grid-template-columns: 1fr; } .cat-merceria { padding: 16px; } }
 
+
+/* ===== Inicio de la Mercería: secciones propias (los estilos editoriales vienen de /css/editorial.css) ===== */
+.merc-categorias .categorias-merceria { margin: 0; }
+.merc-lanas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 24px); }
+.merc-lana { background: var(--blanco); border-radius: 22px; padding: 24px 22px; box-shadow: var(--sombra-suave); }
+.merc-lana-icono { font-size: 2rem; line-height: 1; display: block; margin-bottom: 10px; }
+.merc-lana h3 { font-family: var(--fuente-titulo); font-size: 1.3rem; margin: 0 0 4px; }
+.merc-lana .merc-marca { color: var(--rosa-texto); font-weight: 700; font-size: 0.85rem; margin: 0 0 10px; }
+.merc-lana p:last-child { margin: 0; color: var(--tinta-suave); }
+.merc-colores-titulo { text-align: center; margin: 32px auto 14px; font-weight: 600; color: var(--tinta); }
+.merc-colores { list-style: none; padding: 0; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 640px; }
+.merc-colores li { width: 34px; height: 34px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7), 0 2px 6px rgba(58,42,46,0.18); }
+.merc-puentes { max-width: none; }
+.merc-pasos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.merc-visita { list-style: none; padding: 0; margin: 0 auto; max-width: 860px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.merc-visita li { display: flex; gap: 14px; align-items: flex-start; background: var(--blanco); border-radius: 20px; padding: 20px; box-shadow: var(--sombra-suave); }
+.merc-visita li > span { font-size: 1.6rem; line-height: 1; }
+.merc-visita strong { display: block; font-family: var(--fuente-titulo); color: var(--rosa-texto); margin-bottom: 4px; }
+.merc-visita div > span { color: var(--tinta-suave); font-size: 0.95rem; }
+.ed-casa-tienda { background: #FDEBF4; }
+.ed-casa-tienda strong, .ed-casa-tienda .ed-casa-ir { color: #B0246C; }
+.ed-casa-tienda:hover { border-color: #F28FC0; }
+.inicio-editorial .banda-apertura { margin: 22px 0 8px; }
+.inicio-editorial .titulo-con-rosina { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 860px) { .merc-lanas, .merc-visita { grid-template-columns: 1fr; } .merc-pasos { grid-template-columns: 1fr; } }
 </style>
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-merceria-256.png">
@@ -318,6 +344,38 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 <link rel="manifest" href="/manifest-merceria.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Mercería Lana Rosa">
 <!-- ICONOS:FIN -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué venden en la Mercería?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los materiales que usamos para tejer en Lana Rosa: lanas, hilos, agujas, herrajes, accesorios y relleno. Hoy manejamos marcas como Kusi Kusi, Papatya y DMC, y muy pronto tendremos todos los productos de Miratex."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se venden las lanas y los hilos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Por ovillo completo o por gramos, según lo que necesites para tu proyecto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Me ayudan a elegir los materiales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Cuéntanos qué quieres tejer y te recomendamos lana, aguja y cantidad. Escríbenos por WhatsApp o usa las calculadoras de Rosina para estimar cuánta lana necesitas."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -386,65 +444,198 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
 <!-- CASAS:FIN -->
 
-<main class="contenedor">
-  <section class="hero-merceria fondo-crema">
-    <div class="hero-texto">
-    <p class="eslogan">Mercería Lana Rosa</p>
-    <h1>Todo para tejer, en un solo lugar</h1>
-    <p class="intro">Lanas, hilos, agujas, herrajes y accesorios: los mismos materiales con los que tejemos cada amigurumi en Lana Rosa.</p>
-    <div class="botones-hero">
-      <a class="boton-primario" href="/merceria/catalogo/">Ver el catálogo</a>
-      <a class="boton-secundario" href="/merceria/tienda-fisica/">Visita la tienda</a>
+<main class="inicio-editorial">
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="ed-hero">
+    <div class="contenedor ed-hero-grid">
+      <div class="ed-hero-texto">
+        <p class="ed-eyebrow">Mercería Lana Rosa · Villamaría, Caldas</p>
+        <h1>Todo para tejer, <span>en un solo lugar.</span></h1>
+        <p class="ed-intro">Lanas, hilos, agujas, herrajes y accesorios: los mismos materiales con los que tejemos cada amigurumi en Lana Rosa.</p>
+        <div class="ed-botones">
+          <a href="/merceria/catalogo/" class="boton-primario">Ver el catálogo</a>
+          <a href="/merceria/tienda-fisica/" class="ed-enlace">Visita la tienda física →</a>
+        </div>
+      </div>
+      <figure class="ed-hero-foto">
+        <img src="/img/inicio/tejer-detalle.webp" alt="Llavero de ballena azul tejido a mano en crochet sobre una mesa de madera" width="640" height="800" fetchpriority="high" decoding="async">
+        <figcaption>Todo empieza con un buen hilo.</figcaption>
+      </figure>
     </div>
-    <ul class="sellos">
-      <li>🚚 Envíos a toda Colombia</li>
-      <li>🧶 Materiales probados en nuestro taller</li>
-      <li>📍 Tienda física en Villamaría</li>
+  </section>
+
+  <!-- ============ 2. CONFIANZA ============ -->
+  <section class="ed-confianza" aria-label="Por qué comprar en la Mercería">
+    <ul class="contenedor">
+      <li>Materiales que usamos en el taller</li>
+      <li>DMC, Kusi Kusi, Papatya y, muy pronto, Miratex</li>
+      <li>Envíos a toda Colombia</li>
+      <li>Tienda física en Villamaría</li>
     </ul>
-    </div>
-    <figure class="hero-foto"><img src="/img/inicio/tejer-detalle.webp" alt="Llavero de ballena tejido a mano en crochet sobre una mesa de madera" width="640" height="800" decoding="async"></figure>
   </section>
 
-  <a class="banda-apertura" href="/merceria/tienda-fisica/"><span data-apertura="antes">Inauguración prevista de la tienda física: domingo 15 de noviembre de 2026 · Ver horario →</span><span data-apertura="despues" hidden>📍 Visítanos en Villamaría · Calle 10 #5-37, Centro · Ver horario y cómo llegar →</span></a>
-
-  <section class="seccion-merceria" aria-label="Compra por categoría">
-    <h2>¿Qué vas a tejer hoy?</h2>
-    <p>Elige por dónde empezar; si dudas, te ayudamos a escoger.</p>
-    <div class="categorias-merceria">
-      <a class="cat-merceria" href="/merceria/catalogo/#lanas-merceria"><span class="icono" aria-hidden="true">🧶</span><strong>Lanas</strong><span>Suaves, para amigurumis y peluches.</span></a>
-      <a class="cat-merceria" href="/merceria/catalogo/#hilos-merceria"><span class="icono" aria-hidden="true">🧵</span><strong>Hilos</strong><span>Para puntos firmes y definidos.</span></a>
-      <a class="cat-merceria" href="/merceria/catalogo/#agujas-merceria"><span class="icono" aria-hidden="true">🪡</span><strong>Agujas</strong><span>Una para cada grosor de hilo.</span></a>
-      <a class="cat-merceria" href="/merceria/catalogo/#herrajes-merceria"><span class="icono" aria-hidden="true">🔗</span><strong>Herrajes</strong><span>Argollas y cadenas para llaveros.</span></a>
-      <a class="cat-merceria" href="/merceria/catalogo/#accesorios-merceria"><span class="icono" aria-hidden="true">✨</span><strong>Accesorios</strong><span>Ojos, marcadores y detalles para terminar.</span></a>
-      <a class="cat-merceria" href="/merceria/catalogo/#relleno-merceria"><span class="icono" aria-hidden="true">☁️</span><strong>Relleno</strong><span>Fibra siliconada para tus amigurumis.</span></a>
-    </div>
-  </section>
-
-  <section class="puentes puentes-cinco fondo-lila" aria-label="Empecemos tu proyecto juntas">
-    <h2 class="titulo-con-rosina"><img src="/img/mini/rosina-saludo.webp" alt="" aria-hidden="true" width="44" height="44"> Empecemos tu proyecto juntas</h2>
-    <div class="puentes-grid">
-      <a class="puente" href="/recursos-rosina.html#checklist"><span class="icono-puente" aria-hidden="true">🌱</span><span><strong>Soy principiante</strong><span class="texto-puente">La checklist de tu primer amigurumi.</span><span class="ir-puente">Ver la checklist →</span></span></a>
-      <a class="puente" href="/merceria/catalogo/"><span class="icono-puente" aria-hidden="true">🧶</span><span><strong>Quiero hacer un amigurumi</strong><span class="texto-puente">Lanas, hilos y relleno.</span><span class="ir-puente">Ver materiales →</span></span></a>
-      <a class="puente" href="/paletas-rosina.html"><span class="icono-puente" aria-hidden="true">🎨</span><span><strong>Busco un color</strong><span class="texto-puente">Inspírate con las paletas de Rosina.</span><span class="ir-puente">Ver paletas →</span></span></a>
-      <a class="puente" href="/aprende.html"><span class="icono-puente" aria-hidden="true">🎓</span><span><strong>Necesito aprender</strong><span class="texto-puente">Talleres de Lana Rosa Academy.</span><span class="ir-puente">Ir a Academy →</span></span></a>
-      <a class="puente" href="/calculadoras-rosina.html"><span class="icono-puente" aria-hidden="true">🧮</span><span><strong>Necesito calcular mi proyecto</strong><span class="texto-puente">Lana, aumentos, muestra y costos.</span><span class="ir-puente">Usar calculadoras →</span></span></a>
-    </div>
-  </section>
-
-  <section class="seccion-merceria fondo-rosa" aria-label="Por qué comprar en nuestra mercería">
-    <h2>Aquí te acompañamos</h2>
-    <div class="razones-merceria">
-      <div class="razon"><span aria-hidden="true">🧶</span><h3>Lo que usamos nosotras</h3><p>Vendemos los materiales con los que tejemos todos los días en nuestro taller.</p></div>
-      <div class="razon"><span aria-hidden="true">💬</span><h3>Te asesoramos</h3><p>Cuéntanos qué quieres tejer y te ayudamos a elegir. <a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Necesito%20asesor%C3%ADa%20con%20materiales%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener">Escríbenos →</a></p></div>
-      <div class="razon"><span aria-hidden="true">🎓</span><h3>Aprende con nosotras</h3><p>Talleres y tutoriales en <a href="/aprende.html">Lana Rosa Academy</a>.</p></div>
-    </div>
-  </section>
-
-  <div class="aviso-personalizado">
-    <h2 style="font-size:1.2rem;">¿Buscas amigurumis ya tejidos?</h2>
-    <p>Los encuentras en nuestra tienda de amigurumis, listos para regalar.</p>
-    <a class="boton-primario" href="/tienda.html">Ir a la tienda de amigurumis</a>
+  <div class="contenedor">
+    <a class="banda-apertura" href="/merceria/tienda-fisica/"><span data-apertura="antes">Inauguración prevista de la tienda física: domingo 15 de noviembre de 2026 · Ver horario →</span><span data-apertura="despues" hidden>📍 Visítanos en Villamaría · Calle 10 #5-37, Centro · Ver horario y cómo llegar →</span></a>
   </div>
+
+  <!-- ============ 3. CATEGORÍAS ============ -->
+  <section class="ed-seccion merc-categorias" aria-label="Compra por categoría">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Compra por categoría</p>
+        <h2>¿Qué vas a tejer hoy?</h2>
+        <p>Elige por dónde empezar; si dudas, te ayudamos a escoger.</p>
+      </header>
+      <div class="categorias-merceria">
+        <a class="cat-merceria" href="/merceria/catalogo/#lanas-merceria"><span class="icono" aria-hidden="true">🧶</span><strong>Lanas</strong><span>Suaves, para amigurumis y peluches.</span></a>
+        <a class="cat-merceria" href="/merceria/catalogo/#hilos-merceria"><span class="icono" aria-hidden="true">🧵</span><strong>Hilos</strong><span>Para puntos firmes y definidos.</span></a>
+        <a class="cat-merceria" href="/merceria/catalogo/#agujas-merceria"><span class="icono" aria-hidden="true">🪡</span><strong>Agujas</strong><span>Una para cada grosor de hilo.</span></a>
+        <a class="cat-merceria" href="/merceria/catalogo/#herrajes-merceria"><span class="icono" aria-hidden="true">🔗</span><strong>Herrajes</strong><span>Argollas y cadenas para llaveros.</span></a>
+        <a class="cat-merceria" href="/merceria/catalogo/#accesorios-merceria"><span class="icono" aria-hidden="true">✨</span><strong>Accesorios</strong><span>Ojos, marcadores y detalles para terminar.</span></a>
+        <a class="cat-merceria" href="/merceria/catalogo/#relleno-merceria"><span class="icono" aria-hidden="true">☁️</span><strong>Relleno</strong><span>Fibra siliconada para tus amigurumis.</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. NUESTRAS LANAS ============ -->
+  <section class="ed-seccion ed-lila" aria-label="Nuestras lanas">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Nuestras lanas</p>
+        <h2>Una lana para cada proyecto</h2>
+        <p>Trabajamos con DMC, Kusi Kusi y Papatya, y muy pronto con todos los productos de Miratex. Esto es lo que cambia en tu tejido.</p>
+      </header>
+      <div class="merc-lanas">
+        <article class="merc-lana"><span class="merc-lana-icono" aria-hidden="true">☁️</span><h3>Chenille</h3><p class="merc-marca">DMC Happy Chenille · Lana chelín Kusi Kusi</p><p>Suave y esponjosa: la favorita para peluches y amigurumis con textura.</p></article>
+        <article class="merc-lana"><span class="merc-lana-icono" aria-hidden="true">🌿</span><h3>Algodón</h3><p class="merc-marca">Papatya Ecological Cotton</p><p>Firme y poco elástico: los puntos se ven definidos y la pieza mantiene su forma.</p></article>
+        <article class="merc-lana"><span class="merc-lana-icono" aria-hidden="true">🎀</span><h3>Acrílico</h3><p class="merc-marca">Papatya Love</p><p>Liviano, suave y con muchos colores. Fácil de cuidar.</p></article>
+      </div>
+      <p class="merc-colores-titulo">Más de 30 referencias de color, de lo más suave a lo más vivo</p>
+      <ul class="merc-colores" aria-hidden="true"><li style="--c:#FFFFFF" title="Blanco"></li><li style="--c:#F4E8D2" title="Crema"></li><li style="--c:#E6CFAE" title="Almendra"></li><li style="--c:#F1C6A6" title="Piel"></li><li style="--c:#F6D64A" title="Amarillo"></li><li style="--c:#F28A3A" title="Naranja"></li><li style="--c:#8DC63F" title="Manzana"></li><li style="--c:#C5E04A" title="Verde limón"></li><li style="--c:#4AA55B" title="Verde"></li><li style="--c:#35BFC4" title="Turquesa"></li><li style="--c:#9CCBF0" title="Azul claro"></li><li style="--c:#3B7DD8" title="Azul"></li><li style="--c:#2A4FB8" title="Azul rey"></li><li style="--c:#C7A6EC" title="Lila"></li><li style="--c:#8A55D6" title="Morado"></li><li style="--c:#D2268B" title="Magenta"></li><li style="--c:#EC4899" title="Fucsia"></li><li style="--c:#F6A6C6" title="Rosado"></li><li style="--c:#F9D0E1" title="Rosado claro"></li><li style="--c:#7A1F3D" title="Vinotinto"></li><li style="--c:#CFCFD4" title="Gris claro"></li><li style="--c:#6B6B72" title="Gris oscuro"></li><li style="--c:#2B2B2E" title="Negro"></li></ul>
+      <div class="ed-centro ed-botones-centro">
+        <a href="/merceria/catalogo/#lanas-merceria" class="boton-primario">Ver las lanas</a>
+        <p class="ed-nota">¿No sabes cuál elegir? Lee <a href="/revista.html#elegir-hilo-amigurumi">cómo elegir el hilo para tu amigurumi</a> y <a href="/revista.html#aguja-segun-hilo">qué aguja usar con cada hilo</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. EMPECEMOS TU PROYECTO ============ -->
+  <section class="ed-seccion ed-rosa puentes-cinco" aria-label="Empecemos tu proyecto juntas">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">De la lana al amigurumi</p>
+        <h2 class="titulo-con-rosina"><img src="/img/mini/rosina-saludo.webp" alt="" aria-hidden="true" width="44" height="44"> Empecemos tu proyecto juntas</h2>
+        <p>Cuéntanos en qué punto estás y Rosina te muestra por dónde seguir.</p>
+      </header>
+      <div class="puentes-grid merc-puentes">
+        <a class="puente" href="/recursos-rosina.html#checklist"><span class="icono-puente" aria-hidden="true">🌱</span><span><strong>Soy principiante</strong><span class="texto-puente">La checklist de tu primer amigurumi.</span><span class="ir-puente">Ver la checklist →</span></span></a>
+        <a class="puente" href="/merceria/catalogo/"><span class="icono-puente" aria-hidden="true">🧶</span><span><strong>Quiero hacer un amigurumi</strong><span class="texto-puente">Lanas, hilos y relleno.</span><span class="ir-puente">Ver materiales →</span></span></a>
+        <a class="puente" href="/paletas-rosina.html"><span class="icono-puente" aria-hidden="true">🎨</span><span><strong>Busco un color</strong><span class="texto-puente">Inspírate con las paletas de Rosina.</span><span class="ir-puente">Ver paletas →</span></span></a>
+        <a class="puente" href="/academy/"><span class="icono-puente" aria-hidden="true">🎓</span><span><strong>Necesito aprender</strong><span class="texto-puente">Talleres y tutoriales de Lana Rosa Academy.</span><span class="ir-puente">Ir a Academy →</span></span></a>
+        <a class="puente" href="/calculadoras-rosina.html"><span class="icono-puente" aria-hidden="true">🧮</span><span><strong>Necesito calcular mi proyecto</strong><span class="texto-puente">Lana, aumentos, muestra y costos.</span><span class="ir-puente">Usar calculadoras →</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. MANIFIESTO ============ -->
+  <section class="ed-manifiesto">
+    <div class="contenedor ed-manifiesto-grid">
+      <img src="/img/taller-tejiendo.webp" alt="Manos tejiendo crochet alrededor de una mesa en el taller de Lana Rosa" width="800" height="570" loading="lazy" decoding="async">
+      <blockquote>
+        <p class="ed-manifiesto-titulo">Lo que usamos nosotras, lo encuentras aquí.</p>
+        <p>Los materiales con los que tejemos cada día, para que tu proyecto salga igual de bonito.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ 7. CÓMO COMPRAR ============ -->
+  <section class="ed-seccion" aria-label="Cómo comprar">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Paso a paso</p>
+        <h2>Así compras en la Mercería</h2>
+      </header>
+      <ol class="ed-proceso merc-pasos">
+        <li><span class="ed-num">01</span><strong>Elige</strong><p>Entra al catálogo y agrega al carrito lo que necesitas.</p></li>
+        <li><span class="ed-num">02</span><strong>Completa tus datos</strong><p>Contacto, dirección y forma de envío. No necesitas cuenta.</p></li>
+        <li><span class="ed-num">03</span><strong>Paga</strong><p>Tarjeta, PSE, Nequi o Bancolombia; o por WhatsApp con Nequi o Bre-B.</p></li>
+        <li><span class="ed-num">04</span><strong>Recibe o recoge</strong><p>Enviamos a toda Colombia, o lo recoges gratis en la tienda.</p></li>
+      </ol>
+      <div class="ed-centro ed-botones-centro">
+        <a href="/merceria/como-comprar/" class="boton-secundario">Ver envíos y formas de pago</a>
+        <p class="ed-nota">En tu primera compra en la web tienes 10 % de descuento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. TIENDA FÍSICA ============ -->
+  <section class="ed-seccion ed-lila" aria-label="Tienda física">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Visítanos</p>
+        <h2>Nuestra tienda física en Villamaría</h2>
+        <p><span data-apertura="antes">Estamos preparando la apertura: inauguración prevista el domingo 15 de noviembre de 2026.</span><span data-apertura="despues" hidden>Ya estamos abiertas: ven a escoger tus materiales con calma.</span></p>
+      </header>
+      <ul class="merc-visita">
+        <li><span aria-hidden="true">📍</span><div><strong>Dirección</strong><span>Calle 10 #5-37, Centro, Villamaría, Caldas</span></div></li>
+        <li><span aria-hidden="true">🕒</span><div><strong>Horario</strong><span>Lunes a viernes, 7:30 a. m. a 6:15 p. m.<br>Sábados, 8:00 a. m. a 12:00 m.</span></div></li>
+        <li><span aria-hidden="true">🛍️</span><div><strong>Recoger tu pedido</strong><span>Compra en línea y recógelo gratis en la tienda.</span></div></li>
+      </ul>
+      <div class="ed-centro ed-botones-centro">
+        <a href="/merceria/tienda-fisica/" class="boton-primario">Ver horario y cómo llegar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. OTRAS CASAS ============ -->
+  <section class="ed-seccion ed-crema" aria-label="Más de Lana Rosa">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Más de Lana Rosa</p>
+        <h2>Del material a la pieza terminada</h2>
+      </header>
+      <div class="ed-otras-casas">
+        <a class="ed-casa ed-casa-tienda" href="/tienda.html"><span class="ed-casa-icono" aria-hidden="true">🧸</span><strong>Tienda de amigurumis</strong><span>¿Buscas amigurumis ya tejidos? Listos para regalar, o personalizados a partir de tu foto.</span><span class="ed-casa-ir">Ir a la tienda →</span></a>
+        <a class="ed-casa ed-casa-academy" href="/academy/"><span class="ed-casa-icono" aria-hidden="true">🎓</span><strong>Lana Rosa Academy</strong><span>Talleres presenciales, tutoriales gratis y las herramientas de Rosina para aprender crochet.</span><span class="ed-casa-ir">Ir a Academy →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. PREGUNTAS FRECUENTES ============ -->
+  <section class="seccion-suave">
+    <div class="contenedor">
+      <div class="encabezado-seccion"><h2>Preguntas frecuentes</h2></div>
+      <div class="faq-lista">
+        <details class="faq-item">
+          <summary>¿Qué venden en la Mercería?</summary>
+          <p>Los materiales que usamos para tejer en Lana Rosa: lanas, hilos, agujas, herrajes, accesorios y relleno. Hoy manejamos marcas como Kusi Kusi, Papatya y DMC, y muy pronto tendremos todos los productos de Miratex.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo se venden las lanas y los hilos?</summary>
+          <p>Por ovillo completo o por gramos, según lo que necesites para tu proyecto.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Me ayudan a elegir los materiales?</summary>
+          <p>Sí. Cuéntanos qué quieres tejer y te recomendamos lana, aguja y cantidad. Escríbenos por <a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Necesito%20asesor%C3%ADa%20con%20materiales%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener">WhatsApp</a> o usa las <a href="/calculadoras-rosina.html">calculadoras de Rosina</a> para estimar cuánta lana necesitas.</p>
+        </details>
+      </div>
+      <p style="margin-top:24px;"><a href="/merceria/preguntas-frecuentes/">Ver todas las preguntas frecuentes de la Mercería →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 11. CIERRE ============ -->
+  <section class="ed-final">
+    <div class="contenedor ed-centro-texto">
+      <h2>¿Ya sabes qué vas a tejer?</h2>
+      <p>Cuéntanos tu proyecto y te ayudamos a elegir lana, aguja y cantidad.</p>
+      <div class="ed-botones ed-botones-centrados">
+        <a href="/merceria/catalogo/" class="boton-primario">Ver el catálogo</a>
+        <a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Necesito%20asesor%C3%ADa%20con%20materiales%20de%20la%20mercer%C3%ADa." class="boton-secundario" target="_blank" rel="noopener">Pedir asesoría por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- PIE:INICIO (generado) -->

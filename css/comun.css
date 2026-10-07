@@ -255,3 +255,9 @@ html[data-casa="merceria"] main.contenedor > :first-child, html[data-casa="acade
 .volver-casa .contenedor { padding-top: 8px; padding-bottom: 8px; }
 .volver-casa a { display: inline-flex; align-items: center; gap: 6px; color: var(--rosa-texto); font-weight: 700; font-size: 0.9rem; text-decoration: none; min-height: 32px; }
 .volver-casa a:hover { text-decoration: underline; }
+
+/* Páginas de inicio de Mercería y Academy: mismos fondos que el inicio general (blanco, crema, lila y rosado) */
+html[data-casa="merceria"] .ed-rosa, html[data-casa="academy"] .ed-rosa { background: #FBE4EF; }
+html[data-casa="merceria"] .ed-lila .ed-eyebrow, html[data-casa="merceria"] .ed-rosa .ed-eyebrow, html[data-casa="academy"] .ed-lila .ed-eyebrow, html[data-casa="academy"] .ed-rosa .ed-eyebrow { color: var(--rosa-texto); }
+html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { background: #FBE4EF; }
+html[data-casa="merceria"] .inicio-editorial > .seccion-suave, html[data-casa="academy"] .inicio-editorial > .seccion-suave { background: #FFFFFF; }
