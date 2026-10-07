@@ -159,6 +159,15 @@ def franja(casa):
     return ('<nav class="franja-casas" aria-label="Casas Lana Rosa">\n  <div class="contenedor">\n    '
             + '\n    '.join(items) + '\n  </div>\n</nav>')
 
+def casas_pie(casa):
+    """Las tres casas (Tienda de amigurumis, Mercería, Academy) viven en el pie; la casa actual va resaltada."""
+    items = []
+    for k, nombre, href in CASAS:
+        act = ' class="casa-actual" aria-current="true"' if k == casa else ''
+        items.append(f'<a href="{href}" data-casa="{k}"{act}>{nombre}</a>')
+    return ('  <div class="contenedor pie-casas">\n    <p class="pie-h3">Nuestras casas</p>\n    <nav aria-label="Casas Lana Rosa">\n      '
+            + '\n      '.join(items) + '\n    </nav>\n  </div>\n')
+
 def encabezado(pagina):
     casa = CASA_DE.get(pagina)
     menu = MENUS[casa or 'comun']
@@ -190,8 +199,7 @@ def encabezado(pagina):
     texto, enlace = LOGO[casa]
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
     return f'''<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
-{anuncios(casa)}{franja(casa)}
-<header class="encabezado" data-casa="{casa or 'comun'}">
+{anuncios(casa)}<header class="encabezado" data-casa="{casa or 'comun'}">
   <div class="contenedor">
     <a href="{enlace}" class="logo"><img src="{img}" alt="{alt}" class="logo-img" width="600" height="384"><span class="texto-logo">{texto}</span></a>
     <nav aria-label="Navegación principal">
@@ -239,7 +247,7 @@ def pie_casa(modelo, casa):
     horario = ''.join(li(t, None) for t in PIE_HORARIO) if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
-  <div class="contenedor pie-grid">
+{casas_pie(casa)}  <div class="contenedor pie-grid">
     <div class="pie-marca">
       <div class="pie-logo-wrap"><img src="{img}" alt="{alt}" loading="lazy" decoding="async"></div>
       <p>{frase}</p>

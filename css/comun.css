@@ -241,3 +241,17 @@ html[data-casa="merceria"] main.contenedor > :first-child, html[data-casa="acade
 .boton-instalar:hover { opacity: 1; border-color: var(--rosa-medio); color: var(--rosa-medio); }
 .boton-instalar[hidden], .instalar-ayuda[hidden] { display: none; }
 .instalar-ayuda { flex-basis: 100%; font-size: 0.78rem; opacity: 0.85; }
+
+/* Las tres casas, en el pie (antes estaban en una franja sobre el menú) */
+.pie-casas { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding-bottom: 18px; margin-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.pie-casas .pie-h3 { margin: 0; max-width: none; opacity: 1; }
+.pie-casas nav { display: flex; flex-wrap: wrap; gap: 8px; }
+.pie-casas a { border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; padding: 7px 16px; font-weight: 600; opacity: 1; }
+.pie-casas a:hover { border-color: var(--rosa-medio); }
+.pie-casas a.casa-actual { background: var(--rosa-medio); border-color: var(--rosa-medio); color: var(--tinta); }
+
+/* "Volver a ...": aparece solo cuando la persona pasó de una casa a otra */
+.volver-casa { background: var(--blanco-hueso, #FAFAF7); border-bottom: 1px solid rgba(69,69,74,0.08); }
+.volver-casa .contenedor { padding-top: 8px; padding-bottom: 8px; }
+.volver-casa a { display: inline-flex; align-items: center; gap: 6px; color: var(--rosa-texto); font-weight: 700; font-size: 0.9rem; text-decoration: none; min-height: 32px; }
+.volver-casa a:hover { text-decoration: underline; }
