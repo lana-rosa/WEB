@@ -453,6 +453,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="#flores"><img src="/img/tienda-categorias/flores.webp?v=2" alt="Rosa tejida" width="560" height="700" decoding="async"><span>Flores</span></a>
     <a href="#separadores-de-libros"><img src="/img/tienda-categorias/separadores-de-libros.webp?v=2" alt="Separador de libros de gato" width="560" height="700" decoding="async"><span>Separadores</span></a>
     <a href="#bolsos"><img src="/img/tienda-categorias/bolsos.webp?v=2" alt="Bolso tejido" width="560" height="700" decoding="async"><span>Bolsos</span></a>
+    <a href="#complementos"><img src="/img/tienda-categorias/complementos.webp" alt="Base blanca para exhibir amigurumis" width="560" height="700" decoding="async"><span>Complementos</span></a>
     <a href="/personaliza.html" class="cat-personaliza"><img src="/img/tienda-categorias/personalizados.webp?v=2" alt="Amigurumi personalizado de un hombre con camiseta polo" width="560" height="700" decoding="async"><span>Personalizados</span></a>
   </nav>
   <button type="button" class="boton-secundario ver-mas-categorias" id="ver-mas-categorias" aria-expanded="false" aria-controls="categorias-visual">Ver más categorías</button>
@@ -470,6 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <option value="#flores">Flores</option>
         <option value="#separadores-de-libros">Separadores de libros</option>
         <option value="#bolsos">Bolsos</option>
+        <option value="#complementos">Complementos</option>
         <option value="personaliza.html">Personalizados</option>
       </select>
     </div>
@@ -536,6 +538,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="categoria-seccion" id="bolsos">
       <h2>Bolsos</h2>
       <div class="grid-productos" id="grid-bolsos">
+        <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
+      </div>
+    </section>
+    <section class="categoria-seccion" id="complementos">
+      <h2>Complementos</h2>
+      <div class="grid-productos" id="grid-complementos">
         <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
@@ -758,7 +766,8 @@ var MAPA_GRID = {
   'Macetas': 'grid-macetas',
   'Flores': 'grid-flores',
   'Separadores de libros': 'grid-separadores-de-libros',
-  'Bolsos': 'grid-bolsos'
+  'Bolsos': 'grid-bolsos',
+  'Complementos': 'grid-complementos'
 };
 
 function formatoCOP(valor) {
@@ -1321,6 +1330,13 @@ var RESENAS_POR_PRODUCTO = {};
 
   function formatoCOP(valor) { return '$' + valor.toLocaleString('es-CO'); }
 
+  document.addEventListener('click', function(ev) {
+    var enlace = ev.target.closest && ev.target.closest('.enlace-base');
+    if (!enlace) return;
+    ev.preventDefault();
+    abrirModal(enlace.dataset.base);
+  });
+
   function abrirModal(id) {
     var producto = DATOS_PRODUCTOS[id];
     if (!producto) return;
@@ -1343,7 +1359,11 @@ var RESENAS_POR_PRODUCTO = {};
     descripcionEl.innerHTML = producto.descripcion.replace(/\n/g, '<br>');
     document.getElementById('modal-aviso-personaje').hidden = !(window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id));
 
-    var especificacionesHtml = producto.especificaciones.map(function(e) { return '<li>' + e + '</li>'; }).join('');
+    var idBase = Object.keys(DATOS_PRODUCTOS).find(function(k) { return DATOS_PRODUCTOS[k].categoria === 'Complementos' && /^Base para amigurumi/i.test(DATOS_PRODUCTOS[k].nombre); });
+    var especificacionesHtml = producto.especificaciones.map(function(e) {
+      var enlaceBase = (idBase && id !== idBase && /^Base de exhibici/i.test(e)) ? ' <a href="#" class="enlace-base" data-base="' + idBase + '">Ver y agregar la base</a>' : '';
+      return '<li>' + e + enlaceBase + '</li>';
+    }).join('');
     var cuidadosHtml = producto.cuidados.map(function(c) { return '<li>' + c + '</li>'; }).join('');
 
     fichaEl.innerHTML =
