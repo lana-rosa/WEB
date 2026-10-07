@@ -19,10 +19,10 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 - [x] Regalos para graduaciones hechos a mano (regalos, Tienda) — 6-oct-2026
 - [x] Cuánto cobrar por tus tejidos: guía para tejedoras que venden (emprendimiento, Academy) — 6-oct-2026
 - [x] Cómo cuidar y lavar tus prendas y peluches tejidos (crochet, Tienda) — 6-oct-2026
+- [x] Conoce a Rosina, la ovejita de Lana Rosa (mundo Rosina) — 7-oct-2026. Se escribió solo con lo que ya dice la web; la historia de cómo nació Rosina queda pendiente de que Sara la cuente (ver PENDIENTES.md).
 
 ## Próximos (en este orden)
 
-- [ ] Conoce a Rosina: la historia de nuestra ovejita (mundo Rosina)
 - [ ] Ideas de regalo para el Día de la madre (regalos) — publicar en abril
 - [ ] Ideas de regalo para el Día del padre (regalos) — publicar en mayo o junio
 - [ ] Regalos de Amor y amistad tejidos a mano (regalos) — publicar en agosto
