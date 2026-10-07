@@ -28,7 +28,7 @@ El código de la web **no escribe `document.cookie`** directamente; las cookies 
 | Google Tag Manager (`googletagmanager.com`) | Carga el contenedor `GTM-M3MQ7XZD` | Todas | Cargador de etiquetas (no cookies por sí mismo) |
 | Google Analytics (dentro de GTM) | Medición | Todas, solo con consentimiento | Analítica |
 | ~~Google Fonts~~ | **Ya no se piden a Google**: las fuentes se sirven desde `/fonts/` | — | Eliminado (ver 5) |
-| `esm.sh` | Librería de Supabase para el navegador | Tienda, Personaliza, Cuenta, páginas con pago | Tercero técnico (CDN). Recibe la IP de la visita. **Pendiente de decisión:** servirla desde el propio sitio |
+| ~~`esm.sh`~~ | **Ya no se pide a esm.sh**: la librería de Supabase se sirve desde `/js/vendor/supabase.js` | — | Eliminado (ver `js/vendor/LEEME.md`) |
 | Supabase (`ngjoognzvehwjtpqwrqe.supabase.co`) | Catálogo, cuentas, solicitudes, pagos | Tienda, Mercería, Personaliza, Cuenta, Pago | Necesario |
 | Wompi (`checkout.wompi.co`) | Página de pago | Solo al pagar (redirección) | Tercero de pagos |
 | WhatsApp (`wa.me`) | Enlaces | Todas | Enlace: no carga nada hasta el clic |
@@ -61,7 +61,7 @@ El código de la web **no escribe `document.cookie`** directamente; las cookies 
 | 6 | La política de datos no menciona cuentas, favoritos, direcciones ni reseñas. | **PENDIENTE DE VALIDACIÓN JURÍDICA** |
 | 7 | La política no lista los terceros que reciben datos (Supabase, Wompi, Google, Cloudflare, GitHub Pages, WhatsApp, transportadoras). | **PENDIENTE DE VALIDACIÓN JURÍDICA** |
 | 8 | Google Fonts enviaba la IP de cada visita a Google. | **IMPLEMENTADO Y VERIFICADO** (fuentes propias) |
-| 9 | `esm.sh` recibe la IP de las visitas que cargan la librería de Supabase. | **PENDIENTE** (se puede alojar la librería en el sitio; no se hizo en esta fase) |
+| 9 | `esm.sh` recibía la IP de las visitas que cargan la librería de Supabase. | **IMPLEMENTADO Y VERIFICADO** (librería alojada en `/js/vendor/supabase.js`; 0 solicitudes a esm.sh en tienda, Personaliza, catálogo y cuenta) |
 
 ## 5. Google Fonts → fuentes propias
 - DynaPuff y Hanken Grotesk, subconjuntos latin y latin-ext (español), archivos variables en `/fonts/` (≈119 KB en total) con `font-display: swap` y precarga de los dos archivos latinos.

@@ -12,7 +12,7 @@ export function haySesionGuardada() {
 let promesaCliente = null;
 export function obtenerCliente() {
   if (!promesaCliente) {
-    promesaCliente = import('https://esm.sh/@supabase/supabase-js@2')
+    promesaCliente = import('/js/vendor/supabase.js?v=1')
       .then(function (m) { return m.createClient(SUPABASE_URL, SUPABASE_KEY); });
   }
   return promesaCliente;

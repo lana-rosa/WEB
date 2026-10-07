@@ -759,7 +759,7 @@ function manejarErrorFoto(img) {
 // La librería de Supabase solo se descarga cuando hace falta (favoritos); los productos no la esperan.
 let _clienteSb = null;
 function clienteSb() {
-  return _clienteSb || (_clienteSb = import('https://esm.sh/@supabase/supabase-js@2').then(function (m) { return m.createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD'); }));
+  return _clienteSb || (_clienteSb = import('/js/vendor/supabase.js?v=1').then(function (m) { return m.createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD'); }));
 }
 async function rpcTienda(nombre) {
   try { return { data: await window.__rpcLR[nombre], error: null }; }
@@ -1516,7 +1516,7 @@ var RESENAS_POR_PRODUCTO = {};
 </script>
 
 <script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from '/js/vendor/supabase.js?v=1';
 
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';

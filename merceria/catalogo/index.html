@@ -611,7 +611,7 @@ function manejarErrorFoto(img) {
 // Los productos se piden con fetch directo (sin esperar la librería de Supabase), que ya arrancó en el <head>.
 let _clienteSb = null;
 function clienteSb() {
-  return _clienteSb || (_clienteSb = import('https://esm.sh/@supabase/supabase-js@2').then(function (m) { return m.createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD'); }));
+  return _clienteSb || (_clienteSb = import('/js/vendor/supabase.js?v=1').then(function (m) { return m.createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD'); }));
 }
 const supabase = { rpc: async function (nombre) {
   try { return { data: await window.__rpcLR[nombre], error: null }; }
