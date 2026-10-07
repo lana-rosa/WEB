@@ -185,3 +185,21 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .faq-item summary::after { content: '+'; position: absolute; right: 0; top: 0; color: var(--rosa-texto); font-size: 1.4rem; }
 .faq-item[open] summary::after { content: '–'; }
 .faq-item p { margin-top: 14px; color: var(--tinta-suave); }
+
+/* Franjas cortas del inicio (equipo y otras casas) */
+.franja-corta { padding: 22px 0; background: var(--blanco); border-top: 1px solid var(--linea); }
+.franja-casas { background: var(--rosa-suave); border-top: 0; }
+.franja-fila { display: flex; align-items: center; justify-content: center; gap: 16px 28px; flex-wrap: wrap; text-align: center; }
+.franja-caras { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; }
+.franja-caras li { display: flex; flex-direction: column; align-items: center; font-family: var(--fuente-titulo); font-size: .9rem; gap: 4px; }
+.franja-caras img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+.franja-corta .franja-texto { margin: 0; max-width: 420px; background: transparent; border: 0; padding: 0; color: var(--tinta-suave); font-size: .98rem; }
+.franja-titulo { margin: 0; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1.1rem; }
+.franja-enlaces { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.franja-chip { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 999px; background: var(--blanco); text-decoration: none; font-weight: 700; color: var(--tinta); border: 2px solid transparent; }
+.franja-chip:hover { border-color: var(--rosa-principal); }
+.franja-merceria { color: #8E55D6; } .franja-academy { color: #2A6FCB; } .franja-rosina { color: var(--rosa-texto); }
+.franja-chip img { width: 24px !important; height: 24px !important; max-width: none; border-radius: 50%; aspect-ratio: 1; object-fit: cover; }
+.franja-corta a.franja-chip { padding: 9px 16px; height: auto; width: auto; background: var(--blanco); font-size: 1rem; }
+.franja-corta a.franja-chip { border-radius: 999px !important; font-weight: 700; }
+.franja-corta a.franja-merceria { color: #8E55D6; } .franja-corta a.franja-academy { color: #2A6FCB; } .franja-corta a.franja-rosina { color: var(--rosa-texto); }
