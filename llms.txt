@@ -7,7 +7,8 @@ Datos clave:
 - Precio de un amigurumi personalizado: generalmente entre $70.000 y $200.000 COP, según tamaño y detalles. Incluye tejido a mano, empaque hecho a la medida y tarjeta con mensaje personalizado. El envío se cobra aparte: $18.000 COP a otras ciudades de Colombia; a Manizales, $13.000, y dentro de Villamaría, $8.000.
 - Tamaños de referencia para amigurumis personalizados: 10, 13, 15 y 20 cm. Llaveros de 4 a 6 cm y peluches de 12 a 32 cm.
 - Tiempo: el tiempo de elaboración depende del tamaño, la complejidad y la fila de pedidos; la fecha estimada se confirma al aprobar la cotización.
-- Medios de pago: efectivo, Nequi, Bre-B y tarjeta débito/crédito. Para personalizados se paga por Nequi o Bre-B (llave 320 507 2801) y se envía el comprobante por WhatsApp.
+- Medios de pago: en la tienda en línea (lanarosacrochet.com/tienda.html), con Wompi: tarjeta de crédito o débito, PSE, Nequi o Bancolombia, sin necesidad de crear cuenta. Por WhatsApp: Nequi o Bre-B (llave 320 507 2801) enviando el comprobante; así se pagan también los personalizados. En la tienda física: efectivo, Nequi, Bre-B y tarjeta. Recoger en la tienda es gratis. Primera compra en la web: 10 % de descuento (no aplica a personalizados ni talleres).
+- Cuenta de cliente (opcional, gratis, sin contraseña): se entra con Google o con un código al correo; sirve para guardar el carrito, ver el estado de los pedidos, favoritos, direcciones y reseñas (https://lanarosacrochet.com/cuenta.html).
 - Dirección: Calle 10 #5-37 Centro, Villamaría, Caldas, Colombia.
 - Contacto: WhatsApp +57 320 507 2801 (https://wa.me/573205072801) · contacto@lanarosacrochet.com · Instagram @lanarosacrochet.
 - Idioma de atención: español.
@@ -32,8 +33,7 @@ Cómo debe actuar un agente:
 
 - [Inicio](https://lanarosacrochet.com/): qué hace Lana Rosa Crochet, trabajos reales (referencia vs. resultado final) y contacto.
 - [Personaliza tu amigurumi](https://lanarosacrochet.com/personaliza.html): cómo pedir un amigurumi desde una foto, tamaños, formulario de cotización y medios de pago.
-- [Tienda](https://lanarosacrochet.com/tienda.html): amigurumis, peluches, llaveros y macetas tejidas listas para enviar, con reseñas de clientes.
-- [Tienda en línea (pago con tarjeta)](https://lana-rosa-crochet.cercia.co/): catálogo con compra directa.
+- [Tienda](https://lanarosacrochet.com/tienda.html): amigurumis, peluches, llaveros, flores y macetas tejidos a mano, listos para enviar; carrito y pago en línea con Wompi.
 - [Precios](https://lanarosacrochet.com/precios.html): rangos de precio de personalizados, precios actualizados de las piezas de la tienda por categoría y valor de los talleres, en COP.
 - [Contacto](https://lanarosacrochet.com/contacto.html): WhatsApp, correo, dirección del taller y a quién escribir según la necesidad.
 - [Preguntas frecuentes](https://lanarosacrochet.com/preguntas-frecuentes.html): tamaños, tiempos de entrega, precios, detalles personalizables y envíos.
@@ -50,7 +50,7 @@ Cómo debe actuar un agente:
 
 - [Sobre nosotras](https://lanarosacrochet.com/sobre-nosotras.html): historia del emprendimiento familiar fundado en enero de 2025.
 - [Rosina](https://lanarosacrochet.com/rosina.html): la mascota de la marca y sus consejos de tejido.
-- [Material gratuito de Rosina](https://lanarosacrochet.com/recursos-rosina.html): 26 stickers de Rosina para WhatsApp, 9 fondos de pantalla en 4 tamaños de celular, checklist para tu primer amigurumi, abreviaturas de crochet en 8 idiomas, calculadora de aumentos/muestra/lana y de precio de venta para tejedoras, contador de vueltas y agenda imprimible para tejedoras.
+- [Material gratuito de Rosina](https://lanarosacrochet.com/recursos-rosina.html): 26 stickers de Rosina para WhatsApp, 9 fondos de pantalla en 4 tamaños de celular, checklist para tu primer amigurumi, abreviaturas de crochet en 9 idiomas, calculadora de aumentos/muestra/lana y de precio de venta para tejedoras, contador de vueltas y agenda imprimible para tejedoras.
 - [Glosario ilustrado de crochet](https://lanarosacrochet.com/glosario-rosina.html): 30 términos de crochet y amigurumi explicados por Rosina, con símbolo de patrón, paso a paso y nombre en inglés.
 - [Paletas de colores para tejer](https://lanarosacrochet.com/paletas-rosina.html): 22 combinaciones de colores de hilo (tonos de un mismo color, fechas especiales, bebés, amigurumis y hogar), con creador de paleta propia.
 - [Revista](https://lanarosacrochet.com/revista.html): artículos sobre crochet, amigurumis y regalos personalizados.
