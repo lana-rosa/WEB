@@ -84,7 +84,7 @@
   var mostrado = false, inicio = Date.now(), previo = null;
   function ocupada() {
     var a = document.activeElement;
-    return !!document.querySelector('.panel-carrito.abierto, .nav-movil-panel.abierto, .rc-panel.abierto, .rc-ventana.abierto, .panel-buscar-header.abierto') ||
+    return !!document.querySelector('.lr-ck, .panel-carrito.abierto, .nav-movil-panel.abierto, .rc-panel.abierto, .rc-ventana.abierto, .panel-buscar-header.abierto') ||
       (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && !overlay.contains(a));
   }
   function mostrar() {

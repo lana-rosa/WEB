@@ -295,6 +295,7 @@ def pie_casa(modelo, casa):
     <a href="politicas.html#datos">Datos personales</a>
     <a href="politicas.html#uso">Uso del sitio</a>
     <a href="politicas.html#cookies">Cookies</a>
+    <a href="politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>
     <button type="button" class="boton-instalar" data-instalar hidden aria-label="Instalar la app de {nombre_app}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Instalar app</button>
     <span class="instalar-ayuda" role="status" hidden>En iPhone: toca el botón Compartir y luego «Agregar a pantalla de inicio».</span>
     <span class="derechos">© 2026 Lana Rosa Crochet</span>

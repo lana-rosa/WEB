@@ -2,6 +2,10 @@
 <html lang="es-CO" data-casa="academy">
 <head>
 <meta charset="UTF-8">
+<!-- Consentimiento de cookies (Modo de consentimiento de Google): todo en "denegado" hasta que la persona acepte -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{var _c=JSON.parse(localStorage.getItem('lrConsent')||'null');if(_c&&_c.v===1&&_c.a)gtag('consent','update',{analytics_storage:'granted'})}catch(e){}</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -9,6 +13,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M3MQ7XZD');</script>
 <!-- End Google Tag Manager -->
+<script src="/js/consentimiento.js?v=1" defer></script>
 <script>if (location.hash === '#calculadora') location.replace('/calculadoras-rosina.html');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Material gratuito de Rosina — Lana Rosa Crochet</title>
@@ -26,9 +31,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://lanarosacrochet.com/img/rincon-de-rosina-og.jpg?v=2">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/dynapuff-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/fuentes.css?v=1">
 
 <link rel="stylesheet" href="/css/comun.css?v=24">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
@@ -792,6 +797,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/politicas.html#datos">Datos personales</a>
     <a href="/politicas.html#uso">Uso del sitio</a>
     <a href="/politicas.html#cookies">Cookies</a>
+    <a href="/politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>
     <button type="button" class="boton-instalar" data-instalar hidden aria-label="Instalar la app de Lana Rosa Academy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Instalar app</button>
     <span class="instalar-ayuda" role="status" hidden>En iPhone: toca el botón Compartir y luego «Agregar a pantalla de inicio».</span>
     <span class="derechos">© 2026 Lana Rosa Crochet</span>

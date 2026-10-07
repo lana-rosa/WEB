@@ -2,6 +2,10 @@
 <html lang="es-CO">
 <head>
 <meta charset="UTF-8">
+<!-- Consentimiento de cookies (Modo de consentimiento de Google): todo en "denegado" hasta que la persona acepte -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+try{var _c=JSON.parse(localStorage.getItem('lrConsent')||'null');if(_c&&_c.v===1&&_c.a)gtag('consent','update',{analytics_storage:'granted'})}catch(e){}</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -9,6 +13,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M3MQ7XZD');</script>
 <!-- End Google Tag Manager -->
+<script src="/js/consentimiento.js?v=1" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Políticas — Lana Rosa Crochet</title>
 <meta name="description" content="Política de cambios y política de tratamiento de datos personales de Lana Rosa Crochet, conforme a la Ley 1581 de 2012.">
@@ -16,9 +21,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/dynapuff-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/fuentes.css?v=1">
 
 <link rel="stylesheet" href="/css/comun.css?v=24">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
@@ -319,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="white-space:normal;">El uso de estos canales también puede estar sujeto a las políticas y condiciones de las respectivas plataformas.</p>
 
     <h3 style="margin-bottom:8px;">6. Herramientas de análisis y publicidad</h3>
-    <p style="white-space:normal;">Nuestro sitio web puede utilizar herramientas de terceros, como Google Analytics y Meta Pixel, para analizar el funcionamiento del sitio, conocer de manera estadística cómo interactúan los visitantes con nuestra página y mejorar nuestras comunicaciones y campañas publicitarias.</p>
+    <p style="white-space:normal;">Nuestro sitio web puede utilizar herramientas de terceros, como Google Analytics (solo si usted acepta las cookies de análisis), para analizar el funcionamiento del sitio y conocer de manera estadística cómo interactúan los visitantes con nuestra página.</p>
     <p style="white-space:normal;">El tratamiento de la información recopilada mediante estas herramientas se realizará de acuerdo con nuestra <a href="#datos">Política de Tratamiento de Datos Personales</a> y, cuando corresponda, mediante los mecanismos de consentimiento y configuración disponibles en el sitio.</p>
 
     <h3 style="margin-bottom:8px;">7. Comunicaciones comerciales y newsletter</h3>
@@ -369,7 +374,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="politica" id="cookies">
     <h2>Política de cookies</h2>
-    <p style="white-space:normal; font-size:0.85rem; color:var(--tinta-suave);">Fecha de actualización: 12 de septiembre de 2026</p>
+    <p style="white-space:normal; font-size:0.85rem; color:var(--tinta-suave);">Fecha de actualización: 7 de octubre de 2026</p>
     <p style="white-space:normal;">En Lana Rosa Crochet utilizamos cookies y tecnologías similares para facilitar el funcionamiento de nuestro sitio web, mejorar la experiencia de navegación, conocer cómo utilizan los visitantes nuestra página y, cuando corresponda, mostrar comunicaciones y publicidad más relevantes.</p>
     <p style="white-space:normal;">Esta Política explica qué son las cookies, cómo las utilizamos y qué opciones tiene para gestionarlas.</p>
 
@@ -380,11 +385,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <h3 style="margin-bottom:8px;">2. ¿Qué tipos de cookies utilizamos?</h3>
     <p style="white-space:normal;"><strong>Cookies necesarias</strong> — Son aquellas necesarias para que determinadas funciones del sitio puedan operar correctamente. Pueden utilizarse, por ejemplo, para mantener el funcionamiento del carrito de compras, recordar información necesaria durante una sesión de navegación, permitir determinadas funciones de seguridad y facilitar procesos relacionados con la navegación y compra. Estas cookies son necesarias para el funcionamiento básico del sitio y no se utilizan para crear perfiles publicitarios por sí mismas.</p>
-    <p style="white-space:normal;"><strong>Cookies de análisis o estadísticas</strong> — Utilizamos herramientas de análisis para conocer cómo los visitantes utilizan nuestro sitio web. Entre estas herramientas puede encontrarse Google Analytics, que permite obtener información estadística como las páginas visitadas, duración aproximada de las visitas, forma de llegada al sitio y comportamiento general de navegación.</p>
-    <p style="white-space:normal;"><strong>Cookies de publicidad y medición</strong> — Nuestro sitio puede utilizar Meta Pixel u otras tecnologías similares para medir el rendimiento de nuestras campañas publicitarias, comprender determinadas interacciones con el sitio y mostrar publicidad más relevante en las plataformas correspondientes.</p>
+    <p style="white-space:normal;"><strong>Cookies de análisis o estadísticas</strong> — Utilizamos herramientas de análisis para conocer cómo los visitantes utilizan nuestro sitio web. Utilizamos Google Analytics, que permite obtener información estadística como las páginas visitadas, duración aproximada de las visitas, forma de llegada al sitio y comportamiento general de navegación. Estas cookies de análisis solo se activan si usted las acepta en el aviso de cookies, y puede cambiar su decisión en cualquier momento desde «Configurar cookies», en el pie de página.</p>
+    <p style="white-space:normal;"><strong>Cookies de publicidad</strong> — Hoy no utilizamos cookies de publicidad ni de seguimiento publicitario. Si en el futuro incorporamos herramientas de este tipo (por ejemplo, el pixel de una red social), solo se activarán con su consentimiento y actualizaremos esta política.</p>
+
+    <h3 style="margin-bottom:8px;">Datos que se guardan en su navegador</h3>
+    <p style="white-space:normal;">Además de las cookies, el sitio guarda en su navegador información necesaria para funcionar: el contenido de su carrito, su sesión si inicia sesión en su cuenta, las fotos que adjunta a un pedido mientras lo completa, la página desde la que llegó (para el botón «Volver») y si ya vio el saludo de Rosina. Esta información no se usa con fines publicitarios y puede borrarla desde la configuración de su navegador.</p>
+
+    <h3 style="margin-bottom:8px;">Cómo cambiar o retirar su decisión</h3>
+    <p style="white-space:normal;">Al entrar al sitio puede aceptar, rechazar o configurar las cookies de análisis. Puede cambiar su decisión cuando quiera con el enlace <a href="/politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>, que encuentra en el pie de todas las páginas. También puede bloquear o borrar las cookies desde su navegador; en ese caso algunas funciones, como el carrito, podrían no funcionar correctamente.</p>
 
     <h3 style="margin-bottom:8px;">3. Cookies de terceros</h3>
-    <p style="white-space:normal;">Algunas cookies pueden ser instaladas por proveedores externos cuyos servicios utilizamos en nuestro sitio web, entre ellos Google (Google Analytics), Meta (Meta Pixel), y proveedores tecnológicos relacionados con el funcionamiento del sitio, pagos, comunicaciones u otros servicios que puedan incorporarse posteriormente.</p>
+    <p style="white-space:normal;">Algunas cookies pueden ser instaladas por proveedores externos cuyos servicios utilizamos en nuestro sitio web, entre ellos Google (Google Analytics y Google Fonts), y proveedores tecnológicos relacionados con el funcionamiento del sitio, pagos, comunicaciones u otros servicios que puedan incorporarse posteriormente.</p>
     <p style="white-space:normal;">Las cookies de terceros están sujetas también a las políticas de privacidad y condiciones de cada proveedor.</p>
 
     <h3 style="margin-bottom:8px;">4. ¿Para qué utilizamos las cookies?</h3>
@@ -479,6 +490,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/politicas.html#datos">Datos personales</a>
     <a href="/politicas.html#uso">Uso del sitio</a>
     <a href="/politicas.html#cookies">Cookies</a>
+    <a href="/politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>
     <button type="button" class="boton-instalar" data-instalar hidden aria-label="Instalar la app de Lana Rosa Crochet"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Instalar app</button>
     <span class="instalar-ayuda" role="status" hidden>En iPhone: toca el botón Compartir y luego «Agregar a pantalla de inicio».</span>
     <span class="derechos">© 2026 Lana Rosa Crochet</span>
