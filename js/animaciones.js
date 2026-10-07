@@ -63,6 +63,25 @@
     }, true);
   } catch (e) {}
 
+
+  // App instalable: servicio mínimo (pantalla sin conexión) y botón discreto "Instalar app" del pie
+  try {
+    if ('serviceWorker' in navigator) window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+    var bi = document.querySelector('[data-instalar]');
+    var enApp = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone;
+    if (bi && !enApp) {
+      var ayudaIn = document.querySelector('.instalar-ayuda'), ofrecido = null, dlI = (window.dataLayer = window.dataLayer || []);
+      window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); ofrecido = e; bi.hidden = false; });
+      window.addEventListener('appinstalled', function () { bi.hidden = true; if (ayudaIn) ayudaIn.hidden = true; dlI.push({ event: 'app_instalada', pagina: location.pathname }); });
+      if (/iphone|ipad|ipod/i.test(navigator.userAgent)) bi.hidden = false;   // iPhone no avisa: se muestra la indicación manual
+      bi.addEventListener('click', function () {
+        dlI.push({ event: 'clic_instalar_app', pagina: location.pathname });
+        if (ofrecido) { ofrecido.prompt(); ofrecido.userChoice.then(function () { ofrecido = null; bi.hidden = true; }); }
+        else if (ayudaIn) ayudaIn.hidden = !ayudaIn.hidden;
+      });
+    }
+  } catch (e) {}
+
   // botones "Hablar con Rosina": abren el chat; si no cargó, siguen el enlace
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest && ev.target.closest('[data-abrir-rosina]');

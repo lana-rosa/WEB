@@ -126,6 +126,16 @@ if '--produccion' in sys.argv:
     print('RESULTADO:', 'OK, 0 errores' if not malos else 'HAY %d ERRORES' % len(malos))
     sys.exit(1 if malos else 0)
 
+# manifiestos de las apps instalables: íconos, página de inicio y servicio
+import json as _json
+manifiestos=[]
+for _f in sorted(__import__('glob').glob(ROOT+'/manifest-*.webmanifest')):
+    _m=_json.load(open(_f)); _n=os.path.basename(_f)
+    for _i in _m.get('icons',[]): manifiestos.append((_n,_i['src'],exists(_i['src'])))
+    manifiestos.append((_n,_m['start_url'],exists(urlparse(_m['start_url']).path)))
+manifiestos.append(('sw.js','/sw.js',exists('/sw.js'))); manifiestos.append(('offline','/offline.html',exists('/offline.html')))
+_malos_m=[x for x in manifiestos if not x[2]]
+print('apps instalables: archivos revisados',len(manifiestos),'| faltantes',_malos_m)
 # sitemap
 sm=[]
 if os.path.exists(ROOT+'/sitemap.xml'):
