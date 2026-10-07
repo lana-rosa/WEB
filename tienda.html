@@ -112,7 +112,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .volver-categorias:hover { text-decoration: underline; }
 body.vista-categoria .volver-categorias { display: inline-flex; }
 body.vista-categoria .categoria-seccion:not(.categoria-activa) { display: none !important; }
-body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categorias, body.vista-categoria .puentes-cinco, body.vista-categoria .banda-personaliza { display: none !important; }
+body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categorias, body.vista-categoria .puentes-cinco, body.vista-categoria .banda-personaliza, body.vista-categoria .banda-rosina { display: none !important; }
 .categoria-seccion { padding: 20px 0 48px; scroll-margin-top: 130px; }
 @media (max-width: 700px) { .categoria-seccion { scroll-margin-top: 180px; } }
 .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
@@ -196,6 +196,15 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .personalizalo-modal p { margin: 0; font-size: 0.92rem; color: var(--tinta-suave); }
 .personalizalo-modal a { color: var(--rosa-texto); font-weight: 700; text-decoration: none; white-space: nowrap; }
 .personalizalo-modal a:hover { text-decoration: underline; }
+.banda-rosina { display: grid; grid-template-columns: 150px 1fr; gap: 22px 32px; align-items: center; background: #F4EEFC; border-radius: var(--radio-suave); padding: 22px 32px; margin: 10px 0 20px; }
+.banda-rosina img { width: 150px; height: 190px; object-fit: cover; border-radius: 16px; }
+.banda-rosina h2 { font-size: 1.3rem; margin: 0 0 6px; }
+.banda-rosina p { margin: 0 0 12px; color: var(--tinta-suave); max-width: 60ch; }
+.banda-rosina .eyebrow-rosina { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: #8E55D6; margin-bottom: 4px; }
+.banda-botones { display: flex; gap: 14px 22px; align-items: center; flex-wrap: wrap; }
+.banda-rosina a.boton-primario { display: inline-block; background: var(--rosa-principal); color: #fff; padding: 12px 24px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+.enlace-rosina { font-weight: 700; color: var(--rosa-texto); text-decoration: none; }
+@media (max-width: 560px) { .banda-rosina { grid-template-columns: 96px 1fr; padding: 18px; gap: 14px; } .banda-rosina img { width: 96px; height: 122px; } }
 .banda-personaliza { display: flex; align-items: center; justify-content: space-between; gap: 18px 32px; flex-wrap: wrap; background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 26px 32px; margin: 10px 0 20px; }
 .banda-personaliza h2 { font-size: 1.3rem; margin: 0 0 6px; }
 .banda-personaliza p { margin: 0; color: var(--tinta-suave); max-width: 60ch; }
@@ -531,6 +540,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
+
+  <section class="banda-rosina" aria-labelledby="titulo-banda-rosina">
+    <img src="/img/inicio/rosina-tejida.webp?v=2" alt="Rosina, la ovejita de Lana Rosa, tejida a mano en crochet" width="640" height="905" loading="lazy" decoding="async">
+    <div>
+      <p class="eyebrow-rosina">Merch · Rosina</p>
+      <h2 id="titulo-banda-rosina">Llévate a Rosina, nuestra ovejita</h2>
+      <p>Por ahora puedes conseguirla tejida a mano. Muy pronto tendremos productos con su imagen.</p>
+      <div class="banda-botones">
+        <a class="boton-primario" href="https://wa.me/573205072801?text=Hola!%20Quiero%20pedir%20a%20Rosina%20tejida%20a%20mano" target="_blank" rel="noopener">Pedir a Rosina tejida</a>
+        <a class="enlace-rosina" href="/rosina.html">Conocer a Rosina →</a>
+      </div>
+    </div>
+  </section>
 
   <section class="banda-personaliza" aria-labelledby="titulo-banda-personaliza">
     <div>
