@@ -42,6 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 <link rel="stylesheet" href="/css/comun.css?v=24">
+<link rel="stylesheet" href="/css/editorial.css?v=3">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
@@ -135,6 +136,32 @@ main > :first-child { padding-top: 22px !important; }
 @media (max-width: 760px) { .mat-pasos { grid-template-columns: 1fr; } }
 @media (max-width: 860px) { .hero-academy { grid-template-columns: 1fr; gap: 22px; padding-top: 22px; } .puertas-academy { grid-template-columns: 1fr; } .herramientas-rosina { grid-template-columns: 1fr; } .rosina-academy { grid-template-columns: 1fr; text-align: center; } .rosina-academy img { max-width: 220px; margin: 0 auto; } }
 @media (min-width: 861px) and (max-width: 1060px) { .herramientas-rosina { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ===== Inicio de Academy: secciones propias (los estilos editoriales vienen de /css/editorial.css) ===== */
+.puertas-cuatro { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.acad-datos { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 8px; }
+.acad-datos li { display: flex; gap: 10px; align-items: center; color: var(--tinta); }
+.acad-fecha { background: var(--blanco); border-radius: 14px; padding: 12px 16px; margin: 0 0 6px; color: var(--tinta-suave); }
+.acad-foto { margin: 0; }
+.acad-foto img { width: 100%; height: auto; border-radius: 22px; display: block; box-shadow: var(--sombra-suave); }
+.acad-foto figcaption { margin-top: 12px; color: var(--tinta-suave); font-size: 0.92rem; }
+.acad-pasos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.acad-pasos a { color: inherit; text-decoration: none; }
+.acad-pasos a:hover { color: var(--rosa-texto); text-decoration: underline; }
+.ed-casa-tienda { background: #FDEBF4; }
+.ed-casa-tienda strong, .ed-casa-tienda .ed-casa-ir { color: #B0246C; }
+.ed-casa-tienda:hover { border-color: #F28FC0; }
+.ed-casa-merceria:hover { border-color: #B99AEA; }
+@media (max-width: 1000px) { .puertas-cuatro { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 860px) { .acad-pasos { grid-template-columns: 1fr; } }
+
+.puentes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.puente { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 2px solid var(--rosa-suave); border-radius: var(--radio-suave); background: var(--blanco); text-decoration: none; color: var(--tinta); transition: border-color 0.2s, transform 0.2s; }
+.puente:hover { border-color: var(--rosa-principal); transform: translateY(-2px); }
+.puente .icono-puente { font-size: 1.7rem; line-height: 1; flex-shrink: 0; }
+.puente strong { display: block; font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.02rem; margin-bottom: 2px; }
+.puente .texto-puente { display: block; font-size: 0.9rem; color: var(--tinta-suave); line-height: 1.4; }
+.puente .ir-puente { display: block; margin-top: 6px; font-size: 0.88rem; font-weight: 700; color: var(--rosa-texto); }
 </style>
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-academy-256.png">
@@ -143,6 +170,38 @@ main > :first-child { padding-top: 22px !important; }
 <link rel="manifest" href="/manifest-academy.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Lana Rosa Academy">
 <!-- ICONOS:FIN -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Necesito experiencia para hacer un taller?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. El taller \"Desconecta para Conectar\" es para principiantes: no necesitas saber tejer, solo ganas de aprender."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué incluye el taller y cuánto cuesta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuesta $50.000 COP, dura 3 horas e incluye un kit completo (lana, aguja de crochet, aguja lanera, marcadores de puntos, tijeras y bolsa de tela) y un refrigerio. Sales con tu pieza terminada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Los tutoriales son gratis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Tienes tutoriales de crochet paso a paso sin costo, y estamos preparando un curso gratuito para principiantes en nuestro canal de YouTube Lana Rosa Academy."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -201,63 +260,213 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
 <!-- CASAS:FIN -->
 
-<main class="contenedor">
-  <section class="hero-academy fondo-crema">
-    <div>
-      <p class="eslogan">Lana Rosa Academy <span>· Academia de Crochet</span></p>
-      <h1>Aprende crochet paso a paso</h1>
-      <p class="intro">Talleres presenciales, tutoriales gratis y recursos para tejer tu primer amigurumi, sin experiencia y sin tecnicismos.</p>
-      <div class="botones-hero">
-        <a class="boton-primario" href="/aprende.html#aprende">Ver talleres</a>
-        <a class="boton-secundario" href="/aprende.html#crea">Tutoriales gratis</a>
+<main class="inicio-editorial">
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="ed-hero">
+    <div class="contenedor ed-hero-grid">
+      <div class="ed-hero-texto">
+        <p class="ed-eyebrow">Lana Rosa Academy · Academia de Crochet</p>
+        <h1>Aprende crochet <span>paso a paso.</span></h1>
+        <p class="ed-intro">Aunque nunca hayas tejido: talleres presenciales, tutoriales gratis y las herramientas de Rosina, sin tecnicismos.</p>
+        <div class="ed-botones">
+          <a href="/academy/talleres/" class="boton-primario">Ver el taller</a>
+          <a href="#tutoriales" class="ed-enlace">Tutoriales gratis →</a>
+        </div>
+      </div>
+      <figure class="ed-hero-foto">
+        <img src="/img/taller-tejiendo.webp" alt="Participantes tejiendo durante el taller Desconecta para Conectar de Lana Rosa Academy" width="800" height="570" fetchpriority="high" decoding="async">
+        <figcaption>Taller Desconecta para Conectar, en Manizales / Villamaría.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 2. CONFIANZA ============ -->
+  <section class="ed-confianza" aria-label="Por qué aprender con Lana Rosa">
+    <ul class="contenedor">
+      <li>Para principiantes</li>
+      <li>Talleres presenciales</li>
+      <li>Tutoriales y recursos gratis</li>
+      <li>Sin tecnicismos</li>
+    </ul>
+  </section>
+
+  <!-- ============ 3. CUATRO CAMINOS ============ -->
+  <section class="ed-seccion" aria-label="Cómo aprender con nosotras">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Elige cómo aprender</p>
+        <h2>Aprendamos juntas, a tu manera</h2>
+        <p>Presencial, en video o a tu ritmo con los recursos de Rosina.</p>
+      </header>
+      <div class="puertas-academy puertas-cuatro">
+        <a class="puerta" href="/academy/talleres/"><img src="/img/taller-grupo.webp" alt="Grupo de participantes mostrando sus posavasos tejidos a mano" loading="lazy" decoding="async" width="800" height="450"><div><strong>Talleres</strong><span>Tres horas, kit completo y sales con tu pieza terminada.</span></div></a>
+        <a class="puerta" href="#tutoriales"><img src="/img/tutoriales/anillo-magico.webp" alt="Anillo mágico tejido en crochet con la aguja" loading="lazy" decoding="async" width="600" height="600"><div><strong>Tutoriales</strong><span>Desde tu primer punto hasta tu primer amigurumi, gratis.</span></div></a>
+        <a class="puerta" href="/recursos-rosina.html"><img src="/img/rincon/checklist.webp" alt="Vista de la checklist para tu primer amigurumi" loading="lazy" decoding="async" width="480" height="360"><div><strong>Recursos</strong><span>Checklist, glosario, paletas, stickers y fondos de Rosina.</span></div></a>
+        <a class="puerta" href="/calculadoras-rosina.html"><img src="/img/rincon/calculadora.webp" alt="Vista de las calculadoras de Rosina para tejedoras" loading="lazy" decoding="async" width="480" height="360"><div><strong>Herramientas</strong><span>Calculadoras, contador de vueltas y agenda de proyectos.</span></div></a>
       </div>
     </div>
-    <figure><img src="/img/taller-tejiendo.webp" alt="Participantes tejiendo durante el taller Desconecta para Conectar de Lana Rosa Academy" width="800" height="570" fetchpriority="high" decoding="async"></figure>
   </section>
 
-  <section class="seccion-academy" aria-label="Cómo aprender con nosotras">
-    <h2>Aprendamos juntas, a tu manera</h2>
-    <p>Presencial, en video o a tu ritmo con los recursos de Rosina.</p>
-    <div class="puertas-academy">
-      <a class="puerta" href="/aprende.html#aprende"><img src="/img/taller-grupo.webp" alt="Grupo de participantes mostrando sus posavasos tejidos a mano" loading="lazy" decoding="async" width="800" height="450"><div><strong>Talleres presenciales</strong><span>Tres horas, kit completo y sales con tu pieza terminada.</span></div></a>
-      <a class="puerta" href="/aprende.html#crea"><img src="/img/tutoriales/anillo-magico.webp" alt="Anillo mágico tejido en crochet con la aguja" loading="lazy" decoding="async" width="600" height="600"><div><strong>Tutoriales en video</strong><span>Desde el punto bajo hasta tu primer amigurumi, gratis.</span></div></a>
-      <a class="puerta" href="/recursos-rosina.html"><img src="/img/rincon/checklist.webp" alt="Vista de la checklist para tu primer amigurumi" loading="lazy" decoding="async" width="480" height="360"><div><strong>Recursos gratis de Rosina</strong><span>Checklist, glosario, paletas, calculadoras y más.</span></div></a>
+  <!-- ============ 4. EL TALLER ============ -->
+  <section class="ed-seccion ed-lila" aria-label="Nuestro taller">
+    <div class="contenedor ed-dos">
+      <div>
+        <p class="ed-eyebrow">Nuestro taller</p>
+        <h2>Desconecta para Conectar</h2>
+        <p>Un taller presencial para aprender crochet con las manos, sin afán y sin experiencia previa. Sales con tu pieza terminada.</p>
+        <ul class="acad-datos">
+          <li><span aria-hidden="true">🕒</span> 3 horas</li>
+          <li><span aria-hidden="true">📍</span> Presencial, Manizales / Villamaría</li>
+          <li><span aria-hidden="true">🧶</span> Kit completo y refrigerio incluidos</li>
+          <li><span aria-hidden="true">👩‍🏫</span> Lo dicta Sara, de Lana Rosa Crochet</li>
+          <li><span aria-hidden="true">💵</span> $50.000 COP</li>
+        </ul>
+        <p class="acad-fecha"><strong>Próxima fecha:</strong> por confirmar. Escríbenos y te avisamos apenas abramos las inscripciones.</p>
+        <div class="ed-botones">
+          <a href="https://wa.me/573205072801?text=Hola!%20Quiero%20que%20me%20avisen%20de%20la%20pr%C3%B3xima%20fecha%20del%20taller%20Desconecta%20para%20Conectar" class="boton-primario" target="_blank" rel="noopener">Avísenme la próxima fecha</a>
+          <a href="/academy/talleres/" class="ed-enlace">Ver el taller →</a>
+        </div>
+      </div>
+      <figure class="acad-foto"><img src="/img/taller-grupo.webp" alt="Grupo de participantes mostrando sus posavasos tejidos a mano en el taller" loading="lazy" decoding="async" width="800" height="450"><figcaption>Nuestra primera edición: posavasos flor en crochet. <a href="https://www.instagram.com/p/DdFZEdLiZB4/" target="_blank" rel="noopener">Ver fotos en Instagram ↗</a></figcaption></figure>
     </div>
   </section>
 
-  <section class="seccion-academy fondo-lila" aria-label="Herramientas de Rosina">
-    <h2>Herramientas para acompañarte</h2>
-    <p>Todo gratis, para usar en el celular o imprimir.</p>
-    <div class="herramientas-rosina">
-      <a class="herramienta" href="/recursos-rosina.html#checklist"><span class="icono" aria-hidden="true">✅</span><span><strong>Checklist del primer amigurumi</strong><small>Lo que necesitas antes de empezar.</small></span></a>
-      <a class="herramienta" href="/glosario-rosina.html"><span class="icono" aria-hidden="true">📖</span><span><strong>Glosario de crochet</strong><small>Puntos, abreviaturas y términos.</small></span></a>
-      <a class="herramienta" href="/paletas-rosina.html"><span class="icono" aria-hidden="true">🎨</span><span><strong>Paletas de color</strong><small>Combinaciones para tus proyectos.</small></span></a>
-      <a class="herramienta" href="/calculadoras-rosina.html"><span class="icono" aria-hidden="true">🧮</span><span><strong>Calculadoras</strong><small>Lana, aumentos, muestra y costos.</small></span></a>
-      <a class="herramienta" href="/agenda-rosina.html"><span class="icono" aria-hidden="true">🗓️</span><span><strong>Agenda de proyectos</strong><small>Organiza lo que estás tejiendo.</small></span></a>
-      <a class="herramienta" href="/recursos-rosina.html#stickers"><span class="icono" aria-hidden="true">🐑</span><span><strong>Stickers y fondos</strong><small>Rosina para tu celular y tus redes.</small></span></a>
+  <!-- ============ 5. TUTORIALES ============ -->
+  <section class="ed-seccion" id="tutoriales" style="scroll-margin-top:90px;" aria-label="Tutoriales gratis">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Gratis</p>
+        <h2>Tutoriales de crochet paso a paso</h2>
+        <p>Empieza por el principio y avanza a tu ritmo.</p>
+      </header>
+      <div class="puertas-academy puertas-cuatro">
+        <a class="puerta" href="/aprende.html#crea"><img src="/img/tutoriales/desde-cero.webp" alt="Manos aprendiendo a agarrar la aguja y el hilo de crochet" loading="lazy" decoding="async" width="600" height="600"><div><strong>Empieza desde cero</strong><span>La aguja, el hilo, la cadeneta y el punto bajo.</span></div></a>
+        <a class="puerta" href="/aprende.html#crea"><img src="/img/tutoriales/anillo-magico.webp" alt="Anillo mágico tejido en crochet con la aguja" loading="lazy" decoding="async" width="600" height="600"><div><strong>Anillo mágico</strong><span>El inicio de casi todos los amigurumis.</span></div></a>
+        <a class="puerta" href="/aprende.html#crea"><img src="/img/tutoriales/puntos-altos.webp" alt="Muestra de medio punto alto, punto alto y punto alto doble en crochet" loading="lazy" decoding="async" width="600" height="600"><div><strong>Puntos altos</strong><span>Medio punto alto, punto alto y punto alto doble.</span></div></a>
+        <a class="puerta" href="/aprende.html#crea"><img src="/img/tutoriales/espiral.webp" alt="Pieza tejida en espiral con aumentos y disminuciones" loading="lazy" decoding="async" width="600" height="600"><div><strong>Tejer en espiral</strong><span>Aumentos, disminuciones y cierre.</span></div></a>
+      </div>
+      <div class="ed-centro ed-botones-centro">
+        <a href="/aprende.html#crea" class="boton-primario">Ver todos los tutoriales</a>
+        <p class="ed-nota">Estamos preparando un curso gratuito de crochet para principiantes en nuestro canal de <a href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener">YouTube</a>.</p>
+      </div>
     </div>
   </section>
 
-  <section class="seccion-academy rosina-academy" aria-label="Conoce a Rosina">
-    <img src="/img/rosina-aprende.webp" alt="Rosina, la ovejita de Lana Rosa, tejiendo un corazón en su escritorio" loading="lazy" decoding="async" width="500" height="500">
-    <div>
-      <h2>Rosina te acompaña en cada punto</h2>
-      <p>Nuestra ovejita tejedora te acompaña en cada paso: resuelve dudas, te recuerda los puntos y te anima a terminar tu proyecto.</p>
-      <div class="botones-hero"><a class="boton-primario" href="/rosina.html#preguntale" data-abrir-rosina>Hablar con Rosina</a></div>
+  <!-- ============ 6. NUESTRA FORMA DE ENSEÑAR ============ -->
+  <section class="ed-manifiesto">
+    <div class="contenedor ed-manifiesto-grid">
+      <img src="/img/rosina-aprende.webp" alt="Rosina, la ovejita de Lana Rosa, tejiendo un corazón en su escritorio" width="500" height="500" loading="lazy" decoding="async">
+      <blockquote>
+        <p class="ed-manifiesto-titulo">Sin tecnicismos. Con un proyecto real.</p>
+        <p>Lenguaje sencillo, como en la mesa de la casa, para que termines con algo en tus manos. Tejer también baja el ritmo del día.</p>
+      </blockquote>
     </div>
   </section>
 
-  <section class="seccion-academy materiales-academy fondo-rosa" aria-label="De aprender a tejer: tus materiales">
-    <div class="mat-texto">
-      <h2>Hagamos tu primer amigurumi</h2>
-      <p>Te mostramos el camino, paso a paso.</p>
+  <!-- ============ 7. RINCÓN DE ROSINA ============ -->
+  <section class="ed-seccion ed-rosa" aria-label="Herramientas de Rosina">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Rincón de Rosina</p>
+        <h2>Herramientas para acompañarte</h2>
+        <p>Todo gratis, para usar en el celular o imprimir.</p>
+      </header>
+      <div class="herramientas-rosina">
+        <a class="herramienta" href="/recursos-rosina.html#checklist"><span class="icono" aria-hidden="true">✅</span><span><strong>Checklist del primer amigurumi</strong><small>Lo que necesitas antes de empezar.</small></span></a>
+        <a class="herramienta" href="/glosario-rosina.html"><span class="icono" aria-hidden="true">📖</span><span><strong>Glosario de crochet</strong><small>Puntos, abreviaturas y términos.</small></span></a>
+        <a class="herramienta" href="/paletas-rosina.html"><span class="icono" aria-hidden="true">🎨</span><span><strong>Paletas de color</strong><small>Combinaciones para tus proyectos.</small></span></a>
+        <a class="herramienta" href="/calculadoras-rosina.html"><span class="icono" aria-hidden="true">🧮</span><span><strong>Calculadoras</strong><small>Lana, aumentos, muestra y costos.</small></span></a>
+        <a class="herramienta" href="/agenda-rosina.html"><span class="icono" aria-hidden="true">🗓️</span><span><strong>Agenda de proyectos</strong><small>Organiza lo que estás tejiendo.</small></span></a>
+        <a class="herramienta" href="/recursos-rosina.html#stickers"><span class="icono" aria-hidden="true">🐑</span><span><strong>Stickers y fondos</strong><small>Rosina para tu celular y tus redes.</small></span></a>
+      </div>
+      <div class="ed-centro ed-botones-centro">
+        <a href="/rosina.html#preguntale" class="boton-secundario" data-abrir-rosina>Hablar con Rosina</a>
+        <p class="ed-nota">Rosina te resuelve dudas de crochet y de la web, en cualquier momento.</p>
+      </div>
     </div>
-    <ol class="mat-pasos">
-      <li><a href="/recursos-rosina.html#checklist"><b>1</b><span><strong>Revisa la checklist</strong><small>Lo que necesitas antes de empezar.</small></span></a></li>
-      <li><a href="/calculadoras-rosina.html#lana"><b>2</b><span><strong>Calcula tu lana</strong><small>Cuánta necesitas para tu proyecto.</small></span></a></li>
-      <li><a href="/merceria/catalogo/#lanas-merceria"><b>3</b><span><strong>Consigue los materiales</strong><small>Lanas, hilos y agujas en la Mercería.</small></span></a></li>
-    </ol>
   </section>
+
+  <!-- ============ 8. TU PRIMER AMIGURUMI ============ -->
+  <section class="ed-seccion" aria-label="Hagamos tu primer amigurumi">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">De aprender a tejer</p>
+        <h2>Hagamos tu primer amigurumi</h2>
+        <p>Te mostramos el camino, paso a paso.</p>
+      </header>
+      <ol class="ed-proceso acad-pasos">
+        <li><span class="ed-num">01</span><strong><a href="/recursos-rosina.html#checklist">Revisa la checklist</a></strong><p>Lo que necesitas antes de empezar.</p></li>
+        <li><span class="ed-num">02</span><strong><a href="/calculadoras-rosina.html#lana">Calcula tu lana</a></strong><p>Cuánta necesitas para tu proyecto.</p></li>
+        <li><span class="ed-num">03</span><strong><a href="/merceria/catalogo/#lanas-merceria">Consigue los materiales</a></strong><p>Lanas, hilos y agujas en la Mercería.</p></li>
+        <li><span class="ed-num">04</span><strong><a href="#tutoriales">Teje con el tutorial</a></strong><p>Del anillo mágico a tu primera pieza.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 9. GUÍAS DE LA REVISTA ============ -->
+  <section class="ed-seccion ed-crema" aria-label="Guías de la Revista">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">En la Revista</p>
+        <h2>Guías para tejer con seguridad</h2>
+      </header>
+      <div class="puentes-grid acad-guias">
+        <a class="puente" href="/revista.html#anillo-magico"><span class="icono-puente" aria-hidden="true">🌀</span><span><strong>Anillo mágico paso a paso</strong><span class="texto-puente">Y los errores más comunes.</span><span class="ir-puente">Leer la guía →</span></span></a>
+        <a class="puente" href="/revista.html#leer-patron-crochet"><span class="icono-puente" aria-hidden="true">📜</span><span><strong>Cómo leer un patrón</strong><span class="texto-puente">Abreviaturas y símbolos.</span><span class="ir-puente">Leer la guía →</span></span></a>
+        <a class="puente" href="/revista.html#aguja-segun-hilo"><span class="icono-puente" aria-hidden="true">🪡</span><span><strong>Qué aguja usar con cada hilo</strong><span class="texto-puente">Para que tu tejido quede parejo.</span><span class="ir-puente">Leer la guía →</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. OTRAS CASAS ============ -->
+  <section class="ed-seccion" aria-label="Más de Lana Rosa">
+    <div class="contenedor">
+      <header class="ed-cabecera">
+        <p class="ed-eyebrow">Más de Lana Rosa</p>
+        <h2>De lo que aprendes a lo que tejes</h2>
+      </header>
+      <div class="ed-otras-casas">
+        <a class="ed-casa ed-casa-merceria" href="/merceria/"><span class="ed-casa-icono" aria-hidden="true">🧶</span><strong>Mercería Lana Rosa</strong><span>Lanas, hilos, agujas y accesorios: los materiales que usamos en el taller.</span><span class="ed-casa-ir">Ir a la Mercería →</span></a>
+        <a class="ed-casa ed-casa-tienda" href="/tienda.html"><span class="ed-casa-icono" aria-hidden="true">🧸</span><strong>Tienda de amigurumis</strong><span>Amigurumis ya tejidos, o personalizados a partir de tu foto.</span><span class="ed-casa-ir">Ir a la tienda →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11. PREGUNTAS FRECUENTES ============ -->
+  <section class="seccion-suave">
+    <div class="contenedor">
+      <div class="encabezado-seccion"><h2>Preguntas frecuentes</h2></div>
+      <div class="faq-lista">
+        <details class="faq-item">
+          <summary>¿Necesito experiencia para hacer un taller?</summary>
+          <p>No. El taller "Desconecta para Conectar" es para principiantes: no necesitas saber tejer, solo ganas de aprender.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué incluye el taller y cuánto cuesta?</summary>
+          <p>Cuesta $50.000 COP, dura 3 horas e incluye un kit completo (lana, aguja de crochet, aguja lanera, marcadores de puntos, tijeras y bolsa de tela) y un refrigerio. Sales con tu pieza terminada.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Los tutoriales son gratis?</summary>
+          <p>Sí. Tienes tutoriales de crochet paso a paso sin costo, y estamos preparando un curso gratuito para principiantes en nuestro canal de YouTube Lana Rosa Academy.</p>
+        </details>
+      </div>
+      <p style="margin-top:24px;"><a href="/academy/preguntas-frecuentes/">Ver todas las preguntas frecuentes de Academy →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 12. CIERRE ============ -->
+  <section class="ed-final">
+    <div class="contenedor ed-centro-texto">
+      <h2>¿Lista para tejer tu primera pieza?</h2>
+      <p>Empieza hoy con un tutorial gratis, o escríbenos y te contamos del próximo taller.</p>
+      <div class="ed-botones ed-botones-centrados">
+        <a href="#tutoriales" class="boton-primario">Ver los tutoriales</a>
+        <a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Quiero%20aprender%20crochet%20y%20necesito%20orientaci%C3%B3n." class="boton-secundario" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- PIE:INICIO (generado) -->
