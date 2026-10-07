@@ -82,6 +82,7 @@ if '--produccion' in sys.argv:
         except urllib.error.HTTPError as e: return e.code, u, ''
         except Exception as e: return 'error', u, ''
     cola = collections.deque(['/'] + [urlparse(l).path for l in re.findall(r'<loc>(.*?)</loc>', get(SITE + '/sitemap.xml')[2] or open(ROOT + '/sitemap.xml').read())])
+    cloudflare = set()   # rutas /cdn-cgi/... que Cloudflare agrega al HTML (p. ej. protección de correos); no son del sitio
     vistas, estado, errores, recursos, canon, ext_n, int_n, redirs = set(), {}, [], {}, [], 0, 0, 0
     while cola:
         ruta = cola.popleft()
@@ -104,11 +105,13 @@ if '--produccion' in sys.argv:
             for base in {base_nav, base_simple}:
                 path = urlparse(urljoin(base, h)).path
                 if re.search(r'/(merceria|academy)/\1/', path): errores.append((ruta, h, 'prefijo duplicado ' + path))
+                if path.startswith('/cdn-cgi/'): cloudflare.add(path); continue
                 if path not in vistas and path not in cola and not re.search(r'\.(webp|jpg|jpeg|png|svg|css|js|pdf|json|xml|txt)$', path): cola.append(path)
         for h in pr.res:
             if classify(h) != 'int': continue
             for base in {base_nav, base_simple}:
                 path = urlparse(urljoin(base, h)).path
+                if path.startswith('/cdn-cgi/'): cloudflare.add(path); continue
                 if path not in recursos: recursos[path] = get(SITE + path, 'HEAD')[0]
         if len(vistas) > 400: break
     for ruta, h, st in [(r, r, s) for r, s in estado.items() if s != 200]: pass
@@ -117,6 +120,7 @@ if '--produccion' in sys.argv:
     print('Páginas rastreadas:', len(vistas), '| enlaces internos vistos:', int_n, '| enlaces externos:', ext_n, '| redirects:', redirs)
     print('Páginas no 200:', [(r, s) for r, s in estado.items() if s != 200], '| errores de ruta:', errores[:20])
     print('Recursos únicos:', len(recursos), '| recursos rotos:', rotos_rec[:20])
+    print('Rutas de Cloudflare (/cdn-cgi/, no se cuentan como error):', sorted(cloudflare))
     print('Canonical:', len(canon), '| canonical no 200:', [c for c in canon if c[2] != 200])
     malos = [r for r, s in estado.items() if s != 200] + errores + rotos_rec + [c for c in canon if c[2] != 200]
     print('RESULTADO:', 'OK, 0 errores' if not malos else 'HAY %d ERRORES' % len(malos))
