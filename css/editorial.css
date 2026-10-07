@@ -55,11 +55,11 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 /* 5. Manifiesto */
 .ed-manifiesto { padding: clamp(72px, 11vw, 140px) 0; background: var(--blanco); }
 .ed-manifiesto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
-.ed-manifiesto img { width: 100%; height: auto; border-radius: 22px; display: block; }
+.ed-manifiesto img { width: 100%; max-width: 100%; height: auto; border-radius: 22px; display: block; }
 .ed-manifiesto blockquote { margin: 0; }
 .ed-manifiesto-titulo { font-family: var(--fuente-titulo); font-weight: 600; font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.1; color: var(--tinta); margin: 0 0 18px; }
 .ed-manifiesto blockquote p:last-child { font-size: 1.2rem; color: var(--rosa-texto); margin: 0; }
-@media (max-width: 860px) { .ed-manifiesto-grid { grid-template-columns: 1fr; } .ed-manifiesto blockquote { text-align: center; } .ed-manifiesto blockquote p { margin-left: auto; margin-right: auto; } }
+@media (max-width: 860px) { .ed-manifiesto-grid { grid-template-columns: minmax(0, 1fr); } .ed-manifiesto blockquote { text-align: center; } .ed-manifiesto blockquote p { margin-left: auto; margin-right: auto; } }
 /* 6. Proceso editorial */
 .ed-proceso { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--linea); }
 .ed-proceso li { padding: 28px 20px 8px 0; }
