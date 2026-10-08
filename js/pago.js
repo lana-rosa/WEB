@@ -508,7 +508,8 @@ async function abrirPago() {
   overlay.scrollTo(0, 0);
   const d = await datosCuenta();
   const poner = (id, v) => { if (v && !$(id).value) $(id).value = v; };
-  poner('pg-nombre', d.nombre); poner('pg-correo', d.correo); poner('pg-telefono', d.telefono); poner('pg-direccion', d.direccion); poner('pg-notas', d.indicaciones);
+  const bono = datosBono();
+  poner('pg-nombre', d.nombre || bono.nombre); poner('pg-correo', d.correo || bono.correo); poner('pg-telefono', d.telefono || bono.telefono); poner('pg-direccion', d.direccion); poner('pg-notas', d.indicaciones);
   if (d.ciudad && !sel.value) {
     const conocida = ciudadConocida(d.ciudad) || d.ciudad;
     const hay = Array.from(sel.options).some((o) => o.value === conocida);
@@ -593,6 +594,45 @@ async function modoPagos() {
   } catch (e) { return 'produccion'; } // sin conexión al consultar: no se esconde el botón de pago
 }
 
+// Datos que la persona dejó al pedir su bono de bienvenida (js/bono.js): sirven para mostrar el descuento de primera compra sin escribir nada.
+function datosBono() {
+  try { return { correo: localStorage.getItem('lrBonoCorreo') || '', nombre: localStorage.getItem('lrBonoNombre') || '', telefono: localStorage.getItem('lrBonoTelefono') || '' }; }
+  catch (e) { return { correo: '', nombre: '', telefono: '' }; }
+}
+// Aviso del descuento de primera compra dentro del carrito. Con correo conocido (sesión o bono) calcula el valor exacto; si ya compró antes, se oculta.
+let bonoCarritoId = 0;
+async function pintarBonoCarrito() {
+  const el = document.getElementById('carrito-bono'); if (!el) return;
+  const yo = ++bonoCarritoId;
+  const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
+  if (!items.length) { el.hidden = true; return; }
+  const bono = datosBono(), cuenta = haySesionGuardada() ? await datosCuenta() : {};
+  const correo = String(cuenta.correo || bono.correo || '').toLowerCase(), telefono = cuenta.telefono || bono.telefono || '';
+  el.hidden = false;
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) { el.replaceChildren(nodo('span', null, '🎁 Primera compra: 10 % de descuento. Se aplica solo al pagar, con tu correo.')); return; }
+  try {
+    const token = await tokenSesion();
+    const headers = { 'Content-Type': 'application/json', apikey: SUPABASE_KEY };
+    if (token) headers.Authorization = 'Bearer ' + token;
+    const res = await fetch(SUPABASE_URL + '/functions/v1/crear-pago-wompi', { method: 'POST', headers, body: JSON.stringify({ accion: 'cotizar', correo, telefono, entrega: 'recogida', items }) });
+    const d = await res.json().catch(() => null);
+    if (yo !== bonoCarritoId) return;
+    if (res.ok && d && d.primera && d.descuento > 0) el.replaceChildren(nodo('span', null, '🎁 Descuento de primera compra (' + d.pct + ' %): '), nodo('b', null, '−' + pesos(Number(d.descuento))), nodo('span', null, ' · se aplica al pagar'));
+    else if (res.ok && d && !d.primera) el.hidden = true;
+  } catch (e) { /* si no se pudo calcular, queda el aviso general */ }
+}
+function vigilarCarrito() {
+  const panel = document.getElementById('panel-carrito'); if (!panel || panel.dataset.bonoVigilado) return;
+  panel.dataset.bonoVigilado = '1';
+  const total = panel.querySelector('.carrito-total'); if (!total) return;
+  if (!document.getElementById('estilo-bono-carrito')) { const st = document.createElement('style'); st.id = 'estilo-bono-carrito'; st.textContent = '.carrito-bono{background:#FBE4EF;color:#8E2A5F;border-radius:12px;padding:10px 14px;margin:0 0 12px;font-size:.88rem;line-height:1.35;text-align:center}'; document.head.appendChild(st); }
+  const el = nodo('p', 'carrito-bono'); el.id = 'carrito-bono'; el.hidden = true; total.before(el);
+  const mirar = () => { if (panel.classList.contains('abierto')) pintarBonoCarrito(); };
+  new MutationObserver(mirar).observe(panel, { attributes: true, attributeFilter: ['class'] });
+  const lista = document.getElementById('items-carrito'); if (lista) new MutationObserver(mirar).observe(lista, { childList: true });
+  mirar();
+}
+
 async function iniciar() {
   if (!PAGOS_ACTIVOS && !modoPrueba()) return;
   const wa = document.getElementById('boton-checkout-whatsapp');
@@ -616,4 +656,4 @@ async function iniciar() {
   wa.textContent = 'Pedir por WhatsApp';
   wa.style.cssText = 'display:block;box-sizing:border-box;width:100%;text-align:center;text-decoration:none;background:#fff;color:#E74E96;border:2px solid #E74E96;border-radius:999px;padding:12px 20px;font-weight:700;box-shadow:none;';
 }
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => { iniciar(); vigilarCarrito(); }); else { iniciar(); vigilarCarrito(); }

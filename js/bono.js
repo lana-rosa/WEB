@@ -12,17 +12,20 @@
     crochet: {
       titulo: '¡Bienvenida a Lana Rosa!',
       intro: 'Regístrate y recibe un bono del 10% para tu primera compra en la <a href="/tienda.html">tienda de amigurumis</a> o en la <a href="/merceria/">mercería</a>.',
-      lugar: 'la tienda de amigurumis o la mercería'
+      lugar: 'la tienda de amigurumis o la mercería',
+      cta: ['/tienda.html', 'Ir a la tienda de amigurumis'], cta2: ['/merceria/catalogo/', 'Ver la mercería']
     },
     merceria: {
       titulo: '¡Bienvenida a la Mercería Lana Rosa!',
       intro: 'Regístrate y recibe un bono del 10% para tu primera compra de lanas, hilos, agujas y accesorios en la <a href="/merceria/catalogo/">mercería</a> o en la <a href="/tienda.html">tienda de amigurumis</a>.',
-      lugar: 'la mercería o la tienda de amigurumis'
+      lugar: 'la mercería o la tienda de amigurumis',
+      cta: ['/merceria/catalogo/', 'Ir al catálogo de la mercería'], cta2: ['/tienda.html', 'Ver la tienda de amigurumis']
     },
     academy: {
       titulo: '¡Bienvenida a Lana Rosa Academy!',
       intro: 'Aprende con nosotras y estrena con descuento: regístrate y recibe un bono del 10% para tu primera compra en la <a href="/merceria/">mercería</a> (lanas, hilos y agujas) o en la <a href="/tienda.html">tienda de amigurumis</a>.',
-      lugar: 'la mercería o la tienda de amigurumis'
+      lugar: 'la mercería o la tienda de amigurumis',
+      cta: ['/merceria/catalogo/', 'Ir a la mercería'], cta2: ['/tienda.html', 'Ver la tienda de amigurumis']
     }
   };
   var T = TEXTOS[casa] || TEXTOS.crochet;
@@ -69,10 +72,11 @@
     '<p id="bono-error" style="display:none; color:#c62828; font-size:0.85rem; margin-top:10px;"></p>' +
     '</form>' +
     '<div class="resultado-bono" id="resultado-bono">' +
-    '<p style="margin:0;">¡Listo! Este es tu código:</p>' +
-    '<p class="codigo-bono" id="codigo-bono-texto"></p>' +
-    '<p style="font-size:0.85rem; color:var(--tinta-suave); margin:0;">Menciónalo por WhatsApp al momento de tu compra en ' + T.lugar + ' para aplicar el 10% de descuento.</p>' +
-    '<a id="bono-whatsapp-enlace" href="https://wa.me/573205072801" target="_blank" rel="noopener" class="boton-bono" style="display:inline-block; margin-top:14px; width:auto; text-decoration:none;">Escribir por WhatsApp</a>' +
+    '<p style="margin:0; font-weight:700;">¡Listo! Tu descuento del 10% ya está reservado 🎉</p>' +
+    '<p style="font-size:0.9rem; color:var(--tinta-suave); margin:8px 0 0;">Se aplica <strong>solo, en tu primera compra</strong>: cuando pagues en línea con este correo, lo verás en tu carrito, sin escribir ningún código.</p>' +
+    '<a id="bono-cta" href="' + T.cta[0] + '" class="boton-bono" style="display:inline-block; margin-top:14px; width:auto; text-decoration:none;">' + T.cta[1] + ' →</a>' +
+    '<p style="margin:12px 0 0; font-size:0.85rem;"><a href="' + T.cta2[0] + '" style="color:var(--rosa-principal); font-weight:600;">' + T.cta2[1] + '</a></p>' +
+    '<p style="font-size:0.78rem; color:var(--tinta-suave); margin:14px 0 0;">Tu código de respaldo: <strong id="codigo-bono-texto"></strong><br>Solo lo necesitas si compras en la tienda física.</p>' +
     '</div></div>';
   document.body.appendChild(overlay);
 
@@ -133,8 +137,7 @@
       .then(function (x) {
         if (!x.ok) throw new Error((x.d && x.d.message) || 'intenta de nuevo');
         form.style.display = 'none'; resultado.style.display = 'block'; codigo.textContent = x.d;
-        document.getElementById('bono-whatsapp-enlace').href = 'https://wa.me/573205072801?text=' +
-          encodeURIComponent('Hola Lana Rosa 💕 Tengo el bono de bienvenida ' + x.d + ' para mi primera compra en ' + T.lugar + '.');
+        try { localStorage.setItem('lrBonoCorreo', document.getElementById('bono-correo').value.trim().toLowerCase()); localStorage.setItem('lrBonoNombre', document.getElementById('bono-nombre').value.trim()); localStorage.setItem('lrBonoTelefono', document.getElementById('bono-whatsapp').value.trim()); } catch (e) {}
         visto();
       })
       .catch(function (e) { error.textContent = 'No pudimos registrar tu bono: ' + e.message; error.style.display = 'block'; });
