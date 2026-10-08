@@ -1,6 +1,6 @@
 # Sincronización de la agenda de Rosina con Google Calendar
 
-Estado (8-oct-2026): **el código está publicado pero apagado**. La tarjeta "Google Calendar" de `agenda-rosina.html` solo aparece cuando la Edge Function `google-calendar` responde que está configurada (es decir, cuando existen los 4 secretos de abajo). Mientras tanto, la agenda sigue con los botones "Añadir a Google Calendar" y el archivo `.ics`, que no necesitan permisos.
+Estado (8-oct-2026): **ACTIVO y probado por Sara** (proyecto de Google Cloud `lana-rosa-web`, cliente OAuth "Agenda de Rosina", app en producción sin verificar: hasta 100 personas, con el aviso "Google no ha verificado esta app"). Pendiente: enviar la verificación a Google (ver paso 7) para quitar el aviso y el límite. Antes: el código estuvo publicado pero apagado. La tarjeta "Google Calendar" de `agenda-rosina.html` solo aparece cuando la Edge Function `google-calendar` responde que está configurada (es decir, cuando existen los 4 secretos de abajo). Mientras tanto, la agenda sigue con los botones "Añadir a Google Calendar" y el archivo `.ics`, que no necesitan permisos.
 
 ## Cómo funciona
 - La clienta (con sesión) toca **Conectar con Google Calendar** → la función la manda a Google → Google pide permiso `calendar.events` (crear y editar eventos; no lee otros eventos) → vuelve a la función, que guarda el permiso **cifrado** (AES-GCM) en `google_calendar_cuentas` y la regresa a la agenda.
