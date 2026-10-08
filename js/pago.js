@@ -8,6 +8,12 @@ import { haySesionGuardada, obtenerCliente } from './cuenta.js';
 // PRODUCCIÓN (pub_prod_…). Con llaves de pruebas (pub_test_…) solo lo ve quien abre ?pagosprueba=1.
 export const PAGOS_ACTIVOS = true;
 
+// Materiales de la Mercería (lanas, hilos…): el servidor todavía no los cobra en línea (crear-pago-wompi solo acepta productos
+// terminados de la Tienda y patrones digitales, y el ERP guarda el precio por gramo). Mientras sea false, un carrito con materiales
+// se pide por WhatsApp (el botón de Wompi se oculta). Ver herramientas/cuentas-clientes/propuesta-cobro-merceria.md.
+export const PAGO_EN_LINEA_MERCERIA = false;
+const tieneMateriales = () => leerCarrito().some((i) => i && i.merceria);
+
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
 const CLAVE_CARRITO = 'carritoLanaRosa';
@@ -497,6 +503,7 @@ function avisoConWhatsApp(texto) {
 async function abrirPago() {
   const carrito = leerCarrito();
   if (!carrito.length) return;
+  if (!PAGO_EN_LINEA_MERCERIA && tieneMateriales()) return;
   if (!overlay) construirModal();
   aviso(null);
   carritoCambiado = false; pasoActual = 1; pasoMaximo = 1;
@@ -615,6 +622,7 @@ async function pintarBonoCarrito() {
   const yo = ++bonoCarritoId;
   const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
   if (!items.length || esDigital()) { el.hidden = true; return; }   // los patrones digitales no llevan el descuento de primera compra
+  if (!PAGO_EN_LINEA_MERCERIA && tieneMateriales()) { el.hidden = true; return; }   // los materiales se piden por WhatsApp: el descuento automático solo aplica al pagar en línea
   const bono = datosBono(), cuenta = haySesionGuardada() ? await datosCuenta() : {};
   const correo = String(cuenta.correo || bono.correo || '').toLowerCase(), telefono = cuenta.telefono || bono.telefono || '';
   el.hidden = false;
@@ -662,7 +670,18 @@ async function iniciar() {
   const nota = nodo('p', 'nota-pago-carrito', '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi y más.');
   if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#6E6E73;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
   wa.before(b, nota);
-  wa.textContent = 'Pedir por WhatsApp';
-  wa.style.cssText = 'display:block;box-sizing:border-box;width:100%;text-align:center;text-decoration:none;background:#fff;color:#E74E96;border:2px solid #E74E96;border-radius:999px;padding:12px 20px;font-weight:700;box-shadow:none;';
+  const aviso = nodo('p', 'nota-pago-carrito', 'Los materiales de la Mercería se piden por WhatsApp: confirmamos la disponibilidad, el envío y el pago (Nequi o Bre-B).');
+  aviso.hidden = true; wa.before(aviso);
+  const estiloWa = 'display:block;box-sizing:border-box;width:100%;text-align:center;text-decoration:none;border-radius:999px;padding:12px 20px;font-weight:700;';
+  const ajustar = () => {
+    const soloWa = !PAGO_EN_LINEA_MERCERIA && tieneMateriales();
+    b.hidden = soloWa; nota.hidden = soloWa; aviso.hidden = !soloWa;
+    wa.textContent = 'Pedir por WhatsApp';
+    wa.style.cssText = estiloWa + (soloWa ? 'background:#E74E96;color:#fff;border:2px solid #E74E96;' : 'background:#fff;color:#E74E96;border:2px solid #E74E96;box-shadow:none;');
+  };
+  ajustar();
+  const panelC = document.getElementById('panel-carrito'), listaC = document.getElementById('items-carrito');
+  if (panelC) new MutationObserver(ajustar).observe(panelC, { attributes: true, attributeFilter: ['class'] });
+  if (listaC) new MutationObserver(ajustar).observe(listaC, { childList: true });
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => { iniciar(); vigilarCarrito(); }); else { iniciar(); vigilarCarrito(); }

@@ -15,8 +15,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <script src="/js/consentimiento.js?v=1" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Catálogo de lanas, hilos y accesorios | Mercería Lana Rosa</title>
-<meta name="description" content="Lanas, hilos, agujas y accesorios de crochet en Villamaría, Caldas. Insumos de calidad para tejer tus propios proyectos, con envíos a toda Colombia.">
+<title>Catálogo de insumos para tejedoras | Mercería Lana Rosa</title>
+<meta name="description" content="Catálogo de insumos para tejedoras: lanas e hilos para crochet de Mercería Lana Rosa, en Villamaría, Caldas, con envíos a toda Colombia.">
 <link rel="canonical" href="https://lanarosacrochet.com/merceria/catalogo/">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -24,7 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Catálogo de la Mercería — Lana Rosa">
-<meta property="og:description" content="Lanas, hilos, agujas y accesorios de crochet, con envíos a toda Colombia.">
+<meta property="og:description" content="Insumos para tejedoras: lanas e hilos de crochet, con envíos a toda Colombia.">
 <meta property="og:url" content="https://lanarosacrochet.com/merceria/catalogo/">
 <meta property="og:locale" content="es_CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -301,6 +301,44 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .como-se-paga .flecha-paga { color: var(--rosa-texto); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
 .como-se-paga[open] .flecha-paga { transform: rotate(180deg); }
 .como-se-paga[open] > summary { margin-bottom: 12px; }
+
+/* ===== Catálogo: ficha, disponibilidad y controles (8-oct-2026) ===== */
+.producto-foto { border: 0; padding: 0; width: 100%; font: inherit; color: inherit; cursor: pointer; }
+.titulo-ficha { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.titulo-ficha:hover { color: var(--rosa-texto); text-decoration: underline; }
+.producto-info h3 { margin: 0; }
+.disponibilidad { margin: 0; font-size: 0.8rem; font-weight: 600; }
+.disponibilidad.si { color: #2e7d32; }
+.disponibilidad.no { color: var(--tinta-suave); }
+.selector-orden { flex: 1 1 200px; min-width: 180px; }
+.campo-buscador select { width: 100%; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--rosa-suave); background: var(--blanco); font: inherit; font-size: 0.95rem; color: var(--tinta); }
+.campo-buscador[hidden] { display: none; }
+.buscador-productos { grid-template-columns: 2fr 1fr 1fr; }
+.aviso-error-catalogo, .aviso-categoria-vacia { text-align: center; background: var(--rosa-suave); border-radius: 18px; padding: 22px; margin: 16px 0; }
+.aviso-error-catalogo[hidden], .aviso-categoria-vacia[hidden] { display: none; }
+.aviso-categoria-vacia .boton-secundario { display: inline-block; margin-top: 8px; padding: 10px 22px; border-radius: 999px; border: 2px solid var(--rosa-principal); color: var(--rosa-texto); text-decoration: none; font-weight: 700; }
+.ficha-dialogo { border: 0; border-radius: 24px; padding: 0; width: min(880px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; box-shadow: 0 24px 60px rgba(0,0,0,.3); background: var(--blanco); color: var(--tinta); }
+.ficha-dialogo::backdrop { background: rgba(40,30,36,.55); }
+.ficha-cerrar { position: absolute; top: 10px; right: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); font-size: 1.6rem; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.ficha-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.ficha-foto { background: var(--rosa-suave); min-height: 280px; display: flex; align-items: center; justify-content: center; }
+.ficha-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ficha-foto .foto-marcador { padding: 24px; text-align: center; color: var(--rosa-texto); font-weight: 600; }
+.ficha-texto { padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 8px; }
+.ficha-marca { margin: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--rosa-texto); }
+.ficha-texto h2 { margin: 0; font-size: 1.4rem; line-height: 1.2; }
+.ficha-precio { margin: 0; font-family: var(--fuente-titulo); font-size: 1.5rem; }
+.ficha-precio span { font-family: var(--fuente-cuerpo); font-size: 0.85rem; color: var(--tinta-suave); }
+.ficha-aviso { margin: 0; font-size: 0.88rem; color: var(--tinta-suave); }
+.ficha-datos { margin: 6px 0; display: grid; gap: 4px; font-size: 0.92rem; }
+.ficha-datos > div { display: flex; gap: 8px; border-bottom: 1px solid rgba(69,69,74,.08); padding: 4px 0; }
+.ficha-datos dt { font-weight: 600; min-width: 130px; }
+.ficha-datos dd { margin: 0; color: var(--tinta-suave); }
+.ficha-nota { margin: 0; font-size: 0.8rem; color: var(--tinta-suave); }
+.ficha-entrega { font-size: 0.88rem; }
+.ficha-entrega summary { cursor: pointer; font-weight: 600; }
+.ficha-agregar { margin-top: 6px; }
+@media (max-width: 700px) { .ficha-grid { grid-template-columns: 1fr; } .ficha-foto { min-height: 0; aspect-ratio: 4 / 3; } .ficha-texto { padding: 18px; } .buscador-productos { grid-template-columns: 1fr; } .selector-orden label { display: none; } }
 </style>
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-merceria-256.png">
@@ -319,13 +357,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <div class="franja-anuncios" role="region" aria-label="Anuncios"><div class="cinta">
     <span>🚚 Envíos a toda Colombia</span>
-    <span>🧶 Los mismos materiales con los que tejemos cada amigurumi</span>
+    <span>🧶 Materiales que usamos en nuestro taller</span>
     <span>📍 Tienda física en Villamaría, Caldas</span>
-    <span>💕 Todo para tejer, en un solo lugar</span>
+    <span>💕 Insumos para tejedoras</span>
     <span>🚚 Envíos a toda Colombia</span>
-    <span>🧶 Los mismos materiales con los que tejemos cada amigurumi</span>
+    <span>🧶 Materiales que usamos en nuestro taller</span>
     <span>📍 Tienda física en Villamaría, Caldas</span>
-    <span>💕 Todo para tejer, en un solo lugar</span>
+    <span>💕 Insumos para tejedoras</span>
   </div></div>
 <header class="encabezado" data-casa="merceria">
   <div class="contenedor">
@@ -334,12 +372,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul class="nav-principal">
         <li class="g-merceria grupo-inicio"><a href="/merceria/catalogo/">Catálogo</a></li>
         <li class="g-merceria"><a href="/merceria/catalogo/#lanas-merceria">Lanas</a></li>
-        <li class="g-merceria"><a href="/merceria/catalogo/#hilos-merceria">Hilos</a></li>
-        <li class="g-merceria"><a href="/merceria/catalogo/#agujas-merceria">Agujas</a></li>
-        <li class="g-merceria"><a href="/merceria/catalogo/#herrajes-merceria">Herrajes</a></li>
-        <li class="g-merceria"><a href="/merceria/catalogo/#accesorios-merceria">Accesorios</a></li>
         <li class="g-merceria"><a href="/merceria/tienda-fisica/">Tienda física</a></li>
         <li class="g-merceria"><a href="/merceria/como-comprar/">Cómo comprar</a></li>
+        <li class="g-merceria"><a href="/merceria/preguntas-frecuentes/">Ayuda</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -362,11 +397,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="grupo-nav">Catálogo</p>
     <a href="/merceria/catalogo/">Todo el catálogo</a>
     <a href="/merceria/catalogo/#lanas-merceria">Lanas</a>
-    <a href="/merceria/catalogo/#hilos-merceria">Hilos</a>
-    <a href="/merceria/catalogo/#agujas-merceria">Agujas</a>
-    <a href="/merceria/catalogo/#herrajes-merceria">Herrajes</a>
-    <a href="/merceria/catalogo/#accesorios-merceria">Accesorios</a>
-    <a href="/merceria/catalogo/#relleno-merceria">Relleno</a>
     <p class="grupo-nav">Visítanos</p>
     <a href="/merceria/tienda-fisica/">Tienda física: horario y dirección</a>
     <p class="grupo-nav">Ideas para tejer</p>
@@ -382,8 +412,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="encabezado-tienda-grid">
     <div class="encabezado-pagina" style="padding-top:0;">
       <p class="eslogan">Mercería Lana Rosa</p>
-      <h1>Catálogo</h1>
-      <p>Los materiales que usamos para crear Lana Rosa: lanas, hilos, agujas y accesorios.</p>
+      <h1>Catálogo de insumos para tejedoras</h1>
+      <p>Los materiales para tus proyectos de crochet y tejido. Las lanas y los hilos se venden por ovillo completo.</p>
       <p style="font-weight:600; color: var(--rosa-texto);">🚚 Envíos a toda Colombia.</p>
     </div>
 
@@ -422,13 +452,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </select>
     </div>
 
+    <div class="selector-categorias selector-orden">
+      <label for="orden-catalogo">Ordenar por</label>
+      <select id="orden-catalogo">
+        <option value="">Como están en el catálogo</option>
+        <option value="precio-asc">Precio: de menor a mayor</option>
+        <option value="precio-desc">Precio: de mayor a menor</option>
+        <option value="nombre">Nombre (A–Z)</option>
+      </select>
+    </div>
+
     <details class="filtros-desplegables" id="filtros-desplegables">
-      <summary>🔍 Filtros de búsqueda</summary>
+      <summary>🔍 Buscar y filtrar</summary>
       <div class="buscador-productos">
         <button type="button" class="cerrar-filtros" id="cerrar-filtros" aria-label="Cerrar filtros">&times;</button>
         <div class="campo-buscador">
-          <label for="buscador-nombre">Buscar por nombre</label>
-          <input type="text" id="buscador-nombre" placeholder="Ej: lana chelin, algodón...">
+          <label for="buscador-nombre">Buscar</label>
+          <input type="search" id="buscador-nombre" placeholder="Nombre, marca, color o material" autocomplete="off">
+        </div>
+        <div class="campo-buscador">
+          <label for="filtro-marca">Marca</label>
+          <select id="filtro-marca"><option value="">Todas</option></select>
+        </div>
+        <div class="campo-buscador">
+          <label for="filtro-material">Material</label>
+          <select id="filtro-material"><option value="">Todos</option></select>
         </div>
         <div class="campo-buscador">
           <label for="buscador-precio-min">Precio mínimo</label>
@@ -441,7 +489,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </details>
   </div>
-  <p id="sin-resultados" style="display:none; text-align:center; color:var(--tinta-suave); padding:20px;">No encontramos productos con esos filtros — prueba con otro nombre o rango de precio.</p>
+  <p id="sin-resultados" style="display:none; text-align:center; color:var(--tinta-suave); padding:20px;">No encontramos productos con esos filtros — prueba con otra palabra, marca o rango de precio, o <a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Necesito%20asesor%C3%ADa%20con%20materiales%20de%20la%20mercer%C3%ADa." target="_blank" rel="noopener">pídenos asesoría</a>.</p>
+  <div id="error-catalogo" class="aviso-error-catalogo" role="alert" hidden><p>No pudimos cargar el catálogo en este momento.</p><button type="button" class="boton-ver-mas" onclick="location.reload()">Intentar de nuevo</button></div>
+  <div id="categoria-vacia" class="aviso-categoria-vacia" role="status" hidden><p><strong>Esta categoría</strong> todavía no tiene productos en el catálogo en línea.</p><a class="boton-secundario" href="/merceria/catalogo/#catalogo-merceria" onclick="history.replaceState(null,'',location.pathname);location.reload();return false;">Ver todo el catálogo</a></div>
 
 
     <section class="categoria-seccion" id="lanas-merceria">
@@ -473,6 +523,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="categoria-seccion" id="relleno-merceria" hidden>
       <h2>Relleno</h2>
       </section>
+    <section class="categoria-seccion" id="otros-merceria" hidden>
+      <h2>Otros materiales</h2>
+    </section>
   </div>
 
 
@@ -490,11 +543,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <div class="aviso-personalizado" id="como-se-paga" hidden style="background:var(--blanco); box-shadow:var(--sombra-suave);">
-    <details class="como-se-paga"><summary><h2 style="font-size:1.2rem;">¿Cómo se paga?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
-    <p>Agrega tus productos al carrito, toca <strong>Continuar compra</strong> y paga en línea de forma segura con Wompi: tarjeta de crédito o débito, PSE, Nequi o Bancolombia. No necesitas crear una cuenta.</p>
+    <details class="como-se-paga"><summary><h2 style="font-size:1.2rem;">¿Cómo se compra?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
+    <p><strong>Materiales (lanas, hilos y más):</strong> agrega al carrito y toca <strong>Pedir por WhatsApp</strong>. Confirmamos la disponibilidad, el envío y el pago, que puedes hacer por Nequi o Bre-B.</p>
+    <p><strong>Patrones digitales:</strong> se pagan en línea de forma segura con Wompi (tarjeta, PSE, Nequi o Bancolombia) y se descargan desde tu cuenta.</p>
     <p style="margin-top:12px;">📦 Envío: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000. Recoger en la tienda es gratis.</p>
-    <p>¿Prefieres pagar por transferencia? Escríbenos por <a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp</a> y te damos los datos de Nequi o Bre-B.</p>
-    <p style="font-weight:600; color: var(--rosa-texto); margin-top:14px;">🕒 Una vez confirmado el pago, tu pedido será despachado el siguiente día hábil.</p>
+    <p style="font-weight:600; color: var(--rosa-texto); margin-top:14px;">🕒 Una vez confirmado el pago, tu pedido se despacha el siguiente día hábil.</p>
+    <p><a href="/merceria/como-comprar/">Ver cómo comprar y envíos</a></p>
   </details>
   </div>
 </main>
@@ -564,19 +618,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.484 2 2.004 6.48 2.004 12c0 1.85.51 3.63 1.44 5.19L2 22l4.94-1.42A9.94 9.94 0 0012.004 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18a8.14 8.14 0 01-4.36-1.26l-.31-.18-3.05.87.87-3-.2-.32A8.17 8.17 0 013.82 12c0-4.51 3.67-8.18 8.18-8.18 4.51 0 8.18 3.67 8.18 8.18 0 4.51-3.67 8.18-8.18 8.18z"/></svg>
 </a></div>
 <script>
-var extensionesProducto = ['.jpg', '.jpg.png', '.jpg.jpg', '.png', '.jpeg'];
-function manejarErrorFoto(img) {
-  var intento = parseInt(img.dataset.intento || '0', 10) + 1;
-  if (intento < extensionesProducto.length) {
-    img.dataset.intento = intento;
-    img.src = '/img/productos/' + img.dataset.id + extensionesProducto[intento];
-  } else {
-    img.style.display = 'none';
-    img.nextElementSibling.style.display = 'flex';
-  }
-}
-</script>
-<script>
 (function() {
   var boton = document.getElementById('boton-menu-movil');
   var panel = document.getElementById('nav-movil-panel');
@@ -599,237 +640,227 @@ function manejarErrorFoto(img) {
 })();
 </script>
 <script type="module">
-// Los productos se piden con fetch directo (sin esperar la librería de Supabase), que ya arrancó en el <head>.
-let _clienteSb = null;
-function clienteSb() {
-  return _clienteSb || (_clienteSb = import('/js/vendor/supabase.js?v=1').then(function (m) { return m.createClient('https://ngjoognzvehwjtpqwrqe.supabase.co', 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD'); }));
+// Catálogo de la Mercería: lee el inventario del ERP (obtener_merceria_web) y arma tarjetas, ficha, filtros y carrito.
+// Las ayudas compartidas (precio por ovillo, línea del producto, etc.) están en /js/merceria.js.
+import { CATEGORIAS, cargarProductos, derivar, normalizar, esc, formatoCOP } from '/js/merceria.js?v=1';
+
+const LIMITE = 8;                          // tarjetas visibles por categoría antes de "Ver más"
+const CLAVE_CARRITO = 'carritoLanaRosa';
+const WHATSAPP = '573205072801';
+const $ = (id) => document.getElementById(id);
+
+let productos = [];                        // todos los derivados (incluye agotados)
+const secciones = {};                      // id de sección → { el, grid, items, expandida, boton }
+
+function manejarErrorFoto(img) {
+  const exts = ['.jpg', '.jpg.png', '.jpg.jpg', '.png', '.jpeg'];
+  const n = parseInt(img.dataset.intento || '0', 10) + 1;
+  if (n < exts.length) { img.dataset.intento = n; img.src = '/img/productos/' + img.dataset.id + exts[n]; }
+  else { img.style.display = 'none'; const m = img.parentNode.querySelector('.foto-marcador'); if (m) m.style.display = 'flex'; }
 }
-const supabase = { rpc: async function (nombre) {
-  try { return { data: await window.__rpcLR[nombre], error: null }; }
-  catch (e) { return (await clienteSb()).rpc(nombre); }
-} };
+window.manejarErrorFoto = manejarErrorFoto;
 
-function formatoCOP(valor) {
-  return '$' + Math.round(valor).toLocaleString('es-CO');
+function textoPresentacion(p) {
+  if (p.digital) return 'Patrón digital (PDF) · descarga inmediata';
+  const partes = [p.marca, p.material].filter(Boolean);
+  if (p.porOvillo) partes.push('Ovillo de ' + p.peso + ' g');
+  return partes.join(' · ');
 }
 
-function crearTarjeta(item) {
-  const nombreLimpio = [item.marca, item.color].filter(Boolean).join(' — ') || item.nombre;
-  const peso = item.peso_gramos ? Number(item.peso_gramos) : null;
-  const precioPresentacion = peso ? Math.round(item.precio_gramo * peso / 100) * 100 : Math.round(item.precio_gramo);
-  const digital = item.categoria === 'Patrones';
-  const agotado = !digital && Number(item.stock_actual) <= 0;
-  const nombreAttr = nombreLimpio.replace(/"/g, '&quot;');
-
-  const mensaje = 'Hola! Me interesa: ' + nombreLimpio + (peso ? ' (' + peso + 'g - ' + formatoCOP(precioPresentacion) + ')' : '');
-  const urlWhatsapp = 'https://wa.me/573205072801?text=' + encodeURIComponent(mensaje);
-
-  const articulo = document.createElement('article');
-  articulo.className = 'producto-card' + (agotado ? ' producto-agotado' : '');
-  articulo.dataset.nombre = nombreLimpio;
-  articulo.dataset.precio = precioPresentacion;
-  if (digital) articulo.dataset.digital = '1';
-  articulo.innerHTML =
-    '<div class="producto-foto">' +
-      '<img src="/img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + (item.id) + '" data-intento="0" onerror="manejarErrorFoto(this)">' +
-      '<span class="foto-marcador" style="display:none;">[ Foto de ' + nombreLimpio + ' ]</span>' +
-      (agotado ? '<span class="etiqueta-agotado">Agotado</span>' : '') +
-    '</div>' +
+function crearTarjeta(p) {
+  const a = document.createElement('article');
+  a.className = 'producto-card' + (p.disponible ? '' : ' producto-agotado');
+  a.dataset.id = p.id;
+  const foto = p.foto ? '/img/productos/' + esc(p.foto) : '';
+  a.innerHTML =
+    '<button type="button" class="producto-foto" data-ficha aria-label="Ver detalles de ' + esc(p.titulo) + '">' +
+      (foto ? '<img src="' + foto + '" alt="' + esc(p.titulo) + '" loading="lazy" decoding="async" data-id="' + esc(p.id) + '" data-intento="0" onerror="manejarErrorFoto(this)">' : '') +
+      '<span class="foto-marcador" style="' + (foto ? 'display:none;' : 'display:flex;') + '">' + esc(p.titulo) + '</span>' +
+      (p.disponible ? '' : '<span class="etiqueta-agotado">Agotado</span>') +
+    '</button>' +
     '<div class="producto-info">' +
-      '<h3>' + nombreLimpio + '</h3>' +
-      '<p class="producto-precio">' + formatoCOP(precioPresentacion) + ' COP' + (peso ? ' <span class="nota-presentacion">/ madeja de ' + peso + ' g</span>' : '') + '</p>' +
-      (digital ? '<p class="ficha-merceria">Patrón digital (PDF) · descarga inmediata</p>' : '<p class="ficha-merceria">' + (item.material || '') + (item.material ? ' · ' : '') + '</p>') +
-      (agotado
-        ? '<button type="button" class="boton-pedir" disabled style="opacity:0.5; cursor:not-allowed;">Agotado por ahora</button>'
-        : '<button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>'
-      ) +
+      '<h3><button type="button" class="titulo-ficha" data-ficha>' + esc(p.titulo) + '</button></h3>' +
+      '<p class="ficha-merceria">' + esc(textoPresentacion(p)) + '</p>' +
+      '<p class="producto-precio">' + formatoCOP(p.precio) + ' COP' + (p.porOvillo ? ' <span class="nota-presentacion">por ovillo</span>' : '') + '</p>' +
+      '<p class="disponibilidad ' + (p.disponible ? 'si' : 'no') + '">' + (p.disponible ? (p.digital ? 'Disponible' : 'Disponible para pedir') : 'Agotado por ahora') + '</p>' +
+      '<button type="button" class="' + (p.disponible ? 'boton-agregar-carrito' : 'boton-pedir') + '" data-agregar' + (p.disponible ? '' : ' disabled style="opacity:0.5; cursor:not-allowed;"') + '>' + (p.disponible ? '🛒 Agregar al carrito' : 'Agotado por ahora') + '</button>' +
     '</div>';
-  return articulo;
+  return a;
 }
 
-(async function cargarMerceriaDesdeERP() {
-  const gridLanas = document.getElementById('grid-lanas-merceria');
-  const gridHilos = document.getElementById('grid-hilos-merceria');
+// ---------- Carrito ----------
+function leerCarrito() { try { return JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || []; } catch (e) { return []; } }
+function agregarAlCarrito(p, boton) {
+  const carrito = leerCarrito();
+  if ((p.digital && carrito.some((i) => !i.digital)) || (!p.digital && carrito.some((i) => i.digital))) {
+    alert('Los patrones digitales se pagan por separado de los productos físicos. Termina primero una compra y luego haz la otra.');
+    return;
+  }
+  const ex = carrito.find((i) => i.id === p.id);
+  if (ex) { if (!p.digital && ex.cantidad < 20) ex.cantidad++; }
+  else carrito.push({ id: p.id, nombre: p.nombreCarrito, precio: p.precio, cantidad: 1, digital: p.digital, merceria: !p.digital });
+  try { localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito)); } catch (e) {}
+  const contador = $('contador-carrito'); if (contador) contador.textContent = carrito.reduce((s, i) => s + i.cantidad, 0);
+  if (boton) {
+    const antes = boton.textContent;
+    boton.textContent = '✓ Agregado'; boton.classList.add('agregado');
+    setTimeout(() => { boton.textContent = antes; boton.classList.remove('agregado'); }, 1200);
+  }
+}
+
+// ---------- Filtros, orden y vista ----------
+function valores() {
+  const max = $('buscador-precio-max').value;
+  return {
+    q: normalizar($('buscador-nombre').value.trim()),
+    min: parseInt($('buscador-precio-min').value || '0', 10) || 0,
+    max: max === '' ? Infinity : parseInt(max, 10),
+    marca: $('filtro-marca').value, material: $('filtro-material').value, orden: $('orden-catalogo').value,
+  };
+}
+function ordenar(lista, orden) {
+  const c = lista.slice();
+  if (orden === 'precio-asc') c.sort((a, b) => a.precio - b.precio);
+  else if (orden === 'precio-desc') c.sort((a, b) => b.precio - a.precio);
+  else if (orden === 'nombre') c.sort((a, b) => a.titulo.localeCompare(b.titulo, 'es'));
+  return c;
+}
+function pintar() {
+  const v = valores();
+  const filtrando = !!(v.q || v.min > 0 || v.max !== Infinity || v.marca || v.material);
+  let total = 0;
+  Object.keys(secciones).forEach((id) => {
+    const s = secciones[id];
+    if (!s.items.length) { s.el.hidden = true; return; }
+    const lista = ordenar(s.items.filter((p) => (!v.q || p.busqueda.indexOf(v.q) >= 0) && p.precio >= v.min && p.precio <= v.max && (!v.marca || p.marca === v.marca) && (!v.material || p.material === v.material)), v.orden);
+    s.el.hidden = false;
+    s.el.style.display = lista.length ? '' : 'none';
+    s.grid.replaceChildren(...lista.map((p, i) => { const t = p.tarjeta; t.hidden = !filtrando && !s.expandida && i >= LIMITE; return t; }));
+    const ocultas = filtrando || s.expandida ? 0 : Math.max(0, lista.length - LIMITE);
+    s.boton.hidden = ocultas === 0;
+    s.boton.textContent = 'Ver ' + ocultas + ' más en ' + s.nombre;
+    total += lista.length;
+  });
+  $('sin-resultados').style.display = filtrando && total === 0 ? 'block' : 'none';
+}
+function mostrarCategoriaVacia() {
+  const aviso = $('categoria-vacia'); if (!aviso) return;
+  let id = ''; try { id = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+  const s = secciones[id];
+  const visible = !$('catalogo-merceria').hidden;
+  if (visible && s && !s.items.length) { aviso.querySelector('strong').textContent = s.nombre; aviso.hidden = false; }
+  else aviso.hidden = true;
+}
+
+// ---------- Ficha del producto ----------
+function abrirFicha(p, desde) {
+  const d = $('ficha-producto');
+  const foto = p.foto ? '/img/productos/' + esc(p.foto) : '';
+  const fila = (k, val) => val ? '<div><dt>' + k + '</dt><dd>' + esc(val) + '</dd></div>' : '';
+  d.innerHTML =
+    '<form method="dialog"><button class="ficha-cerrar" aria-label="Cerrar">&times;</button></form>' +
+    '<div class="ficha-grid">' +
+      '<div class="ficha-foto">' + (foto ? '<img src="' + foto + '" alt="' + esc(p.titulo) + '" data-id="' + esc(p.id) + '" data-intento="0" onerror="manejarErrorFoto(this)">' : '') + '<span class="foto-marcador" style="' + (foto ? 'display:none;' : 'display:flex;') + '">' + esc(p.titulo) + '</span></div>' +
+      '<div class="ficha-texto">' +
+        (p.marca ? '<p class="ficha-marca">' + esc(p.marca) + '</p>' : '') +
+        '<h2 id="ficha-titulo">' + esc(p.titulo) + '</h2>' +
+        '<p class="ficha-precio">' + formatoCOP(p.precio) + ' COP' + (p.porOvillo ? ' <span>por ovillo de ' + p.peso + ' g</span>' : '') + '</p>' +
+        (p.porOvillo ? '<p class="ficha-aviso">Las lanas y los hilos se venden por ovillo completo.</p>' : '') +
+        '<p class="disponibilidad ' + (p.disponible ? 'si' : 'no') + '">' + (p.disponible ? 'Disponible para pedir' : 'Agotado por ahora') + '</p>' +
+        '<dl class="ficha-datos">' + fila('Categoría', p.categoria) + fila('Marca', p.marca) + fila('Color', p.color) + fila('Material', p.material) +
+          fila('Composición', p.composicion) + fila('Contenido del ovillo', p.porOvillo ? p.peso + ' g' : '') + fila('Longitud declarada', p.metros ? p.metros + ' m' : '') + '</dl>' +
+        '<p class="ficha-nota">Los datos técnicos salen de la etiqueta del fabricante. ' + (p.porOvillo ? '¿Qué aguja usar? <a href="/revista.html#aguja-segun-hilo">Mira esta guía</a> o <a href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Hola Lana Rosa 💕 Necesito asesoría con este material: ' + p.titulo) + '" target="_blank" rel="noopener">pregúntanos</a>.' : '') + '</p>' +
+        '<details class="ficha-entrega"><summary>Envío y entrega</summary><p>Enviamos a toda Colombia: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000. Recoger en la tienda es gratis. Despachamos el siguiente día hábil después de confirmado el pago. <a href="/merceria/como-comprar/">Ver cómo comprar</a>.</p></details>' +
+        (p.disponible ? '<button type="button" class="boton-agregar-carrito ficha-agregar">🛒 Agregar al carrito</button>' : '') +
+      '</div></div>';
+  const b = d.querySelector('.ficha-agregar'); if (b) b.addEventListener('click', () => agregarAlCarrito(p, b));
+  d.setAttribute('aria-labelledby', 'ficha-titulo');
+  d._volver = desde;
+  if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+}
+
+function iniciarFicha() {
+  const d = $('ficha-producto');
+  d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+  d.addEventListener('close', () => { if (d._volver && document.contains(d._volver)) d._volver.focus(); });
+  document.addEventListener('click', (e) => {
+    const tarjeta = e.target.closest && e.target.closest('.producto-card');
+    if (!tarjeta) return;
+    const p = productos.find((x) => x.id === tarjeta.dataset.id); if (!p) return;
+    if (e.target.closest('[data-agregar]')) { if (p.disponible) agregarAlCarrito(p, e.target.closest('[data-agregar]')); return; }
+    if (e.target.closest('[data-ficha]')) abrirFicha(p, e.target.closest('[data-ficha]'));
+  });
+}
+
+// ---------- Carga ----------
+function llenarSelect(sel, valoresUnicos) {
+  const opciones = Array.from(new Set(valoresUnicos.filter(Boolean))).sort((a, b) => a.localeCompare(b, 'es'));
+  if (opciones.length < 2) { sel.closest('.campo-buscador').hidden = true; return; }
+  opciones.forEach((o) => { const op = document.createElement('option'); op.value = o; op.textContent = o; sel.append(op); });
+}
+
+function datosEstructurados(lista) {
+  const el = document.createElement('script'); el.type = 'application/ld+json';
+  el.textContent = JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'ItemList', name: 'Catálogo de la Mercería Lana Rosa',
+    itemListElement: lista.slice(0, 50).map((p, i) => ({
+      '@type': 'ListItem', position: i + 1,
+      item: { '@type': 'Product', name: p.nombreCarrito, ...(p.marca ? { brand: { '@type': 'Brand', name: p.marca } } : {}), ...(p.color ? { color: p.color } : {}), ...(p.material ? { material: p.material } : {}),
+        offers: { '@type': 'Offer', price: String(p.precio), priceCurrency: 'COP', availability: 'https://schema.org/InStock', url: 'https://lanarosacrochet.com/merceria/catalogo/' } },
+    })),
+  });
+  document.head.append(el);
+}
+
+(async function iniciar() {
+  document.querySelectorAll('.categoria-seccion').forEach((el) => {
+    let grid = el.querySelector('.grid-productos');
+    if (!grid) { grid = document.createElement('div'); grid.className = 'grid-productos'; el.append(grid); }
+    const boton = document.createElement('button'); boton.type = 'button'; boton.className = 'boton-ver-mas'; boton.hidden = true;
+    grid.insertAdjacentElement('afterend', boton);
+    const s = { el, grid, items: [], expandida: false, boton, nombre: (el.querySelector('h2') || {}).textContent || '' };
+    boton.addEventListener('click', () => { s.expandida = true; pintar(); });
+    secciones[el.id] = s;
+  });
+  iniciarFicha();
 
   try {
-    let { data, error } = await supabase.rpc('obtener_merceria_web');
-    if (error) throw error;
-
-    gridLanas.innerHTML = '';
-    gridHilos.innerHTML = '';
-    const gridPatrones = document.getElementById('grid-patrones-merceria');
-    // Los patrones digitales (categoría "Patrones") se venden en línea aunque la mercería física aún no tenga existencias.
-    const patrones = (data || []).filter(function(item) { return item.categoria === 'Patrones'; });
-    data = (data || []).filter(function(item) { return item.categoria !== 'Patrones'; });
-    // Mientras no haya productos con existencias, se muestran las categorías de materiales (con consulta por WhatsApp)
-    // en lugar de un catálogo lleno de productos agotados.
-    const disponibles = (data || []).filter(function(item) { return Number(item.stock_actual) > 0; });
-    if (!disponibles.length) data = [];
-    else { const materiales = document.getElementById('materiales-merceria'); if (materiales) materiales.hidden = true; const aviso = document.getElementById('aviso-proximamente'); if (aviso) aviso.hidden = true; const pago = document.getElementById('como-se-paga'); if (pago) pago.hidden = false; const catalogo = document.getElementById('catalogo-merceria'); if (catalogo) catalogo.hidden = false; }
-
-    if (patrones.length) {
-      patrones.forEach(function(item) { gridPatrones.appendChild(crearTarjeta(item)); });
-      document.getElementById('patrones-merceria').hidden = false;
-      const catalogo = document.getElementById('catalogo-merceria'); if (catalogo) catalogo.hidden = false;
+    const filas = (await cargarProductos()) || [];
+    productos = filas.map(derivar);
+    const fisicos = productos.filter((p) => !p.digital);
+    const disponibles = fisicos.filter((p) => p.disponible);
+    const patrones = productos.filter((p) => p.digital);
+    // Mientras no haya materiales con existencias se muestra el aviso "Muy pronto" en lugar de un catálogo de agotados.
+    const mostrar = (disponibles.length ? fisicos : []).concat(patrones);
+    mostrar.forEach((p) => { p.tarjeta = crearTarjeta(p); const s = secciones[p.cat.id]; if (s) s.items.push(p); });
+    Object.keys(secciones).forEach((id) => { secciones[id].grid.replaceChildren(); });
+    if (disponibles.length) {
+      $('materiales-merceria').hidden = true; $('aviso-proximamente').hidden = true; $('como-se-paga').hidden = false;
+      datosEstructurados(disponibles);
     }
+    if (mostrar.length) $('catalogo-merceria').hidden = false;
+    if (patrones.length) $('como-se-paga').hidden = false;
 
-    (data || []).forEach(function(item) {
-      const tarjeta = crearTarjeta(item);
-      if (item.categoria === 'Hilos') {
-        gridHilos.appendChild(tarjeta);
-      } else {
-        gridLanas.appendChild(tarjeta);
-      }
-    });
-
-    if (!gridLanas.children.length) {
-      document.getElementById('lanas-merceria').hidden = true;
-    }
-    if (!gridHilos.children.length) {
-      document.getElementById('hilos-merceria').hidden = true;
-    }
+    // Selector de categoría y filtros solo con lo que existe
+    const selector = $('selector-categoria');
+    selector.replaceChildren(new Option('Todas las categorías', ''));
+    Object.keys(secciones).forEach((id) => { const s = secciones[id]; if (s.items.length) selector.append(new Option(s.nombre, '#' + id)); });
+    llenarSelect($('filtro-marca'), mostrar.map((p) => p.marca));
+    llenarSelect($('filtro-material'), mostrar.map((p) => p.material));
+    ['buscador-nombre', 'buscador-precio-min', 'buscador-precio-max'].forEach((id) => $(id).addEventListener('input', pintar));
+    ['filtro-marca', 'filtro-material', 'orden-catalogo'].forEach((id) => $(id).addEventListener('change', pintar));
+    const q = new URLSearchParams(location.search).get('buscar');
+    if (q) { $('buscador-nombre').value = q; const panel = $('filtros-desplegables'); if (panel) panel.setAttribute('open', ''); }
+    pintar();
+    if (typeof window.aplicarVistaCategoria === 'function') window.aplicarVistaCategoria(false);
+    mostrarCategoriaVacia();
+    window.addEventListener('hashchange', mostrarCategoriaVacia);
   } catch (e) {
-    gridLanas.innerHTML = '<p class="proximamente-merceria">No pudimos cargar el catálogo en este momento. Intenta de nuevo en un momento.</p>';
-    gridHilos.innerHTML = '';
     console.error(e);
+    const g = $('grid-lanas-merceria'); g.replaceChildren();
+    const aviso = $('error-catalogo'); if (aviso) { aviso.hidden = false; $('catalogo-merceria').hidden = false; $('lanas-merceria').hidden = false; }
   }
-
-  // Volver a activar los botones de agregar al carrito para las tarjetas recién insertadas
-  document.querySelectorAll('.boton-agregar-carrito').forEach(function(boton) {
-    boton.addEventListener('click', function() {
-      var tarjeta = boton.closest('.producto-card');
-      var id = tarjeta.querySelector('img').dataset.id;
-      var nombre = tarjeta.dataset.nombre;
-      var precio = parseInt(tarjeta.dataset.precio, 10);
-      var CLAVE_CARRITO = 'carritoLanaRosa';
-      var carrito = [];
-      try { carrito = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || []; } catch (e) {}
-      var esDigital = tarjeta.dataset.digital === '1';
-      if ((esDigital && carrito.some(function(i) { return !i.digital; })) || (!esDigital && carrito.some(function(i) { return i.digital; }))) {
-        alert('Los patrones digitales se pagan por separado de los productos físicos. Termina primero una compra y luego haz la otra.');
-        return;
-      }
-      var existente = carrito.find(function(i) { return i.id === id; });
-      if (existente) { if (!esDigital) existente.cantidad++; } else { carrito.push({ id: id, nombre: nombre, precio: precio, cantidad: 1, digital: esDigital }); }
-      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
-      var contador = document.getElementById('contador-carrito');
-      if (contador) contador.textContent = carrito.reduce(function(s, i) { return s + i.cantidad; }, 0);
-      boton.textContent = '✓ Agregado';
-      boton.classList.add('agregado');
-      setTimeout(function() { boton.textContent = '🛒 Agregar al carrito'; boton.classList.remove('agregado'); }, 1200);
-    });
-  });
-
-  if (typeof inicializarBuscadorMerceria === 'function') inicializarBuscadorMerceria();
 })();
-</script>
-<script>
-function inicializarBuscadorMerceria() {
-  var LIMITE_INICIAL = 8;
-  var secciones = [];
-
-  document.querySelectorAll('.categoria-seccion').forEach(function(seccion) {
-    var grid = seccion.querySelector('.grid-productos');
-    if (!grid) return;
-    var tarjetas = Array.prototype.slice.call(grid.querySelectorAll('.producto-card'));
-    var ocultas = tarjetas.length > LIMITE_INICIAL ? tarjetas.slice(LIMITE_INICIAL) : [];
-    ocultas.forEach(function(t) { t.style.display = 'none'; });
-
-    var boton = null;
-    if (ocultas.length > 0) {
-      boton = document.createElement('button');
-      boton.type = 'button';
-      boton.className = 'boton-ver-mas';
-      boton.textContent = 'Ver ' + ocultas.length + ' más en ' + seccion.querySelector('h2').textContent;
-      boton.addEventListener('click', function() {
-        ocultas.forEach(function(t) { t.style.display = ''; });
-        boton.style.display = 'none';
-      });
-      grid.insertAdjacentElement('afterend', boton);
-    }
-
-    secciones.push({ seccion: seccion, tarjetas: tarjetas, ocultas: ocultas, boton: boton });
-  });
-
-  function normalizar(s) {
-    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  }
-
-  var inputTexto = document.getElementById('buscador-nombre');
-  var inputMin = document.getElementById('buscador-precio-min');
-  var inputMax = document.getElementById('buscador-precio-max');
-  var mensajeSinResultados = document.getElementById('sin-resultados');
-  if (!inputTexto) return;
-
-  function aplicarFiltro() {
-    var texto = normalizar(inputTexto.value.trim());
-    var min = inputMin.value ? parseInt(inputMin.value, 10) : 0;
-    var max = inputMax.value ? parseInt(inputMax.value, 10) : Infinity;
-    var filtroActivo = texto !== '' || min > 0 || inputMax.value !== '';
-    var totalVisible = 0;
-
-    secciones.forEach(function(s) {
-      if (!filtroActivo) {
-        s.tarjetas.forEach(function(t) {
-          t.style.display = s.ocultas.indexOf(t) !== -1 ? 'none' : '';
-        });
-        if (s.boton) s.boton.style.display = '';
-        s.seccion.style.display = '';
-        return;
-      }
-
-      var visiblesEnSeccion = 0;
-      s.tarjetas.forEach(function(t) {
-        var nombre = normalizar(t.dataset.nombre);
-        var precio = parseInt(t.dataset.precio || '0', 10);
-        var coincide = nombre.indexOf(texto) !== -1 && precio >= min && precio <= max;
-        t.style.display = coincide ? '' : 'none';
-        if (coincide) visiblesEnSeccion++;
-      });
-      if (s.boton) s.boton.style.display = 'none';
-      s.seccion.style.display = visiblesEnSeccion > 0 ? '' : 'none';
-      totalVisible += visiblesEnSeccion;
-    });
-
-    if (mensajeSinResultados) {
-      mensajeSinResultados.style.display = (filtroActivo && totalVisible === 0) ? 'block' : 'none';
-    }
-  }
-
-  [inputTexto, inputMin, inputMax].forEach(function(el) {
-    el.addEventListener('input', aplicarFiltro);
-  });
-
-  var parametrosURL = new URLSearchParams(window.location.search);
-  var terminoBusqueda = parametrosURL.get('buscar');
-  if (terminoBusqueda) {
-    inputTexto.value = terminoBusqueda;
-    var panelFiltrosInicial = document.getElementById('filtros-desplegables');
-    if (panelFiltrosInicial) panelFiltrosInicial.setAttribute('open', '');
-    aplicarFiltro();
-  }
-
-  var selectorCategoria = document.getElementById('selector-categoria');
-  if (selectorCategoria) {
-    selectorCategoria.addEventListener('change', function() {
-      if (!selectorCategoria.value) return;
-      // lo maneja la vista de categoría (hashchange)
-    });
-  }
-
-  var panelFiltros = document.getElementById('filtros-desplegables');
-  var botonCerrarFiltros = document.getElementById('cerrar-filtros');
-  if (panelFiltros && botonCerrarFiltros) {
-    botonCerrarFiltros.addEventListener('click', function() {
-      panelFiltros.removeAttribute('open');
-    });
-    document.addEventListener('click', function(evento) {
-      if (panelFiltros.hasAttribute('open') && !panelFiltros.contains(evento.target)) {
-        panelFiltros.removeAttribute('open');
-      }
-    });
-  }
-}
 </script>
 <button class="boton-subir" id="boton-subir" aria-label="Subir al inicio de la página">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
@@ -846,6 +877,8 @@ function inicializarBuscadorMerceria() {
   });
 })();
 </script>
+
+<dialog id="ficha-producto" class="ficha-dialogo" aria-label="Detalles del producto"></dialog>
 
 <div class="overlay-carrito" id="overlay-carrito"></div>
 <div role="region" aria-label="Tu carrito" class="panel-carrito" id="panel-carrito">
@@ -921,7 +954,7 @@ function inicializarBuscadorMerceria() {
       div.className = 'item-carrito';
       div.innerHTML =
         '<div class="info-item-carrito">' +
-          '<h4>' + item.nombre + '</h4>' +
+          '<h4>' + String(item.nombre).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }) + '</h4>' +
           '<p class="precio-item-carrito">' + formatoCOP(item.precio) + ' c/u</p>' +
           '<div class="controles-cantidad">' +
             '<button type="button" data-accion="restar" data-indice="' + indice + '">−</button>' +
@@ -1069,7 +1102,7 @@ function inicializarBuscadorMerceria() {
 })();
 </script>
 <script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=20"></script>
+<script type="module" src="/js/pago.js?v=22"></script>
 <script src="/js/carrito-agregado.js?v=2" defer></script>
 <script src="/js/animaciones.js?v=11" defer></script>
 <script>

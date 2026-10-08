@@ -27,11 +27,12 @@ MENUS = {
     # páginas comunes (contacto, preguntas, políticas, cuenta, Revista): menú de marca con las tres casas
     'comun': [('Tienda de amigurumis', 'index.html', 'crochet'), ('Mercería', 'merceria/', 'merceria'),
               ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
-    'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria', 'merceria'),
-                 ('Agujas', 'merceria/catalogo/#agujas-merceria', 'merceria'), ('Herrajes', 'merceria/catalogo/#herrajes-merceria', 'merceria'),
-                 ('Accesorios', 'merceria/catalogo/#accesorios-merceria', 'merceria'),
+    # Solo categorías que tienen productos en el inventario (8-oct-2026: hoy solo Lanas). Cuando se carguen Hilos, Agujas, Herrajes,
+    # Accesorios o Relleno al ERP, agregar aquí su enlace (merceria/catalogo/#<categoria>-merceria) y en MOVIL['merceria'] y PIE.
+    'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
-                 ('Cómo comprar', 'merceria/como-comprar/', 'merceria')],
+                 ('Cómo comprar', 'merceria/como-comprar/', 'merceria'),
+                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria')],
     'academy': [('Talleres y clases', 'academy/talleres/', 'academy'), ('Agenda de Rosina', 'agenda-rosina.html', 'academy'),
                 ('Recursos gratis', 'recursos-rosina.html', 'academy'), ('Revista', 'revista.html?casa=academy', 'academy'),
                 ('Sobre Academy', 'academy/sobre-academy/', 'academy')],
@@ -66,9 +67,8 @@ PIE = {
     'crochet': ('Amigurumis y accesorios tejidos a mano en Manizales / Villamaría, Colombia.', 'Tienda de amigurumis',
                 [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Precios', 'precios.html'),
                  ('Historias que tejimos', 'index.html#historias'), ('Comprar en línea', 'https://lana-rosa-crochet.cercia.co/')]),
-    'merceria': ('Mercería Lana Rosa: todo para tejer, lanas, hilos, agujas y accesorios. Villamaría, Caldas.', 'Mercería',
-                 [('Catálogo', 'merceria/catalogo/'), ('Lanas', 'merceria/catalogo/#lanas-merceria'), ('Hilos', 'merceria/catalogo/#hilos-merceria'), ('Agujas', 'merceria/catalogo/#agujas-merceria'),
-                  ('Herrajes', 'merceria/catalogo/#herrajes-merceria'), ('Accesorios', 'merceria/catalogo/#accesorios-merceria'),
+    'merceria': ('Mercería Lana Rosa: insumos para tejedoras. Lanas e hilos para crochet. Villamaría, Caldas.', 'Mercería',
+                 [('Catálogo', 'merceria/catalogo/'), ('Lanas', 'merceria/catalogo/#lanas-merceria'),
                   ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'),
                   ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
@@ -105,11 +105,6 @@ MOVIL = {
     <p class="grupo-nav">Catálogo</p>
     <a href="merceria/catalogo/">Todo el catálogo</a>
     <a href="merceria/catalogo/#lanas-merceria">Lanas</a>
-    <a href="merceria/catalogo/#hilos-merceria">Hilos</a>
-    <a href="merceria/catalogo/#agujas-merceria">Agujas</a>
-    <a href="merceria/catalogo/#herrajes-merceria">Herrajes</a>
-    <a href="merceria/catalogo/#accesorios-merceria">Accesorios</a>
-    <a href="merceria/catalogo/#relleno-merceria">Relleno</a>
     <p class="grupo-nav">Visítanos</p>
     <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
     <p class="grupo-nav">Ideas para tejer</p>
@@ -145,7 +140,7 @@ MOVIL = {
 
 ANUNCIOS = {
     'crochet': ['🚚 Envíos a toda Colombia', '🧶 Amigurumis 100% personalizados', '🐑 Tejido a mano en Manizales y Villamaría', '💕 Hechos con amor, punto a punto'],
-    'merceria': ['🚚 Envíos a toda Colombia', '🧶 Los mismos materiales con los que tejemos cada amigurumi', '📍 Tienda física en Villamaría, Caldas', '💕 Todo para tejer, en un solo lugar'],
+    'merceria': ['🚚 Envíos a toda Colombia', '🧶 Materiales que usamos en nuestro taller', '📍 Tienda física en Villamaría, Caldas', '💕 Insumos para tejedoras'],
 }
 
 def anuncios(casa):
