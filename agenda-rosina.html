@@ -468,6 +468,14 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
   .tabla-agenda td.celda-cal .boton-cal { width: 100%; padding: 8px 12px; }
 }
 @media print { .boton-cal, .aviso-cal, .celda-cal, .col-cal { display: none !important; } }
+.calendario-sync { max-width: 560px; margin: 18px auto 0; background: var(--blanco); border: 1.5px solid var(--rosa-medio); border-radius: 18px; padding: 14px 18px; text-align: left; }
+.calendario-sync[hidden] { display: none; }
+.cs-titulo { margin: 0 0 4px; font-weight: 700; color: var(--rosa-texto); }
+.cs-texto { margin: 0 0 10px; font-size: 0.92rem; }
+.cs-botones [hidden] { display: none !important; }
+.cs-botones { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.cs-aviso { margin: 8px 0 0; min-height: 1.2em; font-size: 0.85rem; font-weight: 600; color: #8E1457; }
+.calendario-sync .nota-copia { display: block; margin-top: 8px; }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 40px !important; }
@@ -605,6 +613,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="enlace-copia" id="agenda-ics">📅 Fechas al calendario (.ics)</button>
       <input type="file" id="agenda-archivo" accept=".json,application/json" hidden>
       <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
+    </div>
+    <div class="calendario-sync no-imprimir" id="calendario-sync" hidden>
+      <p class="cs-titulo"><span aria-hidden="true">📅</span> Google Calendar</p>
+      <p class="cs-texto" id="cs-texto"></p>
+      <div class="cs-botones">
+        <button type="button" class="boton-primario boton-chico" id="cs-conectar" hidden>Conectar con Google Calendar</button>
+        <button type="button" class="boton-secundario boton-chico" id="cs-sincronizar" hidden>Sincronizar ahora</button>
+        <button type="button" class="enlace-copia" id="cs-desconectar" hidden>Desconectar</button>
+      </div>
+      <p class="cs-aviso" id="cs-aviso" role="status"></p>
+      <small class="nota-copia">Solo pedimos permiso para crear y editar eventos de esta agenda en tu calendario; no leemos tus otros eventos. Puedes desconectarlo cuando quieras. <a href="/politicas.html#datos">Datos personales</a></small>
     </div>
   </section>
 
@@ -1323,6 +1342,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if ((e.type === 'change') !== porCambio) return;
     datos[campo.id] = campo.type === 'checkbox' ? campo.checked : campo.value;
     guardarDatos();
+    if (window.lrAgenda && window.lrAgenda.alCambiar) window.lrAgenda.alCambiar();
     if (campo.tagName === 'SELECT') actualizarOpciones();
   }
   function actualizarOpciones() {
@@ -1406,7 +1426,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   };
   function eventoDe(tipo, fila) {
     var ev = TIPOS_CAL[tipo](fila), f = leerFecha(ev.fecha);
-    ev.f = f; ev.texto = ev.detalles.filter(function(x) { return x[1]; }).map(function(x) { return x[0] + ': ' + x[1]; }).join('\n');
+    ev.clave = tipo + ':' + (fila || '1'); ev.f = f; ev.texto = ev.detalles.filter(function(x) { return x[1]; }).map(function(x) { return x[0] + ': ' + x[1]; }).join('\n');
     ev.texto = (ev.texto ? ev.texto + '\n' : '') + 'Desde la agenda de Rosina · lanarosacrochet.com';
     return ev;
   }
@@ -1443,6 +1463,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ['ficha', 'feria'].forEach(function(t) { var ev = eventoDe(t); if (ev.f) lista.push(ev); });
     return lista;
   }
+  /* Para la sincronización con Google Calendar (módulo al final de la página) */
+  function dos(n) { return ('0' + n).slice(-2); }
+  window.lrAgenda = {
+    alCambiar: null,
+    eventos: function() {
+      return todosLosEventos().map(function(ev) {
+        return { clave: ev.clave, titulo: ev.titulo, detalle: ev.texto, lugar: ev.lugar || '', fecha: ev.f.a + '-' + dos(ev.f.m) + '-' + dos(ev.f.d), anual: !!ev.anual };
+      });
+    }
+  };
   document.getElementById('agenda-ics').addEventListener('click', function() {
     var lista = todosLosEventos();
     if (!lista.length) { alert('Todavía no hay fechas que llevar al calendario. Escribe una fecha (por ejemplo 15/11/2026 o 15 de noviembre) en las hojas de pedidos, proyectos, fechas especiales, ferias o clientas.'); return; }
@@ -1722,6 +1752,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script type="module" src="/js/cuenta.js"></script>
+<script type="module">
+// Sincronización con Google Calendar (se muestra solo si la función está activa y la persona tiene sesión)
+import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
+(async function () {
+  var caja = document.getElementById('calendario-sync');
+  if (!caja || !haySesionGuardada()) return;
+  var txt = document.getElementById('cs-texto'), av = document.getElementById('cs-aviso');
+  var bCon = document.getElementById('cs-conectar'), bSin = document.getElementById('cs-sincronizar'), bDes = document.getElementById('cs-desconectar');
+  var sb, estado = null, temporizador = null, ocupado = false;
+  function aviso(t) { av.textContent = t || ''; }
+  async function llamar(accion, extra) {
+    var r = await sb.functions.invoke('google-calendar', { body: Object.assign({ accion: accion }, extra || {}) });
+    if (r.error) {
+      var d = null; try { d = await r.error.context.json(); } catch (e) {}
+      return d || { error: 'No pudimos conectar con el servicio. Inténtalo de nuevo.' };
+    }
+    return r.data || {};
+  }
+  function pintar() {
+    var conectado = !!(estado && estado.conectado);
+    bCon.hidden = conectado; bSin.hidden = !conectado; bDes.hidden = !conectado;
+    if (!conectado) txt.textContent = 'Conecta tu Google Calendar y tus entregas, proyectos, fechas especiales, ferias y cumpleaños se actualizan solos.';
+    else txt.textContent = 'Conectado' + (estado.correo ? ' como ' + estado.correo : '') + '. ' + (estado.ultima ? 'Última sincronización: ' + new Date(estado.ultima).toLocaleString('es-CO', { dateStyle: 'medium', timeStyle: 'short' }).replace(/\.$/, '') : 'Todavía no se ha sincronizado.');
+  }
+  async function sincronizar(manual) {
+    if (ocupado || !estado || !estado.conectado) return;
+    ocupado = true; if (manual) aviso('Sincronizando…');
+    var eventos = window.lrAgenda ? window.lrAgenda.eventos() : [];
+    var r = await llamar('sincronizar', { eventos: eventos });
+    ocupado = false;
+    if (r.reconectar) { estado.conectado = false; pintar(); aviso(r.error); return; }
+    if (r.error) { aviso(r.error); return; }
+    estado.ultima = new Date().toISOString(); pintar();
+    aviso(r.fallos ? 'Algunas fechas no se pudieron sincronizar. Inténtalo otra vez.' : (manual ? '¡Listo! ' + (r.creados + r.actualizados + r.borrados) + ' cambio(s) en tu calendario.' : ''));
+  }
+  try { sb = await obtenerCliente(); } catch (e) { return; }
+  var e0 = await llamar('estado');
+  if (!e0 || e0.configurado !== true) return;           // todavía no está activo: la tarjeta no aparece
+  estado = e0; caja.hidden = false; pintar();
+  bCon.addEventListener('click', async function () {
+    bCon.disabled = true; aviso('Abriendo Google…');
+    var r = await llamar('conectar');
+    if (r.url) { location.href = r.url; return; }
+    bCon.disabled = false; aviso(r.error || 'No pudimos iniciar la conexión.');
+  });
+  bSin.addEventListener('click', function () { sincronizar(true); });
+  bDes.addEventListener('click', async function () {
+    if (!confirm('¿Desconectar Google Calendar? Los eventos que ya están en tu calendario se quedan, pero dejarán de actualizarse.')) return;
+    await llamar('desconectar'); estado = { conectado: false }; pintar(); aviso('Desconectado.');
+  });
+  if (window.lrAgenda) window.lrAgenda.alCambiar = function () {
+    if (!estado || !estado.conectado) return;
+    clearTimeout(temporizador); temporizador = setTimeout(function () { sincronizar(false); }, 4000);
+  };
+  var q = new URLSearchParams(location.search).get('calendario');
+  var mensajes = { cancelado: 'No se conectó: cancelaste el permiso de Google.', sin_permiso: 'Google no entregó el permiso. Inténtalo otra vez y acepta el acceso al calendario.', error: 'Algo salió mal al conectar con Google. Inténtalo otra vez.', no_configurado: 'La sincronización todavía no está activa.' };
+  if (q === 'conectado') { estado = await llamar('estado'); pintar(); caja.scrollIntoView({ block: 'center' }); await sincronizar(true); history.replaceState(null, '', location.pathname + location.hash); }
+  else if (mensajes[q]) { aviso(mensajes[q]); history.replaceState(null, '', location.pathname + location.hash); }
+})();
+</script>
 <script type="module" src="/js/pago.js?v=17"></script>
 <script src="/js/animaciones.js?v=11" defer></script>
 </body>
