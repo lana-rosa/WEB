@@ -621,6 +621,32 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .cs-aviso { margin: 8px 0 0; min-height: 1.2em; font-size: 0.85rem; font-weight: 600; color: #8E1457; }
 .calendario-sync .nota-copia { display: block; margin-top: 8px; }
 .calendario-sync.bloqueado-pago { display: none !important; }
+/* Gastos fijos, deudas, metas con fecha y planes (8-oct-2026) */
+.ff-resumen { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.ff-msg { display: block; min-height: 1.2em; margin: -6px 0 8px; color: var(--tinta-suave); }
+.ff-lista { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 8px; }
+.ff-item { display: grid; grid-template-columns: 1fr auto auto; gap: 8px 12px; align-items: center; background: #fff; border: 1.5px solid #E4D3DC; border-radius: 14px; padding: 10px 12px; }
+.ff-item.pausa { opacity: .6; }
+.ff-info { display: grid; gap: 1px; min-width: 0; } .ff-info strong { overflow-wrap: anywhere; } .ff-info small, .ff-deuda small { color: var(--tinta-suave); font-size: .8rem; }
+.ff-valor { font-family: var(--fuente-titulo); white-space: nowrap; } .ff-valor.gas { color: #B24A1F; } .ff-valor.aho { color: #4a3aa7; }
+.ff-acc { display: flex; gap: 4px; align-items: center; } .ff-acc .quitar { border: 0; background: transparent; cursor: pointer; font-size: 1rem; }
+.ff-deudas { display: grid; gap: 10px; margin-bottom: 14px; }
+.ff-deuda { background: #fff; border: 1.5px solid #E4D3DC; border-radius: 14px; padding: 12px 14px; display: grid; gap: 6px; }
+.ff-deuda-cab { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; } .ff-deuda-cab b { color: #3d3c39; }
+.ff-deuda .ff-acc { margin-top: 2px; }
+.ff-fila { display: flex; justify-content: space-between; gap: 10px; font-size: .88rem; padding: 3px 0; align-items: baseline; } .ff-fila > span:first-child { flex: 1; min-width: 0; overflow-wrap: anywhere; } .ff-est { color: var(--tinta-suave); font-size: .78rem; }
+.ff-total { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #E4D3DC; font-size: .86rem; }
+.ff-deuda-mini { margin-bottom: 8px; } .ff-deuda-mini small { color: var(--tinta-suave); font-size: .76rem; }
+.fin-meta { grid-template-columns: 1fr 120px 120px 150px; } .fin-meta input.fm { width: 100%; }
+.fin-meta-info { grid-column: 1 / -1; color: var(--tinta-suave); font-size: .82rem; min-height: 1.1em; }
+.fin-aho-mes { margin: 0 0 10px; font-size: .88rem; color: var(--tinta-suave); }
+.fin-planes { display: grid; gap: 8px; } .fin-plan { display: grid; grid-template-columns: 1fr 120px 130px auto; gap: 8px 12px; align-items: center; }
+.fin-plan input, .fin-plan select { border: none; border-bottom: 1.5px solid rgba(69,69,74,.25); background: transparent; font: inherit; padding: 4px 2px; min-width: 0; width: 100%; }
+.fin-plan-ok { display: flex; align-items: center; gap: 6px; font-size: .85rem; } .fin-plan-ok input { width: auto; }
+.fin-planes-info { margin: 8px 0 0; font-size: .88rem; font-weight: 600; color: var(--rosa-texto); }
+@media (max-width: 900px) { .ff-resumen { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .fin-meta { grid-template-columns: 1fr 1fr; } .fin-meta input.n { grid-column: 1 / -1; } .fin-meta input.fm { grid-column: 1 / -1; } .fin-plan { grid-template-columns: 1fr 1fr; } .fin-plan input.n { grid-column: 1 / -1; } .ff-item { grid-template-columns: 1fr auto; } .ff-acc { grid-column: 1 / -1; } }
+
 /* Calendario con semana, día y "lo que viene" (8-oct-2026) */
 .agc-barra { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 0 0 12px; }
 .agc-barra strong { font-family: var(--fuente-titulo); font-size: 1.3rem; color: var(--rosa-texto); min-width: 9ch; text-align: center; }
@@ -904,7 +930,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 25</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 25 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 26</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 26 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
@@ -933,6 +959,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#fin-resumen" data-hoja="fin-resumen">📊 Resumen del mes</a>
           <a href="#fin-movimientos" data-hoja="fin-movimientos">🧾 Mis movimientos</a>
           <a href="#fin-presupuesto" data-hoja="fin-presupuesto">🐷 Presupuesto y metas</a>
+          <a href="#fin-fijos" data-hoja="fin-fijos">🔁 Gastos fijos y deudas</a>
           <p class="menu-grupo">Fechas y bienestar</p>
           <a href="#calendario-anual" data-hoja="calendario-anual">🗓️ Calendario del año</a>
           <a href="#fechas-especiales" data-hoja="fechas-especiales">🎁 Fechas especiales</a>
@@ -981,6 +1008,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="fin-resumen"><span class="atajo-ic" aria-hidden="true">📊</span><span><strong>Resumen del mes</strong><small>Ingresos, gastos y saldo</small></span></button>
           <button type="button" class="atajo" data-ir="fin-movimientos"><span class="atajo-ic" aria-hidden="true">🧾</span><span><strong>Mis movimientos</strong><small>Anota lo que entra y sale</small></span></button>
           <button type="button" class="atajo" data-ir="fin-presupuesto"><span class="atajo-ic" aria-hidden="true">🐷</span><span><strong>Presupuesto y metas</strong><small>Tope por categoría y ahorros</small></span></button>
+          <button type="button" class="atajo" data-ir="fin-fijos"><span class="atajo-ic" aria-hidden="true">🔁</span><span><strong>Gastos fijos y deudas</strong><small>Pagos del mes y cuotas</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#F9D49B"><h4>Fechas y bienestar</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="calendario-anual"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Calendario del año</strong><small>Todas tus fechas en un vistazo</small></span></button>
@@ -1089,6 +1117,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="fin-caja"><h4 class="sub-hoja">Gastos por categoría</h4><div class="fin-dona-wrap"><div class="fin-grafica-dona" id="fin-dona"></div><ul class="fin-leyenda" id="fin-leyenda"></ul></div></div>
           <div class="fin-caja"><h4 class="sub-hoja">Presupuesto del mes</h4><div id="fin-pres-resumen"></div></div>
         </div>
+        <div class="fin-dos">
+          <div class="fin-caja"><h4 class="sub-hoja">Gastos fijos del mes</h4><div id="fin-fijos-panel"></div></div>
+          <div class="fin-caja"><h4 class="sub-hoja">Mis deudas</h4><div id="fin-deudas-panel"></div></div>
+        </div>
         <div class="fin-caja fin-rosina"><h4 class="sub-hoja">🐑 Rosina lee tus números</h4><ul class="fin-insights" id="fin-insights"></ul></div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota cada gasto el mismo día, aunque sea pequeño. Registra en <em>Mis movimientos</em> y aquí verás todo ordenado solito.</p>
       </article>
@@ -1136,8 +1168,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h4 class="sub-hoja">Presupuesto mensual por categoría</h4>
         <div class="fin-pres" id="fin-pres"></div>
         <h4 class="sub-hoja">Mis metas de ahorro</h4>
+        <p class="fin-aho-mes" id="fin-aho-mes"></p>
         <div class="fin-metas" id="fin-metas"></div>
+        <h4 class="sub-hoja">Planes del año</h4>
+        <div class="fin-planes" id="fin-planes"></div>
+        <p class="fin-planes-info" id="fin-planes-info"></p>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> empieza con un presupuesto sencillo y ajústalo cada mes. Una meta pequeña que cumples vale más que una grande que se olvida.</p>
+      </article>
+      <article class="hoja-agenda" id="fin-fijos">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-18-ovillo-abrazo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Gastos fijos y deudas</h3><p>Lo que pagas cada mes y lo que todavía debes. Los gastos fijos se anotan solos.</p></div>
+        </header>
+        <div class="ff-resumen" id="ff-resumen"></div>
+        <h4 class="sub-hoja">Pagos que se repiten cada mes</h4>
+        <form class="fin-form no-imprimir" id="ff-form" autocomplete="off">
+          <div class="linea"><label for="ff-n">¿Qué pagas?</label><input id="ff-n" maxlength="60" placeholder="Arriendo, internet, Netflix…"></div>
+          <div class="linea"><label for="ff-v">Valor ($)</label><input id="ff-v" inputmode="numeric" placeholder="0"></div>
+          <div class="linea"><label for="ff-dia">Día del mes</label><input id="ff-dia" type="number" min="1" max="31" placeholder="1 a 31"></div>
+          <div class="linea"><label for="ff-tipo">Tipo</label><select id="ff-tipo"><option value="g">Gasto fijo</option><option value="s">Suscripción</option><option value="a">Ahorro mensual</option></select></div>
+          <div class="linea"><label for="ff-c">Categoría</label><select id="ff-c"></select></div>
+          <div class="linea"><label for="ff-m">Medio de pago</label><select id="ff-m"></select></div>
+          <div class="linea fin-form-btn"><button type="button" class="enlace-copia" id="ff-cancelar" hidden>Cancelar</button><button type="submit" class="boton-secundario" id="ff-guardar">Agregar pago fijo</button></div>
+        </form>
+        <small class="ff-msg no-imprimir" id="ff-msg" role="status"></small>
+        <ul class="ff-lista" id="ff-lista"></ul>
+        <h4 class="sub-hoja">Mis deudas y créditos</h4>
+        <form class="fin-form no-imprimir" id="fd-form" autocomplete="off">
+          <div class="linea"><label for="fd-n">¿Qué debes?</label><input id="fd-n" maxlength="60" placeholder="Préstamo, tarjeta, moto…"></div>
+          <div class="linea"><label for="fd-cuota">Valor de la cuota ($)</label><input id="fd-cuota" inputmode="numeric" placeholder="0"></div>
+          <div class="linea"><label for="fd-cuotas">Cuotas en total</label><input id="fd-cuotas" type="number" min="1" max="360" placeholder="12"></div>
+          <div class="linea"><label for="fd-pagadas">Cuotas ya pagadas</label><input id="fd-pagadas" type="number" min="0" max="360" placeholder="0"></div>
+          <div class="linea"><label for="fd-dia">Día de pago</label><input id="fd-dia" type="number" min="1" max="31" placeholder="1 a 31"></div>
+          <div class="linea fin-form-btn"><button type="button" class="enlace-copia" id="fd-cancelar" hidden>Cancelar</button><button type="submit" class="boton-secundario" id="fd-guardar">Agregar deuda</button></div>
+        </form>
+        <small class="ff-msg no-imprimir" id="fd-msg" role="status"></small>
+        <div class="ff-deudas" id="fd-lista"></div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> un pago fijo se anota solo en <em>Mis movimientos</em> cada mes, desde el día que elijas. Si borras uno de esos movimientos, ese mes no se vuelve a anotar. Las cuotas de una deuda las anotas tú con el botón «Pagué la cuota», así no se anota algo que no pagaste.</p>
       </article>
       <article class="hoja-agenda" id="tablero-agenda">
         <header>
@@ -2321,7 +2388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
   /* ---------- Finanzas: panel, movimientos, presupuesto y metas (se guardan en tu dispositivo; con membresía, también en la nube) ---------- */
   (function() {
-    var CAT_G = ['Vivienda', 'Mercado', 'Transporte', 'Salud', 'Materiales (lanas)', 'Servicios', 'Educación', 'Ropa', 'Ocio', 'Otros'];
+    var CAT_G = ['Vivienda', 'Mercado', 'Transporte', 'Salud', 'Materiales (lanas)', 'Servicios', 'Educación', 'Ropa', 'Ocio', 'Deudas', 'Otros'];
     var CAT_I = ['Ventas', 'Talleres', 'Sueldo', 'Otros ingresos'];
     var CAT_A = ['Ahorro', 'Inversión', 'Fondo de emergencia'];
     var CATS = { g: CAT_G, i: CAT_I, a: CAT_A };
@@ -2329,11 +2396,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var NOMBRE_T = { g: 'Gasto', i: 'Ingreso', a: 'Ahorro / inversión' };
     /* Colores validados (daltonismo, contraste); cada categoría conserva siempre el suyo */
     var C_ING = '#2a78d6', C_GAS = '#eb6834', C_AHO = '#4a3aa7';
-    var CATCOL = { 'Vivienda': '#2a78d6', 'Mercado': '#eb6834', 'Transporte': '#1baf7a', 'Salud': '#eda100', 'Materiales (lanas)': '#e87ba4', 'Servicios': '#008300', 'Educación': '#4a3aa7', 'Ocio': '#e34948', 'Ropa': '#7c7b76', 'Otros': '#b9b8b3' };
+    var CATCOL = { 'Vivienda': '#2a78d6', 'Mercado': '#eb6834', 'Transporte': '#1baf7a', 'Salud': '#eda100', 'Materiales (lanas)': '#e87ba4', 'Servicios': '#008300', 'Educación': '#4a3aa7', 'Ocio': '#e34948', 'Ropa': '#7c7b76', 'Deudas': '#3d3c39', 'Otros': '#b9b8b3' };
     var colorCat = function(c) { return CATCOL[c] || '#b9b8b3'; };
     var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     var hoy = new Date(), mesSel = { y: hoy.getFullYear(), m: hoy.getMonth() + 1 }, rango = 6, editId = null;
-    function fin() { datos._fin = datos._fin || {}; var f = datos._fin; f.movs = f.movs || []; f.pres = f.pres || {}; f.metas = f.metas || []; while (f.metas.length < 4) f.metas.push({ n: '', meta: '', ahorrado: '' }); return f; }
+    function fin() { datos._fin = datos._fin || {}; var f = datos._fin; f.movs = f.movs || []; f.pres = f.pres || {}; f.metas = f.metas || []; while (f.metas.length < 4) f.metas.push({ n: '', meta: '', ahorrado: '', fecha: '' }); f.fijos = f.fijos || []; f.deudas = f.deudas || []; f.planes = f.planes || []; while (f.planes.length < 6) f.planes.push({ n: '', mes: '', costo: '', listo: false }); return f; }
     function guardarFin() { guardarDatos(); }
     function plata(n) { n = Math.round(n); return (n < 0 ? '−$ ' : '$ ') + Math.abs(n).toLocaleString('es-CO'); }
     function corto(n) { n = Math.round(n); if (n >= 1e6) return '$' + (n / 1e6).toLocaleString('es-CO', { maximumFractionDigits: 1 }) + ' M'; if (n >= 1e3) return '$' + Math.round(n / 1e3) + ' mil'; return '$' + n; }
@@ -2353,7 +2420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       ['g', 'Vivienda', /arriendo|alquiler|hipoteca|administracion/], ['g', 'Mercado', /mercado|super|comida|almuerzo|restaurante|desayuno|cena|plaza|tienda|panaderia/],
       ['g', 'Transporte', /bus|gasolina|taxi|uber|pasaje|moto|peaje|parqueadero|transporte/], ['g', 'Salud', /medic|farmacia|droga|doctor|eps|dentista|salud|cita/],
       ['g', 'Materiales (lanas)', /lana|hilo|aguja|relleno|ojos|material|bolsa|empaque|gancho|ovillo|fieltro/], ['g', 'Servicios', /luz|agua|internet|celular|gas|datos|plan|energia|telefono/],
-      ['g', 'Educación', /curso|taller|colegio|libro|clase|universidad/], ['g', 'Ropa', /ropa|zapato|vestido|camisa|pantalon/], ['g', 'Ocio', /cine|paseo|salida|helado|regalo|fiesta|viaje/],
+      ['g', 'Educación', /curso|taller|colegio|libro|clase|universidad/], ['g', 'Ropa', /ropa|zapato|vestido|camisa|pantalon/], ['g', 'Ocio', /cine|paseo|salida|helado|regalo|fiesta|viaje/], ['g', 'Deudas', /deuda|cuota|credito|prestamo|abono a/],
       ['i', 'Ventas', /venta|vendi|pedido|amigurumi|encargo/], ['i', 'Talleres', /taller|clase/], ['i', 'Sueldo', /sueldo|salario|nomina|quincena/]
     ];
     function interpretar(texto) {
@@ -2445,7 +2512,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         '<div class="fin-tarj sal' + (sal < 0 ? ' neg' : '') + '"><span>Saldo del mes</span><strong>' + plata(sal) + '</strong><small>' + (aho ? 'Te quedan ' + plata(sal - aho) + ' tras ahorrar' : (ing ? 'Ahorro posible: ' + Math.max(0, Math.round(sal / ing * 100)) + ' % de lo que entró' : '&nbsp;')) + '</small></div>' +
         '<div class="fin-tarj aho"><span>Ahorrado e invertido</span><strong>' + plata(aho) + '</strong>' + (ing && aho ? '<small>' + Math.round(aho / ing * 100) + ' % de tus ingresos</small>' : delta(aho, ahoA, nomAnt, false)) + '</div>';
       pintarEvol();
-      var por = porCategoria(l); pintarDona(por, gas);
+      var por = porCategoria(l); pintarDona(por, gas); pintarFijosPanel(ing);
       /* presupuesto y alertas */
       var pr = fin().pres, h = '', alertas = [];
       CAT_G.forEach(function(c) {
@@ -2469,6 +2536,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         else if (ing > 0 && !aho) ins.push(['🐷', 'Este mes no has apartado para ahorrar. Anota «ahorré 50 mil» cuando lo hagas.']);
         alertas.forEach(function(a) { ins.push(a); });
       }
+      fijosInsights(ing, ins);
       el('fin-insights').innerHTML = ins.map(function(i) { return '<li><span aria-hidden="true">' + i[0] + '</span><span>' + i[1] + '</span></li>'; }).join('');
     }
 
@@ -2503,7 +2571,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var tq = document.createElement('td'); tq.className = 'no-imprimir fin-acc';
         var be = document.createElement('button'); be.type = 'button'; be.className = 'quitar'; be.setAttribute('aria-label', 'Editar movimiento'); be.textContent = '✏️'; be.addEventListener('click', function() { editar(x); });
         var b = document.createElement('button'); b.type = 'button'; b.className = 'quitar'; b.setAttribute('aria-label', 'Borrar movimiento'); b.textContent = '🗑️';
-        b.addEventListener('click', function() { if (!confirm('¿Borrar este movimiento?')) return; var f = fin(); f.movs = f.movs.filter(function(y) { return y.id !== x.id; }); guardarFin(); if (editId === x.id) cancelarEdicion(); pintar(); });
+        b.addEventListener('click', function() { if (!confirm('¿Borrar este movimiento?')) return; var f = fin(); f.movs = f.movs.filter(function(y) { return y.id !== x.id; });
+          if (x.fijo) f.fijos.forEach(function(q) { if (q.id === x.fijo) { q.saltados = q.saltados || []; q.saltados.push(x.f.slice(0, 7)); } });
+          if (x.deuda) f.deudas.forEach(function(q) { if (q.id === x.deuda) q.pagadas = Math.max(0, num(q.pagadas) - 1); });
+          guardarFin(); if (editId === x.id) cancelarEdicion(); pintar(); });
         tq.appendChild(be); tq.appendChild(b); tr.appendChild(tq); tb.appendChild(tr);
       });
       el('fin-vacio').hidden = !!l.length; el('fin-tabla').hidden = !l.length;
@@ -2525,7 +2596,161 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       a.download = 'movimientos-agenda-rosina-' + hoy.getFullYear() + '-' + dosd(hoy.getMonth() + 1) + '-' + dosd(hoy.getDate()) + '.csv'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 2000);
     }
 
+    /* --- gastos fijos y deudas --- */
+    function uid() { return Date.now() + '' + Math.floor(Math.random() * 100000); }
+    var editFijo = null, editDeuda = null;
+    function diasMes(y, m) { return new Date(y, m, 0).getDate(); }
+    function fechaCorta(iso) { var p = iso.split('-'); return p[2] + '/' + p[1]; }
+    function movDeFijo(fx, y, m) { var k = clave(y, m); return fin().movs.filter(function(q) { return q.fijo === fx.id && q.f.slice(0, 7) === k; })[0]; }
+    function movDeDeuda(dx, y, m) { var k = clave(y, m); return fin().movs.filter(function(q) { return q.deuda === dx.id && q.f.slice(0, 7) === k; })[0]; }
+    /* Cada pago fijo activo se anota solo, una vez por mes, desde el mes en que se creó y a partir de su día */
+    function aplicarFijos() {
+      var f = fin(), ahora = new Date(), cy = ahora.getFullYear(), cm = ahora.getMonth() + 1, creado = false;
+      f.fijos.forEach(function(x) {
+        if (!x.activo) return;
+        var d = (x.desde || clave(cy, cm)).split('-'), y = +d[0], m = +d[1];
+        if ((cy - y) * 12 + (cm - m) > 36) { y = cy; m = cm - 36; while (m < 1) { m += 12; y--; } }
+        while (y < cy || (y === cy && m <= cm)) {
+          var dia = Math.min(num(x.dia) || 1, diasMes(y, m)), mes = clave(y, m);
+          if (!(y === cy && m === cm && dia > ahora.getDate()) && (x.saltados || []).indexOf(mes) < 0 && !movDeFijo(x, y, m)) {
+            f.movs.push({ id: uid(), f: mes + '-' + dosd(dia), t: x.t, c: x.c, d: x.n + ' (pago fijo)', v: num(x.v), m: x.m || '', fijo: x.id }); creado = true;
+          }
+          m++; if (m > 12) { m = 1; y++; }
+        }
+      });
+      if (creado) guardarFin();
+    }
+    function sumaFijos(t) { return fin().fijos.filter(function(x) { return x.activo && x.t === t; }).reduce(function(a, x) { return a + num(x.v); }, 0); }
+    function saldoDeuda(d) { return Math.max(0, (num(d.cuotas) - num(d.pagadas)) * num(d.cuota)); }
+    function ingresoPromedio() {
+      var y = hoy.getFullYear(), m = hoy.getMonth() + 1, tot = 0, n = 0;
+      for (var i = 0; i < 3; i++) { var v = sumar(movsDe(y, m), 'i'); if (v > 0) { tot += v; n++; } m--; if (m < 1) { m = 12; y--; } }
+      return n ? tot / n : 0;
+    }
+    function fijosInsights(ing, ins) {
+      var f = fin(), tf = sumaFijos('g'), base = ing || ingresoPromedio();
+      if (tf > 0 && base > 0) { var pc = Math.round(tf / base * 100); ins.push([pc > 60 ? '⚠️' : '🔁', 'Tus gastos fijos suman <b>' + plata(tf) + '</b> al mes, el ' + pc + ' % de lo que te entra' + (pc > 60 ? '. Es bastante: revisa si alguno se puede bajar.' : '.')]); }
+      var ahora = new Date(), cy = ahora.getFullYear(), cm = ahora.getMonth() + 1, hoyD = ahora.getDate();
+      if (mesSel.y !== cy || mesSel.m !== cm) return;
+      var prox = [];
+      f.fijos.forEach(function(x) { if (x.activo && !movDeFijo(x, cy, cm) && num(x.dia) >= hoyD && num(x.dia) <= hoyD + 5) prox.push(esc(x.n) + ' (día ' + x.dia + ')'); });
+      f.deudas.forEach(function(d) { if (num(d.pagadas) < num(d.cuotas) && !movDeDeuda(d, cy, cm) && num(d.dia) >= hoyD && num(d.dia) <= hoyD + 5) prox.push('cuota de ' + esc(d.n) + ' (día ' + d.dia + ')'); });
+      if (prox.length) ins.push(['📅', 'En los próximos días toca pagar: <b>' + prox.join(', ') + '</b>.']);
+    }
+    function pintarFijosPanel() {
+      var f = fin(), fx = f.fijos.filter(function(x) { return x.activo; }), cont = el('fin-fijos-panel'), ing = sumar(movsDe(mesSel.y, mesSel.m), 'i');
+      var vacio = function(txt) { return '<p class="fin-vacio">' + txt + '<br><button type="button" class="boton-secundario boton-chico" data-ir-hoja="fin-fijos">Ir a «Gastos fijos y deudas»</button></p>'; };
+      if (!fx.length) cont.innerHTML = vacio('Todavía no tienes pagos fijos. Agrégalos y se anotan solos cada mes.');
+      else {
+        var h = '', tot = 0;
+        fx.forEach(function(x) { var mv = movDeFijo(x, mesSel.y, mesSel.m); if (x.t === 'g') tot += num(x.v); h += '<div class="ff-fila"><span>' + esc(x.n) + '</span><span class="ff-est">' + (mv ? '✓ ' + fechaCorta(mv.f) : 'día ' + x.dia) + '</span><b>' + plata(num(x.v)) + '</b></div>'; });
+        cont.innerHTML = h + '<div class="ff-total">Gastos fijos: <b>' + plata(tot) + '</b>' + (ing && tot ? ' · ' + Math.round(tot / ing * 100) + ' % de tus ingresos del mes' : '') + '</div>';
+      }
+      var dc = el('fin-deudas-panel');
+      if (!f.deudas.length) dc.innerHTML = vacio('No tienes deudas anotadas. Si tienes cuotas, agrégalas para ver cuánto falta.');
+      else {
+        var hd = '', saldo = 0;
+        f.deudas.forEach(function(d) { var sd = saldoDeuda(d), pc = num(d.cuotas) ? Math.min(100, num(d.pagadas) / num(d.cuotas) * 100) : 0; saldo += sd; hd += '<div class="ff-deuda-mini"><div class="ff-fila"><span>' + esc(d.n) + '</span><b>' + (sd ? plata(sd) : '¡Pagada!') + '</b></div><div class="fin-progreso"><i style="width:' + pc + '%"></i></div><small>' + num(d.pagadas) + ' de ' + num(d.cuotas) + ' cuotas' + (sd ? ' · faltan ' + (num(d.cuotas) - num(d.pagadas)) : '') + '</small></div>'; });
+        dc.innerHTML = hd + '<div class="ff-total">Te falta pagar: <b>' + plata(saldo) + '</b></div>';
+      }
+    }
+    function tarjetaFF(t, v, sub, cls) { return '<div class="fin-tarj ' + cls + '"><span>' + t + '</span><strong>' + v + '</strong><small>' + sub + '</small></div>'; }
+    function botonFF(txt, acc, id, etiqueta) { var b = document.createElement('button'); b.type = 'button'; b.className = 'quitar'; b.textContent = txt; b.setAttribute('aria-label', etiqueta); b.dataset.acc = acc; b.dataset.id = id; return b; }
+    function pintarFijos() {
+      var f = fin(), ahora = new Date(), cy = ahora.getFullYear(), cm = ahora.getMonth() + 1, base = ingresoPromedio();
+      var tf = sumaFijos('g'), ta = sumaFijos('a'), saldo = f.deudas.reduce(function(a, d) { return a + saldoDeuda(d); }, 0);
+      var cuotasMes = f.deudas.filter(function(d) { return num(d.pagadas) < num(d.cuotas); }).reduce(function(a, d) { return a + num(d.cuota); }, 0);
+      el('ff-resumen').innerHTML = tarjetaFF('Gastos fijos al mes', plata(tf), (function(n) { return n + (n === 1 ? ' pago activo' : ' pagos activos'); })(f.fijos.filter(function(x) { return x.activo && x.t === 'g'; }).length), 'gas') +
+        tarjetaFF('Ahorro programado', plata(ta), ta ? (base ? Math.round(ta / base * 100) + ' % de tus ingresos' : 'cada mes') : 'Nada programado', 'aho') +
+        tarjetaFF('Peso de los fijos', base ? Math.round(tf / base * 100) + ' %' : '—', base ? 'de tu ingreso promedio (3 meses)' : 'Anota ingresos para verlo', 'sal') +
+        tarjetaFF('Te falta pagar', plata(saldo), cuotasMes ? 'Cuotas al mes: ' + plata(cuotasMes) : 'Sin deudas', 'ing');
+      var ul = el('ff-lista'); ul.innerHTML = '';
+      if (!f.fijos.length) ul.innerHTML = '<li class="fin-vacio">Aún no tienes pagos fijos. Agrega el arriendo, los servicios o una suscripción y se anotarán solos.</li>';
+      f.fijos.forEach(function(x) {
+        var li = document.createElement('li'); li.className = 'ff-item' + (x.activo ? '' : ' pausa');
+        var mv = movDeFijo(x, cy, cm), est = !x.activo ? 'En pausa' : (mv ? '✓ Anotado el ' + fechaCorta(mv.f) : (num(x.dia) > ahora.getDate() ? 'Toca el día ' + x.dia : 'Este mes no se anotó'));
+        var info = document.createElement('div'); info.className = 'ff-info';
+        var n = document.createElement('strong'); n.textContent = x.n; info.appendChild(n);
+        var sm = document.createElement('small'); sm.textContent = (x.t === 'a' ? 'Ahorro mensual' : x.s ? 'Suscripción' : 'Gasto fijo') + ' · ' + x.c + ' · día ' + x.dia + ' de cada mes · ' + est; info.appendChild(sm);
+        var v = document.createElement('b'); v.className = 'ff-valor ' + (x.t === 'a' ? 'aho' : 'gas'); v.textContent = plata(num(x.v));
+        var ac = document.createElement('div'); ac.className = 'ff-acc no-imprimir';
+        ac.appendChild(botonFF(x.activo ? '⏸️' : '▶️', 'pausar', x.id, x.activo ? 'Pausar' : 'Reactivar')); ac.appendChild(botonFF('✏️', 'editar', x.id, 'Editar')); ac.appendChild(botonFF('🗑️', 'borrar', x.id, 'Borrar'));
+        li.appendChild(info); li.appendChild(v); li.appendChild(ac); ul.appendChild(li);
+      });
+      var dl = el('fd-lista'); dl.innerHTML = '';
+      if (!f.deudas.length) dl.innerHTML = '<p class="fin-vacio">No tienes deudas anotadas.</p>';
+      f.deudas.forEach(function(d) {
+        var card = document.createElement('div'), sd = saldoDeuda(d), pagada = num(d.pagadas) >= num(d.cuotas), pc = num(d.cuotas) ? Math.min(100, num(d.pagadas) / num(d.cuotas) * 100) : 0;
+        card.className = 'ff-deuda';
+        var cab = document.createElement('div'); cab.className = 'ff-deuda-cab';
+        var n = document.createElement('strong'); n.textContent = d.n; cab.appendChild(n);
+        var vs = document.createElement('b'); vs.textContent = pagada ? '¡Pagada! 🎉' : 'Falta ' + plata(sd); cab.appendChild(vs);
+        card.appendChild(cab);
+        card.insertAdjacentHTML('beforeend', '<div class="fin-progreso"><i style="width:' + pc + '%"></i></div>');
+        var sm = document.createElement('small'); sm.textContent = 'Cuota ' + plata(num(d.cuota)) + (d.dia ? ' · día ' + d.dia : '') + ' · ' + num(d.pagadas) + ' de ' + num(d.cuotas) + ' cuotas pagadas' + (movDeDeuda(d, cy, cm) ? ' · ✓ ya anotaste la de este mes' : ''); card.appendChild(sm);
+        var ac = document.createElement('div'); ac.className = 'ff-acc no-imprimir';
+        if (!pagada) { var bp = document.createElement('button'); bp.type = 'button'; bp.className = 'boton-secundario boton-chico'; bp.textContent = 'Pagué la cuota'; bp.dataset.acc = 'pagar'; bp.dataset.id = d.id; ac.appendChild(bp); }
+        ac.appendChild(botonFF('✏️', 'editar', d.id, 'Editar')); ac.appendChild(botonFF('🗑️', 'borrar', d.id, 'Borrar')); card.appendChild(ac); dl.appendChild(card);
+      });
+    }
+    function opcionesFijo(sel) { var t = el('ff-tipo').value; el('ff-c').innerHTML = (t === 'a' ? CAT_A : CAT_G).map(function(c) { return '<option>' + c + '</option>'; }).join(''); if (sel) el('ff-c').value = sel; }
+    function cancelarFijo() { editFijo = null; el('ff-n').value = ''; el('ff-v').value = ''; el('ff-dia').value = ''; el('ff-tipo').value = 'g'; opcionesFijo(); el('ff-guardar').textContent = 'Agregar pago fijo'; el('ff-cancelar').hidden = true; }
+    function cancelarDeuda() { editDeuda = null; ['fd-n', 'fd-cuota', 'fd-cuotas', 'fd-pagadas', 'fd-dia'].forEach(function(i) { el(i).value = ''; }); el('fd-guardar').textContent = 'Agregar deuda'; el('fd-cancelar').hidden = true; }
+    el('ff-tipo').addEventListener('change', function() { opcionesFijo(); });
+    el('ff-m').innerHTML = '<option value="">—</option>' + MEDIOS.map(function(c) { return '<option>' + c + '</option>'; }).join(''); opcionesFijo();
+    el('ff-form').addEventListener('submit', function(e) {
+      e.preventDefault(); var n = el('ff-n').value.trim(), v = num(el('ff-v').value), dia = Math.round(num(el('ff-dia').value)), msg = el('ff-msg');
+      if (!n || !v || dia < 1 || dia > 31) { msg.textContent = 'Escribe qué pagas, el valor y el día del mes (1 a 31).'; return; }
+      var tipo = el('ff-tipo').value, t = tipo === 'a' ? 'a' : 'g', f = fin(), x;
+      if (editFijo) { x = f.fijos.filter(function(q) { return q.id === editFijo; })[0]; } else { x = { id: uid(), desde: clave(hoy.getFullYear(), hoy.getMonth() + 1), activo: true, saltados: [] }; f.fijos.push(x); }
+      if (!x) return; x.n = n; x.v = v; x.dia = dia; x.t = t; x.s = tipo === 's'; x.c = el('ff-c').value; x.m = el('ff-m').value;
+      var antes = f.movs.length; aplicarFijos(); guardarFin();
+      msg.textContent = editFijo ? '¡Cambios guardados! Valen desde el próximo mes.' : '¡Listo! Se anotará el día ' + dia + ' de cada mes' + (f.movs.length > antes ? ' (este mes ya quedó en Mis movimientos).' : '.');
+      cancelarFijo(); pintar();
+    });
+    el('ff-cancelar').addEventListener('click', function() { cancelarFijo(); el('ff-msg').textContent = ''; });
+    el('ff-lista').addEventListener('click', function(e) {
+      var b = e.target.closest('[data-acc]'); if (!b) return; var f = fin(), x = f.fijos.filter(function(q) { return q.id === b.dataset.id; })[0]; if (!x) return;
+      if (b.dataset.acc === 'pausar') { x.activo = !x.activo; if (x.activo) x.desde = clave(hoy.getFullYear(), hoy.getMonth() + 1); guardarFin(); pintar(); }
+      else if (b.dataset.acc === 'borrar') { if (!confirm('¿Borrar este pago fijo? Lo que ya se anotó en Mis movimientos se queda.')) return; f.fijos = f.fijos.filter(function(q) { return q !== x; }); guardarFin(); if (editFijo === x.id) cancelarFijo(); pintar(); }
+      else if (b.dataset.acc === 'editar') { editFijo = x.id; el('ff-n').value = x.n; el('ff-v').value = plata(num(x.v)).replace('$ ', ''); el('ff-dia').value = x.dia; el('ff-tipo').value = x.t === 'a' ? 'a' : (x.s ? 's' : 'g'); opcionesFijo(x.c); el('ff-m').value = x.m || ''; el('ff-guardar').textContent = 'Guardar cambios'; el('ff-cancelar').hidden = false; el('ff-form').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    });
+    el('fd-form').addEventListener('submit', function(e) {
+      e.preventDefault(); var n = el('fd-n').value.trim(), cuota = num(el('fd-cuota').value), cuotas = Math.round(num(el('fd-cuotas').value)), pag = Math.round(num(el('fd-pagadas').value)), dia = Math.round(num(el('fd-dia').value)), msg = el('fd-msg');
+      if (!n || !cuota || cuotas < 1 || pag < 0 || pag > cuotas) { msg.textContent = 'Escribe qué debes, el valor de la cuota y cuántas cuotas son (las pagadas no pueden pasar del total).'; return; }
+      if (dia && (dia < 1 || dia > 31)) { msg.textContent = 'El día de pago va de 1 a 31.'; return; }
+      var f = fin(), d;
+      if (editDeuda) d = f.deudas.filter(function(q) { return q.id === editDeuda; })[0]; else { d = { id: uid() }; f.deudas.push(d); }
+      if (!d) return; d.n = n; d.cuota = cuota; d.cuotas = cuotas; d.pagadas = pag; d.dia = dia || '';
+      guardarFin(); msg.textContent = editDeuda ? '¡Cambios guardados!' : '¡Listo! Cuando pagues una cuota, toca «Pagué la cuota».'; cancelarDeuda(); pintar();
+    });
+    el('fd-cancelar').addEventListener('click', function() { cancelarDeuda(); el('fd-msg').textContent = ''; });
+    el('fd-lista').addEventListener('click', function(e) {
+      var b = e.target.closest('[data-acc]'); if (!b) return; var f = fin(), d = f.deudas.filter(function(q) { return q.id === b.dataset.id; })[0]; if (!d) return;
+      if (b.dataset.acc === 'pagar') {
+        var ahora = new Date(); if (movDeDeuda(d, ahora.getFullYear(), ahora.getMonth() + 1) && !confirm('Ya anotaste una cuota de «' + d.n + '» este mes. ¿Anotar otra?')) return;
+        d.pagadas = num(d.pagadas) + 1; f.movs.push({ id: uid(), f: ahora.getFullYear() + '-' + dosd(ahora.getMonth() + 1) + '-' + dosd(ahora.getDate()), t: 'g', c: 'Deudas', d: d.n + ' (cuota ' + d.pagadas + ' de ' + d.cuotas + ')', v: num(d.cuota), m: '', deuda: d.id });
+        guardarFin(); el('fd-msg').textContent = '¡Cuota anotada en Mis movimientos!'; pintar();
+      } else if (b.dataset.acc === 'borrar') { if (!confirm('¿Borrar esta deuda? Los pagos que ya anotaste se quedan.')) return; f.deudas = f.deudas.filter(function(q) { return q !== d; }); guardarFin(); if (editDeuda === d.id) cancelarDeuda(); pintar(); }
+      else if (b.dataset.acc === 'editar') { editDeuda = d.id; el('fd-n').value = d.n; el('fd-cuota').value = plata(num(d.cuota)).replace('$ ', ''); el('fd-cuotas').value = d.cuotas; el('fd-pagadas').value = d.pagadas; el('fd-dia').value = d.dia || ''; el('fd-guardar').textContent = 'Guardar cambios'; el('fd-cancelar').hidden = false; el('fd-form').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    });
+    ['fin-fijos-panel', 'fin-deudas-panel'].forEach(function(id) { el(id).addEventListener('click', function(e) { var b = e.target.closest('[data-ir-hoja]'); if (b) mostrarHoja(b.dataset.irHoja, true); }); });
+
     /* --- presupuesto y metas --- */
+    function infoMeta(me, ah, fecha) {
+      if (!me) return 'Escribe cuánto necesitas y para cuándo, y te digo cuánto apartar cada mes.';
+      if (ah >= me) return '¡Meta cumplida! 🎉';
+      var falta = me - ah;
+      if (!fecha) return 'Te faltan ' + plata(falta) + '. Pon una fecha y te digo cuánto apartar cada mes.';
+      var p = fecha.split('-'), f = new Date(+p[0], +p[1] - 1, +p[2]), h = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+      if (f <= h) return 'Te faltan ' + plata(falta) + ' y la fecha ya pasó. Elige una fecha nueva.';
+      var meses = Math.max(1, Math.round((f - h) / 2629800000));
+      return 'Te faltan ' + plata(falta) + '. Para llegar el ' + p[2] + '/' + p[1] + '/' + p[0] + ' aparta ' + plata(Math.ceil(falta / meses)) + ' al mes (' + meses + (meses === 1 ? ' mes' : ' meses') + ').';
+    }
+    function pintarPlanesInfo() {
+      var f = fin(), pend = f.planes.filter(function(x) { return !x.listo && num(x.costo); }), tot = pend.reduce(function(a, x) { return a + num(x.costo); }, 0), restan = Math.max(1, 12 - hoy.getMonth());
+      el('fin-planes-info').textContent = tot ? 'Planes por cumplir este año: ' + plata(tot) + '. Si los repartes en los ' + restan + (restan === 1 ? ' mes' : ' meses') + ' que quedan, son ' + plata(Math.ceil(tot / restan)) + ' al mes.' : '';
+    }
     function pintarPres() {
       var f = fin(), c = el('fin-pres'); if (!c.dataset.listo) {
         c.dataset.listo = '1';
@@ -2534,20 +2759,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var m = el('fin-metas');
         for (var k = 0; k < 4; k++) (function(k) {
           var d = document.createElement('div'); d.className = 'fin-meta';
-          d.innerHTML = '<input class="n" placeholder="Mi meta (ej.: máquina de coser)" aria-label="Nombre de la meta ' + (k + 1) + '"><input inputmode="numeric" placeholder="Meta $" aria-label="Valor de la meta ' + (k + 1) + '"><input inputmode="numeric" placeholder="Ahorrado $" aria-label="Ahorrado en la meta ' + (k + 1) + '"><div class="fin-progreso"><i style="width:0"></i></div>';
-          var ins = d.querySelectorAll('input'), barra = d.querySelector('.fin-progreso i');
-          function pintaBarra() { var me = num(ins[1].value), ah = num(ins[2].value); barra.style.width = (me ? Math.min(100, ah / me * 100) : 0) + '%'; d.querySelector('.fin-progreso').title = me ? Math.round(Math.min(100, ah / me * 100)) + ' %' : ''; }
-          ins[0].addEventListener('input', function() { fin().metas[k].n = ins[0].value; guardarFin(); });
+          d.innerHTML = '<input class="n" placeholder="Mi meta (ej.: máquina de coser)" aria-label="Nombre de la meta ' + (k + 1) + '"><input inputmode="numeric" placeholder="Meta $" aria-label="Valor de la meta ' + (k + 1) + '"><input inputmode="numeric" placeholder="Ahorrado $" aria-label="Ahorrado en la meta ' + (k + 1) + '"><input type="date" class="fm" aria-label="Fecha objetivo de la meta ' + (k + 1) + '"><div class="fin-progreso"><i style="width:0"></i></div><small class="fin-meta-info"></small>';
+          var ins = d.querySelectorAll('input'), barra = d.querySelector('.fin-progreso i'), info = d.querySelector('.fin-meta-info');
+          function pintaBarra() { var me = num(ins[1].value), ah = num(ins[2].value); barra.style.width = (me ? Math.min(100, ah / me * 100) : 0) + '%'; d.querySelector('.fin-progreso').title = me ? Math.round(Math.min(100, ah / me * 100)) + ' %' : ''; info.textContent = (ins[0].value || me) ? infoMeta(me, ah, ins[3].value) : ''; }
+          ins[0].addEventListener('input', function() { fin().metas[k].n = ins[0].value; guardarFin(); pintaBarra(); });
           ins[1].addEventListener('input', function() { fin().metas[k].meta = num(ins[1].value) || ''; guardarFin(); pintaBarra(); });
           ins[2].addEventListener('input', function() { fin().metas[k].ahorrado = num(ins[2].value) || ''; guardarFin(); pintaBarra(); });
+          ins[3].addEventListener('change', function() { fin().metas[k].fecha = ins[3].value; guardarFin(); pintaBarra(); });
           [ins[1], ins[2]].forEach(function(i) { i.addEventListener('blur', function() { i.value = num(i.value) ? plata(num(i.value)) : ''; }); });
           d._pintar = pintaBarra; d._ins = ins; m.appendChild(d);
         })(k);
+        var pl = el('fin-planes');
+        for (var q = 0; q < 6; q++) (function(q) {
+          var d = document.createElement('div'); d.className = 'fin-plan';
+          d.innerHTML = '<input class="n" placeholder="Mi plan (ej.: viaje a la costa)" aria-label="Plan ' + (q + 1) + '"><select aria-label="Mes del plan ' + (q + 1) + '"><option value="">Mes…</option>' + MESES.map(function(x, i) { return '<option value="' + (i + 1) + '">' + cap(x) + '</option>'; }).join('') + '</select><input inputmode="numeric" placeholder="Costo $" aria-label="Costo del plan ' + (q + 1) + '"><label class="fin-plan-ok"><input type="checkbox" aria-label="Plan ' + (q + 1) + ' cumplido"><span>Listo</span></label>';
+          var ins = d.querySelectorAll('input'), sel = d.querySelector('select');
+          ins[0].addEventListener('input', function() { fin().planes[q].n = ins[0].value; guardarFin(); });
+          sel.addEventListener('change', function() { fin().planes[q].mes = sel.value; guardarFin(); });
+          ins[1].addEventListener('input', function() { fin().planes[q].costo = num(ins[1].value) || ''; guardarFin(); pintarPlanesInfo(); });
+          ins[1].addEventListener('blur', function() { ins[1].value = num(ins[1].value) ? plata(num(ins[1].value)) : ''; });
+          ins[2].addEventListener('change', function() { fin().planes[q].listo = ins[2].checked; guardarFin(); pintarPlanesInfo(); });
+          d._ins = ins; d._sel = sel; pl.appendChild(d);
+        })(q);
       }
       c.querySelectorAll('input').forEach(function(inp) { var v = num(f.pres[inp.dataset.cat]); inp.value = v ? plata(v) : ''; });
-      el('fin-metas').querySelectorAll('.fin-meta').forEach(function(d, k) { var mt = f.metas[k]; d._ins[0].value = mt.n || ''; d._ins[1].value = num(mt.meta) ? plata(num(mt.meta)) : ''; d._ins[2].value = num(mt.ahorrado) ? plata(num(mt.ahorrado)) : ''; d._pintar(); });
+      el('fin-metas').querySelectorAll('.fin-meta').forEach(function(d, k) { var mt = f.metas[k]; d._ins[0].value = mt.n || ''; d._ins[1].value = num(mt.meta) ? plata(num(mt.meta)) : ''; d._ins[2].value = num(mt.ahorrado) ? plata(num(mt.ahorrado)) : ''; d._ins[3].value = mt.fecha || ''; d._pintar(); });
+      el('fin-planes').querySelectorAll('.fin-plan').forEach(function(d, q) { var pn = f.planes[q]; d._ins[0].value = pn.n || ''; d._sel.value = pn.mes || ''; d._ins[1].value = num(pn.costo) ? plata(num(pn.costo)) : ''; d._ins[2].checked = !!pn.listo; });
+      var ah = sumar(movsDe(mesSel.y, mesSel.m), 'a');
+      el('fin-aho-mes').textContent = ah ? 'Este mes ya apartaste ' + plata(ah) + ' en ahorro e inversión (lo anotas en «Mis movimientos»).' : 'Cuando anotes un ahorro en «Mis movimientos», lo verás aquí.';
+      pintarPlanesInfo();
     }
-    function pintar() { pintarMes(); pintarResumen(); opcionesFiltros(); pintarMovs(); }
+    function pintar() { aplicarFijos(); pintarMes(); pintarResumen(); opcionesFiltros(); pintarMovs(); pintarFijos(); }
 
     /* --- eventos --- */
     el('fin-t').addEventListener('change', function() { opcionesCat(); });
@@ -2579,7 +2821,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     el('fin-barras').addEventListener('click', function(e) { var t = e.target.closest('[data-mes]'); if (!t) return; var p = t.getAttribute('data-mes').split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); });
     var esperaRedibujo; window.addEventListener('resize', function() { clearTimeout(esperaRedibujo); esperaRedibujo = setTimeout(function() { if (el('fin-resumen').classList.contains('abierta')) pintarEvol(); }, 200); });
     window.lrFinRender = function(id) { if (id === 'fin-presupuesto') pintarPres(); pintar(); };
-    window.lrFinReset = function() { var c = el('fin-pres'); c.innerHTML = ''; delete c.dataset.listo; el('fin-metas').innerHTML = ''; cancelarEdicion(); pintar(); };
+    window.lrFinReset = function() { var c = el('fin-pres'); c.innerHTML = ''; delete c.dataset.listo; el('fin-metas').innerHTML = ''; el('fin-planes').innerHTML = ''; cancelarEdicion(); cancelarFijo(); cancelarDeuda(); pintar(); };
     pintar();
   })();
   /* ---------- Tablero: análisis e indicadores con lo que hay en todas las hojas ---------- */
@@ -2643,13 +2885,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var ml = (f.movs || []).filter(function(x) { return x.f.slice(0, 7) === key; });
       var ing = ml.filter(function(x) { return x.t === 'i'; }).reduce(function(a, x) { return a + x.v; }, 0), gas = ml.filter(function(x) { return x.t === 'g'; }).reduce(function(a, x) { return a + x.v; }, 0);
       var tope = Object.keys(f.pres || {}).reduce(function(a, c) { return a + num(f.pres[c]); }, 0);
+      var totFijos = (f.fijos || []).filter(function(x) { return x.activo && x.t === 'g'; }).reduce(function(a, x) { return a + num(x.v); }, 0);
+      var saldoD = (f.deudas || []).reduce(function(a, d) { return a + Math.max(0, (num(d.cuotas) - num(d.pagadas)) * num(d.cuota)); }, 0), cuotasP = (f.deudas || []).reduce(function(a, d) { return a + Math.max(0, num(d.cuotas) - num(d.pagadas)); }, 0);
       if (ml.length) {
         var porCat = {}; ml.filter(function(x) { return x.t === 'g'; }).forEach(function(x) { porCat[x.c] = (porCat[x.c] || 0) + x.v; });
         var mayor = Object.keys(porCat).sort(function(a, b) { return porCat[b] - porCat[a]; })[0];
         g += '<div class="tab-grupo" style="--c:' + COL.fin + '"><h4>Finanzas</h4><div class="tab-tarjetas">' +
           k(COL.fin, '⬆️', 'Ingresos', plata(ing), ml.length + ' movimientos') + k(COL.fin, '⬇️', 'Gastos', plata(gas), mayor ? 'Mayor: ' + esc(mayor) : '') +
           k(COL.fin, '⚖️', 'Saldo del mes', plata(ing - gas), ing ? 'Ahorro ' + Math.round((ing - gas) / ing * 100) + ' % de lo que entró' : '', { cls: ing - gas >= 0 ? 'bien' : 'mal' }) +
-          (tope ? k(COL.fin, '🎯', 'Presupuesto usado', Math.round(gas / tope * 100) + ' %', plata(gas) + ' de ' + plata(tope), { pct: gas / tope * 100, pasa: gas > tope }) : '') + '</div></div>';
+          (tope ? k(COL.fin, '🎯', 'Presupuesto usado', Math.round(gas / tope * 100) + ' %', plata(gas) + ' de ' + plata(tope), { pct: gas / tope * 100, pasa: gas > tope }) : '') +
+          (totFijos ? k(COL.fin, '🔁', 'Gastos fijos al mes', plata(totFijos), ing ? Math.round(totFijos / ing * 100) + ' % de lo que entró' : 'Pagos que se repiten') : '') +
+          (saldoD ? k(COL.fin, '💳', 'Deudas por pagar', plata(saldoD), cuotasP + (cuotasP === 1 ? ' cuota pendiente' : ' cuotas pendientes')) : '') + '</div></div>';
         ins.push(['🧾', 'Este mes entraron <b>' + plata(ing) + '</b> y salieron <b>' + plata(gas) + '</b>' + (mayor ? '; lo que más pesa es <b>' + esc(mayor) + '</b>' : '') + '.']);
         if (tope && gas > tope) ins.push(['⚠️', 'Ya superaste tu presupuesto mensual por <b>' + plata(gas - tope) + '</b>.']);
         else if (tope && gas > tope * 0.85) ins.push(['🟡', 'Llevas el ' + Math.round(gas / tope * 100) + ' % de tu presupuesto. ¡Cuidado con lo que queda del mes!']);
@@ -2914,7 +3160,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var PAGO = {
     'fin-resumen': 'Mira de un vistazo cuánto entra, cuánto sale y cuánto te queda cada mes, con gráficas y gastos por categoría.',
     'fin-movimientos': 'Anota lo que entra y sale, incluso escribiendo "gasté 50 mil en mercado", y filtra por mes y categoría.',
-    'fin-presupuesto': 'Pon un tope por categoría, crea metas de ahorro y mira tu avance.',
+    'fin-presupuesto': 'Pon un tope por categoría, crea metas con fecha, planes del año y mira cuánto apartar cada mes.',
+    'fin-fijos': 'Anota una vez tus pagos fijos y se registran solos cada mes. Lleva tus deudas con cuotas y mira cuánto te falta.',
     'tablero-agenda': 'Indicadores y análisis de todas tus hojas: ventas, gastos, materiales y proyectos.',
     'calendario-anual': 'Todas tus fechas del año en un solo vistazo, listas para llevar a Google Calendar.'
   };
