@@ -250,7 +250,7 @@ El documento completo lo tiene Sara. Resumen del análisis de viabilidad: casi t
 - [x] Confirmado por Sara el 6-oct-2026: **recoger en la tienda es gratis** (ya lo dicen la tienda y Mercería → Cómo comprar) y **los talleres por ahora los dicta Sara** (agregado a Academy → Talleres y a sus preguntas frecuentes).
 
 - Rincón de Rosina (`recursos-rosina.html`) con banner nuevo con logo:
-  - 26 stickers para WhatsApp, 14 temas del celular por estación (fondo de pantalla en 4 tamaños + íconos de apps).
+  - 36 stickers para WhatsApp, 14 temas del celular por estación (fondo de pantalla en 4 tamaños + íconos de apps).
   - Checklist del primer amigurumi.
   - Abreviaturas en 8 idiomas.
   - Calculadoras: aumentos, muestra explicada paso a paso, lana y contador.
