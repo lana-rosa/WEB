@@ -204,3 +204,27 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .franja-corta a.franja-chip { border-radius: 999px !important; font-weight: 700; }
 .franja-corta a.franja-merceria { color: #8E55D6; } .franja-corta a.franja-academy { color: #2A6FCB; } .franja-corta a.franja-rosina { color: var(--rosa-texto); }
 .franja-corta a.franja-tienda { color: #B0246C; }
+
+/* Inicio de la Tienda (8-oct-2026): proceso en 4 pasos, 6 historias visibles, ecosistema compacto */
+@media (min-width: 861px) { .ed-proceso.cuatro { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ed-continua { text-align: center; max-width: 54ch; margin: 28px auto 0; color: var(--tinta-suave); font-size: 1.02rem; }
+.ed-continua strong { color: var(--rosa-texto); font-family: var(--fuente-titulo); font-weight: 600; }
+#ed-historias { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 960px; }
+#ed-historias:not(.abiertas) .ed-historia:nth-child(-n+6) { display: block; }
+#ed-historias:not(.abiertas) .ed-historia:nth-child(n+7) { display: none; }
+@media (max-width: 700px) { #ed-historias { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ed-universo-lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 900px; margin: 0 auto; }
+.ed-universo-item { display: flex; flex-direction: column; gap: 2px; padding: 18px 20px; border-radius: 18px; background: var(--blanco); border: 1px solid var(--linea); text-decoration: none; color: var(--tinta); }
+.ed-universo-item:hover { border-color: var(--rosa-principal); }
+.ed-universo-item span { font-size: 1.5rem; line-height: 1.2; }
+.ed-universo-item strong { font-family: var(--fuente-titulo); font-weight: 600; font-size: 1.05rem; }
+.ed-universo-item small { color: var(--tinta-suave); font-size: 0.92rem; line-height: 1.4; }
+.ed-universo-rosina { display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 900px; margin: 22px auto 0; font-size: 0.95rem; }
+.ed-universo-rosina img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+@media (max-width: 700px) { .ed-universo-lista { grid-template-columns: 1fr; } }
+.ed-proceso-intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; margin-bottom: clamp(20px, 3vw, 32px); }
+.ed-proceso-intro img { width: 100%; height: auto; border-radius: 22px; display: block; }
+.ed-proceso-intro .ed-cabecera { text-align: left; margin: 0; }
+.ed-proceso-intro .ed-cabecera p { margin: 0; }
+.ed-proceso-intro .ed-cabecera h2 { margin: 0 0 12px; }
+@media (max-width: 860px) { .ed-proceso-intro { grid-template-columns: minmax(0, 1fr); } .ed-proceso-intro .ed-cabecera { text-align: center; } .ed-proceso-intro .ed-cabecera p { margin: 0 auto; } }
