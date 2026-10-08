@@ -702,6 +702,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .fin-grafica svg { display: block; width: 100%; height: auto; }
 .fin-eje { font: 600 11px 'Hanken Grotesk', sans-serif; fill: #6E6E73; } .fin-eje.sel { fill: #8E1457; font-weight: 800; }
 .fin-leg { flex-wrap: wrap; align-items: center; } .fin-leg span { display: inline-flex; align-items: center; gap: 4px; } .fin-leg i { margin-right: 0; flex: none; }
+.fin-caja-acc { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .fin-leg-nota { margin-left: auto; font-style: italic; }
 .fin-tabla-vista { margin-top: 8px; font-size: .88rem; } .fin-tabla-vista summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); }
 .fin-grafica-dona { width: 170px; flex: none; } .fin-grafica-dona svg { display: block; width: 100%; height: auto; }
@@ -753,6 +754,8 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .mm-plan small { font-size: 0.78rem; color: #6E6E73; }
 .mm-plan b { margin-top: 4px; font-size: 0.72rem; background: var(--rosa-principal); color: #fff; padding: 2px 8px; border-radius: 999px; }
 .modal-membresia .boton-primario { width: 100%; }
+.mm-nube { margin-top: 12px; padding-top: 10px; border-top: 1px dashed #E4D3DC; text-align: center; } .mm-nube small { display: block; margin-top: 4px; font-size: 0.78rem; color: #6E6E73; }
+.modal-membresia .nota-pie a { color: var(--rosa-texto); }
 .modal-membresia .nota-pie { display: block; margin-top: 10px; text-align: center; font-size: 0.78rem; color: #6E6E73; }
 @media print { .candado-pago, .membresia-tarjeta, .modal-membresia { display: none !important; } }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
@@ -883,7 +886,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
     </div>
-    <p class="intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo (se guardan en tu dispositivo) o imprímelas, llenas o en blanco, para escribir a mano.</p>
+    <p class="intro" id="agenda-intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo (se guardan en tu dispositivo) o imprímelas, llenas o en blanco, para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
@@ -990,7 +993,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
         </header>
         <div class="membresia-tarjeta no-imprimir" id="membresia-tarjeta" hidden>
-          <p><span id="mt-texto"></span><small class="mt-nube" id="mt-nube" role="status"></small></p>
+          <p><span id="mt-texto"></span><small class="mt-nube" id="mt-nube" role="status"></small><button type="button" class="enlace-copia" id="mt-nube-on" hidden>Activar la copia en la nube</button></p>
           <button type="button" class="boton-primario boton-chico" id="mt-boton" data-abrir-membresia>Ver planes</button>
         </div>
         <div class="indice-grupo" style="--c:#FFE08A"><h4>Mi tablero</h4><div class="atajos">
@@ -1261,7 +1264,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="fin-caja">
           <div class="fin-caja-cab"><h4 class="sub-hoja">Resumen del año</h4>
-            <div class="fin-seg no-imprimir" role="group" aria-label="Año"><button type="button" id="fa-anio-ant" aria-label="Año anterior">‹</button><button type="button" id="fa-anio-txt" aria-live="polite" disabled></button><button type="button" id="fa-anio-sig" aria-label="Año siguiente">›</button></div></div>
+            <div class="fin-caja-acc no-imprimir"><div class="fin-seg" role="group" aria-label="Año"><button type="button" id="fa-anio-ant" aria-label="Año anterior">‹</button><button type="button" id="fa-anio-txt" aria-live="polite" disabled></button><button type="button" id="fa-anio-sig" aria-label="Año siguiente">›</button></div><button type="button" class="boton-secundario boton-chico" id="fa-exportar">⬇ Excel (CSV)</button></div></div>
           <div class="fin-tarjetas" id="fa-anio-cards"></div>
           <div id="fa-anio-cats"></div>
           <ul class="fin-insights" id="fa-anio-ins"></ul>
@@ -2688,6 +2691,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el('fin-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     function cancelarEdicion() { editId = null; defNeg(); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-guardar').textContent = 'Guardar movimiento'; el('fin-cancelar').hidden = true; el('fin-rapido-msg').textContent = ''; }
+    function descargarCSV(nombre, filas) {
+      var celda = function(v) { v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
+      var csv = '﻿' + filas.map(function(f) { return f.map(celda).join(';'); }).join('\r\n');
+      var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); a.download = nombre; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 2000);
+    }
+    function exportarAnio() {
+      var filas = [['Mes', 'Ingresos', 'Gastos', 'Ahorro e inversión', 'Saldo', 'Ingresos del negocio', 'Gastos del negocio', 'Utilidad del negocio']], t = [0, 0, 0, 0, 0, 0, 0];
+      for (var m = 1; m <= 12; m++) {
+        var q = movsDe(anioA, m), n = q.filter(esNeg), v = [sumar(q, 'i'), sumar(q, 'g'), sumar(q, 'a'), sumar(q, 'i') - sumar(q, 'g'), sumar(n, 'i'), sumar(n, 'g'), sumar(n, 'i') - sumar(n, 'g')];
+        v.forEach(function(x, i) { t[i] += x; }); filas.push([cap(MESES[m - 1])].concat(v));
+      }
+      filas.push(['Total ' + anioA].concat(t)); descargarCSV('resumen-' + anioA + '-agenda-rosina.csv', filas);
+    }
     function exportar() {
       var celda = function(v) { v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
       var filas = [['Fecha', 'Tipo', 'Categoría', 'Descripción', 'Medio de pago', 'Del negocio', 'Valor']].concat(fin().movs.slice().sort(function(a, b) { return a.f < b.f ? -1 : 1; }).map(function(x) { return [x.f, NOMBRE_T[x.t] || x.t, x.c, x.d || '', x.m || '', esNeg(x) ? 'Sí' : 'No', x.v]; }));
@@ -2963,6 +2979,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (tot.i > 0) ins.push(['🐷', tot.a > 0 ? 'Ahorraste e invertiste <b>' + plata(tot.a) + '</b> este año.' : 'Este año no has anotado ahorro ni inversión. Puedes empezar con poquito cada mes.']);
       el('fa-anio-ins').innerHTML = ins.map(function(i) { return '<li><span aria-hidden="true">' + i[0] + '</span><span>' + i[1] + '</span></li>'; }).join('');
     }
+    el('fa-exportar').addEventListener('click', exportarAnio);
     el('fa-anio-ant').addEventListener('click', function() { anioA--; pintarAnalisis(); });
     el('fa-anio-sig').addEventListener('click', function() { anioA++; pintarAnalisis(); });
 
@@ -3424,7 +3441,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <button type="button" class="boton-primario" id="mm-pagar">Pagar con Wompi</button>
   <p class="cs-aviso" id="mm-aviso" role="status"></p>
-  <small class="nota-pie">Pago seguro con Wompi (tarjeta, PSE, Nequi y más). No hay cobro automático: te avisamos antes de que venza. Tus hojas gratis y tus datos siguen siendo tuyos.</small>
+  <small class="nota-pie">Pago seguro con Wompi (tarjeta, PSE, Nequi y más). No hay cobro automático: te avisamos antes de que venza. Tus hojas gratis y tus datos siguen siendo tuyos. <a href="/politicas.html#membresia" target="_blank" rel="noopener">Condiciones de la membresía</a> · <a href="/politicas.html#datos" target="_blank" rel="noopener">Datos personales</a></small>
+  <div class="mm-nube">
+    <button type="button" class="enlace-copia" id="mm-borrar-nube">☁️ Borrar mi copia en la nube</button>
+    <small id="mm-nube-msg" role="status"></small>
+  </div>
 </dialog>
 <script type="module" src="/js/cuenta.js"></script>
 <script type="module">
@@ -3449,6 +3470,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   };
   var estado = { activa: false };
   var sb = null;
+  (function () { var i = document.getElementById('agenda-intro'); if (i && i.textContent.indexOf('(se guardan en tu dispositivo)') >= 0) i.textContent = i.textContent.replace('(se guardan en tu dispositivo)', '(se guardan en tu dispositivo; con la membresía, también en la nube)'); })();
   var $ = function (id) { return document.getElementById(id); };
   function leerCache() { try { var c = JSON.parse(localStorage.getItem(CLAVE)); return c && Date.parse(c.vence) > Date.now() ? c : null; } catch (e) { return null; } }
   function fecha(iso) { return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }); }
@@ -3478,6 +3500,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var actual = document.querySelector('#menu-hojas-lista a.activa'); if (actual) $('menu-hojas-actual').textContent = actual.textContent;
     document.dispatchEvent(new CustomEvent('membresia:lista', { detail: window.lrMembresia }));
     if (act && sb) iniciarNube();
+    pintarNubeOff();
   }
   /* ---- Copia en la nube: solo con membresía activa. La agenda sigue guardándose primero en el dispositivo. ---- */
   var CL_BASE = 'lrNubeBase', CL_SUCIO = 'lrNubeSucio', CLAVE_AG = 'rosinaAgenda';
@@ -3509,7 +3532,10 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     if (usar) return aplicarNube(d.datos, d.actualizado);
     await subir(d.actualizado);
   }
+  function nubeApagada() { return lsGet('lrNubeOff') === '1'; }
+  function pintarNubeOff() { var b = $('mt-nube-on'); if (b) b.hidden = !(nubeApagada() && estado.activa); if (nubeApagada()) estadoNube('☁️ La copia en la nube está apagada en este dispositivo.'); }
   async function iniciarNube() {
+    if (nubeApagada()) { pintarNubeOff(); return; }
     if (nube.listo || !sb) return; nube.listo = true;
     try {
       var r = await sb.rpc('agenda_nube_leer'), d = r.data || {};
@@ -3522,12 +3548,12 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     } catch (e) { nube.listo = false; estadoNube('☁️ Sin conexión con la nube'); }
   }
   if (window.lrAgenda) window.lrAgenda.alGuardar = function () {
-    if (!estado.activa) return;
+    if (!estado.activa || nubeApagada()) return;
     lsSet(CL_SUCIO, '1');
     if (!nube.listo) return;
     clearTimeout(nube.t); nube.t = setTimeout(function () { subir(); }, 2500);
   };
-  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden' && nube.listo && lsGet(CL_SUCIO) === '1') { clearTimeout(nube.t); subir(); } });
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden' && nube.listo && !nubeApagada() && lsGet(CL_SUCIO) === '1') { clearTimeout(nube.t); subir(); } });
   async function consultar() {
     var c = leerCache(); if (c) estado = { activa: true, plan: c.plan, vence: c.vence };
     aplicar();
@@ -3553,6 +3579,26 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   document.addEventListener('click', function (e) { if (e.target.closest('[data-abrir-membresia]')) abrir(); });
   $('mm-cerrar').addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
   dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  /* Borrar la copia en la nube: siempre se puede, aunque la membresía haya vencido */
+  $('mm-borrar-nube').addEventListener('click', async function () {
+    var msg = $('mm-nube-msg');
+    if (!confirm('¿Borrar tu copia de la agenda en la nube? Tu agenda sigue en este dispositivo. La copia en la nube quedará apagada aquí hasta que la actives de nuevo, y si usas la agenda en otro dispositivo, apágala también allá.')) return;
+    msg.textContent = 'Borrando…';
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.rpc('agenda_nube_borrar'), ok = !r.error && r.data && r.data.ok;
+      if (!ok) {   // respaldo si la función de borrado aún no existe: se deja la copia vacía
+        var l = await sb.rpc('agenda_nube_leer'), d = l.data || {};
+        if (d.error === 'sin_membresia') { msg.textContent = 'Para borrarla escríbenos por WhatsApp y la borramos por ti.'; return; }
+        var g = await sb.rpc('agenda_nube_guardar', { p_datos: {}, p_base: d.actualizado || null });
+        ok = !g.error && g.data && g.data.ok;
+      }
+      if (!ok) { msg.textContent = 'No pudimos borrarla ahora. Inténtalo de nuevo o escríbenos.'; return; }
+      lsDel(CL_BASE); lsDel(CL_SUCIO); lsSet('lrNubeOff', '1'); nube.listo = false;
+      msg.textContent = 'Listo: tu copia en la nube se borró. Tu agenda sigue en este dispositivo.'; pintarNubeOff();
+    } catch (e) { msg.textContent = 'No pudimos conectar. Inténtalo de nuevo.'; }
+  });
+  $('mt-nube-on').addEventListener('click', function () { lsDel('lrNubeOff'); nube.listo = false; this.hidden = true; estadoNube('☁️ Activando la copia en la nube…'); iniciarNube(); });
   $('mm-pagar').addEventListener('click', async function () {
     var b = this, av = $('mm-aviso'), plan = (document.querySelector('input[name="mm-plan"]:checked') || {}).value || 'anual';
     b.disabled = true; av.textContent = 'Abriendo Wompi…';
