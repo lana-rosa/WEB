@@ -203,7 +203,7 @@ js = '''<div class="aviso-copiado" id="aviso-copiado" role="status"></div>
     var n0 = p.colores.length, filas0 = Math.ceil(n0 / (n0 <= 4 ? n0 : 3));
     var W = 1080, H = Math.max(1080, 380 + filas0 * 300 - 40 + 170 + 48 + 150), c = document.createElement('canvas'); c.width = W; c.height = H;
     var x = c.getContext('2d');
-    x.fillStyle = '#FAFAF7'; x.fillRect(0, 0, W, H);
+    x.fillStyle = '#FDFCFA'; x.fillRect(0, 0, W, H);
     x.fillStyle = '#FBE4EF'; x.beginPath(); x.arc(W - 90, 90, 220, 0, Math.PI * 2); x.fill();
     x.fillStyle = '#E74E96'; x.textAlign = 'center';
     x.font = '600 34px "Hanken Grotesk", sans-serif'; x.fillText('PALETA DE ROSINA', W / 2, 130);
