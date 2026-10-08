@@ -36,3 +36,6 @@
 - La analítica (Google Analytics) solo se activa si la persona la acepta; se puede cambiar o retirar desde «Configurar cookies» en el pie de página.
 - No se usan cookies de publicidad ni Meta Pixel (se retiró la mención de la política de cookies).
 - La decisión se guarda en el navegador de la persona (fecha y versión). Si la política cambia de forma importante, se sube la versión y el aviso vuelve a mostrarse.
+
+## D. Google Calendar (agregado 8-oct-2026)
+Texto sugerido para la política y requisitos de verificación con Google (incluida la frase *Limited Use*): ver `herramientas/google-calendar/verificacion-google.md`, sección 2.

@@ -1,6 +1,6 @@
 # Sincronización de la agenda de Rosina con Google Calendar
 
-Estado (8-oct-2026): **el código está publicado pero apagado**. La tarjeta "Google Calendar" de `agenda-rosina.html` solo aparece cuando la Edge Function `google-calendar` responde que está configurada (es decir, cuando existen los 4 secretos de abajo). Mientras tanto, la agenda sigue con los botones "Añadir a Google Calendar" y el archivo `.ics`, que no necesitan permisos.
+Estado (8-oct-2026): **ACTIVO y probado por Sara** (proyecto de Google Cloud `lana-rosa-web`, cliente OAuth "Agenda de Rosina", app en producción sin verificar: hasta 100 personas, con el aviso "Google no ha verificado esta app"). Pendiente: enviar la verificación a Google (ver paso 7) para quitar el aviso y el límite. Antes: el código estuvo publicado pero apagado. La tarjeta "Google Calendar" de `agenda-rosina.html` solo aparece cuando la Edge Function `google-calendar` responde que está configurada (es decir, cuando existen los 4 secretos de abajo). Mientras tanto, la agenda sigue con los botones "Añadir a Google Calendar" y el archivo `.ics`, que no necesitan permisos.
 
 ## Cómo funciona
 - La clienta (con sesión) toca **Conectar con Google Calendar** → la función la manda a Google → Google pide permiso `calendar.events` (crear y editar eventos; no lee otros eventos) → vuelve a la función, que guarda el permiso **cifrado** (AES-GCM) en `google_calendar_cuentas` y la regresa a la agenda.
@@ -15,7 +15,7 @@ Estado (8-oct-2026): **el código está publicado pero apagado**. La tarjeta "Go
 4. **Credenciales → Crear credenciales → ID de cliente de OAuth → Aplicación web.** En *URI de redireccionamiento autorizados* poner exactamente: `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/google-calendar`
 5. En Supabase → Edge Functions → Secrets guardar:
    - `GOOGLE_CLIENT_ID` y `GOOGLE_CLIENT_SECRET` (los del paso 4)
-   - `CALENDAR_TOKEN_KEY` = resultado de `openssl rand -base64 32`
+   - `CALENDAR_TOKEN_KEY` = un texto largo al azar (40 caracteres o más; no hace falta `openssl`)
    - `CALENDAR_STATE_SECRET` = un texto largo al azar
 6. Recargar la agenda: la tarjeta aparece sola.
 7. **Para abrirla a todo el público:** en la pantalla de consentimiento, *Publicar aplicación* y enviar la **verificación** a Google (el permiso `calendar.events` es "sensible": piden política de privacidad, dominio verificado en Search Console y un video corto mostrando cómo se usa; suele tardar de días a unas semanas). Antes de eso, la política de datos debe mencionar el uso de Google Calendar (ver `herramientas/borrador-politica-datos.md`).
