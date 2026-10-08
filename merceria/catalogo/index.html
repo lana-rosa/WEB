@@ -456,6 +456,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><div class="producto-card esqueleto" aria-hidden="true"><div class="sk-foto"></div><div class="sk-linea"></div><div class="sk-linea corta"></div></div><span class="solo-lectores">Cargando productos...</span>
       </div>
     </section>
+    <section class="categoria-seccion" id="patrones-merceria" hidden>
+      <h2>Patrones de tejido</h2>
+      <p style="color:var(--tinta-suave); margin:-4px 0 16px;">Patrones en PDF: pagas en línea y los descargas al instante desde tu cuenta. Son de uso personal.</p>
+      <div class="grid-productos" id="grid-patrones-merceria"></div>
+    </section>
     <section class="categoria-seccion" id="agujas-merceria" hidden>
       <h2>Agujas</h2>
     </section>
@@ -612,7 +617,8 @@ function crearTarjeta(item) {
   const nombreLimpio = [item.marca, item.color].filter(Boolean).join(' — ') || item.nombre;
   const peso = item.peso_gramos ? Number(item.peso_gramos) : null;
   const precioPresentacion = peso ? Math.round(item.precio_gramo * peso / 100) * 100 : Math.round(item.precio_gramo);
-  const agotado = Number(item.stock_actual) <= 0;
+  const digital = item.categoria === 'Patrones';
+  const agotado = !digital && Number(item.stock_actual) <= 0;
   const nombreAttr = nombreLimpio.replace(/"/g, '&quot;');
 
   const mensaje = 'Hola! Me interesa: ' + nombreLimpio + (peso ? ' (' + peso + 'g - ' + formatoCOP(precioPresentacion) + ')' : '');
@@ -622,6 +628,7 @@ function crearTarjeta(item) {
   articulo.className = 'producto-card' + (agotado ? ' producto-agotado' : '');
   articulo.dataset.nombre = nombreLimpio;
   articulo.dataset.precio = precioPresentacion;
+  if (digital) articulo.dataset.digital = '1';
   articulo.innerHTML =
     '<div class="producto-foto">' +
       '<img src="/img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + (item.id) + '" data-intento="0" onerror="manejarErrorFoto(this)">' +
@@ -631,7 +638,7 @@ function crearTarjeta(item) {
     '<div class="producto-info">' +
       '<h3>' + nombreLimpio + '</h3>' +
       '<p class="producto-precio">' + formatoCOP(precioPresentacion) + ' COP' + (peso ? ' <span class="nota-presentacion">/ madeja de ' + peso + ' g</span>' : '') + '</p>' +
-      '<p class="ficha-merceria">' + (item.material || '') + (item.material ? ' · ' : '') + '</p>' +
+      (digital ? '<p class="ficha-merceria">Patrón digital (PDF) · descarga inmediata</p>' : '<p class="ficha-merceria">' + (item.material || '') + (item.material ? ' · ' : '') + '</p>') +
       (agotado
         ? '<button type="button" class="boton-pedir" disabled style="opacity:0.5; cursor:not-allowed;">Agotado por ahora</button>'
         : '<button type="button" class="boton-agregar-carrito">🛒 Agregar al carrito</button>'
@@ -650,12 +657,21 @@ function crearTarjeta(item) {
 
     gridLanas.innerHTML = '';
     gridHilos.innerHTML = '';
-
+    const gridPatrones = document.getElementById('grid-patrones-merceria');
+    // Los patrones digitales (categoría "Patrones") se venden en línea aunque la mercería física aún no tenga existencias.
+    const patrones = (data || []).filter(function(item) { return item.categoria === 'Patrones'; });
+    data = (data || []).filter(function(item) { return item.categoria !== 'Patrones'; });
     // Mientras no haya productos con existencias, se muestran las categorías de materiales (con consulta por WhatsApp)
     // en lugar de un catálogo lleno de productos agotados.
     const disponibles = (data || []).filter(function(item) { return Number(item.stock_actual) > 0; });
     if (!disponibles.length) data = [];
     else { const materiales = document.getElementById('materiales-merceria'); if (materiales) materiales.hidden = true; const aviso = document.getElementById('aviso-proximamente'); if (aviso) aviso.hidden = true; const pago = document.getElementById('como-se-paga'); if (pago) pago.hidden = false; const catalogo = document.getElementById('catalogo-merceria'); if (catalogo) catalogo.hidden = false; }
+
+    if (patrones.length) {
+      patrones.forEach(function(item) { gridPatrones.appendChild(crearTarjeta(item)); });
+      document.getElementById('patrones-merceria').hidden = false;
+      const catalogo = document.getElementById('catalogo-merceria'); if (catalogo) catalogo.hidden = false;
+    }
 
     (data || []).forEach(function(item) {
       const tarjeta = crearTarjeta(item);
@@ -688,8 +704,13 @@ function crearTarjeta(item) {
       var CLAVE_CARRITO = 'carritoLanaRosa';
       var carrito = [];
       try { carrito = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || []; } catch (e) {}
+      var esDigital = tarjeta.dataset.digital === '1';
+      if ((esDigital && carrito.some(function(i) { return !i.digital; })) || (!esDigital && carrito.some(function(i) { return i.digital; }))) {
+        alert('Los patrones digitales se pagan por separado de los productos físicos. Termina primero una compra y luego haz la otra.');
+        return;
+      }
       var existente = carrito.find(function(i) { return i.id === id; });
-      if (existente) { existente.cantidad++; } else { carrito.push({ id: id, nombre: nombre, precio: precio, cantidad: 1 }); }
+      if (existente) { if (!esDigital) existente.cantidad++; } else { carrito.push({ id: id, nombre: nombre, precio: precio, cantidad: 1, digital: esDigital }); }
       localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
       var contador = document.getElementById('contador-carrito');
       if (contador) contador.textContent = carrito.reduce(function(s, i) { return s + i.cantidad; }, 0);
@@ -1048,7 +1069,7 @@ function inicializarBuscadorMerceria() {
 })();
 </script>
 <script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=18"></script>
+<script type="module" src="/js/pago.js?v=20"></script>
 <script src="/js/carrito-agregado.js?v=2" defer></script>
 <script src="/js/animaciones.js?v=11" defer></script>
 <script>

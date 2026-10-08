@@ -416,7 +416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=18"></script>
+<script type="module" src="/js/pago.js?v=20"></script>
 <script type="module">
 import { haySesionGuardada, obtenerCliente } from './js/cuenta.js';
 const URL_SB = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
@@ -497,6 +497,9 @@ async function iniciar() {
       try { localStorage.setItem('carritoLanaRosa', '[]'); } catch (e) {}
       const nombre = p.nombre ? ', ' + p.nombre : '';
       const correoActivacion = haySesionGuardada() ? null : await enviarActivacion();
+      let digital = false;
+      try { const rd = await fetch(URL_SB + '/rest/v1/rpc/pedido_web_es_digital', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY }, body: JSON.stringify({ p_referencia: ref }) }); digital = (await rd.json()) === true; } catch (e) {}
+      if (digital) return pintar('📚', '¡Gracias' + nombre + '! Tu patrón ya está listo', 'Descárgalo desde tu cuenta.', 'Pagaste ' + pesos(p.total) + '. Entra a tu cuenta con el correo de la compra y descarga tu patrón en «Mis pedidos → Mis patrones para descargar». También te enviamos un correo con el recibo (revisa el spam). Es de uso personal: por favor no lo compartas ni lo vendas.', [enlace(haySesionGuardada() ? 'Ir a mis patrones' : 'Entrar a mi cuenta', '/cuenta.html#pedidos', 'boton-primario'), enlace('Ver más patrones', '/merceria/catalogo/#patrones-merceria', 'boton-secundario'), enlace('Escribirnos por WhatsApp', WA, 'boton-secundario', true)]);
       return pintar('💗', '¡Gracias' + nombre + '! Recibimos tu pago', 'Tu pedido ya quedó registrado.', (conPaypal ? 'Pagaste con PayPal (equivale a ' + pesos(p.total) + ' COP).' : 'Pagaste ' + pesos(p.total) + '.') + ' Te enviamos un correo con la confirmación del pago y tu recibo (revisa también el spam). Te escribiremos por WhatsApp o correo para coordinar la entrega. Guarda tu número de pedido.', accionesOk(correoActivacion));
     }
     if (p && (p.estado === 'rechazado' || p.estado === 'error' || p.estado === 'anulado')) {
