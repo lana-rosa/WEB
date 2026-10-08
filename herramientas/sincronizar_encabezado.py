@@ -12,7 +12,7 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 # página -> casa (las que no están aquí son comunes: sin casa resaltada)
 CASA_DE = {
     'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
-    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy',
+    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy', 'academy-empieza-aqui': 'academy',
     'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
@@ -32,8 +32,8 @@ MENUS = {
                  ('Accesorios', 'merceria/catalogo/#accesorios-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria')],
-    'academy': [('Empieza aquí', 'academy/#empieza', 'academy'), ('Talleres', 'aprende.html#aprende', 'academy'),
-                ('Tutoriales', 'aprende.html#crea', 'academy'), ('Recursos gratis', 'recursos-rosina.html', 'academy'),
+    'academy': [('Talleres y clases', 'academy/talleres/', 'academy'), ('Agenda de Rosina', 'agenda-rosina.html', 'academy'),
+                ('Recursos gratis', 'recursos-rosina.html', 'academy'), ('Revista', 'revista.html?casa=academy', 'academy'),
                 ('Sobre Academy', 'academy/sobre-academy/', 'academy')],
 }
 
@@ -72,9 +72,9 @@ PIE = {
                   ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'),
                   ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
-                [('Inicio de Academy', 'academy/'), ('Calendario de talleres', 'academy/talleres/'), ('Sobre Academy', 'academy/sobre-academy/'), ('Tutoriales', 'aprende.html#crea'),
-                 ('Rincón de Rosina', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas de color', 'paletas-rosina.html'),
-                 ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html')]),
+                [('Inicio de Academy', 'academy/'), ('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Sobre Academy', 'academy/sobre-academy/'),
+                 ('Empieza aquí', 'academy/empieza-aqui/'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'),
+                 ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
 }
 
 # Menú del celular propio de cada casa (las casas sin entrada usan el menú general).
@@ -122,17 +122,18 @@ MOVIL = {
     'academy': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="academy/">Inicio de Academy</a>
     <a href="cuenta.html">👤 Mi cuenta</a>
-    <p class="grupo-nav">Aprende</p>
-    <a href="aprende.html#aprende">Talleres presenciales</a>
-    <a href="academy/talleres/">Calendario de talleres</a>
-    <a href="aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
+    <p class="grupo-nav">Cursos y clases</p>
+    <a href="academy/talleres/">Talleres y clases</a>
     <a href="academy/sobre-academy/">Sobre Academy</a>
+    <p class="grupo-nav">Agenda</p>
+    <a href="agenda-rosina.html">Agenda de Rosina</a>
     <p class="grupo-nav">Recursos gratis de Rosina</p>
+    <a href="academy/empieza-aqui/">Empieza aquí</a>
+    <a href="aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina</a>
     <a href="glosario-rosina.html">Glosario</a>
     <a href="paletas-rosina.html">Paletas de color</a>
     <a href="calculadoras-rosina.html">Calculadoras</a>
-    <a href="agenda-rosina.html">Agenda de proyectos</a>
     <a href="rosina.html">Conoce a Rosina</a>
     <p class="grupo-nav">Ideas</p>
     <a href="revista.html?casa=academy">Revista</a>
@@ -236,7 +237,7 @@ PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
 PIE_SIMPLE = {
     'crochet': ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Historias que tejimos', 'index.html#historias')]),
     'merceria': ('Mercería', [('Catálogo', 'merceria/catalogo/'), ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/')]),
-    'academy': ('Academy', [('Calendario de talleres', 'academy/talleres/'), ('Sobre Academy', 'academy/sobre-academy/'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html')]),
+    'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('Rincón de Rosina', 'recursos-rosina.html'), ('Sobre Academy', 'academy/sobre-academy/')]),
 }
 PIE_SIMPLE_COMUN = ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'), ('Lana Rosa Academy', 'academy/')])
 CASAS_ICONO = {'crochet': ('🧸', 'Tienda'), 'merceria': ('🧶', 'Mercería'), 'academy': ('🎓', 'Academy')}
