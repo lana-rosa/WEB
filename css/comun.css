@@ -38,10 +38,10 @@ main { padding-bottom: 60px; }
 .nav-movil-panel a:hover { background: var(--rosa-suave); color: var(--rosa-texto); }
 @media (max-width: 900px) { .menu-movil { display: inline-flex; align-items: center; order: 20; } }
 .rosina-mini { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; margin-left: 10px; box-shadow: 0 2px 8px rgba(69,69,74,0.15); vertical-align: middle; }
-.boton-subir { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); right: calc(92px + env(safe-area-inset-right, 0px)); z-index: 998; width: 48px; height: 48px; background: var(--rosa-principal); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.2); opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s; }
+.boton-subir { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); right: calc(92px + env(safe-area-inset-right, 0px)); z-index: 998; width: 48px; height: 48px; background: var(--rosa-boton); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.2); opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s; }
 .boton-subir.visible { opacity: 1; visibility: visible; }
-.boton-subir svg { width: 22px; height: 22px; fill: #fff; }
-.boton-subir:hover { background: var(--rosa-hover); }
+.boton-subir svg { width: 22px; height: 22px; fill: var(--sobre-principal); }
+.boton-subir:hover { background: var(--rosa-boton-hover); }
 @media (max-width: 600px) { .boton-subir { width: 42px; height: 42px; right: calc(74px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); } }
 .boton-cuenta-header { position: relative; background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1rem; color: var(--tinta); flex-shrink: 0; }
 .boton-cuenta-header:hover { border-color: var(--rosa-principal); }
@@ -118,9 +118,9 @@ main { padding-bottom: 60px; }
 @media (max-width: 560px) { .franja-casas { font-size: 0.7rem; } .franja-casas .contenedor { justify-content: center; padding-left: 8px; padding-right: 8px; } .franja-casas a { padding: 2px 8px; } }
 
 /* ===== Identidad por casa: cada casa cambia la paleta de toda la página (html[data-casa]) ===== */
-:root { --rosa-hover: #B0356F; --rosa-rgb: 231, 78, 150; --rosa-texto: #C81B6D; --rosa-boton: #E01E79; --sobre-principal: #fff; }
-html[data-casa="merceria"] { --rosa-principal: #9A7EDD; --rosa-medio: #D3C3F5; --rosa-suave: #F5F1F7; --rosa-hover: #7A59C3; --rosa-rgb: 154, 126, 221; --rosa-texto: #3F2B73; --rosa-boton: #9A7EDD; --sobre-principal: #1F1440; }
-html[data-casa="academy"]  { --rosa-principal: #5A98E2; --rosa-medio: #BBD6F7; --rosa-suave: #F1F5F9; --rosa-hover: #3270B9; --rosa-rgb: 90, 152, 226; --rosa-texto: #1D3F72; --rosa-boton: #5A98E2; --sobre-principal: #0E2547; }
+:root { --rosa-hover: #B0356F; --rosa-boton-hover: #B0356F; --rosa-rgb: 231, 78, 150; --rosa-texto: #C81B6D; --rosa-boton: #E01E79; --sobre-principal: #fff; }
+html[data-casa="merceria"] { --rosa-principal: #9A7EDD; --rosa-medio: #D3C3F5; --rosa-suave: #F5F1F7; --rosa-hover: #7A59C3; --rosa-rgb: 154, 126, 221; --rosa-texto: #3F2B73; --rosa-boton: #BBA9F0; --rosa-boton-hover: #A892EA; --sobre-principal: #1F1440; }
+html[data-casa="academy"]  { --rosa-principal: #5A98E2; --rosa-medio: #BBD6F7; --rosa-suave: #F1F5F9; --rosa-hover: #3270B9; --rosa-rgb: 90, 152, 226; --rosa-texto: #1D3F72; --rosa-boton: #96C0F2; --rosa-boton-hover: #7FB0EC; --sobre-principal: #0E2547; }
 html[data-casa="merceria"] .encabezado { background: rgba(255, 255, 255, 0.96); border-bottom: 3px solid var(--rosa-medio); }
 html[data-casa="academy"] .encabezado { background: rgba(255, 255, 255, 0.96); border-bottom: 3px solid var(--rosa-medio); }
 .logo .texto-logo { color: var(--rosa-texto); }

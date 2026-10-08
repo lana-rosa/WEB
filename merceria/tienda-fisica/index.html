@@ -50,7 +50,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="/css/comun.css?v=26">
+<link rel="stylesheet" href="/css/comun.css?v=27">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
@@ -141,7 +141,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .producto-estado.disponible { color: #2e7d32; }
 .producto-estado.bajo-pedido { color: var(--tinta-suave); }
 .boton-pedir { margin-top: auto; text-align: center; background: var(--rosa-boton); color: var(--sobre-principal) !important; text-decoration: none; padding: 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
-.boton-pedir:hover { background: var(--rosa-hover); }
+.boton-pedir:hover { background: var(--rosa-boton-hover); }
 .boton-agregar-carrito {
   margin-top: 8px; text-align: center; background: var(--blanco); color: var(--rosa-texto);
   border: 1.5px solid var(--rosa-principal); padding: 9px; border-radius: 999px; font-size: 0.85rem;
@@ -158,11 +158,11 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 .boton-agregar-carrito.agregado { background: #2e7d32; border-color: #2e7d32; color: #fff; }
 .boton-carrito-flotante {
   position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: calc(24px + env(safe-area-inset-left, 0px)); z-index: 998;
-  width: 56px; height: 56px; background: var(--rosa-principal); border: none; border-radius: 50%;
+  width: 56px; height: 56px; background: var(--rosa-boton); border: none; border-radius: 50%;
   display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
-.boton-carrito-flotante:hover { background: var(--rosa-hover); }
+.boton-carrito-flotante:hover { background: var(--rosa-boton-hover); }
 @media (max-width: 600px) { .boton-carrito-flotante { width: 48px; height: 48px; left: calc(16px + env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); font-size: 1.3rem; } }
 .producto-foto { cursor: pointer; }
 .overlay-modal-producto { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1001; display: none; align-items: center; justify-content: center; padding: 20px; }
@@ -196,7 +196,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
   color: var(--sobre-principal); padding: 12px 30px; border-radius: 999px;
   font-weight: 700; font-size: 0.95rem; cursor: pointer;
 }
-.boton-ver-mas:hover { background: var(--rosa-hover); color: var(--blanco); }
+.boton-ver-mas:hover { background: var(--rosa-boton-hover); color: var(--blanco); }
 .boton-ver-mas::after { content: '↓'; font-size: 1.1rem; }
 .buscador-productos { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; margin: 20px 0 24px; }
 @media (max-width: 700px) { .buscador-productos { grid-template-columns: 1fr; } }
@@ -239,7 +239,7 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .aviso-proximamente p { margin: 0 0 12px; }
 .etiqueta-proximamente { color: var(--rosa-texto); font-weight: 800; margin: 0 0 4px !important; }
 .aviso-proximamente .boton-primario { display: inline-block; background: var(--rosa-boton); color: var(--sobre-principal); text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
-.aviso-proximamente .boton-primario:hover { background: var(--rosa-hover); }
+.aviso-proximamente .boton-primario:hover { background: var(--rosa-boton-hover); }
 @media (max-width: 600px) { .aviso-proximamente { flex-direction: column; text-align: center; padding: 18px; } .aviso-proximamente img { width: 110px; } }
 /* Puentes entre secciones del ecosistema Lana Rosa */
 .puentes { margin: 0 0 56px; }
@@ -261,7 +261,7 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .visita-botones { display: flex; gap: 12px; flex-wrap: wrap; }
 .visita-botones a { display: inline-block; text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
 .visita-botones .boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
-.visita-botones .boton-primario:hover { background: var(--rosa-hover); }
+.visita-botones .boton-primario:hover { background: var(--rosa-boton-hover); }
 .visita-botones .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-texto); }
 @media (max-width: 600px) { .visitanos { padding: 18px; } .visita-botones a { flex: 1 1 100%; text-align: center; } }
 .aviso-proximamente + .puentes { margin-top: 28px; }
@@ -294,7 +294,7 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .botones-hero { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
 .botones-hero a { display: inline-block; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 700; }
 .botones-hero .boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
-.botones-hero .boton-primario:hover { background: var(--rosa-hover); }
+.botones-hero .boton-primario:hover { background: var(--rosa-boton-hover); }
 .botones-hero .boton-secundario { border: 2px solid var(--rosa-principal); color: var(--rosa-texto); background: transparent; }
 .sellos { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.92rem; color: var(--tinta-suave); font-weight: 600; }
 .banda-apertura { display: block; margin: 26px 0 40px; padding: 14px 20px; border-radius: 16px; background: var(--rosa-suave); color: var(--rosa-hover); font-weight: 700; text-decoration: none; text-align: center; }
