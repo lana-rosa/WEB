@@ -453,6 +453,21 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 }
 @media screen and (max-width: 700px) { .tabla-agenda td.celda-check { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; } .tabla-agenda td.celda-check::before { margin-bottom: 0; } }
 @media print { .tabla-agenda tr { break-inside: avoid; } }
+/* Botón "Añadir a Google Calendar" (8-oct-2026) */
+.boton-cal { font: inherit; font-weight: 700; font-size: 0.85rem; cursor: pointer; color: var(--rosa-texto); background: var(--blanco); border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+.boton-cal:hover { border-color: var(--rosa-principal); background: var(--rosa-suave); }
+.boton-cal:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.tabla-agenda td.celda-cal, .tabla-agenda th.col-cal { text-align: center; width: 64px; }
+.boton-cal-campo { margin-top: 6px; align-self: flex-start; }
+.solo-movil { display: none; }
+@media screen and (max-width: 700px) { .solo-movil { display: inline; } }
+.aviso-cal { display: block; margin-top: 4px; font-size: 0.8rem; color: #8E1457; font-weight: 600; max-width: 260px; text-align: left; }
+@media screen and (max-width: 700px) {
+  .tabla-agenda td.celda-cal { grid-column: 1 / -1; width: auto; text-align: left; }
+  .tabla-agenda td.celda-cal::before { display: none; }
+  .tabla-agenda td.celda-cal .boton-cal { width: 100%; padding: 8px 12px; }
+}
+@media print { .boton-cal, .aviso-cal, .celda-cal, .col-cal { display: none !important; } }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 40px !important; }
@@ -587,8 +602,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="copia-agenda">
       <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
       <button type="button" class="enlace-copia" id="agenda-cargar">⬆️ Cargar una copia</button>
+      <button type="button" class="enlace-copia" id="agenda-ics">📅 Fechas al calendario (.ics)</button>
       <input type="file" id="agenda-archivo" accept=".json,application/json" hidden>
-      <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular.</small>
+      <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
     </div>
   </section>
 
@@ -658,7 +674,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="linea"><label for="ag-nombre">Proyecto</label><input id="ag-nombre" data-guardar></div>
           <div class="linea"><label for="ag-para">Para quién</label><input id="ag-para" data-guardar></div>
           <div class="linea"><label for="ag-inicio">Fecha de inicio</label><input id="ag-inicio" data-guardar></div>
-          <div class="linea"><label for="ag-fin">Fecha de entrega</label><input id="ag-fin" data-guardar></div>
+          <div class="linea"><label for="ag-fin">Fecha de entrega</label><input id="ag-fin" data-guardar><button type="button" class="boton-cal boton-cal-campo no-imprimir" data-cal="ficha">📅 Añadir a Google Calendar</button></div>
           <div class="linea"><label for="ag-patron">Patrón / fuente</label><input id="ag-patron" data-guardar></div>
           <div class="linea"><label for="ag-aguja">Aguja (mm)</label><input id="ag-aguja" data-guardar></div>
           <div class="linea"><label for="ag-lana">Lana (marca y grosor)</label><input id="ag-lana" data-guardar></div>
@@ -701,7 +717,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:640px;">
-            <thead><tr><th>Cliente</th><th>Pedido</th><th>Entrega</th><th>Precio</th><th>Abono</th><th>Estado</th></tr></thead>
+            <thead><tr><th>Cliente</th><th>Pedido</th><th>Entrega</th><th>Precio</th><th>Abono</th><th>Estado</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-pedidos"></tbody>
           </table>
         </div>
@@ -759,7 +775,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
-            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th></tr></thead>
+            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-fila"></tbody>
           </table>
         </div>
@@ -812,7 +828,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:700px;">
-            <thead><tr><th>Fecha</th><th>Ocasión</th><th>Para quién</th><th>Idea de regalo</th><th>Listo</th></tr></thead>
+            <thead><tr><th>Fecha</th><th>Ocasión</th><th>Para quién</th><th>Idea de regalo</th><th>Listo</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-fechas"></tbody>
           </table>
         </div>
@@ -826,7 +842,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:760px;">
-            <thead><tr><th>Nombre</th><th>WhatsApp</th><th>Cumpleaños</th><th>Qué me ha comprado</th><th>Notas</th></tr></thead>
+            <thead><tr><th>Nombre</th><th>WhatsApp</th><th>Cumpleaños</th><th>Qué me ha comprado</th><th>Notas</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-clientas"></tbody>
           </table>
         </div>
@@ -869,7 +885,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="grid-ficha">
           <div class="linea"><label for="ag-fr-nombre">Feria o mercado</label><input id="ag-fr-nombre" data-guardar></div>
-          <div class="linea"><label for="ag-fr-fecha">Fecha</label><input id="ag-fr-fecha" data-guardar></div>
+          <div class="linea"><label for="ag-fr-fecha">Fecha</label><input id="ag-fr-fecha" data-guardar><button type="button" class="boton-cal boton-cal-campo no-imprimir" data-cal="feria">📅 Añadir a Google Calendar</button></div>
           <div class="linea"><label for="ag-fr-lugar">Lugar</label><input id="ag-fr-lugar" data-guardar></div>
           <div class="linea"><label for="ag-fr-costo">Costo del puesto</label><input id="ag-fr-costo" data-guardar inputmode="numeric"></div>
           <div class="linea ancha"><label>Qué llevar</label><div class="lista-llevar"><label><input type="checkbox" id="ag-fr-l1" data-guardar> Mesa y mantel</label><label><input type="checkbox" id="ag-fr-l2" data-guardar> Productos con su precio</label><label><input type="checkbox" id="ag-fr-l3" data-guardar> Código QR de Nequi o Bre-B</label><label><input type="checkbox" id="ag-fr-l4" data-guardar> Cambio (sencillo)</label><label><input type="checkbox" id="ag-fr-l5" data-guardar> Bolsas y empaques</label><label><input type="checkbox" id="ag-fr-l6" data-guardar> Tarjetas de presentación</label><label><input type="checkbox" id="ag-fr-l7" data-guardar> Exhibidores o canastas</label><label><input type="checkbox" id="ag-fr-l8" data-guardar> Libreta para anotar ventas y pedidos</label><label><input type="checkbox" id="ag-fr-l9" data-guardar> Agua y algo de comer</label><label><input type="checkbox" id="ag-fr-l10" data-guardar> Cargador del celular</label></div></div>
@@ -1247,6 +1263,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var et = ' data-label="' + (t.titulos[i] || '') + '"';
       if (c.opciones) return '<td' + et + '><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select><span class="opciones-imp" aria-hidden="true">' + c.opciones.map(function(o) { return '<i>○ ' + o + '</i>'; }).join(' ') + '</span></td>';
       if (c.check) return '<td class="celda-check"' + et + '><input type="checkbox" id="' + id + '" data-guardar' + aria + '></td>';
+      if (c.cal) return '<td class="celda-cal no-imprimir"><button type="button" class="boton-cal" data-cal="' + c.cal + '" data-fila="' + r + '" aria-label="Añadir a Google Calendar el renglón ' + r + '" title="Añadir a Google Calendar">📅<span class="solo-movil"> Añadir a Google Calendar</span></button></td>';
       return '<td' + et + '><input id="' + id + '" data-guardar' + aria + '></td>';
     }).join('') + '</tr>';
   }
@@ -1274,12 +1291,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var fila = agregarRenglon(b.dataset.tabla);
     if (fila) { var primero = fila.querySelector('input, select'); if (primero) primero.focus(); }
   });
-  filasTabla('tabla-pedidos', 'ag-p', ['cliente', 'pedido', 'entrega', 'precio', 'abono', 'estado'], 8, 'del pedido');
+  filasTabla('tabla-pedidos', 'ag-p', ['cliente', 'pedido', 'entrega', 'precio', 'abono', 'estado', { id: 'cal', cal: 'pedido' }], 8, 'del pedido');
   filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
   filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
-  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }], 10, 'del proyecto');
+  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
   filasTabla('tabla-patrones', 'ag-pt', ['patron', 'fuente', { id: 'dificultad', opciones: ['Fácil', 'Media', 'Difícil'] }, { id: 'tejido', check: true }], 10, 'del patrón');
-  filasTabla('tabla-fechas', 'ag-fe', ['fecha', { id: 'ocasion', opciones: ['Cumpleaños', 'Día de la madre', 'Día del padre', 'Amor y amistad', 'Graduación', 'Aniversario', 'Otra'] }, 'para', 'idea', { id: 'listo', check: true }], 10, 'de la fecha');
+  filasTabla('tabla-fechas', 'ag-fe', ['fecha', { id: 'ocasion', opciones: ['Cumpleaños', 'Día de la madre', 'Día del padre', 'Amor y amistad', 'Graduación', 'Aniversario', 'Otra'] }, 'para', 'idea', { id: 'listo', check: true }, { id: 'cal', cal: 'fecha' }], 10, 'de la fecha');
   var agujasGrid = document.getElementById('agujas-grid');
   ['2', '2,25', '2,5', '2,75', '3', '3,25', '3,5', '3,75', '4', '4,5', '5', '5,5', '6', '6,5', '7', '8', '9', '10'].forEach(function(mm) {
     agujasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-a' + mm.replace(',', '-') + '" data-guardar><span>' + mm + ' mm</span></label>');
@@ -1296,7 +1313,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var texto = 'Hola Rosina 🐑 Quiero consultar estos materiales de la mercería:\n' + (lineas.length ? lineas.join('\n') : '(todavía no escribí mi lista)');
     this.href = 'https://wa.me/573205072801?text=' + encodeURIComponent(texto);
   });
-  filasTabla('tabla-clientas', 'ag-cl', ['nombre', 'whatsapp', 'cumpleanos', 'compras', 'notas'], 12, 'de la clienta');
+  filasTabla('tabla-clientas', 'ag-cl', ['nombre', 'whatsapp', 'cumpleanos', 'compras', 'notas', { id: 'cal', cal: 'clienta' }], 12, 'de la clienta');
   filasTabla('tabla-ventas', 'ag-vt', ['fecha', 'producto', 'cliente', 'precio', 'costo'], 12, 'de la venta');
   filasTabla('tabla-catalogo', 'ag-ct', ['producto', 'tamano', 'precio', 'horas'], 12, 'del producto');
   filasTabla('tabla-diario', 'ag-dr', ['fecha', { id: 'animo', opciones: ['😊 Feliz', '😌 Tranquila', '🥰 Inspirada', '😴 Cansada', '😣 Frustrada'] }, 'teji', 'frase'], 10, 'del día');
@@ -1340,6 +1357,121 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function tituloDuena() { document.querySelector('.intro-agenda h1').textContent = duena.value.trim() ? 'Agenda de ' + duena.value.trim() : 'Agenda de Rosina'; }
   duena.addEventListener('input', function() { datos['ag-duena'] = duena.value; escribir(CLAVE_AGENDA, JSON.stringify(datos)); tituloDuena(); });
   tituloDuena();
+
+  /* ---------- Calendario: botón "Añadir a Google Calendar" y archivo .ics (8-oct-2026) ---------- */
+  var MESES_TXT = { ene: 1, enero: 1, feb: 2, febrero: 2, mar: 3, marzo: 3, abr: 4, abril: 4, may: 5, mayo: 5, jun: 6, junio: 6, jul: 7, julio: 7, ago: 8, agosto: 8, sep: 9, sept: 9, set: 9, septiembre: 9, setiembre: 9, oct: 10, octubre: 10, nov: 11, noviembre: 11, dic: 12, diciembre: 12 };
+  function fechaValida(a, m, d) { var f = new Date(a, m - 1, d); return f.getFullYear() === a && f.getMonth() === m - 1 && f.getDate() === d; }
+  /* Entiende lo que la gente escribe: 15/11/2026, 15-11, 2026-11-15, "15 de noviembre", "15 nov 2026", "noviembre 15". Sin año: la próxima vez que llegue esa fecha. */
+  function leerFecha(texto) {
+    var t = String(texto || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim();
+    if (!t) return null;
+    var hoy = new Date(), a, m, d, conAnio = true, r;
+    if ((r = t.match(/(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/))) { a = +r[1]; m = +r[2]; d = +r[3]; }
+    else if ((r = t.match(/(\d{1,2})[\/\-.](\d{1,2})(?:[\/\-.](\d{4}|\d{2}))?(?!\d)/))) { d = +r[1]; m = +r[2]; if (r[3]) a = +r[3]; else conAnio = false; }
+    else if ((r = t.match(/(\d{1,2})[\s\-\/.]*(?:de\s+)?([a-z]{3,10})\.?(?:[\s\-\/.,]*(?:de|del)?\s*(\d{4}|\d{2}))?/)) && MESES_TXT[r[2]]) { d = +r[1]; m = MESES_TXT[r[2]]; if (r[3]) a = +r[3]; else conAnio = false; }
+    else if ((r = t.match(/([a-z]{3,10})\.?\s*(\d{1,2})(?:\s*(?:de|del|,)?\s*(\d{4}))?/)) && MESES_TXT[r[1]]) { m = MESES_TXT[r[1]]; d = +r[2]; if (r[3]) a = +r[3]; else conAnio = false; }
+    else return null;
+    if (a != null && a < 100) a += 2000;
+    if (!conAnio) {
+      a = hoy.getFullYear();
+      if (fechaValida(a, m, d) && new Date(a, m - 1, d) < new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate())) a++;
+    }
+    if (!fechaValida(a, m, d)) return null;
+    return { a: a, m: m, d: d, sinAnio: !conAnio };
+  }
+  function ymd(f, sumar) { var x = new Date(f.a, f.m - 1, f.d + (sumar || 0)); return '' + x.getFullYear() + ('0' + (x.getMonth() + 1)).slice(-2) + ('0' + x.getDate()).slice(-2); }
+  function valorDe(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+  function celdaFila(tabla, fila, col) { return valorDe(tablas[tabla].prefijo + fila + '-' + col); }
+  /* Cada tipo dice de dónde sale la fecha, el título y los detalles del evento */
+  var TIPOS_CAL = {
+    pedido: function(f) {
+      var cli = celdaFila('tabla-pedidos', f, 'cliente'), ped = celdaFila('tabla-pedidos', f, 'pedido');
+      return { fecha: celdaFila('tabla-pedidos', f, 'entrega'), titulo: 'Entrega: ' + (ped || 'pedido') + (cli ? ' — ' + cli : ''),
+        detalles: [['Cliente', cli], ['Pedido', ped], ['Precio', celdaFila('tabla-pedidos', f, 'precio')], ['Abono', celdaFila('tabla-pedidos', f, 'abono')], ['Estado', celdaFila('tabla-pedidos', f, 'estado')]] };
+    },
+    proyecto: function(f) {
+      var pr = celdaFila('tabla-fila', f, 'proyecto'), para = celdaFila('tabla-fila', f, 'para');
+      return { fecha: celdaFila('tabla-fila', f, 'fecha'), titulo: 'Fecha límite: ' + (pr || 'proyecto') + (para ? ' (para ' + para + ')' : ''),
+        detalles: [['Proyecto', pr], ['Para quién', para], ['Estado', celdaFila('tabla-fila', f, 'estado')]] };
+    },
+    fecha: function(f) {
+      var oc = celdaFila('tabla-fechas', f, 'ocasion'), para = celdaFila('tabla-fechas', f, 'para');
+      return { fecha: celdaFila('tabla-fechas', f, 'fecha'), titulo: (oc || 'Fecha especial') + (para ? ': ' + para : ''),
+        detalles: [['Idea de regalo', celdaFila('tabla-fechas', f, 'idea')]] };
+    },
+    clienta: function(f) {
+      var n = celdaFila('tabla-clientas', f, 'nombre');
+      return { fecha: celdaFila('tabla-clientas', f, 'cumpleanos'), titulo: 'Cumpleaños de ' + (n || 'una clienta'), anual: true,
+        detalles: [['WhatsApp', celdaFila('tabla-clientas', f, 'whatsapp')], ['Notas', celdaFila('tabla-clientas', f, 'notas')]] };
+    },
+    ficha: function() {
+      var n = valorDe('ag-nombre'), para = valorDe('ag-para');
+      return { fecha: valorDe('ag-fin'), titulo: 'Entrega: ' + (n || 'proyecto') + (para ? ' (para ' + para + ')' : ''),
+        detalles: [['Proyecto', n], ['Para quién', para], ['Patrón', valorDe('ag-patron')]] };
+    },
+    feria: function() {
+      return { fecha: valorDe('ag-fr-fecha'), titulo: valorDe('ag-fr-nombre') || 'Feria o mercado', lugar: valorDe('ag-fr-lugar'),
+        detalles: [['Costo del puesto', valorDe('ag-fr-costo')]] };
+    }
+  };
+  function eventoDe(tipo, fila) {
+    var ev = TIPOS_CAL[tipo](fila), f = leerFecha(ev.fecha);
+    ev.f = f; ev.texto = ev.detalles.filter(function(x) { return x[1]; }).map(function(x) { return x[0] + ': ' + x[1]; }).join('\n');
+    ev.texto = (ev.texto ? ev.texto + '\n' : '') + 'Desde la agenda de Rosina · lanarosacrochet.com';
+    return ev;
+  }
+  function avisoCal(boton, mensaje) {
+    var viejo = boton.parentNode.querySelector('.aviso-cal'); if (viejo) viejo.remove();
+    var p = document.createElement('span'); p.className = 'aviso-cal'; p.setAttribute('role', 'status'); p.textContent = mensaje;
+    boton.parentNode.appendChild(p);
+    setTimeout(function() { if (p.parentNode) p.remove(); }, 7000);
+  }
+  document.getElementById('agenda').addEventListener('click', function(e) {
+    var b = e.target.closest('.boton-cal'); if (!b) return;
+    var ev = eventoDe(b.dataset.cal, b.dataset.fila);
+    if (!ev.fecha) { avisoCal(b, 'Escribe primero la fecha (por ejemplo 15/11/2026 o 15 de noviembre).'); return; }
+    if (!ev.f) { avisoCal(b, 'No pude entender la fecha "' + ev.fecha + '". Escríbela como 15/11/2026 o 15 de noviembre.'); return; }
+    var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(ev.titulo) +
+      '&dates=' + ymd(ev.f) + '/' + ymd(ev.f, 1) + '&details=' + encodeURIComponent(ev.texto) +
+      (ev.lugar ? '&location=' + encodeURIComponent(ev.lugar) : '') + (ev.anual ? '&recur=' + encodeURIComponent('RRULE:FREQ=YEARLY') : '');
+    (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_google_calendar', tipo: b.dataset.cal });
+    window.open(url, '_blank', 'noopener');
+    if (ev.f.sinAnio) avisoCal(b, 'Como no escribiste el año, usé ' + ev.f.d + '/' + ev.f.m + '/' + ev.f.a + '.');
+  });
+  /* Archivo .ics con todas las fechas de la agenda (sirve para Google Calendar, Apple y Outlook) */
+  function icsTexto(s) { return String(s).replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\;'); }
+  function icsLinea(l) { var out = [], x = l; while (x.length > 73) { out.push(x.slice(0, 73)); x = ' ' + x.slice(73); } out.push(x); return out.join('\r\n'); }
+  function todosLosEventos() {
+    var lista = [];
+    var tablasFechas = [['pedido', 'tabla-pedidos'], ['proyecto', 'tabla-fila'], ['fecha', 'tabla-fechas'], ['clienta', 'tabla-clientas']];
+    tablasFechas.forEach(function(par) {
+      for (var r = 1; r <= tablas[par[1]].n; r++) {
+        var ev = eventoDe(par[0], r);
+        if (ev.f) lista.push(ev);
+      }
+    });
+    ['ficha', 'feria'].forEach(function(t) { var ev = eventoDe(t); if (ev.f) lista.push(ev); });
+    return lista;
+  }
+  document.getElementById('agenda-ics').addEventListener('click', function() {
+    var lista = todosLosEventos();
+    if (!lista.length) { alert('Todavía no hay fechas que llevar al calendario. Escribe una fecha (por ejemplo 15/11/2026 o 15 de noviembre) en las hojas de pedidos, proyectos, fechas especiales, ferias o clientas.'); return; }
+    var ahora = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+    var l = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Lana Rosa Crochet//Agenda de Rosina//ES', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Agenda de Rosina'];
+    lista.forEach(function(ev, i) {
+      l.push('BEGIN:VEVENT', 'UID:agenda-rosina-' + Date.now() + '-' + i + '@lanarosacrochet.com', 'DTSTAMP:' + ahora,
+        'DTSTART;VALUE=DATE:' + ymd(ev.f), 'DTEND;VALUE=DATE:' + ymd(ev.f, 1), icsLinea('SUMMARY:' + icsTexto(ev.titulo)), icsLinea('DESCRIPTION:' + icsTexto(ev.texto)));
+      if (ev.lugar) l.push(icsLinea('LOCATION:' + icsTexto(ev.lugar)));
+      if (ev.anual) l.push('RRULE:FREQ=YEARLY');
+      l.push('BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Recordatorio', 'TRIGGER:-PT15H', 'END:VALARM', 'END:VEVENT');
+    });
+    l.push('END:VCALENDAR');
+    var blob = new Blob([l.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-fechas.ics';
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+    (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_ics', cantidad: lista.length });
+  });
+
   document.getElementById('agenda-descargar').addEventListener('click', function() {
     var blob = new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
     var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-' + new Date().toISOString().slice(0, 10) + '.json';
