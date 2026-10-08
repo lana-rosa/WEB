@@ -34,14 +34,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
-<link rel="stylesheet" href="/css/comun.css?v=27">
+<link rel="stylesheet" href="/css/comun.css?v=28">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FDFCFA; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -749,7 +749,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=16"></script>
+<script type="module" src="/js/pago.js?v=17"></script>
 <script src="/js/animaciones.js?v=11" defer></script>
 <div class="aviso-copiado" id="aviso-copiado" role="status"></div>
 <script>
@@ -768,7 +768,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var n0 = p.colores.length, filas0 = Math.ceil(n0 / (n0 <= 4 ? n0 : 3));
     var W = 1080, H = Math.max(1080, 380 + filas0 * 300 - 40 + 170 + 48 + 150), c = document.createElement('canvas'); c.width = W; c.height = H;
     var x = c.getContext('2d');
-    x.fillStyle = '#FAFAF7'; x.fillRect(0, 0, W, H);
+    x.fillStyle = '#FDFCFA'; x.fillRect(0, 0, W, H);
     x.fillStyle = '#FBE4EF'; x.beginPath(); x.arc(W - 90, 90, 220, 0, Math.PI * 2); x.fill();
     x.fillStyle = '#E74E96'; x.textAlign = 'center';
     x.font = '600 34px "Hanken Grotesk", sans-serif'; x.fillText('PALETA DE ROSINA', W / 2, 130);

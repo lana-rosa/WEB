@@ -34,14 +34,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
-<link rel="stylesheet" href="/css/comun.css?v=27">
+<link rel="stylesheet" href="/css/comun.css?v=28">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FAFAF7; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FDFCFA; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
   --fuente-titulo: 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -138,7 +138,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .carrusel::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 8px; }
 .carrusel::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 8px; }
 .carrusel figure { flex: 0 0 100%; margin: 0; scroll-snap-align: start; }
-.carrusel img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: contain; background: #FBF7F2; display: block; border-radius: 16px; }
+.carrusel img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: contain; background: #FDFCFA; display: block; border-radius: 16px; }
 .carrusel figcaption { margin-top: 10px; font-size: 0.92rem; color: var(--tinta-suave); text-align: center; line-height: 1.4; min-height: 2.8em; }
 .carrusel-flecha { position: absolute; top: calc(50% - 40px); transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(255,255,255,0.92); color: var(--rosa-texto); font-size: 1.6rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(58,42,46,0.15); }
 .carrusel-flecha.ant { left: 8px; }
@@ -943,7 +943,7 @@ document.querySelectorAll('.carrusel').forEach(function (c) {
 });
 </script>
 <script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=16"></script>
+<script type="module" src="/js/pago.js?v=17"></script>
 <script type="module">
 // Si la clienta tiene sesión, se llenan sus datos en el formulario (puede cambiarlos).
 import { haySesionGuardada, obtenerPerfil, obtenerCliente } from './js/cuenta.js';

@@ -25,7 +25,7 @@ function nodo(tag, clase, texto) {
 }
 
 const CSS = `
-.pago-overlay { position: fixed; inset: 0; z-index: 3000; background: #FAFAF7; overflow-y: auto; -webkit-overflow-scrolling: touch; color: #45454A; }
+.pago-overlay { position: fixed; inset: 0; z-index: 3000; background: #FDFCFA; overflow-y: auto; -webkit-overflow-scrolling: touch; color: #45454A; }
 .pago-overlay[hidden] { display: none; }
 .pg-cab { position: relative; background: #fff; border-bottom: 1px solid rgba(69,69,74,0.12); display: flex; align-items: center; justify-content: center; min-height: 62px; }
 .pg-cab img { height: 42px; width: auto; border-radius: 8px; display: block; }
