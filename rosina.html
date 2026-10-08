@@ -50,9 +50,10 @@ body { margin: 0; font-family: var(--fuente-cuerpo); color: var(--tinta); backgr
 h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; margin: 0 0 0.4em; }
 h1 { font-size: clamp(2.2rem, 4.4vw, 3.1rem); }
 h2 { font-size: 1.5rem; }
-.hero-rosina { padding-top: 56px; padding-bottom: 56px; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 50px; align-items: center; }
+.hero-rosina { padding-top: 56px; padding-bottom: 56px; display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 50px; align-items: center; }
 @media (max-width: 800px) { .hero-rosina { grid-template-columns: 1fr; text-align: center; } }
-.marco-rosina { background: var(--rosa-suave); border-radius: 32px; padding: 20px; box-shadow: var(--sombra-suave); }
+.marco-rosina { background: var(--rosa-suave); border-radius: 32px; padding: 20px; box-shadow: var(--sombra-suave); max-width: 280px; width: 100%; justify-self: center; }
+@media (max-width: 800px) { .marco-rosina { max-width: 240px; padding: 14px; border-radius: 26px; } }
 .marco-rosina img { width: 100%; display: block; border-radius: 20px; }
 .hero-rosina .eslogan { color: var(--rosa-texto); font-weight: 600; margin-bottom: 8px; }
 .hero-rosina p.intro { color: var(--tinta-suave); font-size: 1.08rem; max-width: 56ch; }
