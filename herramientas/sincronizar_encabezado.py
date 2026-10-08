@@ -232,33 +232,51 @@ PIE_COMUN = ('Tres casas, una sola familia: amigurumis, mercería y academia de 
               ('Lana Rosa Academy', 'academy/'), ('Revista', 'revista.html')])
 PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
 
+# Pie simple (8-oct-2026): marca + casas con iconos pequeños, tres columnas cortas, una línea de pagos/apoyo y una de legales.
+PIE_SIMPLE = {
+    'crochet': ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Historias que tejimos', 'index.html#historias')]),
+    'merceria': ('Mercería', [('Catálogo', 'merceria/catalogo/'), ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/')]),
+    'academy': ('Academy', [('Calendario de talleres', 'academy/talleres/'), ('Sobre Academy', 'academy/sobre-academy/'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html')]),
+}
+PIE_SIMPLE_COMUN = ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'), ('Lana Rosa Academy', 'academy/')])
+CASAS_ICONO = {'crochet': ('🧸', 'Tienda'), 'merceria': ('🧶', 'Mercería'), 'academy': ('🎓', 'Academy')}
+
+def casas_pie_mini(casa):
+    """Las tres casas, junto al logo del pie, con iconos pequeños; la casa actual va resaltada."""
+    items = []
+    for k, nombre, href in CASAS:
+        ico, corto = CASAS_ICONO.get(k, ('', nombre))
+        act = ' class="casa-actual" aria-current="true"' if k == casa else ''
+        items.append(f'<a href="{href}" data-casa="{k}" title="{nombre}"{act}><span aria-hidden="true">{ico}</span> {corto}</a>')
+    return '<nav class="pie-casas-mini" aria-label="Casas Lana Rosa"><span class="pie-h3">Nuestras casas</span>' + ''.join(items) + '</nav>'
+
 def pie_casa(modelo, casa):
-    """Pie compacto: marca + redes, enlaces de la casa, Lana Rosa, contacto; luego pagos/apoyo y legal en una franja."""
-    frase, titulo, enlaces = PIE.get(casa) or PIE_COMUN
+    """Pie simple: logo con las tres casas al lado y redes, tres columnas cortas, pagos y apoyo en una línea, y los legales."""
+    titulo, enlaces = PIE_SIMPLE.get(casa) or PIE_SIMPLE_COMUN
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
-    def li(t, h):
+    def li(t, h, extra=''):
         if not h: return f'\n        <li>{t}</li>'
         ext = ' target="_blank" rel="noopener"' if h.startswith('http') else ''
         return f'\n        <li><a href="{h}"{ext}>{t}</a></li>'
-    # los enlaces de la casa: sin duplicados de Precios, sin horarios sueltos (van en Contáctanos)
-    enl = [(t, h) for t, h in enlaces if h and t not in ('Precios', 'Herrajes', 'Comprar en línea', 'Inicio de Academy', 'Calculadoras', 'Agenda')]
-    lis = ''.join(li(t, h) for t, h in enl)
+    lis = ''.join(li(t, h) for t, h in enlaces)
     faq = PIE_FAQ.get(casa, 'preguntas-frecuentes.html')
     rev = PIE_REVISTA.get(casa, 'revista.html')
-    horario = ''.join(li(t, None) for t in PIE_HORARIO) if casa == 'merceria' else ''
+    horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
-{casas_pie(casa)}  <div class="contenedor pie-grid">
+  <div class="contenedor pie-top">
     <div class="pie-marca">
       <div class="pie-logo-wrap"><img src="{img}" alt="{alt}" width="81" height="52" loading="lazy" decoding="async"></div>
-      <p>{frase}</p>
-      <div class="pie-redes" aria-label="Redes sociales">
-        <a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com/lana.rosa.2025" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.tiktok.com/@lanarosacrochet" target="_blank" rel="noopener">TikTok</a>
-        <a href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener">YouTube</a>
-      </div>
+      {casas_pie_mini(casa)}
     </div>
+    <div class="pie-redes" aria-label="Redes sociales">
+      <a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/lana.rosa.2025" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.tiktok.com/@lanarosacrochet" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+  <div class="contenedor pie-grid">
     <div class="pie-col">
       <p class="pie-h3">{titulo}</p>
       <ul>{lis}
@@ -279,22 +297,20 @@ def pie_casa(modelo, casa):
       <ul>
         <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
-        <li>Calle 10 #5-37 Centro, Villamaría, Caldas · <a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver en Google ↗</a></li>{horario}
+        <li>Calle 10 #5-37, Villamaría, Caldas · <a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver en Google ↗</a></li>{horario}
       </ul>
     </div>
   </div>
   <div class="contenedor pie-franja">
-    <div class="pie-pagos"><span class="pie-etiqueta">Pagos</span><span>Tarjeta débito/crédito</span><span>PSE</span><span>Nequi</span><span>Bancolombia</span><span>Bre-B</span><span>Efectivo</span></div>
+    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Nequi, Bancolombia, Bre-B y efectivo</p>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
       <img src="img/logo-sena.png" alt="SENA" width="328" height="320" onerror="this.style.display='none'" loading="lazy" decoding="async">
       <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" width="420" height="94" onerror="this.style.display='none'" loading="lazy" decoding="async">
     </div>
   </div>
   <div class="contenedor pie-legal">
-    <a href="politicas.html#envios">Envíos</a>
-    <a href="politicas.html#cambios">Cambios</a>
+    <a href="politicas.html">Políticas</a>
     <a href="politicas.html#datos">Datos personales</a>
-    <a href="politicas.html#uso">Uso del sitio</a>
     <a href="politicas.html#cookies">Cookies</a>
     <a href="politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>
     <button type="button" class="boton-instalar" data-instalar hidden aria-label="Instalar la app de {nombre_app}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Instalar app</button>
