@@ -438,6 +438,22 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   .pestana[aria-selected="true"] { box-shadow: 0 -3px 8px rgba(58,42,46,.16), inset 0 -4px 0 rgba(255,255,255,.7); }
 }
 @media print { .pestanas-agenda, .chips-hojas { display: none !important; } .agenda-layout { display: block; } }
+/* Tablero de indicadores (8-oct-2026) */
+.tab-lectura { background: linear-gradient(135deg, #FDF0F6, #EEF0FF); border: 1.5px solid var(--rosa-suave); border-radius: 18px; padding: 14px 18px; margin-bottom: 16px; }
+.tab-lectura h4 { margin: 0 0 8px; font-family: var(--fuente-titulo); color: var(--rosa-texto); font-size: 1.02rem; }
+.tab-lectura ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; }
+.tab-lectura li { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; line-height: 1.35; }
+.tab-lectura li span { flex: none; }
+.tab-grupo { margin-bottom: 18px; }
+.tab-grupo h4 { display: inline-block; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: #3b2a30; padding: 4px 14px; border-radius: 999px; background: var(--c); }
+.tab-tarjetas { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.tab-k { border: 1.5px solid var(--c); border-radius: 16px; padding: 12px 14px; background: #fff; display: flex; flex-direction: column; gap: 2px; }
+.tab-k span.t { font-size: .78rem; font-weight: 700; color: var(--tinta-suave); }
+.tab-k strong { font-family: var(--fuente-titulo); font-size: 1.45rem; line-height: 1.15; color: var(--tinta); }
+.tab-k small { font-size: .78rem; color: var(--tinta-suave); }
+.tab-k .fin-progreso { margin-top: 6px; }
+.tab-k.bien strong { color: #1F8A4C; } .tab-k.mal strong { color: #C23A56; }
+@media (max-width: 520px) { .tab-tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tab-k strong { font-size: 1.2rem; } }
 /* Finanzas (8-oct-2026) */
 .fin-mes { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 0 14px; }
 .fin-mes-txt { font-family: var(--fuente-titulo); font-size: 1.25rem; color: var(--rosa-texto); min-width: 9ch; text-align: center; text-transform: capitalize; }
@@ -781,10 +797,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 24</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 24 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 25</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 25 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
+          <p class="menu-grupo">Mi tablero</p>
+          <a href="#tablero-agenda" data-hoja="tablero-agenda">📈 Mi tablero</a>
           <p class="menu-grupo">Mis proyectos</p>
           <a href="#vision-anio" data-hoja="vision-anio">🌈 Mi visión del año</a>
           <a href="#prioridades-mes" data-hoja="prioridades-mes">🎯 Prioridades del mes</a>
@@ -823,6 +841,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
         </header>
+        <div class="indice-grupo" style="--c:#FFE08A"><h4>Mi tablero</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="tablero-agenda"><span class="atajo-ic" aria-hidden="true">📈</span><span><strong>Mi tablero</strong><small>Indicadores y análisis de todas tus hojas</small></span></button>
+        </div></div>
         <div class="indice-grupo" style="--c:#F28FC0"><h4>Mis proyectos</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="vision-anio"><span class="atajo-ic" aria-hidden="true">🌈</span><span><strong>Mi visión del año</strong><small>Tus sueños, palabra y metas</small></span></button>
           <button type="button" class="atajo" data-ir="prioridades-mes"><span class="atajo-ic" aria-hidden="true">🎯</span><span><strong>Prioridades del mes</strong><small>Tres prioridades y la frase del mes</small></span></button>
@@ -977,6 +998,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h4 class="sub-hoja">Mis metas de ahorro</h4>
         <div class="fin-metas" id="fin-metas"></div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> empieza con un presupuesto sencillo y ajústalo cada mes. Una meta pequeña que cumples vale más que una grande que se olvida.</p>
+      </article>
+      <article class="hoja-agenda" id="tablero-agenda">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Mi tablero</h3><p>Rosina lee todas tus hojas y te muestra cómo vas, con indicadores claros.</p></div>
+        </header>
+        <div class="fin-mes no-imprimir">
+          <button type="button" class="boton-secundario boton-chico" id="tab-mes-ant" aria-label="Mes anterior">‹</button>
+          <strong class="fin-mes-txt" id="tab-mes-txt" aria-live="polite"></strong>
+          <button type="button" class="boton-secundario boton-chico" id="tab-mes-sig" aria-label="Mes siguiente">›</button>
+        </div>
+        <div class="tab-lectura" id="tab-lectura"></div>
+        <div id="tab-grupos"></div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> el tablero se arma solo con lo que escribes en tus hojas (pedidos, ventas, finanzas, proyectos, clientas, materiales y bienestar). Entre más lo llenes, más claro se ve. Nada sale de tu dispositivo.</p>
       </article>
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
@@ -1921,6 +1956,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (window.lrPintarPestanas) window.lrPintarPestanas(id);
     if (id === 'calendario-anual' && window.lrPintarCalendario) window.lrPintarCalendario();
     if (window.lrFinRender && id.indexOf('fin-') === 0) window.lrFinRender(id);
+    if (id === 'tablero-agenda' && window.lrPintarTablero) window.lrPintarTablero();
     var pos = ordenMenu.indexOf(id);
     document.getElementById('menu-hojas-cuenta').textContent = 'Hoja ' + (pos + 1) + ' de ' + hojas.length + '';
     hojas.forEach(function(x) { var barra = x.querySelector('.hojas-pasos'); if (barra) barra.hidden = x !== h; });
@@ -2097,6 +2133,136 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.lrFinReset = function() { var c = el('fin-pres'); c.innerHTML = ''; delete c.dataset.listo; el('fin-metas').innerHTML = ''; pintar(); };
     pintar();
   })();
+  /* ---------- Tablero: análisis e indicadores con lo que hay en todas las hojas ---------- */
+  (function() {
+    var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    var hoy = new Date(), mes = { y: hoy.getFullYear(), m: hoy.getMonth() + 1 };
+    var COL = { pedidos: '#A9D3FA', fin: '#B5E3C2', proy: '#F28FC0', mat: '#B9BCFB', bien: '#F9D49B' };
+    function el(id) { return document.getElementById(id); }
+    function num(s) { var x = parseFloat(String(s == null ? '' : s).replace(/[^\d]/g, '')); return isNaN(x) ? 0 : x; }
+    function plata(n) { n = Math.round(n); return (n < 0 ? '−$ ' : '$ ') + Math.abs(n).toLocaleString('es-CO'); }
+    function filas(tabla, cols) {
+      var t = tablas[tabla], out = [];
+      for (var r = 1; r <= t.n; r++) {
+        var o = {}, vacia = true;
+        cols.forEach(function(c) { var e = el(t.prefijo + r + '-' + c); var v = e ? (e.type === 'checkbox' ? e.checked : e.value.trim()) : ''; o[c] = v; if (v) vacia = false; });
+        if (!vacia) out.push(o);
+      }
+      return out;
+    }
+    function dias(f) { var h = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()); return Math.round((new Date(f.a, f.m - 1, f.d) - h) / 86400000); }
+    var k = function(c, ic, t, big, sub, extra) { return '<div class="tab-k' + (extra && extra.cls ? ' ' + extra.cls : '') + '" style="--c:' + c + '"><span class="t">' + ic + ' ' + t + '</span><strong>' + big + '</strong>' + (sub ? '<small>' + sub + '</small>' : '') + (extra && extra.pct != null ? '<div class="fin-progreso' + (extra.pasa ? ' pasa' : '') + '"><i style="width:' + Math.max(0, Math.min(100, extra.pct)) + '%"></i></div>' : '') + '</div>'; };
+    function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    function pintar() {
+      el('tab-mes-txt').textContent = MESES[mes.m - 1] + ' ' + mes.y;
+      var ins = [], g = '';
+      /* Pedidos */
+      var ped = filas('tabla-pedidos', ['cliente', 'pedido', 'entrega', 'precio', 'abono', 'estado']);
+      var hechos = function(p) { return /entreg|terminad|listo|despachad/i.test(p.estado); };
+      var abiertos = ped.filter(function(p) { return !hechos(p); });
+      var porCobrar = ped.reduce(function(a, p) { return a + Math.max(0, num(p.precio) - num(p.abono)); }, 0);
+      var prox = abiertos.filter(function(p) { var f = leerFecha(p.entrega); return f && !f.sinAnio && dias(f) >= 0 && dias(f) <= 7; });
+      var venc = abiertos.filter(function(p) { var f = leerFecha(p.entrega); return f && !f.sinAnio && dias(f) < 0; });
+      var valorPed = ped.reduce(function(a, p) { return a + num(p.precio); }, 0);
+      if (ped.length) {
+        g += '<div class="tab-grupo" style="--c:' + COL.pedidos + '"><h4>Pedidos</h4><div class="tab-tarjetas">' +
+          k(COL.pedidos, '📦', 'Pedidos en curso', abiertos.length, ped.length + ' en total, ' + (ped.length - abiertos.length) + ' entregados') +
+          k(COL.pedidos, '⏰', 'Entregas esta semana', prox.length, venc.length ? venc.length + ' con fecha vencida' : 'Sin atrasos', { cls: venc.length ? 'mal' : '' }) +
+          k(COL.pedidos, '💵', 'Por cobrar', plata(porCobrar), 'De ' + plata(valorPed) + ' en pedidos', { pct: valorPed ? (valorPed - porCobrar) / valorPed * 100 : 0 }) + '</div></div>';
+        if (prox.length) ins.push(['📦', 'Tienes <b>' + prox.length + '</b> entrega' + (prox.length > 1 ? 's' : '') + ' en los próximos 7 días' + (prox[0].cliente ? ' (la primera, de ' + esc(prox[0].cliente) + ')' : '') + '.']);
+        if (venc.length) ins.push(['⚠️', '<b>' + venc.length + '</b> pedido' + (venc.length > 1 ? 's' : '') + ' ya pasó' + (venc.length > 1 ? 'ron' : '') + ' su fecha de entrega. Revisa el estado en «Control de pedidos».']);
+        if (porCobrar > 0) ins.push(['💵', 'Te falta por cobrar <b>' + plata(porCobrar) + '</b> de tus pedidos.']);
+      }
+      /* Ventas del mes */
+      var ven = filas('tabla-ventas', ['fecha', 'producto', 'cliente', 'precio', 'costo']).filter(function(v) { var f = leerFecha(v.fecha); return f && f.a === mes.y && f.m === mes.m; });
+      var tv = ven.reduce(function(a, v) { return a + num(v.precio); }, 0), tc = ven.reduce(function(a, v) { return a + num(v.costo); }, 0), gan = tv - tc;
+      var porProd = {}; ven.forEach(function(v) { var p = (v.producto || 'Sin nombre').toLowerCase(); porProd[p] = (porProd[p] || 0) + num(v.precio); });
+      var mejor = Object.keys(porProd).sort(function(a, b) { return porProd[b] - porProd[a]; })[0];
+      var cat = filas('tabla-catalogo', ['producto', 'tamano', 'precio', 'horas']);
+      var horas = cat.filter(function(c) { return num(c.horas) && num(c.precio); });
+      if (ven.length) {
+        g += '<div class="tab-grupo" style="--c:#A9D3FA"><h4>Ventas</h4><div class="tab-tarjetas">' +
+          k('#A9D3FA', '💰', 'Vendido en el mes', plata(tv), ven.length + ' venta' + (ven.length > 1 ? 's' : '')) +
+          k('#A9D3FA', '🧶', 'Materiales', plata(tc), tv ? Math.round(tc / tv * 100) + ' % de lo vendido' : '') +
+          k('#A9D3FA', '✨', 'Te quedó', plata(gan), tv ? 'Margen ' + Math.round(gan / tv * 100) + ' %' : '', { cls: gan >= 0 ? 'bien' : 'mal', pct: tv ? gan / tv * 100 : 0 }) +
+          (mejor ? k('#A9D3FA', '🏆', 'Lo que más vendió', esc(mejor.charAt(0).toUpperCase() + mejor.slice(1)), plata(porProd[mejor])) : '') + '</div></div>';
+        ins.push(['💰', 'En ' + MESES[mes.m - 1] + ' vendiste <b>' + plata(tv) + '</b> y te quedaron <b>' + plata(gan) + '</b>' + (tv ? ' (margen del ' + Math.round(gan / tv * 100) + ' %)' : '') + '.' + (mejor ? ' Tu estrella: <b>' + esc(mejor) + '</b>.' : '')]);
+        if (tv && gan / tv < 0.3) ins.push(['🏷️', 'Tu margen está por debajo del 30 %. Revisa los precios en «Mi catálogo de precios».']);
+      }
+      /* Finanzas */
+      var f = (datos._fin || { movs: [], pres: {} }), key = mes.y + '-' + ('0' + mes.m).slice(-2);
+      var ml = (f.movs || []).filter(function(x) { return x.f.slice(0, 7) === key; });
+      var ing = ml.filter(function(x) { return x.t === 'i'; }).reduce(function(a, x) { return a + x.v; }, 0), gas = ml.filter(function(x) { return x.t === 'g'; }).reduce(function(a, x) { return a + x.v; }, 0);
+      var tope = Object.keys(f.pres || {}).reduce(function(a, c) { return a + num(f.pres[c]); }, 0);
+      if (ml.length) {
+        var porCat = {}; ml.filter(function(x) { return x.t === 'g'; }).forEach(function(x) { porCat[x.c] = (porCat[x.c] || 0) + x.v; });
+        var mayor = Object.keys(porCat).sort(function(a, b) { return porCat[b] - porCat[a]; })[0];
+        g += '<div class="tab-grupo" style="--c:' + COL.fin + '"><h4>Finanzas</h4><div class="tab-tarjetas">' +
+          k(COL.fin, '⬆️', 'Ingresos', plata(ing), ml.length + ' movimientos') + k(COL.fin, '⬇️', 'Gastos', plata(gas), mayor ? 'Mayor: ' + esc(mayor) : '') +
+          k(COL.fin, '⚖️', 'Saldo del mes', plata(ing - gas), ing ? 'Ahorro ' + Math.round((ing - gas) / ing * 100) + ' % de lo que entró' : '', { cls: ing - gas >= 0 ? 'bien' : 'mal' }) +
+          (tope ? k(COL.fin, '🎯', 'Presupuesto usado', Math.round(gas / tope * 100) + ' %', plata(gas) + ' de ' + plata(tope), { pct: gas / tope * 100, pasa: gas > tope }) : '') + '</div></div>';
+        ins.push(['🧾', 'Este mes entraron <b>' + plata(ing) + '</b> y salieron <b>' + plata(gas) + '</b>' + (mayor ? '; lo que más pesa es <b>' + esc(mayor) + '</b>' : '') + '.']);
+        if (tope && gas > tope) ins.push(['⚠️', 'Ya superaste tu presupuesto mensual por <b>' + plata(gas - tope) + '</b>.']);
+        else if (tope && gas > tope * 0.85) ins.push(['🟡', 'Llevas el ' + Math.round(gas / tope * 100) + ' % de tu presupuesto. ¡Cuidado con lo que queda del mes!']);
+      }
+      var metas = (f.metas || []).filter(function(m) { return num(m.meta); });
+      if (metas.length) { var m0 = metas.sort(function(a, b) { return num(b.ahorrado) / num(b.meta) - num(a.ahorrado) / num(a.meta); })[0]; ins.push(['🐷', 'Tu meta «' + esc(m0.n || 'de ahorro') + '» va en <b>' + Math.round(num(m0.ahorrado) / num(m0.meta) * 100) + ' %</b>.']); }
+      /* Proyectos */
+      var pr = filas('tabla-fila', ['proyecto', 'para', 'fecha', 'estado']);
+      var nE = pr.filter(function(p) { return p.estado === 'Por empezar'; }).length, nT = pr.filter(function(p) { return p.estado === 'Tejiendo'; }).length, nF = pr.filter(function(p) { return p.estado === 'Terminado'; }).length;
+      var proxPr = pr.filter(function(p) { var q = leerFecha(p.fecha); return p.estado !== 'Terminado' && q && !q.sinAnio && dias(q) >= 0 && dias(q) <= 14; });
+      var pats = filas('tabla-patrones', ['patron', 'fuente', 'dificultad', 'tejido']), pT = pats.filter(function(p) { return p.tejido; }).length;
+      var apr = filas('tabla-aprendi', ['fecha', 'tecnica', 'donde', 'domino']), aD = apr.filter(function(p) { return p.domino; }).length;
+      if (pr.length || pats.length || apr.length) {
+        g += '<div class="tab-grupo" style="--c:' + COL.proy + '"><h4>Proyectos y aprendizaje</h4><div class="tab-tarjetas">' +
+          (pr.length ? k(COL.proy, '🧵', 'Proyectos en fila', pr.length, nT + ' tejiendo · ' + nE + ' por empezar · ' + nF + ' terminados', { pct: nF / pr.length * 100 }) : '') +
+          (pats.length ? k(COL.proy, '📚', 'Patrones', pats.length, pT + ' ya tejidos', { pct: pT / pats.length * 100 }) : '') +
+          (apr.length ? k(COL.proy, '🌟', 'Técnicas aprendidas', apr.length, aD + ' ya dominadas', { pct: aD / apr.length * 100 }) : '') + '</div></div>';
+        if (proxPr.length) ins.push(['🧵', '<b>' + proxPr.length + '</b> proyecto' + (proxPr.length > 1 ? 's' : '') + ' con fecha límite en los próximos 14 días.']);
+        if (nT > 3) ins.push(['🧵', 'Tienes ' + nT + ' proyectos tejiéndose a la vez. ¿Terminas uno antes de empezar otro?']);
+      }
+      /* Materiales */
+      var lanas = filas('tabla-lanas', ['marca', 'color', 'grosor', 'ovillos', 'uso']), ovillos = lanas.reduce(function(a, l) { return a + num(l.ovillos); }, 0);
+      var marcas = {}; lanas.forEach(function(l) { if (l.marca) marcas[l.marca.toLowerCase()] = 1; });
+      var comp = filas('tabla-compras', ['material', 'color', 'cantidad', 'comprado']).filter(function(c) { return c.material && !c.comprado; });
+      if (lanas.length || comp.length) {
+        g += '<div class="tab-grupo" style="--c:' + COL.mat + '"><h4>Materiales</h4><div class="tab-tarjetas">' +
+          k(COL.mat, '🧶', 'Ovillos en casa', ovillos, lanas.length + ' colores · ' + Object.keys(marcas).length + ' marca' + (Object.keys(marcas).length === 1 ? '' : 's')) +
+          k(COL.mat, '🛍️', 'Por comprar', comp.length, comp.length ? 'Revisa tu lista de compras' : 'Nada pendiente') + '</div></div>';
+        if (comp.length) ins.push(['🛍️', 'Tienes <b>' + comp.length + '</b> material' + (comp.length > 1 ? 'es' : '') + ' por comprar en tu lista.']);
+      }
+      /* Clientas y fechas */
+      var cl = filas('tabla-clientas', ['nombre', 'whatsapp', 'cumpleanos', 'compras', 'notas']);
+      var cumples = cl.map(function(c) { var q = leerFecha(c.cumpleanos); return q ? { n: c.nombre, d: dias(q) } : null; }).filter(function(c) { return c && c.d >= 0 && c.d <= 30; }).sort(function(a, b) { return a.d - b.d; });
+      var fe = filas('tabla-fechas', ['fecha', 'ocasion', 'para', 'idea', 'listo']).filter(function(x) { var q = leerFecha(x.fecha); return q && dias(q) >= 0 && dias(q) <= 30 && !x.listo; });
+      if (cl.length || fe.length) {
+        g += '<div class="tab-grupo" style="--c:#F7B3D4"><h4>Clientas y fechas</h4><div class="tab-tarjetas">' +
+          k('#F7B3D4', '💕', 'Clientas', cl.length, cumples.length ? cumples.length + ' cumpleaños en 30 días' : 'Sin cumpleaños próximos') +
+          k('#F7B3D4', '🎁', 'Fechas por preparar', fe.length, 'En los próximos 30 días') + '</div></div>';
+        if (cumples.length) ins.push(['🎂', 'Cumpleaños pronto: <b>' + cumples.slice(0, 3).map(function(c) { return esc(c.n || 'una clienta') + (c.d === 0 ? ' (hoy)' : ' (en ' + c.d + ' d)'); }).join(', ') + '</b>. ¡Un detalle para ellas!']);
+        if (fe.length) ins.push(['🎁', 'Tienes <b>' + fe.length + '</b> fecha' + (fe.length > 1 ? 's' : '') + ' especial' + (fe.length > 1 ? 'es' : '') + ' en los próximos 30 días sin regalo listo.']);
+      }
+      /* Bienestar y prioridades */
+      var pausas = 0; for (var i = 1; i <= 31; i++) { var e = el('ag-pa' + i); if (e && e.checked) pausas++; }
+      var di = filas('tabla-diario', ['fecha', 'animo', 'teji', 'frase']), animos = {}; di.forEach(function(d) { if (d.animo) animos[d.animo] = (animos[d.animo] || 0) + 1; });
+      var animo = Object.keys(animos).sort(function(a, b) { return animos[b] - animos[a]; })[0];
+      var pri = 0, priT = 0; for (var j = 1; j <= 3; j++) { if (el('ag-pm-p' + j) && el('ag-pm-p' + j).value.trim()) { priT++; if (el('ag-pm-ok' + j).checked) pri++; } }
+      if (pausas || di.length || priT) {
+        g += '<div class="tab-grupo" style="--c:' + COL.bien + '"><h4>Bienestar y prioridades</h4><div class="tab-tarjetas">' +
+          (priT ? k(COL.bien, '🎯', 'Prioridades del mes', pri + ' de ' + priT, pri === priT ? '¡Todas cumplidas!' : 'Sigue así', { pct: pri / priT * 100 }) : '') +
+          (pausas ? k(COL.bien, '🧘', 'Días con pausas activas', pausas, 'Cuidas tus manos y tu espalda', { pct: pausas / 31 * 100 }) : '') +
+          (di.length ? k(COL.bien, '📔', 'Días en tu diario', di.length, animo ? 'Ánimo más frecuente: ' + esc(animo) : '') : '') + '</div></div>';
+        if (priT && pri === priT) ins.push(['🎉', '¡Cumpliste tus ' + priT + ' prioridades del mes! Celebra.']);
+        else if (priT) ins.push(['🎯', 'Llevas <b>' + pri + ' de ' + priT + '</b> prioridades del mes.']);
+        if (pausas && pausas < 8) ins.push(['🧘', 'Solo ' + pausas + ' día' + (pausas > 1 ? 's' : '') + ' con pausas activas. Tus manos te lo agradecen: haz una hoy.']);
+      }
+      el('tab-grupos').innerHTML = g || '<p class="fin-vacio">Todavía no hay datos para mostrar. Llena tus pedidos, ventas, finanzas o proyectos y vuelve: aquí aparecerán tus indicadores.</p>';
+      el('tab-lectura').innerHTML = '<h4>🐑 Lo que veo en tu agenda</h4>' + (ins.length ? '<ul>' + ins.slice(0, 9).map(function(x) { return '<li><span>' + x[0] + '</span><div>' + x[1] + '</div></li>'; }).join('') + '</ul>' : '<p style="margin:0;font-size:.92rem;color:var(--tinta-suave)">Cuando escribas fechas, ventas o movimientos, te cuento qué noto: lo que se acerca, lo que falta y cómo vas.</p>');
+    }
+    el('tab-mes-ant').addEventListener('click', function() { mes.m--; if (mes.m < 1) { mes.m = 12; mes.y--; } pintar(); });
+    el('tab-mes-sig').addEventListener('click', function() { mes.m++; if (mes.m > 12) { mes.m = 1; mes.y++; } pintar(); });
+    window.lrPintarTablero = pintar;
+  })();
   /* ---------- Pestañas laterales e índice ---------- */
   (function() {
     var grupos = [];
@@ -2105,11 +2271,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       else if (n.tagName === 'A' && grupos.length) grupos[grupos.length - 1].links.push(n);
     });
     var COL = ['#F7B3D4', '#F28FC0', '#B9BCFB', '#A9D3FA', '#B5E3C2', '#F9D49B'];
+    var COLOR_GRUPO = { 'Inicio': '#F7B3D4', 'Mi tablero': '#FFE08A', 'Mis proyectos': '#F28FC0', 'Mis materiales': '#B9BCFB', 'Mi emprendimiento': '#A9D3FA', 'Mis finanzas': '#B5E3C2', 'Fechas y bienestar': '#F9D49B' };
+    var colorDe = function(g, i) { return COLOR_GRUPO[g.t] || COL[i % COL.length]; };
     var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
     var nav = document.getElementById('pestanas-agenda'), chips = document.getElementById('chips-hojas');
     var botones = grupos.map(function(g, i) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'pestana'; b.setAttribute('role', 'tab');
-      b.style.setProperty('--c', COL[i % COL.length]); b.textContent = etiqueta(g.t);
+      b.style.setProperty('--c', colorDe(g, i)); b.textContent = etiqueta(g.t);
       b.addEventListener('click', function() {
         var destino = g.links[0]; if (!destino) return;
         mostrarHoja(destino.dataset.hoja, window.innerWidth < 900);
@@ -2124,7 +2292,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       chips.innerHTML = '';
       var g = grupos[gi];
       if (g && g.links.length > 1) {
-        chips.style.setProperty('--c', COL[gi % COL.length]);
+        chips.style.setProperty('--c', colorDe(g, gi));
         g.links.forEach(function(a) {
           var c = document.createElement('button'); c.type = 'button'; c.textContent = a.textContent;
           if (a.dataset.hoja === id) c.setAttribute('aria-current', 'page');
