@@ -27,5 +27,5 @@ Datos en la nube (tabla por usuario con seguridad RLS) para que no se pierdan y 
 1. Membresía: cobro con Wompi, fecha de vencimiento, bloqueo de las hojas de pago, avisos. (La base de todo.) **HECHA, apagada** (`MEMBRESIA_ACTIVA = false`; vista previa con `?membresia=ver`). Migración 14, `crear-pago-wompi` v29.
 2. Finanzas en la nube + Panel y Movimientos nuevos. **HECHA** (sin encender el cobro): panel, movimientos con filtros/edición/CSV, y copia de toda la agenda en la nube (migración 15). Lo que la clienta ya tiene en el dispositivo se sube sola la primera vez.
 3. Planificación, gastos fijos y deudas. **HECHA** (hoja «Gastos fijos y deudas», metas con fecha y planes del año).
-4. Tarjetas, análisis y versión emprendimiento.
+4. Tarjetas, análisis y versión emprendimiento. **HECHA** (hojas «Mis tarjetas», «Análisis» y «Resultados del negocio»; casilla «Es del negocio»).
 5. Exportar y pulir.
