@@ -2,6 +2,15 @@
 
 Preparado el 8-oct-2026. Sirve para quitar el aviso "Google no ha verificado esta app" y el límite de 100 personas. El permiso `calendar.events` es **sensible**, así que Google pide: dominio verificado, política de privacidad con ciertas frases, justificación del permiso y un video. El texto para Google va en **inglés** (lo revisa un equipo internacional). El texto para la política publicada va en español.
 
+## 0. OJO: la membresía y la verificación (8-oct-2026)
+Cuando se encienda la membresía (`MEMBRESIA_ACTIVA = true` en `agenda-rosina.html`), la tarjeta **Google Calendar** queda dentro de las hojas de pago: solo la ven las cuentas con membresía activa. Para el video (y para cualquier revisor de Google) hay que usar una **cuenta de prueba con membresía activa, sin pagar**. Se la activa desde Supabase → SQL Editor (cambia el correo):
+```sql
+insert into membresias_agenda (user_id, plan, vence_at)
+select id, 'mensual', now() + interval '90 days' from auth.users where lower(email) = lower('correo-de-prueba@gmail.com')
+on conflict (user_id) do update set vence_at = excluded.vence_at, plan = excluded.plan;
+```
+Además, en el formulario de Google conviene decir que la sincronización forma parte de la membresía de la Agenda de Rosina (con enlace a `https://lanarosacrochet.com/politicas.html#membresia`) y que el video muestra el flujo completo con la cuenta de prueba. Si Google pide acceso al revisor, se le entrega esa misma cuenta de prueba (el ingreso es por enlace al correo o con Google).
+
 ## 1. Antes de enviar (lista de chequeo)
 - [ ] **Dominio verificado en Google Search Console** (`lanarosacrochet.com`) con la **misma cuenta** que es propietaria del proyecto `lana-rosa-web` en Google Cloud. Search Console → Agregar propiedad → Dominio → registro TXT en Cloudflare (DNS).
 - [ ] Política de privacidad publicada con la sección de Google Calendar (texto de la sección 2), en `https://lanarosacrochet.com/politicas.html#datos`, revisada por la abogada.

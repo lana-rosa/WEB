@@ -1,0 +1,51 @@
+{
+  "_aviso": "EJEMPLO para ver el diseño del PDF. No es un patrón real ni se publica. Para uno real: copia este archivo, cambia los datos y corre generar_patron.py.",
+  "nombre": "Bolita de lana",
+  "subtitulo": "Patrón de ejemplo para el diseño del PDF",
+  "nivel": "Principiante",
+  "foto_portada": "img/stickers/rosina-03-ovillo-corazon.png",
+  "tamano": "7 cm de diámetro",
+  "tiempo": "1 a 2 horas",
+  "puntos": ["am", "pb", "aum", "dism", "pd"],
+  "aprenderas": ["Empezar en anillo mágico", "Hacer aumentos y disminuciones parejos", "Rellenar y cerrar una pieza redonda"],
+  "materiales": [
+    {"item": "Lana", "detalle": "Algodón o acrílico grosor medio, unos 15 g, color a tu gusto"},
+    {"item": "Aguja de crochet", "detalle": "2,5 mm (una talla menos que la de la etiqueta para que el tejido quede firme)"},
+    {"item": "Relleno", "detalle": "Fibra siliconada, unos 10 g"},
+    {"item": "Aguja lanera", "detalle": "Para esconder las hebras"},
+    {"item": "Marcador de vueltas", "detalle": "Un gancho de seguridad o un trozo de lana de otro color"}
+  ],
+  "partes": [
+    {
+      "titulo": "Bolita",
+      "nota": "Se teje en espiral, sin cerrar cada vuelta. Marca el primer punto de cada vuelta.",
+      "vueltas": [
+        ["1", "6 pb en anillo mágico", "6"],
+        ["2", "aum en cada punto", "12"],
+        ["3", "(1 pb, aum) 6 veces", "18"],
+        ["4", "(2 pb, aum) 6 veces", "24"],
+        ["5", "(3 pb, aum) 6 veces", "30"],
+        ["6 a 10", "1 pb en cada punto (5 vueltas)", "30"],
+        ["11", "(3 pb, dism) 6 veces", "24"],
+        ["12", "(2 pb, dism) 6 veces", "18"],
+        ["13", "(1 pb, dism) 6 veces. Rellena ahora la bolita", "12"],
+        ["14", "dism 6 veces", "6"]
+      ],
+      "consejo": "Rellena poco a poco y empuja el relleno con los dedos para que no queden bultos."
+    }
+  ],
+  "armado": [
+    "Corta la hebra dejando unos 15 cm y pásala por la aguja lanera.",
+    "Pasa la aguja por el frente de los 6 puntos que quedan y tira para cerrar el agujero.",
+    "Haz un nudo, mete la aguja hacia adentro y saca la hebra por otro lado. Corta al ras."
+  ],
+  "consejos": [
+    "Cuenta los puntos al final de cada vuelta: así descubres a tiempo si te sobró o te faltó uno.",
+    "Si tu bolita queda grande, usa una aguja más delgada; si queda blanda, aprieta más los puntos.",
+    "Para lavarla a mano usa agua fría y jabón suave, y sécala a la sombra."
+  ],
+  "venta_piezas": "con_credito",
+  "credito": "Patrón de Lana Rosa Crochet · @lanarosacrochet",
+  "version": "1.0",
+  "anio": "2026"
+}
