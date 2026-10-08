@@ -1,11 +1,22 @@
 # Pendientes de la página web — Lana Rosa Crochet
 
-Última revisión: 26 de septiembre de 2026 (actualizada con la auditoría).
+Última revisión: 8 de octubre de 2026 (agenda con membresía, fases 1 a 5).
 Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ---
 
 ## 🔴 Urgente (lo hace Sara)
+
+- [ ] **▶ MAÑANA (9-oct-2026): seguimos con la agenda.** Dónde quedamos: las 5 fases de la agenda con membresía están **publicadas** (PR 268 a 272, 29 hojas: panel de finanzas, movimientos, gastos fijos y deudas, tarjetas, análisis, resultados del negocio, calendario con semana, copia en la nube, logo nuevo, condiciones en `politicas.html#membresia`). El cobro está **apagado** (`MEMBRESIA_ACTIVA = false` en `agenda-rosina.html`; se ve con `?membresia=ver`). Plan completo: `herramientas/agenda-premium/PLAN.md`. Orden sugerido para mañana:
+  1. **Sara usa la agenda con calma** (computador y celular) y anota lo que cambiaría: diseño, textos, hojas que sobren o falten, cosas que no se entienden. Claude lo ajusta.
+  2. **Sara prueba un pago real** de la membresía con `agenda-rosina.html?membresia=ver` ($10.000 de verdad): correo de bienvenida, mensaje en Mi cuenta, hojas desbloqueadas y fecha de vencimiento.
+  3. **Crear `agenda_nube_borrar()`** en Supabase → SQL Editor (primer bloque de `herramientas/cuentas-clientes/migracion-16-borrar-nube-ingresos-digitales.sql`).
+  4. **Abogada:** revisar `politicas.html#membresia` y la sección 11 de `#datos`.
+  5. **Decidir:** ¿las copias en la nube de membresías vencidas se borran solas a los 12 meses o se conservan hasta que la persona las borre?
+  6. **Encender la membresía** (Claude) cuando 2, 3 y 4 estén listos: `MEMBRESIA_ACTIVA = true`, ajustar textos de `recursos-rosina.html`, anuncio para redes y la Revista, y aviso a quienes ya usaban Finanzas gratis.
+  7. **Verificación de Google:** activar la membresía a la cuenta de prueba (SQL en `herramientas/google-calendar/verificacion-google.md`, sección 0), grabar el video y enviar.
+  8. **Primer patrón (PDF):** Sara cuenta cuál es (nombre, instrucciones, fotos, precio y si permite vender lo tejido); la plantilla `herramientas/patrones/` ya está lista.
+  - *Ideas para después (no urgentes):* hora en las fechas del calendario (hoy son de todo el día); mostrar en el calendario los pagos fijos y las cuotas; bloque «Mi membresía» en Mi cuenta; cobro automático con tarjeta guardada (hoy cada pago lo hace la persona); registrar el ingreso de las membresías en contabilidad de forma automática (hoy se saca con `ingresos_digitales_web`).
 
 - [x] **Cuentas de clientes activas (29-sep-2026).** Correo con código y enlace (SMTP de Resend, plantillas en español) y entrada con Google funcionando. Pasos y plantillas en `herramientas/cuentas-clientes/`.
   - [x] Verificación de marca de la app enviada en Google Auth Platform (Centro de verificación); Google avisa por correo cuando la apruebe.
