@@ -17,7 +17,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>if (location.hash === '#calculadora') location.replace('/calculadoras-rosina.html');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Material gratuito de Rosina — Lana Rosa Crochet</title>
-<meta name="description" content="Material gratuito para tejedoras: stickers y fondos de pantalla de Rosina, checklist para tu primer amigurumi, abreviaturas de crochet en 9 idiomas, calculadora y agenda imprimible.">
+<meta name="description" content="Material gratuito para tejedoras: stickers, fondos de pantalla por estación e íconos de apps de Rosina, checklist para tu primer amigurumi, abreviaturas de crochet en 9 idiomas, calculadora y agenda imprimible.">
 <link rel="canonical" href="https://lanarosacrochet.com/recursos-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Material gratuito de Rosina — Lana Rosa Crochet">
-<meta property="og:description" content="Stickers, fondos de pantalla, checklist, abreviaturas en 9 idiomas, calculadora y agenda para tejedoras. ¡Gratis!">
+<meta property="og:description" content="Stickers, fondos de pantalla por estación, íconos de apps, checklist, abreviaturas en 9 idiomas, calculadora y agenda para tejedoras. ¡Gratis!">
 <meta property="og:url" content="https://lanarosacrochet.com/recursos-rosina.html">
 <meta property="og:locale" content="es_CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -198,6 +198,20 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 #control-pedidos td input { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,0.2); background: transparent; font-family: var(--fuente-cuerpo); font-size: 0.92rem; padding: 8px 2px; color: var(--tinta); }
 #control-pedidos td input:focus { outline: none; border-bottom-color: var(--rosa-principal); }
 /* Fondos de pantalla */
+/* Estaciones: fondos e íconos (8-oct-2026) */
+.filtro-estacion { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.filtro-estacion button { font: inherit; font-weight: 700; font-size: 0.9rem; cursor: pointer; background: var(--blanco); color: var(--tinta); border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 7px 16px; }
+.filtro-estacion button[aria-pressed="true"] { background: var(--rosa-boton); border-color: var(--rosa-principal); color: var(--sobre-principal); }
+.filtro-estacion button:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.fondo[hidden], .grilla-iconos[hidden] { display: none; }
+.grilla-iconos { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 18px 14px; margin-bottom: 20px; }
+.icono-app { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.icono-app img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 8px 20px rgba(58,42,46,.16); transition: transform .2s ease; display: block; }
+.icono-app a:hover img { transform: translateY(-3px); }
+.icono-app figcaption { font-weight: 700; font-size: 0.85rem; }
+.iconos-descargas { margin: 4px 0 14px; }
+.como-iconos p { margin: 10px 0 0; font-size: 0.92rem; }
+@media print { .filtro-estacion, .iconos-descargas { display: none !important; } }
 .galeria-fondos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
 @media (max-width: 520px) { .galeria-fondos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
 .fondo { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
@@ -396,7 +410,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
   <section class="contenedor intro-rincon">
     <p class="eslogan">Material gratuito · Hecho con cariño</p>
-    <p class="intro">Descubre los regalos que Rosina preparó para ti: stickers, fondos de pantalla, recursos para tus proyectos y mucho más. 🐑💕</p>
+    <p class="intro">Descubre los regalos que Rosina preparó para ti: stickers, fondos de pantalla por estación, íconos para tu celular, recursos para tus proyectos y mucho más. 🐑💕</p>
     <div class="grupos-rincon">
       <section class="grupo-rincon" aria-label="Rosina te enseña">
         <h2><span aria-hidden="true">📚</span> Rosina te enseña</h2>
@@ -428,7 +442,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Descargables para llevar a Rosina contigo.</p>
         <nav class="enlaces-grupo" aria-label="Rosina te regala">
           <a href="#stickers"><span class="icono" aria-hidden="true">🌸</span><span><strong>Stickers</strong><span>26 para WhatsApp</span></span></a>
-          <a href="#fondos"><span class="icono" aria-hidden="true">📱</span><span><strong>Fondos de pantalla</strong><span>9 diseños, 4 tamaños</span></span></a>
+          <a href="#fondos"><span class="icono" aria-hidden="true">📱</span><span><strong>Fondos de pantalla</strong><span>14 diseños por estación, 4 tamaños</span></span></a>
+          <a href="#iconos"><span class="icono" aria-hidden="true">🎨</span><span><strong>Íconos para el celular</strong><span>12 por estación</span></span></a>
         </nav>
       </section>
       <section class="grupo-rincon" aria-label="Rosina te acompaña">
@@ -661,8 +676,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="recurso-cabecera">
         <img class="miniatura-recurso" src="/img/rincon/fondos.webp" width="480" height="360" loading="lazy" alt="Muestra de los fondos de pantalla de Rosina en celulares">
         <div>
-          <h2>Fondos de pantalla de Rosina</h2>
-          <p>9 fondos para tu pantalla de bloqueo o de inicio, hechos para que el reloj quede arriba sin tapar a Rosina. Elige el tamaño de tu celular y toca el fondo que más te guste.</p>
+          <h2>Fondos de pantalla de Rosina, por estación</h2>
+          <p>14 fondos para tu pantalla de bloqueo o de inicio, clasificados por estación: primavera, verano, otoño e invierno, más algunos para todo el año. Están hechos para que el reloj quede arriba sin tapar a Rosina. Elige el tamaño de tu celular y toca el fondo que más te guste.</p>
         </div>
       </div>
       <div class="selector-tamano" role="radiogroup" aria-label="Tamaño de tu celular">
@@ -673,54 +688,168 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label><input type="radio" name="tamano-fondo" value="iphone-max">iPhone Pro Max / Plus <small>1290 × 2796</small></label>
       </div>
       <p class="nota" id="tamano-sugerido" hidden></p>
+      <div class="filtro-estacion no-imprimir" role="group" aria-label="Elegir estación de los fondos" data-filtro="fondos"><button type="button" data-est="todas" aria-pressed="true">Todas</button><button type="button" data-est="primavera" aria-pressed="false">🌸 Primavera</button><button type="button" data-est="verano" aria-pressed="false">☀️ Verano</button><button type="button" data-est="otono" aria-pressed="false">🍂 Otoño</button><button type="button" data-est="invierno" aria-pressed="false">🧣 Invierno</button><button type="button" data-est="todo" aria-pressed="false">🐑 Todo el año</button></div>
       <div class="galeria-fondos">
-        <figure class="fondo" data-fondo="rosa">
+        <figure class="fondo" data-fondo="rosa" data-estacion="primavera">
           <a href="/img/fondos/fondo-rosina-rosa-samsung.jpg" download><img src="/img/fondos/mini-rosa.webp" alt="Fondo de pantalla rosa con corazones y Rosina saludando: Una vuelta a la vez" loading="lazy" width="300" height="650"></a>
           <figcaption>Una vuelta a la vez</figcaption>
           <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-rosa-samsung.jpg" download>⬇ Descargar</a>
         </figure>
-        <figure class="fondo" data-fondo="lila">
-          <a href="/img/fondos/fondo-rosina-lila-samsung.jpg" download><img src="/img/fondos/mini-lila.webp" alt="Fondo de pantalla lila con estrellas y Rosina tejiendo: Pequeños pasos, grandes creaciones" loading="lazy" width="300" height="650"></a>
-          <figcaption>Pequeños pasos, grandes creaciones</figcaption>
-          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-lila-samsung.jpg" download>⬇ Descargar</a>
+        <figure class="fondo" data-fondo="flores" data-estacion="primavera">
+          <a href="/img/fondos/fondo-rosina-flores-samsung.jpg" download><img src="/img/fondos/mini-flores.webp" alt="Fondo de pantalla rosa y menta con florecitas y Rosina con una flor: Cada punto, una flor" loading="lazy" width="300" height="650"></a>
+          <figcaption>Cada punto, una flor</figcaption>
+          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-flores-samsung.jpg" download>⬇ Descargar</a>
         </figure>
-        <figure class="fondo" data-fondo="fucsia">
-          <a href="/img/fondos/fondo-rosina-fucsia-samsung.jpg" download><img src="/img/fondos/mini-fucsia.webp" alt="Fondo de pantalla fucsia con corazones y Rosina haciendo un corazón: Tejido con amor" loading="lazy" width="300" height="650"></a>
-          <figcaption>Tejido con amor</figcaption>
-          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-fucsia-samsung.jpg" download>⬇ Descargar</a>
+        <figure class="fondo" data-fondo="brote" data-estacion="primavera">
+          <a href="/img/fondos/fondo-rosina-brote-samsung.jpg" download><img src="/img/fondos/mini-brote.webp" alt="Fondo de pantalla verde menta con hojitas y Rosina con un ramo de flores: Todo florece a su tiempo" loading="lazy" width="300" height="650"></a>
+          <figcaption>Todo florece a su tiempo</figcaption>
+          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-brote-samsung.jpg" download>⬇ Descargar</a>
         </figure>
-        <figure class="fondo" data-fondo="cielo">
+        <figure class="fondo" data-fondo="cielo" data-estacion="verano">
           <a href="/img/fondos/fondo-rosina-cielo-samsung.jpg" download><img src="/img/fondos/mini-cielo.webp" alt="Fondo de pantalla azul cielo con corazones y Rosina abrazando un corazón: Hoy también tejo" loading="lazy" width="300" height="650"></a>
           <figcaption>Hoy también tejo</figcaption>
           <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-cielo-samsung.jpg" download>⬇ Descargar</a>
         </figure>
-        <figure class="fondo" data-fondo="crema">
-          <a href="/img/fondos/fondo-rosina-crema-samsung.jpg" download><img src="/img/fondos/mini-crema.webp" alt="Fondo de pantalla crema con Rosina y su ovillo: Todo lo bonito también se teje" loading="lazy" width="300" height="650"></a>
-          <figcaption>Todo lo bonito también se teje</figcaption>
-          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-crema-samsung.jpg" download>⬇ Descargar</a>
+        <figure class="fondo" data-fondo="fucsia" data-estacion="verano">
+          <a href="/img/fondos/fondo-rosina-fucsia-samsung.jpg" download><img src="/img/fondos/mini-fucsia.webp" alt="Fondo de pantalla fucsia con corazones y Rosina haciendo un corazón: Tejido con amor" loading="lazy" width="300" height="650"></a>
+          <figcaption>Tejido con amor</figcaption>
+          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-fucsia-samsung.jpg" download>⬇ Descargar</a>
         </figure>
-        <figure class="fondo" data-fondo="cafe">
+        <figure class="fondo" data-fondo="sol" data-estacion="verano">
+          <a href="/img/fondos/fondo-rosina-sol-samsung.jpg" download><img src="/img/fondos/mini-sol.webp" alt="Fondo de pantalla amarillo suave con solecitos y Rosina feliz: Días de sol y lana" loading="lazy" width="300" height="650"></a>
+          <figcaption>Días de sol y lana</figcaption>
+          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-sol-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="cafe" data-estacion="otono">
           <a href="/img/fondos/fondo-rosina-cafe-samsung.jpg" download><img src="/img/fondos/mini-cafe.webp" alt="Fondo de pantalla durazno con Rosina tomando café: Primero café, luego tejo" loading="lazy" width="300" height="650"></a>
           <figcaption>Primero café, luego tejo</figcaption>
           <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-cafe-samsung.jpg" download>⬇ Descargar</a>
         </figure>
-        <figure class="fondo" data-fondo="gorro">
+        <figure class="fondo" data-fondo="hojas" data-estacion="otono">
+          <a href="/img/fondos/fondo-rosina-hojas-samsung.jpg" download><img src="/img/fondos/mini-hojas.webp" alt="Fondo de pantalla durazno con hojas y Rosina leyendo: Tardes de tejer y leer" loading="lazy" width="300" height="650"></a>
+          <figcaption>Tardes de tejer y leer</figcaption>
+          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-hojas-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="hojas2" data-estacion="otono">
+          <a href="/img/fondos/fondo-rosina-hojas2-samsung.jpg" download><img src="/img/fondos/mini-hojas2.webp" alt="Fondo de pantalla terracota rosado con hojas y Rosina con un ovillo: Lana, manta y calma" loading="lazy" width="300" height="650"></a>
+          <figcaption>Lana, manta y calma</figcaption>
+          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-hojas2-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="gorro" data-estacion="invierno">
           <a href="/img/fondos/fondo-rosina-gorro-samsung.jpg" download><img src="/img/fondos/mini-gorro.webp" alt="Fondo de pantalla lila con Rosina y su gorro tejido: Temporada de tejer" loading="lazy" width="300" height="650"></a>
           <figcaption>Temporada de tejer</figcaption>
           <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-gorro-samsung.jpg" download>⬇ Descargar</a>
         </figure>
-        <figure class="fondo" data-fondo="terapia">
+        <figure class="fondo" data-fondo="lila" data-estacion="invierno">
+          <a href="/img/fondos/fondo-rosina-lila-samsung.jpg" download><img src="/img/fondos/mini-lila.webp" alt="Fondo de pantalla lila con estrellas y Rosina tejiendo: Pequeños pasos, grandes creaciones" loading="lazy" width="300" height="650"></a>
+          <figcaption>Pequeños pasos, grandes creaciones</figcaption>
+          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-lila-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="crema" data-estacion="invierno">
+          <a href="/img/fondos/fondo-rosina-crema-samsung.jpg" download><img src="/img/fondos/mini-crema.webp" alt="Fondo de pantalla crema con Rosina y su ovillo: Todo lo bonito también se teje" loading="lazy" width="300" height="650"></a>
+          <figcaption>Todo lo bonito también se teje</figcaption>
+          <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-crema-samsung.jpg" download>⬇ Descargar</a>
+        </figure>
+        <figure class="fondo" data-fondo="terapia" data-estacion="todo">
           <a href="/img/fondos/fondo-rosina-terapia-samsung.jpg" download><img src="/img/fondos/mini-terapia.webp" alt="Fondo de pantalla rosa con Rosina abrazando un ovillo de corazón: Tejer es mi terapia" loading="lazy" width="300" height="650"></a>
           <figcaption>Tejer es mi terapia</figcaption>
           <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-terapia-samsung.jpg" download>⬇ Descargar</a>
         </figure>
-        <figure class="fondo" data-fondo="patron">
+        <figure class="fondo" data-fondo="patron" data-estacion="todo">
           <a href="/img/fondos/fondo-rosina-patron-samsung.jpg" download><img src="/img/fondos/mini-patron.webp" alt="Fondo de pantalla rosa con muchas Rosinas: Rosina por todas partes" loading="lazy" width="300" height="650"></a>
           <figcaption>Rosina por todas partes</figcaption>
           <a class="boton-secundario boton-chico" href="/img/fondos/fondo-rosina-patron-samsung.jpg" download>⬇ Descargar</a>
         </figure>
       </div>
       <p class="nota">¿Desde el iPhone? Si el fondo se abre en vez de descargarse, mantenlo presionado y elige "Guardar en Fotos". En Samsung, al ponerlo como fondo puedes ajustarlo con los dedos si tu pantalla es distinta.</p>
+    </div>
+  </section>
+
+  <!-- ============ ÍCONOS PARA EL CELULAR ============ -->
+  <section class="seccion-suave recurso" id="iconos">
+    <div class="contenedor">
+      <div class="recurso-cabecera">
+        <img class="miniatura-recurso" src="/img/rincon/iconos.webp" width="480" height="360" loading="lazy" alt="Muestra de los íconos de Rosina para el celular en colores de primavera, verano y otoño">
+        <div>
+          <h2>Íconos para tu celular, por estación</h2>
+          <p>12 íconos de apps con los colores de cada estación, para que tu pantalla de inicio combine con tu fondo de Rosina. Son dibujos nuestros y genéricos (teléfono, cámara, fotos…): sirven para cambiar el ícono de cualquier app.</p>
+        </div>
+      </div>
+      <div class="filtro-estacion no-imprimir" role="group" aria-label="Elegir estación de los íconos" data-filtro="iconos">
+        <button type="button" data-est="primavera" aria-pressed="true">🌸 Primavera</button>
+        <button type="button" data-est="verano" aria-pressed="false">☀️ Verano</button>
+        <button type="button" data-est="otono" aria-pressed="false">🍂 Otoño</button>
+        <button type="button" data-est="invierno" aria-pressed="false">🧣 Invierno</button>
+      </div>
+      <div class="iconos-estacion">
+        <div class="grilla-iconos" data-estacion-iconos="primavera">
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-telefono.png" download><img src="/img/iconos-app/icono-primavera-telefono.png" alt="Ícono de teléfono en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Teléfono</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-mensajes.png" download><img src="/img/iconos-app/icono-primavera-mensajes.png" alt="Ícono de mensajes en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Mensajes</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-camara.png" download><img src="/img/iconos-app/icono-primavera-camara.png" alt="Ícono de cámara en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Cámara</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-fotos.png" download><img src="/img/iconos-app/icono-primavera-fotos.png" alt="Ícono de fotos en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Fotos</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-calendario.png" download><img src="/img/iconos-app/icono-primavera-calendario.png" alt="Ícono de calendario en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Calendario</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-notas.png" download><img src="/img/iconos-app/icono-primavera-notas.png" alt="Ícono de notas en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Notas</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-reloj.png" download><img src="/img/iconos-app/icono-primavera-reloj.png" alt="Ícono de reloj en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Reloj</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-musica.png" download><img src="/img/iconos-app/icono-primavera-musica.png" alt="Ícono de música en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Música</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-mapas.png" download><img src="/img/iconos-app/icono-primavera-mapas.png" alt="Ícono de mapas en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Mapas</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-correo.png" download><img src="/img/iconos-app/icono-primavera-correo.png" alt="Ícono de correo en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Correo</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-ajustes.png" download><img src="/img/iconos-app/icono-primavera-ajustes.png" alt="Ícono de ajustes en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Ajustes</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-primavera-lana.png" download><img src="/img/iconos-app/icono-primavera-lana.png" alt="Ícono de lana rosa en tonos de primavera" loading="lazy" width="96" height="96"></a><figcaption>Lana Rosa</figcaption></figure>
+        </div>
+        <div class="grilla-iconos" data-estacion-iconos="verano" hidden>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-telefono.png" download><img src="/img/iconos-app/icono-verano-telefono.png" alt="Ícono de teléfono en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Teléfono</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-mensajes.png" download><img src="/img/iconos-app/icono-verano-mensajes.png" alt="Ícono de mensajes en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Mensajes</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-camara.png" download><img src="/img/iconos-app/icono-verano-camara.png" alt="Ícono de cámara en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Cámara</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-fotos.png" download><img src="/img/iconos-app/icono-verano-fotos.png" alt="Ícono de fotos en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Fotos</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-calendario.png" download><img src="/img/iconos-app/icono-verano-calendario.png" alt="Ícono de calendario en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Calendario</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-notas.png" download><img src="/img/iconos-app/icono-verano-notas.png" alt="Ícono de notas en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Notas</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-reloj.png" download><img src="/img/iconos-app/icono-verano-reloj.png" alt="Ícono de reloj en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Reloj</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-musica.png" download><img src="/img/iconos-app/icono-verano-musica.png" alt="Ícono de música en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Música</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-mapas.png" download><img src="/img/iconos-app/icono-verano-mapas.png" alt="Ícono de mapas en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Mapas</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-correo.png" download><img src="/img/iconos-app/icono-verano-correo.png" alt="Ícono de correo en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Correo</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-ajustes.png" download><img src="/img/iconos-app/icono-verano-ajustes.png" alt="Ícono de ajustes en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Ajustes</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-verano-lana.png" download><img src="/img/iconos-app/icono-verano-lana.png" alt="Ícono de lana rosa en tonos de verano" loading="lazy" width="96" height="96"></a><figcaption>Lana Rosa</figcaption></figure>
+        </div>
+        <div class="grilla-iconos" data-estacion-iconos="otono" hidden>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-telefono.png" download><img src="/img/iconos-app/icono-otono-telefono.png" alt="Ícono de teléfono en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Teléfono</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-mensajes.png" download><img src="/img/iconos-app/icono-otono-mensajes.png" alt="Ícono de mensajes en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Mensajes</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-camara.png" download><img src="/img/iconos-app/icono-otono-camara.png" alt="Ícono de cámara en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Cámara</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-fotos.png" download><img src="/img/iconos-app/icono-otono-fotos.png" alt="Ícono de fotos en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Fotos</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-calendario.png" download><img src="/img/iconos-app/icono-otono-calendario.png" alt="Ícono de calendario en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Calendario</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-notas.png" download><img src="/img/iconos-app/icono-otono-notas.png" alt="Ícono de notas en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Notas</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-reloj.png" download><img src="/img/iconos-app/icono-otono-reloj.png" alt="Ícono de reloj en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Reloj</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-musica.png" download><img src="/img/iconos-app/icono-otono-musica.png" alt="Ícono de música en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Música</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-mapas.png" download><img src="/img/iconos-app/icono-otono-mapas.png" alt="Ícono de mapas en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Mapas</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-correo.png" download><img src="/img/iconos-app/icono-otono-correo.png" alt="Ícono de correo en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Correo</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-ajustes.png" download><img src="/img/iconos-app/icono-otono-ajustes.png" alt="Ícono de ajustes en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Ajustes</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-otono-lana.png" download><img src="/img/iconos-app/icono-otono-lana.png" alt="Ícono de lana rosa en tonos de otoño" loading="lazy" width="96" height="96"></a><figcaption>Lana Rosa</figcaption></figure>
+        </div>
+        <div class="grilla-iconos" data-estacion-iconos="invierno" hidden>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-telefono.png" download><img src="/img/iconos-app/icono-invierno-telefono.png" alt="Ícono de teléfono en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Teléfono</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-mensajes.png" download><img src="/img/iconos-app/icono-invierno-mensajes.png" alt="Ícono de mensajes en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Mensajes</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-camara.png" download><img src="/img/iconos-app/icono-invierno-camara.png" alt="Ícono de cámara en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Cámara</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-fotos.png" download><img src="/img/iconos-app/icono-invierno-fotos.png" alt="Ícono de fotos en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Fotos</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-calendario.png" download><img src="/img/iconos-app/icono-invierno-calendario.png" alt="Ícono de calendario en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Calendario</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-notas.png" download><img src="/img/iconos-app/icono-invierno-notas.png" alt="Ícono de notas en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Notas</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-reloj.png" download><img src="/img/iconos-app/icono-invierno-reloj.png" alt="Ícono de reloj en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Reloj</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-musica.png" download><img src="/img/iconos-app/icono-invierno-musica.png" alt="Ícono de música en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Música</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-mapas.png" download><img src="/img/iconos-app/icono-invierno-mapas.png" alt="Ícono de mapas en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Mapas</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-correo.png" download><img src="/img/iconos-app/icono-invierno-correo.png" alt="Ícono de correo en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Correo</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-ajustes.png" download><img src="/img/iconos-app/icono-invierno-ajustes.png" alt="Ícono de ajustes en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Ajustes</figcaption></figure>
+          <figure class="icono-app"><a href="/img/iconos-app/icono-invierno-lana.png" download><img src="/img/iconos-app/icono-invierno-lana.png" alt="Ícono de lana rosa en tonos de invierno" loading="lazy" width="96" height="96"></a><figcaption>Lana Rosa</figcaption></figure>
+        </div>
+      </div>
+      <div class="acciones iconos-descargas no-imprimir">
+        <a class="boton-primario" id="zip-iconos-estacion" href="/img/iconos-app/iconos-rosina-primavera.zip" download>⬇ Descargar los 12 de esta estación (ZIP)</a>
+        <a class="boton-secundario" href="/img/iconos-app/iconos-rosina-todos.zip" download>Las 4 estaciones (ZIP)</a>
+      </div>
+      <details class="como-whatsapp como-iconos no-imprimir">
+        <summary>¿Cómo cambio el ícono de una app?</summary>
+        <p><strong>iPhone:</strong> abre la app <em>Atajos</em> → toca <strong>+</strong> → <em>Añadir acción</em> → <em>Abrir app</em> y elige la app. Toca los tres puntos o el botón de compartir → <em>Añadir a pantalla de inicio</em>. Toca el ícono que aparece junto al nombre, elige <em>Elegir foto</em> y selecciona el ícono de Rosina. Ponle el nombre que quieras y toca <em>Añadir</em>. La app original se puede ocultar de la pantalla de inicio.</p>
+        <p><strong>Android:</strong> con un lanzador como Nova Launcher o similares, mantén presionada una app → <em>Editar</em> → toca el ícono → <em>Galería</em> y elige el de Rosina. Algunos celulares (Samsung, Xiaomi) tienen su propia tienda de temas y paquetes de íconos; si tu celular no te deja cambiarlos, el lanzador es la forma más sencilla.</p>
+        <p>Primero guarda los íconos en tu galería (mantén presionado el ícono y elige "Guardar imagen" o descarga el ZIP).</p>
+      </details>
+      <p class="nota">Uso personal. Los íconos no cambian el funcionamiento de tus apps: solo su imagen.</p>
     </div>
   </section>
 
@@ -1020,6 +1149,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   revisarPista();
 
   function whatsapp(texto) { return 'https://wa.me/573205072801?text=' + encodeURIComponent(texto); }
+
+
+  /* ---------- Estaciones: filtrar fondos y cambiar de estación en los íconos ---------- */
+  document.querySelectorAll('.filtro-estacion').forEach(function(grupo) {
+    var tipo = grupo.dataset.filtro;
+    grupo.addEventListener('click', function(e) {
+      var b = e.target.closest('button[data-est]'); if (!b) return;
+      grupo.querySelectorAll('button').forEach(function(x) { x.setAttribute('aria-pressed', String(x === b)); });
+      var est = b.dataset.est;
+      if (tipo === 'fondos') {
+        document.querySelectorAll('.galeria-fondos .fondo').forEach(function(f) { f.hidden = !(est === 'todas' || f.dataset.estacion === est); });
+      } else {
+        document.querySelectorAll('.grilla-iconos').forEach(function(g) { g.hidden = g.dataset.estacionIconos !== est; });
+        document.getElementById('zip-iconos-estacion').href = '/img/iconos-app/iconos-rosina-' + est + '.zip';
+      }
+    });
+  });
 
   /* ---------- Fondos: tamaño según el celular ---------- */
   var radiosTamano = document.querySelectorAll('input[name="tamano-fondo"]');

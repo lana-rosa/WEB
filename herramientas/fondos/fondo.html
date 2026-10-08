@@ -25,6 +25,11 @@ const V={
  cafe:{bg:'linear-gradient(180deg,#FFF1E8,#FFDCCB)',figura:'#F2A48F',op:.35,tipo:'sticker',img:'stickers/rosina-13-cafe.webp',frase:'Primero café, luego tejo',texto:'#B5543F',forma:'corazon'},
  gorro:{bg:'linear-gradient(180deg,#F4EEFF,#E3DAFB)',figura:'#B69CF0',op:.35,tipo:'sticker',img:'stickers/rosina-17-gorro.webp',frase:'Temporada de tejer',texto:'#6B4FB8',forma:'estrella'},
  terapia:{bg:'linear-gradient(180deg,#FFF0F6,#FBD0E3)',figura:'#E74E96',op:.22,tipo:'sticker',img:'stickers/rosina-03-ovillo-corazon.webp',frase:'Tejer es mi terapia',texto:'#B83E78',forma:'corazon'},
+ flores:{bg:'linear-gradient(180deg,#FFF0F6,#E3F6EA)',figura:'#F28FC0',op:.4,tipo:'sticker',img:'stickers/rosina-04-flor.webp',frase:'Cada punto, una flor',texto:'#B83E78',forma:'flor'},
+ brote:{bg:'linear-gradient(180deg,#EAF8F0,#FDF6F2)',figura:'#7CC9A0',op:.42,tipo:'sticker',img:'stickers/rosina-15-ramo.webp',frase:'Todo florece a su tiempo',texto:'#2F7D58',forma:'hoja'},
+ sol:{bg:'linear-gradient(180deg,#FFF6D6,#FFE0C2)',figura:'#FFB84D',op:.4,tipo:'sticker',img:'stickers/rosina-08-feliz.webp',frase:'Días de sol y lana',texto:'#B5651D',forma:'sol'},
+ hojas:{bg:'linear-gradient(180deg,#FFF1E2,#FFD9B8)',figura:'#E59A5B',op:.4,tipo:'sticker',img:'stickers/rosina-07-leyendo.webp',frase:'Tardes de tejer y leer',texto:'#A4502B',forma:'hoja'},
+ hojas2:{bg:'linear-gradient(180deg,#FBE9E0,#F2C4B0)',figura:'#D97A62',op:.38,tipo:'sticker',img:'stickers/rosina-05-ovillo-sentada.webp',frase:'Lana, manta y calma',texto:'#9A4332',forma:'hoja'},
  patron:{bg:'#FDEBF3',tipo:'patron',frase:'',texto:'#B83E78'}
 }[q.get('v')];
 const w=document.getElementById('w');w.style.background=V.bg;w.style.setProperty('--texto',V.texto);w.style.setProperty('--anillo',V.anillo||'#fff');
@@ -43,10 +48,14 @@ if(V.tipo==='patron'){
   centro.innerHTML=h;
   document.querySelector('.marca').style.cssText+='bottom:6vh;opacity:1;background:#fff;display:inline-block;left:50%;right:auto;transform:translateX(-50%);padding:14px 36px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.12)';
 } else {
-  const F={corazon:'M0,-6 C-6,-14 -18,-8 -12,2 L0,14 L12,2 C18,-8 6,-14 0,-6Z',estrella:'M0,-14 L4,-4 L14,-4 L6,3 L9,14 L0,7 L-9,14 L-6,3 L-14,-4 L-4,-4Z'};
+  const ang=(n,f)=>Array.from({length:n},(_,i)=>f(i*2*Math.PI/n));
+  const F={corazon:'M0,-6 C-6,-14 -18,-8 -12,2 L0,14 L12,2 C18,-8 6,-14 0,-6Z',estrella:'M0,-14 L4,-4 L14,-4 L6,3 L9,14 L0,7 L-9,14 L-6,3 L-14,-4 L-4,-4Z',
+   hoja:'M0,-14 C11,-8 11,6 0,14 C-11,6 -11,-8 0,-14Z M0,-9 L0,11',
+   flor:ang(5,a=>{const x=(8*Math.sin(a)).toFixed(2),y=(-8*Math.cos(a)).toFixed(2);return `M${(+x-5).toFixed(2)},${y}a5,5 0 1,0 10,0a5,5 0 1,0 -10,0`}).join('')+'M-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0',
+   sol:'M-6,0a6,6 0 1,0 12,0a6,6 0 1,0 -12,0'+ang(8,a=>{const r1=9,r2=14,x1=(r1*Math.sin(a)).toFixed(2),y1=(-r1*Math.cos(a)).toFixed(2),x2=(r2*Math.sin(a)).toFixed(2),y2=(-r2*Math.cos(a)).toFixed(2);return `M${x1},${y1}L${x2},${y2}`}).join('')};
   const svg=document.getElementById('pat');svg.setAttribute('viewBox',`0 0 1170 ${H}`);let h='';
   for(let y=60;y<H;y+=210){for(let x=(y/210%2?40:145);x<1170;x+=210){const sc=1.6+r()*1.4,rot=(r()*50-25)|0,dx=r()*40-20,dy=r()*40-20;
-   h+=`<path d="${F[V.forma]}" fill="${V.figura}" opacity="${V.op}" transform="translate(${x+dx},${y+dy}) rotate(${rot}) scale(${sc})"/>`}}
+   h+=`<path d="${F[V.forma]}" fill="${V.figura}" stroke="${V.figura}" stroke-width="${V.forma==='sol'?1.3:(V.forma==='hoja'?.8:0)}" stroke-linecap="round" fill-rule="evenodd" opacity="${V.op}" transform="translate(${x+dx},${y+dy}) rotate(${rot}) scale(${sc})"/>`}}
   svg.innerHTML=h;
 }
 </script></body></html>
