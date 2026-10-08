@@ -622,6 +622,7 @@ async function pintarBonoCarrito() {
   const yo = ++bonoCarritoId;
   const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
   if (!items.length || esDigital()) { el.hidden = true; return; }   // los patrones digitales no llevan el descuento de primera compra
+  if (!PAGO_EN_LINEA_MERCERIA && tieneMateriales()) { el.hidden = true; return; }   // los materiales se piden por WhatsApp: el descuento automático solo aplica al pagar en línea
   const bono = datosBono(), cuenta = haySesionGuardada() ? await datosCuenta() : {};
   const correo = String(cuenta.correo || bono.correo || '').toLowerCase(), telefono = cuenta.telefono || bono.telefono || '';
   el.hidden = false;
