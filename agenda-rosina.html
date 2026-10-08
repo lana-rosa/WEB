@@ -1774,7 +1774,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var conectado = !!(estado && estado.conectado);
     bCon.hidden = conectado; bSin.hidden = !conectado; bDes.hidden = !conectado;
     if (!conectado) txt.textContent = 'Conecta tu Google Calendar y tus entregas, proyectos, fechas especiales, ferias y cumpleaños se actualizan solos.';
-    else txt.textContent = 'Conectado' + (estado.correo ? ' como ' + estado.correo : '') + '. ' + (estado.ultima ? 'Última sincronización: ' + new Date(estado.ultima).toLocaleString('es-CO', { dateStyle: 'medium', timeStyle: 'short' }).replace(/\.$/, '') : 'Todavía no se ha sincronizado.');
+    else txt.textContent = 'Conectado' + (estado.correo ? ' como ' + estado.correo : '') + '. ' + (estado.ultima ? 'Última sincronización: ' + (function (f) { return f + (/\.$/.test(f) ? '' : '.'); })(new Date(estado.ultima).toLocaleString('es-CO', { dateStyle: 'medium', timeStyle: 'short' })) : 'Todavía no se ha sincronizado.');
   }
   async function sincronizar(manual) {
     if (ocupado || !estado || !estado.conectado) return;
