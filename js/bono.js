@@ -62,7 +62,7 @@
     '<span class="etiqueta-bono">🎁 10% de descuento</span>' +
     '<h2 id="bono-titulo">' + T.titulo + '</h2>' +
     '<p class="intro-bono">' + T.intro + '</p>' +
-    '<p class="nota-bono">No aplica para amigurumis personalizados ni talleres.</p>' +
+    '<p class="nota-bono">No aplica para amigurumis personalizados, talleres ni patrones digitales.</p>' +
     '<form id="form-bono">' +
     '<div class="campo-bono"><input type="text" id="bono-nombre" placeholder="Tu nombre" required></div>' +
     '<div class="campo-bono"><input type="email" id="bono-correo" placeholder="Tu correo electrónico" required></div>' +

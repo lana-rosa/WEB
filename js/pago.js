@@ -453,7 +453,7 @@ function actualizarResumen() {
   const fila = (clase, t, v) => { const f = nodo('div', clase); f.append(nodo('span', null, t), nodo('span', null, v)); r.append(f); };
   fila('subtotal', 'Valor del pedido', pesos(sub));
   if (desc) fila('descuento', '🎁 Descuento aplicado por primera compra (' + cot.pct + '%)', '−' + pesos(desc));
-  else if (!cotClave) fila('pista', '🎁 Primera compra: 10% de descuento', 'Escribe tu correo');
+  else if (!cotClave && !digital) fila('pista', '🎁 Primera compra: 10% de descuento', 'Escribe tu correo');
   const textoEnvio = digital ? 'Sin envío (descarga digital)' : recoge ? 'Gratis (recoges en tienda)' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula con tu dirección') : pesos(envio) + (intl && zona ? ' (US$ ' + Number(zona.valor_usd).toFixed(2) + ')' : ''));
   fila('', digital ? 'Entrega' : (recoge ? 'Recoger en tienda' : 'Envío'), textoEnvio);
   const total = envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio);
@@ -614,7 +614,7 @@ async function pintarBonoCarrito() {
   const el = document.getElementById('carrito-bono'); if (!el) return;
   const yo = ++bonoCarritoId;
   const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
-  if (!items.length) { el.hidden = true; return; }
+  if (!items.length || esDigital()) { el.hidden = true; return; }   // los patrones digitales no llevan el descuento de primera compra
   const bono = datosBono(), cuenta = haySesionGuardada() ? await datosCuenta() : {};
   const correo = String(cuenta.correo || bono.correo || '').toLowerCase(), telefono = cuenta.telefono || bono.telefono || '';
   el.hidden = false;
