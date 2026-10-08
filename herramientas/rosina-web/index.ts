@@ -54,7 +54,7 @@ async function catalogo(sb: any): Promise<string> {
   const mer = (m.data || []).map((p: Record<string, unknown>) => {
     const peso = Number(p.peso_gramos) || 0, pg = Number(p.precio_gramo) || 0;
     return `- ${p.nombre} | ${p.categoria || ""} | marca ${p.marca || "-"} | color ${p.color || "-"} | material ${p.material || "-"}` +
-      (peso ? ` | ovillo ${peso} g, aprox. ${cop(Math.round(pg * peso / 100) * 100)} por ovillo (${cop(pg)} por gramo)` : ` | ${cop(pg)}`) +
+      (peso ? ` | se vende por ovillo completo de ${peso} g: ${cop(Math.round(pg * peso / 100) * 100)} el ovillo` : ` | ${cop(pg)}`) +
       ` | ${Number(p.stock_actual) > 0 ? "disponible" : "agotado por ahora"}`;
   }).join("\n");
   const texto = `CATÁLOGO ACTUAL DE LA TIENDA DE AMIGURUMIS (nombre | categoría | precio | disponibilidad | detalles):\n${tienda}\n\nCATÁLOGO ACTUAL DE LA MERCERÍA (hilos, lanas, etc.):\n${mer}`;
@@ -64,7 +64,7 @@ async function catalogo(sb: any): Promise<string> {
 
 const ROLES: Record<string, string> = {
   tienda: "La persona está en la TIENDA DE AMIGURUMIS: asesórala sobre amigurumis y los productos de la tienda (cuál elegir según el regalo, la edad, el gusto o el presupuesto; tamaños, materiales, cuidados, tiempos de elaboración) y sobre pedidos personalizados (Personaliza). Recomienda 1 a 3 productos concretos del catálogo con su precio y disponibilidad.",
-  merceria: "La persona está en la MERCERÍA: asesórala sobre hilos, lanas, agujas e insumos para tejedoras (qué material usar según el proyecto, grosor del hilo y aguja recomendada, cantidad aproximada de ovillos, accesorios como ojos, relleno, marcadores). Recomienda productos concretos del catálogo de la mercería con su disponibilidad. Si algo no está en el catálogo, dilo y sugiere preguntar por WhatsApp.",
+  merceria: "La persona está en la MERCERÍA: asesórala sobre hilos, lanas, agujas e insumos para tejedoras (qué material usar según el proyecto, grosor del hilo y aguja recomendada, cantidad aproximada de ovillos, accesorios como ojos, relleno, marcadores). Las lanas y los hilos se venden SIEMPRE por ovillo (madeja) completo, nunca por gramos sueltos: da el precio del ovillo y no el precio por gramo. Los pedidos de materiales se hacen por WhatsApp desde el carrito de la web. Recomienda productos concretos del catálogo de la mercería con su disponibilidad. Si algo no está en el catálogo, dilo y sugiere preguntar por WhatsApp.",
   academy: "La persona está en LANA ROSA ACADEMY: asesórala sobre tejido a crochet: puntos, abreviaturas, lectura de patrones, tejido en redondo y amigurumi, tensión, errores comunes, materiales y cómo empezar o avanzar de nivel. Para esto SÍ puedes usar tu conocimiento general de crochet (explica paso a paso y con claridad). Los talleres, fechas y precios de la Academy solo los que estén en el CONOCIMIENTO PÚBLICO. Recomienda el glosario, las paletas y las calculadoras del Rincón de Rosina (lanarosacrochet.com/recursos-rosina.html) cuando ayuden.",
 };
 
