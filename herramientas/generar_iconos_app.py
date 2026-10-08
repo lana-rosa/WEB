@@ -14,9 +14,19 @@ def afilar(im, lado):
     g.putalpha(a)
     return g.filter(ImageFilter.UnsharpMask(radius=2, percent=90, threshold=2))
 
+def sin_aro(im):
+    """El ícono de la pestaña es un disco de color con las esquinas blancas: se pinta todo lo que queda fuera del disco con el color del disco (sin círculo blanco)."""
+    im = im.copy(); w = im.width; c = w / 2; color = im.getpixel((int(c), int(w * 0.09)))[:3] + (255,)
+    px = im.load()
+    for y in range(w):
+        for x in range(w):
+            if (x - c + .5) ** 2 + (y - c + .5) ** 2 > (w * 0.455) ** 2: px[x, y] = color
+    return im
+
 os.makedirs(os.path.join(R, 'img', 'app'), exist_ok=True)
 for casa, f in FUENTES.items():
-    src = Image.open(os.path.join(R, f)).convert('RGBA')
+    src = sin_aro(Image.open(os.path.join(R, f)).convert('RGBA'))
+    FONDO[casa] = src.getpixel((src.width // 2, int(src.width * 0.09)))[:3]
     for lado in (192, 512):
         im = afilar(src, lado) if src.width < lado else src.resize((lado, lado), Image.LANCZOS)
         im.save(os.path.join(R, 'img', 'app', f'icono-{casa}-{lado}.png'), optimize=True)
