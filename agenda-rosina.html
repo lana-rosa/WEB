@@ -1155,6 +1155,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-11-computador.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mi colección de patrones</h3><p>Guarda dónde encontraste cada patrón para no perderlo.</p></div>
         </header>
+        <p class="aviso-auto no-imprimir" id="patrones-auto" hidden></p>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
             <thead><tr><th>Patrón</th><th>Dónde lo encontré</th><th>Dificultad</th><th>Ya lo tejí</th></tr></thead>
@@ -2020,6 +2021,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     av.textContent = '🧶 Agregamos ' + nuevas.length + (nuevas.length === 1 ? ' lana' : ' lanas') + ' que compraste en Lana Rosa a tu inventario.'; av.hidden = false;
     return nuevas.length;
   };
+  /* ---------- Mis patrones: los patrones que compraste en Lana Rosa entran solos ---------- */
+  window.lrImportarPatrones = function(items) {
+    datos._patronesComprados = datos._patronesComprados || {};
+    var nuevos = (items || []).filter(function(it) { return it && it.clave && !datos._patronesComprados[it.clave]; });
+    if (!nuevos.length) return 0;
+    var t = tablas['tabla-patrones'];
+    nuevos.forEach(function(it) {
+      var fila = 0;
+      for (var r = 1; r <= t.n; r++) {
+        if (!document.getElementById('ag-pt' + r + '-patron').value.trim() && !document.getElementById('ag-pt' + r + '-fuente').value.trim()) { fila = r; break; }
+      }
+      if (!fila) { agregarRenglon('tabla-patrones'); fila = t.n; }
+      var f = String(it.fecha || '').split('-'), fecha = f.length === 3 ? f[2] + '/' + f[1] + '/' + f[0] : '';
+      var campos = { patron: it.nombre || 'Patrón', fuente: 'Comprado en Lana Rosa' + (fecha ? ' el ' + fecha : '') };
+      Object.keys(campos).forEach(function(k) { var el = document.getElementById('ag-pt' + fila + '-' + k); el.value = campos[k]; datos[el.id] = el.value; });
+      datos._patronesComprados[it.clave] = 1;
+    });
+    guardarDatos();
+    var av = document.getElementById('patrones-auto');
+    av.textContent = '📚 Agregamos ' + nuevos.length + (nuevos.length === 1 ? ' patrón' : ' patrones') + ' que compraste en Lana Rosa a tu colección.'; av.hidden = false;
+    return nuevos.length;
+  };
   /* ---------- Totales de ventas del mes ---------- */
   function valorPesos(t) { var n = parseInt(String(t || '').replace(/[^0-9]/g, ''), 10); return isFinite(n) ? n : 0; }
   function totalesVentas() {
@@ -2527,15 +2550,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script type="module" src="/js/cuenta.js"></script>
 <script type="module">
-// Lo que la clienta compró en Lana Rosa (lanas e hilos) se agrega solo al "Inventario de lanas"
+// Lo que la clienta compró en Lana Rosa se agrega solo: lanas e hilos al "Inventario de lanas" y patrones a "Mi colección de patrones"
 import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 (async function () {
   if (!haySesionGuardada()) return;
   try {
     var sb = await obtenerCliente();
     var r = await sb.rpc('mis_compras_lanas');
-    if (r.error || !Array.isArray(r.data) || !r.data.length) return;
-    if (window.lrImportarLanas) window.lrImportarLanas(r.data);
+    if (!r.error && Array.isArray(r.data) && r.data.length && window.lrImportarLanas) window.lrImportarLanas(r.data);
+    var q = await sb.rpc('mis_compras_patrones');
+    if (!q.error && Array.isArray(q.data) && q.data.length && window.lrImportarPatrones) window.lrImportarPatrones(q.data);
   } catch (e) { /* si no se puede consultar, la hoja funciona igual */ }
 })();
 </script>
