@@ -386,6 +386,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="tarjeta-cuenta" id="sec-pedidos">
       <h2>🧾 Mis pedidos</h2>
       <div class="pestanas-cuenta filtros" id="filtros-pedidos" role="tablist" aria-label="Estado del pedido"></div>
+      <div id="bloque-patrones" hidden style="background:#FBE4EF;border-radius:16px;padding:14px 16px;margin:0 0 16px;">
+        <h3 style="margin:0 0 8px;font-size:1.05rem;">📚 Mis patrones para descargar</h3>
+        <div id="lista-patrones"></div>
+        <p class="nota-cuenta" style="margin:8px 0 0;">Son de uso personal: por favor no los compartas ni los vendas. Si no abre la descarga, escríbenos por WhatsApp.</p>
+      </div>
       <div id="lista-pedidos"><p class="texto-estado">Cargando…</p></div>
     </div>
 
@@ -702,7 +707,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   actualizarContador();
 })();
 </script>
-<script type="module" src="/js/pago.js?v=18"></script>
+<script type="module" src="/js/pago.js?v=19"></script>
 <script type="module">
 import { haySesionGuardada, obtenerCliente, iniciarSincronizacion, marcarEncabezado, actualizarInsigniaCuenta } from './js/cuenta.js';
 
@@ -1154,6 +1159,36 @@ function itemHistorial(codigo, fecha, detalle, estado) {
   if (estado) { const l2 = nodo('div', 'linea'); l2.append(nodo('span', 'etiqueta-estado', estado)); it.append(l2); }
   return it;
 }
+/* ---------- Patrones comprados: descarga con enlace temporal ---------- */
+async function cargarPatrones() {
+  try {
+    const { data, error } = await sbPanel.rpc('mis_compras_patrones');
+    if (error || !Array.isArray(data) || !data.length) return;
+    const lista = $('lista-patrones'); lista.replaceChildren();
+    data.forEach((p) => {
+      const fila = nodo('div', null); fila.style.cssText = 'display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:6px 0;';
+      const f = String(p.fecha || '').split('-');
+      fila.append(nodo('span', null, (p.nombre || 'Patrón') + (f.length === 3 ? ' · ' + f[2] + '/' + f[1] + '/' + f[0] : '')));
+      if (!p.descargable) fila.append(nodo('small', null, 'Archivo en preparación'));
+      else {
+        const b = nodo('button', 'boton-primario', '⬇ Descargar PDF'); b.type = 'button'; b.style.cssText = 'font-size:.85rem;padding:8px 16px;';
+        b.addEventListener('click', async () => {
+          b.disabled = true; const antes = b.textContent; b.textContent = 'Preparando…';
+          try {
+            const r = await sbPanel.functions.invoke('descargar-patron', { body: { item_id: p.item_id } });
+            let url = r.data && r.data.url, msg = r.data && r.data.error;
+            if (r.error) { try { const d = await r.error.context.json(); msg = d.error; } catch (e) {} }
+            if (url) { window.location.href = url; } else alert(msg || 'No pudimos preparar la descarga. Inténtalo de nuevo.');
+          } catch (e) { alert('No pudimos preparar la descarga. Inténtalo de nuevo.'); }
+          b.disabled = false; b.textContent = antes;
+        });
+        fila.append(b);
+      }
+      lista.append(fila);
+    });
+    $('bloque-patrones').hidden = false;
+  } catch (e) { /* sin patrones o sin conexión: no se muestra el bloque */ }
+}
 async function cargarHistorial() {
   try {
     const { data, error } = await sbPanel.rpc('mis_pedidos');
@@ -1163,6 +1198,7 @@ async function cargarHistorial() {
     comprobantes = {};
     try { const rc = await sbPanel.rpc('mis_comprobantes'); if (!rc.error && Array.isArray(rc.data)) rc.data.forEach((c) => { comprobantes[c.consecutivo] = c; }); } catch (e) {}
     pintarPedidos();
+    cargarPatrones();
     const cont = $('lista-solicitudes');
     if (!solicitudes.length) mensajeVacio(cont, 'Aquí verás las solicitudes de amigurumis personalizados que envíes.');
     else { cont.replaceChildren(); solicitudes.forEach((s) => cont.append(itemHistorial(s.consecutivo, s.fecha, s.descripcion, s.etapa === 'prospecto' ? 'Recibida' : etiqueta(s.etapa)))); }

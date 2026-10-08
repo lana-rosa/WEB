@@ -237,20 +237,26 @@ function cerrar() {
   if (carritoCambiado) { carritoCambiado = false; location.reload(); }
 }
 const $ = (id) => overlay.querySelector('#' + id);
+// Patrones digitales (los marca la Mercería con digital: true en el carrito): sin dirección ni envío. El servidor lo vuelve a comprobar.
+const esDigital = () => { const c = leerCarrito(); return c.length > 0 && c.every((i) => i.digital); };
 
 // ----- Pasos: Contacto → Direcciones → Envío → Pago -----
 function pintarPasos() {
   const cont = $('pg-pasos'); cont.replaceChildren();
+  const dig = esDigital();
   PASOS.forEach((t, i) => {
     const n = i + 1;
+    if (dig && (n === 2 || n === 3)) return;
+    const mostrado = dig && n === 4 ? 2 : n;
     const b = nodo('button', 'pg-paso' + (n < pasoActual ? ' hecho' : n === pasoActual ? ' activo' : '')); b.type = 'button';
-    b.append(nodo('span', 'pg-num', n < pasoActual ? '✓' : String(n)), nodo('span', null, t));
+    b.append(nodo('span', 'pg-num', n < pasoActual ? '✓' : String(mostrado)), nodo('span', null, t));
     if (n < pasoActual) b.addEventListener('click', () => irAPaso(n));
     cont.append(b);
   });
   overlay.querySelectorAll('.pg-sec').forEach((sec) => { sec.hidden = Number(sec.dataset.paso) !== pasoActual; });
 }
 function validarPaso(n) {
+  if (esDigital() && (n === 2 || n === 3)) return '';
   if (n === 1) {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('pg-correo').value.trim())) return 'Escribe un correo válido.';
     if ($('pg-nombre').value.trim().length < 2) return 'Escribe tu nombre.';
@@ -306,6 +312,7 @@ async function retomarCarrito() {
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', retomarCarrito); else retomarCarrito();
 function irAPaso(destino, saltarDireccion) {
+  if (esDigital() && (destino === 2 || destino === 3)) destino = destino > pasoActual ? 4 : 1;
   if (destino > pasoActual) {
     for (let n = pasoActual; n < destino; n++) {
       if (saltarDireccion && n === 2) continue;
@@ -402,7 +409,8 @@ function actualizarResumen() {
   const sub = carrito.reduce((s, i) => s + (Number(i.precio) || 0) * (Number(i.cantidad) || 0), 0);
   const desc = cot && cot.descuento > 0 ? Number(cot.descuento) : 0;
   const intl = esIntl();
-  const recoge = entregaElegida() === 'recogida';
+  const digital = esDigital();
+  const recoge = digital || entregaElegida() === 'recogida';
   $('pg-pais-caja').hidden = !pp;
   $('pg-ciudad-caja').hidden = intl; $('pg-ciudad-intl-caja').hidden = !intl;
   $('pg-otra-caja').hidden = intl || $('pg-ciudad').value !== 'Otro (nacional)';
@@ -446,8 +454,8 @@ function actualizarResumen() {
   fila('subtotal', 'Valor del pedido', pesos(sub));
   if (desc) fila('descuento', '🎁 Descuento aplicado por primera compra (' + cot.pct + '%)', '−' + pesos(desc));
   else if (!cotClave) fila('pista', '🎁 Primera compra: 10% de descuento', 'Escribe tu correo');
-  const textoEnvio = recoge ? 'Gratis (recoges en tienda)' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula con tu dirección') : pesos(envio) + (intl && zona ? ' (US$ ' + Number(zona.valor_usd).toFixed(2) + ')' : ''));
-  fila('', recoge ? 'Recoger en tienda' : 'Envío', textoEnvio);
+  const textoEnvio = digital ? 'Sin envío (descarga digital)' : recoge ? 'Gratis (recoges en tienda)' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula con tu dirección') : pesos(envio) + (intl && zona ? ' (US$ ' + Number(zona.valor_usd).toFixed(2) + ')' : ''));
+  fila('', digital ? 'Entrega' : (recoge ? 'Recoger en tienda' : 'Envío'), textoEnvio);
   const total = envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio);
   fila('total', 'Valor total', total + (conPaypal ? ' COP' : ''));
   if (conPaypal && envio != null) fila('pista', 'Se cobra en dólares con PayPal', 'US$ ' + (Math.round(((sub - desc + envio) / pp.tasa) * 100) / 100).toFixed(2));
@@ -524,12 +532,13 @@ async function enviar(e) {
   e.preventDefault();
   if (pasoActual < 4) return irAPaso(pasoActual + 1);
   const nombre = $('pg-nombre').value.trim(), correo = $('pg-correo').value.trim(), telefono = $('pg-telefono').value.trim();
-  const recoge = entregaElegida() === 'recogida';
+  const digital = esDigital();
+  const recoge = digital || entregaElegida() === 'recogida';
   let ciudad = $('pg-ciudad').value; const otra = $('pg-otra').value.trim();
   let direccion = $('pg-direccion').value.trim(); const notas = $('pg-notas').value.trim();
   for (let n = 1; n <= 3; n++) { const m = validarPaso(n); if (m) { pasoActual = n; pintarPasos(); avisoPaso(n, m); return; } }
-  const intl = esIntl();
-  const conPaypal = metodoElegido() === 'paypal';
+  const intl = !digital && esIntl();
+  const conPaypal = !digital && metodoElegido() === 'paypal';
   if (!recoge && !intl && ciudad === 'Otro (nacional)') direccion = otra + ' — ' + direccion;
   if (!$('pg-acepto').checked) return aviso('Para continuar, acepta la política de datos y de envíos.');
   if (!recoge && !$('pg-confirma').checked) return aviso('Confirma que tu dirección de envío es correcta.');
@@ -543,7 +552,7 @@ async function enviar(e) {
     const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
     const cuerpo = intl
       ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas }, items }
-      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: recoge ? 'recogida' : 'domicilio' }, items };
+      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: digital ? 'digital' : (recoge ? 'recogida' : 'domicilio') }, items };
     const res = await fetch(SUPABASE_URL + (conPaypal ? '/functions/v1/paypal-pagos' : '/functions/v1/crear-pago-wompi'), {
       method: 'POST', headers, body: JSON.stringify(conPaypal ? { accion: 'crear', ...cuerpo } : cuerpo)
     });
