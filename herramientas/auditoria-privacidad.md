@@ -13,7 +13,7 @@ Estados usados: **IMPLEMENTADO Y VERIFICADO** · **PENDIENTE DE VALIDACIÓN JUR�
 | `localStorage.carritoLanaRosa`, `lrFotosCarrito` | Necesario (carrito) | Tienda, Mercería, pago | Solo al agregar productos |
 | `localStorage.sb-ngjoognzvehwjtpqwrqe-auth-token` | Necesario (sesión) | Solo si la persona inicia sesión | No existe sin sesión |
 | `lrRegistroPendiente`, `lrCuentaEnviada`, `lrPrefillCuenta`, `lrPendResenas` | Funcional (cuenta y reseñas) | Cuenta / pago | Solo al usar esas funciones |
-| `lrOrigen`, `lrCasa`, `lrVolver`, `lrVolviendo` | Funcional (botón "Volver", casa de origen) | Navegación | Sí, sin datos personales |
+| `lrVolver` | Funcional (volver a la página donde estaba tras iniciar sesión) | Cuenta | Solo si inicia sesión. (El enlace "Volver a la casa anterior" y sus claves `lrOrigen`, `lrCasa` y `lrVolviendo` se quitaron el 8-oct-2026) |
 | `saludo-rosina` | Funcional (no repetir saludo) | Todas | Sí, sin datos personales |
 | `sessionStorage compra-<ref>` | Necesario (no contar dos veces una compra) | `gracias.html` | Solo tras un pago |
 | `lrPagosPrueba` | Interno (modo de pruebas de pagos) | Solo con parámetro de pruebas | No aplica al público |

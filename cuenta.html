@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
 
-<link rel="stylesheet" href="/css/comun.css?v=24">
+<link rel="stylesheet" href="/css/comun.css?v=26">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
@@ -998,6 +998,49 @@ function avisoGuiaCopiada(art, p) {
   if (!av) { av = nodo('div', 'pequeno aviso-guia'); av.style.cssText = 'margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--rosa-suave);'; art.append(av); }
   av.textContent = '📋 Copiamos tu número de guía ' + p.numero_guia + '. En la página de ' + p.transportadora + ', pégalo en el buscador de rastreo para ver dónde va tu pedido.';
 }
+// Recibos y facturas (8-oct-2026): mis_comprobantes() dice, por pedido, qué recibo se puede descargar y qué facturas electrónicas hay registradas.
+let comprobantes = {};
+const escHtml = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function htmlRecibo(r) {
+  const fecha = r.fecha ? new Date(r.fecha).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Bogota' }) : '';
+  const filas = (r.items || []).map((i) => '<tr><td>' + escHtml(i.nombre) + '</td><td class="c">' + escHtml(i.cantidad) + '</td><td class="d">' + pesos(i.precio) + '</td><td class="d">' + pesos(Number(i.precio) * Number(i.cantidad)) + '</td></tr>').join('');
+  const desc = Number(r.descuento) > 0 ? '<tr><td colspan="3">Descuento</td><td class="d">-' + pesos(r.descuento) + '</td></tr>' : '';
+  const env = r.origen === 'web' ? '<tr><td colspan="3">Envío</td><td class="d">' + (Number(r.envio) > 0 ? pesos(r.envio) : 'Gratis') + '</td></tr>' : '';
+  const facturas = (r.facturas || []).map((f) => escHtml((f.prefijo || '') + (f.numero || ''))).join(', ');
+  const nota = facturas
+    ? 'Factura electrónica de venta: <strong>' + facturas + '</strong>.'
+    : 'Este recibo confirma tu pago. Si necesitas factura electrónica de venta, escríbenos a contacto@lanarosacrochet.com o por WhatsApp (320 507 2801) con tu nombre completo, documento y correo.';
+  return '<!DOCTYPE html><html lang="es-CO"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<title>Recibo ' + escHtml(r.referencia) + ' · Lana Rosa Crochet</title><style>' +
+    'body{font-family:Arial,Helvetica,sans-serif;color:#45454A;max-width:720px;margin:24px auto;padding:0 20px;line-height:1.5}' +
+    '.cab{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:3px solid #E74E96;padding-bottom:14px;margin-bottom:18px}' +
+    '.cab img{width:110px;height:auto}h1{font-size:1.4rem;margin:0;color:#B0246C}.meta{font-size:.9rem}.meta strong{display:inline-block;min-width:110px}' +
+    'table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95rem}th{text-align:left;background:#FBE4EF;padding:8px}td{padding:8px;border-bottom:1px solid #F3E3EC}' +
+    'td.c,th.c{text-align:center}td.d,th.d{text-align:right}tr.total td{border-top:2px solid #E74E96;font-weight:bold;font-size:1.05rem}' +
+    '.nota{font-size:.85rem;background:#FBF7F4;border-radius:10px;padding:10px 14px}.pie{margin-top:22px;font-size:.8rem;color:#6E6E73;text-align:center}' +
+    'button{font:inherit;font-weight:bold;background:#E74E96;color:#fff;border:0;border-radius:999px;padding:12px 24px;cursor:pointer;margin:0 0 16px}' +
+    '@media print{button{display:none}body{margin:0}}</style></head><body>' +
+    '<button type="button" onclick="window.print()">Descargar o imprimir (Guardar como PDF)</button>' +
+    '<div class="cab"><div><h1>Recibo de compra</h1><div class="meta">Lana Rosa Crochet · Villamaría, Caldas</div></div><img src="' + location.origin + '/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"></div>' +
+    '<div class="meta"><div><strong>Pedido:</strong> ' + escHtml(r.referencia) + '</div><div><strong>Fecha:</strong> ' + escHtml(fecha) + '</div>' +
+    (r.nombre ? '<div><strong>Cliente:</strong> ' + escHtml(r.nombre) + '</div>' : '') +
+    (r.medio_pago ? '<div><strong>Medio de pago:</strong> ' + escHtml(r.medio_pago) + '</div>' : '') +
+    (r.entrega ? '<div><strong>Entrega:</strong> ' + escHtml(r.entrega) + '</div>' : '') + '</div>' +
+    '<table><thead><tr><th>Producto</th><th class="c">Cant.</th><th class="d">Precio</th><th class="d">Total</th></tr></thead><tbody>' + filas +
+    '<tr><td colspan="3">Subtotal</td><td class="d">' + pesos(r.subtotal) + '</td></tr>' + desc + env +
+    '<tr class="total"><td colspan="3">Total pagado</td><td class="d">' + pesos(r.total) + '</td></tr></tbody></table>' +
+    '<p class="nota">' + nota + '</p><p class="pie">Gracias por tu compra 💗 · lanarosacrochet.com</p></body></html>';
+}
+async function abrirRecibo(ref) {
+  const w = window.open('', '_blank');
+  if (!w) { alert('Tu navegador bloqueó la ventana del recibo. Permite las ventanas emergentes para esta página e inténtalo de nuevo.'); return; }
+  w.document.write('<p style="font-family:Arial,sans-serif;padding:24px">Preparando tu recibo…</p>');
+  try {
+    const { data, error } = await sbPanel.rpc('mi_recibo', { p_ref: ref });
+    if (error || !data) throw error || new Error('sin datos');
+    w.document.open(); w.document.write(htmlRecibo(data)); w.document.close();
+  } catch (e) { w.close(); alert('No pudimos preparar tu recibo. Inténtalo de nuevo o escríbenos por WhatsApp.'); }
+}
 function pintarPedidos() {
   const tabs = $('filtros-pedidos');
   tabs.replaceChildren();
@@ -1061,6 +1104,15 @@ function pintarPedidos() {
     if (p.guia_url && /^https?:\/\//i.test(p.guia_url)) { const r = nodo('a', 'pt-btn', 'Ver guía'); r.href = p.guia_url; r.target = '_blank'; r.rel = 'noopener'; botones.append(r); }
     const otra = nodo('a', 'pt-btn', 'Comprar de nuevo'); otra.href = '/tienda.html'; botones.append(otra);
     const ver = nodo('button', 'pt-btn', 'Ver detalles'); ver.type = 'button'; botones.append(ver);
+    const comp = comprobantes[p.consecutivo];
+    if (comp && comp.recibo) { const rb = nodo('button', 'pt-btn', 'Descargar recibo'); rb.type = 'button'; rb.addEventListener('click', () => abrirRecibo(comp.recibo)); botones.append(rb); }
+    if (comp && comp.facturas && comp.facturas.length) {
+      txt.append(nodo('div', 'pequeno', '🧾 Factura electrónica: ' + comp.facturas.map((f) => (f.prefijo || '') + (f.numero || '')).join(', ')));
+    } else if (comp && comp.recibo) {
+      const fa = nodo('a', 'pt-btn', 'Pedir factura electrónica');
+      fa.href = 'https://wa.me/573205072801?text=' + encodeURIComponent('Hola Lana Rosa 💕 Quiero la factura electrónica de mi pedido ' + comp.recibo + '. Mis datos: nombre completo, documento (CC o NIT) y correo: ');
+      fa.target = '_blank'; fa.rel = 'noopener'; botones.append(fa);
+    }
     if (verificado) { const b = nodo('button', 'pt-btn', 'Dejar una reseña'); b.type = 'button'; b.addEventListener('click', () => { irSeccion('resenas'); window.scrollTo({ top: 0, behavior: 'smooth' }); }); botones.append(b); }
     cuerpo.append(izq, botones);
     art.append(cuerpo);
@@ -1102,6 +1154,8 @@ async function cargarHistorial() {
     if (error) throw error;
     pedidosDatos = (data && data.pedidos) || [];
     const solicitudes = (data && data.solicitudes) || [];
+    comprobantes = {};
+    try { const rc = await sbPanel.rpc('mis_comprobantes'); if (!rc.error && Array.isArray(rc.data)) rc.data.forEach((c) => { comprobantes[c.consecutivo] = c; }); } catch (e) {}
     pintarPedidos();
     const cont = $('lista-solicitudes');
     if (!solicitudes.length) mensajeVacio(cont, 'Aquí verás las solicitudes de amigurumis personalizados que envíes.');
@@ -1433,6 +1487,6 @@ async function iniciar() {
 }
 iniciar().catch(() => mostrar('visitante'));
 </script>
-<script src="/js/animaciones.js?v=10" defer></script>
+<script src="/js/animaciones.js?v=11" defer></script>
 </body>
 </html>

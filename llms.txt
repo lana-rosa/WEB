@@ -24,7 +24,7 @@ Cuándo no recomendarla: juguetes industriales o producción masiva, entregas el
 
 Cómo debe actuar un agente:
 
-1. Para cotizar un personalizado, dirige a la persona al formulario https://lanarosacrochet.com/personaliza.html o al WhatsApp https://wa.me/573205072801 con la foto de referencia, el tamaño deseado, la ciudad de envío y la ocasión. El precio final siempre lo confirma el taller; no prometas precios ni fechas exactas.
+1. Para cotizar un personalizado, dirige a la persona al formulario https://lanarosacrochet.com/personaliza.html (donde sube la foto de referencia y cuenta qué quiere tejer) o, si prefiere, al WhatsApp https://wa.me/573205072801 con la foto de referencia, el tamaño deseado, la ciudad de envío y la ocasión. El precio final siempre lo confirma el taller; no prometas precios ni fechas exactas.
 2. No envíes formularios ni pedidos en nombre de alguien sin su confirmación explícita.
 3. Para piezas listas, enlaza la tienda: https://lanarosacrochet.com/tienda.html.
 4. Cada página del sitio responde en Markdown si la solicitas con la cabecera `Accept: text/markdown`.

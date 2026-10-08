@@ -90,28 +90,6 @@
 
 
 
-  // "Volver a ...": si la persona pasó de una casa a otra, un enlace corto la devuelve a donde estaba
-  try {
-    var casaAct = document.documentElement.getAttribute('data-casa');
-    var NOMBRES = { crochet: 'Tienda de amigurumis', merceria: 'la Mercería', academy: 'Academy' };
-    if (casaAct && NOMBRES[casaAct]) {
-      var leer = function (k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch (e) { return null; } };
-      var estado = leer('lrCasa'), origen = leer('lrOrigen'), volvia = sessionStorage.getItem('lrVolviendo');
-      if (volvia) { sessionStorage.removeItem('lrVolviendo'); sessionStorage.removeItem('lrOrigen'); origen = null; }
-      else if (estado && estado.casa && estado.casa !== casaAct) { origen = estado; sessionStorage.setItem('lrOrigen', JSON.stringify(origen)); }
-      else if (origen && origen.casa === casaAct) { sessionStorage.removeItem('lrOrigen'); origen = null; }
-      sessionStorage.setItem('lrCasa', JSON.stringify({ casa: casaAct, url: location.pathname + location.search }));
-      if (origen && origen.casa !== casaAct && NOMBRES[origen.casa] && /^\//.test(origen.url || '')) {
-        var barra = document.createElement('div'); barra.className = 'volver-casa';
-        var cont = document.createElement('div'); cont.className = 'contenedor';
-        var enl = document.createElement('a'); enl.href = origen.url; enl.textContent = '← Volver a ' + NOMBRES[origen.casa];
-        enl.addEventListener('click', function () { try { sessionStorage.setItem('lrVolviendo', '1'); } catch (e) {} });
-        cont.appendChild(enl); barra.appendChild(cont);
-        var cab = document.querySelector('.encabezado'); if (cab && cab.parentNode) cab.parentNode.insertBefore(barra, cab.nextSibling);
-      }
-    }
-  } catch (e) {}
-
   // App instalable: servicio mínimo (pantalla sin conexión) y botón discreto "Instalar app" del pie
   try {
     if ('serviceWorker' in navigator) window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });

@@ -210,20 +210,7 @@ html[data-casa="merceria"] .banda-apertura *, html[data-casa="academy"] .materia
 .panel-buscar-header input:focus-visible { outline: none !important; }
 .panel-buscar-header:focus-within { box-shadow: 0 0 0 3px var(--rosa-texto); }
 
-/* Mercería y Academy más cálidas (6-oct-2026): crema, tinta marrón suave, sombras cálidas y fondos durazno/rosado en vez de gris-azulado */
-html[data-casa="merceria"], html[data-casa="academy"] { --blanco-hueso: #FFF8F0; --tinta: #4B3C41; --tinta-suave: #6A5A5F; --sombra-suave: 0 10px 28px rgba(150, 90, 70, 0.13); }
-html[data-casa="merceria"] { --rosa-suave: #FBEFF3; }
-html[data-casa="academy"] { --rosa-suave: #FDF0E4; }
-html[data-casa="merceria"] .encabezado, html[data-casa="academy"] .encabezado { background: rgba(255, 250, 244, 0.97); }
-html[data-casa="merceria"] .franja-casas, html[data-casa="academy"] .franja-casas { background: #FFF1E2; }
-html[data-casa="merceria"] .pie-rico, html[data-casa="academy"] .pie-rico { background: #4B3C41; }
-html[data-casa="merceria"] .categoria-card, html[data-casa="merceria"] .tarjeta-casa, html[data-casa="academy"] .tarjeta-casa, html[data-casa="academy"] .puerta { border: 1px solid rgba(200, 140, 110, 0.18); }
-
-/* Mercería y Academy con los mismos fondos del inicio: blanco, crema, lila y rosado a todo lo ancho (versión de prueba) */
-html[data-casa="merceria"], html[data-casa="academy"] { --blanco-hueso: #FFFFFF; }
-html[data-casa="merceria"] body, html[data-casa="academy"] body { background: #FFFFFF; }
-html[data-casa="merceria"] .franja-casas, html[data-casa="academy"] .franja-casas { background: #FBF7F2; }
-html[data-casa="merceria"] .encabezado, html[data-casa="academy"] .encabezado { background: rgba(255, 255, 255, 0.97); }
+/* Mercería y Academy usan los mismos fondos, texto y pie que el inicio de la Tienda (8-oct-2026): se quitó la versión "cálida" (crema subido, texto marrón, pie marrón). Cada casa solo cambia sus colores de acento (html[data-casa] arriba). */
 .fondo-crema, .fondo-lila, .fondo-rosa { padding: 40px 0; margin-bottom: 0 !important; clip-path: inset(0 -100vmax); }
 .fondo-crema { background: #FBF7F2; box-shadow: 0 0 0 100vmax #FBF7F2; }
 .fondo-lila { background: #E6E7FD; box-shadow: 0 0 0 100vmax #E6E7FD; }
@@ -251,13 +238,8 @@ html[data-casa="merceria"] main.contenedor > :first-child, html[data-casa="acade
 .pie-casas a.casa-actual { background: var(--rosa-medio); border-color: var(--rosa-medio); color: var(--tinta); }
 
 /* "Volver a ...": aparece solo cuando la persona pasó de una casa a otra */
-.volver-casa { background: var(--blanco-hueso, #FAFAF7); border-bottom: 1px solid rgba(69,69,74,0.08); }
-.volver-casa .contenedor { padding-top: 8px; padding-bottom: 8px; }
-.volver-casa a { display: inline-flex; align-items: center; gap: 6px; color: var(--rosa-texto); font-weight: 700; font-size: 0.9rem; text-decoration: none; min-height: 32px; }
-.volver-casa a:hover { text-decoration: underline; }
 
 /* Páginas de inicio de Mercería y Academy: mismos fondos que el inicio general (blanco, crema, lila y rosado) */
 html[data-casa="merceria"] .ed-rosa, html[data-casa="academy"] .ed-rosa { background: #FBE4EF; }
 html[data-casa="merceria"] .ed-lila .ed-eyebrow, html[data-casa="merceria"] .ed-rosa .ed-eyebrow, html[data-casa="academy"] .ed-lila .ed-eyebrow, html[data-casa="academy"] .ed-rosa .ed-eyebrow { color: var(--rosa-texto); }
 html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { background: #FBE4EF; }
-html[data-casa="merceria"] .inicio-editorial > .seccion-suave, html[data-casa="academy"] .inicio-editorial > .seccion-suave { background: #FFFFFF; }
