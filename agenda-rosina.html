@@ -439,6 +439,8 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 }
 @media print { .pestanas-agenda, .chips-hojas { display: none !important; } .agenda-layout { display: block; } }
 
+.aviso-auto { margin: 0 0 12px; background: #E8F7EE; color: #1F6B42; border-radius: 12px; padding: 9px 14px; font-size: .9rem; font-weight: 600; }
+
 /* Logo de Lana Rosa arriba a la derecha en todas las hojas (8-oct-2026) */
 .hoja-agenda > header::after { content: ""; margin-left: auto; flex: none; width: 110px; height: 36px; background: url("/img/logo-lana-rosa-texto.webp") right center / contain no-repeat; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 @media (max-width: 520px) { .hoja-agenda > header::after { width: 70px; height: 26px; } .hoja-agenda > header { gap: 10px; } .hoja-agenda > header img { width: 48px; height: 48px; } }
@@ -1094,6 +1096,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-05-ovillo-sentada.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Inventario de lanas e hilos</h3><p>Sabe qué tienes antes de comprar: así no repites colores ni te quedas corta.</p></div>
         </header>
+        <p class="aviso-auto no-imprimir" id="lanas-auto" hidden></p>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:640px;">
             <thead><tr><th>Marca</th><th>Color</th><th>Grosor</th><th>Ovillos</th><th>Lo usé en</th></tr></thead>
@@ -1118,9 +1121,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Lista de compras</h3><p>Anota lo que necesitas y, si quieres, envíasela a Lana Rosa por WhatsApp.</p></div>
         </header>
         <div class="elegir-tienda no-imprimir">
-          <label for="compras-tienda">Agregar un producto de la tienda Lana Rosa</label>
+          <label for="compras-tienda">Agregar un material de la Mercería Lana Rosa</label>
           <div class="elegir-tienda-fila">
-            <select id="compras-tienda" disabled><option value="">Cargando productos…</option></select>
+            <select id="compras-tienda" disabled><option value="">Cargando materiales…</option></select>
             <button type="button" class="boton-primario boton-chico" id="compras-agregar" disabled>Agregar a mi lista</button>
           </div>
           <p class="ayuda-tienda" id="compras-ayuda" aria-live="polite"></p>
@@ -1293,6 +1296,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-17-gorro.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Lo que aprendí</h3><p>Puntos y técnicas nuevas: mira todo lo que has avanzado.</p></div>
         </header>
+        <div class="elegir-tienda no-imprimir">
+          <label for="aprendi-curso">Agregar un curso o tutorial de Lana Rosa Academy</label>
+          <div class="elegir-tienda-fila">
+            <select id="aprendi-curso"><option value="">Elige un curso o tutorial…</option></select>
+            <button type="button" class="boton-primario boton-chico" id="aprendi-agregar" disabled>Agregar a lo que aprendí</button>
+          </div>
+          <p class="ayuda-tienda" id="aprendi-ayuda" aria-live="polite"></p>
+        </div>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
             <thead><tr><th>Fecha</th><th>Punto o técnica</th><th>Dónde lo aprendí</th><th>Ya lo domino</th></tr></thead>
@@ -1912,13 +1923,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }).then(function(r) { if (!r.ok) throw r.status; return r.json(); });
     }
     Promise.all([
-      rpc('obtener_tienda_web').catch(function() { return []; }),
       rpc('obtener_merceria_web').catch(function() { return []; })
     ]).then(function(res) {
       var grupos = {};
-      (res[0] || []).forEach(function(p) { if (!p || !p.nombre) return; var g = p.categoria_web || p.categoria || 'Tienda'; (grupos[g] = grupos[g] || []).push({ nombre: p.nombre, precio: p.precio }); });
-      (res[1] || []).forEach(function(p) { if (!p || !(Number(p.stock_actual) > 0)) return; var peso = Number(p.peso_gramos) || 0; (grupos['Mercería'] = grupos['Mercería'] || []).push({ nombre: [p.marca, p.color].filter(Boolean).join(' — ') || p.nombre, precio: peso ? Math.round(p.precio_gramo * peso / 100) * 100 : Math.round(p.precio_gramo || 0) }); });
-      var html = '<option value="">Elige un producto…</option>';
+      (res[0] || []).forEach(function(p) { if (!p || !(Number(p.stock_actual) > 0)) return; var peso = Number(p.peso_gramos) || 0; (grupos[p.categoria || 'Mercería'] = grupos[p.categoria || 'Mercería'] || []).push({ nombre: [p.marca, p.color].filter(Boolean).join(' — ') || p.nombre, precio: peso ? Math.round(p.precio_gramo * peso / 100) * 100 : Math.round(p.precio_gramo || 0) }); });
+      var html = '<option value="">Elige un material…</option>';
       Object.keys(grupos).sort().forEach(function(g) {
         html += '<optgroup label="' + g.replace(/"/g, '') + '">' + grupos[g].sort(function(a, b) { return a.nombre.localeCompare(b.nombre, 'es'); }).map(function(p) {
           productos.push(p);
@@ -1928,8 +1937,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (!productos.length) throw 0;
       sel.innerHTML = html; sel.disabled = false;
     }).catch(function() {
-      sel.innerHTML = '<option value="">No pudimos cargar la tienda ahora</option>';
-      ayuda.innerHTML = 'Puedes ver los productos en la <a href="/tienda.html">tienda</a> y escribirlos en tu lista.';
+      sel.innerHTML = '<option value="">No pudimos cargar la mercería ahora</option>';
+      ayuda.innerHTML = 'Puedes ver los materiales en la <a href="/merceria/catalogo/">mercería</a> y escribirlos en tu lista.';
     });
     sel.addEventListener('change', function() { boton.disabled = !sel.value; ayuda.textContent = ''; });
     boton.addEventListener('click', function() {
@@ -1948,6 +1957,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       sel.value = ''; boton.disabled = true;
     });
   })();
+  /* ---------- Lo que aprendí: cursos y tutoriales de Lana Rosa Academy ---------- */
+  (function() {
+    var IG = 'Instagram @lanarosa.academy', YT = 'YouTube Lana Rosa Academy', TA = 'Taller de Lana Rosa Academy';
+    var CATALOGO = [
+      ['Cursos y talleres de Academy', [
+        ['Taller «Desconecta para Conectar»', TA],
+        ['Taller «Posavasos flor en crochet»', TA]]],
+      ['Tutoriales en Instagram', [
+        ['Primera cadeneta y punto bajo', IG, 'https://www.instagram.com/reel/DU87Y_xkokb/'],
+        ['Medio punto alto, punto alto y punto alto doble', IG, 'https://www.instagram.com/reel/DXKenR-ERIy/'],
+        ['Anillo mágico', IG, 'https://www.instagram.com/reel/DVHExJVESbd/'],
+        ['Tejer en espiral: aumentos, disminuciones y anillo mágico invertido', IG, 'https://www.instagram.com/reel/DVgrx90Ebp1/'],
+        ['Mini corazón a crochet', IG, 'https://www.instagram.com/reel/DWZrq9hEVfN/'],
+        ['Mini estrella a crochet', IG, 'https://www.instagram.com/reel/DXrpt0lEU52/'],
+        ['Mini margarita a crochet', IG, 'https://www.instagram.com/reel/Da8YvI7xBuw/'],
+        ['Llavero de medusa y de pulpo', IG, 'https://www.instagram.com/reel/DZfnj1hxNVT/']]],
+      ['Videos en YouTube', [
+        ['Curso gratuito de crochet para principiantes', YT, 'https://www.youtube.com/@LanaRosaAcademy'],
+        ['Otro video del canal (escribe cuál en la hoja)', YT, 'https://www.youtube.com/@LanaRosaAcademy']]]
+    ];
+    var sel = document.getElementById('aprendi-curso'), boton = document.getElementById('aprendi-agregar'), ayuda = document.getElementById('aprendi-ayuda'), lista = [];
+    CATALOGO.forEach(function(g) {
+      var og = document.createElement('optgroup'); og.label = g[0];
+      g[1].forEach(function(x) { lista.push(x); var o = document.createElement('option'); o.value = lista.length - 1; o.textContent = x[0]; og.appendChild(o); });
+      sel.appendChild(og);
+    });
+    sel.addEventListener('change', function() { boton.disabled = !sel.value; ayuda.textContent = ''; });
+    boton.addEventListener('click', function() {
+      var x = lista[sel.value]; if (!x) return;
+      var t = tablas['tabla-aprendi'], fila = 0;
+      for (var r = 1; r <= t.n; r++) { if (!document.getElementById('ag-ap' + r + '-tecnica').value.trim()) { fila = r; break; } }
+      if (!fila) { agregarRenglon('tabla-aprendi'); fila = t.n; }
+      var h = new Date(), fecha = ('0' + h.getDate()).slice(-2) + '/' + ('0' + (h.getMonth() + 1)).slice(-2) + '/' + h.getFullYear();
+      var otro = x[0].indexOf('Otro video') === 0;
+      var campos = { fecha: fecha, tecnica: otro ? '' : x[0], donde: x[1] + (x[2] ? ' · ' + x[2].replace(/^https?:\/\/(www\.)?/, '') : '') };
+      Object.keys(campos).forEach(function(k) { var el = document.getElementById('ag-ap' + fila + '-' + k); if (k === 'fecha' && el.value) return; el.value = campos[k]; datos[el.id] = el.value; });
+      guardarDatos();
+      ayuda.textContent = '✓ Agregado en el renglón ' + fila + '.' + (otro ? ' Escribe qué video fue en «Punto o técnica».' : '');
+      sel.value = ''; boton.disabled = true;
+    });
+  })();
+  /* ---------- Inventario de lanas: lo que compraste en Lana Rosa entra solo ---------- */
+  window.lrImportarLanas = function(items) {
+    datos._lanasCompradas = datos._lanasCompradas || {};
+    var nuevas = (items || []).filter(function(it) { return it && it.clave && !datos._lanasCompradas[it.clave]; });
+    if (!nuevas.length) return 0;
+    var t = tablas['tabla-lanas'];
+    nuevas.forEach(function(it) {
+      var fila = 0;
+      for (var r = 1; r <= t.n; r++) {
+        if (['marca', 'color', 'grosor', 'ovillos', 'uso'].every(function(c) { return !document.getElementById('ag-l' + r + '-' + c).value.trim(); })) { fila = r; break; }
+      }
+      if (!fila) { agregarRenglon('tabla-lanas'); fila = t.n; }
+      var f = String(it.fecha || '').split('-'), fecha = f.length === 3 ? f[2] + '/' + f[1] + '/' + f[0] : '';
+      var campos = { marca: it.marca || it.nombre || '', color: it.color || '', grosor: it.material || '', ovillos: String(Math.round(Number(it.cantidad) || 1)), uso: 'Comprada en Lana Rosa' + (fecha ? ' el ' + fecha : '') };
+      Object.keys(campos).forEach(function(k) { var el = document.getElementById('ag-l' + fila + '-' + k); el.value = campos[k]; datos[el.id] = el.value; });
+      datos._lanasCompradas[it.clave] = 1;
+    });
+    guardarDatos();
+    var av = document.getElementById('lanas-auto');
+    av.textContent = '🧶 Agregamos ' + nuevas.length + (nuevas.length === 1 ? ' lana' : ' lanas') + ' que compraste en Lana Rosa a tu inventario.'; av.hidden = false;
+    return nuevas.length;
+  };
   /* ---------- Totales de ventas del mes ---------- */
   function valorPesos(t) { var n = parseInt(String(t || '').replace(/[^0-9]/g, ''), 10); return isFinite(n) ? n : 0; }
   function totalesVentas() {
@@ -2454,6 +2526,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script type="module" src="/js/cuenta.js"></script>
+<script type="module">
+// Lo que la clienta compró en Lana Rosa (lanas e hilos) se agrega solo al "Inventario de lanas"
+import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
+(async function () {
+  if (!haySesionGuardada()) return;
+  try {
+    var sb = await obtenerCliente();
+    var r = await sb.rpc('mis_compras_lanas');
+    if (r.error || !Array.isArray(r.data) || !r.data.length) return;
+    if (window.lrImportarLanas) window.lrImportarLanas(r.data);
+  } catch (e) { /* si no se puede consultar, la hoja funciona igual */ }
+})();
+</script>
 <script type="module">
 // Sincronización con Google Calendar (se muestra solo si la función está activa y la persona tiene sesión)
 import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
