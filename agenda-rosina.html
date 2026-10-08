@@ -631,6 +631,40 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .cs-botones { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
 .cs-aviso { margin: 8px 0 0; min-height: 1.2em; font-size: 0.85rem; font-weight: 600; color: #8E1457; }
 .calendario-sync .nota-copia { display: block; margin-top: 8px; }
+.calendario-sync.bloqueado-pago { display: none !important; }
+/* Membresía: hojas de pago, tarjeta del índice y ventana de planes (8-oct-2026) */
+.atajo.de-pago strong::after { content: ' 💎'; font-size: 0.85em; }
+.hoja-agenda.sin-membresia > :not(header):not(.candado-pago):not(.hojas-pasos) { display: none !important; }
+.candado-pago { display: none; max-width: 520px; margin: 22px auto; padding: 26px 22px; text-align: center; background: var(--blanco); border: 2px dashed var(--rosa-medio); border-radius: 22px; }
+.hoja-agenda.sin-membresia .candado-pago { display: block; }
+.candado-pago .cp-ic { font-size: 2.2rem; line-height: 1; }
+.candado-pago h4 { margin: 8px 0 4px; font-family: 'DynaPuff', cursive; color: var(--rosa-texto); font-size: 1.15rem; }
+.candado-pago p { margin: 0 0 14px; font-size: 0.95rem; }
+.candado-pago small { display: block; margin-top: 10px; color: #6E6E73; font-size: 0.8rem; }
+.membresia-tarjeta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; justify-content: space-between; margin: 0 0 18px; padding: 12px 16px; background: linear-gradient(135deg, #FBE4EF, #E6E7FD); border-radius: 18px; border: 1.5px solid var(--rosa-medio); }
+.membresia-tarjeta[hidden] { display: none; }
+.membresia-tarjeta p { margin: 0; font-size: 0.92rem; flex: 1 1 220px; }
+.membresia-tarjeta strong { color: var(--rosa-texto); }
+.modal-membresia { border: 0; border-radius: 24px; padding: 26px 22px 22px; width: min(480px, calc(100% - 24px)); max-height: calc(100vh - 24px); overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); color: var(--tinta); background: var(--blanco); }
+.modal-membresia::backdrop { background: rgba(58,42,46,0.55); }
+.modal-membresia h2 { margin: 0 0 4px; padding: 0 36px; font-family: 'DynaPuff', cursive; font-size: 1.35rem; color: var(--rosa-texto); text-align: center; }
+@media (max-width: 480px) { .modal-membresia h2 { font-size: 1.15rem; } }
+.mm-cerrar { position: absolute; top: 10px; right: 12px; border: 0; background: var(--rosa-suave); width: 34px; height: 34px; border-radius: 50%; font-size: 1rem; cursor: pointer; color: var(--tinta); }
+.mm-estado { margin: 0 0 12px; text-align: center; font-size: 0.92rem; font-weight: 600; }
+.mm-lista { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 6px; font-size: 0.92rem; }
+.mm-lista li::before { content: '✓ '; color: var(--rosa-principal); font-weight: 700; }
+.mm-planes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.mm-plan { position: relative; cursor: pointer; }
+.mm-plan input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.mm-plan > span { display: flex; flex-direction: column; align-items: center; gap: 2px; height: 100%; padding: 14px 8px; text-align: center; border: 2px solid #E4D3DC; border-radius: 16px; background: #fff; transition: border-color .15s, background .15s; }
+.mm-plan input:checked + span { border-color: var(--rosa-principal); background: var(--rosa-suave); }
+.mm-plan input:focus-visible + span { outline: 3px solid var(--lila); outline-offset: 2px; }
+.mm-plan em { font-style: normal; font-family: 'DynaPuff', cursive; font-size: 1.5rem; color: var(--rosa-texto); }
+.mm-plan small { font-size: 0.78rem; color: #6E6E73; }
+.mm-plan b { margin-top: 4px; font-size: 0.72rem; background: var(--rosa-principal); color: #fff; padding: 2px 8px; border-radius: 999px; }
+.modal-membresia .boton-primario { width: 100%; }
+.modal-membresia .nota-pie { display: block; margin-top: 10px; text-align: center; font-size: 0.78rem; color: #6E6E73; }
+@media print { .candado-pago, .membresia-tarjeta, .modal-membresia { display: none !important; } }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 40px !important; }
@@ -861,6 +895,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
         </header>
+        <div class="membresia-tarjeta no-imprimir" id="membresia-tarjeta" hidden>
+          <p id="mt-texto"></p>
+          <button type="button" class="boton-primario boton-chico" id="mt-boton" data-abrir-membresia>Ver planes</button>
+        </div>
         <div class="indice-grupo" style="--c:#FFE08A"><h4>Mi tablero</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="tablero-agenda"><span class="atajo-ic" aria-hidden="true">📈</span><span><strong>Mi tablero</strong><small>Indicadores y análisis de todas tus hojas</small></span></button>
         </div></div>
@@ -2548,7 +2586,114 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   c.setAttribute('aria-hidden', 'true');
 })();
 </script>
+<dialog class="modal-membresia no-imprimir" id="modal-membresia" aria-labelledby="mm-titulo">
+  <button type="button" class="mm-cerrar" id="mm-cerrar" aria-label="Cerrar">✕</button>
+  <h2 id="mm-titulo">Agenda de Rosina completa 💎</h2>
+  <p class="mm-estado" id="mm-estado"></p>
+  <ul class="mm-lista">
+    <li>Finanzas completas: panel, movimientos, presupuesto y metas</li>
+    <li>Tablero con indicadores de todas tus hojas</li>
+    <li>Calendario del año con todas tus fechas</li>
+    <li>Sincronización con Google Calendar</li>
+    <li>Copia en la nube y uso en varios dispositivos</li>
+  </ul>
+  <div class="mm-planes" role="radiogroup" aria-label="Plan de la membresía">
+    <label class="mm-plan"><input type="radio" name="mm-plan" value="mensual"><span><strong>Mensual</strong><em>$10.000</em><small>al mes</small></span></label>
+    <label class="mm-plan"><input type="radio" name="mm-plan" value="anual" checked><span><strong>Anual</strong><em>$60.000</em><small>al año · ahorras $60.000</small><b>6 meses gratis</b></span></label>
+  </div>
+  <button type="button" class="boton-primario" id="mm-pagar">Pagar con Wompi</button>
+  <p class="cs-aviso" id="mm-aviso" role="status"></p>
+  <small class="nota-pie">Pago seguro con Wompi (tarjeta, PSE, Nequi y más). No hay cobro automático: te avisamos antes de que venza. Tus hojas gratis y tus datos siguen siendo tuyos.</small>
+</dialog>
 <script type="module" src="/js/cuenta.js"></script>
+<script type="module">
+// Membresía de la Agenda de Rosina: hojas de pago (Finanzas, Tablero, Calendario del año, Google Calendar).
+// MEMBRESIA_ACTIVA = false mientras Sara termina las hojas de pago: todo sigue gratis. Para verla antes: agenda-rosina.html?membresia=ver
+import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
+(function () {
+  var MEMBRESIA_ACTIVA = false;
+  var CLAVE = 'lrMembresia';
+  try { if (new URLSearchParams(location.search).get('membresia') === 'ver') sessionStorage.setItem('lrMembresiaVer', '1'); if (sessionStorage.getItem('lrMembresiaVer') === '1') MEMBRESIA_ACTIVA = true; } catch (e) {}
+  if (!MEMBRESIA_ACTIVA) return;
+  var PAGO = {
+    'fin-resumen': 'Mira de un vistazo cuánto entra, cuánto sale y cuánto te queda cada mes, con gráficas y gastos por categoría.',
+    'fin-movimientos': 'Anota lo que entra y sale, incluso escribiendo "gasté 50 mil en mercado", y filtra por mes y categoría.',
+    'fin-presupuesto': 'Pon un tope por categoría, crea metas de ahorro y mira tu avance.',
+    'tablero-agenda': 'Indicadores y análisis de todas tus hojas: ventas, gastos, materiales y proyectos.',
+    'calendario-anual': 'Todas tus fechas del año en un solo vistazo, listas para llevar a Google Calendar.'
+  };
+  var estado = { activa: false };
+  var sb = null;
+  var $ = function (id) { return document.getElementById(id); };
+  function leerCache() { try { var c = JSON.parse(localStorage.getItem(CLAVE)); return c && Date.parse(c.vence) > Date.now() ? c : null; } catch (e) { return null; } }
+  function fecha(iso) { return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function aplicar() {
+    var act = !!estado.activa;
+    Object.keys(PAGO).forEach(function (id) {
+      var h = $(id); if (!h) return;
+      h.classList.toggle('sin-membresia', !act);
+      if (!h.querySelector('.candado-pago')) {
+        var c = document.createElement('div'); c.className = 'candado-pago no-imprimir';
+        c.innerHTML = '<div class="cp-ic" aria-hidden="true">💎</div><h4>Hoja de la membresía</h4><p></p><button type="button" class="boton-primario boton-chico" data-abrir-membresia>Ver planes desde $10.000 al mes</button><small>Tus hojas gratis siguen igual y lo que ya escribiste sigue guardado en este dispositivo.</small>';
+        c.querySelector('p').textContent = PAGO[id];
+        h.querySelector('header').insertAdjacentElement('afterend', c);
+      }
+      var a = document.querySelector('#menu-hojas-lista a[data-hoja="' + id + '"]');
+      if (a) { a.textContent = a.textContent.replace(/ 💎$/, '') + (act ? '' : ' 💎'); a.classList.toggle('de-pago', !act); }
+      var at = document.querySelector('.atajo[data-ir="' + id + '"]'); if (at) at.classList.toggle('de-pago', !act);
+    });
+    var caja = $('calendario-sync'); if (caja) caja.classList.toggle('bloqueado-pago', !act);
+    var t = $('membresia-tarjeta'), tx = $('mt-texto'), bt = $('mt-boton');
+    if (t && haySesionGuardada()) {
+      t.hidden = false;
+      if (act) { tx.innerHTML = '💎 <strong>Tu membresía está activa</strong> hasta el ' + fecha(estado.vence) + '.'; bt.textContent = 'Renovar'; }
+      else { tx.innerHTML = '💎 <strong>Agenda completa:</strong> finanzas, tablero, calendario del año, Google Calendar y copia en la nube.'; bt.textContent = 'Ver planes'; }
+    }
+    window.lrMembresia = { activa: act, vence: estado.vence || null, plan: estado.plan || null };
+    var actual = document.querySelector('#menu-hojas-lista a.activa'); if (actual) $('menu-hojas-actual').textContent = actual.textContent;
+    document.dispatchEvent(new CustomEvent('membresia:lista', { detail: window.lrMembresia }));
+  }
+  async function consultar() {
+    var c = leerCache(); if (c) estado = { activa: true, plan: c.plan, vence: c.vence };
+    aplicar();
+    if (!haySesionGuardada()) return;
+    try {
+      sb = await obtenerCliente();
+      var r = await sb.rpc('mi_membresia');
+      if (!r.error && r.data) {
+        estado = { activa: !!r.data.activa, plan: r.data.plan, vence: r.data.vence };
+        try { if (estado.activa) localStorage.setItem(CLAVE, JSON.stringify({ plan: estado.plan, vence: estado.vence })); else localStorage.removeItem(CLAVE); } catch (e) {}
+        aplicar();
+      }
+    } catch (e) { /* sin conexión: se usa lo recordado */ }
+  }
+  var dlg = $('modal-membresia');
+  function abrir() {
+    if (!haySesionGuardada()) { location.href = '/cuenta.html'; return; }
+    $('mm-aviso').textContent = ''; $('mm-pagar').disabled = false;
+    $('mm-estado').textContent = estado.activa ? 'Tu membresía está activa hasta el ' + fecha(estado.vence) + '. Si renuevas ahora, se suma al tiempo que te queda.' : 'Elige tu plan y activa todas las hojas de pago.';
+    $('mm-pagar').textContent = estado.activa ? 'Renovar con Wompi' : 'Pagar con Wompi';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  document.addEventListener('click', function (e) { if (e.target.closest('[data-abrir-membresia]')) abrir(); });
+  $('mm-cerrar').addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  $('mm-pagar').addEventListener('click', async function () {
+    var b = this, av = $('mm-aviso'), plan = (document.querySelector('input[name="mm-plan"]:checked') || {}).value || 'anual';
+    b.disabled = true; av.textContent = 'Abriendo Wompi…';
+    var d = null;
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.functions.invoke('crear-pago-wompi', { body: { accion: 'membresia', plan: plan } });
+      d = r.data;
+      if (r.error) { try { d = await r.error.context.json(); } catch (e) {} }
+    } catch (e) {}
+    if (d && d.url) { location.href = d.url; return; }
+    av.textContent = (d && d.error) || 'No pudimos iniciar el pago. Inténtalo de nuevo.'; b.disabled = false;
+  });
+  consultar().then(function () { if (location.hash === '#membresia' && haySesionGuardada()) abrir(); });
+})();
+</script>
 <script type="module">
 // Lo que la clienta compró en Lana Rosa se agrega solo: lanas e hilos al "Inventario de lanas" y patrones a "Mi colección de patrones"
 import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';

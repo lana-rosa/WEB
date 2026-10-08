@@ -1,6 +1,7 @@
 # Agenda de Rosina: versión gratis y versión de pago (plan del 8-oct-2026)
 
-## Qué queda gratis y qué es de pago (propuesta, a confirmar con Sara)
+## Qué queda gratis y qué es de pago (aprobado por Sara el 8-oct-2026)
+**Precios:** mensual $10.000 COP, anual $60.000 COP (6 meses gratis). Finanzas en la nube: sí.
 **Gratis con cuenta:** portada, índice, proyectos (ficha, semana, fila, patrones, año, lo que aprendí), materiales (lanas, agujas, compras), pedidos, clientas, ventas del mes, catálogo de precios, ferias, fechas especiales, diario, pausas, visión del año y prioridades del mes. Todo se guarda en el dispositivo.
 **De pago (membresía):** Finanzas completas (diseño tipo "Finanzas Pro"), Tablero de indicadores, Calendario del año, sincronización con Google Calendar, copia de seguridad en la nube y uso en varios dispositivos.
 
@@ -23,7 +24,7 @@ Datos en la nube (tabla por usuario con seguridad RLS) para que no se pierdan y 
 9. **Personalizar diseño:** colores y orden del panel.
 
 ## Fases
-1. Membresía: cobro con Wompi, fecha de vencimiento, bloqueo de las hojas de pago, avisos. (La base de todo.)
+1. Membresía: cobro con Wompi, fecha de vencimiento, bloqueo de las hojas de pago, avisos. (La base de todo.) **HECHA, apagada** (`MEMBRESIA_ACTIVA = false`; vista previa con `?membresia=ver`). Migración 14, `crear-pago-wompi` v29.
 2. Finanzas en la nube + Panel y Movimientos nuevos (migración de lo que la clienta ya tenga en el dispositivo).
 3. Planificación, gastos fijos y deudas.
 4. Tarjetas, análisis y versión emprendimiento.
