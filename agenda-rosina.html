@@ -439,6 +439,10 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 }
 @media print { .pestanas-agenda, .chips-hojas { display: none !important; } .agenda-layout { display: block; } }
 
+/* Logo de Lana Rosa arriba a la derecha en todas las hojas (8-oct-2026) */
+.hoja-agenda > header::after { content: ""; margin-left: auto; flex: none; width: 110px; height: 36px; background: url("/img/logo-lana-rosa-texto.webp") right center / contain no-repeat; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@media (max-width: 520px) { .hoja-agenda > header::after { width: 70px; height: 26px; } .hoja-agenda > header { gap: 10px; } .hoja-agenda > header img { width: 48px; height: 48px; } }
+
 /* Agenda: el menú de arriba no se queda fijo y las herramientas se despliegan con una flecha (8-oct-2026) */
 .encabezado { position: static !important; }
 .hoja-agenda { scroll-margin-top: 20px; }
