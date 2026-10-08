@@ -1,11 +1,22 @@
 # Pendientes de la página web — Lana Rosa Crochet
 
-Última revisión: 26 de septiembre de 2026 (actualizada con la auditoría).
+Última revisión: 8 de octubre de 2026 (agenda con membresía, fases 1 a 5).
 Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
 
 ---
 
 ## 🔴 Urgente (lo hace Sara)
+
+- [ ] **▶ MAÑANA (9-oct-2026): seguimos con la agenda.** Dónde quedamos: las 5 fases de la agenda con membresía están **publicadas** (PR 268 a 272, 29 hojas: panel de finanzas, movimientos, gastos fijos y deudas, tarjetas, análisis, resultados del negocio, calendario con semana, copia en la nube, logo nuevo, condiciones en `politicas.html#membresia`). El cobro está **apagado** (`MEMBRESIA_ACTIVA = false` en `agenda-rosina.html`; se ve con `?membresia=ver`). Plan completo: `herramientas/agenda-premium/PLAN.md`. Orden sugerido para mañana:
+  1. **Sara usa la agenda con calma** (computador y celular) y anota lo que cambiaría: diseño, textos, hojas que sobren o falten, cosas que no se entienden. Claude lo ajusta.
+  2. **Sara prueba un pago real** de la membresía con `agenda-rosina.html?membresia=ver` ($10.000 de verdad): correo de bienvenida, mensaje en Mi cuenta, hojas desbloqueadas y fecha de vencimiento.
+  3. **Crear `agenda_nube_borrar()`** en Supabase → SQL Editor (primer bloque de `herramientas/cuentas-clientes/migracion-16-borrar-nube-ingresos-digitales.sql`).
+  4. **Abogada:** revisar `politicas.html#membresia` y la sección 11 de `#datos`.
+  5. **Decidir:** ¿las copias en la nube de membresías vencidas se borran solas a los 12 meses o se conservan hasta que la persona las borre?
+  6. **Encender la membresía** (Claude) cuando 2, 3 y 4 estén listos: `MEMBRESIA_ACTIVA = true`, ajustar textos de `recursos-rosina.html`, anuncio para redes y la Revista, y aviso a quienes ya usaban Finanzas gratis.
+  7. **Verificación de Google:** activar la membresía a la cuenta de prueba (SQL en `herramientas/google-calendar/verificacion-google.md`, sección 0), grabar el video y enviar.
+  8. **Primer patrón (PDF):** Sara cuenta cuál es (nombre, instrucciones, fotos, precio y si permite vender lo tejido); la plantilla `herramientas/patrones/` ya está lista.
+  - *Ideas para después (no urgentes):* hora en las fechas del calendario (hoy son de todo el día); mostrar en el calendario los pagos fijos y las cuotas; bloque «Mi membresía» en Mi cuenta; cobro automático con tarjeta guardada (hoy cada pago lo hace la persona); registrar el ingreso de las membresías en contabilidad de forma automática (hoy se saca con `ingresos_digitales_web`).
 
 - [x] **Cuentas de clientes activas (29-sep-2026).** Correo con código y enlace (SMTP de Resend, plantillas en español) y entrada con Google funcionando. Pasos y plantillas en `herramientas/cuentas-clientes/`.
   - [x] Verificación de marca de la app enviada en Google Auth Platform (Centro de verificación); Google avisa por correo cuando la apruebe.
@@ -26,6 +37,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
   - [x] **Fase 3, construida y probada (8-oct-2026):** hoja nueva «Gastos fijos y deudas» (pagos que se anotan solos cada mes desde el día elegido, suscripciones, ahorro mensual, pausar/editar/borrar; deudas con cuotas, saldo y botón «Pagué la cuota»), cajas de fijos y deudas en el Panel, avisos de próximos pagos en «Rosina lee tus números», metas con fecha objetivo («aparta $X al mes») y Planes del año. Ahora la agenda tiene 26 hojas.
   - [x] **Fase 4, construida y probada (8-oct-2026):** hoja «Mis tarjetas» (cupo, corte, pago, saldo, pagos que no cuentan como gasto), hoja «Análisis» (mes contra mes, ahorro de 12 meses, resumen del año) y hoja «Resultados del negocio» (utilidad, flujo de caja, por cobrar de los pedidos, por pagar); casilla «Es del negocio» en Movimientos con filtro y columna en el CSV. La agenda tiene 29 hojas.
   - [x] **Fase 5, preparada (8-oct-2026):** condiciones de la membresía y de los patrones digitales en `politicas.html#membresia` y sección «Agenda de Rosina: copia en la nube» en la política de datos (borradores para la abogada); botón «Borrar mi copia en la nube» (apaga la copia en ese dispositivo; se reactiva desde la tarjeta de membresía); exportar a Excel el resumen del año (columnas personal y negocio); función `ingresos_digitales_web(desde, hasta)` para que Sara/contadora vean lo cobrado en membresías y patrones.
+  - [ ] **Verificación de Google y membresía:** antes de grabar el video, activar la membresía a la cuenta de prueba (SQL en `herramientas/google-calendar/verificacion-google.md`, sección 0), porque la tarjeta de Google Calendar pasa a ser parte de las hojas de pago.
   - [ ] **Crear en Supabase (SQL Editor) la función `agenda_nube_borrar()`**: está en `herramientas/cuentas-clientes/migracion-16-borrar-nube-ingresos-digitales.sql` (primer bloque). Mientras no exista, la agenda deja la copia vacía como respaldo.
   - [ ] **Sara: probar un pago real de la membresía** abriendo `agenda-rosina.html?membresia=ver` (cobra $10.000 de verdad): revisar el correo de bienvenida, el mensaje en Mi cuenta, que se desbloqueen las hojas y la fecha de vencimiento.
   - [ ] **Abogada:** revisar `politicas.html#membresia` y la sección 11 de `#datos` (retracto/servicio digital, devoluciones, conservación de la copia en la nube).
@@ -34,7 +46,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo.
   - [ ] Decisión de Sara: ¿se borran solas las copias en la nube tras 12 meses de membresía vencida? (hoy se conservan hasta que la persona las borre).
   - [ ] Fase 5: exportar a Excel, pulir y **encender la membresía**. Antes: actualizar la política de privacidad (datos financieros en la nube), definir política de devoluciones de la membresía y registrar el ingreso en contabilidad (los pedidos de membresía no pasan al ERP, igual que los patrones).
   - [ ] Sara: probar un pago real de la membresía ($10.000) cuando se encienda, y revisar el correo de bienvenida.
-- [ ] **Primer patrón de tejido (PDF):** Sara dirá cuál es el patrón; estructurar el documento PDF (portada, materiales, abreviaturas, instrucciones por vueltas, fotos, derechos de uso) y publicarlo.
+- [ ] **Primer patrón de tejido (PDF):** la **plantilla del PDF ya está lista** (`herramientas/patrones/generar_patron.py` + `ejemplo.json`: portada, antes de empezar, materiales, abreviaturas automáticas, tablas de vueltas, armado, consejos, derechos de uso y cierre; con el diseño de marca). Falta que Sara diga cuál es el patrón: con el nombre, las instrucciones (texto o fotos del cuaderno), las fotos del resultado, el precio y si permite vender lo tejido (`venta_piezas`: `si`, `con_credito` o `no`), se arma el JSON, se genera el PDF y se publica (ERP: producto en categoría «Patrones»; PDF al bucket `patrones`; fila en `patrones_archivos`; ver `migracion-13-patrones-digitales.sql`). Al publicarlo: enlazar «Patrones» en el menú de la Mercería.
 - [ ] **Subir los productos de la mercería al ERP (Supabase) con sus existencias.**
   Hoy los 33 productos tienen existencias en 0. Mientras no haya ninguno disponible, la mercería muestra el aviso "Muy pronto" y oculta los productos agotados. Cuando haya al menos un producto con existencias, el aviso desaparece solo y el catálogo se muestra, sin cambiar código.
   - [ ] **Cuando la mercería ya tenga productos:** en `rosina.html` ("¿Qué hace Rosina?" → "En insumos"), cambiar el enlace "Ir a la tienda →" por "Ir a la mercería →" (`merceria.html`). Sara lo aprobó el 26-sep-2026.
@@ -221,7 +233,7 @@ Sara decidió (28-sep-2026): **toda la agenda es gratis**, con todas sus hojas. 
 ### Material de Rosina
 - [ ] Libro para colorear imprimible (necesita las ilustraciones solo con líneas).
 - [ ] Cuaderno de práctica de puntos básicos, punto por punto con Rosina (freemium o de bajo costo).
-- [ ] Mini app de la agenda (idea a futuro). La agenda en la web queda gratis (con cuenta) con todas sus hojas.
+- [ ] Mini app de la agenda (idea a futuro). La agenda en la web: hojas básicas gratis (con cuenta) y hojas de pago con membresía (ver «Agenda de Rosina: versión gratis y versión de pago»).
 - [ ] **Botón "Invítale un café a Rosina": diseño listo y guardado, sin publicar** (27-sep-2026). Sara lo va a hablar con el equipo. Está en `herramientas/borradores/cafe-rosina.patch` (sección al final del Rincón con valores sugeridos de $3.000, $6.000 y $12.000, llave de Nequi/Bre-B para copiar y aviso por WhatsApp). Para publicarlo: `git apply herramientas/borradores/cafe-rosina.patch`.
 - [ ] Opcional: poner también la imagen "Conoce a Rosina" al principio de `rosina.html` (se ofreció; Sara no ha respondido).
 
