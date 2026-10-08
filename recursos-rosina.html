@@ -110,7 +110,11 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .como-whatsapp p { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); }
 /* Abreviaturas */
 .tabla-scroll { overflow-x: auto; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); }
-.tabla-abrev { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 720px; }
+.tabla-abrev { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 0; }
+.tabla-abrev th:not(:first-child), .tabla-abrev td:not(:first-child) { min-width: 108px; }
+.pista-desliza { margin: 0 0 8px; font-size: 0.85rem; color: var(--tinta-suave); font-weight: 600; }
+.pista-desliza[hidden] { display: none; }
+@media print { .pista-desliza { display: none !important; } }
 .tabla-abrev th, .tabla-abrev td { padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(69,69,74,0.08); vertical-align: top; }
 .tabla-abrev thead th { background: var(--rosa-boton); color: var(--sobre-principal); font-family: var(--fuente-titulo); font-weight: 600; }
 .tabla-abrev tbody tr:nth-child(even) { background: var(--blanco-hueso); }
@@ -530,6 +534,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label><input type="checkbox" value="ru" checked>Ruso</label>
         <label><input type="checkbox" value="tr" checked>Turco</label>
       </div>
+      <p class="pista-desliza" id="pista-abrev" hidden>Desliza la tabla hacia la derecha para ver más idiomas →</p>
       <div class="tabla-scroll tabla-scroll-abrev">
         <table class="tabla-abrev" id="tabla-abrev">
           <thead>
@@ -1010,13 +1015,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   /* ---------- Filtro de idiomas de la tabla ---------- */
   var tabla = document.getElementById('tabla-abrev');
+  var cajaTabla = tabla.parentNode, pistaTabla = document.getElementById('pista-abrev');
+  function revisarPista() { pistaTabla.hidden = !(cajaTabla.scrollWidth > cajaTabla.clientWidth + 2); }
   document.querySelectorAll('#filtro-idiomas input').forEach(function(casilla) {
     casilla.addEventListener('change', function() {
       tabla.querySelectorAll('[data-idioma="' + casilla.value + '"]').forEach(function(celda) {
         celda.style.display = casilla.checked ? '' : 'none';
       });
+      revisarPista();
     });
   });
+  window.addEventListener('resize', revisarPista);
+  window.addEventListener('load', revisarPista);
+  revisarPista();
 
   function whatsapp(texto) { return 'https://wa.me/573205072801?text=' + encodeURIComponent(texto); }
 
