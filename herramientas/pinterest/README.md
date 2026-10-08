@@ -6,7 +6,7 @@ Al subir cada pin: título, descripción y **enlace de destino** (el enlace es l
 
 | Pin | Título | Enlace de destino | Tablero sugerido |
 |---|---|---|---|
-| 01-stickers-rosina | 26 stickers gratis de Rosina para WhatsApp | https://lanarosacrochet.com/recursos-rosina.html#stickers | Recursos gratis de Rosina |
+| 01-stickers-rosina | 36 stickers gratis de Rosina para WhatsApp | https://lanarosacrochet.com/recursos-rosina.html#stickers | Recursos gratis de Rosina |
 | 02-fondos-pantalla | Fondos de pantalla gratis para tejedoras | https://lanarosacrochet.com/recursos-rosina.html#fondos | Recursos gratis de Rosina |
 | 03-paletas-colores | Paletas de colores para tejer crochet y amigurumis | https://lanarosacrochet.com/paletas-rosina.html | Ideas de colores para tejer |
 | 04-checklist-amigurumi | Checklist: materiales para tu primer amigurumi | https://lanarosacrochet.com/recursos-rosina.html#checklist | Aprende crochet |

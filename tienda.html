@@ -356,6 +356,7 @@ html.producto-abierto { overflow: hidden; }
 .caja-confianza-producto { list-style: none; margin: 18px 0 22px; padding: 16px 18px; background: var(--rosa-suave); border-radius: 14px; display: grid; gap: 12px; }
 .caja-confianza-producto li { display: flex; gap: 12px; align-items: center; font-size: 0.85rem; color: var(--tinta-suave); }
 .caja-confianza-producto .ico { width: 38px; height: 38px; border-radius: 50%; background: var(--blanco); display: grid; place-items: center; font-size: 1.1rem; flex: 0 0 auto; }
+.caja-confianza-producto .ico img { width: 22px; height: 22px; display: block; }
 .caja-confianza-producto strong { display: block; color: var(--tinta); font-size: 0.95rem; }
 .titulo-detalles { text-transform: uppercase; letter-spacing: 0.04em; font-size: 1rem; margin: 6px 0 8px; padding-bottom: 6px; border-bottom: 3px solid var(--rosa-principal); display: inline-block; }
 @media (max-width: 700px) { .modal-info-producto h2 { font-size: 1.5rem; } }
@@ -1283,7 +1284,7 @@ function inicializarBuscadorTienda() {
         <ul class="caja-confianza-producto">
           <li><span class="ico" aria-hidden="true">🤍</span><span><strong>Hecho a mano en Colombia</strong>Cada pieza, tejida con amor</span></li>
           <li><span class="ico" aria-hidden="true">🚚</span><span><strong>Envíos a toda Colombia</strong>Entregas a nivel nacional</span></li>
-          <li><span class="ico" aria-hidden="true">💬</span><span><strong>Pago fácil y seguro</strong>Tarjeta, PSE, Nequi y más con Wompi</span></li>
+          <li><span class="ico" aria-hidden="true"><img src="/img/wompi-icono.webp" alt="" width="22" height="22"></span><span><strong>Pago fácil y seguro</strong>Tarjeta, PSE, Nequi y más con Wompi</span></li>
         </ul>
         <h3 class="titulo-detalles">Detalles del producto</h3>
         <ul class="ficha-tecnica" id="modal-ficha"></ul>

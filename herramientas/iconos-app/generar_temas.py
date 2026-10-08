@@ -14,17 +14,19 @@ R = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(R, 'img', 'iconos-app')
 PREV = os.path.join(R, 'img', 'temas')
 PX = 384   # lado del PNG (el celular lo redondea); con 256 colores el degradado se ve igual y pesa poco
+CLAROS = {'fucsia': '#D93A86'}   # temas con fondo oscuro: ícono claro y dibujo de este color
 ORDEN = list(G)
 CUADRICULA = ['fotos', 'calendario', 'notas', 'reloj', 'musica', 'mapas', 'ajustes', 'lana']   # 2 filas de 4
 DOCK = ['telefono', 'mensajes', 'camara', 'correo']
 
 
-def svg(glifo, c1, c2, uid):
+def svg(glifo, c1, c2, uid, trazo='#fff'):
+    glifo = glifo.replace('#fff', trazo)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="{PX}" height="{PX}">
 <defs><linearGradient id="g{uid}" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0" stop-color="{c1}"/><stop offset="1" stop-color="{c2}"/></linearGradient></defs>
 <rect width="100" height="100" fill="url(#g{uid})"/>
 <circle cx="86" cy="10" r="30" fill="#fff" opacity=".13"/><circle cx="8" cy="98" r="24" fill="#fff" opacity=".1"/>
-<g fill="none" stroke="#fff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 1.6px 1.4px rgba(60,30,40,.28))">{glifo}</g></svg>'''
+<g fill="none" stroke="{trazo}" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 1.6px 1.4px rgba(60,30,40,.28))">{glifo}</g></svg>'''
 
 
 def oscuro(c, f=0.5):
@@ -81,7 +83,7 @@ with sync_playwright() as p:
         if t not in lista:
             continue
         for k in ORDEN:
-            pg.set_content('<body style="margin:0">' + svg(G[k][1], c1, c2, k) + '</body>')
+            pg.set_content('<body style="margin:0">' + svg(G[k][1], c1, c2, k, CLAROS.get(t, '#fff')) + '</body>')
             ruta = os.path.join(OUT, f'icono-{t}-{k}.png')
             pg.screenshot(path=ruta, clip={'x': 0, 'y': 0, 'width': PX, 'height': PX})
             Image.open(ruta).convert('RGB').quantize(256, dither=Image.FLOYDSTEINBERG).save(ruta, optimize=True)
