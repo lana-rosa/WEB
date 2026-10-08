@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
 
-<link rel="stylesheet" href="/css/comun.css?v=29">
+<link rel="stylesheet" href="/css/comun.css?v=30">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
@@ -992,35 +992,50 @@ function avisoGuiaCopiada(art, p) {
 // Recibos y facturas (8-oct-2026): mis_comprobantes() dice, por pedido, qué recibo se puede descargar y qué facturas electrónicas hay registradas.
 let comprobantes = {};
 const escHtml = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+// Datos del vendedor: los mismos del recibo de venta del ERP. Lana Rosa está en el Régimen Simple de Tributación (SIMPLE): no cobra IVA.
+const VENDEDOR = { marca: 'Lana Rosa Crochet', titular: 'Sara Loaiza Muñoz', nit: '1.055.359.694-4', direccion: 'Calle 10 No. 5-37, Villamaría, Caldas', telefono: '320 507 2801', correo: 'contacto@lanarosacrochet.com' };
 function htmlRecibo(r) {
-  const fecha = r.fecha ? new Date(r.fecha).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Bogota' }) : '';
+  const fecha = r.fecha ? new Date(r.fecha).toLocaleString('es-CO', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'America/Bogota' }) : '';
   const filas = (r.items || []).map((i) => '<tr><td>' + escHtml(i.nombre) + '</td><td class="c">' + escHtml(i.cantidad) + '</td><td class="d">' + pesos(i.precio) + '</td><td class="d">' + pesos(Number(i.precio) * Number(i.cantidad)) + '</td></tr>').join('');
   const desc = Number(r.descuento) > 0 ? '<tr><td colspan="3">Descuento</td><td class="d">-' + pesos(r.descuento) + '</td></tr>' : '';
   const env = r.origen === 'web' ? '<tr><td colspan="3">Envío</td><td class="d">' + (Number(r.envio) > 0 ? pesos(r.envio) : 'Gratis') + '</td></tr>' : '';
   const facturas = (r.facturas || []).map((f) => escHtml((f.prefijo || '') + (f.numero || ''))).join(', ');
+  const consecutivo = (r.consecutivos && r.consecutivos.length) ? r.consecutivos.join(', ') : r.referencia;
   const nota = facturas
     ? 'Factura electrónica de venta: <strong>' + facturas + '</strong>.'
-    : 'Este recibo confirma tu pago. Si necesitas factura electrónica de venta, escríbenos a contacto@lanarosacrochet.com o por WhatsApp (320 507 2801) con tu nombre completo, documento y correo.';
+    : 'Este documento es un comprobante de pago. Si necesitas factura electrónica de venta, escríbenos a ' + VENDEDOR.correo + ' o por WhatsApp (' + VENDEDOR.telefono + ') con tu nombre completo, documento y correo.';
+  const linea = (t, v) => v ? '<div><strong>' + t + ':</strong> ' + escHtml(v) + '</div>' : '';
+  const entrega = r.origen === 'web' ? [r.entrega === 'Recoger en tienda' ? 'Recoger en tienda' : [r.direccion, r.ciudad].filter(Boolean).join(', ')].filter(Boolean)[0] : r.entrega;
   return '<!DOCTYPE html><html lang="es-CO"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
-    '<title>Recibo ' + escHtml(r.referencia) + ' · Lana Rosa Crochet</title><style>' +
+    '<title>Recibo de venta ' + escHtml(consecutivo) + ' · Lana Rosa Crochet</title><style>' +
     'body{font-family:Arial,Helvetica,sans-serif;color:#45454A;max-width:720px;margin:24px auto;padding:0 20px;line-height:1.5}' +
-    '.cab{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:3px solid #E74E96;padding-bottom:14px;margin-bottom:18px}' +
-    '.cab img{width:110px;height:auto}h1{font-size:1.4rem;margin:0;color:#B0246C}.meta{font-size:.9rem}.meta strong{display:inline-block;min-width:110px}' +
-    'table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95rem}th{text-align:left;background:#FBE4EF;padding:8px}td{padding:8px;border-bottom:1px solid #F3E3EC}' +
+    '.cab{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:3px solid #E74E96;padding-bottom:14px;margin-bottom:16px}' +
+    '.cab img{width:110px;height:auto}h1{font-size:1.4rem;margin:0 0 4px;color:#B0246C}.vend{font-size:.85rem;line-height:1.55}.vend strong{font-size:1rem}' +
+    '.regimen{display:inline-block;margin-top:4px;background:#FBE4EF;border-radius:8px;padding:3px 10px;font-weight:bold;font-size:.8rem;color:#8E1457}' +
+    '.meta{font-size:.9rem}.meta strong{display:inline-block;min-width:118px}.num{font-size:1.05rem;font-weight:bold;margin:0 0 6px}' +
+    'table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.95rem}th{text-align:left;background:#FBE4EF;padding:8px}td{padding:8px;border-bottom:1px solid #F3E3EC}' +
     'td.c,th.c{text-align:center}td.d,th.d{text-align:right}tr.total td{border-top:2px solid #E74E96;font-weight:bold;font-size:1.05rem}' +
-    '.nota{font-size:.85rem;background:#FBF7F4;border-radius:10px;padding:10px 14px}.pie{margin-top:22px;font-size:.8rem;color:#6E6E73;text-align:center}' +
+    '.nota{font-size:.82rem;background:#FBF7F4;border-radius:10px;padding:10px 14px;margin:8px 0}.pie{margin-top:18px;font-size:.78rem;color:#6E6E73;text-align:center}' +
     'button{font:inherit;font-weight:bold;background:#E74E96;color:#fff;border:0;border-radius:999px;padding:12px 24px;cursor:pointer;margin:0 0 16px}' +
     '@media print{button{display:none}body{margin:0}}</style></head><body>' +
     '<button type="button" onclick="window.print()">Descargar o imprimir (Guardar como PDF)</button>' +
-    '<div class="cab"><div><h1>Recibo de compra</h1><div class="meta">Lana Rosa Crochet · Villamaría, Caldas</div></div><img src="' + location.origin + '/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"></div>' +
-    '<div class="meta"><div><strong>Pedido:</strong> ' + escHtml(r.referencia) + '</div><div><strong>Fecha:</strong> ' + escHtml(fecha) + '</div>' +
-    (r.nombre ? '<div><strong>Cliente:</strong> ' + escHtml(r.nombre) + '</div>' : '') +
-    (r.medio_pago ? '<div><strong>Medio de pago:</strong> ' + escHtml(r.medio_pago) + '</div>' : '') +
-    (r.entrega ? '<div><strong>Entrega:</strong> ' + escHtml(r.entrega) + '</div>' : '') + '</div>' +
-    '<table><thead><tr><th>Producto</th><th class="c">Cant.</th><th class="d">Precio</th><th class="d">Total</th></tr></thead><tbody>' + filas +
+    '<div class="cab"><div class="vend"><h1>' + escHtml(VENDEDOR.marca) + '</h1><strong>' + escHtml(VENDEDOR.titular) + '</strong> — NIT ' + escHtml(VENDEDOR.nit) + '<br>' +
+    escHtml(VENDEDOR.direccion) + '<br>Tel. ' + escHtml(VENDEDOR.telefono) + ' · ' + escHtml(VENDEDOR.correo) + '<br>' +
+    '<span class="regimen">Régimen Simple de Tributación (SIMPLE) · No responsable de IVA</span></div>' +
+    '<img src="' + location.origin + '/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet"></div>' +
+    '<p class="num">Recibo de venta N.° ' + escHtml(consecutivo) + '</p>' +
+    '<div class="meta"><div><strong>Fecha y hora:</strong> ' + escHtml(fecha) + '</div>' +
+    (r.origen === 'web' && r.referencia && consecutivo !== r.referencia ? linea('Referencia web', r.referencia) : '') +
+    '<div><strong>Canal:</strong> ' + (r.origen === 'web' ? 'Tienda virtual (lanarosacrochet.com)' : 'Tienda física') + '</div>' +
+    linea('Cliente', r.nombre) + linea('Documento', r.documento) + linea('Teléfono', r.telefono) + linea('Correo', r.correo) + linea('Entrega', entrega) +
+    linea('Forma de pago', r.medio_pago) + linea('Referencia del pago', r.pago_ref) + '</div>' +
+    '<table><thead><tr><th>Producto</th><th class="c">Cant.</th><th class="d">Vlr. unit.</th><th class="d">Subtotal</th></tr></thead><tbody>' + filas +
     '<tr><td colspan="3">Subtotal</td><td class="d">' + pesos(r.subtotal) + '</td></tr>' + desc + env +
-    '<tr class="total"><td colspan="3">Total pagado</td><td class="d">' + pesos(r.total) + '</td></tr></tbody></table>' +
-    '<p class="nota">' + nota + '</p><p class="pie">Gracias por tu compra 💗 · lanarosacrochet.com</p></body></html>';
+    '<tr><td colspan="3">IVA</td><td class="d">$0 (no responsable)</td></tr>' +
+    '<tr class="total"><td colspan="3">TOTAL</td><td class="d">' + pesos(r.total) + '</td></tr></tbody></table>' +
+    '<p class="nota">' + nota + '</p>' +
+    '<p class="nota">Lana Rosa Crochet pertenece al Régimen Simple de Tributación (SIMPLE) y no es responsable de IVA, por eso este recibo no discrimina impuestos. Cambios y devoluciones: consulta la política en lanarosacrochet.com/politicas.html#cambios.</p>' +
+    '<p class="pie">Gracias por tu compra 💗 · lanarosacrochet.com</p></body></html>';
 }
 async function abrirRecibo(ref) {
   const w = window.open('', '_blank');
