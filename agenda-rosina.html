@@ -1962,11 +1962,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var enlacesMenu = document.querySelectorAll('#menu-hojas-lista a');
   var menuHojas = document.getElementById('menu-hojas'), toggleMenu = document.getElementById('menu-hojas-toggle');
   var CLAVE_HOJA = 'rosinaAgendaHoja';
+  var historiaLista = false, enPop = false;   // cada hoja que abres queda en el historial: «atrás» vuelve a la hoja anterior
   function mostrarHoja(id, desplazar) {
     var h = document.getElementById(id); if (!h || !h.classList.contains('hoja-agenda')) return;
     hojas.forEach(function(x) { x.classList.toggle('abierta', x === h); });
     enlacesMenu.forEach(function(a) { var activo = a.dataset.hoja === id; a.classList.toggle('activa', activo); if (activo) { a.setAttribute('aria-current', 'page'); document.getElementById('menu-hojas-actual').textContent = a.textContent; } else a.removeAttribute('aria-current'); });
     escribir(CLAVE_HOJA, id);
+    if (historiaLista && !enPop && location.hash !== '#' + id && history.pushState) history.pushState(null, '', '#' + id);
     if (window.lrPintarPestanas) window.lrPintarPestanas(id);
     if (id === 'calendario-anual' && window.lrPintarCalendario) window.lrPintarCalendario();
     if (window.lrFinRender && id.indexOf('fin-') === 0) window.lrFinRender(id);
@@ -2341,6 +2343,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return false;
   }
   if (!abrirDesdeAncla()) mostrarHoja(leer(CLAVE_HOJA) || 'indice-agenda');
+  historiaLista = true;
+  window.addEventListener('popstate', function() {
+    var id = location.hash.slice(1), h = id && document.getElementById(id);
+    if (!h || !h.classList.contains('hoja-agenda')) id = 'indice-agenda';
+    enPop = true; mostrarHoja(id, false); enPop = false;
+    document.querySelector('.agenda-layout').scrollIntoView();
+  });
   /* ---------- Barra: colores, resaltar y buscador ---------- */
   var estilos = datos._estilos || {};
   function aplicarEstilo(el) { var e = estilos[el.id] || {}; el.style.color = e.c || ''; el.style.backgroundColor = e.r || ''; }
