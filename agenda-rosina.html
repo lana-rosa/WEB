@@ -438,6 +438,60 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   .pestana[aria-selected="true"] { box-shadow: 0 -3px 8px rgba(58,42,46,.16), inset 0 -4px 0 rgba(255,255,255,.7); }
 }
 @media print { .pestanas-agenda, .chips-hojas { display: none !important; } .agenda-layout { display: block; } }
+/* Finanzas (8-oct-2026) */
+.fin-mes { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 0 14px; }
+.fin-mes-txt { font-family: var(--fuente-titulo); font-size: 1.25rem; color: var(--rosa-texto); min-width: 9ch; text-align: center; text-transform: capitalize; }
+.fin-tarjetas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+.fin-tarj { border-radius: 16px; padding: 12px 14px; background: #F3F4FF; border: 1.5px solid rgba(69,69,74,.08); }
+.fin-tarj span { display: block; font-size: .78rem; font-weight: 700; color: var(--tinta-suave); }
+.fin-tarj strong { display: block; font-family: var(--fuente-titulo); font-size: 1.3rem; margin-top: 2px; }
+.fin-tarj.ing { background: #E8F7EE; } .fin-tarj.ing strong { color: #1F8A4C; }
+.fin-tarj.gas { background: #FDECEF; } .fin-tarj.gas strong { color: #C23A56; }
+.fin-tarj.sal strong { color: #2F6FC9; } .fin-tarj.sal.neg strong { color: #C23A56; }
+.fin-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.fin-caja { border: 1.5px solid var(--rosa-suave); border-radius: 16px; padding: 4px 14px 14px; margin-bottom: 12px; }
+.fin-dos .fin-caja { margin-bottom: 0; }
+.fin-dona-wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.fin-dona { width: 150px; height: 150px; border-radius: 50%; flex: none; position: relative; background: #EEE; }
+.fin-dona::after { content: ""; position: absolute; inset: 32px; border-radius: 50%; background: #fff; }
+.fin-leyenda { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: .82rem; min-width: 140px; flex: 1; }
+.fin-leyenda li { display: flex; align-items: center; gap: 8px; }
+.fin-leyenda i { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.fin-leyenda b { margin-left: auto; font-weight: 700; }
+.fin-barras { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; align-items: end; height: 170px; padding-top: 6px; }
+.fin-barra { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; font-size: .72rem; color: var(--tinta-suave); }
+.fin-barra .par { display: flex; align-items: flex-end; gap: 3px; height: 130px; }
+.fin-barra .par i { display: block; width: 13px; border-radius: 5px 5px 0 0; min-height: 2px; }
+.fin-barra .par .bi { background: #3DBE7A; } .fin-barra .par .bg { background: #F0647F; }
+.fin-leg { display: flex; gap: 12px; font-size: .75rem; margin-top: 6px; color: var(--tinta-suave); }
+.fin-leg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; }
+.fin-pres-fila { display: grid; grid-template-columns: 130px 1fr auto; gap: 10px; align-items: center; font-size: .86rem; margin: 6px 0; }
+.fin-progreso { height: 10px; border-radius: 99px; background: #EEE; overflow: hidden; }
+.fin-progreso i { display: block; height: 100%; border-radius: 99px; background: #3DBE7A; }
+.fin-progreso.pasa i { background: #F0647F; }
+.fin-rapido { margin: 0 0 12px; }
+.fin-rapido label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--rosa-texto); }
+.fin-rapido-fila { display: flex; gap: 8px; margin-top: 4px; }
+.fin-rapido-fila input { flex: 1; min-width: 0; border: 1.5px solid var(--rosa-medio); border-radius: 12px; padding: 10px 12px; font: inherit; }
+.fin-rapido small { display: block; min-height: 1.2em; margin-top: 4px; color: var(--tinta-suave); }
+.fin-form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 14px; margin-bottom: 14px; padding: 12px; background: var(--tinte, #FEF2F7); border-radius: 14px; }
+.fin-form select, .fin-form input { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,.25); background: transparent; font: inherit; padding: 5px 2px; }
+.fin-form-btn { justify-content: flex-end; }
+.fin-tabla td, .fin-tabla th { padding: 6px 8px; font-size: .88rem; }
+.fin-tabla .der { text-align: right; white-space: nowrap; }
+.fin-tabla .ing { color: #1F8A4C; font-weight: 700; } .fin-tabla .gas { color: #C23A56; font-weight: 700; }
+.fin-tabla .quitar { border: 0; background: transparent; cursor: pointer; font-size: 1rem; }
+.fin-vacio { text-align: center; color: var(--tinta-suave); margin: 14px 0; }
+.fin-totales { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: flex-end; font-weight: 700; margin-top: 10px; }
+.fin-pres { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px 16px; }
+.fin-pres label { display: flex; align-items: center; gap: 8px; font-size: .88rem; }
+.fin-pres label span { flex: 1; }
+.fin-pres input, .fin-meta input { border: none; border-bottom: 1.5px solid rgba(69,69,74,.25); background: transparent; font: inherit; padding: 4px 2px; min-width: 0; }
+.fin-pres input { width: 110px; text-align: right; }
+.fin-meta { display: grid; grid-template-columns: 1fr 120px 120px; gap: 8px 12px; align-items: center; margin-bottom: 12px; }
+.fin-meta .fin-progreso { grid-column: 1 / -1; }
+.fin-meta input.n { width: 100%; }
+@media (max-width: 700px) { .fin-dos { grid-template-columns: 1fr; } .fin-tarjetas { grid-template-columns: 1fr; } .fin-form { grid-template-columns: 1fr 1fr; } .fin-pres-fila { grid-template-columns: 100px 1fr auto; } .fin-meta { grid-template-columns: 1fr 1fr; } .fin-meta input:first-child { grid-column: 1 / -1; } }
 
 /* Hojas nuevas: visión, prioridades y calendario del año */
 .sub-hoja { font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: var(--rosa-texto); margin: 18px 0 8px; }
@@ -727,7 +781,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 21</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 21 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 24</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 24 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
@@ -750,6 +804,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#ventas-mes" data-hoja="ventas-mes">💰 Mis ventas del mes</a>
           <a href="#catalogo-precios" data-hoja="catalogo-precios">🏷️ Mi catálogo de precios</a>
           <a href="#ferias-mercados" data-hoja="ferias-mercados">🎪 Ferias y mercados</a>
+          <p class="menu-grupo">Mis finanzas</p>
+          <a href="#fin-resumen" data-hoja="fin-resumen">📊 Resumen del mes</a>
+          <a href="#fin-movimientos" data-hoja="fin-movimientos">🧾 Mis movimientos</a>
+          <a href="#fin-presupuesto" data-hoja="fin-presupuesto">🐷 Presupuesto y metas</a>
           <p class="menu-grupo">Fechas y bienestar</p>
           <a href="#calendario-anual" data-hoja="calendario-anual">🗓️ Calendario del año</a>
           <a href="#fechas-especiales" data-hoja="fechas-especiales">🎁 Fechas especiales</a>
@@ -787,7 +845,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="catalogo-precios"><span class="atajo-ic" aria-hidden="true">🏷️</span><span><strong>Mi catálogo de precios</strong><small>Tus productos y valores</small></span></button>
           <button type="button" class="atajo" data-ir="ferias-mercados"><span class="atajo-ic" aria-hidden="true">🎪</span><span><strong>Ferias y mercados</strong><small>Fechas y lugares</small></span></button>
         </div></div>
-        <div class="indice-grupo" style="--c:#B5E3C2"><h4>Fechas y bienestar</h4><div class="atajos">
+        <div class="indice-grupo" style="--c:#B5E3C2"><h4>Mis finanzas</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="fin-resumen"><span class="atajo-ic" aria-hidden="true">📊</span><span><strong>Resumen del mes</strong><small>Ingresos, gastos y saldo</small></span></button>
+          <button type="button" class="atajo" data-ir="fin-movimientos"><span class="atajo-ic" aria-hidden="true">🧾</span><span><strong>Mis movimientos</strong><small>Anota lo que entra y sale</small></span></button>
+          <button type="button" class="atajo" data-ir="fin-presupuesto"><span class="atajo-ic" aria-hidden="true">🐷</span><span><strong>Presupuesto y metas</strong><small>Tope por categoría y ahorros</small></span></button>
+        </div></div>
+        <div class="indice-grupo" style="--c:#F9D49B"><h4>Fechas y bienestar</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="calendario-anual"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Calendario del año</strong><small>Todas tus fechas en un vistazo</small></span></button>
           <button type="button" class="atajo" data-ir="fechas-especiales"><span class="atajo-ic" aria-hidden="true">🎁</span><span><strong>Fechas especiales</strong><small>Cumpleaños y celebraciones</small></span></button>
           <button type="button" class="atajo" data-ir="diario-tejido"><span class="atajo-ic" aria-hidden="true">📔</span><span><strong>Diario de tejido</strong><small>Cómo te sentiste tejiendo</small></span></button>
@@ -858,6 +921,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="cal-anual" id="cal-anual"></div>
         <div class="cal-dia" id="cal-dia" aria-live="polite">Toca un día marcado para ver qué tienes ese día.</div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> este calendario se llena solo con las fechas que escribes en pedidos, proyectos en fila, fechas especiales, ferias y clientas. Los días con punto tienen algo para ti.</p>
+      </article>
+      <article class="hoja-agenda" id="fin-resumen">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-21-corazon-grande.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Resumen del mes</h3><p>Cuánto entró, cuánto salió y en qué se fue tu dinero.</p></div>
+        </header>
+        <div class="fin-mes no-imprimir">
+          <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
+          <strong class="fin-mes-txt" aria-live="polite"></strong>
+          <button type="button" class="boton-secundario boton-chico" data-fin-mes="1" aria-label="Mes siguiente">›</button>
+        </div>
+        <div class="fin-tarjetas" id="fin-tarjetas"></div>
+        <div class="fin-dos">
+          <div class="fin-caja"><h4 class="sub-hoja">Gastos por categoría</h4><div class="fin-dona-wrap"><div class="fin-dona" id="fin-dona" role="img" aria-label="Gráfico de gastos por categoría"></div><ul class="fin-leyenda" id="fin-leyenda"></ul></div></div>
+          <div class="fin-caja"><h4 class="sub-hoja">Ingresos y gastos (6 meses)</h4><div class="fin-barras" id="fin-barras" role="img" aria-label="Ingresos y gastos de los últimos 6 meses"></div></div>
+        </div>
+        <div class="fin-caja"><h4 class="sub-hoja">Presupuesto del mes</h4><div id="fin-pres-resumen"></div></div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota cada gasto el mismo día, aunque sea pequeño. Registra en <em>Mis movimientos</em> y aquí verás todo ordenado solito. Tus datos se guardan solo en tu dispositivo.</p>
+      </article>
+      <article class="hoja-agenda" id="fin-movimientos">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Mis movimientos</h3><p>Anota lo que entra y lo que sale. Puedes escribirlo como lo dirías.</p></div>
+        </header>
+        <div class="fin-mes no-imprimir">
+          <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
+          <strong class="fin-mes-txt" aria-live="polite"></strong>
+          <button type="button" class="boton-secundario boton-chico" data-fin-mes="1" aria-label="Mes siguiente">›</button>
+        </div>
+        <form class="fin-rapido no-imprimir" id="fin-rapido" autocomplete="off">
+          <label for="fin-texto">Escríbelo natural</label>
+          <div class="fin-rapido-fila"><input id="fin-texto" placeholder='Ej.: gasté 50 mil en mercado · vendí 120000 un amigurumi'><button type="submit" class="boton-primario boton-chico">Agregar</button></div>
+          <small id="fin-rapido-msg" role="status"></small>
+        </form>
+        <form class="fin-form no-imprimir" id="fin-form" autocomplete="off">
+          <div class="linea"><label for="fin-f">Fecha</label><input type="date" id="fin-f"></div>
+          <div class="linea"><label for="fin-t">Tipo</label><select id="fin-t"><option value="g">Gasto</option><option value="i">Ingreso</option></select></div>
+          <div class="linea"><label for="fin-c">Categoría</label><select id="fin-c"></select></div>
+          <div class="linea"><label for="fin-d">Descripción</label><input id="fin-d" maxlength="80"></div>
+          <div class="linea"><label for="fin-v">Valor ($)</label><input id="fin-v" inputmode="numeric" placeholder="0"></div>
+          <div class="linea fin-form-btn"><button type="submit" class="boton-secundario">Guardar movimiento</button></div>
+        </form>
+        <div class="tabla-scroll"><table class="tabla-agenda fin-tabla" id="fin-tabla"><thead><tr><th>Fecha</th><th>Categoría</th><th>Descripción</th><th class="der">Valor</th><th class="no-imprimir"></th></tr></thead><tbody></tbody></table></div>
+        <p class="fin-vacio" id="fin-vacio">Aún no hay movimientos este mes. ¡Anota el primero!</p>
+        <div class="fin-totales" id="fin-totales"></div>
+      </article>
+      <article class="hoja-agenda" id="fin-presupuesto">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-05-ovillo-sentada.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Presupuesto y metas</h3><p>Cuánto quieres gastar por categoría y para qué estás ahorrando.</p></div>
+        </header>
+        <h4 class="sub-hoja">Presupuesto mensual por categoría</h4>
+        <div class="fin-pres" id="fin-pres"></div>
+        <h4 class="sub-hoja">Mis metas de ahorro</h4>
+        <div class="fin-metas" id="fin-metas"></div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> empieza con un presupuesto sencillo y ajústalo cada mes. Una meta pequeña que cumples vale más que una grande que se olvida.</p>
       </article>
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
@@ -1534,6 +1653,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     duena.value = ''; tituloDuena();
     estilos = {}; camposAgenda().forEach(function(el) { el.style.color = ''; el.style.backgroundColor = ''; });
     iniciarAnios();
+    if (window.lrFinReset) window.lrFinReset();
   });
 
   /* ---------- Portada con nombre y copia de seguridad ---------- */
@@ -1800,6 +1920,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     escribir(CLAVE_HOJA, id);
     if (window.lrPintarPestanas) window.lrPintarPestanas(id);
     if (id === 'calendario-anual' && window.lrPintarCalendario) window.lrPintarCalendario();
+    if (window.lrFinRender && id.indexOf('fin-') === 0) window.lrFinRender(id);
     var pos = ordenMenu.indexOf(id);
     document.getElementById('menu-hojas-cuenta').textContent = 'Hoja ' + (pos + 1) + ' de ' + hojas.length + '';
     hojas.forEach(function(x) { var barra = x.querySelector('.hojas-pasos'); if (barra) barra.hidden = x !== h; });
@@ -1853,6 +1974,129 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('cal-anio-sig').addEventListener('click', function() { anio++; pintar(); });
     window.lrPintarCalendario = pintar;
   })();
+  /* ---------- Finanzas: movimientos, resumen, presupuesto y metas (se guardan en tu dispositivo) ---------- */
+  (function() {
+    var CAT_G = ['Vivienda', 'Mercado', 'Transporte', 'Salud', 'Materiales (lanas)', 'Servicios', 'Educación', 'Ropa', 'Ocio', 'Otros'];
+    var CAT_I = ['Ventas', 'Talleres', 'Sueldo', 'Otros ingresos'];
+    var COLORES = ['#F28FC0', '#9EA2F9', '#93C7F9', '#8ED6AE', '#FFC46B', '#F4A58A', '#C8B2F6', '#E96FA7', '#7CC9E8', '#BBBBBB'];
+    var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    var hoy = new Date(), mesSel = { y: hoy.getFullYear(), m: hoy.getMonth() + 1 };
+    function fin() { datos._fin = datos._fin || {}; var f = datos._fin; f.movs = f.movs || []; f.pres = f.pres || {}; f.metas = f.metas || []; while (f.metas.length < 4) f.metas.push({ n: '', meta: '', ahorrado: '' }); return f; }
+    function guardarFin() { guardarDatos(); }
+    function plata(n) { n = Math.round(n); return (n < 0 ? '−$ ' : '$ ') + Math.abs(n).toLocaleString('es-CO'); }
+    function num(s) { var x = parseFloat(String(s == null ? '' : s).replace(/[^\d]/g, '')); return isNaN(x) ? 0 : x; }
+    function dosd(n) { return ('0' + n).slice(-2); }
+    function clave(y, m) { return y + '-' + dosd(m); }
+    function movsDe(y, m) { var k = clave(y, m); return fin().movs.filter(function(x) { return x.f.slice(0, 7) === k; }); }
+    function sumar(l, t) { return l.filter(function(x) { return x.t === t; }).reduce(function(a, x) { return a + x.v; }, 0); }
+    function el(id) { return document.getElementById(id); }
+
+    /* --- escribir natural --- */
+    function sinTildes(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+    var PALABRAS = [
+      ['g', 'Vivienda', /arriendo|alquiler|hipoteca|administracion/], ['g', 'Mercado', /mercado|super|comida|almuerzo|restaurante|desayuno|cena|plaza|tienda|panaderia/],
+      ['g', 'Transporte', /bus|gasolina|taxi|uber|pasaje|moto|peaje|parqueadero|transporte/], ['g', 'Salud', /medic|farmacia|droga|doctor|eps|dentista|salud|cita/],
+      ['g', 'Materiales (lanas)', /lana|hilo|aguja|relleno|ojos|material|bolsa|empaque|gancho|ovillo|fieltro/], ['g', 'Servicios', /luz|agua|internet|celular|gas|datos|plan|energia|telefono/],
+      ['g', 'Educación', /curso|taller|colegio|libro|clase|universidad/], ['g', 'Ropa', /ropa|zapato|vestido|camisa|pantalon/], ['g', 'Ocio', /cine|paseo|salida|helado|regalo|fiesta|viaje/],
+      ['i', 'Ventas', /venta|vendi|pedido|amigurumi|encargo/], ['i', 'Talleres', /taller|clase/], ['i', 'Sueldo', /sueldo|salario|nomina|quincena/]
+    ];
+    function interpretar(texto) {
+      var t = sinTildes(texto), tipo = null;
+      if (/\b(gaste|gasto|pague|pago|compre|compra|me costo|costo|saque|invertí|invertir)\b/.test(t)) tipo = 'g';
+      if (/\b(ingreso|ingrese|vendi|venta|cobre|recibi|me pagaron|gane|me llego|entro)\b/.test(t)) tipo = 'i';
+      var mm = t.match(/\$?\s*(\d[\d.,]*)\s*(millones|millon|mil|k)?(?![a-z])/); if (!mm) return { error: 'No encontré el valor. Escribe, por ejemplo: "gasté 50 mil en mercado".' };
+      var v = parseFloat(mm[1].replace(/[.,](?=\d{3}\b)/g, '').replace(',', '.')); if (isNaN(v) || v <= 0) return { error: 'No entendí el valor.' };
+      if (mm[2] === 'mil' || mm[2] === 'k') v *= 1000; else if (mm[2] && mm[2].indexOf('millon') === 0) v *= 1000000;
+      var VERBOS = /(^|\s)(gaste|gasto|pague|pago|compre|compra|vendi|venta|ingreso|ingrese|cobre|recibi|gane|hoy|ayer|anteayer)(?=\s|$)/g;
+      var limpio = t.replace(mm[0], ' ').replace(VERBOS, ' ').replace(/\s+/g, ' ').trim();
+      if (!tipo) tipo = /vendi|venta|pedido|amigurumi|encargo|sueldo|salario|nomina|quincena/.test(t) ? 'i' : 'g';
+      var cat = null; PALABRAS.forEach(function(p) { if (!cat && p[0] === tipo && p[2].test(limpio)) cat = p[1]; });
+      if (!cat && tipo === 'i' && /vendi|venta/.test(t)) cat = 'Ventas';
+      if (!cat) cat = tipo === 'g' ? 'Otros' : 'Otros ingresos';
+      var f = new Date(); if (/\bayer\b/.test(t)) f.setDate(f.getDate() - 1); if (/\banteayer\b/.test(t)) f.setDate(f.getDate() - 1);
+      var QUITAR = /(^|\s)(gast[eé]|gasto|pagu[eé]|pago|compr[eé]|compra|vend[ií]|venta|ingreso|ingres[eé]|cobr[eé]|recib[ií]|gan[eé]|hoy|ayer|anteayer)(?=\s|$)/gi;
+      var desc = texto.replace(/\$?\s*\d[\d.,]*\s*(millones|millón|millon|mil|k)?(?![a-zA-Z])/i, ' ').replace(QUITAR, ' ').replace(/\s+/g, ' ').trim().replace(/^(en|de|por|un|una|el|la)\s+/i, '');
+      return { f: f.getFullYear() + '-' + dosd(f.getMonth() + 1) + '-' + dosd(f.getDate()), t: tipo, c: cat, d: desc.slice(0, 80), v: Math.round(v) };
+    }
+    function agregar(m) { var f = fin(); m.id = Date.now() + '' + Math.floor(Math.random() * 1000); f.movs.push(m); guardarFin(); var p = m.f.split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); }
+
+    /* --- pintar --- */
+    function pintarMes() { document.querySelectorAll('.fin-mes-txt').forEach(function(e) { e.textContent = MESES[mesSel.m - 1] + ' ' + mesSel.y; }); }
+    function pintarResumen() {
+      var l = movsDe(mesSel.y, mesSel.m), ing = sumar(l, 'i'), gas = sumar(l, 'g'), sal = ing - gas;
+      el('fin-tarjetas').innerHTML = '<div class="fin-tarj ing"><span>Ingresos</span><strong>' + plata(ing) + '</strong></div><div class="fin-tarj gas"><span>Gastos</span><strong>' + plata(gas) + '</strong></div><div class="fin-tarj sal' + (sal < 0 ? ' neg' : '') + '"><span>Saldo del mes</span><strong>' + plata(sal) + '</strong></div>';
+      var por = {}; l.filter(function(x) { return x.t === 'g'; }).forEach(function(x) { por[x.c] = (por[x.c] || 0) + x.v; });
+      var cats = Object.keys(por).sort(function(a, b) { return por[b] - por[a]; });
+      var dona = el('fin-dona'), ley = el('fin-leyenda'); ley.innerHTML = '';
+      if (!gas) { dona.style.background = '#EEE'; ley.innerHTML = '<li>Sin gastos este mes.</li>'; }
+      else {
+        var acum = 0, trozos = [];
+        cats.forEach(function(c) { var i = CAT_G.indexOf(c), col = COLORES[i < 0 ? 9 : i], pc = por[c] / gas * 100; trozos.push(col + ' ' + acum + '% ' + (acum + pc) + '%'); acum += pc;
+          var li = document.createElement('li'); li.innerHTML = '<i style="background:' + col + '"></i>'; li.appendChild(document.createTextNode(c)); var b = document.createElement('b'); b.textContent = Math.round(pc) + '%'; li.appendChild(b); ley.appendChild(li); });
+        dona.style.background = 'conic-gradient(' + trozos.join(',') + ')';
+      }
+      var meses = [], y = mesSel.y, m = mesSel.m; for (var i = 0; i < 6; i++) { meses.unshift({ y: y, m: m }); m--; if (m < 1) { m = 12; y--; } }
+      var datosM = meses.map(function(x) { var q = movsDe(x.y, x.m); return { n: MESES[x.m - 1].slice(0, 3), i: sumar(q, 'i'), g: sumar(q, 'g') }; });
+      var max = Math.max.apply(null, datosM.map(function(d) { return Math.max(d.i, d.g); }).concat([1]));
+      el('fin-barras').innerHTML = datosM.map(function(d) { return '<div class="fin-barra"><div class="par"><i class="bi" style="height:' + (d.i / max * 100) + '%" title="Ingresos ' + plata(d.i) + '"></i><i class="bg" style="height:' + (d.g / max * 100) + '%" title="Gastos ' + plata(d.g) + '"></i></div>' + d.n + '</div>'; }).join('');
+      var leg = document.querySelector('#fin-resumen .fin-leg'); if (!leg) { leg = document.createElement('div'); leg.className = 'fin-leg'; leg.innerHTML = '<span><i style="background:#3DBE7A"></i>Ingresos</span><span><i style="background:#F0647F"></i>Gastos</span>'; el('fin-barras').parentNode.appendChild(leg); }
+      var pr = fin().pres, h = '';
+      CAT_G.forEach(function(c) { var tope = num(pr[c]); if (!tope) return; var g = por[c] || 0, pc = Math.min(100, g / tope * 100); h += '<div class="fin-pres-fila"><span>' + c + '</span><div class="fin-progreso' + (g > tope ? ' pasa' : '') + '"><i style="width:' + pc + '%"></i></div><span>' + plata(g) + ' / ' + plata(tope) + '</span></div>'; });
+      el('fin-pres-resumen').innerHTML = h || '<p class="fin-vacio">Define tu presupuesto en la hoja «Presupuesto y metas» para ver aquí cómo vas.</p>';
+    }
+    function pintarMovs() {
+      var l = movsDe(mesSel.y, mesSel.m).sort(function(a, b) { return a.f < b.f ? 1 : -1; }), tb = document.querySelector('#fin-tabla tbody'); tb.innerHTML = '';
+      l.forEach(function(x) {
+        var tr = document.createElement('tr'), p = x.f.split('-');
+        [p[2] + '/' + p[1], x.c, x.d || ''].forEach(function(t) { var td = document.createElement('td'); td.textContent = t; tr.appendChild(td); });
+        var tv = document.createElement('td'); tv.className = 'der ' + (x.t === 'i' ? 'ing' : 'gas'); tv.textContent = (x.t === 'i' ? '+ ' : '− ') + plata(x.v); tr.appendChild(tv);
+        var tq = document.createElement('td'); tq.className = 'no-imprimir'; var b = document.createElement('button'); b.type = 'button'; b.className = 'quitar'; b.setAttribute('aria-label', 'Borrar movimiento'); b.textContent = '🗑️';
+        b.addEventListener('click', function() { if (!confirm('¿Borrar este movimiento?')) return; var f = fin(); f.movs = f.movs.filter(function(y) { return y.id !== x.id; }); guardarFin(); pintar(); });
+        tq.appendChild(b); tr.appendChild(tq); tb.appendChild(tr);
+      });
+      el('fin-vacio').hidden = !!l.length; el('fin-tabla').hidden = !l.length;
+      var ing = sumar(l, 'i'), gas = sumar(l, 'g');
+      el('fin-totales').innerHTML = l.length ? '<span class="ing" style="color:#1F8A4C">Ingresos: ' + plata(ing) + '</span><span style="color:#C23A56">Gastos: ' + plata(gas) + '</span><span>Saldo: ' + plata(ing - gas) + '</span>' : '';
+    }
+    function pintarPres() {
+      var f = fin(), c = el('fin-pres'); if (!c.dataset.listo) {
+        c.dataset.listo = '1';
+        CAT_G.forEach(function(cat, i) { var lab = document.createElement('label'); lab.innerHTML = '<i style="width:11px;height:11px;border-radius:50%;background:' + COLORES[i] + ';flex:none"></i>'; var sp = document.createElement('span'); sp.textContent = cat; lab.appendChild(sp); var inp = document.createElement('input'); inp.inputMode = 'numeric'; inp.placeholder = '$ 0'; inp.setAttribute('aria-label', 'Presupuesto de ' + cat); inp.dataset.cat = cat;
+          inp.addEventListener('input', function() { fin().pres[cat] = num(inp.value) || ''; guardarFin(); }); inp.addEventListener('blur', function() { inp.value = num(inp.value) ? plata(num(inp.value)) : ''; }); lab.appendChild(inp); c.appendChild(lab); });
+        var m = el('fin-metas');
+        for (var k = 0; k < 4; k++) (function(k) {
+          var d = document.createElement('div'); d.className = 'fin-meta';
+          d.innerHTML = '<input class="n" placeholder="Mi meta (ej.: máquina de coser)" aria-label="Nombre de la meta ' + (k + 1) + '"><input inputmode="numeric" placeholder="Meta $" aria-label="Valor de la meta ' + (k + 1) + '"><input inputmode="numeric" placeholder="Ahorrado $" aria-label="Ahorrado en la meta ' + (k + 1) + '"><div class="fin-progreso"><i style="width:0"></i></div>';
+          var ins = d.querySelectorAll('input'), barra = d.querySelector('.fin-progreso i');
+          function pintaBarra() { var me = num(ins[1].value), ah = num(ins[2].value); barra.style.width = (me ? Math.min(100, ah / me * 100) : 0) + '%'; d.querySelector('.fin-progreso').title = me ? Math.round(Math.min(100, ah / me * 100)) + ' %' : ''; }
+          ins[0].addEventListener('input', function() { fin().metas[k].n = ins[0].value; guardarFin(); });
+          ins[1].addEventListener('input', function() { fin().metas[k].meta = num(ins[1].value) || ''; guardarFin(); pintaBarra(); });
+          ins[2].addEventListener('input', function() { fin().metas[k].ahorrado = num(ins[2].value) || ''; guardarFin(); pintaBarra(); });
+          [ins[1], ins[2]].forEach(function(i) { i.addEventListener('blur', function() { i.value = num(i.value) ? plata(num(i.value)) : ''; }); });
+          d._pintar = pintaBarra; d._ins = ins; m.appendChild(d);
+        })(k);
+      }
+      c.querySelectorAll('input').forEach(function(inp) { var v = num(f.pres[inp.dataset.cat]); inp.value = v ? plata(v) : ''; });
+      el('fin-metas').querySelectorAll('.fin-meta').forEach(function(d, k) { var mt = f.metas[k]; d._ins[0].value = mt.n || ''; d._ins[1].value = num(mt.meta) ? plata(num(mt.meta)) : ''; d._ins[2].value = num(mt.ahorrado) ? plata(num(mt.ahorrado)) : ''; d._pintar(); });
+    }
+    function pintar() { pintarMes(); pintarResumen(); pintarMovs(); }
+    function opcionesCat() { var t = el('fin-t').value, s = el('fin-c'); s.innerHTML = (t === 'g' ? CAT_G : CAT_I).map(function(c) { return '<option>' + c + '</option>'; }).join(''); }
+    el('fin-t').addEventListener('change', opcionesCat); opcionesCat();
+    var hf = new Date(); el('fin-f').value = hf.getFullYear() + '-' + dosd(hf.getMonth() + 1) + '-' + dosd(hf.getDate());
+    el('fin-form').addEventListener('submit', function(e) {
+      e.preventDefault(); var v = num(el('fin-v').value); if (!v || !el('fin-f').value) { el('fin-rapido-msg').textContent = 'Escribe la fecha y el valor.'; return; }
+      agregar({ f: el('fin-f').value, t: el('fin-t').value, c: el('fin-c').value, d: el('fin-d').value.trim(), v: v }); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-rapido-msg').textContent = '¡Listo, guardado!';
+    });
+    el('fin-rapido').addEventListener('submit', function(e) {
+      e.preventDefault(); var r = interpretar(el('fin-texto').value); var msg = el('fin-rapido-msg');
+      if (r.error) { msg.textContent = r.error; return; }
+      agregar(r); el('fin-texto').value = ''; msg.textContent = '¡Listo! ' + (r.t === 'g' ? 'Gasto' : 'Ingreso') + ' de ' + plata(r.v) + ' en «' + r.c + '».';
+    });
+    document.querySelectorAll('[data-fin-mes]').forEach(function(b) { b.addEventListener('click', function() { var d = +b.dataset.finMes; mesSel.m += d; if (mesSel.m < 1) { mesSel.m = 12; mesSel.y--; } if (mesSel.m > 12) { mesSel.m = 1; mesSel.y++; } pintar(); }); });
+    window.lrFinRender = function(id) { if (id === 'fin-presupuesto') pintarPres(); pintar(); };
+    window.lrFinReset = function() { var c = el('fin-pres'); c.innerHTML = ''; delete c.dataset.listo; el('fin-metas').innerHTML = ''; pintar(); };
+    pintar();
+  })();
   /* ---------- Pestañas laterales e índice ---------- */
   (function() {
     var grupos = [];
@@ -1860,7 +2104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (n.classList.contains('menu-grupo')) grupos.push({ t: n.textContent, links: [] });
       else if (n.tagName === 'A' && grupos.length) grupos[grupos.length - 1].links.push(n);
     });
-    var COL = ['#F7B3D4', '#F28FC0', '#B9BCFB', '#A9D3FA', '#B5E3C2'];
+    var COL = ['#F7B3D4', '#F28FC0', '#B9BCFB', '#A9D3FA', '#B5E3C2', '#F9D49B'];
     var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
     var nav = document.getElementById('pestanas-agenda'), chips = document.getElementById('chips-hojas');
     var botones = grupos.map(function(g, i) {
