@@ -438,6 +438,19 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   .pestana[aria-selected="true"] { box-shadow: 0 -3px 8px rgba(58,42,46,.16), inset 0 -4px 0 rgba(255,255,255,.7); }
 }
 @media print { .pestanas-agenda, .chips-hojas { display: none !important; } .agenda-layout { display: block; } }
+
+/* Agenda: el menú de arriba no se queda fijo y las herramientas se despliegan con una flecha (8-oct-2026) */
+.encabezado { position: static !important; }
+.hoja-agenda { scroll-margin-top: 20px; }
+.agenda-layout { scroll-margin-top: 12px; }
+.pestanas-agenda { top: 16px; }
+.barra-toggle { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 12px; padding: 10px 16px; border-radius: 14px; border: 1.5px solid var(--rosa-medio); background: #fff; font: inherit; font-weight: 700; font-size: .92rem; color: var(--tinta); cursor: pointer; box-shadow: var(--sombra-suave); }
+.barra-toggle .flecha { transition: transform .2s ease; font-size: 1.1rem; }
+.barra-toggle[aria-expanded="true"] .flecha { transform: rotate(180deg); }
+.barra-agenda { display: none; top: 12px; margin-bottom: 14px; }
+.barra-agenda.abierta { display: flex; }
+@media (max-width: 900px) { .barra-agenda { position: static; } .pestanas-agenda { top: 0; } .agenda-layout { scroll-margin-top: 8px; } }
+@media print { .barra-toggle { display: none !important; } }
 /* Tablero de indicadores (8-oct-2026) */
 .tab-lectura { background: linear-gradient(135deg, #FDF0F6, #EEF0FF); border: 1.5px solid var(--rosa-suave); border-radius: 18px; padding: 14px 18px; margin-bottom: 16px; }
 .tab-lectura h4 { margin: 0 0 8px; font-family: var(--fuente-titulo); color: var(--rosa-texto); font-size: 1.02rem; }
@@ -770,7 +783,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="contenedor">
       <div class="zona-agenda" id="zona-agenda">
       <div class="contenido-agenda" id="contenido-agenda">
-      <div class="barra-agenda no-imprimir" role="toolbar" aria-label="Herramientas de la agenda">
+      <button type="button" class="barra-toggle no-imprimir" id="barra-toggle" aria-expanded="false" aria-controls="barra-agenda"><span>🔍 Buscar en mi agenda · letra y resaltar</span><span class="flecha" aria-hidden="true">▾</span></button>
+      <div class="barra-agenda no-imprimir" id="barra-agenda" role="toolbar" aria-label="Herramientas de la agenda">
         <div class="buscar-agenda">
           <span aria-hidden="true">🔍</span>
           <input type="search" id="buscar-agenda" placeholder="Buscar en mi agenda…" aria-label="Buscar en mi agenda">
@@ -2262,6 +2276,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     el('tab-mes-ant').addEventListener('click', function() { mes.m--; if (mes.m < 1) { mes.m = 12; mes.y--; } pintar(); });
     el('tab-mes-sig').addEventListener('click', function() { mes.m++; if (mes.m > 12) { mes.m = 1; mes.y++; } pintar(); });
     window.lrPintarTablero = pintar;
+  })();
+  /* ---------- Herramientas de la agenda: se despliegan con una flecha ---------- */
+  (function() {
+    var t = document.getElementById('barra-toggle'), barra = document.getElementById('barra-agenda');
+    t.addEventListener('click', function() { var ab = barra.classList.toggle('abierta'); t.setAttribute('aria-expanded', String(ab)); if (ab) document.getElementById('buscar-agenda').focus({ preventScroll: true }); });
   })();
   /* ---------- Pestañas laterales e índice ---------- */
   (function() {
