@@ -442,7 +442,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .aviso-auto { margin: 0 0 12px; background: #E8F7EE; color: #1F6B42; border-radius: 12px; padding: 9px 14px; font-size: .9rem; font-weight: 600; }
 
 /* Logo de Lana Rosa arriba a la derecha en todas las hojas (8-oct-2026) */
-.hoja-agenda > header::after { content: ""; margin-left: auto; flex: none; width: 110px; height: 36px; background: url("/img/logo-lana-rosa-texto.webp") right center / contain no-repeat; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.hoja-agenda > header::after { content: ""; margin-left: auto; flex: none; width: 124px; height: 72px; background: url("/img/logo-lana-rosa-nuevo.webp") right center / contain no-repeat; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 @media (max-width: 520px) { .hoja-agenda > header::after { width: 70px; height: 26px; } .hoja-agenda > header { gap: 10px; } .hoja-agenda > header img { width: 48px; height: 48px; } }
 
 /* Agenda: el menú de arriba no se queda fijo y las herramientas se despliegan con una flecha (8-oct-2026) */
@@ -621,6 +621,35 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .cs-aviso { margin: 8px 0 0; min-height: 1.2em; font-size: 0.85rem; font-weight: 600; color: #8E1457; }
 .calendario-sync .nota-copia { display: block; margin-top: 8px; }
 .calendario-sync.bloqueado-pago { display: none !important; }
+/* Calendario con semana, día y "lo que viene" (8-oct-2026) */
+.agc-barra { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 0 0 12px; }
+.agc-barra strong { font-family: var(--fuente-titulo); font-size: 1.3rem; color: var(--rosa-texto); min-width: 9ch; text-align: center; }
+.agc-semana { display: grid; grid-template-columns: auto repeat(7, minmax(0, 1fr)) auto; gap: 6px; align-items: stretch; padding: 10px; border-radius: 22px; background: var(--lila-suave, #E6E7FD); margin-bottom: 16px; }
+.agc-flecha { border: 0; background: transparent; font: inherit; font-size: 1.5rem; color: var(--rosa-texto); cursor: pointer; padding: 0 6px; border-radius: 12px; }
+.agc-d { display: flex; flex-direction: column; align-items: center; gap: 2px; border: 0; background: transparent; font: inherit; color: var(--tinta); padding: 8px 2px 6px; border-radius: 16px; cursor: pointer; min-width: 0; }
+.agc-d small { font-size: .72rem; font-weight: 700; color: var(--tinta-suave); text-transform: uppercase; }
+.agc-d b { font-family: var(--fuente-titulo); font-size: 1.15rem; line-height: 1.2; }
+.agc-d.hoy { box-shadow: inset 0 0 0 2px var(--rosa-boton); }
+.agc-d.sel { background: var(--rosa-boton); color: var(--sobre-principal, #2f2f33); } .agc-d.sel small { color: inherit; }
+.agc-puntos { display: flex; gap: 3px; height: 7px; align-items: center; } .agc-puntos i { width: 6px; height: 6px; border-radius: 50%; }
+.agc-titulo { margin: 4px 0 10px; font-family: var(--fuente-titulo); font-size: 1.1rem; color: var(--rosa-texto); } .agc-titulo em { font-style: normal; font-size: .85rem; color: var(--tinta-suave); }
+.agc-vacio { margin: 6px 0 14px; padding: 14px; border: 1.5px dashed var(--rosa-medio); border-radius: 14px; color: var(--tinta-suave); font-size: .92rem; background: #fff; }
+.agc-lista { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 10px; }
+.agc-ev { display: grid; grid-template-columns: 74px 1fr; gap: 12px; align-items: stretch; }
+.agc-hora { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--tinta-suave); } .agc-hora span { font-size: 1.4rem; line-height: 1; } .agc-hora small { font-size: .7rem; font-weight: 700; margin-top: 3px; }
+.agc-tarjeta { background: var(--c); border-radius: 18px; padding: 12px 14px; display: grid; gap: 3px; min-width: 0; }
+.agc-tipo { font-size: .7rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #3b2a30; opacity: .75; }
+.agc-tarjeta strong { font-size: 1rem; overflow-wrap: anywhere; color: #2f2f33; }
+.agc-det { display: grid; gap: 1px; font-size: .84rem; color: #3b3b40; } .agc-det span { overflow-wrap: anywhere; }
+.agc-ir { justify-self: start; margin-top: 6px; border: 0; background: rgba(255,255,255,.7); font: inherit; font-size: .8rem; font-weight: 700; padding: 5px 12px; border-radius: 999px; cursor: pointer; color: #3b2a30; }
+.agc-prox { display: grid; gap: 8px; margin-bottom: 16px; }
+.agc-p { display: grid; grid-template-columns: 52px 1fr; grid-template-rows: auto auto; column-gap: 12px; align-items: center; text-align: left; border: 0; background: var(--c); font: inherit; border-radius: 16px; padding: 8px 14px 8px 8px; cursor: pointer; color: #2f2f33; }
+.agc-p-f { grid-row: 1 / 3; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,.75); border-radius: 12px; padding: 4px 0; } .agc-p-f b { font-family: var(--fuente-titulo); font-size: 1.15rem; line-height: 1.1; } .agc-p-f small { font-size: .68rem; font-weight: 800; text-transform: uppercase; }
+.agc-p-t { font-weight: 700; overflow-wrap: anywhere; } .agc-p-n { font-size: .76rem; color: #3b3b40; }
+.agc-anio { margin: 8px 0 14px; } .agc-anio > summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); padding: 8px 0; }
+@media (max-width: 520px) { .hoja-agenda > header::after { width: 84px; height: 50px; } .agc-semana { padding: 8px 4px; gap: 2px; border-radius: 18px; } .agc-flecha { padding: 0 2px; font-size: 1.3rem; } .agc-d b { font-size: 1rem; } .agc-ev { grid-template-columns: 1fr; } .agc-hora { display: none; } }
+@media print { .agc-semana, .agc-barra, .agc-ir { display: none !important; } .agc-tarjeta, .agc-p { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
 /* Finanzas: panel, gráficas y movimientos (8-oct-2026). Colores validados: ingresos azul, gastos naranja, ahorro violeta */
 .fin-tarj.ing { background: #EAF2FC; } .fin-tarj.ing strong { color: #1c5cab; }
 .fin-tarj.gas { background: #FDEEE6; } .fin-tarj.gas strong { color: #B24A1F; }
@@ -743,13 +772,13 @@ main > :first-child { padding-top: 40px !important; }
 @media print {
   .marca-impresion { display: flex !important; align-items: center; gap: 12px; font-family: 'Hanken Grotesk', Arial, sans-serif; color: #45454A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .marca-imp-arriba { justify-content: space-between; border-bottom: 2px solid var(--rosa-principal); padding: 0 0 8px; margin: 0 0 14px; }
-  .marca-imp-arriba img { height: 46px; width: auto; border-radius: 8px; }
+  .marca-imp-arriba img { height: 50px; width: auto; }
   .marca-imp-arriba span { font-size: 11px; color: var(--rosa-texto); font-weight: 700; }
   .marca-imp-abajo { justify-content: center; flex-wrap: wrap; gap: 4px 14px; border-top: 2px solid var(--rosa-principal); padding: 8px 0 0; margin: 18px 0 0; font-size: 10.5px; break-inside: avoid; }
   .marca-imp-abajo strong { color: var(--rosa-texto); }
 }
 </style>
-<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="/img/logo-lana-rosa.jpg" alt="" width="1142" height="731"><span>Rincón de Rosina · lanarosacrochet.com</span></div>
+<div class="marca-impresion marca-imp-arriba" aria-hidden="true"><img src="/img/logo-lana-rosa-nuevo.jpg" alt="" width="560" height="331"><span>Rincón de Rosina · lanarosacrochet.com</span></div>
 <!-- /marca-impresion -->
 
 <!-- Google Tag Manager (noscript) -->
@@ -1016,14 +1045,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-04-flor.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Calendario del año</h3><p>Tus entregas, fechas especiales, ferias y cumpleaños, todo en un vistazo.</p></div>
         </header>
-        <div class="cal-anio-barra no-imprimir">
-          <button type="button" class="boton-secundario boton-chico" id="cal-anio-ant" aria-label="Año anterior">‹</button>
-          <strong id="cal-anio-txt" aria-live="polite"></strong>
-          <button type="button" class="boton-secundario boton-chico" id="cal-anio-sig" aria-label="Año siguiente">›</button>
+        <div class="agc-barra no-imprimir">
+          <button type="button" class="boton-secundario boton-chico" id="agc-ant" aria-label="Mes anterior">‹</button>
+          <strong id="agc-mes" aria-live="polite"></strong>
+          <button type="button" class="boton-secundario boton-chico" id="agc-sig" aria-label="Mes siguiente">›</button>
+          <button type="button" class="boton-secundario boton-chico" id="agc-hoy">Hoy</button>
         </div>
-        <div class="cal-anual" id="cal-anual"></div>
-        <div class="cal-dia" id="cal-dia" aria-live="polite">Toca un día marcado para ver qué tienes ese día.</div>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> este calendario se llena solo con las fechas que escribes en pedidos, proyectos en fila, fechas especiales, ferias y clientas. Los días con punto tienen algo para ti.</p>
+        <div class="agc-semana no-imprimir" id="agc-semana" role="group" aria-label="Días de la semana"></div>
+        <div class="agc-dia" id="agc-dia" aria-live="polite"></div>
+        <h4 class="sub-hoja">Lo que viene</h4>
+        <div class="agc-prox" id="agc-prox"></div>
+        <details class="agc-anio" id="agc-anio">
+          <summary>Ver el año completo</summary>
+          <div class="cal-anio-barra no-imprimir">
+            <button type="button" class="boton-secundario boton-chico" id="cal-anio-ant" aria-label="Año anterior">‹</button>
+            <strong id="cal-anio-txt" aria-live="polite"></strong>
+            <button type="button" class="boton-secundario boton-chico" id="cal-anio-sig" aria-label="Año siguiente">›</button>
+          </div>
+          <div class="cal-anual" id="cal-anual"></div>
+          <div class="cal-dia" id="cal-dia" aria-live="polite">Toca un día marcado para ver qué tienes ese día.</div>
+        </details>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> este calendario se llena solo con las fechas que escribes en pedidos, proyectos en fila, fechas especiales, ferias y clientas. Los días con puntitos de color tienen algo para ti.</p>
       </article>
       <article class="hoja-agenda" id="fin-resumen">
         <header>
@@ -2167,42 +2209,114 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (sig) { var c = document.createElement('button'); c.type = 'button'; c.className = 'paso-sig'; c.innerHTML = '<small>Siguiente hoja →</small>' + nombreHoja(i + 1); c.addEventListener('click', function() { mostrarHoja(sig, true); }); barra.appendChild(c); }
     h.appendChild(barra);
   });
-  /* ---------- Calendario del año (se llena con las fechas de la agenda) ---------- */
+  /* ---------- Calendario: semana, día y "lo que viene" + año completo (se llena con las fechas de la agenda) ---------- */
   (function() {
     var MESES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'], DIAS_C = ['lun', 'mar', 'mié', 'jue', 'vie', 'sáb', 'dom'];
     var COL = ['#F7B3D4', '#F28FC0', '#B9BCFB', '#A9D3FA', '#B5E3C2'];
-    var anio = new Date().getFullYear();
-    var cont = document.getElementById('cal-anual'), detalle = document.getElementById('cal-dia');
-    function pintar() {
-      var evs = (window.lrAgenda && window.lrAgenda.eventos) ? window.lrAgenda.eventos() : [], por = {};
+    /* c = fondo de la tarjeta, p = color del puntito. Además del color, cada tipo lleva su nombre y su ícono */
+    var TIPO = {
+      pedido: { n: 'Entrega', ic: '📦', c: '#CFE6FB', p: '#2a78d6', hoja: 'control-pedidos' }, ficha: { n: 'Entrega', ic: '📋', c: '#CFE6FB', p: '#2a78d6', hoja: 'ficha-proyecto' },
+      proyecto: { n: 'Proyecto', ic: '🧵', c: '#FBD5E8', p: '#E74E96', hoja: 'proyectos-fila' }, fecha: { n: 'Fecha especial', ic: '🎁', c: '#FFEFC2', p: '#c98500', hoja: 'fechas-especiales' },
+      feria: { n: 'Feria', ic: '🎪', c: '#D4F1DF', p: '#1baf7a', hoja: 'ferias-mercados' }, clienta: { n: 'Cumpleaños', ic: '🎂', c: '#E1E2FD', p: '#4a3aa7', hoja: 'mis-clientas' }
+    };
+    function dd(n) { return ('0' + n).slice(-2); }
+    function dia0(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+    function iso(d) { return d.getFullYear() + '-' + dd(d.getMonth() + 1) + '-' + dd(d.getDate()); }
+    function el(id) { return document.getElementById(id); }
+    var hoy = dia0(new Date()), sel = new Date(hoy), anio = hoy.getFullYear(), indice = { fijo: {}, anual: {} };
+    function indexar() {
+      indice = { fijo: {}, anual: {} };
+      var evs = (window.lrAgenda && window.lrAgenda.eventos) ? window.lrAgenda.eventos() : [];
       evs.forEach(function(e) {
-        var p = e.fecha.split('-'), y = +p[0];
-        if (e.anual || y === anio) { var k = (+p[1]) + '-' + (+p[2]); (por[k] = por[k] || []).push(e.titulo); }
+        var p = e.fecha.split('-'), t = TIPO[e.clave.split(':')[0]] ? e.clave.split(':')[0] : 'fecha';
+        var item = { tipo: t, titulo: e.titulo, detalle: (e.detalle || '').split('\n').filter(function(x) { return x && x.indexOf('Desde la agenda de Rosina') !== 0 && !/^(Cliente|Pedido|Proyecto|Para quién): /.test(x); }), lugar: e.lugar || '' };
+        var k = e.anual ? (+p[1]) + '-' + (+p[2]) : (+p[0]) + '-' + (+p[1]) + '-' + (+p[2]);
+        ((e.anual ? indice.anual : indice.fijo)[k] = (e.anual ? indice.anual : indice.fijo)[k] || []).push(item);
       });
-      document.getElementById('cal-anio-txt').textContent = anio;
-      var hoy = new Date(), h = '';
+    }
+    function deDia(d) { return (indice.fijo[d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()] || []).concat(indice.anual[(d.getMonth() + 1) + '-' + d.getDate()] || []); }
+    function larga(d) { return DIAS[d.getDay()] + ' ' + d.getDate() + ' de ' + MESES[d.getMonth()].toLowerCase(); }
+    function cap(t) { return t.charAt(0).toUpperCase() + t.slice(1); }
+    function pintarSemana() {
+      var dow = (sel.getDay() + 6) % 7, ini = new Date(sel.getFullYear(), sel.getMonth(), sel.getDate() - dow);
+      var h = '<button type="button" class="agc-flecha" data-agc-sem="-1" aria-label="Semana anterior">‹</button>';
+      for (var i = 0; i < 7; i++) {
+        var d = new Date(ini.getFullYear(), ini.getMonth(), ini.getDate() + i), evs = deDia(d), esSel = iso(d) === iso(sel), esHoy = iso(d) === iso(hoy);
+        var tipos = []; evs.forEach(function(e) { if (tipos.indexOf(e.tipo) < 0) tipos.push(e.tipo); });
+        h += '<button type="button" class="agc-d' + (esSel ? ' sel' : '') + (esHoy ? ' hoy' : '') + '" data-d="' + iso(d) + '" aria-pressed="' + esSel + '" aria-label="' + larga(d) + (evs.length ? ', ' + evs.length + (evs.length === 1 ? ' cosa' : ' cosas') : ', sin nada') + '"><small>' + DIAS_C[i] + '</small><b>' + d.getDate() + '</b><span class="agc-puntos">' +
+          tipos.slice(0, 4).map(function(t) { return '<i style="background:' + TIPO[t].p + '"></i>'; }).join('') + '</span></button>';
+      }
+      el('agc-semana').innerHTML = h + '<button type="button" class="agc-flecha" data-agc-sem="1" aria-label="Semana siguiente">›</button>';
+    }
+    function pintarDia() {
+      var evs = deDia(sel), h = '<h4 class="agc-titulo">' + cap(larga(sel)) + (iso(sel) === iso(hoy) ? ' <em>· hoy</em>' : '') + '</h4>';
+      if (!evs.length) h += '<p class="agc-vacio">Nada anotado para este día. Escribe una fecha en tus hojas de pedidos, proyectos, fechas especiales, ferias o clientas y aparecerá aquí.</p>';
+      else {
+        h += '<ul class="agc-lista">';
+        evs.forEach(function(e) {
+          var t = TIPO[e.tipo], li = document.createElement('li'); li.className = 'agc-ev';
+          var det = e.detalle.map(function(x) { var s = document.createElement('span'); s.textContent = x; return s.outerHTML; }).join('');
+          var ti = document.createElement('strong'); ti.textContent = e.titulo;
+          var lu = e.lugar ? (function() { var s = document.createElement('span'); s.textContent = '📍 ' + e.lugar; return s.outerHTML; })() : '';
+          h += '<li class="agc-ev"><div class="agc-hora" aria-hidden="true"><span>' + t.ic + '</span><small>' + t.n + '</small></div><div class="agc-tarjeta" style="--c:' + t.c + '"><small class="agc-tipo">' + t.n + '</small>' + ti.outerHTML + '<div class="agc-det">' + lu + det + '</div><button type="button" class="agc-ir no-imprimir" data-hoja="' + t.hoja + '">Abrir la hoja →</button></div></li>';
+        });
+        h += '</ul>';
+      }
+      el('agc-dia').innerHTML = h;
+    }
+    function pintarProx() {
+      var h = '', n = 0;
+      for (var i = 0; i < 90 && n < 8; i++) {
+        var d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() + i), evs = deDia(d);
+        evs.forEach(function(e) {
+          if (n >= 8) return; n++;
+          var t = TIPO[e.tipo], ti = document.createElement('span'); ti.className = 'agc-p-t'; ti.textContent = e.titulo;
+          h += '<button type="button" class="agc-p" data-d="' + iso(d) + '" style="--c:' + t.c + '"><span class="agc-p-f"><b>' + d.getDate() + '</b><small>' + MESES[d.getMonth()].slice(0, 3) + '</small></span>' + ti.outerHTML + '<small class="agc-p-n">' + t.ic + ' ' + t.n + (i === 0 ? ' · hoy' : (i === 1 ? ' · mañana' : '')) + '</small></button>';
+        });
+      }
+      el('agc-prox').innerHTML = h || '<p class="agc-vacio">Todavía no tienes fechas en los próximos 90 días.</p>';
+    }
+    function pintarAnio() {
+      var cont = el('cal-anual'), detalle = el('cal-dia'), por = {};
+      Object.keys(indice.fijo).forEach(function(k) { var p = k.split('-'); if (+p[0] === anio) por[p[1] + '-' + p[2]] = (por[p[1] + '-' + p[2]] || []).concat(indice.fijo[k].map(function(e) { return e.titulo; })); });
+      Object.keys(indice.anual).forEach(function(k) { por[k] = (por[k] || []).concat(indice.anual[k].map(function(e) { return e.titulo; })); });
+      el('cal-anio-txt').textContent = anio;
+      var h = '';
       for (var m = 1; m <= 12; m++) {
         var primero = (new Date(anio, m - 1, 1).getDay() + 6) % 7, dias = new Date(anio, m, 0).getDate();
-        h += '<div class="cal-mes"><h4 style="--c:' + COL[(m - 1) % COL.length] + '">' + MESES[m - 1] + '</h4><div class="cal-dias">' +
-          ['L', 'M', 'M', 'J', 'V', 'S', 'D'].map(function(d) { return '<span class="sem">' + d + '</span>'; }).join('');
+        h += '<div class="cal-mes"><h4 style="--c:' + COL[(m - 1) % COL.length] + '">' + MESES[m - 1] + '</h4><div class="cal-dias">' + ['L', 'M', 'M', 'J', 'V', 'S', 'D'].map(function(x) { return '<span class="sem">' + x + '</span>'; }).join('');
         for (var i = 0; i < primero; i++) h += '<i></i>';
         for (var d = 1; d <= dias; d++) {
           var tiene = por[m + '-' + d], esHoy = hoy.getFullYear() === anio && hoy.getMonth() + 1 === m && hoy.getDate() === d;
-          h += '<button type="button" tabindex="' + (tiene ? 0 : -1) + '" class="' + (tiene ? 'tiene' : '') + (esHoy ? ' hoy' : '') + '" data-m="' + m + '" data-d="' + d + '"' + (tiene ? ' aria-label="' + d + ' de ' + MESES[m - 1] + ': ' + tiene.length + ' cosa(s)"' : ' aria-hidden="true"') + '>' + d + '</button>';
+          h += '<button type="button" tabindex="' + (tiene ? 0 : -1) + '" class="' + (tiene ? 'tiene' : '') + (esHoy ? ' hoy' : '') + '" data-m="' + m + '" data-d="' + d + '"' + (tiene ? ' aria-label="' + d + ' de ' + MESES[m - 1].toLowerCase() + ': ' + tiene.length + ' cosa(s)"' : ' aria-hidden="true"') + '>' + d + '</button>';
         }
         h += '</div></div>';
       }
-      cont.innerHTML = h;
-      cont._por = por;
+      cont.innerHTML = h; cont._por = por;
+      detalle.textContent = 'Toca un día marcado para verlo arriba, en la vista de la semana.';
     }
-    cont.addEventListener('click', function(e) {
-      var b = e.target.closest('button.tiene'); if (!b) return;
-      cont.querySelectorAll('button.sel').forEach(function(x) { x.classList.remove('sel'); }); b.classList.add('sel');
-      var lista = cont._por[b.dataset.m + '-' + b.dataset.d] || [];
-      detalle.innerHTML = '<strong>' + b.dataset.d + ' de ' + MESES[b.dataset.m - 1].toLowerCase() + '</strong><ul>' + lista.map(function(t) { var li = document.createElement('li'); li.textContent = t; return li.outerHTML; }).join('') + '</ul>';
+    function pintar() {
+      indexar();
+      el('agc-mes').textContent = MESES[sel.getMonth()] + ' ' + sel.getFullYear();
+      pintarSemana(); pintarDia(); pintarProx(); if (el('agc-anio').open) pintarAnio();
+    }
+    function irA(d) { sel = dia0(d); pintar(); }
+    el('agc-semana').addEventListener('click', function(e) {
+      var f = e.target.closest('[data-agc-sem]'), b = e.target.closest('.agc-d');
+      if (f) irA(new Date(sel.getFullYear(), sel.getMonth(), sel.getDate() + 7 * (+f.dataset.agcSem)));
+      else if (b) { var p = b.dataset.d.split('-'); irA(new Date(+p[0], +p[1] - 1, +p[2])); }
     });
-    document.getElementById('cal-anio-ant').addEventListener('click', function() { anio--; pintar(); });
-    document.getElementById('cal-anio-sig').addEventListener('click', function() { anio++; pintar(); });
+    el('agc-prox').addEventListener('click', function(e) { var b = e.target.closest('.agc-p'); if (!b) return; var p = b.dataset.d.split('-'); irA(new Date(+p[0], +p[1] - 1, +p[2])); el('agc-semana').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+    el('agc-dia').addEventListener('click', function(e) { var b = e.target.closest('.agc-ir'); if (b) mostrarHoja(b.dataset.hoja, true); });
+    el('agc-ant').addEventListener('click', function() { var d = new Date(sel.getFullYear(), sel.getMonth() - 1, 1); d.setDate(Math.min(sel.getDate(), new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate())); irA(d); });
+    el('agc-sig').addEventListener('click', function() { var d = new Date(sel.getFullYear(), sel.getMonth() + 1, 1); d.setDate(Math.min(sel.getDate(), new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate())); irA(d); });
+    el('agc-hoy').addEventListener('click', function() { hoy = dia0(new Date()); irA(hoy); });
+    el('agc-anio').addEventListener('toggle', function() { if (this.open) { anio = sel.getFullYear(); pintarAnio(); } });
+    el('cal-anual').addEventListener('click', function(e) { var b = e.target.closest('button.tiene'); if (!b) return; irA(new Date(anio, +b.dataset.m - 1, +b.dataset.d)); el('agc-semana').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+    el('cal-anio-ant').addEventListener('click', function() { anio--; pintarAnio(); });
+    el('cal-anio-sig').addEventListener('click', function() { anio++; pintarAnio(); });
+    window.addEventListener('beforeprint', function() { el('agc-anio').open = true; });
     window.lrPintarCalendario = pintar;
   })();
   /* ---------- Finanzas: panel, movimientos, presupuesto y metas (se guardan en tu dispositivo; con membresía, también en la nube) ---------- */
