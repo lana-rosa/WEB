@@ -397,6 +397,47 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 }
 @media print { .hojas-pasos { display: none !important; } }
 @media print { .agenda-layout { display: block; } .menu-hojas { display: none !important; } .hojas-contenido .hoja-agenda { display: block !important; margin-bottom: 24px; } }
+
+/* Agenda como cuaderno (8-oct-2026): portada, índice y pestañas laterales */
+.intro-agenda .volver-rincon { margin-bottom: 16px; }
+.cuaderno-portada { position: relative; max-width: 760px; margin: 0 auto; padding: 34px 28px 26px; border-radius: 30px; border: 6px solid #fff; box-shadow: 0 18px 44px rgba(58,42,46,.16), inset 0 0 0 2px rgba(231,78,150,.18);
+  background: radial-gradient(120% 90% at 8% 0%, #F9D3E5 0%, transparent 55%), radial-gradient(110% 90% at 100% 20%, #DCDDFD 0%, transparent 55%), radial-gradient(100% 80% at 40% 100%, #D7ECFD 0%, transparent 60%), #FDF6FA; text-align: center; }
+.cuaderno-portada::before { content: ""; position: absolute; left: 18px; top: 26px; bottom: 26px; width: 10px; border-radius: 6px; background: repeating-linear-gradient(180deg, rgba(231,78,150,.45) 0 12px, transparent 12px 26px); }
+.portada-rosina { width: 130px; height: 130px; object-fit: contain; margin: -64px auto 0; display: block; filter: drop-shadow(0 10px 14px rgba(58,42,46,.2)); }
+.cuaderno-portada .eslogan { margin-top: 6px; }
+.cuaderno-portada .portada-agenda { display: inline-flex; flex-direction: column; gap: 4px; margin: 6px auto 12px; padding: 10px 26px 12px; background: #fff; border: 2px dashed var(--rosa-medio); border-radius: 16px; }
+.cuaderno-portada .intro { margin-top: 4px; }
+@media (max-width: 520px) { .cuaderno-portada { padding: 30px 18px 22px; border-width: 4px; } .cuaderno-portada::before { display: none; } }
+.menu-hojas { display: none !important; }
+.agenda-layout { grid-template-columns: minmax(0, 1fr) 58px; gap: 0 6px; }
+.hojas-contenido { grid-column: 1; grid-row: 1; min-width: 0; }
+.pestanas-agenda { grid-column: 2; grid-row: 1; position: sticky; top: 170px; display: flex; flex-direction: column; gap: 6px; padding-top: 18px; }
+.pestana { writing-mode: vertical-rl; border: 0; cursor: pointer; font-family: var(--fuente-titulo); font-size: 0.92rem; font-weight: 600; letter-spacing: .02em; color: #3b2a30; background: var(--c); padding: 16px 10px; min-height: 96px; border-radius: 0 14px 14px 0; box-shadow: 2px 3px 8px rgba(58,42,46,.12); transition: transform .15s ease, box-shadow .15s ease, filter .15s ease; filter: saturate(.9) brightness(1.03); }
+.pestana:hover { transform: translateX(3px); }
+.pestana[aria-selected="true"] { transform: translateX(6px); box-shadow: 3px 4px 12px rgba(58,42,46,.22), inset -4px 0 0 rgba(255,255,255,.7); filter: none; }
+.pestana:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
+.chips-hojas { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.chips-hojas[hidden] { display: none; }
+.chips-hojas button { font: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; background: #fff; color: var(--tinta); border: 1.5px solid var(--c, var(--rosa-medio)); border-radius: 999px; padding: 7px 14px; }
+.chips-hojas button[aria-current="page"] { background: var(--c, var(--rosa-boton)); color: #3b2a30; }
+#indice-agenda .indice-grupo { margin-bottom: 20px; }
+#indice-agenda .indice-grupo h4 { margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: #3b2a30; display: inline-block; padding: 4px 14px; border-radius: 999px; background: var(--c); }
+.atajos { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.atajo { display: flex; align-items: center; gap: 12px; text-align: left; font: inherit; cursor: pointer; background: #fff; border: 1.5px solid var(--c); border-radius: 16px; padding: 10px 12px; color: var(--tinta); transition: transform .15s ease, box-shadow .15s ease; }
+.atajo:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(58,42,46,.12); }
+.atajo-ic { flex: none; width: 42px; height: 42px; border-radius: 12px; background: var(--c); display: grid; place-items: center; font-size: 1.3rem; }
+.atajo strong { display: block; font-size: .92rem; }
+.atajo small { display: block; color: var(--tinta-suave); font-size: .78rem; line-height: 1.25; }
+@media (max-width: 900px) {
+  .agenda-layout { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .pestanas-agenda { grid-column: 1; grid-row: 1; position: sticky; top: 58px; z-index: 8; flex-direction: row; overflow-x: auto; gap: 6px; padding: 8px 2px 0; background: var(--lila-suave, #E6E7FD); scrollbar-width: none; }
+  .pestanas-agenda::-webkit-scrollbar { display: none; }
+  .hojas-contenido { grid-column: 1; grid-row: 2; }
+  .pestana { writing-mode: horizontal-tb; min-height: 0; padding: 10px 16px; border-radius: 14px 14px 0 0; white-space: nowrap; flex: none; font-size: .88rem; }
+  .pestana:hover, .pestana[aria-selected="true"] { transform: translateY(-2px); }
+  .pestana[aria-selected="true"] { box-shadow: 0 -3px 8px rgba(58,42,46,.16), inset 0 -4px 0 rgba(255,255,255,.7); }
+}
+@media print { .pestanas-agenda, .chips-hojas { display: none !important; } .agenda-layout { display: block; } }
 .agenda-layout { scroll-margin-top: 210px; }
 @media (max-width: 900px) { .agenda-layout { scroll-margin-top: 200px; } }
 @media (max-width: 900px) { .barra-agenda { position: static; } .menu-hojas { position: sticky; top: 58px; z-index: 8; } .agenda-layout { scroll-margin-top: 90px; } }
@@ -596,16 +637,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main>
   <section class="contenedor intro-rincon intro-agenda">
     <p class="volver-rincon"><a href="/recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
-    <p class="eslogan">Gratis con tu cuenta · Rincón de Rosina</p>
-    <h1>Agenda de Rosina</h1>
+    <div class="cuaderno-portada">
+      <img class="portada-rosina" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" width="512" height="512" decoding="async">
+      <p class="eslogan">Gratis con tu cuenta · Rincón de Rosina</p>
+      <h1>Agenda de Rosina</h1>
     <div class="portada-agenda">
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
     </div>
-    <p class="intro">Hojas de tu agenda. Elige una hoja en el menú. Llénalas aquí mismo (se guardan en tu dispositivo) o imprímelas, llenas o en blanco, para escribir a mano.</p>
+    <p class="intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo (se guardan en tu dispositivo) o imprímelas, llenas o en blanco, para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
+    </div>
     </div>
     <div class="copia-agenda">
       <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
@@ -658,8 +702,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 17</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 17 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 18</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 18 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
+          <p class="menu-grupo">Inicio</p>
+          <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
           <p class="menu-grupo">Mis proyectos</p>
           <a href="#ficha-proyecto" data-hoja="ficha-proyecto">📋 Ficha de proyecto</a>
           <a href="#semana-tejiendo" data-hoja="semana-tejiendo">🗓️ Mi semana tejiendo</a>
@@ -683,7 +729,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#registro-pausas" data-hoja="registro-pausas">🧘 Registro de pausas activas</a>
         </nav>
       </aside>
+      <nav class="pestanas-agenda no-imprimir" id="pestanas-agenda" aria-label="Pestañas de la agenda"></nav>
       <div class="hojas-contenido">
+      <div class="chips-hojas no-imprimir" id="chips-hojas" hidden></div>
+      <article class="hoja-agenda no-imprimir" id="indice-agenda">
+        <header>
+          <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
+          <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
+        </header>
+        <div class="indice-grupo" style="--c:#F28FC0"><h4>Mis proyectos</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="ficha-proyecto"><span class="atajo-ic" aria-hidden="true">📋</span><span><strong>Ficha de proyecto</strong><small>Todo para repetirlo o regalarlo</small></span></button>
+          <button type="button" class="atajo" data-ir="semana-tejiendo"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Mi semana tejiendo</strong><small>Qué tejes cada día</small></span></button>
+          <button type="button" class="atajo" data-ir="proyectos-fila"><span class="atajo-ic" aria-hidden="true">🧵</span><span><strong>Proyectos en fila</strong><small>Lo que sigue en tu lista</small></span></button>
+          <button type="button" class="atajo" data-ir="coleccion-patrones"><span class="atajo-ic" aria-hidden="true">📚</span><span><strong>Mis patrones</strong><small>Tu colección guardada</small></span></button>
+          <button type="button" class="atajo" data-ir="anio-tejiendo"><span class="atajo-ic" aria-hidden="true">⭐</span><span><strong>Mi año tejiendo</strong><small>Tus metas y logros</small></span></button>
+          <button type="button" class="atajo" data-ir="lo-que-aprendi"><span class="atajo-ic" aria-hidden="true">🌟</span><span><strong>Lo que aprendí</strong><small>Puntos y trucos nuevos</small></span></button>
+        </div></div>
+        <div class="indice-grupo" style="--c:#B9BCFB"><h4>Mis materiales</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="inventario-lanas"><span class="atajo-ic" aria-hidden="true">🧶</span><span><strong>Inventario de lanas</strong><small>Colores, marcas y cantidades</small></span></button>
+          <button type="button" class="atajo" data-ir="mis-agujas"><span class="atajo-ic" aria-hidden="true">🪡</span><span><strong>Mis agujas</strong><small>Tallas y ganchillos</small></span></button>
+          <button type="button" class="atajo" data-ir="lista-compras"><span class="atajo-ic" aria-hidden="true">🛍️</span><span><strong>Lista de compras</strong><small>Lo que te falta</small></span></button>
+        </div></div>
+        <div class="indice-grupo" style="--c:#A9D3FA"><h4>Mi emprendimiento</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="control-pedidos"><span class="atajo-ic" aria-hidden="true">📦</span><span><strong>Control de pedidos</strong><small>Entregas y estados</small></span></button>
+          <button type="button" class="atajo" data-ir="mis-clientas"><span class="atajo-ic" aria-hidden="true">💕</span><span><strong>Mis clientas</strong><small>Contactos y cumpleaños</small></span></button>
+          <button type="button" class="atajo" data-ir="ventas-mes"><span class="atajo-ic" aria-hidden="true">💰</span><span><strong>Mis ventas del mes</strong><small>Lo vendido y lo que te quedó</small></span></button>
+          <button type="button" class="atajo" data-ir="catalogo-precios"><span class="atajo-ic" aria-hidden="true">🏷️</span><span><strong>Mi catálogo de precios</strong><small>Tus productos y valores</small></span></button>
+          <button type="button" class="atajo" data-ir="ferias-mercados"><span class="atajo-ic" aria-hidden="true">🎪</span><span><strong>Ferias y mercados</strong><small>Fechas y lugares</small></span></button>
+        </div></div>
+        <div class="indice-grupo" style="--c:#B5E3C2"><h4>Fechas y bienestar</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="fechas-especiales"><span class="atajo-ic" aria-hidden="true">🎁</span><span><strong>Fechas especiales</strong><small>Cumpleaños y celebraciones</small></span></button>
+          <button type="button" class="atajo" data-ir="diario-tejido"><span class="atajo-ic" aria-hidden="true">📔</span><span><strong>Diario de tejido</strong><small>Cómo te sentiste tejiendo</small></span></button>
+          <button type="button" class="atajo" data-ir="registro-pausas"><span class="atajo-ic" aria-hidden="true">🧘</span><span><strong>Registro de pausas activas</strong><small>Cuida tus manos y tu espalda</small></span></button>
+        </div></div>
+      </article>
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
@@ -1623,6 +1702,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     hojas.forEach(function(x) { x.classList.toggle('abierta', x === h); });
     enlacesMenu.forEach(function(a) { var activo = a.dataset.hoja === id; a.classList.toggle('activa', activo); if (activo) { a.setAttribute('aria-current', 'page'); document.getElementById('menu-hojas-actual').textContent = a.textContent; } else a.removeAttribute('aria-current'); });
     escribir(CLAVE_HOJA, id);
+    if (window.lrPintarPestanas) window.lrPintarPestanas(id);
     var pos = ordenMenu.indexOf(id);
     document.getElementById('menu-hojas-cuenta').textContent = 'Hoja ' + (pos + 1) + ' de ' + hojas.length + '';
     hojas.forEach(function(x) { var barra = x.querySelector('.hojas-pasos'); if (barra) barra.hidden = x !== h; });
@@ -1638,6 +1718,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (sig) { var c = document.createElement('button'); c.type = 'button'; c.className = 'paso-sig'; c.innerHTML = '<small>Siguiente hoja →</small>' + nombreHoja(i + 1); c.addEventListener('click', function() { mostrarHoja(sig, true); }); barra.appendChild(c); }
     h.appendChild(barra);
   });
+  /* ---------- Pestañas laterales e índice ---------- */
+  (function() {
+    var grupos = [];
+    document.querySelectorAll('#menu-hojas-lista > *').forEach(function(n) {
+      if (n.classList.contains('menu-grupo')) grupos.push({ t: n.textContent, links: [] });
+      else if (n.tagName === 'A' && grupos.length) grupos[grupos.length - 1].links.push(n);
+    });
+    var COL = ['#F7B3D4', '#F28FC0', '#B9BCFB', '#A9D3FA', '#B5E3C2'];
+    var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
+    var nav = document.getElementById('pestanas-agenda'), chips = document.getElementById('chips-hojas');
+    var botones = grupos.map(function(g, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'pestana'; b.setAttribute('role', 'tab');
+      b.style.setProperty('--c', COL[i % COL.length]); b.textContent = etiqueta(g.t);
+      b.addEventListener('click', function() {
+        var destino = g.links[0]; if (!destino) return;
+        mostrarHoja(destino.dataset.hoja, window.innerWidth < 900);
+        if (history.replaceState) history.replaceState(null, '', '#' + destino.dataset.hoja);
+      });
+      nav.appendChild(b); return b;
+    });
+    window.lrPintarPestanas = function(id) {
+      var gi = -1;
+      grupos.forEach(function(g, i) { g.links.forEach(function(a) { if (a.dataset.hoja === id) gi = i; }); });
+      botones.forEach(function(b, i) { b.setAttribute('aria-selected', String(i === gi)); });
+      chips.innerHTML = '';
+      var g = grupos[gi];
+      if (g && g.links.length > 1) {
+        chips.style.setProperty('--c', COL[gi % COL.length]);
+        g.links.forEach(function(a) {
+          var c = document.createElement('button'); c.type = 'button'; c.textContent = a.textContent;
+          if (a.dataset.hoja === id) c.setAttribute('aria-current', 'page');
+          c.addEventListener('click', function() { mostrarHoja(a.dataset.hoja, window.innerWidth < 900); if (history.replaceState) history.replaceState(null, '', '#' + a.dataset.hoja); });
+          chips.appendChild(c);
+        });
+        chips.hidden = false;
+      } else chips.hidden = true;
+    };
+    document.getElementById('indice-agenda').addEventListener('click', function(e) {
+      var b = e.target.closest('[data-ir]'); if (!b) return;
+      mostrarHoja(b.dataset.ir, true);
+      if (history.replaceState) history.replaceState(null, '', '#' + b.dataset.ir);
+    });
+  })();
   function abrirHoja(h, abrir) { if (abrir) mostrarHoja(h.id); }
   enlacesMenu.forEach(function(a) {
     a.addEventListener('click', function(e) {
@@ -1651,7 +1774,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (id && document.getElementById(id) && document.getElementById(id).classList.contains('hoja-agenda')) { mostrarHoja(id); document.querySelector('.agenda-layout').scrollIntoView(); return true; }
     return false;
   }
-  if (!abrirDesdeAncla()) mostrarHoja(leer(CLAVE_HOJA) || 'ficha-proyecto');
+  if (!abrirDesdeAncla()) mostrarHoja(leer(CLAVE_HOJA) || 'indice-agenda');
   /* ---------- Barra: colores, resaltar y buscador ---------- */
   var estilos = datos._estilos || {};
   function aplicarEstilo(el) { var e = estilos[el.id] || {}; el.style.color = e.c || ''; el.style.backgroundColor = e.r || ''; }
