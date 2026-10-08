@@ -8,7 +8,7 @@
   "start_url": "/tienda.html?origen=app",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FBF7F2",
+  "background_color": "#FDFCFA",
   "theme_color": "#E74E96",
   "categories": [
     "shopping"
