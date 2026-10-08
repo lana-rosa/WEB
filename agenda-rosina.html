@@ -438,6 +438,31 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   .pestana[aria-selected="true"] { box-shadow: 0 -3px 8px rgba(58,42,46,.16), inset 0 -4px 0 rgba(255,255,255,.7); }
 }
 @media print { .pestanas-agenda, .chips-hojas { display: none !important; } .agenda-layout { display: block; } }
+
+/* Hojas nuevas: visión, prioridades y calendario del año */
+.sub-hoja { font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: var(--rosa-texto); margin: 18px 0 8px; }
+.prioridades { display: grid; gap: 8px; margin-bottom: 14px; }
+.prioridad { display: flex; align-items: center; gap: 12px; }
+.prioridad input[type=checkbox] { width: 24px; height: 24px; accent-color: var(--rosa-principal); flex: none; }
+.prioridad input:not([type=checkbox]) { flex: 1; min-width: 0; border: none; border-bottom: 1.5px solid rgba(69,69,74,.25); background: transparent; font: inherit; font-size: 1rem; padding: 6px 2px; color: var(--tinta); }
+.prioridad input:not([type=checkbox]):focus { outline: none; border-bottom-color: var(--rosa-principal); }
+.cal-anio-barra { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 0 0 14px; }
+.cal-anio-barra strong { font-family: var(--fuente-titulo); font-size: 1.4rem; color: var(--rosa-texto); min-width: 4ch; text-align: center; }
+.cal-anual { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cal-mes { border: 1.5px solid var(--rosa-suave); border-radius: 14px; padding: 8px 8px 10px; }
+.cal-mes h4 { margin: 0 0 6px; text-align: center; font-family: var(--fuente-titulo); font-weight: 600; font-size: .95rem; color: #3b2a30; border-radius: 999px; background: var(--c, var(--rosa-suave)); padding: 3px 0; }
+.cal-dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; font-size: .74rem; }
+.cal-dias span.sem { font-weight: 800; color: var(--tinta-suave); padding: 2px 0; }
+.cal-dias button, .cal-dias i { aspect-ratio: 1; border: 0; background: transparent; font: inherit; font-size: .78rem; color: var(--tinta); border-radius: 8px; padding: 0; position: relative; }
+.cal-dias button { cursor: default; }
+.cal-dias button.tiene { cursor: pointer; background: var(--rosa-suave); font-weight: 800; color: var(--rosa-texto); }
+.cal-dias button.tiene::after { content: ""; position: absolute; left: 50%; bottom: 2px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--rosa-principal); }
+.cal-dias button.hoy { outline: 2px solid var(--lila); outline-offset: -2px; }
+.cal-dias button.sel { background: var(--rosa-boton); color: var(--sobre-principal); }
+.cal-dia { margin-top: 12px; background: #fff; border: 1.5px dashed var(--rosa-medio); border-radius: 14px; padding: 12px 14px; font-size: .92rem; color: var(--tinta-suave); }
+.cal-dia ul { margin: 6px 0 0; padding-left: 18px; color: var(--tinta); }
+@media (max-width: 900px) { .cal-anual { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .cal-anual { grid-template-columns: minmax(0, 1fr); } }
 .agenda-layout { scroll-margin-top: 210px; }
 @media (max-width: 900px) { .agenda-layout { scroll-margin-top: 200px; } }
 @media (max-width: 900px) { .barra-agenda { position: static; } .menu-hojas { position: sticky; top: 58px; z-index: 8; } .agenda-layout { scroll-margin-top: 90px; } }
@@ -702,11 +727,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 18</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 18 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 21</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 21 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
           <p class="menu-grupo">Mis proyectos</p>
+          <a href="#vision-anio" data-hoja="vision-anio">🌈 Mi visión del año</a>
+          <a href="#prioridades-mes" data-hoja="prioridades-mes">🎯 Prioridades del mes</a>
           <a href="#ficha-proyecto" data-hoja="ficha-proyecto">📋 Ficha de proyecto</a>
           <a href="#semana-tejiendo" data-hoja="semana-tejiendo">🗓️ Mi semana tejiendo</a>
           <a href="#proyectos-fila" data-hoja="proyectos-fila">🧵 Proyectos en fila</a>
@@ -724,6 +751,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#catalogo-precios" data-hoja="catalogo-precios">🏷️ Mi catálogo de precios</a>
           <a href="#ferias-mercados" data-hoja="ferias-mercados">🎪 Ferias y mercados</a>
           <p class="menu-grupo">Fechas y bienestar</p>
+          <a href="#calendario-anual" data-hoja="calendario-anual">🗓️ Calendario del año</a>
           <a href="#fechas-especiales" data-hoja="fechas-especiales">🎁 Fechas especiales</a>
           <a href="#diario-tejido" data-hoja="diario-tejido">📔 Diario de tejido</a>
           <a href="#registro-pausas" data-hoja="registro-pausas">🧘 Registro de pausas activas</a>
@@ -738,6 +766,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
         </header>
         <div class="indice-grupo" style="--c:#F28FC0"><h4>Mis proyectos</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="vision-anio"><span class="atajo-ic" aria-hidden="true">🌈</span><span><strong>Mi visión del año</strong><small>Tus sueños, palabra y metas</small></span></button>
+          <button type="button" class="atajo" data-ir="prioridades-mes"><span class="atajo-ic" aria-hidden="true">🎯</span><span><strong>Prioridades del mes</strong><small>Tres prioridades y la frase del mes</small></span></button>
           <button type="button" class="atajo" data-ir="ficha-proyecto"><span class="atajo-ic" aria-hidden="true">📋</span><span><strong>Ficha de proyecto</strong><small>Todo para repetirlo o regalarlo</small></span></button>
           <button type="button" class="atajo" data-ir="semana-tejiendo"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Mi semana tejiendo</strong><small>Qué tejes cada día</small></span></button>
           <button type="button" class="atajo" data-ir="proyectos-fila"><span class="atajo-ic" aria-hidden="true">🧵</span><span><strong>Proyectos en fila</strong><small>Lo que sigue en tu lista</small></span></button>
@@ -758,10 +788,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="ferias-mercados"><span class="atajo-ic" aria-hidden="true">🎪</span><span><strong>Ferias y mercados</strong><small>Fechas y lugares</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#B5E3C2"><h4>Fechas y bienestar</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="calendario-anual"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Calendario del año</strong><small>Todas tus fechas en un vistazo</small></span></button>
           <button type="button" class="atajo" data-ir="fechas-especiales"><span class="atajo-ic" aria-hidden="true">🎁</span><span><strong>Fechas especiales</strong><small>Cumpleaños y celebraciones</small></span></button>
           <button type="button" class="atajo" data-ir="diario-tejido"><span class="atajo-ic" aria-hidden="true">📔</span><span><strong>Diario de tejido</strong><small>Cómo te sentiste tejiendo</small></span></button>
           <button type="button" class="atajo" data-ir="registro-pausas"><span class="atajo-ic" aria-hidden="true">🧘</span><span><strong>Registro de pausas activas</strong><small>Cuida tus manos y tu espalda</small></span></button>
         </div></div>
+      </article>
+      <article class="hoja-agenda" id="vision-anio">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-15-ramo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Mi visión del año</h3><p>Lo que sueñas y quieres cuidar este año, en una sola hoja.</p></div>
+        </header>
+        <div class="grid-ficha">
+          <div class="linea"><label for="ag-vi-anio">Año</label><input id="ag-vi-anio" data-guardar></div>
+          <div class="linea"><label for="ag-vi-palabra">Mi palabra del año</label><input id="ag-vi-palabra" data-guardar></div>
+          <div class="linea ancha"><label for="ag-vi-frase">Mi frase del año</label><input id="ag-vi-frase" data-guardar></div>
+          <div class="linea ancha"><label for="ag-vi-verso">Un versículo o frase que me acompaña</label><input id="ag-vi-verso" data-guardar></div>
+        </div>
+        <h4 class="sub-hoja">Mis 3 metas grandes</h4>
+        <div class="grid-ficha">
+          <div class="linea ancha"><label for="ag-vi-meta1">1</label><input id="ag-vi-meta1" data-guardar></div>
+          <div class="linea ancha"><label for="ag-vi-meta2">2</label><input id="ag-vi-meta2" data-guardar></div>
+          <div class="linea ancha"><label for="ag-vi-meta3">3</label><input id="ag-vi-meta3" data-guardar></div>
+        </div>
+        <div class="grid-ficha">
+          <div class="linea ancha"><label for="ag-vi-tejer">Lo que quiero tejer este año</label><textarea id="ag-vi-tejer" rows="3" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-vi-aprender">Lo que quiero aprender</label><textarea id="ag-vi-aprender" rows="3" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-vi-habitos">Hábitos que quiero cuidar</label><textarea id="ag-vi-habitos" rows="3" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-vi-soltar">Lo que quiero soltar</label><textarea id="ag-vi-soltar" rows="3" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-vi-sueno">Mi gran sueño para este año</label><textarea id="ag-vi-sueno" rows="4" data-guardar></textarea></div>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> escribe tu visión con calma y vuelve a leerla cada mes. Las metas pequeñas y constantes llegan más lejos que las grandes sin plan.</p>
+      </article>
+      <article class="hoja-agenda" id="prioridades-mes">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Prioridades del mes</h3><p>Lo más importante de este mes, con una frase que te acompañe.</p></div>
+        </header>
+        <div class="grid-ficha">
+          <div class="linea"><label for="ag-pm-mes">Mes</label><input id="ag-pm-mes" data-guardar></div>
+          <div class="linea"><label for="ag-pm-meta">Meta de ventas del mes</label><input id="ag-pm-meta" data-guardar></div>
+          <div class="linea ancha"><label for="ag-pm-frase">Frase del mes</label><input id="ag-pm-frase" data-guardar></div>
+        </div>
+        <h4 class="sub-hoja">Mis 3 prioridades</h4>
+        <div class="prioridades">
+          <div class="prioridad"><input type="checkbox" id="ag-pm-ok1" data-guardar aria-label="Prioridad 1 lista"><input id="ag-pm-p1" data-guardar aria-label="Prioridad 1" placeholder="Prioridad 1"></div>
+          <div class="prioridad"><input type="checkbox" id="ag-pm-ok2" data-guardar aria-label="Prioridad 2 lista"><input id="ag-pm-p2" data-guardar aria-label="Prioridad 2" placeholder="Prioridad 2"></div>
+          <div class="prioridad"><input type="checkbox" id="ag-pm-ok3" data-guardar aria-label="Prioridad 3 lista"><input id="ag-pm-p3" data-guardar aria-label="Prioridad 3" placeholder="Prioridad 3"></div>
+        </div>
+        <div class="grid-ficha">
+          <div class="linea ancha"><label for="ag-pm-proyectos">Proyectos del mes</label><textarea id="ag-pm-proyectos" rows="3" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-pm-terminar">Lo que quiero terminar</label><textarea id="ag-pm-terminar" rows="3" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-pm-habito">Hábito del mes</label><input id="ag-pm-habito" data-guardar></div>
+          <div class="linea ancha"><label for="ag-pm-gracias">Por lo que estoy agradecida</label><textarea id="ag-pm-gracias" rows="2" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-pm-final">Cómo me fue este mes</label><textarea id="ag-pm-final" rows="3" data-guardar></textarea></div>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> al empezar el mes elige solo tres prioridades. Marca cada una cuando la logres y celebra: ¡cada punto cuenta!</p>
+      </article>
+      <article class="hoja-agenda" id="calendario-anual">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-04-flor.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Calendario del año</h3><p>Tus entregas, fechas especiales, ferias y cumpleaños, todo en un vistazo.</p></div>
+        </header>
+        <div class="cal-anio-barra no-imprimir">
+          <button type="button" class="boton-secundario boton-chico" id="cal-anio-ant" aria-label="Año anterior">‹</button>
+          <strong id="cal-anio-txt" aria-live="polite"></strong>
+          <button type="button" class="boton-secundario boton-chico" id="cal-anio-sig" aria-label="Año siguiente">›</button>
+        </div>
+        <div class="cal-anual" id="cal-anual"></div>
+        <div class="cal-dia" id="cal-dia" aria-live="polite">Toca un día marcado para ver qué tienes ese día.</div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> este calendario se llena solo con las fechas que escribes en pedidos, proyectos en fila, fechas especiales, ferias y clientas. Los días con punto tienen algo para ti.</p>
       </article>
       <article class="hoja-agenda" id="ficha-proyecto">
         <header>
@@ -1703,6 +1799,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     enlacesMenu.forEach(function(a) { var activo = a.dataset.hoja === id; a.classList.toggle('activa', activo); if (activo) { a.setAttribute('aria-current', 'page'); document.getElementById('menu-hojas-actual').textContent = a.textContent; } else a.removeAttribute('aria-current'); });
     escribir(CLAVE_HOJA, id);
     if (window.lrPintarPestanas) window.lrPintarPestanas(id);
+    if (id === 'calendario-anual' && window.lrPintarCalendario) window.lrPintarCalendario();
     var pos = ordenMenu.indexOf(id);
     document.getElementById('menu-hojas-cuenta').textContent = 'Hoja ' + (pos + 1) + ' de ' + hojas.length + '';
     hojas.forEach(function(x) { var barra = x.querySelector('.hojas-pasos'); if (barra) barra.hidden = x !== h; });
@@ -1718,6 +1815,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (sig) { var c = document.createElement('button'); c.type = 'button'; c.className = 'paso-sig'; c.innerHTML = '<small>Siguiente hoja →</small>' + nombreHoja(i + 1); c.addEventListener('click', function() { mostrarHoja(sig, true); }); barra.appendChild(c); }
     h.appendChild(barra);
   });
+  /* ---------- Calendario del año (se llena con las fechas de la agenda) ---------- */
+  (function() {
+    var MESES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    var COL = ['#F7B3D4', '#F28FC0', '#B9BCFB', '#A9D3FA', '#B5E3C2'];
+    var anio = new Date().getFullYear();
+    var cont = document.getElementById('cal-anual'), detalle = document.getElementById('cal-dia');
+    function pintar() {
+      var evs = (window.lrAgenda && window.lrAgenda.eventos) ? window.lrAgenda.eventos() : [], por = {};
+      evs.forEach(function(e) {
+        var p = e.fecha.split('-'), y = +p[0];
+        if (e.anual || y === anio) { var k = (+p[1]) + '-' + (+p[2]); (por[k] = por[k] || []).push(e.titulo); }
+      });
+      document.getElementById('cal-anio-txt').textContent = anio;
+      var hoy = new Date(), h = '';
+      for (var m = 1; m <= 12; m++) {
+        var primero = (new Date(anio, m - 1, 1).getDay() + 6) % 7, dias = new Date(anio, m, 0).getDate();
+        h += '<div class="cal-mes"><h4 style="--c:' + COL[(m - 1) % COL.length] + '">' + MESES[m - 1] + '</h4><div class="cal-dias">' +
+          ['L', 'M', 'M', 'J', 'V', 'S', 'D'].map(function(d) { return '<span class="sem">' + d + '</span>'; }).join('');
+        for (var i = 0; i < primero; i++) h += '<i></i>';
+        for (var d = 1; d <= dias; d++) {
+          var tiene = por[m + '-' + d], esHoy = hoy.getFullYear() === anio && hoy.getMonth() + 1 === m && hoy.getDate() === d;
+          h += '<button type="button" tabindex="' + (tiene ? 0 : -1) + '" class="' + (tiene ? 'tiene' : '') + (esHoy ? ' hoy' : '') + '" data-m="' + m + '" data-d="' + d + '"' + (tiene ? ' aria-label="' + d + ' de ' + MESES[m - 1] + ': ' + tiene.length + ' cosa(s)"' : ' aria-hidden="true"') + '>' + d + '</button>';
+        }
+        h += '</div></div>';
+      }
+      cont.innerHTML = h;
+      cont._por = por;
+    }
+    cont.addEventListener('click', function(e) {
+      var b = e.target.closest('button.tiene'); if (!b) return;
+      cont.querySelectorAll('button.sel').forEach(function(x) { x.classList.remove('sel'); }); b.classList.add('sel');
+      var lista = cont._por[b.dataset.m + '-' + b.dataset.d] || [];
+      detalle.innerHTML = '<strong>' + b.dataset.d + ' de ' + MESES[b.dataset.m - 1].toLowerCase() + '</strong><ul>' + lista.map(function(t) { var li = document.createElement('li'); li.textContent = t; return li.outerHTML; }).join('') + '</ul>';
+    });
+    document.getElementById('cal-anio-ant').addEventListener('click', function() { anio--; pintar(); });
+    document.getElementById('cal-anio-sig').addEventListener('click', function() { anio++; pintar(); });
+    window.lrPintarCalendario = pintar;
+  })();
   /* ---------- Pestañas laterales e índice ---------- */
   (function() {
     var grupos = [];
