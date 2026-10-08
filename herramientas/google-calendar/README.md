@@ -15,7 +15,7 @@ Estado (8-oct-2026): **el código está publicado pero apagado**. La tarjeta "Go
 4. **Credenciales → Crear credenciales → ID de cliente de OAuth → Aplicación web.** En *URI de redireccionamiento autorizados* poner exactamente: `https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/google-calendar`
 5. En Supabase → Edge Functions → Secrets guardar:
    - `GOOGLE_CLIENT_ID` y `GOOGLE_CLIENT_SECRET` (los del paso 4)
-   - `CALENDAR_TOKEN_KEY` = resultado de `openssl rand -base64 32`
+   - `CALENDAR_TOKEN_KEY` = un texto largo al azar (40 caracteres o más; no hace falta `openssl`)
    - `CALENDAR_STATE_SECRET` = un texto largo al azar
 6. Recargar la agenda: la tarjeta aparece sola.
 7. **Para abrirla a todo el público:** en la pantalla de consentimiento, *Publicar aplicación* y enviar la **verificación** a Google (el permiso `calendar.events` es "sensible": piden política de privacidad, dominio verificado en Search Console y un video corto mostrando cómo se usa; suele tardar de días a unas semanas). Antes de eso, la política de datos debe mencionar el uso de Google Calendar (ver `herramientas/borrador-politica-datos.md`).

@@ -1,7 +1,7 @@
 // Sincronización de la agenda de Rosina con Google Calendar (Edge Function de Supabase, verify_jwt = false: valida el usuario aquí).
 // Secretos (Supabase → Edge Functions → Secrets):
 //   GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET   (cliente OAuth "Aplicación web" de Google Cloud; ver herramientas/google-calendar/README.md)
-//   CALENDAR_TOKEN_KEY                        (32 bytes en base64: cifra los permisos guardados; generar con `openssl rand -base64 32`)
+//   CALENDAR_TOKEN_KEY                        (texto largo al azar, 40 caracteres o más: cifra los permisos guardados)
 //   CALENDAR_STATE_SECRET                     (texto largo al azar: firma el "state" del inicio de sesión de Google)
 // Solo se pide el permiso "calendar.events" (crear y editar eventos). No se lee ningún otro dato de Google.
 //   POST { accion: 'estado' }                          -> { configurado, conectado, correo, ultima }
@@ -28,7 +28,7 @@ const MAX_EVENTOS = 300;
 // ---------- cifrado de los permisos (AES-GCM) ----------
 const b64 = (u: Uint8Array) => btoa(String.fromCharCode(...u));
 const deB64 = (s: string) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
-async function llave() { return crypto.subtle.importKey('raw', deB64(env('CALENDAR_TOKEN_KEY')), 'AES-GCM', false, ['encrypt', 'decrypt']); }
+async function llave() { const crudo = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(env('CALENDAR_TOKEN_KEY'))); return crypto.subtle.importKey('raw', crudo, 'AES-GCM', false, ['encrypt', 'decrypt']); }   // cualquier texto largo sirve: se convierte en una llave de 32 bytes
 async function cifrar(texto: string) {
   const iv = crypto.getRandomValues(new Uint8Array(12));
   const c = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await llave(), new TextEncoder().encode(texto)));
