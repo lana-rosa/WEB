@@ -172,7 +172,7 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 /* Botones, secciones suaves y preguntas frecuentes (compartidos con el inicio general) */
 .boton-primario, .boton-secundario { display: inline-block; padding: 14px 30px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 1rem; }
 .boton-primario { background: var(--rosa-boton); color: var(--sobre-principal); }
-.boton-primario:hover { background: var(--rosa-hover); }
+.boton-primario:hover { background: var(--rosa-boton-hover); }
 .boton-secundario { background: transparent; color: var(--rosa-texto); border: 2px solid var(--rosa-principal); }
 .boton-secundario:hover { background: var(--rosa-suave); }
 .seccion-suave { background: var(--rosa-suave); }
