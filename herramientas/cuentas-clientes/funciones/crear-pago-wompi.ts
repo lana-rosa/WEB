@@ -30,8 +30,8 @@ const CATEGORIA_EMPAQUES = 'Empaques'; // las bolsas se cobran en la venta, no s
 const CENTRO_MERCERIA = '2c1577b5-514e-4952-ba15-4feb64ea1879'; // Tienda/Mercería: el mismo filtro de obtener_merceria_web
 // Membresía de la Agenda de Rosina (COP)
 const PRECIOS_MEMBRESIA: Record<string, { valor: number; nombre: string }> = {
-  mensual: { valor: 10000, nombre: 'Membresía Agenda de Rosina · Mensual' },
-  anual: { valor: 60000, nombre: 'Membresía Agenda de Rosina · Anual' },
+  mensual: { valor: 7000, nombre: 'Membresía Agenda de Rosina · Mensual' },
+  anual: { valor: 57000, nombre: 'Membresía Agenda de Rosina · Anual' },
 };
 const CORS = {
   'Access-Control-Allow-Origin': '*',

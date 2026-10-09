@@ -1,5 +1,5 @@
 -- Membresía de la Agenda de Rosina (fase 1 del plan de herramientas/agenda-premium/PLAN.md) — 8-oct-2026.
--- Precios (los fija la Edge Function crear-pago-wompi, nunca el navegador): mensual $10.000 COP, anual $60.000 COP.
+-- Precios (los fija la Edge Function crear-pago-wompi, nunca el navegador): mensual $7.000 COP, anual $57.000 COP (desde el 9-oct-2026; antes $10.000 y $60.000).
 -- Cada pago aprobado en Wompi suma 1 mes o 1 año a la fecha de vencimiento (si aún está activa, se suma desde esa fecha).
 -- Piezas:
 --   1) pedidos_web.membresia_plan ('mensual' | 'anual'): marca los pedidos que son una membresía (también es_digital = true:
