@@ -1,7 +1,7 @@
 # Agenda de Rosina: versión gratis y versión de pago (plan del 8-oct-2026)
 
 ## Qué queda gratis y qué es de pago (aprobado por Sara el 8-oct-2026)
-**Precios:** mensual $10.000 COP, anual $60.000 COP (6 meses gratis). Finanzas en la nube: sí.
+**Precios:** mensual $7.000 COP, anual $57.000 COP (casi 4 meses gratis; desde el 9-oct-2026, antes $10.000 y $60.000). Finanzas en la nube: sí.
 **Gratis con cuenta:** portada, índice, proyectos (ficha, semana, fila, patrones, año, lo que aprendí), materiales (lanas, agujas, compras), pedidos, clientas, ventas del mes, catálogo de precios, ferias, fechas especiales, diario, pausas, visión del año y prioridades del mes. Todo se guarda en el dispositivo.
 **De pago (membresía):** Finanzas completas (diseño tipo "Finanzas Pro"), Tablero de indicadores, Calendario del año, sincronización con Google Calendar, copia de seguridad en la nube y uso en varios dispositivos.
 
