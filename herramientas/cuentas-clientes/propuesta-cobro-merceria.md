@@ -20,7 +20,10 @@ Sara aprobó («corrige el cobro») y decidió: **Wompi cobra solo los productos
 ## Qué NO se pudo probar (hacerlo con el primer ovillo real)
 Hoy ninguna lana tiene existencias, así que el camino feliz (cotizar y pagar un material con existencias) no se pudo ejecutar contra la función desplegada. **Antes de anunciar el pago en línea:** cargar existencias de un ovillo, comprarlo con Wompi (valor bajo, o con llaves de pruebas y `?pagosprueba=1`), y revisar el pedido en el ERP (cantidad en gramos, observación «ENVÍO CONTRAENTREGA»), el aviso a contacto@ y el correo de recibo.
 
+## CRM y Rosina (9-oct-2026, decisiones de Sara)
+- Los pedidos de materiales sí pasan al CRM. Para tener la base de clientes de cada casa: `pedidos.casa` y la tabla `clientes_casas` en el CRM (`crm-migracion-casas.sql`); `recibir-pedido-web` (CRM v4) y `enviar-pedido-web-crm` (ERP v21) mandan y guardan la casa. Una persona sigue siendo un solo cliente con historial por casa. **Falta:** que la pantalla del CRM muestre/filtre por casa (la app del CRM no está en este repositorio).
+- `rosina-web` v13: precio del ovillo (no por gramo), existencias en ovillos, términos y política de cambios de la Mercería, y no dice «disponible» si figura agotado.
+
 ## Para revisar con Sara
-- Los pedidos pagados de materiales también pasan al CRM del taller (igual que los de la Tienda). ¿Quieres que no pasen?
-- Hay 7 lanas de la Mercería con `unidad_medida = 'unidad'` (las demás están en 'gramo'): el precio se calcula igual (por gramo × peso), pero su existencia se leería como ovillos. Al cargar las existencias con `cargar_merceria.py` quedan en 'gramo'.
+- Hay 7 lanas de la Mercería con `unidad_medida = 'unidad'` (las demás están en 'gramo'): el precio se calcula igual (por gramo × peso), pero su existencia se leería como ovillos. Al cargar las existencias con `cargar_merceria.py` quedan en 'gramo' (Sara: ok).
 - Para volver a pedir los materiales solo por WhatsApp: `PAGO_EN_LINEA_MERCERIA = false` en `js/pago.js`.
