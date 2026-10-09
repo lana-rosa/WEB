@@ -1,5 +1,5 @@
-// Rosina en la web: ayuda a visitantes con dudas de uso de lanarosacrochet.com.
-// Solo conoce el texto PÚBLICO de las páginas del sitio (se lee en vivo de la propia web).
+// Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
+// Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
@@ -10,7 +10,7 @@ const LIMITE_IP_HORA = 20;
 const LIMITE_GLOBAL_DIA = 1500;
 const PAGINAS = [
   "/preguntas-frecuentes.html", "/merceria/preguntas-frecuentes/", "/academy/preguntas-frecuentes/",
-  "/merceria/como-comprar/", "/merceria/tienda-fisica/", "/academy/talleres/", "/politicas.html",
+  "/merceria/como-comprar/", "/merceria/terminos-de-venta/", "/merceria/cambios-y-devoluciones/", "/merceria/tienda-fisica/", "/academy/talleres/", "/politicas.html",
   "/precios.html", "/personaliza.html", "/contacto.html", "/sobre-nosotras.html", "/tienda.html",
 ];
 
@@ -44,7 +44,7 @@ let cacheCat: { texto: string; hasta: number } | null = null;
 // deno-lint-ignore no-explicit-any
 async function catalogo(sb: any): Promise<string> {
   if (cacheCat && cacheCat.hasta > Date.now()) return cacheCat.texto;
-  const [t, m] = await Promise.all([sb.rpc("obtener_tienda_web"), sb.rpc("obtener_merceria_web")]);
+  const [t, m] = await Promise.all([sb.rpc("obtener_tienda_web"), sb.rpc("obtener_merceria_web_v2")]);
   const cop = (n: number) => "$" + Math.round(Number(n) || 0).toLocaleString("es-CO");
   const tienda = (t.data || []).map((p: Record<string, unknown>) =>
     `- ${p.nombre} | ${p.categoria_web || "Tienda"} | ${cop(p.precio as number)} | ${p.disponible_web === false ? "agotado" : "disponible"}` +
@@ -53,9 +53,12 @@ async function catalogo(sb: any): Promise<string> {
     (p.descripcion_web ? ` | ${String(p.descripcion_web).replace(/\s+/g, " ").slice(0, 160)}` : "")).join("\n");
   const mer = (m.data || []).map((p: Record<string, unknown>) => {
     const peso = Number(p.peso_gramos) || 0, pg = Number(p.precio_gramo) || 0;
+    const porOvillo = peso > 0 && ["Lanas", "Hilos"].includes(String(p.categoria));
+    // Existencias en unidades de venta: lo guardado en gramos se convierte a ovillos completos.
+    const hay = Math.max(0, Math.floor(p.unidad_medida === "gramo" && peso > 0 ? Number(p.stock_actual) / peso : Number(p.stock_actual)) || 0);
     return `- ${p.nombre} | ${p.categoria || ""} | marca ${p.marca || "-"} | color ${p.color || "-"} | material ${p.material || "-"}` +
-      (peso ? ` | se vende por ovillo completo de ${peso} g: ${cop(Math.round(pg * peso / 100) * 100)} el ovillo` : ` | ${cop(pg)}`) +
-      ` | ${Number(p.stock_actual) > 0 ? "disponible" : "agotado por ahora"}`;
+      (porOvillo ? ` | se vende por ovillo completo de ${peso} g: ${cop(Math.round(pg * peso / 100) * 100)} el ovillo` : ` | ${cop(pg)}`) +
+      ` | ${hay > 0 ? `disponible (${hay} en existencia)` : "agotado por ahora"}`;
   }).join("\n");
   const texto = `CATÁLOGO ACTUAL DE LA TIENDA DE AMIGURUMIS (nombre | categoría | precio | disponibilidad | detalles):\n${tienda}\n\nCATÁLOGO ACTUAL DE LA MERCERÍA (hilos, lanas, etc.):\n${mer}`;
   cacheCat = { texto: texto.slice(0, 40000), hasta: Date.now() + 10 * 60 * 1000 };
@@ -64,7 +67,7 @@ async function catalogo(sb: any): Promise<string> {
 
 const ROLES: Record<string, string> = {
   tienda: "La persona está en la TIENDA DE AMIGURUMIS: asesórala sobre amigurumis y los productos de la tienda (cuál elegir según el regalo, la edad, el gusto o el presupuesto; tamaños, materiales, cuidados, tiempos de elaboración) y sobre pedidos personalizados (Personaliza). Recomienda 1 a 3 productos concretos del catálogo con su precio y disponibilidad.",
-  merceria: "La persona está en la MERCERÍA: asesórala sobre hilos, lanas, agujas e insumos para tejedoras (qué material usar según el proyecto, grosor del hilo y aguja recomendada, cantidad aproximada de ovillos, accesorios como ojos, relleno, marcadores). Las lanas y los hilos se venden SIEMPRE por ovillo (madeja) completo, nunca por gramos sueltos: da el precio del ovillo y no el precio por gramo. Los pedidos de materiales se hacen por WhatsApp desde el carrito de la web. Recomienda productos concretos del catálogo de la mercería con su disponibilidad. Si algo no está en el catálogo, dilo y sugiere preguntar por WhatsApp.",
+  merceria: "La persona está en la MERCERÍA: asesórala sobre hilos, lanas, agujas e insumos para tejedoras (qué material usar según el proyecto, grosor del hilo y aguja recomendada, cantidad aproximada de ovillos, accesorios como ojos, relleno, marcadores). Las lanas y los hilos se venden SIEMPRE por ovillo (madeja) completo, nunca por gramos sueltos: da el precio del ovillo y no el precio por gramo. Los materiales se pagan en línea desde el carrito (los productos; el envío a domicilio lo paga la clienta a la transportadora al recibir y recoger en la tienda es gratis) o se piden por WhatsApp; la Mercería no hace cambios voluntarios por preferencia, pero sí atiende retracto, garantía y pedidos equivocados: remite a sus términos de venta y su política de cambios. Recomienda productos concretos del catálogo de la mercería con su disponibilidad: di que algo está disponible SOLO si en el catálogo figura «disponible»; si figura «agotado por ahora», dilo con honestidad (estamos cargando las existencias del catálogo en línea). Si algo no está en el catálogo, dilo y sugiere preguntar por WhatsApp.",
   academy: "La persona está en LANA ROSA ACADEMY: asesórala sobre tejido a crochet: puntos, abreviaturas, lectura de patrones, tejido en redondo y amigurumi, tensión, errores comunes, materiales y cómo empezar o avanzar de nivel. Para esto SÍ puedes usar tu conocimiento general de crochet (explica paso a paso y con claridad). Los talleres, fechas y precios de la Academy solo los que estén en el CONOCIMIENTO PÚBLICO. Recomienda el glosario, las paletas y las calculadoras del Rincón de Rosina (lanarosacrochet.com/recursos-rosina.html) cuando ayuden.",
 };
 

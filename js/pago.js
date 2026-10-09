@@ -8,11 +8,15 @@ import { haySesionGuardada, obtenerCliente } from './cuenta.js';
 // PRODUCCIÓN (pub_prod_…). Con llaves de pruebas (pub_test_…) solo lo ve quien abre ?pagosprueba=1.
 export const PAGOS_ACTIVOS = true;
 
-// Materiales de la Mercería (lanas, hilos…): el servidor todavía no los cobra en línea (crear-pago-wompi solo acepta productos
-// terminados de la Tienda y patrones digitales, y el ERP guarda el precio por gramo). Mientras sea false, un carrito con materiales
-// se pide por WhatsApp (el botón de Wompi se oculta). Ver herramientas/cuentas-clientes/propuesta-cobro-merceria.md.
-export const PAGO_EN_LINEA_MERCERIA = false;
-const tieneMateriales = () => leerCarrito().some((i) => i && i.merceria);
+// Materiales de la Mercería (lanas, hilos…): crear-pago-wompi (v30) los cobra por ovillo completo y solo los productos; a domicilio el envío
+// lo paga la clienta a la transportadora al recibir (Términos de venta de la Mercería). Poner en false para volver a pedirlos solo por
+// WhatsApp (el botón de Wompi se oculta en los carritos con materiales).
+export const PAGO_EN_LINEA_MERCERIA = true;
+const hayMateriales = () => leerCarrito().some((i) => i && i.merceria);
+const hayOtros = () => leerCarrito().some((i) => i && !i.merceria);
+const esMateriales = () => { const c = leerCarrito(); return c.length > 0 && c.every((i) => i && i.merceria); };
+// Wompi no cobra materiales mezclados con productos de la Tienda (o con patrones), ni materiales si el pago en línea está apagado.
+const soloWhatsApp = () => hayMateriales() && (hayOtros() || !PAGO_EN_LINEA_MERCERIA);
 
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
@@ -414,10 +418,12 @@ function actualizarResumen() {
   const carrito = leerCarrito();
   const sub = carrito.reduce((s, i) => s + (Number(i.precio) || 0) * (Number(i.cantidad) || 0), 0);
   const desc = cot && cot.descuento > 0 ? Number(cot.descuento) : 0;
+  const materiales = esMateriales();   // materiales de la Mercería: solo Colombia y el envío se paga al recibir
+  if (materiales && pp && $('pg-pais').value !== 'Colombia') $('pg-pais').value = 'Colombia';
   const intl = esIntl();
   const digital = esDigital();
   const recoge = digital || entregaElegida() === 'recogida';
-  $('pg-pais-caja').hidden = !pp;
+  $('pg-pais-caja').hidden = !pp || materiales;
   $('pg-ciudad-caja').hidden = intl; $('pg-ciudad-intl-caja').hidden = !intl;
   $('pg-otra-caja').hidden = intl || $('pg-ciudad').value !== 'Otro (nacional)';
   $('pg-ir-recoger').hidden = intl;
@@ -431,6 +437,9 @@ function actualizarResumen() {
   const hayDireccion = $('pg-direccion').value.trim().length >= 6 && (intl ? $('pg-ciudad-intl').value.trim().length >= 2 : (($('pg-ciudad').value !== 'Otro (nacional)') || $('pg-otra').value.trim().length >= 2));
   const zona = intl ? zonaPais() : null;
   const envio = intl ? (hayDireccion && zona ? Math.round(zona.valor_usd * pp.tasa) : null) : (recoge ? 0 : (hayDireccion ? tarifaElegida() : null));
+  const alRecibir = materiales && !recoge && !intl;                   // el envío NO se cobra en línea
+  const estimado = alRecibir && hayDireccion ? tarifaElegida() : null;  // solo se muestra como referencia
+  const textoAlRecibir = 'Lo pagas a la transportadora al recibir' + (estimado != null ? ' (aprox. ' + pesos(estimado) + ')' : '');
 
   // Productos
   const items = $('pg-items'); items.replaceChildren();
@@ -460,10 +469,10 @@ function actualizarResumen() {
   fila('subtotal', 'Valor del pedido', pesos(sub));
   if (desc) fila('descuento', '🎁 Descuento aplicado por primera compra (' + cot.pct + '%)', '−' + pesos(desc));
   else if (!cotClave && !digital) fila('pista', '🎁 Primera compra: 10% de descuento', 'Escribe tu correo');
-  const textoEnvio = digital ? 'Sin envío (descarga digital)' : recoge ? 'Gratis (recoges en tienda)' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula con tu dirección') : pesos(envio) + (intl && zona ? ' (US$ ' + Number(zona.valor_usd).toFixed(2) + ')' : ''));
+  const textoEnvio = alRecibir ? textoAlRecibir : digital ? 'Sin envío (descarga digital)' : recoge ? 'Gratis (recoges en tienda)' : (envio == null ? (hayDireccion ? 'Elige tu ciudad' : 'Se calcula con tu dirección') : pesos(envio) + (intl && zona ? ' (US$ ' + Number(zona.valor_usd).toFixed(2) + ')' : ''));
   fila('', digital ? 'Entrega' : (recoge ? 'Recoger en tienda' : 'Envío'), textoEnvio);
-  const total = envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio);
-  fila('total', 'Valor total', total + (conPaypal ? ' COP' : ''));
+  const total = alRecibir ? pesos(sub - desc) : (envio == null ? pesos(sub - desc) + ' + envío' : pesos(sub - desc + envio));
+  fila('total', alRecibir ? 'Pagas ahora en línea' : 'Valor total', total + (conPaypal ? ' COP' : ''));
   if (conPaypal && envio != null) fila('pista', 'Se cobra en dólares con PayPal', 'US$ ' + (Math.round(((sub - desc + envio) / pp.tasa) * 100) / 100).toFixed(2));
   $('pg-resumen-titulo').textContent = 'Mi carrito (' + unidades + ')';
   $('pg-resumen-total').textContent = total;
@@ -481,7 +490,17 @@ function actualizarResumen() {
     ev.textContent = hayDireccion && t != null ? pesos(t) : 'Según tu dirección';
   }
   const dir = $('pg-direccion').value.trim(), ciu = $('pg-ciudad').value === 'Otro (nacional)' ? $('pg-otra').value.trim() : $('pg-ciudad').value;
-  $('pg-env-detalle').textContent = dir ? 'Lo llevamos a: ' + dir + (ciu ? ', ' + ciu : '') + '.' : 'Lo llevamos a tu dirección.';
+  $('pg-env-detalle').textContent = (dir ? 'Lo llevamos a: ' + dir + (ciu ? ', ' + ciu : '') + '.' : 'Lo llevamos a tu dirección.') + (alRecibir ? ' ' + textoAlRecibir + '.' : '');
+  if (alRecibir) $('pg-env-valor').textContent = 'Al recibir';
+  { // Aceptación: con materiales de la Mercería se enlazan sus términos de venta y su política de cambios.
+    const sp = $('pg-acepto').parentNode.querySelector('span');
+    if (sp) {
+      if (sp.dataset.base === undefined) sp.dataset.base = sp.innerHTML;
+      sp.innerHTML = materiales
+        ? 'Acepto la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a>, los <a href="/merceria/terminos-de-venta/" target="_blank" rel="noopener">términos de venta de la Mercería</a> y su <a href="/merceria/cambios-y-devoluciones/" target="_blank" rel="noopener">política de cambios, devoluciones y garantías</a>.'
+        : sp.dataset.base;
+    }
+  }
   $('pg-confirma-caja').hidden = recoge;
   const ciuTxt = intl ? $('pg-ciudad-intl').value.trim() + ', ' + $('pg-pais').value : ciu;
   $('pg-confirma-texto').textContent = 'Confirmo que mi dirección de envío' + (dir ? ' (' + dir + (ciuTxt ? ', ' + ciuTxt : '') + ')' : '') + ' es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.' + (intl ? ' Entiendo que los impuestos o aranceles de importación de mi país, si aplican, corren por mi cuenta.' : '');
@@ -503,7 +522,7 @@ function avisoConWhatsApp(texto) {
 async function abrirPago() {
   const carrito = leerCarrito();
   if (!carrito.length) return;
-  if (!PAGO_EN_LINEA_MERCERIA && tieneMateriales()) return;
+  if (soloWhatsApp()) return;
   if (!overlay) construirModal();
   aviso(null);
   carritoCambiado = false; pasoActual = 1; pasoMaximo = 1;
@@ -622,7 +641,7 @@ async function pintarBonoCarrito() {
   const yo = ++bonoCarritoId;
   const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
   if (!items.length || esDigital()) { el.hidden = true; return; }   // los patrones digitales no llevan el descuento de primera compra
-  if (!PAGO_EN_LINEA_MERCERIA && tieneMateriales()) { el.hidden = true; return; }   // los materiales se piden por WhatsApp: el descuento automático solo aplica al pagar en línea
+  if (soloWhatsApp()) { el.hidden = true; return; }   // el descuento automático solo aplica al pagar en línea
   const bono = datosBono(), cuenta = haySesionGuardada() ? await datosCuenta() : {};
   const correo = String(cuenta.correo || bono.correo || '').toLowerCase(), telefono = cuenta.telefono || bono.telefono || '';
   el.hidden = false;
@@ -670,12 +689,16 @@ async function iniciar() {
   const nota = nodo('p', 'nota-pago-carrito', '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi y más.');
   if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#6E6E73;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
   wa.before(b, nota);
-  const aviso = nodo('p', 'nota-pago-carrito', 'Los materiales de la Mercería se piden por WhatsApp: confirmamos la disponibilidad, el envío y el pago (Nequi o Bre-B).');
+  const aviso = nodo('p', 'nota-pago-carrito', '');
   aviso.hidden = true; wa.before(aviso);
   const estiloWa = 'display:block;box-sizing:border-box;width:100%;text-align:center;text-decoration:none;border-radius:999px;padding:12px 20px;font-weight:700;';
   const ajustar = () => {
-    const soloWa = !PAGO_EN_LINEA_MERCERIA && tieneMateriales();
+    const soloWa = soloWhatsApp();
     b.hidden = soloWa; nota.hidden = soloWa; aviso.hidden = !soloWa;
+    aviso.textContent = hayOtros()
+      ? 'Los materiales de la Mercería se pagan por separado de los productos de la Tienda. Haz una compra y luego la otra, o pídelo todo por WhatsApp.'
+      : 'Los materiales de la Mercería se piden por WhatsApp: confirmamos la disponibilidad, el envío y el pago (Nequi o Bre-B).';
+    nota.textContent = esMateriales() ? '🔒 Pago seguro con Wompi. El envío lo pagas al recibir.' : '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi y más.';
     wa.textContent = 'Pedir por WhatsApp';
     wa.style.cssText = estiloWa + (soloWa ? 'background:#E74E96;color:#fff;border:2px solid #E74E96;' : 'background:#fff;color:#E74E96;border:2px solid #E74E96;box-shadow:none;');
   };

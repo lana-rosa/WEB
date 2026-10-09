@@ -9,6 +9,11 @@
 // Entrega: 'domicilio' (por defecto, con tarifa de envío por ciudad) o 'recogida' (recoge en tienda, envío $0, sin dirección).
 // Patrones digitales (categoría de inventario "Patrones", se venden desde la Mercería): sin envío ni dirección, se descargan desde la cuenta.
 // Un carrito con patrones no se mezcla con productos físicos. Los patrones NO llevan el descuento de primera compra.
+// Materiales de la Mercería (tipo 'merceria': lanas, hilos…): se venden por unidad completa (ovillo). El ERP guarda en precio_venta el precio POR GRAMO
+// de lanas e hilos, así que el precio del ovillo = precio_venta × peso_gramos (redondeado a $100, igual que la web). La existencia de lanas/hilos
+// guardados en gramos se convierte a ovillos. Un carrito de materiales no se mezcla con productos de la Tienda ni con patrones. A domicilio, Wompi
+// cobra SOLO los productos: el envío lo paga la clienta a la transportadora al recibir (Términos de venta de la Mercería, sección 9); en la
+// cotización se devuelve el estimado. Recoger en tienda sigue gratis.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const SITIO = 'https://lanarosacrochet.com';
@@ -20,6 +25,9 @@ const TEXTO_RECOGIDA = 'Recoger en tienda';
 const TEXTO_DIGITAL = 'Descarga digital';
 const TEXTO_MEMBRESIA = 'Membresía digital';
 const CATEGORIA_DIGITAL = 'Patrones';
+const CATEGORIAS_POR_OVILLO = ['Lanas', 'Hilos'];
+const CATEGORIA_EMPAQUES = 'Empaques'; // las bolsas se cobran en la venta, no se venden en la web
+const CENTRO_MERCERIA = '2c1577b5-514e-4952-ba15-4feb64ea1879'; // Tienda/Mercería: el mismo filtro de obtener_merceria_web
 // Membresía de la Agenda de Rosina (COP)
 const PRECIOS_MEMBRESIA: Record<string, { valor: number; nombre: string }> = {
   mensual: { valor: 10000, nombre: 'Membresía Agenda de Rosina · Mensual' },
@@ -111,19 +119,38 @@ Deno.serve(async (req) => {
 
   // Productos: terminados de la tienda (con ficha web) y patrones digitales de la mercería
   const { data: filas, error: e1 } = await sb.from('inventario_items')
-    .select('id, nombre, precio_venta, tipo, descripcion_web, categoria_id')
+    .select('id, nombre, precio_venta, tipo, descripcion_web, categoria_id, centro_costo_id, unidad_medida, peso_gramos, stock_actual')
     .in('id', pedidoItems.map((i) => i.id)).eq('activo', true);
   if (e1) return json({ error: 'No pudimos leer los productos.' }, 500);
   const catIds = Array.from(new Set((filas || []).map((p: any) => p.categoria_id).filter(Boolean)));
   const { data: cats } = catIds.length ? await sb.from('categorias_inventario').select('id, nombre').in('id', catIds) : { data: [] as any[] };
   const nombreCat = new Map((cats || []).map((k: any) => [k.id, k.nombre]));
   const esDigitalItem = (p: any) => nombreCat.get(p.categoria_id) === CATEGORIA_DIGITAL;
-  const productos = (filas || []).filter((p: any) => esDigitalItem(p) || (p.tipo === 'producto_terminado' && p.descripcion_web != null));
+  const esMaterial = (p: any) => p.tipo === 'merceria' && p.centro_costo_id === CENTRO_MERCERIA && nombreCat.get(p.categoria_id) !== CATEGORIA_EMPAQUES && !esDigitalItem(p);
+  const productos = (filas || []).filter((p: any) => esDigitalItem(p) || esMaterial(p) || (p.tipo === 'producto_terminado' && p.descripcion_web != null));
   const mapa = new Map(productos.map((p: any) => [p.id, p]));
   if (pedidoItems.some((i) => !mapa.has(i.id))) return json({ error: 'Algún producto del carrito ya no está disponible.' }, 409);
   const nDigitales = pedidoItems.filter((i) => esDigitalItem(mapa.get(i.id))).length;
   const digital = nDigitales === pedidoItems.length;
   if (nDigitales > 0 && !digital) return json({ error: 'Los patrones se compran por separado de los productos físicos. Paga primero uno y luego el otro.' }, 409);
+  const nMateriales = pedidoItems.filter((i) => esMaterial(mapa.get(i.id))).length;
+  const materiales = nMateriales === pedidoItems.length;
+  if (nMateriales > 0 && !materiales) return json({ error: 'Los materiales de la Mercería se compran por separado de los productos de la Tienda. Paga primero uno y luego el otro.' }, 409);
+  // Precio de la unidad de venta (ovillo) y existencias en unidades de venta
+  const porOvillo = (p: any) => esMaterial(p) && CATEGORIAS_POR_OVILLO.includes(nombreCat.get(p.categoria_id)) && Number(p.peso_gramos) > 0;
+  const precioUnidad = (p: any) => porOvillo(p) ? Math.round((Number(p.precio_venta) * Number(p.peso_gramos)) / 100) * 100 : Number(p.precio_venta);
+  const unidadesDisponibles = (p: any) => (p.unidad_medida === 'gramo' && Number(p.peso_gramos) > 0)
+    ? Math.floor(Number(p.stock_actual) / Number(p.peso_gramos)) : Math.floor(Number(p.stock_actual));
+  if (materiales) {
+    // Existencias: se suman las cantidades repetidas del mismo producto y se compara con lo que hay.
+    const pedidas = new Map<string, number>();
+    pedidoItems.forEach((i) => pedidas.set(i.id, (pedidas.get(i.id) || 0) + i.cantidad));
+    for (const [id, cant] of pedidas) {
+      const p = mapa.get(id); const hay = unidadesDisponibles(p) || 0;
+      if (hay <= 0) return json({ error: `«${p.nombre}» está agotado por ahora.` }, 409);
+      if (cant > hay) return json({ error: `De «${p.nombre}» solo quedan ${hay} unidades.` }, 409);
+    }
+  }
   // Un patrón digital se compra una sola vez por pedido
   if (digital) pedidoItems.forEach((i) => { i.cantidad = 1; });
 
@@ -136,13 +163,17 @@ Deno.serve(async (req) => {
     return json({ error: (recoge || digital) ? 'Revisa tus datos: nombre, correo y teléfono.' : 'Revisa tus datos: nombre, correo, teléfono, ciudad y dirección.' }, 400);
 
   // Envío: digital o recoger en tienda = $0; a domicilio = tarifa de la ciudad (o la de "Otro (nacional)").
+  // Materiales de la Mercería a domicilio: se cobra $0 en línea (envío contraentrega) y se informa el estimado.
   let envio: number | null = null;
+  let envioEstimado: number | null = null;
+  const envioAlRecibir = materiales && !recoge;
   if (recoge || digital) envio = 0;
   else {
     const { data: tarifas } = await sb.from('tarifas_envio_ciudad').select('ciudad, valor').eq('activo', true);
     const tarifa = ciudad ? ((tarifas || []).find((t: any) => t.ciudad === ciudad) || (tarifas || []).find((t: any) => t.ciudad === 'Otro (nacional)')) : null;
     if (!cotizando && !tarifa) return json({ error: 'No pudimos calcular el envío.' }, 500);
-    envio = tarifa ? Number(tarifa.valor) : null;
+    envioEstimado = tarifa ? Number(tarifa.valor) : null;
+    envio = envioAlRecibir ? 0 : envioEstimado;
   }
 
   // Sesión de clienta (si hay): se liga el pedido a su cuenta y también cuenta su correo para la primera compra.
@@ -165,12 +196,12 @@ Deno.serve(async (req) => {
     if (ok) pct = PCT_PRIMERA_COMPRA;
   }
 
-  const valores = pedidoItems.map((i) => Number(mapa.get(i.id).precio_venta) * i.cantidad);
+  const valores = pedidoItems.map((i) => precioUnidad(mapa.get(i.id)) * i.cantidad);
   const subtotal = valores.reduce((s, v) => s + v, 0);
   const descuento = subtotal - valores.reduce((s, v) => s + conDescuento(v, pct), 0);
 
   if (cotizando) {
-    return json({ primera: pct > 0, pct, subtotal, descuento, envio, digital, total: subtotal - descuento + (envio ?? 0) });
+    return json({ primera: pct > 0, pct, subtotal, descuento, envio, digital, materiales, envio_al_recibir: envioAlRecibir, envio_estimado: envioAlRecibir ? envioEstimado : null, total: subtotal - descuento + (envio ?? 0) });
   }
 
   const total = subtotal - descuento + Number(envio);
@@ -179,15 +210,16 @@ Deno.serve(async (req) => {
 
   const { data: ref } = await sb.rpc('fn_referencia_pedido_web');
   const referencia = String(ref);
+  const notasPedido = [notas, envioAlRecibir ? `Envío contraentrega: lo paga la clienta a la transportadora al recibir${envioEstimado != null ? ` (estimado $${envioEstimado.toLocaleString('es-CO')})` : ''}` : ''].filter(Boolean).join(' · ');
   const { data: pedido, error: e2 } = await sb.from('pedidos_web').insert({
-    referencia, user_id: userId, nombre, correo, telefono, ciudad, direccion, notas: notas || null,
-    subtotal, envio: Number(envio), total, descuento_pct: pct, descuento, es_digital: digital,
+    referencia, user_id: userId, nombre, correo, telefono, ciudad, direccion, notas: notasPedido || null,
+    subtotal, envio: Number(envio), total, descuento_pct: pct, descuento, es_digital: digital, envio_al_recibir: envioAlRecibir,
   }).select('id').single();
   if (e2 || !pedido) return json({ error: 'No pudimos crear tu pedido.' }, 500);
 
   await sb.from('pedidos_web_items').insert(pedidoItems.map((i) => ({
     pedido_id: pedido.id, producto_id: i.id, nombre: mapa.get(i.id).nombre,
-    precio: Number(mapa.get(i.id).precio_venta), cantidad: i.cantidad,
+    precio: precioUnidad(mapa.get(i.id)), cantidad: i.cantidad,
   })));
 
   const firma = await sha256(`${referencia}${centavos}COP${secretoIntegridad}`);
@@ -203,5 +235,5 @@ Deno.serve(async (req) => {
     'customer-data:phone-number': telefono.replace(/\D/g, '').slice(-10),
     'customer-data:phone-number-prefix': '+57',
   });
-  return json({ url: `https://checkout.wompi.co/p/?${p.toString()}`, referencia, total, envio, descuento, digital });
+  return json({ url: `https://checkout.wompi.co/p/?${p.toString()}`, referencia, total, envio, descuento, digital, envio_al_recibir: envioAlRecibir });
 });
