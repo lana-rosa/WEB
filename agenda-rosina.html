@@ -343,6 +343,8 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .portada-agenda input { text-align: center; font-family: var(--fuente-titulo); font-size: 1.2rem; color: var(--rosa-texto); border: none; border-bottom: 2px dashed var(--rosa-medio); background: transparent; padding: 4px 8px; width: min(320px, 100%); }
 .portada-agenda input:focus { outline: none; border-bottom-color: var(--rosa-principal); }
 .copia-agenda { display: flex; justify-content: center; gap: 4px 16px; flex-wrap: wrap; margin-top: 10px; }
+.aviso-borrar { margin: 10px auto 0; max-width: 460px; text-align: center; font-size: 0.82rem; color: var(--tinta-suave); }
+@media print { .aviso-borrar { display: none !important; } }
 .nota-copia { flex-basis: 100%; text-align: center; color: var(--tinta-suave); font-size: 0.8rem; }
 .enlace-copia { background: none; border: none; color: var(--rosa-texto); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; }
 @media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } }
@@ -899,6 +901,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
     </div>
+    <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda solo en este dispositivo: si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
     </div>
     <div class="copia-agenda">
       <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
@@ -906,9 +909,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="enlace-copia" id="agenda-ics">📅 Fechas al calendario (.ics)</button>
       <input type="file" id="agenda-archivo" accept=".json,application/json" hidden>
       <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
-    </div>
-      <p class="cs-aviso" id="cs-aviso" role="status"></p>
-      <small class="nota-copia">Solo pedimos permiso para crear y editar eventos de esta agenda en tu calendario; no leemos tus otros eventos. Puedes desconectarlo cuando quieras. <a href="/politicas.html#datos">Datos personales</a></small>
     </div>
   </section>
 
@@ -1889,6 +1889,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   /* ---------- Agenda ---------- */
   var CLAVE_AGENDA = 'rosinaAgenda';
+  var CLAVE_COPIA = 'rosinaAgendaCopia'; /* fecha de la última copia descargada en este dispositivo (solo para el aviso al borrar) */
   var vueltasGrid = document.getElementById('vueltas-grid');
   for (var i = 1; i <= 100; i++) {
     vueltasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-v' + i + '" data-guardar><span>' + i + '</span></label>');
@@ -1986,7 +1987,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.getElementById('agenda').addEventListener('input', guardarCampo);
   document.getElementById('agenda').addEventListener('change', guardarCampo);
   document.getElementById('agenda-borrar').addEventListener('click', function() {
-    if (!confirm('¿Borrar todo lo que escribiste en la agenda?')) return;
+    /* Aviso previo (13-oct-2026): lo borrado no se recupera (no guardamos copia de la agenda), así que se invita a guardar una copia antes. */
+    if (!leer(CLAVE_COPIA)) {
+      if (confirm('Todavía no has guardado una copia de tu agenda en este dispositivo.\n\nSi la borras ahora, se elimina de inmediato y NO se puede recuperar.\n\nAceptar = descargar la copia primero (después puedes borrar).\nCancelar = seguir sin copia.')) {
+        document.getElementById('agenda-descargar').click();
+        return;
+      }
+    }
+    if (!confirm('¿Borrar todo lo que escribiste en la agenda?\n\nSe elimina de inmediato y no se puede recuperar. Solo podrás volver a tenerla si guardaste una copia y la cargas después.')) return;
     camposAgenda().forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
     datos = {};
     borrar(CLAVE_AGENDA); avisarGuardado();
@@ -2132,6 +2140,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var blob = new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
     var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-' + new Date().toISOString().slice(0, 10) + '.json';
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+    escribir(CLAVE_COPIA, new Date().toISOString().slice(0, 10));
   });
   var archivo = document.getElementById('agenda-archivo');
   document.getElementById('agenda-cargar').addEventListener('click', function() { archivo.click(); });
