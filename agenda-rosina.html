@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="/js/consentimiento.js?v=1" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agenda de Rosina para tejedoras — Lana Rosa Crochet</title>
-<meta name="description" content="Agenda digital gratuita para tejedoras: ficha de proyecto, planeador semanal, inventario de lanas, ventas, finanzas, calendario del año y diario de tejido. Gratis con tu cuenta.">
+<meta name="description" content="Agenda digital para tejedoras: ficha de proyecto, planeador semanal, inventario de lanas, ventas y diario de tejido, gratis con tu cuenta. Finanzas, calendario y copia en la nube con membresía desde $7.000 COP al mes.">
 <link rel="canonical" href="https://lanarosacrochet.com/agenda-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -24,7 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Agenda de Rosina para tejedoras — Lana Rosa Crochet">
-<meta property="og:description" content="Ficha de proyecto, tu semana tejiendo, control de pedidos y finanzas. Todo gratis con tu cuenta.">
+<meta property="og:description" content="Ficha de proyecto, tu semana tejiendo y control de pedidos. Hojas básicas gratis con tu cuenta; finanzas y calendario con membresía.">
 <meta property="og:url" content="https://lanarosacrochet.com/agenda-rosina.html">
 <meta property="og:locale" content="es_CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -901,7 +901,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
     </div>
-    <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda solo en este dispositivo: si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
+    <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda en este dispositivo (y en la nube solo si la activaste). Si la borras, <strong>se elimina de inmediato —también de la nube, si la tienes activada— y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
     </div>
     <div class="copia-agenda">
       <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
@@ -992,6 +992,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
         </header>
+        <div class="membresia-tarjeta no-imprimir" id="membresia-tarjeta" hidden>
+          <p><span id="mt-texto"></span><small class="mt-nube" id="mt-nube" role="status"></small><button type="button" class="enlace-copia" id="mt-nube-on" hidden>Activar la copia en la nube</button></p>
+          <button type="button" class="boton-primario boton-chico" id="mt-boton" data-abrir-membresia>Ver planes</button>
+        </div>
         <div class="indice-grupo" style="--c:#FFE08A"><h4>Mi tablero</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="tablero-agenda"><span class="atajo-ic" aria-hidden="true">📈</span><span><strong>Mi tablero</strong><small>Indicadores y análisis de todas tus hojas</small></span></button>
         </div></div>
@@ -1595,7 +1599,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="candado-agenda no-imprimir" role="region" aria-label="Agenda solo para quienes tienen cuenta">
         <p class="candado-icono" aria-hidden="true">🔒</p>
         <h2>La agenda de Rosina es gratis con tu cuenta</h2>
-        <p>Usa todas las hojas: proyectos, pedidos, lanas, ventas, finanzas, tablero, calendario del año y más. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.</p>
+        <p>Usa las hojas básicas: proyectos, pedidos, lanas, ventas y más. Finanzas, tablero, calendario del año y copia en la nube son con membresía ($7.000 COP al mes). Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.</p>
         <a class="boton-google-agenda" href="/cuenta.html?google=1&amp;volver=agenda-rosina.html"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.4-4.7 7l7.3 5.7c4.3-4 6.8-9.9 6.8-17.2z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-2.9-.8-4.7s.3-3.3.8-4.7l-7.9-6.1C.9 16.4 0 20.100 0 24s.9 7.600 2.600 10.800l7.900-6.100z"/><path fill="#34A853" d="M24 48c6.3 0 11.600-2.100 15.500-5.700l-7.300-5.700c-2 1.400-4.700 2.300-8.200 2.300-6.300 0-11.600-4.100-13.500-9.800l-7.900 6.100C6.500 42.600 14.600 48 24 48z"/></svg> Continuar con Google</a>
         <p class="separador-candado"><span>o con tu correo</span></p>
         <div class="acciones" style="justify-content:center;">
@@ -1989,12 +1993,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.getElementById('agenda-borrar').addEventListener('click', function() {
     /* Aviso previo (13-oct-2026): lo borrado no se recupera (no guardamos copia de la agenda), así que se invita a guardar una copia antes. */
     if (!leer(CLAVE_COPIA)) {
-      if (confirm('Todavía no has guardado una copia de tu agenda en este dispositivo.\n\nSi la borras ahora, se elimina de inmediato y NO se puede recuperar.\n\nAceptar = descargar la copia primero (después puedes borrar).\nCancelar = seguir sin copia.')) {
+      if (confirm('Todavía no has guardado una copia de tu agenda en este dispositivo.\n\nSi la borras ahora, se elimina de inmediato (también de la nube, si la tienes activada) y NO se puede recuperar.\n\nAceptar = descargar la copia primero (después puedes borrar).\nCancelar = seguir sin copia.')) {
         document.getElementById('agenda-descargar').click();
         return;
       }
     }
-    if (!confirm('¿Borrar todo lo que escribiste en la agenda?\n\nSe elimina de inmediato y no se puede recuperar. Solo podrás volver a tenerla si guardaste una copia y la cargas después.')) return;
+    if (!confirm('¿Borrar todo lo que escribiste en la agenda?\n\nSe elimina de inmediato (también de la nube, si la tienes activada) y no se puede recuperar. Solo podrás volver a tenerla si guardaste una copia y la cargas después.')) return;
     camposAgenda().forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
     datos = {};
     borrar(CLAVE_AGENDA); avisarGuardado();
@@ -2482,7 +2486,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.addEventListener('beforeprint', function() { el('agc-anio').open = true; });
     window.lrPintarCalendario = pintar;
   })();
-  /* ---------- Finanzas: panel, movimientos, presupuesto y metas (se guardan en tu dispositivo) ---------- */
+  /* ---------- Finanzas: panel, movimientos, presupuesto y metas (se guardan en tu dispositivo; con membresía, también en la nube) ---------- */
   (function() {
     var CAT_G = ['Vivienda', 'Mercado', 'Transporte', 'Salud', 'Materiales (lanas)', 'Servicios', 'Educación', 'Ropa', 'Ocio', 'Deudas', 'Otros'];
     var CAT_I = ['Ventas', 'Talleres', 'Sueldo', 'Otros ingresos'];
@@ -3430,7 +3434,244 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   c.setAttribute('aria-hidden', 'true');
 })();
 </script>
+<dialog class="modal-membresia no-imprimir" id="modal-membresia" aria-labelledby="mm-titulo">
+  <button type="button" class="mm-cerrar" id="mm-cerrar" aria-label="Cerrar">✕</button>
+  <h2 id="mm-titulo">Agenda de Rosina completa 💎</h2>
+  <p class="mm-estado" id="mm-estado"></p>
+  <ul class="mm-lista">
+    <li>Finanzas completas: panel, movimientos, presupuesto y metas</li>
+    <li>Tablero con indicadores de todas tus hojas</li>
+    <li>Calendario del año con todas tus fechas</li>
+    <li>Copia en la nube y uso en varios dispositivos (opcional: la activas tú)</li>
+  </ul>
+  <div class="mm-planes" role="radiogroup" aria-label="Plan de la membresía">
+    <label class="mm-plan"><input type="radio" name="mm-plan" value="mensual"><span><strong>Mensual</strong><em>$7.000</em><small>al mes</small></span></label>
+    <label class="mm-plan"><input type="radio" name="mm-plan" value="anual" checked><span><strong>Anual</strong><em>$57.000</em><small>al año · ahorras $27.000</small><b>casi 4 meses gratis</b></span></label>
+  </div>
+  <div class="mm-aceptos">
+    <label class="mm-acepto"><input type="checkbox" id="mm-acepto-cond"><span>Acepto las <a href="/politicas.html#membresia" target="_blank" rel="noopener">condiciones de la membresía</a> y la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos</a>.</span></label>
+    <label class="mm-acepto"><input type="checkbox" id="mm-acepto-inicio"><span>Solicito que el servicio comience inmediatamente después de aprobarse mi pago y entiendo las consecuencias que esto puede tener sobre mi derecho de retracto, en los términos legalmente aplicables (<a href="/politicas.html#membresia" target="_blank" rel="noopener">apartado 5 de las condiciones</a>).</span></label>
+  </div>
+  <button type="button" class="boton-primario" id="mm-pagar">Pagar con Wompi</button>
+  <p class="cs-aviso" id="mm-aviso" role="status"></p>
+  <small class="nota-pie">Pago seguro con Wompi (tarjeta, PSE, Nequi y más). No hay cobro automático: te avisamos antes de que venza. Tus hojas gratis y tus datos siguen siendo tuyos. Guardamos la fecha y hora en que aceptas.</small>
+  <div class="mm-nube">
+    <button type="button" class="enlace-copia" id="mm-borrar-nube">☁️ Borrar mi copia en la nube</button>
+    <small id="mm-nube-msg" role="status"></small>
+  </div>
+</dialog>
+<dialog class="modal-membresia no-imprimir" id="modal-nube" aria-labelledby="mn-titulo">
+  <button type="button" class="mm-cerrar" id="mn-cerrar" aria-label="Cerrar">✕</button>
+  <h2 id="mn-titulo">Copia de tu agenda en la nube ☁️</h2>
+  <p class="mm-estado">Es opcional: tú decides si la activas.</p>
+  <ul class="mn-lista">
+    <li><strong>Qué guardamos:</strong> una copia completa de tu agenda: proyectos, materiales, pedidos, ventas y las hojas de Finanzas (ingresos, gastos, deudas, tarjetas y metas). Si anotas datos de tus clientas (nombre, WhatsApp, cumpleaños), tú eres responsable de contar con su autorización.</li>
+    <li><strong>Para qué:</strong> solo para tener un respaldo y abrir tu agenda en otros dispositivos. No la usamos para publicidad ni para entrenar inteligencia artificial, y nadie de nuestro equipo la lee, salvo para darte soporte si lo pides o por una obligación legal.</li>
+    <li><strong>Dónde:</strong> en los servidores de nuestro proveedor Supabase, en São Paulo (Brasil), con acceso solo desde tu cuenta.</li>
+    <li><strong>Cuánto tiempo:</strong> mientras tu membresía esté vigente y 90 días después de que venza; luego la borramos (antes te avisamos). Puedes borrarla cuando quieras y, al hacerlo, se retira tu autorización.</li>
+    <li><strong>Tus derechos:</strong> puedes conocer, corregir o pedir que borremos tus datos desde la agenda o escribiéndonos a contacto@lanarosacrochet.com o por WhatsApp, incluso si tu membresía ya venció y sin pagar nada.</li>
+    <li>Sin la copia, tu agenda funciona igual y se guarda en este dispositivo.</li>
+  </ul>
+  <label class="mm-acepto"><input type="checkbox" id="mn-acepto"><span>Autorizo el almacenamiento de una copia de mi agenda en la nube, incluidos los datos que he registrado, para respaldar mi información y acceder a ella desde otros dispositivos. He leído la información sobre el tratamiento, la conservación y la eliminación de mis datos (<a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos, apartado 11</a>). Guardamos la fecha y hora de mi autorización.</span></label>
+  <button type="button" class="boton-primario" id="mn-activar">Activar la copia en la nube</button>
+  <button type="button" class="enlace-copia" id="mn-ahora-no">Ahora no</button>
+  <p class="cs-aviso" id="mn-aviso" role="status"></p>
+</dialog>
 <script type="module" src="/js/cuenta.js"></script>
+<script type="module">
+// Membresía de la Agenda de Rosina: hojas de pago (Finanzas, Tablero, Calendario del año).
+// MEMBRESIA_ACTIVA: encendida el 8-oct-2026 (Sara probó el pago real). Para apagarla otra vez, ponerla en false.
+import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
+(function () {
+  var MEMBRESIA_ACTIVA = true;
+  var CLAVE = 'lrMembresia';
+  // Versión de las condiciones de la membresía y del texto de la copia en la nube que la persona acepta (12-oct-2026).
+  // Debe coincidir con VERSION_CONDICIONES de la función crear-pago-wompi y con fn_nube_version() de la base.
+  var VERSION_CONDICIONES = '2026-10-13', VERSION_NUBE = '2026-10-12';
+  try { if (new URLSearchParams(location.search).get('membresia') === 'ver') sessionStorage.setItem('lrMembresiaVer', '1'); if (sessionStorage.getItem('lrMembresiaVer') === '1') MEMBRESIA_ACTIVA = true; } catch (e) {}
+  if (!MEMBRESIA_ACTIVA) return;
+  var PAGO = {
+    'fin-resumen': 'Mira de un vistazo cuánto entra, cuánto sale y cuánto te queda cada mes, con gráficas y gastos por categoría.',
+    'fin-movimientos': 'Anota lo que entra y sale, incluso escribiendo "gasté 50 mil en mercado", y filtra por mes y categoría.',
+    'fin-presupuesto': 'Pon un tope por categoría, crea metas con fecha, planes del año y mira cuánto apartar cada mes.',
+    'fin-tcredito': 'Controla el cupo, el corte y el pago de tus tarjetas de crédito y cuánto debes en cada una.',
+    'fin-analisis': 'Compara tus meses, mira qué categoría sube, cuánto ahorras mes a mes y el resumen de tu año.',
+    'fin-negocio': 'Tus ventas, costos y utilidad del mes, el flujo de caja, lo que te deben y lo que debes pagar.',
+    'fin-fijos': 'Anota una vez tus pagos fijos y se registran solos cada mes. Lleva tus deudas con cuotas y mira cuánto te falta.',
+    'tablero-agenda': 'Indicadores y análisis de todas tus hojas: ventas, gastos, materiales y proyectos.',
+    'calendario-anual': 'Todas tus fechas del año en un solo vistazo, listas para llevar a tu calendario.'
+  };
+  var estado = { activa: false };
+  var sb = null;
+  (function () { var i = document.getElementById('agenda-intro'); if (i && i.textContent.indexOf('(se guardan en tu dispositivo)') >= 0) i.textContent = i.textContent.replace('(se guardan en tu dispositivo)', '(se guardan en tu dispositivo; con la membresía puedes activar, si quieres, la copia en la nube)'); })();
+  var $ = function (id) { return document.getElementById(id); };
+  function leerCache() { try { var c = JSON.parse(localStorage.getItem(CLAVE)); return c && Date.parse(c.vence) > Date.now() ? c : null; } catch (e) { return null; } }
+  function fecha(iso) { return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function aplicar() {
+    var act = !!estado.activa;
+    Object.keys(PAGO).forEach(function (id) {
+      var h = $(id); if (!h) return;
+      h.classList.toggle('sin-membresia', !act);
+      if (!h.querySelector('.candado-pago')) {
+        var c = document.createElement('div'); c.className = 'candado-pago no-imprimir';
+        c.innerHTML = '<div class="cp-ic" aria-hidden="true">💎</div><h4>Hoja de la membresía</h4><p></p><button type="button" class="boton-primario boton-chico" data-abrir-membresia>Ver planes desde $7.000 al mes</button><small>Tus hojas gratis siguen igual y lo que ya escribiste sigue guardado en este dispositivo.</small>';
+        c.querySelector('p').textContent = PAGO[id];
+        h.querySelector('header').insertAdjacentElement('afterend', c);
+      }
+      var a = document.querySelector('#menu-hojas-lista a[data-hoja="' + id + '"]');
+      if (a) { a.textContent = a.textContent.replace(/ 💎$/, '') + (act ? '' : ' 💎'); a.classList.toggle('de-pago', !act); }
+      var at = document.querySelector('.atajo[data-ir="' + id + '"]'); if (at) at.classList.toggle('de-pago', !act);
+    });
+    var t = $('membresia-tarjeta'), tx = $('mt-texto'), bt = $('mt-boton');
+    if (t && haySesionGuardada()) {
+      t.hidden = false;
+      if (act) { tx.innerHTML = '💎 <strong>Tu membresía está activa</strong> hasta el ' + fecha(estado.vence) + '.'; bt.textContent = 'Renovar'; }
+      else { tx.innerHTML = '💎 <strong>Agenda completa:</strong> finanzas, tablero, calendario del año y copia en la nube opcional.'; bt.textContent = 'Ver planes'; }
+    }
+    window.lrMembresia = { activa: act, vence: estado.vence || null, plan: estado.plan || null };
+    var actual = document.querySelector('#menu-hojas-lista a.activa'); if (actual) $('menu-hojas-actual').textContent = actual.textContent;
+    document.dispatchEvent(new CustomEvent('membresia:lista', { detail: window.lrMembresia }));
+    if (act && sb) iniciarNube();
+    pintarNubeOff();
+  }
+  /* ---- Copia en la nube: solo con membresía activa. La agenda sigue guardándose primero en el dispositivo. ---- */
+  var CL_BASE = 'lrNubeBase', CL_SUCIO = 'lrNubeSucio', CLAVE_AG = 'rosinaAgenda';
+  var nube = { listo: false, ocupado: false, t: null };
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+  function estadoNube(t) { var e = $('mt-nube'); if (e) e.textContent = t || ''; }
+  function datosLocales() { try { return JSON.parse(lsGet(CLAVE_AG)) || {}; } catch (e) { return {}; } }
+  function hayLocal() { return Object.keys(datosLocales()).length > 0; }
+  function aplicarNube(d, marca) { lsSet(CLAVE_AG, JSON.stringify(d)); lsSet(CL_BASE, marca); lsDel(CL_SUCIO); location.reload(); }
+  async function subir(base) {
+    if (nube.ocupado) return; nube.ocupado = true; estadoNube('☁️ Guardando en la nube…');
+    var otraVez = false;
+    try {
+      var r = await sb.rpc('agenda_nube_guardar', { p_datos: datosLocales(), p_base: base !== undefined ? base : (lsGet(CL_BASE) || null) });
+      var d = r.data || {};
+      if (d.ok) { lsSet(CL_BASE, d.actualizado); lsDel(CL_SUCIO); estadoNube('☁️ Copia en la nube guardada'); }
+      else if (d.conflicto) otraVez = true;
+      else if (d.error === 'sin_consentimiento') sinAutorizacion();
+      else estadoNube(d.error === 'muy_grande' ? '☁️ La agenda es muy grande para la nube.' : '☁️ No se pudo guardar en la nube; se reintenta con el próximo cambio.');
+    } catch (e) { estadoNube('☁️ Sin conexión: se guardará en la nube cuando vuelva.'); }
+    nube.ocupado = false;
+    if (otraVez) await resolverNube();
+  }
+  async function resolverNube() {
+    var r = await sb.rpc('agenda_nube_leer'), d = r.data || {};
+    if (!d.datos) return subir(null);
+    var usar = confirm('Tu agenda en la nube (guardada desde otro dispositivo) es distinta a la de este dispositivo.\n\nAceptar = usar la de la nube.\nCancelar = quedarme con la de este dispositivo y reemplazar la nube.');
+    if (usar) return aplicarNube(d.datos, d.actualizado);
+    await subir(d.actualizado);
+  }
+  /* La copia en la nube solo funciona si la persona la autorizó (estado.nube viene de mi_membresia()). Mientras no se sepa, no se sincroniza. */
+  function nubeApagada() { return estado.nube !== true; }
+  function pintarNubeOff() {
+    var b = $('mt-nube-on'), sinAutorizar = estado.nube === false;
+    if (b) b.hidden = !(sinAutorizar && estado.activa);
+    if (estado.activa && sinAutorizar) estadoNube('☁️ La copia en la nube está apagada: tu agenda se guarda solo en este dispositivo.');
+    else if (!estado.activa && estado.nubeBorrado) estadoNube('☁️ Tu copia en la nube se conserva hasta el ' + fecha(estado.nubeBorrado) + ' y luego se borra. Si renuevas, la conservas.');
+  }
+  function sinAutorizacion() { nube.listo = false; estado.nube = false; pintarNubeOff(); }
+  async function iniciarNube() {
+    if (nubeApagada()) { pintarNubeOff(); return; }
+    if (nube.listo || !sb) return; nube.listo = true;
+    try {
+      var r = await sb.rpc('agenda_nube_leer'), d = r.data || {};
+      if (d.error) { nube.listo = false; if (d.error === 'sin_consentimiento') sinAutorizacion(); return; }
+      var base = lsGet(CL_BASE), sucio = lsGet(CL_SUCIO) === '1';
+      if (d.vacio) { if (hayLocal()) await subir(null); else estadoNube('☁️ Copia en la nube lista'); }
+      else if (base === d.actualizado) { if (sucio) await subir(); else estadoNube('☁️ Copia en la nube al día'); }
+      else if ((!base && !hayLocal()) || (base && !sucio)) aplicarNube(d.datos, d.actualizado);
+      else await resolverNube();
+    } catch (e) { nube.listo = false; estadoNube('☁️ Sin conexión con la nube'); }
+  }
+  if (window.lrAgenda) window.lrAgenda.alGuardar = function () {
+    if (!estado.activa || nubeApagada()) return;
+    lsSet(CL_SUCIO, '1');
+    if (!nube.listo) return;
+    clearTimeout(nube.t); nube.t = setTimeout(function () { subir(); }, 2500);
+  };
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden' && nube.listo && !nubeApagada() && lsGet(CL_SUCIO) === '1') { clearTimeout(nube.t); subir(); } });
+  async function consultar() {
+    var c = leerCache(); if (c) estado = { activa: true, plan: c.plan, vence: c.vence };   // sin estado.nube: hasta saberlo del servidor no se sincroniza
+    aplicar();
+    if (!haySesionGuardada()) return;
+    try {
+      sb = await obtenerCliente();
+      var r = await sb.rpc('mi_membresia');
+      if (!r.error && r.data) {
+        estado = { activa: !!r.data.activa, plan: r.data.plan, vence: r.data.vence, nube: !!r.data.nube, nubeBorrado: r.data.nube_borrado || null };
+        try { if (estado.activa) localStorage.setItem(CLAVE, JSON.stringify({ plan: estado.plan, vence: estado.vence })); else localStorage.removeItem(CLAVE); } catch (e) {}
+        aplicar();
+      }
+    } catch (e) { /* sin conexión: se usa lo recordado */ }
+  }
+  var dlg = $('modal-membresia');
+  function abrir() {
+    if (!haySesionGuardada()) { location.href = '/cuenta.html'; return; }
+    $('mm-aviso').textContent = ''; $('mm-pagar').disabled = false;
+    $('mm-acepto-cond').checked = false; $('mm-acepto-inicio').checked = false;
+    $('mm-nube-msg').textContent = (!estado.activa && estado.nubeBorrado) ? 'Tu copia en la nube se conserva hasta el ' + fecha(estado.nubeBorrado) + ' y luego se borra automáticamente.' : '';
+    $('mm-estado').textContent = estado.activa ? 'Tu membresía está activa hasta el ' + fecha(estado.vence) + '. Si renuevas ahora, se suma al tiempo que te queda.' : 'Elige tu plan y activa todas las hojas de pago.';
+    $('mm-pagar').textContent = estado.activa ? 'Renovar con Wompi' : 'Pagar con Wompi';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  document.addEventListener('click', function (e) { if (e.target.closest('[data-abrir-membresia]')) abrir(); });
+  $('mm-cerrar').addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  /* Borrar la copia en la nube: siempre se puede, aunque la membresía haya vencido */
+  $('mm-borrar-nube').addEventListener('click', async function () {
+    var msg = $('mm-nube-msg');
+    if (!confirm('¿Borrar tu copia de la agenda en la nube? Se borra de nuestros servidores y se retira tu autorización; tu agenda sigue en este dispositivo. Para volver a usar la copia tendrás que autorizarla otra vez.')) return;
+    msg.textContent = 'Borrando…';
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.rpc('agenda_nube_borrar'), ok = !r.error && r.data && r.data.ok;
+      if (!ok) { msg.textContent = 'No pudimos borrarla ahora. Inténtalo de nuevo o escríbenos.'; return; }
+      lsDel(CL_BASE); lsDel(CL_SUCIO); lsDel('lrNubeOff'); estado.nube = false; estado.nubeBorrado = null; nube.listo = false;
+      msg.textContent = 'Listo: tu copia en la nube se borró y retiraste tu autorización. Tu agenda sigue en este dispositivo.'; pintarNubeOff();
+    } catch (e) { msg.textContent = 'No pudimos conectar. Inténtalo de nuevo.'; }
+  });
+  /* Autorización de la copia en la nube: casilla + botón; se guarda en la base con fecha y versión (agenda_nube_consentir). */
+  var dlgNube = $('modal-nube');
+  function abrirNube() { $('mn-acepto').checked = false; $('mn-aviso').textContent = ''; $('mn-activar').disabled = false; if (dlgNube.showModal) dlgNube.showModal(); else dlgNube.setAttribute('open', ''); }
+  function cerrarNube() { if (dlgNube.close) dlgNube.close(); else dlgNube.removeAttribute('open'); }
+  $('mt-nube-on').addEventListener('click', abrirNube);
+  $('mn-cerrar').addEventListener('click', cerrarNube);
+  $('mn-ahora-no').addEventListener('click', cerrarNube);
+  dlgNube.addEventListener('click', function (e) { if (e.target === dlgNube) cerrarNube(); });
+  $('mn-activar').addEventListener('click', async function () {
+    var b = this, av = $('mn-aviso');
+    if (!$('mn-acepto').checked) { av.textContent = 'Para activar la copia, marca la casilla de autorización.'; $('mn-acepto').focus(); return; }
+    b.disabled = true; av.textContent = 'Activando…';
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.rpc('agenda_nube_consentir', { p_version: VERSION_NUBE }), d = r.data || {};
+      if (!r.error && d.ok) { estado.nube = true; cerrarNube(); nube.listo = false; $('mt-nube-on').hidden = true; estadoNube('☁️ Activando la copia en la nube…'); iniciarNube(); return; }
+      av.textContent = d.error === 'version_vieja' ? 'El texto se actualizó. Recarga la página y vuelve a intentarlo.' : d.error === 'sin_membresia' ? 'Tu membresía no está activa.' : 'No pudimos activarla ahora. Inténtalo de nuevo.';
+    } catch (e) { av.textContent = 'No pudimos conectar. Inténtalo de nuevo.'; }
+    b.disabled = false;
+  });
+  $('mm-pagar').addEventListener('click', async function () {
+    var b = this, av = $('mm-aviso'), plan = (document.querySelector('input[name="mm-plan"]:checked') || {}).value || 'anual';
+    var c1 = $('mm-acepto-cond'), c2 = $('mm-acepto-inicio');
+    if (!c1.checked || !c2.checked) { av.textContent = 'Para continuar, marca las dos casillas: aceptar las condiciones y pedir que el servicio empiece de inmediato.'; (c1.checked ? c2 : c1).focus(); return; }
+    b.disabled = true; av.textContent = 'Abriendo Wompi…';
+    var d = null;
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.functions.invoke('crear-pago-wompi', { body: { accion: 'membresia', plan: plan, acepta: { condiciones: true, inicio_inmediato: true, version: VERSION_CONDICIONES } } });
+      d = r.data;
+      if (r.error) { try { d = await r.error.context.json(); } catch (e) {} }
+    } catch (e) {}
+    if (d && d.url) { location.href = d.url; return; }
+    av.textContent = (d && d.error) || 'No pudimos iniciar el pago. Inténtalo de nuevo.'; b.disabled = false;
+  });
+  consultar().then(function () { if (location.hash === '#membresia' && haySesionGuardada()) abrir(); });
+})();
+</script>
 <script type="module">
 // Lo que la clienta compró en Lana Rosa se agrega solo: lanas e hilos al "Inventario de lanas" y patrones a "Mi colección de patrones"
 import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';

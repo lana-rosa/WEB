@@ -34,7 +34,7 @@ const CATEGORIA_EMPAQUES = 'Empaques'; // las bolsas se cobran en la venta, no s
 const CENTRO_MERCERIA = '2c1577b5-514e-4952-ba15-4feb64ea1879'; // Tienda/Mercería: el mismo filtro de obtener_merceria_web
 // Versión vigente de las condiciones de la membresía (= su «Fecha de actualización» en politicas.html#membresia). Si cambian de forma
 // importante: subir esta versión, la de agenda-rosina.html (VERSION_CONDICIONES) y la de la base (fn_nube_version).
-const VERSION_CONDICIONES = '2026-10-12';
+const VERSION_CONDICIONES = '2026-10-13';
 // La membresía NO está a la venta desde el 12-oct-2026 (la agenda completa es gratuita). Para volver a venderla: true, tras la revisión de la abogada.
 const MEMBRESIA_EN_VENTA = false;
 // Membresía de la Agenda de Rosina (COP)
