@@ -1,0 +1,44 @@
+<dialog class="modal-membresia no-imprimir" id="modal-membresia" aria-labelledby="mm-titulo">
+  <button type="button" class="mm-cerrar" id="mm-cerrar" aria-label="Cerrar">✕</button>
+  <h2 id="mm-titulo">Agenda de Rosina completa 💎</h2>
+  <p class="mm-estado" id="mm-estado"></p>
+  <ul class="mm-lista">
+    <li>Finanzas completas: panel, movimientos, presupuesto y metas</li>
+    <li>Tablero con indicadores de todas tus hojas</li>
+    <li>Calendario del año con todas tus fechas</li>
+    <li>Sincronización con Google Calendar</li>
+    <li>Copia en la nube y uso en varios dispositivos (opcional: la activas tú)</li>
+  </ul>
+  <div class="mm-planes" role="radiogroup" aria-label="Plan de la membresía">
+    <label class="mm-plan"><input type="radio" name="mm-plan" value="mensual"><span><strong>Mensual</strong><em>$7.000</em><small>al mes</small></span></label>
+    <label class="mm-plan"><input type="radio" name="mm-plan" value="anual" checked><span><strong>Anual</strong><em>$57.000</em><small>al año · ahorras $27.000</small><b>casi 4 meses gratis</b></span></label>
+  </div>
+  <div class="mm-aceptos">
+    <label class="mm-acepto"><input type="checkbox" id="mm-acepto-cond"><span>Acepto las <a href="/politicas.html#membresia" target="_blank" rel="noopener">condiciones de la membresía</a> y la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos</a>.</span></label>
+    <label class="mm-acepto"><input type="checkbox" id="mm-acepto-inicio"><span>Solicito que el servicio comience inmediatamente después de aprobarse mi pago y entiendo las consecuencias que esto puede tener sobre mi derecho de retracto, en los términos legalmente aplicables (<a href="/politicas.html#membresia" target="_blank" rel="noopener">apartado 5 de las condiciones</a>).</span></label>
+  </div>
+  <button type="button" class="boton-primario" id="mm-pagar">Pagar con Wompi</button>
+  <p class="cs-aviso" id="mm-aviso" role="status"></p>
+  <small class="nota-pie">Pago seguro con Wompi (tarjeta, PSE, Nequi y más). No hay cobro automático: te avisamos antes de que venza. Tus hojas gratis y tus datos siguen siendo tuyos. Guardamos la fecha y hora en que aceptas.</small>
+  <div class="mm-nube">
+    <button type="button" class="enlace-copia" id="mm-borrar-nube">☁️ Borrar mi copia en la nube</button>
+    <small id="mm-nube-msg" role="status"></small>
+  </div>
+</dialog>
+<dialog class="modal-membresia no-imprimir" id="modal-nube" aria-labelledby="mn-titulo">
+  <button type="button" class="mm-cerrar" id="mn-cerrar" aria-label="Cerrar">✕</button>
+  <h2 id="mn-titulo">Copia de tu agenda en la nube ☁️</h2>
+  <p class="mm-estado">Es opcional: tú decides si la activas.</p>
+  <ul class="mn-lista">
+    <li><strong>Qué guardamos:</strong> una copia completa de tu agenda: proyectos, materiales, pedidos, ventas y las hojas de Finanzas (ingresos, gastos, deudas, tarjetas y metas). Si anotas datos de tus clientas (nombre, WhatsApp, cumpleaños), tú eres responsable de contar con su autorización.</li>
+    <li><strong>Para qué:</strong> solo para tener un respaldo y abrir tu agenda en otros dispositivos. No la usamos para publicidad ni para entrenar inteligencia artificial, y nadie de nuestro equipo la lee, salvo para darte soporte si lo pides o por una obligación legal.</li>
+    <li><strong>Dónde:</strong> en los servidores de nuestro proveedor Supabase, en São Paulo (Brasil), con acceso solo desde tu cuenta.</li>
+    <li><strong>Cuánto tiempo:</strong> mientras tu membresía esté vigente y 90 días después de que venza; luego la borramos (antes te avisamos). Puedes borrarla cuando quieras y, al hacerlo, se retira tu autorización.</li>
+    <li><strong>Tus derechos:</strong> puedes conocer, corregir o pedir que borremos tus datos desde la agenda o escribiéndonos a contacto@lanarosacrochet.com o por WhatsApp, incluso si tu membresía ya venció y sin pagar nada.</li>
+    <li>Sin la copia, tu agenda funciona igual y se guarda en este dispositivo.</li>
+  </ul>
+  <label class="mm-acepto"><input type="checkbox" id="mn-acepto"><span>Autorizo el almacenamiento de una copia de mi agenda en la nube, incluidos los datos que he registrado, para respaldar mi información y acceder a ella desde otros dispositivos. He leído la información sobre el tratamiento, la conservación y la eliminación de mis datos (<a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos, apartado 11</a>). Guardamos la fecha y hora de mi autorización.</span></label>
+  <button type="button" class="boton-primario" id="mn-activar">Activar la copia en la nube</button>
+  <button type="button" class="enlace-copia" id="mn-ahora-no">Ahora no</button>
+  <p class="cs-aviso" id="mn-aviso" role="status"></p>
+</dialog>

@@ -1,0 +1,196 @@
+<script type="module">
+// Membresía de la Agenda de Rosina: hojas de pago (Finanzas, Tablero, Calendario del año, Google Calendar).
+// MEMBRESIA_ACTIVA: APAGADA el 12-oct-2026 por decisión de Sara: la agenda completa es gratuita con la cuenta y no se vende ninguna membresía.
+// Para volver a venderla: ponerla en true, poner MEMBRESIA_EN_VENTA = true en la función crear-pago-wompi y seguir la lista de PENDIENTES.md
+// (revisión de la abogada, pagos de prueba, parches de correos de la migración 18). Se quitó a propósito la vista previa ?membresia=ver.
+import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
+(function () {
+  var MEMBRESIA_ACTIVA = false;
+  var CLAVE = 'lrMembresia';
+  // Versión de las condiciones de la membresía y del texto de la copia en la nube que la persona acepta (12-oct-2026).
+  // Debe coincidir con VERSION_CONDICIONES de la función crear-pago-wompi y con fn_nube_version() de la base.
+  var VERSION_CONDICIONES = '2026-10-12', VERSION_NUBE = '2026-10-12';
+  if (!MEMBRESIA_ACTIVA) return;
+  var PAGO = {
+    'fin-resumen': 'Mira de un vistazo cuánto entra, cuánto sale y cuánto te queda cada mes, con gráficas y gastos por categoría.',
+    'fin-movimientos': 'Anota lo que entra y sale, incluso escribiendo "gasté 50 mil en mercado", y filtra por mes y categoría.',
+    'fin-presupuesto': 'Pon un tope por categoría, crea metas con fecha, planes del año y mira cuánto apartar cada mes.',
+    'fin-tcredito': 'Controla el cupo, el corte y el pago de tus tarjetas de crédito y cuánto debes en cada una.',
+    'fin-analisis': 'Compara tus meses, mira qué categoría sube, cuánto ahorras mes a mes y el resumen de tu año.',
+    'fin-negocio': 'Tus ventas, costos y utilidad del mes, el flujo de caja, lo que te deben y lo que debes pagar.',
+    'fin-fijos': 'Anota una vez tus pagos fijos y se registran solos cada mes. Lleva tus deudas con cuotas y mira cuánto te falta.',
+    'tablero-agenda': 'Indicadores y análisis de todas tus hojas: ventas, gastos, materiales y proyectos.',
+    'calendario-anual': 'Todas tus fechas del año en un solo vistazo, listas para llevar a Google Calendar.'
+  };
+  var estado = { activa: false };
+  var sb = null;
+  (function () { var i = document.getElementById('agenda-intro'); if (i && i.textContent.indexOf('(se guardan en tu dispositivo)') >= 0) i.textContent = i.textContent.replace('(se guardan en tu dispositivo)', '(se guardan en tu dispositivo; con la membresía puedes activar, si quieres, la copia en la nube)'); })();
+  var $ = function (id) { return document.getElementById(id); };
+  function leerCache() { try { var c = JSON.parse(localStorage.getItem(CLAVE)); return c && Date.parse(c.vence) > Date.now() ? c : null; } catch (e) { return null; } }
+  function fecha(iso) { return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function aplicar() {
+    var act = !!estado.activa;
+    Object.keys(PAGO).forEach(function (id) {
+      var h = $(id); if (!h) return;
+      h.classList.toggle('sin-membresia', !act);
+      if (!h.querySelector('.candado-pago')) {
+        var c = document.createElement('div'); c.className = 'candado-pago no-imprimir';
+        c.innerHTML = '<div class="cp-ic" aria-hidden="true">💎</div><h4>Hoja de la membresía</h4><p></p><button type="button" class="boton-primario boton-chico" data-abrir-membresia>Ver planes desde $7.000 al mes</button><small>Tus hojas gratis siguen igual y lo que ya escribiste sigue guardado en este dispositivo.</small>';
+        c.querySelector('p').textContent = PAGO[id];
+        h.querySelector('header').insertAdjacentElement('afterend', c);
+      }
+      var a = document.querySelector('#menu-hojas-lista a[data-hoja="' + id + '"]');
+      if (a) { a.textContent = a.textContent.replace(/ 💎$/, '') + (act ? '' : ' 💎'); a.classList.toggle('de-pago', !act); }
+      var at = document.querySelector('.atajo[data-ir="' + id + '"]'); if (at) at.classList.toggle('de-pago', !act);
+    });
+    var caja = $('calendario-sync'); if (caja) caja.classList.toggle('bloqueado-pago', !act);
+    var t = $('membresia-tarjeta'), tx = $('mt-texto'), bt = $('mt-boton');
+    if (t && haySesionGuardada()) {
+      t.hidden = false;
+      if (act) { tx.innerHTML = '💎 <strong>Tu membresía está activa</strong> hasta el ' + fecha(estado.vence) + '.'; bt.textContent = 'Renovar'; }
+      else { tx.innerHTML = '💎 <strong>Agenda completa:</strong> finanzas, tablero, calendario del año, Google Calendar y copia en la nube.'; bt.textContent = 'Ver planes'; }
+    }
+    window.lrMembresia = { activa: act, vence: estado.vence || null, plan: estado.plan || null };
+    var actual = document.querySelector('#menu-hojas-lista a.activa'); if (actual) $('menu-hojas-actual').textContent = actual.textContent;
+    document.dispatchEvent(new CustomEvent('membresia:lista', { detail: window.lrMembresia }));
+    if (act && sb) iniciarNube();
+    pintarNubeOff();
+  }
+  /* ---- Copia en la nube: solo con membresía activa. La agenda sigue guardándose primero en el dispositivo. ---- */
+  var CL_BASE = 'lrNubeBase', CL_SUCIO = 'lrNubeSucio', CLAVE_AG = 'rosinaAgenda';
+  var nube = { listo: false, ocupado: false, t: null };
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+  function estadoNube(t) { var e = $('mt-nube'); if (e) e.textContent = t || ''; }
+  function datosLocales() { try { return JSON.parse(lsGet(CLAVE_AG)) || {}; } catch (e) { return {}; } }
+  function hayLocal() { return Object.keys(datosLocales()).length > 0; }
+  function aplicarNube(d, marca) { lsSet(CLAVE_AG, JSON.stringify(d)); lsSet(CL_BASE, marca); lsDel(CL_SUCIO); location.reload(); }
+  async function subir(base) {
+    if (nube.ocupado) return; nube.ocupado = true; estadoNube('☁️ Guardando en la nube…');
+    var otraVez = false;
+    try {
+      var r = await sb.rpc('agenda_nube_guardar', { p_datos: datosLocales(), p_base: base !== undefined ? base : (lsGet(CL_BASE) || null) });
+      var d = r.data || {};
+      if (d.ok) { lsSet(CL_BASE, d.actualizado); lsDel(CL_SUCIO); estadoNube('☁️ Copia en la nube guardada'); }
+      else if (d.conflicto) otraVez = true;
+      else if (d.error === 'sin_consentimiento') sinAutorizacion();
+      else estadoNube(d.error === 'muy_grande' ? '☁️ La agenda es muy grande para la nube.' : '☁️ No se pudo guardar en la nube; se reintenta con el próximo cambio.');
+    } catch (e) { estadoNube('☁️ Sin conexión: se guardará en la nube cuando vuelva.'); }
+    nube.ocupado = false;
+    if (otraVez) await resolverNube();
+  }
+  async function resolverNube() {
+    var r = await sb.rpc('agenda_nube_leer'), d = r.data || {};
+    if (!d.datos) return subir(null);
+    var usar = confirm('Tu agenda en la nube (guardada desde otro dispositivo) es distinta a la de este dispositivo.\n\nAceptar = usar la de la nube.\nCancelar = quedarme con la de este dispositivo y reemplazar la nube.');
+    if (usar) return aplicarNube(d.datos, d.actualizado);
+    await subir(d.actualizado);
+  }
+  /* La copia en la nube solo funciona si la persona la autorizó (estado.nube viene de mi_membresia()). Mientras no se sepa, no se sincroniza. */
+  function nubeApagada() { return estado.nube !== true; }
+  function pintarNubeOff() {
+    var b = $('mt-nube-on'), sinAutorizar = estado.nube === false;
+    if (b) b.hidden = !(sinAutorizar && estado.activa);
+    if (estado.activa && sinAutorizar) estadoNube('☁️ La copia en la nube está apagada: tu agenda se guarda solo en este dispositivo.');
+    else if (!estado.activa && estado.nubeBorrado) estadoNube('☁️ Tu copia en la nube se conserva hasta el ' + fecha(estado.nubeBorrado) + ' y luego se borra. Si renuevas, la conservas.');
+  }
+  function sinAutorizacion() { nube.listo = false; estado.nube = false; pintarNubeOff(); }
+  async function iniciarNube() {
+    if (nubeApagada()) { pintarNubeOff(); return; }
+    if (nube.listo || !sb) return; nube.listo = true;
+    try {
+      var r = await sb.rpc('agenda_nube_leer'), d = r.data || {};
+      if (d.error) { nube.listo = false; if (d.error === 'sin_consentimiento') sinAutorizacion(); return; }
+      var base = lsGet(CL_BASE), sucio = lsGet(CL_SUCIO) === '1';
+      if (d.vacio) { if (hayLocal()) await subir(null); else estadoNube('☁️ Copia en la nube lista'); }
+      else if (base === d.actualizado) { if (sucio) await subir(); else estadoNube('☁️ Copia en la nube al día'); }
+      else if ((!base && !hayLocal()) || (base && !sucio)) aplicarNube(d.datos, d.actualizado);
+      else await resolverNube();
+    } catch (e) { nube.listo = false; estadoNube('☁️ Sin conexión con la nube'); }
+  }
+  if (window.lrAgenda) window.lrAgenda.alGuardar = function () {
+    if (!estado.activa || nubeApagada()) return;
+    lsSet(CL_SUCIO, '1');
+    if (!nube.listo) return;
+    clearTimeout(nube.t); nube.t = setTimeout(function () { subir(); }, 2500);
+  };
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden' && nube.listo && !nubeApagada() && lsGet(CL_SUCIO) === '1') { clearTimeout(nube.t); subir(); } });
+  async function consultar() {
+    var c = leerCache(); if (c) estado = { activa: true, plan: c.plan, vence: c.vence };   // sin estado.nube: hasta saberlo del servidor no se sincroniza
+    aplicar();
+    if (!haySesionGuardada()) return;
+    try {
+      sb = await obtenerCliente();
+      var r = await sb.rpc('mi_membresia');
+      if (!r.error && r.data) {
+        estado = { activa: !!r.data.activa, plan: r.data.plan, vence: r.data.vence, nube: !!r.data.nube, nubeBorrado: r.data.nube_borrado || null };
+        try { if (estado.activa) localStorage.setItem(CLAVE, JSON.stringify({ plan: estado.plan, vence: estado.vence })); else localStorage.removeItem(CLAVE); } catch (e) {}
+        aplicar();
+      }
+    } catch (e) { /* sin conexión: se usa lo recordado */ }
+  }
+  var dlg = $('modal-membresia');
+  function abrir() {
+    if (!haySesionGuardada()) { location.href = '/cuenta.html'; return; }
+    $('mm-aviso').textContent = ''; $('mm-pagar').disabled = false;
+    $('mm-acepto-cond').checked = false; $('mm-acepto-inicio').checked = false;
+    $('mm-nube-msg').textContent = (!estado.activa && estado.nubeBorrado) ? 'Tu copia en la nube se conserva hasta el ' + fecha(estado.nubeBorrado) + ' y luego se borra automáticamente.' : '';
+    $('mm-estado').textContent = estado.activa ? 'Tu membresía está activa hasta el ' + fecha(estado.vence) + '. Si renuevas ahora, se suma al tiempo que te queda.' : 'Elige tu plan y activa todas las hojas de pago.';
+    $('mm-pagar').textContent = estado.activa ? 'Renovar con Wompi' : 'Pagar con Wompi';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  document.addEventListener('click', function (e) { if (e.target.closest('[data-abrir-membresia]')) abrir(); });
+  $('mm-cerrar').addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  /* Borrar la copia en la nube: siempre se puede, aunque la membresía haya vencido */
+  $('mm-borrar-nube').addEventListener('click', async function () {
+    var msg = $('mm-nube-msg');
+    if (!confirm('¿Borrar tu copia de la agenda en la nube? Se borra de nuestros servidores y se retira tu autorización; tu agenda sigue en este dispositivo. Para volver a usar la copia tendrás que autorizarla otra vez.')) return;
+    msg.textContent = 'Borrando…';
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.rpc('agenda_nube_borrar'), ok = !r.error && r.data && r.data.ok;
+      if (!ok) { msg.textContent = 'No pudimos borrarla ahora. Inténtalo de nuevo o escríbenos.'; return; }
+      lsDel(CL_BASE); lsDel(CL_SUCIO); lsDel('lrNubeOff'); estado.nube = false; estado.nubeBorrado = null; nube.listo = false;
+      msg.textContent = 'Listo: tu copia en la nube se borró y retiraste tu autorización. Tu agenda sigue en este dispositivo.'; pintarNubeOff();
+    } catch (e) { msg.textContent = 'No pudimos conectar. Inténtalo de nuevo.'; }
+  });
+  /* Autorización de la copia en la nube: casilla + botón; se guarda en la base con fecha y versión (agenda_nube_consentir). */
+  var dlgNube = $('modal-nube');
+  function abrirNube() { $('mn-acepto').checked = false; $('mn-aviso').textContent = ''; $('mn-activar').disabled = false; if (dlgNube.showModal) dlgNube.showModal(); else dlgNube.setAttribute('open', ''); }
+  function cerrarNube() { if (dlgNube.close) dlgNube.close(); else dlgNube.removeAttribute('open'); }
+  $('mt-nube-on').addEventListener('click', abrirNube);
+  $('mn-cerrar').addEventListener('click', cerrarNube);
+  $('mn-ahora-no').addEventListener('click', cerrarNube);
+  dlgNube.addEventListener('click', function (e) { if (e.target === dlgNube) cerrarNube(); });
+  $('mn-activar').addEventListener('click', async function () {
+    var b = this, av = $('mn-aviso');
+    if (!$('mn-acepto').checked) { av.textContent = 'Para activar la copia, marca la casilla de autorización.'; $('mn-acepto').focus(); return; }
+    b.disabled = true; av.textContent = 'Activando…';
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.rpc('agenda_nube_consentir', { p_version: VERSION_NUBE }), d = r.data || {};
+      if (!r.error && d.ok) { estado.nube = true; cerrarNube(); nube.listo = false; $('mt-nube-on').hidden = true; estadoNube('☁️ Activando la copia en la nube…'); iniciarNube(); return; }
+      av.textContent = d.error === 'version_vieja' ? 'El texto se actualizó. Recarga la página y vuelve a intentarlo.' : d.error === 'sin_membresia' ? 'Tu membresía no está activa.' : 'No pudimos activarla ahora. Inténtalo de nuevo.';
+    } catch (e) { av.textContent = 'No pudimos conectar. Inténtalo de nuevo.'; }
+    b.disabled = false;
+  });
+  $('mm-pagar').addEventListener('click', async function () {
+    var b = this, av = $('mm-aviso'), plan = (document.querySelector('input[name="mm-plan"]:checked') || {}).value || 'anual';
+    var c1 = $('mm-acepto-cond'), c2 = $('mm-acepto-inicio');
+    if (!c1.checked || !c2.checked) { av.textContent = 'Para continuar, marca las dos casillas: aceptar las condiciones y pedir que el servicio empiece de inmediato.'; (c1.checked ? c2 : c1).focus(); return; }
+    b.disabled = true; av.textContent = 'Abriendo Wompi…';
+    var d = null;
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.functions.invoke('crear-pago-wompi', { body: { accion: 'membresia', plan: plan, acepta: { condiciones: true, inicio_inmediato: true, version: VERSION_CONDICIONES } } });
+      d = r.data;
+      if (r.error) { try { d = await r.error.context.json(); } catch (e) {} }
+    } catch (e) {}
+    if (d && d.url) { location.href = d.url; return; }
+    av.textContent = (d && d.error) || 'No pudimos iniciar el pago. Inténtalo de nuevo.'; b.disabled = false;
+  });
+  consultar().then(function () { if (location.hash === '#membresia' && haySesionGuardada()) abrir(); });
+})();
+</script>

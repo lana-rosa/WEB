@@ -40,7 +40,7 @@ Cómo debe actuar un agente:
 
 ## Otras líneas del negocio
 
-- [Lana Rosa Academy](https://lanarosacrochet.com/academy/): academia de crochet en Villamaría y Manizales; taller presencial, clases particulares por horas ($25.000 COP la hora por persona), la Agenda de Rosina (digital, con membresía) y recursos gratuitos. Cursos virtuales: próximamente.
+- [Lana Rosa Academy](https://lanarosacrochet.com/academy/): academia de crochet en Villamaría y Manizales; taller presencial, clases particulares por horas ($25.000 COP la hora por persona), la Agenda de Rosina (digital, gratuita con tu cuenta) y recursos gratuitos. Cursos virtuales: próximamente.
 - [Mercería](https://lanarosacrochet.com/merceria/): insumos para tejedoras (lanas e hilos para crochet y tejido) con envío a toda Colombia. Las lanas y los hilos se venden por ovillo completo, no por gramos sueltos.
 - [Catálogo de la Mercería](https://lanarosacrochet.com/merceria/catalogo/): productos de mercería con precio y disponibilidad.
 - [Términos de venta de la Mercería](https://lanarosacrochet.com/merceria/terminos-de-venta/): unidad de venta (ovillo completo), envío pagado a la transportadora al recibir, recogida gratuita, retracto y garantía.
