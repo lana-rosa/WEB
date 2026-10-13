@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" data-casa="academy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rosina y la gran aventura de la primera cadeneta — Lana Rosa Crochet</title>
+<meta name="description" content="Una aventura interactiva para que niños de 6 a 8 años aprendan crochet con Rosina y sus amigos, acompañados por una persona adulta.">
+<!-- Aún sin publicar en buscadores: quitar esta línea cuando el equipo apruebe el lanzamiento (ver herramientas/aventuras-de-rosina/LEEME.md). -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://lanarosacrochet.com/aventuras-de-rosina/">
+<meta name="theme-color" content="#cc1786">
+<link rel="icon" type="image/png" href="/img/favicon-256.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<!-- Producto infantil: a propósito NO lleva Google Tag Manager, aviso de cookies, cuentas, carrito ni scripts de terceros.
+     Solo usa las fuentes y las imágenes del propio sitio. -->
+<link rel="stylesheet" href="/css/fuentes.css">
+<link rel="stylesheet" href="/aventuras-de-rosina/aventura.css">
+</head>
+<body>
+<a class="saltar" href="#app">Saltar al contenido</a>
+<header class="cab">
+  <a class="cab-logo" href="/academy/" aria-label="Volver a Lana Rosa Academy"><img src="/img/logo-lana-rosa-nuevo.webp" alt="Lana Rosa Crochet" width="560" height="331"></a>
+  <nav class="cab-nav" aria-label="Principal">
+    <a href="#/mapa">🗺️ Mapa</a>
+    <a href="#/pasaporte">📒 Pasaporte</a>
+    <a href="#/ayuda">🤝 Ayuda</a>
+    <a href="#/adultos">Adultos</a>
+  </nav>
+</header>
+<div class="aviso aviso-almacen" id="aviso-almacen" role="alert" hidden><strong>Tu navegador no deja guardar el progreso.</strong> Puedes jugar igual, pero al cerrar la página empezarás desde cero.</div>
+<main id="app" tabindex="-1">
+  <noscript><p class="pantalla">Esta aventura necesita JavaScript para funcionar. Actívalo en tu navegador e inténtalo de nuevo.</p></noscript>
+</main>
+<footer class="pie">
+  <p>Hecho con cariño por <a href="/academy/">Lana Rosa Crochet</a>. Tu progreso se guarda solo en este dispositivo; no usamos cuentas ni cookies de seguimiento. <a href="/aventuras-de-rosina/privacidad.html">Privacidad de las familias</a></p>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<dialog id="dlg-ayuda" aria-labelledby="ayuda-t">
+  <h2 id="ayuda-t">¿Cómo te ayudo?</h2>
+  <div class="ayuda-botones">
+    <button type="button" class="btn btn-suave" data-ayuda="repetir">👀 Ver de nuevo</button>
+    <button type="button" class="btn btn-suave" data-ayuda="pista">💡 Dame una pista</button>
+    <button type="button" class="btn btn-suave" data-ayuda="simple">🧩 Practicar algo más sencillo</button>
+    <button type="button" class="btn btn-suave" data-ayuda="adulto">🙋 Pedir ayuda a una persona adulta</button>
+  </div>
+  <div id="ayuda-resp" class="ayuda-resp" role="status" aria-live="polite"></div>
+  <div class="acciones"><button type="button" class="btn btn-principal" data-ayuda="cerrar">Listo, gracias</button></div>
+</dialog>
+
+<dialog id="dlg-confirmar" aria-labelledby="confirmar-titulo">
+  <h2 id="confirmar-titulo">¿Borrar todo tu progreso?</h2>
+  <p>Se borrarán tu pasaporte, tus logros y tus misiones completadas de este dispositivo. No se puede deshacer.</p>
+  <div class="acciones">
+    <button type="button" class="btn btn-peligro" data-confirmar="si">Sí, borrar mi progreso</button>
+    <button type="button" class="btn btn-principal" data-confirmar="no">No, volver</button>
+  </div>
+</dialog>
+
+<script type="module" src="/aventuras-de-rosina/js/app.js"></script>
+</body>
+</html>
