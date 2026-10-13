@@ -3,9 +3,13 @@
 // Secretos (Supabase → Edge Functions → Secrets): WOMPI_PUBLIC_KEY, WOMPI_INTEGRITY_SECRET.
 // { accion: 'estado' }  -> modo de los pagos ('produccion' | 'pruebas'); la web muestra el botón al público solo en producción.
 // { accion: 'cotizar', correo, telefono, ciudad?, entrega?, items } -> resumen con el descuento de primera compra (sin crear nada).
-// { accion: 'membresia', plan: 'mensual' | 'anual', cliente?: { nombre, telefono } } -> pago de la membresía de la Agenda de Rosina.
+// { accion: 'membresia', plan: 'mensual' | 'anual', acepta: { condiciones: true, inicio_inmediato: true, version }, cliente?: { nombre, telefono } }
+//   -> pago de la membresía de la Agenda de Rosina.
 //   Exige sesión (Authorization: Bearer). El precio sale de PRECIOS_MEMBRESIA, nunca del navegador. Es un pedido digital
 //   (sin envío, sin descuento de primera compra, sin ERP/CRM); al quedar pagado, un trigger de la base activa la membresía.
+//   ACEPTACIÓN EXPRESA (12-oct-2026, revisión legal): no se crea el pedido si no llegan las dos casillas (aceptar las condiciones y pedir que el
+//   servicio empiece de inmediato) con la versión vigente de las condiciones; la hora la pone el servidor y queda en pedidos_web
+//   (acepta_condiciones_version / _at / acepta_inicio_inmediato). El correo del comprobante la incluye como constancia.
 // Entrega: 'domicilio' (por defecto, con tarifa de envío por ciudad) o 'recogida' (recoge en tienda, envío $0, sin dirección).
 // Patrones digitales (categoría de inventario "Patrones", se venden desde la Mercería): sin envío ni dirección, se descargan desde la cuenta.
 // Un carrito con patrones no se mezcla con productos físicos. Los patrones NO llevan el descuento de primera compra.
@@ -28,6 +32,11 @@ const CATEGORIA_DIGITAL = 'Patrones';
 const CATEGORIAS_POR_OVILLO = ['Lanas', 'Hilos'];
 const CATEGORIA_EMPAQUES = 'Empaques'; // las bolsas se cobran en la venta, no se venden en la web
 const CENTRO_MERCERIA = '2c1577b5-514e-4952-ba15-4feb64ea1879'; // Tienda/Mercería: el mismo filtro de obtener_merceria_web
+// Versión vigente de las condiciones de la membresía (= su «Fecha de actualización» en politicas.html#membresia). Si cambian de forma
+// importante: subir esta versión, la de agenda-rosina.html (VERSION_CONDICIONES) y la de la base (fn_nube_version).
+const VERSION_CONDICIONES = '2026-10-12';
+// La membresía NO está a la venta desde el 12-oct-2026 (la agenda completa es gratuita). Para volver a venderla: true, tras la revisión de la abogada.
+const MEMBRESIA_EN_VENTA = false;
 // Membresía de la Agenda de Rosina (COP)
 const PRECIOS_MEMBRESIA: Record<string, { valor: number; nombre: string }> = {
   mensual: { valor: 7000, nombre: 'Membresía Agenda de Rosina · Mensual' },
@@ -69,6 +78,7 @@ Deno.serve(async (req) => {
 
   // ---- Membresía de la Agenda de Rosina ----
   if (body?.accion === 'membresia') {
+    if (!MEMBRESIA_EN_VENTA) return json({ error: 'La membresía no está disponible por ahora: la Agenda de Rosina completa es gratuita con tu cuenta.' }, 403);
     const plan = String(body?.plan || '');
     const precio = PRECIOS_MEMBRESIA[plan];
     if (!precio) return json({ error: 'Elige el plan mensual o anual.' }, 400);
@@ -77,6 +87,9 @@ Deno.serve(async (req) => {
     const { data: u } = await sb.auth.getUser(auth.slice(7));
     const usuario = u?.user;
     if (!usuario || !CORREO_OK.test(usuario.email || '')) return json({ error: 'Tu sesión venció. Entra de nuevo a tu cuenta.' }, 401);
+    const ac = body?.acepta || {};
+    if (ac.condiciones !== true || ac.inicio_inmediato !== true) return json({ error: 'Para continuar, acepta las condiciones de la membresía y pide que el servicio empiece de inmediato.' }, 400);
+    if (ac.version !== VERSION_CONDICIONES) return json({ error: 'Las condiciones se actualizaron. Recarga la página, léelas y vuelve a aceptarlas.' }, 409);
     const correo = String(usuario.email).toLowerCase();
     const cl = body?.cliente || {};
     const meta: any = usuario.user_metadata || {};
@@ -88,6 +101,7 @@ Deno.serve(async (req) => {
     const { data: pedido, error: e } = await sb.from('pedidos_web').insert({
       referencia, user_id: usuario.id, nombre, correo, telefono, ciudad: TEXTO_MEMBRESIA, direccion: TEXTO_MEMBRESIA,
       subtotal: total, envio: 0, total, descuento_pct: 0, descuento: 0, es_digital: true, membresia_plan: plan,
+      acepta_condiciones_version: VERSION_CONDICIONES, acepta_condiciones_at: new Date().toISOString(), acepta_inicio_inmediato: true,
     }).select('id').single();
     if (e || !pedido) return json({ error: 'No pudimos crear tu pedido.' }, 500);
     await sb.from('pedidos_web_items').insert({ pedido_id: pedido.id, producto_id: null, nombre: precio.nombre, precio: total, cantidad: 1 });

@@ -1,0 +1,60 @@
+<script type="module">
+// Sincronización con Google Calendar (se muestra solo si la función está activa y la persona tiene sesión)
+import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
+(async function () {
+  var caja = document.getElementById('calendario-sync');
+  if (!caja || !haySesionGuardada()) return;
+  var txt = document.getElementById('cs-texto'), av = document.getElementById('cs-aviso');
+  var bCon = document.getElementById('cs-conectar'), bSin = document.getElementById('cs-sincronizar'), bDes = document.getElementById('cs-desconectar');
+  var sb, estado = null, temporizador = null, ocupado = false;
+  function aviso(t) { av.textContent = t || ''; }
+  async function llamar(accion, extra) {
+    var r = await sb.functions.invoke('google-calendar', { body: Object.assign({ accion: accion }, extra || {}) });
+    if (r.error) {
+      var d = null; try { d = await r.error.context.json(); } catch (e) {}
+      return d || { error: 'No pudimos conectar con el servicio. Inténtalo de nuevo.' };
+    }
+    return r.data || {};
+  }
+  function pintar() {
+    var conectado = !!(estado && estado.conectado);
+    bCon.hidden = conectado; bSin.hidden = !conectado; bDes.hidden = !conectado;
+    if (!conectado) txt.textContent = 'Conecta tu Google Calendar y tus entregas, proyectos, fechas especiales, ferias y cumpleaños se actualizan solos.';
+    else txt.textContent = 'Conectado' + (estado.correo ? ' como ' + estado.correo : '') + '. ' + (estado.ultima ? 'Última sincronización: ' + (function (f) { return f + (/\.$/.test(f) ? '' : '.'); })(new Date(estado.ultima).toLocaleString('es-CO', { dateStyle: 'medium', timeStyle: 'short' })) : 'Todavía no se ha sincronizado.');
+  }
+  async function sincronizar(manual) {
+    if (ocupado || !estado || !estado.conectado) return;
+    ocupado = true; if (manual) aviso('Sincronizando…');
+    var eventos = window.lrAgenda ? window.lrAgenda.eventos() : [];
+    var r = await llamar('sincronizar', { eventos: eventos });
+    ocupado = false;
+    if (r.reconectar) { estado.conectado = false; pintar(); aviso(r.error); return; }
+    if (r.error) { aviso(r.error); return; }
+    estado.ultima = new Date().toISOString(); pintar();
+    aviso(r.fallos ? 'Algunas fechas no se pudieron sincronizar. Inténtalo otra vez.' : (manual ? '¡Listo! ' + (r.creados + r.actualizados + r.borrados) + ' cambio(s) en tu calendario.' : ''));
+  }
+  try { sb = await obtenerCliente(); } catch (e) { return; }
+  var e0 = await llamar('estado');
+  if (!e0 || e0.configurado !== true) return;           // todavía no está activo: la tarjeta no aparece
+  estado = e0; caja.hidden = false; pintar();
+  bCon.addEventListener('click', async function () {
+    bCon.disabled = true; aviso('Abriendo Google…');
+    var r = await llamar('conectar');
+    if (r.url) { location.href = r.url; return; }
+    bCon.disabled = false; aviso(r.error || 'No pudimos iniciar la conexión.');
+  });
+  bSin.addEventListener('click', function () { sincronizar(true); });
+  bDes.addEventListener('click', async function () {
+    if (!confirm('¿Desconectar Google Calendar? Los eventos que ya están en tu calendario se quedan, pero dejarán de actualizarse.')) return;
+    await llamar('desconectar'); estado = { conectado: false }; pintar(); aviso('Desconectado.');
+  });
+  if (window.lrAgenda) window.lrAgenda.alCambiar = function () {
+    if (!estado || !estado.conectado) return;
+    clearTimeout(temporizador); temporizador = setTimeout(function () { sincronizar(false); }, 4000);
+  };
+  var q = new URLSearchParams(location.search).get('calendario');
+  var mensajes = { cancelado: 'No se conectó: cancelaste el permiso de Google.', sin_permiso: 'Google no entregó el permiso. Inténtalo otra vez y acepta el acceso al calendario.', error: 'Algo salió mal al conectar con Google. Inténtalo otra vez.', no_configurado: 'La sincronización todavía no está activa.' };
+  if (q === 'conectado') { estado = await llamar('estado'); pintar(); caja.scrollIntoView({ block: 'center' }); await sincronizar(true); history.replaceState(null, '', location.pathname + location.hash); }
+  else if (mensajes[q]) { aviso(mensajes[q]); history.replaceState(null, '', location.pathname + location.hash); }
+})();
+</script>
