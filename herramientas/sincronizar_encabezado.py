@@ -301,7 +301,7 @@ def pie_casa(modelo, casa):
     </div>
   </div>
   <div class="contenedor pie-franja">
-    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Nequi, Bancolombia, Bre-B y efectivo</p>
+    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Bancolombia y efectivo</p>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
       <img src="img/logo-sena.png" alt="SENA" width="328" height="320" onerror="this.style.display='none'" loading="lazy" decoding="async">
       <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" width="420" height="94" onerror="this.style.display='none'" loading="lazy" decoding="async">
