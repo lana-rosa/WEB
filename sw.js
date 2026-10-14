@@ -1,7 +1,7 @@
 /* Lana Rosa — servicio mínimo para poder instalar la web como app.
    Solo atiende la navegación entre páginas: si no hay internet, muestra /offline.html.
    Todo lo demás (productos, pagos, cuenta, imágenes) va directo a la red, sin guardar copias. */
-const VERSION = 'lr-app-v1';
+const VERSION = 'lr-app-v3';
 const OFFLINE = '/offline.html';
 
 self.addEventListener('install', function (e) {
