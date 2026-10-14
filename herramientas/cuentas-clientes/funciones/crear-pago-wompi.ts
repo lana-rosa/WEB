@@ -147,6 +147,10 @@ Deno.serve(async (req) => {
   const nDigitales = pedidoItems.filter((i) => esDigitalItem(mapa.get(i.id))).length;
   const digital = nDigitales === pedidoItems.length;
   if (nDigitales > 0 && !digital) return json({ error: 'Los patrones se compran por separado de los productos físicos. Paga primero uno y luego el otro.' }, 409);
+  // Amigurumis personalizados («Amigurumi personalizado N cm»): se piden con el formulario de Personaliza, que deja el radicado en las notas
+  // («Solicitud personalizada <radicado>»). Sin radicado no se crea el pedido, y no llevan el descuento de primera compra (decisión de Sara, 27-sep).
+  const esPersonalizado = (p: any) => /^Amigurumi personalizado \d+ cm$/.test(String(p?.nombre || ''));
+  const hayPersonalizados = pedidoItems.some((i) => esPersonalizado(mapa.get(i.id)));
   const nMateriales = pedidoItems.filter((i) => esMaterial(mapa.get(i.id))).length;
   const materiales = nMateriales === pedidoItems.length;
   if (nMateriales > 0 && !materiales) return json({ error: 'Los materiales de la Mercería se compran por separado de los productos de la Tienda. Paga primero uno y luego el otro.' }, 409);
@@ -176,6 +180,8 @@ Deno.serve(async (req) => {
   if (!cotizando && (!nombre || !CORREO_OK.test(correo) || telefono.replace(/\D/g, '').length < 10 || !ciudad || direccion.length < 6))
     return json({ error: (recoge || digital) ? 'Revisa tus datos: nombre, correo y teléfono.' : 'Revisa tus datos: nombre, correo, teléfono, ciudad y dirección.' }, 400);
 
+  if (hayPersonalizados && !cotizando && !/Solicitud personalizada/i.test(notas)) return json({ error: 'Para pagar un amigurumi personalizado primero cuéntanos cómo lo quieres en el formulario de Personaliza.' }, 400);
+
   // Envío: digital o recoger en tienda = $0; a domicilio = tarifa de la ciudad (o la de "Otro (nacional)").
   // Materiales de la Mercería a domicilio: se cobra $0 en línea (envío contraentrega) y se informa el estimado.
   let envio: number | null = null;
@@ -200,7 +206,7 @@ Deno.serve(async (req) => {
 
   // Descuento de primera compra (no aplica a patrones digitales)
   let pct = 0;
-  if (!digital && PCT_PRIMERA_COMPRA > 0 && CORREO_OK.test(correo)) {
+  if (!digital && !hayPersonalizados && PCT_PRIMERA_COMPRA > 0 && CORREO_OK.test(correo)) {
     const { data: primera } = await sb.rpc('fn_es_primera_compra_web', { p_correo: correo, p_telefono: telefono });
     let ok = primera === true;
     if (ok && correoCuenta && correoCuenta !== correo) {

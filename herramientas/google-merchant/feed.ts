@@ -28,9 +28,10 @@ Deno.serve(async () => {
 
   const items = productos.map((p) => {
     const descripcion = String(p.descripcion_web || p.nombre).replace(/\s+/g, ' ').trim().slice(0, 4900);
+    const titulo = /crochet/i.test(p.nombre) ? p.nombre : p.nombre + ' | Crochet hecho a mano';
     const lineas = [
       `<g:id>${esc(p.sku || p.id)}</g:id>`,
-      `<g:title>${esc(p.nombre + ' | Crochet hecho a mano')}</g:title>`,
+      `<g:title>${esc(titulo)}</g:title>`,
       `<g:description>${esc(descripcion)}</g:description>`,
       `<g:link>${SITIO}/tienda.html?producto=${esc(p.id)}</g:link>`,
       `<g:image_link>${SITIO}/img/productos/${esc(encodeURIComponent(p.foto_url))}</g:image_link>`,

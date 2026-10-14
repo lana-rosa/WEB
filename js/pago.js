@@ -17,6 +17,11 @@ const hayOtros = () => leerCarrito().some((i) => i && !i.merceria);
 const esMateriales = () => { const c = leerCarrito(); return c.length > 0 && c.every((i) => i && i.merceria); };
 // Wompi no cobra materiales mezclados con productos de la Tienda (o con patrones), ni materiales si el pago en línea está apagado.
 const soloWhatsApp = () => hayMateriales() && (hayOtros() || !PAGO_EN_LINEA_MERCERIA);
+// Amigurumis personalizados (13, 15 y 20 cm): se piden con el formulario de Personaliza, que guarda el radicado (lrSolicitudPersonalizada) y
+// deja el producto en el carrito. El radicado viaja en las notas del pedido; no llevan descuento de primera compra (lo exige también el servidor).
+const esPers = (i) => /^Amigurumi personalizado \d+ cm$/.test((i && i.nombre) || '');
+const hayPers = () => leerCarrito().some(esPers);
+const radicadoPers = () => { try { const r = JSON.parse(localStorage.getItem('lrSolicitudPersonalizada')); return r && r.radicado ? String(r.radicado) : ''; } catch (e) { return ''; } };
 
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
@@ -568,6 +573,11 @@ async function enviar(e) {
   if (!recoge && !intl && ciudad === 'Otro (nacional)') direccion = otra + ' — ' + direccion;
   if (!$('pg-acepto').checked) return aviso('Para continuar, acepta la política de datos y de envíos.');
   if (!recoge && !$('pg-confirma').checked) return aviso('Confirma que tu dirección de envío es correcta.');
+  if (hayPers() && !radicadoPers()) {
+    const f = document.createDocumentFragment(); f.append('Para pagar un amigurumi personalizado primero cuéntanos cómo lo quieres en el formulario. ');
+    const a = document.createElement('a'); a.href = '/personaliza.html#form-personalizado'; a.textContent = 'Ir al formulario'; f.append(a, '.');
+    return aviso(f);
+  }
   aviso(null);
   const boton = $('pago-enviar'); boton.disabled = true; boton.textContent = 'Preparando tu pago…';
   const restaurar = () => { boton.disabled = false; boton.textContent = textoBoton(); };
@@ -576,9 +586,10 @@ async function enviar(e) {
     const headers = { 'Content-Type': 'application/json', apikey: SUPABASE_KEY };
     if (token) headers.Authorization = 'Bearer ' + token;
     const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
+    const notasPedido = hayPers() ? ('Solicitud personalizada ' + radicadoPers() + (notas ? ' · ' + notas : '')).slice(0, 480) : notas;
     const cuerpo = intl
-      ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas }, items }
-      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: digital ? 'digital' : (recoge ? 'recogida' : 'domicilio') }, items };
+      ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas: notasPedido }, items }
+      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas: notasPedido, entrega: digital ? 'digital' : (recoge ? 'recogida' : 'domicilio') }, items };
     const res = await fetch(SUPABASE_URL + (conPaypal ? '/functions/v1/paypal-pagos' : '/functions/v1/crear-pago-wompi'), {
       method: 'POST', headers, body: JSON.stringify(conPaypal ? { accion: 'crear', ...cuerpo } : cuerpo)
     });
@@ -640,7 +651,7 @@ async function pintarBonoCarrito() {
   const el = document.getElementById('carrito-bono'); if (!el) return;
   const yo = ++bonoCarritoId;
   const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
-  if (!items.length || esDigital()) { el.hidden = true; return; }   // los patrones digitales no llevan el descuento de primera compra
+  if (!items.length || esDigital() || hayPers()) { el.hidden = true; return; }   // los patrones digitales y los personalizados no llevan el descuento de primera compra
   if (soloWhatsApp()) { el.hidden = true; return; }   // el descuento automático solo aplica al pagar en línea
   const bono = datosBono(), cuenta = haySesionGuardada() ? await datosCuenta() : {};
   const correo = String(cuenta.correo || bono.correo || '').toLowerCase(), telefono = cuenta.telefono || bono.telefono || '';

@@ -16,6 +16,13 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial comp
 - [ ] **Al tener productos en la Mercería:** en `rosina.html` ("¿Qué hace Rosina?" → "En insumos") cambiar «Ir a la tienda →» por «Ir a la mercería →» (aprobado por Sara el 26-sep; verificado el 9-oct: sigue sin cambiar).
 - [ ] **ERP → 📥 Entrada mercancía:** registrar las bolsas de papel ($1.000) y de tela ($2.000), la Base para amigurumi ($7.000, BASE-AMI) — las tres están en 0 (verificado) — y el insumo «Módulo de sonido» ($35.000, aún no existe en el inventario del Taller).
 
+## 🔴 1b. Amigurumis personalizados con Wompi y títulos de Google (14-oct) — esperando el OK de Sara para publicar
+
+- [ ] **Publicar y activar.** Rama `claude/amigurumis-personalizados`: tienda (botón «Personalizar» en vez de «Agregar»), personaliza.html (banner con el tamaño y precio, panel «Pagar con Wompi» tras enviar), `js/pago.js` v24 (radicado en las notas, sin descuento de primera compra, guarda contra pagar sin formulario), `gracias.html`, `precios.html`, `llms.txt`, README de Google. Pruebas con Playwright 48/48 (celular y computador). Orden: (1) fusionar; (2) desplegar `crear-pago-wompi` (agrega el radicado obligatorio y el descuento excluido); (3) en Supabase: `update inventario_items set activo = true where nombre in ('Amigurumi personalizado 13 cm','Amigurumi personalizado 15 cm','Amigurumi personalizado 20 cm');` (hoy están creados **inactivos**: no se ven ni van a Google); (4) probar un pago real de $85.000; (5) en Merchant Center esperar la revisión del feed.
+- [x] **Títulos de Google con «amigurumi»** aplicados el 14-oct en `web_google_shopping` (ver `herramientas/google-merchant/README.md`).
+- [ ] **ERP:** al llegar un pedido de «Amigurumi personalizado» (Tienda virtual), las notas traen «Solicitud personalizada OPP-…»: buscar esa oportunidad en el CRM, confirmar el detalle con la clienta y, si hay diferencia de precio, cobrarla aparte. Revisar que el Taller reciba bien estos pedidos (stock 0, a pedido).
+- [ ] **Google:** revisar «Pato el cerdito» (personaje de Gravity Falls) y decidir si sale del feed.
+
 ## 🔴 2. Agenda de Rosina: la membresía se APAGÓ (12-oct) y la agenda queda gratuita — publicar el cambio
 
 - [ ] **Google Calendar apagado en la agenda (13-oct):** se quitó la tarjeta «Conectar con Google Calendar» (piezas en `herramientas/google-calendar/agenda-apagada/`); siguen el archivo .ics y los botones «Añadir a Google Calendar» por fila (no guardan nada de Google). La función `google-calendar` y sus tablas siguen en Supabase con 0 cuentas conectadas: **decidir si se elimina la función y el cliente OAuth de Google Cloud** y quitar «calendar.events» de la pantalla de consentimiento.
