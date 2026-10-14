@@ -21,6 +21,7 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 - [x] Cómo cuidar y lavar tus prendas y peluches tejidos (crochet, Tienda) — 6-oct-2026
 - [x] Conoce a Rosina, la ovejita de Lana Rosa (mundo Rosina) — 7-oct-2026. Se escribió solo con lo que ya dice la web; la historia de cómo nació Rosina queda pendiente de que Sara la cuente (ver PENDIENTES.md).
 - [x] Errores comunes al empezar a tejer y cómo arreglarlos (crochet, Academy) — 8-oct-2026
+- [x] Colores que combinan en tus amigurumis: ideas con las paletas de Rosina (crochet, Mercería y Academy) — 14-oct-2026. Los tres temas estacionales de «Próximos» no correspondían a la fecha (abril, mayo o junio, agosto); se tomó este de la lista de Mercería.
 
 ## Próximos (en este orden)
 
@@ -30,5 +31,5 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 
 ## Temas para la Mercería y para Academy (agregados el 6-oct-2026)
 La Revista ya se puede ver por casa (`revista.html?casa=merceria` y `?casa=academy`). Hoy la Mercería tiene 2 artículos y Academy 4; estos temas llenan lo que falta (solo con información real, sin inventar):
-- **Mercería:** cómo elegir la lana para un amigurumi (algodón, acrílico, chenille: qué cambia en el tejido); qué aguja de crochet usar con cada grosor de hilo; cuántos ovillos necesito para un amigurumi de 13 cm; colores que combinan (con las paletas de Rosina); cómo guardar y cuidar la lana.
+- **Mercería:** cómo elegir la lana para un amigurumi (algodón, acrílico, chenille: qué cambia en el tejido); qué aguja de crochet usar con cada grosor de hilo; cuántos ovillos necesito para un amigurumi de 13 cm; ~~colores que combinan (con las paletas de Rosina)~~ (publicado 14-oct); cómo guardar y cuidar la lana.
 - **Academy:** qué se aprende en el taller "Desconecta para Conectar"; los 5 puntos básicos del crochet; errores comunes de principiantes y cómo arreglarlos; cómo leer un patrón (con el glosario de Rosina).
