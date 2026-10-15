@@ -1,27 +1,27 @@
 // Personajes del Bosque Tejido. La biblia completa (personalidad, vocabulario, apariciones) está en
 // herramientas/aventuras-de-rosina/BIBLIA-PERSONAJES.md; aquí solo lo que usa la aplicación.
-// Rosina usa las imágenes OFICIALES de img/stickers/. Luna, Tito, Pipo y Bruno usan las poses planas de img/aventuras/plano/
+// Rosina usa las poses oficiales de img/stickers/ y las nuevas de img/aventuras/rosina/, SIN el borde blanco de sticker para que combine con sus amigos (copias en img/aventuras/rosina-plana/, las genera quitar_borde_rosina.py; los originales no se tocan). Luna, Tito, Pipo y Bruno usan las poses planas de img/aventuras/plano/
 // (POSES_PLANO, con sus medidas; las crea preparar_estilo_plano.py). Ver INVENTARIO-RECURSOS.md y BIBLIA-PERSONAJES.md.
 
 export const POSES_ROSINA = {
-  saludo: '/img/stickers/rosina-01-saludo.webp',
-  corazon: '/img/stickers/rosina-02-corazon.webp',
-  ovillo: '/img/stickers/rosina-03-ovillo-corazon.webp',
-  flor: '/img/stickers/rosina-04-flor.webp',
-  sentada: '/img/stickers/rosina-05-ovillo-sentada.webp',
-  idea: '/img/stickers/rosina-06-idea.webp',
-  leyendo: '/img/stickers/rosina-07-leyendo.webp',
-  feliz: '/img/stickers/rosina-08-feliz.webp',
-  cartel: '/img/stickers/rosina-09-cartel.webp',
-  animo: '/img/stickers/rosina-12-pulgar-arriba.webp',
-  gorro: '/img/stickers/rosina-17-gorro.webp',
-  abrazo: '/img/stickers/rosina-18-ovillo-abrazo.webp',
-  saludoSentada: '/img/stickers/rosina-20-sentada-saludo.webp',
+  saludo: '/img/aventuras/rosina-plana/rosina-01-saludo.webp',
+  corazon: '/img/aventuras/rosina-plana/rosina-02-corazon.webp',
+  ovillo: '/img/aventuras/rosina-plana/rosina-03-ovillo-corazon.webp',
+  flor: '/img/aventuras/rosina-plana/rosina-04-flor.webp',
+  sentada: '/img/aventuras/rosina-plana/rosina-05-ovillo-sentada.webp',
+  idea: '/img/aventuras/rosina-plana/rosina-06-idea.webp',
+  leyendo: '/img/aventuras/rosina-plana/rosina-07-leyendo.webp',
+  feliz: '/img/aventuras/rosina-plana/rosina-08-feliz.webp',
+  cartel: '/img/aventuras/rosina-plana/rosina-09-cartel.webp',
+  animo: '/img/aventuras/rosina-plana/rosina-12-pulgar-arriba.webp',
+  gorro: '/img/aventuras/rosina-plana/rosina-17-gorro.webp',
+  abrazo: '/img/aventuras/rosina-plana/rosina-18-ovillo-abrazo.webp',
+  saludoSentada: '/img/aventuras/rosina-plana/rosina-20-sentada-saludo.webp',
   // Poses NUEVAS para el libro (hoja de Sara del 12-oct-2026, con el mismo borde de sticker; las crea preparar_rosina_poses.py)
-  tejiendo: '/img/aventuras/rosina/tejiendo.webp', gancho: '/img/aventuras/rosina/gancho.webp', contando: '/img/aventuras/rosina/contando.webp',
-  senalando: '/img/aventuras/rosina/senalando.webp', fuerza: '/img/aventuras/rosina/fuerza.webp', sorpresa: '/img/aventuras/rosina/sorpresa.webp',
-  consuelo: '/img/aventuras/rosina/consuelo.webp', mapa: '/img/aventuras/rosina/mapa.webp', diploma: '/img/aventuras/rosina/diploma.webp',
-  lupa: '/img/aventuras/rosina/lupa.webp',
+  tejiendo: '/img/aventuras/rosina-plana/tejiendo.webp', gancho: '/img/aventuras/rosina-plana/gancho.webp', contando: '/img/aventuras/rosina-plana/contando.webp',
+  senalando: '/img/aventuras/rosina-plana/senalando.webp', fuerza: '/img/aventuras/rosina-plana/fuerza.webp', sorpresa: '/img/aventuras/rosina-plana/sorpresa.webp',
+  consuelo: '/img/aventuras/rosina-plana/consuelo.webp', mapa: '/img/aventuras/rosina-plana/mapa.webp', diploma: '/img/aventuras/rosina-plana/diploma.webp',
+  lupa: '/img/aventuras/rosina-plana/lupa.webp',
 };
 
 // Estilo de las escenas: ilustración plana como la Rosina oficial (decisión de Sara, 12-oct-2026). Rosina usa los stickers de arriba y sus amigos
