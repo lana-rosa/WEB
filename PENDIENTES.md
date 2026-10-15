@@ -123,7 +123,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial comp
 - [ ] Opcional: poner la imagen «Conoce a Rosina» al principio de `rosina.html`.
 - [ ] Nombre «Lana Rosa Academy» vs. «Academia de Crochet» en textos y SEO (el canal de YouTube se llama Lana Rosa Academy).
 
-## 🧒 Rosina y la gran aventura de la primera cadeneta (aventura infantil) — MVP construido, SIN publicar (12-oct-2026)
+## 🧒 Rosina y la gran aventura de la primera cadeneta (aventura infantil) — subida a `main` el 15-oct-2026, pero **oculta** (sin lanzar; MVP construido el 12-oct-2026)
 Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` (nombre definitivo, 12-oct-2026: «Rosina y la gran aventura de la primera cadeneta»; «Bosque Tejido» queda como el mundo del mapa y las misiones; el texto usa «cadeneta», no «cadena») (3 misiones: El mapa del Bosque Tejido, El puente de Luna y El camino de Tito). Guía completa en `herramientas/aventuras-de-rosina/` (`LEEME.md`, `ESPECIFICACION.md`, `BIBLIA-PERSONAJES.md`, `INVENTARIO-RECURSOS.md`, `PRUEBAS.md`, `HOJA-DE-RUTA.md`). Probado con `python3 herramientas/aventuras-de-rosina/probar.py --axe` (80 comprobaciones, 0 fallas; axe sin violaciones, incluida la política de privacidad). Está con `noindex`, fuera del sitemap y sin enlaces desde el sitio. **No lleva Tag Manager, cookies ni cuentas a propósito.**
 - [ ] **Sara/equipo: revisar y aprobar** el producto (verlo en el celular) y decidir si se publica (PR a `main`).
 - [ ] **Experta en crochet:** validar los pasos (tabla de revisión en `PRUEBAS.md`): nudo inicial, cadena, punto bajo sobre cadena de 11, agarre del gancho.
