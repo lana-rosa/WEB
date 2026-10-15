@@ -17,7 +17,7 @@ revoke truncate, references, trigger, insert, update, delete on public.fe_saldo_
 
 -- 2) El rol anónimo solo conserva las funciones que usa la web pública (lista blanca = RPC que llama el sitio y el feed de Google):
 --    crear_resena_web, crear_solicitud_personalizada, estado_pedido_web, obtener_carrito_abandonado, obtener_feed_google, obtener_merceria_web,
---    obtener_merceria_web_v2, obtener_productos_personaje, obtener_regalos_web (se agregó en la Etapa 1: migracion-universo-1.sql), obtener_tarifas_envio_web, obtener_tienda_web, pedido_web_es_digital,
+--    obtener_merceria_web_v2, obtener_productos_personaje, obtener_regalos_web (se agregó en la Etapa 1: migracion-universo-1.sql), obtener_producto_publico (Etapa 3: migracion-universo-3-historias.sql), obtener_tarifas_envio_web, obtener_tienda_web, pedido_web_es_digital,
 --    pedido_web_es_membresia, registrar_bono_bienvenida, registrar_carrito_abandonado, registrar_promos_pedido, tarifas_envio_web
 --    (+ fn_rol_actual y fn_es_tejedora, que usan las políticas de RLS). El resto: revoke execute ... from public, anon;
 --    grant execute ... to authenticated, service_role;   (ver seguridad_respaldo_permisos para la lista y el estado anterior)

@@ -1,0 +1,26 @@
+/* Página pública de una pieza (/p/): cuidados e historia, la que abre el código QR (Etapa 3). Usa los colores y fuentes de la marca. */
+.pz-marco { max-width: 720px; margin: 0 auto 56px; display: grid; gap: 18px; }
+.pz-cab { display: flex; align-items: center; gap: 18px; margin-top: 8px; }
+.pz-rosina { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; background: #fff; box-shadow: var(--sombra-suave); flex: none; }
+.pz-eyebrow { margin: 0; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rosa-texto, #B3175F); }
+.pz-cab h1 { margin: 4px 0 6px; font-size: clamp(1.6rem, 5vw, 2.3rem); overflow-wrap: anywhere; }
+.pz-sub { margin: 0; color: var(--tinta-suave); }
+.pz-aviso { margin: 0; padding: 12px 14px; border-radius: 14px; background: #FFF6E0; }
+.pz-prod { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 18px; align-items: start; background: #fff; border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 14px; }
+.pz-prod img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px; background: var(--rosa-suave); }
+.pz-cat { margin: 0 0 8px; display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--rosa-suave); font-size: 0.82rem; font-weight: 700; color: var(--rosa-texto, #B3175F); }
+.pz-specs { margin: 0; padding-left: 18px; color: var(--tinta); }
+.pz-bloque { background: #fff; border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 20px 22px; }
+.pz-bloque h2 { margin: 0 0 10px; }
+.pz-sello { margin: 0 0 10px; display: inline-block; padding: 4px 10px; border-radius: 999px; background: #E8F5E9; color: #1B5E20; font-weight: 700; font-size: 0.85rem; }
+.pz-lista { margin: 0 0 12px; padding-left: 20px; display: grid; gap: 6px; }
+.pz-historia { margin: 0; white-space: pre-line; }
+.pz-enlace { color: var(--rosa-texto, #B3175F); font-weight: 700; }
+.pz-acciones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.pz-boton { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 48px; padding: 10px 14px; border-radius: 999px; border: 2px solid var(--rosa-medio); background: #fff; color: var(--tinta); font-weight: 700; text-decoration: none; }
+.pz-boton:hover { background: var(--rosa-suave); }
+.pz-boton:focus-visible, .pz-enlace:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.pz-wa { background: #1FA855; border-color: #1FA855; color: #fff; }
+.pz-wa:hover { background: #167A3E; }
+.pz-pie { text-align: center; color: var(--tinta-suave); margin: 4px 0 0; }
+@media (max-width: 560px) { .pz-cab { flex-direction: column; text-align: center; } .pz-prod { grid-template-columns: minmax(0, 1fr); } .pz-prod img { max-width: 260px; margin: 0 auto; } .pz-acciones { grid-template-columns: minmax(0, 1fr); } }

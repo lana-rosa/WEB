@@ -10,8 +10,10 @@ Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada, Etapa 1b (segu
 | [`04-PRUEBAS-Y-METRICAS.md`](04-PRUEBAS-Y-METRICAS.md) | Criterios de aceptación, matriz de pruebas planeada y plan de métricas (eventos de GA4) |
 | [`05-ETAPA-1-REGALAR.md`](05-ETAPA-1-REGALAR.md) | Qué se construyó en la Etapa 1, cómo funciona, cómo se prueba, cómo se apaga y qué falta para publicarla |
 | [`06-ETAPA-2-CREAR.md`](06-ETAPA-2-CREAR.md) | Etapa 2: configurador «Rosina te ayuda a crear» (ficha de personalizados), cómo funciona, pruebas y decisiones pendientes |
+| [`07-ETAPA-3-QR.md`](07-ETAPA-3-QR.md) | Etapa 3: página pública `/p/` de cuidados e historia por pieza y QR para imprimir; hoja del taller y decisiones pendientes |
 | [`migracion-universo-1.sql`](migracion-universo-1.sql) | SQL de la Etapa 1 (etiquetas, `obtener_regalos_web`, propuestas sin revisar); lo genera `generar_migracion_universo.py` |
 | [`etiquetas.py`](etiquetas.py) · `etiquetas-productos.xlsx` | Hoja de Excel para que Sara revise las etiquetas y herramienta que carga la hoja corregida |
 | `etiquetas-productos-revisado.xlsx` · [`migracion-universo-2-etiquetas-revisadas.sql`](migracion-universo-2-etiquetas-revisadas.sql) | Revisión de Sara (15-oct-2026) y el SQL que la carga |
+| `historias-piezas-revisado.xlsx` · [`migracion-universo-4-historias-revisadas.sql`](migracion-universo-4-historias-revisadas.sql) | Cuidados confirmados e historias de 77 piezas aprobadas por Sara (16-oct-2026) y el SQL que las carga |
 
 Reglas que rigen todo el trabajo: no duplicar lo que ya existe (Rosina, PWA, CRM, ERP, GA4); no inventar precios, inventario ni plazos; no publicar sin autorización de Sara; toda función nueva se puede apagar sin dañar el resto. Ver también `CLAUDE.md` y `PENDIENTES.md` en la raíz.
