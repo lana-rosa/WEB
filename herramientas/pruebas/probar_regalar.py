@@ -7,7 +7,7 @@ levanta un servidor local y simula la respuesta de Supabase con page.route (no t
 Uso:  python3 herramientas/pruebas/probar_regalar.py [carpeta_capturas]
 Requiere: pip install playwright y un Chromium (en la nube: /opt/pw-browsers/chromium).
 """
-import copy, functools, http.server, json, os, re, sys, threading
+import copy, functools, http.server, importlib.util, json, os, re, sys, threading
 
 from playwright.sync_api import sync_playwright
 
@@ -17,6 +17,8 @@ CAPTURAS = sys.argv[1] if len(sys.argv) > 1 else None
 CHROMIUM = '/opt/pw-browsers/chromium' if os.path.exists('/opt/pw-browsers/chromium') else None
 
 CATALOGO = json.load(open(FIXTURE, encoding='utf-8'))
+# El mismo catálogo con las 71 revisiones de Sara aplicadas (herramientas/innovacion/etiquetas.py fixture ...)
+REVISADO = json.load(open(os.path.join(os.path.dirname(__file__), 'fixtures', 'regalos-revisados.json'), encoding='utf-8'))
 fallos, pasaron = [], 0
 
 
@@ -234,6 +236,54 @@ def main():
         sin_revisar_con_etiqueta = [x['nombre'] for x in cat_rev if not x['etiquetas_revisadas'] and 'dia_madre' in x['ocasiones'] and not x['personalizable_base']]
         verificar('R3 los productos con etiqueta propuesta pero sin revisar (p. ej. «Oveja con Vestido 23cm») no aparecen', len(sin_revisar_con_etiqueta) > 0 and not set(sin_revisar_con_etiqueta) & set(solo_productos), set(sin_revisar_con_etiqueta) & set(solo_productos))
         page.close()
+
+        print('\n[Etiquetas revisadas por Sara (15-oct): catálogo real con sus 71 revisiones]')
+        spec = importlib.util.spec_from_file_location('etq', os.path.join(RAIZ, 'herramientas', 'innovacion', 'etiquetas.py'))
+        etq = importlib.util.module_from_spec(spec); spec.loader.exec_module(etq)
+        verificar('la hoja acepta «está bien», «Sí, está bien» y «Corregí»; «No sé» y vacío quedan sin revisar; lo raro se rechaza', [etq.revisado(x) for x in ('está bien', 'Sí, está bien', 'Corregí', 'OK', 'No sé', None, 'quizás')] == [True, True, True, True, False, False, None])
+        page, err = abrir(pc, base, REVISADO)
+        voc = page.evaluate("async () => { const m = await import('/js/universo/config.js'); return {oc: m.OCASIONES, de: m.DESTINATARIOS}; }")
+        verificar('el vocabulario de la hoja de Excel (etiquetas.py) es idéntico al de la web (config.js)', dict(voc['oc']) == etq.OCASIONES and dict(voc['de']) == etq.DESTINATARIOS)
+        verificar('con los 71 productos revisados aparecen los 6 filtros', page.locator('.ur-grupo').count() == 6, page.locator('.ur-grupo').count())
+        opciones = page.evaluate("() => Object.fromEntries([...document.querySelectorAll('select.ur-select')].map(s => [s.dataset.clave, [...s.options].slice(1).map(o => [o.value, o.textContent])]))")
+        pres_oc = sorted({x for p in REVISADO if p['etiquetas_revisadas'] for x in p['ocasiones']}); pres_de = sorted({x for p in REVISADO if p['etiquetas_revisadas'] for x in p['destinatarios']})
+        verificar('las listas ofrecen solo las ocasiones (%d) y destinatarios (%d) que algún producto tiene' % (len(pres_oc), len(pres_de)), sorted(v for v, _ in opciones['ocasion']) == pres_oc and sorted(v for v, _ in opciones['destinatario']) == pres_de, (sorted(v for v, _ in opciones['ocasion']), pres_oc))
+        verificar('están las opciones nuevas de Sara con su texto: Mundial de fútbol, Cuando muda un diente, Día del Ingeniero Civil, Fan del fútbol', {'Mundial de fútbol', 'Cuando muda un diente', 'Día del Ingeniero Civil'} <= {t for _, t in opciones['ocasion']} and 'Fan del fútbol' in {t for _, t in opciones['destinatario']})
+        def nombres_visibles():
+            while page.locator('.ur-mas').count():
+                page.locator('.ur-mas').first.click()
+            return sorted(n for n, _ in precios_de(page) if not n.startswith('Amigurumi personalizado'))
+        malos = []
+        for clave, campo in (('ocasion', 'ocasiones'), ('destinatario', 'destinatarios')):
+            for v, _t in opciones[clave]:
+                elegir(page, clave, v)
+                vistos = nombres_visibles()
+                esperados = sorted(x['nombre'] for x in REVISADO if x['etiquetas_revisadas'] and v in x[campo] and not x['personalizable_base'])
+                if vistos != esperados: malos.append((clave, v, len(vistos), len(esperados)))
+                page.click('.ur-reiniciar')
+        verificar('cada una de las %d opciones de ocasión y destinatario muestra exactamente los productos que tienen esa etiqueta' % (len(opciones['ocasion']) + len(opciones['destinatario'])), not malos, malos)
+        for clave, v, esperado in (('ocasion', 'mundial', ['Lionel Messi Copa Mundial 20cm', 'Llavero Balón Colombia']), ('ocasion', 'diente', ['Ratón Peréz 28cm']), ('ocasion', 'dia_ingeniero', ['Ingeniero Civil 22cm']), ('destinatario', 'fan_futbol', ['Lionel Messi Copa Mundial 20cm', 'Llavero Balón Colombia'])):
+            elegir(page, clave, v)
+            vistos = nombres_visibles()
+            verificar('«%s» → %s' % (dict(opciones[clave])[v], ', '.join(esperado)), vistos == sorted(esperado), vistos)
+            page.click('.ur-reiniciar')
+        elegir(page, 'destinatario', 'mama'); elegir(page, 'presupuesto', 'p3'); elegir(page, 'disponibilidad', 'ya')
+        vistos = nombres_visibles()
+        esperados = sorted(x['nombre'] for x in REVISADO if 'mama' in x['destinatarios'] and 50000 < x['precio'] <= 100000 and x['en_existencia'] and not x['personalizable_base'])
+        verificar('combinado: para mamá + $50.000 a $100.000 + ya (%d productos, los del catálogo)' % len(esperados), vistos == esperados, (vistos, esperados))
+        elegir(page, 'destinatario', 'tu_mismo'); page.select_option('select[data-clave="presupuesto"]', ''); page.select_option('select[data-clave="disponibilidad"]', '')
+        verificar('«Para mí» (solo hay personalizados): explica y muestra las ideas para personalizar', page.locator('.ur-vacio').count() == 1 and tarjetas(page, 'Ideas para personalizar').count() == 3)
+        verificar('sin errores de JavaScript con las etiquetas revisadas', not err, err)
+        page.close()
+        for nombre, ctx in (('celular 390 px', movil), ('computador 1280 px', pc)):
+            tag = 'm' if ctx is movil else 'd'
+            page, err = abrir(ctx, base, REVISADO)
+            elegir(page, 'destinatario', 'mama'); elegir(page, 'ocasion', 'dia_madre')
+            verificar('%s con filtros de etiquetas: sin scroll horizontal' % nombre, sin_scroll_horizontal(page))
+            if CAPTURAS:
+                page.evaluate("document.querySelector('#regalar').scrollIntoView()")
+                captura(page, 'universo-%s-5-etiquetas-revisadas.png' % tag, CAPTURAS)
+            page.close()
 
         print('\n[Vista previa de etiquetas propuestas — solo para Sara]')
         page, err = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?etiquetas=propuestas')

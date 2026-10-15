@@ -13,11 +13,12 @@ export const CONFIG = {
 // Vocabulario (los ids son los que se guardan en producto_etiquetas)
 export const OCASIONES = [
   ['cumpleanos', 'Cumpleaños'], ['amor_amistad', 'Amor y amistad'], ['dia_madre', 'Día de la madre'], ['dia_padre', 'Día del padre'],
-  ['graduacion', 'Graduación'], ['bebe', 'Llegada de un bebé'], ['agradecimiento', 'Agradecimiento'], ['detalle', 'Un detalle pequeño'], ['decoracion', 'Para decorar'],
+  ['graduacion', 'Graduación'], ['dia_ingeniero', 'Día del Ingeniero Civil'], ['bebe', 'Llegada de un bebé'], ['diente', 'Cuando muda un diente'], ['mundial', 'Mundial de fútbol'],
+  ['agradecimiento', 'Agradecimiento'], ['detalle', 'Un detalle pequeño'], ['decoracion', 'Para decorar'],
 ];
 export const DESTINATARIOS = [
   ['mama', 'Mamá'], ['papa', 'Papá'], ['pareja', 'Mi pareja'], ['amiga_o', 'Una amiga o amigo'], ['nina_nino', 'Una niña o niño'],
-  ['bebe', 'Un bebé'], ['colega_profe', 'Una profe o colega'], ['fan_personaje', 'Fan de un personaje'], ['tu_mismo', 'Para mí'],
+  ['bebe', 'Un bebé'], ['colega_profe', 'Una profe o colega'], ['fan_personaje', 'Fan de un personaje'], ['fan_futbol', 'Fan del fútbol'], ['tu_mismo', 'Para mí'],
 ];
 export const TIPOS = [
   ['amigurumi', 'Amigurumi', ['Amigurumis']], ['peluche', 'Peluche', ['Peluches']], ['llavero', 'Llavero', ['Llaveros']],

@@ -60,7 +60,12 @@ export async function iniciarRegalar(raiz) {
     ['tamano', '¿De qué tamaño?', 'Cualquier tamaño', TAMANOS.map((x) => [x[0], x[1]])],
     ['disponibilidad', '¿Lo necesitas ya?', 'No es urgente', DISPONIBILIDAD],
   ];
-  if (usarEtiquetas) { grupos.splice(0, 0, ['destinatario', '¿Para quién es?', 'Para cualquiera', DESTINATARIOS], ['ocasion', '¿Qué ocasión celebran?', 'Cualquier ocasión', OCASIONES]); }
+  if (usarEtiquetas) {
+    // Solo se ofrecen las opciones que al menos un producto tiene (con etiquetas revisadas; en la vista previa, también las propuestas): así ninguna lista lleva a un callejón sin salida.
+    const conEtiqueta = productos.filter((p) => modoPropuestas || p.etiquetas_revisadas);
+    const hay = (campo) => { const s = {}; conEtiqueta.forEach((p) => p[campo].forEach((x) => { s[x] = true; })); return (par) => !!s[par[0]]; };
+    grupos.splice(0, 0, ['destinatario', '¿Para quién es?', 'Para cualquiera', DESTINATARIOS.filter(hay('destinatarios'))], ['ocasion', '¿Qué ocasión celebran?', 'Cualquier ocasión', OCASIONES.filter(hay('ocasiones'))]);
+  }
 
   const marco = nodo('div', 'ur-marco');
   if (modoPropuestas) marco.append(nodo('p', 'ur-aviso', 'Vista previa: se están usando etiquetas propuestas que todavía no han sido revisadas. No es lo que ve el público.'));
