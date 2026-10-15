@@ -2,6 +2,7 @@
 export const CONFIG = {
   REGALAR_ACTIVO: true,          // «Rosina te ayuda a regalar»
   QR_ACTIVO: true,               // página pública /p/ de cuidados e historia por pieza (Etapa 3); apagado, /p/ muestra solo los cuidados generales
+  VISOR_3D_ACTIVO: true,         // visor 3D / realidad aumentada de las piezas que tengan un modelo aprobado en modelos3d/modelos.json (Etapa 5); sin modelos aprobados no se ve nada
   CREAR_ACTIVO: true,            // «Rosina te ayuda a crear»: asistente guiado dentro de Personaliza (Etapa 2); apagado, Personaliza queda solo con el formulario
   SUPABASE_URL: 'https://ngjoognzvehwjtpqwrqe.supabase.co',
   SUPABASE_KEY: 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD',

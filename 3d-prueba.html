@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prueba del visor 3D | Lana Rosa Crochet</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Página de prueba técnica del visor 3D y de la realidad aumentada. No es parte de la tienda.">
+<link rel="stylesheet" href="/css/fuentes.css">
+<link rel="stylesheet" href="/css/comun.css?v=31">
+<link rel="stylesheet" href="/css/visor3d.css?v=1">
+<style>
+  body { margin: 0; background: var(--blanco-hueso, #FDFCFA); color: var(--tinta, #45454A); font-family: 'Hanken Grotesk', system-ui, sans-serif; line-height: 1.5; }
+  .pr-pagina { max-width: 980px; margin: 0 auto; padding: 24px 16px 56px; }
+  h1, h2 { font-family: 'DynaPuff', system-ui, sans-serif; color: var(--rosa-texto, #B3175F); margin: 0 0 10px; }
+  .pr-aviso { padding: 14px 16px; border-radius: 14px; background: #FFF6E0; margin: 14px 0 22px; }
+  .pr-par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
+  .pr-par figure { margin: 0; text-align: center; }
+  .pr-par figure img { width: 100%; max-width: 520px; aspect-ratio: 1 / 1; object-fit: contain; border-radius: 16px; background: var(--rosa-suave, #FBE4EF); }
+  .pr-par figcaption { margin-top: 8px; font-size: 0.9rem; color: var(--tinta-suave, #64646A); }
+  .pr-lista { background: #fff; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.08); padding: 18px 22px; margin-top: 26px; }
+  .pr-lista li { margin: 6px 0; }
+  .pr-volver { display: inline-block; margin-top: 24px; color: var(--rosa-texto, #B3175F); font-weight: 700; }
+  @media (max-width: 700px) { .pr-par { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<main class="pr-pagina">
+  <h1>Prueba del visor 3D y la realidad aumentada</h1>
+  <p class="pr-aviso"><strong>Página de prueba técnica, no es parte de la tienda.</strong> El modelo de la derecha es un corazón generado por reglas para comprobar el visor, la medida real y la realidad aumentada. <strong>No es una pieza real ni un escaneo</strong>: se parece al Llavero Corazón de 5 cm solo para que puedas compararlo con la foto. Esta página no usa cookies ni mide nada.</p>
+  <div class="pr-par">
+    <figure>
+      <img src="/img/productos/7709253246212.jpg" alt="Foto del Llavero Corazón de 5 cm, la pieza real" width="520" height="520">
+      <figcaption>La pieza real (foto de la tienda)</figcaption>
+    </figure>
+    <div id="visor-raiz"><p role="status">Cargando…</p></div>
+  </div>
+  <section class="pr-lista" aria-labelledby="titulo-lista">
+    <h2 id="titulo-lista">Qué probar en tu celular</h2>
+    <ol>
+      <li>Toca <strong>Ver en 3D</strong>: debe cargar en pocos segundos y poder girarse con el dedo (con dos dedos haces zoom).</li>
+      <li>En <strong>Android (Chrome)</strong> y en <strong>iPhone (Safari)</strong> debe aparecer el botón <strong>Ver en tu espacio</strong>. Tócalo, apunta a una mesa y mira si el corazón mide <strong>5 cm de ancho</strong> (ponle una regla al lado).</li>
+      <li>En el <strong>computador</strong> no aparece el botón de realidad aumentada y todo lo demás funciona igual.</li>
+      <li>Compara el modelo con la foto: ¿te parece que representa bien la pieza? ¿Qué le falta (textura, relieve, color)?</li>
+      <li>Anota el modelo del teléfono, el navegador y lo que falló, y cuéntaselo a Claude.</li>
+    </ol>
+  </section>
+  <a class="pr-volver" href="/">← Volver al inicio</a>
+</main>
+<script type="module">
+import { cargarModelos, montarVisor3D } from '/js/universo/visor3d.js';
+const raiz = document.getElementById('visor-raiz');
+cargarModelos().then((lista) => {
+  const m = lista.find((x) => x.id === 'corazon-prueba');
+  if (!m) { raiz.replaceChildren(Object.assign(document.createElement('p'), { textContent: 'No hay modelo de prueba.' })); return; }
+  montarVisor3D(raiz, m, { nombre: 'un corazón tejido de prueba', poster: m.poster, itemId: null });
+});
+</script>
+</body>
+</html>
