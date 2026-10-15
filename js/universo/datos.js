@@ -11,6 +11,18 @@ export function cargarCatalogo() {
   return promesa;
 }
 
+// Colores de las fotos de los productos (Etapa 4, «Busca por color»): { 'foto.jpg': ['rosa', 'amarillo'] }. Si no se puede cargar, el recomendador sigue sin el filtro de color.
+let promesaColores = null;
+export function cargarColores() {
+  if (!promesaColores) {
+    promesaColores = fetch('/img/productos/colores.json')
+      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((d) => (d && typeof d.colores === 'object' && d.colores) || {})
+      .catch(() => ({}));
+  }
+  return promesaColores;
+}
+
 // Precio base de los «Amigurumi personalizado N cm» reales: { '13 cm': 85000, … }
 export function preciosBase(productos) {
   const m = {};

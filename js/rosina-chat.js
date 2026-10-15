@@ -23,6 +23,16 @@
     '.rc-m div{max-width:86%;padding:9px 12px;border-radius:14px;background:#fff;white-space:pre-wrap;line-height:1.4;font-size:.95rem;word-wrap:break-word}' +
     '.rc-m.yo div{background:var(--rosa-principal,#E74E96);color:#fff}' +
     '.rc-m a{color:inherit;text-decoration:underline}' +
+    '.rc-cards{display:flex;flex-direction:column;gap:8px;margin:-2px 0 12px}' +
+    '.rc-card{display:flex;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:8px;text-decoration:none;color:inherit;border:2px solid transparent;box-shadow:0 1px 4px rgba(0,0,0,.08)}' +
+    '.rc-card:hover,.rc-card:focus-visible{border-color:var(--rosa-principal,#E74E96);outline:none}' +
+    '.rc-card img{width:56px;height:70px;object-fit:cover;border-radius:10px;background:var(--rosa-suave,#FBE4EF);flex:none}' +
+    '.rc-card span{display:block;min-width:0}.rc-card b{display:block;font-size:.92rem;line-height:1.2}' +
+    '.rc-card .rc-p{color:#B3175F;font-weight:700;font-size:.9rem;margin-top:2px}' +
+    '.rc-card .rc-e{display:inline-block;font-size:.74rem;padding:2px 8px;border-radius:8px;background:#E8F5E9;margin-top:3px}.rc-card .rc-e.enc{background:var(--rosa-suave,#FBE4EF)}' +
+    '.rc-card .rc-pj{font-size:.7rem;color:#64646A;margin-top:3px}' +
+    '.rc-wa{display:inline-block;margin:-2px 0 12px;padding:9px 16px;border-radius:999px;background:#25D366;color:#073B1B;font-weight:700;font-size:.88rem;text-decoration:none}' +
+    '.rc-wa:focus-visible{outline:3px solid var(--lila,#9EA2F9);outline-offset:2px}' +
     '.rc-sug{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}' +
     '.rc-sug button{border:1px solid var(--rosa-principal,#E74E96);background:#fff;color:var(--rosa-principal,#E74E96);border-radius:999px;padding:6px 11px;font-size:.84rem;cursor:pointer;font-family:inherit}' +
     '.rc-form{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid #eee;background:#fff}' +
@@ -49,6 +59,39 @@
     var d = document.createElement('div');
     if (rol === 'user') d.textContent = texto; else d.innerHTML = formato(texto);
     m.appendChild(d); msgs.appendChild(m); msgs.scrollTop = msgs.scrollHeight; return m;
+  }
+  function evento(nombre, datos) { try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: nombre }, datos || {})); } catch (e) { /* sin medición */ } }
+  var pesos = function (n) { return '$' + Math.round(Number(n) || 0).toLocaleString('es-CO'); };
+  // Tarjetas de producto: el servidor solo manda ids que existen en el catálogo; aquí se arma todo con textContent (nada se inserta como HTML)
+  // y el enlace se construye con el id, no con una dirección que venga en la respuesta.
+  function tarjetas(lista) {
+    if (!Array.isArray(lista) || !lista.length) return;
+    var cont = document.createElement('div'); cont.className = 'rc-cards';
+    lista.filter(function (p) { return p && typeof p.id === 'string' && typeof p.nombre === 'string'; }).slice(0, 3).forEach(function (p, i) {
+      var a = document.createElement('a'); a.className = 'rc-card'; a.href = '/tienda.html?producto=' + encodeURIComponent(p.id); a.target = '_blank'; a.rel = 'noopener';
+      var img = document.createElement('img'); img.alt = ''; img.width = 56; img.height = 70; img.loading = 'lazy'; img.decoding = 'async';
+      img.src = '/img/productos/' + encodeURIComponent(p.foto || ''); img.addEventListener('error', function () { img.style.visibility = 'hidden'; });
+      img.addEventListener('load', function () { msgs.scrollTop = msgs.scrollHeight; });
+      var txt = document.createElement('span');
+      var nombre = document.createElement('b'); nombre.textContent = p.nombre;
+      var precio = document.createElement('span'); precio.className = 'rc-p'; precio.textContent = (p.estado === 'personalizado' ? 'Desde ' : '') + pesos(p.precio) + ' COP';
+      var est = document.createElement('span'); est.className = 'rc-e' + (p.estado === 'existencia' ? '' : ' enc');
+      est.textContent = p.estado === 'existencia' ? 'En existencia' : p.estado === 'personalizado' ? 'Se teje a partir de tu foto o idea' : 'Por encargo' + (typeof p.elaboracion === 'string' && p.elaboracion ? ' · ' + p.elaboracion : '');
+      txt.append(nombre, precio, est);
+      if (p.personaje && p.estado !== 'personalizado') { var pj = document.createElement('span'); pj.className = 'rc-pj'; pj.textContent = 'Pieza artesanal inspirada en un personaje; no es un producto oficial.'; txt.append(pj); }
+      a.append(img, txt);
+      a.addEventListener('click', function () { evento('rosina_tarjeta_clic', { item_id: p.id, posicion: i + 1 }); });
+      cont.appendChild(a);
+    });
+    if (cont.children.length) { msgs.appendChild(cont); msgs.scrollTop = msgs.scrollHeight; evento('rosina_tarjetas', { n_tarjetas: cont.children.length }); }
+  }
+  // Cuando Rosina no tiene el dato, un botón lleva al equipo por WhatsApp (sin enviar lo que escribió la persona).
+  function botonWhatsApp() {
+    var a = document.createElement('a'); a.className = 'rc-wa'; a.target = '_blank'; a.rel = 'noopener';
+    a.href = 'https://wa.me/573205072801?text=' + encodeURIComponent('Hola Lana Rosa 💕 Tengo una pregunta que no pude resolver en la página.');
+    a.textContent = 'Escribir al equipo por WhatsApp';
+    a.addEventListener('click', function () { evento('rosina_whatsapp'); });
+    msgs.appendChild(a); msgs.scrollTop = msgs.scrollHeight; evento('rosina_sin_respuesta');
   }
   function construir() {
     panel = document.createElement('div'); panel.className = 'rc-panel';
@@ -85,6 +128,7 @@
         pens.remove();
         var t = x.ok && x.d.respuesta ? x.d.respuesta : (x.d.error || 'No pude responder ahora. Escríbenos por WhatsApp: https://wa.me/573205072801');
         burbuja('assistant', t); if (x.ok && x.d.respuesta) hist.push({ role: 'assistant', content: t }); else hist.pop();
+        if (x.ok && x.d.respuesta) { tarjetas(x.d.productos); if (x.d.sin_dato === true) botonWhatsApp(); }
       })
       .catch(function () { pens.remove(); hist.pop(); burbuja('assistant', 'No pude conectarme. Escríbenos por WhatsApp: https://wa.me/573205072801'); })
       .then(function () { ocupado = false; enviar.disabled = false; });
