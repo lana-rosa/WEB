@@ -40,6 +40,7 @@ def abrir(ctx, base, ruta=RUTA, guia=True, **kw):
     page, err = pr.abrir(ctx, base, CATALOGO, ruta=ruta, espera=ESPERA, rutas=rutas_personaliza(capturado, kw.pop('extra', ())), **kw)
     if guia:
         page.wait_for_selector('#guia-raiz .uc-marco', state='attached', timeout=8000)
+        page.evaluate("document.querySelectorAll('details.uc-mas').forEach(d => { d.open = true; })")
     return page, err, capturado
 
 
@@ -78,6 +79,10 @@ def main():
 
         print('\n[Reglas puras: armarFicha() y el vocabulario]')
         page, err, _ = abrir(pc, base)
+        page.evaluate("document.querySelectorAll('details.uc-mas').forEach(d => { d.open = false; })")
+        verificar('simple: lo opcional (ocasión, fecha y mensaje) va plegado y se abre al tocarlo', page.locator('details.uc-mas').count() == 1 and not page.is_visible('#uc-fecha') and (page.click('details.uc-mas summary') or True) and page.is_visible('#uc-fecha'))
+        verificar('simple: «Tamaños de referencia» está plegado y la página ya no trae las burbujas de mensajes', page.locator('details.det-tamanos').count() == 1 and page.eval_on_selector('details.det-tamanos', 'd => d.open') is False and page.locator('.mensajes-personaliza').count() == 0)
+        page.evaluate("document.querySelectorAll('details.uc-mas').forEach(d => { d.open = true; })")
         r = page.evaluate("""async () => {
           const m = await import('/js/universo/crear.js'); const c = await import('/js/universo/config.js');
           const precios = {'13 cm': 85000, '15 cm': 95000, '20 cm': 115000};
