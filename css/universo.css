@@ -37,7 +37,11 @@
 .ur-precio { font-weight: 700; color: var(--rosa-texto, #B3175F); }
 .ur-estado-prod { align-self: flex-start; font-size: 0.78rem; padding: 3px 9px; border-radius: 8px; }
 .ur-ya { background: #E8F5E9; } .ur-enc, .ur-idea { background: var(--rosa-suave); }
-.ur-pj { font-size: 0.72rem; color: var(--tinta-suave); }
+.ur-pj-nota { font-size: 0.85rem; }
+.ur-opciones { margin-top: 14px; }
+.ur-opciones summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto, #B3175F); min-height: 44px; display: flex; align-items: center; }
+.ur-opciones[open] summary { margin-bottom: 8px; }
+.ur-opciones .ur-foto { margin-top: 16px; }
 .ur-vacio, .ur-cierre, .ur-aviso { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--lila-suave); }
 .ur-aviso { margin: 0 0 14px; background: #FFF6E0; }
 .ur-vacio p, .ur-cierre p { margin: 0 0 6px; }

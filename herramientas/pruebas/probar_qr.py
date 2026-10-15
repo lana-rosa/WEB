@@ -89,7 +89,7 @@ def main():
         verificar('enlaza la guía completa de cuidados y las reseñas con enlaces que ya usa el sitio', page.get_attribute('.pz-enlace', 'href') == '/revista.html#cuidar-lavar-tejidos' and page.locator('a[href="https://g.page/r/Cae2iIji5j_XEAE/review"]').count() == 1)
         wa = page.get_attribute('.pz-wa', 'href')
         verificar('WhatsApp 573205072801 con el nombre de la pieza en el mensaje', wa.startswith('https://wa.me/573205072801?text=') and 'Roronoa%20Zoro' in wa, wa)
-        verificar('también ofrece regalar otra pieza y personalizar (rutas absolutas)', page.locator('.pz-acciones a[href="/universo-rosina.html#regalar"]').count() == 1 and page.locator('.pz-acciones a[href="/personaliza.html"]').count() == 1)
+        verificar('también ofrece regalar otra pieza y personalizar (rutas absolutas)', page.locator('.pz-secundarios a[href="/universo-rosina.html#regalar"]').count() == 1 and page.locator('.pz-secundarios a[href="/personaliza.html"]').count() == 1)
         verificar('lista las especificaciones públicas de la tienda (medidas)', 'Medidas: 15 cm' in page.inner_text('.pz-specs'))
         dl = page.evaluate("JSON.parse(JSON.stringify(window.dataLayer || []))")
         ev = [x for x in dl if x.get('event') == 'qr_visita']
@@ -138,7 +138,7 @@ def main():
             for caso, resp, ruta in (('cuidados de siempre', pieza(ZORO), '/p/?i=%s&o=etiqueta' % ZORO['id']), ('con historia (ejemplo)', validada, '/p/?i=%s&o=tarjeta' % ZARIA['id']), ('general', None, '/p/?o=tarjeta')):
                 page, err, _ = abrir(ctx, base, ruta, resp)
                 page.wait_for_function("[...document.querySelectorAll('.pz-prod img')].every(i => i.complete)", timeout=8000) if resp else None
-                verificar('%s, %s: sin scroll horizontal ni errores de JavaScript; botones y enlaces de al menos 44 px' % (nombre, caso), pr.sin_scroll_horizontal(page) and not err and page.eval_on_selector_all('.pz-boton', 'els => els.every(e => e.getBoundingClientRect().height >= 43.5)'), err)
+                verificar('%s, %s: sin scroll horizontal ni errores de JavaScript; botones y enlaces de al menos 44 px' % (nombre, caso), pr.sin_scroll_horizontal(page) and not err and page.eval_on_selector_all('.pz-boton, .pz-enlace-sec', 'els => els.every(e => e.getBoundingClientRect().height >= 43.5)'), err)
                 if CAPTURAS:
                     page.wait_for_timeout(400)
                     page.screenshot(path=os.path.join(CAPTURAS, 'qr-pagina-%s-%s.png' % (tag, {'cuidados de siempre': 'zoro', 'con historia (ejemplo)': 'historia', 'general': 'general'}[caso])), full_page=True)

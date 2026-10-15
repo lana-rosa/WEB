@@ -77,7 +77,11 @@ export async function iniciarRegalar(raiz) {
 
   const marco = nodo('div', 'ur-marco');
   if (modoPropuestas) marco.append(nodo('p', 'ur-aviso', 'Vista previa: se están usando etiquetas propuestas que todavía no han sido revisadas. No es lo que ve el público.'));
+  // Simple a la vista: solo tres preguntas; el resto (ocasión, tamaño, color, urgencia y la foto) va en «Más opciones».
+  const PRINCIPALES = ['destinatario', 'tipo', 'presupuesto'];
   const filtros = nodo('div', 'ur-filtros');
+  const filtrosExtra = nodo('div', 'ur-filtros');
+  const extra = nodo('details', 'ur-opciones'); const extraTitulo = nodo('summary', null, 'Más opciones'); extra.append(extraTitulo, filtrosExtra);
   const listas = {};
   grupos.forEach(([clave, titulo, sinFiltro, opciones]) => {
     const campo = nodo('div', 'ur-grupo');
@@ -92,14 +96,15 @@ export async function iniciarRegalar(raiz) {
       evento('regalar_paso', { paso: clave, valor_categoria: lista.value || 'ninguno' });
       pintar();
     });
-    campo.append(et, lista); filtros.append(campo);
+    campo.append(et, lista); (PRINCIPALES.indexOf(clave) >= 0 ? filtros : filtrosExtra).append(campo);
   });
   const reiniciar = nodo('button', 'ur-reiniciar', 'Empezar de nuevo'); reiniciar.type = 'button';
   const fotoBox = listas.color ? montarFotoReferencia() : null;
   reiniciar.addEventListener('click', () => { Object.keys(sel).forEach((k) => delete sel[k]); raiz.querySelectorAll('.ur-select').forEach((x) => { x.value = ''; x.classList.remove('ur-elegido'); }); if (fotoBox) fotoBox.limpiar(); pintar(); });
   const resumen = nodo('p', 'ur-resumen'); resumen.setAttribute('role', 'status'); resumen.setAttribute('aria-live', 'polite');
   const resultados = nodo('div', 'ur-resultados');
-  marco.append(filtros, ...(fotoBox ? [fotoBox.caja] : []), reiniciar, resumen, resultados);
+  if (fotoBox) extra.append(fotoBox.caja);
+  marco.append(filtros, extra, reiniciar, resumen, resultados);
   raiz.replaceChildren(marco);
 
   const verMas = {};
@@ -107,6 +112,7 @@ export async function iniciarRegalar(raiz) {
     if (!items.length) return null;
     const sec = nodo('section', 'ur-seccion'); sec.setAttribute('aria-label', titulo);
     sec.append(nodo('h3', null, titulo + ' (' + items.length + ')'), nodo('p', 'ur-nota', nota));
+    if (!esIdea && items.some((p) => p.es_personaje)) sec.append(nodo('p', 'ur-nota ur-pj-nota', 'Las piezas inspiradas en un personaje son artesanales; no son productos oficiales.'));
     const grid = nodo('div', 'ur-grid');
     const limite = verMas[clave] ? items.length : CONFIG.RESULTADOS_POR_SECCION;
     items.slice(0, limite).forEach((p) => grid.append(tarjeta(p, clave, esIdea)));
@@ -128,7 +134,6 @@ export async function iniciarRegalar(raiz) {
     }
     if (esIdea) a.append(nodo('span', 'ur-estado-prod ur-idea', 'Se teje a partir de tu foto o idea · las fotos son de referencia'));
     else a.append(nodo('span', 'ur-estado-prod ' + (p.en_existencia ? 'ur-ya' : 'ur-enc'), p.en_existencia ? 'En existencia' : 'Por encargo' + (p.tiempo_elaboracion ? ' · ' + p.tiempo_elaboracion : '')));
-    if (p.es_personaje && !esIdea) a.append(nodo('span', 'ur-pj', 'Pieza artesanal inspirada en un personaje; no es un producto oficial.'));
     a.addEventListener('click', () => evento('regalar_abre_ficha', { item_id: p.id, seccion: clave }));
     return a;
   }
@@ -221,6 +226,8 @@ export async function iniciarRegalar(raiz) {
     p1.append(l1, ' o ', l2, '.'); cierre.append(p1); resultados.append(cierre);
     resumen.textContent = total ? (r.disponibles.length + ' disponibles ya, ' + r.encargo.length + ' por encargo y ' + r.ideas.length + ' ideas para personalizar.') : 'Sin resultados con esos filtros.';
     actualizarListas();
+    const nExtra = Object.keys(sel).filter((k) => PRINCIPALES.indexOf(k) < 0).length;
+    extraTitulo.textContent = 'Más opciones' + (nExtra ? ' (' + nExtra + ' elegida' + (nExtra > 1 ? 's' : '') + ')' : '');
     clearTimeout(temporizador);
     if (Object.keys(sel).length) temporizador = setTimeout(() => evento('regalar_resultado', { n_disponibles: r.disponibles.length, n_encargo: r.encargo.length, n_ideas: r.ideas.length, sin_resultados: !r.disponibles.length && !r.encargo.length }), 800);
   }
@@ -230,6 +237,7 @@ export async function iniciarRegalar(raiz) {
     const v = params.get(clave);
     if (v && Array.prototype.some.call(listas[clave].options, (o) => o.value === v)) { listas[clave].value = v; listas[clave].classList.add('ur-elegido'); sel[clave] = v; }
   });
+  if (Object.keys(sel).some((k) => PRINCIPALES.indexOf(k) < 0)) extra.open = true;
   evento('universo_inicio', { recorrido: 'regalar', con_filtros: Object.keys(sel).length });
   pintar();
 }

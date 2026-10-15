@@ -16,7 +16,10 @@
 .pz-lista { margin: 0 0 12px; padding-left: 20px; display: grid; gap: 6px; }
 .pz-historia { margin: 0; white-space: pre-line; }
 .pz-enlace { color: var(--rosa-texto, #B3175F); font-weight: 700; }
-.pz-acciones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.pz-acciones { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.pz-secundarios { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; margin: 0; }
+.pz-enlace-sec { display: inline-flex; align-items: center; min-height: 44px; color: var(--rosa-texto, #B3175F); font-weight: 600; text-decoration: underline; }
+.pz-enlace-sec:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
 .pz-boton { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 48px; padding: 10px 14px; border-radius: 999px; border: 2px solid var(--rosa-medio); background: #fff; color: var(--tinta); font-weight: 700; text-decoration: none; }
 .pz-boton:hover { background: var(--rosa-suave); }
 .pz-boton:focus-visible, .pz-enlace:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
