@@ -4,7 +4,7 @@
 // v16 (Etapa 4): tarjetas de producto (el modelo elige códigos, los datos salen del catálogo real), medición de consumo sin datos
 // personales (rosina_web_consumo) y, solo si RW_REGISTRAR_SIN_RESPUESTA=1, registro corto y sin datos personales de preguntas sin respuesta.
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import { lineaCatalogo, limpiarPregunta, mapaDeCodigos, procesarRespuesta, REGLAS_TARJETAS, type Regalo, type Tienda } from "./nucleo.ts";
+import { lineaCatalogo, limpiarPregunta, mapaDeCodigos, procesarRespuesta, RECORDATORIO_TARJETAS, REGLAS_TARJETAS, type Regalo, type Tienda } from "./nucleo.ts";
 
 const ORIGENES = ["https://lanarosacrochet.com", "https://www.lanarosacrochet.com"];
 const SITIO = "https://lanarosacrochet.com";
@@ -151,6 +151,7 @@ Deno.serve(async (req) => {
       system: [
         { type: "text", text: REGLAS + "\n" + REGLAS_TARJETAS + "\n" + ROLES[casa] },
         { type: "text", text: "CONOCIMIENTO PÚBLICO (texto de las páginas del sitio):\n" + saber + "\n\n" + cat.texto, cache_control: { type: "ephemeral" } },
+        { type: "text", text: RECORDATORIO_TARJETAS },
       ],
       messages: mensajes,
     }),

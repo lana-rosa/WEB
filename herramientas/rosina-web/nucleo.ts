@@ -92,3 +92,10 @@ export function limpiarPregunta(texto: string, largo = 140): string {
 export const REGLAS_TARJETAS = `TARJETAS DE PRODUCTO: en el CATÁLOGO ACTUAL cada producto de la tienda de amigurumis lleva un código entre corchetes, por ejemplo [T12]. Cuando recomiendes un producto concreto de la tienda, escribe su código con dobles corchetes en una línea aparte al final, por ejemplo [[T12]]: la página mostrará sola la foto, el precio, si hay en existencia o es por encargo, y el enlace. Máximo 3 códigos. Usa SOLO códigos que aparezcan en el catálogo y nunca los inventes. No repitas en el texto el precio ni el enlace de un producto que ya muestras con su código; puedes nombrarlo y explicar por qué lo recomiendas.
 Si "en existencia ahora" aparece en el catálogo, hay unidades listas; si dice "por encargo", se teje cuando se pide y el tiempo es el que indica el catálogo: nunca prometas otro plazo. Los "Amigurumi personalizado" se tejen a partir de la foto o idea de la persona y el precio es el base.
 SIN RESPUESTA: si la pregunta es sobre Lana Rosa pero NO encuentras la respuesta en el conocimiento ni en el catálogo (y por eso ofreces el WhatsApp), termina tu respuesta con [[SIN_DATO]]. No lo uses en saludos, agradecimientos ni preguntas ajenas a Lana Rosa.`;
+
+// Recordatorio corto que va al FINAL del prompt (después del conocimiento y el catálogo, que son largos): ahí el modelo lo cumple mejor
+// que cuando la instrucción está solo al principio.
+export const RECORDATORIO_TARJETAS = `RECORDATORIO FINAL (obligatorio): cada vez que menciones por su nombre un producto concreto de la tienda de amigurumis (llavero, peluche, amigurumi, maceta, flor, bolso, separador…) que esté en el CATÁLOGO ACTUAL, termina tu respuesta con su código entre dobles corchetes, uno por línea, máximo 3 productos. Sin ese código la persona no ve la foto ni el enlace del producto. Ejemplo de cómo debe terminar una respuesta:
+Te recomiendo el Llavero Rosa porque es pequeño y delicado.
+[[T14]]
+No pongas el precio en el texto de un producto que ya muestras con su código.`;

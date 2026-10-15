@@ -111,6 +111,7 @@ nuevoEstado(); await cargar();
   verificar('el texto llega limpio, sin códigos', r.json.respuesta === 'Te sugiero este: es suave y precioso.', r.json.respuesta);
   const sistema = ultimoModelo.system.map((s) => s.text).join('\n');
   verificar('el modelo recibe el catálogo con códigos [T1]… y las reglas de tarjetas', /\[T1\] /.test(sistema) && sistema.includes('TARJETAS DE PRODUCTO') && sistema.includes('[[SIN_DATO]]'));
+  verificar('al FINAL del prompt, después del catálogo, hay un recordatorio de usar los códigos (el modelo lo cumple mejor ahí)', /RECORDATORIO FINAL/.test(ultimoModelo.system[ultimoModelo.system.length - 1].text) && ultimoModelo.system[1].cache_control && !ultimoModelo.system[ultimoModelo.system.length - 1].cache_control, ultimoModelo.system.map((s) => s.text.slice(0, 30)));
   verificar('el catálogo dice «en existencia ahora» o «por encargo» según el inventario (no «disponible» para todo)', /en existencia ahora/.test(sistema) && /por encargo: se teje cuando se pide/.test(sistema));
   verificar('el catálogo incluye los colores de las fotos (colores.json)', /colores: [a-z, ]+/.test(sistema));
   verificar('los productos que no se muestran en la web siguen en el catálogo, sin código y como agotados', /- Producto oculto \| Llaveros \| \$5\.000 \| agotado/.test(sistema) || /- Producto oculto .* agotado/.test(sistema));

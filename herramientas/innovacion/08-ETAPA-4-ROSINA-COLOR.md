@@ -1,6 +1,6 @@
 # 08 · Etapa 4: Rosina con tarjetas de producto y «Busca por color» (16-oct-2026)
 
-**Estado:** construida y probada en la rama `claude/universo-etapa4`. **Sin publicar** hasta que Sara la apruebe. Ya está aplicada en Supabase la migración (aditiva, invisible; tablas vacías). **Falta desplegar la versión 16 de la función `rosina-web`** (se hace al publicar, ver «Cómo se publica»).
+**Estado:** publicada el 16-oct-2026 (Sara: «publícalo así»). Migración aplicada en Supabase (aditiva; tablas vacías al inicio) y función `rosina-web` **v17** desplegada. Probada en producción con preguntas reales (ver «Verificación en producción»).
 
 Esta etapa tiene tres partes. Las dos primeras son lo que ve la clienta; la tercera es una evaluación escrita que **no activa nada** (`09-OCR-Y-POLITICA-DE-DATOS.md`).
 
@@ -43,16 +43,23 @@ Es la «búsqueda visual simple» del plan: color y etiquetas, **sin IA y sin su
 - Tarjetas: si se vuelve a desplegar la función v15 (en `git` está `herramientas/rosina-web/index.ts` de `main`), el chat vuelve a ser solo texto sin romper nada.
 - Registro de «sin respuesta»: apagado; para encenderlo, crear el secreto `RW_REGISTRAR_SIN_RESPUESTA=1` en Supabase (después de actualizar la política).
 
-## Cómo se publica (cuando Sara apruebe)
+## Verificación en producción (16-oct-2026)
+- La v16 respondía bien pero **el modelo (Haiku) nombraba productos sin escribir el código** y no salían tarjetas: la instrucción estaba al inicio del prompt, antes de ~30.000 tokens de conocimiento y catálogo. La **v17** agrega un recordatorio corto al final del prompt (bloque aparte sin caché, el conocimiento sigue en caché) con un ejemplo.
+- Con la v17, 4 preguntas reales de recomendación (regalo rosa para mamá, llavero barato, peluche para bebé, regalo para fan del fútbol) devolvieron tarjetas correctas en las 4: productos del catálogo con su precio y existencia reales.
+- Una pregunta sin dato (envío a Japón) devolvió `sin_dato: true` y el registro de preguntas **no guardó nada** (apagado, `rosina_sin_respuesta` sigue en 0 filas).
+- `rosina_web_consumo` ya guarda consultas y tokens por día y casa. **Las pruebas dejaron unas 7 consultas de prueba en el conteo del 16-oct.**
+- Si el modelo vuelve a omitir códigos con otras preguntas, el siguiente paso es detectar en el texto el nombre de un producto del catálogo y mostrar su tarjeta (no se hizo para no mostrar tarjetas por menciones sueltas).
+
+## Cómo se publicó (registro)
 1. (Hecho) Migración `migracion-universo-5-rosina.sql`.
-2. Desplegar `rosina-web` v16 (archivos `index.ts` y `nucleo.ts`, `verify_jwt` apagado como la v15) con el MCP de Supabase.
+2. Desplegar `rosina-web` (archivos `index.ts` y `nucleo.ts`, `verify_jwt` apagado como la v15) con el MCP de Supabase: v16 y, tras la prueba real, v17.
 3. PR de la rama `claude/universo-etapa4` a `main` y merge (GitHub Pages despliega solo). El orden 2 y 3 es indiferente: el chat nuevo funciona con la función vieja y la función nueva funciona con el chat viejo.
 4. Probar en producción una pregunta por casa (tarjetas, enlaces, WhatsApp si no hay dato), mirar `select * from rosina_web_consumo` (debe tener una fila por día y casa) y confirmar que `rosina_sin_respuesta` sigue vacía.
 
 ## Pruebas (todas verdes)
 | Prueba | Qué cubre | Comprobaciones |
 |---|---|---|
-| `node --import ./herramientas/pruebas/rosina_shim/registro.mjs herramientas/pruebas/probar_rosina_funcion.mjs` | El `index.ts` real con la base, el sitio y el modelo simulados: códigos, tarjetas, códigos inventados o repetidos, «sin dato», registro apagado y encendido, límites, fallos, medición | 42 |
+| `node --import ./herramientas/pruebas/rosina_shim/registro.mjs herramientas/pruebas/probar_rosina_funcion.mjs` | El `index.ts` real con la base, el sitio y el modelo simulados: códigos, tarjetas, códigos inventados o repetidos, «sin dato», registro apagado y encendido, límites, fallos, medición | 43 |
 | `python3 herramientas/pruebas/probar_rosina_chat.py` | Tarjetas en celular y computador, seguridad (nada como HTML), WhatsApp, respuesta antigua, errores | 31 |
 | `python3 herramientas/pruebas/probar_colores.py` | Reglas de color, `colores.json` al día, filtro, foto de referencia sin envío de red, teclado, celular | 73 |
 | `probar_regalar.py` (actualizada: ahora 5 filtros sin etiquetas y 7 con ellas) · `probar_crear.py` · `probar_qr.py` · `probar_historias.py` | Lo anterior sigue intacto | 93 · 82 · 41 · 13 |
