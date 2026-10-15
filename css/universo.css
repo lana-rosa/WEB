@@ -6,6 +6,7 @@
 .universo-hero p { margin: 0; max-width: 62ch; color: var(--tinta-suave); }
 .recorridos { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin: 22px 0 34px; }
 .recorrido { display: flex; flex-direction: column; gap: 6px; padding: 18px; border-radius: var(--radio-suave); background: var(--rosa-suave); color: var(--tinta); text-decoration: none; border: 2px solid transparent; }
+.recorrido[hidden] { display: none; }
 .recorrido:hover, .recorrido:focus-visible { border-color: var(--rosa-principal); outline: none; }
 .recorrido .ico { font-size: 1.6rem; }
 .recorrido strong { font-family: var(--fuente-titulo); font-size: 1.05rem; color: var(--rosa-texto, #B3175F); }
@@ -109,3 +110,5 @@
 .uc-mas summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto, #B3175F); min-height: 44px; display: flex; align-items: center; }
 .uc-mas[open] summary { margin-bottom: 8px; }
 .uc-mas > .ur-grupo { margin-bottom: 14px; }
+
+html[data-ur-casa]:not([data-ur-casa="crochet"]) #regalar { display: none; }

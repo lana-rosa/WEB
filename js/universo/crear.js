@@ -88,9 +88,9 @@ export function montarGuia(raiz, opciones) {
   }
 
   // 1 · qué
-  paso(1).append(lista('uc-idea', '¿Qué quieres tejer?*', 'Elige una opción', IDEAS_CREAR.map((x) => [x[0], x[1]]), 'idea'));
+  paso(1).append(lista('uc-idea', '¿Qué quieres crear?*', 'Elige una opción', IDEAS_CREAR.map((x) => [x[0], x[1]]), 'idea'));
   // 2 · tamaño
-  paso(2).append(lista('uc-tamano', '¿De qué tamaño?*', 'Primero elige qué quieres tejer', [], 'tamano', 'El precio base es el de una pieza con detalle normal. Si tu diseño necesita más detalle, te lo confirmamos antes de empezar.'));
+  paso(2).append(lista('uc-tamano', '¿De qué tamaño?*', 'Primero elige qué quieres crear', [], 'tamano', 'El precio base es el de una pieza con detalle normal. Si tu diseño necesita más detalle, te lo confirmamos antes de empezar.'));
   campos.tamano.disabled = true;
   // 3 · detalles
   const fs = nodo('fieldset', 'uc-detalles'); fs.append(nodo('legend', null, '¿Qué detalles quieres incluir? (opcional)'));
@@ -110,7 +110,7 @@ export function montarGuia(raiz, opciones) {
   // 4 · idea y colores
   const pIdea = paso(4);
   const gT = nodo('div', 'ur-grupo'); const lT = nodo('label', null, 'Cuéntanos tu idea*'); lT.htmlFor = 'uc-texto';
-  const ta = nodo('textarea', 'uc-texto'); ta.id = 'uc-texto'; ta.maxLength = 800; ta.rows = 4; ta.placeholder = 'Cuéntanos a quién o qué quieres tejer y cómo es.';
+  const ta = nodo('textarea', 'uc-texto'); ta.id = 'uc-texto'; ta.maxLength = 800; ta.rows = 4; ta.placeholder = 'Cuéntanos a quién o qué quieres crear y cómo es.';
   ta.addEventListener('input', () => { empezar(); actualizar('texto'); }); ta.addEventListener('change', () => evento('crear_paso', { paso: 'texto' }));
   gT.append(lT, ta); campos.texto = ta;
   const gC = nodo('div', 'ur-grupo'); const lC = nodo('label', null, 'Colores importantes (opcional)'); lC.htmlFor = 'uc-colores';
@@ -152,7 +152,7 @@ export function montarGuia(raiz, opciones) {
   function pintarTamanos() {
     const idea = IDEAS_CREAR.find((x) => x[0] === campos.idea.value);
     const previo = campos.tamano.value;
-    campos.tamano.replaceChildren(Object.assign(nodo('option', null, idea ? 'Elige un tamaño' : 'Primero elige qué quieres tejer'), { value: '' }));
+    campos.tamano.replaceChildren(Object.assign(nodo('option', null, idea ? 'Elige un tamaño' : 'Primero elige qué quieres crear'), { value: '' }));
     campos.tamano.disabled = !idea;
     if (!idea) return;
     TAMANOS_CREAR[idea[2]].forEach((t) => {
@@ -166,7 +166,7 @@ export function montarGuia(raiz, opciones) {
     if (cambio === 'idea') {
       pintarTamanos();
       const idea = IDEAS_CREAR.find((x) => x[0] === campos.idea.value);
-      campos.texto.placeholder = idea ? idea[3] : 'Cuéntanos a quién o qué quieres tejer y cómo es.';
+      campos.texto.placeholder = idea ? idea[3] : 'Cuéntanos a quién o qué quieres crear y cómo es.';
     }
     const f = armarFicha(estadoActual(), precios);
     dl.replaceChildren();

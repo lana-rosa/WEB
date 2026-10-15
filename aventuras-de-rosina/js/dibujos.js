@@ -29,9 +29,9 @@ const defsFlecha = `<defs><marker id="pf" viewBox="0 0 10 10" refX="8" refY="5" 
  *  el cuerpo, el apoyo plano para el pulgar y el mango. (Referencia: ganchos ergonómicos de aluminio con mango.) */
 const gancho = (x, y, ang = 0, s = 1) =>
   `<g transform="translate(${x} ${y}) rotate(${ang}) scale(${s})">
-    <path d="M0,1.5 C-0.8,-3.5 2,-8 7.5,-8.4 C12,-8.6 14,-5.8 13,-3.2 C12.4,-2 11.6,-1.2 12,-0.4 C14.5,1.4 21,0.8 29,-4.5 L112,-4.5 L112,4.5 L13,4.5 C6,4.5 0.5,5.3 0,1.5 Z" fill="#B7BCC6" stroke="#6F7683" stroke-width="1.5" stroke-linejoin="round"/>
-    <path d="M34,-2.4 L96,-2.4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
-    <path d="M52,-4.5 L74,-4.5 L74,4.5 L52,4.5 Z" fill="#C9CDD6" stroke="#6F7683" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M0,3 C-1,-2 0.5,-7.5 4.5,-10.5 C8,-12.5 13,-11.5 15,-8.5 L16.5,-5.5 C13,-6.2 10.6,-4.4 10.4,-1.8 C10.2,0.8 13.5,2 18.5,0.8 C25,-0.6 28,-5 35,-5 L112,-5 L112,5 L14,5 C6,5 0.5,6.6 0,3 Z" fill="#B7BCC6" stroke="#6F7683" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M40,-2.8 L96,-2.8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+    <path d="M54,-5 L76,-5 L76,5 L54,5 Z" fill="#C9CDD6" stroke="#6F7683" stroke-width="1.2" stroke-linejoin="round"/>
     <rect x="108" y="-7" width="64" height="14" rx="7" fill="#9EA2F9" stroke="#6F73C8" stroke-width="1.5"/>
   </g>`;
 
@@ -75,12 +75,29 @@ const PINTORES = {
     ${texto(150, 160, 'Curva', 15)}${texto(150, 178, 'del gancho', 14, 'middle', 500)}${flecha('M136,146 L70,104')}
     ${texto(262, 60, 'Mango', 15)}${flecha('M262,66 L262,88')}`),
 
+  // Tijeras de punta redonda (hoja con filo, tornillo en el centro y mangos con aros de plástico) y aguja lanera de punta roma con ojo grande.
   tijeras: () => svg(`
-    <g transform="translate(70 92)"><path d="M0,0 L108,-20" stroke="#6F7683" stroke-width="10" stroke-linecap="round"/><path d="M0,0 L108,22" stroke="#B7BCC6" stroke-width="10" stroke-linecap="round"/>
-    <circle cx="-14" cy="-20" r="15" fill="none" stroke="#9EA2F9" stroke-width="7"/><circle cx="-14" cy="22" r="15" fill="none" stroke="#9EA2F9" stroke-width="7"/></g>
-    ${texto(122, 150, 'Tijeras de punta redonda', 14)}
-    <path d="M214,70 L306,70" stroke="#B7BCC6" stroke-width="5" stroke-linecap="round"/><ellipse cx="226" cy="70" rx="4" ry="2.5" fill="${FONDO}"/><circle cx="306" cy="70" r="4.5" fill="#B7BCC6"/>
-    ${texto(262, 98, 'Aguja lanera', 14)}${texto(262, 114, '(punta roma)', 13, 'middle', 500)}
+    <g transform="translate(104 84) rotate(-4) scale(1.05)">
+      <!-- hoja y mango de abajo (la hoja va hacia arriba a la derecha) -->
+      <path d="M-4,4 L-50,22" stroke="#6F7683" stroke-width="11" stroke-linecap="round"/><path d="M-4,4 L-50,22" stroke="#B7BCC6" stroke-width="7" stroke-linecap="round"/>
+      <ellipse cx="-62" cy="30" rx="21" ry="14" transform="rotate(-24 -62 30)" fill="none" stroke="#6F73C8" stroke-width="12"/>
+      <ellipse cx="-62" cy="30" rx="21" ry="14" transform="rotate(-24 -62 30)" fill="none" stroke="#9EA2F9" stroke-width="8"/>
+      <path d="M-6,-4 L88,-25 C98,-27 101,-18 95,-13 L-6,10 Z" fill="#C9CDD6" stroke="#6F7683" stroke-width="2" stroke-linejoin="round"/>
+      <!-- hoja y mango de arriba (la hoja va hacia abajo a la derecha) -->
+      <path d="M-4,-4 L-50,-22" stroke="#6F7683" stroke-width="11" stroke-linecap="round"/><path d="M-4,-4 L-50,-22" stroke="#B7BCC6" stroke-width="7" stroke-linecap="round"/>
+      <ellipse cx="-62" cy="-30" rx="21" ry="14" transform="rotate(24 -62 -30)" fill="none" stroke="#C93A82" stroke-width="12"/>
+      <ellipse cx="-62" cy="-30" rx="21" ry="14" transform="rotate(24 -62 -30)" fill="none" stroke="#F28FC0" stroke-width="8"/>
+      <path d="M-6,4 L88,25 C98,27 101,18 95,13 L-6,-10 Z" fill="#E4E7EE" stroke="#6F7683" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M6,-6 L82,-21" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+      <circle cx="-2" cy="0" r="6" fill="#9AA0AD" stroke="#5F6572" stroke-width="1.8"/><circle cx="-2" cy="0" r="1.8" fill="#5F6572"/>
+    </g>
+    ${texto(112, 168, 'Tijeras de punta redonda', 14)}
+    <g transform="translate(226 66)">
+      <path d="M4,0 L84,0" stroke="#8F96A4" stroke-width="5" stroke-linecap="round"/><path d="M6,-1.2 L82,-1.2" stroke="#E7EAF0" stroke-width="1.4" stroke-linecap="round"/>
+      <circle cx="87" cy="0" r="3.4" fill="#8F96A4"/>
+      <ellipse cx="9" cy="0" rx="9" ry="4" fill="${FONDO}" stroke="#8F96A4" stroke-width="2.6"/>
+    </g>
+    ${texto(272, 98, 'Aguja lanera', 14)}${texto(272, 114, '(punta roma)', 13, 'middle', 500)}
     <rect x="206" y="140" width="104" height="30" rx="15" fill="${HA}"/>${texto(258, 161, 'Solo adultos', 14, 'middle', 700, '#fff')}`),
 
   nudo1: () => svg(`${defsFlecha}

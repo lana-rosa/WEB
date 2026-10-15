@@ -328,7 +328,7 @@ def main():
             page.close()
         config_apagada = open(os.path.join(RAIZ, 'js', 'universo', 'config.js'), encoding='utf-8').read().replace('REGALAR_ACTIVO: true', 'REGALAR_ACTIVO: false')
         page, err = abrir(pc, base, CATALOGO, config=config_apagada)
-        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('#regalar-raiz .ur-select').count() == 0 and page.locator('.recorrido').count() == 5)
+        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('#regalar-raiz .ur-select').count() == 0 and page.locator('.recorrido:not([hidden])').count() == 5)
         page.close()
 
         print('\n[Inicio: «Rosina te ayuda a regalar» destacada]')
@@ -364,7 +364,7 @@ def main():
         with page.expect_navigation():
             page.click('.ed-regalar-form button[type=submit]')
         page.wait_for_selector('#regalar-raiz .ur-marco', timeout=8000)
-        verificar('del inicio llega a /universo-rosina.html?tipo=peluche&presupuesto=p2#regalar', page.url.endswith('/universo-rosina.html?tipo=peluche&presupuesto=p2#regalar'), page.url)
+        verificar('del inicio llega a /universo-rosina.html?casa=crochet&tipo=peluche&presupuesto=p2#regalar', page.url.endswith('/universo-rosina.html?casa=crochet&tipo=peluche&presupuesto=p2#regalar'), page.url)
         verificar('las listas del recomendador llegan ya elegidas (Peluche y $20.000 a $50.000)', lista(page, 'tipo').input_value() == 'peluche' and lista(page, 'presupuesto').input_value() == 'p2' and page.locator('#regalar-raiz .ur-select.ur-elegido').count() == 2)
         esperados = sorted(x['nombre'] for x in CATALOGO if x['categoria_web'] == 'Peluches' and 20000 < x['precio'] <= 50000 and not x['personalizable_base'])
         mostrados = sorted(n for n, _ in precios_de(page))
@@ -381,10 +381,23 @@ def main():
         page, err = abrir(pc, base, CATALOGO)
         verificar('está publicada: sin noindex, con canonical propio', page.locator('meta[name="robots"]').count() == 0 and page.get_attribute('link[rel="canonical"]', 'href') == 'https://lanarosacrochet.com/universo-rosina.html')
         verificar('está en el sitemap', 'https://lanarosacrochet.com/universo-rosina.html' in open(os.path.join(RAIZ, 'sitemap.xml'), encoding='utf-8').read())
-        verificar('el pie de la página enlaza al universo con ruta absoluta', page.locator('footer a[href="/universo-rosina.html"]').count() == 1)
+        verificar('el pie de la página enlaza al universo con ruta absoluta y la casa', page.locator('footer a[href="/universo-rosina.html?casa=crochet"]').count() == 1)
         verificar('usa las fuentes propias (ningún pedido a Google Fonts)', page.evaluate('!document.documentElement.outerHTML.includes("fonts.googleapis")'))
-        verificar('los 5 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html', '/academy/', '/aventuras-de-rosina/'])
+        verificar('los 5 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido:not([hidden])', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html', '/academy/', '/aventuras-de-rosina/'])
         verificar('un solo h1', page.locator('h1').count() == 1)
+        # El Universo muestra solo lo de la casa desde donde se llega
+        for casa, no_debe, si_debe, regalar in (
+                ('crochet', ['/academy/', '/aventuras-de-rosina/', '/calculadoras-rosina.html#lana'], ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html?casa=crochet'], True),
+                ('academy', ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/calculadoras-rosina.html#lana'], ['/academy/', '/aventuras-de-rosina/', '/revista.html?casa=academy'], False),
+                ('merceria', ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/academy/', '/aventuras-de-rosina/'], ['/calculadoras-rosina.html#lana', '/revista.html?casa=merceria'], False)):
+            ph, eh = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?casa=' + casa, espera='.recorridos')
+            hrefs = ph.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))')
+            verificar('Universo desde %s: solo sus recorridos (%s)' % (casa, ', '.join(hrefs)), all(h in hrefs for h in si_debe) and not any(h in hrefs for h in no_debe), hrefs)
+            verificar('Universo desde %s: %s el buscador de regalos y sin errores' % (casa, 'muestra' if regalar else 'quita'), (ph.locator('#regalar').count() == 1) == regalar and not eh, eh)
+            ph.close()
+        ph, eh = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?casa=inventada')
+        verificar('Universo con una casa inventada: muestra todo como antes', ph.locator('.recorrido:not([hidden])').count() == 5 and not eh, eh)
+        ph.close()
         page.close()
         nav.close()
     srv.shutdown()
