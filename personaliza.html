@@ -94,6 +94,10 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 #mensaje-estado { margin-top: 18px; padding: 16px; border-radius: 12px; display: none; font-size: 0.95rem; }
 .banner-personalizado { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 14px 18px; margin: 0 0 16px; max-width: 780px; display: flex; gap: 14px; align-items: center; }
 .banner-personalizado[hidden], .pago-personalizado[hidden] { display: none; }
+.banner-ficha { flex-direction: column; align-items: flex-start; gap: 6px; border: 2px solid var(--rosa-medio); }
+.banner-ficha ul { margin: 4px 0 0; padding-left: 18px; font-size: 0.9rem; }
+.banner-ficha .acciones-ficha { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 6px; font-size: 0.9rem; }
+.banner-ficha .acciones-ficha a, .banner-ficha .acciones-ficha button { color: var(--rosa-texto); font: inherit; font-weight: 700; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
 .banner-personalizado img { width: 64px; height: 80px; object-fit: cover; border-radius: 10px; flex: none; }
 .banner-personalizado p { margin: 0; font-size: 0.92rem; }
 .banner-personalizado strong { color: var(--rosa-texto); }
@@ -399,6 +403,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>Pide el tuyo aquí</h2>
     <p>Cuéntanos tu idea y te enviamos la cotización.</p>
   </div>
+  <div class="banner-personalizado banner-ficha" id="banner-ficha" hidden></div>
   <div class="banner-personalizado" id="banner-personalizado" hidden></div>
   <form class="tarjeta" id="form-personalizado">
     <div class="campo">
@@ -562,6 +567,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script type="module">
 import { createClient } from '/js/vendor/supabase.js?v=1';
+import { leerFicha, borrarFicha } from '/js/universo/ficha.js';
 
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
@@ -703,6 +709,29 @@ if (parametros.get('producto')) {
 selectTamano.addEventListener('change', () => { listoPers.then(() => pintarBannerPers(selectTipo.value === 'Amigurumi' ? selectTamano.value : '')); });
 selectTipo.addEventListener('change', () => { if (selectTipo.value !== 'Amigurumi') bannerPers.hidden = true; });
 
+// Ficha del configurador «Rosina te ayuda a crear» (universo-rosina.html#crear): precarga tipo, tamaño, descripción y mensaje; la persona puede editar todo.
+const bannerFicha = document.getElementById('banner-ficha');
+const fichaCrear = parametros.get('desde') === 'crear' ? leerFicha(24) : null;
+if (fichaCrear && (fichaCrear.tipo === 'Amigurumi' || fichaCrear.tipo === 'Llavero')) {
+  selectTipo.value = fichaCrear.tipo;
+  selectTipo.dispatchEvent(new Event('change'));
+  if ([...selectTamano.options].some((o) => o.value === fichaCrear.tamano)) { selectTamano.value = fichaCrear.tamano; selectTamano.dispatchEvent(new Event('change')); }
+  const campoDesc = document.getElementById('descripcion'), campoMsj = document.getElementById('mensaje');
+  if (!campoDesc.value) campoDesc.value = fichaCrear.descripcion;
+  if (!campoMsj.value) campoMsj.value = fichaCrear.mensaje;
+  bannerFicha.replaceChildren();
+  const tFicha = document.createElement('p'); tFicha.style.margin = '0';
+  const bFicha = document.createElement('strong'); bFicha.textContent = '✨ Tu ficha del configurador ya está en el formulario.';
+  tFicha.append(bFicha, ' Revísala, sube tus fotos y completa tus datos.');
+  bannerFicha.append(tFicha);
+  if (fichaCrear.resumen.length) { const ul = document.createElement('ul'); fichaCrear.resumen.forEach((r) => { const li = document.createElement('li'); li.textContent = r; ul.append(li); }); bannerFicha.append(ul); }
+  const acc = document.createElement('div'); acc.className = 'acciones-ficha';
+  const cambiar = document.createElement('a'); cambiar.href = '/universo-rosina.html#crear'; cambiar.textContent = 'Cambiar mi ficha';
+  const quitar = document.createElement('button'); quitar.type = 'button'; quitar.textContent = 'Descartar la ficha';
+  quitar.addEventListener('click', () => { borrarFicha(); bannerFicha.hidden = true; campoDesc.value = ''; campoMsj.value = ''; });
+  acc.append(cambiar, quitar); bannerFicha.append(acc); bannerFicha.hidden = false;
+}
+
 // Después de enviar el formulario: se ofrece pagar el tamaño elegido (el producto de la tienda) y se guarda el radicado para el pedido.
 function ofrecerPago(radicado, tamano) {
   const pr = productosPers[tamano]; const panel = document.getElementById('pago-personalizado');
@@ -794,6 +823,7 @@ form.addEventListener('submit', async (evento) => {
     mensajeEstado.appendChild(document.createElement('br'));
     mensajeEstado.appendChild(enlaceWa);
     await listoPers; ofrecerPago(data, tamanoPago);
+    borrarFicha(); bannerFicha.hidden = true;
     form.reset();
     alternarOtro(selectCiudad, 'Otro (nacional)', inputCiudadOtra);
     selectTipo.dispatchEvent(new Event('change'));

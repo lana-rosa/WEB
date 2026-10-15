@@ -58,7 +58,7 @@ def con_etiquetas_revisadas(catalogo, nombres):
     return c
 
 
-def abrir(ctx, base, catalogo, ruta='/universo-rosina.html', estado=200, config=None, espera='#regalar-raiz .ur-marco, #regalar-raiz .ur-vacio, #regalar-raiz .ur-aviso'):
+def abrir(ctx, base, catalogo, ruta='/universo-rosina.html', estado=200, config=None, espera='#regalar-raiz .ur-marco, #regalar-raiz .ur-vacio, #regalar-raiz .ur-aviso', rutas=()):
     """Abre la página con el RPC simulado. Devuelve (page, errores_js)."""
     page = ctx.new_page()
     # El aviso de cookies tapa las capturas: se simula una decisión ya tomada («Rechazar»).
@@ -76,6 +76,8 @@ def abrir(ctx, base, catalogo, ruta='/universo-rosina.html', estado=200, config=
     # Playwright usa primero la ruta registrada al final: primero se corta todo lo externo y luego se simula el RPC.
     page.route(re.compile(r'^(?!http://127\.0\.0\.1).*'), lambda r: r.abort())
     page.route('**/rest/v1/rpc/obtener_regalos_web', rpc)
+    for patron, manejador in rutas:
+        page.route(patron, manejador)
     if config is not None:
         page.route('**/js/universo/config.js', lambda r: r.fulfill(status=200, content_type='text/javascript', body=config))
     page.goto(base + ruta, wait_until='domcontentloaded')
@@ -152,7 +154,7 @@ def main():
             print('\n[Página real con los 72 productos del catálogo — %s]' % nombre)
             tag = 'm' if ctx is movil else 'd'
             page, err = abrir(ctx, base, CATALOGO)
-            verificar('muestra solo los 4 filtros sin etiquetas (tipo, presupuesto, tamaño, disponibilidad)', page.locator('.ur-grupo').count() == 4, page.locator('.ur-grupo').count())
+            verificar('muestra solo los 4 filtros sin etiquetas (tipo, presupuesto, tamaño, disponibilidad)', page.locator('#regalar-raiz .ur-grupo').count() == 4, page.locator('#regalar-raiz .ur-grupo').count())
             verificar('no hay filtros de ocasión ni «para quién» hasta que haya etiquetas revisadas', lista(page, 'ocasion').count() == 0 and lista(page, 'destinatario').count() == 0)
             verificar('sin filtros se ven los productos y las ideas', tarjetas(page, 'Disponibles ya').count() > 0 and tarjetas(page, 'Ideas para personalizar').count() == 3)
             verificar('sin scroll horizontal', sin_scroll_horizontal(page))
@@ -168,14 +170,14 @@ def main():
             verificar('R1 sin resultados: explica y ofrece WhatsApp', page.locator('.ur-vacio').count() == 1 and 'No encontré productos' in page.inner_text('.ur-vacio') and page.locator('.ur-cierre a[href^="https://wa.me/573205072801"]').count() == 1)
             verificar('R1 el resumen en vivo dice «Sin resultados»', 'Sin resultados' in page.inner_text('.ur-resumen'))
             # R2: sin existencia solo en «Por encargo»
-            page.click('.ur-reiniciar')
+            page.click('#regalar-raiz .ur-reiniciar')
             elegir(page, 'tipo', 'otro'); elegir(page, 'presupuesto', 'p5')
             verificar('R2 el Bolso ZARIA (sin existencia) aparece solo en «Por encargo»', tarjetas(page, 'Por encargo').filter(has_text='Bolso ZARIA').count() == 1 and tarjetas(page, 'Disponibles ya').count() == 0)
             verificar('R2 la tarjeta dice «Por encargo» con el tiempo real del ERP', 'Por encargo · 10 días hábiles' in tarjetas(page, 'Por encargo').first.inner_text())
             elegir(page, 'disponibilidad', 'ya')
             verificar('R2 con «lo necesito ya» el Bolso desaparece', page.locator('.ur-card').count() == 0)
             # ideas
-            page.click('.ur-reiniciar')
+            page.click('#regalar-raiz .ur-reiniciar')
             elegir(page, 'tipo', 'amigurumi'); elegir(page, 'presupuesto', 'p3'); elegir(page, 'tamano', 'mediano')
             ideas = tarjetas(page, 'Ideas para personalizar')
             nombres_ideas = [ideas.nth(i).inner_text() for i in range(ideas.count())]
@@ -184,7 +186,7 @@ def main():
             hrefs = page.eval_on_selector_all('.ur-card', 'els => els.map(e => e.getAttribute("href"))')
             verificar('todas las tarjetas llevan a la ficha de la tienda con la ruta absoluta', all(h.startswith('/tienda.html?producto=') for h in hrefs), hrefs[:3])
             # R4: precios idénticos al catálogo
-            page.click('.ur-reiniciar')
+            page.click('#regalar-raiz .ur-reiniciar')
             elegir(page, 'tipo', 'amigurumi')
             while page.locator('.ur-mas').count():
                 page.locator('.ur-mas').first.click()
@@ -207,18 +209,18 @@ def main():
         print('\n[Teclado y lectores de pantalla]')
         page, err = abrir(pc, base, CATALOGO)
         sel_tipo = lista(page, 'tipo')
-        verificar('R5 los filtros son listas desplegables (select), una por pregunta', page.locator('select.ur-select').count() == 4 and page.locator('.ur-chip').count() == 0)
-        verificar('R5 cada lista tiene su etiqueta asociada (label for)', page.eval_on_selector_all('select.ur-select', 'els => els.every(s => { const l = document.querySelector("label[for=" + s.id + "]"); return l && l.textContent.length > 5; })'))
-        verificar('R5 la primera opción de cada lista es «sin filtro»', page.eval_on_selector_all('select.ur-select', 'els => els.every(s => s.options[0].value === "" && s.value === "")'))
+        verificar('R5 los filtros son listas desplegables (select), una por pregunta', page.locator('#regalar-raiz select.ur-select').count() == 4 and page.locator('.ur-chip').count() == 0)
+        verificar('R5 cada lista tiene su etiqueta asociada (label for)', page.eval_on_selector_all('#regalar-raiz select.ur-select', 'els => els.every(s => { const l = document.querySelector("label[for=" + s.id + "]"); return l && l.textContent.length > 5; })'))
+        verificar('R5 la primera opción de cada lista es «sin filtro»', page.eval_on_selector_all('#regalar-raiz select.ur-select', 'els => els.every(s => s.options[0].value === "" && s.value === "")'))
         sel_tipo.focus(); page.keyboard.press('ArrowDown')
-        verificar('R5 con el teclado (flecha abajo) se elige una opción y se filtra', sel_tipo.input_value() == 'amigurumi' and page.locator('.ur-select.ur-elegido').count() == 1 and tarjetas(page, 'Disponibles ya').count() > 0)
+        verificar('R5 con el teclado (flecha abajo) se elige una opción y se filtra', sel_tipo.input_value() == 'amigurumi' and page.locator('#regalar-raiz .ur-select.ur-elegido').count() == 1 and tarjetas(page, 'Disponibles ya').count() > 0)
         page.keyboard.press('ArrowUp')
-        verificar('R5 flecha arriba vuelve a «sin filtro»', sel_tipo.input_value() == '' and page.locator('.ur-select.ur-elegido').count() == 0)
+        verificar('R5 flecha arriba vuelve a «sin filtro»', sel_tipo.input_value() == '' and page.locator('#regalar-raiz .ur-select.ur-elegido').count() == 0)
         verificar('R5 el resumen es una región en vivo y educada', page.get_attribute('.ur-resumen', 'aria-live') == 'polite' and page.get_attribute('.ur-resumen', 'role') == 'status')
         elegir(page, 'tipo', 'llavero'); elegir(page, 'presupuesto', 'p5')
-        page.click('.ur-reiniciar')
-        verificar('R5 «Empezar de nuevo» devuelve todas las listas a «sin filtro»', page.eval_on_selector_all('select.ur-select', 'els => els.every(s => s.value === "")') and page.locator('.ur-select.ur-elegido').count() == 0 and page.locator('.ur-vacio').count() == 0)
-        verificar('R5 todas las listas miden al menos 44 px de alto', page.eval_on_selector_all('select.ur-select', 'els => els.every(e => e.getBoundingClientRect().height >= 44)'))
+        page.click('#regalar-raiz .ur-reiniciar')
+        verificar('R5 «Empezar de nuevo» devuelve todas las listas a «sin filtro»', page.eval_on_selector_all('#regalar-raiz select.ur-select', 'els => els.every(s => s.value === "")') and page.locator('#regalar-raiz .ur-select.ur-elegido').count() == 0 and page.locator('.ur-vacio').count() == 0)
+        verificar('R5 todas las listas miden al menos 44 px de alto', page.eval_on_selector_all('#regalar-raiz select.ur-select', 'els => els.every(e => e.getBoundingClientRect().height >= 44)'))
         verificar('R5 las imágenes de producto tienen texto alternativo', page.eval_on_selector_all('.ur-card img', 'els => els.every(i => i.alt && i.alt.length > 2)'))
         page.close()
 
@@ -226,7 +228,7 @@ def main():
         revisados = [x['nombre'] for x in CATALOGO if x['categoria_web'] in ('Llaveros', 'Peluches', 'Macetas') and x['en_existencia']][:24]
         cat_rev = con_etiquetas_revisadas(CATALOGO, revisados)
         page, err = abrir(pc, base, cat_rev)
-        verificar('con 24 productos revisados aparecen los filtros de ocasión y «para quién» (%d grupos)' % page.locator('.ur-grupo').count(), page.locator('.ur-grupo').count() == 6)
+        verificar('con 24 productos revisados aparecen los filtros de ocasión y «para quién» (%d grupos)' % page.locator('#regalar-raiz .ur-grupo').count(), page.locator('#regalar-raiz .ur-grupo').count() == 6)
         elegir(page, 'ocasion', 'dia_madre')
         nombres = [n for n, _ in precios_de(page)]
         esperados = [x['nombre'] for x in cat_rev if x['etiquetas_revisadas'] and 'dia_madre' in x['ocasiones'] and not x['personalizable_base']]
@@ -244,8 +246,8 @@ def main():
         page, err = abrir(pc, base, REVISADO)
         voc = page.evaluate("async () => { const m = await import('/js/universo/config.js'); return {oc: m.OCASIONES, de: m.DESTINATARIOS}; }")
         verificar('el vocabulario de la hoja de Excel (etiquetas.py) es idéntico al de la web (config.js)', dict(voc['oc']) == etq.OCASIONES and dict(voc['de']) == etq.DESTINATARIOS)
-        verificar('con los 71 productos revisados aparecen los 6 filtros', page.locator('.ur-grupo').count() == 6, page.locator('.ur-grupo').count())
-        opciones = page.evaluate("() => Object.fromEntries([...document.querySelectorAll('select.ur-select')].map(s => [s.dataset.clave, [...s.options].slice(1).map(o => [o.value, o.textContent])]))")
+        verificar('con los 71 productos revisados aparecen los 6 filtros', page.locator('#regalar-raiz .ur-grupo').count() == 6, page.locator('#regalar-raiz .ur-grupo').count())
+        opciones = page.evaluate("() => Object.fromEntries([...document.querySelectorAll('#regalar-raiz select.ur-select')].map(s => [s.dataset.clave, [...s.options].slice(1).map(o => [o.value, o.textContent])]))")
         pres_oc = sorted({x for p in REVISADO if p['etiquetas_revisadas'] for x in p['ocasiones']}); pres_de = sorted({x for p in REVISADO if p['etiquetas_revisadas'] for x in p['destinatarios']})
         verificar('las listas ofrecen solo las ocasiones (%d) y destinatarios (%d) que algún producto tiene' % (len(pres_oc), len(pres_de)), sorted(v for v, _ in opciones['ocasion']) == pres_oc and sorted(v for v, _ in opciones['destinatario']) == pres_de, (sorted(v for v, _ in opciones['ocasion']), pres_oc))
         verificar('están las opciones nuevas de Sara con su texto: Mundial de fútbol, Cuando muda un diente, Día del Ingeniero Civil, Fan del fútbol', {'Mundial de fútbol', 'Cuando muda un diente', 'Día del Ingeniero Civil'} <= {t for _, t in opciones['ocasion']} and 'Fan del fútbol' in {t for _, t in opciones['destinatario']})
@@ -260,13 +262,13 @@ def main():
                 vistos = nombres_visibles()
                 esperados = sorted(x['nombre'] for x in REVISADO if x['etiquetas_revisadas'] and v in x[campo] and not x['personalizable_base'])
                 if vistos != esperados: malos.append((clave, v, len(vistos), len(esperados)))
-                page.click('.ur-reiniciar')
+                page.click('#regalar-raiz .ur-reiniciar')
         verificar('cada una de las %d opciones de ocasión y destinatario muestra exactamente los productos que tienen esa etiqueta' % (len(opciones['ocasion']) + len(opciones['destinatario'])), not malos, malos)
         for clave, v, esperado in (('ocasion', 'mundial', ['Lionel Messi Copa Mundial 20cm', 'Llavero Balón Colombia']), ('ocasion', 'diente', ['Ratón Peréz 28cm']), ('ocasion', 'dia_ingeniero', ['Ingeniero Civil 22cm']), ('destinatario', 'fan_futbol', ['Lionel Messi Copa Mundial 20cm', 'Llavero Balón Colombia'])):
             elegir(page, clave, v)
             vistos = nombres_visibles()
             verificar('«%s» → %s' % (dict(opciones[clave])[v], ', '.join(esperado)), vistos == sorted(esperado), vistos)
-            page.click('.ur-reiniciar')
+            page.click('#regalar-raiz .ur-reiniciar')
         elegir(page, 'destinatario', 'mama'); elegir(page, 'presupuesto', 'p3'); elegir(page, 'disponibilidad', 'ya')
         vistos = nombres_visibles()
         esperados = sorted(x['nombre'] for x in REVISADO if 'mama' in x['destinatarios'] and 50000 < x['precio'] <= 100000 and x['en_existencia'] and not x['personalizable_base'])
@@ -287,7 +289,7 @@ def main():
 
         print('\n[Vista previa de etiquetas propuestas — solo para Sara]')
         page, err = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?etiquetas=propuestas')
-        verificar('muestra los 6 grupos y un aviso de que es una vista previa', page.locator('.ur-grupo').count() == 6 and 'Vista previa' in page.inner_text('.ur-aviso'))
+        verificar('muestra los 6 grupos y un aviso de que es una vista previa', page.locator('#regalar-raiz .ur-grupo').count() == 6 and 'Vista previa' in page.inner_text('.ur-aviso'))
         elegir(page, 'destinatario', 'mama')
         verificar('la vista previa filtra con las etiquetas propuestas', page.locator('.ur-card').count() > 0)
         if CAPTURAS:
@@ -309,7 +311,7 @@ def main():
             page.close()
         config_apagada = open(os.path.join(RAIZ, 'js', 'universo', 'config.js'), encoding='utf-8').read().replace('REGALAR_ACTIVO: true', 'REGALAR_ACTIVO: false')
         page, err = abrir(pc, base, CATALOGO, config=config_apagada)
-        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('.ur-select').count() == 0 and page.locator('.recorrido').count() == 4)
+        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('#regalar-raiz .ur-select').count() == 0 and page.locator('.recorrido').count() == 4)
         page.close()
 
         print('\n[Inicio: «Rosina te ayuda a regalar» destacada]')
@@ -346,16 +348,16 @@ def main():
             page.click('.ed-regalar-form button[type=submit]')
         page.wait_for_selector('#regalar-raiz .ur-marco', timeout=8000)
         verificar('del inicio llega a /universo-rosina.html?tipo=peluche&presupuesto=p2#regalar', page.url.endswith('/universo-rosina.html?tipo=peluche&presupuesto=p2#regalar'), page.url)
-        verificar('las listas del recomendador llegan ya elegidas (Peluche y $20.000 a $50.000)', lista(page, 'tipo').input_value() == 'peluche' and lista(page, 'presupuesto').input_value() == 'p2' and page.locator('.ur-select.ur-elegido').count() == 2)
+        verificar('las listas del recomendador llegan ya elegidas (Peluche y $20.000 a $50.000)', lista(page, 'tipo').input_value() == 'peluche' and lista(page, 'presupuesto').input_value() == 'p2' and page.locator('#regalar-raiz .ur-select.ur-elegido').count() == 2)
         esperados = sorted(x['nombre'] for x in CATALOGO if x['categoria_web'] == 'Peluches' and 20000 < x['precio'] <= 50000 and not x['personalizable_base'])
         mostrados = sorted(n for n, _ in precios_de(page))
         verificar('solo salen peluches de $20.001 a $50.000, los mismos del catálogo (%d)' % len(esperados), mostrados == esperados and len(esperados) > 0, (mostrados[:3], esperados[:3]))
         page.close()
         page, err = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?tipo=&presupuesto=')
-        verificar('con las listas del inicio sin elegir, el recomendador no filtra nada', page.locator('.ur-select.ur-elegido').count() == 0 and page.locator('.ur-card').count() > 0)
+        verificar('con las listas del inicio sin elegir, el recomendador no filtra nada', page.locator('#regalar-raiz .ur-select.ur-elegido').count() == 0 and page.locator('.ur-card').count() > 0)
         page.close()
         page, err = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?tipo=%3Cscript%3Ealert(1)%3C/script%3E&presupuesto=zz&ocasion=dia_madre')
-        verificar('valores inventados en la dirección se ignoran (sin filtros, sin errores, sin filtro de ocasión no revisado)', page.locator('.ur-select.ur-elegido').count() == 0 and page.locator('.ur-card').count() > 0 and not err, err)
+        verificar('valores inventados en la dirección se ignoran (sin filtros, sin errores, sin filtro de ocasión no revisado)', page.locator('#regalar-raiz .ur-select.ur-elegido').count() == 0 and page.locator('.ur-card').count() > 0 and not err, err)
         page.close()
 
         print('\n[Página en general]')
@@ -364,7 +366,7 @@ def main():
         verificar('está en el sitemap', 'https://lanarosacrochet.com/universo-rosina.html' in open(os.path.join(RAIZ, 'sitemap.xml'), encoding='utf-8').read())
         verificar('el pie de la página enlaza al universo con ruta absoluta', page.locator('footer a[href="/universo-rosina.html"]').count() == 1)
         verificar('usa las fuentes propias (ningún pedido a Google Fonts)', page.evaluate('!document.documentElement.outerHTML.includes("fonts.googleapis")'))
-        verificar('los 4 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html', '/revista.html', '/academy/'])
+        verificar('los 4 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '#crear', '/revista.html', '/academy/'])
         verificar('un solo h1', page.locator('h1').count() == 1)
         page.close()
         nav.close()

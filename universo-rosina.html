@@ -54,7 +54,7 @@ h2 { font-size: 1.3rem; color: var(--rosa-texto); }
 main > :first-child { padding-top: 40px !important; }
 @media (max-width: 520px) { .rosina-encabezado { display: none; } }
 </style>
-<link rel="stylesheet" href="/css/universo.css?v=1">
+<link rel="stylesheet" href="/css/universo.css?v=2">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -155,7 +155,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <nav class="recorridos" aria-label="Recorridos de Rosina">
     <a class="recorrido" href="#regalar" data-recorrido="regalar"><span class="ico" aria-hidden="true">🎁</span><strong>Rosina te ayuda a regalar</strong><span class="sub">Encuentra un regalo según lo que buscas y lo que quieres invertir.</span></a>
-    <a class="recorrido" href="/personaliza.html" data-recorrido="crear"><span class="ico" aria-hidden="true">🎨</span><strong>Rosina te ayuda a crear</strong><span class="sub">Cuéntanos tu idea y la convertimos en un amigurumi único.</span></a>
+    <a class="recorrido" href="#crear" data-recorrido="crear"><span class="ico" aria-hidden="true">🎨</span><strong>Rosina te ayuda a crear</strong><span class="sub">Cuéntanos tu idea y la convertimos en un amigurumi único.</span></a>
     <a class="recorrido" href="/revista.html" data-recorrido="inspirar"><span class="ico" aria-hidden="true">💡</span><strong>Rosina te ayuda a inspirarte</strong><span class="sub">Ideas, historias y regalos hechos a mano en la Revista.</span></a>
     <a class="recorrido" href="/academy/" data-recorrido="aprender"><span class="ico" aria-hidden="true">🎓</span><strong>Rosina te ayuda a aprender</strong><span class="sub">Talleres, tutoriales y el Rincón de Rosina, gratis.</span></a>
   </nav>
@@ -165,6 +165,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p>Elige lo que sepas; no hace falta responder todo. Te mostramos productos reales de la tienda, y distinguimos los que están en existencia de los que tejemos por encargo.</p>
     <div id="regalar-raiz"><p class="ur-estado" role="status">Cargando los productos…</p></div>
     <noscript><p class="ur-aviso">Para usar el buscador de regalos activa JavaScript, o <a href="/tienda.html">mira toda la tienda</a>.</p></noscript>
+  </section>
+
+  <section class="ur-seccion-regalar" id="crear" aria-labelledby="titulo-crear">
+    <h2 id="titulo-crear">Rosina te ayuda a crear</h2>
+    <p>Arma la ficha de tu amigurumi paso a paso: qué quieres, de qué tamaño y con qué detalles. Cuando termines, la llevamos al formulario para que solo subas tus fotos y tus datos.</p>
+    <div id="crear-raiz"><p class="ur-estado" role="status">Cargando el configurador…</p></div>
+    <noscript><p class="ur-aviso">Para armar tu ficha activa JavaScript, o <a href="/personaliza.html">ve directo al formulario de Personaliza</a>.</p></noscript>
   </section>
 </main>
 
@@ -233,7 +240,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script type="module">
 import { iniciarRegalar } from '/js/universo/regalar.js';
+import { iniciarCrear } from '/js/universo/crear.js';
 iniciarRegalar(document.getElementById('regalar-raiz'));
+iniciarCrear(document.getElementById('crear-raiz'));
 document.querySelectorAll('.recorrido').forEach(function (a) { a.addEventListener('click', function () { (window.dataLayer = window.dataLayer || []).push({ event: 'universo_inicio', recorrido: a.dataset.recorrido }); }); });
 </script>
 
