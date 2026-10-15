@@ -41,6 +41,9 @@
 .ur-vacio, .ur-cierre, .ur-aviso { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--lila-suave); }
 .ur-aviso { margin: 0 0 14px; background: #FFF6E0; }
 .ur-vacio p, .ur-cierre p { margin: 0 0 6px; }
+.ur-quitar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.ur-quitar-btn { font: inherit; font-weight: 600; font-size: .92rem; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--rosa-texto, #B3175F); background: #fff; color: var(--rosa-texto, #B3175F); cursor: pointer; }
+.ur-quitar-btn:hover { background: var(--rosa-suave, #FBE4EF); }
 .ur-cierre a, .ur-vacio a { color: var(--rosa-texto, #B3175F); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 

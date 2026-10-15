@@ -85,7 +85,7 @@ export async function iniciarRegalar(raiz) {
     const et = nodo('label', null, titulo); et.htmlFor = lista.id;
     listas[clave] = lista;
     lista.append(Object.assign(nodo('option', null, sinFiltro), { value: '' }));
-    opciones.forEach(([id, texto]) => lista.append(Object.assign(nodo('option', null, texto), { value: id })));
+    opciones.forEach(([id, texto]) => { const o = Object.assign(nodo('option', null, texto), { value: id }); o.dataset.base = texto; lista.append(o); });
     lista.addEventListener('change', () => {
       if (lista.value) sel[clave] = lista.value; else delete sel[clave];
       lista.classList.toggle('ur-elegido', !!lista.value);
@@ -177,6 +177,23 @@ export async function iniciarRegalar(raiz) {
     });
     return { caja, limpiar };
   }
+  // Ninguna lista debe llevar a un callejón sin salida: con lo ya elegido, las opciones que no darían ningún producto se apagan («sin piezas»).
+  const cuantos = (selx) => { const x = recomendar(productos, selx, { usarEtiquetas, modoPropuestas }); return x.disponibles.length + x.encargo.length + x.ideas.length; };
+  function actualizarListas() {
+    Object.keys(listas).forEach((clave) => {
+      Array.prototype.forEach.call(listas[clave].options, (o) => {
+        if (!o.value) return;
+        const sinPiezas = o.value !== sel[clave] && cuantos(Object.assign({}, sel, { [clave]: o.value })) === 0;
+        o.disabled = sinPiezas;
+        o.textContent = o.dataset.base + (sinPiezas ? ' (sin piezas)' : '');
+      });
+    });
+  }
+  function quitarFiltro(clave) {
+    delete sel[clave]; listas[clave].value = ''; listas[clave].classList.remove('ur-elegido');
+    if (clave === 'color' && fotoBox) fotoBox.limpiar();
+    pintar();
+  }
   let temporizador = null;
   function pintar() {
     const r = recomendar(productos, sel, { usarEtiquetas, modoPropuestas });
@@ -184,7 +201,14 @@ export async function iniciarRegalar(raiz) {
     resultados.replaceChildren();
     if (!r.disponibles.length && !r.encargo.length) {
       const vacio = nodo('div', 'ur-vacio');
-      vacio.append(nodo('p', null, 'No encontré productos con esa combinación. Prueba quitar un filtro' + (r.ideas.length ? ' o mira las ideas para personalizar.' : ', o cuéntanos tu idea y la tejemos.')));
+      vacio.append(nodo('p', null, 'No encontré productos con esa combinación' + (r.ideas.length ? '; mira las ideas para personalizar o quita un filtro:' : '. Quita uno de los filtros para ver más:')));
+      const fila = nodo('div', 'ur-quitar');
+      Object.keys(sel).forEach((clave) => {
+        const op = Array.prototype.find.call(listas[clave].options, (o) => o.value === sel[clave]);
+        const b = nodo('button', 'ur-quitar-btn', 'Quitar «' + (op ? op.dataset.base : sel[clave]) + '»'); b.type = 'button';
+        b.addEventListener('click', () => quitarFiltro(clave)); fila.append(b);
+      });
+      vacio.append(fila);
       resultados.append(vacio);
     }
     [seccion('disponibles', 'Disponibles ya', 'Hay unidades listas en nuestro taller (según el inventario).', r.disponibles, false),
@@ -196,6 +220,7 @@ export async function iniciarRegalar(raiz) {
     const l1 = nodo('a', null, 'Cuéntanos tu idea'); l1.href = '/personaliza.html#form-personalizado'; const l2 = nodo('a', null, 'escríbenos por WhatsApp'); l2.href = 'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent('Hola Lana Rosa 💕 Estoy buscando un regalo.'); l2.target = '_blank'; l2.rel = 'noopener';
     p1.append(l1, ' o ', l2, '.'); cierre.append(p1); resultados.append(cierre);
     resumen.textContent = total ? (r.disponibles.length + ' disponibles ya, ' + r.encargo.length + ' por encargo y ' + r.ideas.length + ' ideas para personalizar.') : 'Sin resultados con esos filtros.';
+    actualizarListas();
     clearTimeout(temporizador);
     if (Object.keys(sel).length) temporizador = setTimeout(() => evento('regalar_resultado', { n_disponibles: r.disponibles.length, n_encargo: r.encargo.length, n_ideas: r.ideas.length, sin_resultados: !r.disponibles.length && !r.encargo.length }), 800);
   }
