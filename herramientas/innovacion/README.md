@@ -11,5 +11,6 @@ Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada, Etapa 1b (segu
 | [`05-ETAPA-1-REGALAR.md`](05-ETAPA-1-REGALAR.md) | Qué se construyó en la Etapa 1, cómo funciona, cómo se prueba, cómo se apaga y qué falta para publicarla |
 | [`migracion-universo-1.sql`](migracion-universo-1.sql) | SQL de la Etapa 1 (etiquetas, `obtener_regalos_web`, propuestas sin revisar); lo genera `generar_migracion_universo.py` |
 | [`etiquetas.py`](etiquetas.py) · `etiquetas-productos.xlsx` | Hoja de Excel para que Sara revise las etiquetas y herramienta que carga la hoja corregida |
+| `etiquetas-productos-revisado.xlsx` · [`migracion-universo-2-etiquetas-revisadas.sql`](migracion-universo-2-etiquetas-revisadas.sql) | Revisión de Sara (15-oct-2026) y el SQL que la carga |
 
 Reglas que rigen todo el trabajo: no duplicar lo que ya existe (Rosina, PWA, CRM, ERP, GA4); no inventar precios, inventario ni plazos; no publicar sin autorización de Sara; toda función nueva se puede apagar sin dañar el resto. Ver también `CLAUDE.md` y `PENDIENTES.md` en la raíz.

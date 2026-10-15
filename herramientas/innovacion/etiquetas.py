@@ -5,21 +5,38 @@
       Crea la hoja de Excel para que Sara corrija la PROPUESTA (parte de herramientas/pruebas/fixtures/regalos.json).
   python3 herramientas/innovacion/etiquetas.py cargar hoja_corregida.xlsx [salida.sql]
       Lee la hoja corregida y escribe el SQL que marca las etiquetas como revisadas (no lo aplica: se revisa y se corre aparte).
+  python3 herramientas/innovacion/etiquetas.py fixture hoja_corregida.xlsx [salida.json]
+      Copia herramientas/pruebas/fixtures/regalos.json aplicando la hoja (catálogo de prueba con las etiquetas ya revisadas).
 
 Los textos de las opciones son los mismos que ve la clienta (js/universo/config.js); los ids son los que se guardan.
 """
-import json, os, re, sys
+import json, os, re, sys, unicodedata
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.worksheet.datavalidation import DataValidation
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 OCASIONES = {'cumpleanos': 'Cumpleaños', 'amor_amistad': 'Amor y amistad', 'dia_madre': 'Día de la madre', 'dia_padre': 'Día del padre', 'graduacion': 'Graduación',
-             'bebe': 'Llegada de un bebé', 'agradecimiento': 'Agradecimiento', 'detalle': 'Un detalle pequeño', 'decoracion': 'Para decorar'}
+             'dia_ingeniero': 'Día del Ingeniero Civil', 'bebe': 'Llegada de un bebé', 'diente': 'Cuando muda un diente', 'mundial': 'Mundial de fútbol',
+             'agradecimiento': 'Agradecimiento', 'detalle': 'Un detalle pequeño', 'decoracion': 'Para decorar'}
 DESTINATARIOS = {'mama': 'Mamá', 'papa': 'Papá', 'pareja': 'Mi pareja', 'amiga_o': 'Una amiga o amigo', 'nina_nino': 'Una niña o niño', 'bebe': 'Un bebé',
-                 'colega_profe': 'Una profe o colega', 'fan_personaje': 'Fan de un personaje', 'tu_mismo': 'Para mí'}
+                 'colega_profe': 'Una profe o colega', 'fan_personaje': 'Fan de un personaje', 'fan_futbol': 'Fan del fútbol', 'tu_mismo': 'Para mí'}
 ESTILOS = {'tierno': 'Tierno', 'divertido': 'Divertido', 'coleccionable': 'Coleccionable', 'elegante': 'Elegante', 'naturaleza': 'De la naturaleza', 'colombiano': 'Colombiano'}
 ESTADOS = ['Sí, está bien', 'Corregí', 'No sé']
+
+
+def sin_tildes(t):
+    return ''.join(c for c in unicodedata.normalize('NFD', str(t or '').strip().lower()) if unicodedata.category(c) != 'Mn')
+
+
+def revisado(estado):
+    """True si la persona marcó que está bien o que corrigió (acepta «Sí, está bien», «está bien», «ok»…); False si dijo «no sé» o lo dejó vacío; None si no se entiende."""
+    t = sin_tildes(estado)
+    if not t or t.startswith('no se'):
+        return False
+    if t.startswith('si') or 'esta bien' in t or t in ('ok', 'listo') or t.startswith('corregi'):
+        return True
+    return None
 
 
 def hoja(salida):
@@ -71,7 +88,10 @@ def cargar(entrada, salida):
     for fila in ws.iter_rows(min_row=3, values_only=True):
         nombre, _cat, _pre, _med, estado, oc, de, es, item = (list(fila) + [None] * 9)[:9]
         if not item: continue
-        if (estado or '').strip() not in ESTADOS[:2]:
+        ok = revisado(estado)
+        if ok is None:
+            errores.append('%s · Estado: «%s» no se entiende (usa «Sí, está bien», «Corregí» o «No sé»)' % (nombre, estado)); continue
+        if not ok:
             sin_marcar += 1; continue
         o, d, e = a_ids(oc, OCASIONES, 'Ocasiones', nombre, errores), a_ids(de, DESTINATARIOS, 'Para quién', nombre, errores), a_ids(es, ESTILOS, 'Estilo', nombre, errores)
         arr = lambda a: "'{" + ','.join(a) + "}'"
@@ -83,8 +103,27 @@ def cargar(entrada, salida):
     print('%d productos revisados, %d sin marcar (quedan como propuesta) →' % (len(sentencias), sin_marcar), salida)
 
 
+def fixture(entrada, salida):
+    base = json.load(open(os.path.join(AQUI, '..', 'pruebas', 'fixtures', 'regalos.json'), encoding='utf-8'))
+    por_id = {p['id']: p for p in base}
+    ws = load_workbook(entrada, data_only=True)['Etiquetas']
+    errores, n = [], 0
+    for fila in ws.iter_rows(min_row=3, values_only=True):
+        nombre, _c, _p, _m, estado, oc, de, es, item = (list(fila) + [None] * 9)[:9]
+        if not item or revisado(estado) is not True:
+            continue
+        p = por_id[item]
+        p['ocasiones'], p['destinatarios'], p['estilos'] = a_ids(oc, OCASIONES, 'Ocasiones', nombre, errores), a_ids(de, DESTINATARIOS, 'Para quién', nombre, errores), a_ids(es, ESTILOS, 'Estilo', nombre, errores)
+        p['etiquetas_revisadas'] = True; n += 1
+    if errores:
+        print('NO se generó el archivo:\n - ' + '\n - '.join(errores)); sys.exit(1)
+    json.dump(base, open(salida, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
+    print(n, 'productos con etiquetas revisadas →', salida)
+
+
 if __name__ == '__main__':
     a = sys.argv[1:]
     if a[:1] == ['hoja']: hoja(a[1] if len(a) > 1 else os.path.join(AQUI, 'etiquetas-productos.xlsx'))
+    elif a[:1] == ['fixture'] and len(a) >= 2: fixture(a[1], a[2] if len(a) > 2 else os.path.join(AQUI, '..', 'pruebas', 'fixtures', 'regalos-revisados.json'))
     elif a[:1] == ['cargar'] and len(a) >= 2: cargar(a[1], a[2] if len(a) > 2 else os.path.splitext(a[1])[0] + '.sql')
     else: print(__doc__)
