@@ -61,7 +61,7 @@ Cada ronda de juego es un objeto en `juego.rondas`: `tipo`, `pregunta`, respuest
 - [ ] Sustituir o aprobar los dibujos provisionales (`INVENTARIO-RECURSOS.md`).
 - [ ] Revisión legal: la política de privacidad del libro ya existe (`privacidad.html`); falta que la abogada la revise (Ley 1581 de 2012) y, al lanzar, enlazarla desde `politicas.html`. Si cambia lo que el libro guarda (cuentas, fotos, métricas individuales, sincronización), actualizar primero la política (apartados 4.3, 5, 7, 12 y 13 y el resumen «Hoy») y pedir las autorizaciones de los adultos.
 - [ ] Decidir si se añade medición agregada (ver `HOJA-DE-RUTA.md`); si se hace, con consentimiento y sin identificadores de niños.
-- [x] Quitar `noindex` de `index.html` y `privacidad.html`, añadir la URL a `sitemap.xml` y `llms.txt` y enlazarla (hecho el 17-oct-2026: tarjeta en `universo-rosina.html` y enlace en `politicas.html#datos`; falta enlazarla desde `/academy/` si Sara lo quiere).
+- [x] Quitar `noindex` de `index.html` y `privacidad.html`, añadir la URL a `sitemap.xml` y `llms.txt` y enlazarla (hecho el 17-oct-2026: tarjeta en `universo-rosina.html` y enlace en `politicas.html#datos`; enlazada también desde Academy (inicio y pie) y el Rincón de Rosina).
 - [ ] Publicar = PR a `main` y merge (GitHub Pages despliega solo), con la aprobación de Sara.
 
 ## Diagnóstico rápido
