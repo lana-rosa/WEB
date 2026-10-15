@@ -1,6 +1,6 @@
 # Ecosistema de innovación de Lana Rosa Crochet — índice
 
-Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada y Etapa 1b (seguridad) aplicada en Supabase y el ERP** (ver §8 de la auditoría). Decisión de Sara: las fuentes y colores correctos son los que ya se usan. Es la primera entrega del «Prompt maestro»: primero se audita, luego se diseña y recién después se implementa, por etapas.
+Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada, Etapa 1b (seguridad) aplicada en Supabase y el ERP** (ver §8 de la auditoría) **y Etapa 1 («El universo de Rosina» + «Rosina te ayuda a regalar») construida y probada, sin publicar** (ver `05-ETAPA-1-REGALAR.md`). Decisión de Sara: las fuentes y colores correctos son los que ya se usan. Es la primera entrega del «Prompt maestro»: primero se audita, luego se diseña y recién después se implementa, por etapas.
 
 | Documento | Qué contiene |
 |---|---|
@@ -8,5 +8,8 @@ Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada y Etapa 1b (seg
 | [`02-ARQUITECTURA-Y-ROADMAP.md`](02-ARQUITECTURA-Y-ROADMAP.md) | Arquitectura objetivo, matriz de prioridad y dependencias, archivos a crear o modificar, Etapa 1 detallada |
 | [`03-PRESUPUESTO.md`](03-PRESUPUESTO.md) | Estimación de esfuerzo y costos con supuestos explícitos (sin precios inventados) |
 | [`04-PRUEBAS-Y-METRICAS.md`](04-PRUEBAS-Y-METRICAS.md) | Criterios de aceptación, matriz de pruebas planeada y plan de métricas (eventos de GA4) |
+| [`05-ETAPA-1-REGALAR.md`](05-ETAPA-1-REGALAR.md) | Qué se construyó en la Etapa 1, cómo funciona, cómo se prueba, cómo se apaga y qué falta para publicarla |
+| [`migracion-universo-1.sql`](migracion-universo-1.sql) | SQL de la Etapa 1 (etiquetas, `obtener_regalos_web`, propuestas sin revisar); lo genera `generar_migracion_universo.py` |
+| [`etiquetas.py`](etiquetas.py) · `etiquetas-productos.xlsx` | Hoja de Excel para que Sara revise las etiquetas y herramienta que carga la hoja corregida |
 
 Reglas que rigen todo el trabajo: no duplicar lo que ya existe (Rosina, PWA, CRM, ERP, GA4); no inventar precios, inventario ni plazos; no publicar sin autorización de Sara; toda función nueva se puede apagar sin dañar el resto. Ver también `CLAUDE.md` y `PENDIENTES.md` en la raíz.
