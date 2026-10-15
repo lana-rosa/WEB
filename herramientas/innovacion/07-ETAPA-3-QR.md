@@ -1,6 +1,6 @@
 # 07 · Etapa 3: cuidados e historia de cada pieza con código QR (16-oct-2026)
 
-**Estado:** construida y probada en la rama `claude/universo-etapa3`. **Sin publicar** hasta que Sara la apruebe. La migración SQL (aditiva, invisible) ya está aplicada en Supabase.
+**Estado:** publicada el 16-oct-2026. Sara aprobó las 77 piezas (`historias-piezas-revisado.xlsx`, cargadas con `migracion-universo-4-historias-revisadas.sql`). La migración SQL (aditiva) está aplicada en Supabase. **Falta imprimir:** primero una hoja de prueba escaneada con el celular.
 
 ## Qué es
 Cada pieza puede llevar una etiqueta con un código QR que abre `https://lanarosacrochet.com/p/?i=<id de la pieza>&o=etiqueta`. Esa página (`p/index.html`, `noindex`, fuera del sitemap) muestra:
@@ -20,6 +20,8 @@ El código es el `id` (uuid) del producto: **sigue valiendo si el producto cambi
 
 ## Hoja del taller (`historias.py`)
 `python3 herramientas/innovacion/historias.py hoja herramientas/pruebas/fixtures/tienda-cuidados.json` crea `historias-piezas.xlsx` con las 77 piezas: los cuidados que dice hoy la web, una columna con esos mismos cuidados para que el taller los **confirme o corrija** (una frase por línea), material e historia opcionales y «¿Publicar? Sí/No». `historias.py cargar hoja.xlsx` escribe el SQL de aprobación (solo lo marcado «Sí»; límites de largo; rechaza fechas que la marca no celebra). El SQL se revisa y se corre aparte, como con las etiquetas.
+
+**Hoja de Sara (16-oct-2026):** las 77 piezas con «Sí»; confirmó los cuidados tal como estaban («No usar secadora»; el Bolso ZARIA con dos líneas, y la Base para amigurumi sin cuidados propios), escribió una historia por pieza (180 a 254 caracteres) y no puso notas de material. Cargado y verificado: 77 filas, `publicado` y `revisado_en` en todas, huella md5 igual a la hoja; la función pública devuelve la historia y «cuidados revisados» (la lectura REST pasa con la llave pública y la tabla sigue cerrada para `anon`). Las historias hablan del «personaje» o de una pieza «inspirada» sin afirmar que sea un producto oficial; se conserva el aviso de pieza inspirada. Un producto nuevo no tiene historia hasta que Sara la apruebe en la hoja.
 
 ## QR para imprimir (`herramientas/qr/generar_qr.py`)
 Requisitos: `pip install segno playwright`. Sin servicios externos: los QR no se envían a ningún tercero.
