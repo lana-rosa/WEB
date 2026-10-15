@@ -56,7 +56,7 @@ def con_etiquetas_revisadas(catalogo, nombres):
     return c
 
 
-def abrir(ctx, base, catalogo, ruta='/universo-rosina.html', estado=200, config=None):
+def abrir(ctx, base, catalogo, ruta='/universo-rosina.html', estado=200, config=None, espera='#regalar-raiz .ur-marco, #regalar-raiz .ur-vacio, #regalar-raiz .ur-aviso'):
     """Abre la página con el RPC simulado. Devuelve (page, errores_js)."""
     page = ctx.new_page()
     # El aviso de cookies tapa las capturas: se simula una decisión ya tomada («Rechazar»).
@@ -77,7 +77,7 @@ def abrir(ctx, base, catalogo, ruta='/universo-rosina.html', estado=200, config=
     if config is not None:
         page.route('**/js/universo/config.js', lambda r: r.fulfill(status=200, content_type='text/javascript', body=config))
     page.goto(base + ruta, wait_until='domcontentloaded')
-    page.wait_for_selector('#regalar-raiz .ur-marco, #regalar-raiz .ur-vacio, #regalar-raiz .ur-aviso', timeout=8000)
+    page.wait_for_selector(espera, timeout=8000)
     return page, errores
 
 
@@ -260,6 +260,52 @@ def main():
         config_apagada = open(os.path.join(RAIZ, 'js', 'universo', 'config.js'), encoding='utf-8').read().replace('REGALAR_ACTIVO: true', 'REGALAR_ACTIVO: false')
         page, err = abrir(pc, base, CATALOGO, config=config_apagada)
         verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('.ur-select').count() == 0 and page.locator('.recorrido').count() == 4)
+        page.close()
+
+        print('\n[Inicio: «Rosina te ayuda a regalar» destacada]')
+        for nombre, ctx in (('celular 390 px', movil), ('computador 1280 px', pc)):
+            tag = 'm' if ctx is movil else 'd'
+            page, err = abrir(ctx, base, CATALOGO, ruta='/index.html', espera='#regalar .ed-regalar-form')
+            verificar('%s: la sección está entre la barra de confianza y «Visita nuestra tienda»' % nombre, page.evaluate("""() => { const s = [...document.querySelectorAll('main > section')]; const i = s.findIndex(x => x.id === 'regalar'); return i > 0 && s[i - 1].classList.contains('ed-confianza') && s[i + 1].textContent.includes('Visita nuestra tienda'); }"""))
+            verificar('%s: sin scroll horizontal ni errores de JavaScript' % nombre, sin_scroll_horizontal(page) and not err, err)
+            if CAPTURAS:
+                page.evaluate("document.querySelector('#regalar').scrollIntoView({block: 'center'})")
+                page.wait_for_timeout(600)
+                page.screenshot(path=os.path.join(CAPTURAS, 'inicio-%s-regalar.png' % tag), full_page=False)
+            page.close()
+        page, err = abrir(pc, base, CATALOGO, ruta='/index.html', espera='#regalar .ed-regalar-form')
+        igual = page.evaluate("""async () => {
+          const m = await import('/js/universo/config.js');
+          const op = (id) => [...document.querySelectorAll('#' + id + ' option')].slice(1).map(o => [o.value, o.textContent]);
+          const a = JSON.stringify(op('rg-tipo')) === JSON.stringify(m.TIPOS.map(x => [x[0], x[1]]));
+          const b = JSON.stringify(op('rg-presupuesto')) === JSON.stringify(m.PRESUPUESTOS.map(x => [x[0], x[1]]));
+          return [a, b];
+        }""")
+        verificar('las opciones del inicio son las mismas del recomendador (tipos y presupuestos)', igual == [True, True], igual)
+        verificar('cada lista del inicio tiene su etiqueta y la acción apunta a /universo-rosina.html#regalar', page.locator('label[for="rg-tipo"]').count() == 1 and page.locator('label[for="rg-presupuesto"]').count() == 1 and page.get_attribute('.ed-regalar-form', 'action') == '/universo-rosina.html#regalar')
+        page.evaluate("document.querySelector('.ed-regalar-form').addEventListener('submit', e => { e.preventDefault(); window.__envio = JSON.parse(JSON.stringify((window.dataLayer || []).filter(x => x.event === 'regalar_desde_inicio'))); })")
+        page.select_option('#rg-tipo', 'peluche'); page.select_option('#rg-presupuesto', 'p2')
+        page.click('.ed-regalar-form button[type=submit]')
+        evt = page.evaluate('window.__envio')
+        verificar('al enviar se registra el evento regalar_desde_inicio con las categorías elegidas (sin datos personales)', evt and evt[0].get('tipo') == 'peluche' and evt[0].get('presupuesto') == 'p2' and set(evt[0].keys()) == {'event', 'tipo', 'presupuesto'}, evt)
+        page.close()
+        # El formulario de verdad: del inicio al recomendador con lo elegido ya aplicado
+        page, err = abrir(pc, base, CATALOGO, ruta='/index.html', espera='#regalar .ed-regalar-form')
+        page.select_option('#rg-tipo', 'peluche'); page.select_option('#rg-presupuesto', 'p2')
+        with page.expect_navigation():
+            page.click('.ed-regalar-form button[type=submit]')
+        page.wait_for_selector('#regalar-raiz .ur-marco', timeout=8000)
+        verificar('del inicio llega a /universo-rosina.html?tipo=peluche&presupuesto=p2#regalar', page.url.endswith('/universo-rosina.html?tipo=peluche&presupuesto=p2#regalar'), page.url)
+        verificar('las listas del recomendador llegan ya elegidas (Peluche y $20.000 a $50.000)', lista(page, 'tipo').input_value() == 'peluche' and lista(page, 'presupuesto').input_value() == 'p2' and page.locator('.ur-select.ur-elegido').count() == 2)
+        esperados = sorted(x['nombre'] for x in CATALOGO if x['categoria_web'] == 'Peluches' and 20000 < x['precio'] <= 50000 and not x['personalizable_base'])
+        mostrados = sorted(n for n, _ in precios_de(page))
+        verificar('solo salen peluches de $20.001 a $50.000, los mismos del catálogo (%d)' % len(esperados), mostrados == esperados and len(esperados) > 0, (mostrados[:3], esperados[:3]))
+        page.close()
+        page, err = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?tipo=&presupuesto=')
+        verificar('con las listas del inicio sin elegir, el recomendador no filtra nada', page.locator('.ur-select.ur-elegido').count() == 0 and page.locator('.ur-card').count() > 0)
+        page.close()
+        page, err = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?tipo=%3Cscript%3Ealert(1)%3C/script%3E&presupuesto=zz&ocasion=dia_madre')
+        verificar('valores inventados en la dirección se ignoran (sin filtros, sin errores, sin filtro de ocasión no revisado)', page.locator('.ur-select.ur-elegido').count() == 0 and page.locator('.ur-card').count() > 0 and not err, err)
         page.close()
 
         print('\n[Página en general]')

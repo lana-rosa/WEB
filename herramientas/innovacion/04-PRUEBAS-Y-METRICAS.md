@@ -43,6 +43,7 @@ Se reutilizan los eventos existentes (`view_item`, `select_item`, `add_to_cart`,
 | `regalar_paso` | `paso` (1–5), `valor_categoria` (sin texto libre) | Dónde se abandona |
 | `regalar_resultado` | `n_disponibles`, `n_encargo`, `n_ideas`, `sin_resultados` (bool) | Utilidad y vacíos |
 | `regalar_abre_ficha` | `item_id`, `seccion` | Apertura de fichas desde recomendaciones |
+| `regalar_desde_inicio` | `tipo`, `presupuesto` (solo categorías) | Envío del formulario «Rosina te ayuda a regalar» de la página de inicio (16-oct-2026) |
 | `crear_solicitud` | `tipo`, `tamano` | Solicitudes de personalización |
 | `qr_visita` | `item_id`, `origen` (etiqueta/estantería) | Escaneos |
 | `visor_3d` | `item_id`, `modo` (3d/ar/foto), `ok` | Uso y fallos de 3D/AR |

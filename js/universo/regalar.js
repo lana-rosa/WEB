@@ -65,10 +65,12 @@ export async function iniciarRegalar(raiz) {
   const marco = nodo('div', 'ur-marco');
   if (modoPropuestas) marco.append(nodo('p', 'ur-aviso', 'Vista previa: se están usando etiquetas propuestas que todavía no han sido revisadas. No es lo que ve el público.'));
   const filtros = nodo('div', 'ur-filtros');
+  const listas = {};
   grupos.forEach(([clave, titulo, sinFiltro, opciones]) => {
     const campo = nodo('div', 'ur-grupo');
     const lista = nodo('select', 'ur-select'); lista.id = 'ur-' + clave; lista.dataset.clave = clave;
     const et = nodo('label', null, titulo); et.htmlFor = lista.id;
+    listas[clave] = lista;
     lista.append(Object.assign(nodo('option', null, sinFiltro), { value: '' }));
     opciones.forEach(([id, texto]) => lista.append(Object.assign(nodo('option', null, texto), { value: id })));
     lista.addEventListener('change', () => {
@@ -132,7 +134,13 @@ export async function iniciarRegalar(raiz) {
     clearTimeout(temporizador);
     if (Object.keys(sel).length) temporizador = setTimeout(() => evento('regalar_resultado', { n_disponibles: r.disponibles.length, n_encargo: r.encargo.length, n_ideas: r.ideas.length, sin_resultados: !r.disponibles.length && !r.encargo.length }), 800);
   }
-  evento('universo_inicio', { recorrido: 'regalar' });
+  // Preselección desde la dirección (?tipo=peluche&presupuesto=p2, p. ej. desde el inicio): solo se aceptan valores que existen en la lista.
+  const params = new URLSearchParams(location.search);
+  Object.keys(listas).forEach((clave) => {
+    const v = params.get(clave);
+    if (v && Array.prototype.some.call(listas[clave].options, (o) => o.value === v)) { listas[clave].value = v; listas[clave].classList.add('ur-elegido'); sel[clave] = v; }
+  });
+  evento('universo_inicio', { recorrido: 'regalar', con_filtros: Object.keys(sel).length });
   pintar();
 }
 

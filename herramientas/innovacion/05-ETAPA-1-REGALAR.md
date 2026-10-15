@@ -1,6 +1,6 @@
 # 05 · Etapa 1: «El universo de Rosina» y «Rosina te ayuda a regalar» (15-oct-2026)
 
-**Estado: publicada el 15-oct-2026** (rama `claude/universo-etapa1` → `main`, a pedido de Sara). La página no tiene `noindex`, está en el sitemap y en `llms.txt`, y se enlaza desde el menú de todas las casas (escritorio y celular, 16-oct-2026) y desde el pie de todas las páginas. Todavía no está destacada en el inicio.
+**Estado: publicada el 15-oct-2026** (rama `claude/universo-etapa1` → `main`, a pedido de Sara). La página no tiene `noindex`, está en el sitemap y en `llms.txt`, y se enlaza desde el menú de todas las casas (escritorio y celular, 16-oct-2026) y desde el pie de todas las páginas. Desde el 16-oct-2026 también está destacada en el inicio (sección rosada justo debajo de la barra de confianza: dos listas —tipo y presupuesto— y el botón «Ver ideas de regalo», que lleva al recomendador con lo elegido ya aplicado, por ejemplo `/universo-rosina.html?tipo=peluche&presupuesto=p2#regalar`; el recomendador solo acepta valores que existen en sus listas).
 
 ## Qué es
 - `universo-rosina.html`: portada del universo con los cuatro recorridos de Rosina (regalar, crear, inspirarte, aprender). Crear, inspirarte y aprender llevan a lo que ya existe (`/personaliza.html`, `/revista.html`, `/academy/`); no se duplica nada.
@@ -14,7 +14,7 @@
 - SQL: `migracion-universo-1.sql` (ya aplicado en Supabase el 15-oct). Revisión: `etiquetas-productos.xlsx` + `etiquetas.py`.
 
 ## Privacidad y medición
-Sin cuentas, sin formularios, sin guardar nada de la persona: las elecciones viven solo en la página. Eventos de GA4 (solo si la persona aceptó analítica): `universo_inicio`, `regalar_paso`, `regalar_resultado` (con número de resultados y `sin_resultados`) y `regalar_abre_ficha`.
+Sin cuentas, sin formularios, sin guardar nada de la persona: las elecciones viven solo en la página. Eventos de GA4 (solo si la persona aceptó analítica): `universo_inicio`, `regalar_paso`, `regalar_resultado` (con número de resultados y `sin_resultados`), `regalar_abre_ficha` y, desde el inicio, `regalar_desde_inicio` (solo tipo y presupuesto elegidos). `universo_inicio` lleva `con_filtros` (cuántas listas llegaron ya elegidas).
 
 ## Interruptor
 `CONFIG.REGALAR_ACTIVO = false` en `js/universo/config.js` apaga el recomendador (la página sigue entera con el aviso «Muy pronto»). Para retirar toda la etapa: quitar el enlace del menú y del pie en `herramientas/sincronizar_encabezado.py`, sacar la página del sitemap y poner `noindex`.
@@ -25,4 +25,4 @@ Sin cuentas, sin formularios, sin guardar nada de la persona: las elecciones viv
 ## Después de publicar
 1. Revisar en GA4 cuántas búsquedas terminan sin resultados (`regalar_resultado` con `sin_resultados`) para decidir qué productos o etiquetas faltan.
 2. Cuando Sara revise la hoja de etiquetas (`etiquetas-productos.xlsx`) y haya 20 productos revisados, aparecen solos los filtros «¿Para quién?» y «¿Qué ocasión?».
-3. Si Sara quiere más visibilidad, destacarla en el inicio.
+3. Mirar en GA4 cuántas personas pasan del inicio al recomendador (`regalar_desde_inicio`) y cuántas llegan a una ficha (`regalar_abre_ficha`).
