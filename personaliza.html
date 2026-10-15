@@ -36,7 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=31">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
-<link rel="stylesheet" href="/css/universo.css?v=4">
+<link rel="stylesheet" href="/css/universo.css?v=7">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -179,6 +179,8 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 @media (min-width: 701px) { .entregados-personaliza { display: flex; flex-wrap: wrap; justify-content: center; } .entregados-personaliza figure { flex: 0 0 calc((100% - 64px) / 5); } }
 .enlace-resenas { margin: 0 0 30px; font-size: 0.9rem; }
 .enlace-resenas a { color: var(--rosa-texto); font-weight: 700; text-decoration: none; }
+.det-tamanos { margin: 8px 0 22px; }
+.det-tamanos summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); min-height: 44px; display: flex; align-items: center; }
 .nota-tamanos { color: var(--tinta-suave); font-size: 0.9rem; margin: -6px 0 0; }
 .desc-tamano { font-size: 0.82rem; color: var(--tinta-suave); margin: 2px 0 0; }
 .boton-wa-exito { display: inline-block; margin-top: 10px; background: #25D366; color: #fff !important; border-radius: 999px; padding: 8px 16px; font-weight: 700; text-decoration: none; }
@@ -376,12 +378,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
   </div>
-  <ul class="mensajes-personaliza" aria-label="Mensajes de clientas">
-    <li>Ayyyy quedó precioso, muchas gracias ❤️</li>
-    <li>Nooo, está hermoso 😭</li>
-    <li>Omggg, está preciosooooo</li>
-    <li>Oye, muchas gracias, está muy muy hermoso ❤️</li>
-  </ul>
   <p class="enlace-resenas"><a href="https://share.google/n6K8HLUVxId3Km0k4" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
 
   <h2 class="titulo-proceso">Así funciona</h2>
@@ -393,7 +389,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><span>5</span><strong>Entrega</strong><small>Llega a tus manos</small></li>
   </ol>
 
-  <h2 class="titulo-proceso">Tamaños de referencia</h2>
+  <details class="det-tamanos"><summary>Ver tamaños de referencia (13, 15 y 20 cm)</summary>
   <p class="nota-tamanos">También tejemos de 10 cm, llaveros y peluches.</p>
   <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:16px 0 28px;" class="galeria-tamanos-personalizado">
     <div style="text-align:center;">
@@ -412,6 +408,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="desc-tamano">Mayor tamaño y presencia.</p>
     </div>
   </div>
+  </details>
 
   <div class="titulo-formulario" id="pide-el-tuyo">
     <h2>Pide el tuyo aquí</h2>

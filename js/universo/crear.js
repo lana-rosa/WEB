@@ -120,7 +120,9 @@ export function montarGuia(raiz, opciones) {
   pIdea.append(gT, gC);
   // 5 · ocasión, fecha y mensaje de la tarjeta
   const pOc = paso(5);
-  pOc.append(lista('uc-ocasion', '¿Es para alguna ocasión? (opcional)', 'Sin ocasión especial', OCASIONES_CREAR.filter((x) => x[0] !== 'sin_ocasion'), 'ocasion'));
+  // Todo es opcional: va plegado para que el asistente se vea corto («Ocasión, fecha y mensaje»).
+  const mas = nodo('details', 'uc-mas'); mas.append(nodo('summary', null, 'Ocasión, fecha y mensaje de la tarjeta (opcional)'));
+  mas.append(lista('uc-ocasion', '¿Es para alguna ocasión? (opcional)', 'Sin ocasión especial', OCASIONES_CREAR.filter((x) => x[0] !== 'sin_ocasion'), 'ocasion'));
   const gF = nodo('div', 'ur-grupo'); const lF = nodo('label', null, '¿Para qué fecha lo necesitas? (opcional)'); lF.htmlFor = 'uc-fecha';
   const fe = nodo('input', 'uc-input'); fe.type = 'date'; fe.id = 'uc-fecha'; fe.min = minFecha;
   fe.addEventListener('change', () => { empezar(); evento('crear_paso', { paso: 'fecha' }); actualizar('fecha'); });
@@ -129,7 +131,7 @@ export function montarGuia(raiz, opciones) {
   const it = nodo('input', 'uc-input'); it.type = 'text'; it.id = 'uc-tarjeta'; it.maxLength = 200; it.placeholder = 'Ej: Feliz cumpleaños, mamá. Te quiero mucho.';
   it.addEventListener('input', () => { empezar(); actualizar('tarjeta'); });
   gM.append(lM, it, nodo('p', 'uc-ayuda', 'Tu pedido incluye una tarjeta con el mensaje que quieras.')); campos.tarjeta = it;
-  pOc.append(gF, gM);
+  mas.append(gF, gM); pOc.append(mas);
 
   // Ficha (resumen en vivo)
   const ficha = nodo('aside', 'uc-ficha'); ficha.setAttribute('aria-labelledby', 'uc-ficha-titulo');

@@ -107,3 +107,7 @@
 .ur-muestra i, .ur-puntos i { display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .25); }
 .ur-puntos { display: flex; gap: 4px; margin-top: 2px; }
 .ur-puntos i { width: 12px; height: 12px; }
+
+.uc-mas summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto, #B3175F); min-height: 44px; display: flex; align-items: center; }
+.uc-mas[open] summary { margin-bottom: 8px; }
+.uc-mas > .ur-grupo { margin-bottom: 14px; }
