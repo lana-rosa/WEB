@@ -113,6 +113,8 @@ main { padding-bottom: 60px; }
 .franja-casas a:hover { color: var(--tinta, #45454A); opacity: 1; }
 .franja-casas a.casa-actual { color: var(--rosa-texto); font-weight: 700; opacity: 1; }
 .nav-principal li.g-comun a { background: #F1F0EC; color: var(--tinta); }
+.nav-principal li.g-universo a { background: var(--rosa-suave); color: var(--rosa-texto); box-shadow: inset 0 0 0 1.5px var(--rosa-medio); }
+.nav-principal li.g-universo a:hover, .nav-principal li.g-universo a:focus-visible { background: var(--rosa-boton); color: var(--sobre-principal); box-shadow: none; }
 .nav-principal li.g-comun a:hover { background: var(--tinta); color: #fff; }
 .nav-movil-panel a.casa-actual { background: var(--rosa-suave); color: var(--rosa-texto); font-weight: 700; }
 @media (max-width: 560px) { .franja-casas { font-size: 0.7rem; } .franja-casas .contenedor { justify-content: center; padding-left: 8px; padding-right: 8px; } .franja-casas a { padding: 2px 8px; } }
