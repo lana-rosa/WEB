@@ -16,7 +16,7 @@ Cómo se clasifica cada función: **IMPLEMENTADA Y FUNCIONAL** (hay código y se
 - **Publicación y revisión:** `.github/workflows/revisar-enlaces.yml` (rastreo de producción tras cada despliegue y los lunes), `activar-apertura.yml` (apertura de la tienda física). Herramientas de prueba: `revisar_enlaces.py`, `prueba_consentimiento.py`. No hay pruebas automáticas de interfaz en CI.
 - **Identidad visual real del sitio:** tipografías DynaPuff (títulos) y Hanken Grotesk (texto), alojadas en `/fonts` (4 archivos, 128 KB); color de marca `#E74E96` (38 archivos lo usan).
 
-### Discrepancias entre el encargo y el código real (a decidir con Sara antes de diseñar)
+### Discrepancias entre el encargo y el código real (resuelta el 15-oct: Sara confirmó que **las fuentes y colores correctos son los que ya se usan** — DynaPuff, Hanken Grotesk y #E74E96 —; no se cambia nada)
 1. El encargo cita **Celine / Montserrat Light** y los colores `#cc1786`, `#ff66c4`, `#dc0593`. En el repositorio **no existen** esas fuentes ni esos tres colores (0 archivos). Probablemente son los del logotipo (imagen). Se conserva el sistema actual (DynaPuff, Hanken Grotesk, `#E74E96`) hasta que Sara confirme si el logotipo debe llevar otras fuentes o si esos tres tonos deben sumarse a la paleta.
 2. El «universo de Rosina» ya tiene varias piezas reales (ver §2), pero no es una experiencia interactiva unificada.
 
@@ -123,3 +123,25 @@ Todas las imágenes tienen `alt`. La tienda (400 KB) y el Rincón (247 imágenes
 7. **Búsqueda visual simple** (etiquetas y color dominante) antes de considerar embeddings.
 
 Se recomienda **posponer** escáner de materiales, comunidad abierta y patrones interactivos hasta tener datos de demanda y los datos estructurados de la Mercería.
+
+## 8. Actualización del 15-oct-2026: resultado de la Etapa 1b (seguridad)
+
+Sara autorizó empezar por la seguridad. Al verificar cada hallazgo con roles simulados (dentro de transacciones con ROLLBACK, sin tocar datos) algunos resultaron **más graves** de lo que decía la alerta y otros **menos**. Detalle y SQL en `herramientas/cuentas-clientes/migracion-19-seguridad.sql`.
+
+| Hallazgo | Verificación | Qué se hizo | Estado |
+|---|---|---|---|
+| 2 vistas SECURITY DEFINER | Una cuenta autenticada **sin rol** leía 119 registros de auditoría (ventas, nómina, gastos) y el saldo del Fondo Emprender | `security_invoker = true`; el administrador sigue viendo todo; la cuenta sin rol ve 0 | **Corregido** |
+| Funciones ejecutables por el rol **anónimo** | Con solo la llave pública de la web se podían leer saldos de vacaciones de empleadas (2 filas), reportes financieros por departamento y datos de cuentas bancarias | Se revocó a anónimo en **83 funciones**; solo quedan las 16 que usa la web pública (+2 auxiliares de RLS). La web (tienda, feed de Google, mercería, tarifas) se probó con el rol anónimo después del cambio | **Corregido** |
+| Funciones ejecutables por cualquier **cuenta autenticada** (incluidas clientas) sin verificar rol | 132 funciones del ERP (reinicio de datos de prueba, gastos, nómina, retiros, pagos…) | Guarda de personal en las 132 (pasan personal con rol, tejedoras vinculadas y llamadas de servidor). Probado: servidor y administrador obtienen los mismos resultados que antes; una cuenta sin rol recibe «No autorizado» | **Corregido** (queda como mejora una verificación por rol más fina) |
+| Buckets públicos | Ninguna política permite **listar** archivos; los nombres no se pueden adivinar. `solicitudes-personalizadas` tenía 1 foto de prueba y el ERP **nunca mostraba** esas fotos; `guias-envio` tiene 0 archivos | `solicitudes-personalizadas` → **privado**, y el ERP ahora muestra las fotos con enlaces firmados (ERP PR #83). `guias-envio` y `produccion-fotos` se dejan públicos a propósito (la clienta abre su guía desde Mi cuenta con una URL pública) | **Parcial, decidido** |
+| Formulario de personalizados sin límite | Anónimo | Límite por teléfono (4 en 24 h), por IP (8 por hora) y global (60 por hora), solo con hashes; probado | **Corregido** |
+| `diag-secretos` y `probar-envio-crm` | Ya estaban reemplazadas por un código que responde 410 («deshabilitada/inactiva») | Nada: no exponen nada. Se pueden borrar desde el panel de Supabase | **Sin riesgo** (corrige lo dicho en §6) |
+| Sal del hash de IP de Rosina (`RW_SAL`) | No se puede leer el secreto | Pendiente: lo define Sara en Supabase → Edge Functions → Secrets | **Pendiente (Sara)** |
+| 137 funciones con `search_path` mutable | Alerta oficial | Se difiere: exige probar función por función | **Pendiente** |
+| Protección contra contraseñas filtradas | Solo existe en el plan Pro de Supabase | — | **No disponible en el plan actual** |
+
+Alertas oficiales de Supabase, antes → después: vistas SECURITY DEFINER **2 → 0**; funciones ejecutables por anónimos **101 → 18**; funciones con `search_path` mutable 137 → 137; ejecutables por autenticadas 290 → 290 (ahora con guarda); RLS sin políticas 16 → 19 (las 3 tablas internas nuevas de respaldo y límite de uso, a propósito).
+
+Reversibilidad: las definiciones originales (132) y los permisos anteriores (85) están guardados en `seguridad_respaldo_funciones` y `seguridad_respaldo_permisos`.
+
+**Qué probar al usar el ERP esta semana (Sara):** abrir Trazabilidad del sistema (Respaldo y auditoría), una venta en el POS, un pedido con envío, Oportunidades (las fotos de las solicitudes) y la nómina. Si algo dice «No autorizado» con tu usuario, avísame: se corrige en minutos con los respaldos.

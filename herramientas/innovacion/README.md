@@ -1,6 +1,6 @@
 # Ecosistema de innovación de Lana Rosa Crochet — índice
 
-Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada. Nada de esto está publicado ni cambia el sitio.** Es la primera entrega del «Prompt maestro»: primero se audita, luego se diseña y recién después se implementa, por etapas.
+Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada y Etapa 1b (seguridad) aplicada en Supabase y el ERP** (ver §8 de la auditoría). Decisión de Sara: las fuentes y colores correctos son los que ya se usan. Es la primera entrega del «Prompt maestro»: primero se audita, luego se diseña y recién después se implementa, por etapas.
 
 | Documento | Qué contiene |
 |---|---|
