@@ -1,6 +1,6 @@
 # Ecosistema de innovación de Lana Rosa Crochet — índice
 
-Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada, Etapa 1b (seguridad) aplicada en Supabase y el ERP** (ver §8 de la auditoría) **y Etapa 1 («El universo de Rosina» + «Rosina te ayuda a regalar») construida y probada, sin publicar** (ver `05-ETAPA-1-REGALAR.md`). Decisión de Sara: las fuentes y colores correctos son los que ya se usan. Es la primera entrega del «Prompt maestro»: primero se audita, luego se diseña y recién después se implementa, por etapas.
+Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada, Etapa 1b (seguridad) aplicada en Supabase y el ERP** (ver §8 de la auditoría) **y Etapa 1 («El universo de Rosina» + «Rosina te ayuda a regalar») publicada el 15-oct** (ver `05-ETAPA-1-REGALAR.md`). Decisión de Sara: las fuentes y colores correctos son los que ya se usan. Es la primera entrega del «Prompt maestro»: primero se audita, luego se diseña y recién después se implementa, por etapas.
 
 | Documento | Qué contiene |
 |---|---|
