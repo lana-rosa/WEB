@@ -1,0 +1,18 @@
+/* Visor 3D y realidad aumentada de una pieza (Etapa 5). Usa los colores y fuentes de la marca (css/comun.css). */
+.v3-caja { display: grid; gap: 10px; }
+.v3-escena { position: relative; width: 100%; max-width: 520px; aspect-ratio: 1 / 1; margin: 0 auto; border-radius: 16px; overflow: hidden; background: var(--rosa-suave); }
+.v3-poster { width: 100%; height: 100%; object-fit: contain; display: block; }
+.v3-escena model-viewer { width: 100%; height: 100%; --poster-color: transparent; background: var(--rosa-suave); }
+.v3-abrir, .v3-ar, .v3-cerrar { min-height: 48px; padding: 10px 20px; border-radius: 999px; border: 2px solid var(--rosa-principal); background: #fff; color: var(--tinta); font: inherit; font-weight: 700; cursor: pointer; }
+.v3-abrir { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); }
+.v3-ar { position: absolute; right: 12px; bottom: 12px; }
+.v3-cerrar { position: absolute; left: 12px; top: 12px; min-height: 44px; padding: 6px 14px; font-size: 0.9rem; }
+.v3-abrir:hover, .v3-ar:hover, .v3-cerrar:hover { background: var(--rosa-suave); }
+.v3-abrir:disabled { opacity: .6; cursor: progress; }
+.v3-abrir:focus-visible, .v3-ar:focus-visible, .v3-cerrar:focus-visible, .v3-escena model-viewer:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.v3-estado { margin: 0; text-align: center; font-weight: 600; min-height: 1.4em; }
+.v3-estado:empty { display: none; }
+.v3-aviso { padding: 10px 14px; border-radius: 12px; background: #FFF6E0; }
+.v3-nota { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); text-align: center; }
+.v3-prueba { padding: 10px 14px; border-radius: 12px; background: #FFF6E0; color: var(--tinta); font-weight: 600; }
+@media (max-width: 560px) { .v3-ar { font-size: 0.9rem; padding: 8px 14px; } }

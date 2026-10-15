@@ -5,9 +5,10 @@
 Datos clave:
 
 - Precio de un amigurumi personalizado: generalmente entre $70.000 y $200.000 COP, según tamaño y detalles. Incluye tejido a mano, empaque hecho a la medida y tarjeta con mensaje personalizado. El envío se cobra aparte: $18.000 COP a otras ciudades de Colombia; a Manizales, $13.000, y dentro de Villamaría, $8.000.
+- Pago en línea de amigurumis personalizados (productos de la tienda, con Wompi, tras llenar el formulario de personalización): 13 cm $85.000 COP, 15 cm $95.000 COP y 20 cm $115.000 COP (precio base de una pieza con detalle normal; las imágenes de la tienda son de referencia; no llevan el descuento de primera compra).
 - Tamaños de referencia para amigurumis personalizados: 10, 13, 15 y 20 cm. Llaveros de 4 a 6 cm y peluches de 12 a 32 cm.
 - Tiempo: el tiempo de elaboración depende del tamaño, la complejidad y la fila de pedidos; la fecha estimada se confirma al aprobar la cotización.
-- Medios de pago: en la tienda en línea (lanarosacrochet.com/tienda.html), con Wompi: tarjeta de crédito o débito, PSE, Nequi o Bancolombia, sin necesidad de crear cuenta. Por WhatsApp: Nequi o Bre-B (llave 320 507 2801) enviando el comprobante; así se pagan también los personalizados. En la tienda física: efectivo, tarjeta débito o crédito y código QR por Wompi, Nequi o Bre-B. Recoger en la tienda es gratis. Primera compra en la web: 10 % de descuento (no aplica a personalizados ni talleres).
+- Medios de pago: en la tienda en línea (lanarosacrochet.com/tienda.html), con Wompi: tarjeta de crédito o débito, PSE o Bancolombia, sin necesidad de crear cuenta. Por WhatsApp: te indicamos cómo pagar y nos envías el comprobante; así se pagan también los personalizados. En la tienda física: efectivo, tarjeta débito o crédito y código QR por Wompi. Recoger en la tienda es gratis. Primera compra en la web: 10 % de descuento (no aplica a personalizados ni talleres).
 - Cuenta de cliente (opcional, gratis, sin contraseña): se entra con Google o con un código al correo; sirve para guardar el carrito, ver el estado de los pedidos, favoritos, direcciones y reseñas (https://lanarosacrochet.com/cuenta.html).
 - Dirección: Calle 10 #5-37 Centro, Villamaría, Caldas, Colombia.
 - Contacto: WhatsApp +57 320 507 2801 (https://wa.me/573205072801) · contacto@lanarosacrochet.com · Instagram @lanarosacrochet.
@@ -32,6 +33,7 @@ Cómo debe actuar un agente:
 ## Páginas principales
 
 - [Inicio](https://lanarosacrochet.com/): qué hace Lana Rosa Crochet, trabajos reales (referencia vs. resultado final) y contacto.
+- [El universo de Rosina](https://lanarosacrochet.com/universo-rosina.html): portada con cuatro recorridos (regalar, crear, inspirarte y aprender) y «Rosina te ayuda a regalar», que sugiere productos reales de la tienda según tipo, presupuesto, tamaño y color (también por los colores de una foto de referencia, que se procesa en el dispositivo y no se envía), separando lo que está en existencia de lo que se teje por encargo; y, en Personaliza, «Rosina te ayuda a crear», un asistente que arma paso a paso la ficha de un personalizado (qué quieres, tamaño, detalles, colores, ocasión) como alternativa a diligenciar el formulario directo.
 - [Personaliza tu amigurumi](https://lanarosacrochet.com/personaliza.html): cómo pedir un amigurumi desde una foto, tamaños, formulario de cotización y medios de pago.
 - [Tienda](https://lanarosacrochet.com/tienda.html): amigurumis, peluches, llaveros, flores y macetas tejidos a mano, listos para enviar; carrito y pago en línea con Wompi.
 - [Precios](https://lanarosacrochet.com/precios.html): rangos de precio de personalizados, precios actualizados de las piezas de la tienda por categoría y valor de los talleres, en COP.

@@ -1,7 +1,10 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
+// v16 (Etapa 4): tarjetas de producto (el modelo elige códigos, los datos salen del catálogo real), medición de consumo sin datos
+// personales (rosina_web_consumo) y, solo si RW_REGISTRAR_SIN_RESPUESTA=1, registro corto y sin datos personales de preguntas sin respuesta.
 import { createClient } from "jsr:@supabase/supabase-js@2";
+import { lineaCatalogo, limpiarPregunta, mapaDeCodigos, procesarRespuesta, RECORDATORIO_TARJETAS, REGLAS_TARJETAS, type Regalo, type Tienda } from "./nucleo.ts";
 
 const ORIGENES = ["https://lanarosacrochet.com", "https://www.lanarosacrochet.com"];
 const SITIO = "https://lanarosacrochet.com";
@@ -45,17 +48,26 @@ async function conocimiento(): Promise<string> {
   return texto;
 }
 
-let cacheCat: { texto: string; hasta: number } | null = null;
+type CatalogoCache = { texto: string; mapa: Map<string, Regalo>; hasta: number };
+let cacheCat: CatalogoCache | null = null;
 // deno-lint-ignore no-explicit-any
-async function catalogo(sb: any): Promise<string> {
-  if (cacheCat && cacheCat.hasta > Date.now()) return cacheCat.texto;
-  const [t, m] = await Promise.all([sb.rpc("obtener_tienda_web"), sb.rpc("obtener_merceria_web_v2")]);
+async function catalogo(sb: any): Promise<{ texto: string; mapa: Map<string, Regalo> }> {
+  if (cacheCat && cacheCat.hasta > Date.now()) return cacheCat;
+  const [rg, t, m, col] = await Promise.all([
+    sb.rpc("obtener_regalos_web"), sb.rpc("obtener_tienda_web"), sb.rpc("obtener_merceria_web_v2"),
+    fetch(SITIO + "/img/productos/colores.json").then((r) => r.ok ? r.json() : {}).catch(() => ({})),
+  ]);
+  const colores: Record<string, string[]> = ((col as { colores?: Record<string, string[]> }) || {}).colores || {};
   const cop = (n: number) => "$" + Math.round(Number(n) || 0).toLocaleString("es-CO");
-  const tienda = (t.data || []).map((p: Record<string, unknown>) =>
-    `- ${p.nombre} | ${p.categoria_web || "Tienda"} | ${cop(p.precio as number)} | ${p.disponible_web === false ? "agotado" : "disponible"}` +
-    (p.tiempo_elaboracion ? ` | elaboración: ${p.tiempo_elaboracion}` : "") +
-    (Array.isArray(p.especificaciones_web) ? ` | ${(p.especificaciones_web as string[]).join("; ")}` : "") +
-    (p.descripcion_web ? ` | ${String(p.descripcion_web).replace(/\s+/g, " ").slice(0, 160)}` : "")).join("\n");
+  const regalos: Regalo[] = rg.data || [];
+  const tiendaPorId = new Map<string, Tienda>((t.data || []).map((p: Tienda) => [p.id, p]));
+  const mapa = mapaDeCodigos(regalos);
+  const lineas: string[] = [];
+  mapa.forEach((r, codigo) => lineas.push(lineaCatalogo(codigo, r, tiendaPorId.get(r.id), r.foto_url ? colores[r.foto_url] : undefined)));
+  // Productos que existen pero no se muestran en la web (sin tarjeta): se dejan como en la versión anterior.
+  const conCodigo = new Set(regalos.map((r) => r.id));
+  (t.data || []).filter((p: Record<string, unknown>) => !conCodigo.has(p.id as string)).forEach((p: Record<string, unknown>) =>
+    lineas.push(`- ${p.nombre} | ${p.categoria_web || "Tienda"} | ${cop(p.precio as number)} | ${p.disponible_web === false ? "agotado" : "disponible"}`));
   const mer = (m.data || []).map((p: Record<string, unknown>) => {
     const peso = Number(p.peso_gramos) || 0, pg = Number(p.precio_gramo) || 0;
     const porOvillo = peso > 0 && ["Lanas", "Hilos"].includes(String(p.categoria));
@@ -65,13 +77,13 @@ async function catalogo(sb: any): Promise<string> {
       (porOvillo ? ` | se vende por ovillo completo de ${peso} g: ${cop(Math.round(pg * peso / 100) * 100)} el ovillo` : ` | ${cop(pg)}`) +
       ` | ${hay > 0 ? `disponible (${hay} en existencia)` : "agotado por ahora"}`;
   }).join("\n");
-  const texto = `CATÁLOGO ACTUAL DE LA TIENDA DE AMIGURUMIS (nombre | categoría | precio | disponibilidad | detalles):\n${tienda}\n\nCATÁLOGO ACTUAL DE LA MERCERÍA (hilos, lanas, etc.):\n${mer}`;
-  cacheCat = { texto: texto.slice(0, 40000), hasta: Date.now() + 10 * 60 * 1000 };
-  return cacheCat.texto;
+  const texto = `CATÁLOGO ACTUAL DE LA TIENDA DE AMIGURUMIS (código | nombre | categoría | precio | disponibilidad | colores | detalles):\n${lineas.join("\n")}\n\nCATÁLOGO ACTUAL DE LA MERCERÍA (hilos, lanas, etc.):\n${mer}`;
+  cacheCat = { texto: texto.slice(0, 40000), mapa, hasta: Date.now() + 10 * 60 * 1000 };
+  return cacheCat;
 }
 
 const ROLES: Record<string, string> = {
-  tienda: "La persona está en la TIENDA DE AMIGURUMIS: asesórala sobre amigurumis y los productos de la tienda (cuál elegir según el regalo, la edad, el gusto o el presupuesto; tamaños, materiales, cuidados, tiempos de elaboración) y sobre pedidos personalizados (Personaliza). Recomienda 1 a 3 productos concretos del catálogo con su precio y disponibilidad.",
+  tienda: "La persona está en la TIENDA DE AMIGURUMIS: asesórala sobre amigurumis y los productos de la tienda (cuál elegir según el regalo, la edad, el gusto o el presupuesto; tamaños, materiales, cuidados, tiempos de elaboración) y sobre pedidos personalizados (Personaliza). Recomienda 1 a 3 productos concretos del catálogo y muéstralos con su código (la tarjeta lleva la foto, el precio y si hay en existencia o es por encargo).",
   merceria: "La persona está en la MERCERÍA: asesórala sobre hilos, lanas, agujas e insumos para tejedoras (qué material usar según el proyecto, grosor del hilo y aguja recomendada, cantidad aproximada de ovillos, accesorios como ojos, relleno, marcadores). Las lanas y los hilos se venden SIEMPRE por ovillo (madeja) completo, nunca por gramos sueltos: da el precio del ovillo y no el precio por gramo. Los materiales se pagan en línea desde el carrito (los productos; el envío a domicilio lo paga la clienta a la transportadora al recibir y recoger en la tienda es gratis) o se piden por WhatsApp; la Mercería no hace cambios voluntarios por preferencia, pero sí atiende retracto, garantía y pedidos equivocados: remite a sus términos de venta y su política de cambios. Recomienda productos concretos del catálogo de la mercería con su disponibilidad: di que algo está disponible SOLO si en el catálogo figura «disponible»; si figura «agotado por ahora», dilo con honestidad (estamos cargando las existencias del catálogo en línea). Si algo no está en el catálogo, dilo y sugiere preguntar por WhatsApp.",
   academy: "La persona está en LANA ROSA ACADEMY: asesórala sobre tejido a crochet: puntos, abreviaturas, lectura de patrones, tejido en redondo y amigurumi, tensión, errores comunes, materiales y cómo empezar o avanzar de nivel. Para esto SÍ puedes usar tu conocimiento general de crochet (explica paso a paso y con claridad). Los talleres, fechas y precios de la Academy solo los que estén en el CONOCIMIENTO PÚBLICO. Recomienda el glosario, las paletas y las calculadoras del Rincón de Rosina (lanarosacrochet.com/recursos-rosina.html) cuando ayuden.",
 };
@@ -129,7 +141,7 @@ Deno.serve(async (req) => {
   if (!llave) return json({ error: "Rosina descansa un momento. Escríbenos por WhatsApp: https://wa.me/573205072801" }, 503, h);
 
   const saber = await conocimiento();
-  const cat = await catalogo(sb).catch(() => "");
+  const cat = await catalogo(sb).catch(() => ({ texto: "", mapa: new Map<string, Regalo>() }));
   const casa = ["tienda", "merceria", "academy"].includes(cuerpo.casa || "") ? cuerpo.casa! : "tienda";
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -137,14 +149,34 @@ Deno.serve(async (req) => {
     body: JSON.stringify({
       model: MODELO, max_tokens: 700,
       system: [
-        { type: "text", text: REGLAS + "\n" + ROLES[casa] },
-        { type: "text", text: "CONOCIMIENTO PÚBLICO (texto de las páginas del sitio):\n" + saber + "\n\n" + cat, cache_control: { type: "ephemeral" } },
+        { type: "text", text: REGLAS + "\n" + REGLAS_TARJETAS + "\n" + ROLES[casa] },
+        { type: "text", text: "CONOCIMIENTO PÚBLICO (texto de las páginas del sitio):\n" + saber + "\n\n" + cat.texto, cache_control: { type: "ephemeral" } },
+        { type: "text", text: RECORDATORIO_TARJETAS },
       ],
       messages: mensajes,
     }),
   });
   if (!r.ok) return json({ error: "Rosina no pudo responder ahora. Escríbenos por WhatsApp: https://wa.me/573205072801" }, 502, h);
   const d = await r.json();
-  const respuesta = (d.content || []).filter((c: { type: string }) => c.type === "text").map((c: { text: string }) => c.text).join("\n").trim();
-  return json({ respuesta: respuesta || "No tengo esa información todavía." }, 200, h);
+  const bruto = (d.content || []).filter((c: { type: string }) => c.type === "text").map((c: { text: string }) => c.text).join("\n").trim();
+  const { texto, productos, sinDato } = procesarRespuesta(bruto, cat.mapa);
+  // Medición sin datos personales: cuántas consultas y cuántos tokens por día y casa (para conocer el costo real). Nunca frena la respuesta.
+  try {
+    const u = d.usage || {};
+    await sb.rpc("fn_rosina_registrar_consumo", {
+      p_casa: casa, p_entrada: u.input_tokens || 0, p_salida: u.output_tokens || 0,
+      p_cache_lectura: u.cache_read_input_tokens || 0, p_cache_escritura: u.cache_creation_input_tokens || 0,
+      p_tarjetas: productos.length ? 1 : 0, p_sin_dato: sinDato ? 1 : 0,
+    });
+  } catch { /* la medición no es crítica */ }
+  // Registro de preguntas sin respuesta: APAGADO por defecto (RW_REGISTRAR_SIN_RESPUESTA=1 lo enciende, después de actualizar la política de privacidad).
+  // Guarda solo un resumen corto sin correos, teléfonos ni enlaces, sin IP y sin el resto de la conversación; se borra a los 90 días.
+  if (sinDato && Deno.env.get("RW_REGISTRAR_SIN_RESPUESTA") === "1") {
+    try {
+      const pregunta = limpiarPregunta(mensajes[mensajes.length - 1].content);
+      if (pregunta) await sb.from("rosina_sin_respuesta").insert({ casa, pregunta_resumen: pregunta });
+      if (Math.random() < 0.02) await sb.from("rosina_sin_respuesta").delete().lt("creado", new Date(Date.now() - 90 * 86400_000).toISOString());
+    } catch { /* el registro no es crítico */ }
+  }
+  return json({ respuesta: texto || (productos.length ? "Mira lo que encontré para ti 💕" : "No tengo esa información todavía."), productos, sin_dato: sinDato }, 200, h);
 });

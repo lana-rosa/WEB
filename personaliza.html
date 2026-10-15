@@ -34,8 +34,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
-<link rel="stylesheet" href="/css/comun.css?v=30">
+<link rel="stylesheet" href="/css/comun.css?v=31">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
+<link rel="stylesheet" href="/css/universo.css?v=4">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -92,6 +93,34 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .boton-enviar:hover { background: var(--rosa-boton-hover); }
 .boton-enviar:disabled { background: var(--tinta-suave); cursor: not-allowed; }
 #mensaje-estado { margin-top: 18px; padding: 16px; border-radius: 12px; display: none; font-size: 0.95rem; }
+.banner-personalizado { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 14px 18px; margin: 0 0 16px; max-width: 780px; display: flex; gap: 14px; align-items: center; }
+.banner-personalizado[hidden], .pago-personalizado[hidden] { display: none; }
+.elige-modo { border: 0; margin: 0 0 22px; padding: 0; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: stretch; }
+.elige-modo legend { font-weight: 700; margin-bottom: 10px; padding: 0; font-size: 1.05rem; }
+.elige-modo[hidden] { display: none; }
+.modo { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border: 2px solid var(--rosa-medio); border-radius: 16px; cursor: pointer; background: #fff; }
+.modo:hover { background: var(--rosa-suave); }
+.modo:has(input:checked) { background: var(--rosa-suave); border-color: var(--rosa-principal); }
+.modo:has(input:focus-visible) { outline: 3px solid var(--lila); outline-offset: 2px; }
+.modo input { margin-top: 3px; width: 20px; height: 20px; accent-color: var(--rosa-principal); flex: none; }
+.modo-texto strong { display: block; color: var(--rosa-texto); }
+.modo-texto small { display: block; color: var(--tinta-suave); margin-top: 2px; line-height: 1.35; font-size: 0.86rem; }
+.modo-o { align-self: center; font-weight: 700; color: var(--tinta-suave); }
+@media (max-width: 680px) { .elige-modo { grid-template-columns: minmax(0, 1fr); } .modo-o { display: none; } }
+.campos-directos { border: 0; margin: 0; padding: 0; min-width: 0; }
+.campos-directos[hidden], #modo-guiado[hidden] { display: none; }
+.solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.titulo-bloque { font-size: 1.1rem; margin: 26px 0 14px; padding-top: 18px; border-top: 1px solid rgba(69,69,74,0.1); color: var(--rosa-texto); }
+#modo-guiado .uc-form { background: transparent; box-shadow: none; padding: 0; }
+.banner-personalizado img { width: 64px; height: 80px; object-fit: cover; border-radius: 10px; flex: none; }
+.banner-personalizado p { margin: 0; font-size: 0.92rem; }
+.banner-personalizado strong { color: var(--rosa-texto); }
+.pago-personalizado { background: var(--blanco); box-shadow: var(--sombra-suave); border: 2px solid var(--rosa-medio); border-radius: var(--radio-suave); padding: 20px 22px; margin: 16px 0 24px; max-width: 780px; }
+.pago-personalizado h2 { font-size: 1.15rem; margin: 0 0 8px; }
+.pago-personalizado p { margin: 0 0 10px; font-size: 0.94rem; }
+.pago-personalizado .nota-pers { font-size: 0.82rem; color: var(--tinta-suave); }
+.pago-personalizado button.boton-pagar-pers { display: block; width: 100%; box-sizing: border-box; border: none; cursor: pointer; font: inherit; font-weight: 700; background: var(--rosa-boton); color: var(--sobre-principal); padding: 14px 20px; border-radius: 999px; margin: 6px 0 10px; }
+.pago-personalizado button.boton-pagar-pers:hover { background: var(--rosa-boton-hover); }
 #mensaje-estado.exito { background: #e6f4ea; color: #2e7d32; display: block; }
 #mensaje-estado.error { background: #fdecea; color: #c62828; display: block; }
 /* Prioridad 1: respuestas rápidas y proceso */
@@ -252,6 +281,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li class="g-tienda"><a href="/tienda.html#llaveros">Llaveros</a></li>
         <li class="g-tienda"><a href="/tienda.html#macetas">Flores y macetas</a></li>
         <li class="g-tienda"><a href="/personaliza.html">Personaliza el tuyo</a></li>
+        <li class="g-universo"><a href="/universo-rosina.html">El universo de Rosina</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -280,6 +310,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="grupo-nav">Personalizados</p>
     <a href="/personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="/#historias">Historias que tejimos</a>
+    <p class="grupo-nav">Rosina</p>
+    <a href="/universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="/sobre-nosotras.html">Sobre nosotras</a>
     <a href="/revista.html?casa=crochet">Revista</a>
@@ -385,7 +417,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>Pide el tuyo aquí</h2>
     <p>Cuéntanos tu idea y te enviamos la cotización.</p>
   </div>
+  <div class="banner-personalizado" id="banner-personalizado" hidden></div>
   <form class="tarjeta" id="form-personalizado">
+    <fieldset class="elige-modo" id="elige-modo">
+      <legend>¿Cómo prefieres pedirlo?</legend>
+      <label class="modo"><input type="radio" name="modo" value="guiado" checked><span class="modo-texto"><strong>🐑 Rosina te ayuda a crear</strong><small>Te guía paso a paso: qué quieres, tamaño, detalles y colores.</small></span></label>
+      <span class="modo-o" aria-hidden="true">o</span>
+      <label class="modo"><input type="radio" name="modo" value="formulario"><span class="modo-texto"><strong>📝 Diligencia el formulario</strong><small>Si ya sabes lo que quieres, cuéntanoslo directamente.</small></span></label>
+    </fieldset>
+
+    <div id="modo-guiado"><div id="guia-raiz"><p class="uc-cargando" role="status">Cargando a Rosina…</p></div></div>
+
+    <fieldset class="campos-directos" id="modo-formulario" hidden disabled>
+      <legend class="solo-lectores">Tu idea</legend>
+    <div class="fila-doble">
+      <div class="campo">
+        <label for="tipo-producto">Tipo de producto*</label>
+        <select id="tipo-producto" name="tipo-producto" required>
+          <option value="">Selecciona una opción</option>
+          <option value="Amigurumi">Amigurumi</option>
+          <option value="Llavero">Llavero</option>
+          <option value="Peluche">Peluche</option>
+          <option value="Otro">Otro</option>
+        </select>
+        <input type="text" id="tipo-otro" name="tipo-otro" placeholder="Escribe qué tipo de producto quieres" style="display:none; margin-top:10px;">
+      </div>
+      <div class="campo">
+        <label for="tamano">Tamaño*</label>
+        <select id="tamano" name="tamano" required disabled>
+          <option value="">Primero elige el tipo de producto</option>
+        </select>
+        <input type="text" id="tamano-otro" name="tamano-otro" placeholder="Escribe el tamaño que quieres" style="display:none; margin-top:10px;">
+      </div>
+    </div>
+
+    <div class="campo">
+      <label for="descripcion">¿Qué quieres que tejamos?*</label>
+      <textarea id="descripcion" name="descripcion" required placeholder="Ej: Un amigurumi de mi perrita, con su collar rojo y las orejas caídas, tamaño de 10 cm."></textarea>
+    </div>
+
+    <div class="campo">
+      <label for="mensaje">Detalles adicionales, ocasión o mensaje para la tarjeta</label>
+      <textarea id="mensaje" name="mensaje" placeholder="Ej: Es un regalo de cumpleaños para mi mamá, sería genial tenerlo antes del 20 de este mes."></textarea>
+    </div>
+    </fieldset>
+
+    <h3 class="titulo-bloque">Tus fotos y tus datos</h3>
     <div class="campo">
       <label for="foto">Fotos de referencia</label>
       <label class="zona-foto" for="foto">
@@ -429,56 +506,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="fila-doble">
-      <div class="campo">
-        <label for="tipo-producto">Tipo de producto*</label>
-        <select id="tipo-producto" name="tipo-producto" required>
-          <option value="">Selecciona una opción</option>
-          <option value="Amigurumi">Amigurumi</option>
-          <option value="Llavero">Llavero</option>
-          <option value="Peluche">Peluche</option>
-          <option value="Otro">Otro</option>
-        </select>
-        <input type="text" id="tipo-otro" name="tipo-otro" placeholder="Escribe qué tipo de producto quieres" style="display:none; margin-top:10px;">
-      </div>
-      <div class="campo">
-        <label for="tamano">Tamaño*</label>
-        <select id="tamano" name="tamano" required disabled>
-          <option value="">Primero elige el tipo de producto</option>
-        </select>
-        <input type="text" id="tamano-otro" name="tamano-otro" placeholder="Escribe el tamaño que quieres" style="display:none; margin-top:10px;">
-      </div>
-    </div>
-
-    <div class="campo">
-      <label for="descripcion">¿Qué quieres que tejamos?*</label>
-      <textarea id="descripcion" name="descripcion" required placeholder="Ej: Un amigurumi de mi perrita, con su collar rojo y las orejas caídas, tamaño de 10 cm."></textarea>
-    </div>
-
-    <div class="campo">
-      <label for="mensaje">Detalles adicionales, ocasión o mensaje para la tarjeta</label>
-      <textarea id="mensaje" name="mensaje" placeholder="Ej: Es un regalo de cumpleaños para mi mamá, sería genial tenerlo antes del 20 de este mes."></textarea>
-    </div>
-
     <label class="acepto-p"><input type="checkbox" id="acepto-datos" required> <span>Acepto que Lana Rosa use mis datos y mis fotos <strong>solo para cotizar y elaborar mi pedido</strong>, según la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos personales</a>.</span></label>
     <label class="acepto-p"><input type="checkbox" id="acepto-publicar"> <span>Autorizo a Lana Rosa a mostrar la foto de mi pedido terminado en su web y redes sociales. <small>Es opcional: no cambia el precio ni tu pedido, y puedes retirarlo cuando quieras escribiendo a contacto@lanarosacrochet.com.</small></span></label>
     <button type="submit" class="boton-enviar" id="boton-enviar">Enviar mi solicitud</button>
     <div id="mensaje-estado"></div>
   </form>
+  <div class="pago-personalizado" id="pago-personalizado" hidden></div>
 
   <div style="background:var(--rosa-suave); border-radius:var(--radio-suave); padding:28px 32px; max-width:780px; margin-bottom:60px;">
     <h2 style="font-size:1.15rem;">¿Cómo se paga?</h2>
-    <p style="margin-bottom:16px;">Cuando te confirmemos el precio, paga por Nequi o Bre-B y envíanos el comprobante por WhatsApp.</p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
-      <div style="background:var(--blanco); border-radius:14px; padding:16px;">
-        <p style="font-weight:600; margin:0 0 4px; color: var(--rosa-texto);">Nequi</p>
-        <p style="margin:0;">320 507 2801</p>
-      </div>
-      <div style="background:var(--blanco); border-radius:14px; padding:16px;">
-        <p style="font-weight:600; margin:0 0 4px; color: var(--rosa-texto);">Bre-B</p>
-        <p style="margin:0;">Llave: 320 507 2801</p>
-      </div>
-    </div>
+    <p style="margin-bottom:10px;"><strong>Amigurumis de 13, 15 y 20 cm:</strong> al enviar el formulario puedes pagar en línea con Wompi (tarjeta, PSE, Nequi y más) el precio base de tu tamaño.</p>
+    <p style="margin-bottom:16px;"><strong>Otros pedidos o si prefieres cotizar primero:</strong> cuando te confirmemos el precio, te indicamos por WhatsApp cómo pagar y nos envías el comprobante.</p>
   
   </div>
 
@@ -518,6 +556,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="/sobre-nosotras.html">Quiénes somos</a></li>
+        <li><a href="/universo-rosina.html">El universo de Rosina</a></li>
         <li><a href="/revista.html?casa=crochet">Revista</a></li>
         <li><a href="/preguntas-frecuentes.html">Preguntas frecuentes</a></li>
         <li><a href="/precios.html">Precios</a></li>
@@ -534,7 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
   <div class="contenedor pie-franja">
-    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Nequi, Bancolombia, Bre-B y efectivo</p>
+    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Bancolombia y efectivo</p>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
       <img src="/img/logo-sena.png" alt="SENA" width="328" height="320" onerror="this.style.display='none'" loading="lazy" decoding="async">
       <img src="/img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" width="420" height="94" onerror="this.style.display='none'" loading="lazy" decoding="async">
@@ -658,9 +697,125 @@ selectTamano.addEventListener('change', () => {
   if (selectTamano.value !== 'Otro') inputTamanoOtro.value = '';
 });
 
+// Amigurumis personalizados de la tienda (13, 15 y 20 cm): se piden con el formulario y se pagan en línea con Wompi.
+// Nombre exacto del producto en el ERP: «Amigurumi personalizado N cm» (ver tienda.html, datosPersonalizado).
+const productosPers = {};   // '15 cm' -> { id, nombre, precio, foto }
+const pesosCOP = (v) => '$' + Math.round(Number(v)).toLocaleString('es-CO');
+const bannerPers = document.getElementById('banner-personalizado');
+function pintarBannerPers(tamano) {
+  const pr = productosPers[tamano];
+  if (!pr) { bannerPers.hidden = true; return; }
+  bannerPers.replaceChildren();
+  const im = document.createElement('img'); im.src = '/img/productos/' + pr.foto; im.alt = ''; im.width = 64; im.height = 80;
+  const tx = document.createElement('p');
+  const b = document.createElement('strong'); b.textContent = pr.nombre;
+  tx.append(b, ' · ', pesosCOP(pr.precio) + ' COP (precio base). Las imágenes de la tienda son de referencia: lo tejemos a partir de tus fotos. Llena el formulario y al final pagas en línea con Wompi.');
+  bannerPers.append(im, tx); bannerPers.hidden = false;
+}
+const listoPers = (async () => {
+  try {
+    const { data } = await supabase.rpc('obtener_tienda_web');
+    (data || []).forEach((it) => {
+      const m = /^Amigurumi personalizado (\d+) cm$/.exec(it.nombre || '');
+      if (m) productosPers[m[1] + ' cm'] = { id: it.id, nombre: it.nombre, precio: it.precio, foto: it.foto_url };
+    });
+  } catch (e) { /* sin catálogo: el formulario funciona igual, solo sin pago en línea */ }
+})();
+const tamanoTienda = parametros.get('tamano');
+if (parametros.get('tipo') === 'Amigurumi' && tamanoTienda && !inspiracion) {
+  selectTipo.value = 'Amigurumi';
+  selectTipo.dispatchEvent(new Event('change'));
+  if ([...selectTamano.options].some((o) => o.value === tamanoTienda)) selectTamano.value = tamanoTienda;
+}
+if (parametros.get('producto')) {
+  if (parametros.get('tipo') === 'Amigurumi' && tamanoTienda) { selectTipo.value = 'Amigurumi'; selectTipo.dispatchEvent(new Event('change')); if ([...selectTamano.options].some((o) => o.value === tamanoTienda)) selectTamano.value = tamanoTienda; }
+  listoPers.then(() => pintarBannerPers(selectTamano.value));
+}
+selectTamano.addEventListener('change', () => { listoPers.then(() => pintarBannerPers(selectTipo.value === 'Amigurumi' ? selectTamano.value : '')); });
+selectTipo.addEventListener('change', () => { if (selectTipo.value !== 'Amigurumi') bannerPers.hidden = true; });
+
+
+// Después de enviar el formulario: se ofrece pagar el tamaño elegido (el producto de la tienda) y se guarda el radicado para el pedido.
+function ofrecerPago(radicado, tamano) {
+  const pr = productosPers[tamano]; const panel = document.getElementById('pago-personalizado');
+  if (!pr) { panel.hidden = true; return; }
+  panel.replaceChildren();
+  const h = document.createElement('h2'); h.textContent = '¿Quieres pagar ya tu amigurumi?';
+  const p1 = document.createElement('p'); p1.append('Tu solicitud quedó con el radicado ', Object.assign(document.createElement('strong'), { textContent: radicado }), '. Puedes pagar ahora el ', Object.assign(document.createElement('strong'), { textContent: pr.nombre + ' · ' + pesosCOP(pr.precio) }), ' en línea con Wompi (tarjeta, PSE, Nequi y más). Es el precio base de una pieza con detalle normal; si tu diseño necesita más detalle (varios personajes, accesorios o ropa elaborada), te lo confirmamos por WhatsApp antes de empezar y cobramos solo la diferencia. El envío se calcula al pagar.');
+  const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'boton-pagar-pers'; btn.textContent = 'Pagar ' + pesosCOP(pr.precio) + ' con Wompi';
+  btn.addEventListener('click', () => {
+    try { localStorage.setItem('lrSolicitudPersonalizada', JSON.stringify({ radicado, id: pr.id, t: Date.now() })); } catch (e) {}
+    let carrito = []; try { carrito = JSON.parse(localStorage.getItem('carritoLanaRosa')) || []; } catch (e) {}
+    carrito = carrito.filter((i) => i.id !== pr.id); carrito.push({ id: pr.id, nombre: pr.nombre, precio: Number(pr.precio), cantidad: 1 });
+    localStorage.setItem('carritoLanaRosa', JSON.stringify(carrito));
+    const c = document.getElementById('contador-carrito'); if (c) c.textContent = carrito.reduce((s, i) => s + i.cantidad, 0);
+    const pagar = document.getElementById('boton-pagar-wompi');
+    if (pagar) pagar.click(); else { const cb = document.getElementById('boton-carrito'); if (cb) cb.click(); }
+  });
+  const p2 = document.createElement('p'); p2.className = 'nota-pers'; p2.textContent = 'Los amigurumis personalizados no llevan el descuento de primera compra. Si prefieres que primero te cotice, no pagues ahora: te escribimos con la cotización y pagas después.';
+  panel.append(h, p1, btn, p2); panel.hidden = false; panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
 const form = document.getElementById('form-personalizado');
 const boton = document.getElementById('boton-enviar');
 const mensajeEstado = document.getElementById('mensaje-estado');
+
+// ---- Dos formas de pedir: «Rosina te ayuda a crear» (asistente guiado) o diligenciar el formulario directo ----
+// Solo cambia la parte «tu idea»: las fotos y los datos de contacto se piden una sola vez, abajo.
+const eligeModo = document.getElementById('elige-modo');
+const bloqueGuia = document.getElementById('modo-guiado');
+const bloqueDirecto = document.getElementById('modo-formulario');
+const campoDesc = document.getElementById('descripcion');
+const campoMsj = document.getElementById('mensaje');
+let modo = 'formulario';
+let guia = null;
+let ultimoGuia = { tipo: '', tamano: '', idea: '' };
+function bannerSegunModo() {
+  const t = modo === 'guiado' ? ultimoGuia.tipo : selectTipo.value;
+  const z = modo === 'guiado' ? ultimoGuia.tamano : selectTamano.value;
+  listoPers.then(() => pintarBannerPers(t === 'Amigurumi' ? z : ''));
+}
+function aplicarModo(m) {
+  if (modo === 'guiado' && m === 'formulario' && guia) {
+    // Al pasar al formulario directo se lleva lo ya elegido (sin pisar lo que la persona haya escrito allá).
+    const f = guia.ficha();
+    if (f.tipo) {
+      selectTipo.value = f.tipo; selectTipo.dispatchEvent(new Event('change'));
+      if ([...selectTamano.options].some((o) => o.value === f.tamano)) selectTamano.value = f.tamano;
+      selectTamano.dispatchEvent(new Event('change'));
+      if (!campoDesc.value) campoDesc.value = f.descripcion;
+      const msj = f.mensaje.replace(/\n?\(Ficha armada con[^)]*\)/, '').trim();
+      if (!campoMsj.value && msj) campoMsj.value = msj;
+    }
+  }
+  modo = m;
+  bloqueGuia.hidden = m !== 'guiado';
+  bloqueDirecto.hidden = m === 'guiado';
+  bloqueDirecto.disabled = m === 'guiado';   // sus campos obligatorios no se validan mientras está oculto
+  eligeModo.querySelectorAll('input[name="modo"]').forEach((r) => { r.checked = r.value === m; });
+  bannerSegunModo();
+}
+const quiereDirecto = parametros.get('modo') === 'formulario' || parametros.get('producto') || parametros.get('tipo') || parametros.get('tamano') || inspiracion;
+aplicarModo(parametros.get('modo') === 'guiado' ? 'guiado' : (quiereDirecto ? 'formulario' : 'guiado'));
+eligeModo.addEventListener('change', (ev) => {
+  if (ev.target.name !== 'modo') return;
+  aplicarModo(ev.target.value);
+  (window.dataLayer = window.dataLayer || []).push({ event: 'crear_modo', modo: ev.target.value });
+});
+(async () => {
+  try {
+    const [mc, cc] = await Promise.all([import('/js/universo/crear.js'), import('/js/universo/config.js')]);
+    if (!cc.CONFIG.CREAR_ACTIVO) throw new Error('apagado');
+    guia = mc.montarGuia(document.getElementById('guia-raiz'), { alCambiar: (e) => { ultimoGuia = e; if (modo === 'guiado') bannerSegunModo(); } });
+    const ideaUrl = parametros.get('idea');
+    if (ideaUrl) guia.preseleccionar(ideaUrl);
+    listoPers.then(() => guia.fijarPrecios(Object.fromEntries(Object.entries(productosPers).map(([k, v]) => [k, Number(v.precio)]))));
+  } catch (err) {
+    // Sin el asistente (apagado o sin conexión al módulo) la página queda como siempre: solo el formulario.
+    guia = null; eligeModo.hidden = true; aplicarModo('formulario');
+  }
+})();
+boton.addEventListener('click', (ev) => { if (modo === 'guiado' && !(guia && guia.validar())) ev.preventDefault(); });
 
 form.addEventListener('submit', async (evento) => {
   evento.preventDefault();
@@ -692,14 +847,16 @@ form.addEventListener('submit', async (evento) => {
       fotosUrls.push(urlPublica.publicUrl);
     }
 
-    const tipoProducto = selectTipo.value === 'Otro'
+    const fGuia = (modo === 'guiado' && guia) ? guia.ficha() : null;
+    const tipoProducto = fGuia ? fGuia.tipo : (selectTipo.value === 'Otro'
       ? (inputTipoOtro.value.trim() || 'Otro (sin especificar)')
-      : selectTipo.value;
-    const tamanoSeleccionado = document.getElementById('tamano').value === 'Otro'
+      : selectTipo.value);
+    const tamanoSeleccionado = fGuia ? fGuia.tamano : (document.getElementById('tamano').value === 'Otro'
       ? (document.getElementById('tamano-otro').value || 'Otro (sin especificar)')
-      : document.getElementById('tamano').value;
+      : document.getElementById('tamano').value);
 
-    const descripcionCompleta = `[${tipoProducto} — ${tamanoSeleccionado}] ${document.getElementById('descripcion').value}`;
+    const tamanoPago = (tipoProducto === 'Amigurumi') ? tamanoSeleccionado : '';
+    const descripcionCompleta = `[${tipoProducto} — ${tamanoSeleccionado}] ${fGuia ? fGuia.descripcion : document.getElementById('descripcion').value}`;
 
     const { data, error } = await supabase.rpc('crear_solicitud_personalizada', {
       p_nombre: document.getElementById('nombre').value,
@@ -708,7 +865,7 @@ form.addEventListener('submit', async (evento) => {
       p_descripcion: descripcionCompleta,
       p_ciudad: (selectCiudad.value === 'Otro (nacional)' ? inputCiudadOtra.value.trim() : selectCiudad.value) || null,
       p_fotos_urls: fotosUrls.length > 0 ? fotosUrls : null,
-      p_mensaje: ((document.getElementById('mensaje').value || '') +
+      p_mensaje: ((fGuia ? fGuia.mensaje : (document.getElementById('mensaje').value || '')) +
         '\n[Autorizaciones registradas el ' + new Date().toISOString().slice(0, 10) + ' — tratamiento de datos para el pedido: SÍ; ' +
         'publicar la foto del pedido terminado en web y redes: ' + (document.getElementById('acepto-publicar').checked ? 'SÍ' : 'NO') + ']').trim()
     });
@@ -726,7 +883,11 @@ form.addEventListener('submit', async (evento) => {
     enlaceWa.textContent = '¿Quieres adelantar la conversación? Escríbenos por WhatsApp';
     mensajeEstado.appendChild(document.createElement('br'));
     mensajeEstado.appendChild(enlaceWa);
+    (window.dataLayer = window.dataLayer || []).push({ event: 'crear_solicitud', modo: fGuia ? 'guiado' : 'formulario', tipo: tipoProducto, tamano: tamanoSeleccionado, n_detalles: fGuia ? guia.nDetalles() : 0 });
+    await listoPers; ofrecerPago(data, tamanoPago);
     form.reset();
+    if (guia) guia.reiniciar();
+    aplicarModo(modo);
     alternarOtro(selectCiudad, 'Otro (nacional)', inputCiudadOtra);
     selectTipo.dispatchEvent(new Event('change'));
     previsualizacion.innerHTML = '';
@@ -935,7 +1096,7 @@ document.querySelectorAll('.carrusel').forEach(function (c) {
 });
 </script>
 <script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=23"></script>
+<script type="module" src="/js/pago.js?v=24"></script>
 <script type="module">
 // Si la clienta tiene sesión, se llenan sus datos en el formulario (puede cambiarlos).
 import { haySesionGuardada, obtenerPerfil, obtenerCliente } from './js/cuenta.js';
@@ -959,6 +1120,6 @@ if (haySesionGuardada()) {
   })();
 }
 </script>
-<script src="/js/animaciones.js?v=11" defer></script>
+<script src="/js/animaciones.js?v=12" defer></script>
 </body>
 </html>

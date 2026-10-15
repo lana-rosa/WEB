@@ -11,31 +11,31 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 
 # página -> casa (las que no están aquí son comunes: sin casa resaltada)
 CASA_DE = {
-    'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
+    'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'universo-rosina': 'crochet', 'p': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
     'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'merceria-terminos-de-venta': 'merceria', 'merceria-cambios-y-devoluciones': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy', 'academy-empieza-aqui': 'academy',
     'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
 CASAS = [('crochet', 'Tienda de amigurumis', 'tienda.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/')]
-CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'comun': 'g-comun'}
+CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'comun': 'g-comun', 'universo': 'g-universo'}
 
 # (texto, enlace, clase de color)
 MENUS = {
     'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Amigurumis', 'tienda.html#amigurumis', 'crochet'), ('Peluches', 'tienda.html#peluches', 'crochet'),
                 ('Llaveros', 'tienda.html#llaveros', 'crochet'), ('Flores y macetas', 'tienda.html#macetas', 'crochet'),
-                ('Personaliza el tuyo', 'personaliza.html', 'crochet')],
+                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
     # páginas comunes (contacto, preguntas, políticas, cuenta, Revista): menú de marca con las tres casas
     'comun': [('Tienda de amigurumis', 'index.html', 'crochet'), ('Mercería', 'merceria/', 'merceria'),
-              ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun')],
+              ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
     # Solo categorías que tienen productos en el inventario (8-oct-2026: hoy solo Lanas). Cuando se carguen Hilos, Agujas, Herrajes,
     # Accesorios o Relleno al ERP, agregar aquí su enlace (merceria/catalogo/#<categoria>-merceria) y en MOVIL['merceria'] y PIE.
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria'),
-                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria')],
+                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
     'academy': [('Talleres y clases', 'academy/talleres/', 'academy'), ('Agenda de Rosina', 'agenda-rosina.html', 'academy'),
                 ('Recursos gratis', 'recursos-rosina.html', 'academy'), ('Revista', 'revista.html?casa=academy', 'academy'),
-                ('Sobre Academy', 'academy/sobre-academy/', 'academy')],
+                ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
@@ -92,6 +92,8 @@ MOVIL = {
     <p class="grupo-nav">Personalizados</p>
     <a href="personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="index.html#historias">Historias que tejimos</a>
+    <p class="grupo-nav">Rosina</p>
+    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <a href="revista.html?casa=crochet">Revista</a>
@@ -108,6 +110,8 @@ MOVIL = {
     <a href="merceria/catalogo/#lanas-merceria">Lanas</a>
     <p class="grupo-nav">Visítanos</p>
     <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
+    <p class="grupo-nav">Rosina</p>
+    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="revista.html?casa=merceria">Revista</a>
     <p class="grupo-nav">Ayuda</p>
@@ -133,6 +137,8 @@ MOVIL = {
     <a href="paletas-rosina.html">Paletas de color</a>
     <a href="calculadoras-rosina.html">Calculadoras</a>
     <a href="rosina.html">Conoce a Rosina</a>
+    <p class="grupo-nav">Rosina</p>
+    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Ideas</p>
     <a href="revista.html?casa=academy">Revista</a>
     <p class="grupo-nav">Ayuda</p>
@@ -188,6 +194,8 @@ def encabezado(pagina):
     <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
+    <p class="grupo-nav">Rosina</p>
+    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="revista.html">Revista</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
@@ -285,6 +293,7 @@ def pie_casa(modelo, casa):
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
+        <li><a href="universo-rosina.html">El universo de Rosina</a></li>
         <li><a href="{rev}">Revista</a></li>
         <li><a href="{faq}">Preguntas frecuentes</a></li>
         <li><a href="precios.html">Precios</a></li>
@@ -301,7 +310,7 @@ def pie_casa(modelo, casa):
     </div>
   </div>
   <div class="contenedor pie-franja">
-    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Nequi, Bancolombia, Bre-B y efectivo</p>
+    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Bancolombia y efectivo</p>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
       <img src="img/logo-sena.png" alt="SENA" width="328" height="320" onerror="this.style.display='none'" loading="lazy" decoding="async">
       <img src="img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" width="420" height="94" onerror="this.style.display='none'" loading="lazy" decoding="async">
@@ -328,7 +337,7 @@ def absolutas(html):
 def main():
     # el pie modelo es el de las páginas comunes (contacto.html no tiene casa, así que nunca se modifica)
     modelo = None
-    archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True)) + sorted(glob.glob(os.path.join(RAIZ, 'academy', '**', 'index.html'), recursive=True))
+    archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + [os.path.join(RAIZ, 'p', 'index.html')] + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True)) + sorted(glob.glob(os.path.join(RAIZ, 'academy', '**', 'index.html'), recursive=True))
     for f in archivos:
         rel = os.path.relpath(f, RAIZ).replace(os.sep, '/')
         # merceria/index.html -> merceria; merceria/catalogo/index.html -> merceria-catalogo

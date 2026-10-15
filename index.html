@@ -111,7 +111,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "image": "https://lanarosacrochet.com/img/logo-lana-rosa.png",
       "priceRange": "$12.000 - $200.000 COP",
       "hasMap": "https://share.google/GkcZvd8av8NjmRPPM",
-      "paymentAccepted": "Efectivo, Nequi, Bre-B, PSE, Bancolombia, Tarjeta débito/crédito, Código QR (Wompi)",
+      "paymentAccepted": "Efectivo, PSE, Bancolombia, Tarjeta débito/crédito, Código QR (Wompi)",
       "telephone": "+57 320 507 2801",
       "email": "contacto@lanarosacrochet.com",
       "parentOrganization": {
@@ -288,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<link rel="stylesheet" href="/css/comun.css?v=30">
+<link rel="stylesheet" href="/css/comun.css?v=31">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
@@ -474,7 +474,7 @@ main { padding-bottom: 0; }
   .franja-corta[aria-label="Más de Lana Rosa"] .franja-enlaces { gap: 6px; flex-wrap: nowrap; }
 }
 </style>
-<link rel="stylesheet" href="/css/editorial.css?v=13">
+<link rel="stylesheet" href="/css/editorial.css?v=14">
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-256.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
@@ -511,6 +511,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li class="g-tienda"><a href="/tienda.html#llaveros">Llaveros</a></li>
         <li class="g-tienda"><a href="/tienda.html#macetas">Flores y macetas</a></li>
         <li class="g-tienda"><a href="/personaliza.html">Personaliza el tuyo</a></li>
+        <li class="g-universo"><a href="/universo-rosina.html">El universo de Rosina</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -539,6 +540,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="grupo-nav">Personalizados</p>
     <a href="/personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="/#historias">Historias que tejimos</a>
+    <p class="grupo-nav">Rosina</p>
+    <a href="/universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="/sobre-nosotras.html">Sobre nosotras</a>
     <a href="/revista.html?casa=crochet">Revista</a>
@@ -615,6 +618,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="ed-tejer-item" href="/personaliza.html?idea=personaje"><img src="/img/inicio/tejer-peluche.webp?v=2" alt="Peluche de perrito blanco con orejas negras y collar rojo, tejido a mano" loading="lazy" decoding="async" width="640" height="800"><span>Tu personaje favorito</span></a>
         <a class="ed-tejer-item" href="/personaliza.html?idea=detalle"><img src="/img/inicio/tejer-detalle.webp" alt="Llavero de ballena azul tejido a mano" loading="lazy" decoding="async" width="640" height="800"><span>Un recuerdo especial</span></a>
         <a class="ed-tejer-item" href="/personaliza.html?idea=regalo"><img src="/img/inicio/tejer-flores.webp?v=2" alt="Ramo de tulipanes rojos y lilas tejidos a mano, con cinta morada" loading="lazy" decoding="async" width="640" height="800"><span>Un regalo para alguien especial</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROSINA TE AYUDA A REGALAR ============ -->
+  <section class="ed-seccion ed-rosa ed-regalar" id="regalar" aria-labelledby="regalar-titulo">
+    <div class="contenedor ed-regalar-grid">
+      <img src="/img/rosina-abrazo.webp" alt="Rosina, la ovejita de Lana Rosa, abrazando un corazón" width="320" height="350" loading="lazy" decoding="async">
+      <div class="ed-regalar-texto">
+        <p class="ed-eyebrow">Rosina te ayuda a regalar</p>
+        <h2 id="regalar-titulo">¿Buscas un regalo? Rosina te ayuda a elegirlo</h2>
+        <p>Cuéntanos qué buscas y cuánto quieres invertir. Te mostramos productos reales de la tienda.</p>
+        <form class="ed-regalar-form" action="/universo-rosina.html#regalar" method="get" data-regalar-inicio>
+          <div class="ed-regalar-campo"><label for="rg-tipo">¿Qué tipo de regalo buscas?</label><select id="rg-tipo" name="tipo"><option value="">Todos los tipos</option><option value="amigurumi">Amigurumi</option><option value="peluche">Peluche</option><option value="llavero">Llavero</option><option value="flores">Flores y macetas</option><option value="otro">Bolso o separador</option></select></div>
+          <div class="ed-regalar-campo"><label for="rg-presupuesto">¿Cuánto quieres invertir?</label><select id="rg-presupuesto" name="presupuesto"><option value="">Cualquier presupuesto</option><option value="p1">Hasta $20.000</option><option value="p2">$20.000 a $50.000</option><option value="p3">$50.000 a $100.000</option><option value="p4">$100.000 a $200.000</option><option value="p5">Más de $200.000</option></select></div>
+          <button type="submit" class="boton-primario">Ver ideas de regalo</button>
+        </form>
+        <p class="ed-nota"><a href="/universo-rosina.html">Conoce el universo de Rosina →</a></p>
       </div>
     </div>
   </section>
@@ -768,6 +789,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="/sobre-nosotras.html">Quiénes somos</a></li>
+        <li><a href="/universo-rosina.html">El universo de Rosina</a></li>
         <li><a href="/revista.html?casa=crochet">Revista</a></li>
         <li><a href="/preguntas-frecuentes.html">Preguntas frecuentes</a></li>
         <li><a href="/precios.html">Precios</a></li>
@@ -784,7 +806,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
   <div class="contenedor pie-franja">
-    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Nequi, Bancolombia, Bre-B y efectivo</p>
+    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Bancolombia y efectivo</p>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
       <img src="/img/logo-sena.png" alt="SENA" width="328" height="320" onerror="this.style.display='none'" loading="lazy" decoding="async">
       <img src="/img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" width="420" height="94" onerror="this.style.display='none'" loading="lazy" decoding="async">
@@ -1068,6 +1090,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <script>
+// Inicio → «Rosina te ayuda a regalar»: medición al enviar el formulario (solo las categorías elegidas, ningún dato personal)
+(function () {
+  var f = document.querySelector('[data-regalar-inicio]');
+  if (!f) return;
+  f.addEventListener('submit', function () {
+    (window.dataLayer = window.dataLayer || []).push({ event: 'regalar_desde_inicio', tipo: f.elements.tipo.value || 'ninguno', presupuesto: f.elements.presupuesto.value || 'ninguno' });
+  });
+})();
+</script>
+<script>
 // Inicio: "Conoce más historias" y aparición suave de las secciones
 (function () {
   var boton = document.getElementById('ed-mas-historias');
@@ -1087,7 +1119,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script type="module" src="/js/cuenta.js"></script>
 <script src="/js/textos.js" defer></script>
-<script type="module" src="/js/pago.js?v=23"></script>
-<script src="/js/animaciones.js?v=11" defer></script>
+<script type="module" src="/js/pago.js?v=24"></script>
+<script src="/js/animaciones.js?v=12" defer></script>
 </body>
 </html>

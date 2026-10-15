@@ -19,3 +19,8 @@
   - Diseño propio: `insert into web_google_shopping (item_id, titulo_google) values ('<id>', '<Título> tejido a mano en crochet, <tamaño>');`
   - Personaje: `insert into web_productos_personaje (item_id) values ('<id>');`
   - Pendientes de clasificar: `select w.id, w.nombre from obtener_tienda_web() w where w.id not in (select item_id from web_google_shopping) and w.id not in (select item_id from web_productos_personaje);`
+
+## Títulos con «amigurumi» (14-oct-2026) y personalizados
+- Google recomendó cambiar los nombres; Sara decidió que lleve la palabra **amigurumi**. Se actualizó `titulo_google` de todos los llaveros, peluches, muñecas, Rosina, Ratón Pérez, separador, maceta de zorro y set de cactus (patrón: «Llavero amigurumi de abeja tejido a mano en crochet, 6 cm»). Quedaron sin la palabra el bolso, la rosa, las macetas de margarita y tulipán y la regadera (no son figuras de amigurumi). Los títulos nuevos del feed ya no repiten «| Crochet hecho a mano» cuando el título trae «crochet» (la copia `feed.ts` quedó igual a la desplegada, versión 24).
+- Los tres «Amigurumi personalizado N cm» están en `web_google_shopping` con título y descripción propios (las imágenes son de referencia); salen en el feed cuando el producto se pone `activo = true` en el ERP.
+- **Pendiente de revisar:** «Pato el cerdito» (Gravity Falls) está en el feed pero es un personaje de marca; según la regla de este README debería ir a `web_productos_personaje` y salir de Google.

@@ -59,7 +59,7 @@ window.__rpcLR = {};
 }
 </script>
 
-<link rel="stylesheet" href="/css/comun.css?v=30">
+<link rel="stylesheet" href="/css/comun.css?v=31">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
@@ -375,6 +375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li class="g-merceria"><a href="/merceria/tienda-fisica/">Tienda física</a></li>
         <li class="g-merceria"><a href="/merceria/como-comprar/">Cómo comprar</a></li>
         <li class="g-merceria"><a href="/merceria/preguntas-frecuentes/">Ayuda</a></li>
+        <li class="g-universo"><a href="/universo-rosina.html">El universo de Rosina</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -399,6 +400,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/merceria/catalogo/#lanas-merceria">Lanas</a>
     <p class="grupo-nav">Visítanos</p>
     <a href="/merceria/tienda-fisica/">Tienda física: horario y dirección</a>
+    <p class="grupo-nav">Rosina</p>
+    <a href="/universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="/revista.html?casa=merceria">Revista</a>
     <p class="grupo-nav">Ayuda</p>
@@ -546,7 +549,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="aviso-personalizado" id="como-se-paga" hidden style="background:var(--blanco); box-shadow:var(--sombra-suave);">
     <details class="como-se-paga"><summary><h2 style="font-size:1.2rem;">¿Cómo se compra?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
-    <p>Agrega tus productos al carrito, toca <strong>Continuar compra</strong> y paga en línea de forma segura con Wompi: tarjeta de crédito o débito, PSE, Nequi o Bancolombia. No necesitas crear una cuenta. ¿Prefieres pedirlo por WhatsApp? También puedes pagar por Nequi o Bre-B.</p>
+    <p>Agrega tus productos al carrito, toca <strong>Continuar compra</strong> y paga en línea de forma segura con Wompi: tarjeta de crédito o débito, PSE o Bancolombia. No necesitas crear una cuenta. ¿Prefieres pedirlo por WhatsApp? Te indicamos cómo pagar.</p>
     <p><strong>Patrones digitales:</strong> se descargan desde tu cuenta después del pago.</p>
     <p style="margin-top:12px;">📦 El envío lo pagas a la transportadora al recibir (estimado: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000). Recoger en la tienda es gratis.</p>
     <p style="font-weight:600; color: var(--rosa-texto); margin-top:14px;">🕒 Una vez confirmado el pago, tu pedido se despacha el siguiente día hábil.</p>
@@ -584,6 +587,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="/sobre-nosotras.html">Quiénes somos</a></li>
+        <li><a href="/universo-rosina.html">El universo de Rosina</a></li>
         <li><a href="/revista.html?casa=merceria">Revista</a></li>
         <li><a href="/merceria/preguntas-frecuentes/">Preguntas frecuentes</a></li>
         <li><a href="/precios.html">Precios</a></li>
@@ -600,7 +604,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
   <div class="contenedor pie-franja">
-    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Nequi, Bancolombia, Bre-B y efectivo</p>
+    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> tarjeta, PSE, Bancolombia y efectivo</p>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
       <img src="/img/logo-sena.png" alt="SENA" width="328" height="320" onerror="this.style.display='none'" loading="lazy" decoding="async">
       <img src="/img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" width="420" height="94" onerror="this.style.display='none'" loading="lazy" decoding="async">
@@ -1117,9 +1121,9 @@ function datosEstructurados(lista) {
 })();
 </script>
 <script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=23"></script>
+<script type="module" src="/js/pago.js?v=24"></script>
 <script src="/js/carrito-agregado.js?v=2" defer></script>
-<script src="/js/animaciones.js?v=11" defer></script>
+<script src="/js/animaciones.js?v=12" defer></script>
 <script>
 // La página vive en /merceria/ y usa : los enlaces internos "#..." se resuelven aquí en vez de ir al inicio.
 document.addEventListener('click', function (e) {

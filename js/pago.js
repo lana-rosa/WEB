@@ -17,6 +17,11 @@ const hayOtros = () => leerCarrito().some((i) => i && !i.merceria);
 const esMateriales = () => { const c = leerCarrito(); return c.length > 0 && c.every((i) => i && i.merceria); };
 // Wompi no cobra materiales mezclados con productos de la Tienda (o con patrones), ni materiales si el pago en línea está apagado.
 const soloWhatsApp = () => hayMateriales() && (hayOtros() || !PAGO_EN_LINEA_MERCERIA);
+// Amigurumis personalizados (13, 15 y 20 cm): se piden con el formulario de Personaliza, que guarda el radicado (lrSolicitudPersonalizada) y
+// deja el producto en el carrito. El radicado viaja en las notas del pedido; no llevan descuento de primera compra (lo exige también el servidor).
+const esPers = (i) => /^Amigurumi personalizado \d+ cm$/.test((i && i.nombre) || '');
+const hayPers = () => leerCarrito().some(esPers);
+const radicadoPers = () => { try { const r = JSON.parse(localStorage.getItem('lrSolicitudPersonalizada')); return r && r.radicado ? String(r.radicado) : ''; } catch (e) { return ''; } };
 
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
@@ -207,7 +212,7 @@ function construirModal() {
             '<p class="pago-aviso" role="alert" hidden></p>' +
           '</div></section>' +
           '<section class="pg-sec" data-paso="4" hidden><header>Método de pago <button type="button" class="pg-atras" data-ir="3">← Atrás</button></header><div class="pg-cuerpo">' +
-            '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Nequi, Bancolombia y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
+            '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Bancolombia y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
             '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Para pedidos fuera de Colombia.</small></span></label>' +
             '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="/politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
             '<label class="pago-acepto" id="pg-confirma-caja"><input type="checkbox" id="pg-confirma"><span id="pg-confirma-texto">Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.</span></label>' +
@@ -568,6 +573,11 @@ async function enviar(e) {
   if (!recoge && !intl && ciudad === 'Otro (nacional)') direccion = otra + ' — ' + direccion;
   if (!$('pg-acepto').checked) return aviso('Para continuar, acepta la política de datos y de envíos.');
   if (!recoge && !$('pg-confirma').checked) return aviso('Confirma que tu dirección de envío es correcta.');
+  if (hayPers() && !radicadoPers()) {
+    const f = document.createDocumentFragment(); f.append('Para pagar un amigurumi personalizado primero cuéntanos cómo lo quieres en el formulario. ');
+    const a = document.createElement('a'); a.href = '/personaliza.html#form-personalizado'; a.textContent = 'Ir al formulario'; f.append(a, '.');
+    return aviso(f);
+  }
   aviso(null);
   const boton = $('pago-enviar'); boton.disabled = true; boton.textContent = 'Preparando tu pago…';
   const restaurar = () => { boton.disabled = false; boton.textContent = textoBoton(); };
@@ -576,9 +586,10 @@ async function enviar(e) {
     const headers = { 'Content-Type': 'application/json', apikey: SUPABASE_KEY };
     if (token) headers.Authorization = 'Bearer ' + token;
     const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
+    const notasPedido = hayPers() ? ('Solicitud personalizada ' + radicadoPers() + (notas ? ' · ' + notas : '')).slice(0, 480) : notas;
     const cuerpo = intl
-      ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas }, items }
-      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas, entrega: digital ? 'digital' : (recoge ? 'recogida' : 'domicilio') }, items };
+      ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas: notasPedido }, items }
+      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas: notasPedido, entrega: digital ? 'digital' : (recoge ? 'recogida' : 'domicilio') }, items };
     const res = await fetch(SUPABASE_URL + (conPaypal ? '/functions/v1/paypal-pagos' : '/functions/v1/crear-pago-wompi'), {
       method: 'POST', headers, body: JSON.stringify(conPaypal ? { accion: 'crear', ...cuerpo } : cuerpo)
     });
@@ -640,7 +651,7 @@ async function pintarBonoCarrito() {
   const el = document.getElementById('carrito-bono'); if (!el) return;
   const yo = ++bonoCarritoId;
   const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
-  if (!items.length || esDigital()) { el.hidden = true; return; }   // los patrones digitales no llevan el descuento de primera compra
+  if (!items.length || esDigital() || hayPers()) { el.hidden = true; return; }   // los patrones digitales y los personalizados no llevan el descuento de primera compra
   if (soloWhatsApp()) { el.hidden = true; return; }   // el descuento automático solo aplica al pagar en línea
   const bono = datosBono(), cuenta = haySesionGuardada() ? await datosCuenta() : {};
   const correo = String(cuenta.correo || bono.correo || '').toLowerCase(), telefono = cuenta.telefono || bono.telefono || '';
@@ -686,7 +697,7 @@ async function iniciar() {
     if (p) p.classList.remove('abierto'); if (o) o.classList.remove('abierto');
     abrirPago();
   });
-  const nota = nodo('p', 'nota-pago-carrito', '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi y más.');
+  const nota = nodo('p', 'nota-pago-carrito', '🔒 Pago seguro con Wompi: tarjeta, PSE y más.');
   if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#6E6E73;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
   wa.before(b, nota);
   const aviso = nodo('p', 'nota-pago-carrito', '');
@@ -697,8 +708,8 @@ async function iniciar() {
     b.hidden = soloWa; nota.hidden = soloWa; aviso.hidden = !soloWa;
     aviso.textContent = hayOtros()
       ? 'Los materiales de la Mercería se pagan por separado de los productos de la Tienda. Haz una compra y luego la otra, o pídelo todo por WhatsApp.'
-      : 'Los materiales de la Mercería se piden por WhatsApp: confirmamos la disponibilidad, el envío y el pago (Nequi o Bre-B).';
-    nota.textContent = esMateriales() ? '🔒 Pago seguro con Wompi. El envío lo pagas al recibir.' : '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi y más.';
+      : 'Los materiales de la Mercería se piden por WhatsApp: confirmamos la disponibilidad, el envío y el pago (te indicamos cómo pagar).';
+    nota.textContent = esMateriales() ? '🔒 Pago seguro con Wompi. El envío lo pagas al recibir.' : '🔒 Pago seguro con Wompi: tarjeta, PSE y más.';
     wa.textContent = 'Pedir por WhatsApp';
     wa.style.cssText = estiloWa + (soloWa ? 'background:#E74E96;color:#fff;border:2px solid #E74E96;' : 'background:#fff;color:#E74E96;border:2px solid #E74E96;box-shadow:none;');
   };

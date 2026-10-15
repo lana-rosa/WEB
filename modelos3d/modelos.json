@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "nota": "Modelos 3D de las piezas (Etapa 5). Un modelo SOLO sale en la web si tiene publicado=true, revisado_por, revisado_en y su origen no es «prueba». Medidas reales en centímetros: ancho (izquierda-derecha), alto (arriba-abajo con el modelo apoyado) y fondo (adelante-atrás); el visor las compara con el modelo y, si no coinciden, no ofrece la realidad aumentada. Ver herramientas/innovacion/10-ETAPA-5-3D-AR.md.",
+  "modelos": [
+    {
+      "id": "corazon-prueba",
+      "item_id": null,
+      "origen": "prueba",
+      "descripcion": "Corazón de prueba generado por reglas (herramientas/modelos3d/generar_modelo_prueba.py). Se parece al Llavero Corazón 5 cm pero NO es esa pieza ni un escaneo.",
+      "glb": "/modelos3d/prueba/corazon-prueba.glb",
+      "poster": "/img/productos/7709253246212.jpg",
+      "ancho_cm": 5.0,
+      "alto_cm": 1.8,
+      "fondo_cm": 4.5,
+      "camera_orbit": "0deg 40deg auto",
+      "publicado": false,
+      "revisado_por": null,
+      "revisado_en": null
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+/* El universo de Rosina (Etapa 1) — usa los colores y fuentes de la marca de comun.css */
+.universo-hero { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin: 28px 0 8px; }
+.universo-hero img { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; box-shadow: var(--sombra-suave); background: #fff; }
+.universo-hero .texto { flex: 1; min-width: 240px; }
+.universo-hero h1 { margin: 4px 0 8px; }
+.universo-hero p { margin: 0; max-width: 62ch; color: var(--tinta-suave); }
+.recorridos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 22px 0 34px; }
+.recorrido { display: flex; flex-direction: column; gap: 6px; padding: 18px; border-radius: var(--radio-suave); background: var(--rosa-suave); color: var(--tinta); text-decoration: none; border: 2px solid transparent; }
+.recorrido:hover, .recorrido:focus-visible { border-color: var(--rosa-principal); outline: none; }
+.recorrido .ico { font-size: 1.6rem; }
+.recorrido strong { font-family: var(--fuente-titulo); font-size: 1.05rem; color: var(--rosa-texto, #B3175F); }
+.recorrido span.sub { font-size: 0.9rem; color: var(--tinta-suave); }
+@media (max-width: 860px) { .recorridos { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .recorridos { grid-template-columns: 1fr; } }
+.ur-seccion-regalar { scroll-margin-top: 90px; margin-bottom: 48px; }
+.ur-marco { background: #fff; border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 22px; }
+.ur-filtros { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px 18px; }
+.ur-grupo { margin: 0; padding: 0; min-width: 0; }
+.ur-grupo label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--tinta); }
+.ur-select { width: 100%; min-height: 48px; padding: 10px 42px 10px 16px; border-radius: 14px; border: 2px solid var(--rosa-medio); color: var(--tinta); font: inherit; cursor: pointer; appearance: none; -webkit-appearance: none;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5 7 7l5.5-5.5' fill='none' stroke='%23B3175F' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 16px center; }
+.ur-select:hover { background-color: var(--rosa-suave); }
+.ur-select.ur-elegido { border-color: var(--rosa-principal); font-weight: 700; background-color: var(--rosa-suave); }
+.ur-select:focus-visible, .ur-reiniciar:focus-visible, .ur-mas:focus-visible, .ur-card:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.ur-reiniciar, .ur-mas { margin-top: 14px; background: none; border: 0; text-decoration: underline; color: var(--tinta-suave); font: inherit; cursor: pointer; min-height: 44px; }
+.ur-resumen { margin: 14px 0 6px; font-weight: 600; color: var(--tinta); }
+.ur-seccion { margin-top: 22px; }
+.ur-seccion h3 { margin: 0 0 4px; }
+.ur-nota { margin: 0 0 12px; color: var(--tinta-suave); font-size: 0.92rem; }
+.ur-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 900px) { .ur-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .ur-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+.ur-card { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--tinta); background: var(--blanco-hueso); border-radius: 16px; padding: 10px; border: 1px solid #F0E3EA; }
+.ur-card:hover { border-color: var(--rosa-medio); }
+.ur-card img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; background: var(--rosa-suave); }
+.ur-nombre { font-weight: 600; font-size: 0.95rem; line-height: 1.25; }
+.ur-precio { font-weight: 700; color: var(--rosa-texto, #B3175F); }
+.ur-estado-prod { align-self: flex-start; font-size: 0.78rem; padding: 3px 9px; border-radius: 8px; }
+.ur-ya { background: #E8F5E9; } .ur-enc, .ur-idea { background: var(--rosa-suave); }
+.ur-pj { font-size: 0.72rem; color: var(--tinta-suave); }
+.ur-vacio, .ur-cierre, .ur-aviso { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--lila-suave); }
+.ur-aviso { margin: 0 0 14px; background: #FFF6E0; }
+.ur-vacio p, .ur-cierre p { margin: 0 0 6px; }
+.ur-cierre a, .ur-vacio a { color: var(--rosa-texto, #B3175F); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* Rosina te ayuda a crear (configurador, Etapa 2) */
+.uc-marco { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.uc-form { background: #fff; border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 22px; display: grid; gap: 18px; }
+.uc-paso { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+.uc-num { width: 30px; height: 30px; border-radius: 50%; background: var(--rosa-boton, #E74E96); color: var(--sobre-principal, #fff); font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.uc-cuerpo { display: grid; gap: 14px; min-width: 0; }
+.uc-ayuda { margin: 6px 0 0; font-size: 0.85rem; color: var(--tinta-suave); }
+.uc-detalles { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 8px; }
+.uc-detalles legend { font-weight: 700; margin-bottom: 8px; color: var(--tinta); padding: 0; }
+.uc-detalle { display: grid; gap: 6px; }
+.uc-check { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 12px; border: 2px solid var(--rosa-medio); border-radius: 14px; cursor: pointer; background: #fff; }
+.uc-check:hover { background: var(--rosa-suave); }
+.uc-check input { width: 20px; height: 20px; accent-color: var(--rosa-principal); flex: none; }
+.uc-check:has(input:checked) { background: var(--rosa-suave); border-color: var(--rosa-principal); font-weight: 700; }
+.uc-check:has(input:focus-visible) { outline: 3px solid var(--lila); outline-offset: 2px; }
+.uc-input, .uc-texto, .uc-detalle-texto { width: 100%; box-sizing: border-box; padding: 11px 14px; border-radius: 14px; border: 2px solid var(--rosa-medio); font: inherit; color: var(--tinta); background: #fff; min-height: 46px; }
+.uc-texto { resize: vertical; min-height: 110px; }
+.uc-input:focus-visible, .uc-texto:focus-visible, .uc-detalle-texto:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.uc-detalle-texto[hidden] { display: none; }
+.uc-ficha [aria-invalid="true"], .uc-form [aria-invalid="true"] { border-color: #C62828; }
+.uc-tip { margin: 0; padding: 12px 14px; border-radius: 14px; background: var(--lila-suave); font-size: 0.92rem; }
+.uc-ficha { position: sticky; top: 96px; background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 20px; display: grid; gap: 10px; }
+.uc-ficha h3 { margin: 0; }
+.uc-lista { margin: 0; display: grid; gap: 4px; }
+.uc-lista dt { font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--rosa-texto, #B3175F); margin-top: 8px; }
+.uc-lista dd { margin: 0; overflow-wrap: anywhere; }
+.uc-lista dd.uc-vacio { color: var(--tinta-suave); font-style: italic; }
+.uc-error { margin: 0; padding: 10px 12px; border-radius: 12px; background: #FDECEA; color: #B71C1C; font-weight: 600; }
+.uc-error[hidden] { display: none; }
+.uc-whatsapp { min-height: 46px; border-radius: 999px; border: 2px solid #1FA855; background: #fff; color: #167A3E; font: inherit; font-weight: 700; cursor: pointer; }
+.uc-whatsapp:hover { background: #E8F5E9; }
+.uc-whatsapp:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.uc-nota { margin: 4px 0 0; font-size: 0.85rem; color: var(--tinta-suave); }
+@media (max-width: 860px) { .uc-marco { grid-template-columns: minmax(0, 1fr); } .uc-ficha { position: static; } }
+@media (max-width: 480px) { .uc-form { padding: 16px; } .uc-paso { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; } .uc-num { width: 26px; height: 26px; } }
+.uc-siguiente { margin: 4px 0 0; font-weight: 600; }
+.uc-cargando { color: var(--tinta-suave); }
+
+/* Busca por color y por una foto de referencia (Etapa 4) */
+.ur-foto { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--lila-suave); }
+.ur-foto-entrada { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.ur-foto-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 10px 18px; border-radius: 999px; background: #fff; border: 2px solid var(--rosa-medio); color: var(--tinta); font-weight: 700; cursor: pointer; }
+.ur-foto-btn:hover { background: var(--rosa-suave); }
+.ur-foto:focus-within .ur-foto-btn { outline: 3px solid var(--lila); outline-offset: 2px; }
+.ur-foto-nota { margin: 8px 0 0; }
+.ur-foto-salida { display: flex; gap: 12px; align-items: center; margin-top: 12px; }
+.ur-foto-salida:empty { display: none; }
+.ur-foto-vista { width: 64px; height: 64px; object-fit: cover; border-radius: 12px; border: 1px solid #F0E3EA; flex: none; background: #fff; }
+.ur-foto-titulo { margin: 0 0 6px; font-weight: 600; }
+.ur-muestras { display: flex; flex-wrap: wrap; gap: 8px; }
+.ur-muestra { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 14px; border-radius: 999px; border: 2px solid var(--rosa-medio); background: #fff; font: inherit; cursor: pointer; color: var(--tinta); }
+.ur-muestra:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.ur-muestra[aria-pressed="true"] { border-color: var(--rosa-principal); background: var(--rosa-suave); font-weight: 700; }
+.ur-muestra i, .ur-puntos i { display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .25); }
+.ur-puntos { display: flex; gap: 4px; margin-top: 2px; }
+.ur-puntos i { width: 12px; height: 12px; }
