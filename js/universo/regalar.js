@@ -1,6 +1,7 @@
 // «Rosina te ayuda a regalar»: recomendador por reglas sobre el catálogo real (RPC obtener_regalos_web).
 // Sin IA y sin datos inventados: cada resultado sale de un producto del catálogo; el precio y la disponibilidad son los del ERP.
 import { CONFIG, OCASIONES, DESTINATARIOS, TIPOS, PRESUPUESTOS, TAMANOS, DISPONIBILIDAD } from './config.js';
+import { cargarCatalogo } from './datos.js';
 
 const entre = (v, lista, id) => { const x = lista.find((r) => r[0] === id); return !x || (v >= x[2] && v <= x[3]); };
 
@@ -46,10 +47,7 @@ export async function iniciarRegalar(raiz) {
   raiz.replaceChildren(estado);
   let productos = [];
   try {
-    const r = await fetch(CONFIG.SUPABASE_URL + '/rest/v1/rpc/obtener_regalos_web', { method: 'POST', headers: { apikey: CONFIG.SUPABASE_KEY, Authorization: 'Bearer ' + CONFIG.SUPABASE_KEY, 'Content-Type': 'application/json' }, body: '{}' });
-    if (!r.ok) throw new Error(r.status);
-    productos = await r.json();
-    if (!Array.isArray(productos) || !productos.length) throw new Error('vacío');
+    productos = await cargarCatalogo();
   } catch (e) { return pintarError(raiz); }
   const usarEtiquetas = modoPropuestas || puedeUsarEtiquetas(productos);
   const sel = {};

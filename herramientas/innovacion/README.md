@@ -9,6 +9,7 @@ Estado (15-oct-2026): **Etapa 0 (auditoría y diseño) entregada, Etapa 1b (segu
 | [`03-PRESUPUESTO.md`](03-PRESUPUESTO.md) | Estimación de esfuerzo y costos con supuestos explícitos (sin precios inventados) |
 | [`04-PRUEBAS-Y-METRICAS.md`](04-PRUEBAS-Y-METRICAS.md) | Criterios de aceptación, matriz de pruebas planeada y plan de métricas (eventos de GA4) |
 | [`05-ETAPA-1-REGALAR.md`](05-ETAPA-1-REGALAR.md) | Qué se construyó en la Etapa 1, cómo funciona, cómo se prueba, cómo se apaga y qué falta para publicarla |
+| [`06-ETAPA-2-CREAR.md`](06-ETAPA-2-CREAR.md) | Etapa 2: configurador «Rosina te ayuda a crear» (ficha de personalizados), cómo funciona, pruebas y decisiones pendientes |
 | [`migracion-universo-1.sql`](migracion-universo-1.sql) | SQL de la Etapa 1 (etiquetas, `obtener_regalos_web`, propuestas sin revisar); lo genera `generar_migracion_universo.py` |
 | [`etiquetas.py`](etiquetas.py) · `etiquetas-productos.xlsx` | Hoja de Excel para que Sara revise las etiquetas y herramienta que carga la hoja corregida |
 | `etiquetas-productos-revisado.xlsx` · [`migracion-universo-2-etiquetas-revisadas.sql`](migracion-universo-2-etiquetas-revisadas.sql) | Revisión de Sara (15-oct-2026) y el SQL que la carga |
