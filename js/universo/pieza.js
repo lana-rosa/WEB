@@ -2,6 +2,7 @@
 // Muestra solo lo que la tienda ya publica más lo que el taller aprobó (historia y cuidados validados). Sin cuentas ni datos personales.
 import { CONFIG } from './config.js';
 import { cargarPieza } from './datos.js';
+import { cargarModelos, modeloPublicado, montarVisor3D } from './visor3d.js';
 
 export const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export const ORIGENES = ['etiqueta', 'tarjeta', 'estanteria'];
@@ -43,10 +44,13 @@ export async function iniciarPieza(raiz) {
     try { pieza = await cargarPieza(id); if (!pieza) noEncontrada = true; } catch (e) { pieza = null; }
   }
   evento('qr_visita', { item_id: pieza ? pieza.id : 'generico', origen });
-  pintar(raiz, pieza, noEncontrada);
+  // Etapa 5: si la pieza tiene un modelo 3D aprobado (modelos3d/modelos.json), aparece «Míralo en 3D»; si no, la página queda igual.
+  let modelo = null;
+  if (pieza) { try { modelo = modeloPublicado(await cargarModelos(), pieza.id); } catch (e) { modelo = null; } }
+  pintar(raiz, pieza, noEncontrada, modelo);
 }
 
-function pintar(raiz, pieza, noEncontrada) {
+function pintar(raiz, pieza, noEncontrada, modelo) {
   const marco = nodo('div', 'pz-marco');
   const cab = nodo('header', 'pz-cab');
   const av = document.createElement('img'); av.src = '/img/mini/rosina-abrazo.webp'; av.alt = ''; av.width = 96; av.height = 96; av.className = 'pz-rosina';
@@ -68,6 +72,12 @@ function pintar(raiz, pieza, noEncontrada) {
       datos.append(ul);
     }
     prod.append(datos); marco.append(prod);
+    if (modelo) {
+      const v3 = nodo('section', 'pz-bloque pz-3d'); v3.setAttribute('aria-labelledby', 'pz-3d');
+      const cuerpo = nodo('div');
+      v3.append(Object.assign(nodo('h2', null, 'Míralo en 3D'), { id: 'pz-3d' }), cuerpo); marco.append(v3);
+      montarVisor3D(cuerpo, modelo, { nombre: pieza.nombre, poster: pieza.foto_url ? '/img/productos/' + encodeURIComponent(pieza.foto_url) : '', itemId: pieza.id });
+    }
   }
 
   const { propios, generales } = cuidadosParaMostrar(pieza ? pieza.cuidados : []);

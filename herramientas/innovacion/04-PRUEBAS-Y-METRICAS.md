@@ -29,9 +29,9 @@ Funciona en celular (390 px) y computador (1280 px) · conserva las URLs y la na
 | V2 | Búsqueda por color | Cada color elegido solo devuelve piezas que lo llevan; el principal va primero; `colores.json` al día | Node + Playwright | **hecho (16-oct)**: 73 comprobaciones |
 | T1 | Tarjetas de Rosina | El modelo no puede mostrar un producto, precio o enlace inventado | `index.ts` real con modelo simulado (`probar_rosina_funcion.mjs`) | **hecho (16-oct)**: solo salen códigos del catálogo, máximo 3, datos del inventario; 43 comprobaciones; además 4 de 4 preguntas reales en producción con tarjetas correctas |
 | T2 | Tarjetas de Rosina | Nada de lo que llegue se inserta como HTML; respuesta antigua sigue funcionando | Playwright (`probar_rosina_chat.py`) | **hecho (16-oct)**: 31 comprobaciones, celular y computador |
-| 3D1 | 3D/AR | Carga diferida: sin `model-viewer` hasta abrir el visor; foto de reemplazo mientras carga | Medición de red | pendiente |
-| 3D2 | 3D/AR | Escala del modelo = medida real del producto | Comparar con la regla del taller | pendiente |
-| 3D3 | 3D/AR | Android Chrome, iOS Safari, escritorio: AR donde exista, 3D o foto donde no | Dispositivos reales (**requiere teléfonos**) | pendiente |
+| 3D1 | 3D/AR | Carga diferida: sin `model-viewer` hasta abrir el visor; foto de reemplazo mientras carga | Medición de red (`probar_visor3d.py`) | **hecho (16-oct)**: antes de tocar «Ver en 3D» no se descarga la librería (1 MB) ni el modelo; ningún pedido externo |
+| 3D2 | 3D/AR | Escala del modelo = medida real del producto | El visor compara el tamaño del modelo con las medidas declaradas (±8 %) y la prueba lo verifica | **hecho (16-oct) con el modelo de prueba** (5,0 × 1,8 × 4,5 cm); falta comparar con la regla en la pieza real |
+| 3D3 | 3D/AR | Android Chrome, iOS Safari, escritorio: AR donde exista, 3D o foto donde no | Dispositivos reales (**requiere teléfonos**) | **parcial (16-oct)**: escritorio y celular simulado (3D y fallback a la foto) probados; **la realidad aumentada en Android y iPhone reales está pendiente** (lista en `/3d-prueba.html`) |
 | P1 | PWA | `sw.js`, manifiestos y caché no cambian; ningún dato personal en caché | Revisión de diff | pendiente |
 | E1 | Sitio | `revisar_enlaces.py` = 0 rotos, 0 rutas relativas | Script | cada entrega |
 | E2 | Sitio | `prueba_consentimiento.py`: nada se mide con «denegado» | Script con servidor local | cada entrega |
@@ -53,7 +53,8 @@ Se reutilizan los eventos existentes (`view_item`, `select_item`, `add_to_cart`,
 | `crear_solicitud` | `modo`, `tipo`, `tamano`, `n_detalles` | Solicitudes enviadas (con cuál modo) |
 | `crear_whatsapp` | `tipo`, `tamano`, `n_detalles` | Fichas enviadas por WhatsApp |
 | `qr_visita` | `item_id` (o `generico`), `origen` (etiqueta/tarjeta/estanteria/qr) | Escaneos de los códigos QR |
-| `visor_3d` | `item_id`, `modo` (3d/ar/foto), `ok` | Uso y fallos de 3D/AR |
+| `visor_3d` | `item_id`, `modo` (3d/ar/foto), `ok`, `escala_ok` | Uso y fallos de 3D/AR (Etapa 5) |
+| `visor_3d_error` | `item_id`, `razon` (sin_webgl/libreria/modelo/tiempo) | Por qué no se pudo mostrar el 3D |
 | `rosina_tarjetas` | `n_tarjetas` | Cuántas respuestas de Rosina llevan tarjetas (Etapa 4) |
 | `rosina_tarjeta_clic` | `item_id`, `posicion` | Clics en una tarjeta del chat |
 | `rosina_sin_respuesta` | — (sin texto del usuario) | Veces que Rosina no tuvo el dato y se ofreció el WhatsApp del equipo |
