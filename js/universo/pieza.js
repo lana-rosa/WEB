@@ -15,7 +15,7 @@ export const CUIDADOS_GENERALES = [
   ['hilito', 'Si se suelta un hilito, no tires de él: escríbenos por WhatsApp y lo revisamos.'],
 ];
 export const GUIA_CUIDADOS = '/revista.html#cuidar-lavar-tejidos';
-export const RESENAS = 'https://share.google/n6K8HLUVxId3Km0k4';
+export const RESENAS = 'https://g.page/r/Cae2iIji5j_XEAE/review'; // deja la reseña directamente (el enlace share.google solo abre el perfil en el buscador)
 
 const sinTildes = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const nodo = (tag, clase, texto) => { const e = document.createElement(tag); if (clase) e.className = clase; if (texto != null) e.textContent = texto; return e; };
