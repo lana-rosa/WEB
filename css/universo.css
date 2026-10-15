@@ -73,12 +73,11 @@
 .uc-lista dd.uc-vacio { color: var(--tinta-suave); font-style: italic; }
 .uc-error { margin: 0; padding: 10px 12px; border-radius: 12px; background: #FDECEA; color: #B71C1C; font-weight: 600; }
 .uc-error[hidden] { display: none; }
-.uc-continuar { border: 0; cursor: pointer; font: inherit; font-weight: 700; min-height: 48px; width: 100%; border-radius: 999px; background: var(--rosa-boton, #E01E79); color: var(--sobre-principal, #fff); padding: 12px 22px; }
-.uc-continuar:hover { background: var(--rosa-boton-hover, #B0356F); }
 .uc-whatsapp { min-height: 46px; border-radius: 999px; border: 2px solid #1FA855; background: #fff; color: #167A3E; font: inherit; font-weight: 700; cursor: pointer; }
 .uc-whatsapp:hover { background: #E8F5E9; }
-.uc-whatsapp:focus-visible, .uc-continuar:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.uc-whatsapp:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
 .uc-nota { margin: 4px 0 0; font-size: 0.85rem; color: var(--tinta-suave); }
 @media (max-width: 860px) { .uc-marco { grid-template-columns: minmax(0, 1fr); } .uc-ficha { position: static; } }
 @media (max-width: 480px) { .uc-form { padding: 16px; } .uc-paso { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; } .uc-num { width: 26px; height: 26px; } }
-
+.uc-siguiente { margin: 4px 0 0; font-weight: 600; }
+.uc-cargando { color: var(--tinta-suave); }

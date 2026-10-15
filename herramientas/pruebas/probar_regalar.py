@@ -366,7 +366,7 @@ def main():
         verificar('está en el sitemap', 'https://lanarosacrochet.com/universo-rosina.html' in open(os.path.join(RAIZ, 'sitemap.xml'), encoding='utf-8').read())
         verificar('el pie de la página enlaza al universo con ruta absoluta', page.locator('footer a[href="/universo-rosina.html"]').count() == 1)
         verificar('usa las fuentes propias (ningún pedido a Google Fonts)', page.evaluate('!document.documentElement.outerHTML.includes("fonts.googleapis")'))
-        verificar('los 4 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '#crear', '/revista.html', '/academy/'])
+        verificar('los 4 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html', '/academy/'])
         verificar('un solo h1', page.locator('h1').count() == 1)
         page.close()
         nav.close()

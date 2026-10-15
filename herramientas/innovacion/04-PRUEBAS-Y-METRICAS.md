@@ -15,7 +15,7 @@ Funciona en celular (390 px) y computador (1280 px) · conserva las URLs y la na
 | R3 | Recomendador | Producto sin etiqueta aparece en filtros de precio/tamaño pero no en «ocasión» | Playwright | pendiente |
 | R4 | Recomendador | Nunca muestra un precio que no esté en el catálogo | Comparar DOM vs RPC | pendiente |
 | R5 | Recomendador | Teclado completo y `aria-live` del contador | axe + prueba manual | pendiente |
-| C1 | Configurador | La ficha enviada conserva todas las opciones elegidas | RPC con ficha de prueba en transacción con ROLLBACK | **hecho (16-oct)**: ficha intacta en `oportunidades_venta` (descripción y notas) y `probar_crear.py` comprueba lo que recibe la función |
+| C1 | Configurador | La ficha enviada conserva todas las opciones elegidas | RPC con ficha de prueba en transacción con ROLLBACK | **hecho (16-oct)**: ficha intacta en `oportunidades_venta` (descripción y notas) y `probar_crear.py` comprueba lo que recibe la función en los dos modos |
 | C2 | Configurador | Imagen conceptual siempre rotulada «representación conceptual» | Playwright | no aplica por ahora: la Etapa 2 no genera imágenes (propiedad intelectual sin resolver) |
 | C3 | Configurador | Sin radicado no se puede pagar (ya probado en producción el 14-oct para los 3 productos actuales) | Edge `crear-pago-wompi` | **hecho (14-oct): 400 sin radicado** |
 | Q1 | QR | La URL `/p/<id>` sigue válida si el producto cambia de nombre | Prueba de rutas | pendiente |
@@ -44,10 +44,10 @@ Se reutilizan los eventos existentes (`view_item`, `select_item`, `add_to_cart`,
 | `regalar_resultado` | `n_disponibles`, `n_encargo`, `n_ideas`, `sin_resultados` (bool) | Utilidad y vacíos |
 | `regalar_abre_ficha` | `item_id`, `seccion` | Apertura de fichas desde recomendaciones |
 | `regalar_desde_inicio` | `tipo`, `presupuesto` (solo categorías) | Envío del formulario «Rosina te ayuda a regalar» de la página de inicio (16-oct-2026) |
-| `crear_solicitud` | `tipo`, `tamano` | Solicitudes de personalización |
-| `crear_inicio` | — | Primera interacción con el configurador «Rosina te ayuda a crear» |
+| `crear_modo` | `modo` (guiado/formulario) | Qué forma de pedir elige la persona |
+| `crear_inicio` | — | Primera interacción con el asistente «Rosina te ayuda a crear» |
 | `crear_paso` | `paso` (idea/tamano/detalles/texto/ocasion/fecha), `detalle`+`marcado` en detalles; nunca el texto escrito | Dónde se abandona |
-| `crear_continuar` | `tipo`, `tamano`, `n_detalles`, `precio_base` (si/no) | Fichas llevadas al formulario de Personaliza |
+| `crear_solicitud` | `modo`, `tipo`, `tamano`, `n_detalles` | Solicitudes enviadas (con cuál modo) |
 | `crear_whatsapp` | `tipo`, `tamano`, `n_detalles` | Fichas enviadas por WhatsApp |
 | `qr_visita` | `item_id`, `origen` (etiqueta/estantería) | Escaneos |
 | `visor_3d` | `item_id`, `modo` (3d/ar/foto), `ok` | Uso y fallos de 3D/AR |

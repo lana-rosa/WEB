@@ -1,9 +1,8 @@
-// «Rosina te ayuda a crear»: configurador guiado de personalizados (Etapa 2).
-// Arma una ficha con las opciones elegidas y la entrega al formulario de Personaliza (o a WhatsApp). No calcula precios ni promete
-// fechas: muestra solo el precio base de los «Amigurumi personalizado N cm» reales y deja que el taller confirme lo demás.
+// «Rosina te ayuda a crear»: asistente guiado de personalizados (Etapa 2). Vive dentro del formulario de Personaliza (personaliza.html)
+// como una de las dos formas de pedir (la otra es diligenciar el formulario directo) y reemplaza solo la parte «tu idea»: las fotos y
+// los datos de contacto se piden una sola vez, abajo. Arma una ficha con las opciones elegidas; no calcula precios ni promete fechas:
+// muestra el precio base de los «Amigurumi personalizado N cm» reales (los pasa la página) y deja que el taller confirme lo demás.
 import { CONFIG, IDEAS_CREAR, TAMANOS_CREAR, DETALLES_CREAR, OCASIONES_CREAR } from './config.js';
-import { cargarCatalogo, preciosBase } from './datos.js';
-import { guardarFicha, leerFicha } from './ficha.js';
 
 const pesos = (n) => '$' + Math.round(Number(n)).toLocaleString('es-CO');
 const nodo = (tag, clase, texto) => { const e = document.createElement(tag); if (clase) e.className = clase; if (texto != null) e.textContent = texto; return e; };
@@ -27,6 +26,7 @@ export function armarFicha(e, precios) {
   const detalles = DETALLES_CREAR.filter((d) => e.detalles && Object.prototype.hasOwnProperty.call(e.detalles, d[0]))
     .map((d) => { const t = String(e.detalles[d[0]] || '').trim(); return d[1] + (t ? ' (' + t + ')' : ''); });
   const colores = String(e.colores || '').trim();
+  const tarjeta = String(e.tarjeta || '').trim();
   const ocasion = OCASIONES_CREAR.find((x) => x[0] === e.ocasion);
   const fecha = fechaLegible(e.fecha);
 
@@ -37,6 +37,7 @@ export function armarFicha(e, precios) {
   const msg = [];
   if (ocasion && ocasion[0] !== 'sin_ocasion') msg.push('Ocasión: ' + ocasion[1] + '.');
   if (fecha) msg.push('Fecha en la que lo necesito: ' + fecha + ' (confírmenme si es posible).');
+  if (tarjeta) msg.push('Mensaje para la tarjeta: «' + tarjeta + '»');
   msg.push('(Ficha armada con «Rosina te ayuda a crear».)');
 
   const cuando = [ocasion && ocasion[0] !== 'sin_ocasion' ? ocasion[1] : '', fecha ? 'para el ' + fecha : ''].filter(Boolean).join(' · ');
@@ -46,6 +47,7 @@ export function armarFicha(e, precios) {
     ['Detalles', detalles.join(', ')],
     ['Colores', colores],
     ['Ocasión y fecha', cuando],
+    ['Mensaje de la tarjeta', tarjeta],
     ['Tu idea', texto],
   ];
   return { falta, tipo: idea[2], tamano: e.tamano, descripcion: desc.join('\n'), mensaje: msg.join('\n'), filas, base };
@@ -55,48 +57,42 @@ export function textoWhatsApp(f) {
   return 'Hola Lana Rosa 💕 Quiero cotizar un personalizado con la ficha de «Rosina te ayuda a crear»:\n\n[' + f.tipo + ' — ' + f.tamano + ']\n' + f.descripcion + '\n' + f.mensaje.replace('\n(Ficha armada con «Rosina te ayuda a crear».)', '').replace('(Ficha armada con «Rosina te ayuda a crear».)', '') + '\n\nTe envío las fotos de referencia por aquí.';
 }
 
-export async function iniciarCrear(raiz) {
-  if (!raiz) return;
-  const seccion = raiz.closest('section');
-  const tarjeta = document.querySelector('.recorrido[data-recorrido="crear"]');
-  if (!CONFIG.CREAR_ACTIVO) { if (seccion) seccion.hidden = true; if (tarjeta) tarjeta.href = '/personaliza.html'; return; }
-
+export function montarGuia(raiz, opciones) {
+  const o = Object.assign({ alCambiar: null }, opciones);
   let precios = {};
   const e = { detalles: {} };
   let empezo = false;
   const empezar = () => { if (!empezo) { empezo = true; evento('crear_inicio'); } };
 
   const marco = nodo('div', 'uc-marco');
-  const form = nodo('form', 'uc-form'); form.noValidate = true; form.addEventListener('submit', (ev) => ev.preventDefault());
+  const form = nodo('div', 'uc-form');   // no es un <form>: va dentro del formulario de Personaliza
+  form.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' && ev.target.tagName === 'INPUT') ev.preventDefault(); });   // Enter no debe enviar el formulario a medias
   const campos = {};
   const hoy = new Date(); const minFecha = hoy.getFullYear() + '-' + String(hoy.getMonth() + 1).padStart(2, '0') + '-' + String(hoy.getDate()).padStart(2, '0');
 
-  function paso(n, titulo) {
+  function paso(n) {
     const s = nodo('div', 'uc-paso');
     s.append(nodo('span', 'uc-num', String(n)));
     const cuerpo = nodo('div', 'uc-cuerpo'); s.append(cuerpo);
-    if (titulo) cuerpo.append(nodo('p', 'uc-titulo-paso', titulo));
     form.append(s); return cuerpo;
   }
-  function lista(id, etiqueta, sinOpcion, opciones, clave, ayuda) {
+  function lista(id, etiqueta, sinOpcion, opcionesLista, clave, ayuda) {
     const g = nodo('div', 'ur-grupo');
     const l = nodo('label', null, etiqueta); l.htmlFor = id;
     const s = nodo('select', 'ur-select'); s.id = id;
     s.append(Object.assign(nodo('option', null, sinOpcion), { value: '' }));
-    opciones.forEach(([v, t]) => s.append(Object.assign(nodo('option', null, t), { value: v })));
+    opcionesLista.forEach(([v, t]) => s.append(Object.assign(nodo('option', null, t), { value: v })));
     s.addEventListener('change', () => { empezar(); s.classList.toggle('ur-elegido', !!s.value); evento('crear_paso', { paso: clave }); actualizar(clave); });
     g.append(l, s); if (ayuda) g.append(nodo('p', 'uc-ayuda', ayuda));
     campos[clave] = s; return g;
   }
 
   // 1 · qué
-  paso(1, null).append(lista('uc-idea', '¿Qué quieres que tejamos?*', 'Elige una opción', IDEAS_CREAR.map((x) => [x[0], x[1]]), 'idea'));
+  paso(1).append(lista('uc-idea', '¿Qué quieres tejer?*', 'Elige una opción', IDEAS_CREAR.map((x) => [x[0], x[1]]), 'idea'));
   // 2 · tamaño
-  const pTam = paso(2, null);
-  pTam.append(lista('uc-tamano', '¿De qué tamaño?*', 'Primero elige qué quieres tejer', [], 'tamano', 'El precio base es el de una pieza con detalle normal. Si tu diseño necesita más detalle, te lo confirmamos antes de empezar.'));
+  paso(2).append(lista('uc-tamano', '¿De qué tamaño?*', 'Primero elige qué quieres tejer', [], 'tamano', 'El precio base es el de una pieza con detalle normal. Si tu diseño necesita más detalle, te lo confirmamos antes de empezar.'));
   campos.tamano.disabled = true;
   // 3 · detalles
-  const pDet = paso(3, null);
   const fs = nodo('fieldset', 'uc-detalles'); fs.append(nodo('legend', null, '¿Qué detalles quieres incluir? (opcional)'));
   DETALLES_CREAR.forEach(([id, texto, pregunta]) => {
     const fila = nodo('div', 'uc-detalle');
@@ -110,9 +106,9 @@ export async function iniciarCrear(raiz) {
     tx.addEventListener('input', () => { e.detalles[id] = tx.value; actualizar('detalles'); });
     fila.append(lab, tx); fs.append(fila); campos['detalle_' + id] = { cb, tx };
   });
-  pDet.append(fs);
+  paso(3).append(fs);
   // 4 · idea y colores
-  const pIdea = paso(4, null);
+  const pIdea = paso(4);
   const gT = nodo('div', 'ur-grupo'); const lT = nodo('label', null, 'Cuéntanos tu idea*'); lT.htmlFor = 'uc-texto';
   const ta = nodo('textarea', 'uc-texto'); ta.id = 'uc-texto'; ta.maxLength = 800; ta.rows = 4; ta.placeholder = 'Cuéntanos a quién o qué quieres tejer y cómo es.';
   ta.addEventListener('input', () => { empezar(); actualizar('texto'); }); ta.addEventListener('change', () => evento('crear_paso', { paso: 'texto' }));
@@ -122,15 +118,18 @@ export async function iniciarCrear(raiz) {
   ic.addEventListener('input', () => { empezar(); actualizar('colores'); });
   gC.append(lC, ic, nodo('p', 'uc-ayuda', 'Si los colores no se ven bien en tus fotos, cuéntanos cuáles son.')); campos.colores = ic;
   pIdea.append(gT, gC);
-  // 5 · ocasión y fecha
-  const pOc = paso(5, null);
+  // 5 · ocasión, fecha y mensaje de la tarjeta
+  const pOc = paso(5);
   pOc.append(lista('uc-ocasion', '¿Es para alguna ocasión? (opcional)', 'Sin ocasión especial', OCASIONES_CREAR.filter((x) => x[0] !== 'sin_ocasion'), 'ocasion'));
   const gF = nodo('div', 'ur-grupo'); const lF = nodo('label', null, '¿Para qué fecha lo necesitas? (opcional)'); lF.htmlFor = 'uc-fecha';
   const fe = nodo('input', 'uc-input'); fe.type = 'date'; fe.id = 'uc-fecha'; fe.min = minFecha;
   fe.addEventListener('change', () => { empezar(); evento('crear_paso', { paso: 'fecha' }); actualizar('fecha'); });
   gF.append(lF, fe, nodo('p', 'uc-ayuda', 'Te confirmamos si alcanzamos esa fecha antes de empezar; no prometemos plazos sin ver tu diseño.')); campos.fecha = fe;
-  pOc.append(gF);
-  form.append(nodo('p', 'uc-tip', '📸 En el siguiente paso te pediremos una foto de cuerpo entero y otra de cerca de la cara, con buena luz y sin filtros.'));
+  const gM = nodo('div', 'ur-grupo'); const lM = nodo('label', null, 'Mensaje para la tarjeta (opcional)'); lM.htmlFor = 'uc-tarjeta';
+  const it = nodo('input', 'uc-input'); it.type = 'text'; it.id = 'uc-tarjeta'; it.maxLength = 200; it.placeholder = 'Ej: Feliz cumpleaños, mamá. Te quiero mucho.';
+  it.addEventListener('input', () => { empezar(); actualizar('tarjeta'); });
+  gM.append(lM, it, nodo('p', 'uc-ayuda', 'Tu pedido incluye una tarjeta con el mensaje que quieras.')); campos.tarjeta = it;
+  pOc.append(gF, gM);
 
   // Ficha (resumen en vivo)
   const ficha = nodo('aside', 'uc-ficha'); ficha.setAttribute('aria-labelledby', 'uc-ficha-titulo');
@@ -138,15 +137,15 @@ export async function iniciarCrear(raiz) {
   const dl = nodo('dl', 'uc-lista'); dl.setAttribute('aria-live', 'polite');
   ficha.append(dl);
   const error = nodo('p', 'uc-error'); error.setAttribute('role', 'alert'); error.hidden = true;
-  const continuar = nodo('button', 'uc-continuar', 'Continuar con mi pedido'); continuar.type = 'button';
   const wa = nodo('button', 'uc-whatsapp', 'Enviarla por WhatsApp'); wa.type = 'button';
   const reiniciar = nodo('button', 'ur-reiniciar', 'Empezar de nuevo'); reiniciar.type = 'button';
-  ficha.append(error, continuar, wa, reiniciar, nodo('p', 'uc-nota', 'Sin compromiso: el taller revisa tu ficha, te cotiza y te confirma el precio final y la fecha antes de empezar.'));
+  ficha.append(error, nodo('p', 'uc-siguiente', 'Cuando termines, sube tus fotos y completa tus datos aquí abajo, y envía tu solicitud.'), wa, reiniciar,
+    nodo('p', 'uc-nota', 'Sin compromiso: el taller revisa tu ficha, te cotiza y te confirma el precio final y la fecha antes de empezar.'));
   marco.append(form, ficha);
   raiz.replaceChildren(marco);
 
   function estadoActual() {
-    return { idea: campos.idea.value, tamano: campos.tamano.value, detalles: Object.assign({}, e.detalles), texto: campos.texto.value, colores: campos.colores.value, ocasion: campos.ocasion.value, fecha: campos.fecha.value >= minFecha ? campos.fecha.value : '' };
+    return { idea: campos.idea.value, tamano: campos.tamano.value, detalles: Object.assign({}, e.detalles), texto: campos.texto.value, colores: campos.colores.value, ocasion: campos.ocasion.value, fecha: campos.fecha.value >= minFecha ? campos.fecha.value : '', tarjeta: campos.tarjeta.value };
   }
   function pintarTamanos() {
     const idea = IDEAS_CREAR.find((x) => x[0] === campos.idea.value);
@@ -169,46 +168,38 @@ export async function iniciarCrear(raiz) {
     }
     const f = armarFicha(estadoActual(), precios);
     dl.replaceChildren();
-    (f.filas || [['Qué', ''], ['Tamaño', ''], ['Detalles', ''], ['Colores', ''], ['Ocasión y fecha', ''], ['Tu idea', '']]).forEach(([k, v]) => {
+    (f.filas || [['Qué', ''], ['Tamaño', ''], ['Detalles', ''], ['Colores', ''], ['Ocasión y fecha', ''], ['Mensaje de la tarjeta', ''], ['Tu idea', '']]).forEach(([k, v]) => {
       dl.append(nodo('dt', null, k), nodo('dd', v ? null : 'uc-vacio', v || 'Aún sin elegir'));
     });
     error.hidden = true;
     Object.keys(campos).forEach((k) => { const c = campos[k]; if (c && c.removeAttribute) c.removeAttribute('aria-invalid'); });
+    if (o.alCambiar) o.alCambiar({ tipo: f.tipo || '', tamano: campos.tamano.value, idea: campos.idea.value });
   }
   function validar() {
     const f = armarFicha(estadoActual(), precios);
     if (!f.falta.length) { error.hidden = true; return f; }
     const msj = { idea: 'Elige qué quieres que tejamos.', tamano: 'Elige un tamaño.', texto: 'Cuéntanos tu idea con unas palabras.' };
-    const primero = f.falta[0];
     error.textContent = f.falta.map((k) => msj[k]).join(' '); error.hidden = false;
     Object.keys(msj).forEach((k) => { const c = campos[k]; if (c) c.setAttribute('aria-invalid', f.falta.indexOf(k) >= 0 ? 'true' : 'false'); });
-    campos[primero].focus();
+    campos[f.falta[0]].focus();
+    if (campos[f.falta[0]].scrollIntoView) campos[f.falta[0]].scrollIntoView({ block: 'center' });
     return null;
   }
-  function restaurar(est) {
-    if (!est) return;
-    if (est.idea && IDEAS_CREAR.some((x) => x[0] === est.idea)) { campos.idea.value = est.idea; campos.idea.classList.add('ur-elegido'); actualizar('idea'); }
-    if (est.tamano) { campos.tamano.value = est.tamano; campos.tamano.classList.toggle('ur-elegido', !!campos.tamano.value); }
-    DETALLES_CREAR.forEach(([id]) => { const c = campos['detalle_' + id]; if (est.detalles && Object.prototype.hasOwnProperty.call(est.detalles, id)) { c.cb.checked = true; c.tx.hidden = false; c.tx.value = String(est.detalles[id] || '').slice(0, 120); e.detalles[id] = c.tx.value; } });
-    if (typeof est.texto === 'string') campos.texto.value = est.texto.slice(0, 800);
-    if (typeof est.colores === 'string') campos.colores.value = est.colores.slice(0, 160);
-    if (est.ocasion && OCASIONES_CREAR.some((x) => x[0] === est.ocasion)) { campos.ocasion.value = est.ocasion; campos.ocasion.classList.add('ur-elegido'); }
-    if (typeof est.fecha === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(est.fecha) && est.fecha >= minFecha) campos.fecha.value = est.fecha;
-    actualizar();
-  }
   function limpiar() {
-    form.reset();
     Object.keys(e.detalles).forEach((k) => delete e.detalles[k]);
-    Object.keys(campos).forEach((k) => { const c = campos[k]; if (c.cb) c.tx.hidden = true; else if (c.classList) { c.classList.remove('ur-elegido'); c.removeAttribute('aria-invalid'); } });
+    Object.keys(campos).forEach((k) => {
+      const c = campos[k];
+      if (c.cb) { c.cb.checked = false; c.tx.value = ''; c.tx.hidden = true; }
+      else if (c.tagName === 'SELECT') { c.value = ''; c.classList.remove('ur-elegido'); }
+      else { c.value = ''; }
+    });
     actualizar('idea');
   }
+  function preseleccionar(ideaId) {
+    if (!IDEAS_CREAR.some((x) => x[0] === ideaId)) return false;
+    campos.idea.value = ideaId; campos.idea.classList.add('ur-elegido'); actualizar('idea'); return true;
+  }
 
-  continuar.addEventListener('click', () => {
-    const f = validar(); if (!f) return;
-    guardarFicha({ tipo: f.tipo, tamano: f.tamano, descripcion: f.descripcion, mensaje: f.mensaje, resumen: f.filas.filter((x) => x[1]).map((x) => x[0] + ': ' + x[1]), estado: estadoActual() });
-    evento('crear_continuar', { tipo: f.tipo, tamano: f.tamano, n_detalles: Object.keys(e.detalles).length, precio_base: f.base ? 'si' : 'no' });
-    location.href = '/personaliza.html?desde=crear#pide-el-tuyo';
-  });
   wa.addEventListener('click', () => {
     const f = validar(); if (!f) return;
     evento('crear_whatsapp', { tipo: f.tipo, tamano: f.tamano, n_detalles: Object.keys(e.detalles).length });
@@ -217,7 +208,10 @@ export async function iniciarCrear(raiz) {
   reiniciar.addEventListener('click', () => { limpiar(); });
 
   actualizar('idea');
-  restaurar((leerFicha(CONFIG.FICHA_VIDA_HORAS) || {}).estado);
-  // Los precios base reales llegan después; si no llegan, el configurador funciona igual («te lo cotizamos»).
-  try { precios = preciosBase(await cargarCatalogo()); pintarTamanos(); actualizar(); } catch (err) { /* sin catálogo */ }
+  return {
+    ficha: () => armarFicha(estadoActual(), precios),
+    validar, preseleccionar, reiniciar: limpiar, estado: estadoActual, evento,
+    nDetalles: () => Object.keys(e.detalles).length,
+    fijarPrecios(mapa) { precios = mapa || {}; pintarTamanos(); actualizar(); },
+  };
 }

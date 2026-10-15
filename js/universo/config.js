@@ -1,8 +1,7 @@
 // Configuración central del «Universo de Rosina» (Etapa 1). Cambiar un interruptor apaga la función sin tocar las páginas.
 export const CONFIG = {
   REGALAR_ACTIVO: true,          // «Rosina te ayuda a regalar»
-  CREAR_ACTIVO: true,            // «Rosina te ayuda a crear» (configurador de personalizados, Etapa 2)
-  FICHA_VIDA_HORAS: 24,          // la ficha del configurador se recuerda en este dispositivo solo por este tiempo
+  CREAR_ACTIVO: true,            // «Rosina te ayuda a crear»: asistente guiado dentro de Personaliza (Etapa 2); apagado, Personaliza queda solo con el formulario
   SUPABASE_URL: 'https://ngjoognzvehwjtpqwrqe.supabase.co',
   SUPABASE_KEY: 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD',
   // Las etiquetas de ocasión y «para quién» solo se ofrecen cuando hay al menos este número de productos con etiquetas revisadas
