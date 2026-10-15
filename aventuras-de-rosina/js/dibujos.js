@@ -24,13 +24,15 @@ const flecha = (d, color = TINTA) =>
   `<path d="${d}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 5" marker-end="url(#pf)"/>`;
 const defsFlecha = `<defs><marker id="pf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9z" fill="${TINTA}"/></marker></defs>`;
 
-/** Gancho de crochet: la punta está en (x, y) y el mango se extiende hacia la derecha; ang gira el conjunto. */
+/** Gancho de crochet: la punta está en (x, y) y el mango se extiende hacia la derecha; ang gira el conjunto.
+ *  Forma real de un gancho: la punta redondeada, un «labio» que sobresale, la garganta (la ranura donde entra el hilo),
+ *  el cuerpo, el apoyo plano para el pulgar y el mango. (Referencia: ganchos ergonómicos de aluminio con mango.) */
 const gancho = (x, y, ang = 0, s = 1) =>
   `<g transform="translate(${x} ${y}) rotate(${ang}) scale(${s})">
-    <rect x="8" y="-3.5" width="110" height="7" rx="3.5" fill="#B7BCC6" stroke="#6F7683" stroke-width="1.5"/>
+    <path d="M0,1.5 C-0.8,-3.5 2,-8 7.5,-8.4 C12,-8.6 14,-5.8 13,-3.2 C12.4,-2 11.6,-1.2 12,-0.4 C14.5,1.4 21,0.8 29,-4.5 L112,-4.5 L112,4.5 L13,4.5 C6,4.5 0.5,5.3 0,1.5 Z" fill="#B7BCC6" stroke="#6F7683" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M34,-2.4 L96,-2.4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+    <path d="M52,-4.5 L74,-4.5 L74,4.5 L52,4.5 Z" fill="#C9CDD6" stroke="#6F7683" stroke-width="1.2" stroke-linejoin="round"/>
     <rect x="108" y="-7" width="64" height="14" rx="7" fill="#9EA2F9" stroke="#6F73C8" stroke-width="1.5"/>
-    <path d="M12,-3.5 C12,-10 5,-10 2,-6 C-3,-2 -2,4 3,6 C7,8 11,6 12,3.5z" fill="#B7BCC6" stroke="#6F7683" stroke-width="1.5"/>
-    <path d="M3,-7 L13,-6 L9,-1z" fill="${FONDO}"/>
   </g>`;
 
 // ---------------------------------------------------------------- personajes (poses planas de los amigos)
@@ -69,8 +71,8 @@ const PINTORES = {
 
   gancho: () => svg(`${defsFlecha}
     ${gancho(46, 100, 0, 1.55)}
-    ${texto(50, 52, 'Punta', 15)}${texto(50, 70, 'redondita', 15)}${flecha('M52,76 L48,92')}
-    ${texto(130, 160, 'Curva', 15)}${texto(130, 178, 'del gancho', 14, 'middle', 500)}${flecha('M118,146 L70,106')}
+    ${texto(48, 56, 'Punta', 15)}${flecha('M50,62 L48,88')}
+    ${texto(150, 160, 'Curva', 15)}${texto(150, 178, 'del gancho', 14, 'middle', 500)}${flecha('M136,146 L70,104')}
     ${texto(262, 60, 'Mango', 15)}${flecha('M262,66 L262,88')}`),
 
   tijeras: () => svg(`
