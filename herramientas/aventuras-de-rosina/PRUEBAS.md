@@ -5,7 +5,7 @@ Entorno: Chromium headless (Playwright) contra un servidor estático local, con 
 
 | Prueba | Resultado |
 |---|---|
-| `probar.py --axe` (recorrido completo de las 3 misiones, ayuda, errores, progreso, reinicio, diploma, teclado, movimiento reducido, ancho, consola y red) | **80 comprobaciones correctas, 0 fallidas** (incluye la página de privacidad y el vocabulario unificado) |
+| `probar.py --axe` (recorrido completo de las 3 misiones, ayuda, errores, progreso, reinicio, diploma, teclado, movimiento reducido, ancho, consola y red) | **82 comprobaciones correctas, 0 fallidas** (incluye la página de privacidad y el vocabulario unificado) |
 | axe-core (WCAG 2.0/2.1/2.2 A y AA + buenas prácticas) en 10 pantallas: inicio, mapa, historias con retratos (misiones 1 y 2), tutorial, práctica, juego, pasaporte (formulario y página) y adultos | **0 violaciones** (se encontraron y corrigieron 3 de contraste en el primer pase: enlace activo del menú, "Muy pronto" y misiones futuras del pasaporte) |
 | Desplazamiento horizontal en 390 y 1280 px (bienvenida, mapa, tutorial, pasaporte, diploma y adultos) | Ninguno |
 | Errores o avisos de consola; respuestas 4xx/5xx; peticiones a otros dominios (hechas por la página) | Ninguno |

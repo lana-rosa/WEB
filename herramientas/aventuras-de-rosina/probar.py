@@ -194,6 +194,19 @@ def main():
         comprobar('Palabras que usamos' in texto() and 'Si es zurdo o zurda' in texto(), 'La guía para adultos trae el vocabulario unificado y la adaptación para zurdos')
         revisar_ancho('adultos')
 
+        # Voz de Rosina (15-oct-2026): elige la mejor voz local en español y lee frase por frase
+        pg.evaluate("""() => {
+          window.__dichas = [];
+          const V = (name, lang) => ({ name, lang, localService: true });
+          const voces = [V('Jorge', 'es-ES'), V('Google español', 'es-ES'), V('Paulina', 'es-MX'), V('Samantha', 'en-US')];
+          window.SpeechSynthesisUtterance = function (t) { this.text = t; };
+          window.speechSynthesis.getVoices = () => voces; window.speechSynthesis.cancel = () => { window.__dichas = []; };
+          window.speechSynthesis.speak = (u) => window.__dichas.push({ texto: u.text, voz: u.voice && u.voice.name, rate: u.rate, pitch: u.pitch });
+        }""")
+        r = pg.evaluate("""async () => { const v = await import('/aventuras-de-rosina/js/voz.js'); v.iniciar(); v.leer('Usa un gancho de 5 a 6 mm. ¿Cuántas V ves? Cuenta con calma.'); return window.__dichas; }""")
+        comprobar(len(r) == 3 and all(x['voz'] == 'Paulina' for x in r), 'La voz elige la mejor voz local en español (femenina y latinoamericana) y lee frase por frase')
+        comprobar('milímetros' in r[0]['texto'] and 've' in r[1]['texto'] and r[1]['pitch'] > r[0]['pitch'] and r[0]['rate'] < 1, 'La voz pronuncia las medidas, lee la V y sube el tono en las preguntas, con ritmo pausado')
+
         print('5. Reinicio con confirmación')
         ir('pasaporte'); clic('Borrar mi progreso y empezar de nuevo')
         comprobar(pg.locator('#dlg-confirmar').evaluate('d => d.open'), 'Reiniciar pide confirmación')
