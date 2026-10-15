@@ -328,7 +328,7 @@ def main():
             page.close()
         config_apagada = open(os.path.join(RAIZ, 'js', 'universo', 'config.js'), encoding='utf-8').read().replace('REGALAR_ACTIVO: true', 'REGALAR_ACTIVO: false')
         page, err = abrir(pc, base, CATALOGO, config=config_apagada)
-        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('#regalar-raiz .ur-select').count() == 0 and page.locator('.recorrido').count() == 4)
+        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('#regalar-raiz .ur-select').count() == 0 and page.locator('.recorrido').count() == 5)
         page.close()
 
         print('\n[Inicio: «Rosina te ayuda a regalar» destacada]')
@@ -383,7 +383,7 @@ def main():
         verificar('está en el sitemap', 'https://lanarosacrochet.com/universo-rosina.html' in open(os.path.join(RAIZ, 'sitemap.xml'), encoding='utf-8').read())
         verificar('el pie de la página enlaza al universo con ruta absoluta', page.locator('footer a[href="/universo-rosina.html"]').count() == 1)
         verificar('usa las fuentes propias (ningún pedido a Google Fonts)', page.evaluate('!document.documentElement.outerHTML.includes("fonts.googleapis")'))
-        verificar('los 4 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html', '/academy/'])
+        verificar('los 5 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html', '/academy/', '/aventuras-de-rosina/'])
         verificar('un solo h1', page.locator('h1').count() == 1)
         page.close()
         nav.close()

@@ -251,7 +251,7 @@ def main():
         pg.goto(URL_PRIV); pg.wait_for_timeout(200)
         comprobar('Privacidad de las familias' in pg.inner_text('h1'), 'La página de privacidad abre con su título')
         comprobar(pg.locator('main h2[id^="p"]').count() == 16, 'Tiene los 16 apartados numerados')
-        comprobar(pg.locator('meta[name="robots"][content*="noindex"]').count() == 1, 'Sigue con noindex mientras la aventura no se publique')
+        comprobar(pg.locator('meta[name="robots"][content*="noindex"]').count() == 0 and pg.get_attribute('link[rel="canonical"]', 'href') == 'https://lanarosacrochet.com/aventuras-de-rosina/privacidad.html', 'Ya está lanzada: sin noindex y con su canonical')
         comprobar(pg.locator('script').count() == 0 and 'googletagmanager' not in pg.content(), 'No lleva scripts ni Tag Manager')
         comprobar('Rosina y la gran aventura de la primera cadeneta' in pg.inner_text('main') and 'sus amigos»' not in pg.inner_text('main') and 'Rosina y el Bosque Tejido' not in pg.inner_text('main'), 'Usa el título «Rosina y la gran aventura de la primera cadeneta» en todo el texto')
         comprobar(all(pg.locator(f'#{a}').count() == 1 for a in [h.split('#')[1] for h in pg.eval_on_selector_all('.indice-pol a', 'e => e.map(x => x.getAttribute("href"))')]), 'Todos los enlaces del contenido llevan a un apartado')

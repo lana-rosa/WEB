@@ -88,6 +88,10 @@ main { flex: 1; outline: none; }
 .etapas a[aria-current] { background: var(--fucsia); border-color: var(--fucsia); color: #fff; }
 .etapa-marca { font-size: .9rem; min-width: 1ch; }
 
+/* Ilustración de escena */
+.escena { margin: 8px 0 14px; }
+.escena img { width: 100%; height: auto; border-radius: 18px; display: block; box-shadow: 0 6px 18px rgba(58,42,46,.12); }
+
 /* Historia */
 .historia { display: grid; gap: 8px; align-items: center; margin: 8px 0; }
 .historia-arte { display: flex; justify-content: center; }
