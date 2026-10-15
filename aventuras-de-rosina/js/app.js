@@ -543,7 +543,15 @@ function adultos() {
         <li>Sesiones cortas (10 a 15 minutos). Se puede parar y seguir otro día.</li>
         <li>Celebre el esfuerzo, no la perfección: las primeras puntadas casi siempre quedan desiguales.</li>
         <li>Los botones “Necesito ayuda” ofrecen ver de nuevo, una pista, algo más sencillo y pedirle ayuda a usted.</li>
-        <li>Si es zurdo o zurda, puede hacer los movimientos como en un espejo.</li></ul></details>
+        <li><strong>Si es zurdo o zurda:</strong> puede hacer los mismos pasos con la otra mano, como en un espejo. Ayúdele a colocar el hilo de la forma que le resulte más cómoda: lo importante es que se sienta cómodo y mantenga una tensión constante en el hilo.</li></ul></details>
+      <details class="det"><summary>Palabras que usamos</summary>
+        <ul class="lista-simple"><li><strong>Cadeneta:</strong> el primer punto, la cadena base.</li>
+        <li><strong>Punto bajo:</strong> el punto compacto que forma el tejido.</li>
+        <li><strong>Hilo sobre (lazada):</strong> pasar el hilo por encima del gancho.</li>
+        <li><strong>Bucle:</strong> el hilo que queda puesto en el gancho (o el espacio por donde entra).</li>
+        <li><strong>Base del punto:</strong> la cadeneta de abajo donde entra el gancho.</li>
+        <li><strong>V:</strong> la forma que se ve arriba de cada puntada y que usamos para contar.</li>
+        <li>Para que todos entiendan igual, la aventura evita “garganta” (decimos <em>curva del gancho</em>), “pie del punto” (decimos <em>base del punto</em>) y “mano fuerte” (decimos <em>la mano que más usas</em>).</li></ul></details>
       <details class="det"><summary>Materiales recomendados</summary>
         <ul class="lista-simple"><li><strong>Lana:</strong> suave, gruesa o media, lisa y de color claro (acrílico suave o algodón). Evite pelusa, hilos metálicos y colores muy oscuros al empezar.</li>
         <li><strong>Gancho:</strong> de 5 a 6 mm, con mango cómodo y punta lisa. Revise que no tenga rebabas.</li>

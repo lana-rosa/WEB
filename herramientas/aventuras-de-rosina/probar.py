@@ -9,7 +9,7 @@ Qué comprueba: recorrido de las 3 misiones (historia, tutorial, práctica, jueg
 botón de ayuda, progreso local (recargar la página), reinicio con confirmación, diploma, que no haya errores de consola ni
 peticiones a otros dominios, que no haya desplazamiento horizontal en 390 y 1280 px, y movimiento reducido. Con --axe pasa axe-core.
 Termina con código 1 si algo falla. Los resultados se imprimen; no se afirma nada que no se haya ejecutado aquí."""
-import json, os, sys
+import json, os, re, sys
 from playwright.sync_api import sync_playwright
 
 BASE = os.environ.get('AVENTURA_URL', 'http://localhost:8765/aventuras-de-rosina/')
@@ -73,6 +73,12 @@ def main():
         comprobar('Muy pronto' in texto(), 'El mapa avisa de las misiones futuras sin botones falsos')
         revisar_ancho('mapa')
         datos = pg.evaluate("import('/aventuras-de-rosina/contenido/misiones.js').then(m => JSON.parse(JSON.stringify(m.MISIONES)))")
+        # Vocabulario unificado (guía revisada de Sara, 15-oct-2026): estos términos no se usan en el contenido
+        texto_contenido = json.dumps(datos, ensure_ascii=False).lower()
+        # «lazo» solo se permite en los dos pasos del nudo inicial (el lazo que se forma con el hilo antes de meter el gancho)
+        usos_lazo = texto_contenido.count('lazo')
+        comprobar(not re.findall(r'\bgarganta\b|\bpie del punto\b|\bmano fuerte\b|\bcadena\b', texto_contenido), 'El contenido evita «garganta», «pie del punto», «mano fuerte» y «cadena» (usa curva del gancho, base del punto, la mano que más usas y cadeneta)')
+        comprobar(0 < usos_lazo <= 9 and 'lazo del gancho' not in texto_contenido and 'lazos' not in texto_contenido, '«Lazo» solo aparece en el nudo inicial; el hilo puesto en el gancho se llama «bucle»')
 
         def jugar_juego(m):
             """Responde el juego de la misión m correctamente leyendo los datos de contenido."""
@@ -185,6 +191,7 @@ def main():
         comprobar(pg.evaluate('window.__impreso') == 1, 'El botón del diploma llama a imprimir')
         revisar_ancho('diploma')
         ir('adultos'); comprobar('Seguridad' in texto() and 'Privacidad' in texto(), 'La guía para adultos incluye seguridad y privacidad')
+        comprobar('Palabras que usamos' in texto() and 'Si es zurdo o zurda' in texto(), 'La guía para adultos trae el vocabulario unificado y la adaptación para zurdos')
         revisar_ancho('adultos')
 
         print('5. Reinicio con confirmación')

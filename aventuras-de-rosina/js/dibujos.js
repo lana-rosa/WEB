@@ -70,7 +70,7 @@ const PINTORES = {
   gancho: () => svg(`${defsFlecha}
     ${gancho(46, 100, 0, 1.55)}
     ${texto(50, 52, 'Punta', 15)}${texto(50, 70, 'redondita', 15)}${flecha('M52,76 L48,92')}
-    ${texto(130, 160, 'Garganta', 15)}${flecha('M118,146 L70,106')}
+    ${texto(130, 160, 'Curva', 15)}${texto(130, 178, 'del gancho', 14, 'middle', 500)}${flecha('M118,146 L70,106')}
     ${texto(262, 60, 'Mango', 15)}${flecha('M262,66 L262,88')}`),
 
   tijeras: () => svg(`
@@ -91,31 +91,39 @@ const PINTORES = {
     ${lazoGancho(118, 96, 17, 24)}
     ${hilo('M118,120 C112,150 96,170 70,184', 6)}${hilo('M122,72 C150,40 230,44 270,70', 6)}
     ${texto(70, 196, 'la cola', 14, 'middle')}${texto(262, 40, 'al ovillo', 14, 'end')}
-    ${texto(190, 150, 'lazo en el gancho', 14, 'start')}${flecha('M188,142 L138,108')}`),
+    ${texto(190, 150, 'bucle en el gancho', 14, 'start')}${flecha('M188,142 L138,108')}`),
 
-  manos: () => svg(`${defsFlecha}
-    <ellipse cx="86" cy="140" rx="46" ry="32" fill="#F6C9A6" stroke="#c98d63" stroke-width="3"/>
-    <rect x="70" y="56" width="20" height="74" rx="10" fill="#F6C9A6" stroke="#c98d63" stroke-width="3" transform="rotate(8 80 90)"/>
-    <ellipse cx="124" cy="118" rx="12" ry="22" transform="rotate(-30 124 118)" fill="#F6C9A6" stroke="#c98d63" stroke-width="3"/>
-    ${hilo('M96,56 C150,30 220,40 250,86', 5)}
-    ${gancho(130, 106, 8, 1.15)}
-    <ellipse cx="258" cy="136" rx="46" ry="32" fill="#F6C9A6" stroke="#c98d63" stroke-width="3"/>
-    <rect x="236" y="96" width="46" height="26" rx="13" fill="#F6C9A6" stroke="#c98d63" stroke-width="3"/>
-    ${texto(68, 36, 'índice levantado', 13)}${flecha('M70,42 L76,52')}
-    ${texto(250, 184, 'gancho como un lápiz', 13)}`),
+  // Agarre de cuchillo: la mano que más usas toma el gancho desde arriba (el mango descansa en la palma y el índice se apoya sobre el gancho);
+  // la otra mano sujeta la base del nudo entre el pulgar y el dedo medio, y el hilo pasa por el índice. Dibujo esquemático y provisional.
+  manos: () => {
+    const dedo = (d, w = 14) => hilo(d, w, '#c98d63', '#F6C9A6');
+    return svg(`${defsFlecha}
+    ${dedo('M40,164 L36,72', 17)}
+    <ellipse cx="62" cy="180" rx="46" ry="26" fill="#F6C9A6" stroke="#c98d63" stroke-width="3"/>
+    ${gancho(40, 104, 0, 1.3)}
+    ${lazoGancho(76, 104, 10, 16)}
+    ${dedo('M64,170 C68,150 72,136 76,124')}${dedo('M106,176 C112,152 100,138 90,124')}
+    ${hilo('M10,22 C28,28 34,50 36,70 C38,92 56,110 70,104', 5)}
+    ${dedo('M242,82 L146,96', 14)}
+    ${dedo('M232,132 L198,112', 14)}
+    <ellipse cx="264" cy="90" rx="38" ry="25" fill="#F6C9A6" stroke="#c98d63" stroke-width="3"/>
+    ${dedo('M246,100 L246,134', 13)}${dedo('M263,102 L263,138', 13)}${dedo('M280,100 L280,132', 13)}
+    ${texto(258, 46, 'agarre de cuchillo', 14)}${flecha('M258,52 L258,66')}
+    ${texto(188, 164, 'pulgar y dedo medio', 13, 'middle', 700)}${texto(188, 181, 'sujetan la base del nudo', 12, 'middle', 500)}${flecha('M138,156 L104,134')}`);
+  },
 
   cadena1: () => svg(`${defsFlecha}
     ${gancho(78, 100, 0, 1.4)}
     ${lazoGancho(132, 100, 15, 22)}
     ${hilo('M280,184 C230,158 206,54 112,76 C84,82 86,116 108,112', 6)}
     ${texto(84, 44, '1. Hilo por encima', 14, 'start')}${texto(84, 62, 'del gancho', 14, 'start')}
-    ${texto(176, 160, '2. Jala por el lazo', 14, 'start')}${flecha('M170,152 L120,112')}`),
+    ${texto(176, 160, '2. Jala por el bucle', 14, 'start')}${flecha('M170,152 L120,112')}`),
 
   pbPartes: () => svg(`${defsFlecha}
     ${hilo('M130,48 L165,92 L200,48', 12)}${hilo('M165,92 L165,134', 12)}
     ${hilo('M136,150 L150,164 M180,164 L194,150 M150,164 L180,164', 7)}
     ${texto(70, 54, 'V de arriba', 15)}${flecha('M96,58 L128,66')}
-    ${texto(250, 120, 'pie', 15)}${flecha('M230,124 L192,142')}`),
+    ${texto(236, 116, 'base', 15, 'start')}${texto(236, 134, 'del punto', 14, 'start', 500)}${flecha('M230,140 L196,148')}`),
 
   pb1: () => svg(`${defsFlecha}
     ${filaCadenas(8, 140, 40, 28)}
@@ -127,15 +135,15 @@ const PINTORES = {
   pb2: () => svg(`${defsFlecha}
     ${gancho(60, 100, 0, 1.45)}
     ${lazoGancho(108, 100, 13, 21)}${lazoGancho(140, 100, 13, 21)}
-    ${texto(200, 70, '2 lazos en el gancho', 15, 'start')}${flecha('M198,76 L152,96')}
+    ${texto(200, 62, '2 bucles', 15, 'start')}${texto(200, 80, 'en el gancho', 15, 'start')}${flecha('M198,86 L152,98')}
     ${texto(165, 170, 'Cuéntalos: 1 y 2', 14)}`),
 
   pb3: () => svg(`${defsFlecha}
     ${gancho(60, 100, 0, 1.45)}
     ${lazoGancho(108, 100, 13, 21)}${lazoGancho(140, 100, 13, 21)}
     ${hilo('M270,184 C230,160 210,70 120,76 C90,80 90,120 122,118', 5)}
-    ${texto(176, 160, 'jala por los 2 lazos', 15, 'start')}${flecha('M170,152 L126,116')}
-    ${texto(160, 44, 'queda 1 lazo', 15)}`),
+    ${texto(176, 160, 'jala por los 2 bucles', 15, 'start')}${flecha('M170,152 L126,116')}
+    ${texto(160, 44, 'queda 1 bucle', 15)}`),
 
   muestraLana: (p) => {
     if (p.variante === 'gruesa') return svg(`<circle cx="100" cy="100" r="62" fill="#FFD6EA" stroke="${HA}" stroke-width="4"/><path d="M52,80 q48,-22 96,6 M46,104 q54,-24 108,6 M54,128 q46,-18 92,2" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".7"/>${hilo('M150,128 C200,150 220,110 258,128', 12, HA, '#FFD6EA')}`, '0 0 300 200');
@@ -171,7 +179,7 @@ PINTORES.cadenas = (p) => {
   let s = filaCadenas(n, y, x0, paso);
   if (!p.sinGancho) {
     s += gancho(final + 6, y, 0, 0.42) + lazoGancho(final + 8, y, 9, 17);
-    s += texto(Math.min(final + 12, 300), 62, 'lazo del gancho', 12, 'middle', 500);
+    s += texto(Math.min(final + 12, 300), 62, 'bucle del gancho', 12, 'middle', 500);
     s += `<path d="M${Math.min(final + 12, 300)},68 L${final + 8},80" stroke="${TINTA}" stroke-width="2" fill="none"/>`;
   }
   if (p.numeros) for (let i = 0; i < n; i++) s += texto(x0 + i * paso + 11, y + 42, String(i + 1), 13, 'middle', 700, HA);
@@ -190,7 +198,7 @@ PINTORES.filaPB = (p) => {
   }
   const xl = x0 + (base - 1 - n) * paso + 2;
   s += lazoGancho(Math.max(xl, 18), ys + 6, 9, 17);
-  s += texto(Math.max(xl, 18) + 4, 188, 'lazo del gancho', 12, 'start', 500);
+  s += texto(Math.max(xl, 18) + 4, 188, 'bucle del gancho', 12, 'start', 500);
   return svg(s);
 };
 

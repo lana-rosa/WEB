@@ -5,7 +5,7 @@ Entorno: Chromium headless (Playwright) contra un servidor estático local, con 
 
 | Prueba | Resultado |
 |---|---|
-| `probar.py --axe` (recorrido completo de las 3 misiones, ayuda, errores, progreso, reinicio, diploma, teclado, movimiento reducido, ancho, consola y red) | **76 comprobaciones correctas, 0 fallidas** (incluye la página de privacidad) |
+| `probar.py --axe` (recorrido completo de las 3 misiones, ayuda, errores, progreso, reinicio, diploma, teclado, movimiento reducido, ancho, consola y red) | **80 comprobaciones correctas, 0 fallidas** (incluye la página de privacidad y el vocabulario unificado) |
 | axe-core (WCAG 2.0/2.1/2.2 A y AA + buenas prácticas) en 10 pantallas: inicio, mapa, historias con retratos (misiones 1 y 2), tutorial, práctica, juego, pasaporte (formulario y página) y adultos | **0 violaciones** (se encontraron y corrigieron 3 de contraste en el primer pase: enlace activo del menú, "Muy pronto" y misiones futuras del pasaporte) |
 | Desplazamiento horizontal en 390 y 1280 px (bienvenida, mapa, tutorial, pasaporte, diploma y adultos) | Ninguno |
 | Errores o avisos de consola; respuestas 4xx/5xx; peticiones a otros dominios (hechas por la página) | Ninguno |
@@ -28,14 +28,15 @@ Lo que `probar.py` verifica (resumen): bienvenida con imagen oficial; comenzar �
 
 ## Revisión técnica de los pasos de crochet (pendiente de la experta)
 Terminología: punto bajo = "single crochet" (inglés de EE. UU.; en el inglés del Reino Unido se llama "double crochet"). "Hilo sobre" = "yarn over".
+**Vocabulario unificado (guía revisada de Sara, 15-oct-2026):** cadeneta, punto bajo, hilo sobre (lazada), **bucle** (el hilo puesto en el gancho), **base del punto**, **V**. Se evitan «garganta» (la parte del gancho se llama «curva del gancho»), «pie del punto», «mano fuerte» (se dice «la mano que más usas») y «cadena». «Lazo» solo queda para el lazo que se cruza con el hilo antes del nudo inicial. `probar.py` lo comprueba.
 
 | Paso del contenido | Cómo está escrito | Observación para la experta |
 |---|---|---|
-| Nudo inicial | Lazo cruzado, meter gancho, jalar el hilo del ovillo, apretar suavemente la cola. | Es el nudo corredizo estándar. Confirmar si prefieren enseñar el nudo con dos vueltas sobre los dedos para niños. |
-| Sostener | Gancho como lápiz grueso; nudo con pulgar y dedo del medio; índice levantado. | Hay varios agarres válidos. Confirmar el que usan en los talleres. Se indica "como en un espejo" para zurdos. |
-| Cadeneta | Hilo por encima del gancho de atrás hacia adelante; agarrar con la garganta; jalar por el lazo. | Correcto. Falta validar la ilustración de "hilo sobre". |
-| Conteo | Cuenta las V; el lazo del gancho NO cuenta. | Correcto. |
-| Punto bajo, fila 1 | Cadeneta de 11; saltar la cadeneta pegada al gancho; entrar en la 2.ª cadeneta por debajo de la V; hilo sobre, jalar (2 lazos); hilo sobre, jalar por 2 lazos → 10 puntos. | Correcto para una fila sobre cadeneta. **No se enseña** el giro para la 2.ª fila (cadeneta de giro): queda para el capítulo 4. Confirmar "bajo las dos hebras de la V" frente a "por el bucle trasero". |
+| Nudo inicial | Lazo cruzado con la cola por debajo del cruce; gancho por el centro del lazo, tomar la hebra del ovillo, pasarla por el lazo y ajustar tirando de la cola. | Es el nudo corredizo estándar. Confirmar si prefieren enseñar el nudo con dos vueltas sobre los dedos para niños. |
+| Sostener | **Agarre de cuchillo** con la mano que más usas (el dibujo ya lo muestra así); la otra mano sujeta la base del nudo entre pulgar y dedo medio. Nota para adultos: el hilo pasa por delante del meñique, por detrás de anular y corazón y por delante del índice, con una o dos vueltas suaves alrededor del índice. | **Validar con la experta** el agarre de cuchillo y la tensión del hilo (la guía revisada de Sara los trae tal cual). Zurdos: los mismos pasos con la otra mano, en espejo. |
+| Cadeneta | Hilo por encima del gancho de atrás hacia adelante; tomar la hebra del ovillo con la curva del gancho y jalarla por el bucle. | Correcto. Falta validar la ilustración de "hilo sobre". |
+| Conteo | Cuenta las V; el bucle del gancho NO cuenta. | Correcto. |
+| Punto bajo, fila 1 | Cadeneta de 11; saltar la cadeneta pegada al gancho; entrar en la 2.ª cadeneta por debajo de la V; hilo sobre, jalar un bucle (2 bucles); hilo sobre, jalar por los 2 bucles → 10 puntos. | Correcto para una fila sobre cadeneta. **No se enseña** el giro para la 2.ª fila (cadeneta de giro): queda para el capítulo 4. Confirmar "bajo las dos hebras de la V" frente a "por el bucle trasero". |
 | Materiales | Lana gruesa/media, lisa y clara; gancho de 5 a 6 mm; tijeras de punta redonda para el adulto; aguja lanera de punta roma. | Confirmar medidas con las lanas que vende la Mercería. |
 
 ## Qué queda por probar antes de publicar
