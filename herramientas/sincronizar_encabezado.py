@@ -11,7 +11,7 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 
 # página -> casa (las que no están aquí son comunes: sin casa resaltada)
 CASA_DE = {
-    'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
+    'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'universo-rosina': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
     'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'merceria-terminos-de-venta': 'merceria', 'merceria-cambios-y-devoluciones': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy', 'academy-empieza-aqui': 'academy',
     'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
