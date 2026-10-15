@@ -9,7 +9,7 @@ export const CONFIG = {
   // Las etiquetas de ocasión y «para quién» solo se ofrecen cuando hay al menos este número de productos con etiquetas revisadas
   // por Sara o el taller (columna revisado_en de producto_etiquetas). Antes, esos dos filtros no aparecen.
   MIN_ETIQUETADOS: 20,
-  RESULTADOS_POR_SECCION: 12,
+  RESULTADOS_POR_SECCION: 8,
   WHATSAPP: '573205072801',
 };
 

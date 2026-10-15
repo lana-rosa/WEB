@@ -89,7 +89,12 @@ def lista(page, clave):
     return page.locator('select.ur-select[data-clave="%s"]' % clave)
 
 
+def abrir_mas(page):
+    page.evaluate("document.querySelectorAll('details.ur-opciones').forEach(d => { d.open = true; })")
+
+
 def elegir(page, clave, id_):
+    abrir_mas(page)
     lista(page, clave).select_option(id_)
 
 
@@ -157,6 +162,8 @@ def main():
             verificar('muestra solo los 5 filtros sin etiquetas (tipo, presupuesto, tamaño, color, disponibilidad)', page.locator('#regalar-raiz .ur-grupo').count() == 5, page.locator('#regalar-raiz .ur-grupo').count())
             verificar('no hay filtros de ocasión ni «para quién» hasta que haya etiquetas revisadas', lista(page, 'ocasion').count() == 0 and lista(page, 'destinatario').count() == 0)
             verificar('sin filtros se ven los productos y las ideas', tarjetas(page, 'Disponibles ya').count() > 0 and tarjetas(page, 'Ideas para personalizar').count() == 3)
+            verificar('interfaz simple: a la vista solo 3 listas (tipo, presupuesto y, sin etiquetas, ninguna más); el resto está en «Más opciones» cerrado', page.locator('.ur-filtros:not(details *) select:visible').count() == 2 and page.locator('details.ur-opciones').count() == 1 and page.eval_on_selector('details.ur-opciones', 'd => d.open') is False)
+            verificar('con 8 resultados por sección y «Ver los N restantes»', tarjetas(page, 'Disponibles ya').count() == 8 and page.locator('.ur-seccion[aria-label="Disponibles ya"] .ur-mas').count() == 1)
             verificar('sin scroll horizontal', sin_scroll_horizontal(page))
             if CAPTURAS:
                 os.makedirs(CAPTURAS, exist_ok=True)
@@ -206,8 +213,9 @@ def main():
                 if int(re.sub(r'\D', '', precio_txt.split('COP')[0])) != int(real):
                     malos.append((nombre_p, precio_txt, real))
             verificar('R4 los precios en pantalla son exactamente los del catálogo (%d tarjetas de amigurumis)' % page.locator('.ur-card').count(), not malos, malos[:3])
-            nota = page.locator('.ur-pj').count()
-            verificar('las piezas inspiradas en personajes llevan el aviso «no es un producto oficial»', nota == sum(1 for x in CATALOGO if x['es_personaje'] and x['categoria_web'] == 'Amigurumis' and x['en_existencia'] and not x['personalizable_base']), nota)
+            nota = page.locator('.ur-pj-nota').count()
+            hay_pj = any(x['es_personaje'] and x['categoria_web'] == 'Amigurumis' and x['en_existencia'] and not x['personalizable_base'] for x in CATALOGO)
+            verificar('las piezas inspiradas en personajes llevan el aviso «no son productos oficiales» una sola vez por sección', nota == (1 if hay_pj else 0) and page.locator('.ur-card .ur-pj').count() == 0, nota)
             verificar('sin scroll horizontal tras filtrar', sin_scroll_horizontal(page))
             if CAPTURAS:
                 page.evaluate("document.querySelector('.ur-resumen').scrollIntoView()")
@@ -282,7 +290,7 @@ def main():
         vistos = nombres_visibles()
         esperados = sorted(x['nombre'] for x in REVISADO if 'mama' in x['destinatarios'] and 50000 < x['precio'] <= 100000 and x['en_existencia'] and not x['personalizable_base'])
         verificar('combinado: para mamá + $50.000 a $100.000 + ya (%d productos, los del catálogo)' % len(esperados), vistos == esperados, (vistos, esperados))
-        page.select_option('select[data-clave="presupuesto"]', ''); page.select_option('select[data-clave="disponibilidad"]', ''); elegir(page, 'destinatario', 'tu_mismo')
+        page.select_option('select[data-clave="presupuesto"]', ''); abrir_mas(page) or page.select_option('select[data-clave="disponibilidad"]', ''); elegir(page, 'destinatario', 'tu_mismo')
         verificar('«Para mí» (solo hay personalizados): explica y muestra las ideas para personalizar', page.locator('.ur-vacio').count() == 1 and tarjetas(page, 'Ideas para personalizar').count() == 3)
         verificar('sin errores de JavaScript con las etiquetas revisadas', not err, err)
         page.close()

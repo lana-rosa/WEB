@@ -97,10 +97,12 @@ function pintar(raiz, pieza, noEncontrada, modelo) {
   const ac = nodo('section', 'pz-acciones'); ac.setAttribute('aria-label', 'Qué más puedes hacer');
   const wa = nodo('a', 'pz-boton pz-wa', 'Escríbenos por WhatsApp'); wa.target = '_blank'; wa.rel = 'noopener';
   wa.href = 'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent('Hola Lana Rosa 💕 Tengo una pregunta sobre ' + (pieza ? 'mi pieza «' + pieza.nombre + '».' : 'los cuidados de mi pieza.'));
-  const re = nodo('a', 'pz-boton', 'Cuéntanos cómo te fue'); re.href = RESENAS; re.target = '_blank'; re.rel = 'noopener';
-  const rg = nodo('a', 'pz-boton', 'Regala o consiéntete otra pieza'); rg.href = '/universo-rosina.html#regalar';
-  const pe = nodo('a', 'pz-boton', 'Personaliza el tuyo'); pe.href = '/personaliza.html';
-  ac.append(wa, re, rg, pe); marco.append(ac);
+  // Un solo botón grande (WhatsApp); lo demás, como enlaces discretos.
+  const re = nodo('a', 'pz-enlace-sec', 'Cuéntanos cómo te fue'); re.href = RESENAS; re.target = '_blank'; re.rel = 'noopener';
+  const rg = nodo('a', 'pz-enlace-sec', 'Regala otra pieza'); rg.href = '/universo-rosina.html#regalar';
+  const pe = nodo('a', 'pz-enlace-sec', 'Personaliza el tuyo'); pe.href = '/personaliza.html';
+  const sec = nodo('p', 'pz-secundarios'); sec.append(re, rg, pe);
+  ac.append(wa, sec); marco.append(ac);
   marco.append(nodo('p', 'pz-pie', 'Gracias por llevarte un pedacito de nuestro taller 🐑'));
   raiz.replaceChildren(marco);
 }

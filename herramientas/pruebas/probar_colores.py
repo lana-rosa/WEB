@@ -22,6 +22,13 @@ IDS = ['rosa', 'rojo', 'naranja', 'amarillo', 'verde', 'azul', 'morado', 'cafe',
 fallos, pasaron = [], 0
 
 
+def abrir_abierto(*a, **k):
+    """Abre la página y despliega «Más opciones» (donde viven el color y la foto)."""
+    page, err = R.abrir(*a, **k)
+    R.abrir_mas(page)
+    return page, err
+
+
 def verificar(nombre, condicion, detalle=''):
     global pasaron
     if condicion:
@@ -100,7 +107,7 @@ def main():
         verificar('hay variedad: al menos 8 colores principales distintos en el catálogo (%s)' % ', '.join('%s %d' % kv for kv in sorted(distintos.items(), key=lambda x: -x[1])), len(distintos) >= 8, distintos)
 
         print('\n[Filtro de color en recomendar()]')
-        page, err = R.abrir(pc, base, R.CATALOGO)
+        page, err = abrir_abierto(pc, base, R.CATALOGO)
         res = page.evaluate('''async ([cat, mapa]) => {
           const m = await import('/js/universo/regalar.js');
           cat.forEach((p) => { p.colores = mapa[p.foto_url] || []; });
@@ -127,7 +134,7 @@ def main():
 
         for nombre, ctx, ancho in (('celular 390 px', movil, 390), ('computador 1280 px', pc, 1280)):
             print('\n[Lista de color en la página — %s]' % nombre)
-            page, err = R.abrir(ctx, base, R.CATALOGO)
+            page, err = abrir_abierto(ctx, base, R.CATALOGO)
             hay = {c for v in COLORES_JSON.values() for c in v}
             opciones = page.eval_on_selector('select.ur-select[data-clave="color"]', 'e => [...e.options].map(o => [o.value, o.textContent])')
             verificar('hay una lista «¿Qué color te gusta?» con etiqueta asociada', page.locator('label[for="ur-color"]').inner_text() == '¿Qué color te gusta?' and R.lista(page, 'color').count() == 1)
@@ -152,15 +159,15 @@ def main():
             page.close()
 
         print('\n[Dirección con color, y color que no existe]')
-        page, err = R.abrir(pc, base, R.CATALOGO, ruta='/universo-rosina.html?color=azul&tipo=llavero')
+        page, err = abrir_abierto(pc, base, R.CATALOGO, ruta='/universo-rosina.html?color=azul&tipo=llavero')
         verificar('?color=azul llega ya elegido y se combina con el tipo', R.lista(page, 'color').input_value() == 'azul' and R.lista(page, 'tipo').input_value() == 'llavero' and page.locator('.ur-card').count() > 0)
         page.close()
-        page, err = R.abrir(pc, base, R.CATALOGO, ruta='/universo-rosina.html?color=violeta')
+        page, err = abrir_abierto(pc, base, R.CATALOGO, ruta='/universo-rosina.html?color=violeta')
         verificar('un color inventado en la dirección se ignora (sin filtro, sin errores)', R.lista(page, 'color').input_value() == '' and page.locator('.ur-card').count() > 0 and not err, err)
         page.close()
 
         print('\n[Si colores.json no carga, todo lo demás sigue igual]')
-        page, err = R.abrir(pc, base, R.CATALOGO, rutas=[('**/img/productos/colores.json', lambda r: r.fulfill(status=404, body='no'))])
+        page, err = abrir_abierto(pc, base, R.CATALOGO, rutas=[('**/img/productos/colores.json', lambda r: r.fulfill(status=404, body='no'))])
         verificar('sin los colores no aparece la lista ni el botón de foto, pero sí los otros 4 filtros y los productos',
                   page.locator('#regalar-raiz .ur-grupo').count() == 4 and page.locator('.ur-foto').count() == 0 and page.locator('.ur-card').count() > 0 and not err, err)
         page.close()
@@ -172,7 +179,7 @@ def main():
         pesada = os.path.join(carpeta_tmp, 'texto.png'); open(pesada, 'w').write('esto no es una imagen')
         for nombre, ctx, ancho in (('celular 390 px', movil, 390), ('computador 1280 px', pc, 1280)):
             print('  — %s' % nombre)
-            page, err = R.abrir(ctx, base, R.CATALOGO)
+            page, err = abrir_abierto(ctx, base, R.CATALOGO)
             peticiones = []
             page.on('request', lambda rq: peticiones.append((rq.method, rq.url)))
             verificar('el botón de foto y el aviso de privacidad están a la vista', page.locator('.ur-foto-btn').is_visible() and 'no se envía ni se guarda' in page.inner_text('.ur-foto-nota'))
