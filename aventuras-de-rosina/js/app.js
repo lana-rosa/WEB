@@ -229,6 +229,7 @@ function vistaHistoria(m, n) {
     voz: p.texto,
     html: `<section class="pantalla">${cabeceraMision(m)}${navEtapas(m, 'historia')}
       <h1 class="h1-mision">${n === 1 ? esc(m.titulo) : 'Historia'}</h1>
+      ${escenaHtml(p.escena)}
       <div class="historia">
         <div class="historia-arte">${arte}</div>
         <div class="burbuja"><p class="burbuja-quien">${esc(quien)} dice:</p><p>${esc(p.texto)}</p></div>
@@ -243,6 +244,9 @@ function vistaHistoria(m, n) {
   };
 }
 
+/** Ilustración de escena opcional (16:9): { src, alt }. */
+const escenaHtml = (e) => (e ? `<figure class="escena"><img src="${esc(e.src)}" alt="${esc(e.alt)}" width="1200" height="${e.alto || 675}" loading="lazy" decoding="async"></figure>` : '');
+
 function vistaTutorial(m, n) {
   const t = m.tutorial, pasos = t.pasos;
   n = Math.min(Math.max(n || 0, 0), pasos.length);
@@ -252,6 +256,7 @@ function vistaTutorial(m, n) {
       voz: `${t.objetivo}`,
       html: `<section class="pantalla">${cabeceraMision(m)}${navEtapas(m, 'tutorial')}
         <h1>Vamos a aprender</h1>
+        ${escenaHtml(t.escena)}
         <div class="tarjeta"><h2>Lo que vas a lograr</h2><p>${esc(t.objetivo)}</p>
           <h2>Lo que necesitas</h2><ul class="lista-simple">${t.materiales.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
         <p class="progreso-txt">${pasos.length} pasos cortos</p>
@@ -271,6 +276,7 @@ function vistaTutorial(m, n) {
       <p class="progreso-txt" aria-live="polite">Paso ${n} de ${pasos.length}</p>
       <div class="barra" role="presentation"><span style="width:${(n / pasos.length) * 100}%"></span></div>
       <h1>${esc(p.titulo)}</h1>
+      ${escenaHtml(p.escena)}
       ${video || fig(p.dibujo, p.alt)}
       <div class="tarjeta paso-texto"><p>${esc(p.texto)}</p>${p.lista ? `<ul class="lista-simple">${p.lista.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}</div>
       <div class="acciones acciones-paso">

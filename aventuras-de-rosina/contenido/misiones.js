@@ -151,9 +151,10 @@ export const MISIONES = [
     historia: [
       { quien: 'rosina', pose: 'sorpresa', texto: 'Luna, la conejita, necesita cruzar el río para llegar a su casa. ¡Pero el puente desapareció!' },
       { quien: 'luna', pose: 'feliz', texto: 'Hola… Muchas veces pienso que no me va a salir a la primera. Mi abuela me dijo: “Una puntada a la vez”.' },
-      { quien: 'luna', pose: 'animo', texto: 'Con una cadeneta de lana podemos construir los tablones del puente, uno por uno. ¿Me ayudas a tejerlos?' },
+      { quien: 'luna', pose: 'animo', texto: 'Con una cadeneta de lana podemos construir los tablones del puente, uno por uno. ¿Me ayudas a tejerlos?', escena: { src: '/img/aventuras/escenas/puente-cadeneta.webp', alt: 'Rosina teje una cadeneta rosada junto al río mientras Tito, Bruno, Pipo y Luna la miran y la animan.' } },
     ],
     tutorial: {
+      escena: { src: '/img/aventuras/escenas/mesa-ovillo-gancho.webp', alt: 'Rosina y Tito, sentados a una mesa, con un ovillo rosado y un gancho lila listos para empezar a tejer.' },
       objetivo: 'Hacer el nudo inicial y tejer una cadeneta de 11 puntos.',
       materiales: ['Lana gruesa y clara', 'Gancho de 5 a 6 mm', 'Una persona adulta cerca para el primer nudo'],
       pasos: [
@@ -195,6 +196,7 @@ export const MISIONES = [
         },
         {
           titulo: 'Tu primera cadeneta',
+          escena: { src: '/img/aventuras/escenas/primera-cadeneta.webp', alt: 'Rosina teje su primera cadeneta con el gancho lila y el ovillo rosado, mientras Tito la mira con atención.' },
           texto: 'Toma la hebra que viene del ovillo y pásala por encima del gancho, de atrás hacia adelante. Gira un poquito la punta hacia abajo para enganchar el hilo y pásalo a través del bucle que ya está en el gancho. ¡Has hecho una cadeneta!',
           dibujo: { tipo: 'cadena1' },
           alt: 'Dibujo de un gancho que agarra el hilo y lo jala a través del bucle para formar una cadeneta.',
