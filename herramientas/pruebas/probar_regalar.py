@@ -154,7 +154,7 @@ def main():
             print('\n[Página real con los 72 productos del catálogo — %s]' % nombre)
             tag = 'm' if ctx is movil else 'd'
             page, err = abrir(ctx, base, CATALOGO)
-            verificar('muestra solo los 4 filtros sin etiquetas (tipo, presupuesto, tamaño, disponibilidad)', page.locator('#regalar-raiz .ur-grupo').count() == 4, page.locator('#regalar-raiz .ur-grupo').count())
+            verificar('muestra solo los 5 filtros sin etiquetas (tipo, presupuesto, tamaño, color, disponibilidad)', page.locator('#regalar-raiz .ur-grupo').count() == 5, page.locator('#regalar-raiz .ur-grupo').count())
             verificar('no hay filtros de ocasión ni «para quién» hasta que haya etiquetas revisadas', lista(page, 'ocasion').count() == 0 and lista(page, 'destinatario').count() == 0)
             verificar('sin filtros se ven los productos y las ideas', tarjetas(page, 'Disponibles ya').count() > 0 and tarjetas(page, 'Ideas para personalizar').count() == 3)
             verificar('sin scroll horizontal', sin_scroll_horizontal(page))
@@ -209,7 +209,7 @@ def main():
         print('\n[Teclado y lectores de pantalla]')
         page, err = abrir(pc, base, CATALOGO)
         sel_tipo = lista(page, 'tipo')
-        verificar('R5 los filtros son listas desplegables (select), una por pregunta', page.locator('#regalar-raiz select.ur-select').count() == 4 and page.locator('.ur-chip').count() == 0)
+        verificar('R5 los filtros son listas desplegables (select), una por pregunta', page.locator('#regalar-raiz select.ur-select').count() == 5 and page.locator('.ur-chip').count() == 0)
         verificar('R5 cada lista tiene su etiqueta asociada (label for)', page.eval_on_selector_all('#regalar-raiz select.ur-select', 'els => els.every(s => { const l = document.querySelector("label[for=" + s.id + "]"); return l && l.textContent.length > 5; })'))
         verificar('R5 la primera opción de cada lista es «sin filtro»', page.eval_on_selector_all('#regalar-raiz select.ur-select', 'els => els.every(s => s.options[0].value === "" && s.value === "")'))
         sel_tipo.focus(); page.keyboard.press('ArrowDown')
@@ -228,7 +228,7 @@ def main():
         revisados = [x['nombre'] for x in CATALOGO if x['categoria_web'] in ('Llaveros', 'Peluches', 'Macetas') and x['en_existencia']][:24]
         cat_rev = con_etiquetas_revisadas(CATALOGO, revisados)
         page, err = abrir(pc, base, cat_rev)
-        verificar('con 24 productos revisados aparecen los filtros de ocasión y «para quién» (%d grupos)' % page.locator('#regalar-raiz .ur-grupo').count(), page.locator('#regalar-raiz .ur-grupo').count() == 6)
+        verificar('con 24 productos revisados aparecen los filtros de ocasión y «para quién» (%d grupos)' % page.locator('#regalar-raiz .ur-grupo').count(), page.locator('#regalar-raiz .ur-grupo').count() == 7)
         elegir(page, 'ocasion', 'dia_madre')
         nombres = [n for n, _ in precios_de(page)]
         esperados = [x['nombre'] for x in cat_rev if x['etiquetas_revisadas'] and 'dia_madre' in x['ocasiones'] and not x['personalizable_base']]
@@ -246,7 +246,7 @@ def main():
         page, err = abrir(pc, base, REVISADO)
         voc = page.evaluate("async () => { const m = await import('/js/universo/config.js'); return {oc: m.OCASIONES, de: m.DESTINATARIOS}; }")
         verificar('el vocabulario de la hoja de Excel (etiquetas.py) es idéntico al de la web (config.js)', dict(voc['oc']) == etq.OCASIONES and dict(voc['de']) == etq.DESTINATARIOS)
-        verificar('con los 71 productos revisados aparecen los 6 filtros', page.locator('#regalar-raiz .ur-grupo').count() == 6, page.locator('#regalar-raiz .ur-grupo').count())
+        verificar('con los 71 productos revisados aparecen los 7 filtros (los 5 de siempre más ocasión y para quién)', page.locator('#regalar-raiz .ur-grupo').count() == 7, page.locator('#regalar-raiz .ur-grupo').count())
         opciones = page.evaluate("() => Object.fromEntries([...document.querySelectorAll('#regalar-raiz select.ur-select')].map(s => [s.dataset.clave, [...s.options].slice(1).map(o => [o.value, o.textContent])]))")
         pres_oc = sorted({x for p in REVISADO if p['etiquetas_revisadas'] for x in p['ocasiones']}); pres_de = sorted({x for p in REVISADO if p['etiquetas_revisadas'] for x in p['destinatarios']})
         verificar('las listas ofrecen solo las ocasiones (%d) y destinatarios (%d) que algún producto tiene' % (len(pres_oc), len(pres_de)), sorted(v for v, _ in opciones['ocasion']) == pres_oc and sorted(v for v, _ in opciones['destinatario']) == pres_de, (sorted(v for v, _ in opciones['ocasion']), pres_oc))
@@ -289,7 +289,7 @@ def main():
 
         print('\n[Vista previa de etiquetas propuestas — solo para Sara]')
         page, err = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?etiquetas=propuestas')
-        verificar('muestra los 6 grupos y un aviso de que es una vista previa', page.locator('#regalar-raiz .ur-grupo').count() == 6 and 'Vista previa' in page.inner_text('.ur-aviso'))
+        verificar('muestra los 7 grupos y un aviso de que es una vista previa', page.locator('#regalar-raiz .ur-grupo').count() == 7 and 'Vista previa' in page.inner_text('.ur-aviso'))
         elegir(page, 'destinatario', 'mama')
         verificar('la vista previa filtra con las etiquetas propuestas', page.locator('.ur-card').count() > 0)
         if CAPTURAS:

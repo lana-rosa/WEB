@@ -1,7 +1,8 @@
 // «Rosina te ayuda a regalar»: recomendador por reglas sobre el catálogo real (RPC obtener_regalos_web).
 // Sin IA y sin datos inventados: cada resultado sale de un producto del catálogo; el precio y la disponibilidad son los del ERP.
 import { CONFIG, OCASIONES, DESTINATARIOS, TIPOS, PRESUPUESTOS, TAMANOS, DISPONIBILIDAD } from './config.js';
-import { cargarCatalogo } from './datos.js';
+import { cargarCatalogo, cargarColores } from './datos.js';
+import { COLORES, puntajeColor, perfilDeArchivo } from './colores.js';
 
 const entre = (v, lista, id) => { const x = lista.find((r) => r[0] === id); return !x || (v >= x[2] && v <= x[3]); };
 
@@ -14,11 +15,14 @@ export function recomendar(productos, sel, opciones) {
     if (sel.tipo) { const t = TIPOS.find((x) => x[0] === sel.tipo); if (!t || t[2].indexOf(p.categoria_web) < 0) return false; }
     if (sel.presupuesto && !entre(Number(p.precio), PRESUPUESTOS, sel.presupuesto)) return false;
     if (sel.tamano && (p.tamano_cm == null || !entre(Number(p.tamano_cm), TAMANOS, sel.tamano))) return false;
+    if (sel.color && !(p.colores && p.colores.indexOf(sel.color) >= 0)) return false;
     if (o.usarEtiquetas && sel.ocasion && !(valida(p) && p.ocasiones.indexOf(sel.ocasion) >= 0)) return false;
     if (o.usarEtiquetas && sel.destinatario && !(valida(p) && p.destinatarios.indexOf(sel.destinatario) >= 0)) return false;
     return true;
   };
+  // Con un color elegido, primero las piezas cuyo color principal es ese y luego las que lo llevan como detalle (el orden del catálogo se conserva dentro de cada grupo).
   const lista = productos.filter(ok);
+  if (sel.color) lista.sort((a, b) => puntajeColor(b.colores, sel.color) - puntajeColor(a.colores, sel.color));
   const disponibles = lista.filter((p) => p.en_existencia);
   const encargo = sel.disponibilidad === 'ya' ? [] : lista.filter((p) => !p.en_existencia);
   // Ideas para personalizar: los tres «Amigurumi personalizado N cm» reales que cumplen presupuesto y tamaño elegidos.
@@ -49,6 +53,11 @@ export async function iniciarRegalar(raiz) {
   try {
     productos = await cargarCatalogo();
   } catch (e) { return pintarError(raiz); }
+  // Etapa 4: colores de las fotos (si no cargan, no hay filtro de color y todo lo demás funciona igual).
+  const mapaColores = await cargarColores();
+  productos.forEach((p) => { p.colores = mapaColores[p.foto_url] || []; });
+  const coloresHay = {}; productos.forEach((p) => p.colores.forEach((c) => { coloresHay[c] = (coloresHay[c] || 0) + 1; }));
+  const coloresOfrecidos = COLORES.filter((c) => coloresHay[c[0]]);
   const usarEtiquetas = modoPropuestas || puedeUsarEtiquetas(productos);
   const sel = {};
   // Cada pregunta es una lista desplegable (con su etiqueta) y la primera opción significa «sin filtro».
@@ -56,6 +65,7 @@ export async function iniciarRegalar(raiz) {
     ['tipo', '¿Qué tipo de regalo buscas?', 'Todos los tipos', TIPOS.map((x) => [x[0], x[1]])],
     ['presupuesto', '¿Cuánto quieres invertir?', 'Cualquier presupuesto', PRESUPUESTOS.map((x) => [x[0], x[1]])],
     ['tamano', '¿De qué tamaño?', 'Cualquier tamaño', TAMANOS.map((x) => [x[0], x[1]])],
+    ...(coloresOfrecidos.length ? [['color', '¿Qué color te gusta?', 'Cualquier color', coloresOfrecidos.map((c) => [c[0], c[1]])]] : []),
     ['disponibilidad', '¿Lo necesitas ya?', 'No es urgente', DISPONIBILIDAD],
   ];
   if (usarEtiquetas) {
@@ -85,10 +95,11 @@ export async function iniciarRegalar(raiz) {
     campo.append(et, lista); filtros.append(campo);
   });
   const reiniciar = nodo('button', 'ur-reiniciar', 'Empezar de nuevo'); reiniciar.type = 'button';
-  reiniciar.addEventListener('click', () => { Object.keys(sel).forEach((k) => delete sel[k]); raiz.querySelectorAll('.ur-select').forEach((x) => { x.value = ''; x.classList.remove('ur-elegido'); }); pintar(); });
+  const fotoBox = listas.color ? montarFotoReferencia() : null;
+  reiniciar.addEventListener('click', () => { Object.keys(sel).forEach((k) => delete sel[k]); raiz.querySelectorAll('.ur-select').forEach((x) => { x.value = ''; x.classList.remove('ur-elegido'); }); if (fotoBox) fotoBox.limpiar(); pintar(); });
   const resumen = nodo('p', 'ur-resumen'); resumen.setAttribute('role', 'status'); resumen.setAttribute('aria-live', 'polite');
   const resultados = nodo('div', 'ur-resultados');
-  marco.append(filtros, reiniciar, resumen, resultados);
+  marco.append(filtros, ...(fotoBox ? [fotoBox.caja] : []), reiniciar, resumen, resultados);
   raiz.replaceChildren(marco);
 
   const verMas = {};
@@ -109,11 +120,62 @@ export async function iniciarRegalar(raiz) {
     const foto = document.createElement('img'); foto.src = '/img/productos/' + encodeURIComponent(p.foto_url); foto.alt = p.nombre; foto.loading = 'lazy'; foto.decoding = 'async'; foto.width = 400; foto.height = 500;
     foto.addEventListener('error', () => { foto.style.visibility = 'hidden'; });
     a.append(foto, nodo('span', 'ur-nombre', p.nombre), nodo('span', 'ur-precio', (esIdea ? 'Desde ' : '') + pesos(p.precio) + ' COP'));
+    if (!esIdea && p.colores && p.colores.length) {
+      const puntos = nodo('span', 'ur-puntos'); puntos.setAttribute('role', 'img');
+      puntos.setAttribute('aria-label', 'Colores: ' + p.colores.map((c) => (COLORES.find((x) => x[0] === c) || [0, c])[1]).join(', '));
+      p.colores.forEach((c) => { const x = COLORES.find((y) => y[0] === c); if (x) { const s = nodo('i'); s.style.background = x[2]; s.setAttribute('aria-hidden', 'true'); puntos.append(s); } });
+      a.append(puntos);
+    }
     if (esIdea) a.append(nodo('span', 'ur-estado-prod ur-idea', 'Se teje a partir de tu foto o idea · las fotos son de referencia'));
     else a.append(nodo('span', 'ur-estado-prod ' + (p.en_existencia ? 'ur-ya' : 'ur-enc'), p.en_existencia ? 'En existencia' : 'Por encargo' + (p.tiempo_elaboracion ? ' · ' + p.tiempo_elaboracion : '')));
     if (p.es_personaje && !esIdea) a.append(nodo('span', 'ur-pj', 'Pieza artesanal inspirada en un personaje; no es un producto oficial.'));
     a.addEventListener('click', () => evento('regalar_abre_ficha', { item_id: p.id, seccion: clave }));
     return a;
+  }
+  // «Busca por una foto»: se calculan los colores de la foto en este dispositivo (nada se sube ni se guarda) y se elige uno para filtrar.
+  function montarFotoReferencia() {
+    const caja = nodo('div', 'ur-foto');
+    const entrada = document.createElement('input'); entrada.type = 'file'; entrada.accept = 'image/*'; entrada.id = 'ur-foto-entrada'; entrada.className = 'ur-foto-entrada';
+    const boton = nodo('label', 'ur-foto-btn', '📷 Buscar por los colores de una foto'); boton.htmlFor = entrada.id;
+    const nota = nodo('p', 'ur-nota ur-foto-nota', 'Elige una foto de referencia (un peluche, una prenda, una decoración…) y buscamos piezas de sus colores. La foto se queda en tu dispositivo: no se envía ni se guarda.');
+    const salida = nodo('div', 'ur-foto-salida'); salida.setAttribute('aria-live', 'polite');
+    caja.append(boton, entrada, nota, salida);
+    let urlVista = null;
+    function limpiar() { if (urlVista) { URL.revokeObjectURL(urlVista); urlVista = null; } salida.replaceChildren(); entrada.value = ''; }
+    function elegirColor(id) {
+      listas.color.value = id; listas.color.classList.toggle('ur-elegido', !!id);
+      if (id) sel.color = id; else delete sel.color;
+      evento('regalar_paso', { paso: 'color', valor_categoria: id || 'ninguno', origen: 'foto' });
+      salida.querySelectorAll('.ur-muestra').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.color === id)));
+      pintar();
+    }
+    entrada.addEventListener('change', async () => {
+      const archivo = entrada.files && entrada.files[0];
+      if (!archivo) return;
+      salida.replaceChildren(nodo('p', 'ur-nota', 'Mirando los colores de tu foto…'));
+      if (!/^image\//.test(archivo.type) || archivo.size > 25 * 1024 * 1024) { salida.replaceChildren(nodo('p', 'ur-nota', 'Elige una imagen (JPG, PNG o WebP) de menos de 25 MB.')); return; }
+      let perfil;
+      try { perfil = await perfilDeArchivo(archivo); } catch (e) { salida.replaceChildren(nodo('p', 'ur-nota', 'No pude leer esa foto. Prueba con otra (JPG, PNG o WebP).')); return; }
+      if (!perfil.colores || !perfil.colores.length) { salida.replaceChildren(nodo('p', 'ur-nota', 'No pude distinguir colores en esa foto. Prueba con otra en la que se vea bien lo que quieres imitar.')); return; }
+      const posibles = perfil.colores.filter((c) => coloresHay[c]);
+      evento('regalar_foto_color', { n_colores: (perfil.colores || []).length, n_con_piezas: posibles.length });
+      if (urlVista) URL.revokeObjectURL(urlVista);
+      urlVista = URL.createObjectURL(archivo);
+      const vista = document.createElement('img'); vista.className = 'ur-foto-vista'; vista.src = urlVista; vista.alt = 'Tu foto de referencia'; vista.width = 64; vista.height = 64;
+      const cuerpo = nodo('div', 'ur-foto-cuerpo');
+      if (!posibles.length) { cuerpo.append(nodo('p', 'ur-nota', 'En tu foto veo colores que todavía no tenemos en piezas. Elige un color de la lista o cuéntanos tu idea.')); salida.replaceChildren(vista, cuerpo); return; }
+      cuerpo.append(nodo('p', 'ur-foto-titulo', 'Colores que veo en tu foto: elige uno para buscar'));
+      const fila = nodo('div', 'ur-muestras');
+      posibles.forEach((id) => {
+        const c = COLORES.find((x) => x[0] === id);
+        const b = nodo('button', 'ur-muestra'); b.type = 'button'; b.dataset.color = id; b.setAttribute('aria-pressed', 'false');
+        const punto = nodo('i'); punto.style.background = c[2]; punto.setAttribute('aria-hidden', 'true');
+        b.append(punto, c[1]); b.addEventListener('click', () => elegirColor(id)); fila.append(b);
+      });
+      cuerpo.append(fila); salida.replaceChildren(vista, cuerpo);
+      elegirColor(posibles[0]);
+    });
+    return { caja, limpiar };
   }
   let temporizador = null;
   function pintar() {
