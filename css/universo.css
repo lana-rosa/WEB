@@ -14,14 +14,14 @@
 @media (max-width: 480px) { .recorridos { grid-template-columns: 1fr; } }
 .ur-seccion-regalar { scroll-margin-top: 90px; margin-bottom: 48px; }
 .ur-marco { background: #fff; border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); padding: 22px; }
-.ur-filtros { display: grid; gap: 14px; }
-.ur-grupo { border: 0; margin: 0; padding: 0; }
-.ur-grupo legend { font-weight: 700; margin-bottom: 8px; color: var(--tinta); }
-.ur-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.ur-chip { min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid var(--rosa-medio); background: #fff; color: var(--tinta); font: inherit; cursor: pointer; }
-.ur-chip:hover { background: var(--rosa-suave); }
-.ur-chip[aria-pressed="true"] { background: var(--rosa-boton, #E74E96); border-color: var(--rosa-boton, #E74E96); color: var(--sobre-principal, #fff); font-weight: 700; }
-.ur-chip:focus-visible, .ur-reiniciar:focus-visible, .ur-mas:focus-visible, .ur-card:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+.ur-filtros { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px 18px; }
+.ur-grupo { margin: 0; padding: 0; min-width: 0; }
+.ur-grupo label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--tinta); }
+.ur-select { width: 100%; min-height: 48px; padding: 10px 42px 10px 16px; border-radius: 14px; border: 2px solid var(--rosa-medio); color: var(--tinta); font: inherit; cursor: pointer; appearance: none; -webkit-appearance: none;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5 7 7l5.5-5.5' fill='none' stroke='%23B3175F' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 16px center; }
+.ur-select:hover { background-color: var(--rosa-suave); }
+.ur-select.ur-elegido { border-color: var(--rosa-principal); font-weight: 700; background-color: var(--rosa-suave); }
+.ur-select:focus-visible, .ur-reiniciar:focus-visible, .ur-mas:focus-visible, .ur-card:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
 .ur-reiniciar, .ur-mas { margin-top: 14px; background: none; border: 0; text-decoration: underline; color: var(--tinta-suave); font: inherit; cursor: pointer; min-height: 44px; }
 .ur-resumen { margin: 14px 0 6px; font-weight: 600; color: var(--tinta); }
 .ur-seccion { margin-top: 22px; }

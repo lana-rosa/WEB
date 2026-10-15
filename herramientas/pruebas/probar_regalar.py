@@ -81,8 +81,12 @@ def abrir(ctx, base, catalogo, ruta='/universo-rosina.html', estado=200, config=
     return page, errores
 
 
-def chip(page, clave, id_):
-    return page.locator('.ur-chip[data-clave="%s"][data-id="%s"]' % (clave, id_))
+def lista(page, clave):
+    return page.locator('select.ur-select[data-clave="%s"]' % clave)
+
+
+def elegir(page, clave, id_):
+    lista(page, clave).select_option(id_)
 
 
 def tarjetas(page, seccion):
@@ -147,7 +151,7 @@ def main():
             tag = 'm' if ctx is movil else 'd'
             page, err = abrir(ctx, base, CATALOGO)
             verificar('muestra solo los 4 filtros sin etiquetas (tipo, presupuesto, tamaño, disponibilidad)', page.locator('.ur-grupo').count() == 4, page.locator('.ur-grupo').count())
-            verificar('no hay filtros de ocasión ni «para quién» hasta que haya etiquetas revisadas', page.locator('.ur-chip[data-clave="ocasion"]').count() == 0 and page.locator('.ur-chip[data-clave="destinatario"]').count() == 0)
+            verificar('no hay filtros de ocasión ni «para quién» hasta que haya etiquetas revisadas', lista(page, 'ocasion').count() == 0 and lista(page, 'destinatario').count() == 0)
             verificar('sin filtros se ven los productos y las ideas', tarjetas(page, 'Disponibles ya').count() > 0 and tarjetas(page, 'Ideas para personalizar').count() == 3)
             verificar('sin scroll horizontal', sin_scroll_horizontal(page))
             if CAPTURAS:
@@ -158,19 +162,19 @@ def main():
                 captura(page, 'universo-%s-1-inicio.png' % tag, CAPTURAS)
 
             # R1: sin resultados → mensaje claro y WhatsApp
-            chip(page, 'tipo', 'llavero').click(); chip(page, 'presupuesto', 'p5').click()
+            elegir(page, 'tipo', 'llavero'); elegir(page, 'presupuesto', 'p5')
             verificar('R1 sin resultados: explica y ofrece WhatsApp', page.locator('.ur-vacio').count() == 1 and 'No encontré productos' in page.inner_text('.ur-vacio') and page.locator('.ur-cierre a[href^="https://wa.me/573205072801"]').count() == 1)
             verificar('R1 el resumen en vivo dice «Sin resultados»', 'Sin resultados' in page.inner_text('.ur-resumen'))
             # R2: sin existencia solo en «Por encargo»
             page.click('.ur-reiniciar')
-            chip(page, 'tipo', 'otro').click(); chip(page, 'presupuesto', 'p5').click()
+            elegir(page, 'tipo', 'otro'); elegir(page, 'presupuesto', 'p5')
             verificar('R2 el Bolso ZARIA (sin existencia) aparece solo en «Por encargo»', tarjetas(page, 'Por encargo').filter(has_text='Bolso ZARIA').count() == 1 and tarjetas(page, 'Disponibles ya').count() == 0)
             verificar('R2 la tarjeta dice «Por encargo» con el tiempo real del ERP', 'Por encargo · 10 días hábiles' in tarjetas(page, 'Por encargo').first.inner_text())
-            chip(page, 'disponibilidad', 'ya').click()
+            elegir(page, 'disponibilidad', 'ya')
             verificar('R2 con «lo necesito ya» el Bolso desaparece', page.locator('.ur-card').count() == 0)
             # ideas
             page.click('.ur-reiniciar')
-            chip(page, 'tipo', 'amigurumi').click(); chip(page, 'presupuesto', 'p3').click(); chip(page, 'tamano', 'mediano').click()
+            elegir(page, 'tipo', 'amigurumi'); elegir(page, 'presupuesto', 'p3'); elegir(page, 'tamano', 'mediano')
             ideas = tarjetas(page, 'Ideas para personalizar')
             nombres_ideas = [ideas.nth(i).inner_text() for i in range(ideas.count())]
             verificar('ideas: con $50.000–$100.000 y mediano salen las de 13 y 15 cm (85.000 y 95.000), no la de 20 cm ($115.000)', ideas.count() == 2 and any('13 cm' in n for n in nombres_ideas) and any('15 cm' in n for n in nombres_ideas), nombres_ideas)
@@ -179,7 +183,7 @@ def main():
             verificar('todas las tarjetas llevan a la ficha de la tienda con la ruta absoluta', all(h.startswith('/tienda.html?producto=') for h in hrefs), hrefs[:3])
             # R4: precios idénticos al catálogo
             page.click('.ur-reiniciar')
-            chip(page, 'tipo', 'amigurumi').click()
+            elegir(page, 'tipo', 'amigurumi')
             while page.locator('.ur-mas').count():
                 page.locator('.ur-mas').first.click()
             catalogo_por_nombre = {x['nombre']: x for x in CATALOGO}
@@ -200,14 +204,19 @@ def main():
 
         print('\n[Teclado y lectores de pantalla]')
         page, err = abrir(pc, base, CATALOGO)
-        c = chip(page, 'tipo', 'llavero')
-        c.focus(); page.keyboard.press('Enter')
-        verificar('R5 Enter activa la opción (aria-pressed=true)', c.get_attribute('aria-pressed') == 'true')
-        page.keyboard.press('Space')
-        verificar('R5 Espacio la desactiva', c.get_attribute('aria-pressed') == 'false')
+        sel_tipo = lista(page, 'tipo')
+        verificar('R5 los filtros son listas desplegables (select), una por pregunta', page.locator('select.ur-select').count() == 4 and page.locator('.ur-chip').count() == 0)
+        verificar('R5 cada lista tiene su etiqueta asociada (label for)', page.eval_on_selector_all('select.ur-select', 'els => els.every(s => { const l = document.querySelector("label[for=" + s.id + "]"); return l && l.textContent.length > 5; })'))
+        verificar('R5 la primera opción de cada lista es «sin filtro»', page.eval_on_selector_all('select.ur-select', 'els => els.every(s => s.options[0].value === "" && s.value === "")'))
+        sel_tipo.focus(); page.keyboard.press('ArrowDown')
+        verificar('R5 con el teclado (flecha abajo) se elige una opción y se filtra', sel_tipo.input_value() == 'amigurumi' and page.locator('.ur-select.ur-elegido').count() == 1 and tarjetas(page, 'Disponibles ya').count() > 0)
+        page.keyboard.press('ArrowUp')
+        verificar('R5 flecha arriba vuelve a «sin filtro»', sel_tipo.input_value() == '' and page.locator('.ur-select.ur-elegido').count() == 0)
         verificar('R5 el resumen es una región en vivo y educada', page.get_attribute('.ur-resumen', 'aria-live') == 'polite' and page.get_attribute('.ur-resumen', 'role') == 'status')
-        verificar('R5 los grupos son fieldset con legend', page.locator('fieldset.ur-grupo legend').count() == 4)
-        verificar('R5 todos los botones de opciones miden al menos 44 px de alto', page.eval_on_selector_all('.ur-chip', 'els => els.every(e => e.getBoundingClientRect().height >= 43.5)'))
+        elegir(page, 'tipo', 'llavero'); elegir(page, 'presupuesto', 'p5')
+        page.click('.ur-reiniciar')
+        verificar('R5 «Empezar de nuevo» devuelve todas las listas a «sin filtro»', page.eval_on_selector_all('select.ur-select', 'els => els.every(s => s.value === "")') and page.locator('.ur-select.ur-elegido').count() == 0 and page.locator('.ur-vacio').count() == 0)
+        verificar('R5 todas las listas miden al menos 44 px de alto', page.eval_on_selector_all('select.ur-select', 'els => els.every(e => e.getBoundingClientRect().height >= 44)'))
         verificar('R5 las imágenes de producto tienen texto alternativo', page.eval_on_selector_all('.ur-card img', 'els => els.every(i => i.alt && i.alt.length > 2)'))
         page.close()
 
@@ -216,7 +225,7 @@ def main():
         cat_rev = con_etiquetas_revisadas(CATALOGO, revisados)
         page, err = abrir(pc, base, cat_rev)
         verificar('con 24 productos revisados aparecen los filtros de ocasión y «para quién» (%d grupos)' % page.locator('.ur-grupo').count(), page.locator('.ur-grupo').count() == 6)
-        chip(page, 'ocasion', 'dia_madre').click()
+        elegir(page, 'ocasion', 'dia_madre')
         nombres = [n for n, _ in precios_de(page)]
         esperados = [x['nombre'] for x in cat_rev if x['etiquetas_revisadas'] and 'dia_madre' in x['ocasiones'] and not x['personalizable_base']]
         # Los 3 «Amigurumi personalizado» (ideas) siempre se ofrecen: se quitan de la comparación
@@ -229,7 +238,7 @@ def main():
         print('\n[Vista previa de etiquetas propuestas — solo para Sara]')
         page, err = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?etiquetas=propuestas')
         verificar('muestra los 6 grupos y un aviso de que es una vista previa', page.locator('.ur-grupo').count() == 6 and 'Vista previa' in page.inner_text('.ur-aviso'))
-        chip(page, 'destinatario', 'mama').click()
+        elegir(page, 'destinatario', 'mama')
         verificar('la vista previa filtra con las etiquetas propuestas', page.locator('.ur-card').count() > 0)
         if CAPTURAS:
             page.evaluate("document.querySelector('#regalar').scrollIntoView()")
@@ -250,7 +259,7 @@ def main():
             page.close()
         config_apagada = open(os.path.join(RAIZ, 'js', 'universo', 'config.js'), encoding='utf-8').read().replace('REGALAR_ACTIVO: true', 'REGALAR_ACTIVO: false')
         page, err = abrir(pc, base, CATALOGO, config=config_apagada)
-        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('.ur-chip').count() == 0 and page.locator('.recorrido').count() == 4)
+        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('.ur-select').count() == 0 and page.locator('.recorrido').count() == 4)
         page.close()
 
         print('\n[Página en general]')

@@ -4,7 +4,7 @@
 
 ## Qué es
 - `universo-rosina.html`: portada del universo con los cuatro recorridos de Rosina (regalar, crear, inspirarte, aprender). Crear, inspirarte y aprender llevan a lo que ya existe (`/personaliza.html`, `/revista.html`, `/academy/`); no se duplica nada.
-- «Rosina te ayuda a regalar» (`js/universo/regalar.js`): el cliente elige tipo de regalo, presupuesto, tamaño y si lo necesita ya (y, cuando haya etiquetas revisadas, para quién y ocasión) y ve productos **reales** de la tienda en tres bloques: **Disponibles ya** (hay existencias), **Por encargo** (con el tiempo de elaboración que ya tiene cada producto en el ERP) e **Ideas para personalizar** (los tres «Amigurumi personalizado» de 13, 15 y 20 cm; las fotos son de referencia).
+- «Rosina te ayuda a regalar» (`js/universo/regalar.js`): las preguntas son **listas desplegables** (`select` nativo, con su etiqueta; la primera opción es «sin filtro»): la persona elige tipo de regalo, presupuesto, tamaño y si lo necesita ya (y, cuando haya etiquetas revisadas, para quién y ocasión) y ve productos **reales** de la tienda en tres bloques: **Disponibles ya** (hay existencias), **Por encargo** (con el tiempo de elaboración que ya tiene cada producto en el ERP) e **Ideas para personalizar** (los tres «Amigurumi personalizado» de 13, 15 y 20 cm; las fotos son de referencia).
 - Es un recomendador **por reglas**: no usa IA ni inventa productos, precios, existencias ni plazos. Cada tarjeta lleva a la ficha de la tienda (`/tienda.html?producto=<id>`), que ya sabe agregar al carrito, pagar con Wompi o pasar al formulario de personalizados.
 - Mantiene fuentes y colores del sitio (DynaPuff, Hanken Grotesk, #E74E96), enlaces absolutos, sin Google Fonts.
 
@@ -20,7 +20,7 @@ Sin cuentas, sin formularios, sin guardar nada de la persona: las elecciones viv
 `CONFIG.REGALAR_ACTIVO = false` en `js/universo/config.js` apaga el recomendador (la página sigue entera con el aviso «Muy pronto»). Para apagar toda la etapa basta no enlazar la página.
 
 ## Pruebas (`python3 herramientas/pruebas/probar_regalar.py [carpeta_capturas]`)
-61 comprobaciones con la respuesta real del catálogo (`herramientas/pruebas/fixtures/regalos.json`, 72 productos), con Supabase simulado (no toca producción) en celular (390 px) y computador (1280 px): sin resultados (R1), producto sin existencia solo en «Por encargo» (R2), producto sin etiqueta revisada excluido de los filtros de ocasión y destinatario (R3), precios idénticos al catálogo (R4), teclado y lector de pantalla (R5), error de red y catálogo vacío, interruptor apagado, sin scroll horizontal y sin errores de JavaScript.
+64 comprobaciones con la respuesta real del catálogo (`herramientas/pruebas/fixtures/regalos.json`, 72 productos), con Supabase simulado (no toca producción) en celular (390 px) y computador (1280 px): sin resultados (R1), producto sin existencia solo en «Por encargo» (R2), producto sin etiqueta revisada excluido de los filtros de ocasión y destinatario (R3), precios idénticos al catálogo (R4), listas desplegables accesibles con teclado y lector de pantalla (R5), error de red y catálogo vacío, interruptor apagado, sin scroll horizontal y sin errores de JavaScript.
 
 ## Para publicar
 1. Sara revisa la vista previa / capturas y revisa (o delega) las etiquetas.

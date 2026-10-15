@@ -53,36 +53,34 @@ export async function iniciarRegalar(raiz) {
   } catch (e) { return pintarError(raiz); }
   const usarEtiquetas = modoPropuestas || puedeUsarEtiquetas(productos);
   const sel = {};
+  // Cada pregunta es una lista desplegable (con su etiqueta) y la primera opción significa «sin filtro».
   const grupos = [
-    ['tipo', '¿Qué tipo de regalo buscas?', TIPOS.map((x) => [x[0], x[1]])],
-    ['presupuesto', '¿Cuánto quieres invertir?', PRESUPUESTOS.map((x) => [x[0], x[1]])],
-    ['tamano', '¿De qué tamaño?', TAMANOS.map((x) => [x[0], x[1]])],
-    ['disponibilidad', '¿Lo necesitas ya?', DISPONIBILIDAD],
+    ['tipo', '¿Qué tipo de regalo buscas?', 'Todos los tipos', TIPOS.map((x) => [x[0], x[1]])],
+    ['presupuesto', '¿Cuánto quieres invertir?', 'Cualquier presupuesto', PRESUPUESTOS.map((x) => [x[0], x[1]])],
+    ['tamano', '¿De qué tamaño?', 'Cualquier tamaño', TAMANOS.map((x) => [x[0], x[1]])],
+    ['disponibilidad', '¿Lo necesitas ya?', 'No es urgente', DISPONIBILIDAD],
   ];
-  if (usarEtiquetas) { grupos.splice(0, 0, ['destinatario', '¿Para quién es?', DESTINATARIOS], ['ocasion', '¿Qué ocasión celebran?', OCASIONES]); }
+  if (usarEtiquetas) { grupos.splice(0, 0, ['destinatario', '¿Para quién es?', 'Para cualquiera', DESTINATARIOS], ['ocasion', '¿Qué ocasión celebran?', 'Cualquier ocasión', OCASIONES]); }
 
   const marco = nodo('div', 'ur-marco');
   if (modoPropuestas) marco.append(nodo('p', 'ur-aviso', 'Vista previa: se están usando etiquetas propuestas que todavía no han sido revisadas. No es lo que ve el público.'));
   const filtros = nodo('div', 'ur-filtros');
-  const botones = {};
-  grupos.forEach(([clave, titulo, opciones]) => {
-    const fs = nodo('fieldset', 'ur-grupo'); fs.append(nodo('legend', null, titulo));
-    const fila = nodo('div', 'ur-chips');
-    opciones.forEach(([id, texto]) => {
-      const b = nodo('button', 'ur-chip', texto); b.type = 'button'; b.setAttribute('aria-pressed', 'false'); b.dataset.clave = clave; b.dataset.id = id;
-      b.addEventListener('click', () => {
-        const activo = sel[clave] === id;
-        if (activo) delete sel[clave]; else sel[clave] = id;
-        fila.querySelectorAll('.ur-chip').forEach((x) => x.setAttribute('aria-pressed', String(sel[clave] === x.dataset.id)));
-        evento('regalar_paso', { paso: clave, valor_categoria: activo ? 'ninguno' : id });
-        pintar();
-      });
-      (botones[clave] = botones[clave] || []).push(b); fila.append(b);
+  grupos.forEach(([clave, titulo, sinFiltro, opciones]) => {
+    const campo = nodo('div', 'ur-grupo');
+    const lista = nodo('select', 'ur-select'); lista.id = 'ur-' + clave; lista.dataset.clave = clave;
+    const et = nodo('label', null, titulo); et.htmlFor = lista.id;
+    lista.append(Object.assign(nodo('option', null, sinFiltro), { value: '' }));
+    opciones.forEach(([id, texto]) => lista.append(Object.assign(nodo('option', null, texto), { value: id })));
+    lista.addEventListener('change', () => {
+      if (lista.value) sel[clave] = lista.value; else delete sel[clave];
+      lista.classList.toggle('ur-elegido', !!lista.value);
+      evento('regalar_paso', { paso: clave, valor_categoria: lista.value || 'ninguno' });
+      pintar();
     });
-    fs.append(fila); filtros.append(fs);
+    campo.append(et, lista); filtros.append(campo);
   });
   const reiniciar = nodo('button', 'ur-reiniciar', 'Empezar de nuevo'); reiniciar.type = 'button';
-  reiniciar.addEventListener('click', () => { Object.keys(sel).forEach((k) => delete sel[k]); raiz.querySelectorAll('.ur-chip').forEach((x) => x.setAttribute('aria-pressed', 'false')); pintar(); });
+  reiniciar.addEventListener('click', () => { Object.keys(sel).forEach((k) => delete sel[k]); raiz.querySelectorAll('.ur-select').forEach((x) => { x.value = ''; x.classList.remove('ur-elegido'); }); pintar(); });
   const resumen = nodo('p', 'ur-resumen'); resumen.setAttribute('role', 'status'); resumen.setAttribute('aria-live', 'polite');
   const resultados = nodo('div', 'ur-resultados');
   marco.append(filtros, reiniciar, resumen, resultados);
