@@ -35,7 +35,7 @@ export const POSES_ROSINA = {
   orgullosa: '/img/aventuras/rosina-original/orgullosa.webp',
   pensando: '/img/aventuras/rosina-original/pensando.webp',
   enojada: '/img/aventuras/rosina-original/enojada.webp',
-  tejiendo: '/img/aventuras/rosina-original/tejiendo.webp',
+  tejiendo: '/img/aventuras/rosina-original/tejiendo2.webp',
   gancho: '/img/aventuras/rosina-original/gancho.webp',
   contando: '/img/aventuras/rosina-original/contando.webp',
   mapa: '/img/aventuras/rosina-original/mapa.webp',
