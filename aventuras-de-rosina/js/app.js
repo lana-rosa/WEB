@@ -3,13 +3,13 @@
 // Privacidad: no hay cuentas, ni cookies, ni analítica, ni peticiones a servidores. Todo vive en este navegador (ver estado.js).
 // Para cambiar textos o añadir capítulos NO hay que tocar este archivo: ver contenido/misiones.js y herramientas/aventuras-de-rosina/LEEME.md.
 
-import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=6';
-import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=6';
-import { personaje, dibujo, mapaFondo } from './dibujos.js?v=6';
-import { jugar, miniBosque } from './juegos.js?v=6';
-import * as E from './estado.js?v=6';
-import * as voz from './voz.js?v=6';
-import * as musica from './musica.js?v=6';
+import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=7';
+import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=7';
+import { personaje, dibujo, mapaFondo } from './dibujos.js?v=7';
+import { jugar, miniBosque } from './juegos.js?v=7';
+import * as E from './estado.js?v=7';
+import * as voz from './voz.js?v=7';
+import * as musica from './musica.js?v=7';
 
 // Título del libro (Libro 1 de «Rosina y el Bosque Tejido», que es el nombre del mundo y del mapa).
 const TITULO_LIBRO = 'Rosina y la gran aventura de la primera cadeneta';
@@ -302,6 +302,7 @@ function vistaPractica(m) {
       <h1>${esc(p.titulo)}</h1>
       <p class="intro con-voz">${botonVoz()}${esc(p.intro)}</p>
       <ul class="checks">${p.lista.map((x) => `<li><label><input type="checkbox"> <span>${esc(x)}</span></label></li>`).join('')}</ul>
+      ${p.descanso ? `<p class="descanso"><span aria-hidden="true">🌙</span> ${esc(p.descanso)}</p>` : ''}
       <div class="tarjeta reto"><h2>Tu reto con hilo real</h2><p>${esc(p.reto)}</p></div>
       <div class="tarjeta para-adulto-caja"><p><strong>Para quien acompaña:</strong> ${esc(p.adulto)}</p></div>
       <div id="practica-resp" class="retro ${v ? 'bien' : ''}" role="status" aria-live="polite">${v === 'hecho' ? '¡Qué bien! Practicaste con tu hilo real.' : v === 'despues' ? esc(p.sinMateriales) : ''}</div>
