@@ -16,23 +16,18 @@ LADO = 512
 
 
 def sin_borde(ruta):
+    """Quita la banda del borde de sticker midiendo su ancho (no por color): así no se borran partes claras de Rosina (orejas, manos, cara)."""
     im = Image.open(ruta).convert('RGBA')
     a = np.array(im)
-    alfa = a[..., 3]
-    blanco = (alfa < 250) | (a[..., :3].min(axis=2) >= 236)  # transparente o casi blanco
-    etiquetas, n = ndimage.label(blanco)
-    borde = set(etiquetas[0, :]) | set(etiquetas[-1, :]) | set(etiquetas[:, 0]) | set(etiquetas[:, -1])
-    borde.discard(0)
-    exterior = np.isin(etiquetas, list(borde))
-    # el borde de sticker es una banda: se quita todo el blanco conectado con el exterior y se suaviza un píxel
-    a[exterior, 3] = 0
+    dentro = a[..., 3] > 128
+    dist = ndimage.distance_transform_edt(dentro)  # distancia de cada punto al exterior
+    coloreado = dentro & (a[..., :3].min(axis=2) < 232)  # el dibujo propio (contorno, pelo, vestido…); el borde es casi blanco
+    ancho = np.percentile(dist[coloreado], 2)  # donde empieza el dibujo = ancho del borde
+    mantener = dist >= max(1.0, ancho - 0.5)
+    mantener = ndimage.binary_opening(mantener, iterations=1)
+    alfa = ndimage.gaussian_filter(mantener.astype(float), 0.8) * 255
+    a[..., 3] = np.clip(alfa, 0, 255).astype(np.uint8)
     nuevo = Image.fromarray(a)
-    alfa2 = np.array(nuevo)[..., 3]
-    suave = ndimage.gaussian_filter(alfa2.astype(float), 0.8)
-    suave[alfa2 == 0] = np.minimum(suave[alfa2 == 0], 0)
-    arr = np.array(nuevo); arr[..., 3] = np.clip(np.where(alfa2 > 0, np.maximum(suave, alfa2 * 0.0 + 0) + (alfa2 - suave).clip(0) * 0, 0), 0, 255).astype(np.uint8)
-    arr[..., 3] = np.where(alfa2 > 0, 255, 0).astype(np.uint8)
-    nuevo = Image.fromarray(arr)
     caja = nuevo.getbbox()
     nuevo = nuevo.crop(caja)
     k = (LADO - 24) / max(nuevo.size)
