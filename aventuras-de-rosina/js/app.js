@@ -3,14 +3,14 @@
 // Privacidad: no hay cuentas, ni cookies, ni analítica, ni peticiones a servidores. Todo vive en este navegador (ver estado.js).
 // Para cambiar textos o añadir capítulos NO hay que tocar este archivo: ver contenido/misiones.js y herramientas/aventuras-de-rosina/LEEME.md.
 
-import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=26';
-import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=26';
-import { personaje, dibujo, mapaFondo } from './dibujos.js?v=26';
-import { jugar, miniBosque } from './juegos.js?v=26';
-import * as E from './estado.js?v=26';
-import * as voz from './voz.js?v=26';
-import * as musica from './musica.js?v=26';
-import { pers, sinNombre } from './nombre.js?v=26';
+import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=28';
+import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=28';
+import { personaje, dibujo, mapaFondo } from './dibujos.js?v=28';
+import { jugar, miniBosque } from './juegos.js?v=28';
+import * as E from './estado.js?v=28';
+import * as voz from './voz.js?v=28';
+import * as musica from './musica.js?v=28';
+import { pers, sinNombre } from './nombre.js?v=28';
 
 // Título del libro (Libro 1 de «Rosina y el Bosque Tejido», que es el nombre del mundo y del mapa).
 const TITULO_LIBRO = 'Rosina y la gran aventura de la primera cadeneta';
@@ -75,7 +75,8 @@ const vozOk = () => vozListo;
 const botonVoz = () => (vozListo ? '<button type="button" class="btn-voz" data-accion="leer" aria-label="Escuchar en voz alta" title="Escuchar">🔊</button>' : '');
 
 // ---------------------------------------------------------------- piezas comunes
-const fig = (def, alt) => `<figure class="paso-fig"><div class="paso-dib">${dibujo(def)}</div><figcaption class="paso-alt">${esc(alt)} <span class="provisional">Dibujo de ayuda (provisional)</span></figcaption></figure>`;
+const CON_FOTO = ['ovillo', 'gancho', 'tijeras', 'nudo2'];  // pasos con foto real (img/aventuras/fotos/): sin la etiqueta de dibujo provisional
+const fig = (def, alt) => `<figure class="paso-fig"><div class="paso-dib">${dibujo(def)}</div><figcaption class="paso-alt">${esc(alt)}${CON_FOTO.includes(def && def.tipo) ? '' : ' <span class="provisional">Dibujo de ayuda (provisional)</span>'}</figcaption></figure>
 // Rosina en las escenas del libro: los stickers oficiales (varias poses). alt '' la marca como decorativa.
 const ALT_ROSINA = {
   llora: 'Rosina llora de felicidad, rodeada de corazones y estrellitas.', celebra: 'Rosina celebra con los brazos en alto y estrellitas.',

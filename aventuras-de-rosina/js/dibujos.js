@@ -3,7 +3,7 @@
 // Rosina NO se dibuja aquí: usa las imágenes oficiales de /img/stickers/; los amigos, las poses de /img/aventuras/plano/ (ver personajes.js).
 // Para reemplazar un dibujo por una imagen o un video final, ver herramientas/aventuras-de-rosina/LEEME.md (sección "Cambiar dibujos por fotos o videos").
 
-import { POSES_PLANO } from '../contenido/personajes.js?v=26';
+import { POSES_PLANO } from '../contenido/personajes.js?v=28';
 
 const HA = '#cc1786';   // hilo, borde (fucsia de marca)
 const HB = '#ff66c4';   // hilo, relleno (rosa de marca)
@@ -28,6 +28,10 @@ const defsFlecha = `<defs><marker id="pf" viewBox="0 0 10 10" refX="8" refY="5" 
  *  hacia la derecha; ang gira el conjunto. La imagen se estira un poco a lo largo para que quede más cuerpo fino donde van los bucles. */
 const IMP = '/img/aventuras/implementos/';
 const imagen = (nombre, x, y, w, h, ajuste = 'xMidYMid meet') => `<image href="${IMP}${nombre}.webp" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="${ajuste}"/>`;
+// Fotos reales de los juegos (hojas de Sara, 17-oct-2026; recortes en img/aventuras/fotos/ con herramientas/aventuras-de-rosina/recortar_fotos_juegos.py).
+const CREMA = '#F6F3EC';
+const foto = (n, x, y, w, h) => `<image href="/img/aventuras/fotos/${n}.webp" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet"/>`;
+const svgFoto = (contenido) => `<svg class="dib dib-foto" viewBox="0 0 330 200" role="presentation" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" rx="18" fill="${CREMA}"/>${contenido}</svg>`;
 const gancho = (x, y, ang = 0, s = 1) =>
   `<g transform="translate(${x} ${y}) rotate(${ang}) scale(${s})">${imagen('gancho', 0, -9.1, 190, 31.4, 'none')}</g>`;
 
@@ -61,35 +65,31 @@ const PINTORES = {
     ${gancho(150, 134, -3, .55)}
     <ellipse cx="170" cy="188" rx="46" ry="9" fill="#FBE4EF"/>`),
 
-  ovillo: (p) => svg(`
-    ${imagen('ovillo', 92, 14, 150, 164)}
-    ${p.cola ? `${texto(66, 188, 'la cola', 14)}` : ''}`),
+  ovillo: (p) => svgFoto(`
+    ${foto('ovillo', 70, 4, 190, 192)}
+    ${p.cola ? `<rect x="196" y="160" width="86" height="26" rx="13" fill="#fff" opacity=".9"/>${texto(239, 178, 'la cola', 14)}` : ''}`),
 
-  gancho: () => svg(`${defsFlecha}
-    ${gancho(36, 100, 0, 1.3)}
-    ${texto(40, 58, 'Punta', 15)}${flecha('M42,64 L40,90')}
-    ${texto(140, 160, 'Curva', 15)}${texto(140, 178, 'del gancho', 14, 'middle', 500)}${flecha('M124,146 L54,100')}
-    ${texto(225, 62, 'Mango', 15)}${flecha('M225,68 L225,88')}`),
+  gancho: () => svgFoto(`${defsFlecha}
+    ${foto('gancho', 60, 4, 210, 192)}
+    <rect x="12" y="14" width="58" height="26" rx="13" fill="#fff" opacity=".92"/>${texto(41, 32, 'Punta', 15)}${flecha('M46,42 L84,58')}
+    <rect x="12" y="92" width="112" height="44" rx="14" fill="#fff" opacity=".92"/>${texto(68, 110, 'Curva', 15)}${texto(68, 127, 'del gancho', 14, 'middle', 500)}${flecha('M96,92 L98,58')}
+    <rect x="250" y="120" width="68" height="26" rx="13" fill="#fff" opacity=".92"/>${texto(284, 138, 'Mango', 15)}${flecha('M262,120 L238,104')}`),
 
   // Tijeras de punta redonda y aguja lanera de punta roma (ilustraciones de ChatGPT recortadas en img/aventuras/implementos/).
-  tijeras: () => svg(`
-    ${imagen('tijeras', 12, 18, 176, 115)}
-    ${texto(100, 156, 'Tijeras de punta redonda', 14)}
-    ${imagen('aguja', 196, 24, 124, 53)}
-    ${texto(258, 98, 'Aguja lanera', 14)}${texto(258, 114, '(punta roma)', 13, 'middle', 500)}
-    <rect x="206" y="140" width="104" height="30" rx="15" fill="${HA}"/>${texto(258, 161, 'Solo adultos', 14, 'middle', 700, '#fff')}`),
+  tijeras: () => svgFoto(`
+    ${foto('tijeras', 6, 4, 150, 150)}${texto(81, 172, 'Tijeras de punta', 13)}${texto(81, 188, 'redonda', 13)}
+    ${foto('aguja', 160, 14, 166, 124)}${texto(243, 152, 'Aguja lanera', 14)}${texto(243, 168, '(punta roma)', 12, 'middle', 500)}
+    <rect x="198" y="174" width="92" height="22" rx="11" fill="${HA}"/>${texto(244, 190, 'Solo adultos', 12, 'middle', 700, '#fff')}`),
 
   nudo1: () => svg(`${defsFlecha}
     ${hilo('M60,176 C80,146 122,116 150,100 C202,64 214,16 164,22 C114,28 118,82 150,100 C176,116 222,150 268,176', 8)}
     ${texto(58, 196, 'la cola', 14, 'start')}${texto(270, 196, 'al ovillo', 14, 'end')}
     ${texto(240, 40, 'cruza los hilos', 14, 'start')}${flecha('M238,46 L170,92')}`),
 
-  nudo2: () => svg(`${defsFlecha}
-    ${gancho(60, 96, 0, 1.2)}
-    ${lazoGancho(100, 96, 15, 22)}
-    ${hilo('M118,120 C112,150 96,170 70,184', 6)}${hilo('M122,72 C150,40 230,44 270,70', 6)}
-    ${texto(70, 196, 'la cola', 14, 'middle')}${texto(262, 40, 'al ovillo', 14, 'end')}
-    ${texto(190, 150, 'bucle en el gancho', 14, 'start')}${flecha('M188,142 L138,108')}`),
+  nudo2: () => svgFoto(`${defsFlecha}
+    ${foto('nudo-corredizo', 0, 20, 330, 160)}
+    <rect x="8" y="150" width="64" height="26" rx="13" fill="#fff" opacity=".92"/>${texto(40, 168, 'al ovillo', 14)}
+    <rect x="150" y="150" width="172" height="26" rx="13" fill="#fff" opacity=".92"/>${texto(236, 168, 'bucle en el gancho', 14)}${flecha('M200,150 L130,100')}`),
 
   // Agarre de cuchillo: la mano que más usas toma el gancho desde arriba (el mango descansa en la palma y el índice se apoya sobre el gancho);
   // la otra mano sujeta la base del nudo entre el pulgar y el dedo medio, y el hilo pasa por el índice. Dibujo esquemático y provisional.
@@ -143,12 +143,7 @@ const PINTORES = {
     ${texto(176, 160, 'jala por los 2 bucles', 15, 'start')}${flecha('M170,152 L126,116')}
     ${texto(160, 44, 'queda 1 bucle', 15)}`),
 
-  // Solo la lana ideal (gruesa y clara) usa la imagen del ovillo; la fina y la peluda conservan su dibujo.
-  muestraLana: (p) => {
-    if (p.variante === 'gruesa') return svg(`${imagen('ovillo', 28, 12, 150, 164)}${hilo('M158,150 C196,176 224,120 262,146', 13, HA, '#FFC6E2')}`, '0 0 300 200');
-    if (p.variante === 'fina') return svg(`<circle cx="100" cy="100" r="40" fill="#4a3a4f" stroke="#2b2430" stroke-width="3"/>${[0, 1, 2, 3, 4, 5].map((i) => `<path d="M${64 + i * 4},${84 + i * 8} q36,-14 ${72 - i * 8},2" fill="none" stroke="#7d6a82" stroke-width="1.5"/>`).join('')}${hilo('M140,124 C170,108 190,150 220,128 S250,118 276,130', 2.5, '#2b2430', '#5b4a60')}`, '0 0 300 200');
-    return svg(`<circle cx="100" cy="100" r="50" fill="#e29ac0" stroke="#b86f97" stroke-width="3"/>${Array.from({ length: 36 }, (_, i) => { const a = (i / 36) * Math.PI * 2; return `<path d="M${100 + Math.cos(a) * 46},${100 + Math.sin(a) * 46} l${Math.cos(a) * 16},${Math.sin(a) * 16}" stroke="#b86f97" stroke-width="3" stroke-linecap="round"/>`; }).join('')}${hilo('M156,128 C186,112 206,150 236,128 S262,118 282,130', 12, '#b86f97', '#e29ac0')}`, '0 0 300 200');
-  },
+  muestraLana: (p) => svgFoto(foto({ gruesa: 'lana-gruesa', fina: 'lana-fina', peluda: 'lana-peluda' }[p.variante] || 'lana-gruesa', 0, 0, 330, 200)),
 
   nudoSolo: () => svg(`${hilo('M70,120 C90,40 170,50 150,110 C130,170 60,130 120,80 C180,30 250,90 200,130 C160,160 120,130 160,100', 7)}${hilo('M60,150 C30,170 40,190 80,186 M200,140 C240,160 270,150 280,176', 7)}`),
 
