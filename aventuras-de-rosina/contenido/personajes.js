@@ -36,11 +36,11 @@ export const POSES_ROSINA = {
   pensando: '/img/aventuras/rosina-original/pensando.webp',
   enojada: '/img/aventuras/rosina-original/enojada.webp',
   tejiendo: '/img/aventuras/rosina-original/tejiendo.webp',
-  gancho: '/img/aventuras/rosina-original/ovillo.webp',
-  contando: '/img/aventuras/rosina-original/pensando.webp',
-  mapa: '/img/aventuras/rosina-original/saludo.webp',
-  diploma: '/img/aventuras/rosina-original/orgullosa.webp',
-  lupa: '/img/aventuras/rosina-original/pensando.webp',
+  gancho: '/img/aventuras/rosina-original/gancho.webp',
+  contando: '/img/aventuras/rosina-original/contando.webp',
+  mapa: '/img/aventuras/rosina-original/mapa.webp',
+  diploma: '/img/aventuras/rosina-original/diploma.webp',
+  lupa: '/img/aventuras/rosina-original/lupa.webp',
 };
 
 // Estilo de las escenas: ilustración plana como la Rosina oficial (decisión de Sara, 12-oct-2026). Rosina usa los stickers de arriba y sus amigos

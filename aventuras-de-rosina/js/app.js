@@ -3,14 +3,14 @@
 // Privacidad: no hay cuentas, ni cookies, ni analítica, ni peticiones a servidores. Todo vive en este navegador (ver estado.js).
 // Para cambiar textos o añadir capítulos NO hay que tocar este archivo: ver contenido/misiones.js y herramientas/aventuras-de-rosina/LEEME.md.
 
-import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=23';
-import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=23';
-import { personaje, dibujo, mapaFondo } from './dibujos.js?v=23';
-import { jugar, miniBosque } from './juegos.js?v=23';
-import * as E from './estado.js?v=23';
-import * as voz from './voz.js?v=23';
-import * as musica from './musica.js?v=23';
-import { pers, sinNombre } from './nombre.js?v=23';
+import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=24';
+import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=24';
+import { personaje, dibujo, mapaFondo } from './dibujos.js?v=24';
+import { jugar, miniBosque } from './juegos.js?v=24';
+import * as E from './estado.js?v=24';
+import * as voz from './voz.js?v=24';
+import * as musica from './musica.js?v=24';
+import { pers, sinNombre } from './nombre.js?v=24';
 
 // Título del libro (Libro 1 de «Rosina y el Bosque Tejido», que es el nombre del mundo y del mapa).
 const TITULO_LIBRO = 'Rosina y la gran aventura de la primera cadeneta';
@@ -95,15 +95,15 @@ const ALT_ROSINA = {
   flor: 'Rosina sostiene una flor.',
   gorro: 'Rosina lleva un gorro rosado y se sostiene las mejillas.',
   tejiendo: 'Rosina sentada teje con su gancho y una lana rosada.',
-  gancho: 'Rosina sostiene un ovillo en forma de corazón.',
-  contando: 'Rosina piensa con una patita en la barbilla.',
+  gancho: 'Rosina levanta su gancho de crochet y sostiene un ovillo rosado.',
+  contando: 'Rosina guiña un ojo, levanta un dedo y saluda con la otra patita.',
   senalando: 'Rosina señala hacia un lado.',
   fuerza: 'Rosina está orgullosa, con las manos en la cintura.',
   sorpresa: 'Rosina se sorprende con las manos en las mejillas.',
   consuelo: 'Rosina te consuela con una carita tierna.',
-  mapa: 'Rosina, la ovejita guía, saluda con la patita.',
-  diploma: 'Rosina está orgullosa, con las manos en la cintura.',
-  lupa: 'Rosina piensa con una patita en la barbilla.',
+  mapa: 'Rosina exploradora lleva una mochila y mira un mapa abierto.',
+  diploma: 'Rosina sostiene un diploma enrollado con lazo, rodeada de estrellas.',
+  lupa: 'Rosina mira a través de una lupa rosada.',
 };
 const imgRosina = (pose, alt, clase = 'rosina-img', tam = 220) =>
   `<img class="${clase} sticker-r" src="${POSES_ROSINA[pose] || POSES_ROSINA.saludo}" alt="${alt === '' ? '' : esc(ALT_ROSINA[pose] || ALT_ROSINA.saludo)}" width="512" height="512" style="--w:${tam}px" decoding="async">`;
