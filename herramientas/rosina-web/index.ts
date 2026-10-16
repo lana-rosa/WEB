@@ -1,6 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
+// v18: lee también las páginas del universo de Rosina (hubs por casa, glosario, paletas, calculadoras, recursos).
 // v16 (Etapa 4): tarjetas de producto (el modelo elige códigos, los datos salen del catálogo real), medición de consumo sin datos
 // personales (rosina_web_consumo) y, solo si RW_REGISTRAR_SIN_RESPUESTA=1, registro corto y sin datos personales de preguntas sin respuesta.
 import { createClient } from "jsr:@supabase/supabase-js@2";
@@ -17,6 +18,8 @@ const PAGINAS = [
   "/merceria/como-comprar/", "/merceria/tienda-fisica/", "/academy/talleres/", "/academy/empieza-aqui/", "/academy/",
   "/agenda-rosina.html", "/merceria/", "/merceria/catalogo/", "/precios.html", "/personaliza.html", "/tienda.html",
   "/contacto.html", "/sobre-nosotras.html", "/",
+  // El universo de Rosina y su material gratis (17-oct-2026): hubs de cada casa, Conoce a Rosina, calculadoras, recursos, paletas y glosario.
+  "/universo-rosina.html", "/merceria/rosina/", "/academy/rosina/", "/rosina.html", "/calculadoras-rosina.html", "/recursos-rosina.html", "/paletas-rosina.html", "/glosario-rosina.html",
   "/merceria/terminos-de-venta/", "/merceria/cambios-y-devoluciones/", "/politicas.html",
 ];
 const MAX_PAGINA = 16000;     // por página
