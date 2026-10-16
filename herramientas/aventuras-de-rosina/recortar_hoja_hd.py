@@ -3,7 +3,7 @@
 transparente en un lienzo cuadrado de 1024 px (la pose se agranda con LANCZOS y un realce suave: el estilo plano de líneas finas lo tolera).
 
 Uso: python3 herramientas/aventuras-de-rosina/recortar_hoja_hd.py HOJA.webp salida/ nombre1 nombre2 ...   (los nombres, de izquierda a derecha)
-Busca los cortes en el espacio vacío entre poses (no necesita medidas). Si las poses se tocan (orejas o faldas pegadas) se reparten por piezas conectadas; con SOLO_COLUMNAS=1 se cortan siempre por columnas (mejor cuando las poses están bien separadas pero tienen adornos sueltos). Ver ilustraciones/PROMPTS-ROSINA-Y-JUEGOS.md.
+Busca los cortes en el espacio vacío entre poses (no necesita medidas). Si las poses se tocan (orejas o faldas pegadas) se reparten por piezas conectadas; con CON_ADORNOS=1 se conservan los adornos sueltos (confeti, estrellitas, corazones) aunque queden a los lados de la pose (úsese cuando las poses están bien separadas); con SOLO_COLUMNAS=1 se cortan siempre por columnas (mejor cuando las poses están bien separadas pero tienen adornos sueltos). Ver ilustraciones/PROMPTS-ROSINA-Y-JUEGOS.md.
 """
 import os, sys
 import numpy as np
@@ -68,7 +68,7 @@ def pose(sub):
     cajas = ndimage.find_objects(lab2); ancho = alfa.shape[1]; buenas = []
     for i, t in enumerate(tam):
         cx = (cajas[i][1].start + cajas[i][1].stop) / 2
-        pegada = cajas[i][1].start <= 2 or cajas[i][1].stop >= ancho - 2 or cx < 0.18 * ancho or cx > 0.82 * ancho
+        pegada = cajas[i][1].start <= 2 or cajas[i][1].stop >= ancho - 2 or (not os.environ.get('CON_ADORNOS') and (cx < 0.18 * ancho or cx > 0.82 * ancho))
         if t >= 0.25 * max(tam) or (t >= 0.002 * max(tam) and not pegada): buenas.append(i + 1)
     alfa = np.where(np.isin(lab2, buenas), alfa, 0)
     im = Image.fromarray(np.dstack([sub, (alfa * 255).astype(np.uint8)]).astype(np.uint8), 'RGBA')

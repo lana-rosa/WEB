@@ -134,7 +134,7 @@ export const MISIONES = [
       ],
       respuesta: 'Todas son maneras valientes de aprender. Pedir ayuda también es una forma de ser creativo.',
     },
-    fin: { texto: '¡Misión cumplida, {nombre}! Ya tienes tu mapa, tu mochila y tu pasaporte. El Bosque Tejido empieza a recuperar sus colores.', pose: 'mapa' },
+    fin: { texto: '¡Misión cumplida, {nombre}! Ya tienes tu mapa, tu mochila y tu pasaporte. El Bosque Tejido empieza a recuperar sus colores.', pose: 'salto' },
   },
 
   {
@@ -486,7 +486,7 @@ export const MISIONES = [
       ],
       respuesta: 'Mirar con calma ayuda a descubrir muchas cosas. Cada puntada cuenta una historia.',
     },
-    fin: { texto: '¡Camino listo, {nombre}! Tito llega a la colina y el camino recupera su color.', pose: 'ovillo' },
+    fin: { texto: '¡Camino listo, {nombre}! Tito llega a la colina y el camino recupera su color.', pose: 'aplaude' },
   },
 ];
 
