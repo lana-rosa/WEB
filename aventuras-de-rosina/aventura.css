@@ -382,7 +382,19 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, main:focus { outline: none; }
 .historia-arte .equipo .sticker-r { object-fit: cover; }
 
 /* ---- Pantalla completa y ventanas en el celular ---- */
-html { background: var(--hueso); max-width: 100%; overflow-x: clip; }
-body { max-width: 100%; overflow-x: clip; min-height: 100vh; min-height: 100dvh; }
+html { background: var(--hueso); width: 100%; max-width: 100%; overflow-x: hidden; }
+body { width: 100%; max-width: 100%; overflow-x: hidden; min-height: 100vh; min-height: 100dvh; }
 dialog[open] { position: fixed; inset: 0; margin: auto; height: fit-content; max-height: calc(100dvh - 24px); overflow: auto; width: min(calc(100vw - 24px), 540px); z-index: 100; background: #fff; }
 @supports not selector(:modal) { dialog[open] { box-shadow: 0 0 0 100vmax rgba(58, 42, 46, .55); } }
+
+/* Nada puede ser más ancho que la pantalla del celular (las pestañas de etapas se deslizan por dentro) */
+main, .pantalla, #app { min-width: 0; max-width: 100%; }
+.pantalla { overflow-x: clip; }
+.etapas, .etapas ol { max-width: 100%; min-width: 0; }
+.etapas ol { overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.etapas ol::-webkit-scrollbar { display: none; }
+img, svg, video { max-width: 100%; }
+/* Las etapas se acomodan en filas (sin deslizar de lado, que un niño no descubre y que en algunos celulares ensancha la página) */
+.etapas ol { flex-wrap: wrap; overflow: visible; }
+.etapas a { padding: 6px 12px; }
+@media (max-width: 600px) { .etapas a { min-height: 40px; padding: 4px 10px; font-size: .95rem; gap: 4px; } .etapas ol { gap: 5px; } }
