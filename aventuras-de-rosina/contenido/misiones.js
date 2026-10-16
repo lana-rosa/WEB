@@ -134,7 +134,7 @@ export const MISIONES = [
       ],
       respuesta: 'Todas son maneras valientes de aprender. Pedir ayuda también es una forma de ser creativo.',
     },
-    fin: { texto: '¡Misión cumplida, {nombre}! Ya tienes tu mapa, tu mochila y tu pasaporte. El Bosque Tejido empieza a recuperar sus colores.', pose: 'feliz' },
+    fin: { texto: '¡Misión cumplida, {nombre}! Ya tienes tu mapa, tu mochila y tu pasaporte. El Bosque Tejido empieza a recuperar sus colores.', pose: 'mapa' },
   },
 
   {

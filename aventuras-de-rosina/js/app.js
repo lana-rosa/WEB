@@ -3,14 +3,14 @@
 // Privacidad: no hay cuentas, ni cookies, ni analítica, ni peticiones a servidores. Todo vive en este navegador (ver estado.js).
 // Para cambiar textos o añadir capítulos NO hay que tocar este archivo: ver contenido/misiones.js y herramientas/aventuras-de-rosina/LEEME.md.
 
-import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=11';
-import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=11';
-import { personaje, dibujo, mapaFondo } from './dibujos.js?v=11';
-import { jugar, miniBosque } from './juegos.js?v=11';
-import * as E from './estado.js?v=11';
-import * as voz from './voz.js?v=11';
-import * as musica from './musica.js?v=11';
-import { pers, sinNombre } from './nombre.js?v=11';
+import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=16';
+import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=16';
+import { personaje, dibujo, mapaFondo } from './dibujos.js?v=16';
+import { jugar, miniBosque } from './juegos.js?v=16';
+import * as E from './estado.js?v=16';
+import * as voz from './voz.js?v=16';
+import * as musica from './musica.js?v=16';
+import { pers, sinNombre } from './nombre.js?v=16';
 
 // Título del libro (Libro 1 de «Rosina y el Bosque Tejido», que es el nombre del mundo y del mapa).
 const TITULO_LIBRO = 'Rosina y la gran aventura de la primera cadeneta';
@@ -76,10 +76,10 @@ const botonVoz = () => (vozListo ? '<button type="button" class="btn-voz" data-a
 const fig = (def, alt) => `<figure class="paso-fig"><div class="paso-dib">${dibujo(def)}</div><figcaption class="paso-alt">${esc(alt)} <span class="provisional">Dibujo de ayuda (provisional)</span></figcaption></figure>`;
 // Rosina en las escenas del libro: los stickers oficiales (varias poses). alt '' la marca como decorativa.
 const ALT_ROSINA = {
-  saludo: 'Rosina, la ovejita guía de Lana Rosa, saluda con la patita.', feliz: 'Rosina sonríe feliz.', idea: 'Rosina tiene una idea.',
+  saludo: 'Rosina, la ovejita guía de Lana Rosa, saluda con la patita.', feliz: 'Rosina sonríe feliz.', idea: 'Rosina mira con una lupa.',
   leyendo: 'Rosina lee un libro rosado.', corazon: 'Rosina sonríe con un corazón rosado.', sentada: 'Rosina sentada abraza un ovillo en forma de corazón.',
   cartel: 'Rosina asoma detrás de un cartel rosado.', animo: 'Rosina levanta el pulgar para animarte.', abrazo: 'Rosina abraza un ovillo en forma de corazón.',
-  ovillo: 'Rosina sostiene un ovillo en forma de corazón.', saludoSentada: 'Rosina, sentada, saluda con la patita.', flor: 'Rosina sostiene una flor.', gorro: 'Rosina lleva un gorro rosado.',
+  ovillo: 'Rosina sostiene un ovillo en forma de corazón.', saludoSentada: 'Rosina señala con la patita.', flor: 'Rosina sostiene una flor.', gorro: 'Rosina lleva un gorro rosado.',
   tejiendo: 'Rosina teje una cadeneta con su gancho y lana rosada.', gancho: 'Rosina muestra su gancho de crochet y un ovillo de lana.',
   contando: 'Rosina cuenta con los dedos.', senalando: 'Rosina señala hacia un lado.', fuerza: 'Rosina levanta los puños para darte ánimo.',
   sorpresa: 'Rosina se sorprende con las manos en las mejillas.', consuelo: 'Rosina te consuela con una sonrisa suave.',

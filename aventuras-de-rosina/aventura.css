@@ -372,3 +372,10 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, main:focus { outline: none; }
 /* Rosina al mismo tamaño que sus amigos en las historias (su imagen cuadrada tiene aire a los lados) */
 .historia-arte { display: flex; justify-content: center; overflow: hidden; }
 .historia-arte .sticker-r.rosina-img { flex: none; width: 450px; max-width: none; margin: 0 -50px 0; }
+
+/* El equipo (Rosina y sus cuatro amigos) va en grupo: todos del mismo tamaño y a la vista */
+.historia-arte .equipo .pj, .historia-arte .equipo .sticker-r { width: 100%; max-width: 150px; height: 160px; max-height: none; object-fit: contain; margin: 0 auto 4px; }
+@media (min-width: 700px) { .historia-arte .equipo .pj, .historia-arte .equipo .sticker-r { max-width: 170px; height: 175px; } }
+/* Espacio para que el botón de música no tape el final de la página */
+.pantalla { padding-bottom: 88px; }
+.historia-arte .equipo .sticker-r { object-fit: cover; }
