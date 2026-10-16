@@ -325,6 +325,8 @@ button.boton-primario:hover { filter: brightness(0.95); }
   .producto-precio { font-size: 1.02rem; }
   .producto-estado { font-size: 0.7rem; margin-bottom: 8px; padding: 2px 8px; }
   .producto-card .boton-agregar-carrito { font-size: 0.92rem; padding: 11px 4px; line-height: 1.2; }
+  .producto-card .boton-personalizar { font-size: 0.92rem; padding: 11px 4px; line-height: 1.2; white-space: nowrap; }
+  .producto-card .boton-personalizar .estrella { font-size: 0.85em; line-height: 1; vertical-align: baseline; }
   .producto-card .boton-pedir { font-size: 0.7rem; }
   .ficha-merceria { font-size: 0.7rem; }
   .nota-presentacion { display: block; }
@@ -818,7 +820,7 @@ function crearTarjeta(item) {
       '<p class="producto-precio">' + formatoCOP(item.precio) + ' <span class="moneda">COP</span></p>' +
       (pers
         ? '<p class="producto-estado bajo-pedido">Personalizado · fotos de referencia</p>' +
-          '<a class="boton-personalizar" href="' + pers.url + '">Personalizar ✨</a>'
+          '<a class="boton-personalizar" href="' + pers.url + '">Personalizar <span class="estrella" aria-hidden="true">✨</span></a>'
         : '<p class="producto-estado ' + (item.disponible_web ? 'disponible' : 'bajo-pedido') + '">' + (item.disponible_web ? 'Disponible' : 'Bajo pedido') + '</p>' +
           '<button type="button" class="boton-agregar-carrito">Agregar 🛒</button>') +
     '</div>';
