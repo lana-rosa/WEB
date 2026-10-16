@@ -572,7 +572,7 @@ function adultos() {
         <ul class="lista-simple"><li>No hay cuentas, chat, anuncios, cookies de seguimiento ni analítica en esta página.</li>
         <li>El nombre o apodo (opcional), los colores y el progreso se guardan <strong>solo en este navegador</strong>; no se envían a ningún servidor. Se pierden si se borran los datos del navegador o se cambia de dispositivo.</li>
         <li>Pedimos al niño o niña no escribir apellidos, colegio ni datos de contacto; el pasaporte solo admite un nombre o apodo corto.</li>
-        <li>La lectura en voz alta, si aparece, usa la voz del dispositivo; solo se ofrecen voces locales.</li>
+        <li>La lectura en voz alta, si aparece, usa los audios de Rosina que vienen con el libro o, cuando falta alguno, la voz del propio dispositivo (solo voces locales); ningún texto sale del dispositivo.</li>
         <li>Más información: <a href="/aventuras-de-rosina/privacidad.html">política de privacidad de las familias</a>.</li></ul></details>
       <details class="det"><summary>Qué se aprende en estas 3 misiones</summary>
         <ol class="lista-simple">${publicadas().map((m) => `<li><strong>${esc(m.titulo)}</strong> (${esc(m.habilidad)}): ${m.objetivos.map(esc).join('; ')}.</li>`).join('')}</ol>

@@ -207,6 +207,35 @@ def main():
         comprobar(len(r) == 3 and all(x['voz'] == 'Paulina' for x in r), 'La voz elige la mejor voz local en español (femenina y latinoamericana) y lee frase por frase')
         comprobar('milímetros' in r[0]['texto'] and 've' in r[1]['texto'] and r[1]['pitch'] > r[0]['pitch'] and r[0]['rate'] < 1, 'La voz pronuncia las medidas, lee la V y sube el tono en las preguntas, con ritmo pausado')
 
+        # Audios de Rosina: si hay audio grabado se reproduce; si no, la voz del dispositivo; y el guion cubre lo que el libro lee
+        guion = json.load(open(os.path.join(os.path.dirname(__file__), 'audio', 'guion-audio.json'), encoding='utf-8'))
+        claves_guion = {f['clave'] for f in guion}
+        k_hist = next(f['clave'] for f in guion if f['lugar'] == 'm1 historia 1')
+        pg.route('**/aventuras-de-rosina/audio/indice.json', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps({k_hist: 1})))
+        pg.evaluate("""() => {
+          window.__audios = []; window.__habladas = [];
+          window.Audio = function (src) { this.src = src; this.addEventListener = () => {}; this.pause = () => {}; this.play = () => { window.__audios.push(src); return Promise.resolve(); }; };
+          window.speechSynthesis.speak = (u) => window.__habladas.push(u.text);
+        }""")
+        r2 = pg.evaluate("""async (k) => { const v = await import('/aventuras-de-rosina/js/voz.js'); v.iniciar(); await new Promise((r) => setTimeout(r, 400));
+          v.leer('¡Hola! Soy Rosina. Vivo en el Bosque Tejido, un lugar hecho de lana, hilos y mucha imaginación.'); v.leer('Un texto sin audio grabado.'); return { audios: window.__audios, habladas: window.__habladas, k }; }""", k_hist)
+        comprobar(r2['audios'] == ['/aventuras-de-rosina/audio/%s.mp3' % k_hist] and len(r2['habladas']) >= 1, 'Con audio grabado se reproduce ese audio; sin audio, se usa la voz del dispositivo')
+        pg.unroute('**/aventuras-de-rosina/audio/indice.json')
+        # el guion cubre todo lo que el libro lee: se abren las pantallas con «Escuchar» y cada clave debe estar en el guion
+        pg.route('**/aventuras-de-rosina/audio/indice.json', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps({'x': 1})))
+        pg.add_init_script("window.__claves = []; window.addEventListener('rosina-voz', (e) => window.__claves.push(e.detail.clave));")
+        rutas_voz = ['#/preparacion', '#/pasaporte'] + ['#/mision/%s/%s' % (m['id'], et) for m in datos for et in ('historia/1', 'historia/2', 'historia/3', 'tutorial/0', 'tutorial/1', 'tutorial/3', 'practica/1', 'reflexion/1', 'fin/1')]
+        sin_guion = []; leidas = 0
+        for ruta in rutas_voz:
+            pg.goto(BASE); pg.wait_for_timeout(250); pg.evaluate("window.__claves = []"); pg.evaluate("location.hash = '%s'" % ruta); pg.wait_for_timeout(300)
+            if pg.locator('[data-accion="leer"]').count():
+                pg.locator('[data-accion="leer"]').first.click(); pg.wait_for_timeout(120)
+                for k in pg.evaluate("window.__claves"):
+                    leidas += 1
+                    if k not in claves_guion: sin_guion.append((ruta, k))
+        comprobar(not sin_guion and leidas >= 20, 'Todo lo que el libro lee en voz alta está en el guion de audio (%d pantallas revisadas)' % leidas)
+        pg.unroute('**/aventuras-de-rosina/audio/indice.json')
+
         print('5. Reinicio con confirmación')
         ir('pasaporte'); clic('Borrar mi progreso y empezar de nuevo')
         comprobar(pg.locator('#dlg-confirmar').evaluate('d => d.open'), 'Reiniciar pide confirmación')
