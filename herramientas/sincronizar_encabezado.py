@@ -13,7 +13,7 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 CASA_DE = {
     'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'universo-rosina': 'crochet', 'p': 'crochet', 'sobre-nosotras': 'crochet', 'precios': 'crochet',
     'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'merceria-terminos-de-venta': 'merceria', 'merceria-cambios-y-devoluciones': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy', 'academy-empieza-aqui': 'academy',
-    'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
+    'merceria-rosina': 'merceria', 'academy-rosina': 'academy', 'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
 CASAS = [('crochet', 'Tienda de amigurumis', 'tienda.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/')]
@@ -23,7 +23,7 @@ CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende'
 MENUS = {
     'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Amigurumis', 'tienda.html#amigurumis', 'crochet'), ('Peluches', 'tienda.html#peluches', 'crochet'),
                 ('Llaveros', 'tienda.html#llaveros', 'crochet'), ('Flores y macetas', 'tienda.html#macetas', 'crochet'),
-                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('El universo de Rosina', 'universo-rosina.html?casa=crochet', 'universo')],
+                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
     # páginas comunes (contacto, preguntas, políticas, cuenta, Revista): menú de marca con las tres casas
     'comun': [('Tienda de amigurumis', 'index.html', 'crochet'), ('Mercería', 'merceria/', 'merceria'),
               ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
@@ -32,10 +32,10 @@ MENUS = {
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria'),
-                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('El universo de Rosina', 'universo-rosina.html?casa=merceria', 'universo')],
+                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('El universo de Rosina', 'merceria/rosina/', 'universo')],
     'academy': [('Talleres y clases', 'academy/talleres/', 'academy'), ('Agenda de Rosina', 'agenda-rosina.html', 'academy'),
-                ('Recursos gratis', 'recursos-rosina.html', 'academy'), ('Revista', 'revista.html?casa=academy', 'academy'),
-                ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('El universo de Rosina', 'universo-rosina.html?casa=academy', 'universo')],
+                ('Revista', 'revista.html?casa=academy', 'academy'),
+                ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('El universo de Rosina', 'academy/rosina/', 'universo')],
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
@@ -74,7 +74,7 @@ PIE = {
                   ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
                 [('Inicio de Academy', 'academy/'), ('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Sobre Academy', 'academy/sobre-academy/'),
-                 ('Empieza aquí', 'academy/empieza-aqui/'), ('Tutoriales', 'aprende.html#crea'), ('Rincón de Rosina', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'),
+                 ('Empieza aquí', 'academy/empieza-aqui/'), ('Tutoriales', 'aprende.html#crea'), ('El universo de Rosina', 'academy/rosina/'), ('Glosario', 'glosario-rosina.html'),
                  ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
 }
 
@@ -93,7 +93,7 @@ MOVIL = {
     <a href="personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="index.html#historias">Historias que tejimos</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html?casa=crochet">🐑 El universo de Rosina</a>
+    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <a href="revista.html?casa=crochet">Revista</a>
@@ -111,7 +111,7 @@ MOVIL = {
     <p class="grupo-nav">Visítanos</p>
     <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html?casa=merceria">🐑 El universo de Rosina</a>
+    <a href="merceria/rosina/">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="revista.html?casa=merceria">Revista</a>
     <p class="grupo-nav">Ayuda</p>
@@ -129,16 +129,11 @@ MOVIL = {
     <a href="academy/sobre-academy/">Sobre Academy</a>
     <p class="grupo-nav">Agenda</p>
     <a href="agenda-rosina.html">Agenda de Rosina</a>
-    <p class="grupo-nav">Recursos gratis de Rosina</p>
+    <p class="grupo-nav">Aprende gratis</p>
     <a href="academy/empieza-aqui/">Empieza aquí</a>
     <a href="aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
-    <a href="recursos-rosina.html">Rincón de Rosina</a>
-    <a href="glosario-rosina.html">Glosario</a>
-    <a href="paletas-rosina.html">Paletas de color</a>
-    <a href="calculadoras-rosina.html">Calculadoras</a>
-    <a href="rosina.html">Conoce a Rosina</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html?casa=academy">🐑 El universo de Rosina</a>
+    <a href="academy/rosina/">🐑 El universo de Rosina <span class="etiqueta-gratis">Material gratis</span></a>
     <p class="grupo-nav">Ideas</p>
     <a href="revista.html?casa=academy">Revista</a>
     <p class="grupo-nav">Ayuda</p>
@@ -193,7 +188,6 @@ def encabezado(pagina):
     <a href="merceria/tienda-fisica/">Tienda física</a>
     <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
-    <a href="recursos-rosina.html">Rincón de Rosina <span class="etiqueta-gratis">Material gratuito</span></a>
     <p class="grupo-nav">Rosina</p>
     <a href="universo-rosina.html">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
@@ -243,7 +237,7 @@ PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
 PIE_SIMPLE = {
     'crochet': ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Historias que tejimos', 'index.html#historias')]),
     'merceria': ('Mercería', [('Catálogo', 'merceria/catalogo/'), ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'), ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/')]),
-    'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('Rincón de Rosina', 'recursos-rosina.html'), ('La aventura de Rosina', 'aventuras-de-rosina/'), ('Sobre Academy', 'academy/sobre-academy/')]),
+    'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('El universo de Rosina', 'academy/rosina/'), ('La aventura de Rosina', 'aventuras-de-rosina/'), ('Sobre Academy', 'academy/sobre-academy/')]),
 }
 PIE_SIMPLE_COMUN = ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'), ('Lana Rosa Academy', 'academy/')])
 CASAS_ICONO = {'crochet': ('🧸', 'Tienda'), 'merceria': ('🧶', 'Mercería'), 'academy': ('🎓', 'Academy')}
@@ -267,7 +261,7 @@ def pie_casa(modelo, casa):
         return f'\n        <li><a href="{h}"{ext}>{t}</a></li>'
     lis = ''.join(li(t, h) for t, h in enlaces)
     faq = PIE_FAQ.get(casa, 'preguntas-frecuentes.html')
-    universo_q = f'?casa={casa}' if casa else ''  # el Universo muestra solo lo de la casa desde donde se entra
+    universo_href = {'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}.get(casa, 'universo-rosina.html')  # cada casa tiene su propio hub de Rosina
     rev = PIE_REVISTA.get(casa, 'revista.html')
     horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
@@ -294,7 +288,7 @@ def pie_casa(modelo, casa):
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
-        <li><a href="universo-rosina.html{universo_q}">El universo de Rosina</a></li>
+        <li><a href="{universo_href}">El universo de Rosina</a></li>
         <li><a href="{rev}">Revista</a></li>
         <li><a href="{faq}">Preguntas frecuentes</a></li>
         <li><a href="precios.html">Precios</a></li>
@@ -334,6 +328,28 @@ def absolutas(html):
     html = re.sub(r'(<(?:a|form)\b[^>]*?\s(?:href|action)=")/?index\.html(?=[#?"])', lambda m: m.group(1) + '/', html)   # el inicio es "/" (index.html sería una URL duplicada)
     return re.sub(r'(<(?:a|form|img|source|link|script)\b[^>]*?\s(?:href|src|action)=")(?!/|#|\?|https?:|mailto:|tel:|javascript:|data:)([^"]+)"', lambda m: m.group(1) + '/' + m.group(2) + '"', html)
 
+# Barra «Rosina» (una fila corta, con los colores de la casa) en todas las páginas del Rincón de Rosina
+BARRA_PAGINAS = {'recursos-rosina': 'recursos-rosina.html', 'glosario-rosina': 'glosario-rosina.html', 'paletas-rosina': 'paletas-rosina.html',
+                 'calculadoras-rosina': 'calculadoras-rosina.html', 'agenda-rosina': 'agenda-rosina.html', 'rosina': 'rosina.html'}
+BARRA_ITEMS = [('Material gratis', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas', 'paletas-rosina.html'),
+               ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html'), ('Conoce a Rosina', 'rosina.html')]
+HUB = {'crochet': 'universo-rosina.html', 'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}
+
+def barra_rosina(pagina, casa):
+    hub = HUB.get(casa, 'universo-rosina.html')
+    items = [f'<a href="{hub}" class="br-hub">🐑 El universo de Rosina</a>']
+    for t, h in BARRA_ITEMS:
+        act = ' aria-current="page" class="br-actual"' if h == BARRA_PAGINAS.get(pagina) else ''
+        items.append(f'<a href="{h}"{act}>{t}</a>')
+    return ('<!-- BARRA:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<nav class="barra-rosina" aria-label="Rosina">\n  <div class="contenedor">\n    '
+            + '\n    '.join(items) + '\n  </div>\n</nav>\n<!-- BARRA:FIN -->')
+
+def con_barra(s, pagina, casa):
+    s = re.sub(r'\n?<!-- BARRA:INICIO.*?<!-- BARRA:FIN -->\n?', '\n', s, flags=re.S)
+    if pagina in BARRA_PAGINAS:
+        s = s.replace('<!-- CASAS:FIN -->', '<!-- CASAS:FIN -->\n' + absolutas(barra_rosina(pagina, casa)), 1)
+    return s
+
 
 def main():
     # el pie modelo es el de las páginas comunes (contacto.html no tiene casa, así que nunca se modifica)
@@ -366,6 +382,7 @@ def main():
         s = re.sub(r'<link rel="icon"[^>]*>\n?|<link rel="apple-touch-icon"[^>]*>\n?|<meta name="theme-color"[^>]*>\n?', '', s)
         s = s.replace('</head>', iconos(casa) + '\n</head>', 1)
         s = re.sub(r'<html lang="es-CO"[^>]*>', '<html lang="es-CO"' + (f' data-casa="{casa}"' if casa else '') + '>', s, count=1)
+        s = con_barra(s, n, casa)
         open(f, 'w', encoding='utf-8').write(s)
         print('ok', n)
 
