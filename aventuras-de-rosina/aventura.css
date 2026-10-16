@@ -292,3 +292,65 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, main:focus { outline: none; }
 .amigo-op .pj { width: 100%; max-width: 92px; height: 110px; object-fit: contain; }
 .pasaporte-izq .pj { width: 100%; }
 @media (min-width: 700px) { .equipo { grid-template-columns: repeat(5, 1fr); max-width: 640px; } }
+
+/* ---- Botón «Escuchar» como ícono en la esquina del texto ---- */
+.con-voz { position: relative; padding-right: 64px; }
+.btn-voz { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--rosa); background: #fff; font-size: 1.25rem; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+.btn-voz:hover, .btn-voz:focus-visible { background: #FFE3F1; }
+.juego-cabeza.con-voz { padding-right: 60px; }
+
+/* ---- Flecha que señala qué tocar para seguir ---- */
+.acciones .btn-principal.btn-grande:not([hidden]), .juego-pie .btn-principal:not([hidden]) { position: relative; }
+.acciones .btn-principal.btn-grande:not([hidden])::before, .juego-pie .btn-principal:not([hidden])::before {
+  content: '👇'; position: absolute; left: 50%; top: -34px; margin-left: -.6em; font-size: 1.6rem; line-height: 1; pointer-events: none;
+  opacity: 0; animation: flecha-aparece .5s 4s ease forwards, flecha-salta 1s 4s ease-in-out infinite;
+}
+.acciones-paso .btn-principal:not([hidden])::before { top: -34px; }
+@keyframes flecha-aparece { to { opacity: 1; } }
+@keyframes flecha-salta { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) {
+  .acciones .btn-principal.btn-grande:not([hidden])::before, .juego-pie .btn-principal:not([hidden])::before { opacity: 1 !important; animation: none !important; }
+}
+
+/* ---- Animaciones suaves de las imágenes ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .heroe-rosina, .rosina-lado { animation: flota 4.5s ease-in-out infinite; transform-origin: 50% 100%; }
+  .nodo-rosina { animation: flota-nodo 3s ease-in-out infinite; }
+  .sticker-r, .escena img, .paso-dib svg { animation-name: none; }
+  .rosina-lado.sticker-r, .heroe-rosina.sticker-r { animation: pop .7s cubic-bezier(.3,1.6,.5,1) both, flota 4.5s .7s ease-in-out infinite; }
+  .escena img { animation: kenburns 18s ease-in-out infinite alternate; }
+  .paso-dib svg { animation: aparece .6s ease both, respira 5s .6s ease-in-out infinite; }
+  .equipo .pj, .equipo .sticker-r { animation: flota 4s ease-in-out infinite; }
+  .escena { overflow: hidden; border-radius: 18px; }
+  .escena img { animation: kenburns 18s ease-in-out infinite alternate; transform-origin: 60% 50%; }
+  .equipo figure:nth-child(odd) > :first-child { animation: flota 4s ease-in-out infinite; }
+  .equipo figure:nth-child(even) > :first-child { animation: flota 5s .8s ease-in-out infinite; }
+}
+@keyframes flota-nodo { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-7px); } }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes respira { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015); } }
+@keyframes flota { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(-1.5deg); } }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08) translate(-1.5%, -1%); } }
+
+/* ---- Música de fondo (opcional) ---- */
+.btn-musica { position: fixed; right: 14px; bottom: 14px; z-index: 40; width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--rosa); background: #fff; font-size: 1.4rem; cursor: pointer; display: grid; place-items: center; padding: 0; box-shadow: 0 4px 12px rgba(58,42,46,.2); }
+.btn-musica[aria-pressed="true"] { background: #FFE3F1; }
+.btn-musica[aria-pressed="false"]::after { content: ''; position: absolute; width: 34px; height: 3px; background: var(--fucsia); transform: rotate(-45deg); border-radius: 2px; }
+@media print { .btn-musica { display: none; } }
+
+/* ---- Las imágenes mandan: más grandes ---- */
+.pantalla { max-width: 900px; }
+.pantalla-texto { max-width: 800px; }
+.sticker-r.rosina-lado { width: min(calc(var(--w, 150px) * 1.8), 78vw); }
+.sticker-r.heroe-rosina { width: min(calc(var(--w, 210px) * 1.6), 82vw); }
+.sticker-r.rosina-img { width: min(calc(var(--w, 220px) * 1.5), 80vw); }
+.paso-dib svg { max-width: 760px; }
+.escena { margin: 4px -8px 16px; }
+.escena img { border-radius: 22px; }
+@media (min-width: 700px) { .equipo .pj, .equipo .sticker-r { max-width: 170px; height: 175px; } }
+
+/* ---- Velocidad de los videos ---- */
+.paso-video { width: 100%; max-width: 760px; border-radius: 18px; display: block; margin: 0 auto; }
+.video-vel { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin: 8px 0 14px; font-weight: 700; }
+.btn-vel { min-height: 44px; padding: 8px 16px; border-radius: 22px; border: 2px solid var(--rosa); background: #fff; font: inherit; cursor: pointer; }
+.btn-vel[aria-pressed="true"] { background: var(--rosa); color: #fff; }

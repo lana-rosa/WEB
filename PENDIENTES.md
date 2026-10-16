@@ -185,3 +185,8 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 - [x] **Política de datos:** ya incluye Google Calendar (sección 10), copia en la nube (sección 11) y condiciones de la membresía; falta el resto (punto 3).
 - [x] **Espacio superior de las páginas** ampliado a 40 px y botón «Ver tutoriales en Instagram» en Academy (PR 281, 9-oct).
 - [x] **Mercería: «Abrimos» / tienda física, horarios, medios de pago de la tienda física** (efectivo, tarjeta y QR por Wompi, Nequi o Bre-B) unificados.
+
+## Aventura de Rosina — próximos pasos (17-oct-2026)
+- [ ] Nudo inicial y cadeneta: reemplazar los SVG provisionales por la hoja de pasos de ChatGPT y/o un video corto grabado con el celular (prompts y guía en `herramientas/aventuras-de-rosina/ilustraciones/PROMPTS-NUDOS-Y-VIDEO.md`; el reproductor ya trae botones de velocidad Lento / Despacio / Normal).
+- [ ] Música de fondo: es una cajita de música original generada por `herramientas/aventuras-de-rosina/audio/generar_musica.py`; Sara decide si la deja o prefiere otra.
+- [ ] Voz de Rosina: falta que Sara diga la plataforma y la voz del reel para generar los 56 audios.

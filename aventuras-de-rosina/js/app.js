@@ -3,12 +3,13 @@
 // Privacidad: no hay cuentas, ni cookies, ni analítica, ni peticiones a servidores. Todo vive en este navegador (ver estado.js).
 // Para cambiar textos o añadir capítulos NO hay que tocar este archivo: ver contenido/misiones.js y herramientas/aventuras-de-rosina/LEEME.md.
 
-import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=3';
-import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=3';
-import { personaje, dibujo, mapaFondo } from './dibujos.js?v=3';
-import { jugar, miniBosque } from './juegos.js?v=3';
-import * as E from './estado.js?v=3';
-import * as voz from './voz.js?v=3';
+import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=6';
+import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=6';
+import { personaje, dibujo, mapaFondo } from './dibujos.js?v=6';
+import { jugar, miniBosque } from './juegos.js?v=6';
+import * as E from './estado.js?v=6';
+import * as voz from './voz.js?v=6';
+import * as musica from './musica.js?v=6';
 
 // Título del libro (Libro 1 de «Rosina y el Bosque Tejido», que es el nombre del mundo y del mapa).
 const TITULO_LIBRO = 'Rosina y la gran aventura de la primera cadeneta';
@@ -66,7 +67,8 @@ dlgAyuda.addEventListener('click', (ev) => {
 // ---------------------------------------------------------------- voz (opcional)
 let vozListo = false;
 const vozOk = () => vozListo;
-const botonVoz = () => (vozListo ? '<button type="button" class="btn btn-suave" data-accion="leer">🔊 Escuchar</button>' : '');
+// Botón de escuchar: un icono en la esquina de arriba a la derecha del texto (no después del texto).
+const botonVoz = () => (vozListo ? '<button type="button" class="btn-voz" data-accion="leer" aria-label="Escuchar en voz alta" title="Escuchar">🔊</button>' : '');
 
 // ---------------------------------------------------------------- piezas comunes
 const fig = (def, alt) => `<figure class="paso-fig"><div class="paso-dib">${dibujo(def)}</div><figcaption class="paso-alt">${esc(alt)} <span class="provisional">Dibujo de ayuda (provisional)</span></figcaption></figure>`;
@@ -232,12 +234,11 @@ function vistaHistoria(m, n) {
       ${escenaHtml(p.escena)}
       <div class="historia">
         <div class="historia-arte">${arte}</div>
-        <div class="burbuja"><p class="burbuja-quien">${esc(quien)} dice:</p><p>${esc(p.texto)}</p></div>
+        <div class="burbuja con-voz">${botonVoz()}<p class="burbuja-quien">${esc(quien)} dice:</p><p>${esc(p.texto)}</p></div>
       </div>
       <p class="progreso-txt" aria-live="polite">Parte ${n} de ${pags.length}</p>
       <div class="acciones">
         ${n > 1 ? `<a class="btn btn-suave" href="${rutaMision(m.id, 'historia', n - 1)}">← Antes</a>` : ''}
-        ${botonVoz()}
         ${ultima ? `<a class="btn btn-principal btn-grande" href="${rutaMision(m.id, 'tutorial', 0)}" data-marca="historia">¡A aprender!</a>` : `<a class="btn btn-principal btn-grande" href="${rutaMision(m.id, 'historia', n + 1)}">Siguiente →</a>`}
       </div>
     </section>`,
@@ -257,16 +258,16 @@ function vistaTutorial(m, n) {
       html: `<section class="pantalla">${cabeceraMision(m)}${navEtapas(m, 'tutorial')}
         <h1>Vamos a aprender</h1>
         ${escenaHtml(t.escena)}
-        <div class="tarjeta"><h2>Lo que vas a lograr</h2><p>${esc(t.objetivo)}</p>
+        <div class="tarjeta con-voz">${botonVoz()}<h2>Lo que vas a lograr</h2><p>${esc(t.objetivo)}</p>
           <h2>Lo que necesitas</h2><ul class="lista-simple">${t.materiales.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
         <p class="progreso-txt">${pasos.length} pasos cortos</p>
-        <div class="acciones">${botonVoz()}<a class="btn btn-principal btn-grande" href="${rutaMision(m.id, 'tutorial', 1)}">Empezar el paso 1 →</a></div>
+        <div class="acciones"><a class="btn btn-principal btn-grande" href="${rutaMision(m.id, 'tutorial', 1)}">Empezar el paso 1 →</a></div>
       </section>`,
     };
   }
   const p = pasos[n - 1];
   const ultimo = n === pasos.length;
-  const video = p.video ? `<video class="paso-video" controls preload="none" ${p.video.poster ? `poster="${esc(p.video.poster)}"` : ''}><source src="${esc(p.video.src)}">${p.video.subtitulos ? `<track kind="captions" srclang="es" label="Español" src="${esc(p.video.subtitulos)}" default>` : ''}</video>` : '';
+  const video = p.video ? `<video class="paso-video" controls preload="none" ${p.video.poster ? `poster="${esc(p.video.poster)}"` : ''}><source src="${esc(p.video.src)}">${p.video.subtitulos ? `<track kind="captions" srclang="es" label="Español" src="${esc(p.video.subtitulos)}" default>` : ''}</video><div class="video-vel" role="group" aria-label="Velocidad del video"><span>Velocidad:</span>${[['0.5','🐢 Lento'],['0.75','Despacio'],['1','Normal']].map(([v, t]) => `<button type="button" class="btn-vel" data-vel="${v}" aria-pressed="${v === '1'}">${t}</button>`).join('')}</div>` : '';
   return {
     titulo: `${m.titulo} · Paso ${n}`,
     voz: `${p.titulo}. ${p.texto} ${(p.lista || []).join('. ')}`,
@@ -278,12 +279,11 @@ function vistaTutorial(m, n) {
       <h1>${esc(p.titulo)}</h1>
       ${escenaHtml(p.escena)}
       ${video || fig(p.dibujo, p.alt)}
-      <div class="tarjeta paso-texto"><p>${esc(p.texto)}</p>${p.lista ? `<ul class="lista-simple">${p.lista.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}</div>
+      <div class="tarjeta paso-texto con-voz">${botonVoz()}<p>${esc(p.texto)}</p>${p.lista ? `<ul class="lista-simple">${p.lista.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}</div>
       <div class="acciones acciones-paso">
         <a class="btn btn-suave" href="${n > 1 ? rutaMision(m.id, 'tutorial', n - 1) : rutaMision(m.id, 'tutorial', 0)}">← Paso anterior</a>
         <button type="button" class="btn btn-suave" data-accion="repetir">🔁 Ver de nuevo</button>
         <button type="button" class="btn btn-suave" data-accion="ayuda">🤝 Necesito ayuda</button>
-        ${botonVoz()}
         ${ultimo ? `<a class="btn btn-principal btn-grande" href="${rutaMision(m.id, 'practica', 1)}" data-marca="tutorial">¡Vamos a practicar!</a>` : `<a class="btn btn-principal btn-grande" href="${rutaMision(m.id, 'tutorial', n + 1)}">Siguiente paso →</a>`}
       </div>
     </section>`,
@@ -300,7 +300,7 @@ function vistaPractica(m) {
     html: `<section class="pantalla">${cabeceraMision(m)}${navEtapas(m, 'practica')}
       ${imgRosina('tejiendo', 'Rosina teje una cadeneta con su gancho y lana rosada.', 'rosina-lado', 150)}
       <h1>${esc(p.titulo)}</h1>
-      <p class="intro">${esc(p.intro)}</p>
+      <p class="intro con-voz">${botonVoz()}${esc(p.intro)}</p>
       <ul class="checks">${p.lista.map((x) => `<li><label><input type="checkbox"> <span>${esc(x)}</span></label></li>`).join('')}</ul>
       <div class="tarjeta reto"><h2>Tu reto con hilo real</h2><p>${esc(p.reto)}</p></div>
       <div class="tarjeta para-adulto-caja"><p><strong>Para quien acompaña:</strong> ${esc(p.adulto)}</p></div>
@@ -309,7 +309,6 @@ function vistaPractica(m) {
         <button type="button" class="btn btn-principal" data-accion="practica-hecha">✓ Lo hice con mi lana</button>
         <button type="button" class="btn btn-suave" data-accion="practica-despues">Lo intentaré después</button>
         <button type="button" class="btn btn-suave" data-accion="ayuda">🤝 Necesito ayuda</button>
-        ${botonVoz()}
       </div>
       <div class="acciones"><a class="btn btn-principal btn-grande" id="ir-juego" href="${rutaMision(m.id, 'juego', 1)}" ${v ? '' : 'hidden'}>Ir al juego →</a></div>
     </section>`,
@@ -323,8 +322,8 @@ function vistaJuego(m) {
     voz: `${j.nombre}. ${j.intro}`,
     html: `<section class="pantalla">${cabeceraMision(m)}${navEtapas(m, 'juego')}
       <h1>${esc(j.nombre)}</h1>
-      <div id="zona-juego"><div class="tarjeta"><p class="intro">${esc(j.intro)}</p><p class="nota">Juego tipo “${esc(j.tipo)}”: sin tiempo y sin vidas. Puedes pedir ayuda cuando quieras.</p>
-      <div class="acciones">${botonVoz()}<button type="button" class="btn btn-principal btn-grande" data-accion="iniciar-juego">¡Empezar!</button></div></div></div>
+      <div id="zona-juego"><div class="tarjeta con-voz">${botonVoz()}<p class="intro">${esc(j.intro)}</p><p class="nota">Juego tipo “${esc(j.tipo)}”: sin tiempo y sin vidas. Puedes pedir ayuda cuando quieras.</p>
+      <div class="acciones"><button type="button" class="btn btn-principal btn-grande" data-accion="iniciar-juego">¡Empezar!</button></div></div></div>
     </section>`,
     montar: () => {
       document.querySelector('[data-accion="iniciar-juego"]').addEventListener('click', () => {
@@ -401,13 +400,13 @@ function vistaReflexion(m) {
     html: `<section class="pantalla">${cabeceraMision(m)}${navEtapas(m, 'reflexion')}
       ${imgRosina('corazon', 'Rosina sonríe con un corazón rosado.', 'rosina-lado', 150)}
       <h1>Un momento para pensar</h1>
-      <p class="intro" id="reflexion-q">${esc(r.pregunta)}</p>
+      <div class="con-voz">${botonVoz()}<p class="intro" id="reflexion-q">${esc(r.pregunta)}</p></div>
       <div class="opciones opciones-reflexion" role="group" aria-labelledby="reflexion-q">
         ${r.opciones.map((o) => `<button type="button" class="opcion ${previa === o.id ? 'elegida' : ''}" data-accion="reflexion" data-id="${esc(o.id)}" aria-pressed="${previa === o.id}"><span class="opcion-txt">${esc(o.texto)}</span></button>`).join('')}
       </div>
       <div id="reflexion-resp" class="retro ${previa ? 'bien' : ''}" role="status" aria-live="polite">${previa ? esc(r.respuesta) : ''}</div>
       <p class="nota">No hay respuestas buenas ni malas. Lo que elijas se guarda solo en este dispositivo.</p>
-      <div class="acciones">${botonVoz()}<a class="btn btn-principal btn-grande" href="${rutaMision(m.id, 'fin', 1)}" id="ir-fin">${previa ? 'Continuar →' : 'Continuar sin elegir →'}</a></div>
+      <div class="acciones"><a class="btn btn-principal btn-grande" href="${rutaMision(m.id, 'fin', 1)}" id="ir-fin">${previa ? 'Continuar →' : 'Continuar sin elegir →'}</a></div>
     </section>`,
   };
 }
@@ -643,6 +642,12 @@ function render(opc) {
 
 // Acciones por delegación
 document.addEventListener('click', (ev) => {
+  const vb = ev.target.closest('[data-vel]');
+  if (vb) {
+    const grupo = vb.closest('.video-vel'), vid = grupo && grupo.previousElementSibling;
+    if (vid && vid.tagName === 'VIDEO') { vid.playbackRate = parseFloat(vb.dataset.vel); grupo.querySelectorAll('[data-vel]').forEach((x) => x.setAttribute('aria-pressed', String(x === vb))); }
+    return;
+  }
   const b = ev.target.closest('[data-ir],[data-accion],[data-marca]');
   if (!b || !app.contains(b) && !b.closest('dialog')) return;
   if (b.dataset.marca) {
@@ -709,3 +714,4 @@ voz.iniciar((ok) => {
   if (vistaActual && ok !== antes && ruta[2] !== 'juego' && ruta[2] !== 'pasaporte' && ruta[0] !== 'pasaporte') render({ silencioso: true });
 });
 render();
+musica.iniciar(E.obtener().prefs.musica, (on) => E.cambiar((s) => { s.prefs.musica = on; }));
