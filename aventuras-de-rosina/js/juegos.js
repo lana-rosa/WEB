@@ -3,8 +3,8 @@
 // Reglas de diseño: sin tiempo, sin vidas, sin puntaje que compare ni sonidos. Un error siempre recibe una pista amable y se puede
 // reintentar sin límite; tras dos errores se ofrece ver la respuesta y seguir, para que un juego nunca bloquee a nadie.
 
-import { dibujo } from './dibujos.js?v=8';
-import { PALETA, POSES_ROSINA } from '../contenido/personajes.js?v=8';
+import { dibujo } from './dibujos.js?v=9';
+import { PALETA, POSES_ROSINA } from '../contenido/personajes.js?v=9';
 
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -119,7 +119,7 @@ export function jugar(raiz, juego, ctx) {
   function cuerpoOrdenar(r) {
     const orden = r.mezcla || r.pasos.map((_, k) => k);
     return `<div class="ordenar">
-      <ol class="ord-elegidos" id="ord-elegidos" aria-label="Tu orden"></ol>
+      <ol class="ord-elegidos" id="ord-elegidos" aria-label="Tu orden">${r.pasos.map((_, n) => `<li class="vacio">Paso ${n + 1}</li>`).join('')}</ol>
       <div class="ord-opciones" role="group" aria-label="Pasos para ordenar">
         ${orden.map((k) => `<button type="button" class="opcion opcion-paso" data-j="paso" data-k="${k}">${esc(r.pasos[k])}</button>`).join('')}
       </div>
@@ -235,7 +235,7 @@ export function jugar(raiz, juego, ctx) {
   }
   function actualizarOrden(r) {
     const ol = document.getElementById('ord-elegidos');
-    ol.innerHTML = secuencia.map((k) => `<li>${esc(r.pasos[k])}</li>`).join('');
+    ol.innerHTML = r.pasos.map((_, n) => (n < secuencia.length ? `<li class="lleno">${esc(r.pasos[secuencia[n]])}</li>` : `<li class="vacio">Paso ${n + 1}</li>`)).join('');
     const c = raiz.querySelector('[data-j="comprobar"]'); if (c) c.disabled = secuencia.length !== r.pasos.length;
     if (secuencia.length === r.pasos.length) { const retroEl = document.getElementById('retro'); if (retroEl && !retroEl.textContent) retro('Cuando estés listo o lista, toca “Comprobar”.', ''); }
   }

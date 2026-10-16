@@ -453,12 +453,12 @@ export const MISIONES = [
         {
           tipo: 'ordenar',
           pregunta: 'Pon en orden los pasos de un punto bajo.',
-          pasos: ['Mete el gancho en la cadeneta.', 'Hilo sobre y jala un bucle (2 bucles).', 'Hilo sobre y jala por los 2 bucles.', '¡Un punto bajo! Queda 1 bucle.'],
-          mezcla: [1, 3, 0, 2],
+          pasos: ['Mete el gancho en la cadeneta.', 'Hilo sobre y jala un bucle: ahora hay 2 bucles.', 'Hilo sobre otra vez.', 'Jala por los 2 bucles: ¡queda 1 bucle y ya tienes un punto bajo!'],
+          mezcla: [2, 3, 0, 1],
           bien: '¡Muy bien! Ese es el camino de un punto bajo.',
           mal: '¡Probemos otra vez! Piensa primero dónde entra el gancho.',
           pista: 'Lo primero es meter el gancho en la cadeneta.',
-          explicacion: 'Primero entra el gancho, luego jalas un bucle (2 bucles), luego cierras por los 2 bucles y queda 1.',
+          explicacion: 'Primero entra el gancho; luego hilo sobre y jalas un bucle (2 bucles); después hilo sobre otra vez y lo jalas por los 2 bucles: queda 1.',
         },
         {
           tipo: 'elegir',
