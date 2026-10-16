@@ -1,0 +1,282 @@
+[
+ {
+  "clave": "ad7fa698",
+  "lugar": "pasaporte",
+  "texto": "Crea tu pasaporte de tejedor. Escribe un nombre o apodo, elige tu color favorito y un amigo del bosque."
+ },
+ {
+  "clave": "8937a765",
+  "lugar": "m1 historia 1",
+  "texto": "¡Hola! Soy Rosina. Vivo en el Bosque Tejido, un lugar hecho de lana, hilos y mucha imaginación."
+ },
+ {
+  "clave": "9b2dda63",
+  "lugar": "m1 historia 2",
+  "texto": "Pero algo pasó: ¡algunos colores se escondieron! El río, las flores y el camino se quedaron sin color. Necesito a alguien creativo que me ayude a recuperarlos."
+ },
+ {
+  "clave": "2c336780",
+  "lugar": "m1 historia 3",
+  "texto": "Mis amigos nos ayudarán: Luna, Tito, Pipo y Bruno. Cada uno guarda un secreto del crochet y te lo enseñará a su manera."
+ },
+ {
+  "clave": "a50d885b",
+  "lugar": "m1 historia 4",
+  "texto": "Para empezar necesitamos un mapa, tu mochila de tejedor y tu pasaporte. ¡Vamos a prepararlos!"
+ },
+ {
+  "clave": "a4fbcb25",
+  "lugar": "m1 aprende (intro)",
+  "texto": "Conocer lo que necesitas para tejer y cómo cuidarte mientras lo haces."
+ },
+ {
+  "clave": "3838f58b",
+  "lugar": "m1 aprende paso 1",
+  "texto": "Tu lugar para tejer. Busca un lugar cómodo para tejer. Siéntate en una mesa o en el piso con un cojín, busca buena luz y deja el espacio despejado. Una persona adulta debe estar cerca."
+ },
+ {
+  "clave": "b5fb1d0c",
+  "lugar": "m1 aprende paso 2",
+  "texto": "La lana. Elige un hilo suave, liso y de grosor medio o grueso, de un color claro. Así podrás ver mejor las puntadas."
+ },
+ {
+  "clave": "8cb96ce1",
+  "lugar": "m1 aprende paso 3",
+  "texto": "El gancho. El gancho de crochet tiene una punta, una curva donde se engancha el hilo y un mango. Para empezar, puedes usar uno de 5 a 6 mm con un mango cómodo."
+ },
+ {
+  "clave": "419113b4",
+  "lugar": "m1 aprende paso 4",
+  "texto": "Tijeras y aguja lanera. Las tijeras las usa solo una persona adulta. La aguja lanera, de punta roma, la usaremos más adelante para esconder los hilitos."
+ },
+ {
+  "clave": "6f16eae6",
+  "lugar": "m1 aprende paso 5",
+  "texto": "Reglas del tejedor. Tejer es tranquilo, y para que siga así cuidamos estas reglas: No te pongas el hilo ni el gancho en la boca.. No enrolles la lana apretada en tus dedos ni en tu cuello.. Guarda el gancho en su estuche cuando termines.. Si algo te duele o te enreda, para y llama a un adulto."
+ },
+ {
+  "clave": "cb0a4b6c",
+  "lugar": "m1 practica",
+  "texto": "Arma tu mochila de tejedor. Reúne tus cosas con una persona adulta. Marca cada una cuando la tengas. Saca un trozo de hilo del largo de tu brazo y tócalo despacio. ¿Es suave? ¿Se ve fácil de seguir con los ojos?"
+ },
+ {
+  "clave": "1ebf3ae8",
+  "lugar": "m1 juego (intro)",
+  "texto": "Laboratorio de colores y materiales. Ayuda a Pipo a preparar el laboratorio: primero elige la lana ideal para empezar y luego devuélvele los colores al bosque."
+ },
+ {
+  "clave": "7af72c81",
+  "lugar": "m1 juego ronda 1",
+  "texto": "¿Cuál lana es más fácil para empezar a tejer? Lana gruesa, lisa y de color claro.. Lana muy delgada y oscura.. Lana peluda que esconde las puntadas."
+ },
+ {
+  "clave": "8d54a32e",
+  "lugar": "m1 juego ronda 2",
+  "texto": "Devuélvele el color al Bosque Tejido. Toca una parte y elige su color."
+ },
+ {
+  "clave": "a2134b01",
+  "lugar": "m1 reflexion",
+  "texto": "Cuando algo es nuevo, a veces dudamos. ¿Qué te ayuda cuando empiezas algo nuevo?"
+ },
+ {
+  "clave": "03ef0662",
+  "lugar": "m1 fin",
+  "texto": "¡Misión cumplida! Ya tienes tu mapa, tu mochila y tu pasaporte. El Bosque Tejido empieza a recuperar sus colores."
+ },
+ {
+  "clave": "8fc7a183",
+  "lugar": "m2 historia 1",
+  "texto": "Luna, la conejita, necesita cruzar el río para llegar a su casa. ¡Pero el puente desapareció!"
+ },
+ {
+  "clave": "a7ec9515",
+  "lugar": "m2 historia 2",
+  "texto": "Hola… Muchas veces pienso que no me va a salir a la primera. Mi abuela me dijo: “Una puntada a la vez”."
+ },
+ {
+  "clave": "bba99e7e",
+  "lugar": "m2 historia 3",
+  "texto": "Con una cadeneta de lana podemos construir los tablones del puente, uno por uno. ¿Me ayudas a tejerlos?"
+ },
+ {
+  "clave": "4aaf14ce",
+  "lugar": "m2 aprende (intro)",
+  "texto": "Hacer el nudo inicial y tejer una cadeneta de 11 puntos."
+ },
+ {
+  "clave": "9585b2c4",
+  "lugar": "m2 aprende paso 1",
+  "texto": "Prepara el hilo. Busca la punta del hilo que sale del ovillo. Saca un trozo del largo de tu brazo: esa será la cola."
+ },
+ {
+  "clave": "90a18fbb",
+  "lugar": "m2 aprende paso 2",
+  "texto": "Haz un lazo. Cruza el hilo sobre sí mismo para formar un lazo, como una letra “o”. Deja la cola por debajo del cruce."
+ },
+ {
+  "clave": "714f9d36",
+  "lugar": "m2 aprende paso 3",
+  "texto": "El nudo inicial (nudo corredizo). Pasa el gancho por el centro del lazo. Con el gancho, toma la hebra que viene del ovillo y pásala a través del lazo. Coloca el nuevo bucle en el gancho y tira suavemente de la cola para ajustar el nudo."
+ },
+ {
+  "clave": "e5161d19",
+  "lugar": "m2 aprende paso 4",
+  "texto": "Cómo sostener todo (agarre de cuchillo). Sostén el gancho con la mano que más usas, como si sujetaras un cuchillo. Con la otra mano, sujeta la base del nudo entre el pulgar y el dedo medio."
+ },
+ {
+  "clave": "0b6f0901",
+  "lugar": "m2 aprende paso 5",
+  "texto": "Tu primera cadeneta. Toma la hebra que viene del ovillo y pásala por encima del gancho, de atrás hacia adelante. Gira un poquito la punta hacia abajo para enganchar el hilo y pásalo a través del bucle que ya está en el gancho. ¡Has hecho una cadeneta!"
+ },
+ {
+  "clave": "5517a1f4",
+  "lugar": "m2 aprende paso 6",
+  "texto": "Repite y cuenta. Repite el movimiento para hacer más cadenetas. Para contarlas, mira las “V” que se forman en la cadeneta. El bucle que queda en el gancho no se cuenta."
+ },
+ {
+  "clave": "47ef7753",
+  "lugar": "m2 aprende paso 7",
+  "texto": "Cadenetas parejitas. Intenta que tus cadenetas no queden ni muy apretadas ni muy flojas. El gancho debe poder entrar en ellas sin tener que hacer fuerza."
+ },
+ {
+  "clave": "3330e4eb",
+  "lugar": "m2 practica",
+  "texto": "Teje tu cadeneta de 11 puntos. Con tu hilo y tu gancho, teje 11 cadenetas. Así tendrás la base para el camino de Tito. Cuando tengas 11 cadenetas, mira tu puente: ¡cada cadeneta es un tablón! Si te quedó diferente a la de otros, está bien."
+ },
+ {
+  "clave": "f6f6d683",
+  "lugar": "m2 juego (intro)",
+  "texto": "Cuenta y construye el puente. Luna necesita contar los tablones de su puente. ¡Cuenta con calma, no hay prisa!"
+ },
+ {
+  "clave": "1d95d3b2",
+  "lugar": "m2 juego ronda 1",
+  "texto": "¿Cuántas cadenetas tiene este puente? Recuerda: el bucle del gancho no se cuenta."
+ },
+ {
+  "clave": "fa12bd9e",
+  "lugar": "m2 juego ronda 2",
+  "texto": "Pon en orden los pasos para tejer una cadeneta. Pasa el hilo por encima del gancho.. Agarra el hilo con la curva del gancho.. Jala el hilo a través del bucle.. ¡Ya tienes una cadeneta más!"
+ },
+ {
+  "clave": "655f7549",
+  "lugar": "m2 juego ronda 3",
+  "texto": "El puente necesita 8 tablones. Hay 5 tejidos. ¿Cuántas cadenetas faltan?"
+ },
+ {
+  "clave": "c986a221",
+  "lugar": "m2 juego ronda 4",
+  "texto": "La cadeneta de Luna quedó muy apretada y el gancho no entra. ¿Qué puede hacer? Jalar el hilo con más fuerza.. Dejar el hilo un poquito más flojo al jalar.. Apretar el nudo con la mano."
+ },
+ {
+  "clave": "b9ee173a",
+  "lugar": "m2 reflexion",
+  "texto": "¿Qué haces cuando algo no te sale a la primera?"
+ },
+ {
+  "clave": "715d913f",
+  "lugar": "m2 fin",
+  "texto": "¡Puente terminado! Luna cruza el río y el agua del río empieza a brillar con su color."
+ },
+ {
+  "clave": "1334f768",
+  "lugar": "m3 historia 1",
+  "texto": "Tito, la tortuga, debe llegar a la colina, pero su camino se borró. Es lento, pero muy observador."
+ },
+ {
+  "clave": "169b8570",
+  "lugar": "m3 historia 2",
+  "texto": "Voy despacio porque me fijo en todo. Si miras con calma, las puntadas cuentan secretos."
+ },
+ {
+  "clave": "a2c48fac",
+  "lugar": "m3 historia 3",
+  "texto": "Con las cadenetas que tejiste podemos construir el camino: ¡un punto bajo en cada cadeneta!"
+ },
+ {
+  "clave": "c62cbf74",
+  "lugar": "m3 aprende (intro)",
+  "texto": "Tejer una fila de 10 puntos bajos sobre una cadeneta de 11."
+ },
+ {
+  "clave": "94c266c0",
+  "lugar": "m3 aprende paso 1",
+  "texto": "Mira tus cadenetas. Coloca tu cadeneta frente a ti y busca las V de la parte superior. Cuenta 11. No cuentes el bucle que está en el gancho."
+ },
+ {
+  "clave": "315d816c",
+  "lugar": "m3 aprende paso 2",
+  "texto": "Las partes de un punto bajo. Un punto bajo tiene una V en la parte de arriba y una base debajo. La base del punto es la cadeneta donde trabajas el punto."
+ },
+ {
+  "clave": "943868d2",
+  "lugar": "m3 aprende paso 3",
+  "texto": "Dónde entra el gancho. Salta la cadeneta que está más cerca del gancho. Introduce el gancho en la segunda cadeneta, por debajo de los dos hilitos que forman la V de arriba."
+ },
+ {
+  "clave": "7398264f",
+  "lugar": "m3 aprende paso 4",
+  "texto": "Hilo sobre y jala un bucle. Toma la hebra del ovillo con el gancho y pásala a través de la cadeneta. Ahora tienes dos bucles en el gancho."
+ },
+ {
+  "clave": "4232b948",
+  "lugar": "m3 aprende paso 5",
+  "texto": "Cierra el punto. Vuelve a tomar la hebra del ovillo con el gancho y pásala a través de los dos bucles a la vez. ¡Has hecho un punto bajo! Ahora queda un solo bucle en el gancho."
+ },
+ {
+  "clave": "1f675ff4",
+  "lugar": "m3 aprende paso 6",
+  "texto": "Repite en cada cadeneta. Introduce el gancho en la siguiente cadeneta y repite: toma la hebra del ovillo, pásala por la cadeneta (quedan dos bucles), toma la hebra otra vez y pásala por los dos bucles. Continúa hasta el final."
+ },
+ {
+  "clave": "21c2179c",
+  "lugar": "m3 aprende paso 7",
+  "texto": "Cuenta tus puntos. Cuenta las V de la parte superior de tu tejido. Lo ideal es tener 10 puntos bajos. Si tienes 9 u 11, ¡no pasa nada! Es tu primera muestra."
+ },
+ {
+  "clave": "d9a97387",
+  "lugar": "m3 practica",
+  "texto": "Teje tu primera muestra. Teje una fila de puntos bajos sobre tu cadeneta. Hazlo poco a poco. Mira tu primera muestra con calma, como Tito. ¿Se parece a tu dibujo? Si quedó diferente, también es válida."
+ },
+ {
+  "clave": "79df1092",
+  "lugar": "m3 juego (intro)",
+  "texto": "Detective de puntadas. Tito necesita un detective de puntadas. Observa con calma y descubre cada pista."
+ },
+ {
+  "clave": "921e4cb4",
+  "lugar": "m3 juego ronda 1",
+  "texto": "Encuentra la fila de cadenetas. Una fila simple de V, como una trenza.. Un tejido con varias filas apiladas.. Un nudo de hilo enredado."
+ },
+ {
+  "clave": "99000c5a",
+  "lugar": "m3 juego ronda 2",
+  "texto": "Encuentra el tejido de puntos bajos. Una fila simple de V.. Un tejido compacto con varias filas.. Un nudo de hilo enredado."
+ },
+ {
+  "clave": "c47994c5",
+  "lugar": "m3 juego ronda 3",
+  "texto": "Tito cuenta los puntos de su camino. ¿Cuántos puntos bajos hay?"
+ },
+ {
+  "clave": "3405fae7",
+  "lugar": "m3 juego ronda 4",
+  "texto": "Pon en orden los pasos de un punto bajo. Mete el gancho en la cadeneta.. Hilo sobre y jala un bucle (2 bucles).. Hilo sobre y jala por los 2 bucles.. ¡Un punto bajo! Queda 1 bucle."
+ },
+ {
+  "clave": "22979404",
+  "lugar": "m3 juego ronda 5",
+  "texto": "¿Cuántos bucles tienes en el gancho después de jalar un bucle por la cadeneta? 1 bucle. 2 bucles. 3 bucles"
+ },
+ {
+  "clave": "410160bd",
+  "lugar": "m3 reflexion",
+  "texto": "¿Qué descubriste al mirar tus puntadas con calma?"
+ },
+ {
+  "clave": "8a687ff5",
+  "lugar": "m3 fin",
+  "texto": "¡Camino listo! Tito llega a la colina y el camino recupera su color."
+ }
+]
