@@ -192,3 +192,4 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 - [ ] Voz de Rosina: falta que Sara diga la plataforma y la voz del reel para generar los 56 audios.
 - [ ] Misiones 4 a 8 del cuento (hoy solo «Próximamente» en el mapa): La casa de los colores, El jardín de Pipo, El regalo de Bruno, El desafío de Rosina, La fiesta del Bosque Tejido. Definir con Sara qué enseña cada una y pasar cada contenido por la experta antes de habilitarla.
 - [x] El cuento llama por su nombre a la persona (el del pasaporte): `{nombre}` en `misiones.js`, `js/nombre.js`; la voz grabada usa el texto sin nombre.
+- [ ] Rosina: las poses viejas (saludo, corazón, ovillo, abrazo, leyendo, gorro…) tienen partes borradas por el recorte automático del borde; pedir a Sara otra hoja de poses sin borde (como la de las 10 poses) y recortarla con `recortar_rosina_hoja.py`.

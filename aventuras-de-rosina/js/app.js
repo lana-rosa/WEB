@@ -3,14 +3,14 @@
 // Privacidad: no hay cuentas, ni cookies, ni analítica, ni peticiones a servidores. Todo vive en este navegador (ver estado.js).
 // Para cambiar textos o añadir capítulos NO hay que tocar este archivo: ver contenido/misiones.js y herramientas/aventuras-de-rosina/LEEME.md.
 
-import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=16';
-import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=16';
-import { personaje, dibujo, mapaFondo } from './dibujos.js?v=16';
-import { jugar, miniBosque } from './juegos.js?v=16';
-import * as E from './estado.js?v=16';
-import * as voz from './voz.js?v=16';
-import * as musica from './musica.js?v=16';
-import { pers, sinNombre } from './nombre.js?v=16';
+import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=17';
+import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=17';
+import { personaje, dibujo, mapaFondo } from './dibujos.js?v=17';
+import { jugar, miniBosque } from './juegos.js?v=17';
+import * as E from './estado.js?v=17';
+import * as voz from './voz.js?v=17';
+import * as musica from './musica.js?v=17';
+import { pers, sinNombre } from './nombre.js?v=17';
 
 // Título del libro (Libro 1 de «Rosina y el Bosque Tejido», que es el nombre del mundo y del mapa).
 const TITULO_LIBRO = 'Rosina y la gran aventura de la primera cadeneta';
@@ -44,6 +44,8 @@ function darLogro(id) {
 
 const dlgAyuda = document.getElementById('dlg-ayuda');
 const dlgConfirmar = document.getElementById('dlg-confirmar');
+// Navegadores viejos sin <dialog>: se abre y se cierra con el atributo «open» (el CSS lo centra).
+[dlgAyuda, dlgConfirmar].forEach((d) => { if (d && typeof d.showModal !== 'function') { d.showModal = () => d.setAttribute('open', ''); d.close = () => d.removeAttribute('open'); } });
 let ayudaCtx = null;
 
 function abrirAyuda(info) {
