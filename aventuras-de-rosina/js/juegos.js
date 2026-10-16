@@ -4,6 +4,7 @@
 // reintentar sin límite; tras dos errores se ofrece ver la respuesta y seguir, para que un juego nunca bloquee a nadie.
 
 import { dibujo } from './dibujos.js?v=9';
+import { conNombre } from './nombre.js?v=9';
 import { PALETA, POSES_ROSINA } from '../contenido/personajes.js?v=9';
 
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -68,6 +69,7 @@ const nombreColor = (id) => { const c = PALETA.find((p) => p.id === id || p.hex 
  * ctx: { ayuda(info), leer(texto), vozOk(), alTerminar(resumen), guardarColores(obj), coloresIniciales }
  */
 export function jugar(raiz, juego, ctx) {
+  const nombre = () => (ctx.nombre ? ctx.nombre() : '');
   let i = 0;
   let intentos = 0;
   let verRespuesta = false;
@@ -151,7 +153,7 @@ export function jugar(raiz, juego, ctx) {
     resumen.intentos.push(intentos + 1);
     raiz.querySelectorAll('.opcion, [data-j="comprobar"], [data-j="mas"], [data-j="menos"]').forEach((b) => { b.disabled = true; });
     const img = raiz.querySelector('.juego-rosina'); if (img) img.src = POSES_ROSINA.feliz;
-    retro(`<strong>${esc(r.bien)}</strong>`, 'bien');
+    retro(`<strong>${esc(conNombre(r.bien, nombre()))}</strong>`, 'bien');
     mostrarSeguir();
   }
   function fallo() {
@@ -160,7 +162,7 @@ export function jugar(raiz, juego, ctx) {
     let extra = '';
     if (intentos >= 1) extra += `<br><span class="pista">💡 ${esc(r.pista)}</span>`;
     if (intentos >= 2) extra += '<br><button type="button" class="btn btn-suave" data-j="respuesta">Ver la respuesta</button>';
-    retro(`<strong>${esc(r.mal)}</strong>${extra}`, 'mal');
+    retro(`<strong>${esc(conNombre(r.mal, nombre()))}</strong>${extra}`, 'mal');
     const img = raiz.querySelector('.juego-rosina'); if (img) img.src = intentos >= 2 ? POSES_ROSINA.fuerza : POSES_ROSINA.consuelo;   // consuelo al primer error; ánimo después
   }
   function mostrarRespuesta() {
@@ -225,7 +227,7 @@ export function jugar(raiz, juego, ctx) {
       ctx.guardarColores(resumen.colores);
       raiz.querySelectorAll('button').forEach((x) => { if (x.dataset.j !== 'ayuda' && x.dataset.j !== 'leer' && x.dataset.j !== 'seguir') x.disabled = true; });
       const img = raiz.querySelector('.juego-rosina'); if (img) img.src = POSES_ROSINA.feliz;
-      retro(`<strong>${esc(r.bien)}</strong>`, 'bien'); mostrarSeguir();
+      retro(`<strong>${esc(conNombre(r.bien, nombre()))}</strong>`, 'bien'); mostrarSeguir();
     }
   };
 

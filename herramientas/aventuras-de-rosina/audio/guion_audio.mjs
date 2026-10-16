@@ -4,12 +4,13 @@
 // Las fórmulas de cada texto son las MISMAS que usa app.js / juegos.js al llamar a voz.leer (la prueba probar.py lo comprueba).
 import { writeFileSync } from 'node:fs';
 import { clave } from '../../../aventuras-de-rosina/js/voz.js';
+import { sinNombre } from '../../../aventuras-de-rosina/js/nombre.js';
 import { MISIONES } from '../../../aventuras-de-rosina/contenido/misiones.js';
 
 const filas = [];
 const ver = new Map();
 function agregar(lugar, texto) {
-  const t = String(texto || '').replace(/\s+/g, ' ').trim();
+  const t = sinNombre(texto || '').replace(/\s+/g, ' ').trim();
   if (!t) return;
   const k = clave(t);
   if (ver.has(k)) { ver.get(k).lugar += ' | ' + lugar; return; }

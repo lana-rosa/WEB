@@ -190,3 +190,5 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 - [ ] Nudo inicial y cadeneta: reemplazar los SVG provisionales por la hoja de pasos de ChatGPT y/o un video corto grabado con el celular (prompts y guía en `herramientas/aventuras-de-rosina/ilustraciones/PROMPTS-NUDOS-Y-VIDEO.md`; el reproductor ya trae botones de velocidad Lento / Despacio / Normal).
 - [ ] Música de fondo: es una cajita de música original generada por `herramientas/aventuras-de-rosina/audio/generar_musica.py`; Sara decide si la deja o prefiere otra.
 - [ ] Voz de Rosina: falta que Sara diga la plataforma y la voz del reel para generar los 56 audios.
+- [ ] Misiones 4 a 8 del cuento (hoy solo «Próximamente» en el mapa): La casa de los colores, El jardín de Pipo, El regalo de Bruno, El desafío de Rosina, La fiesta del Bosque Tejido. Definir con Sara qué enseña cada una y pasar cada contenido por la experta antes de habilitarla.
+- [x] El cuento llama por su nombre a la persona (el del pasaporte): `{nombre}` en `misiones.js`, `js/nombre.js`; la voz grabada usa el texto sin nombre.
