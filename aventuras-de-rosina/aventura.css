@@ -356,3 +356,9 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, main:focus { outline: none; }
 .btn-vel[aria-pressed="true"] { background: var(--rosa); color: #fff; }
 
 .descanso { display: flex; gap: 10px; align-items: center; background: #EEF0FF; border-radius: 20px; padding: 12px 16px; margin: 14px 0; font-weight: 700; font-size: 1.1rem; }
+
+/* ---- Los amigos del bosque, más grandes en cada historia ---- */
+.historia-arte .pj, .solo-personaje .pj { width: auto; height: auto; max-width: 80vw; max-height: min(460px, 60vh); }
+@media (prefers-reduced-motion: no-preference) {
+  .historia-arte .pj, .solo-personaje .pj { animation: pop .7s cubic-bezier(.3,1.6,.5,1) both, flota 4.8s .7s ease-in-out infinite; transform-origin: 50% 100%; }
+}

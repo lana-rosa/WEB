@@ -3,13 +3,13 @@
 // Privacidad: no hay cuentas, ni cookies, ni analítica, ni peticiones a servidores. Todo vive en este navegador (ver estado.js).
 // Para cambiar textos o añadir capítulos NO hay que tocar este archivo: ver contenido/misiones.js y herramientas/aventuras-de-rosina/LEEME.md.
 
-import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=7';
-import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=7';
-import { personaje, dibujo, mapaFondo } from './dibujos.js?v=7';
-import { jugar, miniBosque } from './juegos.js?v=7';
-import * as E from './estado.js?v=7';
-import * as voz from './voz.js?v=7';
-import * as musica from './musica.js?v=7';
+import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=8';
+import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=8';
+import { personaje, dibujo, mapaFondo } from './dibujos.js?v=8';
+import { jugar, miniBosque } from './juegos.js?v=8';
+import * as E from './estado.js?v=8';
+import * as voz from './voz.js?v=8';
+import * as musica from './musica.js?v=8';
 
 // Título del libro (Libro 1 de «Rosina y el Bosque Tejido», que es el nombre del mundo y del mapa).
 const TITULO_LIBRO = 'Rosina y la gran aventura de la primera cadeneta';
