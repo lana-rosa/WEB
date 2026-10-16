@@ -3,8 +3,8 @@
 // Reglas de diseño: sin tiempo, sin vidas, sin puntaje que compare ni sonidos. Un error siempre recibe una pista amable y se puede
 // reintentar sin límite; tras dos errores se ofrece ver la respuesta y seguir, para que un juego nunca bloquee a nadie.
 
-import { dibujo } from './dibujos.js';
-import { PALETA, POSES_ROSINA } from '../contenido/personajes.js';
+import { dibujo } from './dibujos.js?v=3';
+import { PALETA, POSES_ROSINA } from '../contenido/personajes.js?v=3';
 
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 

@@ -3,7 +3,7 @@
 // Rosina NO se dibuja aquí: usa las imágenes oficiales de /img/stickers/; los amigos, las poses de /img/aventuras/plano/ (ver personajes.js).
 // Para reemplazar un dibujo por una imagen o un video final, ver herramientas/aventuras-de-rosina/LEEME.md (sección "Cambiar dibujos por fotos o videos").
 
-import { POSES_PLANO } from '../contenido/personajes.js';
+import { POSES_PLANO } from '../contenido/personajes.js?v=3';
 
 const HA = '#cc1786';   // hilo, borde (fucsia de marca)
 const HB = '#ff66c4';   // hilo, relleno (rosa de marca)
@@ -57,7 +57,7 @@ const PINTORES = {
   lugar: () => svg(`
     <rect x="200" y="22" width="96" height="78" rx="8" fill="#BFE3FF" stroke="#6DB6F2" stroke-width="3"/><path d="M248,22 V100 M200,61 H296" stroke="#6DB6F2" stroke-width="3"/><circle cx="270" cy="44" r="10" fill="#FFD23F" stroke="#FFB400" stroke-width="2"/>
     <rect x="28" y="142" width="274" height="14" rx="7" fill="#C9966B" stroke="#8a5a30" stroke-width="2"/><rect x="48" y="156" width="10" height="34" rx="4" fill="#C9966B"/><rect x="272" y="156" width="10" height="34" rx="4" fill="#C9966B"/>
-    <circle cx="96" cy="118" r="24" fill="${HB}" stroke="${HA}" stroke-width="3"/><path d="M78,108 q18,-12 36,2 M74,122 q22,-16 44,2 M82,136 q14,-8 28,0" fill="none" stroke="#fff" stroke-width="2.5" opacity=".6"/>
+    ${imagen('ovillo', 64, 82, 60, 66)}
     ${gancho(150, 134, -3, .55)}
     <ellipse cx="170" cy="188" rx="46" ry="9" fill="#FBE4EF"/>`),
 
