@@ -819,7 +819,7 @@ function crearTarjeta(item) {
       '<h3>' + item.nombre + '</h3>' +
       '<p class="producto-precio">' + formatoCOP(item.precio) + ' <span class="moneda">COP</span></p>' +
       (pers
-        ? '<p class="producto-estado bajo-pedido">Personalizado · fotos de referencia</p>' +
+        ? '<p class="producto-estado bajo-pedido">Foto de referencia</p>' +
           '<a class="boton-personalizar" href="' + pers.url + '">Personalizar <span class="estrella" aria-hidden="true">✨</span></a>'
         : '<p class="producto-estado ' + (item.disponible_web ? 'disponible' : 'bajo-pedido') + '">' + (item.disponible_web ? 'Disponible' : 'Bajo pedido') + '</p>' +
           '<button type="button" class="boton-agregar-carrito">Agregar 🛒</button>') +
