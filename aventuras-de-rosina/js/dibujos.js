@@ -3,7 +3,7 @@
 // Rosina NO se dibuja aquí: usa las imágenes oficiales de /img/stickers/; los amigos, las poses de /img/aventuras/plano/ (ver personajes.js).
 // Para reemplazar un dibujo por una imagen o un video final, ver herramientas/aventuras-de-rosina/LEEME.md (sección "Cambiar dibujos por fotos o videos").
 
-import { POSES_PLANO } from '../contenido/personajes.js?v=9';
+import { POSES_PLANO } from '../contenido/personajes.js?v=10';
 
 const HA = '#cc1786';   // hilo, borde (fucsia de marca)
 const HB = '#ff66c4';   // hilo, relleno (rosa de marca)
