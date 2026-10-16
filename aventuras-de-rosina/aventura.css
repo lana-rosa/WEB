@@ -368,3 +368,7 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, main:focus { outline: none; }
 .ord-elegidos li.vacio { color: #b79aa8; font-weight: 600; border: 2px dashed #ffd0e8; }
 .ord-elegidos li.vacio::before { background: #ffd0e8; }
 .ord-elegidos li.lleno { background: #FFF1F8; }
+
+/* Rosina al mismo tamaño que sus amigos en las historias (su imagen cuadrada tiene aire a los lados) */
+.historia-arte { display: flex; justify-content: center; overflow: hidden; }
+.historia-arte .sticker-r.rosina-img { flex: none; width: 450px; max-width: none; margin: 0 -50px 0; }

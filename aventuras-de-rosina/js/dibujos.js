@@ -3,7 +3,7 @@
 // Rosina NO se dibuja aquí: usa las imágenes oficiales de /img/stickers/; los amigos, las poses de /img/aventuras/plano/ (ver personajes.js).
 // Para reemplazar un dibujo por una imagen o un video final, ver herramientas/aventuras-de-rosina/LEEME.md (sección "Cambiar dibujos por fotos o videos").
 
-import { POSES_PLANO } from '../contenido/personajes.js?v=9';
+import { POSES_PLANO } from '../contenido/personajes.js?v=11';
 
 const HA = '#cc1786';   // hilo, borde (fucsia de marca)
 const HB = '#ff66c4';   // hilo, relleno (rosa de marca)
@@ -143,10 +143,14 @@ const PINTORES = {
     ${texto(176, 160, 'jala por los 2 bucles', 15, 'start')}${flecha('M170,152 L126,116')}
     ${texto(160, 44, 'queda 1 bucle', 15)}`),
 
+  // Tres ovillos con la imagen real del ovillo: gruesa y clara (la ideal), fina y oscura, y peluda que esconde las puntadas.
   muestraLana: (p) => {
-    if (p.variante === 'gruesa') return svg(`<circle cx="100" cy="100" r="62" fill="#FFD6EA" stroke="${HA}" stroke-width="4"/><path d="M52,80 q48,-22 96,6 M46,104 q54,-24 108,6 M54,128 q46,-18 92,2" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".7"/>${hilo('M150,128 C200,150 220,110 258,128', 12, HA, '#FFD6EA')}`, '0 0 300 200');
-    if (p.variante === 'fina') return svg(`<circle cx="100" cy="100" r="40" fill="#4a3a4f" stroke="#2b2430" stroke-width="3"/>${[0, 1, 2, 3, 4, 5].map((i) => `<path d="M${64 + i * 4},${84 + i * 8} q36,-14 ${72 - i * 8},2" fill="none" stroke="#7d6a82" stroke-width="1.5"/>`).join('')}${hilo('M140,124 C170,108 190,150 220,128 S250,118 276,130', 2.5, '#2b2430', '#5b4a60')}`, '0 0 300 200');
-    return svg(`<circle cx="100" cy="100" r="50" fill="#e29ac0" stroke="#b86f97" stroke-width="3"/>${Array.from({ length: 36 }, (_, i) => { const a = (i / 36) * Math.PI * 2; return `<path d="M${100 + Math.cos(a) * 46},${100 + Math.sin(a) * 46} l${Math.cos(a) * 16},${Math.sin(a) * 16}" stroke="#b86f97" stroke-width="3" stroke-linecap="round"/>`; }).join('')}${hilo('M156,128 C186,112 206,150 236,128 S262,118 282,130', 12, '#b86f97', '#e29ac0')}`, '0 0 300 200');
+    const f = (id, m) => `<defs><filter id="${id}" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="${m}"/></filter></defs>`;
+    const tinta = (id, nombre, x, y, w, h) => `<image href="${IMP}${nombre}.webp" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet" filter="url(#${id})"/>`;
+    if (p.variante === 'gruesa') return svg(`${imagen('ovillo', 28, 12, 150, 164)}${hilo('M158,150 C196,176 224,120 262,146', 13, HA, '#FFC6E2')}`, '0 0 300 200');
+    if (p.variante === 'fina') return svg(`${f('lf', '.22 .22 .22 0 0  .2 .2 .2 0 0  .22 .22 .24 0 .03  0 0 0 1 0')}${tinta('lf', 'ovillo', 52, 46, 104, 114)}${hilo('M150,140 C176,128 192,160 220,144 S250,136 276,146', 2.5, '#2b2430', '#5b4a60')}`, '0 0 300 200');
+    const pelos = Array.from({ length: 44 }, (_, i) => { const a = (i / 44) * Math.PI * 2, rx = 52, ry = 58; return `<path d="M${100 + Math.cos(a) * rx},${100 + Math.sin(a) * ry} l${Math.cos(a) * 15},${Math.sin(a) * 15}" stroke="#b9779d" stroke-width="3" stroke-linecap="round"/>`; }).join('');
+    return svg(`${f('lp', '.85 .1 .1 0 0  .1 .6 .2 0 0  .3 .2 .8 0 0  0 0 0 1 0')}${pelos}${tinta('lp', 'ovillo', 38, 28, 124, 136)}${hilo('M164,144 C192,128 212,164 242,144 S266,134 286,146', 12, '#b86f97', '#e29ac0')}`, '0 0 300 200');
   },
 
   nudoSolo: () => svg(`${hilo('M70,120 C90,40 170,50 150,110 C130,170 60,130 120,80 C180,30 250,90 200,130 C160,160 120,130 160,100', 7)}${hilo('M60,150 C30,170 40,190 80,186 M200,140 C240,160 270,150 280,176', 7)}`),
