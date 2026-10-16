@@ -62,7 +62,7 @@ def main():
         print('1. Inicio, acompañantes, preparación y mapa')
         pg.goto(BASE); pg.wait_for_timeout(400)
         comprobar('Rosina y la gran aventura de la primera cadeneta' in pg.inner_text('h1'), 'La bienvenida muestra el título')
-        comprobar(pg.locator('img.heroe-rosina').get_attribute('src').startswith('/img/aventuras/rosina-plana/rosina-'), 'La bienvenida usa la imagen de Rosina sin borde de sticker')
+        comprobar(pg.locator('img.heroe-rosina').get_attribute('src').startswith('/img/aventuras/rosina-original/'), 'La bienvenida usa la imagen de Rosina del estilo original (sin borde)')
         revisar_ancho('bienvenida')
         clic('¡Comenzar aventura!')
         comprobar('Para quien acompaña' in pg.inner_text('h1'), 'Comenzar lleva a la orientación para adultos')
