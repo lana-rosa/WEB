@@ -76,7 +76,7 @@ const botonVoz = () => (vozListo ? '<button type="button" class="btn-voz" data-a
 
 // ---------------------------------------------------------------- piezas comunes
 const CON_FOTO = ['ovillo', 'gancho', 'tijeras', 'nudo2'];  // pasos con foto real (img/aventuras/fotos/): sin la etiqueta de dibujo provisional
-const fig = (def, alt) => `<figure class="paso-fig"><div class="paso-dib">${dibujo(def)}</div><figcaption class="paso-alt">${esc(alt)}${CON_FOTO.includes(def && def.tipo) ? '' : ' <span class="provisional">Dibujo de ayuda (provisional)</span>'}</figcaption></figure>
+const fig = (def, alt) => `<figure class="paso-fig"><div class="paso-dib">${dibujo(def)}</div><figcaption class="paso-alt">${esc(alt)}${CON_FOTO.includes(def && def.tipo) ? '' : ' <span class="provisional">Dibujo de ayuda (provisional)</span>'}</figcaption></figure>`;
 // Rosina en las escenas del libro: los stickers oficiales (varias poses). alt '' la marca como decorativa.
 const ALT_ROSINA = {
   llora: 'Rosina llora de felicidad, rodeada de corazones y estrellitas.', celebra: 'Rosina celebra con los brazos en alto y estrellitas.',
