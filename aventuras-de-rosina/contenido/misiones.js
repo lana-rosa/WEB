@@ -303,7 +303,7 @@ export const MISIONES = [
       ],
       respuesta: 'Una puntada a la vez: así se construyen los puentes. Todas esas ideas ayudan a ser paciente.',
     },
-    fin: { texto: '¡Puente terminado, {nombre}! Luna cruza el río y el agua del río empieza a brillar con su color.', pose: 'animo' },
+    fin: { texto: '¡Puente terminado, {nombre}! Luna cruza el río y el agua del río empieza a brillar con su color.', pose: 'celebra' },
   },
 
   {
