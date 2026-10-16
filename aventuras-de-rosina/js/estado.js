@@ -11,7 +11,7 @@ const nuevo = () => ({
   logros: [],        // ids de LOGROS
   colores: {},       // { m1: { rio, flores, camino } } elecciones del Laboratorio de colores
   reflexiones: {},   // { m1: 'preguntar' }
-  prefs: { voz: false, adultos: false },
+  prefs: { voz: false, adultos: false, musica: false },
 });
 
 let memoria = nuevo();

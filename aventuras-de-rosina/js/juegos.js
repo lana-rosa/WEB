@@ -3,21 +3,62 @@
 // Reglas de diseño: sin tiempo, sin vidas, sin puntaje que compare ni sonidos. Un error siempre recibe una pista amable y se puede
 // reintentar sin límite; tras dos errores se ofrece ver la respuesta y seguir, para que un juego nunca bloquee a nadie.
 
-import { dibujo } from './dibujos.js?v=3';
-import { PALETA, POSES_ROSINA } from '../contenido/personajes.js?v=3';
+import { dibujo } from './dibujos.js?v=6';
+import { PALETA, POSES_ROSINA } from '../contenido/personajes.js?v=6';
 
 const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-/** Mini bosque que cambia de color según lo elegido en el Laboratorio de colores. */
+/** Mini bosque que cambia de color según lo elegido en el Laboratorio de colores (río, flores y camino). */
+let nBosque = 0;
+const mezclar = (hex, con, k) => { // mezcla un color #rrggbb con blanco o negro (k de 0 a 1)
+  const n = parseInt(hex.slice(1), 16), t = con === 'b' ? 255 : 0;
+  const c = [n >> 16, (n >> 8) & 255, n & 255].map((v) => Math.round(v + (t - v) * k));
+  return '#' + c.map((v) => v.toString(16).padStart(2, '0')).join('');
+};
 export function miniBosque(c) {
   const hex = (v) => { const q = PALETA.find((x) => x.id === v || x.hex === v); return q ? q.hex : null; };
   const rio = hex(c.rio) || '#D3DAE6', flores = hex(c.flores) || '#CFC9D3', camino = hex(c.camino) || '#DDD5CB';
-  return `<svg class="mini-bosque" viewBox="0 0 300 180" role="img" aria-label="Mini bosque con el río de color ${esc(nombreColor(c.rio))}, las flores de color ${esc(nombreColor(c.flores))} y el camino de color ${esc(nombreColor(c.camino))}">
-    <rect width="300" height="180" rx="18" fill="#EAF6FF"/><path d="M0,70 Q80,40 160,66 T300,56 V180 H0z" fill="#CBE8D2"/>
-    <path d="M-10,104 C60,84 120,124 190,100 C240,84 280,100 310,92" fill="none" stroke="${rio}" stroke-width="30" stroke-linecap="round"/>
-    <path d="M60,176 C90,140 50,128 120,108 C180,92 190,70 200,56" fill="none" stroke="${camino}" stroke-width="18" stroke-linecap="round"/>
-    <path d="M60,176 C90,140 50,128 120,108 C180,92 190,70 200,56" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="6 8" opacity=".8"/>
-    ${[[34, 150], [58, 164], [250, 140], [272, 158]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="9" fill="${flores}" stroke="#fff" stroke-width="2"/><circle cx="${x}" cy="${y}" r="3" fill="#FFD23F"/>`).join('')}
+  const id = 'mb' + (++nBosque);
+  // una flor: tallo con hojas, 6 pétalos con brillo y centro amarillo
+  const flor = (x, y, r, rot) => {
+    const petalos = [0, 60, 120, 180, 240, 300].map((a) => `<ellipse cx="0" cy="${-r * 0.62}" rx="${r * 0.42}" ry="${r * 0.62}" transform="rotate(${a + rot})" fill="${flores}" stroke="${mezclar(flores, 'n', 0.28)}" stroke-width="1.1"/>`).join('');
+    const brillo = [0, 120, 240].map((a) => `<ellipse cx="0" cy="${-r * 0.78}" rx="${r * 0.15}" ry="${r * 0.28}" transform="rotate(${a + rot})" fill="#fff" opacity=".45"/>`).join('');
+    return `<g transform="translate(${x} ${y})"><path d="M0,${r * 0.2} C${r * 0.2},${r * 1.4} ${-r * 0.1},${r * 2.2} 0,${r * 3}" fill="none" stroke="#3E9B63" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M0,${r * 1.9} q${r * 0.9},${-r * 0.5} ${r * 1.2},${-r * 0.1} q${-r * 0.6},${r * 0.7} ${-r * 1.2},${r * 0.1}z" fill="#58B878" stroke="#3E9B63" stroke-width=".8"/>
+      <path d="M0,${r * 2.3} q${-r * 0.9},${-r * 0.5} ${-r * 1.1},${-r * 0.1} q${r * 0.6},${r * 0.7} ${r * 1.1},${r * 0.1}z" fill="#58B878" stroke="#3E9B63" stroke-width=".8"/>
+      ${petalos}${brillo}<circle r="${r * 0.36}" fill="#FFD23F" stroke="#D9A400" stroke-width="1"/><circle cx="${-r * 0.1}" cy="${-r * 0.1}" r="${r * 0.12}" fill="#FFF3A8"/></g>`;
+  };
+  const arbol = (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="-4" y="0" width="8" height="26" rx="3" fill="#A87B4F"/><rect x="-4" y="0" width="3" height="26" rx="1.5" fill="#C99A68"/>
+    <circle cx="0" cy="-8" r="19" fill="#6FC38A"/><circle cx="-13" cy="2" r="13" fill="#5DB87C"/><circle cx="13" cy="2" r="13" fill="#5DB87C"/><circle cx="-6" cy="-14" r="9" fill="#8AD6A2" opacity=".8"/>
+    ${[[-8, -8], [6, -2], [-14, 4], [12, 6], [0, -18]].map(([a, b]) => `<path d="M${a - 3},${b} q3,-4 6,0" fill="none" stroke="#3E9B63" stroke-width="1.2" opacity=".7"/>`).join('')}</g>`;
+  const hierba = (x, y) => `<path d="M${x},${y} q-3,-9 -6,-12 M${x},${y} q0,-10 1,-14 M${x},${y} q3,-8 7,-11" fill="none" stroke="#3E9B63" stroke-width="1.6" stroke-linecap="round"/>`;
+  return `<svg class="mini-bosque" viewBox="0 0 320 200" role="img" aria-label="Mini bosque con el río de color ${esc(nombreColor(c.rio))}, las flores de color ${esc(nombreColor(c.flores))} y el camino de color ${esc(nombreColor(c.camino))}">
+    <defs>
+      <linearGradient id="${id}c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE3FF"/><stop offset="1" stop-color="#F3FAFF"/></linearGradient>
+      <linearGradient id="${id}r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${mezclar(rio, 'b', 0.35)}"/><stop offset=".5" stop-color="${rio}"/><stop offset="1" stop-color="${mezclar(rio, 'n', 0.22)}"/></linearGradient>
+      <linearGradient id="${id}p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${mezclar(camino, 'b', 0.3)}"/><stop offset="1" stop-color="${mezclar(camino, 'n', 0.15)}"/></linearGradient>
+      <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9DDB6"/><stop offset="1" stop-color="#78C690"/></linearGradient>
+      <clipPath id="${id}k"><rect width="320" height="200" rx="18"/></clipPath>
+    </defs>
+    <g clip-path="url(#${id}k)">
+      <rect width="320" height="200" fill="url(#${id}c)"/>
+      <circle cx="262" cy="34" r="22" fill="#FFE98A" opacity=".45"/><circle cx="262" cy="34" r="14" fill="#FFD23F"/>
+      <g fill="#fff" opacity=".95"><ellipse cx="62" cy="32" rx="26" ry="9"/><ellipse cx="78" cy="26" rx="16" ry="9"/><ellipse cx="160" cy="46" rx="22" ry="7"/><ellipse cx="172" cy="41" rx="12" ry="7"/></g>
+      <path d="M0,92 Q60,58 120,84 T240,72 T320,80 V200 H0z" fill="#A5D9B0"/>
+      <path d="M0,104 Q80,76 160,100 T320,92 V200 H0z" fill="url(#${id}h)"/>
+      ${arbol(36, 66, 0.9)}${arbol(280, 72, 1)}${arbol(250, 60, 0.7)}
+      <path d="M-10,128 C50,104 110,148 180,122 C236,102 280,116 330,106 V160 C280,170 236,150 180,166 C110,190 50,148 -10,172z" fill="#66B77F"/>
+      <path d="M-10,132 C50,110 110,152 180,126 C236,106 280,120 330,110 L330,150 C280,160 236,142 180,156 C110,178 50,140 -10,160z" fill="url(#${id}r)"/>
+      <path d="M-10,132 C50,110 110,152 180,126 C236,106 280,120 330,110" fill="none" stroke="#fff" stroke-width="2" opacity=".6"/>
+      <g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"><path d="M30,136 q10,-4 20,0"/><path d="M100,142 q12,-4 24,0"/><path d="M150,134 q10,-4 20,0"/><path d="M220,128 q10,-4 20,0"/><path d="M270,124 q8,-3 16,0"/><path d="M70,126 q8,-3 14,0"/></g>
+      <g fill="#fff" opacity=".85"><circle cx="124" cy="136" r="1.8"/><circle cx="198" cy="130" r="1.6"/><circle cx="48" cy="130" r="1.5"/></g>
+      <ellipse cx="14" cy="150" rx="9" ry="5" fill="#B9B3AE"/><ellipse cx="300" cy="118" rx="8" ry="4.5" fill="#C4BEB8"/><ellipse cx="204" cy="162" rx="7" ry="4" fill="#B9B3AE"/>
+      <path d="M52,204 C86,168 40,150 118,126 C178,108 200,88 210,66" fill="none" stroke="${mezclar(camino, 'n', 0.25)}" stroke-width="24" stroke-linecap="round" opacity=".55"/>
+      <path d="M52,204 C86,168 40,150 118,126 C178,108 200,88 210,66" fill="none" stroke="url(#${id}p)" stroke-width="20" stroke-linecap="round"/>
+      <path d="M52,204 C86,168 40,150 118,126 C178,108 200,88 210,66" fill="none" stroke="#fff" stroke-width="2.2" stroke-dasharray="7 9" opacity=".85"/>
+      ${hierba(18, 186)}${hierba(100, 176)}${hierba(150, 186)}${hierba(300, 182)}${hierba(224, 192)}
+      ${flor(30, 168, 8, 10)}${flor(52, 184, 6.5, 30)}${flor(14, 178, 5.5, 0)}${flor(266, 156, 8.5, 20)}${flor(292, 172, 7, 40)}${flor(240, 176, 6, 5)}${flor(176, 188, 5.5, 25)}
+    </g>
   </svg>`;
 }
 const nombreColor = (id) => { const c = PALETA.find((p) => p.id === id || p.hex === id); return c ? c.nombre : 'sin color todavía'; };
@@ -44,7 +85,8 @@ export function jugar(raiz, juego, ctx) {
     raiz.innerHTML = `
       <div class="juego" data-ronda="${i}">
         <p class="juego-progreso"><span class="punticos" aria-hidden="true">${juego.rondas.map((_, k) => `<i class="${k < i ? 'listo' : k === i ? 'actual' : ''}"></i>`).join('')}</span> Reto ${i + 1} de ${juego.rondas.length}</p>
-        <div class="juego-cabeza">
+        <div class="juego-cabeza con-voz">
+          ${ctx.vozOk() ? '<button type="button" class="btn-voz" data-j="leer" aria-label="Escuchar en voz alta" title="Escuchar">🔊</button>' : ''}
           <img class="juego-rosina" src="${POSES_ROSINA[pose]}" alt="" width="96" height="96">
           <h2 class="juego-pregunta" id="juego-pregunta" tabindex="-1">${esc(r.pregunta)}</h2>
         </div>
@@ -52,7 +94,6 @@ export function jugar(raiz, juego, ctx) {
         <div class="retro" role="status" aria-live="polite" id="retro"></div>
         <div class="juego-pie">
           <button type="button" class="btn btn-suave" data-j="ayuda">🤝 Necesito ayuda</button>
-          ${ctx.vozOk() ? '<button type="button" class="btn btn-suave" data-j="leer">🔊 Escuchar</button>' : ''}
           <button type="button" class="btn btn-principal" data-j="seguir" hidden>Seguir</button>
         </div>
       </div>`;
