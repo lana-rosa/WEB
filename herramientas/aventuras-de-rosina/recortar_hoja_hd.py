@@ -3,7 +3,7 @@
 transparente en un lienzo cuadrado de 1024 px (la pose se agranda con LANCZOS y un realce suave: el estilo plano de líneas finas lo tolera).
 
 Uso: python3 herramientas/aventuras-de-rosina/recortar_hoja_hd.py HOJA.webp salida/ nombre1 nombre2 ...   (los nombres, de izquierda a derecha)
-Busca los cortes en el espacio vacío entre poses (no necesita medidas). Ver ilustraciones/PROMPTS-ROSINA-Y-JUEGOS.md.
+Busca los cortes en el espacio vacío entre poses (no necesita medidas). Si las poses se tocan (orejas o faldas pegadas) se reparten por piezas conectadas; con SOLO_COLUMNAS=1 se cortan siempre por columnas (mejor cuando las poses están bien separadas pero tienen adornos sueltos). Ver ilustraciones/PROMPTS-ROSINA-Y-JUEGOS.md.
 """
 import os, sys
 import numpy as np
@@ -107,7 +107,7 @@ def main():
         salida_poses[nombres[i]] = sub
         i += 1
     # tramos que salieron de partir una pieza ancha: se rehacen por piezas conectadas
-    for (s0, s1) in sueltos:
+    for (s0, s1) in ([] if os.environ.get('SOLO_COLUMNAS') else sueltos):
         dentro = [i for i, (x0, x1) in enumerate(tramos) if x0 >= s0 - 2 and x1 <= s1 + 2]
         if len(dentro) > 1:
             zona = a[:, s0:s1]
