@@ -4,7 +4,8 @@
   var URL_CHAT = 'https://ngjoognzvehwjtpqwrqe.supabase.co/functions/v1/rosina-web';
   var KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
   var pag = location.pathname.split('/').filter(Boolean).pop() || '';
-  if (/rosina(\.html)?$/.test(pag) || /^(gracias|404)(\.html)?$/.test(pag)) return;
+  // El chat sale en todas las páginas, también en las de Rosina (hubs, glosario, paletas, Conoce a Rosina…), salvo gracias y 404.
+  if (/^(gracias|404)(\.html)?$/.test(pag)) return;
 
   var css = document.createElement('style');
   css.textContent =
@@ -42,7 +43,8 @@
     '@media(min-width:700px){.rc-panel{right:16px;left:auto;top:auto;bottom:20px;width:380px;height:min(600px,calc(100vh - 40px));border-radius:18px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.28)}}';
   document.head.appendChild(css);
 
-  var casa = /^\/merceria(\/|$)/.test(location.pathname) ? 'merceria' : /^\/academy(\/|$)/.test(location.pathname) ? 'academy' : 'tienda';
+  var dc = document.documentElement.getAttribute('data-casa');
+  var casa = /^\/merceria(\/|$)/.test(location.pathname) ? 'merceria' : /^\/academy(\/|$)/.test(location.pathname) ? 'academy' : (dc === 'academy' ? 'academy' : dc === 'merceria' ? 'merceria' : 'tienda');
   var SUG = {
     tienda: ['¿Qué amigurumi me recomiendan de regalo?', '¿Cómo funciona Personaliza?', '¿Cómo hago un pedido?', '¿Cómo pago?'],
     merceria: ['¿Qué lana usar para un amigurumi?', '¿Qué aguja uso con cada hilo?', '¿Qué necesito para empezar a tejer?', '¿Cuál es el horario de la tienda?'],
