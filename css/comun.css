@@ -261,3 +261,12 @@ html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { back
   .pie-contacto { grid-column: 1 / -1; }
   .pie-top { align-items: flex-start; }
 }
+
+/* Barra «Rosina»: una fila corta con los colores de la casa, en todas las páginas de Rosina */
+.barra-rosina { background: var(--rosa-suave); border-bottom: 2px solid var(--rosa-medio); }
+.barra-rosina .contenedor { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; padding-top: 8px; padding-bottom: 8px; }
+.barra-rosina a { display: inline-flex; align-items: center; min-height: 36px; padding: 4px 12px; border-radius: 999px; background: #fff; color: var(--rosa-texto); text-decoration: none; font-weight: 600; font-size: .9rem; box-shadow: inset 0 0 0 1.5px var(--rosa-medio); }
+.barra-rosina a:hover, .barra-rosina a:focus-visible { background: var(--rosa-boton); color: var(--sobre-principal); box-shadow: none; }
+.barra-rosina a.br-hub { background: var(--rosa-boton); color: var(--sobre-principal); box-shadow: none; }
+.barra-rosina a.br-actual { background: var(--rosa-texto); color: #fff; box-shadow: none; }
+@media (max-width: 600px) { .barra-rosina .contenedor { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; } .barra-rosina a { white-space: nowrap; flex: none; } .barra-rosina .contenedor::-webkit-scrollbar { display: none; } }
