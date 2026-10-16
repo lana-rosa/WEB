@@ -47,12 +47,26 @@ def recortar(sub):
     return lienzo
 
 
+def cortes(a, fila):
+    """Afina los cortes entre poses: en cada fila busca, cerca del corte medido, la franja con menos dibujo (así no se recortan orejas ni manos)."""
+    sub = a[FILAS[fila]:FILAS[fila + 1]].min(axis=2)
+    oscuro = (sub < 245).sum(axis=0).astype(float)
+    res = [0]
+    for c in COLUMNAS[1:-1]:
+        ventana = range(max(res[-1] + 100, c - 60), min(len(oscuro) - 100, c + 60))
+        suave = np.convolve(oscuro, np.ones(9) / 9, mode='same')
+        res.append(min(ventana, key=lambda x: suave[x]))
+    res.append(len(oscuro))
+    return res
+
+
 def main():
     os.makedirs(DESTINO, exist_ok=True)
     a = np.array(Image.open(HOJA).convert('RGB'))
     for f, fila in enumerate(NOMBRES):
+        cs = cortes(a, f)
         for c, nombre in enumerate(fila):
-            sub = a[FILAS[f]:FILAS[f + 1], COLUMNAS[c]:COLUMNAS[c + 1]]
+            sub = a[FILAS[f]:FILAS[f + 1], cs[c]:cs[c + 1]]
             recortar(sub).save(os.path.join(DESTINO, nombre + '.webp'), quality=90, method=6)
             print('ok', nombre)
 
