@@ -134,7 +134,7 @@ export const MISIONES = [
       ],
       respuesta: 'Todas son maneras valientes de aprender. Pedir ayuda también es una forma de ser creativo.',
     },
-    fin: { texto: '¡Misión cumplida! Ya tienes tu mapa, tu mochila y tu pasaporte. El Bosque Tejido empieza a recuperar sus colores.', pose: 'feliz' },
+    fin: { texto: '¡Misión cumplida, {nombre}! Ya tienes tu mapa, tu mochila y tu pasaporte. El Bosque Tejido empieza a recuperar sus colores.', pose: 'feliz' },
   },
 
   {
@@ -150,8 +150,8 @@ export const MISIONES = [
     logros: { mision: 'puente-luna', juego: 'cuenta-cadenas' },
     historia: [
       { quien: 'rosina', pose: 'sorpresa', texto: 'Luna, la conejita, necesita cruzar el río para llegar a su casa. ¡Pero el puente desapareció!' },
-      { quien: 'luna', pose: 'feliz', texto: 'Hola… Muchas veces pienso que no me va a salir a la primera. Mi abuela me dijo: “Una puntada a la vez”.' },
-      { quien: 'luna', pose: 'animo', texto: 'Con una cadeneta de lana podemos construir los tablones del puente, uno por uno. ¿Me ayudas a tejerlos?', escena: { src: '/img/aventuras/escenas/puente-cadeneta.webp', alt: 'Rosina teje una cadeneta rosada junto al río mientras Tito, Bruno, Pipo y Luna la miran y la animan.' } },
+      { quien: 'luna', pose: 'feliz', texto: 'Hola, {nombre}… Muchas veces pienso que no me va a salir a la primera. Mi abuela me dijo: “Una puntada a la vez”.' },
+      { quien: 'luna', pose: 'animo', texto: 'Con una cadeneta de lana podemos construir los tablones del puente, uno por uno. ¿Me ayudas a tejerlos, {nombre}?', escena: { src: '/img/aventuras/escenas/puente-cadeneta.webp', alt: 'Rosina teje una cadeneta rosada junto al río mientras Tito, Bruno, Pipo y Luna la miran y la animan.' } },
     ],
     tutorial: {
       escena: { src: '/img/aventuras/escenas/mesa-ovillo-gancho.webp', alt: 'Rosina y Tito, sentados a una mesa, con un ovillo rosado y un gancho lila listos para empezar a tejer.' },
@@ -303,7 +303,7 @@ export const MISIONES = [
       ],
       respuesta: 'Una puntada a la vez: así se construyen los puentes. Todas esas ideas ayudan a ser paciente.',
     },
-    fin: { texto: '¡Puente terminado! Luna cruza el río y el agua del río empieza a brillar con su color.', pose: 'animo' },
+    fin: { texto: '¡Puente terminado, {nombre}! Luna cruza el río y el agua del río empieza a brillar con su color.', pose: 'animo' },
   },
 
   {
@@ -319,8 +319,8 @@ export const MISIONES = [
     logros: { mision: 'camino-tito', juego: 'ojo-de-tito' },
     historia: [
       { quien: 'rosina', pose: 'saludoSentada', texto: 'Tito, la tortuga, debe llegar a la colina, pero su camino se borró. Es lento, pero muy observador.' },
-      { quien: 'tito', pose: 'piensa', texto: 'Voy despacio porque me fijo en todo. Si miras con calma, las puntadas cuentan secretos.' },
-      { quien: 'tito', pose: 'animo', texto: 'Con las cadenetas que tejiste podemos construir el camino: ¡un punto bajo en cada cadeneta!' },
+      { quien: 'tito', pose: 'piensa', texto: 'Voy despacio porque me fijo en todo, {nombre}. Si miras con calma, las puntadas cuentan secretos.' },
+      { quien: 'tito', pose: 'animo', texto: 'Con las cadenetas que tejiste, {nombre}, podemos construir el camino: ¡un punto bajo en cada cadeneta!' },
     ],
     tutorial: {
       objetivo: 'Tejer una fila de 10 puntos bajos sobre una cadeneta de 11.',
@@ -453,12 +453,12 @@ export const MISIONES = [
         {
           tipo: 'ordenar',
           pregunta: 'Pon en orden los pasos de un punto bajo.',
-          pasos: ['Mete el gancho en la cadeneta.', 'Hilo sobre y jala un bucle (2 bucles).', 'Hilo sobre y jala por los 2 bucles.', '¡Un punto bajo! Queda 1 bucle.'],
-          mezcla: [1, 3, 0, 2],
+          pasos: ['Mete el gancho en la cadeneta.', 'Hilo sobre y jala un bucle: ahora hay 2 bucles.', 'Hilo sobre otra vez.', 'Jala por los 2 bucles: ¡queda 1 bucle y ya tienes un punto bajo!'],
+          mezcla: [2, 3, 0, 1],
           bien: '¡Muy bien! Ese es el camino de un punto bajo.',
           mal: '¡Probemos otra vez! Piensa primero dónde entra el gancho.',
           pista: 'Lo primero es meter el gancho en la cadeneta.',
-          explicacion: 'Primero entra el gancho, luego jalas un bucle (2 bucles), luego cierras por los 2 bucles y queda 1.',
+          explicacion: 'Primero entra el gancho; luego hilo sobre y jalas un bucle (2 bucles); después hilo sobre otra vez y lo jalas por los 2 bucles: queda 1.',
         },
         {
           tipo: 'elegir',
@@ -486,7 +486,7 @@ export const MISIONES = [
       ],
       respuesta: 'Mirar con calma ayuda a descubrir muchas cosas. Cada puntada cuenta una historia.',
     },
-    fin: { texto: '¡Camino listo! Tito llega a la colina y el camino recupera su color.', pose: 'ovillo' },
+    fin: { texto: '¡Camino listo, {nombre}! Tito llega a la colina y el camino recupera su color.', pose: 'ovillo' },
   },
 ];
 

@@ -3,13 +3,14 @@
 // Privacidad: no hay cuentas, ni cookies, ni analítica, ni peticiones a servidores. Todo vive en este navegador (ver estado.js).
 // Para cambiar textos o añadir capítulos NO hay que tocar este archivo: ver contenido/misiones.js y herramientas/aventuras-de-rosina/LEEME.md.
 
-import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=8';
-import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=8';
-import { personaje, dibujo, mapaFondo } from './dibujos.js?v=8';
-import { jugar, miniBosque } from './juegos.js?v=8';
-import * as E from './estado.js?v=8';
-import * as voz from './voz.js?v=8';
-import * as musica from './musica.js?v=8';
+import { MISIONES, FUTUROS, LOGROS } from '../contenido/misiones.js?v=9';
+import { PERSONAJES, POSES_ROSINA, AMIGOS, PALETA } from '../contenido/personajes.js?v=9';
+import { personaje, dibujo, mapaFondo } from './dibujos.js?v=9';
+import { jugar, miniBosque } from './juegos.js?v=9';
+import * as E from './estado.js?v=9';
+import * as voz from './voz.js?v=9';
+import * as musica from './musica.js?v=9';
+import { pers, sinNombre } from './nombre.js?v=9';
 
 // Título del libro (Libro 1 de «Rosina y el Bosque Tejido», que es el nombre del mundo y del mapa).
 const TITULO_LIBRO = 'Rosina y la gran aventura de la primera cadeneta';
@@ -25,6 +26,7 @@ const todasHechas = () => publicadas().length > 0 && hechas() === publicadas().l
 const emitir = (nombre, datos) => { try { window.dispatchEvent(new CustomEvent('aventura:evento', { detail: Object.assign({ nombre }, datos || {}) })); } catch (e) { /* sin soporte */ } };
 
 const tej = () => { const t = E.obtener().trato; return t === 'tejedora' ? 'tejedora' : t === 'tejedor' ? 'tejedor' : 'tejedor o tejedora'; };
+const miNombre = () => E.obtener().apodo || '';
 const saludoNombre = () => { const a = E.obtener().apodo; return a ? `, ${esc(a)}` : ''; };
 
 // ---------------------------------------------------------------- avisos (logros) y ayuda
@@ -228,13 +230,13 @@ function vistaHistoria(m, n) {
   const quien = p.quien === 'amigos' ? 'Rosina' : PERSONAJES[p.quien].nombre;
   return {
     titulo: `${m.titulo} · Historia`,
-    voz: p.texto,
+    voz: sinNombre(p.texto),
     html: `<section class="pantalla">${cabeceraMision(m)}${navEtapas(m, 'historia')}
       <h1 class="h1-mision">${n === 1 ? esc(m.titulo) : 'Historia'}</h1>
       ${escenaHtml(p.escena)}
       <div class="historia">
         <div class="historia-arte">${arte}</div>
-        <div class="burbuja con-voz">${botonVoz()}<p class="burbuja-quien">${esc(quien)} dice:</p><p>${esc(p.texto)}</p></div>
+        <div class="burbuja con-voz">${botonVoz()}<p class="burbuja-quien">${esc(quien)} dice:</p><p>${esc(pers(p.texto, miNombre()))}</p></div>
       </div>
       <p class="progreso-txt" aria-live="polite">Parte ${n} de ${pags.length}</p>
       <div class="acciones">
@@ -333,6 +335,7 @@ function vistaJuego(m) {
           ayuda: (info) => abrirAyuda(info),
           leer: (t) => { if (!E.obtener().prefs.voz) E.cambiar((s) => { s.prefs.voz = true; }); voz.leer(t); },
           vozOk,
+          nombre: miNombre,
           coloresIniciales: (E.obtener().colores[m.id] || {}),
           guardarColores: (c) => E.cambiar((e) => { e.colores[m.id] = c; }),
           alTerminar: () => {
@@ -437,11 +440,11 @@ function vistaFin(m) {
   const ganados = nuevosLogros.length ? nuevosLogros : [];
   return {
     titulo: `${m.titulo} · ¡Misión completada!`,
-    voz: m.fin.texto,
+    voz: sinNombre(m.fin.texto),
     html: `<section class="pantalla fin">${cabeceraMision(m)}
       ${imgRosina(m.fin.pose || 'feliz', 'x', 'heroe-rosina', 210)}
       <h1>¡Misión completada!</h1>
-      <div class="burbuja"><p>${esc(m.fin.texto)}</p></div>
+      <div class="burbuja"><p>${esc(pers(m.fin.texto, miNombre()))}</p></div>
       ${ganados.length ? `<div class="logros-nuevos"><h2>Logros nuevos</h2><ul>${ganados.map((id) => `<li><span aria-hidden="true">${LOGROS[id].icono}</span> <strong>${esc(LOGROS[id].nombre)}</strong> — ${esc(LOGROS[id].texto)}</li>`).join('')}</ul></div>` : ''}
       <div class="acciones">
         ${sig ? `<a class="btn btn-principal btn-grande" href="#/mapa">Volver al mapa</a><a class="btn btn-suave" href="${rutaMision(sig.id, 'historia', 1)}">Ir a la misión ${sig.numero}</a>` : `<a class="btn btn-principal btn-grande" href="#/diploma">🎓 Ver mi diploma</a><a class="btn btn-suave" href="#/mapa">Volver al mapa</a>`}

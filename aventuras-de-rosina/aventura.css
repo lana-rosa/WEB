@@ -179,7 +179,7 @@ main { flex: 1; outline: none; }
 .btn-redondo:hover:not(:disabled) { background: var(--rosa-suave); }
 .btn-redondo:disabled { opacity: .5; cursor: not-allowed; }
 .contador-valor { min-width: 2.2ch; text-align: center; font: 700 3.2rem 'DynaPuff', sans-serif; color: var(--tinta); }
-.ord-elegidos { min-height: 56px; margin: 8px 0 14px; padding: 10px 10px 10px 36px; border: 3px dashed #ffb3dc; border-radius: 18px; background: #fff; }
+.ord-elegidos { list-style: none; counter-reset: paso; min-height: 56px; margin: 8px 0 14px; padding: 10px; border: 3px dashed #ffb3dc; border-radius: 18px; background: #fff; }
 .ord-elegidos li { margin: 4px 0; font-weight: 700; }
 .ord-opciones { display: grid; gap: 10px; margin-bottom: 14px; }
 .colores-vista .mini-bosque { width: 100%; max-width: 420px; display: block; margin: 8px auto; height: auto; }
@@ -362,3 +362,9 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, main:focus { outline: none; }
 @media (prefers-reduced-motion: no-preference) {
   .historia-arte .pj, .solo-personaje .pj { animation: pop .7s cubic-bezier(.3,1.6,.5,1) both, flota 4.8s .7s ease-in-out infinite; transform-origin: 50% 100%; }
 }
+
+.ord-elegidos li { counter-increment: paso; display: flex; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 14px; }
+.ord-elegidos li::before { content: counter(paso); flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--rosa); color: #fff; font-weight: 800; }
+.ord-elegidos li.vacio { color: #b79aa8; font-weight: 600; border: 2px dashed #ffd0e8; }
+.ord-elegidos li.vacio::before { background: #ffd0e8; }
+.ord-elegidos li.lleno { background: #FFF1F8; }
