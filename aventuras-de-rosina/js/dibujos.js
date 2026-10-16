@@ -24,16 +24,13 @@ const flecha = (d, color = TINTA) =>
   `<path d="${d}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 5" marker-end="url(#pf)"/>`;
 const defsFlecha = `<defs><marker id="pf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9z" fill="${TINTA}"/></marker></defs>`;
 
-/** Gancho de crochet: la punta está en (x, y) y el mango se extiende hacia la derecha; ang gira el conjunto.
- *  Forma real de un gancho: la punta redondeada, un «labio» que sobresale, la garganta (la ranura donde entra el hilo),
- *  el cuerpo, el apoyo plano para el pulgar y el mango. (Referencia: ganchos ergonómicos de aluminio con mango.) */
+/** Gancho de crochet (ilustración de ChatGPT recortada en img/aventuras/implementos/gancho.webp): la punta está en (x, y) y el mango se extiende
+ *  hacia la derecha; ang gira el conjunto. La imagen se estira un poco a lo largo para que quede más cuerpo fino donde van los bucles. */
+const IMP = '/img/aventuras/implementos/';
+const imagen = (nombre, x, y, w, h, ajuste = 'xMidYMid meet') => `<image href="${IMP}${nombre}.webp" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="${ajuste}"/>`;
 const gancho = (x, y, ang = 0, s = 1) =>
-  `<g transform="translate(${x} ${y}) rotate(${ang}) scale(${s})">
-    <path d="M0,1.5 C-0.8,-3.5 2,-8 7.5,-8.4 C12,-8.6 14,-5.8 13,-3.2 C12.4,-2 11.6,-1.2 12,-0.4 C14.5,1.4 21,0.8 29,-4.5 L112,-4.5 L112,4.5 L13,4.5 C6,4.5 0.5,5.3 0,1.5 Z" fill="#B7BCC6" stroke="#6F7683" stroke-width="1.5" stroke-linejoin="round"/>
-    <path d="M34,-2.4 L96,-2.4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
-    <path d="M52,-4.5 L74,-4.5 L74,4.5 L52,4.5 Z" fill="#C9CDD6" stroke="#6F7683" stroke-width="1.2" stroke-linejoin="round"/>
-    <rect x="108" y="-7" width="64" height="14" rx="7" fill="#9EA2F9" stroke="#6F73C8" stroke-width="1.5"/>
-  </g>`;
+  `<g transform="translate(${x} ${y}) rotate(${ang}) scale(${s})">${imagen('gancho', 0, -9.1, 190, 31.4, 'none')}</g>`;
+
 
 // ---------------------------------------------------------------- personajes (poses planas de los amigos)
 /** Pose de un amigo (Luna, Tito, Pipo o Bruno) como imagen transparente; si falta la pedida se usa una parecida. */
@@ -65,22 +62,21 @@ const PINTORES = {
     <ellipse cx="170" cy="188" rx="46" ry="9" fill="#FBE4EF"/>`),
 
   ovillo: (p) => svg(`
-    <circle cx="150" cy="96" r="62" fill="${HB}" stroke="${HA}" stroke-width="4"/>
-    <path d="M100,70 q50,-30 100,6 M92,96 q58,-30 116,6 M98,124 q52,-24 104,4 M116,148 q34,-14 68,0" fill="none" stroke="#fff" stroke-width="3" opacity=".55" stroke-linecap="round"/>
-    ${p.cola ? `${hilo('M196,136 C230,150 232,172 270,170 C292,168 300,180 306,176', 6)}${texto(262, 192, 'la cola', 14)}` : ''}`),
+    ${imagen('ovillo', 92, 14, 150, 164)}
+    ${p.cola ? `${texto(66, 188, 'la cola', 14)}` : ''}`),
 
   gancho: () => svg(`${defsFlecha}
-    ${gancho(46, 100, 0, 1.55)}
-    ${texto(48, 56, 'Punta', 15)}${flecha('M50,62 L48,88')}
-    ${texto(150, 160, 'Curva', 15)}${texto(150, 178, 'del gancho', 14, 'middle', 500)}${flecha('M136,146 L70,104')}
-    ${texto(262, 60, 'Mango', 15)}${flecha('M262,66 L262,88')}`),
+    ${gancho(36, 100, 0, 1.3)}
+    ${texto(40, 58, 'Punta', 15)}${flecha('M42,64 L40,90')}
+    ${texto(140, 160, 'Curva', 15)}${texto(140, 178, 'del gancho', 14, 'middle', 500)}${flecha('M124,146 L54,100')}
+    ${texto(225, 62, 'Mango', 15)}${flecha('M225,68 L225,88')}`),
 
+  // Tijeras de punta redonda y aguja lanera de punta roma (ilustraciones de ChatGPT recortadas en img/aventuras/implementos/).
   tijeras: () => svg(`
-    <g transform="translate(70 92)"><path d="M0,0 L108,-20" stroke="#6F7683" stroke-width="10" stroke-linecap="round"/><path d="M0,0 L108,22" stroke="#B7BCC6" stroke-width="10" stroke-linecap="round"/>
-    <circle cx="-14" cy="-20" r="15" fill="none" stroke="#9EA2F9" stroke-width="7"/><circle cx="-14" cy="22" r="15" fill="none" stroke="#9EA2F9" stroke-width="7"/></g>
-    ${texto(122, 150, 'Tijeras de punta redonda', 14)}
-    <path d="M214,70 L306,70" stroke="#B7BCC6" stroke-width="5" stroke-linecap="round"/><ellipse cx="226" cy="70" rx="4" ry="2.5" fill="${FONDO}"/><circle cx="306" cy="70" r="4.5" fill="#B7BCC6"/>
-    ${texto(262, 98, 'Aguja lanera', 14)}${texto(262, 114, '(punta roma)', 13, 'middle', 500)}
+    ${imagen('tijeras', 12, 18, 176, 115)}
+    ${texto(100, 156, 'Tijeras de punta redonda', 14)}
+    ${imagen('aguja', 196, 24, 124, 53)}
+    ${texto(258, 98, 'Aguja lanera', 14)}${texto(258, 114, '(punta roma)', 13, 'middle', 500)}
     <rect x="206" y="140" width="104" height="30" rx="15" fill="${HA}"/>${texto(258, 161, 'Solo adultos', 14, 'middle', 700, '#fff')}`),
 
   nudo1: () => svg(`${defsFlecha}
@@ -89,8 +85,8 @@ const PINTORES = {
     ${texto(240, 40, 'cruza los hilos', 14, 'start')}${flecha('M238,46 L170,92')}`),
 
   nudo2: () => svg(`${defsFlecha}
-    ${gancho(60, 96, 0, 1.45)}
-    ${lazoGancho(118, 96, 17, 24)}
+    ${gancho(60, 96, 0, 1.2)}
+    ${lazoGancho(100, 96, 15, 22)}
     ${hilo('M118,120 C112,150 96,170 70,184', 6)}${hilo('M122,72 C150,40 230,44 270,70', 6)}
     ${texto(70, 196, 'la cola', 14, 'middle')}${texto(262, 40, 'al ovillo', 14, 'end')}
     ${texto(190, 150, 'bucle en el gancho', 14, 'start')}${flecha('M188,142 L138,108')}`),
@@ -115,8 +111,8 @@ const PINTORES = {
   },
 
   cadena1: () => svg(`${defsFlecha}
-    ${gancho(78, 100, 0, 1.4)}
-    ${lazoGancho(132, 100, 15, 22)}
+    ${gancho(70, 100, 0, 1.2)}
+    ${lazoGancho(112, 100, 12, 18)}
     ${hilo('M280,184 C230,158 206,54 112,76 C84,82 86,116 108,112', 6)}
     ${texto(84, 44, '1. Hilo por encima', 14, 'start')}${texto(84, 62, 'del gancho', 14, 'start')}
     ${texto(176, 160, '2. Jala por el bucle', 14, 'start')}${flecha('M170,152 L120,112')}`),
@@ -135,14 +131,14 @@ const PINTORES = {
     ${lazoGancho(300, 140, 10, 16)}`),
 
   pb2: () => svg(`${defsFlecha}
-    ${gancho(60, 100, 0, 1.45)}
-    ${lazoGancho(108, 100, 13, 21)}${lazoGancho(140, 100, 13, 21)}
+    ${gancho(60, 100, 0, 1.2)}
+    ${lazoGancho(88, 100, 10, 17)}${lazoGancho(110, 100, 10, 17)}
     ${texto(200, 62, '2 bucles', 15, 'start')}${texto(200, 80, 'en el gancho', 15, 'start')}${flecha('M198,86 L152,98')}
     ${texto(165, 170, 'Cuéntalos: 1 y 2', 14)}`),
 
   pb3: () => svg(`${defsFlecha}
-    ${gancho(60, 100, 0, 1.45)}
-    ${lazoGancho(108, 100, 13, 21)}${lazoGancho(140, 100, 13, 21)}
+    ${gancho(60, 100, 0, 1.2)}
+    ${lazoGancho(88, 100, 10, 17)}${lazoGancho(110, 100, 10, 17)}
     ${hilo('M270,184 C230,160 210,70 120,76 C90,80 90,120 122,118', 5)}
     ${texto(176, 160, 'jala por los 2 bucles', 15, 'start')}${flecha('M170,152 L126,116')}
     ${texto(160, 44, 'queda 1 bucle', 15)}`),
@@ -180,7 +176,7 @@ PINTORES.cadenas = (p) => {
   const final = x0 + n * paso;
   let s = filaCadenas(n, y, x0, paso);
   if (!p.sinGancho) {
-    s += gancho(final + 6, y, 0, 0.42) + lazoGancho(final + 8, y, 9, 17);
+    s += gancho(final + 6, y, 0, 0.3) + lazoGancho(final + 8, y, 9, 17);
     s += texto(Math.min(final + 12, 300), 62, 'bucle del gancho', 12, 'middle', 500);
     s += `<path d="M${Math.min(final + 12, 300)},68 L${final + 8},80" stroke="${TINTA}" stroke-width="2" fill="none"/>`;
   }

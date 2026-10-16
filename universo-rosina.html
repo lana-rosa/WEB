@@ -54,7 +54,7 @@ h2 { font-size: 1.3rem; color: var(--rosa-texto); }
 main > :first-child { padding-top: 40px !important; }
 @media (max-width: 520px) { .rosina-encabezado { display: none; } }
 </style>
-<link rel="stylesheet" href="/css/universo.css?v=8">
+<link rel="stylesheet" href="/css/universo.css?v=10">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -101,7 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li class="g-tienda"><a href="/tienda.html#llaveros">Llaveros</a></li>
         <li class="g-tienda"><a href="/tienda.html#macetas">Flores y macetas</a></li>
         <li class="g-tienda"><a href="/personaliza.html">Personaliza el tuyo</a></li>
-        <li class="g-universo"><a href="/universo-rosina.html">El universo de Rosina</a></li>
+        <li class="g-universo"><a href="/universo-rosina.html?casa=crochet">El universo de Rosina</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -131,7 +131,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="/#historias">Historias que tejimos</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="/universo-rosina.html">🐑 El universo de Rosina</a>
+    <a href="/universo-rosina.html?casa=crochet">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="/sobre-nosotras.html">Sobre nosotras</a>
     <a href="/revista.html?casa=crochet">Revista</a>
@@ -147,19 +147,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="universo-hero">
     <img src="/img/mini/rosina-saludo.webp" alt="Rosina, la ovejita de Lana Rosa, saludando" width="160" height="160">
     <div class="texto">
-      <p class="eslogan" style="color: var(--rosa-texto); font-weight:600; margin:0;">Lana Rosa Crochet</p>
+      <p class="eslogan" id="ur-casa" style="color: var(--rosa-texto); font-weight:600; margin:0;">Lana Rosa Crochet</p>
       <h1>El universo de Rosina</h1>
-      <p>Tejemos emociones que permanecen en el tiempo. Rosina te acompaña a encontrar un regalo con significado, imaginar tu amigurumi, inspirarte y aprender a tejer. Elige por dónde empezar.</p>
+      <p id="ur-intro">Tejemos emociones que permanecen en el tiempo. Rosina te acompaña a encontrar un regalo con significado, imaginar tu amigurumi, inspirarte y aprender a tejer. Elige por dónde empezar.</p>
     </div>
   </div>
 
   <nav class="recorridos" aria-label="Recorridos de Rosina">
-    <a class="recorrido" href="#regalar" data-recorrido="regalar"><span class="ico" aria-hidden="true">🎁</span><strong>Rosina te ayuda a regalar</strong><span class="sub">Encuentra un regalo según lo que buscas y lo que quieres invertir.</span></a>
-    <a class="recorrido" href="/personaliza.html?modo=guiado#pide-el-tuyo" data-recorrido="crear"><span class="ico" aria-hidden="true">🎨</span><strong>Rosina te ayuda a crear</strong><span class="sub">Cuéntanos tu idea y la convertimos en un amigurumi único.</span></a>
-    <a class="recorrido" href="/revista.html" data-recorrido="inspirar"><span class="ico" aria-hidden="true">💡</span><strong>Rosina te ayuda a inspirarte</strong><span class="sub">Ideas, historias y regalos hechos a mano en la Revista.</span></a>
-    <a class="recorrido" href="/academy/" data-recorrido="aprender"><span class="ico" aria-hidden="true">🎓</span><strong>Rosina te ayuda a aprender</strong><span class="sub">Talleres, tutoriales y el Rincón de Rosina, gratis.</span></a>
-    <a class="recorrido" href="/aventuras-de-rosina/" data-recorrido="aventura"><span class="ico" aria-hidden="true">📖</span><strong>La aventura de Rosina</strong><span class="sub">Para niños de 6 a 8 años: aprenden su primera cadeneta jugando, acompañados.</span></a>
+    <a class="recorrido" data-casas="crochet" href="#regalar" data-recorrido="regalar"><span class="ico" aria-hidden="true">🎁</span><strong>Rosina te ayuda a regalar</strong><span class="sub">Encuentra un regalo según lo que buscas y lo que quieres invertir.</span></a>
+    <a class="recorrido" data-casas="crochet" href="/personaliza.html?modo=guiado#pide-el-tuyo" data-recorrido="crear"><span class="ico" aria-hidden="true">🎨</span><strong>Rosina te ayuda a crear</strong><span class="sub">Cuéntanos tu idea y la convertimos en un amigurumi único.</span></a>
+    <a class="recorrido" data-casas="crochet merceria academy" href="/revista.html" data-recorrido="inspirar"><span class="ico" aria-hidden="true">💡</span><strong>Rosina te ayuda a inspirarte</strong><span class="sub">Ideas, historias y regalos hechos a mano en la Revista.</span></a>
+    <a class="recorrido" data-casas="academy" href="/academy/" data-recorrido="aprender"><span class="ico" aria-hidden="true">🎓</span><strong>Rosina te ayuda a aprender</strong><span class="sub">Talleres, tutoriales y el Rincón de Rosina, gratis.</span></a>
+    <a class="recorrido" data-casas="merceria" href="/calculadoras-rosina.html#lana" data-recorrido="materiales" hidden><span class="ico" aria-hidden="true">🧶</span><strong>Rosina te ayuda a elegir tu lana</strong><span class="sub">Calcula cuánta lana necesitas y qué gancho usar.</span></a>
+    <a class="recorrido" data-casas="academy" href="/aventuras-de-rosina/" data-recorrido="aventura"><span class="ico" aria-hidden="true">📖</span><strong>La aventura de Rosina</strong><span class="sub">Para niños de 6 a 8 años: aprenden su primera cadeneta jugando, acompañados.</span></a>
   </nav>
+  <script>
+  // El Universo muestra solo lo de la casa desde donde se llega (?casa=crochet|merceria|academy); sin dato, muestra todo.
+  (function () {
+    var CASAS = { crochet: ['Lana Rosa Crochet', 'Tejemos emociones que permanecen en el tiempo. Rosina te acompaña a encontrar un regalo con significado, imaginar tu amigurumi e inspirarte. Elige por dónde empezar.'],
+                  merceria: ['Mercería Lana Rosa', 'Rosina te acompaña a elegir tus materiales y a inspirarte para tu próximo proyecto. Elige por dónde empezar.'],
+                  academy: ['Lana Rosa Academy', 'Rosina te acompaña a aprender a tejer, a inspirarte y, para los más pequeños, a dar su primera cadeneta. Elige por dónde empezar.'] };
+    var casa = new URLSearchParams(location.search).get('casa');
+    if (!CASAS[casa]) return;
+    document.documentElement.setAttribute('data-ur-casa', casa);
+    document.getElementById('ur-casa').textContent = CASAS[casa][0];
+    document.getElementById('ur-intro').textContent = CASAS[casa][1];
+    document.querySelectorAll('.recorrido').forEach(function (a) {
+      var ok = (a.getAttribute('data-casas') || '').split(' ').indexOf(casa) >= 0;
+      if (!ok) { a.remove(); return; }
+      a.hidden = false;
+      if (a.getAttribute('href') === '/revista.html') { a.setAttribute('href', '/revista.html?casa=' + casa); if (casa !== 'crochet') a.querySelector('.sub').textContent = 'Ideas, consejos y guías para tejer en la Revista.'; }
+    });
+  })();
+  </script>
 
   <section class="ur-seccion-regalar" id="regalar" aria-labelledby="titulo-regalar">
     <h2 id="titulo-regalar">Rosina te ayuda a regalar</h2>
@@ -197,7 +217,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="/sobre-nosotras.html">Quiénes somos</a></li>
-        <li><a href="/universo-rosina.html">El universo de Rosina</a></li>
+        <li><a href="/universo-rosina.html?casa=crochet">El universo de Rosina</a></li>
         <li><a href="/revista.html?casa=crochet">Revista</a></li>
         <li><a href="/preguntas-frecuentes.html">Preguntas frecuentes</a></li>
         <li><a href="/precios.html">Precios</a></li>
@@ -234,7 +254,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script type="module">
 import { iniciarRegalar } from '/js/universo/regalar.js';
-iniciarRegalar(document.getElementById('regalar-raiz'));
+var casaUr = document.documentElement.getAttribute('data-ur-casa');
+if (casaUr && casaUr !== 'crochet') { var secR = document.getElementById('regalar'); if (secR) secR.remove(); }
+if (document.getElementById('regalar-raiz')) iniciarRegalar(document.getElementById('regalar-raiz'));
 document.querySelectorAll('.recorrido').forEach(function (a) { a.addEventListener('click', function () { (window.dataLayer = window.dataLayer || []).push({ event: 'universo_inicio', recorrido: a.dataset.recorrido }); }); });
 </script>
 

@@ -23,7 +23,7 @@ CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende'
 MENUS = {
     'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Amigurumis', 'tienda.html#amigurumis', 'crochet'), ('Peluches', 'tienda.html#peluches', 'crochet'),
                 ('Llaveros', 'tienda.html#llaveros', 'crochet'), ('Flores y macetas', 'tienda.html#macetas', 'crochet'),
-                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
+                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('El universo de Rosina', 'universo-rosina.html?casa=crochet', 'universo')],
     # páginas comunes (contacto, preguntas, políticas, cuenta, Revista): menú de marca con las tres casas
     'comun': [('Tienda de amigurumis', 'index.html', 'crochet'), ('Mercería', 'merceria/', 'merceria'),
               ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
@@ -32,10 +32,10 @@ MENUS = {
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria'),
-                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
+                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('El universo de Rosina', 'universo-rosina.html?casa=merceria', 'universo')],
     'academy': [('Talleres y clases', 'academy/talleres/', 'academy'), ('Agenda de Rosina', 'agenda-rosina.html', 'academy'),
                 ('Recursos gratis', 'recursos-rosina.html', 'academy'), ('Revista', 'revista.html?casa=academy', 'academy'),
-                ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
+                ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('El universo de Rosina', 'universo-rosina.html?casa=academy', 'universo')],
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
@@ -93,7 +93,7 @@ MOVIL = {
     <a href="personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="index.html#historias">Historias que tejimos</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
+    <a href="universo-rosina.html?casa=crochet">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <a href="revista.html?casa=crochet">Revista</a>
@@ -111,7 +111,7 @@ MOVIL = {
     <p class="grupo-nav">Visítanos</p>
     <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
+    <a href="universo-rosina.html?casa=merceria">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="revista.html?casa=merceria">Revista</a>
     <p class="grupo-nav">Ayuda</p>
@@ -138,7 +138,7 @@ MOVIL = {
     <a href="calculadoras-rosina.html">Calculadoras</a>
     <a href="rosina.html">Conoce a Rosina</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
+    <a href="universo-rosina.html?casa=academy">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Ideas</p>
     <a href="revista.html?casa=academy">Revista</a>
     <p class="grupo-nav">Ayuda</p>
@@ -267,6 +267,7 @@ def pie_casa(modelo, casa):
         return f'\n        <li><a href="{h}"{ext}>{t}</a></li>'
     lis = ''.join(li(t, h) for t, h in enlaces)
     faq = PIE_FAQ.get(casa, 'preguntas-frecuentes.html')
+    universo_q = f'?casa={casa}' if casa else ''  # el Universo muestra solo lo de la casa desde donde se entra
     rev = PIE_REVISTA.get(casa, 'revista.html')
     horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
@@ -293,7 +294,7 @@ def pie_casa(modelo, casa):
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
-        <li><a href="universo-rosina.html">El universo de Rosina</a></li>
+        <li><a href="universo-rosina.html{universo_q}">El universo de Rosina</a></li>
         <li><a href="{rev}">Revista</a></li>
         <li><a href="{faq}">Preguntas frecuentes</a></li>
         <li><a href="precios.html">Precios</a></li>
