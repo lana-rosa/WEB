@@ -354,3 +354,5 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus, main:focus { outline: none; }
 .video-vel { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin: 8px 0 14px; font-weight: 700; }
 .btn-vel { min-height: 44px; padding: 8px 16px; border-radius: 22px; border: 2px solid var(--rosa); background: #fff; font: inherit; cursor: pointer; }
 .btn-vel[aria-pressed="true"] { background: var(--rosa); color: #fff; }
+
+.descanso { display: flex; gap: 10px; align-items: center; background: #EEF0FF; border-radius: 20px; padding: 12px 16px; margin: 14px 0; font-weight: 700; font-size: 1.1rem; }
