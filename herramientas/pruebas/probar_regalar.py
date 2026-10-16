@@ -335,7 +335,7 @@ def main():
         for nombre, ctx in (('celular 390 px', movil), ('computador 1280 px', pc)):
             tag = 'm' if ctx is movil else 'd'
             page, err = abrir(ctx, base, CATALOGO, ruta='/index.html', espera='#regalar .ed-regalar-form')
-            verificar('%s: la sección está entre «Personalizados» y «De una historia nace un tejido»' % nombre, page.evaluate("""() => { const s = [...document.querySelectorAll('main > section')]; const i = s.findIndex(x => x.id === 'regalar'); return i > 0 && s[i - 1].classList.contains('ed-lila') && s[i - 1].textContent.includes('Qué podemos tejer para ti') && s[i + 1].id === 'proceso'; }"""))
+            verificar('%s: la sección va justo antes de las preguntas frecuentes (después del cierre «¿Qué historia quieres convertir…?»)' % nombre, page.evaluate("""() => { const s = [...document.querySelectorAll('main > section')]; const i = s.findIndex(x => x.id === 'regalar'); return i > 0 && s[i - 1].classList.contains('ed-final') && s[i + 1].textContent.includes('Preguntas frecuentes'); }"""))
             verificar('%s: sin scroll horizontal ni errores de JavaScript' % nombre, sin_scroll_horizontal(page) and not err, err)
             if CAPTURAS:
                 page.evaluate("document.querySelector('#regalar').scrollIntoView({block: 'center'})")
