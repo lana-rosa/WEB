@@ -381,7 +381,7 @@ def main():
         page, err = abrir(pc, base, CATALOGO)
         verificar('está publicada: sin noindex, con canonical propio', page.locator('meta[name="robots"]').count() == 0 and page.get_attribute('link[rel="canonical"]', 'href') == 'https://lanarosacrochet.com/universo-rosina.html')
         verificar('está en el sitemap', 'https://lanarosacrochet.com/universo-rosina.html' in open(os.path.join(RAIZ, 'sitemap.xml'), encoding='utf-8').read())
-        verificar('el pie de la página enlaza al universo con ruta absoluta y la casa', page.locator('footer a[href="/universo-rosina.html?casa=crochet"]').count() == 1)
+        verificar('el pie de la página enlaza al universo con ruta absoluta', page.locator('footer a[href="/universo-rosina.html"]').count() == 1)
         verificar('usa las fuentes propias (ningún pedido a Google Fonts)', page.evaluate('!document.documentElement.outerHTML.includes("fonts.googleapis")'))
         verificar('los 5 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido:not([hidden])', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html', '/academy/', '/aventuras-de-rosina/'])
         verificar('un solo h1', page.locator('h1').count() == 1)

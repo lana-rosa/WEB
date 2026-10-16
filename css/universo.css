@@ -112,3 +112,14 @@
 .uc-mas > .ur-grupo { margin-bottom: 14px; }
 
 html[data-ur-casa]:not([data-ur-casa="crochet"]) #regalar { display: none; }
+
+/* Material gratis de Rosina (hub de cada casa) */
+.ur-recursos { margin: 8px 0 40px; }
+.ur-recursos h2 { margin-bottom: 2px; }
+.ur-recursos > p { margin: 0 0 14px; color: var(--tinta-suave); }
+.recursos { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.recurso { display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: var(--radio-suave, 20px); background: #fff; color: var(--tinta); text-decoration: none; border: 2px solid var(--rosa-medio); }
+.recurso:hover, .recurso:focus-visible { border-color: var(--rosa-principal); outline: none; background: var(--rosa-suave); }
+.recurso .ico { font-size: 1.5rem; }
+.recurso strong { font-family: var(--fuente-titulo); font-size: 1rem; color: var(--rosa-texto, #B3175F); }
+.recurso .sub { font-size: .9rem; color: var(--tinta-suave); }
