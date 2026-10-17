@@ -35,8 +35,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 /* Los productos se piden de una vez, sin esperar a ninguna librería (así aparecen más rápido). */
 window.__rpcLR = {};
 ['obtener_tienda_web', 'obtener_productos_personaje'].forEach(function (n) {
+  // Si el inicio (o una visita reciente a la tienda) ya trajo estos datos hace menos de 3 minutos, se usan de inmediato; si no, se piden.
+  try { var g = JSON.parse(sessionStorage.getItem('lrRpc_' + n) || 'null'); if (g && Date.now() - g.t < 180000 && Array.isArray(g.d)) { window.__rpcLR[n] = Promise.resolve(g.d); return; } } catch (e) {}
   window.__rpcLR[n] = fetch('https://ngjoognzvehwjtpqwrqe.supabase.co/rest/v1/rpc/' + n, { method: 'POST', headers: { apikey: 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', Authorization: 'Bearer sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', 'Content-Type': 'application/json' }, body: '{}' })
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (d) { try { sessionStorage.setItem('lrRpc_' + n, JSON.stringify({ t: Date.now(), d: d })); } catch (e) {} return d; });
   window.__rpcLR[n].catch(function () {});
 });
 </script>
@@ -119,7 +122,7 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .volver-categorias:hover { text-decoration: underline; }
 body.vista-categoria .volver-categorias { display: inline-flex; }
 body.vista-categoria .categoria-seccion:not(.categoria-activa) { display: none !important; }
-body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categorias, body.vista-categoria .puentes-cinco, body.vista-categoria .banda-personaliza, body.vista-categoria .banda-rosina { display: none !important; }
+html[data-cat] .categorias-visual, html[data-cat] .ver-mas-categorias, body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categorias, body.vista-categoria .puentes-cinco, body.vista-categoria .banda-personaliza, body.vista-categoria .banda-rosina { display: none !important; }
 .categoria-seccion { padding: 20px 0 48px; scroll-margin-top: 130px; }
 @media (max-width: 700px) { .categoria-seccion { scroll-margin-top: 180px; } }
 .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
@@ -389,6 +392,11 @@ html.producto-abierto { overflow: hidden; }
 <!-- ICONOS:FIN -->
 </head>
 <body>
+<script>
+// Si se llega con una categoría en la dirección (p. ej. #peluches), se esconden desde el primer momento los cuadros de categorías
+// (así sus fotos no se descargan ni compiten con las de los productos).
+(function () { try { var h = decodeURIComponent(location.hash.slice(1)); if (['amigurumis','peluches','llaveros','macetas','flores','separadores-de-libros','bolsos','complementos'].indexOf(h) > -1) document.documentElement.setAttribute('data-cat', h); } catch (e) {} })();
+</script>
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
@@ -472,15 +480,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <nav class="categorias-visual" id="categorias-visual" aria-label="Categorías de la tienda">
-    <a href="#amigurumis"><img src="/img/tienda-categorias/amigurumis.webp?v=2" alt="Amigurumi de ovejita con vestido rosado" width="560" height="700" decoding="async"><span>Amigurumis</span></a>
-    <a href="#peluches"><img src="/img/tienda-categorias/peluches.webp?v=2" alt="Peluche de oso café" width="560" height="700" decoding="async"><span>Peluches</span></a>
-    <a href="#llaveros"><img src="/img/tienda-categorias/llaveros.webp?v=2" alt="Llavero de abeja" width="560" height="700" decoding="async"><span>Llaveros</span></a>
-    <a href="#macetas"><img src="/img/tienda-categorias/macetas.webp?v=2" alt="Maceta con margarita" width="560" height="700" decoding="async"><span>Macetas</span></a>
-    <a href="#flores"><img src="/img/tienda-categorias/flores.webp?v=2" alt="Rosa tejida" width="560" height="700" decoding="async"><span>Flores</span></a>
-    <a href="#separadores-de-libros"><img src="/img/tienda-categorias/separadores-de-libros.webp?v=2" alt="Separador de libros de gato" width="560" height="700" decoding="async"><span>Separadores</span></a>
-    <a href="#bolsos"><img src="/img/tienda-categorias/bolsos.webp?v=2" alt="Bolso tejido" width="560" height="700" decoding="async"><span>Bolsos</span></a>
-    <a href="#complementos"><img src="/img/tienda-categorias/complementos.webp" alt="Base blanca para exhibir amigurumis" width="560" height="700" decoding="async"><span>Complementos</span></a>
-    <a href="/personaliza.html" class="cat-personaliza"><img src="/img/tienda-categorias/personalizados.webp?v=2" alt="Amigurumi personalizado de un hombre con camiseta polo" width="560" height="700" decoding="async"><span>Personalizados</span></a>
+    <a href="#amigurumis"><img src="/img/tienda-categorias/amigurumis.webp?v=2" alt="Amigurumi de ovejita con vestido rosado" width="560" height="700" loading="lazy" decoding="async"><span>Amigurumis</span></a>
+    <a href="#peluches"><img src="/img/tienda-categorias/peluches.webp?v=2" alt="Peluche de oso café" width="560" height="700" loading="lazy" decoding="async"><span>Peluches</span></a>
+    <a href="#llaveros"><img src="/img/tienda-categorias/llaveros.webp?v=2" alt="Llavero de abeja" width="560" height="700" loading="lazy" decoding="async"><span>Llaveros</span></a>
+    <a href="#macetas"><img src="/img/tienda-categorias/macetas.webp?v=2" alt="Maceta con margarita" width="560" height="700" loading="lazy" decoding="async"><span>Macetas</span></a>
+    <a href="#flores"><img src="/img/tienda-categorias/flores.webp?v=2" alt="Rosa tejida" width="560" height="700" loading="lazy" decoding="async"><span>Flores</span></a>
+    <a href="#separadores-de-libros"><img src="/img/tienda-categorias/separadores-de-libros.webp?v=2" alt="Separador de libros de gato" width="560" height="700" loading="lazy" decoding="async"><span>Separadores</span></a>
+    <a href="#bolsos"><img src="/img/tienda-categorias/bolsos.webp?v=2" alt="Bolso tejido" width="560" height="700" loading="lazy" decoding="async"><span>Bolsos</span></a>
+    <a href="#complementos"><img src="/img/tienda-categorias/complementos.webp" alt="Base blanca para exhibir amigurumis" width="560" height="700" loading="lazy" decoding="async"><span>Complementos</span></a>
+    <a href="/personaliza.html" class="cat-personaliza"><img src="/img/tienda-categorias/personalizados.webp?v=2" alt="Amigurumi personalizado de un hombre con camiseta polo" width="560" height="700" loading="lazy" decoding="async"><span>Personalizados</span></a>
   </nav>
   <button type="button" class="boton-secundario ver-mas-categorias" id="ver-mas-categorias" aria-expanded="false" aria-controls="categorias-visual">Ver más categorías</button>
 
@@ -1584,11 +1592,14 @@ var RESENAS_POR_PRODUCTO = {};
 </script>
 
 <script type="module">
-import { createClient } from '/js/vendor/supabase.js?v=1';
-
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Las reseñas se leen con un fetch simple (sin descargar la librería de Supabase, 222 KB); la librería solo se pide al enviar una reseña.
+let _supabase = null;
+async function clienteResenas() {
+  if (!_supabase) { const m = await import('/js/vendor/supabase.js?v=1'); _supabase = m.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); }
+  return _supabase;
+}
 
 const listaResenas = document.getElementById('lista-resenas');
 const sinResenas = document.getElementById('sin-resenas');
@@ -1613,12 +1624,13 @@ function resumir(lista) {
 let resenasAprobadas = [];
 
 async function cargarResenas() {
-  const { data, error } = await supabase
-    .from('resenas_web')
-    .select('producto_id, producto_nombre, producto_categoria, cliente_nombre, calificacion, comentario, created_at')
-    .eq('estado', 'aprobada')
-    .order('created_at', { ascending: false })
-    .limit(500);
+  let data = null, error = null;
+  try {
+    const resp = await fetch(SUPABASE_URL + '/rest/v1/resenas_web?select=producto_id,producto_nombre,producto_categoria,cliente_nombre,calificacion,comentario,created_at&estado=eq.aprobada&order=created_at.desc&limit=500',
+      { headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY } });
+    if (!resp.ok) throw new Error(resp.status);
+    data = await resp.json();
+  } catch (e) { error = e; }
 
   if (error || !data || data.length === 0) {
     sinResenas.style.display = 'block';
@@ -1739,7 +1751,7 @@ formResena.addEventListener('submit', async (evento) => {
     return;
   }
 
-  const { error } = await supabase.rpc('crear_resena_web', {
+  const { error } = await (await clienteResenas()).rpc('crear_resena_web', {
     p_producto_id: productoId,
     p_producto_nombre: selectProducto.options[selectProducto.selectedIndex].textContent,
     p_cliente_nombre: nombre,
@@ -1870,6 +1882,7 @@ formResena.addEventListener('submit', async (evento) => {
   var selector = document.getElementById('selector-categoria');
   function idActual() { try { return decodeURIComponent(location.hash.slice(1)); } catch (e) { return ''; } }
   function aplicar(irArriba) {
+    document.documentElement.removeAttribute('data-cat');   // desde aquí manda la clase vista-categoria
     var id = idActual();
     var sec = id && document.getElementById(id);
     if (sec && !sec.classList.contains('categoria-seccion')) sec = null;
