@@ -23,13 +23,13 @@ R = {
     'todo': ('🎁', 'Todo el Rincón de Rosina', 'El material gratuito completo', '/recursos-rosina.html'),
 }
 RECURSOS = {
-    'crochet': ['cuida', 'regalos', 'glosario', 'abrev', 'conoce'],
-    'merceria': ['calc', 'paletas', 'glosario', 'abrev', 'conoce'],
-    'academy': ['agenda', 'glosario', 'abrev', 'checklist', 'calc', 'paletas', 'regalos', 'conoce'],
+    'crochet': ['cuida', 'regalos', 'glosario', 'abrev'],
+    'merceria': ['calc', 'paletas', 'glosario', 'abrev'],
+    'academy': ['agenda', 'glosario', 'abrev', 'checklist', 'calc', 'paletas', 'regalos'],
 }
 CASAS = {
-    'merceria': ('merceria/rosina/index.html', 'Mercería Lana Rosa', 'Rosina te acompaña a elegir tus materiales y a inspirarte para tu próximo proyecto. Elige por dónde empezar.'),
-    'academy': ('academy/rosina/index.html', 'Lana Rosa Academy', 'Rosina te acompaña a aprender a tejer, a inspirarte y, para los más pequeños, a dar su primera cadeneta. Elige por dónde empezar.'),
+    'merceria': ('merceria/rosina/index.html', 'Mercería Lana Rosa', 'Rosina te ayuda a elegir tus materiales y a inspirarte para tu próximo proyecto.'),
+    'academy': ('academy/rosina/index.html', 'Lana Rosa Academy', 'Rosina te ayuda a aprender a tejer, inspirarte y, para los más pequeños, dar su primera cadeneta.'),
 }
 
 def bloque(casa):
@@ -53,7 +53,7 @@ CTA = {
     'academy': (('Talleres y clases', '/academy/talleres/'), ('Tutoriales gratis', '/aprende.html')),
 }
 CIERRE = {
-    'crochet': ('¿Prefieres que Rosina te ayude a crear el tuyo?', 'Cuéntale tu idea y la convertimos en un amigurumi hecho a mano.', ('Crear con Rosina', '/personaliza.html?modo=guiado#pide-el-tuyo'), ('Ver la tienda', '/tienda.html')),
+    'crochet': ('¿Prefieres que Rosina te ayude a crear el tuyo?', 'Cuéntale tu idea y la tejemos a mano.', ('Crear con Rosina', '/personaliza.html?modo=guiado#pide-el-tuyo'), ('Ver la tienda', '/tienda.html')),
     'merceria': ('¿Ya sabes qué vas a tejer?', 'Elige tus lanas e hilos en el catálogo o calcula cuánta lana necesitas.', ('Ver el catálogo', '/merceria/catalogo/'), ('Calcula tu lana', '/calculadoras-rosina.html#lana')),
     'academy': ('¿Quieres empezar a tejer?', 'Aprende paso a paso con los talleres y los tutoriales gratis de Rosina.', ('Talleres y clases', '/academy/talleres/'), ('Tutoriales gratis', '/aprende.html')),
 }
@@ -61,7 +61,7 @@ CIERRE = {
 def poner_cta(s, casa):
     s = re.sub(r'<!-- CTA:INICIO.*?<!-- CTA:FIN -->', lambda m: '<!-- CTA:INICIO (generado por herramientas/generar_universo_casas.py) -->\n  ' + _botones(*CTA[casa]) + '\n  <!-- CTA:FIN -->', s, flags=re.S)
     t, d, a, b = CIERRE[casa]
-    return re.sub(r'<!-- CIERRE:INICIO.*?<!-- CIERRE:FIN -->', lambda m: ('<!-- CIERRE:INICIO (generado por herramientas/generar_universo_casas.py) -->\n  <section class="ur-cierre" aria-labelledby="titulo-cierre">\n'
+    return re.sub(r'<!-- CIERRE:INICIO.*?<!-- CIERRE:FIN -->', lambda m: ('<!-- CIERRE:INICIO (generado por herramientas/generar_universo_casas.py) -->\n  <section class="ur-final" aria-labelledby="titulo-cierre">\n'
         f'    <h2 id="titulo-cierre">{t}</h2>\n    <p>{d}</p>\n    {_botones(a, b)}\n  </section>\n  <!-- CIERRE:FIN -->'), s, flags=re.S)
 
 def main():
@@ -98,7 +98,7 @@ def main():
         t = re.sub(r"import \{ iniciarRegalar \} from '/js/universo/regalar.js';\nvar casaUr.*?\nif \(document.getElementById\('regalar-raiz'\)\) iniciarRegalar\(document.getElementById\('regalar-raiz'\)\);\n", '', t, flags=re.S)
         t = t.replace('<meta property="og:description" content="Rosina te ayuda a elegir un regalo, crear tu amigurumi, inspirarte y aprender a tejer.">', f'<meta property="og:description" content="{intro}">')
         t = t.replace('<meta name="description" content="Rosina te ayuda a regalar, crear, inspirarte y aprender: encuentra un amigurumi para esa persona especial con productos reales de Lana Rosa.">', f'<meta name="description" content="{intro}">')
-        t = t.replace('<link rel="stylesheet" href="/css/universo.css?v=12">', '<link rel="stylesheet" href="/css/universo.css?v=13">')
+        t = t.replace('<link rel="stylesheet" href="/css/universo.css?v=13">', '<link rel="stylesheet" href="/css/universo.css?v=14">')
         os.makedirs(os.path.dirname(os.path.join(RAIZ, ruta)), exist_ok=True)
         open(os.path.join(RAIZ, ruta), 'w', encoding='utf-8').write(t)
         print('ok', ruta, len(RECURSOS[casa]), 'recursos')

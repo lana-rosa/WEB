@@ -22,7 +22,7 @@ with sync_playwright() as p:
             n = f'{casa} {w}px'
             v(f'{n}: la página tiene los colores de su casa', pg.evaluate("document.documentElement.getAttribute('data-casa')") == casa)
             v(f'{n}: el menú resalta «El universo de Rosina» y enlaza al hub de su casa', pg.locator('.nav-principal li.g-universo a').count() == 1)
-            v(f'{n}: muestra el material gratis de Rosina', pg.locator('.recursos .recurso').count() >= 5)
+            v(f'{n}: muestra el material gratis de Rosina', pg.locator('.recursos .recurso').count() >= 4)
             v(f'{n}: sin desplazamiento horizontal', pg.evaluate('document.documentElement.scrollWidth') <= w)
             v(f'{n}: un solo h1', pg.locator('h1').count() == 1)
             v(f'{n}: trae «Conoce a Rosina» al final, después del material gratis', pg.locator('#conoce-a-rosina').count() == 1 and pg.evaluate("document.querySelector('#conoce-a-rosina').getBoundingClientRect().top > document.querySelector('.ur-recursos').getBoundingClientRect().top"))
