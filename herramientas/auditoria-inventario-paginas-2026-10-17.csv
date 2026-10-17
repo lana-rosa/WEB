@@ -1,0 +1,88 @@
+archivo,url,robots,noindex,en_sitemap,enlaces_entrantes,ejemplos_origen,canonical
+3d-prueba.html,/3d-prueba.html,"noindex, nofollow",True,False,0,,
+404.html,/404.html,noindex,True,False,0,,
+academy/empieza-aqui/index.html,/academy/empieza-aqui/,,False,True,24,academy/empieza-aqui/index.html (JS);academy/index.html;academy/index.html (JS),https://lanarosacrochet.com/academy/empieza-aqui/
+academy/index.html,/academy/,,False,True,109,404.html (JS);academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS),https://lanarosacrochet.com/academy/
+academy/preguntas-frecuentes/index.html,/academy/preguntas-frecuentes/,,False,True,26,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/academy/preguntas-frecuentes/
+academy/rosina/index.html,/academy/rosina/,,False,True,25,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/academy/rosina/
+academy/sobre-academy/index.html,/academy/sobre-academy/,,False,True,24,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/academy/sobre-academy/
+academy/talleres/index.html,/academy/talleres/,,False,True,35,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/academy/talleres/
+agenda-rosina.html,/agenda-rosina.html,,False,True,25,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/agenda-rosina.html
+aprende.html,/aprende.html,,False,True,42,404.html (JS);academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS),https://lanarosacrochet.com/aprende.html
+aventuras-de-rosina/index.html,/aventuras-de-rosina/,,False,True,29,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/aventuras-de-rosina/
+aventuras-de-rosina/privacidad.html,/aventuras-de-rosina/privacidad.html,,False,True,5,aventuras-de-rosina/index.html;aventuras-de-rosina/index.html (JS);aventuras-de-rosina/js/app.js (JS),https://lanarosacrochet.com/aventuras-de-rosina/privacidad.html
+baja-recordatorios.html,/baja-recordatorios.html,"noindex, nofollow",True,False,0,,https://lanarosacrochet.com/baja-recordatorios.html
+calculadoras-rosina.html,/calculadoras-rosina.html,,False,True,33,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/preguntas-frecuentes/index.html,https://lanarosacrochet.com/calculadoras-rosina.html
+contacto.html,/contacto.html,,False,True,103,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/contacto.html
+cuenta.html,/cuenta.html,noindex,True,False,104,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/cuenta.html
+glosario-rosina.html,/glosario-rosina.html,,False,True,32,academy/preguntas-frecuentes/index.html;academy/preguntas-frecuentes/index.html (JS);academy/rosina/index.html,https://lanarosacrochet.com/glosario-rosina.html
+gracias.html,/gracias.html,noindex,True,False,0,,https://lanarosacrochet.com/gracias.html
+herramientas/agenda-premium/membresia-apagada/dialogos.html,/herramientas/agenda-premium/membresia-apagada/dialogos.html,,False,False,0,,
+herramientas/agenda-premium/membresia-apagada/modulo.html,/herramientas/agenda-premium/membresia-apagada/modulo.html,,False,False,0,,
+herramientas/agenda-premium/membresia-apagada/tarjeta.html,/herramientas/agenda-premium/membresia-apagada/tarjeta.html,,False,False,0,,
+herramientas/cuentas-clientes/correos/confirmar-registro.html,/herramientas/cuentas-clientes/correos/confirmar-registro.html,,False,False,0,,
+herramientas/cuentas-clientes/correos/enlace-de-acceso.html,/herramientas/cuentas-clientes/correos/enlace-de-acceso.html,,False,False,0,,
+herramientas/fondos/fondo.html,/herramientas/fondos/fondo.html,,False,False,0,,
+herramientas/google-calendar/agenda-apagada/modulo.html,/herramientas/google-calendar/agenda-apagada/modulo.html,,False,False,0,,
+herramientas/google-calendar/agenda-apagada/tarjeta.html,/herramientas/google-calendar/agenda-apagada/tarjeta.html,,False,False,0,,
+herramientas/plantilla-rincon.html,/herramientas/plantilla-rincon.html,,False,False,0,,https://lanarosacrochet.com/rosina.html
+herramientas/revista/articulos/aguja-segun-hilo.html,/herramientas/revista/articulos/aguja-segun-hilo.html,,False,False,0,,
+herramientas/revista/articulos/amigurumi-de-tu-mascota.html,/herramientas/revista/articulos/amigurumi-de-tu-mascota.html,,False,False,0,,
+herramientas/revista/articulos/anillo-magico.html,/herramientas/revista/articulos/anillo-magico.html,,False,False,0,,
+herramientas/revista/articulos/colores-combinan-amigurumis.html,/herramientas/revista/articulos/colores-combinan-amigurumis.html,,False,False,0,,
+herramientas/revista/articulos/conoce-a-rosina.html,/herramientas/revista/articulos/conoce-a-rosina.html,,False,False,0,,
+herramientas/revista/articulos/cuanto-cobrar-tejidos.html,/herramientas/revista/articulos/cuanto-cobrar-tejidos.html,,False,False,0,,
+herramientas/revista/articulos/cuidar-lavar-tejidos.html,/herramientas/revista/articulos/cuidar-lavar-tejidos.html,,False,False,0,,
+herramientas/revista/articulos/elegir-hilo-amigurumi.html,/herramientas/revista/articulos/elegir-hilo-amigurumi.html,,False,False,0,,
+herramientas/revista/articulos/empezar-crochet.html,/herramientas/revista/articulos/empezar-crochet.html,,False,False,0,,
+herramientas/revista/articulos/errores-comunes-principiantes.html,/herramientas/revista/articulos/errores-comunes-principiantes.html,,False,False,0,,
+herramientas/revista/articulos/fotos-amigurumi-personalizado.html,/herramientas/revista/articulos/fotos-amigurumi-personalizado.html,,False,False,0,,
+herramientas/revista/articulos/ideas-regalo.html,/herramientas/revista/articulos/ideas-regalo.html,,False,False,0,,
+herramientas/revista/articulos/leer-patron-crochet.html,/herramientas/revista/articulos/leer-patron-crochet.html,,False,False,0,,
+herramientas/revista/articulos/materiales-primer-amigurumi.html,/herramientas/revista/articulos/materiales-primer-amigurumi.html,,False,False,0,,
+herramientas/revista/articulos/pausas-activas.html,/herramientas/revista/articulos/pausas-activas.html,,False,False,0,,
+herramientas/revista/articulos/pedir-amigurumi-personalizado.html,/herramientas/revista/articulos/pedir-amigurumi-personalizado.html,,False,False,0,,
+herramientas/revista/articulos/regalos-graduacion.html,/herramientas/revista/articulos/regalos-graduacion.html,,False,False,0,,
+herramientas/revista/articulos/tejer-desconectar.html,/herramientas/revista/articulos/tejer-desconectar.html,,False,False,0,,
+herramientas/revista/plantilla.html,/herramientas/revista/plantilla.html,,False,False,0,,{{URL}}
+index.html,/,,False,True,36,3d-prueba.html;404.html;aventuras-de-rosina/privacidad.html,https://lanarosacrochet.com/
+merceria/cambios-y-devoluciones/index.html,/merceria/cambios-y-devoluciones/,,False,True,18,js/pago.js (JS);merceria/cambios-y-devoluciones/index.html (JS);merceria/catalogo/index.html,https://lanarosacrochet.com/merceria/cambios-y-devoluciones/
+merceria/catalogo/index.html,/merceria/catalogo/,,False,True,36,404.html (JS);academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS),https://lanarosacrochet.com/merceria/catalogo/
+merceria/como-comprar/index.html,/merceria/como-comprar/,,False,True,15,merceria/cambios-y-devoluciones/index.html;merceria/cambios-y-devoluciones/index.html (JS);merceria/catalogo/index.html,https://lanarosacrochet.com/merceria/como-comprar/
+merceria/index.html,/merceria/,,False,True,108,404.html (JS);academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS),https://lanarosacrochet.com/merceria/
+merceria/preguntas-frecuentes/index.html,/merceria/preguntas-frecuentes/,,False,True,17,merceria/cambios-y-devoluciones/index.html;merceria/cambios-y-devoluciones/index.html (JS);merceria/catalogo/index.html,https://lanarosacrochet.com/merceria/preguntas-frecuentes/
+merceria/rosina/index.html,/merceria/rosina/,,False,True,16,merceria/cambios-y-devoluciones/index.html;merceria/cambios-y-devoluciones/index.html (JS);merceria/catalogo/index.html,https://lanarosacrochet.com/merceria/rosina/
+merceria/terminos-de-venta/index.html,/merceria/terminos-de-venta/,,False,True,18,js/pago.js (JS);merceria/cambios-y-devoluciones/index.html;merceria/cambios-y-devoluciones/index.html (JS),https://lanarosacrochet.com/merceria/terminos-de-venta/
+merceria/tienda-fisica/index.html,/merceria/tienda-fisica/,,False,True,17,merceria/cambios-y-devoluciones/index.html;merceria/cambios-y-devoluciones/index.html (JS);merceria/catalogo/index.html,https://lanarosacrochet.com/merceria/tienda-fisica/
+offline.html,/offline.html,noindex,True,False,1,sw.js (JS),
+p/index.html,/p/,"noindex, follow",True,False,2,universo-rosina.html;universo-rosina.html (JS),https://lanarosacrochet.com/p/
+paletas-rosina.html,/paletas-rosina.html,,False,True,24,academy/preguntas-frecuentes/index.html;academy/preguntas-frecuentes/index.html (JS);academy/rosina/index.html,https://lanarosacrochet.com/paletas-rosina.html
+personaliza.html,/personaliza.html,,False,True,71,contacto.html;contacto.html (JS);cuenta.html,https://lanarosacrochet.com/personaliza.html
+politicas.html,/politicas.html,,False,True,110,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/politicas.html
+precios.html,/precios.html,,False,True,104,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/precios.html
+preguntas-frecuentes.html,/preguntas-frecuentes.html,,False,True,62,contacto.html;contacto.html (JS);cuenta.html,https://lanarosacrochet.com/preguntas-frecuentes.html
+recursos-rosina.html,/recursos-rosina.html,,False,True,68,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/recursos-rosina.html
+revista.html,/revista.html,,False,True,105,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/revista.html
+revista/aguja-segun-hilo/index.html,/revista/aguja-segun-hilo/,,False,True,9,merceria/catalogo/index.html (JS);merceria/index.html;merceria/index.html (JS),https://lanarosacrochet.com/revista/aguja-segun-hilo/
+revista/amigurumi-de-tu-mascota/index.html,/revista/amigurumi-de-tu-mascota/,,False,True,10,revista.html;revista.html (JS);revista/fotos-amigurumi-personalizado/index.html,https://lanarosacrochet.com/revista/amigurumi-de-tu-mascota/
+revista/anillo-magico/index.html,/revista/anillo-magico/,,False,True,5,herramientas/revista/articulos/errores-comunes-principiantes.html;revista.html;revista.html (JS),https://lanarosacrochet.com/revista/anillo-magico/
+revista/colores-combinan-amigurumis/index.html,/revista/colores-combinan-amigurumis/,,False,True,22,revista.html;revista.html (JS);revista/aguja-segun-hilo/index.html,https://lanarosacrochet.com/revista/colores-combinan-amigurumis/
+revista/conoce-a-rosina/index.html,/revista/conoce-a-rosina/,,False,True,6,revista.html;revista.html (JS);revista/cuidar-lavar-tejidos/index.html,https://lanarosacrochet.com/revista/conoce-a-rosina/
+revista/cuanto-cobrar-tejidos/index.html,/revista/cuanto-cobrar-tejidos/,,False,True,2,revista.html;revista.html (JS),https://lanarosacrochet.com/revista/cuanto-cobrar-tejidos/
+revista/cuidar-lavar-tejidos/index.html,/revista/cuidar-lavar-tejidos/,,False,True,6,js/universo/pieza.js (JS);p/index.html;p/index.html (JS),https://lanarosacrochet.com/revista/cuidar-lavar-tejidos/
+revista/elegir-hilo-amigurumi/index.html,/revista/elegir-hilo-amigurumi/,,False,True,14,merceria/index.html;merceria/index.html (JS);revista.html,https://lanarosacrochet.com/revista/elegir-hilo-amigurumi/
+revista/empezar-crochet/index.html,/revista/empezar-crochet/,,False,True,2,revista.html;revista.html (JS),https://lanarosacrochet.com/revista/empezar-crochet/
+revista/errores-comunes-principiantes/index.html,/revista/errores-comunes-principiantes/,,False,True,8,revista.html;revista.html (JS);revista/anillo-magico/index.html,https://lanarosacrochet.com/revista/errores-comunes-principiantes/
+revista/fotos-amigurumi-personalizado/index.html,/revista/fotos-amigurumi-personalizado/,,False,True,9,herramientas/revista/articulos/amigurumi-de-tu-mascota.html;preguntas-frecuentes.html;preguntas-frecuentes.html (JS),https://lanarosacrochet.com/revista/fotos-amigurumi-personalizado/
+revista/ideas-regalo/index.html,/revista/ideas-regalo/,,False,True,2,revista.html;revista.html (JS),https://lanarosacrochet.com/revista/ideas-regalo/
+revista/index.html,/revista/,"noindex, follow",True,False,1,revista.html (JS),https://lanarosacrochet.com/revista.html
+revista/leer-patron-crochet/index.html,/revista/leer-patron-crochet/,,False,True,5,herramientas/revista/articulos/errores-comunes-principiantes.html;revista.html;revista.html (JS),https://lanarosacrochet.com/revista/leer-patron-crochet/
+revista/materiales-primer-amigurumi/index.html,/revista/materiales-primer-amigurumi/,,False,True,2,revista.html;revista.html (JS),https://lanarosacrochet.com/revista/materiales-primer-amigurumi/
+revista/pausas-activas/index.html,/revista/pausas-activas/,,False,True,16,agenda-rosina.html;agenda-rosina.html (JS);aprende.html,https://lanarosacrochet.com/revista/pausas-activas/
+revista/pedir-amigurumi-personalizado/index.html,/revista/pedir-amigurumi-personalizado/,,False,True,2,revista.html;revista.html (JS),https://lanarosacrochet.com/revista/pedir-amigurumi-personalizado/
+revista/regalos-graduacion/index.html,/revista/regalos-graduacion/,,False,True,12,revista.html;revista.html (JS);revista/amigurumi-de-tu-mascota/index.html,https://lanarosacrochet.com/revista/regalos-graduacion/
+revista/tejer-desconectar/index.html,/revista/tejer-desconectar/,,False,True,6,aprende.html;aprende.html (JS);revista.html,https://lanarosacrochet.com/revista/tejer-desconectar/
+rosina.html,/rosina.html,"noindex, follow",True,False,10,agenda-rosina.html;agenda-rosina.html (JS);calculadoras-rosina.html,https://lanarosacrochet.com/universo-rosina.html#conoce-a-rosina
+sobre-nosotras.html,/sobre-nosotras.html,,False,True,103,academy/empieza-aqui/index.html;academy/empieza-aqui/index.html (JS);academy/index.html,https://lanarosacrochet.com/sobre-nosotras.html
+tienda.html,/tienda.html,,False,True,112,404.html;404.html (JS);academy/empieza-aqui/index.html,https://lanarosacrochet.com/tienda.html
+universo-rosina.html,/universo-rosina.html,,False,True,76,agenda-rosina.html;agenda-rosina.html (JS);calculadoras-rosina.html,https://lanarosacrochet.com/universo-rosina.html
