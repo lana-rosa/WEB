@@ -95,5 +95,6 @@
     if (c) gtag('consent', 'update', { analytics_storage: c.a ? 'granted' : 'denied' });
     else aviso();
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
+  // El script va al comienzo del <body> (con precarga en la cabeza): el aviso aparece apenas se pinta la página, no al final de la carga.
+  if (document.body) iniciar(); else document.addEventListener('DOMContentLoaded', iniciar);
 })();
