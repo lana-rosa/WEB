@@ -86,7 +86,7 @@ def main():
         cu = textos(page, '.pz-lista li')
         verificar('cuidados: el de la pieza («No usar secadora») sin repetirse, más los generales publicados en las guías (sombra, humedad, hilito)', cu[0] == 'No usar secadora' and len(cu) == 4 and sum('secadora' in c.lower() for c in cu) == 1 and any('sombra' in c for c in cu) and any('humedad' in c for c in cu) and any('hilito' in c for c in cu), cu)
         verificar('no se muestra «Revisados por el taller» ni «Su historia» mientras el taller no los apruebe', page.locator('.pz-sello').count() == 0 and page.locator('#pz-historia').count() == 0)
-        verificar('enlaza la guía completa de cuidados y las reseñas con enlaces que ya usa el sitio', page.get_attribute('.pz-enlace', 'href') == '/revista.html#cuidar-lavar-tejidos' and page.locator('a[href="https://g.page/r/Cae2iIji5j_XEAE/review"]').count() == 1)
+        verificar('enlaza la guía completa de cuidados y las reseñas con enlaces que ya usa el sitio', page.get_attribute('.pz-enlace', 'href') == '/revista/cuidar-lavar-tejidos/' and page.locator('a[href="https://g.page/r/Cae2iIji5j_XEAE/review"]').count() == 1)
         wa = page.get_attribute('.pz-wa', 'href')
         verificar('WhatsApp 573205072801 con el nombre de la pieza en el mensaje', wa.startswith('https://wa.me/573205072801?text=') and 'Roronoa%20Zoro' in wa, wa)
         verificar('también ofrece regalar otra pieza y personalizar (rutas absolutas)', page.locator('.pz-secundarios a[href="/universo-rosina.html#regalar"]').count() == 1 and page.locator('.pz-secundarios a[href="/personaliza.html"]').count() == 1)

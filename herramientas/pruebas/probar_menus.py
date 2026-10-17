@@ -15,13 +15,14 @@ def ruta(f):
     r = '/' + f.replace(os.sep, '/')
     return r[:-len('index.html')] if r.endswith('/index.html') else r
 # páginas por casa, leídas del data-casa de cada página
-casas = {'crochet': [], 'merceria': [], 'academy': []}; comunes = []
+casas = {'crochet': [], 'merceria': [], 'academy': []}; comunes = []; prefs = {}
 for f in sorted(glob.glob(os.path.join(RAIZ, '**', '*.html'), recursive=True)):
     rel = os.path.relpath(f, RAIZ)
     if rel.split(os.sep)[0] in ('herramientas', 'aventuras-de-rosina', 'img', 'node_modules') or rel in ('404.html', 'offline.html', 'merceria.html', 'rosina.html', '3d-prueba.html', 'baja-recordatorios.html'): continue
     s = open(f, encoding='utf-8').read()
     if 'nav-movil-panel' not in s: continue
-    if 'id="encabezado-casa"' in s: comunes.append(ruta(rel)); continue
+    if 'id="encabezado-casa"' in s:
+        pm = re.search(r'data-casa-pref="(\w+)"', s); comunes.append(ruta(rel)); prefs[ruta(rel)] = pm.group(1) if pm else 'crochet'; continue
     m = re.search(r'<html[^>]*data-casa="([^"]*)"', s)
     if m and m.group(1) in casas: casas[m.group(1)].append(ruta(rel))
 def menu(pg):
@@ -45,7 +46,7 @@ with sync_playwright() as p:
         # sin ?casa= usa la última casa visitada (sessionStorage); sin visita previa, la Tienda
         ctx = b.new_context(viewport={'width': 390, 'height': 844}); q = ctx.new_page()
         q.goto(BASE + u); q.wait_for_timeout(300); m = menu(q)
-        v(f'{u} sin visita previa muestra el menú de la Tienda', m['movil'] == ref['crochet']['movil'])
+        v(f'{u} sin visita previa muestra el menú de {prefs[u]}', m['movil'] == ref[prefs[u]]['movil'])
         q.goto(BASE + '/merceria/'); q.wait_for_timeout(200); q.goto(BASE + u); q.wait_for_timeout(300); m = menu(q)
         v(f'{u} después de visitar la Mercería conserva el menú de la Mercería', m['movil'] == ref['merceria']['movil'])
         ctx.close()
