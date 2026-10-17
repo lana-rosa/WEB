@@ -12,6 +12,10 @@ export const PAGOS_ACTIVOS = true;
 // lo paga la clienta a la transportadora al recibir (Términos de venta de la Mercería). Poner en false para volver a pedirlos solo por
 // WhatsApp (el botón de Wompi se oculta en los carritos con materiales).
 export const PAGO_EN_LINEA_MERCERIA = true;
+
+// PayPal (pedidos fuera de Colombia): APAGADO el 17-oct-2026 por decisión de Sara. Colombia paga solo con Wompi y el selector de país
+// no aparece. Para volver a ofrecerlo: poner en true (la función paypal-pagos sigue desplegada y decide si está activa).
+const PAYPAL_ACTIVO = false;
 const hayMateriales = () => leerCarrito().some((i) => i && i.merceria);
 const hayOtros = () => leerCarrito().some((i) => i && !i.merceria);
 const esMateriales = () => { const c = leerCarrito(); return c.length > 0 && c.every((i) => i && i.merceria); };
@@ -344,6 +348,7 @@ function irAPaso(destino, saltarDireccion) {
 // PayPal (pedidos fuera de Colombia): el servidor dice si está activo, la tasa USD→COP y el envío por zona.
 let pp = null;
 async function cargarPaypal() {
+  if (!PAYPAL_ACTIVO) { pp = null; return; }
   try {
     const r = await fetch(SUPABASE_URL + '/functions/v1/paypal-pagos', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY }, body: JSON.stringify({ accion: 'estado' }) });
     const d = await r.json();
