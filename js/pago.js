@@ -212,7 +212,7 @@ function construirModal() {
             '<p class="pago-aviso" role="alert" hidden></p>' +
           '</div></section>' +
           '<section class="pg-sec" data-paso="4" hidden><header>Método de pago <button type="button" class="pg-atras" data-ir="3">← Atrás</button></header><div class="pg-cuerpo">' +
-            '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Bancolombia y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
+            '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Nequi, Bancolombia, Bre-B y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
             '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Para pedidos fuera de Colombia.</small></span></label>' +
             '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="/politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
             '<label class="pago-acepto" id="pg-confirma-caja"><input type="checkbox" id="pg-confirma"><span id="pg-confirma-texto">Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.</span></label>' +
@@ -697,7 +697,7 @@ async function iniciar() {
     if (p) p.classList.remove('abierto'); if (o) o.classList.remove('abierto');
     abrirPago();
   });
-  const nota = nodo('p', 'nota-pago-carrito', '🔒 Pago seguro con Wompi: tarjeta, PSE y más.');
+  const nota = nodo('p', 'nota-pago-carrito', '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.');
   if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#6E6E73;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
   wa.before(b, nota);
   const aviso = nodo('p', 'nota-pago-carrito', '');
@@ -709,7 +709,7 @@ async function iniciar() {
     aviso.textContent = hayOtros()
       ? 'Los materiales de la Mercería se pagan por separado de los productos de la Tienda. Haz una compra y luego la otra, o pídelo todo por WhatsApp.'
       : 'Los materiales de la Mercería se piden por WhatsApp: confirmamos la disponibilidad, el envío y el pago (te indicamos cómo pagar).';
-    nota.textContent = esMateriales() ? '🔒 Pago seguro con Wompi. El envío lo pagas al recibir.' : '🔒 Pago seguro con Wompi: tarjeta, PSE y más.';
+    nota.textContent = esMateriales() ? '🔒 Pago seguro con Wompi. El envío lo pagas al recibir.' : '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.';
     wa.textContent = 'Pedir por WhatsApp';
     wa.style.cssText = estiloWa + (soloWa ? 'background:#E01E79 !important;color:#fff !important;border:2px solid #E01E79;' : 'background:#fff !important;color:#C81B6D !important;border:2px solid #C81B6D;box-shadow:none;');
   };
