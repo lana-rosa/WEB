@@ -59,7 +59,7 @@ window.__rpcLR = {};
 }
 </script>
 
-<link rel="stylesheet" href="/css/comun.css?v=34">
+<link rel="stylesheet" href="/css/comun.css?v=35">
 <link rel="stylesheet" href="/css/animaciones.css?v=3">
 <style>
 :root {
@@ -214,6 +214,7 @@ body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categoria
 }
 .boton-ver-mas:hover { background: var(--rosa-boton-hover); color: var(--blanco); }
 .boton-ver-mas::after { content: '↓'; font-size: 1.1rem; }
+.boton-ver-mas[hidden] { display: none; }
 .buscador-productos { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; margin: 20px 0 24px; }
 @media (max-width: 700px) { .buscador-productos { grid-template-columns: 1fr; } }
 .campo-buscador label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--tinta-suave); margin-bottom: 6px; }
@@ -454,7 +455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="barra-controles-tienda">
     <div class="selector-categorias">
       <label for="selector-categoria">Ir a categoría</label>
-      <select id="selector-categoria">
+      <select id="selector-categoria" aria-label="Ir a categoría">
         <option value="">Todas las categorías</option>
         <option value="#lanas-merceria">Lanas</option>
         <option value="#hilos-merceria">Hilos</option>
@@ -463,7 +464,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="selector-categorias selector-orden">
       <label for="orden-catalogo">Ordenar por</label>
-      <select id="orden-catalogo">
+      <select id="orden-catalogo" aria-label="Ordenar por">
         <option value="">Como están en el catálogo</option>
         <option value="precio-asc">Precio: de menor a mayor</option>
         <option value="precio-desc">Precio: de mayor a menor</option>

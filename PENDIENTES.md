@@ -246,3 +246,7 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 - [ ] **Al terminar todas las fases, explicarle a Sara cómo hacerlo (Sara lo pidió):** Supabase: activar «protección contra contraseñas filtradas» (Authentication → Providers → Email); revisar con calma las 137 funciones sin `search_path` fijo (ERP compartido: no se cambian en bloque).
 - [ ] `guias-envio` es un bucket público a propósito (la clienta abre «Ver guía» con una URL pública): si se suben guías con datos personales, pasar a privado y usar enlaces firmados.
 - [ ] Revisión jurídica pendiente de retracto, garantías, conservación de fotos y plazo de 90 días de la Agenda.
+- [x] Accesibilidad (17-oct): axe-core en 16 páginas clave a 390 y 1280 px pasó de 27 fallos (contraste en 12 páginas, selectores sin nombre y botón vacío en el catálogo de Mercería) a 0. Pendiente: probar con un lector de pantalla real (VoiceOver/TalkBack).
+- [x] SEO (17-oct): artículos de la Revista con h1 → h2 (antes saltaban a h3) y `politicas.html` con etiquetas Open Graph. Informativo: 25 títulos pasan de 70 caracteres y 11 descripciones de 170 (Google los acorta); no se tocaron.
+- [x] PWA (17-oct): manifiestos, íconos y service worker comprobados; sin conexión muestra `/offline.html`.
+- [ ] Rendimiento: la medición local (LCP 104–220 ms, CLS 0, 263–862 KB por página) no sustituye a PageSpeed/Search Console; correr PageSpeed Insights sobre la web publicada desde un computador con internet y guardar los números.
