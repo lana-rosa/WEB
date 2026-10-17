@@ -42,6 +42,7 @@ window.__rpcLR = {};
 </script>
 <link rel="preload" href="/fonts/dynapuff-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>window.ICO_CARRITO='<svg class="ico-carrito" width="1.15em" height="1.15em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.22em"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>';</script>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
 
@@ -837,7 +838,7 @@ function crearTarjeta(item) {
         ? '<p class="producto-estado bajo-pedido">Foto de referencia</p>' +
           '<a class="boton-personalizar" href="' + pers.url + '">Personalizar <span class="estrella" aria-hidden="true">✨</span></a>'
         : '<p class="producto-estado ' + (item.disponible_web ? 'disponible' : 'bajo-pedido') + '">' + (item.disponible_web ? 'Disponible' : 'Bajo pedido') + '</p>' +
-          '<button type="button" class="boton-agregar-carrito">Agregar 🛒</button>') +
+          '<button type="button" class="boton-agregar-carrito">Agregar ' + window.ICO_CARRITO + '</button>') +
     '</div>';
   articulo.querySelector('.boton-favorito').addEventListener('click', function (e) {
     e.stopPropagation();
@@ -977,7 +978,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (contador) contador.textContent = carrito.reduce(function(s, i) { return s + i.cantidad; }, 0);
       boton.textContent = '✓ Agregado';
       boton.classList.add('agregado');
-      setTimeout(function() { boton.textContent = 'Agregar 🛒'; boton.classList.remove('agregado'); }, 1200);
+      setTimeout(function() { boton.innerHTML = 'Agregar ' + window.ICO_CARRITO; boton.classList.remove('agregado'); }, 1200);
     });
   });
 
@@ -1283,7 +1284,7 @@ function inicializarBuscadorTienda() {
       boton.textContent = '✓ Agregado';
       boton.classList.add('agregado');
       setTimeout(function() {
-        boton.textContent = 'Agregar 🛒';
+        boton.innerHTML = 'Agregar ' + window.ICO_CARRITO;
         boton.classList.remove('agregado');
       }, 1200);
     });
@@ -1318,7 +1319,7 @@ function inicializarBuscadorTienda() {
           </div>
           <button type="button" class="boton-primario" id="modal-boton-carrito" style="cursor:pointer;">Añadir al carrito</button>
         </div>
-        <button type="button" class="boton-comprar-ahora" id="modal-boton-comprar">🛒 Comprar ahora</button>
+        <button type="button" class="boton-comprar-ahora" id="modal-boton-comprar"><svg class="ico-carrito" width="1.15em" height="1.15em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.22em"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg> Comprar ahora</button>
         <a class="boton-personalizar-ficha" id="modal-boton-personalizar" href="/personaliza.html" hidden>✨ Personalizar el mío y pagar</a>
         <p class="aviso-personaje" id="modal-aviso-referencia" hidden>Las fotos son de referencia: cada amigurumi se teje a partir de tu foto o tu idea. Llenas el formulario con tus fotos y detalles y después pagas aquí mismo con Wompi.</p>
         <div class="modal-botones">
