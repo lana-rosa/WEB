@@ -330,9 +330,9 @@ def absolutas(html):
 
 # Barra «Rosina» (una fila corta, con los colores de la casa) en todas las páginas del Rincón de Rosina
 BARRA_PAGINAS = {'recursos-rosina': 'recursos-rosina.html', 'glosario-rosina': 'glosario-rosina.html', 'paletas-rosina': 'paletas-rosina.html',
-                 'calculadoras-rosina': 'calculadoras-rosina.html', 'agenda-rosina': 'agenda-rosina.html', 'rosina': 'rosina.html'}
+                 'calculadoras-rosina': 'calculadoras-rosina.html', 'agenda-rosina': 'agenda-rosina.html'}
 BARRA_ITEMS = [('Material gratis', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas', 'paletas-rosina.html'),
-               ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html'), ('Conoce a Rosina', 'rosina.html')]
+               ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html'), ('Conoce a Rosina', 'universo-rosina.html#conoce-a-rosina')]
 HUB = {'crochet': 'universo-rosina.html', 'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}
 
 def barra_rosina(pagina, casa):
