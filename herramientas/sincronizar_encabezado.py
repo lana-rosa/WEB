@@ -23,21 +23,21 @@ CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende'
 MENUS = {
     'crochet': [('Tienda', 'tienda.html', 'crochet'), ('Amigurumis', 'tienda.html#amigurumis', 'crochet'), ('Peluches', 'tienda.html#peluches', 'crochet'),
                 ('Llaveros', 'tienda.html#llaveros', 'crochet'), ('Flores y macetas', 'tienda.html#macetas', 'crochet'),
-                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
+                ('Personaliza el tuyo', 'personaliza.html', 'crochet'), ('Rosina: regalos e ideas', 'universo-rosina.html', 'universo')],
     # páginas comunes (contacto, preguntas, políticas, cuenta, Revista): menú de marca con las tres casas
     'comun': [('Tienda de amigurumis', 'index.html', 'crochet'), ('Mercería', 'merceria/', 'merceria'),
-              ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun'), ('El universo de Rosina', 'universo-rosina.html', 'universo')],
+              ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun'), ('Rosina: regalos e ideas', 'universo-rosina.html', 'universo')],
     # Solo categorías que tienen productos en el inventario (8-oct-2026: hoy solo Lanas). Cuando se carguen Hilos, Agujas, Herrajes,
     # Accesorios o Relleno al ERP, agregar aquí su enlace (merceria/catalogo/#<categoria>-merceria) y en MOVIL['merceria'] y PIE.
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria'),
                  ('Sobre nosotras', 'sobre-nosotras.html', 'merceria'),
-                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('El universo de Rosina', 'merceria/rosina/', 'universo')],
+                 ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('Rosina: lanas e ideas', 'merceria/rosina/', 'universo')],
     'academy': [('Talleres y clases', 'academy/talleres/', 'academy'),
                 ('Revista', 'revista.html?casa=academy', 'academy'),
                 ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('Sobre nosotras', 'sobre-nosotras.html', 'academy'),
-                ('El universo de Rosina', 'academy/rosina/', 'universo')],
+                ('Rosina: tutoriales y recursos', 'academy/rosina/', 'universo')],
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
@@ -95,7 +95,7 @@ MOVIL = {
     <a href="personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="index.html#historias">Historias que tejimos</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
+    <a href="universo-rosina.html">🐑 Rosina: regalos, ideas y material gratis</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <a href="revista.html?casa=crochet">Revista</a>
@@ -113,7 +113,7 @@ MOVIL = {
     <p class="grupo-nav">Visítanos</p>
     <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="merceria/rosina/">🐑 El universo de Rosina</a>
+    <a href="merceria/rosina/">🐑 Rosina: tu lana, ideas y material gratis</a>
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="revista.html?casa=merceria">Revista</a>
     <p class="grupo-nav">Lana Rosa</p>
@@ -135,7 +135,7 @@ MOVIL = {
     <a href="academy/empieza-aqui/">Empieza aquí</a>
     <a href="aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
     <p class="grupo-nav">Rosina</p>
-    <a href="academy/rosina/">🐑 El universo de Rosina <span class="etiqueta-gratis">Material gratis</span></a>
+    <a href="academy/rosina/">🐑 Rosina: tutoriales y material gratis</a>
     <a href="agenda-rosina.html">📅 Agenda de Rosina</a>
     <p class="grupo-nav">Ideas</p>
     <a href="revista.html?casa=academy">Revista</a>
@@ -193,7 +193,7 @@ def _encabezado(casa):
     <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html">🐑 El universo de Rosina</a>
+    <a href="universo-rosina.html">🐑 Rosina: regalos, ideas y material gratis</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="revista.html">Revista</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>

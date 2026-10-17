@@ -63,7 +63,7 @@ const CSS = `
 .pg-atras { background: none; border: none; font: inherit; font-size: 0.85rem; text-transform: none; letter-spacing: 0; color: #45454A; text-decoration: underline; cursor: pointer; padding: 0; }
 .pg-cuerpo { padding: 18px 20px 20px; }
 .pg-sec[hidden] { display: none; }
-.pg-badge { background: #E74E96; color: #fff; border-radius: 999px; padding: 3px 11px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0; text-transform: none; }
+.pg-badge { background: #E01E79; color: #fff; border-radius: 999px; padding: 3px 11px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0; text-transform: none; }
 .pg-item { display: flex; gap: 12px; padding: 14px 20px; border-bottom: 1px solid rgba(69,69,74,0.08); }
 .pg-foto { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 12px; background: #FBE4EF; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
 .pg-foto img { width: 100%; height: 100%; object-fit: cover; }
@@ -72,7 +72,7 @@ const CSS = `
 .pg-info .pg-quitar { align-self: flex-start; background: none; border: none; font: inherit; font-size: 0.82rem; color: #6E6E73; text-decoration: underline; cursor: pointer; padding: 0; }
 .pg-precio { font-weight: 700; white-space: nowrap; }
 .pg-cant { display: inline-flex; align-items: center; border: 1.5px solid rgba(69,69,74,0.2); border-radius: 10px; overflow: hidden; align-self: flex-start; }
-.pg-cant button { width: 30px; height: 30px; border: none; background: #fff; font-size: 1.05rem; cursor: pointer; color: #E74E96; font-weight: 700; }
+.pg-cant button { width: 30px; height: 30px; border: none; background: #fff; font-size: 1.05rem; cursor: pointer; color: #C81B6D; font-weight: 700; }
 .pg-cant button:disabled { opacity: .35; cursor: default; }
 .pg-cant span { min-width: 30px; text-align: center; font-weight: 700; font-size: 0.9rem; }
 .pg-totales { padding: 14px 20px 6px; font-size: 0.92rem; }
@@ -109,7 +109,7 @@ const CSS = `
 .pago-acepto { display: flex; gap: 10px; align-items: flex-start; font-size: 0.86rem; margin: 4px 0 12px; }
 .pago-acepto[hidden] { display: none; }
 .pago-acepto input { margin-top: 3px; accent-color: #E74E96; width: 18px; height: 18px; flex-shrink: 0; }
-.pg-btn { width: 100%; font: inherit; font-weight: 700; padding: 14px; border-radius: 999px; border: none; background: #E74E96; color: #fff; cursor: pointer; margin-top: 6px; }
+.pg-btn { width: 100%; font: inherit; font-weight: 700; padding: 14px; border-radius: 999px; border: none; background: #E01E79; color: #fff; cursor: pointer; margin-top: 6px; }
 .pg-btn:hover { background: #B83E78; }
 .pg-btn:disabled { opacity: 0.6; cursor: wait; }
 .pg-enlace { background: none; border: none; font: inherit; font-size: 0.86rem; color: #E74E96; text-decoration: underline; cursor: pointer; padding: 4px 0; margin: 2px 0 10px; font-weight: 600; }
@@ -711,7 +711,7 @@ async function iniciar() {
       : 'Los materiales de la Mercería se piden por WhatsApp: confirmamos la disponibilidad, el envío y el pago (te indicamos cómo pagar).';
     nota.textContent = esMateriales() ? '🔒 Pago seguro con Wompi. El envío lo pagas al recibir.' : '🔒 Pago seguro con Wompi: tarjeta, PSE y más.';
     wa.textContent = 'Pedir por WhatsApp';
-    wa.style.cssText = estiloWa + (soloWa ? 'background:#E74E96;color:#fff;border:2px solid #E74E96;' : 'background:#fff;color:#E74E96;border:2px solid #E74E96;box-shadow:none;');
+    wa.style.cssText = estiloWa + (soloWa ? 'background:#E01E79 !important;color:#fff !important;border:2px solid #E01E79;' : 'background:#fff !important;color:#C81B6D !important;border:2px solid #C81B6D;box-shadow:none;');
   };
   ajustar();
   const panelC = document.getElementById('panel-carrito'), listaC = document.getElementById('items-carrito');
