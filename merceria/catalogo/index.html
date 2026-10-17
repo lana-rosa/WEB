@@ -41,6 +41,7 @@ window.__rpcLR = {};
 </script>
 <link rel="preload" href="/fonts/dynapuff-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>window.ICO_CARRITO='<svg class="ico-carrito" width="1.15em" height="1.15em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.22em"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>';</script>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
 <script type="application/ld+json">
@@ -696,7 +697,7 @@ function crearTarjeta(p) {
       '<p class="ficha-merceria">' + esc(textoPresentacion(p)) + '</p>' +
       '<p class="producto-precio">' + formatoCOP(p.precio) + ' COP' + (p.porOvillo ? ' <span class="nota-presentacion">por ovillo</span>' : '') + '</p>' +
       '<p class="disponibilidad ' + (p.disponible ? 'si' : 'no') + '">' + textoDisponibilidad(p) + '</p>' +
-      '<button type="button" class="' + (p.disponible ? 'boton-agregar-carrito' : 'boton-pedir') + '" data-agregar' + (p.disponible ? '' : ' disabled style="opacity:0.5; cursor:not-allowed;"') + '>' + (p.disponible ? '🛒 Agregar al carrito' : 'Agotado por ahora') + '</button>' +
+      '<button type="button" class="' + (p.disponible ? 'boton-agregar-carrito' : 'boton-pedir') + '" data-agregar' + (p.disponible ? '' : ' disabled style="opacity:0.5; cursor:not-allowed;"') + '>' + (p.disponible ? window.ICO_CARRITO + ' Agregar al carrito' : 'Agotado por ahora') + '</button>' +
     '</div>';
   return a;
 }
@@ -789,7 +790,7 @@ function abrirFicha(p, desde) {
           fila('Composición', p.composicion) + fila('Contenido del ovillo', p.porOvillo ? p.peso + ' g' : '') + fila('Longitud declarada', p.metros ? p.metros + ' m' : '') + '</dl>' +
         '<p class="ficha-nota">Los datos técnicos salen de la etiqueta del fabricante. ' + (p.porOvillo ? '¿Qué aguja usar? <a href="/revista/aguja-segun-hilo/">Mira esta guía</a> o <a href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Hola Lana Rosa 💕 Necesito asesoría con este material: ' + p.titulo) + '" target="_blank" rel="noopener">pregúntanos</a>.' : '') + '</p>' +
         '<details class="ficha-entrega"><summary>Envío y entrega</summary><p>Enviamos a toda Colombia. El envío lo pagas a la transportadora al recibir (estimado: Villamaría $8.000 · Manizales $13.000 · otras ciudades $18.000). Recoger en la tienda física (apertura: 15 de noviembre de 2026) es gratis. Despachamos el siguiente día hábil después de confirmado el pago. <a href="/merceria/como-comprar/">Ver cómo comprar</a>.</p></details>' +
-        (p.disponible ? '<button type="button" class="boton-agregar-carrito ficha-agregar">🛒 Agregar al carrito</button>' : '') +
+        (p.disponible ? '<button type="button" class="boton-agregar-carrito ficha-agregar">' + window.ICO_CARRITO + ' Agregar al carrito</button>' : '') +
       '</div></div>';
   const b = d.querySelector('.ficha-agregar'); if (b) b.addEventListener('click', () => agregarAlCarrito(p, b));
   d.setAttribute('aria-labelledby', 'ficha-titulo');
@@ -1048,7 +1049,7 @@ function datosEstructurados(lista) {
       boton.textContent = '✓ Agregado';
       boton.classList.add('agregado');
       setTimeout(function() {
-        boton.textContent = '🛒 Agregar al carrito';
+        boton.innerHTML = window.ICO_CARRITO + ' Agregar al carrito';
         boton.classList.remove('agregado');
       }, 1200);
     });
