@@ -10,8 +10,8 @@
     + '.amp-cerrar{top:14px;right:14px;padding:0 16px}'
     + '.amp-ant,.amp-sig{top:50%;transform:translateY(-50%);font-size:1.6rem}'
     + '.amp-ant{left:10px}.amp-sig{right:10px}'
-    + '.amp-pie{position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#fff;font-size:.9rem;padding:0 60px}'
-    + '@media (prefers-reduced-motion:no-preference){.amp-fondo{animation:amp-ent .18s ease-out}@keyframes amp-ent{from{opacity:0}to{opacity:1}}}';
+    + '.amp-pie{position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#fff;font-size:.9rem;padding:0 60px}';
+  // Sin fundido de entrada: con el fundido se veía por un instante la foto pequeña de atrás junto a la ampliada (un «cuadrito»).
   document.head.appendChild(estilo);
 
   function fotos(contenedor) {
