@@ -41,7 +41,7 @@ MENUS = {
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
-LOGO_IMG = {'merceria': ('img/logo-merceria.webp', 'Lana Rosa Mercería'), 'academy': ('img/logo-academy.webp', 'Lana Rosa Academy')}
+LOGO_IMG = {'merceria': ('img/logo-merceria-360.webp', 'Lana Rosa Mercería'), 'academy': ('img/logo-academy-360.webp', 'Lana Rosa Academy')}
 
 # íconos de la pestaña y color de la barra del celular por casa
 ICONOS = {
@@ -203,10 +203,10 @@ def _encabezado(casa):
     <a href="precios.html">Precios</a>
   </nav>'''
     texto, enlace = LOGO[casa]
-    img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
+    img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa-360.webp', 'Lana Rosa Crochet'))
     return f'''{anuncios(casa)}<header class="encabezado" data-casa="{casa}">
   <div class="contenedor">
-    <a href="{enlace}" class="logo"><img src="{img}" alt="{alt}" class="logo-img" width="600" height="384"><span class="texto-logo">{texto}</span></a>
+    <a href="{enlace}" class="logo"><img src="{img}" alt="{alt}" class="logo-img" width="360" height="230"><span class="texto-logo">{texto}</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
 {chr(10).join(lis)}
@@ -283,7 +283,7 @@ def casas_pie_mini(casa):
 def pie_casa(modelo, casa):
     """Pie simple: logo con las tres casas al lado y redes, tres columnas cortas, pagos y apoyo en una línea, y los legales."""
     titulo, enlaces = PIE_SIMPLE.get(casa) or PIE_SIMPLE_COMUN
-    img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
+    img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa-360.webp', 'Lana Rosa Crochet'))
     def li(t, h, extra=''):
         if not h: return f'\n        <li>{t}</li>'
         ext = ' target="_blank" rel="noopener"' if h.startswith('http') else ''
