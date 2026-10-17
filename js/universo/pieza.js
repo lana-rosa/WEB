@@ -14,7 +14,7 @@ export const CUIDADOS_GENERALES = [
   ['humedad', 'Guárdala limpia y seca, lejos de la humedad.'],
   ['hilito', 'Si se suelta un hilito, no tires de él: escríbenos por WhatsApp y lo revisamos.'],
 ];
-export const GUIA_CUIDADOS = '/revista.html#cuidar-lavar-tejidos';
+export const GUIA_CUIDADOS = '/revista/cuidar-lavar-tejidos/';
 export const RESENAS = 'https://g.page/r/Cae2iIji5j_XEAE/review'; // deja la reseña directamente (el enlace share.google solo abre el perfil en el buscador)
 
 const sinTildes = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();

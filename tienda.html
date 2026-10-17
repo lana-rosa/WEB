@@ -1425,9 +1425,9 @@ var RESENAS_POR_PRODUCTO = {};
       '<li class="ficha-disponibilidad"><span>Disponibilidad</span><span>' + (persFicha ? 'Bajo pedido (personalizado)' : (producto.disponible ? 'Disponible' : 'Bajo pedido')) + '</span></li>' +
       '<li class="ficha-encabezado">📋 Especificaciones</li>' +
       '<li class="ficha-lista"><ul>' + especificacionesHtml + '</ul></li>' +
-      '<li class="ficha-encabezado"><a class="ficha-enlace-cuidados" href="/revista.html#cuidar-lavar-tejidos">🧺 Cuidados</a></li>' +
+      '<li class="ficha-encabezado"><a class="ficha-enlace-cuidados" href="/revista/cuidar-lavar-tejidos/">🧺 Cuidados</a></li>' +
       '<li class="ficha-lista"><ul>' + cuidadosHtml + '</ul>' +
-      '<a class="ficha-enlace-cuidados ficha-mas-cuidados" href="/revista.html#cuidar-lavar-tejidos">Cómo cuidar y lavar tu tejido →</a></li>';
+      '<a class="ficha-enlace-cuidados ficha-mas-cuidados" href="/revista/cuidar-lavar-tejidos/">Cómo cuidar y lavar tu tejido →</a></li>';
 
     var mensaje = 'Hola! Me interesa: ' + producto.nombre + ' (' + formatoCOP(producto.precio) + ')';
     botonWhatsappModal.href = 'https://wa.me/573205072801?text=' + encodeURIComponent(mensaje);

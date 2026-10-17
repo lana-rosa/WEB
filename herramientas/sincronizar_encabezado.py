@@ -248,7 +248,7 @@ def js_casa_menu():
             '// En las páginas comunes cambia el menú por el de la casa de la que viene la persona (?casa=merceria|academy, o la última casa visitada).\n'
             '(function () {\n  var B = ' + json.dumps(bloques, ensure_ascii=False) + ';\n'
             '  var c = null;\n'
-            '  try { var q = new URLSearchParams(location.search).get("casa"); if (B[q]) { c = q; sessionStorage.setItem("lrCasa", c); } else c = sessionStorage.getItem("lrCasa"); } catch (e) {}\n'
+            '  try { var q = new URLSearchParams(location.search).get("casa"); if (B[q]) { c = q; sessionStorage.setItem("lrCasa", c); } else c = sessionStorage.getItem("lrCasa") || document.documentElement.getAttribute("data-casa-pref"); } catch (e) {}\n'
             '  var cont = document.getElementById("encabezado-casa");\n'
             '  if (!cont || !B[c] || c === "crochet") return;\n'
             '  cont.innerHTML = B[c];\n'
@@ -383,7 +383,7 @@ def con_barra(s, pagina, casa):
 def main():
     # el pie modelo es el de las páginas comunes (contacto.html no tiene casa, así que nunca se modifica)
     modelo = None
-    archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + [os.path.join(RAIZ, 'p', 'index.html')] + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True)) + sorted(glob.glob(os.path.join(RAIZ, 'academy', '**', 'index.html'), recursive=True))
+    archivos = sorted(glob.glob(os.path.join(RAIZ, '*.html'))) + [os.path.join(RAIZ, 'p', 'index.html')] + sorted(glob.glob(os.path.join(RAIZ, 'merceria', '**', 'index.html'), recursive=True)) + sorted(glob.glob(os.path.join(RAIZ, 'revista', '*', 'index.html'))) + sorted(glob.glob(os.path.join(RAIZ, 'academy', '**', 'index.html'), recursive=True))
     for f in archivos:
         rel = os.path.relpath(f, RAIZ).replace(os.sep, '/')
         # merceria/index.html -> merceria; merceria/catalogo/index.html -> merceria-catalogo
@@ -410,7 +410,8 @@ def main():
         s = re.sub(r'<!-- ICONOS:INICIO.*?<!-- ICONOS:FIN -->\n?', '', s, flags=re.S)
         s = re.sub(r'<link rel="icon"[^>]*>\n?|<link rel="apple-touch-icon"[^>]*>\n?|<meta name="theme-color"[^>]*>\n?', '', s)
         s = s.replace('</head>', iconos(casa) + '\n</head>', 1)
-        s = re.sub(r'<html lang="es-CO"[^>]*>', '<html lang="es-CO"' + (f' data-casa="{casa}"' if casa else '') + '>', s, count=1)
+        pref = re.search(r'<html lang="es-CO"[^>]*?(data-casa-pref="[^"]*")', s)   # casa preferida de los artículos de la Revista (la usa js/casa-menu.js)
+        s = re.sub(r'<html lang="es-CO"[^>]*>', '<html lang="es-CO"' + (f' data-casa="{casa}"' if casa else '') + (' ' + pref.group(1) if pref else '') + '>', s, count=1)
         s = con_barra(s, n, casa)
         open(f, 'w', encoding='utf-8').write(s)
         print('ok', n)
