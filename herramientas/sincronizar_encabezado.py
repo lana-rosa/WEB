@@ -229,6 +229,9 @@ def encabezado(pagina):
     js/casa-menu.js lo cambia por el de la casa de la que viene la persona (?casa= o la última casa visitada); así el menú no cambia dentro de una casa."""
     casa = CASA_DE.get(pagina)
     if casa:
+        if pagina == 'tienda':   # aquí se venden piezas listas: el anuncio no puede decir «100% personalizados»
+            return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","crochet")}catch(e){}</script>\n'
+                    + _encabezado(casa).replace('Amigurumis 100% personalizados', 'Listos para enviar o personalízalos') + '<!-- CASAS:FIN -->')
         return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","' + casa + '")}catch(e){}</script>\n'
                 + _encabezado(casa) + '<!-- CASAS:FIN -->')
     return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<div id="encabezado-casa" style="display:contents">\n'
