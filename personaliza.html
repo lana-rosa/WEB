@@ -1121,8 +1121,8 @@ document.querySelectorAll('.carrusel').forEach(function (c) {
   c.addEventListener('scroll', estado, { passive: true }); window.addEventListener('resize', estado); estado();
 });
 </script>
-<script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=28"></script>
+<script type="module" src="/js/cuenta.js" fetchpriority="low"></script>
+<script type="module" src="/js/pago.js?v=28" fetchpriority="low"></script>
 <script type="module">
 // Si la clienta tiene sesión, se llenan sus datos en el formulario (puede cambiarlos).
 import { haySesionGuardada, obtenerPerfil, obtenerCliente } from './js/cuenta.js';
@@ -1146,7 +1146,7 @@ if (haySesionGuardada()) {
   })();
 }
 </script>
-<script src="/js/ampliar.js?v=1" defer></script>
-<script src="/js/animaciones.js?v=14" defer></script>
+<script src="/js/ampliar.js?v=1" defer fetchpriority="low"></script>
+<script src="/js/animaciones.js?v=14" defer fetchpriority="low"></script>
 </body>
 </html>
