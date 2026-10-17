@@ -133,7 +133,7 @@ def main():
         t = re.sub(r'(wa\.me/573205072801\?text=)[^"]*(" class="whatsapp-flotante")', lambda m: m.group(1) + urllib.parse.quote(U['wa']) + m.group(2), t, count=1)
         if casa == 'academy':
             t = t.replace('href="/academy/" data-recorrido="aprender"', 'href="/academy/empieza-aqui/" data-recorrido="aprender"', 1)
-            t = t.replace('<script src="/js/animaciones.js', '<script type="module" src="/js/lista-espera.js?v=1"></script>\n<script src="/js/animaciones.js', 1)
+            t = t.replace('<script src="/js/animaciones.js', '<script type="module" src="/js/lista-espera.js?v=3"></script>\n<script src="/js/animaciones.js', 1)
         os.makedirs(os.path.dirname(os.path.join(RAIZ, ruta)), exist_ok=True)
         open(os.path.join(RAIZ, ruta), 'w', encoding='utf-8').write(t)
         print('ok', ruta, len(RECURSOS[casa]), 'recursos')
