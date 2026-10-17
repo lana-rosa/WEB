@@ -10,19 +10,19 @@
   var KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
   var TEXTOS = {
     crochet: {
-      titulo: '¡Bienvenida a Lana Rosa!',
+      titulo: '¡Te damos la bienvenida a Lana Rosa!',
       intro: 'Regístrate y recibe un bono del 10% para tu primera compra en la <a href="/tienda.html">tienda de amigurumis</a> o en la <a href="/merceria/">mercería</a>.',
       lugar: 'la tienda de amigurumis o la mercería',
       cta: ['/tienda.html', 'Ir a la tienda de amigurumis'], cta2: ['/merceria/catalogo/', 'Ver la mercería']
     },
     merceria: {
-      titulo: '¡Bienvenida a la Mercería Lana Rosa!',
+      titulo: '¡Te damos la bienvenida a la Mercería Lana Rosa!',
       intro: 'Regístrate y recibe un bono del 10% para tu primera compra de lanas, hilos, agujas y accesorios en la <a href="/merceria/catalogo/">mercería</a> o en la <a href="/tienda.html">tienda de amigurumis</a>.',
       lugar: 'la mercería o la tienda de amigurumis',
       cta: ['/merceria/catalogo/', 'Ir al catálogo de la mercería'], cta2: ['/tienda.html', 'Ver la tienda de amigurumis']
     },
     academy: {
-      titulo: '¡Bienvenida a Lana Rosa Academy!',
+      titulo: '¡Te damos la bienvenida a Lana Rosa Academy!',
       intro: 'Aprende con nosotras y estrena con descuento: regístrate y recibe un bono del 10% para tu primera compra en la <a href="/merceria/">mercería</a> (lanas, hilos y agujas) o en la <a href="/tienda.html">tienda de amigurumis</a>.',
       lugar: 'la mercería o la tienda de amigurumis',
       cta: ['/merceria/catalogo/', 'Ir a la mercería'], cta2: ['/tienda.html', 'Ver la tienda de amigurumis']

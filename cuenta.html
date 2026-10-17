@@ -630,7 +630,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span>Total</span>
       <span id="total-carrito">$0</span>
     </div>
-    <a id="boton-checkout-whatsapp" class="boton-primario" style="text-align:center;" href="#" target="_blank" rel="noopener">Finalizar pedido por WhatsApp</a>
+    <a id="boton-checkout-whatsapp" class="boton-primario" style="text-align:center;" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
   </div>
 </div>
 <script>
@@ -1095,7 +1095,7 @@ function pintarPedidos() {
       const x = nodo('button', 'cancelar-pedido-x', '×'); x.type = 'button';
       x.setAttribute('aria-label', 'Cancelar pedido'); x.title = 'Cancelar pedido';
       x.addEventListener('click', async () => {
-        if (!confirm('¿Estás segura de cancelar este pedido? Aún no está pagado.')) return;
+        if (!confirm('¿Quieres cancelar este pedido? Aún no está pagado.')) return;
         x.disabled = true;
         const { error } = await sbPanel.rpc('quitar_pedido_pendiente', { p_referencia: p.consecutivo });
         if (error) { x.disabled = false; alert('No pudimos cancelar el pedido. Solo se pueden cancelar los que aún no están pagados.'); return; }
@@ -1533,7 +1533,7 @@ async function iniciar() {
     if (!perfil) {
       $('k-nombre').value = m.nombre || meta.full_name || meta.name || '';
       $('k-telefono').value = m.telefono; $('k-ciudad').value = m.ciudad;
-      $('titulo-cuenta').textContent = '¡Bienvenida a Lana Rosa!';
+      $('titulo-cuenta').textContent = '¡Te damos la bienvenida a Lana Rosa!';
       $('sub-cuenta').textContent = 'Ya entraste con ' + (session.user.email || 'tu correo') + '.';
       return mostrar('completar');
     }
