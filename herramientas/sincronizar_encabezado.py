@@ -32,10 +32,12 @@ MENUS = {
     'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria'),
+                 ('Sobre nosotras', 'sobre-nosotras.html', 'merceria'),
                  ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('El universo de Rosina', 'merceria/rosina/', 'universo')],
-    'academy': [('Talleres y clases', 'academy/talleres/', 'academy'), ('Agenda de Rosina', 'agenda-rosina.html', 'academy'),
+    'academy': [('Talleres y clases', 'academy/talleres/', 'academy'),
                 ('Revista', 'revista.html?casa=academy', 'academy'),
-                ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('El universo de Rosina', 'academy/rosina/', 'universo')],
+                ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('Sobre nosotras', 'sobre-nosotras.html', 'academy'),
+                ('El universo de Rosina', 'academy/rosina/', 'universo')],
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
@@ -114,6 +116,8 @@ MOVIL = {
     <a href="merceria/rosina/">🐑 El universo de Rosina</a>
     <p class="grupo-nav">Ideas para tejer</p>
     <a href="revista.html?casa=merceria">Revista</a>
+    <p class="grupo-nav">Lana Rosa</p>
+    <a href="sobre-nosotras.html">Sobre nosotras</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="merceria/como-comprar/">Cómo comprar y envíos</a>
     <a href="merceria/terminos-de-venta/">Términos de venta</a>
@@ -127,15 +131,16 @@ MOVIL = {
     <p class="grupo-nav">Cursos y clases</p>
     <a href="academy/talleres/">Talleres y clases</a>
     <a href="academy/sobre-academy/">Sobre Academy</a>
-    <p class="grupo-nav">Agenda</p>
-    <a href="agenda-rosina.html">Agenda de Rosina</a>
     <p class="grupo-nav">Aprende gratis</p>
     <a href="academy/empieza-aqui/">Empieza aquí</a>
     <a href="aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
     <p class="grupo-nav">Rosina</p>
     <a href="academy/rosina/">🐑 El universo de Rosina <span class="etiqueta-gratis">Material gratis</span></a>
+    <a href="agenda-rosina.html">📅 Agenda de Rosina</a>
     <p class="grupo-nav">Ideas</p>
     <a href="revista.html?casa=academy">Revista</a>
+    <p class="grupo-nav">Lana Rosa</p>
+    <a href="sobre-nosotras.html">Sobre nosotras</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="academy/preguntas-frecuentes/">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>

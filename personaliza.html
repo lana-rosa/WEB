@@ -173,14 +173,29 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .carrusel-flecha.ant { left: 8px; }
 .carrusel-flecha.sig { right: 8px; }
 .carrusel-flecha[disabled] { opacity: 0.35; cursor: default; }
-@media (max-width: 760px) { .dos-galerias { grid-template-columns: minmax(0, 1fr); gap: 18px; } .galeria-col { padding: 14px; } }
+/* En el celular las dos galerías van una al lado de la otra (como los productos de la tienda) */
+@media (max-width: 760px) {
+  .dos-galerias { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .galeria-col { padding: 10px; border-radius: 16px; }
+  .galeria-col .titulo-proceso { font-size: 0.95rem; line-height: 1.25; margin-bottom: 6px; min-height: 3.75em; }
+  .galeria-col .nota-tamanos { font-size: 0.78rem; margin-bottom: 8px; }
+  .carrusel { gap: 8px; }
+  .carrusel img { border-radius: 12px; }
+  .carrusel figcaption { font-size: 0.78rem; margin-top: 6px; min-height: 5.6em; line-height: 1.3; }
+  .carrusel-flecha { width: 28px; height: 28px; font-size: 1.1rem; }
+  .carrusel-flecha.ant { left: 4px; } .carrusel-flecha.sig { right: 4px; }
+}
 .casos-personaliza.casos-tres { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; margin-left: auto; margin-right: auto; align-items: center; }
 @media (max-width: 700px) { .casos-personaliza.casos-tres { margin-left: -24px; margin-right: -24px; } }
 @media (min-width: 701px) { .entregados-personaliza { display: flex; flex-wrap: wrap; justify-content: center; } .entregados-personaliza figure { flex: 0 0 calc((100% - 64px) / 5); } }
 .enlace-resenas { margin: 0 0 30px; font-size: 0.9rem; }
 .enlace-resenas a { color: var(--rosa-texto); font-weight: 700; text-decoration: none; }
 .det-tamanos { margin: 8px 0 22px; }
-.det-tamanos summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); min-height: 44px; display: flex; align-items: center; }
+.det-tamanos summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); min-height: 44px; display: inline-flex; align-items: center; gap: 10px; padding: 8px 20px; border: 2px solid var(--rosa-principal); border-radius: 999px; background: #fff; list-style: none; }
+.det-tamanos summary::-webkit-details-marker { display: none; }
+.det-tamanos summary::after { content: "▾"; transition: transform .2s; }
+.det-tamanos[open] summary::after { transform: rotate(180deg); }
+.det-tamanos summary:hover, .det-tamanos summary:focus-visible { background: var(--rosa-suave); outline: none; }
 .nota-tamanos { color: var(--tinta-suave); font-size: 0.9rem; margin: -6px 0 0; }
 .desc-tamano { font-size: 0.82rem; color: var(--tinta-suave); margin: 2px 0 0; }
 .boton-wa-exito { display: inline-block; margin-top: 10px; background: #25D366; color: #fff !important; border-radius: 999px; padding: 8px 16px; font-weight: 700; text-decoration: none; }
@@ -338,8 +353,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="respuestas-rapidas">
     <details><summary><span aria-hidden="true">🧸</span><h2>¿Qué puedo pedir?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Personas, mascotas, parejas, personajes, llaveros, peluches, flores y mucho más, tu imaginación es el límite.</p></details>
-    <details open><summary><span aria-hidden="true">💰</span><h2>¿Cuánto cuesta?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Amigurumis desde <strong>$70.000 COP</strong>, peluches desde <strong>$35.000 COP</strong> y llaveros personalizados desde <strong>$12.000 COP</strong>, según el tamaño y el detalle. Los amigurumis de 13, 15 y 20 cm tienen precio base de <strong>$85.000, $95.000 y $115.000 COP</strong> (una pieza con detalle normal); si tu idea necesita más detalle, te lo confirmamos antes de empezar y cobramos solo la diferencia.</p></details>
-    <details open><summary><span aria-hidden="true">🕒</span><h2>¿Cuánto tarda?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>En promedio, <strong>15 días contando el envío</strong>. Depende del tamaño, los detalles y la fila de pedidos; te damos la fecha al aprobar la cotización.</p></details>
+    <details><summary><span aria-hidden="true">💰</span><h2>¿Cuánto cuesta?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Amigurumis desde <strong>$70.000 COP</strong>, peluches desde <strong>$35.000 COP</strong> y llaveros personalizados desde <strong>$12.000 COP</strong>, según el tamaño y el detalle. Los amigurumis de 13, 15 y 20 cm tienen precio base de <strong>$85.000, $95.000 y $115.000 COP</strong> (una pieza con detalle normal); si tu idea necesita más detalle, te lo confirmamos antes de empezar y cobramos solo la diferencia.</p></details>
+    <details><summary><span aria-hidden="true">🕒</span><h2>¿Cuánto tarda?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>En promedio, <strong>15 días contando el envío</strong>. Depende del tamaño, los detalles y la fila de pedidos; te damos la fecha al aprobar la cotización.</p></details>
     <details><summary><span aria-hidden="true">📸</span><h2>¿Qué debo enviar?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Fotos claras y los detalles que no pueden faltar, o la descripción de lo que quieres. Para que quede lo más parecido: <strong>1)</strong> foto de frente, de cuerpo entero si es una persona o mascota; <strong>2)</strong> con buena luz, sin filtros ni borrosa; <strong>3)</strong> que se vean la ropa y los accesorios importantes (puedes mandar varias fotos).</p></details>
     <details><summary><span aria-hidden="true">📝</span><h2>¿Cómo hago el pedido?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>Llena el formulario y te enviamos la cotización, o escríbenos por <a href="https://wa.me/573205072801?text=Hola%20Lana%20Rosa%20%F0%9F%92%95%20Quiero%20cotizar%20un%20amigurumi%20personalizado." target="_blank" rel="noopener">WhatsApp</a>.</p></details>
     <details><summary><span aria-hidden="true">📦</span><h2>¿Hacen envíos?</h2><span class="flecha-rapida" aria-hidden="true">▾</span></summary><p>A toda Colombia: Villamaría $8.000, Manizales $13.000 y otras ciudades $18.000.</p></details>
@@ -390,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><span>5</span><strong>Aprobación y entrega</strong><small>Te enviamos una foto del producto terminado para tu aprobación y luego lo despachamos</small></li>
   </ol>
 
-  <details class="det-tamanos"><summary>Ver tamaños de referencia (13, 15 y 20 cm)</summary>
+  <details class="det-tamanos"><summary>📏 Ver tamaños de referencia (13, 15 y 20 cm)</summary>
   <p class="nota-tamanos">Precio base de una pieza con detalle normal; más detalle se cotiza aparte. También tejemos de 10 cm, llaveros y peluches.</p>
   <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:16px 0 28px;" class="galeria-tamanos-personalizado">
     <div style="text-align:center;">
@@ -500,7 +515,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <option value="Otro (nacional)">Otra ciudad de Colombia</option>
         </select>
         <input type="text" id="ciudad-otra" name="ciudad-otra" placeholder="Escribe tu ciudad o municipio" autocomplete="address-level2" style="display:none; margin-top:10px;">
-        <p class="ayuda" style="font-weight:600; color: var(--rosa-texto);">📦 El envío va aparte: Villamaría $8.000, Manizales $13.000, otras ciudades $18.000.</p>
+        <p class="ayuda" style="font-weight:600; color: var(--rosa-texto);">📦 La cotización no incluye gastos de envío: Villamaría $8.000, Manizales $13.000, otras ciudades $18.000.</p>
       </div>
     </div>
 
