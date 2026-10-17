@@ -331,6 +331,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="campo-cuenta"><label for="c-ciudad">Ciudad</label><input type="text" id="c-ciudad" list="ciudades" autocomplete="address-level2" placeholder="Escribe o elige tu ciudad"></div>
       </div>
       <label class="acepto"><input type="checkbox" id="c-acepto"> <span>Acepto el tratamiento de mis datos personales según la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a>.</span></label>
+      <label class="acepto"><input type="checkbox" id="c-novedades"> <span>Quiero recibir novedades, recursos y promociones de Lana Rosa por correo o WhatsApp (opcional; puedes retirarlo cuando quieras).</span></label>
       <button type="submit" class="boton-cuenta" id="boton-crear">Crear mi cuenta</button>
       <p class="aviso-cuenta" id="aviso-crear" role="alert" hidden></p>
     </form>
@@ -372,6 +373,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="campo-cuenta"><label for="k-ciudad">Ciudad</label><input type="text" id="k-ciudad" list="ciudades" autocomplete="address-level2"></div>
       <label class="acepto"><input type="checkbox" id="k-acepto"> <span>Acepto el tratamiento de mis datos personales según la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a>.</span></label>
+      <label class="acepto"><input type="checkbox" id="k-novedades"> <span>Quiero recibir novedades, recursos y promociones de Lana Rosa por correo o WhatsApp (opcional; puedes retirarlo cuando quieras).</span></label>
       <button type="submit" class="boton-cuenta" id="boton-completar">Guardar y entrar</button>
       <p class="aviso-cuenta" id="aviso-completar" role="alert" hidden></p>
     </form>
@@ -469,6 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="campo-cuenta"><label for="d-telefono">Teléfono / WhatsApp</label><input type="tel" id="d-telefono" autocomplete="tel"></div>
       <div class="campo-cuenta"><label for="d-ciudad">Ciudad</label><input type="text" id="d-ciudad" list="ciudades" autocomplete="address-level2"></div>
       <div class="campo-cuenta"><label for="d-correo">Correo (no se puede cambiar aquí)</label><input type="email" id="d-correo" readonly></div>
+      <label class="acepto"><input type="checkbox" id="d-novedades"> <span>Quiero recibir novedades, recursos y promociones de Lana Rosa por correo o WhatsApp.</span></label>
       <button type="submit" class="boton-cuenta" id="boton-datos">Guardar cambios</button>
       <p class="aviso-cuenta" id="aviso-datos" role="status" hidden></p>
       <p class="nota-cuenta">Para cambiar tu correo o eliminar tus datos, escríbenos a <a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a>.</p>
@@ -734,6 +737,7 @@ const CLAVE_CARRITO = 'carritoLanaRosa';
 const REDIRECCION = location.origin + '/cuenta.html';
 const PAGINA_VOLVER = /^[a-z0-9-]+\.html$/;
 try { const v = new URLSearchParams(location.search).get('volver'); if (v && PAGINA_VOLVER.test(v)) localStorage.setItem('lrVolver', v); } catch (e) {}
+try { if (/^recursos-rosina\.html/.test(localStorage.getItem('lrVolver') || '')) document.getElementById('sub-cuenta').textContent = 'Crea tu cuenta gratis (o entra) para descargar los recursos de Rosina: stickers, fondos de pantalla, íconos y más.'; } catch (e) {}
 // Viene de la página de "Gracias" (?prefill=1): rellena el registro con los datos de la compra (quedan solo en este navegador).
 try {
   if (new URLSearchParams(location.search).get('prefill') === '1') {
@@ -828,8 +832,8 @@ $('panel-crear').addEventListener('submit', async (e) => {
   const boton = $('boton-crear');
   boton.disabled = true; boton.textContent = 'Enviando…';
   try {
-    guardarPendiente({ nombre, telefono, ciudad, acepta: true, correo });
-    const error = await enviarEnlace(correo, { shouldCreateUser: true, data: { nombre, telefono, ciudad, acepta: true } });
+    guardarPendiente({ nombre, telefono, ciudad, acepta: true, correo, novedades: $('c-novedades').checked });
+    const error = await enviarEnlace(correo, { shouldCreateUser: true, data: { nombre, telefono, ciudad, acepta: true, novedades: $('c-novedades').checked } });
     if (error) throw error;
     $('correo-enviado').textContent = correo;
     mostrar('enlace');
@@ -869,6 +873,7 @@ $('panel-codigo').addEventListener('submit', async (e) => {
     const sb = await obtenerCliente();
     const { error } = await sb.auth.verifyOtp({ email: correo, token, type: 'email' });
     if (error) throw error;
+    if ($('k-novedades').checked) await sb.rpc('registrar_novedades', { p_acepta: true, p_medio: 'Registro de cuenta' });
     location.reload();
   } catch (err) {
     aviso('aviso-codigo', 'El código no es correcto o ya venció. Revisa el correo o pide uno nuevo.');
@@ -1447,6 +1452,7 @@ async function abrirPanel(sb, session, perfil) {
   $('sub-cuenta').textContent = 'Aquí están tus pedidos, mensajes, reseñas, favoritos y datos.';
   $('panel-correo').textContent = session.user.email || perfil.email || '';
   $('d-nombre').value = perfil.nombre || '';
+  sb.rpc('mis_novedades').then(({ data }) => { $('d-novedades').checked = data === true; });
   $('d-telefono').value = perfil.telefono || '';
   $('d-ciudad').value = perfil.ciudad || '';
   $('d-correo').value = session.user.email || perfil.email || '';
@@ -1474,6 +1480,7 @@ $('panel-datos').addEventListener('submit', async (e) => {
     const sb = await obtenerCliente();
     const { error } = await sb.rpc('actualizar_mi_cuenta', { p_nombre: nombre, p_telefono: telefono, p_ciudad: ciudad || null });
     if (error) throw error;
+    await sb.rpc('registrar_novedades', { p_acepta: $('d-novedades').checked, p_medio: 'Mis datos' });
     $('titulo-cuenta').textContent = 'Hola, ' + primerNombre(nombre);
     aviso('aviso-datos', 'Listo, guardamos tus datos.', true);
   } catch (err) {
@@ -1524,11 +1531,15 @@ async function iniciar() {
       nombre: meta.nombre || (usarPend && pend.nombre) || '',
       telefono: meta.telefono || (usarPend && pend.telefono) || '',
       ciudad: meta.ciudad || (usarPend && pend.ciudad) || '',
-      acepta: meta.acepta === true || (usarPend && pend.acepta === true)
+      acepta: meta.acepta === true || (usarPend && pend.acepta === true),
+      novedades: meta.novedades === true || (usarPend && pend.novedades === true)
     };
     if (m.nombre && m.telefono && m.acepta) {
       const { error } = await sb.rpc('registrar_cuenta_cliente', { p_nombre: m.nombre, p_telefono: m.telefono, p_ciudad: m.ciudad || null, p_acepta_datos: true });
-      if (!error) { borrarPendiente(); ({ data: perfil } = await sb.rpc('mi_cuenta')); }
+      if (!error) {
+        if (m.novedades) await sb.rpc('registrar_novedades', { p_acepta: true, p_medio: 'Registro de cuenta' });
+        borrarPendiente(); ({ data: perfil } = await sb.rpc('mi_cuenta'));
+      }
     }
     if (!perfil) {
       $('k-nombre').value = m.nombre || meta.full_name || meta.name || '';
@@ -1546,6 +1557,6 @@ async function iniciar() {
 }
 iniciar().catch(() => mostrar('visitante'));
 </script>
-<script src="/js/animaciones.js?v=13" defer></script>
+<script src="/js/animaciones.js?v=14" defer></script>
 </body>
 </html>
