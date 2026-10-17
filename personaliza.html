@@ -537,7 +537,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <details class="como-se-paga">
     <summary><span aria-hidden="true">💳</span><h2>¿Cómo se paga?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
     <ul>
-      <li><strong>Amigurumis de 13, 15 y 20 cm:</strong> al enviar el formulario puedes pagar en línea el precio base con Wompi (tarjeta, PSE o Bancolombia).</li>
+      <li><strong>Amigurumis de 13, 15 y 20 cm:</strong> al enviar el formulario puedes pagar en línea el precio base con Wompi (tarjeta, PSE, Nequi, Bancolombia o Bre-B).</li>
       <li><strong>Otros pedidos, o si prefieres cotizar primero:</strong> te enviamos la cotización y te escribimos por WhatsApp para indicarte cómo pagar.</li>
       <li>Si tu diseño lleva más detalle, te lo confirmamos antes de empezar y cobramos solo la diferencia.</li>
     </ul>
@@ -589,7 +589,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
   <div class="contenedor pie-franja">
-    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> en línea: tarjeta, PSE o Bancolombia · en la tienda física: efectivo, tarjeta o QR</p>
+    <p class="pie-pagos"><span class="pie-etiqueta">Pagos:</span> en línea: tarjeta, PSE, Nequi, Bancolombia o Bre-B · en la tienda física: efectivo, tarjeta o QR</p>
     <div class="pie-apoyo"><span>Con el apoyo de</span>
       <img src="/img/logo-sena.png" alt="SENA" width="328" height="320" onerror="this.style.display='none'" loading="lazy" decoding="async">
       <img src="/img/logo-fondo-emprender.webp" alt="Fondo Emprender SENA" width="420" height="94" onerror="this.style.display='none'" loading="lazy" decoding="async">
@@ -757,7 +757,7 @@ function ofrecerPago(radicado, tamano) {
   if (!pr) { panel.hidden = true; return; }
   panel.replaceChildren();
   const h = document.createElement('h2'); h.textContent = '¿Quieres pagar ya tu amigurumi?';
-  const p1 = document.createElement('p'); p1.append('Tu solicitud quedó con el radicado ', Object.assign(document.createElement('strong'), { textContent: radicado }), '. Puedes pagar ahora el ', Object.assign(document.createElement('strong'), { textContent: pr.nombre + ' · ' + pesosCOP(pr.precio) }), ' en línea con Wompi (tarjeta, PSE o Bancolombia). Es el precio base de una pieza con detalle normal; si tu diseño necesita más detalle (varios personajes, accesorios o ropa elaborada), te lo confirmamos por WhatsApp antes de empezar y cobramos solo la diferencia. El envío se calcula al pagar.');
+  const p1 = document.createElement('p'); p1.append('Tu solicitud quedó con el radicado ', Object.assign(document.createElement('strong'), { textContent: radicado }), '. Puedes pagar ahora el ', Object.assign(document.createElement('strong'), { textContent: pr.nombre + ' · ' + pesosCOP(pr.precio) }), ' en línea con Wompi (tarjeta, PSE, Nequi, Bancolombia o Bre-B). Es el precio base de una pieza con detalle normal; si tu diseño necesita más detalle (varios personajes, accesorios o ropa elaborada), te lo confirmamos por WhatsApp antes de empezar y cobramos solo la diferencia. El envío se calcula al pagar.');
   const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'boton-pagar-pers'; btn.textContent = 'Pagar ' + pesosCOP(pr.precio) + ' con Wompi';
   btn.addEventListener('click', () => {
     try { localStorage.setItem('lrSolicitudPersonalizada', JSON.stringify({ radicado, id: pr.id, t: Date.now() })); } catch (e) {}
@@ -1116,7 +1116,7 @@ document.querySelectorAll('.carrusel').forEach(function (c) {
 });
 </script>
 <script type="module" src="/js/cuenta.js"></script>
-<script type="module" src="/js/pago.js?v=25"></script>
+<script type="module" src="/js/pago.js?v=26"></script>
 <script type="module">
 // Si la clienta tiene sesión, se llenan sus datos en el formulario (puede cambiarlos).
 import { haySesionGuardada, obtenerPerfil, obtenerCliente } from './js/cuenta.js';
