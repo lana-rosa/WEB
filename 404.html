@@ -37,6 +37,8 @@ a { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight
 <script>
 // La página de error toma el color, el ícono y los enlaces de la casa donde se perdió la persona.
 (function () {
+  // Dirección antigua de la Mercería (ya no existe merceria.html: su lugar es /merceria/)
+  if (location.pathname === '/merceria.html') { location.replace('/merceria/' + location.search + location.hash); return; }
   var p = location.pathname, c = p.indexOf('/merceria') === 0 ? 'merceria' : (p.indexOf('/academy') === 0 ? 'academy' : '');
   if (!c) return;
   var D = {
