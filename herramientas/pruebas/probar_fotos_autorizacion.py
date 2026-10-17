@@ -34,7 +34,7 @@ def abrir(b, ancho):
         pg.rpc.append(json.loads(r.request.post_data or '{}')); r.fulfill(status=200, content_type='application/json', body='"OPP-PRUEBA-1"')
     pg.route(lambda u: 'supabase.co' in u, lambda r: r.fulfill(status=200, content_type='application/json', body='[]'))
     pg.route(lambda u: 'supabase.co/storage/' in u, storage)
-    pg.route(lambda u: 'rpc/crear_solicitud_personalizada' in u, rpc)
+    pg.route(lambda u: 'rpc/crear_solicitud_personalizada_v2' in u, rpc)
     pg.add_init_script("try{localStorage.setItem('lrConsent',JSON.stringify({v:1,a:false,t:'2026-10-17'}))}catch(e){}")
     pg.goto(BASE + '/personaliza.html?modo=formulario', wait_until='load')
     pg.wait_for_timeout(1200)
@@ -73,17 +73,18 @@ with sync_playwright() as p:
 
         pg.check('#acepto-fotos'); pg.click('#boton-enviar'); pg.wait_for_timeout(1500)
         v('con la autorización se sube la foto', len(pg.subidas) == 1, pg.subidas)
-        msg = (pg.rpc[0].get('p_mensaje') if pg.rpc else '') or ''
-        v('la constancia guarda hora, versión del texto y «guardar las fotos de referencia: SÍ»', 'guardar las fotos de referencia: SÍ' in msg and 'texto de fotos v2026-10-17' in msg and ' UTC' in msg, msg)
-        v('la constancia sigue diciendo si autorizó publicar (NO por defecto)', 'publicar la foto del pedido terminado en web y redes: NO' in msg, msg)
+        c = pg.rpc[0] if pg.rpc else {}
+        v('al servidor viajan las autorizaciones: datos, guardar fotos y la versión del texto', c.get('p_acepta_datos') is True and c.get('p_acepta_fotos') is True and c.get('p_version_texto') == '2026-10-17', c)
+        v('publicar la foto del pedido terminado viaja como NO por defecto', c.get('p_acepta_publicar') is False, c)
+        v('el mensaje ya no lleva la constancia escrita por la página (la escribe el servidor)', 'Autorizaciones' not in (c.get('p_mensaje') or ''), c.get('p_mensaje'))
         v('tras enviar, la casilla vuelve a esconderse', pg.locator('#acepto-fotos-caja').is_hidden())
         v('sin errores de JavaScript', not pg.errores, pg.errores)
         ctx.close()
 
         ctx, pg = abrir(b, ancho)
         llenar(pg); pg.click('#boton-enviar'); pg.wait_for_timeout(1500)
-        msg = (pg.rpc[0].get('p_mensaje') if pg.rpc else '') or ''
-        v('sin fotos se puede enviar sin la casilla y la constancia dice «no hay fotos»', len(pg.rpc) == 1 and not pg.subidas and 'guardar las fotos de referencia: no hay fotos' in msg, msg)
+        c = pg.rpc[0] if pg.rpc else {}
+        v('sin fotos se puede enviar sin la casilla; viaja p_acepta_fotos = false y sin fotos', len(pg.rpc) == 1 and not pg.subidas and c.get('p_acepta_fotos') is False and c.get('p_fotos_urls') is None, c)
         pg.set_input_files('#foto', foto); pg.check('#acepto-fotos')
         pg.set_input_files('#foto', [])
         v('si se quitan las fotos la casilla se esconde y se desmarca', pg.locator('#acepto-fotos-caja').is_hidden() and not pg.evaluate("document.getElementById('acepto-fotos').checked"))

@@ -32,7 +32,7 @@ def rutas_personaliza(capturado, extra=()):
     def solicitud(route):
         capturado.append(route.request.post_data_json)
         route.fulfill(status=200, content_type='application/json', body='"OPP-PRUEBA-1"')
-    return [('**/rest/v1/rpc/obtener_tienda_web', tienda), ('**/rest/v1/rpc/crear_solicitud_personalizada', solicitud)] + list(extra)
+    return [('**/rest/v1/rpc/obtener_tienda_web', tienda), ('**/rest/v1/rpc/crear_solicitud_personalizada_v2', solicitud)] + list(extra)
 
 
 def abrir(ctx, base, ruta=RUTA, guia=True, **kw):
@@ -184,8 +184,8 @@ def main():
         page.wait_for_selector('#mensaje-estado.exito', timeout=8000)
         cuerpo = cap[0] if cap else {}
         d, m = cuerpo.get('p_descripcion', ''), cuerpo.get('p_mensaje', '')
-        verificar('crear_solicitud_personalizada recibe la ficha completa: tipo y tamaño, detalles, colores e idea', d.startswith('[Amigurumi — 15 cm] Quiero tejer: una mascota.') and 'Gafas (redondas y negras)' in d and 'Accesorios (un collar rojo)' in d and 'Colores importantes: pelaje café con blanco.' in d and 'Mi idea: Mi perrita Luna con las orejas caídas.' in d, cuerpo)
-        verificar('… y en el mensaje: ocasión, fecha, mensaje de la tarjeta y las autorizaciones', 'Ocasión: Cumpleaños.' in m and 'Fecha en la que lo necesito: 20/11/2099' in m and 'Mensaje para la tarjeta: «Feliz cumpleaños, mamá»' in m and 'tratamiento de datos para el pedido: SÍ' in m, m)
+        verificar('crear_solicitud_personalizada_v2 recibe la ficha completa: tipo y tamaño, detalles, colores e idea', d.startswith('[Amigurumi — 15 cm] Quiero tejer: una mascota.') and 'Gafas (redondas y negras)' in d and 'Accesorios (un collar rojo)' in d and 'Colores importantes: pelaje café con blanco.' in d and 'Mi idea: Mi perrita Luna con las orejas caídas.' in d, cuerpo)
+        verificar('… y en el mensaje: ocasión, fecha y mensaje de la tarjeta; y las autorizaciones viajan como datos (la constancia la escribe el servidor)', 'Ocasión: Cumpleaños.' in m and 'Fecha en la que lo necesito: 20/11/2099' in m and 'Mensaje para la tarjeta: «Feliz cumpleaños, mamá»' in m and cuerpo.get('p_acepta_datos') is True and cuerpo.get('p_version_texto') == '2026-10-17', m)
         verificar('los textos enviados caben en los límites de la función (3.000 caracteres)', len(d) < 3000 and len(m) < 3000)
         verificar('el radicado queda en pantalla y se ofrece el pago del producto de 15 cm', 'OPP-PRUEBA-1' in page.inner_text('#mensaje-estado') and page.is_visible('#pago-personalizado') and '$95.000' in page.inner_text('#pago-personalizado'))
         dl = page.evaluate("JSON.parse(JSON.stringify(window.dataLayer || []))")
