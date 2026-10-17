@@ -608,14 +608,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PIE:FIN -->
 
 <script type="module">
+import { createClient } from '/js/vendor/supabase.js?v=1';
+
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
-// La librería de Supabase (222 KB) solo se descarga al enviar el formulario; los precios se piden con un fetch simple.
-let _supabase = null;
-async function clienteSb() {
-  if (!_supabase) { const m = await import('/js/vendor/supabase.js?v=1'); _supabase = m.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); }
-  return _supabase;
-}
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const inputFoto = document.getElementById('foto');
 const previsualizacion = document.getElementById('previsualizacion');
@@ -733,8 +730,7 @@ function pintarBannerPers(tamano) {
 }
 const listoPers = (async () => {
   try {
-    const resp = await fetch(SUPABASE_URL + '/rest/v1/rpc/obtener_tienda_web', { method: 'POST', headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY, 'Content-Type': 'application/json' }, body: '{}' });
-    const data = resp.ok ? await resp.json() : [];
+    const { data } = await supabase.rpc('obtener_tienda_web');
     (data || []).forEach((it) => {
       const m = /^Amigurumi personalizado (\d+) cm$/.exec(it.nombre || '');
       if (m) productosPers[m[1] + ' cm'] = { id: it.id, nombre: it.nombre, precio: it.precio, foto: it.foto_url };
@@ -856,15 +852,14 @@ form.addEventListener('submit', async (evento) => {
       const archivo = archivos[i];
       const extension = archivo.name.split('.').pop();
       const nombreArchivo = `${Date.now()}-${i}-${Math.random().toString(36).slice(2)}.${extension}`;
-      const sb = await clienteSb();
-      const { error: errorSubida } = await sb
+      const { error: errorSubida } = await supabase
         .storage
         .from('solicitudes-personalizadas')
         .upload(nombreArchivo, archivo);
 
       if (errorSubida) throw new Error('No se pudo subir una de las fotos: ' + errorSubida.message);
 
-      const { data: urlPublica } = sb
+      const { data: urlPublica } = supabase
         .storage
         .from('solicitudes-personalizadas')
         .getPublicUrl(nombreArchivo);
@@ -883,7 +878,7 @@ form.addEventListener('submit', async (evento) => {
     const tamanoPago = (tipoProducto === 'Amigurumi') ? tamanoSeleccionado : '';
     const descripcionCompleta = `[${tipoProducto} — ${tamanoSeleccionado}] ${fGuia ? fGuia.descripcion : document.getElementById('descripcion').value}`;
 
-    const { data, error } = await (await clienteSb()).rpc('crear_solicitud_personalizada', {
+    const { data, error } = await supabase.rpc('crear_solicitud_personalizada', {
       p_nombre: document.getElementById('nombre').value,
       p_telefono: document.getElementById('telefono').value,
       p_correo: document.getElementById('correo').value || null,
