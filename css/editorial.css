@@ -248,3 +248,6 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
   .ed-regalar-campo select { min-height: 40px; padding: 6px 28px 6px 10px; font-size: 0.86rem; border-radius: 10px; background-position: right 10px center; }
   .ed-regalar-form .boton-primario { grid-column: 1 / -1; min-height: 44px; font-size: 0.95rem; padding: 10px 18px; }
 }
+.ed-regalar-form { align-items: end; }
+.ed-regalar-campo { display: flex; flex-direction: column; justify-content: flex-end; }
+@media (max-width: 720px) { .ed-regalar-campo label { min-height: 2.4em; display: flex; align-items: flex-end; } }

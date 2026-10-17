@@ -118,7 +118,7 @@ def main():
         t = re.sub(r"import \{ iniciarRegalar \} from '/js/universo/regalar.js';\nvar casaUr.*?\nif \(document.getElementById\('regalar-raiz'\)\) iniciarRegalar\(document.getElementById\('regalar-raiz'\)\);\n", '', t, flags=re.S)
         t = t.replace('<meta property="og:description" content="Rosina te ayuda a elegir un regalo, crear tu amigurumi, inspirarte y aprender a tejer.">', f'<meta property="og:description" content="{intro}">')
         t = t.replace('<meta name="description" content="Rosina te ayuda a regalar, crear, inspirarte y aprender: encuentra un amigurumi para esa persona especial con productos reales de Lana Rosa.">', f'<meta name="description" content="{intro}">')
-        t = t.replace('<link rel="stylesheet" href="/css/universo.css?v=14">', '<link rel="stylesheet" href="/css/universo.css?v=16">')
+        t = t.replace('<link rel="stylesheet" href="/css/universo.css?v=14">', '<link rel="stylesheet" href="/css/universo.css?v=17">')
         # textos propios de cada casa (título, descripción, presentación de Rosina y mensaje de WhatsApp): no se repite la página de la Tienda
         U = UNICO[casa]
         t = re.sub(r'<title>.*?</title>', lambda m: f'<title>{U["titulo"]}</title>', t, count=1, flags=re.S)
