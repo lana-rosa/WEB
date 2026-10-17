@@ -27,12 +27,7 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-hero h1 span { display: block; color: var(--rosa-texto); font-size: 0.62em; margin-top: 12px; line-height: 1.15; }
 .ed-intro { font-size: 1.18rem; color: var(--tinta-suave); margin: 0; }
 .ed-hero-foto { margin: 0; }
-.ed-hero-foto img { width: 100%; height: auto; display: block; border-radius: 22px; box-shadow: 0 24px 60px rgba(58,42,46,0.12); background: var(--rosa-suave); }
-/* Entrada de la foto principal: si todavía está cargando, aparece enfocándose y asentándose (sin tocar la opacidad, para no retrasar el LCP) */
-@media (prefers-reduced-motion: no-preference) {
-  .ed-hero-foto img { transition: filter 0.8s ease-out, transform 0.9s cubic-bezier(.2,.7,.2,1), box-shadow 0.9s ease-out; }
-  .ed-hero-foto img.foto-cargando { filter: blur(14px) saturate(0.85); transform: scale(1.035); box-shadow: 0 10px 24px rgba(58,42,46,0.06); }
-}
+.ed-hero-foto img { width: 100%; height: auto; display: block; border-radius: 22px; box-shadow: 0 24px 60px rgba(58,42,46,0.12); }
 .ed-hero-foto figcaption { font-size: 0.85rem; color: var(--tinta-suave); margin-top: 12px; text-align: right; }
 @media (max-width: 860px) { .ed-hero-grid { grid-template-columns: 1fr; } .ed-hero-foto figcaption { text-align: left; } }
 /* 2. Confianza */

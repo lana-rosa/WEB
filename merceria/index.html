@@ -13,7 +13,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M3MQ7XZD');</script>
 <!-- End Google Tag Manager -->
-<link rel="preload" href="/js/consentimiento.js?v=3" as="script">
+<script src="/js/consentimiento.js?v=2" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Mercería Lana Rosa — Insumos para tejedoras</title>
 <meta name="description" content="Mercería Lana Rosa: insumos para tejedoras. Lanas e hilos para crochet y tejido en Villamaría, Caldas, con envíos a toda Colombia.">
@@ -30,7 +30,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://lanarosacrochet.com/img/logo-merceria.jpg">
 
-<link rel="preload" as="image" href="/img/inicio/tejer-detalle.webp" fetchpriority="high">
 <link rel="preload" href="/fonts/dynapuff-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
@@ -418,7 +417,6 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 <!-- ICONOS:FIN -->
 </head>
 <body>
-<script src="/js/consentimiento.js?v=3"></script>
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD"
@@ -986,11 +984,11 @@ import { cargarProductos, derivar, esc, formatoCOP } from '/js/merceria.js?v=2';
   } catch (e) { /* si falla la carga, la página queda en su estado base */ }
 })();
 </script>
-<script type="module" src="/js/cuenta.js" fetchpriority="low"></script>
-<script type="module" src="/js/pago.js?v=28" fetchpriority="low"></script>
-<script src="/js/animaciones.js?v=14" defer fetchpriority="low"></script>
-<script src="/js/bono.js?v=5" defer fetchpriority="low"></script>
-<script src="/js/apertura.js?v=1" defer fetchpriority="low"></script>
+<script type="module" src="/js/cuenta.js"></script>
+<script type="module" src="/js/pago.js?v=28"></script>
+<script src="/js/animaciones.js?v=14" defer></script>
+<script src="/js/bono.js?v=5" defer></script>
+<script src="/js/apertura.js?v=1" defer></script>
 <script>
 // La página vive en /merceria/... y usa : los enlaces internos "#..." se resuelven aquí en vez de ir al inicio.
 document.addEventListener('click', function (e) {
