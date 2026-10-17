@@ -102,7 +102,7 @@ Cobertura = verificadas ÷ identificadas = 8.800 / 9.203 = 95,6 %; las 367 pendi
 | # | Dónde (archivo:línea) | Evidencia | Corrección recomendada |
 |---|---|---|---|
 | 1 | `preguntas-frecuentes.html:271` | El índice enlaza a `#faq-4` «Talleres», pero la página solo tiene los grupos `faq-1`, `faq-2` y `faq-3` (líneas 275, 292, 309) | Crear el grupo «Talleres» con `id="faq-4"` o quitar el enlace |
-| 2 | `recursos-rosina.html:468` | Enlaza a `/rosina.html#tip-rosina`; `rosina.html` ahora solo redirige a `/universo-rosina.html#conoce-a-rosina` y ese ancla ya no existe (enlace a una versión antigua, con salto extra) | Apuntar a `/universo-rosina.html#conoce-a-rosina` |
+| 2 | `recursos-rosina.html:468` | Enlaza a `/rosina.html#tip-rosina`; `rosina.html` ahora solo redirige a `/universo-rosina.html#conoce-a-rosina` y ese ancla ya no existe (enlace a una versión antigua, con salto extra) | Apuntar a `/universo-rosina.html#conoce-a-rosina` (**corregido el 17-oct con el visto bueno de Sara**: también las líneas 467 y 905, que usaban `/rosina.html`) |
 | 3–36 | Base de datos (`foto_url`) | 34 productos de la Mercería (`lana-chelin-kusi-kusi-*`, `lana-ecological-cotton-papatya-*`, `lana-happy-chenille-dmc-*`, `lana-papatya-love-papatya-*`, `lana-polar-kusi-kusi-blanco-03`) tienen foto en la base y **no existe el archivo** ni la miniatura. Lista en `fotos_faltantes` del CSV. Hoy no se ven porque la Mercería no tiene existencias | Subir las 34 fotos a `img/productos/` y correr `generar_miniaturas_productos.py` (ya estaba en `PENDIENTES.md`) |
 
 Hallazgos de proceso (no son enlaces):
