@@ -76,7 +76,7 @@ PIE = {
                   ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
                 [('Inicio de Academy', 'academy/'), ('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Sobre Academy', 'academy/sobre-academy/'),
-                 ('Empieza aquí', 'academy/empieza-aqui/'), ('Tutoriales', 'aprende.html#crea'), ('El universo de Rosina', 'academy/rosina/'), ('Glosario', 'glosario-rosina.html'),
+                 ('Empieza aquí', 'academy/empieza-aqui/'), ('Tutoriales', 'aprende.html#crea'), ('Rosina: tutoriales y material gratis', 'academy/rosina/'), ('Glosario', 'glosario-rosina.html'),
                  ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
 }
 
@@ -235,9 +235,9 @@ def encabezado(pagina):
     casa = CASA_DE.get(pagina)
     if casa:
         if pagina == 'tienda':   # aquí se venden piezas listas: el anuncio no puede decir «100% personalizados»
-            return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","crochet")}catch(e){}</script>\n'
+            return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","crochet");localStorage.setItem("lrCasa","crochet")}catch(e){}</script>\n'
                     + _encabezado(casa).replace('Amigurumis 100% personalizados', 'Listos para enviar o personalízalos') + '<!-- CASAS:FIN -->')
-        return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","' + casa + '")}catch(e){}</script>\n'
+        return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","' + casa + '");localStorage.setItem("lrCasa","' + casa + '")}catch(e){}</script>\n'
                 + _encabezado(casa) + '<!-- CASAS:FIN -->')
     return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<div id="encabezado-casa" style="display:contents">\n'
             + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=1"></script>\n<!-- CASAS:FIN -->')
@@ -248,7 +248,7 @@ def js_casa_menu():
             '// En las páginas comunes cambia el menú por el de la casa de la que viene la persona (?casa=merceria|academy, o la última casa visitada).\n'
             '(function () {\n  var B = ' + json.dumps(bloques, ensure_ascii=False) + ';\n'
             '  var c = null;\n'
-            '  try { var q = new URLSearchParams(location.search).get("casa"); if (B[q]) { c = q; sessionStorage.setItem("lrCasa", c); } else c = sessionStorage.getItem("lrCasa") || document.documentElement.getAttribute("data-casa-pref"); } catch (e) {}\n'
+            '  try { var q = new URLSearchParams(location.search).get("casa"); if (B[q]) { c = q; sessionStorage.setItem("lrCasa", c); localStorage.setItem("lrCasa", c); } else c = sessionStorage.getItem("lrCasa") || localStorage.getItem("lrCasa") || document.documentElement.getAttribute("data-casa-pref"); } catch (e) {}\n'
             '  var cont = document.getElementById("encabezado-casa");\n'
             '  if (!cont || !B[c] || c === "crochet") return;\n'
             '  cont.innerHTML = B[c];\n'
@@ -266,7 +266,7 @@ PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
 PIE_SIMPLE = {
     'crochet': ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Historias que tejimos', 'index.html#historias')]),
     'merceria': ('Mercería', [('Catálogo', 'merceria/catalogo/'), ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'), ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/')]),
-    'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('El universo de Rosina', 'academy/rosina/'), ('La aventura de Rosina', 'aventuras-de-rosina/'), ('Sobre Academy', 'academy/sobre-academy/')]),
+    'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('Rosina: tutoriales y material gratis', 'academy/rosina/'), ('La aventura de Rosina', 'aventuras-de-rosina/'), ('Sobre Academy', 'academy/sobre-academy/')]),
 }
 PIE_SIMPLE_COMUN = ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'), ('Lana Rosa Academy', 'academy/')])
 CASAS_ICONO = {'crochet': ('🧸', 'Tienda'), 'merceria': ('🧶', 'Mercería'), 'academy': ('🎓', 'Academy')}
@@ -293,7 +293,7 @@ def pie_casa(modelo, casa):
     universo_href = {'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}.get(casa, 'universo-rosina.html')  # cada casa tiene su propio hub de Rosina
     rev = PIE_REVISTA.get(casa, 'revista.html')
     # en Mercería y Academy el universo de Rosina ya está en la columna de la casa: no se repite
-    universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">El universo de Rosina</a></li>'
+    universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">Rosina: regalos, ideas y material gratis</a></li>'
     horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
@@ -364,11 +364,12 @@ BARRA_PAGINAS = {'recursos-rosina': 'recursos-rosina.html', 'glosario-rosina': '
                  'calculadoras-rosina': 'calculadoras-rosina.html', 'agenda-rosina': 'agenda-rosina.html'}
 BARRA_ITEMS = [('Material gratis', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas', 'paletas-rosina.html'),
                ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html'), ('Conoce a Rosina', 'universo-rosina.html#conoce-a-rosina')]
+HUB_TEXTO = {'crochet': 'Rosina: regalos e ideas', 'merceria': 'Rosina: lanas e ideas', 'academy': 'Rosina: tutoriales y recursos'}
 HUB = {'crochet': 'universo-rosina.html', 'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}
 
 def barra_rosina(pagina, casa):
     hub = HUB.get(casa, 'universo-rosina.html')
-    items = [f'<a href="{hub}" class="br-hub">🐑 El universo de Rosina</a>']
+    items = [f'<a href="{hub}" class="br-hub">🐑 {HUB_TEXTO.get(casa, HUB_TEXTO["crochet"])}</a>']
     for t, h in BARRA_ITEMS:
         act = ' aria-current="page" class="br-actual"' if h == BARRA_PAGINAS.get(pagina) else ''
         items.append(f'<a href="{h}"{act}>{t}</a>')
