@@ -470,15 +470,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <nav class="categorias-visual" id="categorias-visual" aria-label="Categorías de la tienda">
-    <a href="#amigurumis"><img src="/img/tienda-categorias/amigurumis.webp?v=2" alt="Amigurumi de ovejita con vestido rosado" width="560" height="700" decoding="async"><span>Amigurumis</span></a>
-    <a href="#peluches"><img src="/img/tienda-categorias/peluches.webp?v=2" alt="Peluche de oso café" width="560" height="700" decoding="async"><span>Peluches</span></a>
-    <a href="#llaveros"><img src="/img/tienda-categorias/llaveros.webp?v=2" alt="Llavero de abeja" width="560" height="700" decoding="async"><span>Llaveros</span></a>
-    <a href="#macetas"><img src="/img/tienda-categorias/macetas.webp?v=2" alt="Maceta con margarita" width="560" height="700" decoding="async"><span>Macetas</span></a>
-    <a href="#flores"><img src="/img/tienda-categorias/flores.webp?v=2" alt="Rosa tejida" width="560" height="700" decoding="async"><span>Flores</span></a>
-    <a href="#separadores-de-libros"><img src="/img/tienda-categorias/separadores-de-libros.webp?v=2" alt="Separador de libros de gato" width="560" height="700" decoding="async"><span>Separadores</span></a>
-    <a href="#bolsos"><img src="/img/tienda-categorias/bolsos.webp?v=2" alt="Bolso tejido" width="560" height="700" decoding="async"><span>Bolsos</span></a>
-    <a href="#complementos"><img src="/img/tienda-categorias/complementos.webp" alt="Base blanca para exhibir amigurumis" width="560" height="700" decoding="async"><span>Complementos</span></a>
-    <a href="/personaliza.html" class="cat-personaliza"><img src="/img/tienda-categorias/personalizados.webp?v=2" alt="Amigurumi personalizado de un hombre con camiseta polo" width="560" height="700" decoding="async"><span>Personalizados</span></a>
+    <a href="#amigurumis"><img src="/img/tienda-categorias/amigurumis.webp?v=3" alt="Amigurumi de ovejita con vestido rosado" width="280" height="350" decoding="async"><span>Amigurumis</span></a>
+    <a href="#peluches"><img src="/img/tienda-categorias/peluches.webp?v=3" alt="Peluche de oso café" width="280" height="350" decoding="async"><span>Peluches</span></a>
+    <a href="#llaveros"><img src="/img/tienda-categorias/llaveros.webp?v=3" alt="Llavero de abeja" width="280" height="350" decoding="async"><span>Llaveros</span></a>
+    <a href="#macetas"><img src="/img/tienda-categorias/macetas.webp?v=3" alt="Maceta con margarita" width="280" height="350" decoding="async"><span>Macetas</span></a>
+    <a href="#flores"><img src="/img/tienda-categorias/flores.webp?v=3" alt="Rosa tejida" width="280" height="350" decoding="async"><span>Flores</span></a>
+    <a href="#separadores-de-libros"><img src="/img/tienda-categorias/separadores-de-libros.webp?v=3" alt="Separador de libros de gato" width="280" height="350" decoding="async"><span>Separadores</span></a>
+    <a href="#bolsos"><img src="/img/tienda-categorias/bolsos.webp?v=3" alt="Bolso tejido" width="280" height="350" decoding="async"><span>Bolsos</span></a>
+    <a href="#complementos"><img src="/img/tienda-categorias/complementos.webp?v=3" alt="Base blanca para exhibir amigurumis" width="280" height="350" decoding="async"><span>Complementos</span></a>
+    <a href="/personaliza.html" class="cat-personaliza"><img src="/img/tienda-categorias/personalizados.webp?v=3" alt="Amigurumi personalizado de un hombre con camiseta polo" width="280" height="350" decoding="async"><span>Personalizados</span></a>
   </nav>
   <button type="button" class="boton-secundario ver-mas-categorias" id="ver-mas-categorias" aria-expanded="false" aria-controls="categorias-visual">Ver más categorías</button>
 
@@ -809,8 +809,11 @@ window.datosPersonalizado = function (item) {
   return { cm: m[1], url: '/personaliza.html?producto=' + encodeURIComponent(item.id) + '&tipo=Amigurumi&tamano=' + encodeURIComponent(m[1] + ' cm') + '#form-personalizado' };
 };
 
+var tarjetasCreadas = 0;
 function crearTarjeta(item) {
   var nombreAttr = item.nombre.replace(/"/g, '&quot;');
+  // Las primeras fotos (las que se ven al abrir la tienda) se piden de inmediato; el resto, al acercarse a la pantalla.
+  var cargaFoto = (tarjetasCreadas++ < 4) ? 'fetchpriority="high"' : 'loading="lazy"';
   var pers = window.datosPersonalizado(item);
 
   var articulo = document.createElement('article');
@@ -819,7 +822,7 @@ function crearTarjeta(item) {
   articulo.dataset.precio = item.precio;
   articulo.innerHTML =
     '<div class="producto-foto">' +
-      '<img src="/img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + item.id + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
+      '<img src="/img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" ' + cargaFoto + ' data-id="' + item.id + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
       '<span class="foto-marcador" style="display:none;">[ Foto de ' + item.nombre + ' ]</span>' +
     '</div>' +
     '<div class="producto-info">' +
@@ -1561,11 +1564,14 @@ var RESENAS_POR_PRODUCTO = {};
 </script>
 
 <script type="module">
-import { createClient } from '/js/vendor/supabase.js?v=1';
-
 const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD';
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// La librería de Supabase (222 KB) se descarga después de que la tienda ya se ve, para no frenar la carga en celular.
+let _supabase = null;
+async function clienteResenas() {
+  if (!_supabase) { const m = await import('/js/vendor/supabase.js?v=1'); _supabase = m.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); }
+  return _supabase;
+}
 
 const listaResenas = document.getElementById('lista-resenas');
 const sinResenas = document.getElementById('sin-resenas');
@@ -1590,7 +1596,7 @@ function resumir(lista) {
 let resenasAprobadas = [];
 
 async function cargarResenas() {
-  const { data, error } = await supabase
+  const { data, error } = await (await clienteResenas())
     .from('resenas_web')
     .select('producto_id, producto_nombre, producto_categoria, cliente_nombre, calificacion, comentario, created_at')
     .eq('estado', 'aprobada')
@@ -1676,7 +1682,8 @@ window.addEventListener('tienda:productos-listos', () => {
   llenarSelectorDePiezas();
 });
 llenarSelectorDePiezas();
-cargarResenas();
+// Las reseñas se piden cuando la página ya terminó de cargar.
+if (document.readyState === 'complete') setTimeout(cargarResenas, 800); else window.addEventListener('load', function () { setTimeout(cargarResenas, 800); });
 
 // Selector de estrellas
 const estrellas = document.querySelectorAll('#selector-estrellas span');
@@ -1716,7 +1723,7 @@ formResena.addEventListener('submit', async (evento) => {
     return;
   }
 
-  const { error } = await supabase.rpc('crear_resena_web', {
+  const { error } = await (await clienteResenas()).rpc('crear_resena_web', {
     p_producto_id: productoId,
     p_producto_nombre: selectProducto.options[selectProducto.selectedIndex].textContent,
     p_cliente_nombre: nombre,
