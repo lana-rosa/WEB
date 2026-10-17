@@ -273,3 +273,13 @@ html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { back
 
 /* Texto solo para lectores de pantalla y rastreadores (los íconos del encabezado llevan una palabra clara). */
 .solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Flecha clara en todo lo que se despliega: círculo con una punta de flecha que gira al abrir (reemplaza el «+», el «▾» y las flechas de cada página) */
+.flecha-rapida, .flecha-paga { font-size: 0 !important; width: 28px; height: 28px; border-radius: 50%; background: var(--rosa-suave); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.flecha-rapida::before, .flecha-paga::before { content: ""; width: 8px; height: 8px; border-right: 2.5px solid var(--rosa-texto); border-bottom: 2.5px solid var(--rosa-texto); transform: rotate(45deg) translate(-2px, -2px); }
+html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary { position: relative; list-style: none; padding-right: 44px; }
+html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary::-webkit-details-marker { display: none; }
+html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary::after { content: ""; position: absolute; right: 2px; top: 50%; width: 28px; height: 28px; margin-top: -14px; border-radius: 50%; background: var(--rosa-suave); font-size: 0; transform: none; }
+html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary::before { content: ""; position: absolute; right: 11px; top: 50%; width: 8px; height: 8px; margin-top: -7px; border-right: 2.5px solid var(--rosa-texto); border-bottom: 2.5px solid var(--rosa-texto); transform: rotate(45deg); transition: transform .2s; z-index: 1; }
+html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que)[open] > summary::before { transform: rotate(225deg); margin-top: -3px; }
+html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary:hover::after { background: var(--rosa-medio); }
