@@ -169,6 +169,8 @@ html[data-ur-casa]:not([data-ur-casa="crochet"]) #regalar { display: none; }
 
 /* Las listas de una misma fila quedan alineadas aunque una pregunta ocupe dos líneas */
 .ur-filtros { align-items: end; }
-.ur-grupo { display: flex; flex-direction: column; justify-content: flex-end; }
-.ur-grupo .ur-select { margin-top: auto; }
+.ur-filtros .ur-grupo { display: flex; flex-direction: column; justify-content: flex-end; }
+.ur-filtros .ur-grupo .ur-select { margin-top: auto; }
+/* Mientras cargan los productos se reserva espacio: así los bloques de abajo no saltan cuando aparecen (CLS) */
+#regalar-raiz:has(> .ur-estado) { min-height: 560px; }
 @media (max-width: 640px) { .ur-seccion-regalar .ur-grupo label { min-height: 2.4em; display: flex; align-items: flex-end; } }
