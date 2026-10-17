@@ -46,7 +46,7 @@ Enlaces internos rotos: 0 antes (481 URLs) y 0 después (482 URLs); 0 rutas rela
 - **Pagos:** no se hizo ningún pago de prueba contra el sandbox de Wompi desde el entorno de revisión (sin acceso a la red del proveedor). Pendiente un pago real de prueba.
 - **Indexación en Google:** sin evidencia de Search Console.
 - **Supabase:** activar la protección contra contraseñas filtradas; 137 funciones del ERP sin `search_path` fijo y funciones `SECURITY DEFINER` ejecutables por anon (las RPC públicas son intencionales; las del ERP se revisan con calma). Los avisos siguen iguales que al inicio.
-- **Decisiones de Sara:** aplazar o no GTM; campos de nivel y proyecto en la lista de espera de Academy; plazo de conservación de las fotos de referencia de Personaliza.
+- **Decisiones de Sara:** aplazar o no GTM; campos de nivel y proyecto en la lista de espera de Academy; plazo de conservación de las fotos de referencia de Personaliza (Sara decidió el 17-oct que se pida una autorización expresa para obtenerlas y guardarlas; queda como siguiente fase).
 - **Revisión jurídica:** retracto en el catálogo no personalizado, garantías, conservación de fotos, plazo de 90 días de la Agenda.
 
 ## Alcance
