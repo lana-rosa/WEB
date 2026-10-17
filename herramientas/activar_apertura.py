@@ -30,6 +30,11 @@ CAMBIOS = [
      "id=\"visita-estado\">Ya estamos abiertas</p>"),
 ]
 
+# «Recoger en la tienda física (apertura: 15 de noviembre de 2026) es gratis»: tras la apertura se quita el paréntesis.
+for _ruta in ("tienda.html", "index.html", "contacto.html", "precios.html", "llms.txt",
+              "merceria/index.html", "merceria/catalogo/index.html", "merceria/preguntas-frecuentes/index.html"):
+    CAMBIOS.append((_ruta, " (apertura: 15 de noviembre de 2026)", ""))
+
 def main():
     simular = "--simular" in sys.argv
     fallos = 0
@@ -40,7 +45,7 @@ def main():
             print(("[simulacro] " if simular else "[cambiado]  ") + ruta)
             if not simular:
                 p.write_text(s.replace(viejo, nuevo), encoding="utf-8")
-        elif nuevo in s:
+        elif nuevo and nuevo in s or (not nuevo and viejo not in s):
             print("[ya estaba] " + ruta)
         else:
             print("[NO ENCONTRADO] " + ruta + ": el texto cambió, actualiza CAMBIOS en este script")
