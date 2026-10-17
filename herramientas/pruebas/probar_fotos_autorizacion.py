@@ -61,7 +61,7 @@ with sync_playwright() as p:
 
         pg.set_input_files('#foto', foto)
         v('al adjuntar una foto aparece la casilla y es obligatoria', pg.locator('#acepto-fotos-caja').is_visible() and pg.evaluate("document.getElementById('acepto-fotos').required"))
-        v('el texto dice que se guardan en almacenamiento privado, que no se publican y cómo pedir el borrado', all(t in pg.locator('#acepto-fotos-caja').inner_text().lower() for t in ('almacenamiento privado', 'no se publican', 'contacto@lanarosacrochet.com')))
+        v('el texto dice que se guardan en almacenamiento privado, que no se publican, que se conservan 90 días y cómo pedir el borrado', all(t in pg.locator('#acepto-fotos-caja').inner_text().lower() for t in ('almacenamiento privado', 'no se publican', '90 días', 'contacto@lanarosacrochet.com')))
         v('sin desplazamiento horizontal', pg.evaluate('document.documentElement.scrollWidth <= window.innerWidth'))
         if CAPTURAS and ancho == 390:
             pg.locator('#acepto-fotos-caja').scroll_into_view_if_needed(); pg.screenshot(path=os.path.join(CAPTURAS, 'fotos_autorizacion_390.png'))
@@ -74,7 +74,7 @@ with sync_playwright() as p:
         pg.check('#acepto-fotos'); pg.click('#boton-enviar'); pg.wait_for_timeout(1500)
         v('con la autorización se sube la foto', len(pg.subidas) == 1, pg.subidas)
         c = pg.rpc[0] if pg.rpc else {}
-        v('al servidor viajan las autorizaciones: datos, guardar fotos y la versión del texto', c.get('p_acepta_datos') is True and c.get('p_acepta_fotos') is True and c.get('p_version_texto') == '2026-10-17', c)
+        v('al servidor viajan las autorizaciones: datos, guardar fotos y la versión del texto', c.get('p_acepta_datos') is True and c.get('p_acepta_fotos') is True and c.get('p_version_texto') == '2026-10-17b', c)
         v('publicar la foto del pedido terminado viaja como NO por defecto', c.get('p_acepta_publicar') is False, c)
         v('el mensaje ya no lleva la constancia escrita por la página (la escribe el servidor)', 'Autorizaciones' not in (c.get('p_mensaje') or ''), c.get('p_mensaje'))
         v('tras enviar, la casilla vuelve a esconderse', pg.locator('#acepto-fotos-caja').is_hidden())
@@ -94,7 +94,16 @@ with sync_playwright() as p:
     ctx = b.new_context(); pg = ctx.new_page(); pg.route(lambda u: 'supabase.co' in u or 'google' in u, lambda r: r.abort())
     pg.goto(BASE + '/politicas.html#datos', wait_until='load')
     t = pg.locator('#datos').inner_text().lower()
-    v('el apartado 4 explica la autorización de las fotos, el almacenamiento privado y cómo pedir el borrado', 'autorización expresa' in t and 'almacenamiento privado' in t and 'se borren las fotografías' in t)
+    v('el apartado 4 explica la autorización de las fotos, el almacenamiento privado, los 90 días y cómo pedir el borrado', 'autorización expresa' in t and 'almacenamiento privado' in t and 'se borren las fotografías' in t and 'noventa (90) días' in t)
+    ctx.close()
+
+    print('\n[Política de cambios: retracto]')
+    ctx = b.new_context(); pg = ctx.new_page(); pg.route(lambda u: 'supabase.co' in u or 'google' in u, lambda r: r.abort())
+    pg.goto(BASE + '/politicas.html#cambios', wait_until='load')
+    t = ' '.join(pg.locator('#cambios').inner_text().lower().split())
+    v('el catálogo tiene retracto: cinco (5) días hábiles desde la entrega y devolución a cargo del comprador', 'cinco (5) días hábiles contados a partir de la entrega' in t and 'los costos de transporte y los demás costos de la devolución los asume el comprador' in t)
+    v('los productos personalizados no tienen derecho de retracto', 'los productos personalizados no tienen derecho de retracto' in t)
+    v('ya no dice que el catálogo no admite cambios sin mencionar el retracto', 'por tratarse de productos elaborados artesanalmente' not in t and 'en los términos del apartado 6' in t)
     ctx.close(); b.close()
 
 print('\n%d comprobaciones correctas, %d con falla.' % (ok, fallos))
