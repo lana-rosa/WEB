@@ -316,7 +316,7 @@ def pie_casa(modelo, casa):
     <div class="pie-col">
       <p class="pie-h3">Lana Rosa</p>
       <ul>
-        <li><a href="sobre-nosotras.html">Quiénes somos</a></li>
+        <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
         <li><a href="{universo_href}">El universo de Rosina</a></li>
         <li><a href="{rev}">Revista</a></li>
         <li><a href="{faq}">Preguntas frecuentes</a></li>
