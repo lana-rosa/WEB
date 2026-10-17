@@ -5,7 +5,7 @@ Una sola fuente: edita CASAS / MENUS / PIE aquí y vuelve a correr
     python3 herramientas/sincronizar_encabezado.py
 Los bloques quedan entre marcadores <!-- CASAS:INICIO --> ... <!-- CASAS:FIN --> y <!-- PIE:INICIO --> ... <!-- PIE:FIN -->.
 """
-import re, sys, glob, os
+import re, sys, glob, os, json
 
 RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 
@@ -169,9 +169,8 @@ def casas_pie(casa):
     return ('  <div class="contenedor pie-casas">\n    <p class="pie-h3">Nuestras casas</p>\n    <nav aria-label="Casas Lana Rosa">\n      '
             + '\n      '.join(items) + '\n    </nav>\n  </div>\n')
 
-def encabezado(pagina):
-    casa = CASA_DE.get(pagina)
-    menu = MENUS[casa or 'comun']
+def _encabezado(casa):
+    menu = MENUS[casa]
     lis = []
     for i, (t, h, g) in enumerate(menu):
         ini = ' grupo-inicio' if i == 0 else ''
@@ -200,8 +199,7 @@ def encabezado(pagina):
   </nav>'''
     texto, enlace = LOGO[casa]
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa.jpg', 'Lana Rosa Crochet'))
-    return f'''<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
-{anuncios(casa)}<header class="encabezado" data-casa="{casa or 'comun'}">
+    return f'''{anuncios(casa)}<header class="encabezado" data-casa="{casa}">
   <div class="contenedor">
     <a href="{enlace}" class="logo"><img src="{img}" alt="{alt}" class="logo-img" width="600" height="384"><span class="texto-logo">{texto}</span></a>
     <nav aria-label="Navegación principal">
@@ -217,14 +215,37 @@ def encabezado(pagina):
         <button type="submit" aria-label="Buscar"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
       </form>
     </div>
-    <a href="cuenta.html" class="boton-cuenta-header" aria-label="Mi cuenta"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a>
+    <a href="cuenta.html" class="boton-cuenta-header" aria-label="Mi cuenta"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="solo-lectores">Mi cuenta</span></a>
     <button class="boton-carrito-header" id="boton-carrito" aria-label="Ver carrito de compras">
-      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg><span class="contador-carrito" id="contador-carrito">0</span>
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg><span class="solo-lectores">Carrito</span><span class="contador-carrito" id="contador-carrito">0</span>
     </button>
   </div>
 </header>
 {movil}
-<!-- CASAS:FIN -->'''
+'''
+
+def encabezado(pagina):
+    """Menú de la página. Las páginas comunes (Revista, preguntas frecuentes, contacto, políticas, cuenta, gracias) salen con el de la Tienda y
+    js/casa-menu.js lo cambia por el de la casa de la que viene la persona (?casa= o la última casa visitada); así el menú no cambia dentro de una casa."""
+    casa = CASA_DE.get(pagina)
+    if casa:
+        return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","' + casa + '")}catch(e){}</script>\n'
+                + _encabezado(casa) + '<!-- CASAS:FIN -->')
+    return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<div id="encabezado-casa" style="display:contents">\n'
+            + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=1"></script>\n<!-- CASAS:FIN -->')
+
+def js_casa_menu():
+    bloques = {c: absolutas(_encabezado(c)) for c in ('crochet', 'merceria', 'academy')}
+    return ('// GENERADO por herramientas/sincronizar_encabezado.py: no se edita a mano.\n'
+            '// En las páginas comunes cambia el menú por el de la casa de la que viene la persona (?casa=merceria|academy, o la última casa visitada).\n'
+            '(function () {\n  var B = ' + json.dumps(bloques, ensure_ascii=False) + ';\n'
+            '  var c = null;\n'
+            '  try { var q = new URLSearchParams(location.search).get("casa"); if (B[q]) { c = q; sessionStorage.setItem("lrCasa", c); } else c = sessionStorage.getItem("lrCasa"); } catch (e) {}\n'
+            '  var cont = document.getElementById("encabezado-casa");\n'
+            '  if (!cont || !B[c] || c === "crochet") return;\n'
+            '  cont.innerHTML = B[c];\n'
+            '  document.documentElement.setAttribute("data-casa", c);\n'
+            '})();\n')
 
 PIE_FAQ = {'crochet': 'preguntas-frecuentes.html', 'merceria': 'merceria/preguntas-frecuentes/', 'academy': 'academy/preguntas-frecuentes/'}
 PIE_REVISTA = {'crochet': 'revista.html?casa=crochet', 'merceria': 'revista.html?casa=merceria', 'academy': 'revista.html?casa=academy'}
@@ -330,9 +351,9 @@ def absolutas(html):
 
 # Barra «Rosina» (una fila corta, con los colores de la casa) en todas las páginas del Rincón de Rosina
 BARRA_PAGINAS = {'recursos-rosina': 'recursos-rosina.html', 'glosario-rosina': 'glosario-rosina.html', 'paletas-rosina': 'paletas-rosina.html',
-                 'calculadoras-rosina': 'calculadoras-rosina.html', 'agenda-rosina': 'agenda-rosina.html', 'rosina': 'rosina.html'}
+                 'calculadoras-rosina': 'calculadoras-rosina.html', 'agenda-rosina': 'agenda-rosina.html'}
 BARRA_ITEMS = [('Material gratis', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas', 'paletas-rosina.html'),
-               ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html'), ('Conoce a Rosina', 'rosina.html')]
+               ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html'), ('Conoce a Rosina', 'universo-rosina.html#conoce-a-rosina')]
 HUB = {'crochet': 'universo-rosina.html', 'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}
 
 def barra_rosina(pagina, casa):
@@ -371,12 +392,12 @@ def main():
             if a < 0 or b < 10:
                 print('sin encabezado:', n); continue
             s = s[:a] + absolutas(encabezado(n)) + s[b:]
-        bloque = f'<!-- PIE:INICIO (generado) -->\n{absolutas(pie_casa(modelo, CASA_DE.get(n)))}\n<!-- PIE:FIN -->'
+        bloque = f'<!-- PIE:INICIO (generado) -->\n{absolutas(pie_casa(modelo, CASA_DE.get(n) or "crochet"))}\n<!-- PIE:FIN -->'
         if '<!-- PIE:INICIO' in s:
             s = re.sub(r'<!-- PIE:INICIO.*?<!-- PIE:FIN -->', lambda m: bloque, s, flags=re.S)
         else:
             s = re.sub(r'<footer class="pie-rico".*?</footer>', lambda m: bloque, s, count=1, flags=re.S)
-        casa = CASA_DE.get(n)
+        casa = CASA_DE.get(n) or 'crochet'
         # íconos de pestaña y color de la barra: quita los que había y pone los de la casa
         s = re.sub(r'<!-- ICONOS:INICIO.*?<!-- ICONOS:FIN -->\n?', '', s, flags=re.S)
         s = re.sub(r'<link rel="icon"[^>]*>\n?|<link rel="apple-touch-icon"[^>]*>\n?|<meta name="theme-color"[^>]*>\n?', '', s)
@@ -386,4 +407,5 @@ def main():
         open(f, 'w', encoding='utf-8').write(s)
         print('ok', n)
 
+open(os.path.join(RAIZ, 'js', 'casa-menu.js'), 'w', encoding='utf-8').write(js_casa_menu())
 main()

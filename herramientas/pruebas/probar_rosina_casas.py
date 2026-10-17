@@ -25,8 +25,9 @@ with sync_playwright() as p:
             v(f'{n}: muestra el material gratis de Rosina', pg.locator('.recursos .recurso').count() >= 5)
             v(f'{n}: sin desplazamiento horizontal', pg.evaluate('document.documentElement.scrollWidth') <= w)
             v(f'{n}: un solo h1', pg.locator('h1').count() == 1)
+            v(f'{n}: trae «Conoce a Rosina» al final, después del material gratis', pg.locator('#conoce-a-rosina').count() == 1 and pg.evaluate("document.querySelector('#conoce-a-rosina').getBoundingClientRect().top > document.querySelector('.ur-recursos').getBoundingClientRect().top"))
             if casa != 'crochet': v(f'{n}: no trae el buscador de regalos', pg.locator('#regalar').count() == 0)
-        for u in ('glosario-rosina.html', 'paletas-rosina.html', 'calculadoras-rosina.html', 'agenda-rosina.html', 'recursos-rosina.html', 'rosina.html'):
+        for u in ('glosario-rosina.html', 'paletas-rosina.html', 'calculadoras-rosina.html', 'agenda-rosina.html', 'recursos-rosina.html'):
             pg.goto(BASE + '/' + u); pg.wait_for_timeout(500)
             v(f'{u} {w}px: tiene la barra «Rosina» con enlace al hub de su casa y sin desborde',
               pg.locator('.barra-rosina a.br-hub[href="/academy/rosina/"]').count() == 1 and pg.evaluate('document.documentElement.scrollWidth') <= w)
@@ -36,6 +37,8 @@ with sync_playwright() as p:
     for casa, destino in (('merceria', '/merceria/rosina/'), ('academy', '/academy/rosina/')):
         pg.goto(BASE + '/universo-rosina.html?casa=' + casa); pg.wait_for_timeout(800)
         v(f'?casa={casa} lleva al hub de esa casa', pg.url.endswith(destino))
+    pg.goto(BASE + '/rosina.html'); pg.wait_for_timeout(800)
+    v('rosina.html lleva al hub, a «Conoce a Rosina»', pg.url.endswith('/universo-rosina.html#conoce-a-rosina'))
     b.close()
 print(f'\n{bien} comprobaciones correctas, {mal} con falla.')
 sys.exit(1 if mal else 0)

@@ -19,7 +19,7 @@ R = {
     'checklist': ('✅', 'Checklist: tu primer amigurumi', 'Lo que necesitas, paso a paso', '/recursos-rosina.html#checklist'),
     'regalos': ('💝', 'Stickers, fondos e íconos', 'Regalos de Rosina para tu celular', '/recursos-rosina.html'),
     'cuida': ('🧺', 'Cuida tu pieza', 'Cómo lavar y guardar tu amigurumi', '/p/'),
-    'conoce': ('🐑', 'Conoce a Rosina', 'Quién es y por qué nos acompaña', '/rosina.html'),
+    'conoce': ('🐑', 'Conoce a Rosina', 'Quién es y por qué nos acompaña', '#conoce-a-rosina'),
     'todo': ('🎁', 'Todo el Rincón de Rosina', 'El material gratuito completo', '/recursos-rosina.html'),
 }
 RECURSOS = {
@@ -74,7 +74,7 @@ def main():
         t = re.sub(r"import \{ iniciarRegalar \} from '/js/universo/regalar.js';\nvar casaUr.*?\nif \(document.getElementById\('regalar-raiz'\)\) iniciarRegalar\(document.getElementById\('regalar-raiz'\)\);\n", '', t, flags=re.S)
         t = t.replace('<meta property="og:description" content="Rosina te ayuda a elegir un regalo, crear tu amigurumi, inspirarte y aprender a tejer.">', f'<meta property="og:description" content="{intro}">')
         t = t.replace('<meta name="description" content="Rosina te ayuda a regalar, crear, inspirarte y aprender: encuentra un amigurumi para esa persona especial con productos reales de Lana Rosa.">', f'<meta name="description" content="{intro}">')
-        t = t.replace('<link rel="stylesheet" href="/css/universo.css?v=10">', '<link rel="stylesheet" href="/css/universo.css?v=11">')
+        t = t.replace('<link rel="stylesheet" href="/css/universo.css?v=11">', '<link rel="stylesheet" href="/css/universo.css?v=12">')
         os.makedirs(os.path.dirname(os.path.join(RAIZ, ruta)), exist_ok=True)
         open(os.path.join(RAIZ, ruta), 'w', encoding='utf-8').write(t)
         print('ok', ruta, len(RECURSOS[casa]), 'recursos')

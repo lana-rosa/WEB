@@ -4,7 +4,7 @@ from paletas_datos import PALETAS, CATEGORIAS
 
 WEB = '/home/user/WEB/'
 e = html.escape
-src = open(WEB + 'rosina.html', encoding='utf-8').read()
+src = open(WEB + 'herramientas/plantilla-rincon.html', encoding='utf-8').read()
 
 def claro(hexc):
     h = hexc.lstrip('#'); r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)

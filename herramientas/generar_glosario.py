@@ -6,7 +6,7 @@ WEB = '/home/user/WEB/'
 e = html.escape
 AVATARES = ['rosina-saludo.jpg', 'rosina-corazon.jpg', 'rosina-abrazo.jpg', 'rosina-checklist.jpg']
 
-src = open(WEB + 'rosina.html', encoding='utf-8').read()
+src = open(WEB + 'herramientas/plantilla-rincon.html', encoding='utf-8').read()
 
 css = '''
 /* ===== Glosario ilustrado ===== */
