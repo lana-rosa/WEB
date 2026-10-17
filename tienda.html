@@ -1425,7 +1425,7 @@ var RESENAS_POR_PRODUCTO = {};
       '<li class="ficha-disponibilidad"><span>Disponibilidad</span><span>' + (persFicha ? 'Bajo pedido (personalizado)' : (producto.disponible ? 'Disponible' : 'Bajo pedido')) + '</span></li>' +
       '<li class="ficha-encabezado">📋 Especificaciones</li>' +
       '<li class="ficha-lista"><ul>' + especificacionesHtml + '</ul></li>' +
-      '<li class="ficha-encabezado"><a class="ficha-enlace-cuidados" href="/revista/cuidar-lavar-tejidos/">🧺 Cuidados</a></li>' +
+      '<li class="ficha-encabezado">🧺 Cuidados</li>' +
       '<li class="ficha-lista"><ul>' + cuidadosHtml + '</ul>' +
       '<a class="ficha-enlace-cuidados ficha-mas-cuidados" href="/revista/cuidar-lavar-tejidos/">Cómo cuidar y lavar tu tejido →</a></li>';
 
@@ -1508,7 +1508,10 @@ var RESENAS_POR_PRODUCTO = {};
     overlay.classList.add('abierto');
     overlay.scrollTop = 0;
     document.documentElement.classList.add('producto-abierto');
-    if (!history.state || !history.state.productoAbierto) history.pushState({ productoAbierto: id }, '', location.href);
+    // la dirección lleva el producto (?producto=ID): al volver con «atrás» desde un artículo, la ficha se reabre
+    var urlFicha = location.pathname + '?producto=' + encodeURIComponent(id) + location.hash;
+    if (!history.state || !history.state.productoAbierto) history.pushState({ productoAbierto: id }, '', urlFicha);
+    else history.replaceState({ productoAbierto: id }, '', urlFicha);
   }
 
   function cerrarModal(desdeHistorial) {
