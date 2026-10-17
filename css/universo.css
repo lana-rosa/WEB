@@ -138,3 +138,18 @@ html[data-ur-casa]:not([data-ur-casa="crochet"]) #regalar { display: none; }
 .ur-conoce .boton-primario { display: inline-block; padding: 14px 30px; border: 0; border-radius: 999px; background: var(--rosa-boton); color: var(--sobre-principal); font: 600 1rem/1 var(--fuente-cuerpo, inherit); cursor: pointer; }
 .ur-conoce .boton-primario:hover { background: var(--rosa-boton-hover); }
 .ur-conoce-foto img { border-radius: 24px; }
+
+/* Botones del encabezado y del cierre, títulos de grupo y párrafo de presentación */
+.ur-botones { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 6px; }
+.ur-boton { display: inline-block; padding: 13px 26px; border-radius: 999px; background: var(--rosa-boton); color: var(--sobre-principal); font-weight: 700; text-decoration: none; border: 2px solid var(--rosa-boton); }
+.ur-boton:hover, .ur-boton:focus-visible { background: var(--rosa-boton-hover); border-color: var(--rosa-boton-hover); outline: none; }
+.ur-boton-2 { background: #fff; color: var(--rosa-texto); border-color: var(--rosa-boton); }
+.ur-boton-2:hover, .ur-boton-2:focus-visible { background: var(--rosa-suave); color: var(--rosa-texto); border-color: var(--rosa-boton); }
+.ur-quien { max-width: 66ch; color: var(--tinta-suave); margin: 14px 0 0; }
+.ur-grupo { font-size: 1.25rem; margin: 30px 0 0; }
+.ur-grupo + .recorridos { margin-top: 12px; }
+.recorridos + .recorridos { margin-top: -14px; }
+.ur-cierre { text-align: center; background: var(--rosa-suave); border-radius: var(--radio-suave, 20px); padding: 34px 22px; margin: 0 0 48px; }
+.ur-cierre h2 { margin: 0 0 6px; }
+.ur-cierre p { margin: 0 auto 6px; max-width: 52ch; color: var(--tinta-suave); }
+.ur-cierre .ur-botones { justify-content: center; }

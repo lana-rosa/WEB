@@ -55,7 +55,7 @@ h2 { font-size: 1.3rem; color: var(--rosa-texto); }
 main > :first-child { padding-top: 40px !important; }
 @media (max-width: 520px) { .rosina-encabezado { display: none; } }
 </style>
-<link rel="stylesheet" href="/css/universo.css?v=12">
+<link rel="stylesheet" href="/css/universo.css?v=13">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -155,13 +155,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <nav class="recorridos" aria-label="Recorridos de Rosina">
+  <!-- CTA:INICIO (generado por herramientas/generar_universo_casas.py) -->
+  <p class="ur-botones"><a class="ur-boton" href="/personaliza.html">Personaliza el tuyo</a><a class="ur-boton ur-boton-2" href="/tienda.html">Ver la tienda</a></p>
+  <!-- CTA:FIN -->
+  <p class="ur-quien">Rosina es la ovejita de lana de Lana Rosa y está aquí para acompañarte. Esto es lo que hace por ti: ayudarte a elegir un regalo, crear tu amigurumi personalizado, inspirarte con ideas y aprender a tejer paso a paso.</p>
+
+  <h2 class="ur-grupo" id="grupo-regalar">Para regalar y crear</h2>
+  <nav class="recorridos" aria-labelledby="grupo-regalar">
     <a class="recorrido" data-casas="crochet" href="#regalar" data-recorrido="regalar"><span class="ico" aria-hidden="true">🎁</span><strong>Rosina te ayuda a regalar</strong><span class="sub">Encuentra un regalo según lo que buscas y lo que quieres invertir.</span></a>
     <a class="recorrido" data-casas="crochet" href="/personaliza.html?modo=guiado#pide-el-tuyo" data-recorrido="crear"><span class="ico" aria-hidden="true">🎨</span><strong>Rosina te ayuda a crear</strong><span class="sub">Cuéntanos tu idea y la convertimos en un amigurumi único.</span></a>
     <a class="recorrido" data-casas="crochet merceria academy" href="/revista.html" data-recorrido="inspirar"><span class="ico" aria-hidden="true">💡</span><strong>Rosina te ayuda a inspirarte</strong><span class="sub">Ideas, historias y regalos hechos a mano en la Revista.</span></a>
+  </nav>
+  <section class="ur-seccion-regalar" id="regalar" aria-labelledby="titulo-regalar">
+    <h2 id="titulo-regalar">Rosina te ayuda a regalar</h2>
+    <p>Elige lo que sepas: te mostramos productos reales de la tienda.</p>
+    <div id="regalar-raiz"><p class="ur-estado" role="status">Cargando los productos…</p></div>
+    <noscript><p class="ur-aviso">Para usar el buscador de regalos activa JavaScript, o <a href="/tienda.html">mira toda la tienda</a>.</p></noscript>
+  </section>
+
+  <h2 class="ur-grupo" id="grupo-aprender">Para aprender y jugar</h2>
+  <nav class="recorridos" aria-labelledby="grupo-aprender">
     <a class="recorrido" data-casas="academy" href="/academy/" data-recorrido="aprender"><span class="ico" aria-hidden="true">🎓</span><strong>Rosina te ayuda a aprender</strong><span class="sub">Talleres, tutoriales y el Rincón de Rosina, gratis.</span></a>
     <a class="recorrido" data-casas="merceria" href="/calculadoras-rosina.html#lana" data-recorrido="materiales" hidden><span class="ico" aria-hidden="true">🧶</span><strong>Rosina te ayuda a elegir tu lana</strong><span class="sub">Calcula cuánta lana necesitas y qué gancho usar.</span></a>
-    <a class="recorrido" data-casas="academy" href="/aventuras-de-rosina/" data-recorrido="aventura"><span class="ico" aria-hidden="true">📖</span><strong>La aventura de Rosina</strong><span class="sub">Para niños de 6 a 8 años: aprenden su primera cadeneta jugando, acompañados.</span></a>
+    <a class="recorrido" data-casas="academy" href="/aventuras-de-rosina/" data-recorrido="aventura"><span class="ico" aria-hidden="true">📖</span><strong>La aventura de Rosina</strong><span class="sub">Para niños de 6 a 8 años: aprenden su primera cadeneta jugando, acompañados. Sin cuentas ni cookies.</span></a>
   </nav>
   <!-- RECURSOS:INICIO (generado por herramientas/generar_universo_casas.py) -->
   <section class="ur-recursos" aria-labelledby="titulo-recursos">
@@ -193,15 +209,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       a.hidden = false;
       if (a.getAttribute('href') === '/revista.html') { a.setAttribute('href', '/revista.html?casa=' + casa); if (casa !== 'crochet') a.querySelector('.sub').textContent = 'Ideas, consejos y guías para tejer en la Revista.'; }
     });
+    document.querySelectorAll('nav.recorridos').forEach(function (n) { if (!n.querySelector('.recorrido')) { var h = document.getElementById(n.getAttribute('aria-labelledby')); if (h) h.remove(); n.remove(); } });
   })();
   </script>
 
-  <section class="ur-seccion-regalar" id="regalar" aria-labelledby="titulo-regalar">
-    <h2 id="titulo-regalar">Rosina te ayuda a regalar</h2>
-    <p>Elige lo que sepas: te mostramos productos reales de la tienda.</p>
-    <div id="regalar-raiz"><p class="ur-estado" role="status">Cargando los productos…</p></div>
-    <noscript><p class="ur-aviso">Para usar el buscador de regalos activa JavaScript, o <a href="/tienda.html">mira toda la tienda</a>.</p></noscript>
-  </section>
   <section class="ur-conoce" id="conoce-a-rosina" aria-labelledby="titulo-conoce">
     <figure class="ur-conoce-foto"><img src="/img/rosina.webp" alt="Rosina, la ovejita embajadora de Lana Rosa Crochet, vestida con un traje rosa de flores" width="700" height="1000" loading="lazy" decoding="async"></figure>
     <div class="ur-conoce-texto">
@@ -218,6 +229,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p><button type="button" class="boton-primario" data-abrir-rosina>Hablar con Rosina</button></p>
     </div>
   </section>
+  <!-- CIERRE:INICIO (generado por herramientas/generar_universo_casas.py) -->
+  <section class="ur-cierre" aria-labelledby="titulo-cierre">
+    <h2 id="titulo-cierre">¿Prefieres que Rosina te ayude a crear el tuyo?</h2>
+    <p>Cuéntale tu idea y la convertimos en un amigurumi hecho a mano.</p>
+    <p class="ur-botones"><a class="ur-boton" href="/personaliza.html?modo=guiado#pide-el-tuyo">Crear con Rosina</a><a class="ur-boton ur-boton-2" href="/tienda.html">Ver la tienda</a></p>
+  </section>
+  <!-- CIERRE:FIN -->
 </main>
 
 
