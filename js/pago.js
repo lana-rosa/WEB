@@ -187,7 +187,7 @@ function construirModal() {
         '<form id="pago-form" novalidate class="pg-tarjeta">' +
           '<section class="pg-sec" data-paso="1"><header>Contacto</header><div class="pg-cuerpo">' +
             '<div class="pago-campo"><label for="pg-correo">Correo electrónico*</label><input id="pg-correo" type="email" autocomplete="email" maxlength="120"></div>' +
-            '<p class="nota-pago-carrito" style="margin:-6px 0 10px;text-align:left">Si no terminas tu compra, te escribiremos un recordatorio a este correo. Puedes darte de baja desde el mismo correo.</p>' +
+            '<label class="pago-acepto" id="pg-recordar-caja"><input type="checkbox" id="pg-recordar"><span>Si no termino mi compra, quiero que me envíen un recordatorio a este correo (máximo 2 correos). Puedo darme de baja cuando quiera desde el mismo correo.</span></label>' +
             '<div class="pago-fila">' +
               '<div class="pago-campo"><label for="pg-nombre">Tu nombre*</label><input id="pg-nombre" autocomplete="name" maxlength="120"></div>' +
               '<div class="pago-campo"><label for="pg-telefono">WhatsApp*</label><input id="pg-telefono" type="tel" autocomplete="tel" maxlength="20" placeholder="Ej: 3001234567"></div>' +
@@ -244,7 +244,8 @@ function construirModal() {
   });
   overlay.querySelectorAll('input[name="pg-metodo"]').forEach((r) => r.addEventListener('change', actualizarResumen));
   overlay.querySelectorAll('input[name="pg-entrega"]').forEach((r) => r.addEventListener('change', () => { actualizarResumen(); cotClave = ''; cotizarDescuento(); }));
-  ['pg-correo', 'pg-telefono'].forEach((id) => { const c = overlay.querySelector('#' + id); if (id === 'pg-correo') c.addEventListener('change', guardarCarritoAbandonado); c.addEventListener('input', cotizarDescuento); c.addEventListener('change', cotizarDescuento); });
+  overlay.querySelector('#pg-recordar').addEventListener('change', guardarCarritoAbandonado);
+  ['pg-correo', 'pg-telefono'].forEach((id) => { const c = overlay.querySelector('#' + id); if (id === 'pg-correo') c.addEventListener('change', guardarCarritoAbandonado);  c.addEventListener('input', cotizarDescuento); c.addEventListener('change', cotizarDescuento); });
   overlay.querySelector('#pago-form').addEventListener('submit', enviar);
   const mq = window.matchMedia('(min-width: 880px)');
   const ajustar = () => { overlay.querySelector('#pg-resumen-movil').open = mq.matches; };
@@ -297,10 +298,11 @@ function avisoPaso(n, msg) {
   if (!a) return;
   a.replaceChildren(); if (msg) { a.append(msg); a.hidden = false; } else a.hidden = true;
 }
-// Carrito abandonado: al escribir el correo se guarda el carrito para poder mandar un recordatorio (a las 3 y a las 24 horas, sin descuento).
+// Carrito abandonado: SOLO si la persona marcó la casilla de recordatorio se guarda el carrito con su correo para enviarle un recordatorio (a las 3 y a las 24 horas, sin descuento).
 async function guardarCarritoAbandonado() {
   try {
     if (modoPrueba()) return;
+    if (!$('pg-recordar') || !$('pg-recordar').checked) return;  // solo con la casilla marcada (recordatorio opcional)
     const correo = ($('pg-correo') ? $('pg-correo').value : '').trim().toLowerCase();
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) return;
     const items = leerCarrito().map((i) => ({ id: i.id, nombre: i.nombre, precio: i.precio, cantidad: i.cantidad }));
