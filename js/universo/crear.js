@@ -90,7 +90,7 @@ export function montarGuia(raiz, opciones) {
   // 1 · qué
   paso(1).append(lista('uc-idea', '¿Qué quieres crear?*', 'Elige una opción', IDEAS_CREAR.map((x) => [x[0], x[1]]), 'idea'));
   // 2 · tamaño
-  paso(2).append(lista('uc-tamano', '¿De qué tamaño?*', 'Primero elige qué quieres crear', [], 'tamano', 'El precio base es el de una pieza con detalle normal. Si tu diseño necesita más detalle, te lo confirmamos antes de empezar.'));
+  paso(2).append(lista('uc-tamano', '¿De qué tamaño?*', 'Primero elige qué quieres crear', [], 'tamano', 'El precio base es el de una pieza con detalles como los de la imagen de muestra. Si tu diseño necesita más detalle, te lo confirmamos antes de empezar.'));
   campos.tamano.disabled = true;
   // 3 · detalles
   const fs = nodo('fieldset', 'uc-detalles'); fs.append(nodo('legend', null, '¿Qué detalles quieres incluir? (opcional)'));

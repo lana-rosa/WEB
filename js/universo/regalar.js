@@ -218,7 +218,7 @@ export async function iniciarRegalar(raiz) {
     }
     [seccion('disponibles', 'Disponibles ya', 'Hay unidades listas en nuestro taller (según el inventario).', r.disponibles, false),
      seccion('encargo', 'Por encargo', 'Los tejemos cuando los pides; el tiempo de elaboración es el que ya indica cada ficha.', r.encargo, false),
-     seccion('ideas', 'Ideas para personalizar', 'Tejemos un amigurumi a partir de tu foto o tu idea. El precio es el base de una pieza con detalle normal; te confirmamos antes de empezar si necesita más.', r.ideas, true)]
+     seccion('ideas', 'Ideas para personalizar', 'Tejemos un amigurumi a partir de tu foto o tu idea. El precio es el base de una pieza con detalles como los de la imagen de muestra; te confirmamos antes de empezar si necesita más.', r.ideas, true)]
       .forEach((s) => { if (s) resultados.append(s); });
     const cierre = nodo('div', 'ur-cierre');
     const p1 = nodo('p'); p1.append('¿No ves lo que imaginas? ');
