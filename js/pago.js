@@ -16,6 +16,9 @@ export const PAGO_EN_LINEA_MERCERIA = true;
 // PayPal (pedidos fuera de Colombia): APAGADO el 17-oct-2026 por decisión de Sara. Colombia paga solo con Wompi y el selector de país
 // no aparece. Para volver a ofrecerlo: poner en true (la función paypal-pagos sigue desplegada y decide si está activa).
 const PAYPAL_ACTIVO = false;
+// Íconos de línea propios (los emoji se ven distinto en cada aparato)
+const IC_LOCK = '<svg class="ico-linea" width="1.1em" height="1.1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.2em"><rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+const IC_TRUCK = '<svg class="ico-linea" width="1.1em" height="1.1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.2em"><path d="M2.5 6.5h11v9.5h-11z"/><path d="M13.5 9.5h4l3 3v3.5h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>';
 const hayMateriales = () => leerCarrito().some((i) => i && i.merceria);
 const hayOtros = () => leerCarrito().some((i) => i && !i.merceria);
 const esMateriales = () => { const c = leerCarrito(); return c.length > 0 && c.every((i) => i && i.merceria); };
@@ -180,9 +183,9 @@ function construirModal() {
         '<details class="pg-resumen-movil" id="pg-resumen-movil"><summary><span id="pg-resumen-titulo">Mi carrito</span><span id="pg-resumen-total"></span></summary>' +
           '<div class="pg-tarjeta"><header>Mi carrito <span class="pg-badge" id="pg-badge"></span></header><div id="pg-items"></div><div class="pg-totales" id="pago-resumen"></div>' +
           '<div class="pg-confianza">' +
-            '<div><span>🔒</span><span><b>Pago seguro</b><small>Pagas en el sitio seguro de Wompi</small></span></div>' +
+            '<div><span>'+IC_LOCK+'</span><span><b>Pago seguro</b><small>Pagas en el sitio seguro de Wompi</small></span></div>' +
             '<div><span>💗</span><span><b>Hecho a mano en Colombia</b><small>Cada pieza, tejida con amor</small></span></div>' +
-            '<div><span>🚚</span><span><b>Envíos a toda Colombia</b><small>Entregas a nivel nacional</small></span></div>' +
+            '<div><span>'+IC_TRUCK+'</span><span><b>Envíos a toda Colombia</b><small>Entregas a nivel nacional</small></span></div>' +
           '</div></div></details>' +
         '<form id="pago-form" novalidate class="pg-tarjeta">' +
           '<section class="pg-sec" data-paso="1"><header>Contacto</header><div class="pg-cuerpo">' +
@@ -224,7 +227,7 @@ function construirModal() {
             '<label class="pago-acepto" id="pg-promos-caja"><input type="checkbox" id="pg-promos"><span>Quiero recibir información de Lana Rosa: promociones, nuevos productos y novedades. Puedes darte de baja cuando quieras.</span></label>' +
             '<p class="pago-aviso" id="pago-aviso" role="alert" hidden></p>' +
             '<button type="submit" class="pg-btn" id="pago-enviar">Completar mi pedido →</button>' +
-            '<p class="pago-nota">🔒 Nosotras no guardamos los datos de tu tarjeta.</p>' +
+            '<p class="pago-nota">'+IC_LOCK+' Nosotras no guardamos los datos de tu tarjeta.</p>' +
           '</div></section>' +
         '</form>' +
       '</div>' +
@@ -704,7 +707,7 @@ async function iniciar() {
     if (p) p.classList.remove('abierto'); if (o) o.classList.remove('abierto');
     abrirPago();
   });
-  const nota = nodo('p', 'nota-pago-carrito', '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.');
+  const nota = nodo('p', 'nota-pago-carrito', ''); nota.innerHTML = IC_LOCK + ' Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.';
   if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#6E6E73;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
   wa.before(b, nota);
   const aviso = nodo('p', 'nota-pago-carrito', '');
@@ -716,7 +719,7 @@ async function iniciar() {
     aviso.textContent = hayOtros()
       ? 'Los materiales de la Mercería se pagan por separado de los productos de la Tienda. Haz una compra y luego la otra, o pídelo todo por WhatsApp.'
       : 'Los materiales de la Mercería se piden por WhatsApp: confirmamos la disponibilidad, el envío y el pago (te indicamos cómo pagar).';
-    nota.textContent = esMateriales() ? '🔒 Pago seguro con Wompi. El envío lo pagas al recibir.' : '🔒 Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.';
+    nota.innerHTML = IC_LOCK + (esMateriales() ? ' Pago seguro con Wompi. El envío lo pagas al recibir.' : ' Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.');
     wa.textContent = 'Pedir por WhatsApp';
     wa.style.cssText = estiloWa + (soloWa ? 'background:#E01E79 !important;color:#fff !important;border:2px solid #E01E79;' : 'background:#fff !important;color:#C81B6D !important;border:2px solid #C81B6D;box-shadow:none;');
   };
