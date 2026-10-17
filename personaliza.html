@@ -372,7 +372,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="nota-tamanos">Pedidos reales junto a la foto que los inspiró.</p>
       <div class="carrusel-wrap">
         <button type="button" class="carrusel-flecha ant" data-carrusel="carrusel-foto" aria-label="Anterior">‹</button>
-        <div class="carrusel" id="carrusel-foto" tabindex="0">
+        <div class="carrusel" id="carrusel-foto" tabindex="0" data-ampliar>
       <figure><img src="/img/foto-amigurumi/betty.webp?v=3" alt="Amigurumi de Betty con gafas rojas, chaleco y falda roja junto a la foto del personaje" width="600" height="578" loading="lazy" decoding="async"><figcaption>Un personaje muy especial: Betty en amigurumi, más bonita de lo habitual.</figcaption></figure>
       <figure><img src="/img/foto-amigurumi/novios.webp?v=3" alt="Amigurumis de una pareja de novios junto a la foto de su boda" width="581" height="468" loading="lazy" decoding="async"><figcaption>Un regalo de aniversario de una esposa que le dice: “Siempre volvería a decirte sí”.</figcaption></figure>
       <figure><img src="/img/foto-amigurumi/pareja.webp?v=4" alt="Dos amigurumis personalizados de una pareja junto a su foto de referencia" width="700" height="700" loading="lazy" decoding="async"><figcaption>Amigurumis de unos padres para su hijo que está lejos, diciéndole que siempre lo llevan en su corazón.</figcaption></figure>
@@ -385,7 +385,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="nota-tamanos">Desliza para ver más.</p>
       <div class="carrusel-wrap">
         <button type="button" class="carrusel-flecha ant" data-carrusel="carrusel-otros" aria-label="Anterior">‹</button>
-        <div class="carrusel" id="carrusel-otros" tabindex="0">
+        <div class="carrusel" id="carrusel-otros" tabindex="0" data-ampliar>
       <figure><img src="/img/personalizados/howl-sophie.webp?v=5" alt="Amigurumis de Howl y Sophie tomados de la mano" width="600" height="750" loading="lazy" decoding="async"><figcaption>Howl &amp; Sophie en amigurumi</figcaption></figure>
       <figure><img src="/img/personalizados/reina.webp?v=6" alt="Amigurumi personalizado de una mujer con corona y vestido rojo" width="600" height="750" loading="lazy" decoding="async"><figcaption>Amigurumi de quinceañera</figcaption></figure>
       <figure><img src="/img/personalizados/gafas.webp?v=5" alt="Amigurumi personalizado de una mujer rubia con gafas y vestido blanco" width="600" height="750" loading="lazy" decoding="async"><figcaption>Amigurumi de una abuela que recordarán para siempre</figcaption></figure>
@@ -413,7 +413,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <details class="det-tamanos"><summary>📏 Ver tamaños de referencia (13, 15 y 20 cm)</summary>
   <p class="nota-tamanos">Precio base de una pieza con detalle normal; más detalle se cotiza aparte. También tejemos de 10 cm, llaveros y peluches.</p>
-  <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:16px 0 28px;" class="galeria-tamanos-personalizado">
+  <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:16px 0 28px;" class="galeria-tamanos-personalizado" data-ampliar>
     <div style="text-align:center;">
       <img src="/img/personalizado-13cm.webp" alt="Ejemplo de amigurumi personalizado de 13 cm" style="width:100%; border-radius:14px; margin-bottom:8px; aspect-ratio:4/5; object-fit:cover;" loading="lazy" decoding="async" width="500" height="625">
       <p style="font-weight:600; margin:0;">13 cm · $85.000</p>
@@ -1138,6 +1138,7 @@ if (haySesionGuardada()) {
   })();
 }
 </script>
+<script src="/js/ampliar.js?v=1" defer></script>
 <script src="/js/animaciones.js?v=14" defer></script>
 </body>
 </html>
