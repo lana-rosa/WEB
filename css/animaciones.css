@@ -1,7 +1,7 @@
 /* Animaciones sutiles. Solo opacity/transform; se apagan con prefers-reduced-motion. */
 @media (prefers-reduced-motion: no-preference) {
   /* aparición al hacer scroll (la clase la pone js/animaciones.js solo en lo que está más abajo) */
-  .rev { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; transition-delay: var(--rev-d, 0ms); }
+  .rev { opacity: 0; transform: translateY(10px); transition: opacity .35s ease-out, transform .35s ease-out; transition-delay: var(--rev-d, 0ms); }
   .rev.rev-in { opacity: 1; transform: none; }
 
   /* botones y tarjetas */
@@ -41,13 +41,13 @@
 
 /* Mercería y Academy: entrada suave del encabezado de la página y tarjetas que se elevan al pasar el mouse */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-merceria .hero-texto > *, .hero-academy > div > * { animation: hero-entra .7s ease-out both; }
-  .hero-merceria .hero-texto > :nth-child(2), .hero-academy > div > :nth-child(2) { animation-delay: .08s; }
-  .hero-merceria .hero-texto > :nth-child(3), .hero-academy > div > :nth-child(3) { animation-delay: .16s; }
-  .hero-merceria .hero-texto > :nth-child(4), .hero-academy > div > :nth-child(4) { animation-delay: .24s; }
-  .hero-merceria .hero-foto, .hero-academy > figure, .hero-academy > picture, .hero-academy .hero-foto { animation: hero-foto-entra .9s ease-out .15s both; }
-  @keyframes hero-entra { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-  @keyframes hero-foto-entra { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+  .hero-merceria .hero-texto > *, .hero-academy > div > * { animation: hero-entra .4s ease-out both; }
+  .hero-merceria .hero-texto > :nth-child(2), .hero-academy > div > :nth-child(2) { animation-delay: .04s; }
+  .hero-merceria .hero-texto > :nth-child(3), .hero-academy > div > :nth-child(3) { animation-delay: .08s; }
+  .hero-merceria .hero-texto > :nth-child(4), .hero-academy > div > :nth-child(4) { animation-delay: .12s; }
+  .hero-merceria .hero-foto, .hero-academy > figure, .hero-academy > picture, .hero-academy .hero-foto { animation: hero-foto-entra .45s ease-out .05s both; }
+  @keyframes hero-entra { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes hero-foto-entra { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: none; } }
   @media (hover: hover) {
     .cat-merceria, .puente, .razon, .puerta, .herramienta, .mat-pasos a { transition: transform .25s ease, box-shadow .25s ease; }
     .cat-merceria:hover, .puente:hover, .puerta:hover, .herramienta:hover, .mat-pasos a:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(150, 90, 70, 0.18); }

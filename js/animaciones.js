@@ -130,7 +130,7 @@
       var r = el.getBoundingClientRect();
       if (r.top < vh || r.left < 0 || r.right > vw + 1) return; // ya visible o en una fila deslizable
       var h = el.parentElement; // escalonar hermanos (máx. 4)
-      el.style.setProperty('--rev-d', Math.min(n % 4, 3) * 70 + 'ms'); n++;
+      el.style.setProperty('--rev-d', Math.min(n % 4, 3) * 40 + 'ms'); n++;
       el.classList.add('rev'); io.observe(el);
     });
     // red de seguridad: nunca dejar nada oculto
