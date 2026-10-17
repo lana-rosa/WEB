@@ -19,9 +19,6 @@ RAIZ = Path(__file__).resolve().parent.parent
 HORARIO = "Nuestra tienda física atiende de lunes a viernes de 7:30 a.m. a 6:15 p.m. y los sábados de 8:00 a.m. a 12:00 m."
 
 CAMBIOS = [
-    ("preguntas-frecuentes.html",
-     "La inauguración de nuestra tienda física está prevista para el domingo 15 de noviembre de 2026. Atendemos pedidos de Manizales / Villamaría y de toda Colombia.\"",
-     HORARIO + " Atendemos pedidos de Manizales / Villamaría y de toda Colombia.\""),
     ("merceria/preguntas-frecuentes/index.html",
      "La inauguración está prevista para el domingo 15 de noviembre de 2026. Mira la página de la tienda para la dirección, el horario y cómo llegar.\"",
      "Ya estamos abiertas. Mira la página de la tienda para la dirección, el horario y cómo llegar.\""),
