@@ -529,7 +529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <label class="acepto-p"><input type="checkbox" id="acepto-datos" required> <span>Acepto que Lana Rosa use mis datos <strong>solo para cotizar y elaborar mi pedido</strong>, según la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos personales</a>.</span></label>
-    <label class="acepto-p" id="acepto-fotos-caja" hidden><input type="checkbox" id="acepto-fotos"> <span>Autorizo a Lana Rosa a <strong>recibir y guardar las fotos de referencia</strong> que adjunto en su almacenamiento privado, solo para elaborar mi pedido. <small>Solo las ve el equipo, no se publican y puedes pedir que las borremos escribiendo a contacto@lanarosacrochet.com.</small></span></label>
+    <label class="acepto-p" id="acepto-fotos-caja" hidden><input type="checkbox" id="acepto-fotos"> <span>Autorizo a Lana Rosa a <strong>recibir y guardar las fotos de referencia</strong> que adjunto en su almacenamiento privado, solo para elaborar mi pedido. <small>Solo las ve el equipo, no se publican, las conservamos 90 días para atender reclamaciones y luego se borran. Puedes pedir que las borremos antes escribiendo a contacto@lanarosacrochet.com.</small></span></label>
     <label class="acepto-p"><input type="checkbox" id="acepto-publicar"> <span>Autorizo a Lana Rosa a mostrar la foto de mi pedido terminado en su web y redes sociales. <small>Es opcional: no cambia el precio ni tu pedido, y puedes retirarlo cuando quieras escribiendo a contacto@lanarosacrochet.com.</small></span></label>
     <button type="submit" class="boton-enviar" id="boton-enviar">Enviar mi solicitud</button>
     <div id="mensaje-estado"></div>
@@ -620,7 +620,7 @@ const inputFoto = document.getElementById('foto');
 const previsualizacion = document.getElementById('previsualizacion');
 const aceptoFotos = document.getElementById('acepto-fotos');
 const aceptoFotosCaja = document.getElementById('acepto-fotos-caja');
-const VERSION_FOTOS = '2026-10-17';   // debe ser igual a fn_personalizados_version() en la base; subir ambas si cambia lo que la persona acepta (y el apartado 4 de politicas.html#datos)
+const VERSION_FOTOS = '2026-10-17b';   // debe ser igual a fn_personalizados_version() en la base; subir ambas si cambia lo que la persona acepta (y el apartado 4 de politicas.html#datos)
 inputFoto.addEventListener('change', () => {
   previsualizacion.innerHTML = '';
   const archivos = Array.from(inputFoto.files).slice(0, 6);
