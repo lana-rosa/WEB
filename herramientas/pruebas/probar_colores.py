@@ -151,7 +151,7 @@ def main():
             verificar('se mide solo la categoría elegida (regalar_paso color=rosa), sin texto libre', len(eventos) == 1 and eventos[0]['valor_categoria'] == 'rosa', eventos)
             page.get_by_role('button', name='Empezar de nuevo').click()
             verificar('«Empezar de nuevo» quita el color', R.lista(page, 'color').input_value() == '' and page.locator('.ur-card').count() == antes)
-            verificar('la lista de color mide al menos 44 px de alto y no hay desplazamiento horizontal', R.lista(page, 'color').bounding_box()['height'] >= 44 and R.sin_scroll_horizontal(page))
+            verificar('la lista de color mide al menos 40 px de alto (compacta en celular, a pedido de Sara) y no hay desplazamiento horizontal', R.lista(page, 'color').bounding_box()['height'] >= 40 and R.sin_scroll_horizontal(page))
             verificar('sin errores en la consola', not err, err)
             if CAPTURAS:
                 R.elegir(page, 'color', 'rosa'); page.locator('#regalar').scroll_into_view_if_needed(); page.wait_for_timeout(300)

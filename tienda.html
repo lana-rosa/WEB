@@ -797,6 +797,13 @@ async function rpcTienda(nombre) {
   catch (e) { return (await clienteSb()).rpc(nombre); }
 }
 
+// En los nombres de la tienda no va la medida en cm (algunos la tienen y otros no): la medida se ve dentro de la ficha (Especificaciones). Se exceptúan los personalizados.
+function nombreSinMedida(n) {
+  n = String(n == null ? '' : n);
+  if (/^Amigurumi personalizado \d+ cm$/.test(n)) return n;   // los personalizados conservan su medida
+  return n.replace(/\s*\(\s*\d+(?:[.,]\d+)?\s*cm\s*\)/gi, '').replace(/\s*\d+(?:[.,]\d+)?\s*cm(?:\s*[*x×]\s*\d+(?:[.,]\d+)?\s*cm)?/gi, '').replace(/\s{2,}/g, ' ').trim();
+}
+
 var MAPA_GRID = {
   'Amigurumis': 'grid-amigurumis',
   'Peluches': 'grid-peluches',
@@ -940,6 +947,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     const { data, error } = await rpcTienda('obtener_tienda_web');
     if (error) throw error;
+    (data || []).forEach(function (item) { item.nombre = nombreSinMedida(item.nombre); });
 
     Object.keys(MAPA_GRID).forEach(function(cat) {
       var grid = document.getElementById(MAPA_GRID[cat]);
@@ -1910,6 +1918,6 @@ formResena.addEventListener('submit', async (evento) => {
 <script type="module" src="/js/pago.js?v=29"></script>
 <script src="/js/carrito-agregado.js?v=2" defer></script>
 <script src="/js/ampliar.js?v=2" defer></script>
-<script src="/js/animaciones.js?v=15" defer></script>
+<script src="/js/animaciones.js?v=16" defer></script>
 </body>
 </html>

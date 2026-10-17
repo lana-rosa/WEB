@@ -18,6 +18,14 @@ CAPTURAS = R.CAPTURAS
 fallos, pasaron = [], 0
 
 
+def sm(n):
+    """Como la web: sin la medida en cm en el nombre (excepto los personalizados)."""
+    if re.match(r'^Amigurumi personalizado \d+ cm$', n): return n
+    n = re.sub(r'\s*\(\s*\d+(?:[.,]\d+)?\s*cm\s*\)', '', n, flags=re.I)
+    n = re.sub(r'\s*\d+(?:[.,]\d+)?\s*cm(?:\s*[*x×]\s*\d+(?:[.,]\d+)?\s*cm)?', '', n, flags=re.I)
+    return re.sub(r'\s{2,}', ' ', n).strip()
+
+
 def verificar(nombre, condicion, detalle=''):
     global pasaron
     if condicion:
@@ -93,7 +101,7 @@ def main():
             tarjetas = page.locator('.rc-card')
             verificar('el texto de Rosina y tres tarjetas aparecen', 'Te recomiendo estos tres' in page.inner_text('.rc-msgs') and tarjetas.count() == 3, tarjetas.count())
             textos = [tarjetas.nth(i).inner_text() for i in range(3)]
-            verificar('cada tarjeta lleva nombre y precio del catálogo (%s)' % en_existencia['nombre'], en_existencia['nombre'] in textos[0] and ('{:,.0f}'.format(en_existencia['precio']).replace(',', '.')) in textos[0], textos[0])
+            verificar('cada tarjeta lleva nombre y precio del catálogo (%s)' % en_existencia['nombre'], sm(en_existencia['nombre']) in textos[0] and ('{:,.0f}'.format(en_existencia['precio']).replace(',', '.')) in textos[0], textos[0])
             verificar('«En existencia», «Por encargo · tiempo» y «Desde… se teje a partir de tu foto o idea» según el estado', 'En existencia' in textos[0] and 'Por encargo · 8 a 10 días hábiles' in textos[1] and textos[2].count('Desde') == 1 and 'Se teje a partir de tu foto o idea' in textos[2], textos)
             verificar('el enlace lleva a la ficha del producto y abre en otra pestaña (el chat no se pierde)', tarjetas.nth(0).get_attribute('href') == '/tienda.html?producto=' + en_existencia['id'] and tarjetas.nth(0).get_attribute('target') == '_blank' and 'noopener' in tarjetas.nth(0).get_attribute('rel'))
             verificar('la foto sale de /img/productos/ con texto alternativo vacío (el nombre ya está al lado)', tarjetas.nth(0).locator('img').get_attribute('src') == '/img/productos/' + en_existencia['foto_url'] and tarjetas.nth(0).locator('img').get_attribute('alt') == '')
