@@ -811,8 +811,14 @@ window.datosPersonalizado = function (item) {
   return { cm: m[1], url: '/personaliza.html?producto=' + encodeURIComponent(item.id) + '&tipo=Amigurumi&tamano=' + encodeURIComponent(m[1] + ' cm') + '#form-personalizado' };
 };
 
+// Si se llega con una categoría en la dirección (p. ej. tienda.html#peluches desde el inicio), las primeras fotos de ESA categoría
+// se piden de inmediato; el resto sigue con carga diferida como siempre.
+var gridDestino = 'grid-' + (location.hash || '').replace(/^#/, '');
+var fotosDestino = 0;
 function crearTarjeta(item) {
   var nombreAttr = item.nombre.replace(/"/g, '&quot;');
+  var cargaFoto = 'loading="lazy"';
+  if (MAPA_GRID[item.categoria_web] === gridDestino && fotosDestino < 8) { cargaFoto = (fotosDestino < 4) ? 'fetchpriority="high"' : ''; fotosDestino++; }
   var pers = window.datosPersonalizado(item);
 
   var articulo = document.createElement('article');
@@ -821,7 +827,7 @@ function crearTarjeta(item) {
   articulo.dataset.precio = item.precio;
   articulo.innerHTML =
     '<div class="producto-foto">' +
-      '<img src="/img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" loading="lazy" data-id="' + item.id + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
+      '<img src="/img/productos/' + (item.foto_url || '') + '" alt="' + nombreAttr + '" ' + cargaFoto + ' data-id="' + item.id + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
       '<span class="foto-marcador" style="display:none;">[ Foto de ' + item.nombre + ' ]</span>' +
     '</div>' +
     '<div class="producto-info">' +
