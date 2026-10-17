@@ -292,6 +292,8 @@ def pie_casa(modelo, casa):
     faq = PIE_FAQ.get(casa, 'preguntas-frecuentes.html')
     universo_href = {'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}.get(casa, 'universo-rosina.html')  # cada casa tiene su propio hub de Rosina
     rev = PIE_REVISTA.get(casa, 'revista.html')
+    # en Mercería y Academy el universo de Rosina ya está en la columna de la casa: no se repite
+    universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">El universo de Rosina</a></li>'
     horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
@@ -317,7 +319,7 @@ def pie_casa(modelo, casa):
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="sobre-nosotras.html">Sobre nosotras</a></li>
-        <li><a href="{universo_href}">El universo de Rosina</a></li>
+        {universo_li}
         <li><a href="{rev}">Revista</a></li>
         <li><a href="{faq}">Preguntas frecuentes</a></li>
         <li><a href="precios.html">Precios</a></li>

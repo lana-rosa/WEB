@@ -388,7 +388,7 @@ def main():
         # El Universo muestra solo lo de la casa desde donde se llega
         for casa, no_debe, si_debe, regalar in (
                 ('crochet', ['/academy/', '/aventuras-de-rosina/', '/calculadoras-rosina.html#lana'], ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html?casa=crochet'], True),
-                ('academy', ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/calculadoras-rosina.html#lana'], ['/academy/', '/aventuras-de-rosina/', '/revista.html?casa=academy'], False),
+                ('academy', ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/calculadoras-rosina.html#lana'], ['/academy/empieza-aqui/', '/aventuras-de-rosina/', '/revista.html?casa=academy'], False),
                 ('merceria', ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/academy/', '/aventuras-de-rosina/'], ['/calculadoras-rosina.html#lana', '/revista.html?casa=merceria'], False)):
             ph, eh = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?casa=' + casa, espera='.recorridos')
             hrefs = ph.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))')
