@@ -1132,6 +1132,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="module" src="/js/cuenta.js"></script>
 <script src="/js/textos.js" defer></script>
 <script type="module" src="/js/pago.js?v=29"></script>
+<script>
+// Calienta la tienda: ya cargada la página, trae los productos en segundo plano para que, al tocar una categoría, la tienda aparezca de inmediato.
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    ['obtener_tienda_web', 'obtener_productos_personaje'].forEach(function (n) {
+      try { var g = JSON.parse(sessionStorage.getItem('lrRpc_' + n) || 'null'); if (g && Date.now() - g.t < 120000) return; } catch (e) {}
+      fetch('https://ngjoognzvehwjtpqwrqe.supabase.co/rest/v1/rpc/' + n, { method: 'POST', headers: { apikey: 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', Authorization: 'Bearer sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', 'Content-Type': 'application/json' }, body: '{}' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { if (Array.isArray(d)) sessionStorage.setItem('lrRpc_' + n, JSON.stringify({ t: Date.now(), d: d })); })
+        .catch(function () {});
+    });
+  }, 1500);
+});
+</script>
+<link rel="prefetch" href="/tienda.html">
 <script src="/js/animaciones.js?v=15" defer></script>
 </body>
 </html>
