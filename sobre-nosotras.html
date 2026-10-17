@@ -96,6 +96,17 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .sobre-compacta > section.contenedor { padding-top: 24px; padding-bottom: 24px; }
 .sobre-compacta .seccion-suave { padding-top: 40px; padding-bottom: 40px; }
 .sobre-compacta .historia p + p { margin-top: 12px; }
+.sn-cifras h2 { margin-bottom: 14px; }
+.cifras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.cifra { background: var(--rosa-suave); border-radius: var(--radio-suave, 20px); padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+.cifra strong { font-family: var(--fuente-titulo); font-size: 1.35rem; color: var(--rosa-texto); line-height: 1.2; }
+.cifra span { font-size: 0.92rem; color: var(--tinta-suave); }
+@media (max-width: 760px) { .cifras { grid-template-columns: 1fr; } }
+.sn-botones { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 22px 0 0; }
+.sn-boton { display: inline-block; padding: 13px 26px; border-radius: 999px; background: var(--rosa-boton); color: var(--sobre-principal); font-weight: 700; text-decoration: none; border: 2px solid var(--rosa-boton); }
+.sn-boton:hover, .sn-boton:focus-visible { background: var(--rosa-boton-hover); border-color: var(--rosa-boton-hover); outline: none; }
+.sn-boton-2 { background: #fff; color: var(--rosa-texto); }
+.sn-boton-2:hover, .sn-boton-2:focus-visible { background: var(--rosa-suave); color: var(--rosa-texto); border-color: var(--rosa-boton); }
 .cierre-historia { text-align: center; margin: 32px auto 0; max-width: 560px; }
 .cierre-historia p { margin: 4px 0; font-size: 1.08rem; color: var(--tinta-suave); }
 .cierre-historia .cierre-fuerte { font-family: var(--fuente-titulo); font-weight: 600; color: var(--rosa-texto); font-size: 1.35rem; margin-top: 10px; }
@@ -251,6 +262,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </ul>
   </section>
 
+  <section class="contenedor sn-cifras">
+    <h2>Lana Rosa en cifras</h2>
+    <div class="cifras">
+      <div class="cifra"><strong>+1.000</strong><span>pedidos entregados desde 2025</span></div>
+      <div class="cifra"><strong>Colombia y 3 países</strong><span>Enviamos a toda Colombia y a España, Chile y Estados Unidos</span></div>
+      <div class="cifra"><strong>También para empresas</strong><span>Mahe Floristería, Armando Comida, Coral Escuela de Buceo y Aneiap</span></div>
+    </div>
+  </section>
+
   <section class="seccion-suave">
     <div class="contenedor">
       <h2>Nuestro camino</h2>
@@ -270,13 +290,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="hito">
           <p class="fecha">Hoy</p>
           <p>Lana Rosa es un equipo de mujeres que sigue creciendo, creando oportunidades y llevando historias a la vida a través del tejido.</p>
-          <p>También estamos a punto de abrir las puertas de nuestro primer espacio físico: un lugar donde se encontrarán la mercería, nuestros productos, los talleres y nuestra pasión por enseñar.</p>
+          <p><span data-apertura="antes">Abrimos las puertas de nuestro primer espacio físico el <strong>domingo 15 de noviembre de 2026</strong>, en la Calle 10 #5-37, Villamaría: la mercería, nuestros productos y los talleres, en un solo lugar.</span><span data-apertura="despues" hidden>Ya abrimos las puertas de nuestro primer espacio físico, en la Calle 10 #5-37, Villamaría: la mercería, nuestros productos y los talleres, en un solo lugar. Atendemos de lunes a viernes de 7:30 a.m. a 6:15 p.m. y los sábados de 8:00 a.m. a 12:00 m.</span> <a href="/merceria/tienda-fisica/">Ver cómo llegar →</a></p>
         </div>
       </div>
       <div class="cierre-historia">
         <p>Y esto apenas comienza.</p>
         <p>Porque en Lana Rosa no solo tejemos figuras.</p>
         <p class="cierre-fuerte">Tejemos emociones que permanecen en el tiempo.</p>
+        <p class="sn-botones"><a class="sn-boton" href="/personaliza.html">Personaliza el tuyo</a><a class="sn-boton sn-boton-2" href="/tienda.html">Ver la tienda</a></p>
       </div>
     </div>
   </section>
@@ -308,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="pie-col">
       <p class="pie-h3">Lana Rosa</p>
       <ul>
-        <li><a href="/sobre-nosotras.html">Quiénes somos</a></li>
+        <li><a href="/sobre-nosotras.html">Sobre nosotras</a></li>
         <li><a href="/universo-rosina.html">El universo de Rosina</a></li>
         <li><a href="/revista.html?casa=crochet">Revista</a></li>
         <li><a href="/preguntas-frecuentes.html">Preguntas frecuentes</a></li>
@@ -529,5 +550,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="module" src="/js/cuenta.js"></script>
 <script type="module" src="/js/pago.js?v=25"></script>
 <script src="/js/animaciones.js?v=13" defer></script>
+<script src="/js/apertura.js?v=1" defer></script>
 </body>
 </html>
