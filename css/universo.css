@@ -159,16 +159,16 @@ html[data-ur-casa]:not([data-ur-casa="crochet"]) #regalar { display: none; }
 
 /* Formulario «Rosina te ayuda a regalar» más compacto en celular */
 @media (max-width: 640px) {
-  .ur-marco { padding: 14px; }
-  .ur-filtros { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 10px; }
-  .ur-grupo label { font-size: 0.82rem; margin-bottom: 3px; line-height: 1.2; }
-  .ur-select { min-height: 40px; padding: 6px 28px 6px 10px; font-size: 0.86rem; border-radius: 10px; background-position: right 10px center; }
-  .ur-reiniciar, .ur-mas { margin-top: 8px; font-size: 0.88rem; }
-  .ur-opciones summary { font-size: 0.92rem; }
+  .ur-seccion-regalar .ur-marco { padding: 14px; }
+  .ur-seccion-regalar .ur-filtros { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 10px; }
+  .ur-seccion-regalar .ur-grupo label { font-size: 0.82rem; margin-bottom: 3px; line-height: 1.2; }
+  .ur-seccion-regalar .ur-select { min-height: 40px; padding: 6px 28px 6px 10px; font-size: 0.86rem; border-radius: 10px; background-position: right 10px center; }
+  .ur-seccion-regalar .ur-reiniciar, .ur-mas { margin-top: 8px; font-size: 0.88rem; }
+  .ur-seccion-regalar .ur-opciones summary { font-size: 0.92rem; }
 }
 
 /* Las listas de una misma fila quedan alineadas aunque una pregunta ocupe dos líneas */
 .ur-filtros { align-items: end; }
 .ur-grupo { display: flex; flex-direction: column; justify-content: flex-end; }
 .ur-grupo .ur-select { margin-top: auto; }
-@media (max-width: 640px) { .ur-grupo label { min-height: 2.4em; display: flex; align-items: flex-end; } }
+@media (max-width: 640px) { .ur-seccion-regalar .ur-grupo label { min-height: 2.4em; display: flex; align-items: flex-end; } }

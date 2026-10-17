@@ -31,7 +31,7 @@ export function mapaDeCodigos(regalos: Regalo[]): Map<string, Regalo> {
 // Línea del catálogo que ve el modelo para un producto con código. `colores` sale de img/productos/colores.json (puede faltar).
 export function lineaCatalogo(codigo: string, r: Regalo, t: Tienda | undefined, colores: string[] | undefined): string {
   const estado = r.personalizable_base
-    ? "se teje a pedido a partir de tu foto o idea (precio base de una pieza con detalle normal)"
+    ? "se teje a pedido a partir de tu foto o idea (precio base de una pieza con detalles como los de la imagen de muestra)"
     : r.en_existencia ? "en existencia ahora"
     : "por encargo: se teje cuando se pide" + (r.tiempo_elaboracion ? ` (elaboración: ${r.tiempo_elaboracion})` : "");
   const specs = t && Array.isArray(t.especificaciones_web) ? ` | ${(t.especificaciones_web as string[]).join("; ")}` : "";
