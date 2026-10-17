@@ -47,7 +47,7 @@ El código de la web **no escribe `document.cookie`** directamente; las cookies 
 | Reseñas: nombre, teléfono (verificación), calificación, comentario | Tienda / Cuenta | Tabla de reseñas (`crear_resena_web`, `crear_mi_resena`) | Supabase. **Falta confirmar qué se muestra públicamente** (nombre completo, solo nombre de pila, etc.) |
 | Casilla de promociones | Pago | Con el pedido | Supabase |
 | Casilla de aceptación de la política | Pago y Cuenta | Con el pedido / la cuenta | — |
-| **Autorizaciones de Personaliza** (nuevo) | Personaliza | Línea "[Autorizaciones registradas…]" dentro del mensaje de la solicitud | Supabase |
+| **Autorizaciones de Personaliza** (nuevo; desde el 17-oct incluye la de guardar las fotos de referencia, con hora y versión) | Personaliza | Línea "[Autorizaciones registradas…]" dentro del mensaje de la solicitud | Supabase |
 
 ## 4. Discrepancias entre la práctica real y la política publicada
 

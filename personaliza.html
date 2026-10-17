@@ -84,6 +84,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .previsualizacion-grid img { width: 90px; height: 90px; object-fit: cover; border-radius: 12px; box-shadow: var(--sombra-suave); }
 .acepto-p { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; margin: 0 0 12px; line-height: 1.45; color: var(--tinta-suave); }
 .acepto-p input { margin-top: 3px; accent-color: var(--rosa-principal); flex-shrink: 0; width: 20px; height: 20px; }
+.acepto-p[hidden] { display: none; }
 .acepto-p a { color: var(--rosa-texto); font-weight: 700; }
 .acepto-p small { display: block; font-size: 0.82rem; opacity: .9; }
 .boton-enviar {
@@ -527,7 +528,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <label class="acepto-p"><input type="checkbox" id="acepto-datos" required> <span>Acepto que Lana Rosa use mis datos y mis fotos <strong>solo para cotizar y elaborar mi pedido</strong>, según la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos personales</a>.</span></label>
+    <label class="acepto-p"><input type="checkbox" id="acepto-datos" required> <span>Acepto que Lana Rosa use mis datos <strong>solo para cotizar y elaborar mi pedido</strong>, según la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos personales</a>.</span></label>
+    <label class="acepto-p" id="acepto-fotos-caja" hidden><input type="checkbox" id="acepto-fotos"> <span>Autorizo a Lana Rosa a <strong>recibir y guardar las fotos de referencia</strong> que adjunto en su almacenamiento privado, solo para elaborar mi pedido. <small>Solo las ve el equipo, no se publican y puedes pedir que las borremos escribiendo a contacto@lanarosacrochet.com.</small></span></label>
     <label class="acepto-p"><input type="checkbox" id="acepto-publicar"> <span>Autorizo a Lana Rosa a mostrar la foto de mi pedido terminado en su web y redes sociales. <small>Es opcional: no cambia el precio ni tu pedido, y puedes retirarlo cuando quieras escribiendo a contacto@lanarosacrochet.com.</small></span></label>
     <button type="submit" class="boton-enviar" id="boton-enviar">Enviar mi solicitud</button>
     <div id="mensaje-estado"></div>
@@ -616,9 +618,15 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const inputFoto = document.getElementById('foto');
 const previsualizacion = document.getElementById('previsualizacion');
+const aceptoFotos = document.getElementById('acepto-fotos');
+const aceptoFotosCaja = document.getElementById('acepto-fotos-caja');
+const VERSION_FOTOS = '2026-10-17';   // subir si cambia lo que la persona acepta sobre sus fotos (y el apartado 4 de politicas.html#datos)
 inputFoto.addEventListener('change', () => {
   previsualizacion.innerHTML = '';
   const archivos = Array.from(inputFoto.files).slice(0, 6);
+  aceptoFotosCaja.hidden = archivos.length === 0;
+  aceptoFotos.required = archivos.length > 0;
+  if (!archivos.length) aceptoFotos.checked = false;
   archivos.forEach(archivo => {
     const img = document.createElement('img');
     img.src = URL.createObjectURL(archivo);
@@ -841,6 +849,12 @@ form.addEventListener('submit', async (evento) => {
   evento.preventDefault();
   mensajeEstado.className = '';
   mensajeEstado.style.display = 'none';
+  if (inputFoto.files.length && !aceptoFotos.checked) {
+    mensajeEstado.className = 'error'; mensajeEstado.style.display = 'block';
+    mensajeEstado.textContent = 'Para enviar tus fotos de referencia, marca la casilla que nos autoriza a guardarlas. Si prefieres no hacerlo, quita las fotos y envía tu solicitud.';
+    aceptoFotos.focus();
+    return;
+  }
   boton.disabled = true;
   boton.textContent = 'Enviando...';
 
@@ -886,7 +900,8 @@ form.addEventListener('submit', async (evento) => {
       p_ciudad: (selectCiudad.value === 'Otro (nacional)' ? inputCiudadOtra.value.trim() : selectCiudad.value) || null,
       p_fotos_urls: fotosUrls.length > 0 ? fotosUrls : null,
       p_mensaje: ((fGuia ? fGuia.mensaje : (document.getElementById('mensaje').value || '')) +
-        '\n[Autorizaciones registradas el ' + new Date().toISOString().slice(0, 10) + ' — tratamiento de datos para el pedido: SÍ; ' +
+        '\n[Autorizaciones registradas el ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC (texto de fotos v' + VERSION_FOTOS + ') — tratamiento de datos para el pedido: SÍ; ' +
+        'guardar las fotos de referencia: ' + (archivos.length ? 'SÍ' : 'no hay fotos') + '; ' +
         'publicar la foto del pedido terminado en web y redes: ' + (document.getElementById('acepto-publicar').checked ? 'SÍ' : 'NO') + ']').trim()
     });
 
@@ -910,7 +925,7 @@ form.addEventListener('submit', async (evento) => {
     aplicarModo(modo);
     alternarOtro(selectCiudad, 'Otro (nacional)', inputCiudadOtra);
     selectTipo.dispatchEvent(new Event('change'));
-    previsualizacion.innerHTML = '';
+    inputFoto.dispatchEvent(new Event('change'));   // form.reset() no avisa: esconde la casilla de fotos y limpia la vista previa
     boton.textContent = 'Enviar mi solicitud';
     boton.disabled = false;
 
