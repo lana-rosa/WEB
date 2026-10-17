@@ -241,3 +241,4 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-regalar-form .boton-primario { min-height: 48px; justify-self: start; border: 0; cursor: pointer; font: inherit; font-weight: 700; }
 .ed-regalar-texto .ed-nota { margin: 14px 0 0; }
 @media (max-width: 720px) { .ed-regalar-grid { grid-template-columns: minmax(0, 1fr); text-align: center; justify-items: center; } .ed-regalar-grid > img { width: 140px; height: 140px; } .ed-regalar-form { grid-template-columns: minmax(0, 1fr); text-align: left; width: 100%; } .ed-regalar-form .boton-primario { justify-self: stretch; } }
+.ed-entrega { margin-top: 14px; font-size: .95rem; max-width: 34em; }

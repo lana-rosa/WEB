@@ -270,3 +270,6 @@ html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { back
 .barra-rosina a.br-hub { background: var(--rosa-boton); color: var(--sobre-principal); box-shadow: none; }
 .barra-rosina a.br-actual { background: var(--rosa-texto); color: #fff; box-shadow: none; }
 @media (max-width: 600px) { .barra-rosina .contenedor { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; } .barra-rosina a { white-space: nowrap; flex: none; } .barra-rosina .contenedor::-webkit-scrollbar { display: none; } }
+
+/* Texto solo para lectores de pantalla y rastreadores (los íconos del encabezado llevan una palabra clara). */
+.solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
