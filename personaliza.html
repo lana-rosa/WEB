@@ -620,7 +620,7 @@ const inputFoto = document.getElementById('foto');
 const previsualizacion = document.getElementById('previsualizacion');
 const aceptoFotos = document.getElementById('acepto-fotos');
 const aceptoFotosCaja = document.getElementById('acepto-fotos-caja');
-const VERSION_FOTOS = '2026-10-17';   // subir si cambia lo que la persona acepta sobre sus fotos (y el apartado 4 de politicas.html#datos)
+const VERSION_FOTOS = '2026-10-17';   // debe ser igual a fn_personalizados_version() en la base; subir ambas si cambia lo que la persona acepta (y el apartado 4 de politicas.html#datos)
 inputFoto.addEventListener('change', () => {
   previsualizacion.innerHTML = '';
   const archivos = Array.from(inputFoto.files).slice(0, 6);
@@ -892,17 +892,19 @@ form.addEventListener('submit', async (evento) => {
     const tamanoPago = (tipoProducto === 'Amigurumi') ? tamanoSeleccionado : '';
     const descripcionCompleta = `[${tipoProducto} — ${tamanoSeleccionado}] ${fGuia ? fGuia.descripcion : document.getElementById('descripcion').value}`;
 
-    const { data, error } = await supabase.rpc('crear_solicitud_personalizada', {
+    // El servidor vuelve a exigir las autorizaciones, guarda la constancia (fecha, versión y qué autorizó) y la anota en la solicitud.
+    const { data, error } = await supabase.rpc('crear_solicitud_personalizada_v2', {
       p_nombre: document.getElementById('nombre').value,
       p_telefono: document.getElementById('telefono').value,
       p_correo: document.getElementById('correo').value || null,
       p_descripcion: descripcionCompleta,
       p_ciudad: (selectCiudad.value === 'Otro (nacional)' ? inputCiudadOtra.value.trim() : selectCiudad.value) || null,
       p_fotos_urls: fotosUrls.length > 0 ? fotosUrls : null,
-      p_mensaje: ((fGuia ? fGuia.mensaje : (document.getElementById('mensaje').value || '')) +
-        '\n[Autorizaciones registradas el ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC (texto de fotos v' + VERSION_FOTOS + ') — tratamiento de datos para el pedido: SÍ; ' +
-        'guardar las fotos de referencia: ' + (archivos.length ? 'SÍ' : 'no hay fotos') + '; ' +
-        'publicar la foto del pedido terminado en web y redes: ' + (document.getElementById('acepto-publicar').checked ? 'SÍ' : 'NO') + ']').trim()
+      p_mensaje: (fGuia ? fGuia.mensaje : (document.getElementById('mensaje').value || '')).trim(),
+      p_acepta_datos: document.getElementById('acepto-datos').checked,
+      p_acepta_fotos: archivos.length > 0 && aceptoFotos.checked,
+      p_acepta_publicar: document.getElementById('acepto-publicar').checked,
+      p_version_texto: VERSION_FOTOS
     });
 
     if (error) throw new Error(error.message);
