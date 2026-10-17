@@ -209,3 +209,4 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 - [ ] En el próximo despliegue de `rosina-web`, quitar `/rosina.html` de `PAGINAS` (hoy es una redirección). Seguir recogiendo reseñas con autorización (nombre o ciudad) o capturas de WhatsApp.
 - [x] Menú: todas las páginas de una misma casa abren el mismo menú (las páginas comunes toman el de la casa de origen) (17-oct).
 - [ ] Plazo de entrega de los personalizados: Sara pidió dejar lo de las políticas (elaboración informada al comprar + envío aparte); en las políticas no hay un plazo en días, así que falta que Sara fije un número (¿15 días hábiles?) y se agrega al inicio, a las preguntas frecuentes y a `politicas.html#envios`.
+- [x] Sobre nosotras (y las demás páginas comunes) toman el menú y los colores de la casa de origen; revisadas las páginas de cada casa: todas con sus colores (17-oct).
