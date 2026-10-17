@@ -249,6 +249,14 @@ main > :first-child { padding-top: 40px !important; }
 .migas a { color: var(--rosa-texto); font-weight: 600; text-decoration: none; }
 article.post h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0 0 14px; line-height: 1.2; }
 article.post .firma { margin-top: 18px; color: var(--tinta-suave); font-style: italic; }
+.recursos-gratis { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 22px; margin: 0 0 34px; text-align: center; }
+.recursos-gratis h2 { font-size: 1.2rem; margin: 0 0 6px; }
+.recursos-gratis p { margin: 0 auto 12px; max-width: 52ch; color: var(--tinta); font-size: 0.95rem; }
+.recursos-gratis .rg-botones { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.recursos-gratis a { display: inline-block; padding: 12px 24px; border-radius: 999px; font-weight: 700; text-decoration: none; background: var(--rosa-boton); color: var(--sobre-principal); border: 2px solid var(--rosa-boton); }
+.recursos-gratis a:hover, .recursos-gratis a:focus-visible { background: var(--rosa-boton-hover); border-color: var(--rosa-boton-hover); outline: none; }
+.recursos-gratis a.rg-2 { background: #fff; color: var(--rosa-texto); }
+.recursos-gratis a.rg-2:hover, .recursos-gratis a.rg-2:focus-visible { background: #fff; border-color: var(--rosa-boton-hover); }
 .mas-articulos { margin: 10px 0 40px; }
 .mas-articulos h2 { font-size: 1.3rem; margin: 0 0 14px; }
 </style>
@@ -370,6 +378,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a class="tarjeta-revista" href="/revista/ideas-regalo/" data-categorias="regalos" data-casas="crochet"><span class="meta">Regalos · 1 min de lectura</span><h2>5 ideas de regalos personalizados que sí van a sorprender</h2><p>Sabemos lo difícil que es encontrar un regalo que no se sienta genérico. Aquí van cinco ideas que nos han pedido una y otra vez, y que siempre…</p><span class="leer">Leer el artículo →</span></a>
   <a class="tarjeta-revista" href="/revista/tejer-desconectar/" data-categorias="bienestar" data-casas="academy"><span class="meta">Bienestar · 1 min de lectura</span><h2>Por qué tejer se está volviendo la forma favorita de desconectar</h2><p>No es casualidad que cada vez más personas nos escriban preguntando dónde pueden aprender a tejer. Después de un taller, casi todas dicen lo mismo…</p><span class="leer">Leer el artículo →</span></a>
   </div>
+  <section class="recursos-gratis" aria-labelledby="rg-titulo">
+    <h2 id="rg-titulo">🎁 Regalos gratis de Rosina</h2>
+    <p>Stickers, fondos de pantalla, íconos y más. Son gratis con tu cuenta de Lana Rosa: se crea con tu correo, sin contraseña.</p>
+    <div class="rg-botones"><a href="/recursos-rosina.html">Ver los recursos</a><a class="rg-2" href="/cuenta.html?volver=recursos-rosina.html">Crear mi cuenta gratis</a></div>
+  </section>
 </main>
 
 <!-- PIE:INICIO (generado) -->
@@ -653,6 +666,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script type="module" src="/js/cuenta.js"></script>
 <script type="module" src="/js/pago.js?v=25"></script>
-<script src="/js/animaciones.js?v=13" defer></script>
+<script src="/js/animaciones.js?v=14" defer></script>
 </body>
 </html>

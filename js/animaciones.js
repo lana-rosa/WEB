@@ -36,7 +36,9 @@
       if (/\/merceria\/tienda-fisica|maps\.app\.goo|google\.com\/maps|g\.page|goo\.gl\/maps/.test(h)) ev('store_physical_click', { destino: h.slice(0, 80) });
       if (/\/academy\/talleres/.test(h) || (/wa\.me/.test(h) && /taller/i.test(decodeURIComponent(h)))) ev('academy_taller_click', { destino: h.slice(0, 80) });
       if (/(glosario|paletas|calculadoras|agenda|recursos)-rosina\.html/.test(h)) ev('resource_use', { recurso: (h.match(/(glosario|paletas|calculadoras|agenda|recursos)-rosina/) || [])[1] });
-      if (a.hasAttribute('download') || /\/img\/(fondos|stickers)\/|\.pdf(\?|$)/i.test(h)) ev('resource_download', { archivo: h.split('/').pop().slice(0, 60) });
+      // las descargas de recursos pasan por la puerta de la cuenta (js/suscripcion.js): solo se miden cuando la descarga empieza de verdad
+      var tras = !(a.hasAttribute('data-puerta') && a.dataset.libre !== '1');
+      if (tras && (a.hasAttribute('download') || /\/img\/(fondos|stickers)\/|\.pdf(\?|$)/i.test(h))) ev('resource_download', { archivo: h.split('/').pop().slice(0, 60) });
       if (/share\.google|g\.page\/r|search\.google\.com\/local\/(write)?review/.test(h)) ev('review_click', {});
       if (enMerceria && /wa\.me|api\.whatsapp\.com/.test(h)) ev('merceria_contacto', {});
     }, true);

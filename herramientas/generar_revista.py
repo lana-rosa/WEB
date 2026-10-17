@@ -81,6 +81,14 @@ CSS = '''
 .migas a { color: var(--rosa-texto); font-weight: 600; text-decoration: none; }
 article.post h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0 0 14px; line-height: 1.2; }
 article.post .firma { margin-top: 18px; color: var(--tinta-suave); font-style: italic; }
+.recursos-gratis { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 22px; margin: 0 0 34px; text-align: center; }
+.recursos-gratis h2 { font-size: 1.2rem; margin: 0 0 6px; }
+.recursos-gratis p { margin: 0 auto 12px; max-width: 52ch; color: var(--tinta); font-size: 0.95rem; }
+.recursos-gratis .rg-botones { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.recursos-gratis a { display: inline-block; padding: 12px 24px; border-radius: 999px; font-weight: 700; text-decoration: none; background: var(--rosa-boton); color: var(--sobre-principal); border: 2px solid var(--rosa-boton); }
+.recursos-gratis a:hover, .recursos-gratis a:focus-visible { background: var(--rosa-boton-hover); border-color: var(--rosa-boton-hover); outline: none; }
+.recursos-gratis a.rg-2 { background: #fff; color: var(--rosa-texto); }
+.recursos-gratis a.rg-2:hover, .recursos-gratis a.rg-2:focus-visible { background: #fff; border-color: var(--rosa-boton-hover); }
 .mas-articulos { margin: 10px 0 40px; }
 .mas-articulos h2 { font-size: 1.3rem; margin: 0 0 14px; }
 </style>'''
@@ -152,6 +160,11 @@ def main():
   <div class="tarjetas-revista">
   {chr(10).join('  ' + tarjeta(d) for d in arts).lstrip()}
   </div>
+  <section class="recursos-gratis" aria-labelledby="rg-titulo">
+    <h2 id="rg-titulo">🎁 Regalos gratis de Rosina</h2>
+    <p>Stickers, fondos de pantalla, íconos y más. Son gratis con tu cuenta de Lana Rosa: se crea con tu correo, sin contraseña.</p>
+    <div class="rg-botones"><a href="/recursos-rosina.html">Ver los recursos</a><a class="rg-2" href="/cuenta.html?volver=recursos-rosina.html">Crear mi cuenta gratis</a></div>
+  </section>
 </main>'''
     ld = ld_json({'@context': 'https://schema.org', '@type': 'Blog', 'name': 'Revista Lana Rosa Crochet', 'url': SITIO + '/revista.html',
                   'publisher': {'@type': 'Organization', 'name': 'Lana Rosa Crochet'},
@@ -177,6 +190,11 @@ def main():
     {d["cuerpo"]}
     <p class="firma">{FIRMAS[d["firma"]]}</p>
   </article>
+  <section class="recursos-gratis" aria-labelledby="rg-titulo">
+    <h2 id="rg-titulo">🎁 Regalos gratis de Rosina</h2>
+    <p>Stickers, fondos de pantalla, íconos y más. Son gratis con tu cuenta de Lana Rosa: se crea con tu correo, sin contraseña.</p>
+    <div class="rg-botones"><a href="/recursos-rosina.html">Ver los recursos</a><a class="rg-2" href="/cuenta.html?volver=recursos-rosina.html">Crear mi cuenta gratis</a></div>
+  </section>
   <section class="mas-articulos" aria-labelledby="mas-titulo">
     <h2 id="mas-titulo">Sigue leyendo</h2>
     <div class="tarjetas-revista">
