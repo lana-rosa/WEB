@@ -4,6 +4,13 @@ import { CONFIG, OCASIONES, DESTINATARIOS, TIPOS, PRESUPUESTOS, TAMANOS, DISPONI
 import { cargarCatalogo, cargarColores } from './datos.js';
 import { COLORES, puntajeColor, perfilDeArchivo } from './colores.js';
 
+function nombreSinMedida(n) {
+  n = String(n == null ? '' : n);
+  if (/^Amigurumi personalizado \d+ cm$/.test(n)) return n;   // los personalizados conservan su medida
+  return n.replace(/\s*\(\s*\d+(?:[.,]\d+)?\s*cm\s*\)/gi, '').replace(/\s*\d+(?:[.,]\d+)?\s*cm(?:\s*[*x×]\s*\d+(?:[.,]\d+)?\s*cm)?/gi, '').replace(/\s{2,}/g, ' ').trim();
+}
+
+
 const entre = (v, lista, id) => { const x = lista.find((r) => r[0] === id); return !x || (v >= x[2] && v <= x[3]); };
 
 // Función pura (se prueba aparte): devuelve los productos por sección según lo elegido.
@@ -123,9 +130,9 @@ export async function iniciarRegalar(raiz) {
   function tarjeta(p, clave, esIdea) {
     // La ficha de la tienda (también la de los amigurumis personalizados) es la que lleva al formulario o al carrito.
     const a = nodo('a', 'ur-card'); a.href = '/tienda.html?producto=' + encodeURIComponent(p.id);
-    const foto = document.createElement('img'); foto.src = '/img/productos/' + encodeURIComponent(p.foto_url); foto.alt = p.nombre; foto.loading = 'lazy'; foto.decoding = 'async'; foto.width = 400; foto.height = 500;
+    const foto = document.createElement('img'); foto.src = '/img/productos/' + encodeURIComponent(p.foto_url); foto.alt = nombreSinMedida(p.nombre); foto.loading = 'lazy'; foto.decoding = 'async'; foto.width = 400; foto.height = 500;
     foto.addEventListener('error', () => { foto.style.visibility = 'hidden'; });
-    a.append(foto, nodo('span', 'ur-nombre', p.nombre), nodo('span', 'ur-precio', (esIdea ? 'Desde ' : '') + pesos(p.precio) + ' COP'));
+    a.append(foto, nodo('span', 'ur-nombre', nombreSinMedida(p.nombre)), nodo('span', 'ur-precio', (esIdea ? 'Desde ' : '') + pesos(p.precio) + ' COP'));
     if (!esIdea && p.colores && p.colores.length) {
       const puntos = nodo('span', 'ur-puntos'); puntos.setAttribute('role', 'img');
       puntos.setAttribute('aria-label', 'Colores: ' + p.colores.map((c) => (COLORES.find((x) => x[0] === c) || [0, c])[1]).join(', '));

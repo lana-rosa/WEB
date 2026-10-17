@@ -16,6 +16,14 @@ FIXTURE = os.path.join(os.path.dirname(__file__), 'fixtures', 'regalos.json')
 CAPTURAS = sys.argv[1] if len(sys.argv) > 1 else None
 CHROMIUM = '/opt/pw-browsers/chromium' if os.path.exists('/opt/pw-browsers/chromium') else None
 
+
+def sm(n):
+    """Como la web: en los nombres de producto no se muestra la medida en cm (excepto los personalizados)."""
+    if re.match(r'^Amigurumi personalizado \d+ cm$', n): return n
+    n = re.sub(r'\s*\(\s*\d+(?:[.,]\d+)?\s*cm\s*\)', '', n, flags=re.I)
+    n = re.sub(r'\s*\d+(?:[.,]\d+)?\s*cm(?:\s*[*x×]\s*\d+(?:[.,]\d+)?\s*cm)?', '', n, flags=re.I)
+    return re.sub(r'\s{2,}', ' ', n).strip()
+
 CATALOGO = json.load(open(FIXTURE, encoding='utf-8'))
 # El mismo catálogo con las 71 revisiones de Sara aplicadas (herramientas/innovacion/etiquetas.py fixture ...)
 REVISADO = json.load(open(os.path.join(os.path.dirname(__file__), 'fixtures', 'regalos-revisados.json'), encoding='utf-8'))
@@ -53,7 +61,7 @@ def con_etiquetas_revisadas(catalogo, nombres):
     """Copia del catálogo donde los productos indicados tienen las etiquetas revisadas (como si Sara las hubiera aprobado)."""
     c = copy.deepcopy(catalogo)
     for p in c:
-        if p['nombre'] in nombres:
+        if sm(p['nombre']) in nombres:
             p['etiquetas_revisadas'] = True
     return c
 
@@ -206,7 +214,7 @@ def main():
             elegir(page, 'tipo', 'amigurumi')
             while page.locator('.ur-mas').count():
                 page.locator('.ur-mas').first.click()
-            catalogo_por_nombre = {x['nombre']: x for x in CATALOGO}
+            catalogo_por_nombre = {sm(x['nombre']): x for x in CATALOGO}
             malos = []
             for nombre_p, precio_txt in precios_de(page):
                 real = catalogo_por_nombre[nombre_p]['precio']
@@ -242,17 +250,17 @@ def main():
         page.close()
 
         print('\n[Etiquetas revisadas por el taller]')
-        revisados = [x['nombre'] for x in CATALOGO if x['categoria_web'] in ('Llaveros', 'Peluches', 'Macetas') and x['en_existencia']][:24]
+        revisados = [sm(x['nombre']) for x in CATALOGO if x['categoria_web'] in ('Llaveros', 'Peluches', 'Macetas') and x['en_existencia']][:24]
         cat_rev = con_etiquetas_revisadas(CATALOGO, revisados)
         page, err = abrir(pc, base, cat_rev)
         verificar('con 24 productos revisados aparecen los filtros de ocasión y «para quién» (%d grupos)' % page.locator('#regalar-raiz .ur-grupo').count(), page.locator('#regalar-raiz .ur-grupo').count() == 7)
         elegir(page, 'ocasion', 'dia_madre')
         nombres = [n for n, _ in precios_de(page)]
-        esperados = [x['nombre'] for x in cat_rev if x['etiquetas_revisadas'] and 'dia_madre' in x['ocasiones'] and not x['personalizable_base']]
+        esperados = [sm(x['nombre']) for x in cat_rev if x['etiquetas_revisadas'] and 'dia_madre' in x['ocasiones'] and not x['personalizable_base']]
         # Los 3 «Amigurumi personalizado» (ideas) siempre se ofrecen: se quitan de la comparación
         solo_productos = [n for n in nombres if not n.startswith('Amigurumi personalizado')]
         verificar('R3 con «Día de la madre» solo salen productos con esa etiqueta revisada', sorted(solo_productos) == sorted(esperados) and len(esperados) > 0, (sorted(solo_productos)[:4], sorted(esperados)[:4]))
-        sin_revisar_con_etiqueta = [x['nombre'] for x in cat_rev if not x['etiquetas_revisadas'] and 'dia_madre' in x['ocasiones'] and not x['personalizable_base']]
+        sin_revisar_con_etiqueta = [sm(x['nombre']) for x in cat_rev if not x['etiquetas_revisadas'] and 'dia_madre' in x['ocasiones'] and not x['personalizable_base']]
         verificar('R3 los productos con etiqueta propuesta pero sin revisar (p. ej. «Oveja con Vestido 23cm») no aparecen', len(sin_revisar_con_etiqueta) > 0 and not set(sin_revisar_con_etiqueta) & set(solo_productos), set(sin_revisar_con_etiqueta) & set(solo_productos))
         page.close()
 
@@ -277,18 +285,19 @@ def main():
             for v, _t in opciones[clave]:
                 elegir(page, clave, v)
                 vistos = nombres_visibles()
-                esperados = sorted(x['nombre'] for x in REVISADO if x['etiquetas_revisadas'] and v in x[campo] and not x['personalizable_base'])
+                esperados = sorted(sm(x['nombre']) for x in REVISADO if x['etiquetas_revisadas'] and v in x[campo] and not x['personalizable_base'])
                 if vistos != esperados: malos.append((clave, v, len(vistos), len(esperados)))
                 page.click('#regalar-raiz .ur-reiniciar')
         verificar('cada una de las %d opciones de ocasión y destinatario muestra exactamente los productos que tienen esa etiqueta' % (len(opciones['ocasion']) + len(opciones['destinatario'])), not malos, malos)
         for clave, v, esperado in (('ocasion', 'mundial', ['Lionel Messi Copa Mundial 20cm', 'Llavero Balón Colombia']), ('ocasion', 'diente', ['Ratón Peréz 28cm']), ('ocasion', 'dia_ingeniero', ['Ingeniero Civil 22cm']), ('destinatario', 'fan_futbol', ['Lionel Messi Copa Mundial 20cm', 'Llavero Balón Colombia'])):
             elegir(page, clave, v)
             vistos = nombres_visibles()
+            esperado = [sm(x) for x in esperado]
             verificar('«%s» → %s' % (dict(opciones[clave])[v], ', '.join(esperado)), vistos == sorted(esperado), vistos)
             page.click('#regalar-raiz .ur-reiniciar')
         elegir(page, 'destinatario', 'mama'); elegir(page, 'presupuesto', 'p3'); elegir(page, 'disponibilidad', 'ya')
         vistos = nombres_visibles()
-        esperados = sorted(x['nombre'] for x in REVISADO if 'mama' in x['destinatarios'] and 50000 < x['precio'] <= 100000 and x['en_existencia'] and not x['personalizable_base'])
+        esperados = sorted(sm(x['nombre']) for x in REVISADO if 'mama' in x['destinatarios'] and 50000 < x['precio'] <= 100000 and x['en_existencia'] and not x['personalizable_base'])
         verificar('combinado: para mamá + $50.000 a $100.000 + ya (%d productos, los del catálogo)' % len(esperados), vistos == esperados, (vistos, esperados))
         page.select_option('select[data-clave="presupuesto"]', ''); abrir_mas(page) or page.select_option('select[data-clave="disponibilidad"]', ''); elegir(page, 'destinatario', 'tu_mismo')
         verificar('«Para mí» (solo hay personalizados): explica y muestra las ideas para personalizar', page.locator('.ur-vacio').count() == 1 and tarjetas(page, 'Ideas para personalizar').count() == 3)
@@ -366,7 +375,7 @@ def main():
         page.wait_for_selector('#regalar-raiz .ur-marco', timeout=8000)
         verificar('del inicio llega a /universo-rosina.html?casa=crochet&tipo=peluche&presupuesto=p2#regalar', page.url.endswith('/universo-rosina.html?casa=crochet&tipo=peluche&presupuesto=p2#regalar'), page.url)
         verificar('las listas del recomendador llegan ya elegidas (Peluche y $20.000 a $50.000)', lista(page, 'tipo').input_value() == 'peluche' and lista(page, 'presupuesto').input_value() == 'p2' and page.locator('#regalar-raiz .ur-select.ur-elegido').count() == 2)
-        esperados = sorted(x['nombre'] for x in CATALOGO if x['categoria_web'] == 'Peluches' and 20000 < x['precio'] <= 50000 and not x['personalizable_base'])
+        esperados = sorted(sm(x['nombre']) for x in CATALOGO if x['categoria_web'] == 'Peluches' and 20000 < x['precio'] <= 50000 and not x['personalizable_base'])
         mostrados = sorted(n for n, _ in precios_de(page))
         verificar('solo salen peluches de $20.001 a $50.000, los mismos del catálogo (%d)' % len(esperados), mostrados == esperados and len(esperados) > 0, (mostrados[:3], esperados[:3]))
         page.close()

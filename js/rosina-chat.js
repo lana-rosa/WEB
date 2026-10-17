@@ -68,14 +68,15 @@
   // y el enlace se construye con el id, no con una dirección que venga en la respuesta.
   function tarjetas(lista) {
     if (!Array.isArray(lista) || !lista.length) return;
-    var cont = document.createElement('div'); cont.className = 'rc-cards';
+    function nombreSinMedida(n) { n = String(n == null ? '' : n); if (/^Amigurumi personalizado \d+ cm$/.test(n)) return n; return n.replace(/\s*\(\s*\d+(?:[.,]\d+)?\s*cm\s*\)/gi, '').replace(/\s*\d+(?:[.,]\d+)?\s*cm(?:\s*[*x×]\s*\d+(?:[.,]\d+)?\s*cm)?/gi, '').replace(/\s{2,}/g, ' ').trim(); }
+  var cont = document.createElement('div'); cont.className = 'rc-cards';
     lista.filter(function (p) { return p && typeof p.id === 'string' && typeof p.nombre === 'string'; }).slice(0, 3).forEach(function (p, i) {
       var a = document.createElement('a'); a.className = 'rc-card'; a.href = '/tienda.html?producto=' + encodeURIComponent(p.id); a.target = '_blank'; a.rel = 'noopener';
       var img = document.createElement('img'); img.alt = ''; img.width = 56; img.height = 70; img.loading = 'lazy'; img.decoding = 'async';
       img.src = '/img/productos/' + encodeURIComponent(p.foto || ''); img.addEventListener('error', function () { img.style.visibility = 'hidden'; });
       img.addEventListener('load', function () { msgs.scrollTop = msgs.scrollHeight; });
       var txt = document.createElement('span');
-      var nombre = document.createElement('b'); nombre.textContent = p.nombre;
+      var nombre = document.createElement('b'); nombre.textContent = nombreSinMedida(p.nombre);
       var precio = document.createElement('span'); precio.className = 'rc-p'; precio.textContent = (p.estado === 'personalizado' ? 'Desde ' : '') + pesos(p.precio) + ' COP';
       var est = document.createElement('span'); est.className = 'rc-e' + (p.estado === 'existencia' ? '' : ' enc');
       est.textContent = p.estado === 'existencia' ? 'En existencia' : p.estado === 'personalizado' ? 'Se teje a partir de tu foto o idea' : 'Por encargo' + (typeof p.elaboracion === 'string' && p.elaboracion ? ' · ' + p.elaboracion : '');

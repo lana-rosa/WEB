@@ -299,7 +299,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- PIE:FIN -->
 
 <script type="module">
-import { iniciarRegalar } from '/js/universo/regalar.js';
+import { iniciarRegalar } from '/js/universo/regalar.js?v=2';
 var casaUr = document.documentElement.getAttribute('data-ur-casa');
 if (casaUr && casaUr !== 'crochet') { var secR = document.getElementById('regalar'); if (secR) secR.remove(); }
 if (document.getElementById('regalar-raiz')) iniciarRegalar(document.getElementById('regalar-raiz'));
@@ -490,6 +490,6 @@ document.querySelectorAll('.recorrido').forEach(function (a) { a.addEventListene
 </script>
 <script type="module" src="/js/cuenta.js"></script>
 <script type="module" src="/js/pago.js?v=29"></script>
-<script src="/js/animaciones.js?v=15" defer></script>
+<script src="/js/animaciones.js?v=16" defer></script>
 </body>
 </html>

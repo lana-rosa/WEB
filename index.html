@@ -571,18 +571,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="/img/triptico-testimonios.webp" srcset="/img/triptico-testimonios-800.webp 800w, /img/triptico-testimonios.webp 1400w" sizes="(max-width: 860px) 100vw, 640px" width="1400" height="825" alt="Tres amigurumis personalizados terminados, cada uno sostenido junto a la foto de referencia usada para tejerlo" fetchpriority="high" decoding="async">
         <figcaption>Cada pieza nace de una foto real.</figcaption>
       </figure>
-      <script>
-      // La foto principal usa la misma aparición suave (.rev / .rev-in) que las fotos de más abajo (Amigurumis, Peluches, Llaveros…):
-      // si todavía no llegó, queda a la espera y entra al terminar de cargar; si ya estaba lista (visita repetida), se muestra de inmediato.
-      (function () {
-        var img = document.querySelector('.ed-hero-foto img');
-        if (!img || img.complete) return;
-        img.classList.add('rev');
-        var listo = function () { img.classList.add('rev-in'); };
-        img.addEventListener('load', listo); img.addEventListener('error', listo);
-        setTimeout(listo, 3500);
-      })();
-      </script>
     </div>
   </section>
 
@@ -1147,6 +1135,6 @@ window.addEventListener('load', function () {
 });
 </script>
 <link rel="prefetch" href="/tienda.html">
-<script src="/js/animaciones.js?v=15" defer></script>
+<script src="/js/animaciones.js?v=16" defer></script>
 </body>
 </html>
