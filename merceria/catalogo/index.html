@@ -256,7 +256,7 @@ a.material-merceria:hover { border-color: var(--rosa-principal); transform: tran
 .aviso-proximamente h2 { font-size: 1.35rem; margin: 0 0 6px; }
 .aviso-proximamente p { margin: 0 0 12px; }
 .etiqueta-proximamente { color: var(--rosa-texto); font-weight: 800; margin: 0 0 4px !important; }
-.aviso-proximamente .boton-primario { display: inline-block; background: var(--rosa-boton); color: var(--sobre-principal); text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
+.aviso-proximamente .boton-primario { border: 0; cursor: pointer; font-family: inherit; font-size: 1rem; display: inline-block; background: var(--rosa-boton); color: var(--sobre-principal); text-decoration: none; padding: 11px 24px; border-radius: 999px; font-weight: 700; }
 .aviso-proximamente .boton-primario:hover { background: var(--rosa-boton-hover); }
 @media (max-width: 600px) { .aviso-proximamente { flex-direction: column; text-align: center; padding: 18px; } .aviso-proximamente img { width: 110px; } }
 /* Puentes entre secciones del ecosistema Lana Rosa */
@@ -436,6 +436,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="etiqueta-proximamente">Muy pronto</p>
       <h2>Nuestra mercería en línea está por abrir</h2>
       <p>Muy pronto podrás comprar aquí las lanas, hilos, agujas y accesorios que usamos en Lana Rosa.</p>
+      <button type="button" class="boton-primario" data-aviso-merceria>🔔 Avísame cuando abra</button>
     </div>
   </section>
 
@@ -1122,6 +1123,7 @@ function datosEstructurados(lista) {
 </script>
 <script type="module" src="/js/cuenta.js"></script>
 <script type="module" src="/js/pago.js?v=29"></script>
+<script type="module" src="/js/aviso-merceria.js?v=1"></script>
 <script src="/js/carrito-agregado.js?v=2" defer></script>
 <script src="/js/animaciones.js?v=16" defer></script>
 <script>
