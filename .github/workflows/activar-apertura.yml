@@ -32,3 +32,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "Tienda física abierta: textos estáticos (JSON-LD, llms.txt)"
           git push origin main
+
+  # el push con el token del flujo no lanza otros flujos: se publica el sitio desde aquí
+  publicar:
+    needs: activar
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/publicar-sitio.yml
