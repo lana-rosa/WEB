@@ -1,0 +1,68 @@
+name: Publicar el sitio
+
+# Publica en GitHub Pages SOLO los archivos del sitio. Deja fuera lo interno: herramientas/, PENDIENTES.md, CLAUDE.md,
+# cualquier .md, .github/ y .tmp/ (antes Pages publicaba todo el repositorio desde la rama main).
+# Funciona cuando Settings → Pages → Source está en «GitHub Actions». Mientras siga en «Deploy from a branch»
+# este flujo no hace nada (solo deja un aviso) y Pages sigue publicando como antes.
+# Se lanza solo al llegar cambios a main, a mano con «Run workflow», o desde otro flujo (activar-apertura.yml).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: ¿Pages está listo para publicar con GitHub Actions?
+        id: modo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tipo=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type 2>/dev/null || echo desconocido)
+          echo "Pages publica con: $tipo"
+          if [ "$tipo" = "legacy" ]; then
+            echo "::notice::Pages todavía publica desde la rama (Deploy from a branch). Cuando se cambie Settings → Pages → Source a «GitHub Actions», este flujo empieza a publicar."
+            echo "activo=no" >> "$GITHUB_OUTPUT"
+          else
+            echo "activo=si" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Armar la carpeta del sitio (sin herramientas ni notas internas)
+        if: steps.modo.outputs.activo == 'si'
+        run: |
+          mkdir _site
+          tar --exclude='./.git' --exclude='./.github' --exclude='./.tmp' --exclude='./_site' --exclude='./herramientas' \
+              --exclude='./PENDIENTES.md' --exclude='./CLAUDE.md' --exclude='./.gitignore' --exclude='*.md' --exclude='__pycache__' \
+              -cf - . | tar -xf - -C _site
+          touch _site/.nojekyll
+          for interno in herramientas PENDIENTES.md CLAUDE.md .git .github .tmp; do
+            if [ -e "_site/$interno" ]; then echo "::error::_site/$interno no debería publicarse"; exit 1; fi
+          done
+          test -f _site/index.html || { echo "::error::Falta _site/index.html"; exit 1; }
+          test -f _site/CNAME || { echo "::error::Falta _site/CNAME"; exit 1; }
+          echo "Archivos del sitio: $(find _site -type f | wc -l)"
+      - uses: actions/configure-pages@v5
+        if: steps.modo.outputs.activo == 'si'
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.modo.outputs.activo == 'si'
+        with:
+          path: _site
+      - id: deploy
+        if: steps.modo.outputs.activo == 'si'
+        uses: actions/deploy-pages@v4

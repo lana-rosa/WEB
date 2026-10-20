@@ -1,6 +1,6 @@
 # Lana Rosa Crochet — web (lanarosacrochet.com)
 
-Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (dominio en `CNAME`). No hay proceso de compilación: cada página `.html` lleva su propio CSS y JS en línea. La dueña es Sara; escribe en español (Colombia).
+Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (dominio en `CNAME`). **Publicación (20-oct-2026):** `.github/workflows/publicar-sitio.yml` publica solo los archivos del sitio (sin `herramientas/`, `PENDIENTES.md`, `CLAUDE.md` ni ningún `.md`) cuando Settings → Pages → Source está en «GitHub Actions»; mientras siga en «Deploy from a branch» no hace nada. Si agregas una carpeta o archivo interno nuevo, agrégalo a las exclusiones del `tar` de ese flujo. No hay proceso de compilación: cada página `.html` lleva su propio CSS y JS en línea. La dueña es Sara; escribe en español (Colombia).
 
 ## Antes de empezar
 - **Lee `PENDIENTES.md`**: es la lista de tareas pendientes acordadas con Sara. Al terminar una, márcala con `[x]`; agrega ahí lo nuevo que quede pendiente.

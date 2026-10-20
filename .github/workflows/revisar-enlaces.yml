@@ -5,7 +5,7 @@ name: Revisar enlaces en producción
 # (/merceria/merceria/, /academy/academy/) o un error de red. No cambia nada del sitio.
 on:
   workflow_run:
-    workflows: ["pages build and deployment"]
+    workflows: ["pages build and deployment", "Publicar el sitio"]
     types: [completed]
   workflow_dispatch:
   schedule:
