@@ -137,8 +137,8 @@ html[data-casa="academy"] .nav-principal li.g-aprende a:hover, html[data-casa="a
 
 .pie-rico { background: var(--tinta); color: var(--blanco-hueso); padding: 44px 0 20px; font-size: 0.88rem; }
 .pie-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.4fr; gap: 28px 32px; margin-bottom: 28px; }
-.pie-logo-wrap { background: #fff; display: inline-block; padding: 4px 8px; border-radius: 12px; margin-bottom: 12px; }
-.pie-logo-wrap img { height: 52px; display: block; }
+.pie-logo-wrap { background: #fff; display: inline-block; padding: 6px 12px; border-radius: 16px; margin-bottom: 12px; }
+.pie-logo-wrap img { height: 96px; width: auto; display: block; }
 .pie-rico p { opacity: 0.85; margin: 0 0 12px; max-width: 34ch; }
 .pie-rico h3, .pie-rico .pie-h3 { color: #F7A6CC; font-size: 0.88rem; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; }
 .pie-rico ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
@@ -249,8 +249,10 @@ html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { back
 .pie-casas-mini a span { font-size: 0.85rem; line-height: 1; }
 .pie-casas-mini a:hover { border-color: var(--rosa-medio); }
 .pie-casas-mini a.casa-actual { background: var(--rosa-medio); border-color: var(--rosa-medio); color: #222226; }
-.pie-redes { gap: 6px 16px; }
-.pie-redes a { border: none; padding: 0; font-size: 0.82rem; opacity: 0.85; }
+.pie-redes { gap: 10px; }
+.pie-redes a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: none; padding: 0; border-radius: 12px; background: #fff; color: #45454A; opacity: 1; transition: transform .12s ease, background .12s ease; }
+.pie-redes a:hover, .pie-redes a:focus-visible { background: var(--rosa-medio); transform: translateY(-2px); outline: none; }
+.pie-redes svg { display: block; }
 .pie-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 32px; margin-bottom: 18px; }
 .pie-rico ul { gap: 6px; }
 .pie-rico .pie-pagos { display: block; max-width: none; margin: 0; font-size: 0.8rem; opacity: 0.8; }
