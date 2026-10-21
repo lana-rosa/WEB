@@ -2,7 +2,7 @@
 
 Reglas: voz cercana de Lana Rosa, solo información real de la web, sin inventar testimonios ni datos.
 **Nunca** Navidad, fechas de santos (incluido San Valentín) ni Halloween. Sí: Amor y amistad, Día de la madre, Día del padre, cumpleaños, graduaciones.
-Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba del todo en `revista.html`, `BlogPosting` en el JSON-LD, enlaces a Personaliza, Tienda, Mercería, Academy o el Rincón según el tema.
+Cada artículo (desde el 17-oct-2026): archivo `herramientas/revista/articulos/<slug>.html` + su slug en `ORDEN` de `generar_revista.py`, luego `python3 herramientas/generar_revista.py` y `python3 herramientas/sincronizar_encabezado.py` (en `revista.html` solo está la portada de tarjetas), `BlogPosting` en el JSON-LD, enlaces a Personaliza, Tienda, Mercería, Academy o el Rincón según el tema.
 
 ## Publicados
 - [x] Cómo empezar a tejer crochet desde cero (crochet)
@@ -22,6 +22,8 @@ Cada artículo: `<article class="post" id="..." data-categorias="...">` arriba d
 - [x] Conoce a Rosina, la ovejita de Lana Rosa (mundo Rosina) — 7-oct-2026. Se escribió solo con lo que ya dice la web; la historia de cómo nació Rosina queda pendiente de que Sara la cuente (ver PENDIENTES.md).
 - [x] Errores comunes al empezar a tejer y cómo arreglarlos (crochet, Academy) — 8-oct-2026
 - [x] Colores que combinan en tus amigurumis: ideas con las paletas de Rosina (crochet, Mercería y Academy) — 14-oct-2026. Los tres temas estacionales de «Próximos» no correspondían a la fecha (abril, mayo o junio, agosto); se tomó este de la lista de Mercería.
+
+- [x] Los 5 puntos básicos del crochet que debes conocer (crochet, Academy) — 21-oct-2026. Los tres temas estacionales de «Próximos» no correspondían a la fecha; se tomó este de la lista de Academy (solo con lo que dice el glosario de Rosina). El slug se agregó a `ORDEN` de `generar_revista.py` (al principio, más nuevo primero).
 
 ## Próximos (en este orden)
 
