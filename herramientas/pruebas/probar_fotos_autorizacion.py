@@ -57,7 +57,7 @@ with sync_playwright() as p:
         ctx, pg = abrir(b, ancho)
         v('la casilla de fotos está oculta y no es obligatoria mientras no hay fotos', pg.locator('#acepto-fotos-caja').is_hidden() and not pg.evaluate("document.getElementById('acepto-fotos').required"))
         v('la casilla de datos ya no habla de fotos', 'fotos' not in pg.locator('#acepto-datos + span').inner_text().lower())
-        v('la casilla de publicar sigue siendo opcional y separada', not pg.evaluate("document.getElementById('acepto-publicar').required") and pg.evaluate("document.getElementById('acepto-publicar') !== document.getElementById('acepto-fotos')"))
+        v('ya no hay casilla para publicar la foto del pedido terminado (17-oct: solo se pide guardar las fotos de referencia)', pg.locator('#acepto-publicar').count() == 0 and 'terminado' not in pg.locator('#form-personalizado').inner_text().lower())
 
         pg.set_input_files('#foto', foto)
         v('al adjuntar una foto aparece la casilla y es obligatoria', pg.locator('#acepto-fotos-caja').is_visible() and pg.evaluate("document.getElementById('acepto-fotos').required"))
@@ -75,7 +75,7 @@ with sync_playwright() as p:
         v('con la autorización se sube la foto', len(pg.subidas) == 1, pg.subidas)
         c = pg.rpc[0] if pg.rpc else {}
         v('al servidor viajan las autorizaciones: datos, guardar fotos y la versión del texto', c.get('p_acepta_datos') is True and c.get('p_acepta_fotos') is True and c.get('p_version_texto') == '2026-10-17b', c)
-        v('publicar la foto del pedido terminado viaja como NO por defecto', c.get('p_acepta_publicar') is False, c)
+        v('ya no se envía ninguna autorización de publicar (el servidor la guarda como NO)', 'p_acepta_publicar' not in c, c)
         v('el mensaje ya no lleva la constancia escrita por la página (la escribe el servidor)', 'Autorizaciones' not in (c.get('p_mensaje') or ''), c.get('p_mensaje'))
         v('tras enviar, la casilla vuelve a esconderse', pg.locator('#acepto-fotos-caja').is_hidden())
         v('sin errores de JavaScript', not pg.errores, pg.errores)

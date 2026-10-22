@@ -1,0 +1,8 @@
+-- 22-oct-2026 (aplicada en Supabase): en los tres «Amigurumi personalizado N cm» se quitó «detalle normal» de la descripción de la ficha
+-- (descripcion_web) y del feed de Google Shopping (descripcion_google); ahora dice «Precio base de una pieza con detalles como los de
+-- la imagen de muestra; si quieres más detalle (...), te lo confirmamos antes de empezar y cobramos solo la diferencia.» (igual que Personaliza).
+-- Nota: el MCP de Supabase se quedó esperando con la frase larga completa en un solo UPDATE; se aplicó por pasos con textos cortos.
+update inventario_items set descripcion_web = replace(descripcion_web, 'detalle normal', 'detalles como los de la imagen de muestra') where nombre like 'Amigurumi personalizado % cm';
+update inventario_items set descripcion_web = replace(replace(descripcion_web, 'El precio es el base de una pieza', 'Precio base de una pieza'), 'si tu diseño necesita más detalle', 'si quieres más detalle') where nombre like 'Amigurumi personalizado % cm';
+update inventario_items set descripcion_web = trim(replace(descripcion_web, 'antes de empezar.', 'antes de empezar y cobramos solo la diferencia.')) where nombre like 'Amigurumi personalizado % cm' and descripcion_web not like '%cobramos solo la diferencia%';
+update web_google_shopping g set descripcion_google = replace(g.descripcion_google, 'Precio base de una pieza con detalle normal; si el diseño necesita más detalle te lo confirmamos antes de empezar.', 'Precio base de una pieza con detalles como los de la imagen de muestra; si quieres más detalle te lo confirmamos antes de empezar y cobramos solo la diferencia.') where g.item_id in (select id from inventario_items where nombre like 'Amigurumi personalizado % cm');
