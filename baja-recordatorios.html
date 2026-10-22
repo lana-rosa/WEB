@@ -8,23 +8,25 @@
 <link rel="icon" href="/img/favicon-256.png">
 <link rel="canonical" href="https://lanarosacrochet.com/baja-recordatorios.html">
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
-<link rel="stylesheet" href="/css/comun.css">
+<link rel="stylesheet" href="/css/comun.css?v=37">
 <style>
-:root { --rosa-texto: #C81B6D; --rosa-boton: #E01E79; --sobre-principal: #fff; --rosa-principal: #E74E96; --rosa-suave: #FBE4EF; --blanco-hueso: #FDFCFA; --tinta: #45454A; --tinta-suave: #64646A; }
+:root { --rosa-texto: #C81B6D; --rosa-boton: #E01E79; --sobre-principal: #fff; --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF; --blanco: #FFFFFF; --blanco-hueso: #FDFCFA; --tinta: #45454A; --tinta-suave: #64646A; --fuente-titulo: 'DynaPuff', sans-serif; }
 body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; padding: 0; box-sizing: border-box; background: #FDFCFA; color: #45454A; font-family: 'Hanken Grotesk', Arial, sans-serif; line-height: 1.5; }
 .tarjeta { max-width: 460px; margin: 24px auto; width: calc(100% - 40px); background: #fff; border-radius: 22px; padding: 34px 28px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
 .tarjeta img { height: 56px; border-radius: 10px; margin-bottom: 14px; }
 h1 { color: #C81B6D; font-size: 1.4rem; margin: 0 0 10px; }
-p { margin: 0 0 18px; }
+.tarjeta p { margin: 0 0 18px; }
 a.boton { display: inline-block; background: #E01E79; color: #fff; text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 700; }
 a.boton:focus-visible { outline: 3px solid #C81B6D; outline-offset: 2px; }
 </style>
 </head>
 <body>
-<main class="tarjeta" role="status" aria-live="polite">
+<main class="tarjeta">
   <img src="/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" width="150" height="56">
-  <h1 id="titulo">Un momento…</h1>
-  <p id="texto">Estamos procesando tu solicitud.</p>
+  <div role="status" aria-live="polite">
+    <h1 id="titulo">Un momento…</h1>
+    <p id="texto">Estamos procesando tu solicitud.</p>
+  </div>
   <a class="boton" href="https://lanarosacrochet.com/">Volver a Lana Rosa</a>
 </main>
 <!-- PIE:INICIO (generado) -->

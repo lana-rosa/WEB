@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
-<link rel="stylesheet" href="/css/comun.css?v=35">
+<link rel="stylesheet" href="/css/comun.css?v=37">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <style>
 :root {
@@ -55,7 +55,7 @@ h2 { font-size: 1.3rem; color: var(--rosa-texto); }
 main > :first-child { padding-top: 40px !important; }
 @media (max-width: 520px) { .rosina-encabezado { display: none; } }
 </style>
-<link rel="stylesheet" href="/css/pieza.css?v=2">
+<link rel="stylesheet" href="/css/pieza.css?v=3">
 <link rel="stylesheet" href="/css/visor3d.css?v=1">
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-256.png">
@@ -348,7 +348,7 @@ iniciarPieza(document.getElementById('pieza-raiz'));
       div.className = 'item-carrito';
       div.innerHTML =
         '<div class="info-item-carrito">' +
-          '<h4>' + item.nombre + '</h4>' +
+          '<h4>' + String(item.nombre).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }) + '</h4>' +
           '<p class="precio-item-carrito">' + formatoCOP(item.precio) + ' c/u</p>' +
           '<div class="controles-cantidad">' +
             '<button type="button" data-accion="restar" data-indice="' + indice + '">−</button>' +
@@ -394,6 +394,6 @@ iniciarPieza(document.getElementById('pieza-raiz'));
 </script>
 <script type="module" src="/js/cuenta.js"></script>
 <script type="module" src="/js/pago.js?v=29"></script>
-<script src="/js/animaciones.js?v=16" defer></script>
+<script src="/js/animaciones.js?v=18" defer></script>
 </body>
 </html>

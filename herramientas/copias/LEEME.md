@@ -4,7 +4,7 @@
 
 **Por qué cifrada:** los repositorios son públicos; sin la contraseña el archivo no sirve para nadie. **Sin la contraseña tampoco sirve para Sara: guárdala en su gestor de contraseñas.**
 
-**Qué NO incluye:** las fotos y archivos de los buckets de Storage (solo su lista), el código de las Edge Functions (está en el repositorio) ni los secretos de Supabase.
+**Qué NO incluye:** las fotos y archivos de los buckets de Storage (solo su lista), el código de las Edge Functions (se guarda aparte en `herramientas/supabase-funciones/`; ver su LEEME) ni los secretos de Supabase.
 
 ## Puesta en marcha (una sola vez, la hace Sara)
 1. **Contraseña de las copias:** inventar una larga (mínimo 20 caracteres) y guardarla en un gestor de contraseñas.

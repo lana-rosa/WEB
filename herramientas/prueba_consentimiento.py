@@ -56,7 +56,7 @@ with sync_playwright() as p:
     ctx.close()
     # 6 navegación, Personaliza, cuenta y pago
     ctx, pg, errs = nuevo(b); pg.goto(BASE + '/personaliza.html'); pg.wait_for_timeout(800); pg.click('button[data-ck=no]')
-    r('6. Personaliza: casilla obligatoria de datos y casilla opcional separada', 'required / opcional', pg.evaluate("[document.getElementById('acepto-datos').required, document.getElementById('acepto-publicar').required, document.getElementById('acepto-publicar').checked]"), pg.evaluate("[document.getElementById('acepto-datos').required, document.getElementById('acepto-publicar').required, document.getElementById('acepto-publicar').checked]") == [True, False, False])
+    r('6. Personaliza: casilla obligatoria de datos (la de publicar la foto se quitó el 22-oct)', 'required / sin casilla de publicar', pg.evaluate("[document.getElementById('acepto-datos').required, document.getElementById('acepto-publicar') === null]"), pg.evaluate("[document.getElementById('acepto-datos').required, document.getElementById('acepto-publicar') === null]") == [True, True])
     pg.goto(BASE + '/cuenta.html'); pg.wait_for_timeout(1000)
     r('6. Inicio de sesión: la página carga y respeta la decisión', 'sin aviso, sin errores', errs, pg.query_selector('.lr-ck') is None and not errs)
     pg.goto(BASE + '/politicas.html#cookies'); pg.wait_for_timeout(600)

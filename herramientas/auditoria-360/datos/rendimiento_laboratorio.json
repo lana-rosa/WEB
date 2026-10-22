@@ -1,0 +1,839 @@
+{
+ "/": {
+  "metricas": {
+   "lcp": 2584,
+   "lcp_el": "IMG",
+   "cls": 0,
+   "largas": 2,
+   "tbt": 259,
+   "nodos": 510,
+   "alto": 8667
+  },
+  "solicitudes": 25,
+  "bytes_sin_comprimir": 832761,
+  "bytes_gzip_estimado": 562657,
+  "por_tipo_gzip": {
+   "html": 49520,
+   "imagen": 391438,
+   "js": 35150,
+   "fuente": 72276,
+   "css": 14273
+  },
+  "mayores": [
+   [
+    "/tienda.html",
+    125189
+   ],
+   [
+    "/img/triptico-testimonios-800.webp",
+    71884
+   ],
+   [
+    "/",
+    70479
+   ],
+   [
+    "/img/inicio/tienda-peluches.webp",
+    68680
+   ],
+   [
+    "/img/inicio/tienda-llaveros.webp",
+    58918
+   ]
+  ],
+  "segundos": 5.5
+ },
+ "/tienda.html": {
+  "metricas": {
+   "lcp": 1492,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 3,
+   "tbt": 176,
+   "nodos": 488,
+   "alto": 5070
+  },
+  "solicitudes": 26,
+  "bytes_sin_comprimir": 740340,
+  "bytes_gzip_estimado": 539460,
+  "por_tipo_gzip": {
+   "html": 31067,
+   "imagen": 391592,
+   "js": 35683,
+   "fuente": 72276,
+   "css": 8842
+  },
+  "mayores": [
+   [
+    "/tienda.html",
+    125189
+   ],
+   [
+    "/img/tienda-categorias/bolsos.webp",
+    103752
+   ],
+   [
+    "/img/tienda-categorias/separadores-de-libros.webp",
+    62802
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/img/tienda-categorias/peluches.webp",
+    46880
+   ]
+  ],
+  "segundos": 5.8
+ },
+ "/personaliza.html": {
+  "metricas": {
+   "lcp": 1564,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 6,
+   "tbt": 343,
+   "nodos": 588,
+   "alto": 5975
+  },
+  "solicitudes": 29,
+  "bytes_sin_comprimir": 881306,
+  "bytes_gzip_estimado": 535254,
+  "por_tipo_gzip": {
+   "js": 97921,
+   "html": 21545,
+   "imagen": 330880,
+   "fuente": 72276,
+   "css": 12632
+  },
+  "mayores": [
+   [
+    "/js/vendor/supabase.js",
+    222353
+   ],
+   [
+    "/personaliza.html",
+    79283
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/img/foto-amigurumi/pareja.webp",
+    44946
+   ],
+   [
+    "/img/personalizados/ave.webp",
+    38538
+   ]
+  ],
+  "segundos": 6.6
+ },
+ "/merceria/": {
+  "metricas": {
+   "lcp": 1788,
+   "lcp_el": "IMG",
+   "cls": 0,
+   "largas": 4,
+   "tbt": 395,
+   "nodos": 548,
+   "alto": 9504
+  },
+  "solicitudes": 19,
+  "bytes_sin_comprimir": 402863,
+  "bytes_gzip_estimado": 221090,
+  "por_tipo_gzip": {
+   "html": 18058,
+   "js": 36636,
+   "imagen": 79847,
+   "fuente": 72276,
+   "css": 14273
+  },
+  "mayores": [
+   [
+    "/merceria/",
+    73967
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/img/inicio/tejer-detalle.webp",
+    45154
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ]
+  ],
+  "segundos": 4.2
+ },
+ "/merceria/catalogo/": {
+  "metricas": {
+   "lcp": 1404,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 1,
+   "tbt": 122,
+   "nodos": 393,
+   "alto": 2643
+  },
+  "solicitudes": 17,
+  "bytes_sin_comprimir": 342705,
+  "bytes_gzip_estimado": 174408,
+  "por_tipo_gzip": {
+   "html": 20072,
+   "js": 38525,
+   "fuente": 72276,
+   "css": 8842,
+   "imagen": 34693
+  },
+  "mayores": [
+   [
+    "/merceria/catalogo/",
+    78005
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ],
+   [
+    "/css/comun.css",
+    30377
+   ]
+  ],
+  "segundos": 3.8
+ },
+ "/academy/": {
+  "metricas": {
+   "lcp": 2096,
+   "lcp_el": "IMG",
+   "cls": 0,
+   "largas": 4,
+   "tbt": 370,
+   "nodos": 412,
+   "alto": 7926
+  },
+  "solicitudes": 18,
+  "bytes_sin_comprimir": 407306,
+  "bytes_gzip_estimado": 247344,
+  "por_tipo_gzip": {
+   "imagen": 110594,
+   "js": 37570,
+   "html": 12631,
+   "fuente": 72276,
+   "css": 14273
+  },
+  "mayores": [
+   [
+    "/img/taller-tejiendo.webp",
+    74984
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/academy/",
+    44545
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ]
+  ],
+  "segundos": 4.2
+ },
+ "/academy/talleres/": {
+  "metricas": {
+   "lcp": 1364,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 1,
+   "tbt": 105,
+   "nodos": 292,
+   "alto": 3110
+  },
+  "solicitudes": 15,
+  "bytes_sin_comprimir": 287370,
+  "bytes_gzip_estimado": 160714,
+  "por_tipo_gzip": {
+   "js": 33713,
+   "fuente": 72276,
+   "html": 10273,
+   "css": 8842,
+   "imagen": 35610
+  },
+  "mayores": [
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/academy/talleres/",
+    34893
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ],
+   [
+    "/css/comun.css",
+    30377
+   ]
+  ],
+  "segundos": 3.6
+ },
+ "/universo-rosina.html": {
+  "metricas": {
+   "lcp": 1428,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 3,
+   "tbt": 176,
+   "nodos": 340,
+   "alto": 5560
+  },
+  "solicitudes": 19,
+  "bytes_sin_comprimir": 322449,
+  "bytes_gzip_estimado": 170725,
+  "por_tipo_gzip": {
+   "js": 42420,
+   "fuente": 72276,
+   "html": 10153,
+   "css": 12632,
+   "imagen": 33244
+  },
+  "mayores": [
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ],
+   [
+    "/universo-rosina.html",
+    33660
+   ],
+   [
+    "/css/comun.css",
+    30377
+   ]
+  ],
+  "segundos": 3.8
+ },
+ "/revista.html": {
+  "metricas": {
+   "lcp": 1412,
+   "lcp_el": "H1",
+   "cls": 0,
+   "largas": 1,
+   "tbt": 154,
+   "nodos": 358,
+   "alto": 3889
+  },
+  "solicitudes": 15,
+  "bytes_sin_comprimir": 307953,
+  "bytes_gzip_estimado": 160607,
+  "por_tipo_gzip": {
+   "js": 32776,
+   "html": 13469,
+   "fuente": 72276,
+   "css": 8842,
+   "imagen": 33244
+  },
+  "mayores": [
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/revista.html",
+    50528
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ],
+   [
+    "/css/comun.css",
+    30377
+   ]
+  ],
+  "segundos": 3.6
+ },
+ "/revista/anillo-magico/": {
+  "metricas": {
+   "lcp": 1388,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 1,
+   "tbt": 128,
+   "nodos": 280,
+   "alto": 3651
+  },
+  "solicitudes": 16,
+  "bytes_sin_comprimir": 304531,
+  "bytes_gzip_estimado": 167622,
+  "por_tipo_gzip": {
+   "js": 32776,
+   "html": 11040,
+   "fuente": 72276,
+   "css": 8842,
+   "imagen": 42688
+  },
+  "mayores": [
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/revista/anillo-magico/",
+    37662
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ],
+   [
+    "/css/comun.css",
+    30377
+   ]
+  ],
+  "segundos": 3.7
+ },
+ "/politicas.html": {
+  "metricas": {
+   "lcp": 1508,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 3,
+   "tbt": 314,
+   "nodos": 601,
+   "alto": 41882
+  },
+  "solicitudes": 15,
+  "bytes_sin_comprimir": 337306,
+  "bytes_gzip_estimado": 169433,
+  "por_tipo_gzip": {
+   "html": 22295,
+   "js": 32776,
+   "fuente": 72276,
+   "css": 8842,
+   "imagen": 33244
+  },
+  "mayores": [
+   [
+    "/politicas.html",
+    79881
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ],
+   [
+    "/css/comun.css",
+    30377
+   ]
+  ],
+  "segundos": 3.9
+ },
+ "/cuenta.html": {
+  "metricas": {
+   "lcp": 1632,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 2,
+   "tbt": 117,
+   "nodos": 581,
+   "alto": 2344
+  },
+  "solicitudes": 17,
+  "bytes_sin_comprimir": 416589,
+  "bytes_gzip_estimado": 226886,
+  "por_tipo_gzip": {
+   "html": 28816,
+   "js": 32776,
+   "imagen": 84176,
+   "fuente": 72276,
+   "css": 8842
+  },
+  "mayores": [
+   [
+    "/cuenta.html",
+    108232
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/img/logo-sena.png",
+    46772
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ]
+  ],
+  "segundos": 4.1
+ },
+ "/agenda-rosina.html": {
+  "metricas": {
+   "lcp": 1912,
+   "lcp_el": "IMG.portada-rosina",
+   "cls": 0,
+   "largas": 5,
+   "tbt": 281,
+   "nodos": 4051,
+   "alto": 2984
+  },
+  "solicitudes": 18,
+  "bytes_sin_comprimir": 697434,
+  "bytes_gzip_estimado": 354699,
+  "por_tipo_gzip": {
+   "html": 76181,
+   "js": 30243,
+   "imagen": 167157,
+   "fuente": 72276,
+   "css": 8842
+  },
+  "mayores": [
+   [
+    "/agenda-rosina.html",
+    322060
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/img/logo-lana-rosa-nuevo.webp",
+    52160
+   ],
+   [
+    "/img/logo-lana-rosa-nuevo.jpg",
+    40221
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ]
+  ],
+  "segundos": 6.0
+ },
+ "/recursos-rosina.html": {
+  "metricas": {
+   "lcp": 1844,
+   "lcp_el": "IMG",
+   "cls": 0.0466686767578125,
+   "largas": 6,
+   "tbt": 496,
+   "nodos": 1793,
+   "alto": 6373
+  },
+  "solicitudes": 19,
+  "bytes_sin_comprimir": 550214,
+  "bytes_gzip_estimado": 316304,
+  "por_tipo_gzip": {
+   "html": 29433,
+   "js": 32826,
+   "imagen": 153339,
+   "fuente": 91864,
+   "css": 8842
+  },
+  "mayores": [
+   [
+    "/recursos-rosina.html",
+    162375
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/img/logo-lana-rosa.jpg",
+    46071
+   ],
+   [
+    "/img/rincon-de-rosina-1000.webp",
+    46038
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ]
+  ],
+  "segundos": 5.2
+ },
+ "/calculadoras-rosina.html": {
+  "metricas": {
+   "lcp": 1752,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 2,
+   "tbt": 186,
+   "nodos": 966,
+   "alto": 3245
+  },
+  "solicitudes": 15,
+  "bytes_sin_comprimir": 406456,
+  "bytes_gzip_estimado": 222334,
+  "por_tipo_gzip": {
+   "html": 29292,
+   "js": 30243,
+   "imagen": 81681,
+   "fuente": 72276,
+   "css": 8842
+  },
+  "mayores": [
+   [
+    "/calculadoras-rosina.html",
+    116558
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/img/logo-lana-rosa.jpg",
+    46071
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ]
+  ],
+  "segundos": 4.4
+ },
+ "/glosario-rosina.html": {
+  "metricas": {
+   "lcp": 1716,
+   "lcp_el": "IMG",
+   "cls": 0,
+   "largas": 3,
+   "tbt": 281,
+   "nodos": 808,
+   "alto": 15173
+  },
+  "solicitudes": 16,
+  "bytes_sin_comprimir": 411918,
+  "bytes_gzip_estimado": 245948,
+  "por_tipo_gzip": {
+   "html": 21686,
+   "js": 30243,
+   "imagen": 112901,
+   "fuente": 72276,
+   "css": 8842
+  },
+  "mayores": [
+   [
+    "/glosario-rosina.html",
+    90800
+   ],
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/img/logo-lana-rosa.jpg",
+    46071
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ]
+  ],
+  "segundos": 4.3
+ },
+ "/aventuras-de-rosina/": {
+  "metricas": {
+   "lcp": 2496,
+   "lcp_el": "IMG.heroe-rosina",
+   "cls": 0.1066181628104968,
+   "largas": 1,
+   "tbt": 3,
+   "nodos": 63,
+   "alto": 1243
+  },
+  "solicitudes": 18,
+  "bytes_sin_comprimir": 407774,
+  "bytes_gzip_estimado": 284035,
+  "por_tipo_gzip": {
+   "imagen": 157578,
+   "js": 43884,
+   "fuente": 72276,
+   "css": 8328,
+   "html": 1624,
+   "otro": 345
+  },
+  "mayores": [
+   [
+    "/img/aventuras/rosina-original/saludo.webp",
+    83824
+   ],
+   [
+    "/img/logo-lana-rosa-nuevo.webp",
+    52160
+   ],
+   [
+    "/aventuras-de-rosina/js/app.js",
+    50186
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ]
+  ],
+  "segundos": 5.5
+ },
+ "/contacto.html": {
+  "metricas": {
+   "lcp": 1380,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 2,
+   "tbt": 117,
+   "nodos": 299,
+   "alto": 3415
+  },
+  "solicitudes": 15,
+  "bytes_sin_comprimir": 288564,
+  "bytes_gzip_estimado": 156609,
+  "por_tipo_gzip": {
+   "js": 32776,
+   "fuente": 72276,
+   "html": 9471,
+   "css": 8842,
+   "imagen": 33244
+  },
+  "mayores": [
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ],
+   [
+    "/contacto.html",
+    31139
+   ],
+   [
+    "/css/comun.css",
+    30377
+   ]
+  ],
+  "segundos": 3.6
+ },
+ "/preguntas-frecuentes.html": {
+  "metricas": {
+   "lcp": 1420,
+   "lcp_el": "",
+   "cls": 0,
+   "largas": 1,
+   "tbt": 141,
+   "nodos": 304,
+   "alto": 3740
+  },
+  "solicitudes": 16,
+  "bytes_sin_comprimir": 296571,
+  "bytes_gzip_estimado": 158060,
+  "por_tipo_gzip": {
+   "js": 33191,
+   "html": 10507,
+   "fuente": 72276,
+   "css": 8842,
+   "imagen": 33244
+  },
+  "mayores": [
+   [
+    "/js/pago.js",
+    56245
+   ],
+   [
+    "/preguntas-frecuentes.html",
+    38435
+   ],
+   [
+    "/fonts/dynapuff-latin.woff2",
+    37572
+   ],
+   [
+    "/fonts/hanken-grotesk-latin.woff2",
+    34704
+   ],
+   [
+    "/css/comun.css",
+    30377
+   ]
+  ],
+  "segundos": 3.7
+ }
+}

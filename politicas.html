@@ -33,7 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
-<link rel="stylesheet" href="/css/comun.css?v=35">
+<link rel="stylesheet" href="/css/comun.css?v=37">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <style>
 :root {
@@ -277,7 +277,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li>Los derechos de autor del patrón, sus fotos y textos son de Lana Rosa Crochet. Es de <strong>uso personal</strong>: no se puede compartir, revender, publicar ni redistribuir el archivo, total o parcialmente.</li>
       <li>Cada patrón indica si se permite vender las piezas tejidas con él y bajo qué condiciones (por ejemplo, dando crédito a Lana Rosa Crochet). Si no lo indica, pregúntanos antes de vender.</li>
       <li>Por ser un archivo digital que se entrega de inmediato, no hay cambios ni devoluciones por gusto o por haberlo comprado por error, en los casos previstos por la legislación colombiana. Si el archivo llega dañado, no se puede abrir o no corresponde al patrón comprado, lo reemplazamos o devolvemos el valor.</li>
-      <li>El descuento de primera compra no aplica a patrones digitales ni a la membresía.</li>
+      <li>El descuento de primera compra no aplica a patrones digitales, a la membresía ni a los amigurumis personalizados.</li>
     </ul>
 
     <h3 style="margin-bottom:8px;">9. Contacto</h3>
@@ -736,7 +736,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       div.className = 'item-carrito';
       div.innerHTML =
         '<div class="info-item-carrito">' +
-          '<h4>' + item.nombre + '</h4>' +
+          '<h4>' + String(item.nombre).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }) + '</h4>' +
           '<p class="precio-item-carrito">' + formatoCOP(item.precio) + ' c/u</p>' +
           '<div class="controles-cantidad">' +
             '<button type="button" data-accion="restar" data-indice="' + indice + '">−</button>' +
@@ -782,6 +782,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script type="module" src="/js/cuenta.js"></script>
 <script type="module" src="/js/pago.js?v=29"></script>
-<script src="/js/animaciones.js?v=16" defer></script>
+<script src="/js/animaciones.js?v=18" defer></script>
 </body>
 </html>

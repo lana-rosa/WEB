@@ -1,0 +1,817 @@
+{
+ "reflujo320": {
+  "/3d-prueba.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": []
+  },
+  "/404.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": []
+  },
+  "/academy/empieza-aqui/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/academy/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/academy/preguntas-frecuentes/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/academy/rosina/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/academy/sobre-academy/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/academy/talleres/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/agenda-rosina.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "A.",
+    "A.br-actual",
+    "BUTTON.pestana",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header"
+   ]
+  },
+  "/aprende.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.foto-curso",
+    "IMG.",
+    "DIV.info-curso",
+    "A.tarjeta-tutorial",
+    "IMG.foto-tutorial"
+   ]
+  },
+  "/aventuras-de-rosina/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": []
+  },
+  "/aventuras-de-rosina/privacidad.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": []
+  },
+  "/baja-recordatorios.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": []
+  },
+  "/calculadoras-rosina.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "A.",
+    "A.br-actual",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/contacto.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/cuenta.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/glosario-rosina.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "A.",
+    "A.br-actual",
+    "BUTTON.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header"
+   ]
+  },
+  "/gracias.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/merceria/cambios-y-devoluciones/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/merceria/catalogo/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/merceria/como-comprar/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/merceria/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/merceria/preguntas-frecuentes/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/merceria/rosina/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/merceria/terminos-de-venta/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/merceria/tienda-fisica/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/offline.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": []
+  },
+  "/p/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/paletas-rosina.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "A.",
+    "A.br-actual",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/personaliza.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DETAILS.",
+    "SUMMARY.",
+    "H2."
+   ]
+  },
+  "/politicas.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/precios.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/preguntas-frecuentes.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/recursos-rosina.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "A.br-actual",
+    "A.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "BUTTON.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header"
+   ]
+  },
+  "/revista/aguja-segun-hilo/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/amigurumi-de-tu-mascota/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/anillo-magico/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/revista/colores-combinan-amigurumis/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/conoce-a-rosina/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/cuanto-cobrar-tejidos/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/revista/cuidar-lavar-tejidos/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/elegir-hilo-amigurumi/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/empezar-crochet/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/revista/errores-comunes-principiantes/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/revista/fotos-amigurumi-personalizado/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/ideas-regalo/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "BUTTON.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header"
+   ]
+  },
+  "/revista/leer-patron-crochet/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/revista/materiales-primer-amigurumi/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/pausas-activas/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/revista/pedir-amigurumi-personalizado/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/puntos-basicos-crochet/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/revista/regalos-graduacion/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/revista/tejer-desconectar/": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2.",
+    "BUTTON.",
+    "DIV."
+   ]
+  },
+  "/rosina.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/sobre-nosotras.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  },
+  "/tienda.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "A.",
+    "IMG.",
+    "A.cat-personaliza"
+   ]
+  },
+  "/universo-rosina.html": {
+   "scroll": 320,
+   "inner": 320,
+   "anchos": [
+    "DIV.cinta",
+    "SPAN.",
+    "DIV.panel-carrito-contenido",
+    "DIV.panel-carrito-header",
+    "H2."
+   ]
+  }
+ },
+ "foco": {
+  "/": {
+   "tabulados": 30,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  },
+  "/tienda.html": {
+   "tabulados": 30,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  },
+  "/personaliza.html": {
+   "tabulados": 30,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  },
+  "/merceria/": {
+   "tabulados": 30,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  },
+  "/merceria/catalogo/": {
+   "tabulados": 30,
+   "sin_indicador": [
+    "A||Instagram",
+    "A||Facebook",
+    "A||TikTok",
+    "A||YouTube",
+    "A||WhatsApp"
+   ],
+   "invisibles_enfocados": []
+  },
+  "/academy/": {
+   "tabulados": 30,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  },
+  "/academy/talleres/": {
+   "tabulados": 30,
+   "sin_indicador": [
+    "A||Instagram",
+    "A||Facebook",
+    "A||TikTok",
+    "A||YouTube",
+    "A||WhatsApp"
+   ],
+   "invisibles_enfocados": []
+  },
+  "/cuenta.html": {
+   "tabulados": 30,
+   "sin_indicador": [
+    "A||Instagram",
+    "A||Facebook",
+    "A||TikTok",
+    "A||YouTube"
+   ],
+   "invisibles_enfocados": []
+  },
+  "/agenda-rosina.html": {
+   "tabulados": 30,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  },
+  "/aventuras-de-rosina/": {
+   "tabulados": 28,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  },
+  "/contacto.html": {
+   "tabulados": 30,
+   "sin_indicador": [
+    "A||Instagram",
+    "A||Facebook",
+    "A||TikTok"
+   ],
+   "invisibles_enfocados": []
+  },
+  "/preguntas-frecuentes.html": {
+   "tabulados": 30,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  },
+  "/politicas.html": {
+   "tabulados": 30,
+   "sin_indicador": [],
+   "invisibles_enfocados": []
+  }
+ },
+ "saltar": {
+  "/": null,
+  "/tienda.html": null,
+  "/personaliza.html": null,
+  "/merceria/": null,
+  "/merceria/catalogo/": null,
+  "/academy/": null,
+  "/academy/talleres/": null,
+  "/cuenta.html": null,
+  "/agenda-rosina.html": null,
+  "/aventuras-de-rosina/": "Saltar al contenido",
+  "/contacto.html": null,
+  "/preguntas-frecuentes.html": null,
+  "/politicas.html": null
+ },
+ "pequenos": {
+  "/": [
+   "a|46x21|Políticas",
+   "a|97x21|Datos personales",
+   "a|45x21|Cookies",
+   "a|105x21|Configurar cookies"
+  ],
+  "/tienda.html": [
+   "a|46x20|Políticas",
+   "a|97x20|Datos personales",
+   "a|45x20|Cookies",
+   "a|105x20|Configurar cookies"
+  ],
+  "/personaliza.html": [
+   "input[radio]|20x20|modo",
+   "input[radio]|20x20|modo",
+   "input[checkbox]|20x20|",
+   "input[checkbox]|20x20|",
+   "input[checkbox]|20x20|",
+   "input[checkbox]|20x20|",
+   "input[checkbox]|20x20|",
+   "input[checkbox]|20x20|acepto-datos"
+  ],
+  "/merceria/": [
+   "a|46x20|Políticas",
+   "a|97x20|Datos personales",
+   "a|45x20|Cookies",
+   "a|105x20|Configurar cookies"
+  ],
+  "/merceria/catalogo/": [
+   "a|46x20|Políticas",
+   "a|97x20|Datos personales",
+   "a|45x20|Cookies",
+   "a|105x20|Configurar cookies"
+  ],
+  "/academy/": [
+   "a|46x21|Políticas",
+   "a|97x21|Datos personales",
+   "a|45x21|Cookies",
+   "a|105x21|Configurar cookies"
+  ],
+  "/academy/talleres/": [
+   "a|46x21|Políticas",
+   "a|97x21|Datos personales",
+   "a|45x21|Cookies",
+   "a|105x21|Configurar cookies"
+  ],
+  "/cuenta.html": [
+   "input[checkbox]|18x18|c-acepto",
+   "input[checkbox]|18x18|c-novedades",
+   "a|46x21|Políticas",
+   "a|97x21|Datos personales",
+   "a|45x21|Cookies",
+   "a|105x21|Configurar cookies"
+  ],
+  "/agenda-rosina.html": [
+   "button[button]|152x20|⬇️ Guardar una copia",
+   "button[button]|143x20|⬆️ Cargar una copia",
+   "button[button]|197x20|📅 Fechas al calendario (.ic",
+   "a|46x20|Políticas",
+   "a|97x20|Datos personales",
+   "a|45x20|Cookies",
+   "a|105x20|Configurar cookies"
+  ],
+  "/aventuras-de-rosina/": [],
+  "/contacto.html": [
+   "a|129x21|+57 320 507 2801",
+   "a|163x21|Ver en Google Maps ↗",
+   "a|46x21|Políticas",
+   "a|97x21|Datos personales",
+   "a|45x21|Cookies",
+   "a|105x21|Configurar cookies"
+  ],
+  "/preguntas-frecuentes.html": [
+   "a|46x21|Políticas",
+   "a|97x21|Datos personales",
+   "a|45x21|Cookies",
+   "a|105x21|Configurar cookies"
+  ],
+  "/politicas.html": [
+   "a|46x21|Políticas",
+   "a|97x21|Datos personales",
+   "a|45x21|Cookies",
+   "a|105x21|Configurar cookies"
+  ]
+ }
+}

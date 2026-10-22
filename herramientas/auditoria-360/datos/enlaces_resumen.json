@@ -1,0 +1,60 @@
+{
+ "paginas": 60,
+ "apariciones": 5545,
+ "por_estado": {
+  "verificado": 5190,
+  "pendiente de comprobar": 355
+ },
+ "por_clase": {
+  "interno": 4407,
+  "externo": 355,
+  "whatsapp": 221,
+  "mailto": 65,
+  "interno-absoluto": 320,
+  "ancla": 177
+ },
+ "por_tipo": {
+  "recurso": 1584,
+  "enlace": 3583,
+  "ruta en JavaScript": 235,
+  "canonical": 57,
+  "recurso css": 20,
+  "manifiesto": 15,
+  "sitemap": 51
+ },
+ "destinos_internos_unicos": 557,
+ "externos_unicos": 21,
+ "externos": [
+  "https://developers.google.com/terms/api-services-user-data-policy",
+  "https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap",
+  "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap",
+  "https://share.google/0JoGMBgdPvaKHMRCu",
+  "https://share.google/GkcZvd8av8NjmRPPM",
+  "https://www.facebook.com/lana.rosa.2025",
+  "https://www.google.com/maps/search/?api=1&query=Lana+Rosa+Crochet+Calle+10+5-37+Villamar%C3%ADa+Caldas",
+  "https://www.googletagmanager.com/ns.html?id=GTM-M3MQ7XZD",
+  "https://www.instagram.com/lanarosa.academy",
+  "https://www.instagram.com/lanarosacrochet",
+  "https://www.instagram.com/p/DdFZEdLiZB4/",
+  "https://www.instagram.com/reel/DU87Y_xkokb/",
+  "https://www.instagram.com/reel/DVHExJVESbd/",
+  "https://www.instagram.com/reel/DVgrx90Ebp1/",
+  "https://www.instagram.com/reel/DWZrq9hEVfN/",
+  "https://www.instagram.com/reel/DXKenR-ERIy/",
+  "https://www.instagram.com/reel/DXrpt0lEU52/",
+  "https://www.instagram.com/reel/DZfnj1hxNVT/",
+  "https://www.instagram.com/reel/Da8YvI7xBuw/",
+  "https://www.tiktok.com/@lanarosacrochet",
+  "https://www.youtube.com/@LanaRosaAcademy"
+ ],
+ "problemas": [],
+ "n_problemas": 0,
+ "paginas_sin_enlace_entrante": [
+  "3d-prueba.html",
+  "404.html",
+  "baja-recordatorios.html",
+  "gracias.html",
+  "offline.html",
+  "revista/index.html"
+ ]
+}

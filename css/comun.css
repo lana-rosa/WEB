@@ -30,7 +30,7 @@ main { padding-bottom: 60px; }
 .whatsapp-flotante svg { width: 30px; height: 30px; fill: #fff; }
 .whatsapp-flotante:hover { background: #1ebe5a; }
 @keyframes whatsapp-pulso { 0% { box-shadow: 0 6px 18px rgba(0,0,0,0.25), 0 0 0 0 rgba(37,211,102,0.5); } 70% { box-shadow: 0 6px 18px rgba(0,0,0,0.25), 0 0 0 14px rgba(37,211,102,0); } 100% { box-shadow: 0 6px 18px rgba(0,0,0,0.25), 0 0 0 0 rgba(37,211,102,0); } }
-@media (max-width: 600px) { .whatsapp-flotante { width: 52px; height: 52px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: calc(16px + env(safe-area-inset-right, 0px)); } .whatsapp-flotante svg { width: 26px; height: 26px; } }
+@media (max-width: 600px) { .whatsapp-flotante { width: 46px; height: 46px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: calc(16px + env(safe-area-inset-right, 0px)); } .whatsapp-flotante svg { width: 24px; height: 24px; } }
 .menu-movil { display: none; background: none; border: none; font-size: 1.7rem; cursor: pointer; color: var(--tinta); padding: 4px 6px; line-height: 1; }
 .nav-movil-panel { display: none; flex-direction: column; background: var(--blanco); border-top: 1px solid rgba(69,69,74,0.08); position: fixed; left: 0; right: 0; z-index: 500; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
 .nav-movil-panel.abierto { display: flex; }
@@ -141,6 +141,7 @@ html[data-casa="academy"] .nav-principal li.g-aprende a:hover, html[data-casa="a
 .pie-logo-wrap img { height: 96px; width: auto; display: block; }
 .pie-rico p { opacity: 0.85; margin: 0 0 12px; max-width: 34ch; }
 .pie-rico h3, .pie-rico .pie-h3 { color: #F7A6CC; font-size: 0.88rem; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; }
+.pie-rico .pie-h3 { opacity: 1; }   /* el 85 % de opacidad de los párrafos del pie dejaba los títulos en 4,16:1 de contraste (mínimo 4,5) */
 .pie-rico ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
 .pie-rico a { color: var(--blanco-hueso); opacity: 0.85; text-decoration: none; }
 .pie-rico a:hover { opacity: 1; color: var(--rosa-medio); }
@@ -253,6 +254,8 @@ html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { back
 .pie-redes a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: none; padding: 0; border-radius: 12px; background: #fff; color: #45454A; opacity: 1; transition: transform .12s ease, background .12s ease; }
 .pie-redes a:hover, .pie-redes a:focus-visible { background: var(--rosa-medio); transform: translateY(-2px); outline: none; }
 .pie-redes svg { display: block; }
+.pie-redes a:focus-visible { outline: 3px solid var(--blanco-hueso); outline-offset: 3px; }   /* foco visible del teclado en los íconos de redes */
+.pie-contacto li a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }   /* el enlace se distingue del texto que lo rodea sin depender solo del color */
 .pie-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 32px; margin-bottom: 18px; }
 .pie-rico ul { gap: 6px; }
 .pie-rico .pie-pagos { display: block; max-width: none; margin: 0; font-size: 0.8rem; opacity: 0.8; }

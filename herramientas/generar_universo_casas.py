@@ -113,6 +113,12 @@ def main():
         t = re.sub(r'  <h2 class="ur-grupo"[^>]*>[^<]*</h2>\n', '', t)
         t = re.sub(r'  <nav class="recorridos"[^>]*>\s*</nav>\n', '', t)
         t = t.replace(' aria-labelledby="grupo-regalar"', '').replace(' aria-labelledby="grupo-aprender"', '')
+        # sin los títulos de grupo, cada <nav> necesita su propio nombre (si no, los lectores de pantalla oyen «navegación» repetido sin distinguirlas)
+        ETIQUETA_RECORRIDO = {'regalar': 'Para regalar y crear', 'crear': 'Para regalar y crear', 'inspirar': 'Para inspirarte', 'materiales': 'Para elegir tu lana', 'aprender': 'Para aprender y jugar', 'aventura': 'Para aprender y jugar'}
+        def nombrar_nav(m):
+            tipo = re.search(r'data-recorrido="(\w+)"', m.group(0))
+            return m.group(0).replace('<nav class="recorridos">', '<nav class="recorridos" aria-label="%s">' % ETIQUETA_RECORRIDO.get(tipo.group(1) if tipo else '', 'Recorridos de Rosina'), 1)
+        t = re.sub(r'  <nav class="recorridos">.*?</nav>', nombrar_nav, t, flags=re.S)
         t = re.sub(r'  <script>\n  // El Universo muestra solo lo de la casa.*?</script>\n\n', '', t, flags=re.S)
         t = re.sub(r'  <section class="ur-seccion-regalar".*?</section>\n', '', t, flags=re.S)
         t = re.sub(r"import \{ iniciarRegalar \} from '/js/universo/regalar\.js\?v=2';\nvar casaUr.*?\nif \(document.getElementById\('regalar-raiz'\)\) iniciarRegalar\(document.getElementById\('regalar-raiz'\)\);\n", '', t, flags=re.S)
