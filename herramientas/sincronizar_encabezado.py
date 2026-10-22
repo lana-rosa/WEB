@@ -384,6 +384,10 @@ def con_barra(s, pagina, casa):
     return s
 
 
+# Páginas sin menú que llevan el pie unificado: el generador solo mantiene su bloque <!-- PIE:INICIO --> ... <!-- PIE:FIN -->
+SOLO_PIE = ('404.html', 'baja-recordatorios.html')
+
+
 def main():
     # el pie modelo es el de las páginas comunes (contacto.html no tiene casa, así que nunca se modifica)
     modelo = None
@@ -392,9 +396,17 @@ def main():
         rel = os.path.relpath(f, RAIZ).replace(os.sep, '/')
         # merceria/index.html -> merceria; merceria/catalogo/index.html -> merceria-catalogo
         n = rel[:-len('/index.html')].replace('/', '-') if rel.endswith('/index.html') else rel[:-5]
+        if rel in SOLO_PIE:
+            # páginas sin menú que sí llevan el pie unificado (23-oct-2026): solo se renueva el bloque del pie
+            t = open(f, encoding='utf-8').read()
+            bloque = f'<!-- PIE:INICIO (generado) -->\n{absolutas(pie_casa(modelo, "crochet"))}\n<!-- PIE:FIN -->'
+            if '<!-- PIE:INICIO' not in t:
+                print('sin marcadores del pie:', n); continue
+            t = re.sub(r'<!-- PIE:INICIO.*?<!-- PIE:FIN -->', lambda m: bloque, t, flags=re.S)
+            open(f, 'w', encoding='utf-8').write(t)
+            print('ok (solo pie)', n); continue
         if n in ('404', 'merceria', 'offline') and rel == n + '.html':
             continue  # 404 y la redirección merceria.html no llevan menú
-            continue
         s = open(f, encoding='utf-8').read()
         if '<!-- CASAS:INICIO' in s:
             s = re.sub(r'<!-- CASAS:INICIO.*?<!-- CASAS:FIN -->', lambda m: absolutas(encabezado(n)), s, flags=re.S)
