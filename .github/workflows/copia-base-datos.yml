@@ -58,6 +58,29 @@ jobs:
           ls -l salida
           echo "ARCHIVO=lanarosa-base-$FECHA" >> "$GITHUB_ENV"
 
+      - name: Diagnóstico de la cadena de conexión (sin mostrar la contraseña)
+        if: failure()
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          from urllib.parse import urlsplit
+          u = os.environ['DB_URL']
+          print('largo total:', len(u), '· espacios/saltos al borde:', u != u.strip())
+          print('comillas:', any(c in u for c in '"\''), '· corchetes:', '[' in u or ']' in u, '· YOUR-PASSWORD:', 'YOUR-PASSWORD' in u.upper())
+          try:
+              r = urlsplit(u.strip())
+              print('esquema:', r.scheme)
+              print('usuario:', r.username)
+              print('servidor:', r.hostname, '· puerto:', r.port, '· base:', r.path)
+              print('largo de la contraseña:', len(r.password or ''))
+          except Exception as e:
+              print('no se pudo analizar:', type(e).__name__)
+              m = re.match(r'^(\w+)://([^:]*):', u.strip())
+              print('inicio:', m.group(0) if m else '(sin patrón)')
+          PY
+
       - name: Guardar la copia cifrada (90 días)
         uses: actions/upload-artifact@v4
         with:
