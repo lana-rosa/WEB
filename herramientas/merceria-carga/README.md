@@ -1,5 +1,9 @@
 # Carga de la Mercería en el ERP (antes de la apertura)
 
+**Regla de Sara (22-oct-2026): esta plantilla es solo para lo que se VENDE en la Mercería (inventario de la Tienda). Lo que se usa para tejer (inventario del Taller) no va aquí.** El script solo crea y toca ítems del centro «Tienda/Mercería».
+
+**Ayudas de la plantilla (22-oct-2026):** hoja «Resumen» (productos con cantidad, ovillos/unidades, valor a costo, productos nuevos y filas por corregir) y columna T «Revisión» en «Productos» (avisa en rojo si falta el costo, el peso del ovillo, la categoría o cómo se vende); hay filas hasta la 150. Probado con datos de ejemplo: el script detectó las filas con errores y calculó $118.200 (10 ovillos × $7.500 + 24 agujas × $1.800).
+
 1. Sara llena `plantilla_carga_merceria.xlsx` (hoja **Productos**): cantidad comprada y costo de cada producto, y los productos nuevos en las filas vacías. Lanas e hilos van "Por ovillo y por gramo" (decisión de Sara, 5-oct-2026): se compran y se cuentan por ovillo, pero la existencia queda en gramos para poder vender el ovillo completo o gramos sueltos en la caja. Agujas, herrajes, relleno y demás van "Por unidad".
 2. Claude genera el SQL: `python3 herramientas/merceria-carga/cargar_merceria.py archivo.xlsx > carga.sql` (el resumen y los errores salen en pantalla).
 3. Claude revisa el SQL y le muestra a Sara el resumen (productos, unidades y valor total) antes de ejecutarlo en Supabase.
