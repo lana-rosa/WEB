@@ -15,6 +15,9 @@
 4. Actions → «Copia de seguridad de la base de datos» → **Run workflow** para probarla. Debe quedar en verde y mostrar el archivo `.dump.gpg` en *Artifacts*.
 5. Una vez al trimestre (o antes de la apertura) hacer la **prueba de restauración** de abajo.
 
+## Prueba automática de restauración
+El flujo `.github/workflows/probar-restauracion.yml` («Prueba de restauración de la copia de seguridad») baja la última copia correcta, la descifra con `COPIA_CLAVE`, la restaura en una base temporal dentro de GitHub y cuenta tablas y filas (solo números, nunca datos). Se lanza a mano (Actions → Run workflow) y solo, el día 1 de cada mes. Verde = la copia se puede abrir y restaurar. Primera prueba: 22-oct-2026, correcta.
+
 ## Restaurar (en una base de prueba, nunca encima de la de producción sin avisar)
 ```bash
 gpg --decrypt lanarosa-base-AAAA-MM-DD_HHMM.dump.gpg > copia.dump   # pide la contraseña
