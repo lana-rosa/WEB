@@ -36,7 +36,25 @@ with sync_playwright() as p:
     pg.locator('.producto-card img').first.evaluate("e=>e.scrollIntoView({block:'center'})"); pg.wait_for_timeout(300)
     pg.locator('.producto-card img').first.click(); pg.wait_for_timeout(800)
     tras_ficha = pg.evaluate("Object.keys(window).filter(k=>k.startsWith('__m_'))")
-    print('Marcas activadas al pintar las tarjetas:', tras_tarjetas)
-    print('Marcas activadas al abrir la ficha:', tras_ficha)
-    print('RESULTADO:', 'VULNERABLE (el HTML de los datos se ejecuta)' if tras_ficha else 'sin ejecución')
+    texto_ficha = pg.evaluate("(document.getElementById('modal-nombre')||document.querySelector('.modal-producto h2, #modal-producto h2')||{}).textContent||''")
+    print('Tienda · marcas activadas al pintar las tarjetas:', tras_tarjetas)
+    print('Tienda · marcas activadas al abrir la ficha:', tras_ficha)
+    print('Tienda · el nombre se ve como texto (no como HTML):', '<img' in pg.evaluate("document.querySelector('.producto-card h3').textContent"))
+    # carritos: un producto con HTML en el nombre guardado en el carrito (localStorage) y se abre el panel en cada página con carrito
+    mal = []
+    CARRITO = json.dumps([{'id': '11111111-1111-1111-1111-111111111111', 'nombre': 'Oso' + mk('carrito'), 'precio': 85000, 'cantidad': 1}])
+    paginas = ['/', '/tienda.html', '/personaliza.html', '/merceria/', '/cuenta.html', '/contacto.html', '/politicas.html', '/academy/', '/revista.html', '/revista/anillo-magico/', '/universo-rosina.html', '/recursos-rosina.html']
+    for ruta in paginas:
+        c2 = b.new_context(viewport={'width': 1280, 'height': 850}); c2.route('**/*', stub); q = c2.new_page()
+        q.add_init_script("try{localStorage.setItem('carritoLanaRosa', %s)}catch(e){}" % json.dumps(CARRITO))
+        q.goto(BASE + ruta, wait_until='domcontentloaded'); q.wait_for_timeout(900)
+        try: q.get_by_role('button', name='Rechazar').click(timeout=800)
+        except Exception: pass
+        try: q.locator('#boton-carrito').click(timeout=3000); q.wait_for_timeout(500)
+        except Exception as e: mal.append((ruta, 'no abrió el carrito'))
+        if q.evaluate("Object.keys(window).filter(k=>k.startsWith('__m_carrito'))"): mal.append((ruta, 'EJECUTÓ el HTML del nombre'))
+        c2.close()
+    print('Carritos · páginas revisadas:', len(paginas), '· con problema:', mal)
+    ok = not tras_ficha and not mal
+    print('RESULTADO:', 'sin ejecución de HTML en los datos' if ok else 'VULNERABLE (el HTML de los datos se ejecuta)')
     b.close()

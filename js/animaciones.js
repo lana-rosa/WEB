@@ -10,6 +10,52 @@
     window.addEventListener('scroll', f, { passive: true }); f();
   }
 
+  // Carrito accesible (auditoría 360, ACC-03 y ACC-04). El panel lateral se comporta como un diálogo modal: al abrirlo el foco pasa a él y se queda
+  // dentro (Tab), Esc lo cierra y el foco vuelve al botón del carrito; cerrado, no se puede alcanzar con el teclado (inert). El botón del carrito dice
+  // cuántos productos hay y así su nombre contiene el número que se ve. Funciona con cualquier página que tenga #panel-carrito, sin tocar su código.
+  try {
+    var panelC = document.getElementById('panel-carrito'), botonC = document.getElementById('boton-carrito'), contadorC = document.getElementById('contador-carrito');
+    if (botonC && contadorC) {
+      var etiquetaC = function () { var n = parseInt(contadorC.textContent, 10) || 0; botonC.setAttribute('aria-label', 'Ver carrito de compras, ' + n + (n === 1 ? ' producto' : ' productos')); };
+      etiquetaC(); new MutationObserver(etiquetaC).observe(contadorC, { childList: true, characterData: true, subtree: true });
+    }
+    if (panelC && botonC) {
+      panelC.setAttribute('role', 'dialog'); panelC.setAttribute('aria-modal', 'true'); panelC.setAttribute('aria-label', 'Tu carrito');
+      var previoC = null, estabaAbierto = false;
+      var enfocablesC = function () {
+        return Array.prototype.filter.call(panelC.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])'),
+          function (e) { return e.offsetParent !== null || e === document.activeElement; });
+      };
+      var sincronizarC = function () {
+        var abierto = panelC.classList.contains('abierto');
+        panelC.inert = !abierto;
+        if (abierto && !estabaAbierto) {
+          previoC = document.activeElement;
+          setTimeout(function () { var c = document.getElementById('cerrar-carrito') || panelC; try { c.focus({ preventScroll: true }); } catch (e) {} }, 0);
+        } else if (!abierto && estabaAbierto) {
+          var v = previoC, ahora = document.activeElement; previoC = null;
+          // solo se devuelve el foco si nadie más lo tomó (por ejemplo, la ventana de pago que se abre justo después)
+          if (!ahora || ahora === document.body || panelC.contains(ahora)) { try { (v && v !== document.body && document.contains(v) ? v : botonC).focus({ preventScroll: true }); } catch (e) {} }
+        }
+        estabaAbierto = abierto;
+      };
+      sincronizarC();
+      new MutationObserver(sincronizarC).observe(panelC, { attributes: true, attributeFilter: ['class'] });
+      document.addEventListener('keydown', function (e) {
+        if (!panelC.classList.contains('abierto')) return;
+        if (e.key === 'Escape' && panelC.contains(document.activeElement)) {
+          e.preventDefault(); var x = document.getElementById('cerrar-carrito'); if (x) x.click(); return;
+        }
+        if (e.key !== 'Tab') return;
+        var l = enfocablesC(); if (!l.length) return;
+        var primero = l[0], ultimo = l[l.length - 1];
+        if (!panelC.contains(document.activeElement)) { e.preventDefault(); primero.focus(); }
+        else if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+        else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+      });
+    }
+  } catch (e) { /* si algo falla, el carrito sigue funcionando como antes */ }
+
 
   // Medición (Google Tag Manager): eventos limpios en dataLayer. No cambia nada visible.
   try {
@@ -166,5 +212,5 @@
   } catch (e) {}
 
   // chat de ayuda de Rosina (botón flotante)
-  try { var sc = document.createElement('script'); sc.src = '/js/rosina-chat.js?v=6'; sc.defer = true; document.body.appendChild(sc); } catch (e) {}
+  try { var sc = document.createElement('script'); sc.src = '/js/rosina-chat.js?v=8'; sc.defer = true; document.body.appendChild(sc); } catch (e) {}
 })();

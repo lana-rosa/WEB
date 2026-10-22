@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
-<link rel="stylesheet" href="/css/comun.css?v=35">
+<link rel="stylesheet" href="/css/comun.css?v=37">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <style>
 :root {
@@ -263,7 +263,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .kit-acciones { display: flex; flex-direction: column; gap: 10px; align-items: stretch; text-align: center; }
 .enlace-merceria { font-weight: 600; font-size: 0.9rem; }
 .kit-acciones [hidden] { display: none; }
-.boton-whatsapp-res { display: inline-block; margin-top: 10px; background: #25D366; color: #fff; border-radius: 999px; padding: 10px 20px; font-weight: 700; text-decoration: none; font-size: 0.92rem; }
+.boton-whatsapp-res { display: inline-block; margin-top: 10px; background: #167A3E; color: #fff; border-radius: 999px; padding: 10px 20px; font-weight: 700; text-decoration: none; font-size: 0.92rem; }
 .boton-whatsapp-res:hover { background: #1ebe5a; }
 /* Abreviaturas: columna de español fija al desplazar */
 .tabla-abrev th:first-child, .tabla-abrev td:first-child { position: sticky; left: 0; z-index: 1; background: var(--blanco); box-shadow: 2px 0 0 var(--rosa-medio); min-width: 150px; }
@@ -908,7 +908,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
     </div>
-    <p class="intro" id="agenda-intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo (se guardan en tu dispositivo) o imprímelas, llenas o en blanco, para escribir a mano.</p>
+    <p class="intro" id="agenda-intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo con tu cuenta gratis (se guardan en tu dispositivo) o imprímelas, llenas o en blanco, para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
@@ -998,6 +998,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </aside>
       <nav class="pestanas-agenda no-imprimir" id="pestanas-agenda" aria-label="Pestañas de la agenda"></nav>
       <div class="hojas-contenido">
+      <h2 class="solo-lectores">Hojas de tu agenda</h2>
       <div class="chips-hojas no-imprimir" id="chips-hojas" hidden></div>
       <article class="hoja-agenda no-imprimir" id="indice-agenda">
         <header>
@@ -1836,7 +1837,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       div.className = 'item-carrito';
       div.innerHTML =
         '<div class="info-item-carrito">' +
-          '<h4>' + item.nombre + '</h4>' +
+          '<h4>' + String(item.nombre).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }) + '</h4>' +
           '<p class="precio-item-carrito">' + formatoCOP(item.precio) + ' c/u</p>' +
           '<div class="controles-cantidad">' +
             '<button type="button" data-accion="restar" data-indice="' + indice + '">−</button>' +
@@ -3461,6 +3462,6 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 })();
 </script>
 <script type="module" src="/js/pago.js?v=29"></script>
-<script src="/js/animaciones.js?v=16" defer></script>
+<script src="/js/animaciones.js?v=18" defer></script>
 </body>
 </html>

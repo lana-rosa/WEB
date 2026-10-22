@@ -122,7 +122,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial comp
 
 ## 🟡 7. Decisiones de Sara abiertas
 
-- [ ] ¿Los **personalizados** también se pueden pagar en línea con Wompi? Hoy `personaliza.html`, el artículo de la Revista y `llms.txt` dicen que se paga por Nequi o Bre-B con comprobante por WhatsApp; si se habilita, hay que actualizar esos textos.
+- [x] ¿Los **personalizados** también se pueden pagar en línea con Wompi? Sí (los de 13, 15 y 20 cm; decisión ya aplicada en Personaliza y la tienda). Auditoría 360, CON-02 (22-oct): `preguntas-frecuentes.html` y `llms.txt` actualizados.
 - [ ] ¿El código **BIENVENIDA10-XXXXX** se reconoce en la caja de la tienda física? (hoy no hay registro de uso del código en el ERP).
 - [ ] ¿Se agrega **PayPal** a las preguntas frecuentes (pedidos fuera de Colombia)? Hoy está apagado, así que por ahora no.
 - [ ] **Botón «Invítale un café a Rosina»:** diseño listo y sin publicar (verificado: sigue sin publicar) en `herramientas/borradores/cafe-rosina.patch` ($3.000, $6.000 y $12.000, llave Nequi/Bre-B, aviso por WhatsApp). Publicar: `git apply herramientas/borradores/cafe-rosina.patch`.

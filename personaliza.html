@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
-<link rel="stylesheet" href="/css/comun.css?v=35">
+<link rel="stylesheet" href="/css/comun.css?v=37">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <link rel="stylesheet" href="/css/universo.css?v=7">
 <style>
@@ -207,7 +207,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .det-tamanos[open] > summary { margin-bottom: 16px; }
 .det-tamanos > .nota-tamanos { margin: 0 0 6px; }
 .desc-tamano { font-size: 0.82rem; color: var(--tinta-suave); margin: 2px 0 0; }
-.boton-wa-exito { display: inline-block; margin-top: 10px; background: #25D366; color: #fff !important; border-radius: 999px; padding: 8px 16px; font-weight: 700; text-decoration: none; }
+.boton-wa-exito { display: inline-block; margin-top: 10px; background: #167A3E; color: #fff !important; border-radius: 999px; padding: 8px 16px; font-weight: 700; text-decoration: none; }
 .boton-ir-form { display: inline-block; margin-top: 14px; background: var(--rosa-boton); color: var(--sobre-principal); text-decoration: none; padding: 12px 26px; border-radius: 999px; font-weight: 700; }
 .boton-ir-form:hover { background: var(--rosa-boton-hover); }
 #form-personalizado { scroll-margin-top: 110px; }
@@ -1078,7 +1078,7 @@ form.addEventListener('submit', async (evento) => {
       div.className = 'item-carrito';
       div.innerHTML =
         '<div class="info-item-carrito">' +
-          '<h4>' + item.nombre + '</h4>' +
+          '<h4>' + String(item.nombre).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }) + '</h4>' +
           '<p class="precio-item-carrito">' + formatoCOP(item.precio) + ' c/u</p>' +
           '<div class="controles-cantidad">' +
             '<button type="button" data-accion="restar" data-indice="' + indice + '">−</button>' +
@@ -1157,6 +1157,6 @@ if (haySesionGuardada()) {
 }
 </script>
 <script src="/js/ampliar.js?v=2" defer></script>
-<script src="/js/animaciones.js?v=16" defer></script>
+<script src="/js/animaciones.js?v=18" defer></script>
 </body>
 </html>

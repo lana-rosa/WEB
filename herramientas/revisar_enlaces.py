@@ -76,6 +76,13 @@ if '--produccion' in sys.argv:
     import urllib.request, urllib.error, collections, time
     BASE_URL = SITE
     def get(u, metodo='GET'):
+        # una respuesta mala suelta (503, 409, red) no debe dar falsa alarma: se reintenta hasta 3 veces
+        for intento in range(3):
+            r_ = _get(u, metodo)
+            if r_[0] == 200 or (isinstance(r_[0], int) and r_[0] in (404, 410, 403) and intento >= 0): return r_
+            time.sleep(2)
+        return r_
+    def _get(u, metodo='GET'):
         rq = urllib.request.Request(u, method=metodo, headers={'User-Agent': 'LanaRosa-revisar-enlaces/1.0'})
         try:
             r = urllib.request.urlopen(rq, timeout=25); return r.status, r.geturl(), (r.read().decode('utf-8', 'replace') if metodo == 'GET' and 'text/html' in r.headers.get('content-type', '') else '')

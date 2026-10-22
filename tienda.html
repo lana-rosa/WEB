@@ -45,11 +45,11 @@ window.__rpcLR = {};
 </script>
 <link rel="preload" href="/fonts/dynapuff-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-<script>window.ICO_CARRITO='<svg class="ico-carrito" width="1.15em" height="1.15em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.22em"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>';</script>
+<script>window.escHtml=function(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};window.ICO_CARRITO='<svg class="ico-carrito" width="1.15em" height="1.15em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.22em"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>';</script>
 <link rel="stylesheet" href="/css/fuentes.css?v=1">
 
 
-<link rel="stylesheet" href="/css/comun.css?v=35">
+<link rel="stylesheet" href="/css/comun.css?v=37">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <style>
 :root {
@@ -838,7 +838,7 @@ function rutaFotoTarjeta(foto) {
   return '/img/productos-mini/' + foto.replace(/\.[A-Za-z]+$/, '') + '.webp';
 }
 function crearTarjeta(item) {
-  var nombreAttr = item.nombre.replace(/"/g, '&quot;');
+  var nombreAttr = escHtml(item.nombre);
   var cargaFoto = 'loading="lazy"';
   if (MAPA_GRID[item.categoria_web] === gridDestino && fotosDestino < 8) { cargaFoto = (fotosDestino < 4) ? 'fetchpriority="high"' : ''; fotosDestino++; }
   var pers = window.datosPersonalizado(item);
@@ -849,15 +849,15 @@ function crearTarjeta(item) {
   articulo.dataset.precio = item.precio;
   articulo.innerHTML =
     '<div class="producto-foto">' +
-      '<img src="' + rutaFotoTarjeta(item.foto_url) + '" data-foto="' + (item.foto_url || '') + '" alt="' + nombreAttr + '" ' + cargaFoto + ' data-id="' + item.id + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
-      '<span class="foto-marcador" style="display:none;">[ Foto de ' + item.nombre + ' ]</span>' +
+      '<img src="' + escHtml(rutaFotoTarjeta(item.foto_url)) + '" data-foto="' + escHtml(item.foto_url || '') + '" alt="' + nombreAttr + '" ' + cargaFoto + ' data-id="' + escHtml(item.id) + '" data-intento="0" onload="ajustarFoto(this)" onerror="manejarErrorFoto(this)">' +
+      '<span class="foto-marcador" style="display:none;">[ Foto de ' + nombreAttr + ' ]</span>' +
     '</div>' +
     '<div class="producto-info">' +
       '<div class="producto-cabecera">' +
-        '<span class="producto-marca">' + (item.categoria_web || 'Lana Rosa') + '</span>' +
-        '<button type="button" class="boton-favorito" data-id="' + item.id + '" aria-pressed="false" aria-label="Guardar en favoritos">' + corazonSVG(false, 21) + '</button>' +
+        '<span class="producto-marca">' + escHtml(item.categoria_web || 'Lana Rosa') + '</span>' +
+        '<button type="button" class="boton-favorito" data-id="' + escHtml(item.id) + '" aria-pressed="false" aria-label="Guardar en favoritos">' + corazonSVG(false, 21) + '</button>' +
       '</div>' +
-      '<h3>' + item.nombre + '</h3>' +
+      '<h3>' + nombreAttr + '</h3>' +
       '<p class="producto-precio">' + formatoCOP(item.precio) + ' <span class="moneda">COP</span></p>' +
       (pers
         ? '<p class="producto-estado bajo-pedido">Foto de referencia</p>' +
@@ -1231,7 +1231,7 @@ function inicializarBuscadorTienda() {
       div.className = 'item-carrito';
       div.innerHTML =
         '<div class="info-item-carrito">' +
-          '<h4>' + item.nombre + '</h4>' +
+          '<h4>' + escHtml(item.nombre) + '</h4>' +
           '<p class="precio-item-carrito">' + formatoCOP(item.precio) + ' c/u</p>' +
           '<div class="controles-cantidad">' +
             '<button type="button" data-accion="restar" data-indice="' + indice + '">−</button>' +
@@ -1434,7 +1434,7 @@ var RESENAS_POR_PRODUCTO = {};
     if (window.pintarFavoritoModal) window.pintarFavoritoModal(id);
     precioEl.textContent = formatoCOP(producto.precio) + ' COP';
     mostrarResenasEnModal(id);
-    descripcionEl.innerHTML = producto.descripcion.replace(/\n/g, '<br>');
+    descripcionEl.innerHTML = escHtml(producto.descripcion).replace(/\n/g, '<br>');
     document.getElementById('modal-aviso-personaje').hidden = !(window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id));
     var persFicha = window.datosPersonalizado({ id: id, nombre: producto.nombre });
     document.getElementById('modal-fila-compra').hidden = !!persFicha;
@@ -1447,12 +1447,12 @@ var RESENAS_POR_PRODUCTO = {};
     var idBase = Object.keys(DATOS_PRODUCTOS).find(function(k) { return DATOS_PRODUCTOS[k].categoria === 'Complementos' && /^Base para amigurumi/i.test(DATOS_PRODUCTOS[k].nombre); });
     var especificacionesHtml = producto.especificaciones.map(function(e) {
       var enlaceBase = (idBase && id !== idBase && /^Base de exhibici/i.test(e)) ? ' <a href="#" class="enlace-base" data-base="' + idBase + '">Ver y agregar la base</a>' : '';
-      return '<li>' + e + enlaceBase + '</li>';
+      return '<li>' + escHtml(e) + enlaceBase + '</li>';
     }).join('');
-    var cuidadosHtml = producto.cuidados.map(function(c) { return '<li>' + c + '</li>'; }).join('');
+    var cuidadosHtml = producto.cuidados.map(function(c) { return '<li>' + escHtml(c) + '</li>'; }).join('');
 
     fichaEl.innerHTML =
-      '<li class="ficha-tiempo"><span>⏱ Tiempo de elaboración</span><span>' + producto.tiempo + '</span></li>' +
+      '<li class="ficha-tiempo"><span>⏱ Tiempo de elaboración</span><span>' + escHtml(producto.tiempo) + '</span></li>' +
       '<li class="ficha-disponibilidad"><span>Disponibilidad</span><span>' + (persFicha ? 'Bajo pedido (personalizado)' : (producto.disponible ? 'Disponible' : 'Bajo pedido')) + '</span></li>' +
       '<li class="ficha-encabezado">📋 Especificaciones</li>' +
       '<li class="ficha-lista"><ul>' + especificacionesHtml + '</ul></li>' +
@@ -1919,6 +1919,6 @@ formResena.addEventListener('submit', async (evento) => {
 <script type="module" src="/js/pago.js?v=29"></script>
 <script src="/js/carrito-agregado.js?v=2" defer></script>
 <script src="/js/ampliar.js?v=2" defer></script>
-<script src="/js/animaciones.js?v=16" defer></script>
+<script src="/js/animaciones.js?v=18" defer></script>
 </body>
 </html>

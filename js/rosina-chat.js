@@ -11,7 +11,7 @@
   css.textContent =
     '.rc-boton{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(94px + env(safe-area-inset-bottom,0px));z-index:996;width:58px;height:58px;border-radius:50%;border:3px solid #fff;background:var(--rosa-suave,#FBE4EF);box-shadow:0 6px 18px rgba(0,0,0,.2);padding:0;cursor:pointer;overflow:hidden}' +
     '.rc-boton img{width:100%;height:100%;object-fit:cover;display:block}' +
-    '@media(max-width:600px){.rc-boton{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(80px + env(safe-area-inset-bottom,0px));width:52px;height:52px}}' +
+    '@media(max-width:600px){.rc-boton{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(72px + env(safe-area-inset-bottom,0px));width:46px;height:46px}}' +
     '.rc-panel{position:fixed;z-index:1001;left:0;right:0;bottom:0;top:0;display:none;flex-direction:column;background:#fff;font-family:"Hanken Grotesk",system-ui,sans-serif;color:#45454A}' +
     '.rc-panel.abierto{display:flex}' +
     '.rc-cab{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--rosa-principal,#E74E96);color:#fff}' +
@@ -51,7 +51,7 @@
     academy: ['¿Cómo empiezo a tejer crochet?', '¿Cómo leo un patrón?', '¿Qué talleres tienen?', '¿Qué es el anillo mágico?']
   };
   var hist = [], ocupado = false, panel, msgs, input, enviar;
-  function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
   function formato(t) {
     return esc(t).replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>')
       .replace(/(https?:\/\/[^\s<)]+[^\s<).,;:!?])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');

@@ -10,7 +10,7 @@ echo "export { createClient } from '@supabase/supabase-js';" > entry.js
 npx esbuild entry.js --bundle --format=esm --minify --platform=browser --target=es2020 --outfile=supabase.js
 ```
 
-Copiar `supabase.js` a `js/vendor/`, subir el número `?v=` en los 5 sitios que lo cargan (`tienda.html`, `personaliza.html`, `merceria/catalogo/index.html`, `js/cuenta.js`) y probar tienda, cuenta y Personaliza.
+Copiar `supabase.js` a `js/vendor/`, subir el número `?v=` en los 4 sitios que lo cargan (`tienda.html`, `personaliza.html`, `merceria/catalogo/index.html`, `js/cuenta.js`) y probar tienda, cuenta y Personaliza.
 
 # model-viewer.min.js (visor 3D y realidad aumentada, Etapa 5)
 
