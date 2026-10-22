@@ -42,6 +42,9 @@ jobs:
         run: |
           set -euo pipefail
           umask 077
+          # Al copiar y pegar se cuelan espacios o saltos de línea en los bordes: se quitan.
+          DB_URL=$(printf '%s' "$DB_URL" | tr -d '[:space:]')
+          CLAVE=$(printf '%s' "$CLAVE" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
           FECHA=$(TZ=America/Bogota date +%Y-%m-%d_%H%M)
           mkdir salida
           # public = ERP, web y CRM; auth = usuarias y clientas; storage = lista de archivos (los archivos en sí no van aquí)
