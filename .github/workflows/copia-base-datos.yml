@@ -48,7 +48,17 @@ jobs:
           FECHA=$(TZ=America/Bogota date +%Y-%m-%d_%H%M)
           mkdir salida
           # public = ERP, web y CRM; auth = usuarias y clientas; storage = lista de archivos (los archivos en sí no van aquí)
-          /usr/lib/postgresql/17/bin/pg_dump "$DB_URL" -Fc --no-owner --no-privileges -n public -n auth -n storage -f crudo.dump
+          # Se separan usuario, contraseña, servidor y puerto a mano (sin decodificar símbolos) y la contraseña viaja por PGPASSWORD.
+          export DB_URL
+          python3 - <<'PY'
+          import os, subprocess, sys
+          from urllib.parse import urlsplit
+          r = urlsplit(os.environ['DB_URL'])
+          env = dict(os.environ, PGPASSWORD=r.password or '', PGSSLMODE='require')
+          cmd = ['/usr/lib/postgresql/17/bin/pg_dump', '-h', r.hostname, '-p', str(r.port or 5432), '-U', r.username, '-d', (r.path or '/postgres').lstrip('/') or 'postgres',
+                 '-Fc', '--no-owner', '--no-privileges', '-n', 'public', '-n', 'auth', '-n', 'storage', '-f', 'crudo.dump']
+          sys.exit(subprocess.run(cmd, env=env).returncode)
+          PY
           /usr/lib/postgresql/17/bin/pg_restore --list crudo.dump > lista.txt
           TABLAS=$(grep -c ' TABLE DATA ' lista.txt || true)
           TAM=$(stat -c %s crudo.dump)
@@ -77,7 +87,8 @@ jobs:
               print('esquema:', r.scheme)
               print('usuario:', r.username)
               print('servidor:', r.hostname, '· puerto:', r.port, '· base:', r.path)
-              print('largo de la contraseña:', len(r.password or ''))
+              pw = r.password or ''
+              print('largo de la contraseña:', len(pw), '· minúsculas:', sum(c.islower() for c in pw), '· mayúsculas:', sum(c.isupper() for c in pw), '· dígitos:', sum(c.isdigit() for c in pw), '· otros símbolos:', sum(not c.isalnum() for c in pw), '· lleva %:', '%' in pw)
           except Exception as e:
               print('no se pudo analizar:', type(e).__name__)
               m = re.match(r'^(\w+)://([^:]*):', u.strip())
