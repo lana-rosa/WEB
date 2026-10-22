@@ -36,6 +36,7 @@
     '.rc-wa:focus-visible{outline:3px solid var(--lila,#9EA2F9);outline-offset:2px}' +
     '.rc-sug{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}' +
     '.rc-sug button{border:1px solid var(--rosa-principal,#E74E96);background:#fff;color:var(--rosa-principal,#E74E96);border-radius:999px;padding:6px 11px;font-size:.84rem;cursor:pointer;font-family:inherit}' +
+    '.rc-aviso{margin:0;padding:6px 14px 0;font-size:12px;line-height:1.35;color:#6b6b72;background:#fff}.rc-aviso a{color:inherit;text-decoration:underline}' +
     '.rc-form{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid #eee;background:#fff}' +
     '.rc-form input{flex:1;min-width:0;border:1px solid #ddd;border-radius:999px;padding:10px 14px;font-size:16px;font-family:inherit}' +
     '.rc-form button{border:none;border-radius:999px;background:var(--rosa-principal,#E74E96);color:#fff;padding:0 18px;font-weight:600;cursor:pointer;font-family:inherit}' +
@@ -100,7 +101,7 @@
     panel = document.createElement('div'); panel.className = 'rc-panel';
     panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Chat con Rosina');
     panel.innerHTML = '<div class="rc-cab"><img src="/img/mini/rosina-saludo.webp" alt="" width="40" height="40"><div><b>Rosina</b><small>Asistente de Lana Rosa</small></div><button type="button" aria-label="Cerrar chat">×</button></div>' +
-      '<div class="rc-msgs"></div><form class="rc-form"><input type="text" maxlength="500" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta" autocomplete="off"><button type="submit">Enviar</button></form>';
+      '<div class="rc-msgs"></div><p class="rc-aviso">No escribas datos personales (cédula, dirección, teléfono). Tu mensaje lo procesa un proveedor de inteligencia artificial. <a href="/politicas.html#ia-chat">Más información</a></p><form class="rc-form"><input type="text" maxlength="500" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta" autocomplete="off"><button type="submit">Enviar</button></form>';
     document.body.appendChild(panel);
     msgs = panel.querySelector('.rc-msgs'); input = panel.querySelector('input'); enviar = panel.querySelector('.rc-form button');
     panel.querySelector('.rc-cab button').addEventListener('click', cerrar);

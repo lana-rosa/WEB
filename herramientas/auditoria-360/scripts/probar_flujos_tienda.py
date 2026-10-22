@@ -134,7 +134,7 @@ with sync_playwright() as p:
                 r('pago paso 4: sin aceptar la política no se envía y avisa', bool(av) and 'cuenta' not in av.lower()[:1], av)
                 pre = pg.evaluate("[document.getElementById('pg-acepto').checked, document.getElementById('pg-promos').checked, document.getElementById('pg-cuenta').checked, document.getElementById('pg-recordar').checked]")
                 r('pago: casillas de política, promociones y recordatorio vienen SIN marcar', pre[0] is False and pre[1] is False and pre[3] is False, pre)
-                print('      (informativo) «Crear mi cuenta con este correo» viene marcada por defecto:', pre[2])
+                r('pago: «Crear mi cuenta con este correo» viene SIN marcar (PRI-01, 22-oct)', pre[2] is False, pre)
         r('sin errores de JavaScript propios', not errs, errs[:3])
         ctx.close()
     b.close()
