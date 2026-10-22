@@ -530,7 +530,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <label class="acepto-p"><input type="checkbox" id="acepto-datos" required> <span>Acepto que Lana Rosa use mis datos <strong>solo para cotizar y elaborar mi pedido</strong>, según la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos personales</a>.</span></label>
     <label class="acepto-p" id="acepto-fotos-caja" hidden><input type="checkbox" id="acepto-fotos"> <span>Autorizo a Lana Rosa a <strong>recibir y guardar las fotos de referencia</strong> que adjunto en su almacenamiento privado, solo para elaborar mi pedido. <small>Solo las ve el equipo, no se publican, las conservamos 90 días para atender reclamaciones y luego se borran. Puedes pedir que las borremos antes escribiendo a contacto@lanarosacrochet.com.</small></span></label>
-    <label class="acepto-p"><input type="checkbox" id="acepto-publicar"> <span>Autorizo a Lana Rosa a mostrar la foto de mi pedido terminado en su web y redes sociales. <small>Es opcional: no cambia el precio ni tu pedido, y puedes retirarlo cuando quieras escribiendo a contacto@lanarosacrochet.com.</small></span></label>
     <button type="submit" class="boton-enviar" id="boton-enviar">Enviar mi solicitud</button>
     <div id="mensaje-estado"></div>
   </form>
@@ -904,7 +903,6 @@ form.addEventListener('submit', async (evento) => {
       p_mensaje: (fGuia ? fGuia.mensaje : (document.getElementById('mensaje').value || '')).trim(),
       p_acepta_datos: document.getElementById('acepto-datos').checked,
       p_acepta_fotos: archivos.length > 0 && aceptoFotos.checked,
-      p_acepta_publicar: document.getElementById('acepto-publicar').checked,
       p_version_texto: VERSION_FOTOS
     });
 
