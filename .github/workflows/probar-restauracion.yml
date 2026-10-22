@@ -54,7 +54,8 @@ jobs:
           if [ -z "$RUN" ]; then echo "::error::No hay ninguna copia correcta para probar"; exit 1; fi
           echo "Copia tomada de la ejecución $RUN"
           gh run download "$RUN" -R "$GITHUB_REPOSITORY" -D bajada
-          ARCH=$(ls bajada/*/*.gpg bajada/*.gpg 2>/dev/null | head -1)
+          ARCH=$(find bajada -name '*.gpg' | head -1)
+          if [ -z "$ARCH" ]; then echo "::error::No se encontró el archivo .gpg descargado"; ls -R bajada; exit 1; fi
           echo "Archivo: $(basename "$ARCH") · $(stat -c %s "$ARCH") bytes"
           CLAVE=$(printf '%s' "$CLAVE" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
           printf '%s' "$CLAVE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --decrypt -o copia.dump "$ARCH"
