@@ -1,0 +1,17 @@
+﻿id_previo,hallazgo_o_tema,estado_hoy,evidencia
+H1,Plazos de entrega contradictorios (17-oct),Corregido,"Búsqueda en 60 páginas y llms.txt: 0 menciones de «15 días», «1 semana» o similares; «8 días hábiles» en 7 archivos y «siguiente día hábil» en 13, con el mismo texto."
+H2,Correos de carrito abandonado sin consentimiento,Corregido en la página; la base no se pudo re-verificar,"La casilla de recordatorio viene sin marcar (probar_flujos_tienda.py). La parte de la base (acepta_at) necesita SQL, caído hoy."
+H3,GTM desde la primera visita,Decisión de Sara vigente,Consentimiento por defecto «denegado» y botones Aceptar/Rechazar/Configurar: pasos 1 a 5 de prueba_consentimiento.py correctos (11 comprobaciones). El bloqueo real en GTM lo comprobó Sara el 17-oct; no se re-verificó contra producción.
+H4,diag-secretos activa,Corregido (pero la función sigue desplegada),El código desplegado solo responde 410 y exige JWT. Ver SEG-09.
+H5,Bucket guias-envio público,Vigente por decisión,No se pudo leer el estado de los buckets (SQL caído). Ver SEG-15.
+H7,Código de funciones fuera del repositorio,Vigente,Seis de 16 funciones sin copia. Ver DAT-01.
+H8,PayPal con referencias en el código,Corregido en la web,PAYPAL_ACTIVO = false en js/pago.js:18; la función paypal-pagos sigue desplegada. Ver SEG-09.
+H9,Encabezados de la Revista y Open Graph de políticas,Corregido,0 saltos de nivel en los 19 artículos; politicas.html con Open Graph completo. Quedan saltos en agenda y calculadoras (ACC-06).
+H10,«(apertura: 15 de noviembre)» tras abrir,Pendiente de fecha,El script se ejecuta el 16-nov; no se puede probar antes.
+—,Accesibilidad: 0 fallos de axe-core en 16 páginas (17-oct),Parcialmente vigente,"Hoy hay fallos de contraste en 404, baja-recordatorios, /academy/empieza-aqui/ y /p/ (ACC-01, ACC-05) y la regla de nombre accesible del carrito en 60 rutas (ACC-04). Las otras páginas clave siguen sin violaciones graves de contraste."
+—,"Archivos internos servidos al público (PENDIENTES.md, herramientas/)",Corregido el 20-oct,"El flujo «Publicar el sitio» excluye herramientas, *.md, .github y .tmp; 23 de 23 ejecuciones exitosas; Sara comprobó los 404. No re-verificado por mí en producción."
+—,El flujo de producción no se disparaba tras publicar,Corregido,"Desde la ejecución 20 corre en cada despliegue (evento workflow_run); última: ejecución 42, 22-oct 19:53 UTC, sobre 947fe96."
+—,Enlace #faq-4 de preguntas frecuentes y enlaces a /rosina.html,Corregidos,El inventario de enlaces de hoy no encuentra enlaces ni anclas rotas dentro del repositorio.
+—,34 fotos de la Mercería sin archivo,Vigente,0 de 34 existen (ARQ-02).
+—,"Supabase: protección de contraseñas filtradas, funciones sin search_path, funciones SECURITY DEFINER","Vigente, con cifras nuevas","Asesor del 22-oct: 139 funciones sin search_path (137), 28 firmas anónimas (ver SEG-01), 315 autenticadas (290), 30 tablas con RLS y sin políticas (cerradas), 0 tablas sin RLS, protección de contraseñas filtradas desactivada (plan)."
+—,"PageSpeed, lector de pantalla, pago de prueba, Search Console",Siguen pendientes,"Ver ACC-09, FUN-01 y LIMITACIONES_Y_PENDIENTES.md."
