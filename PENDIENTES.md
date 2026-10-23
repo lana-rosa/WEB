@@ -301,8 +301,8 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 
 ## Auditoría 360 — paquete C (pendiente, retomar el 23-oct-2026)
 Paquetes A (publicado, #401) y parte de C (PRI-01 y PRI-02, publicado, #402) listos. Decisión de Sara (22-oct): las apps instalables (PWA-01) se dejan como están. Orden propuesto, de a uno:
-- [ ] **SEG-07:** copias cifradas de la base en repositorio público. Claude revisa primero qué cambia en la publicación si el repositorio pasa a privado; luego Sara lo hace en GitHub (pasos guiados). Alternativa: subir la contraseña de las copias (`COPIA_CLAVE`) a 24 caracteres o más.
-- [ ] **SEG-08:** proteger `main` en GitHub (exigir pull request y el chequeo «Revisar enlaces»; bloquear force-push). Sara, en Settings → Branches.
+- [ ] **SEG-07 (en curso):** repositorio privado `lanarosa-copias` creado el 22-oct con los dos flujos subidos y bien nombrados; faltan los secretos `SUPABASE_DB_URL` y `COPIA_CLAVE` (junto con el paquete B). No se hace privado WEB: Pages privado exige plan de pago. Guía: `herramientas/copias/repositorio-privado/LEEME.md`. Antes: copias cifradas de la base en repositorio público. Claude revisa primero qué cambia en la publicación si el repositorio pasa a privado; luego Sara lo hace en GitHub (pasos guiados). Alternativa: subir la contraseña de las copias (`COPIA_CLAVE`) a 24 caracteres o más.
+- [x] **SEG-08:** `main` protegida el 22-oct-2026 (ruleset «Proteger main»: sin borrar la rama ni force-push; verificado por API). No se exige pull request porque `activar-apertura.yml` empuja directo a `main` el 16-nov y «Revisar enlaces» corre después de publicar, no en los PR.
 - [ ] **PRI-03:** desactivar «Email Address Obfuscation» en Cloudflare. Sara.
 - [ ] **SEG-06:** cabeceras de seguridad en Cloudflare (CSP primero en modo «solo informar», nosniff, Referrer-Policy, Permissions-Policy, HSTS). Sara con Claude.
 - [ ] **SEG-15:** lista de comprobación de configuración (Cloudflare, GitHub Pages, Supabase Auth y Storage, secretos, cuentas). Sara.
@@ -313,3 +313,5 @@ Paquetes A (publicado, #401) y parte de C (PRI-01 y PRI-02, publicado, #402) lis
 - [ ] **Paquete B (base de datos):** SEG-01, SEG-02, SEG-03, DAT-02. Bloqueado hasta restablecer la contraseña de la base y actualizar el secreto `SUPABASE_DB_URL` en GitHub.
 - [ ] **Nuevo (P3):** la agenda de Rosina permite «Cargar una copia» y muestra ese contenido sin escapar (autoataque con un archivo manipulado). Escapar al mostrar.
 - [ ] **Revisión de la abogada:** párrafo «Chat de Rosina» (`politicas.html#ia-chat`), aviso del chat y casilla de cuenta sin marcar (ya anotado arriba).
+- [ ] **Cloudflare Web Analytics (23-oct, decisión de Sara: dejarlo y declararlo):** Cloudflare inyecta `static.cloudflareinsights.com/beacon.min.js` en todas las páginas sin esperar el consentimiento (sin cookies). Se declaró en `politicas.html#cookies`; la abogada debe revisar el párrafo. Si se prefiere apagarlo: Cloudflare → Web Analytics.
+- [ ] **Texto desactualizado en `politicas.html#cookies`, apartado 3:** aún dice «Google Analytics y Google Fonts», pero el sitio ya no pide fuentes a Google. Quitar «Google Fonts» (con visto bueno de la abogada).

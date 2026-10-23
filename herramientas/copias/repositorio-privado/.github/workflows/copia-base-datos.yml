@@ -1,0 +1,104 @@
+name: Copia de seguridad de la base de datos
+
+# Cada día exporta la base de Supabase (Lana Rosa ERP + SO), la cifra con la contraseña de Sara
+# y la guarda 90 días como archivo del flujo. Este repositorio es PRIVADO; aun así la copia se cifra siempre antes de guardarla.
+# Secretos necesarios (Settings → Secrets and variables → Actions): SUPABASE_DB_URL y COPIA_CLAVE.
+# Instrucciones: LEEME.md de este repositorio y herramientas/copias/ del repositorio WEB
+
+on:
+  schedule:
+    - cron: '17 8 * * *'   # 3:17 a. m. hora de Colombia
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  copia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Revisar que los secretos existan
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          CLAVE: ${{ secrets.COPIA_CLAVE }}
+        run: |
+          if [ -z "$DB_URL" ] || [ -z "$CLAVE" ]; then
+            echo "::error::Faltan los secretos SUPABASE_DB_URL y/o COPIA_CLAVE (ver herramientas/copias/LEEME.md)"; exit 1
+          fi
+
+      - name: Instalar el cliente de PostgreSQL 17
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client-17
+
+      - name: Exportar y cifrar
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          CLAVE: ${{ secrets.COPIA_CLAVE }}
+        run: |
+          set -euo pipefail
+          umask 077
+          # Al copiar y pegar se cuelan espacios o saltos de línea en los bordes: se quitan.
+          DB_URL=$(printf '%s' "$DB_URL" | tr -d '[:space:]')
+          CLAVE=$(printf '%s' "$CLAVE" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+          FECHA=$(TZ=America/Bogota date +%Y-%m-%d_%H%M)
+          mkdir salida
+          # public = ERP, web y CRM; auth = usuarias y clientas; storage = lista de archivos (los archivos en sí no van aquí)
+          # Se separan usuario, contraseña, servidor y puerto a mano (sin decodificar símbolos) y la contraseña viaja por PGPASSWORD.
+          export DB_URL
+          python3 - <<'PY'
+          import os, subprocess, sys
+          from urllib.parse import urlsplit
+          r = urlsplit(os.environ['DB_URL'])
+          env = dict(os.environ, PGPASSWORD=r.password or '', PGSSLMODE='require')
+          cmd = ['/usr/lib/postgresql/17/bin/pg_dump', '-h', r.hostname, '-p', str(r.port or 5432), '-U', r.username, '-d', (r.path or '/postgres').lstrip('/') or 'postgres',
+                 '-Fc', '--no-owner', '--no-privileges', '-n', 'public', '-n', 'auth', '-n', 'storage', '-f', 'crudo.dump']
+          sys.exit(subprocess.run(cmd, env=env).returncode)
+          PY
+          /usr/lib/postgresql/17/bin/pg_restore --list crudo.dump > lista.txt
+          TABLAS=$(grep -c ' TABLE DATA ' lista.txt || true)
+          TAM=$(stat -c %s crudo.dump)
+          echo "Tablas con datos: $TABLAS · tamaño: $TAM bytes"
+          if [ "$TABLAS" -lt 100 ] || [ "$TAM" -lt 1000000 ]; then
+            echo "::error::La copia parece incompleta (tablas: $TABLAS, bytes: $TAM)"; exit 1
+          fi
+          printf '%s' "$CLAVE" | gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 --symmetric --cipher-algo AES256 -o "salida/lanarosa-base-$FECHA.dump.gpg" crudo.dump
+          rm -f crudo.dump lista.txt
+          ls -l salida
+          echo "ARCHIVO=lanarosa-base-$FECHA" >> "$GITHUB_ENV"
+
+      - name: Diagnóstico de la cadena de conexión (sin mostrar la contraseña)
+        if: failure()
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          from urllib.parse import urlsplit
+          u = os.environ['DB_URL']
+          print('largo total:', len(u), '· espacios/saltos al borde:', u != u.strip())
+          print('comillas:', any(c in u for c in '"\''), '· corchetes:', '[' in u or ']' in u, '· YOUR-PASSWORD:', 'YOUR-PASSWORD' in u.upper())
+          try:
+              r = urlsplit(u.strip())
+              print('esquema:', r.scheme)
+              print('usuario:', r.username)
+              print('servidor:', r.hostname, '· puerto:', r.port, '· base:', r.path)
+              pw = r.password or ''
+              print('largo de la contraseña:', len(pw), '· minúsculas:', sum(c.islower() for c in pw), '· mayúsculas:', sum(c.isupper() for c in pw), '· dígitos:', sum(c.isdigit() for c in pw), '· otros símbolos:', sum(not c.isalnum() for c in pw), '· lleva %:', '%' in pw)
+          except Exception as e:
+              print('no se pudo analizar:', type(e).__name__)
+              m = re.match(r'^(\w+)://([^:]*):', u.strip())
+              print('inicio:', m.group(0) if m else '(sin patrón)')
+          PY
+
+      - name: Guardar la copia cifrada (90 días)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARCHIVO }}
+          path: salida/*.gpg
+          retention-days: 90
+          if-no-files-found: error
