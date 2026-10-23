@@ -32,4 +32,20 @@ resto = ''.join(capas[2:])
 comp = ('<div class="pie-logo-anim" role="img" aria-label="Lana Rosa Crochet" style="aspect-ratio:' + ASPECTO + '">'
         '<span class="la-cabeza" style="transform-origin:' + ORIGEN + '">' + cab + '</span>' + resto + '</div>')
 open(os.path.join(os.path.dirname(__file__), 'componente.html'), 'w', encoding='utf-8').write(comp)
+
+# Mercería y Academy: mismas 8 capas (oveja y «Lana Rosa») + el nombre de la casa como texto con la fuente propia (el archivo de Sara lo pedía a Google Fonts).
+# Posición y tamaño tomados de su .mer (top: 67.2% - 3cqw; alto 6cqw; fuente 4.1cqw del lienzo cuadrado) y pasados al logo recortado.
+K = 100 / W                         # 1% del lienzo cuadrado = K % del ancho del logo recortado
+def con_nombre(nombre, tipo_delays):
+    top = (67.2 - 3 - y0) / H * 100
+    letras = ''.join(f'<span class="la-p la-t" style="animation-delay:{d}s">{c}</span>' for c, d in tipo_delays)
+    nombre_html = (f'<span class="la-nombre" aria-hidden="true" style="top:{top:.2f}%;height:{6*K:.2f}cqw;line-height:{6*K:.2f}cqw;font-size:{4.1*K:.2f}cqw">{letras}</span>')
+    capas8 = ''.join(capas[2:8])
+    return ('<div class="pie-logo-anim" role="img" aria-label="Lana Rosa ' + nombre + '" style="aspect-ratio:' + ASPECTO + '">'
+            '<span class="la-cabeza" style="transform-origin:' + ORIGEN + '">' + cab + '</span>' + capas8 + nombre_html + '</div>')
+def delays(texto):
+    return [(c, round(3.60 + .08 * i, 2)) for i, c in enumerate(texto)]
+for casa, nombre in (('merceria', 'Mercería'), ('academy', 'Academy')):
+    open(os.path.join(os.path.dirname(__file__), f'componente-{casa}.html'), 'w', encoding='utf-8').write(con_nombre(nombre, delays(nombre)))
+
 print('listo:', ASPECTO, ORIGEN, len(comp), 'bytes de HTML')
