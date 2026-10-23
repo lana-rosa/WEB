@@ -314,3 +314,7 @@ html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary:hov
 @keyframes la-wink { 0%, 84%, 100% { transform: none; } 88%, 95% { transform: scale(1.12, .08) rotate(-5deg); } }
 @keyframes la-pop { 0% { opacity: 0; transform: translateY(40%) scale(.7); } 100% { opacity: 1; transform: none; } }
 @keyframes la-rise { 0% { opacity: 0; transform: translateY(60%); } 100% { opacity: 1; transform: none; } }
+/* Mercería y Academy: nombre de la casa como texto bajo «Lana Rosa» (se mide en cqw del propio logo) */
+.pie-logo-anim { container-type: inline-size; }
+.pie-logo-anim .la-nombre { position: absolute; left: 0; right: 0; display: block; text-align: center; white-space: nowrap; color: #DDE6FB; font-family: var(--fuente-cuerpo); font-weight: 400; letter-spacing: .08em; pointer-events: none; }
+.pie-logo-anim .la-nombre .la-p { display: inline-block; }
