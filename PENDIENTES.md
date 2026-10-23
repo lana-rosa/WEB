@@ -316,3 +316,17 @@ Paquetes A (publicado, #401) y parte de C (PRI-01 y PRI-02, publicado, #402) lis
 - [ ] **Cloudflare Web Analytics (23-oct, decisión de Sara: dejarlo y declararlo):** Cloudflare inyecta `static.cloudflareinsights.com/beacon.min.js` en todas las páginas sin esperar el consentimiento (sin cookies). Se declaró en `politicas.html#cookies`; la abogada debe revisar el párrafo. Si se prefiere apagarlo: Cloudflare → Web Analytics.
 - [ ] **Texto desactualizado en `politicas.html#cookies`, apartado 3:** aún dice «Google Analytics y Google Fonts», pero el sitio ya no pide fuentes a Google. Quitar «Google Fonts» (con visto bueno de la abogada).
 - [ ] **Logo animado del pie (23-oct-2026):** hecho solo para la Tienda (Crochet) y las páginas comunes, con fondo transparente (`herramientas/logo-animado/`, `img/logo-animado/`, `.pie-logo-anim` en `comun.css`, arranque al verse en `animaciones.js`). Sara envió tres versiones (rosa, violeta y azul) pero son el mismo logo «Lana Rosa Crochet» con distinto fondo: Sara envió después las versiones de Mercería y Academy (23-oct): mismas capas con el nombre de la casa como texto; se usa la fuente propia en vez de Roboto de Google. Los tres pies llevan el logo animado. Si quiere la caja de color por casa en vez de transparente, se cambia en el CSS.
+
+## Google Calendar — qué falta (Sara, 23-oct-2026: «más tarde lo hacemos»)
+Hoy: sincronización **apagada** en la agenda desde el 13-oct (piezas en `herramientas/google-calendar/agenda-apagada/`); siguen el archivo .ics y los botones «Añadir a Google Calendar» por fila. La función `google-calendar` (Supabase) y sus tablas `google_calendar_cuentas` y `google_calendar_eventos` siguen creadas, con 0 cuentas conectadas. Lo primero es **decidir**, y de eso depende el resto:
+- [ ] **Decisión de Sara:** (A) volver a ofrecer la sincronización o (B) abandonarla y limpiar.
+- [ ] **Si A (volver a ofrecerla):**
+  1. Crear el proyecto y el cliente OAuth en Google Cloud (pasos 1 a 5 de `herramientas/google-calendar/README.md`) y guardar en Supabase los secretos `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `CALENDAR_TOKEN_KEY` y `CALENDAR_STATE_SECRET`.
+  2. Devolver la tarjeta y el módulo a `agenda-rosina.html` (desde `agenda-apagada/`). **Ojo:** el módulo se hizo para la membresía, que está apagada (la agenda completa es gratis con la cuenta): hay que adaptarlo a «con cuenta gratis» antes de volver a ponerlo.
+  3. Enviar la **verificación de Google** (permiso sensible `calendar.events`: dominio verificado en Search Console, política de privacidad, video con la interfaz final; guion y textos en `herramientas/google-calendar/verificacion-google.md`). Mientras no se verifique, sale el aviso «app no verificada» y el límite es de 100 personas.
+  4. Revisar la sección 10 de `politicas.html#datos` (ya habla de Google Calendar) y la abogada.
+  5. Probar el flujo real (conectar, sincronizar, desconectar) con una cuenta de prueba.
+- [ ] **Si B (abandonarla):**
+  1. Borrar la función `google-calendar` en Supabase (su código queda en `herramientas/google-calendar/google-calendar.ts`) y, con SQL, las dos tablas.
+  2. En Google Cloud: borrar el cliente OAuth y quitar `calendar.events` de la pantalla de consentimiento (o eliminar el proyecto).
+  3. Quitar la sección 10 de `politicas.html#datos` y ajustar el texto de la agenda, con visto bueno de la abogada.
