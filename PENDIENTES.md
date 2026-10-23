@@ -311,7 +311,7 @@ Paquetes A (publicado, #401) y parte de C (PRI-01 y PRI-02, publicado, #402) lis
 - [ ] **CON-04:** el feed de Merchant Center declara `in_stock` siempre; enviar `backorder` o filtrar con la misma regla de disponibilidad de la tienda. Sara (Merchant Center) y autorización.
 - [ ] **ACC-09 y FUN-02:** lector de pantalla (VoiceOver, TalkBack) y pruebas en Android e iPhone reales (lista en `herramientas/auditoria-360/LIMITACIONES_Y_PENDIENTES.md`).
 - [ ] **Paquete B (base de datos):** SEG-01, SEG-02, SEG-03, DAT-02. Bloqueado hasta restablecer la contraseña de la base y actualizar el secreto `SUPABASE_DB_URL` en GitHub.
-- [ ] **Nuevo (P3):** la agenda de Rosina permite «Cargar una copia» y muestra ese contenido sin escapar (autoataque con un archivo manipulado). Escapar al mostrar.
+- [x] **Agenda de Rosina, «Cargar una copia» (23-oct-2026):** ahora limpia la copia al cargarla (quita `<` y `>` de todos los textos, descarta claves peligrosas, límite de 5 MB y de profundidad). Prueba: `herramientas/pruebas/probar_agenda_copia.py`.
 - [ ] **Revisión de la abogada:** párrafo «Chat de Rosina» (`politicas.html#ia-chat`), aviso del chat y casilla de cuenta sin marcar (ya anotado arriba).
 - [ ] **Cloudflare Web Analytics (23-oct, decisión de Sara: dejarlo y declararlo):** Cloudflare inyecta `static.cloudflareinsights.com/beacon.min.js` en todas las páginas sin esperar el consentimiento (sin cookies). Se declaró en `politicas.html#cookies`; la abogada debe revisar el párrafo. Si se prefiere apagarlo: Cloudflare → Web Analytics.
 - [ ] **Texto desactualizado en `politicas.html#cookies`, apartado 3:** aún dice «Google Analytics y Google Fonts», pero el sitio ya no pide fuentes a Google. Quitar «Google Fonts» (con visto bueno de la abogada).
