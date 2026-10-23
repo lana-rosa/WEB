@@ -1,7 +1,9 @@
 // Feed de productos para Google Merchant Center (Lana Rosa Crochet).
 // Público y de solo lectura: expone los mismos datos que ya muestra la tienda web,
 // solo para los productos marcados en web_google_shopping (diseños propios).
-// Todos los productos del feed están disponibles en la web (disponible_web), igual que en la ficha.
+// Todos los productos del feed están marcados como disponibles en la web (disponible_web). La disponibilidad que se envía sigue la misma regla de la tienda
+// (migración 26): con existencias (stock_actual > 0) = in_stock («Disponible», se despacha el siguiente día hábil); sin existencias = backorder
+// (bajo pedido: 8 días hábiles de elaboración), para que Google no marque «disponibilidad no coincide».
 const SITIO = 'https://lanarosacrochet.com';
 
 const esc = (t: unknown) => String(t ?? '')
@@ -35,7 +37,7 @@ Deno.serve(async () => {
       `<g:description>${esc(descripcion)}</g:description>`,
       `<g:link>${SITIO}/tienda.html?producto=${esc(p.id)}</g:link>`,
       `<g:image_link>${SITIO}/img/productos/${esc(encodeURIComponent(p.foto_url))}</g:image_link>`,
-      `<g:availability>in_stock</g:availability>`,
+      `<g:availability>${Number(p.stock_actual) > 0 ? 'in_stock' : 'backorder'}</g:availability>`,
       `<g:price>${Number(p.precio).toFixed(2)} COP</g:price>`,
       `<g:condition>new</g:condition>`,
       `<g:brand>Lana Rosa Crochet</g:brand>`,
