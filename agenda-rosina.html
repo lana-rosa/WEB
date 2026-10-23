@@ -2158,17 +2158,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
     escribir(CLAVE_COPIA, new Date().toISOString().slice(0, 10));
   });
+  // Una copia es un archivo que puede venir de cualquier parte: se quitan < y > de todos los textos (la agenda los pinta como HTML en varias hojas), se descartan claves peligrosas y se limita la profundidad.
+  function limpiarCopia(v, prof) {
+    if (typeof v === 'string') return v.replace(/[<>]/g, '');
+    if (v === null || typeof v === 'number' || typeof v === 'boolean') return v;
+    if (prof > 12) return null;
+    if (Array.isArray(v)) return v.map(function(x) { return limpiarCopia(x, prof + 1); });
+    if (typeof v === 'object') {
+      var o = {};
+      Object.keys(v).forEach(function(k) { if (k === '__proto__' || k === 'constructor' || k === 'prototype') return; o[k.replace(/[<>]/g, '')] = limpiarCopia(v[k], prof + 1); });
+      return o;
+    }
+    return null;
+  }
   var archivo = document.getElementById('agenda-archivo');
   document.getElementById('agenda-cargar').addEventListener('click', function() { archivo.click(); });
   archivo.addEventListener('change', function() {
     var f = archivo.files && archivo.files[0]; if (!f) return;
+    if (f.size > 5 * 1024 * 1024) { alert('Ese archivo es demasiado grande para ser una copia de la Agenda de Rosina.'); archivo.value = ''; return; }
     var lector = new FileReader();
     lector.onload = function() {
       try {
         var c = JSON.parse(lector.result);
         if (!c || !c.agendaRosina || typeof c.datos !== 'object') throw 0;
-        if (!confirm('¿Reemplazar lo que tienes en esta agenda por la copia del ' + (c.fecha || 'archivo') + '?')) return;
-        escribir(CLAVE_AGENDA, JSON.stringify(c.datos)); location.reload();
+        if (!confirm('¿Reemplazar lo que tienes en esta agenda por la copia del ' + String(c.fecha || 'archivo').slice(0, 20).replace(/[<>]/g, '') + '?')) return;
+        escribir(CLAVE_AGENDA, JSON.stringify(limpiarCopia(c.datos, 0))); location.reload();
       } catch (e) { alert('Ese archivo no es una copia de la Agenda de Rosina.'); }
       archivo.value = '';
     };
