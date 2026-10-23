@@ -289,3 +289,28 @@ html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary::af
 html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary::before { content: ""; position: absolute; right: 11px; top: 50%; width: 8px; height: 8px; margin-top: -7px; border-right: 2.5px solid var(--rosa-texto); border-bottom: 2.5px solid var(--rosa-texto); transform: rotate(45deg); transition: transform .2s; z-index: 1; }
 html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que)[open] > summary::before { transform: rotate(225deg); margin-top: -3px; }
 html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary:hover::after { background: var(--rosa-medio); }
+
+/* ===== Logo animado del pie (23-oct-2026, Tienda): fondo transparente, 15 capas WebP. Generado con herramientas/logo-animado/.
+   Sin JavaScript o con «reducir movimiento» se ve completo y quieto; con JavaScript (js/animaciones.js) se prepara con .la-lista y arranca al verse (.la-va). ===== */
+.pie-logo-anim { position: relative; display: block; width: 190px; max-width: 100%; margin: 0 0 14px; }
+.pie-marca .pie-logo-anim { margin: 0 0 14px; }
+.pie-logo-anim .la-pos { position: absolute; display: block; }
+.pie-logo-anim .la-pos img { width: 100%; height: 100%; display: block; }
+.pie-logo-anim .la-cabeza { position: absolute; inset: 0; display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .pie-logo-anim.la-lista .la-sheep { clip-path: inset(0 100% 0 0); }
+  .pie-logo-anim.la-lista .la-eye, .pie-logo-anim.la-lista .la-p { opacity: 0; }
+  .pie-logo-anim.la-lista .la-cabeza, .pie-logo-anim.la-lista .la-sheep, .pie-logo-anim.la-lista .la-eye, .pie-logo-anim.la-lista .la-p { animation-play-state: paused; }
+  .pie-logo-anim.la-va .la-cabeza, .pie-logo-anim.la-va .la-sheep, .pie-logo-anim.la-va .la-eye, .pie-logo-anim.la-va .la-p { animation-play-state: running; }
+  .pie-logo-anim.la-lista .la-sheep { animation: la-wipe 1.6s ease-out .3s forwards; }
+  .pie-logo-anim.la-lista .la-cabeza { animation: la-bob 4s ease-in-out 2.2s infinite; }
+  .pie-logo-anim.la-lista .la-eye { transform-origin: center; animation: la-fade .4s ease 1.6s forwards, la-wink 4s ease 2.4s infinite; }
+  .pie-logo-anim.la-lista .la-p { animation: la-pop .8s cubic-bezier(.3,1.6,.5,1) forwards; }
+  .pie-logo-anim.la-lista .la-p.la-t { animation-name: la-rise; animation-duration: .6s; }
+}
+@keyframes la-wipe { to { clip-path: inset(0 0 0 0); } }
+@keyframes la-bob { 50% { transform: translateY(-1.2%) rotate(-1.2deg); } }
+@keyframes la-fade { to { opacity: 1; } }
+@keyframes la-wink { 0%, 84%, 100% { transform: none; } 88%, 95% { transform: scale(1.12, .08) rotate(-5deg); } }
+@keyframes la-pop { 0% { opacity: 0; transform: translateY(40%) scale(.7); } 100% { opacity: 1; transform: none; } }
+@keyframes la-rise { 0% { opacity: 0; transform: translateY(60%); } 100% { opacity: 1; transform: none; } }

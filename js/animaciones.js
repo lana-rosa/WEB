@@ -211,6 +211,18 @@
     }
   } catch (e) {}
 
+  // Logo animado del pie (Tienda): arranca cuando se ve; con «reducir movimiento» queda quieto y completo.
+  try {
+    var logoAnim = document.querySelector('.pie-logo-anim');
+    if (logoAnim && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      logoAnim.classList.add('la-lista');
+      if ('IntersectionObserver' in window) {
+        var obsLogo = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { logoAnim.classList.add('la-va'); obsLogo.disconnect(); } }, { threshold: 0.4 });
+        obsLogo.observe(logoAnim);
+      } else { logoAnim.classList.add('la-va'); }
+    }
+  } catch (e) {}
+
   // chat de ayuda de Rosina (botón flotante)
   try { var sc = document.createElement('script'); sc.src = '/js/rosina-chat.js?v=9'; sc.defer = true; document.body.appendChild(sc); } catch (e) {}
 })();
