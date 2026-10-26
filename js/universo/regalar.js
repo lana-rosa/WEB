@@ -231,7 +231,7 @@ export async function iniciarRegalar(raiz) {
     const p1 = nodo('p'); p1.append('¿No ves lo que imaginas? ');
     const l1 = nodo('a', null, 'Cuéntanos tu idea'); l1.href = '/personaliza.html#form-personalizado'; const l2 = nodo('a', null, 'escríbenos por WhatsApp'); l2.href = 'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent('Hola Lana Rosa 💕 Estoy buscando un regalo.'); l2.target = '_blank'; l2.rel = 'noopener';
     p1.append(l1, ' o ', l2, '.'); cierre.append(p1); resultados.append(cierre);
-    resumen.textContent = total ? (r.disponibles.length + ' disponibles ya, ' + r.encargo.length + ' por encargo y ' + r.ideas.length + ' ideas para personalizar.') : 'Sin resultados con esos filtros.';
+    resumen.textContent = total ? (r.disponibles.length + ' disponibles ya y ' + r.encargo.length + ' por encargo. Todos los productos se pueden personalizar.') : 'Sin resultados con esos filtros.';
     actualizarListas();
     const nExtra = Object.keys(sel).filter((k) => PRINCIPALES.indexOf(k) < 0).length;
     extraTitulo.textContent = 'Más opciones' + (nExtra ? ' (' + nExtra + ' elegida' + (nExtra > 1 ? 's' : '') + ')' : '');

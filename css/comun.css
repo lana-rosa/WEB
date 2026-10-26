@@ -235,9 +235,8 @@ html[data-casa="merceria"] main.contenedor > :first-child, html[data-casa="acade
 
 
 /* Páginas de inicio de Mercería y Academy: mismos fondos que el inicio general (blanco, crema, lila y rosado) */
-html[data-casa="merceria"] .ed-rosa, html[data-casa="academy"] .ed-rosa { background: #FBE4EF; }
+/* (reemplazado el 23-oct-2026: ver «Fondos de las páginas principales por casa» al final) */
 html[data-casa="merceria"] .ed-lila .ed-eyebrow, html[data-casa="merceria"] .ed-rosa .ed-eyebrow, html[data-casa="academy"] .ed-lila .ed-eyebrow, html[data-casa="academy"] .ed-rosa .ed-eyebrow { color: var(--rosa-texto); }
-html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { background: #FBE4EF; }
 
 /* Pie simple (8-oct-2026): logo con las tres casas al lado, tres columnas cortas, pagos y apoyo en una línea */
 .pie-rico { padding: 30px 0 16px; }
@@ -318,3 +317,22 @@ html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary:hov
 .pie-logo-anim { container-type: inline-size; }
 .pie-logo-anim .la-nombre { position: absolute; left: 0; right: 0; display: block; text-align: center; white-space: nowrap; color: #DDE6FB; font-family: var(--fuente-cuerpo); font-weight: 400; letter-spacing: .08em; pointer-events: none; }
 .pie-logo-anim .la-nombre .la-p { display: inline-block; }
+
+/* Menú móvil: el desplazamiento se queda dentro del menú y la página de atrás no se mueve mientras está abierto (23-oct-2026) */
+.nav-movil-panel { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+@media (max-width: 1100px) { html.menu-bloqueado, html.menu-bloqueado body { overflow: hidden; } }
+
+/* ===== Fondos de las páginas principales por casa (23-oct-2026, a pedido de Sara) =====
+   La primera franja (el héroe) es siempre el blanco más claro; las siguientes se alternan con los tonos de cada casa:
+   Tienda en rosados, Mercería en violetas y Academy en azules (--casa-t1 suave, --casa-t2 un poco más marcado). */
+html { --casa-t1: #FEF2F7; --casa-t2: #FBE4EF; }
+html[data-casa="merceria"] { --casa-t1: #F1EAFF; --casa-t2: #E3D7FA; }
+html[data-casa="academy"] { --casa-t1: #E8F1FF; --casa-t2: #D6E6FC; }
+.inicio-editorial .ed-hero { background: #FFFFFF; }
+html[data-casa="merceria"] .ed-crema, html[data-casa="academy"] .ed-crema,
+html[data-casa="merceria"] .inicio-editorial > .seccion-suave, html[data-casa="academy"] .inicio-editorial > .seccion-suave,
+html[data-casa="merceria"] .ed-lila, html[data-casa="academy"] .ed-lila { background: var(--casa-t1); }
+html[data-casa="merceria"] .ed-rosa, html[data-casa="academy"] .ed-rosa,
+html[data-casa="merceria"] .ed-final, html[data-casa="academy"] .ed-final { background: var(--casa-t2); }
+html[data-casa="academy"] #cursos { background: var(--casa-t1); }
+html[data-casa="academy"] #agenda { background: var(--casa-t2); }
