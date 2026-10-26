@@ -22,10 +22,12 @@ with sync_playwright() as p:
             n = f'{casa} {w}px'
             v(f'{n}: la página tiene los colores de su casa', pg.evaluate("document.documentElement.getAttribute('data-casa')") == casa)
             v(f'{n}: el menú resalta «El universo de Rosina» y enlaza al hub de su casa', pg.locator('.nav-principal li.g-universo a').count() == 1)
-            v(f'{n}: muestra el material gratis de Rosina', pg.locator('.recursos .recurso').count() >= 4)
+            if casa == 'crochet': v(f'{n}: la Tienda NO trae material gratis ni «Conoce a Rosina» (solo es de Academy)', pg.locator('.recursos .recurso').count() == 0 and pg.locator('#conoce-a-rosina').count() == 0)
+            else: v(f'{n}: muestra el material gratis de Rosina', pg.locator('.recursos .recurso').count() >= 4)
             v(f'{n}: sin desplazamiento horizontal', pg.evaluate('document.documentElement.scrollWidth') <= w)
             v(f'{n}: un solo h1', pg.locator('h1').count() == 1)
-            v(f'{n}: trae «Conoce a Rosina» al final, después del material gratis', pg.locator('#conoce-a-rosina').count() == 1 and pg.evaluate("document.querySelector('#conoce-a-rosina').getBoundingClientRect().top > document.querySelector('.ur-recursos').getBoundingClientRect().top"))
+            if casa != 'crochet': v(f'{n}: trae «Conoce a Rosina» al final, después del material gratis', pg.locator('#conoce-a-rosina').count() == 1 and pg.evaluate("document.querySelector('#conoce-a-rosina').getBoundingClientRect().top > document.querySelector('.ur-recursos').getBoundingClientRect().top"))
+            if casa == 'crochet': v(f'{n}: el formulario «Rosina te ayuda a regalar» va primero (antes del grupo «Para regalar y crear»)', pg.evaluate("document.querySelector('#regalar').getBoundingClientRect().top < document.querySelector('#grupo-regalar').getBoundingClientRect().top"))
             if casa != 'crochet': v(f'{n}: no trae el buscador de regalos', pg.locator('#regalar').count() == 0)
         for u in ('glosario-rosina.html', 'paletas-rosina.html', 'calculadoras-rosina.html', 'agenda-rosina.html', 'recursos-rosina.html'):
             pg.goto(BASE + '/' + u); pg.wait_for_timeout(500)
@@ -38,7 +40,7 @@ with sync_playwright() as p:
         pg.goto(BASE + '/universo-rosina.html?casa=' + casa); pg.wait_for_timeout(800)
         v(f'?casa={casa} lleva al hub de esa casa', pg.url.endswith(destino))
     pg.goto(BASE + '/rosina.html'); pg.wait_for_timeout(800)
-    v('rosina.html lleva al hub, a «Conoce a Rosina»', pg.url.endswith('/universo-rosina.html#conoce-a-rosina'))
+    v('rosina.html lleva al hub, al buscador de regalos', pg.url.endswith('/universo-rosina.html#regalar'))
     b.close()
 print(f'\n{bien} comprobaciones correctas, {mal} con falla.')
 sys.exit(1 if mal else 0)

@@ -95,7 +95,7 @@ MOVIL = {
     <a href="personaliza.html" class="nav-destacado">✨ Personaliza el tuyo</a>
     <a href="index.html#historias">Historias que tejimos</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html">🐑 Rosina: regalos, ideas y material gratis</a>
+    <a href="universo-rosina.html">🐑 Rosina: regalos e ideas</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <a href="revista.html?casa=crochet">Revista</a>
@@ -193,7 +193,7 @@ def _encabezado(casa):
     <p class="grupo-nav">Lana Rosa Academy</p>
     <a href="aprende.html">Aprende <span class="etiqueta-gratis">Tutoriales gratis</span></a>
     <p class="grupo-nav">Rosina</p>
-    <a href="universo-rosina.html">🐑 Rosina: regalos, ideas y material gratis</a>
+    <a href="universo-rosina.html">🐑 Rosina: regalos e ideas</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="revista.html">Revista</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
@@ -298,7 +298,7 @@ def pie_casa(modelo, casa):
     universo_href = {'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}.get(casa, 'universo-rosina.html')  # cada casa tiene su propio hub de Rosina
     rev = PIE_REVISTA.get(casa, 'revista.html')
     # en Mercería y Academy el universo de Rosina ya está en la columna de la casa: no se repite
-    universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">Rosina: regalos, ideas y material gratis</a></li>'
+    universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">Rosina: regalos e ideas</a></li>'
     horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
@@ -369,16 +369,21 @@ def absolutas(html):
 BARRA_PAGINAS = {'recursos-rosina': 'recursos-rosina.html', 'glosario-rosina': 'glosario-rosina.html', 'paletas-rosina': 'paletas-rosina.html',
                  'calculadoras-rosina': 'calculadoras-rosina.html', 'agenda-rosina': 'agenda-rosina.html'}
 BARRA_ITEMS = [('Material gratis', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas', 'paletas-rosina.html'),
-               ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html'), ('Conoce a Rosina', 'universo-rosina.html#conoce-a-rosina')]
+               ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html')]   # «Conoce a Rosina» solo en los hubs de Mercería y Academy (la Tienda ya no lo tiene)
 HUB_TEXTO = {'crochet': 'Rosina: regalos e ideas', 'merceria': 'Rosina: lanas e ideas', 'academy': 'Rosina: tutoriales y recursos'}
 HUB = {'crochet': 'universo-rosina.html', 'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}
 
 def barra_rosina(pagina, casa):
     hub = HUB.get(casa, 'universo-rosina.html')
     items = [f'<a href="{hub}" class="br-hub">🐑 {HUB_TEXTO.get(casa, HUB_TEXTO["crochet"])}</a>']
+    if casa in ('merceria', 'academy'):
+        items_conoce = f'<a href="{hub}#conoce-a-rosina">Conoce a Rosina</a>'
+    else:
+        items_conoce = None
     for t, h in BARRA_ITEMS:
         act = ' aria-current="page" class="br-actual"' if h == BARRA_PAGINAS.get(pagina) else ''
         items.append(f'<a href="{h}"{act}>{t}</a>')
+    if items_conoce: items.append(items_conoce)
     return ('<!-- BARRA:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<nav class="barra-rosina" aria-label="Rosina">\n  <div class="contenedor">\n    '
             + '\n    '.join(items) + '\n  </div>\n</nav>\n<!-- BARRA:FIN -->')
 

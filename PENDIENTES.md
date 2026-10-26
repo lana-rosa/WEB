@@ -330,3 +330,13 @@ Hoy: sincronización **apagada** en la agenda desde el 13-oct (piezas en `herram
   1. Borrar la función `google-calendar` en Supabase (su código queda en `herramientas/google-calendar/google-calendar.ts`) y, con SQL, las dos tablas.
   2. En Google Cloud: borrar el cliente OAuth y quitar `calendar.events` de la pantalla de consentimiento (o eliminar el proyecto).
   3. Quitar la sección 10 de `politicas.html#datos` y ajustar el texto de la agenda, con visto bueno de la abogada.
+
+## Lote de cambios del 23-oct-2026 (pedido de Sara; en la rama, pendiente de publicar)
+- [x] Academy: taller «cada taller tiene un proyecto de tejido diferente»; «clases particulares» → «clases personalizadas» (mínimo 1 hora, se cobra por hora).
+- [x] Inicio: «Rosina te ayuda» lleva al formulario de regalos; se quitó el aviso «0 ideas para personalizar» (todos los productos se pueden personalizar).
+- [x] Universo de Rosina de la Tienda sin material gratis ni «Conoce a Rosina», formulario primero y menú «Rosina: regalos e ideas».
+- [x] Menú móvil: la página de atrás ya no se mueve mientras el menú está abierto (tres casas).
+- [x] Personaliza: «Rosina te ayuda a crear» con el mismo formato de «Diligencia el formulario»; mensaje de envío solo «El precio del artículo no incluye gastos de envío».
+- [x] Agenda de Rosina en tablet: revisadas las 29 hojas en 6 tamaños (768, 820, 834, 900, 1024, 1100, 1180 px): sin desplazamiento horizontal.
+- [x] Fondos de las páginas principales por casa (ver CLAUDE.md).
+- [ ] **Agenda: se pierde lo escrito al borrar los datos del navegador** (Sara, 23-oct): la agenda vive solo en el navegador. Opciones planteadas: copia en la cuenta (con autorización, ya existe `agenda_nube`), recordatorio de «Guardar una copia» y `navigator.storage.persist()`. Pendiente de decidir con Sara.

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Genera el hub «El universo de Rosina» de Mercería y de Academy a partir de universo-rosina.html (el de la Tienda) y mantiene
-el bloque «Material gratis de Rosina» (entre <!-- RECURSOS:INICIO --> y <!-- RECURSOS:FIN -->) de las tres versiones.
+"""Genera «El universo de Rosina» de las tres casas a partir de herramientas/universo-base.html (con todas las secciones).
+La Tienda (universo-rosina.html) sale sin «Material gratis de Rosina» ni «Conoce a Rosina» (23-oct-2026, a pedido de Sara: eso es de Academy) y con
+el formulario «Rosina te ayuda a regalar» primero; Mercería y Academy siguen con su bloque de material gratis (entre <!-- RECURSOS:INICIO --> y <!-- RECURSOS:FIN -->).
 
 Una sola fuente: RECURSOS (qué se ve en cada casa). Uso: python3 herramientas/generar_universo_casas.py y luego
 python3 herramientas/sincronizar_encabezado.py (menú, pie y colores de cada casa).
@@ -8,7 +9,8 @@ python3 herramientas/sincronizar_encabezado.py (menú, pie y colores de cada cas
 import urllib.parse
 import os, re
 RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
-BASE = os.path.join(RAIZ, 'universo-rosina.html')
+BASE = os.path.join(RAIZ, 'herramientas', 'universo-base.html')   # fuente común de las tres versiones (con todas las secciones)
+SALIDA_TIENDA = os.path.join(RAIZ, 'universo-rosina.html')
 
 # (icono, título, descripción corta, enlace)
 R = {
@@ -84,13 +86,37 @@ def poner_cta(s, casa):
     return re.sub(r'<!-- CIERRE:INICIO.*?<!-- CIERRE:FIN -->', lambda m: ('<!-- CIERRE:INICIO (generado por herramientas/generar_universo_casas.py) -->\n  <section class="ur-final" aria-labelledby="titulo-cierre">\n'
         f'    <h2 id="titulo-cierre">{t}</h2>\n    <p>{d}</p>\n    {_botones(a, b)}\n  </section>\n  <!-- CIERRE:FIN -->'), s, flags=re.S)
 
+def version_tienda(s):
+    """La Tienda: formulario de regalos primero; sin material gratis ni «Conoce a Rosina»; solo los recorridos de la Tienda."""
+    t = re.sub(r'  <!-- RECURSOS:INICIO.*?<!-- RECURSOS:FIN -->\n', '', s, flags=re.S)
+    t = re.sub(r'  <section class="ur-conoce".*?</section>\n', '', t, flags=re.S)
+    # recorridos que no son de la Tienda (aprender, aventura, lana) y los títulos de grupo vacíos
+    def recorrido(m):
+        a = m.group(0)
+        return a if 'crochet' in re.search(r'data-casas="([^"]*)"', a).group(1).split() else ''
+    t = re.sub(r'    <a class="recorrido".*?</a>\n', recorrido, t, flags=re.S)
+    t = re.sub(r'  <h2 class="ur-grupo" id="grupo-aprender">[^<]*</h2>\n', '', t)
+    t = re.sub(r'  <nav class="recorridos" aria-labelledby="grupo-aprender">\s*</nav>\n', '', t)
+    # orden: título, formulario de regalos, grupo «Para regalar y crear», botones, cierre
+    form = re.search(r'  <section class="ur-seccion-regalar".*?</section>\n', t, flags=re.S).group(0)
+    t = t.replace(form, '', 1)
+    cta = re.search(r'  <!-- CTA:INICIO.*?<!-- CTA:FIN -->\n', t, flags=re.S).group(0)
+    t = t.replace(cta, '', 1)
+    grupo = re.search(r'  <h2 class="ur-grupo" id="grupo-regalar">.*?</nav>\n', t, flags=re.S).group(0)
+    t = t.replace(grupo, form + '\n' + grupo + '\n' + cta, 1)
+    t = re.sub(r'(<p id="ur-intro">)[^<]*', lambda m: m.group(1) + 'Rosina te ayuda a encontrar un regalo, crear tu amigurumi e inspirarte.', t, count=1)
+    t = t.replace('Rosina te ayuda a regalar, crear, inspirarte y aprender: encuentra', 'Rosina te ayuda a regalar, crear e inspirarte: encuentra')
+    t = t.replace('Rosina te ayuda a regalar, crear, inspirarte y aprender con productos reales', 'Rosina te ayuda a regalar, crear e inspirarte con productos reales')
+    t = t.replace('Rosina te ayuda a elegir un regalo, crear tu amigurumi, inspirarte y aprender a tejer.', 'Rosina te ayuda a elegir un regalo, crear tu amigurumi e inspirarte.')
+    return t
+
 def main():
     base = open(BASE, encoding='utf-8').read()
     # 1) Tienda: el bloque de recursos y la redirección a los hubs de Mercería y Academy
     s = poner_cta(poner_bloque(base, 'crochet'), 'crochet')
     if 'REDIRIGE-CASA' not in s:
         s = s.replace('<meta name="viewport"', '<script>/* REDIRIGE-CASA */try{var _q=new URLSearchParams(location.search).get("casa");if(_q==="merceria")location.replace("/merceria/rosina/"+location.hash);else if(_q==="academy")location.replace("/academy/rosina/"+location.hash)}catch(e){}</script>\n<meta name="viewport"', 1)
-    open(BASE, 'w', encoding='utf-8').write(s)
+    open(os.path.join(RAIZ, 'universo-rosina.html'), 'w', encoding='utf-8').write(version_tienda(s))
     # 2) Hubs de Mercería y Academy
     for casa, (ruta, nombre, intro) in CASAS.items():
         t = s
@@ -121,10 +147,10 @@ def main():
         t = re.sub(r'  <nav class="recorridos">.*?</nav>', nombrar_nav, t, flags=re.S)
         t = re.sub(r'  <script>\n  // El Universo muestra solo lo de la casa.*?</script>\n\n', '', t, flags=re.S)
         t = re.sub(r'  <section class="ur-seccion-regalar".*?</section>\n', '', t, flags=re.S)
-        t = re.sub(r"import \{ iniciarRegalar \} from '/js/universo/regalar\.js\?v=2';\nvar casaUr.*?\nif \(document.getElementById\('regalar-raiz'\)\) iniciarRegalar\(document.getElementById\('regalar-raiz'\)\);\n", '', t, flags=re.S)
+        t = re.sub(r"import \{ iniciarRegalar \} from '/js/universo/regalar\.js\?v=\d+';\nvar casaUr.*?\nif \(document.getElementById\('regalar-raiz'\)\) iniciarRegalar\(document.getElementById\('regalar-raiz'\)\);\n", '', t, flags=re.S)
         t = t.replace('<meta property="og:description" content="Rosina te ayuda a elegir un regalo, crear tu amigurumi, inspirarte y aprender a tejer.">', f'<meta property="og:description" content="{intro}">')
         t = t.replace('<meta name="description" content="Rosina te ayuda a regalar, crear, inspirarte y aprender: encuentra un amigurumi para esa persona especial con productos reales de Lana Rosa.">', f'<meta name="description" content="{intro}">')
-        t = t.replace('<link rel="stylesheet" href="/css/universo.css?v=14">', '<link rel="stylesheet" href="/css/universo.css?v=19">')
+        t = t.replace('<link rel="stylesheet" href="/css/universo.css?v=19">', '<link rel="stylesheet" href="/css/universo.css?v=19">')
         # textos propios de cada casa (título, descripción, presentación de Rosina y mensaje de WhatsApp): no se repite la página de la Tienda
         U = UNICO[casa]
         t = re.sub(r'<title>.*?</title>', lambda m: f'<title>{U["titulo"]}</title>', t, count=1, flags=re.S)

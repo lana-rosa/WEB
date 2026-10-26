@@ -174,3 +174,15 @@ html[data-ur-casa]:not([data-ur-casa="crochet"]) #regalar { display: none; }
 /* Mientras cargan los productos se reserva espacio: así los bloques de abajo no saltan cuando aparecen (CLS) */
 #regalar-raiz:has(> .ur-estado) { min-height: 560px; }
 @media (max-width: 640px) { .ur-seccion-regalar .ur-grupo label { min-height: 2.4em; display: flex; align-items: flex-end; } }
+
+/* «Rosina te ayuda a crear» (23-oct-2026): mismos tamaños y formato que «Diligencia el formulario» (letra de 0,95 rem, campos de 12 px de radio y borde rosa suave) */
+.uc-form label:not(.uc-check), .uc-form legend { display: block; font-size: 0.95rem; font-weight: 600; margin: 0 0 6px; padding: 0; color: var(--tinta); }
+.uc-form .ur-select, .uc-form .uc-input, .uc-form .uc-texto, .uc-form .uc-detalle-texto { width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--rosa-suave); font-family: var(--fuente-cuerpo); font-size: 0.95rem; background-color: var(--blanco-hueso); color: var(--tinta); min-height: 0; }
+.uc-form .ur-select { appearance: auto; background-image: none; }
+.uc-form .uc-texto { min-height: 100px; }
+.uc-form .ur-select:focus, .uc-form .uc-input:focus, .uc-form .uc-texto:focus, .uc-form .uc-detalle-texto:focus { border-color: var(--rosa-principal); }
+.uc-form .uc-check { font-size: 0.95rem; border: 1.5px solid var(--rosa-suave); border-radius: 12px; background: var(--blanco-hueso); min-height: 0; padding: 10px 12px; }
+.uc-form .uc-check:has(input:checked) { border-color: var(--rosa-principal); background: var(--rosa-suave); }
+.uc-form .uc-ayuda, .uc-form .uc-nota { font-size: 0.8rem; }
+.uc-form .ur-grupo { margin: 0; }
+.uc-ficha { font-size: 0.92rem; }
