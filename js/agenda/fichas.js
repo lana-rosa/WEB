@@ -14,7 +14,7 @@
     'tabla-pedidos': { vacio: 'Pedido nuevo', agregar: '➕ Agregar pedido', titulo: ['pedido', 'cliente'], resumen: ['entrega'], extra: 'pedido', estado: 'estado', fecha: 'entrega', cerrados: ['Entregado', 'Cancelado'], alarmas: 'entrega' },
     'tabla-lanas': { vacio: 'Lana nueva', agregar: '➕ Agregar lana o hilo', titulo: ['marca', 'color'], resumen: ['grosor', 'ovillos'] },
     'tabla-compras': { vacio: 'Material nuevo', agregar: '➕ Agregar material', titulo: ['material', 'color'], resumen: ['cantidad'], checks: [['comprado', 'Comprado']], cumplida: 'comprado', alFinal: true },
-    'tabla-fila': { vacio: 'Proyecto nuevo', agregar: '➕ Agregar proyecto', titulo: ['proyecto', 'para'], resumen: ['fecha'], estado: 'estado', fecha: 'fecha', cerrados: ['Terminado'], alarmas: 'fecha', checks: [['cumplido', 'Cumplido']], cumplida: 'cumplido', alFinal: true, alCumplir: { estado: 'Terminado' } },
+    'tabla-fila': { vacio: 'Proyecto nuevo', agregar: '➕ Agregar proyecto', titulo: ['proyecto', 'para'], resumen: ['fecha'], estado: 'estado', fecha: 'fecha', cerrados: ['Terminado'], alarmas: 'fecha', ultimoAvance: 'avance', checks: [['cumplido', 'Cumplido']], cumplida: 'cumplido', alFinal: true, alCumplir: { estado: 'Terminado' } },
     'tabla-patrones': { vacio: 'Patrón nuevo', agregar: '➕ Agregar patrón', titulo: ['patron'], resumen: ['dificultad'], checks: [['guardado', 'Guardado'], ['tejido', 'Ya lo tejí']] },
     'tabla-fechas': { vacio: 'Fecha nueva', agregar: '➕ Agregar fecha', titulo: ['ocasion', 'para'], resumen: ['fecha'], checks: [['listo', 'Listo']] },
     'tabla-clientas': { vacio: 'Clienta nueva', agregar: '➕ Agregar clienta', titulo: ['nombre'], resumen: ['whatsapp'] },
@@ -23,6 +23,8 @@
     'tabla-diario': { vacio: 'Día nuevo', agregar: '➕ Agregar día', titulo: ['fecha', 'teji'], resumen: [], estado: 'animo' },
     'tabla-agujas': { vacio: 'Aguja nueva', agregar: '➕ Agregar una aguja', titulo: ['medida', 'material'], resumen: ['compra'], extra: 'aguja' },
     'tabla-ideas': { vacio: 'Idea nueva', agregar: '➕ Agregar una idea', titulo: ['tema'], resumen: ['fecha'] },
+    'tabla-gastos': { vacio: 'Gasto nuevo', agregar: '➕ Agregar gasto', titulo: ['detalle', 'categoria'], resumen: ['fecha', 'valor'] },
+    'tabla-contactos': { vacio: 'Contacto nuevo', agregar: '➕ Agregar contacto', titulo: ['nombre'], resumen: ['telefono'], estado: 'tipo' },
     'tabla-aprendi': { vacio: 'Punto o técnica nueva', agregar: '➕ Agregar lo que aprendí', titulo: ['tecnica'], resumen: ['fecha'], checks: [['domino', 'Ya lo domino']], cumplida: 'domino', alFinal: true, alCumplir: { cerrar: true } }
   };
   var estado = {};
@@ -112,6 +114,10 @@
       var sal = dinero(valor(tabla, r, 'saldo')), tot = dinero(valor(tabla, r, 'totalcompra'));
       if (tot > 0 && sal > 0 && !cerrada) chips.push(['Debe $' + sal.toLocaleString('es-CO'), 'aviso']);
       else if (tot > 0 && sal <= 0) chips.push(['✓ Pagado', 'ok']);
+    }
+    if (L.ultimoAvance) {
+      var av = valor(tabla, r, L.ultimoAvance).split('\n').map(function (x) { return x.trim(); }).filter(Boolean), ult = av[av.length - 1];
+      if (ult) { var m = ult.match(/^(\d{1,2}[\/.-]\d{1,2}(?:[\/.-]\d{2,4})?)/); chips.push([m ? 'Avance ' + m[1] : corto(ult, 22), '']); }
     }
     (L.checks || []).forEach(function (x) { if (valor(tabla, r, x[0]) === true) chips.push(['✓ ' + x[1], 'ok']); });
     /* Solo se vuelven a dibujar las etiquetas si cambiaron: así un clic que empieza sobre una etiqueta no se pierde */
@@ -218,6 +224,11 @@
         S.abiertas[r] = !tr.classList.contains('abierta'); S.mostradas[r] = true; aplicar(tabla);
         if (S.abiertas[r]) { var p = tr.querySelector('textarea, select'); if (p && e.detail === 0) p.focus(); }
         return;
+      }
+      var av = e.target.closest('.avance-btn');
+      if (av) {
+        var ta = av.parentNode.querySelector('textarea'), h = new Date(), f = ('0' + h.getDate()).slice(-2) + '/' + ('0' + (h.getMonth() + 1)).slice(-2) + '/' + h.getFullYear();
+        ta.value = (ta.value.trim() ? ta.value.replace(/\s+$/, '') + '\n' : '') + f + ' — '; ta.dispatchEvent(new Event('input', { bubbles: true })); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); return;
       }
       var bo = e.target.closest('.ficha-borrar');
       if (bo) {

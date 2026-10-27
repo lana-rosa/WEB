@@ -40,5 +40,34 @@ with sync_playwright() as p:
     T.v('un pedido de antes conserva su precio y abono', pg.input_value('#ag-p1-precio') == '$50.000' and pg.input_value('#ag-p1-abono') == '$20.000')
     pg.fill('#ag-p1-abono', '$30.000'); pg.wait_for_timeout(300)
     T.v('y al cambiar el abono calcula el total de la compra y el saldo', pg.input_value('#ag-p1-totalcompra') == '$50.000' and pg.input_value('#ag-p1-saldo') == '$20.000', pg.input_value('#ag-p1-saldo'))
+    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
+    # contactos
+    ctx = contexto(b, 390); pg = abrir(ctx, 'contactos')
+    tipos = pg.evaluate("[...document.querySelectorAll('#ag-co1-tipo option')].map(o => o.textContent).slice(1)")
+    T.v('contactos: nombre, quién es, teléfono, correo y redes', all(pg.locator('#ag-co1-' + c).count() == 1 for c in ['nombre', 'tipo', 'telefono', 'correo', 'redes']) and 'Proveedor' in tipos and 'Maestra o maestro' in tipos and 'Amiga o amigo tejedor' in tipos, tipos)
+    pg.fill('#ag-co1-nombre', 'Doña Marta'); pg.select_option('#ag-co1-tipo', 'Proveedor'); pg.fill('#ag-co1-telefono', '3101234567'); pg.fill('#ag-co1-correo', 'marta@correo.co'); pg.fill('#ag-co1-redes', '@martalanas en Instagram'); pg.wait_for_timeout(300)
+    T.v('queda en la lista con su tipo y teléfono, y con enlace de WhatsApp', 'Proveedor' in meta(pg, 'tabla-contactos', 1) and pg.evaluate("document.querySelector('#ag-co1-telefono').parentNode.querySelector('.wa-link').href") == 'https://wa.me/573101234567')
+    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
+    # proyectos por tejer con avance
+    ctx = contexto(b, 390); pg = abrir(ctx, 'proyectos-fila')
+    T.v('proyectos por tejer: la hoja se llama así y tiene avance con fecha', 'Proyectos por tejer' in pg.inner_text('#proyectos-fila header h3') and pg.locator('#ag-f1-avance').count() == 1)
+    pg.fill('#ag-f1-proyecto', 'Manta de bebé'); pg.click('#proyectos-fila .avance-btn'); pg.keyboard.type('Terminé el cuadro 3'); pg.wait_for_timeout(300)
+    hoy = h.strftime('%d/%m/%Y')
+    T.v('«Anotar avance de hoy» pone la fecha y deja escribir', pg.input_value('#ag-f1-avance') == hoy + ' — Terminé el cuadro 3', pg.input_value('#ag-f1-avance'))
+    pg.click('#proyectos-fila .avance-btn'); pg.keyboard.type('Cuadro 4'); pg.wait_for_timeout(300)
+    T.v('cada avance va en su renglón y la ficha muestra el último', pg.input_value('#ag-f1-avance').count('\n') == 1 and 'Avance ' + h.strftime('%d/%m') in meta(pg, 'tabla-fila', 1), meta(pg, 'tabla-fila', 1))
+    ctx.close()
+    # gastos por mes
+    ant = h.replace(day=1) - datetime.timedelta(days=1)
+    datos = {'ag-gs1-fecha': h.strftime('%d/%m/%Y'), 'ag-gs1-categoria': 'Materiales', 'ag-gs1-detalle': 'Lana', 'ag-gs1-valor': '$40.000',
+             'ag-gs2-fecha': h.strftime('%d/%m/%Y'), 'ag-gs2-categoria': 'Transporte', 'ag-gs2-detalle': 'Bus a la feria', 'ag-gs2-valor': '$10.000',
+             'ag-gs3-fecha': ant.strftime('%d/%m/%Y'), 'ag-gs3-categoria': 'Ferias y mercados', 'ag-gs3-detalle': 'Puesto', 'ag-gs3-valor': '$30.000'}
+    ctx = contexto(b, 390, datos=datos); pg = abrir(ctx, 'gastos-negocio')
+    vis = "[...document.querySelectorAll('#tabla-gastos tr.ficha')].filter(x => !x.hidden && !x.classList.contains('fuera-mes')).length"
+    T.v('gastos: el mes actual muestra sus dos gastos y suma $50.000', '$50.000' in pg.inner_text('#totales-gastos') and pg.evaluate(vis) == 2, pg.inner_text('#totales-gastos'))
+    T.v('los totales dicen en qué se fue más (Materiales)', 'Materiales' in pg.inner_text('#totales-gastos') and '$40.000' in pg.inner_text('#totales-gastos'))
+    pg.select_option('#gs-mes', str(ant.year * 100 + ant.month)); pg.wait_for_timeout(200)
+    T.v('el mes anterior muestra su gasto y su total ($30.000)', '$30.000' in pg.inner_text('#totales-gastos') and pg.evaluate(vis) == 1)
+    cap(pg, 'negocio-gastos-390.png')
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close(); b.close()
 T.fin()

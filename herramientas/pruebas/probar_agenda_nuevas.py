@@ -20,7 +20,7 @@ with sync_playwright() as p:
     # menú, índice y número de hojas
     ctx = contexto(b, 1280); pg = abrir(ctx, 'indice-agenda')
     T.v('el menú tiene Portada, Mis ideas y Diseña tu patrón', all(pg.locator('#menu-hojas-lista a[data-hoja="%s"]' % h).count() == 1 for h in ['portada-agenda', 'mis-ideas', 'disena-patron']))
-    T.v('el índice las ofrece y el contador dice 32 hojas', pg.locator('#indice-agenda [data-ir="portada-agenda"]').count() == 1 and '32' in pg.inner_text('.mh-pildora'), pg.inner_text('.mh-pildora'))
+    T.v('el índice las ofrece y el contador dice cuántas hojas hay', pg.locator('#indice-agenda [data-ir="portada-agenda"]').count() == 1 and str(pg.locator('#agenda .hoja-agenda').count()) in pg.inner_text('.mh-pildora'), pg.inner_text('.mh-pildora'))
     T.v('el nombre es «Agenda para tejedoras»', 'Agenda para tejedoras' in pg.inner_text('.intro-agenda h1') and 'de Rosina' not in pg.inner_text('.intro-agenda h1'))
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # portada

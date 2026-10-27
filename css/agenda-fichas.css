@@ -242,3 +242,5 @@ html.agenda-cerrada .intro-agenda:not(.en-construccion), html.agenda-cerrada #ag
 .aviso-construccion { display: inline-block; margin: 6px 0 14px; padding: 8px 18px; border-radius: 999px; background: #FFF3CD; color: #7A5200; font-weight: 800; font-size: 1.05rem; }
 .construccion-copia { max-width: 560px; margin: 22px auto 0; padding: 16px 18px; border: 1.5px dashed var(--rosa-medio); border-radius: 16px; background: var(--blanco); text-align: center; }
 .construccion-copia p { margin: 0 0 10px; }
+
+.avance-btn { margin-top: 6px; }

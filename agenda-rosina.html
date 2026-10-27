@@ -1026,7 +1026,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#prioridades-mes" data-hoja="prioridades-mes">🎯 Prioridades del mes</a>
           <a href="#ficha-proyecto" data-hoja="ficha-proyecto">📋 Ficha de proyecto</a>
           <a href="#semana-tejiendo" data-hoja="semana-tejiendo">🗓️ Mi semana tejiendo</a>
-          <a href="#proyectos-fila" data-hoja="proyectos-fila">🧵 Proyectos en fila</a>
+          <a href="#proyectos-fila" data-hoja="proyectos-fila">🧵 Proyectos por tejer</a>
           <a href="#coleccion-patrones" data-hoja="coleccion-patrones">📚 Mis patrones</a>
           <a href="#anio-tejiendo" data-hoja="anio-tejiendo">⭐ Mi año tejiendo</a>
           <a href="#lo-que-aprendi" data-hoja="lo-que-aprendi">🌟 Lo que aprendí</a>
@@ -1042,6 +1042,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#ventas-mes" data-hoja="ventas-mes">💰 Mis ventas del mes</a>
           <a href="#catalogo-precios" data-hoja="catalogo-precios">🏷️ Mi catálogo de precios</a>
           <a href="#ferias-mercados" data-hoja="ferias-mercados">🎪 Ferias y mercados</a>
+          <a href="#gastos-negocio" data-hoja="gastos-negocio">🧾 Gastos del negocio</a>
+          <a href="#contactos" data-hoja="contactos">📇 Contactos</a>
           <a href="#fin-negocio" data-hoja="fin-negocio">🧮 Resultados del negocio</a>
           <p class="menu-grupo">Mis finanzas</p>
           <a href="#fin-resumen" data-hoja="fin-resumen">📊 Resumen del mes</a>
@@ -1077,7 +1079,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="prioridades-mes"><span class="atajo-ic" aria-hidden="true">🎯</span><span><strong>Prioridades del mes</strong><small>Tres prioridades y la frase del mes</small></span></button>
           <button type="button" class="atajo" data-ir="ficha-proyecto"><span class="atajo-ic" aria-hidden="true">📋</span><span><strong>Ficha de proyecto</strong><small>Todo para repetirlo o regalarlo</small></span></button>
           <button type="button" class="atajo" data-ir="semana-tejiendo"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Mi semana tejiendo</strong><small>Qué tejes cada día</small></span></button>
-          <button type="button" class="atajo" data-ir="proyectos-fila"><span class="atajo-ic" aria-hidden="true">🧵</span><span><strong>Proyectos en fila</strong><small>Lo que sigue en tu lista</small></span></button>
+          <button type="button" class="atajo" data-ir="proyectos-fila"><span class="atajo-ic" aria-hidden="true">🧵</span><span><strong>Proyectos por tejer</strong><small>Lo que sigue y su avance</small></span></button>
           <button type="button" class="atajo" data-ir="coleccion-patrones"><span class="atajo-ic" aria-hidden="true">📚</span><span><strong>Mis patrones</strong><small>Tu colección guardada</small></span></button>
           <button type="button" class="atajo" data-ir="anio-tejiendo"><span class="atajo-ic" aria-hidden="true">⭐</span><span><strong>Mi año tejiendo</strong><small>Tus metas y logros</small></span></button>
           <button type="button" class="atajo" data-ir="lo-que-aprendi"><span class="atajo-ic" aria-hidden="true">🌟</span><span><strong>Lo que aprendí</strong><small>Puntos y trucos nuevos</small></span></button>
@@ -1095,6 +1097,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="ventas-mes"><span class="atajo-ic" aria-hidden="true">💰</span><span><strong>Mis ventas del mes</strong><small>Lo vendido y lo que te quedó</small></span></button>
           <button type="button" class="atajo" data-ir="catalogo-precios"><span class="atajo-ic" aria-hidden="true">🏷️</span><span><strong>Mi catálogo de precios</strong><small>Tus productos y valores</small></span></button>
           <button type="button" class="atajo" data-ir="ferias-mercados"><span class="atajo-ic" aria-hidden="true">🎪</span><span><strong>Ferias y mercados</strong><small>Fechas y lugares</small></span></button>
+          <button type="button" class="atajo" data-ir="gastos-negocio"><span class="atajo-ic" aria-hidden="true">🧾</span><span><strong>Gastos del negocio</strong><small>Materiales, transporte y ferias</small></span></button>
+          <button type="button" class="atajo" data-ir="contactos"><span class="atajo-ic" aria-hidden="true">📇</span><span><strong>Contactos</strong><small>Proveedores, colegas y maestras</small></span></button>
           <button type="button" class="atajo" data-ir="fin-negocio"><span class="atajo-ic" aria-hidden="true">🧮</span><span><strong>Resultados del negocio</strong><small>Ventas, costos y utilidad</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#B5E3C2"><h4>Mis finanzas</h4><div class="atajos">
@@ -1374,6 +1378,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> mira primero qué categoría subió más: casi siempre ahí está el ahorro más fácil. Si un mes sale en naranja, no pasa nada: ¡lo importante es la tendencia!</p>
       </article>
+      <article class="hoja-agenda" id="gastos-negocio">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Gastos del negocio</h3><p>Materiales, transporte, ferias y todo lo que gastas en tu emprendimiento, mes a mes.</p></div>
+        </header>
+        <div class="elegir-mes no-imprimir">
+          <div class="linea"><label for="gs-mes">Mes</label><select id="gs-mes"></select></div>
+          <button type="button" class="boton-secundario boton-chico" id="gs-mes-sig">➕ Agregar el mes siguiente</button>
+        </div>
+        <p class="tip-agenda" id="gs-nota" hidden></p>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:720px;">
+            <thead><tr><th>Fecha</th><th>Categoría</th><th>En qué gasté</th><th>Valor</th><th>Proveedor o lugar</th><th>Medio de pago</th></tr></thead>
+            <tbody id="tabla-gastos"></tbody>
+          </table>
+        </div>
+        <div class="totales-ventas" id="totales-gastos" aria-live="polite"></div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota cada gasto el mismo día; al final del mes sabrás cuánto te costó tejer y cuánto te quedó de verdad.</p>
+      </article>
+      <article class="hoja-agenda" id="contactos">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-02-corazon.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Contactos</h3><p>Proveedores, colegas, maestras y amigas tejedoras: todos en un solo lugar.</p></div>
+        </header>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:680px;">
+            <thead><tr><th>Nombre</th><th>Quién es</th><th>Teléfono</th><th>Correo</th><th>Redes sociales</th><th>Notas</th></tr></thead>
+            <tbody id="tabla-contactos"></tbody>
+          </table>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> guarda aquí a quien te vende lana, te enseña o te ayuda con las ferias; cuando lo necesites, un toque y le escribes por WhatsApp.</p>
+      </article>
       <article class="hoja-agenda" id="fin-negocio">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
@@ -1555,11 +1591,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="hoja-agenda" id="proyectos-fila">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Proyectos en fila</h3><p>Todo lo que quieres tejer, en orden: así sabes qué sigue.</p></div>
+          <div><h3>Proyectos por tejer</h3><p>Todo lo que quieres tejer, con su avance y la fecha de cada avance.</p></div>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
-            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th><th>Ya lo cumplí</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
+            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th><th>Avance (con fecha)</th><th>Ya lo cumplí</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-fila"></tbody>
           </table>
         </div>
@@ -2194,7 +2230,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (c.opciones) return '<td' + et + '><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select><span class="opciones-imp" aria-hidden="true">' + c.opciones.map(function(o) { return '<i>○ ' + o + '</i>'; }).join(' ') + '</span></td>';
       if (c.check) return '<td class="celda-check"' + et + '><label class="check-ficha"><input type="checkbox" id="' + id + '" data-guardar' + aria + '><span>' + (t.titulos[i] || '') + '</span></label></td>';
       if (c.cal) return '<td class="celda-cal no-imprimir" data-col="cal"><button type="button" class="boton-cal" data-cal="' + c.cal + '" data-fila="' + r + '" aria-label="Añadir a Google Calendar la ficha ' + r + '" title="Añadir a Google Calendar">📅<span class="solo-movil"> Añadir a Google Calendar</span></button></td>';
-      return '<td' + et + '><textarea rows="1" id="' + id + '" data-guardar' + aria + (c.wa ? ' inputmode="tel"' : '') + '></textarea>' + (c.wa ? '<a class="wa-link no-imprimir" target="_blank" rel="noopener" hidden>💬 Escribir por WhatsApp</a>' : '') + '</td>';
+      return '<td' + et + '><textarea rows="1" id="' + id + '" data-guardar' + aria + (c.wa ? ' inputmode="tel"' : '') + '></textarea>' + (c.avance ? '<button type="button" class="avance-btn boton-secundario boton-chico no-imprimir">➕ Anotar avance de hoy</button>' : '') + (c.wa ? '<a class="wa-link no-imprimir" target="_blank" rel="noopener" hidden>💬 Escribir por WhatsApp</a>' : '') + '</td>';
     }).join('');
     return '<tr class="ficha" data-fila="' + r + '"><td class="ficha-cab-td"><button type="button" class="ficha-cab" aria-expanded="false"><span class="ficha-flecha" aria-hidden="true">▸</span><span class="ficha-titulo"></span><span class="ficha-meta"></span></button></td>' + celdas +
       '<td class="ficha-acciones no-imprimir"><button type="button" class="ficha-borrar boton-secundario boton-chico" data-fila="' + r + '">🗑️ Borrar esta ficha</button></td></tr>';
@@ -2235,8 +2271,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     { id: 'estado', opciones: ['Cotizado', 'Pedido confirmado', 'En proceso', 'Terminado', 'Despachado', 'Entregado', 'Cancelado'] }, 'obs', { id: 'cal', cal: 'pedido' }], 8, 'del pedido');
   filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
   filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
-  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'cumplido', check: true }, { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
+  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'avance', avance: true }, { id: 'cumplido', check: true }, { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
   filasTabla('tabla-agujas', 'ag-ag', [{ id: 'medida', opciones: ['2', '2,25', '2,5', '2,75', '3', '3,25', '3,5', '3,75', '4', '4,5', '5', '5,5', '6', '6,5', '7', '8', '9', '10'] }, { id: 'material', opciones: ['Aluminio', 'Acero', 'Bambú o madera', 'Plástico', 'Ergonómica con mango', 'Otro'] }, 'compra', 'notas'], 4, 'de la aguja');
+  filasTabla('tabla-gastos', 'ag-gs', ['fecha', { id: 'categoria', opciones: ['Materiales', 'Transporte', 'Ferias y mercados', 'Empaques', 'Publicidad', 'Servicios', 'Herramientas', 'Otros'] }, 'detalle', 'valor', 'proveedor', { id: 'medio', opciones: ['Efectivo', 'Nequi', 'Daviplata', 'Transferencia', 'Tarjeta', 'Otro'] }], 10, 'del gasto');
+  filasTabla('tabla-contactos', 'ag-co', ['nombre', { id: 'tipo', opciones: ['Proveedor', 'Colega', 'Maestra o maestro', 'Amiga o amigo tejedor', 'Cliente frecuente', 'Otro'] }, { id: 'telefono', wa: true }, 'correo', 'redes', 'notas'], 8, 'del contacto');
   filasTabla('tabla-patrones', 'ag-pt', ['patron', 'fuente', { id: 'dificultad', opciones: ['Fácil', 'Media', 'Difícil'] }, { id: 'guardado', check: true }, 'dondeguardo', { id: 'tejido', check: true }], 10, 'del patrón');
   filasTabla('tabla-fechas', 'ag-fe', ['fecha', { id: 'ocasion', opciones: ['Cumpleaños', 'Día de la madre', 'Día del padre', 'Amor y amistad', 'Graduación', 'Aniversario', 'Otra'] }, 'para', 'idea', { id: 'listo', check: true }, { id: 'cal', cal: 'fecha' }], 10, 'de la fecha');
   var agujasGrid = document.getElementById('agujas-grid');
@@ -2638,6 +2676,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   function nombreHoja(i) { return enlacesMenu[i] ? enlacesMenu[i].textContent : ''; }
   var ordenMenu = Array.prototype.map.call(enlacesMenu, function(a) { return a.dataset.hoja; });
+  var pild = document.querySelector('.mh-pildora'); if (pild) pild.textContent = 'Ver las ' + hojas.length + ' hojas ▾';
   hojas.forEach(function(h) {
     var i = ordenMenu.indexOf(h.id), ant = ordenMenu[i - 1], sig = ordenMenu[i + 1], barra = document.createElement('div');
     barra.className = 'hojas-pasos'; barra.hidden = true;
@@ -3884,7 +3923,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/fichas.js?v=1" defer></script>
 <script src="/js/agenda/formas.js?v=1" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
-<script src="/js/agenda/ventas.js?v=1" defer></script>
+<script src="/js/agenda/meses.js?v=1" defer></script>
 <script src="/js/agenda/pedidos.js?v=1" defer></script>
 <script src="/js/agenda/anio.js?v=1" defer></script>
 <script src="/js/agenda/portada.js?v=1" defer></script>
