@@ -46,7 +46,7 @@
     var enlaces = ' <a href="/merceria/catalogo/">Ver la Mercería</a> · <a href="' + WA + '" target="_blank" rel="noopener">Preguntar por WhatsApp</a>';
     function sinExistencias(txt) {
       sel.innerHTML = '<option value="">' + txt + '</option>'; sel.disabled = true; boton.disabled = true;
-      ayuda.innerHTML = 'Mira lo que hay en la' + enlaces + '.';
+      ayuda.innerHTML = 'Mientras tanto:' + enlaces + '.';
     }
     cargar().then(function (todos) {
       var grupos = {};
