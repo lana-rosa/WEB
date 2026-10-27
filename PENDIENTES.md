@@ -363,3 +363,16 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] Entrar con **todos los productos listos** (tienda y mercería); **los personalizados quedan por fuera** (Google los excluye).
 - [ ] Merchant Center en regla: fichas gratuitas, devoluciones y envíos (ver explicación a Sara del 27-oct).
 - [ ] Revisar el estado de UCP en Latinoamérica cada trimestre (próxima: enero de 2027).
+
+## Rediseño de la Agenda para tejedoras (pedido de Sara del 27-oct-2026; en la rama, pendiente de publicar)
+- [x] Nombre «Agenda para tejedoras» en todo el sitio (la dirección `/agenda-rosina.html` no cambia).
+- [x] Portada imprimible con fondos (flores, hojas, madejas, Rosina, liso) y color; sale el nombre de «Esta agenda es de».
+- [x] Fichas desplegables en todas las listas (una sola visible; las demás en lista), cada pregunta en su renglón ampliable; borrar, agregar y buscar.
+- [x] Versiones con nombre automático: prioridades del mes (mes siguiente), ficha de proyecto, semana tejiendo, ferias (con nombre y teléfono de contacto), diseño de patrón; ventas por mes; Mi año tejiendo con mes a página entera.
+- [x] Proyectos en fila: «Ya lo cumplí»; Mis patrones: «Ya lo guardé» y «Dónde lo guardé»; Lo que aprendí: lo dominado se minimiza; agujas con fecha de compra y sugerencia de cambio; estados de pedido y alarmas de entrega.
+- [x] Mercería Lana Rosa ofrecida en lista de compras, inventario, agujas, patrones, ficha de proyecto y diseño de patrón.
+- [x] Buscador siempre visible; exportar a Excel (.xlsx); hoja «Mis ideas» con dictado por voz; hoja «Diseña tu patrón»; lápiz (tinta libre).
+- [ ] **Probar con aparatos reales:** lápiz digital en iPad (Apple Pencil) y Samsung (S Pen), dictado por voz en Chrome y Safari, y la agenda completa en celular y tablet.
+- [ ] **Abogada:** revisar el párrafo nuevo «Escribir con la voz y con el lápiz» de `politicas.html#datos` (apartado 11).
+- [ ] Ideas pendientes de Sara para la agenda («todavía tengo algunas ideas en mente»): anotarlas aquí cuando las diga. Por eso **Google Calendar sigue apagado** (recomendación: no hacerlo todavía).
+- [ ] Excel: faltan en el libro las hojas de finanzas distintas de «Mis movimientos» (presupuesto, fijos, deudas, tarjetas) y el tablero.

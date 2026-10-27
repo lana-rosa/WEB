@@ -49,6 +49,12 @@
         return { 'ag-semana': fechaTxt(d) };
       }
     },
+    'disena-patron': {
+      nuevo: '➕ Diseñar otro patrón', unidad: 'patrón', vacio: 'Patrón sin nombre',
+      nombre: function (c) { return String(c['ag-dp-nombre'] || '').trim() || 'Patrón sin nombre'; },
+      chips: function (c) { var x = []; if (c['ag-dp-nivel']) x.push([c['ag-dp-nivel'], '']); if (c['ag-dp-probado']) x.push(['✓ Probado', 'ok']); return x; },
+      inicial: function () { return {}; }, siguiente: function () { return {}; }
+    },
     'ferias-mercados': {
       nuevo: '➕ Agregar otra feria o mercado', unidad: 'feria', vacio: 'Feria sin nombre',
       nombre: function (c) { return String(c['ag-fr-nombre'] || '').trim() || 'Feria sin nombre'; },
@@ -66,7 +72,8 @@
 
   /* 1) casillas de texto ampliables */
   function ampliables() {
-    document.querySelectorAll('#agenda .linea > input[data-guardar]').forEach(function (inp) {
+    document.querySelectorAll('#agenda .linea > input[data-guardar], #agenda .prioridad > input[data-guardar]').forEach(function (inp) {
+      if (inp.type === 'checkbox') return;
       if (inp.type && inp.type !== 'text') return;
       var ta = document.createElement('textarea'); ta.rows = 1; ta.className = 'una-linea';
       Array.prototype.forEach.call(inp.attributes, function (a) { if (a.name !== 'type' && a.name !== 'style') ta.setAttribute(a.name, a.value); });

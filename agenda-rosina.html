@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="/js/consentimiento.js?v=2" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agenda para tejedoras — Lana Rosa Crochet</title>
-<meta name="description" content="Agenda digital gratuita para tejedoras: ficha de proyecto, planeador semanal, inventario de lanas, ventas, finanzas, calendario del año y diario de tejido. Gratis con tu cuenta.">
+<meta name="description" content="Agenda digital gratuita para tejedoras: portada, ficha de proyecto, planeador semanal, pedidos, inventario de lanas, ventas, finanzas, patrones propios, lápiz y exportar a Excel. Gratis con tu cuenta.">
 <link rel="canonical" href="https://lanarosacrochet.com/agenda-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -957,6 +957,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span id="resultado-busqueda" class="resultado-busqueda" aria-live="polite"></span>
           <button type="button" id="siguiente-busqueda" aria-label="Siguiente resultado" hidden>↓</button>
         </div>
+        <button type="button" class="boton-secundario boton-chico voz-global" data-voz="dictar">🎤 Dictar</button>
+        <button type="button" class="boton-secundario boton-chico" id="tinta-modo" aria-pressed="false">✏️ Lápiz</button>
+        <span class="voz-estado voz-estado-global" role="status" aria-live="polite"></span>
       </div>
       <button type="button" class="barra-toggle no-imprimir" id="barra-toggle" aria-expanded="false" aria-controls="barra-agenda"><span>🎨 Color de la letra y resaltar</span><span class="flecha" aria-hidden="true">▾</span></button>
       <div class="barra-agenda no-imprimir" id="barra-agenda" role="toolbar" aria-label="Herramientas de la agenda">
@@ -980,10 +983,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 29</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 29 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 32</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 32 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
+          <a href="#portada-agenda" data-hoja="portada-agenda">🌸 Portada</a>
           <p class="menu-grupo">Mi tablero</p>
           <a href="#tablero-agenda" data-hoja="tablero-agenda">📈 Mi tablero</a>
           <p class="menu-grupo">Mis proyectos</p>
@@ -995,6 +999,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#coleccion-patrones" data-hoja="coleccion-patrones">📚 Mis patrones</a>
           <a href="#anio-tejiendo" data-hoja="anio-tejiendo">⭐ Mi año tejiendo</a>
           <a href="#lo-que-aprendi" data-hoja="lo-que-aprendi">🌟 Lo que aprendí</a>
+          <a href="#mis-ideas" data-hoja="mis-ideas">💭 Mis ideas</a>
+          <a href="#disena-patron" data-hoja="disena-patron">✏️ Diseña tu patrón</a>
           <p class="menu-grupo">Mis materiales</p>
           <a href="#inventario-lanas" data-hoja="inventario-lanas">🧶 Inventario de lanas</a>
           <a href="#mis-agujas" data-hoja="mis-agujas"><svg class="ic-aguja" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 20L18 6"/><ellipse cx="18.6" cy="5.4" rx="1" ry="2.4" transform="rotate(45 18.6 5.4)"/><path d="M16.5 7.5C21 10 21 15 14.5 15.5"/></svg> Mis agujas</a>
@@ -1029,6 +1035,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
         </header>
+        <div class="indice-grupo" style="--c:#F7B3D4"><h4>Mi agenda</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="portada-agenda"><span class="atajo-ic" aria-hidden="true">🌸</span><span><strong>Portada</strong><small>Elige el fondo y tu nombre, y písala</small></span></button>
+        </div></div>
         <div class="indice-grupo" style="--c:#FFE08A"><h4>Mi tablero</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="tablero-agenda"><span class="atajo-ic" aria-hidden="true">📈</span><span><strong>Mi tablero</strong><small>Indicadores y análisis de todas tus hojas</small></span></button>
         </div></div>
@@ -1041,6 +1050,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="coleccion-patrones"><span class="atajo-ic" aria-hidden="true">📚</span><span><strong>Mis patrones</strong><small>Tu colección guardada</small></span></button>
           <button type="button" class="atajo" data-ir="anio-tejiendo"><span class="atajo-ic" aria-hidden="true">⭐</span><span><strong>Mi año tejiendo</strong><small>Tus metas y logros</small></span></button>
           <button type="button" class="atajo" data-ir="lo-que-aprendi"><span class="atajo-ic" aria-hidden="true">🌟</span><span><strong>Lo que aprendí</strong><small>Puntos y trucos nuevos</small></span></button>
+          <button type="button" class="atajo" data-ir="mis-ideas"><span class="atajo-ic" aria-hidden="true">💭</span><span><strong>Mis ideas</strong><small>Pensamientos e ideas, escritos o hablados</small></span></button>
+          <button type="button" class="atajo" data-ir="disena-patron"><span class="atajo-ic" aria-hidden="true">✏️</span><span><strong>Diseña tu patrón</strong><small>Tu propio patrón, paso a paso</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#B9BCFB"><h4>Mis materiales</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="inventario-lanas"><span class="atajo-ic" aria-hidden="true">🧶</span><span><strong>Inventario de lanas</strong><small>Colores, marcas y cantidades</small></span></button>
@@ -1069,6 +1080,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="diario-tejido"><span class="atajo-ic" aria-hidden="true">📔</span><span><strong>Diario de tejido</strong><small>Cómo te sentiste tejiendo</small></span></button>
           <button type="button" class="atajo" data-ir="registro-pausas"><span class="atajo-ic" aria-hidden="true">🧘</span><span><strong>Registro de pausas activas</strong><small>Cuida tus manos y tu espalda</small></span></button>
         </div></div>
+      </article>
+      <article class="hoja-agenda" id="portada-agenda">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Portada</h3><p>Dale tu estilo a la agenda: elige el fondo y imprímela como tapa de tu cuaderno.</p></div>
+        </header>
+        <div class="portada-controles no-imprimir">
+          <div class="linea"><label for="portada-nombre">Esta agenda es de</label><input id="portada-nombre" maxlength="40" placeholder="Escribe tu nombre" autocomplete="off"></div>
+          <div class="linea"><label for="ag-portada-frase">Una frase o el año (opcional)</label><input id="ag-portada-frase" data-guardar maxlength="60" placeholder="Por ejemplo: 2026 o «Un punto a la vez»" autocomplete="off"></div>
+          <fieldset class="portada-opciones"><legend>Fondo</legend><div class="portada-fondos" id="portada-fondos"></div></fieldset>
+          <fieldset class="portada-opciones"><legend>Color</legend><div class="portada-colores" id="portada-colores"></div></fieldset>
+          <input type="hidden" id="ag-portada-fondo" data-guardar><input type="hidden" id="ag-portada-color" data-guardar>
+        </div>
+        <div class="portada-hoja" id="portada-hoja" data-fondo="flores" data-color="rosa">
+          <div class="portada-fondo" aria-hidden="true"></div>
+          <div class="portada-tarjeta">
+            <img src="/img/stickers/rosina-07-leyendo.webp" alt="" width="512" height="512" decoding="async">
+            <p class="portada-marca">Lana Rosa Crochet</p>
+            <p class="portada-titulo">Agenda para tejedoras</p>
+            <p class="portada-de">Esta agenda es de</p>
+            <p class="portada-nombre" id="portada-nombre-vista">Tu nombre</p>
+            <p class="portada-frase" id="portada-frase-vista"></p>
+          </div>
+        </div>
+        <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> al imprimir, activa «gráficos de fondo» (o «colores de fondo») en las opciones de impresión para que se vea el fondo completo.</p>
+        <p class="no-imprimir portada-imprimir"><button type="button" class="boton-primario" data-imprimir-hoja="llena">🖨️ Imprimir la portada</button></p>
       </article>
       <article class="hoja-agenda" id="vision-anio">
         <header>
@@ -1369,6 +1406,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="linea ancha"><label for="ag-notas">Notas y cambios al patrón</label><textarea id="ag-notas" rows="4" data-guardar></textarea></div>
         </div>
         </div>
+        <div class="elegir-tienda oferta-merceria no-imprimir" data-categorias="Lanas,Hilos,Agujas,Relleno,Accesorios">
+          <label>Materiales de la Mercería Lana Rosa para tu proyecto</label>
+          <div class="elegir-tienda-fila">
+            <select class="merc-sel" disabled aria-label="Materiales de la Mercería"><option value="">Cargando materiales…</option></select>
+            <button type="button" class="boton-primario boton-chico merc-add" disabled>Agregar a mi lista de compras</button>
+          </div>
+          <p class="ayuda-tienda merc-ayuda" aria-live="polite"></p>
+        </div>
         </article>
 
       <article class="hoja-agenda" id="semana-tejiendo">
@@ -1412,6 +1457,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Inventario de lanas e hilos</h3><p>Sabe qué tienes antes de comprar: así no repites colores ni te quedas corta.</p></div>
         </header>
         <p class="aviso-auto no-imprimir" id="lanas-auto" hidden></p>
+        <div class="elegir-tienda oferta-merceria no-imprimir" data-categorias="Lanas,Hilos">
+          <label>¿Te falta una lana o un hilo? Mira la Mercería Lana Rosa</label>
+          <div class="elegir-tienda-fila">
+            <select class="merc-sel" disabled aria-label="Material de la Mercería"><option value="">Cargando materiales…</option></select>
+            <button type="button" class="boton-primario boton-chico merc-add" disabled>Agregar a mi lista de compras</button>
+          </div>
+          <p class="ayuda-tienda merc-ayuda" aria-live="polite"></p>
+        </div>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:640px;">
             <thead><tr><th>Marca</th><th>Color</th><th>Grosor</th><th>Ovillos</th><th>Lo usé en</th></tr></thead>
@@ -1427,6 +1480,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Mis agujas</h3><p>Marca las que ya tienes y verás de un vistazo cuáles te faltan.</p></div>
         </header>
         <div class="agujas-grid" id="agujas-grid"></div>
+        <h4 class="sub-hoja">Mis agujas y cuándo las compré</h4>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota la fecha de compra de cada aguja y te sugiero cuándo revisarla o cambiarla. Es una guía general: cámbiala antes si ves astillas, rayones o si raspa el hilo.</p>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
+            <thead><tr><th>Medida (mm)</th><th>Material</th><th>Fecha de compra</th><th>Notas</th></tr></thead>
+            <tbody id="tabla-agujas"></tbody>
+          </table>
+        </div>
+        <div class="elegir-tienda oferta-merceria no-imprimir" data-categorias="Agujas,Accesorios">
+          <label>¿Necesitas una aguja nueva? Mira las de la Mercería Lana Rosa</label>
+          <div class="elegir-tienda-fila">
+            <select class="merc-sel" disabled aria-label="Agujas y accesorios de la Mercería"><option value="">Cargando materiales…</option></select>
+            <button type="button" class="boton-primario boton-chico merc-add" disabled>Agregar a mi lista de compras</button>
+          </div>
+          <p class="ayuda-tienda merc-ayuda" aria-live="polite"></p>
+        </div>
         <div class="linea ancha" style="margin-top:16px;"><label for="ag-agujas-notas">Otras agujas y accesorios (agujas lanera, de tunecino, marcadores…)</label><textarea id="ag-agujas-notas" rows="3" data-guardar></textarea></div>
       </article>
 
@@ -1435,13 +1504,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Lista de compras</h3><p>Anota lo que necesitas y, si quieres, envíasela a Lana Rosa por WhatsApp.</p></div>
         </header>
-        <div class="elegir-tienda no-imprimir">
-          <label for="compras-tienda">Agregar un material de la Mercería Lana Rosa</label>
+        <div class="elegir-tienda oferta-merceria no-imprimir" data-categorias="">
+          <label>Agregar un material de la Mercería Lana Rosa</label>
           <div class="elegir-tienda-fila">
-            <select id="compras-tienda" disabled><option value="">Cargando materiales…</option></select>
-            <button type="button" class="boton-primario boton-chico" id="compras-agregar" disabled>Agregar a mi lista</button>
+            <select class="merc-sel" disabled aria-label="Material de la Mercería"><option value="">Cargando materiales…</option></select>
+            <button type="button" class="boton-primario boton-chico merc-add" disabled>Agregar a mi lista</button>
           </div>
-          <p class="ayuda-tienda" id="compras-ayuda" aria-live="polite"></p>
+          <p class="ayuda-tienda merc-ayuda" aria-live="polite"></p>
         </div>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:560px;">
@@ -1459,7 +1528,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
-            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
+            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th><th>Ya lo cumplí</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-fila"></tbody>
           </table>
         </div>
@@ -1471,9 +1540,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Mi colección de patrones</h3><p>Guarda dónde encontraste cada patrón para no perderlo.</p></div>
         </header>
         <p class="aviso-auto no-imprimir" id="patrones-auto" hidden></p>
+        <div class="elegir-tienda oferta-merceria no-imprimir" data-categorias="Patrones">
+          <label>Patrones de tejido de la Mercería Lana Rosa</label>
+          <div class="elegir-tienda-fila">
+            <select class="merc-sel" disabled aria-label="Patrones de la Mercería"><option value="">Cargando patrones…</option></select>
+            <button type="button" class="boton-primario boton-chico merc-add" disabled>Agregar a mi lista de compras</button>
+          </div>
+          <p class="ayuda-tienda merc-ayuda" aria-live="polite"></p>
+        </div>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
-            <thead><tr><th>Patrón</th><th>Dónde lo encontré</th><th>Dificultad</th><th>Ya lo tejí</th></tr></thead>
+            <thead><tr><th>Patrón</th><th>Dónde lo encontré</th><th>Dificultad</th><th>Ya lo guardé</th><th>Dónde lo guardé</th><th>Ya lo tejí</th></tr></thead>
             <tbody id="tabla-patrones"></tbody>
           </table>
         </div>
@@ -1539,7 +1616,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-12-pulgar-arriba.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mis ventas del mes</h3><p>Lo que vendiste, lo que te costó y lo que ganaste.</p></div>
         </header>
-        <div class="linea" style="max-width:240px; margin-bottom:14px;"><label for="ag-vt-mes">Mes</label><input id="ag-vt-mes" data-guardar></div>
+        <div class="elegir-mes no-imprimir">
+          <div class="linea"><label for="vt-mes">Mes</label><select id="vt-mes"></select></div>
+          <button type="button" class="boton-secundario boton-chico" id="vt-mes-sig">➕ Agregar el mes siguiente</button>
+        </div>
+        <p class="tip-agenda" id="vt-nota" hidden></p>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:720px;">
             <thead><tr><th>Fecha</th><th>Producto</th><th>Cliente</th><th>Precio de venta</th><th>Costo de materiales</th></tr></thead>
@@ -1629,6 +1710,134 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <thead><tr><th>Fecha</th><th>Punto o técnica</th><th>Dónde lo aprendí</th><th>Ya lo domino</th></tr></thead>
             <tbody id="tabla-aprendi"></tbody>
           </table>
+        </div>
+      </article>
+      <article class="hoja-agenda" id="mis-ideas">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Mis ideas</h3><p>Pensamientos e ideas para nuevos proyectos: escríbelos o dícelos con tu voz.</p></div>
+        </header>
+        <div class="voz-barra no-imprimir">
+          <button type="button" class="boton-primario boton-chico" data-voz="dictar">🎤 Hablar para escribir</button>
+          <span class="voz-estado" role="status" aria-live="polite"></span>
+        </div>
+        <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> toca «Hablar para escribir», di tu idea con calma y yo la escribo en la ficha que tengas abierta. También puedes usar el micrófono del teclado de tu celular.</p>
+        <div class="tabla-scroll" style="box-shadow:none;">
+          <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
+            <thead><tr><th>Fecha</th><th>De qué trata</th><th>Mi idea o pensamiento</th></tr></thead>
+            <tbody id="tabla-ideas"></tbody>
+          </table>
+        </div>
+      </article>
+      <article class="hoja-agenda" id="disena-patron">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-11-computador.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Diseña tu patrón</h3><p>Escribe tu propio patrón paso a paso y déjalo listo para imprimir.</p></div>
+        </header>
+        <div class="vers-cuerpo">
+          <nav class="dp-pasos no-imprimir" id="dp-pasos" aria-label="Pasos para diseñar tu patrón"></nav>
+          <fieldset class="dp-paso" data-paso="1" data-titulo="La idea">
+            <legend>Paso 1 · La idea</legend>
+            <div class="grid-ficha">
+              <div class="linea ancha"><label for="ag-dp-nombre">Nombre de tu patrón</label><input id="ag-dp-nombre" data-guardar placeholder="Por ejemplo: Ovejita Rosa"></div>
+              <div class="linea"><label for="ag-dp-tipo">¿Qué vas a tejer?</label><input id="ag-dp-tipo" data-guardar placeholder="Amigurumi, bufanda, bolso…"></div>
+              <div class="linea"><label for="ag-dp-nivel">Nivel</label><select id="ag-dp-nivel" data-guardar><option value=""></option><option>Principiante</option><option>Intermedio</option><option>Avanzado</option></select></div>
+              <div class="linea"><label for="ag-dp-medida">Medida final</label><input id="ag-dp-medida" data-guardar placeholder="Por ejemplo: 15 cm de alto"></div>
+              <div class="linea ancha"><label for="ag-dp-descr">Cuéntalo en pocas palabras</label><textarea id="ag-dp-descr" rows="3" data-guardar></textarea></div>
+            </div>
+          </fieldset>
+          <fieldset class="dp-paso" data-paso="2" data-titulo="Materiales">
+            <legend>Paso 2 · Materiales</legend>
+            <div class="grid-ficha">
+              <div class="linea"><label for="ag-dp-lana">Lana o hilo (marca, grosor y colores)</label><input id="ag-dp-lana" data-guardar></div>
+              <div class="linea"><label for="ag-dp-aguja">Aguja (mm)</label><input id="ag-dp-aguja" data-guardar></div>
+              <div class="linea ancha"><label for="ag-dp-otros">Otros materiales (relleno, ojos, marcadores, aguja lanera…)</label><textarea id="ag-dp-otros" rows="3" data-guardar></textarea></div>
+              <div class="linea ancha"><label for="ag-dp-muestra">Muestra (puntos × vueltas en 10 cm)</label><input id="ag-dp-muestra" data-guardar></div>
+            </div>
+            <div class="elegir-tienda oferta-merceria no-imprimir" data-categorias="Lanas,Hilos,Agujas,Relleno,Accesorios">
+              <label>Materiales de la Mercería Lana Rosa para tu patrón</label>
+              <div class="elegir-tienda-fila">
+                <select class="merc-sel" disabled aria-label="Materiales de la Mercería"><option value="">Cargando materiales…</option></select>
+                <button type="button" class="boton-primario boton-chico merc-add" disabled>Agregar a mi lista de compras</button>
+              </div>
+              <p class="ayuda-tienda merc-ayuda" aria-live="polite"></p>
+            </div>
+          </fieldset>
+          <fieldset class="dp-paso" data-paso="3" data-titulo="Abreviaturas">
+            <legend>Paso 3 · Abreviaturas que usas</legend>
+            <p class="dp-ayuda no-imprimir">Toca una para agregarla. Todas están en el <a href="/glosario-rosina.html">glosario de Rosina</a>.</p>
+            <div class="dp-chips no-imprimir" id="dp-chips"></div>
+            <div class="grid-ficha"><div class="linea ancha"><label for="ag-dp-abrev">Abreviaturas</label><textarea id="ag-dp-abrev" rows="4" data-guardar></textarea></div></div>
+          </fieldset>
+          <fieldset class="dp-paso" data-paso="4" data-titulo="Partes y vueltas">
+            <legend>Paso 4 · Partes y vueltas</legend>
+            <p class="dp-ayuda no-imprimir">Escribe cada parte en su casilla, una vuelta por renglón. Por ejemplo: «V1: 6 pb en am (6)».</p>
+            <div id="dp-partes">
+              <details class="dp-parte" open>
+                <summary>Parte 1</summary>
+                <div class="grid-ficha">
+                  <div class="linea ancha"><label for="ag-dp-p1-nombre">Nombre de la parte</label><input id="ag-dp-p1-nombre" data-guardar placeholder="Cabeza"></div>
+                  <div class="linea ancha"><label for="ag-dp-p1-vueltas">Vueltas</label><textarea id="ag-dp-p1-vueltas" rows="6" data-guardar placeholder="V1: 6 pb en am (6)&#10;V2: aum en cada pto (12)"></textarea></div>
+                </div>
+              </details>
+              <details class="dp-parte">
+                <summary>Parte 2</summary>
+                <div class="grid-ficha">
+                  <div class="linea ancha"><label for="ag-dp-p2-nombre">Nombre de la parte</label><input id="ag-dp-p2-nombre" data-guardar placeholder="Cuerpo"></div>
+                  <div class="linea ancha"><label for="ag-dp-p2-vueltas">Vueltas</label><textarea id="ag-dp-p2-vueltas" rows="6" data-guardar placeholder="V1: 6 pb en am (6)&#10;V2: aum en cada pto (12)"></textarea></div>
+                </div>
+              </details>
+              <details class="dp-parte">
+                <summary>Parte 3</summary>
+                <div class="grid-ficha">
+                  <div class="linea ancha"><label for="ag-dp-p3-nombre">Nombre de la parte</label><input id="ag-dp-p3-nombre" data-guardar placeholder="Brazos"></div>
+                  <div class="linea ancha"><label for="ag-dp-p3-vueltas">Vueltas</label><textarea id="ag-dp-p3-vueltas" rows="6" data-guardar placeholder="V1: 6 pb en am (6)&#10;V2: aum en cada pto (12)"></textarea></div>
+                </div>
+              </details>
+              <details class="dp-parte">
+                <summary>Parte 4</summary>
+                <div class="grid-ficha">
+                  <div class="linea ancha"><label for="ag-dp-p4-nombre">Nombre de la parte</label><input id="ag-dp-p4-nombre" data-guardar placeholder="Orejas"></div>
+                  <div class="linea ancha"><label for="ag-dp-p4-vueltas">Vueltas</label><textarea id="ag-dp-p4-vueltas" rows="6" data-guardar placeholder="V1: 6 pb en am (6)&#10;V2: aum en cada pto (12)"></textarea></div>
+                </div>
+              </details>
+              <details class="dp-parte">
+                <summary>Parte 5</summary>
+                <div class="grid-ficha">
+                  <div class="linea ancha"><label for="ag-dp-p5-nombre">Nombre de la parte</label><input id="ag-dp-p5-nombre" data-guardar placeholder="Patas"></div>
+                  <div class="linea ancha"><label for="ag-dp-p5-vueltas">Vueltas</label><textarea id="ag-dp-p5-vueltas" rows="6" data-guardar placeholder="V1: 6 pb en am (6)&#10;V2: aum en cada pto (12)"></textarea></div>
+                </div>
+              </details>
+              <details class="dp-parte">
+                <summary>Parte 6</summary>
+                <div class="grid-ficha">
+                  <div class="linea ancha"><label for="ag-dp-p6-nombre">Nombre de la parte</label><input id="ag-dp-p6-nombre" data-guardar placeholder="Detalles"></div>
+                  <div class="linea ancha"><label for="ag-dp-p6-vueltas">Vueltas</label><textarea id="ag-dp-p6-vueltas" rows="6" data-guardar placeholder="V1: 6 pb en am (6)&#10;V2: aum en cada pto (12)"></textarea></div>
+                </div>
+              </details>
+            </div>
+          </fieldset>
+          <fieldset class="dp-paso" data-paso="5" data-titulo="Armado">
+            <legend>Paso 5 · Armado y detalles</legend>
+            <div class="grid-ficha">
+              <div class="linea ancha"><label for="ag-dp-armado">Cómo se arma</label><textarea id="ag-dp-armado" rows="5" data-guardar></textarea></div>
+              <div class="linea ancha"><label for="ag-dp-detalles">Detalles y acabados (bordados, moños, ropa…)</label><textarea id="ag-dp-detalles" rows="4" data-guardar></textarea></div>
+            </div>
+          </fieldset>
+          <fieldset class="dp-paso" data-paso="6" data-titulo="Notas">
+            <legend>Paso 6 · Notas</legend>
+            <div class="grid-ficha">
+              <div class="linea ancha"><label for="ag-dp-notas">Notas, consejos y cambios que harías</label><textarea id="ag-dp-notas" rows="4" data-guardar></textarea></div>
+              <div class="linea ancha"><label class="check-linea"><input type="checkbox" id="ag-dp-probado" data-guardar> Ya lo tejí siguiendo este patrón y funciona</label></div>
+            </div>
+          </fieldset>
+          <fieldset class="dp-paso dp-vista-paso" data-paso="7" data-titulo="Vista previa">
+            <legend>Paso 7 · Así queda tu patrón</legend>
+            <div class="dp-vista" id="dp-vista" aria-live="polite"></div>
+            <p class="no-imprimir dp-acciones"><button type="button" class="boton-primario" id="dp-imprimir">🖨️ Imprimir mi patrón</button> <button type="button" class="boton-secundario" id="dp-txt">⬇️ Descargar como texto</button></p>
+            <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> los patrones que diseñas son tuyos. Si los compartes o los vendes, escribe tu nombre como autora y cuida las imágenes que uses.</p>
+          </fieldset>
+          <div class="dp-nav no-imprimir"><button type="button" class="boton-secundario boton-chico" id="dp-atras">← Atrás</button><span id="dp-cuenta" aria-live="polite"></span><button type="button" class="boton-primario boton-chico" id="dp-sig">Siguiente →</button></div>
         </div>
       </article>
         <div class="acciones-hoja acciones-hoja-abajo no-imprimir">
@@ -1942,7 +2151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var datos = {};
   try { datos = JSON.parse(leer(CLAVE_AGENDA)) || {}; } catch (e) {}
   function avisarGuardado() { if (window.lrAgenda && window.lrAgenda.alGuardar) window.lrAgenda.alGuardar(); }
-  function guardarDatos() { escribir(CLAVE_AGENDA, JSON.stringify(datos)); avisarGuardado(); if (window.lrFichas) window.lrFichas.alGuardar(); if (window.lrVersiones) window.lrVersiones.alGuardar(); }
+  function guardarDatos() { escribir(CLAVE_AGENDA, JSON.stringify(datos)); avisarGuardado(); if (window.lrFichas) window.lrFichas.alGuardar(); if (window.lrVersiones) window.lrVersiones.alGuardar(); document.dispatchEvent(new Event('agenda-guardada')); }
   /* Tablas con renglones: se pueden agregar más al final de cada hoja */
   var tablas = {};
   function htmlFila(t, r) {
@@ -1992,8 +2201,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   filasTabla('tabla-pedidos', 'ag-p', ['cliente', 'pedido', 'entrega', 'precio', 'abono', { id: 'estado', opciones: ['Cotizado', 'Pedido confirmado', 'En proceso', 'Terminado', 'Despachado', 'Entregado', 'Cancelado'] }, { id: 'cal', cal: 'pedido' }], 8, 'del pedido');
   filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
   filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
-  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
-  filasTabla('tabla-patrones', 'ag-pt', ['patron', 'fuente', { id: 'dificultad', opciones: ['Fácil', 'Media', 'Difícil'] }, { id: 'tejido', check: true }], 10, 'del patrón');
+  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'cumplido', check: true }, { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
+  filasTabla('tabla-agujas', 'ag-ag', [{ id: 'medida', opciones: ['2', '2,25', '2,5', '2,75', '3', '3,25', '3,5', '3,75', '4', '4,5', '5', '5,5', '6', '6,5', '7', '8', '9', '10'] }, { id: 'material', opciones: ['Aluminio', 'Acero', 'Bambú o madera', 'Plástico', 'Ergonómica con mango', 'Otro'] }, 'compra', 'notas'], 4, 'de la aguja');
+  filasTabla('tabla-patrones', 'ag-pt', ['patron', 'fuente', { id: 'dificultad', opciones: ['Fácil', 'Media', 'Difícil'] }, { id: 'guardado', check: true }, 'dondeguardo', { id: 'tejido', check: true }], 10, 'del patrón');
   filasTabla('tabla-fechas', 'ag-fe', ['fecha', { id: 'ocasion', opciones: ['Cumpleaños', 'Día de la madre', 'Día del padre', 'Amor y amistad', 'Graduación', 'Aniversario', 'Otra'] }, 'para', 'idea', { id: 'listo', check: true }, { id: 'cal', cal: 'fecha' }], 10, 'de la fecha');
   var agujasGrid = document.getElementById('agujas-grid');
   ['2', '2,25', '2,5', '2,75', '3', '3,25', '3,5', '3,75', '4', '4,5', '5', '5,5', '6', '6,5', '7', '8', '9', '10'].forEach(function(mm) {
@@ -2015,6 +2225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   filasTabla('tabla-ventas', 'ag-vt', ['fecha', 'producto', 'cliente', 'precio', 'costo'], 12, 'de la venta');
   filasTabla('tabla-catalogo', 'ag-ct', ['producto', 'tamano', 'precio', 'horas'], 12, 'del producto');
   filasTabla('tabla-diario', 'ag-dr', ['fecha', { id: 'animo', opciones: ['😊 Feliz', '😌 Tranquila', '🥰 Inspirada', '😴 Cansada', '😣 Frustrada'] }, 'teji', 'frase'], 10, 'del día');
+  filasTabla('tabla-ideas', 'ag-id', ['fecha', 'tema', 'nota'], 3, 'de la idea');
   filasTabla('tabla-aprendi', 'ag-ap', ['fecha', 'tecnica', 'donde', { id: 'domino', check: true }], 10, 'de lo aprendido');
   var pausasGrid = document.getElementById('pausas-grid');
   for (var dp = 1; dp <= 31; dp++) pausasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-pa' + dp + '" data-guardar><span>' + dp + '</span></label>');
@@ -2060,6 +2271,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     estilos = {}; camposAgenda().forEach(function(el) { el.style.color = ''; el.style.backgroundColor = ''; });
     iniciarAnios();
     if (window.lrFichas) window.lrFichas.reiniciar();
+    if (window.lrTinta) window.lrTinta.reiniciar();
     if (window.lrVersiones) window.lrVersiones.reiniciar();
     if (window.lrFinReset) window.lrFinReset();
   });
@@ -2274,53 +2486,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   mesesAnio.forEach(function(t) { t.addEventListener('input', function() { guardarAnioActual(); guardarDatos(); }); });
 
-  /* ---------- Lista de compras: productos de la tienda Lana Rosa ---------- */
-  (function() {
-    var sel = document.getElementById('compras-tienda'), boton = document.getElementById('compras-agregar'), ayuda = document.getElementById('compras-ayuda');
-    var productos = [];
-    function pesos(x) { return '$' + Math.round(Number(x) || 0).toLocaleString('es-CO'); }
-    function rpc(nombre) {
-      return fetch('https://ngjoognzvehwjtpqwrqe.supabase.co/rest/v1/rpc/' + nombre, {
-        method: 'POST',
-        headers: { 'apikey': 'sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', 'Authorization': 'Bearer sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD', 'Content-Type': 'application/json' },
-        body: '{}'
-      }).then(function(r) { if (!r.ok) throw r.status; return r.json(); });
-    }
-    Promise.all([
-      rpc('obtener_merceria_web').catch(function() { return []; })
-    ]).then(function(res) {
-      var grupos = {};
-      (res[0] || []).forEach(function(p) { if (!p || !(Number(p.stock_actual) > 0)) return; var peso = Number(p.peso_gramos) || 0; (grupos[p.categoria || 'Mercería'] = grupos[p.categoria || 'Mercería'] || []).push({ nombre: [p.marca, p.color].filter(Boolean).join(' — ') || p.nombre, precio: peso ? Math.round(p.precio_gramo * peso / 100) * 100 : Math.round(p.precio_gramo || 0) }); });
-      var html = '<option value="">Elige un material…</option>';
-      Object.keys(grupos).sort().forEach(function(g) {
-        html += '<optgroup label="' + g.replace(/"/g, '') + '">' + grupos[g].sort(function(a, b) { return a.nombre.localeCompare(b.nombre, 'es'); }).map(function(p) {
-          productos.push(p);
-          return '<option value="' + (productos.length - 1) + '">' + p.nombre.replace(/</g, '') + (p.precio ? ' — ' + pesos(p.precio) : '') + '</option>';
-        }).join('') + '</optgroup>';
-      });
-      if (!productos.length) throw 0;
-      sel.innerHTML = html; sel.disabled = false;
-    }).catch(function() {
-      sel.innerHTML = '<option value="">No pudimos cargar la mercería ahora</option>';
-      ayuda.innerHTML = 'Puedes ver los materiales en la <a href="/merceria/catalogo/">mercería</a> y escribirlos en tu lista.';
-    });
-    sel.addEventListener('change', function() { boton.disabled = !sel.value; ayuda.textContent = ''; });
-    boton.addEventListener('click', function() {
-      var p = productos[sel.value]; if (!p) return;
-      var t = tablas['tabla-compras'], fila = 0;
-      for (var r = 1; r <= t.n; r++) { if (!document.getElementById('ag-c' + r + '-material').value.trim()) { fila = r; break; } }
-      if (!fila) { agregarRenglon('tabla-compras'); fila = t.n; }
-      var campos = { material: p.nombre + (p.precio ? ' (' + pesos(p.precio) + ')' : ''), cantidad: '1' };
-      Object.keys(campos).forEach(function(k) {
-        var el = document.getElementById('ag-c' + fila + '-' + k);
-        if (k === 'cantidad' && el.value) return;
-        el.value = campos[k]; datos[el.id] = el.value;
-      });
-      guardarDatos();
-      ayuda.textContent = '✓ Agregado en el renglón ' + fila + '.';
-      sel.value = ''; boton.disabled = true;
-    });
-  })();
+  /* La oferta de la Mercería Lana Rosa (lista de compras, inventario, agujas…) está en /js/agenda/merceria.js */
   /* ---------- Lo que aprendí: cursos y tutoriales de Lana Rosa Academy ---------- */
   (function() {
     var IG = 'Instagram @lanarosa.academy', YT = 'YouTube Lana Rosa Academy', TA = 'Taller de Lana Rosa Academy';
@@ -2408,17 +2574,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   };
   /* ---------- Totales de ventas del mes ---------- */
   function valorPesos(t) { var n = parseInt(String(t || '').replace(/[^0-9]/g, ''), 10); return isFinite(n) ? n : 0; }
-  function totalesVentas() {
-    var v = 0, c = 0, n = 0;
-    for (var r = 1; r <= tablas['tabla-ventas'].n; r++) {
-      var pv = valorPesos(document.getElementById('ag-vt' + r + '-precio').value), cv = valorPesos(document.getElementById('ag-vt' + r + '-costo').value);
-      if (pv) n++; v += pv; c += cv;
-    }
-    var f = function(x) { return '$' + x.toLocaleString('es-CO'); };
-    document.getElementById('totales-ventas').innerHTML = '<div><span>Ventas (' + n + ')</span><strong>' + f(v) + '</strong></div><div><span>Materiales</span><strong>' + f(c) + '</strong></div><div class="ganancia"><span>Te quedó</span><strong>' + f(v - c) + '</strong></div>';
-  }
-  document.getElementById('tabla-ventas').addEventListener('input', totalesVentas);
-  totalesVentas();
+  /* Los totales de ventas por mes los calcula /js/agenda/ventas.js */
   /* ---------- Menú de hojas: se ve una hoja a la vez ---------- */
   var hojas = document.querySelectorAll('#agenda .hoja-agenda');
   var enlacesMenu = document.querySelectorAll('#menu-hojas-lista a');
@@ -3673,6 +3829,13 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/animaciones.js?v=22" defer></script>
 <script src="/js/agenda/fichas.js?v=1" defer></script>
 <script src="/js/agenda/formas.js?v=1" defer></script>
+<script src="/js/agenda/merceria.js?v=1" defer></script>
+<script src="/js/agenda/ventas.js?v=1" defer></script>
+<script src="/js/agenda/anio.js?v=1" defer></script>
+<script src="/js/agenda/portada.js?v=1" defer></script>
+<script src="/js/agenda/voz.js?v=1" defer></script>
+<script src="/js/agenda/patron.js?v=1" defer></script>
+<script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=1" defer></script>
 <script src="/js/agenda/exportar.js?v=1" defer></script>
 </body>

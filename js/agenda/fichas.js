@@ -13,15 +13,17 @@
   var LISTAS = {
     'tabla-pedidos': { vacio: 'Pedido nuevo', agregar: '➕ Agregar pedido', titulo: ['pedido', 'cliente'], resumen: ['entrega'], estado: 'estado', fecha: 'entrega', cerrados: ['Entregado', 'Cancelado'], alarmas: 'entrega' },
     'tabla-lanas': { vacio: 'Lana nueva', agregar: '➕ Agregar lana o hilo', titulo: ['marca', 'color'], resumen: ['grosor', 'ovillos'] },
-    'tabla-compras': { vacio: 'Material nuevo', agregar: '➕ Agregar material', titulo: ['material', 'color'], resumen: ['cantidad'], check: 'comprado', checkTexto: 'Comprado' },
-    'tabla-fila': { vacio: 'Proyecto nuevo', agregar: '➕ Agregar proyecto', titulo: ['proyecto', 'para'], resumen: ['fecha'], estado: 'estado', fecha: 'fecha', cerrados: ['Terminado'], alarmas: 'fecha' },
-    'tabla-patrones': { vacio: 'Patrón nuevo', agregar: '➕ Agregar patrón', titulo: ['patron'], resumen: ['dificultad'], check: 'tejido', checkTexto: 'Ya lo tejí' },
-    'tabla-fechas': { vacio: 'Fecha nueva', agregar: '➕ Agregar fecha', titulo: ['ocasion', 'para'], resumen: ['fecha'], check: 'listo', checkTexto: 'Listo' },
+    'tabla-compras': { vacio: 'Material nuevo', agregar: '➕ Agregar material', titulo: ['material', 'color'], resumen: ['cantidad'], checks: [['comprado', 'Comprado']], cumplida: 'comprado', alFinal: true },
+    'tabla-fila': { vacio: 'Proyecto nuevo', agregar: '➕ Agregar proyecto', titulo: ['proyecto', 'para'], resumen: ['fecha'], estado: 'estado', fecha: 'fecha', cerrados: ['Terminado'], alarmas: 'fecha', checks: [['cumplido', 'Cumplido']], cumplida: 'cumplido', alFinal: true, alCumplir: { estado: 'Terminado' } },
+    'tabla-patrones': { vacio: 'Patrón nuevo', agregar: '➕ Agregar patrón', titulo: ['patron'], resumen: ['dificultad'], checks: [['guardado', 'Guardado'], ['tejido', 'Ya lo tejí']] },
+    'tabla-fechas': { vacio: 'Fecha nueva', agregar: '➕ Agregar fecha', titulo: ['ocasion', 'para'], resumen: ['fecha'], checks: [['listo', 'Listo']] },
     'tabla-clientas': { vacio: 'Clienta nueva', agregar: '➕ Agregar clienta', titulo: ['nombre'], resumen: ['whatsapp'] },
     'tabla-ventas': { vacio: 'Venta nueva', agregar: '➕ Agregar venta', titulo: ['producto', 'cliente'], resumen: ['fecha', 'precio'] },
     'tabla-catalogo': { vacio: 'Producto nuevo', agregar: '➕ Agregar producto', titulo: ['producto', 'tamano'], resumen: ['precio'] },
     'tabla-diario': { vacio: 'Día nuevo', agregar: '➕ Agregar día', titulo: ['fecha', 'teji'], resumen: [], estado: 'animo' },
-    'tabla-aprendi': { vacio: 'Punto o técnica nueva', agregar: '➕ Agregar lo que aprendí', titulo: ['tecnica'], resumen: ['fecha'], check: 'domino', checkTexto: 'Ya lo domino', cumplida: 'domino' }
+    'tabla-agujas': { vacio: 'Aguja nueva', agregar: '➕ Agregar una aguja', titulo: ['medida', 'material'], resumen: ['compra'], extra: 'aguja' },
+    'tabla-ideas': { vacio: 'Idea nueva', agregar: '➕ Agregar una idea', titulo: ['tema'], resumen: ['fecha'] },
+    'tabla-aprendi': { vacio: 'Punto o técnica nueva', agregar: '➕ Agregar lo que aprendí', titulo: ['tecnica'], resumen: ['fecha'], checks: [['domino', 'Ya lo domino']], cumplida: 'domino', alFinal: true, alCumplir: { cerrar: true } }
   };
   var estado = {};
   var autoCrece = !(window.CSS && CSS.supports && CSS.supports('field-sizing', 'content'));
@@ -45,6 +47,43 @@
   }
   function chip(texto, clase) { var s = document.createElement('span'); s.className = 'ficha-chip' + (clase ? ' ' + clase : ''); s.textContent = texto; return s; }
 
+  /* Agujas: cuándo revisarlas o cambiarlas (guía general según el material) */
+  var VIDA = { 'Aluminio': 5, 'Acero': 5, 'Bambú o madera': 2, 'Plástico': 2, 'Ergonómica con mango': 3, 'Otro': 3 };
+  var MES_CORTO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  function fechaCompra(texto) {
+    var t = String(texto || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''), y = (t.match(/(20\d\d|19\d\d)/) || [])[1];
+    if (!y) { var f = N.leerFecha ? N.leerFecha(texto) : null; return f && !f.sinAnio ? new Date(f.a, f.m - 1, f.d) : null; }
+    var m = -1, i; for (i = 0; i < 12; i++) if (t.indexOf(MES_CORTO[i]) !== -1) { m = i; break; }
+    var f2 = N.leerFecha ? N.leerFecha(texto) : null;
+    if (f2 && !f2.sinAnio && f2.a === +y) return new Date(f2.a, f2.m - 1, f2.d);
+    return new Date(+y, m < 0 ? 0 : m, 1);
+  }
+  function edadAguja(texto) { var f = fechaCompra(texto); return f ? (Date.now() - f.getTime()) / (365.25 * 86400000) : null; }
+  function chipsAguja(material, compra) {
+    var e = edadAguja(compra); if (e === null || e < 0) return [];
+    var vida = VIDA[material] || 3, anios = Math.round(e * 10) / 10, txt = (anios >= 1 ? String(anios).replace('.', ',') + (anios === 1 ? ' año' : ' años') : Math.max(1, Math.round(e * 12)) + (Math.round(e * 12) <= 1 ? ' mes' : ' meses'));
+    if (e >= vida * 1.5) return [['🔄 Cámbiala: ' + txt + ' de uso', 'alarma']];
+    if (e >= vida) return [['🔎 Revísala: ' + txt + ' de uso', 'aviso']];
+    return [['Hace ' + txt, '']];
+  }
+  function avisoAgujas() {
+    var hoja = document.getElementById('mis-agujas'), tabla = 'tabla-agujas'; if (!hoja || !T(tabla)) return;
+    var cambiar = 0, revisar = 0;
+    for (var r = 1; r <= T(tabla).n; r++) {
+      if (!tieneDatos(tabla, r)) continue;
+      var e = edadAguja(valor(tabla, r, 'compra')); if (e === null) continue;
+      var vida = VIDA[valor(tabla, r, 'material')] || 3;
+      if (e >= vida * 1.5) cambiar++; else if (e >= vida) revisar++;
+    }
+    var p = hoja.querySelector('.aviso-agujas');
+    if (!p) { p = document.createElement('p'); p.className = 'aviso-alarma aviso-agujas no-imprimir'; p.setAttribute('role', 'status'); var tabla0 = hoja.querySelector('.tabla-scroll'); tabla0.parentNode.insertBefore(p, tabla0); }
+    var txt = [];
+    if (cambiar) txt.push(cambiar + (cambiar === 1 ? ' aguja para cambiar' : ' agujas para cambiar'));
+    if (revisar) txt.push(revisar + (revisar === 1 ? ' para revisar' : ' para revisar'));
+    p.hidden = !txt.length; p.textContent = txt.length ? '🧵 ' + txt.join(' y ') + '. Es una guía general: cambia antes la que raspe el hilo o tenga astillas.' : '';
+    p.classList.toggle('roja', cambiar > 0);
+  }
+
   function pintarCab(tabla, r) {
     var L = LISTAS[tabla], tr = fila(tabla, r); if (!tr) return;
     var partes = L.titulo.map(function (c) { return corto(valor(tabla, r, c), 40); }).filter(Boolean);
@@ -59,6 +98,7 @@
         cerrada = (L.cerrados || []).indexOf(ev) >= 0;
       }
     }
+    if (L.cumplida && valor(tabla, r, L.cumplida) === true) cerrada = true;
     if (L.alarmas && !cerrada && tieneDatos(tabla, r)) {
       var dias = diasPara(valor(tabla, r, L.fecha));
       if (dias !== null && dias < 0) chips.push(['⏰ Atrasado ' + (-dias) + (dias === -1 ? ' día' : ' días'), 'alarma']);
@@ -66,11 +106,13 @@
       else if (dias !== null && dias <= 3) chips.push(['⏰ En ' + dias + (dias === 1 ? ' día' : ' días'), 'aviso']);
     }
     L.resumen.forEach(function (c) { var v = valor(tabla, r, c); if (v) chips.push([corto(v, 18), '']); });
-    if (L.check && valor(tabla, r, L.check) === true) chips.push(['✓ ' + L.checkTexto, 'ok']);
+    if (L.extra === 'aguja') chips = chips.concat(chipsAguja(valor(tabla, r, 'material'), valor(tabla, r, 'compra')));
+    (L.checks || []).forEach(function (x) { if (valor(tabla, r, x[0]) === true) chips.push(['✓ ' + x[1], 'ok']); });
     /* Solo se vuelven a dibujar las etiquetas si cambiaron: así un clic que empieza sobre una etiqueta no se pierde */
     var meta = tr.querySelector('.ficha-meta'), firma = JSON.stringify(chips);
     if (meta.dataset.firma !== firma) { meta.dataset.firma = firma; meta.textContent = ''; chips.forEach(function (c) { meta.appendChild(chip(c[0], c[1])); }); }
     tr.classList.toggle('cumplida', !!(L.cumplida && valor(tabla, r, L.cumplida) === true));
+    tr.classList.toggle('al-final', !!(L.alFinal && L.cumplida && valor(tabla, r, L.cumplida) === true));
   }
 
   function aplicar(tabla) {
@@ -91,7 +133,7 @@
   }
 
   var avisoEspera = null;
-  function aplicarTodo() { Object.keys(LISTAS).forEach(function (t) { if (T(t)) aplicar(t); }); avisoEntregas(); }
+  function aplicarTodo() { Object.keys(LISTAS).forEach(function (t) { if (T(t)) aplicar(t); }); avisoEntregas(); avisoAgujas(); }
   function alGuardar() { clearTimeout(avisoEspera); avisoEspera = setTimeout(aplicarTodo, 60); }
 
   /* Aviso de entregas próximas, arriba de la hoja de pedidos y de proyectos */
@@ -101,7 +143,7 @@
       var L = LISTAS[tabla], atrasadas = 0, proximas = 0;
       for (var r = 1; r <= T(tabla).n; r++) {
         if (!tieneDatos(tabla, r)) continue;
-        if ((L.cerrados || []).indexOf(valor(tabla, r, L.estado)) >= 0) continue;
+        if ((L.cerrados || []).indexOf(valor(tabla, r, L.estado)) >= 0 || (L.cumplida && valor(tabla, r, L.cumplida) === true)) continue;
         var d = diasPara(valor(tabla, r, L.fecha)); if (d === null) continue;
         if (d < 0) atrasadas++; else if (d <= 3) proximas++;
       }
@@ -123,6 +165,7 @@
     if (!elegida) return;
     S.mostradas[elegida] = true; S.abiertas[elegida] = true;
     aplicar(tabla);
+    document.dispatchEvent(new CustomEvent('ficha-agregada', { detail: { tabla: tabla, fila: elegida } }));
     var tr = fila(tabla, elegida), primero = tr && tr.querySelector('textarea, select');
     if (primero) { primero.focus({ preventScroll: true }); tr.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   }
@@ -157,6 +200,7 @@
   function iniciar() {
     Object.keys(LISTAS).forEach(function (tabla) {
       if (!T(tabla)) return;
+      T(tabla).cuerpo.closest('table').classList.add('tabla-fichas');
       var b = T(tabla).cuerpo.closest('.tabla-scroll').parentNode.querySelector('.agregar-renglon[data-tabla="' + tabla + '"]');
       if (b) b.textContent = LISTAS[tabla].agregar;
     });
@@ -179,7 +223,15 @@
     var enTabla = function (e) {
       var tr = e.target.closest && e.target.closest('tr.ficha'); if (!tr) return;
       var tabla = tr.closest('tbody').id; if (!LISTAS[tabla]) return;
-      crece(e.target); pintarCab(tabla, +tr.dataset.fila); avisoEntregas();
+      var L = LISTAS[tabla], r = +tr.dataset.fila;
+      if (L.cumplida && e.type === 'change' && e.target.id === T(tabla).prefijo + r + '-' + L.cumplida) {
+        if (e.target.checked && L.alCumplir) {
+          if (L.alCumplir.estado) { var se = campo(tabla, r, L.estado); if (se && se.value !== L.alCumplir.estado) { ponerValor(se, L.alCumplir.estado); N.datos()[se.id] = se.value; N.guardar(); } }
+          if (L.alCumplir.cerrar) est(tabla).abiertas[r] = false;
+        }
+        aplicar(tabla); return;
+      }
+      crece(e.target); pintarCab(tabla, r); avisoEntregas(); avisoAgujas();
     };
     zona.addEventListener('input', enTabla);
     zona.addEventListener('change', enTabla);
@@ -191,6 +243,20 @@
     }
     aplicarTodo();
   }
+
+  /* Imprimir en blanco: salen tres fichas vacías por lista; al terminar todo vuelve a como estaba */
+  window.addEventListener('beforeprint', function () {
+    if (!document.body.classList.contains('en-blanco')) return;
+    Object.keys(LISTAS).forEach(function (tabla) {
+      if (!T(tabla)) return;
+      for (var r = 1; r <= T(tabla).n; r++) {
+        var tr = fila(tabla, r), mostrar = r <= 3; if (!tr) continue;
+        tr.hidden = !mostrar; tr.classList.remove('fuera-mes', 'al-final', 'cumplida'); tr.classList.toggle('abierta', mostrar);
+        if (mostrar) pintarCab(tabla, r);
+      }
+    });
+  });
+  window.addEventListener('afterprint', function () { setTimeout(function () { aplicarTodo(); document.dispatchEvent(new Event('agenda-guardada')); }, 50); });
 
   window.lrFichas = {
     LISTAS: LISTAS, agregar: agregar, abrirDe: abrirDe, alGuardar: alGuardar, refrescar: aplicarTodo,
