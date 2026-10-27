@@ -337,7 +337,7 @@ def main():
             page.close()
         config_apagada = open(os.path.join(RAIZ, 'js', 'universo', 'config.js'), encoding='utf-8').read().replace('REGALAR_ACTIVO: true', 'REGALAR_ACTIVO: false')
         page, err = abrir(pc, base, CATALOGO, config=config_apagada)
-        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('#regalar-raiz .ur-select').count() == 0 and page.locator('.recorrido:not([hidden])').count() == 5)
+        verificar('con REGALAR_ACTIVO=false la función se apaga y la página sigue entera', 'Muy pronto' in page.inner_text('#regalar-raiz') and page.locator('#regalar-raiz .ur-select').count() == 0 and page.locator('.recorrido:not([hidden])').count() == 3)
         page.close()
 
         print('\n[Inicio: «Rosina te ayuda a regalar» destacada]')
@@ -392,7 +392,7 @@ def main():
         verificar('está en el sitemap', 'https://lanarosacrochet.com/universo-rosina.html' in open(os.path.join(RAIZ, 'sitemap.xml'), encoding='utf-8').read())
         verificar('el pie de la página enlaza al universo con ruta absoluta', page.locator('footer a[href="/universo-rosina.html"]').count() == 1)
         verificar('usa las fuentes propias (ningún pedido a Google Fonts)', page.evaluate('!document.documentElement.outerHTML.includes("fonts.googleapis")'))
-        verificar('los 5 recorridos están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido:not([hidden])', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html', '/academy/', '/aventuras-de-rosina/'])
+        verificar('los 3 recorridos de la Tienda están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido:not([hidden])', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html'])
         verificar('un solo h1', page.locator('h1').count() == 1)
         # El Universo muestra solo lo de la casa desde donde se llega
         for casa, no_debe, si_debe, regalar in (
@@ -405,7 +405,7 @@ def main():
             verificar('Universo desde %s: %s el buscador de regalos y sin errores' % (casa, 'muestra' if regalar else 'quita'), (ph.locator('#regalar').count() == 1) == regalar and not eh, eh)
             ph.close()
         ph, eh = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?casa=inventada')
-        verificar('Universo con una casa inventada: muestra todo como antes', ph.locator('.recorrido:not([hidden])').count() == 5 and not eh, eh)
+        verificar('Universo con una casa inventada: muestra todo como antes', ph.locator('.recorrido:not([hidden])').count() == 3 and not eh, eh)
         ph.close()
         page.close()
         nav.close()

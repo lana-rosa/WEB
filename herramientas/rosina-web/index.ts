@@ -1,6 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
+// v21 (27-oct-2026): la IP del límite sale de cf-connecting-ip (SEG-13) y se quita /rosina.html (ahora es una redirección).
 // v18: lee también las páginas del universo de Rosina (hubs por casa, glosario, paletas, calculadoras, recursos).
 // v16 (Etapa 4): tarjetas de producto (el modelo elige códigos, los datos salen del catálogo real), medición de consumo sin datos
 // personales (rosina_web_consumo) y, solo si RW_REGISTRAR_SIN_RESPUESTA=1, registro corto y sin datos personales de preguntas sin respuesta.
@@ -18,8 +19,8 @@ const PAGINAS = [
   "/merceria/como-comprar/", "/merceria/tienda-fisica/", "/academy/talleres/", "/academy/empieza-aqui/", "/academy/",
   "/agenda-rosina.html", "/merceria/", "/merceria/catalogo/", "/precios.html", "/personaliza.html", "/tienda.html",
   "/contacto.html", "/sobre-nosotras.html", "/",
-  // El universo de Rosina y su material gratis (17-oct-2026): hubs de cada casa, Conoce a Rosina, calculadoras, recursos, paletas y glosario.
-  "/universo-rosina.html", "/merceria/rosina/", "/academy/rosina/", "/rosina.html", "/calculadoras-rosina.html", "/recursos-rosina.html", "/paletas-rosina.html", "/glosario-rosina.html",
+  // El universo de Rosina y su material gratis (17-oct-2026): hubs de cada casa, calculadoras, recursos, paletas y glosario.
+  "/universo-rosina.html", "/merceria/rosina/", "/academy/rosina/", "/calculadoras-rosina.html", "/recursos-rosina.html", "/paletas-rosina.html", "/glosario-rosina.html",
   "/merceria/terminos-de-venta/", "/merceria/cambios-y-devoluciones/", "/politicas.html",
 ];
 const MAX_PAGINA = 16000;     // por página
@@ -123,7 +124,8 @@ Deno.serve(async (req) => {
     .map((m) => ({ role: m.role, content: m.content.slice(0, 600) }));
   if (!mensajes.length || mensajes[mensajes.length - 1].role !== "user") return json({ error: "Escribe tu pregunta." }, 400, h);
 
-  const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "sin-ip";
+  // La IP la fija la plataforma (Cloudflare): x-forwarded-for puede traer valores escritos por quien llama, así que solo es el respaldo.
+  const ip = (req.headers.get("cf-connecting-ip") || (req.headers.get("x-forwarded-for") || "").split(",")[0]).trim() || "sin-ip";
   const dato = new TextEncoder().encode(ip + (Deno.env.get("RW_SAL") || "lr"));
   const ipHash = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", dato))).map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 32);
 

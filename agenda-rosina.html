@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=3">
 
-<link rel="stylesheet" href="/css/comun.css?v=41">
+<link rel="stylesheet" href="/css/comun.css?v=42">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <style>
 :root {
@@ -346,7 +346,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .aviso-borrar { margin: 10px auto 0; max-width: 460px; text-align: center; font-size: 0.82rem; color: var(--tinta-suave); }
 @media print { .aviso-borrar { display: none !important; } }
 .nota-copia { flex-basis: 100%; text-align: center; color: var(--tinta-suave); font-size: 0.8rem; }
-.enlace-copia { background: none; border: none; color: var(--rosa-texto); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; }
+.enlace-copia { background: none; border: none; color: var(--rosa-texto); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; min-height: 28px; padding: 4px 6px; }
 @media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } .agenda-recordatorio { display: none !important; } }
 .nube-estado { display: block; width: 100%; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--tinta-suave); margin: 4px 0 0; }
 .agenda-recordatorio { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; background: #FFF8E1; border: 2px solid #FFE08A; border-radius: 18px; padding: 12px 16px; margin: 0 0 16px; font-size: 0.92rem; }
@@ -841,6 +841,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
 <script>try{sessionStorage.setItem("lrCasa","academy");localStorage.setItem("lrCasa","academy")}catch(e){}</script>
+<a class="saltar-contenido" href="#contenido-principal">Saltar al contenido</a>
 <header class="encabezado" data-casa="academy">
   <div class="contenedor">
     <a href="/academy/" class="logo"><img src="/img/logo-academy-360.webp" alt="Lana Rosa Academy" class="logo-img" width="360" height="230"><span class="texto-logo">Academy</span></a>
@@ -902,7 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 <!-- BARRA:FIN -->
 
-<main>
+<main id="contenido-principal" tabindex="-1">
   <section class="contenedor intro-rincon intro-agenda">
     <p class="volver-rincon"><a href="/recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
     <div class="cuaderno-portada">

@@ -346,4 +346,13 @@ Hoy: sincronización **apagada** en la agenda desde el 13-oct (piezas en `herram
 - [x] **SEG-02:** las funciones nuevas nacen cerradas a `PUBLIC` y `anon` (ver `CLAUDE.md`).
 - [x] **SEG-03 (muestreo):** de las 317 funciones `SECURITY DEFINER` llamables por cuentas autenticadas, las no disparadoras tienen guarda de rol (por texto) salvo las 21 públicas de la web a propósito. Revisión por patrones, no prueba función por función.
 - [x] **DAT-02:** copia diaria funcionando en `lanarosa-copias` (primera ejecución y restauración correctas el 26-oct).
-- [ ] Reintentar el asesor de seguridad de Supabase (`get_advisors`; dio 502 el 26-oct) y comparar con el de antes (22-oct, 28 firmas anónimas).
+- [x] Asesor de seguridad de Supabase repetido el 27-oct-2026 (proyecto ERP): **anónimas con función definer: 23** (antes 28; todas son las funciones públicas de la web a propósito, más `fn_es_tejedora` y `fn_rol_actual`, que las políticas necesitan); **las 7 funciones internas del paquete B ya no aparecen**; tablas sin RLS: 0; RLS sin políticas: 30 (cerradas a propósito, se leen por funciones); `search_path` mutable: 139 (sin cambio; ERP compartido, no se cambian en bloque); contraseñas filtradas: sigue pendiente (solo plan Pro). Sin hallazgos nuevos.
+
+## Pedido de Sara del 27-oct-2026 (en la rama, pendiente de publicar)
+- [x] SEO: títulos y descripciones acortados y con «regalos personalizados» (inicio, tienda, Personaliza, precios, Academy, hubs de Rosina, Revista y sus 19 artículos); `sitemap.xml` con fechas reales (`actualizar_lastmod.py`). SEO-01 y SEO-02 cerrados.
+- [x] ACC-08: enlace «Saltar al contenido» en todas las páginas con menú. ACC-07: zonas de toque de 28 px en el pie legal y en los botones de copia de la agenda (las casillas dentro de etiquetas y los enlaces dentro de párrafos quedan como están).
+- [x] SEG-13: el límite por persona del chat usa `cf-connecting-ip` (rosina-web v21, desplegada). **Falta comprobar con una consulta real al chat desde la web publicada** (no se pudo probar desde el entorno de trabajo).
+- [x] Informe de Google UCP y Copilot Checkout: `herramientas/innovacion/12-IA-COMERCIO-UCP-COPILOT.md` (hoy no se puede entrar desde Colombia; qué sí hacer: Merchant Center en regla, Bing Webmaster Tools). Revisar de nuevo en enero de 2027.
+- [ ] Sara: en el Merchant Center, comprobar «fichas gratuitas», política de devoluciones y envíos; opcional: Bing Webmaster Tools con el sitemap.
+- [ ] Agenda con lápiz: los campos de la agenda son `input` y `textarea` normales, así que la escritura a mano con Apple Pencil (Escritura a mano/Scribble) y S Pen se convierte en texto sin cambios. **Pendiente de decidir con Sara** si además quiere dibujar o escribir libremente sobre las hojas (tinta que se guarda).
+- [ ] SEG-10, SEG-11, SEG-12, SEG-14 y REN-01/REN-02 siguen abiertos (SEG-11 después del pago de prueba real).

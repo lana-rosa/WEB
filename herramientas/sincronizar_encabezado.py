@@ -204,7 +204,8 @@ def _encabezado(casa):
   </nav>'''
     texto, enlace = LOGO[casa]
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa-360.webp', 'Lana Rosa Crochet'))
-    return f'''{anuncios(casa)}<header class="encabezado" data-casa="{casa}">
+    return f'''<a class="saltar-contenido" href="#contenido-principal">Saltar al contenido</a>
+{anuncios(casa)}<header class="encabezado" data-casa="{casa}">
   <div class="contenedor">
     <a href="{enlace}" class="logo"><img src="{img}" alt="{alt}" class="logo-img" width="360" height="230"><span class="texto-logo">{texto}</span></a>
     <nav aria-label="Navegación principal">
@@ -240,7 +241,7 @@ def encabezado(pagina):
         return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","' + casa + '");localStorage.setItem("lrCasa","' + casa + '")}catch(e){}</script>\n'
                 + _encabezado(casa) + '<!-- CASAS:FIN -->')
     return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<div id="encabezado-casa" style="display:contents">\n'
-            + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=1"></script>\n<!-- CASAS:FIN -->')
+            + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=2"></script>\n<!-- CASAS:FIN -->')
 
 def js_casa_menu():
     bloques = {c: absolutas(_encabezado(c)) for c in ('crochet', 'merceria', 'academy')}
@@ -252,6 +253,8 @@ def js_casa_menu():
             '  var cont = document.getElementById("encabezado-casa");\n'
             '  if (!cont || !B[c] || c === "crochet") return;\n'
             '  cont.innerHTML = B[c];\n'
+            '  var m = document.querySelector("main[id]"), a = cont.querySelector(".saltar-contenido");\n'
+            '  if (m && a) a.setAttribute("href", "#" + m.id);\n'
             '  document.documentElement.setAttribute("data-casa", c);\n'
             '})();\n')
 
@@ -439,6 +442,15 @@ def main():
         pref = re.search(r'<html lang="es-CO"[^>]*?(data-casa-pref="[^"]*")', s)   # casa preferida de los artículos de la Revista (la usa js/casa-menu.js)
         s = re.sub(r'<html lang="es-CO"[^>]*>', '<html lang="es-CO"' + (f' data-casa="{casa}"' if casa else '') + (' ' + pref.group(1) if pref else '') + '>', s, count=1)
         s = con_barra(s, n, casa)
+        # enlace «Saltar al contenido» (ACC-08): el <main> necesita un id; si ya tiene uno propio, el enlace apunta a ese
+        mm = re.search(r'<main\b([^>]*)>', s)
+        if mm:
+            idm = re.search(r'\bid="([^"]+)"', mm.group(1))
+            if idm:
+                s = s.replace('href="#contenido-principal">Saltar al contenido', f'href="#{idm.group(1)}">Saltar al contenido', 1)
+                if 'tabindex' not in mm.group(1): s = s.replace(mm.group(0), '<main tabindex="-1"' + mm.group(1) + '>', 1)
+            else:
+                s = s.replace(mm.group(0), '<main id="contenido-principal" tabindex="-1"' + mm.group(1) + '>', 1)
         open(f, 'w', encoding='utf-8').write(s)
         print('ok', n)
 

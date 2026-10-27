@@ -34,14 +34,14 @@ RECURSOS = {
 }
 UNICO = {
     'merceria': dict(
-        titulo='Rosina en la Mercería: calcula tu lana y elige tus materiales | Mercería Lana Rosa', h1='Rosina en la Mercería',
+        titulo='Calculadoras y paletas para tejer | Rosina en la Mercería', h1='Rosina en la Mercería',
         descripcion='Calculadoras de lana y gancho, paletas de color, glosario y abreviaturas gratis para elegir tus materiales y planear tu próximo proyecto con Rosina.',
         intro='Rosina, nuestra ovejita Embajadora de Calidad, te ayuda a elegir tus materiales y a inspirarte para tu próximo proyecto.',
         conoce='Rosina es nuestra ovejita Embajadora de Calidad: prueba y recomienda cada lana antes de que llegue a la Mercería, y te ayuda a elegir la que necesitas. Curiosa, detallista y muy amable.',
         wa='Hola, quiero información sobre lanas y materiales de la Mercería Lana Rosa.'),
     'academy': dict(
-        titulo='Rosina en Academy: material gratis para aprender a tejer | Lana Rosa Academy', h1='Rosina en Academy',
-        descripcion='Material gratis para aprender a tejer con Rosina: agenda de proyectos, glosario ilustrado, abreviaturas en 9 idiomas, checklist, calculadoras, paletas y stickers. Y la aventura de Rosina para niños de 6 a 8 años.',
+        titulo='Material gratis para aprender a tejer | Rosina en Academy', h1='Rosina en Academy',
+        descripcion='Material gratis para aprender a tejer con Rosina: agenda de proyectos, glosario ilustrado, abreviaturas, calculadoras, paletas y stickers.',
         intro='Rosina, nuestra ovejita Asistente de Enseñanza, te ayuda a aprender a tejer, a inspirarte y, para los más pequeños, a dar su primera cadeneta.',
         conoce='Rosina es nuestra ovejita Asistente de Enseñanza: en Academy te acompaña paso a paso, explica el crochet con palabras sencillas y te anima a terminar tu proyecto. Curiosa, detallista y muy amable.',
         wa='Hola, quiero información sobre talleres y material de Lana Rosa Academy.'),
