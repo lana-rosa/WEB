@@ -14,7 +14,7 @@
     'tabla-pedidos': { vacio: 'Pedido nuevo', agregar: '➕ Agregar pedido', titulo: ['pedido', 'cliente'], resumen: ['entrega'], extra: 'pedido', estado: 'estado', fecha: 'entrega', cerrados: ['Entregado', 'Cancelado'], alarmas: 'entrega' },
     'tabla-lanas': { vacio: 'Lana nueva', agregar: '➕ Agregar lana o hilo', titulo: ['marca', 'color'], resumen: ['grosor', 'ovillos'] },
     'tabla-compras': { vacio: 'Material nuevo', agregar: '➕ Agregar material', titulo: ['material', 'color'], resumen: ['cantidad'], checks: [['comprado', 'Comprado']], cumplida: 'comprado', alFinal: true },
-    'tabla-fila': { vacio: 'Proyecto nuevo', agregar: '➕ Agregar proyecto', titulo: ['proyecto', 'para'], resumen: ['fecha'], estado: 'estado', fecha: 'fecha', cerrados: ['Terminado'], alarmas: 'fecha', checks: [['cumplido', 'Cumplido']], cumplida: 'cumplido', alFinal: true, alCumplir: { estado: 'Terminado' } },
+    'tabla-fila': { vacio: 'Proyecto nuevo', agregar: '➕ Agregar proyecto', titulo: ['proyecto', 'para'], resumen: ['fecha'], estado: 'estado', fecha: 'fecha', cerrados: ['Terminado'], alarmas: 'fecha', ultimoAvance: 'avance', checks: [['cumplido', 'Cumplido']], cumplida: 'cumplido', alFinal: true, alCumplir: { estado: 'Terminado', fecha: 'cumplidoen' } },
     'tabla-patrones': { vacio: 'Patrón nuevo', agregar: '➕ Agregar patrón', titulo: ['patron'], resumen: ['dificultad'], checks: [['guardado', 'Guardado'], ['tejido', 'Ya lo tejí']] },
     'tabla-fechas': { vacio: 'Fecha nueva', agregar: '➕ Agregar fecha', titulo: ['ocasion', 'para'], resumen: ['fecha'], checks: [['listo', 'Listo']] },
     'tabla-clientas': { vacio: 'Clienta nueva', agregar: '➕ Agregar clienta', titulo: ['nombre'], resumen: ['whatsapp'] },
@@ -23,6 +23,8 @@
     'tabla-diario': { vacio: 'Día nuevo', agregar: '➕ Agregar día', titulo: ['fecha', 'teji'], resumen: [], estado: 'animo' },
     'tabla-agujas': { vacio: 'Aguja nueva', agregar: '➕ Agregar una aguja', titulo: ['medida', 'material'], resumen: ['compra'], extra: 'aguja' },
     'tabla-ideas': { vacio: 'Idea nueva', agregar: '➕ Agregar una idea', titulo: ['tema'], resumen: ['fecha'] },
+    'tabla-gastos': { vacio: 'Gasto nuevo', agregar: '➕ Agregar gasto', titulo: ['detalle', 'categoria'], resumen: ['fecha', 'valor'] },
+    'tabla-contactos': { vacio: 'Contacto nuevo', agregar: '➕ Agregar contacto', titulo: ['nombre'], resumen: ['telefono'], estado: 'tipo' },
     'tabla-aprendi': { vacio: 'Punto o técnica nueva', agregar: '➕ Agregar lo que aprendí', titulo: ['tecnica'], resumen: ['fecha'], checks: [['domino', 'Ya lo domino']], cumplida: 'domino', alFinal: true, alCumplir: { cerrar: true } }
   };
   var estado = {};
@@ -47,6 +49,7 @@
   }
   function chip(texto, clase) { var s = document.createElement('span'); s.className = 'ficha-chip' + (clase ? ' ' + clase : ''); s.textContent = texto; return s; }
 
+  function hoyTxt() { var h = new Date(); return ('0' + h.getDate()).slice(-2) + '/' + ('0' + (h.getMonth() + 1)).slice(-2) + '/' + h.getFullYear(); }
   function dinero(t) { var n = parseInt(String(t || '').replace(/[^0-9-]/g, ''), 10); return isFinite(n) ? n : 0; }
   /* Agujas: cuándo revisarlas o cambiarlas (guía general según el material) */
   var VIDA = { 'Aluminio': 5, 'Acero': 5, 'Bambú o madera': 2, 'Plástico': 2, 'Ergonómica con mango': 3, 'Otro': 3 };
@@ -113,6 +116,10 @@
       if (tot > 0 && sal > 0 && !cerrada) chips.push(['Debe $' + sal.toLocaleString('es-CO'), 'aviso']);
       else if (tot > 0 && sal <= 0) chips.push(['✓ Pagado', 'ok']);
     }
+    if (L.ultimoAvance) {
+      var av = valor(tabla, r, L.ultimoAvance).split('\n').map(function (x) { return x.trim(); }).filter(Boolean), ult = av[av.length - 1];
+      if (ult) { var m = ult.match(/^(\d{1,2}[\/.-]\d{1,2}(?:[\/.-]\d{2,4})?)/); chips.push([m ? 'Avance ' + m[1] : corto(ult, 22), '']); }
+    }
     (L.checks || []).forEach(function (x) { if (valor(tabla, r, x[0]) === true) chips.push(['✓ ' + x[1], 'ok']); });
     /* Solo se vuelven a dibujar las etiquetas si cambiaron: así un clic que empieza sobre una etiqueta no se pierde */
     var meta = tr.querySelector('.ficha-meta'), firma = JSON.stringify(chips);
@@ -171,6 +178,8 @@
     if (!elegida) return;
     S.mostradas[elegida] = true; S.abiertas[elegida] = true;
     aplicar(tabla);
+    var porDefecto = { 'tabla-clientas': 'desde', 'tabla-aprendi': 'fecha', 'tabla-ideas': 'fecha' }[tabla];
+    if (porDefecto) { var cd = campo(tabla, elegida, porDefecto); if (cd && !cd.value) { cd.value = hoyTxt(); N.datos()[cd.id] = cd.value; N.guardar(); } }
     document.dispatchEvent(new CustomEvent('ficha-agregada', { detail: { tabla: tabla, fila: elegida } }));
     var tr = fila(tabla, elegida), primero = tr && tr.querySelector('textarea, select');
     if (primero) { primero.focus({ preventScroll: true }); tr.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
@@ -219,6 +228,11 @@
         if (S.abiertas[r]) { var p = tr.querySelector('textarea, select'); if (p && e.detail === 0) p.focus(); }
         return;
       }
+      var av = e.target.closest('.avance-btn');
+      if (av) {
+        var ta = av.parentNode.querySelector('textarea'), h = new Date(), f = ('0' + h.getDate()).slice(-2) + '/' + ('0' + (h.getMonth() + 1)).slice(-2) + '/' + h.getFullYear();
+        ta.value = (ta.value.trim() ? ta.value.replace(/\s+$/, '') + '\n' : '') + f + ' — '; ta.dispatchEvent(new Event('input', { bubbles: true })); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); return;
+      }
       var bo = e.target.closest('.ficha-borrar');
       if (bo) {
         var tr2 = bo.closest('tr.ficha'), tabla2 = tr2.closest('tbody').id;
@@ -232,6 +246,7 @@
       var L = LISTAS[tabla], r = +tr.dataset.fila;
       if (L.cumplida && e.type === 'change' && e.target.id === T(tabla).prefijo + r + '-' + L.cumplida) {
         if (e.target.checked && L.alCumplir) {
+          if (L.alCumplir.fecha) { var sf = campo(tabla, r, L.alCumplir.fecha); if (sf && !sf.value) { sf.value = hoyTxt(); N.datos()[sf.id] = sf.value; N.guardar(); } }
           if (L.alCumplir.estado) { var se = campo(tabla, r, L.estado); if (se && se.value !== L.alCumplir.estado) { ponerValor(se, L.alCumplir.estado); N.datos()[se.id] = se.value; N.guardar(); } }
           if (L.alCumplir.cerrar) est(tabla).abiertas[r] = false;
         }

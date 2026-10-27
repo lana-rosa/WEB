@@ -53,7 +53,7 @@ with sync_playwright() as p:
     wb = openpyxl.load_workbook(ruta)
     T.v('Excel: una hoja «Ficha de proyecto» con una fila por proyecto', 'Ficha de proyecto' in wb.sheetnames and wb['Ficha de proyecto'].max_row == 3, wb.sheetnames)
     filas = [[c.value for c in r] for r in wb['Ficha de proyecto'].iter_rows()]
-    T.v('Excel: trae el nombre y las preguntas como encabezados', filas[0][:3] == ['Nombre', 'Proyecto', 'Para quién'] and filas[1][0] == 'Bufanda lila', filas[0][:4])
+    T.v('Excel: trae el nombre y las preguntas como encabezados', filas[0][:3] == ['Nombre', 'Nombre del producto', 'Para quién'] and filas[1][0] == 'Bufanda lila', filas[0][:4])
     cap(pg, 'versiones-proyecto-1280.png')
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # semana
