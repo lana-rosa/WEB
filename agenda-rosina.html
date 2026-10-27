@@ -1014,12 +1014,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 37</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 37 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 38</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 38 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
           <a href="#planeador-dia" data-hoja="planeador-dia">🗓️ Planeador del día</a>
           <a href="#portada-agenda" data-hoja="portada-agenda">🌸 Portada</a>
+          <a href="#aprende-compra" data-hoja="aprende-compra">🎓 Aprende y compra</a>
           <p class="menu-grupo">Mi tablero</p>
           <a href="#tablero-agenda" data-hoja="tablero-agenda">📈 Mi tablero</a>
           <p class="menu-grupo">Mis proyectos</p>
@@ -1074,6 +1075,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="indice-grupo" style="--c:#F7B3D4"><h4>Mi agenda</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="planeador-dia"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Planeador del día</strong><small>Tu día, tus tareas y los números del mes</small></span></button>
           <button type="button" class="atajo" data-ir="portada-agenda"><span class="atajo-ic" aria-hidden="true">🌸</span><span><strong>Portada</strong><small>Elige el fondo y tu nombre, y písala</small></span></button>
+          <button type="button" class="atajo" data-ir="aprende-compra"><span class="atajo-ic" aria-hidden="true">🎓</span><span><strong>Aprende y compra</strong><small>Clases, patrones, YouTube y más</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#FFE08A"><h4>Mi tablero</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="tablero-agenda"><span class="atajo-ic" aria-hidden="true">📈</span><span><strong>Mi tablero</strong><small>Indicadores y análisis de todas tus hojas</small></span></button>
@@ -1160,6 +1162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="pl-tiles" id="pl-tiles"></div>
           <p class="pl-ayuda no-imprimir">Los números salen solos de tus hojas: clientas, ventas, gastos, proyectos cumplidos y lo que aprendiste.</p>
         </div>
+        <div class="promo-eco no-imprimir" data-hoja="planeador-dia"></div>
       </article>
       <article class="hoja-agenda" id="portada-agenda">
         <header>
@@ -1186,6 +1189,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> al imprimir, activa «gráficos de fondo» (o «colores de fondo») en las opciones de impresión para que se vea el fondo completo.</p>
         <p class="no-imprimir portada-imprimir"><button type="button" class="boton-primario" data-imprimir-hoja="llena">🖨️ Imprimir la portada</button></p>
+        <div class="promo-eco no-imprimir" data-hoja="portada-agenda"></div>
+      </article>
+      <article class="hoja-agenda" id="aprende-compra">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-17-gorro.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Aprende y compra en Lana Rosa</h3><p>Pide una clase personalizada, mira los cursos, compra patrones y encuentra todo lo que tenemos para ti.</p></div>
+        </header>
+        <div class="vers-cuerpo ec-cuerpo">
+          <h4 class="sub-hoja">👩‍🏫 Pide tu clase personalizada</h4>
+          <p class="pr-ayuda">En Villamaría, a la hora que acordemos. Cuéntanos qué quieres aprender y te escribimos por WhatsApp para fijar el día. Se cobra por hora, por persona, y los materiales no están incluidos.</p>
+          <div class="grid-ficha">
+            <div class="linea"><label for="ag-ec-nombre">Tu nombre</label><input id="ag-ec-nombre" data-guardar autocomplete="given-name"></div>
+            <div class="linea"><label for="ag-ec-tema">¿Qué quieres aprender?</label><select id="ag-ec-tema" data-guardar><option value=""></option><option>Empezar desde cero</option><option>Mejorar mis puntos</option><option>Tejer un amigurumi</option><option>Tejer una prenda</option><option>Leer patrones y esquemas</option><option>Terminar un proyecto que tengo</option><option>Otro tema</option></select></div>
+            <div class="linea"><label for="ag-ec-nivel">Tu nivel</label><select id="ag-ec-nivel" data-guardar><option value=""></option><option>Nunca he tejido</option><option>Sé lo básico</option><option>Ya tejo y quiero avanzar</option></select></div>
+            <div class="linea"><label for="ag-ec-personas">¿Cuántas personas?</label><select id="ag-ec-personas" data-guardar><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+            <div class="linea"><label for="ag-ec-horas">¿Cuántas horas?</label><select id="ag-ec-horas" data-guardar><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+            <div class="linea ancha"><label for="ag-ec-cuando">Días y horarios que te sirven</label><input id="ag-ec-cuando" data-guardar placeholder="Por ejemplo: sábados por la mañana"></div>
+            <div class="linea ancha"><label for="ag-ec-notas">Algo más que quieras contarnos</label><textarea id="ag-ec-notas" rows="2" data-guardar></textarea></div>
+          </div>
+          <p class="ec-total no-imprimir">Valor estimado: <strong id="ec-total"></strong></p>
+          <p class="no-imprimir pr-acciones"><a class="boton-primario" id="ec-enviar" href="https://wa.me/573205072801" target="_blank" rel="noopener">💬 Enviar mi solicitud por WhatsApp</a> <a class="boton-secundario" href="/academy/talleres/" target="_blank" rel="noopener">Ver talleres y clases →</a></p>
+
+          <h4 class="sub-hoja">💻 Cursos virtuales</h4>
+          <div id="ec-cursos"><div class="pr-bloque"><h5>Muy pronto</h5><p>Estamos preparando los cursos virtuales de Lana Rosa Academy para que aprendas desde donde estés y a tu ritmo. Todavía no están a la venta.</p><p class="no-imprimir"><a class="boton-secundario boton-chico" href="https://wa.me/573205072801?text=Hola!%20Quiero%20que%20me%20avisen%20cuando%20abran%20los%20cursos%20virtuales%20de%20Lana%20Rosa%20Academy" target="_blank" rel="noopener" data-curso-aviso>Avísenme cuando abran</a></p></div></div>
+
+          <h4 class="sub-hoja">📚 Patrones en PDF</h4>
+          <h5 class="ec-sub">Mis patrones comprados</h5>
+          <div id="ec-comprados" aria-live="polite"></div>
+          <h5 class="ec-sub">Patrones a la venta</h5>
+          <div id="ec-venta"><p class="pl-vacio">Compra un patrón en la Mercería y lo descargas desde tu cuenta; quedará guardado aquí y en «Mis patrones».</p></div>
+          <p class="no-imprimir pr-acciones"><a class="boton-primario" href="/merceria/catalogo/#patrones-merceria" target="_blank" rel="noopener">Ver los patrones →</a></p>
+
+          <h4 class="sub-hoja">▶️ Aprende gratis en YouTube</h4>
+          <p class="pr-ayuda">En el canal de Lana Rosa Academy encuentras clases y puntos paso a paso. Suscríbete para no perderte ninguno.</p>
+          <p class="no-imprimir pr-acciones"><a class="boton-primario" href="https://www.youtube.com/@LanaRosaAcademy" target="_blank" rel="noopener" data-yt>▶ Ver el canal</a> <a class="boton-secundario" href="https://www.youtube.com/@LanaRosaAcademy?sub_confirmation=1" target="_blank" rel="noopener" data-yt>Suscribirme</a></p>
+
+          <h4 class="sub-hoja">🌸 Todo Lana Rosa</h4>
+          <div class="promo-eco no-imprimir" data-hoja="aprende-compra" data-modo="todas"></div>
+        </div>
       </article>
       <article class="hoja-agenda" id="vision-anio">
         <header>
@@ -1643,6 +1685,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </table>
         </div>
         <p class="no-imprimir" style="margin:16px 0 0;"><a class="boton-primario" id="enviar-compras" href="https://wa.me/573205072801" target="_blank" rel="noopener">Enviar mi lista por WhatsApp</a></p>
+        <div class="promo-eco no-imprimir" data-hoja="lista-compras"></div>
       </article>
 
       <article class="hoja-agenda" id="proyectos-fila">
@@ -1866,6 +1909,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <tbody id="tabla-ideas"></tbody>
           </table>
         </div>
+        <div class="promo-eco no-imprimir" data-hoja="mis-ideas"></div>
       </article>
       <article class="hoja-agenda" id="prendas-medida">
         <header>
@@ -4012,14 +4056,23 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 // Lo que la clienta compró en Lana Rosa se agrega solo: lanas e hilos al "Inventario de lanas" y patrones a "Mi colección de patrones"
 import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 (async function () {
-  if (!haySesionGuardada()) return;
+  function avisar(estado, lista) { window.lrComprasEstado = estado; window.lrComprasPatrones = lista || []; document.dispatchEvent(new CustomEvent('compras-patrones')); }
+  if (!haySesionGuardada()) { avisar('sin-sesion'); return; }
   try {
     var sb = await obtenerCliente();
+    window.lrDescargarPatron = async function (itemId) {
+      try {
+        var r = await sb.functions.invoke('descargar-patron', { body: { item_id: itemId } });
+        var msg = r.data && r.data.error; if (r.error) { try { var d = await r.error.context.json(); msg = d.error; } catch (e) {} }
+        return { url: r.data && r.data.url, msg: msg };
+      } catch (e) { return { msg: '' }; }
+    };
     var r = await sb.rpc('mis_compras_lanas');
     if (!r.error && Array.isArray(r.data) && r.data.length && window.lrImportarLanas) window.lrImportarLanas(r.data);
     var q = await sb.rpc('mis_compras_patrones');
     if (!q.error && Array.isArray(q.data) && q.data.length && window.lrImportarPatrones) window.lrImportarPatrones(q.data);
-  } catch (e) { /* si no se puede consultar, la hoja funciona igual */ }
+    avisar('ok', !q.error && Array.isArray(q.data) ? q.data : []);
+  } catch (e) { avisar('ok', []); /* si no se puede consultar, la hoja funciona igual */ }
 })();
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
@@ -4051,6 +4104,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=1" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
+<script src="/js/agenda/promo.js?v=1" defer></script>
+<script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=1" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=1" defer></script>
