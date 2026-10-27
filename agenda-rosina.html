@@ -22,6 +22,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     var q = new URLSearchParams(location.search).get('avance');
     if (q === '1') localStorage.setItem('lrAgendaAvance', '1'); else if (q === '0') localStorage.removeItem('lrAgendaAvance');
     if (localStorage.getItem('lrAgendaAvance') === '1') abierta = true;
+    /* cuentas con acceso previo (js/agenda/acceso.js): la marca solo vale con una sesión guardada */
+    if (localStorage.getItem('lrAgendaAcceso') === '1' && localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token')) abierta = true;
   } catch (e) {}
   if (!abierta) document.documentElement.classList.add('agenda-gratis');
 })();
@@ -4111,6 +4113,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
 <script src="/js/agenda/app.js?v=1" defer></script>
+<script type="module" src="/js/agenda/acceso.js?v=3"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=1" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
