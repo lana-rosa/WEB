@@ -347,7 +347,12 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 @media print { .aviso-borrar { display: none !important; } }
 .nota-copia { flex-basis: 100%; text-align: center; color: var(--tinta-suave); font-size: 0.8rem; }
 .enlace-copia { background: none; border: none; color: var(--rosa-texto); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; }
-@media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } }
+@media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } .agenda-recordatorio { display: none !important; } }
+.nube-estado { display: block; width: 100%; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--tinta-suave); margin: 4px 0 0; }
+.agenda-recordatorio { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; background: #FFF8E1; border: 2px solid #FFE08A; border-radius: 18px; padding: 12px 16px; margin: 0 0 16px; font-size: 0.92rem; }
+.agenda-recordatorio[hidden] { display: none; }
+.agenda-recordatorio p { margin: 0; flex: 1 1 320px; }
+.agenda-recordatorio .acciones-rec { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .barra-agenda { position: sticky; top: 68px; z-index: 6; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; background: rgba(255,255,255,0.97); backdrop-filter: blur(6px); border-radius: 18px; box-shadow: var(--sombra-suave); padding: 10px 14px; margin: 0 0 18px; }
 @media (max-width: 1100px) { .barra-agenda { top: 80px; } }
 .buscar-agenda { flex: 1 1 260px; display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--rosa-medio); border-radius: 999px; padding: 4px 6px 4px 14px; background: var(--blanco); }
@@ -908,19 +913,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
     </div>
-    <p class="intro" id="agenda-intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo con tu cuenta gratis (se guardan en tu dispositivo) o imprímelas, llenas o en blanco, para escribir a mano.</p>
+    <p class="intro" id="agenda-intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo con tu cuenta gratis (se guardan en tu dispositivo y, si quieres, también en tu cuenta) o imprímelas, llenas o en blanco, para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
     </div>
-    <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda solo en este dispositivo: si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
+    <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda en este dispositivo (y en tu cuenta, si activaste la copia): si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
+    </div>
+    <div class="agenda-recordatorio no-imprimir" id="agenda-recordatorio" role="region" aria-label="Recordatorio de copia de tu agenda" hidden>
+      <p><strong>Tu agenda se guarda solo en este dispositivo.</strong> Si borras los datos del navegador (o el historial con cookies), se pierde. Guárdala en tu cuenta o descarga una copia.</p>
+      <div class="acciones-rec">
+        <button type="button" class="boton-primario boton-chico" id="rec-nube">☁️ Guardar en mi cuenta</button>
+        <button type="button" class="boton-secundario boton-chico" id="rec-copia">⬇️ Descargar una copia</button>
+        <button type="button" class="enlace-copia" id="rec-despues">Ahora no</button>
+      </div>
     </div>
     <div class="copia-agenda">
       <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
+      <button type="button" class="enlace-copia" id="nube-activar" hidden>☁️ Guardar mi agenda en mi cuenta</button>
+      <button type="button" class="enlace-copia" id="nube-borrar" hidden>🗑️ Borrar mi copia en la nube</button>
       <button type="button" class="enlace-copia" id="agenda-cargar">⬆️ Cargar una copia</button>
       <button type="button" class="enlace-copia" id="agenda-ics">📅 Fechas al calendario (.ics)</button>
       <input type="file" id="agenda-archivo" accept=".json,application/json" hidden>
-      <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
+      <span class="nube-estado" id="nube-estado" role="status"></span>
+      <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular; o actívala en tu cuenta (opcional y gratis) y vuelve a tenerla aunque borres el historial. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
     </div>
   </section>
 
@@ -2010,7 +2026,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         return;
       }
     }
-    if (!confirm('¿Borrar todo lo que escribiste en la agenda?\n\nSe elimina de inmediato y no se puede recuperar. Solo podrás volver a tenerla si guardaste una copia y la cargas después.')) return;
+    if (!confirm('¿Borrar todo lo que escribiste en la agenda?\n\nSe elimina de inmediato y no se puede recuperar. Solo podrás volver a tenerla si guardaste una copia y la cargas después.' + (window.lrNube && window.lrNube.activa ? '\n\nComo tienes la copia en tu cuenta activada, también quedará vacía en tu cuenta.' : ''))) return;
     camposAgenda().forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
     datos = {};
     borrar(CLAVE_AGENDA); avisarGuardado();
@@ -3460,7 +3476,152 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   c.setAttribute('aria-hidden', 'true');
 })();
 </script>
+<dialog class="modal-membresia no-imprimir" id="modal-nube" aria-labelledby="mn-titulo">
+  <button type="button" class="mm-cerrar" id="mn-cerrar" aria-label="Cerrar">✕</button>
+  <h2 id="mn-titulo">Guarda tu agenda en tu cuenta ☁️</h2>
+  <p class="mm-estado">Es gratis y opcional: tú decides si la activas.</p>
+  <ul class="mn-lista">
+    <li><strong>Qué guardamos:</strong> una copia completa de tu agenda: proyectos, materiales, pedidos, ventas y las hojas de Finanzas (ingresos, gastos, deudas, tarjetas y metas). Si anotas datos de tus clientas (nombre, WhatsApp, cumpleaños), tú eres responsable de contar con su autorización.</li>
+    <li><strong>Para qué:</strong> solo para tener un respaldo, recuperarla si borras los datos del navegador y abrirla en otros dispositivos. No la usamos para publicidad ni para entrenar inteligencia artificial, y nadie de nuestro equipo la lee, salvo para darte soporte si lo pides o por una obligación legal.</li>
+    <li><strong>Dónde:</strong> en los servidores de nuestro proveedor Supabase, en São Paulo (Brasil), con acceso solo desde tu cuenta.</li>
+    <li><strong>Cuánto tiempo:</strong> mientras tengas tu cuenta. Puedes borrarla cuando quieras desde la agenda («Borrar mi copia en la nube») y, al hacerlo, se retira tu autorización; también se borra si eliminas tu cuenta.</li>
+    <li><strong>Tus derechos:</strong> puedes conocer, corregir o pedir que borremos tus datos desde la agenda o escribiéndonos a contacto@lanarosacrochet.com o por WhatsApp.</li>
+    <li>Sin la copia, tu agenda funciona igual y se guarda en este dispositivo.</li>
+  </ul>
+  <label class="mm-acepto"><input type="checkbox" id="mn-acepto"><span>Autorizo el almacenamiento de una copia de mi agenda en la nube, incluidos los datos que he registrado, para respaldar mi información y acceder a ella desde otros dispositivos. He leído la información sobre el tratamiento, la conservación y la eliminación de mis datos (<a href="/politicas.html#datos" target="_blank" rel="noopener">política de datos, apartado 11</a>). Guardamos la fecha y hora de mi autorización.</span></label>
+  <button type="button" class="boton-primario" id="mn-activar">Activar la copia en mi cuenta</button>
+  <button type="button" class="enlace-copia" id="mn-ahora-no">Ahora no</button>
+  <p class="cs-aviso" id="mn-aviso" role="status"></p>
+</dialog>
 <script type="module" src="/js/cuenta.js"></script>
+<script type="module">
+// Copia de la agenda en tu cuenta (gratis, con autorización expresa) y recordatorio de copia — 27-oct-2026.
+// La agenda sigue guardándose primero en el dispositivo (localStorage «rosinaAgenda»); la nube es una copia opcional por cuenta
+// (agenda_nube_consentir / _leer / _guardar / _borrar, migración 31). Si alguien borra los datos del navegador, al volver a entrar a su cuenta se recupera sola.
+import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
+(function () {
+  var VERSION_NUBE = '2026-10-27';   // = fn_nube_version() en la base y politicas.html#datos, apartado 11: se suben juntos
+  var CL_BASE = 'lrNubeBase', CL_SUCIO = 'lrNubeSucio', CLAVE_AG = 'rosinaAgenda', CLAVE_COPIA = 'rosinaAgendaCopia', CL_REC = 'lrAgendaRecordatorio';
+  var DIAS_RECORDATORIO = 14, DIAS_ESPERA = 7;
+  var $ = function (id) { return document.getElementById(id); };
+  var sb = null, estado = { nube: null }, nube = { listo: false, ocupado: false, t: null };   // estado.nube: true = autorizada, false = sin autorizar, null = aún no se sabe
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+  function estadoNube(t) { var e = $('nube-estado'); if (e) e.textContent = t || ''; }
+  function datosLocales() { try { return JSON.parse(lsGet(CLAVE_AG)) || {}; } catch (e) { return {}; } }
+  function hayLocal() { var d = datosLocales(); return Object.keys(d).filter(function (k) { return k !== 'ag-anio' && k !== '_anios'; }).length > 0; }
+  function aplicarNube(d, marca) { if (!d || typeof d !== 'object') return; lsSet(CLAVE_AG, JSON.stringify(d)); lsSet(CL_BASE, marca); lsDel(CL_SUCIO); location.reload(); }
+
+  /* ---- Botones y recordatorio ---- */
+  function pintar() {
+    var sesion = haySesionGuardada();
+    $('nube-activar').hidden = !(sesion && estado.nube === false);
+    $('nube-borrar').hidden = estado.nube !== true;
+    window.lrNube = { activa: estado.nube === true };
+    recordatorio();
+  }
+  function recordatorio() {
+    var r = $('agenda-recordatorio'); if (!r) return;
+    var ultima = lsGet(CLAVE_COPIA), dias = ultima ? (Date.now() - Date.parse(ultima)) / 86400000 : Infinity;
+    var espera = Number(lsGet(CL_REC) || 0);
+    r.hidden = !(estado.nube !== true && hayLocal() && dias >= DIAS_RECORDATORIO && !(espera && Date.now() - espera < DIAS_ESPERA * 86400000));
+  }
+  $('rec-despues').addEventListener('click', function () { lsSet(CL_REC, String(Date.now())); recordatorio(); });
+  $('rec-copia').addEventListener('click', function () { $('agenda-descargar').click(); });
+  $('agenda-descargar').addEventListener('click', function () { setTimeout(recordatorio, 100); });   // el otro manejador ya anotó la fecha de la copia
+  $('rec-nube').addEventListener('click', abrirNube);
+  $('nube-activar').addEventListener('click', abrirNube);
+
+  /* ---- Sincronización ---- */
+  async function subir(base) {
+    if (nube.ocupado) return; nube.ocupado = true; estadoNube('☁️ Guardando en tu cuenta…');
+    var otraVez = false;
+    try {
+      var r = await sb.rpc('agenda_nube_guardar', { p_datos: datosLocales(), p_base: base !== undefined ? base : (lsGet(CL_BASE) || null) });
+      var d = r.data || {};
+      if (r.error) estadoNube('☁️ Sin conexión: se guardará en tu cuenta cuando vuelva.');
+      else if (d.ok) { lsSet(CL_BASE, d.actualizado); lsDel(CL_SUCIO); estadoNube('☁️ Copia en tu cuenta guardada'); }
+      else if (d.conflicto) otraVez = true;
+      else if (d.error === 'sin_consentimiento') { estado.nube = false; nube.listo = false; pintar(); estadoNube(''); }
+      else estadoNube(d.error === 'muy_grande' ? '☁️ La agenda es muy grande para guardarla en la cuenta.' : '☁️ No se pudo guardar en tu cuenta; se reintenta con el próximo cambio.');
+    } catch (e) { estadoNube('☁️ Sin conexión: se guardará en tu cuenta cuando vuelva.'); }
+    nube.ocupado = false;
+    if (otraVez) await resolverNube();
+  }
+  async function resolverNube() {
+    var r = await sb.rpc('agenda_nube_leer'), d = r.data || {};
+    if (r.error) return estadoNube('☁️ Sin conexión con tu cuenta.');
+    if (!d.datos) return subir(null);
+    var usar = confirm('Tu agenda guardada en tu cuenta (desde otro dispositivo o antes de borrar los datos del navegador) es distinta a la de este dispositivo.\n\nAceptar = usar la de tu cuenta.\nCancelar = quedarme con la de este dispositivo y reemplazar la de tu cuenta.');
+    if (usar) return aplicarNube(d.datos, d.actualizado);
+    await subir(d.actualizado);
+  }
+  async function iniciarNube() {
+    if (nube.listo || !sb) return;
+    try {
+      var r = await sb.rpc('agenda_nube_leer'), d = r.data || {};
+      if (r.error) { estadoNube('☁️ Sin conexión con tu cuenta: la agenda sigue funcionando en este dispositivo.'); return; }
+      if (d.error) { if (d.error === 'sin_consentimiento') { estado.nube = false; } pintar(); return; }
+      estado.nube = true; nube.listo = true; pintar();
+      var base = lsGet(CL_BASE), sucio = lsGet(CL_SUCIO) === '1';
+      if (d.vacio) { if (hayLocal()) await subir(null); else estadoNube('☁️ Copia en tu cuenta lista'); }
+      else if (base === d.actualizado) { if (sucio) await subir(); else estadoNube('☁️ Copia en tu cuenta al día'); }
+      else if ((!base && !hayLocal()) || (base && !sucio)) aplicarNube(d.datos, d.actualizado);   // agenda vacía (por ejemplo, tras borrar el historial): se recupera sola
+      else await resolverNube();
+    } catch (e) { nube.listo = false; estadoNube('☁️ Sin conexión con tu cuenta'); }
+  }
+  if (window.lrAgenda) window.lrAgenda.alGuardar = function () {
+    if (estado.nube !== true) { recordatorio(); return; }
+    lsSet(CL_SUCIO, '1');
+    if (!nube.listo) return;
+    clearTimeout(nube.t); nube.t = setTimeout(function () { subir(); }, 2500);
+  };
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden' && nube.listo && estado.nube === true && lsGet(CL_SUCIO) === '1') { clearTimeout(nube.t); subir(); } });
+
+  /* ---- Autorización (casilla + botón; queda la fecha, la hora y la versión del texto en la base) ---- */
+  var dlg = $('modal-nube');
+  function abrirNube() {
+    if (!haySesionGuardada()) { location.href = '/cuenta.html?volver=agenda-rosina.html'; return; }
+    $('mn-acepto').checked = false; $('mn-aviso').textContent = ''; $('mn-activar').disabled = false;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  function cerrarNube() { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
+  $('mn-cerrar').addEventListener('click', cerrarNube);
+  $('mn-ahora-no').addEventListener('click', cerrarNube);
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) cerrarNube(); });
+  $('mn-activar').addEventListener('click', async function () {
+    var b = this, av = $('mn-aviso');
+    if (!$('mn-acepto').checked) { av.textContent = 'Para activar la copia, marca la casilla de autorización.'; $('mn-acepto').focus(); return; }
+    b.disabled = true; av.textContent = 'Activando…';
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.rpc('agenda_nube_consentir', { p_version: VERSION_NUBE }), d = r.data || {};
+      if (!r.error && d.ok) { estado.nube = true; cerrarNube(); nube.listo = false; pintar(); estadoNube('☁️ Activando la copia en tu cuenta…'); iniciarNube(); return; }
+      av.textContent = d.error === 'version_vieja' ? 'El texto se actualizó. Recarga la página y vuelve a intentarlo.' : d.error === 'sin_sesion' ? 'Tu sesión venció. Entra de nuevo a tu cuenta.' : 'No pudimos activarla ahora. Inténtalo de nuevo.';
+    } catch (e) { av.textContent = 'No pudimos conectar. Inténtalo de nuevo.'; }
+    b.disabled = false;
+  });
+  /* Borrar la copia de la nube: siempre se puede; retira la autorización */
+  $('nube-borrar').addEventListener('click', async function () {
+    if (!confirm('¿Borrar tu copia de la agenda en la nube? Se borra de nuestros servidores y se retira tu autorización; tu agenda sigue en este dispositivo. Para volver a usar la copia tendrás que autorizarla otra vez.')) return;
+    estadoNube('Borrando…');
+    try {
+      sb = sb || await obtenerCliente();
+      var r = await sb.rpc('agenda_nube_borrar'), ok = !r.error && r.data && r.data.ok;
+      if (!ok) { estadoNube('No pudimos borrarla ahora. Inténtalo de nuevo o escríbenos.'); return; }
+      lsDel(CL_BASE); lsDel(CL_SUCIO); estado.nube = false; nube.listo = false; clearTimeout(nube.t);
+      estadoNube('Listo: tu copia en la nube se borró y retiraste tu autorización. Tu agenda sigue en este dispositivo.'); pintar();
+    } catch (e) { estadoNube('No pudimos conectar. Inténtalo de nuevo.'); }
+  });
+
+  pintar();
+  (async function () {
+    if (!haySesionGuardada()) return;
+    try { sb = await obtenerCliente(); await iniciarNube(); } catch (e) { /* sin conexión: la agenda sigue funcionando en el dispositivo */ }
+  })();
+})();
+</script>
 <script type="module">
 // Lo que la clienta compró en Lana Rosa se agrega solo: lanas e hilos al "Inventario de lanas" y patrones a "Mi colección de patrones"
 import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
