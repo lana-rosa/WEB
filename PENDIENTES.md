@@ -376,3 +376,9 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] **Abogada:** revisar el párrafo nuevo «Escribir con la voz y con el lápiz» de `politicas.html#datos` (apartado 11).
 - [ ] Ideas pendientes de Sara para la agenda («todavía tengo algunas ideas en mente»): anotarlas aquí cuando las diga. Por eso **Google Calendar sigue apagado** (recomendación: no hacerlo todavía).
 - [ ] Excel: faltan en el libro las hojas de finanzas distintas de «Mis movimientos» (presupuesto, fijos, deudas, tarjetas) y el tablero.
+
+## Agenda «En construcción» y nuevas hojas (pedido de Sara del 28-oct-2026)
+- [x] Puerta «En construcción» (sin acceso libre); vista para Sara: `/agenda-rosina.html?avance=1`. Textos «próximamente» en Academy, Rincón de Rosina, hub de Rosina, llms.txt y políticas.
+- [x] Pedidos: teléfono (con WhatsApp), dirección, producto, cantidad, valor unidad, valor total, envío, total compra, total abonado, saldo, fechas de reserva, entrega y envío, medio de pago, forma de envío y observaciones; cuentas automáticas y resumen de lo por cobrar; el envío llega al calendario.
+- [ ] En curso (misma sesión): contactos, proyectos por tejer con avance, gastos del negocio, números del mes, planeador del día, ficha de proyecto ampliada con dibujo y foto, hoja de puntos, paleta de colores de la Mercería y prendas a medida con maniquí.
+- [ ] **Cómo se va a vender la agenda** (decidir con Sara): precio, pago (Wompi), cómo se activa por cuenta y política de condiciones.

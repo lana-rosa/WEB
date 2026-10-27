@@ -11,7 +11,7 @@
   /* titulo: campos que forman el título de la ficha cerrada; resumen: datos cortos que se ven a la derecha;
      estado: lista desplegable que se ve como etiqueta; check: casilla que se ve como «listo»; fecha/cerrados: para las alarmas */
   var LISTAS = {
-    'tabla-pedidos': { vacio: 'Pedido nuevo', agregar: '➕ Agregar pedido', titulo: ['pedido', 'cliente'], resumen: ['entrega'], estado: 'estado', fecha: 'entrega', cerrados: ['Entregado', 'Cancelado'], alarmas: 'entrega' },
+    'tabla-pedidos': { vacio: 'Pedido nuevo', agregar: '➕ Agregar pedido', titulo: ['pedido', 'cliente'], resumen: ['entrega'], extra: 'pedido', estado: 'estado', fecha: 'entrega', cerrados: ['Entregado', 'Cancelado'], alarmas: 'entrega' },
     'tabla-lanas': { vacio: 'Lana nueva', agregar: '➕ Agregar lana o hilo', titulo: ['marca', 'color'], resumen: ['grosor', 'ovillos'] },
     'tabla-compras': { vacio: 'Material nuevo', agregar: '➕ Agregar material', titulo: ['material', 'color'], resumen: ['cantidad'], checks: [['comprado', 'Comprado']], cumplida: 'comprado', alFinal: true },
     'tabla-fila': { vacio: 'Proyecto nuevo', agregar: '➕ Agregar proyecto', titulo: ['proyecto', 'para'], resumen: ['fecha'], estado: 'estado', fecha: 'fecha', cerrados: ['Terminado'], alarmas: 'fecha', checks: [['cumplido', 'Cumplido']], cumplida: 'cumplido', alFinal: true, alCumplir: { estado: 'Terminado' } },
@@ -47,6 +47,7 @@
   }
   function chip(texto, clase) { var s = document.createElement('span'); s.className = 'ficha-chip' + (clase ? ' ' + clase : ''); s.textContent = texto; return s; }
 
+  function dinero(t) { var n = parseInt(String(t || '').replace(/[^0-9-]/g, ''), 10); return isFinite(n) ? n : 0; }
   /* Agujas: cuándo revisarlas o cambiarlas (guía general según el material) */
   var VIDA = { 'Aluminio': 5, 'Acero': 5, 'Bambú o madera': 2, 'Plástico': 2, 'Ergonómica con mango': 3, 'Otro': 3 };
   var MES_CORTO = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
@@ -107,6 +108,11 @@
     }
     L.resumen.forEach(function (c) { var v = valor(tabla, r, c); if (v) chips.push([corto(v, 18), '']); });
     if (L.extra === 'aguja') chips = chips.concat(chipsAguja(valor(tabla, r, 'material'), valor(tabla, r, 'compra')));
+    if (L.extra === 'pedido') {
+      var sal = dinero(valor(tabla, r, 'saldo')), tot = dinero(valor(tabla, r, 'totalcompra'));
+      if (tot > 0 && sal > 0 && !cerrada) chips.push(['Debe $' + sal.toLocaleString('es-CO'), 'aviso']);
+      else if (tot > 0 && sal <= 0) chips.push(['✓ Pagado', 'ok']);
+    }
     (L.checks || []).forEach(function (x) { if (valor(tabla, r, x[0]) === true) chips.push(['✓ ' + x[1], 'ok']); });
     /* Solo se vuelven a dibujar las etiquetas si cambiaron: así un clic que empieza sobre una etiqueta no se pierde */
     var meta = tr.querySelector('.ficha-meta'), firma = JSON.stringify(chips);
@@ -260,7 +266,7 @@
 
   window.lrFichas = {
     LISTAS: LISTAS, agregar: agregar, abrirDe: abrirDe, alGuardar: alGuardar, refrescar: aplicarTodo,
-    reiniciar: function () { estado = {}; aplicarTodo(); }
+    reiniciar: function () { estado = {}; aplicarTodo(); }, dinero: dinero
   };
   iniciar();
 })();

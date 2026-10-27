@@ -33,7 +33,7 @@ def contexto(b, nube=None, sesion=True):
     return ctx
 def listo(ctx, con_local=True):
     pg = ctx.new_page(); pg.on('dialog', lambda d: d.accept()); errs = []; pg.on('pageerror', lambda e: errs.append(str(e)))
-    pg.goto(BASE + '/agenda-rosina.html'); pg.wait_for_timeout(1200)
+    pg.goto(BASE + '/agenda-rosina.html?avance=1'); pg.wait_for_timeout(1200)
     try: pg.click('button[data-ck=no]', timeout=1200)
     except Exception: pass
     if con_local:
@@ -80,7 +80,7 @@ with sync_playwright() as p:
     ctx.close()
     # 5) a 390 px sin desplazamiento horizontal y con el recordatorio
     ctx = contexto(b, sesion=False); ctx.new_page().close(); pg = ctx.new_page(); pg.set_viewport_size({'width': 390, 'height': 800}); pg.on('dialog', lambda d: d.accept())
-    pg.goto(BASE + '/agenda-rosina.html'); pg.wait_for_timeout(1000); pg.evaluate("d => localStorage.setItem('rosinaAgenda', JSON.stringify(d))", LOCAL); pg.reload(); pg.wait_for_timeout(1200)
+    pg.goto(BASE + '/agenda-rosina.html?avance=1'); pg.wait_for_timeout(1000); pg.evaluate("d => localStorage.setItem('rosinaAgenda', JSON.stringify(d))", LOCAL); pg.reload(); pg.wait_for_timeout(1200)
     v('390 px: el recordatorio no genera desplazamiento horizontal', pg.evaluate('document.documentElement.scrollWidth') <= 390 and pg.locator('#agenda-recordatorio').is_visible())
     ctx.close(); b.close()
 print(f'\n{bien} comprobaciones correctas, {mal} con falla.'); sys.exit(1 if mal else 0)

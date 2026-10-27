@@ -18,7 +18,7 @@ R = {
     'abrev': ('📖', 'Abreviaturas en 9 idiomas', 'Para leer cualquier patrón', '/recursos-rosina.html#abreviaturas'),
     'paletas': ('🎨', 'Paletas de color', 'Combinaciones para tus proyectos', '/paletas-rosina.html'),
     'calc': ('🧮', 'Calculadoras', 'Cuánta lana, qué gancho y más', '/calculadoras-rosina.html'),
-    'agenda': ('📅', 'Agenda para tejedoras', 'Organiza tus proyectos de tejido', '/agenda-rosina.html'),
+    'agenda': ('📅', 'Agenda para tejedoras', 'Próximamente: organiza tus proyectos', '/agenda-rosina.html'),
     'checklist': ('✅', 'Checklist: tu primer amigurumi', 'Lo que necesitas, paso a paso', '/recursos-rosina.html#checklist'),
     'regalos': ('💝', 'Stickers, fondos e íconos', 'Regalos de Rosina para tu celular', '/recursos-rosina.html'),
     'cuida': ('🧺', 'Cuida tu pieza', 'Cómo lavar y guardar tu amigurumi', '/p/'),
@@ -41,7 +41,7 @@ UNICO = {
         wa='Hola, quiero información sobre lanas y materiales de la Mercería Lana Rosa.'),
     'academy': dict(
         titulo='Material gratis para aprender a tejer | Rosina en Academy', h1='Rosina en Academy',
-        descripcion='Material gratis para aprender a tejer con Rosina: agenda de proyectos, glosario ilustrado, abreviaturas, calculadoras, paletas y stickers.',
+        descripcion='Material gratis para aprender a tejer con Rosina: glosario ilustrado, abreviaturas, calculadoras, paletas y stickers.',
         intro='Rosina, nuestra ovejita Asistente de Enseñanza, te ayuda a aprender a tejer, a inspirarte y, para los más pequeños, a dar su primera cadeneta.',
         conoce='Rosina es nuestra ovejita Asistente de Enseñanza: en Academy te acompaña paso a paso, explica el crochet con palabras sencillas y te anima a terminar tu proyecto. Curiosa, detallista y muy amable.',
         wa='Hola, quiero información sobre talleres y material de Lana Rosa Academy.'),

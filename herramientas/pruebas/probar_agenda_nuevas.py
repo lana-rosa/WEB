@@ -21,7 +21,7 @@ with sync_playwright() as p:
     ctx = contexto(b, 1280); pg = abrir(ctx, 'indice-agenda')
     T.v('el menú tiene Portada, Mis ideas y Diseña tu patrón', all(pg.locator('#menu-hojas-lista a[data-hoja="%s"]' % h).count() == 1 for h in ['portada-agenda', 'mis-ideas', 'disena-patron']))
     T.v('el índice las ofrece y el contador dice 32 hojas', pg.locator('#indice-agenda [data-ir="portada-agenda"]').count() == 1 and '32' in pg.inner_text('.mh-pildora'), pg.inner_text('.mh-pildora'))
-    T.v('el nombre es «Agenda para tejedoras»', 'Agenda para tejedoras' in pg.inner_text('h1') and 'de Rosina' not in pg.inner_text('h1'))
+    T.v('el nombre es «Agenda para tejedoras»', 'Agenda para tejedoras' in pg.inner_text('.intro-agenda h1') and 'de Rosina' not in pg.inner_text('.intro-agenda h1'))
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # portada
     ctx = contexto(b, 390, datos={'ag-duena': 'Sara'}); pg = abrir(ctx, 'portada-agenda')
@@ -35,7 +35,7 @@ with sync_playwright() as p:
     pg.click('#portada-colores button[aria-label="Lila"]'); pg.wait_for_timeout(200)
     T.v('el color también se guarda', guardado(pg).get('ag-portada-color') == 'lila' and pg.evaluate("document.getElementById('portada-hoja').dataset.color") == 'lila')
     pg.fill('#portada-nombre', 'Sara Muñoz'); pg.fill('#ag-portada-frase', 'Un punto a la vez'); pg.wait_for_timeout(300)
-    T.v('cambiar el nombre aquí lo cambia en toda la agenda', pg.input_value('#ag-duena') == 'Sara Muñoz' and guardado(pg).get('ag-duena') == 'Sara Muñoz' and 'Sara Muñoz' in pg.inner_text('#portada-nombre-vista') and 'Sara Muñoz' in pg.inner_text('h1'))
+    T.v('cambiar el nombre aquí lo cambia en toda la agenda', pg.input_value('#ag-duena') == 'Sara Muñoz' and guardado(pg).get('ag-duena') == 'Sara Muñoz' and 'Sara Muñoz' in pg.inner_text('#portada-nombre-vista') and 'Sara Muñoz' in pg.inner_text('.intro-agenda h1'))
     T.v('la frase sale en la portada', pg.inner_text('#portada-frase-vista') == 'Un punto a la vez')
     cap(pg, 'nuevas-portada-390.png')
     pg.reload(); pg.wait_for_timeout(1500)

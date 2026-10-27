@@ -15,7 +15,7 @@ with sync_playwright() as p:
         pg = b.new_page(viewport={'width': w, 'height': h}); errs = []; dialogs = []
         pg.on('pageerror', lambda e: errs.append(str(e)))
         pg.on('dialog', lambda d: (dialogs.append(d.message), d.accept()))
-        pg.goto(BASE + '/agenda-rosina.html'); pg.wait_for_timeout(800)
+        pg.goto(BASE + '/agenda-rosina.html?avance=1'); pg.wait_for_timeout(800)
         with tempfile.TemporaryDirectory() as td:
             for nombre, dato in (('malo', malo), ('bueno', bueno)):
                 ruta = os.path.join(td, nombre + '.json'); open(ruta, 'w').write(json.dumps(dato))

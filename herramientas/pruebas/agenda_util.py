@@ -14,6 +14,7 @@ class Prueba:
 def contexto(b, ancho=1280, alto=900, datos=None, **kw):
     ctx = b.new_context(viewport={'width': ancho, 'height': alto}, **kw)
     ctx.add_init_script("if (!localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token')) localStorage.setItem('sb-ngjoognzvehwjtpqwrqe-auth-token', %s);"
+                        "localStorage.setItem('lrAgendaAvance', '1');"
                         "if (!localStorage.getItem('lrConsent')) localStorage.setItem('lrConsent', JSON.stringify({v:1,a:false,t:Date.now()}));" % json.dumps(SESION))
     if datos is not None: ctx.add_init_script("if (!sessionStorage.getItem('lrPruebaInit')) { localStorage.setItem('rosinaAgenda', %s); sessionStorage.setItem('lrPruebaInit', '1'); }" % json.dumps(json.dumps(datos)))
     ctx.route('**/rest/v1/rpc/**', lambda r: r.fulfill(status=200, content_type='application/json', body='null' if 'agenda_nube' in r.request.url else '[]'))
