@@ -135,22 +135,24 @@
   }
   function cambiar(id, k) {
     var V = ver(id); if (!V.v[k] || k === V.actual) return;
-    sincronizar(id); V.actual = k; cargar(id, V.v[k]); pintar(id);
+    sincronizar(id); V.actual = k; cargar(id, V.v[k]); pintar(id); avisar(id);
   }
   function agregar(id) {
     var H = HOJAS[id], V = ver(id); sincronizar(id);
     var k = nuevaClave(V); V.orden.push(k); V.actual = k; V.v[k] = H.siguiente(V.v[V.orden[V.orden.length - 2]] || {});
-    cargar(id, V.v[k]); pintar(id);
+    cargar(id, V.v[k]); pintar(id); avisar(id);
     var it = UI[id].lista.querySelector('.vers-item.abierta'); if (it) it.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   function borrar(id) {
     var H = HOJAS[id], V = ver(id), i = V.orden.indexOf(V.actual);
     if (!confirm('¿Borrar «' + H.nombre(captura(id)) + '»?\n\nSe elimina de inmediato y no se puede recuperar (solo si guardaste una copia de tu agenda).')) return;
+    var dib = N.datos()._dib; if (dib) delete dib[id + ':' + V.actual];   // el dibujo de esa ficha también se va
     delete V.v[V.actual]; V.orden.splice(i, 1);
     if (!V.orden.length) { var k = nuevaClave(V); V.orden = [k]; V.v[k] = H.inicial(); V.actual = k; }
     else V.actual = V.orden[Math.max(0, i - 1)];
-    cargar(id, V.v[V.actual]); pintar(id);
+    cargar(id, V.v[V.actual]); pintar(id); avisar(id);
   }
+  function avisar(id) { document.dispatchEvent(new CustomEvent('version-cambiada', { detail: { hoja: id, k: ver(id).actual } })); }
 
   /* El mes o la semana se ponen solos, pero solo se ven: no se guardan hasta que la persona escribe algo */
   function prellenar(id) {
@@ -211,7 +213,7 @@
   ampliables();
   Object.keys(HOJAS).forEach(montar);
   window.lrVersiones = {
-    paraExcel: paraExcel, valor: valor, claves: claves,
+    paraExcel: paraExcel, valor: valor, claves: claves, actual: function (id) { return ver(id).actual; },
     alGuardar: function () { Object.keys(UI).forEach(function (id) { var V = ver(id); V.v[V.actual] = captura(id); }); },
     reiniciar: function () { Object.keys(UI).forEach(function (id) { camposDe(id).forEach(function (e) { poner(e, ''); }); N.datos()._ver = {}; ver(id); prellenar(id); pintar(id); }); }
   };

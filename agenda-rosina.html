@@ -1032,6 +1032,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#lo-que-aprendi" data-hoja="lo-que-aprendi">🌟 Lo que aprendí</a>
           <a href="#mis-ideas" data-hoja="mis-ideas">💭 Mis ideas</a>
           <a href="#disena-patron" data-hoja="disena-patron">✏️ Diseña tu patrón</a>
+          <a href="#hoja-puntos" data-hoja="hoja-puntos">⚫ Hoja de puntos</a>
           <p class="menu-grupo">Mis materiales</p>
           <a href="#inventario-lanas" data-hoja="inventario-lanas">🧶 Inventario de lanas</a>
           <a href="#mis-agujas" data-hoja="mis-agujas"><svg class="ic-aguja" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 20L18 6"/><ellipse cx="18.6" cy="5.4" rx="1" ry="2.4" transform="rotate(45 18.6 5.4)"/><path d="M16.5 7.5C21 10 21 15 14.5 15.5"/></svg> Mis agujas</a>
@@ -1084,6 +1085,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="anio-tejiendo"><span class="atajo-ic" aria-hidden="true">⭐</span><span><strong>Mi año tejiendo</strong><small>Tus metas y logros</small></span></button>
           <button type="button" class="atajo" data-ir="lo-que-aprendi"><span class="atajo-ic" aria-hidden="true">🌟</span><span><strong>Lo que aprendí</strong><small>Puntos y trucos nuevos</small></span></button>
           <button type="button" class="atajo" data-ir="mis-ideas"><span class="atajo-ic" aria-hidden="true">💭</span><span><strong>Mis ideas</strong><small>Pensamientos e ideas, escritos o hablados</small></span></button>
+          <button type="button" class="atajo" data-ir="hoja-puntos"><span class="atajo-ic" aria-hidden="true">⚫</span><span><strong>Hoja de puntos</strong><small>Para dibujar esquemas y diseños</small></span></button>
           <button type="button" class="atajo" data-ir="disena-patron"><span class="atajo-ic" aria-hidden="true">✏️</span><span><strong>Diseña tu patrón</strong><small>Tu propio patrón, paso a paso</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#B9BCFB"><h4>Mis materiales</h4><div class="atajos">
@@ -1456,21 +1458,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="vers-cuerpo">
         <div class="grid-ficha">
-          <div class="linea"><label for="ag-nombre">Proyecto</label><input id="ag-nombre" data-guardar></div>
+          <div class="linea"><label for="ag-nombre">Nombre del producto</label><input id="ag-nombre" data-guardar></div>
           <div class="linea"><label for="ag-para">Para quién</label><input id="ag-para" data-guardar></div>
+          <div class="linea"><label for="ag-autor">Autor o autora del patrón</label><input id="ag-autor" data-guardar></div>
+          <div class="linea"><label for="ag-patron">Patrón / fuente</label><input id="ag-patron" data-guardar></div>
           <div class="linea"><label for="ag-inicio">Fecha de inicio</label><input id="ag-inicio" data-guardar></div>
           <div class="linea"><label for="ag-fin">Fecha de entrega</label><input id="ag-fin" data-guardar><button type="button" class="boton-cal boton-cal-campo no-imprimir" data-cal="ficha">📅 Añadir a Google Calendar</button></div>
-          <div class="linea"><label for="ag-patron">Patrón / fuente</label><input id="ag-patron" data-guardar></div>
-          <div class="linea"><label for="ag-aguja">Aguja (mm)</label><input id="ag-aguja" data-guardar></div>
-          <div class="linea"><label for="ag-lana">Lana (marca y grosor)</label><input id="ag-lana" data-guardar></div>
+          <div class="linea"><label for="ag-marca">Marca de la lana</label><input id="ag-marca" data-guardar></div>
+          <div class="linea"><label for="ag-lana">Tipo y grosor de la lana</label><input id="ag-lana" data-guardar></div>
+          <div class="linea"><label for="ag-aguja">Número de aguja (mm)</label><input id="ag-aguja" data-guardar></div>
           <div class="linea"><label for="ag-colores">Colores</label><input id="ag-colores" data-guardar></div>
-          <div class="linea"><label for="ag-muestra">Muestra (puntos × vueltas en 10 cm)</label><input id="ag-muestra" data-guardar></div>
+          <div class="linea ancha"><label for="ag-muestras">Muestras de lana (de la paleta de la Mercería)</label><textarea id="ag-muestras" rows="2" data-guardar></textarea>
+            <div class="muestras-selector no-imprimir">
+              <select id="muestras-sel" disabled aria-label="Colores de la paleta de la Mercería"><option value="">Cargando la paleta…</option></select>
+              <button type="button" class="boton-primario boton-chico" id="muestras-add" disabled>Agregar muestra</button>
+              <a class="boton-secundario boton-chico" href="/merceria/paleta-de-colores/" target="_blank" rel="noopener">Ver la paleta y comprar →</a>
+            </div>
+          </div>
+          <div class="linea"><label for="ag-muestra">Tensión (puntos × vueltas en 10 cm)</label><input id="ag-muestra" data-guardar></div>
           <div class="linea"><label for="ag-medidas">Medidas finales</label><input id="ag-medidas" data-guardar></div>
+          <div class="linea ancha"><label for="ag-puntos">Puntos utilizados</label><textarea id="ag-puntos" rows="2" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-ajustes">Ajustes que hice al patrón</label><textarea id="ag-ajustes" rows="2" data-guardar></textarea></div>
+          <div class="linea ancha"><label for="ag-notas">Notas importantes</label><textarea id="ag-notas" rows="4" data-guardar></textarea></div>
           <div class="linea ancha">
             <label>Contador de vueltas</label>
             <p class="no-imprimir acceso-contador"><a class="boton-secundario boton-chico" href="/calculadoras-rosina.html#contador">🔢 Abrir el contador de vueltas digital</a></p>
           </div>
-          <div class="linea ancha"><label for="ag-notas">Notas y cambios al patrón</label><textarea id="ag-notas" rows="4" data-guardar></textarea></div>
+          <div class="linea ancha"><label>Dibujo del diseño (dibújalo a mano o sube una foto)</label><div id="dibujo-proyecto" class="dib-wrap"></div></div>
         </div>
         </div>
         <div class="elegir-tienda oferta-merceria no-imprimir" data-categorias="Lanas,Hilos,Agujas,Relleno,Accesorios">
@@ -1778,6 +1792,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <tbody id="tabla-aprendi"></tbody>
           </table>
         </div>
+      </article>
+      <article class="hoja-agenda" id="hoja-puntos">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Hoja de puntos</h3><p>Una hoja en blanco con puntos para dibujar esquemas, diseños y patrones.</p></div>
+        </header>
+        <div class="puntos-paginas no-imprimir">
+          <button type="button" class="boton-secundario boton-chico" id="puntos-ant">← Anterior</button>
+          <span id="puntos-cuenta" aria-live="polite"></span>
+          <button type="button" class="boton-secundario boton-chico" id="puntos-sig">Siguiente →</button>
+          <button type="button" class="boton-primario boton-chico" id="puntos-nueva">➕ Agregar página</button>
+        </div>
+        <div id="puntos-lienzo" class="dib-wrap"></div>
+        <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> dibuja con el lápiz digital, el dedo o el mouse. Con «⬇️» bajas la hoja como imagen, y puedes imprimirla en blanco con sus puntos.</p>
       </article>
       <article class="hoja-agenda" id="mis-ideas">
         <header>
@@ -3930,6 +3958,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/voz.js?v=1" defer></script>
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
+<script src="/js/agenda/dibujo.js?v=1" defer></script>
+<script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=1" defer></script>
 <script src="/js/agenda/exportar.js?v=1" defer></script>
 </body>

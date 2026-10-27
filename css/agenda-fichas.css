@@ -244,3 +244,25 @@ html.agenda-cerrada .intro-agenda:not(.en-construccion), html.agenda-cerrada #ag
 .construccion-copia p { margin: 0 0 10px; }
 
 .avance-btn { margin-top: 6px; }
+
+/* Lienzos para dibujar y hoja de puntos */
+.dib-wrap { width: 100%; }
+.dib-barra { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 8px; }
+.dib-barra button, .dib-subir { font: inherit; cursor: pointer; min-width: 40px; min-height: 40px; border-radius: 12px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-size: 1.05rem; padding: 4px 8px; display: inline-flex; align-items: center; justify-content: center; }
+.dib-subir { font-size: 0.85rem; font-weight: 700; gap: 4px; }
+.dib-barra button[aria-pressed="true"] { border-color: var(--rosa-principal); background: var(--rosa-suave); }
+.dib-barra .dib-color { width: 34px; min-width: 34px; height: 34px; min-height: 34px; padding: 0; border-radius: 50%; background: var(--c); border: 3px solid #fff; box-shadow: 0 0 0 1.5px rgba(69,69,74,0.3); }
+.dib-barra .dib-color[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--tinta); background: var(--c); }
+.dib-barra .dib-ancho i { display: block; width: 22px; background: var(--tinta); border-radius: 4px; }
+.dib-dedo { display: inline-flex; align-items: center; gap: 4px; font-size: 0.85rem; font-weight: 700; min-height: 40px; }
+.dib-aviso { flex: 1 1 100%; font-size: 0.82rem; color: #8E1457; font-weight: 600; }
+.dib-aviso:empty { display: none; }
+.dib-caja { position: relative; width: 100%; border: 1.5px solid var(--rosa-medio); border-radius: 14px; background: #fff; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.dib-fondo-puntos { background-image: radial-gradient(circle, #8a8a92 1.3px, transparent 1.6px); background-size: 24px 24px; background-position: 12px 12px; }
+.dib-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.dib-canvas { position: absolute; left: 0; top: 0; touch-action: none; cursor: crosshair; }
+.puntos-paginas { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 12px; }
+.puntos-paginas #puntos-cuenta { font-weight: 700; color: var(--tinta-suave); }
+.muestras-selector { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; align-items: center; }
+.muestras-selector select { font: inherit; padding: 8px 10px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: var(--blanco); color: var(--tinta); flex: 1 1 220px; min-width: 0; min-height: 44px; }
+@media print { .dib-caja { border-color: #bbb; } #hoja-puntos .dib-caja { height: 9.4in !important; } }

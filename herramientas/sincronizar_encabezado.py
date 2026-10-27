@@ -12,7 +12,7 @@ RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 # página -> casa (las que no están aquí son comunes: sin casa resaltada)
 CASA_DE = {
     'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'universo-rosina': 'crochet', 'p': 'crochet', 'precios': 'crochet',
-    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'merceria-terminos-de-venta': 'merceria', 'merceria-cambios-y-devoluciones': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy', 'academy-empieza-aqui': 'academy',
+    'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'merceria-paleta-de-colores': 'merceria', 'merceria-terminos-de-venta': 'merceria', 'merceria-cambios-y-devoluciones': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy', 'academy-empieza-aqui': 'academy',
     'merceria-rosina': 'merceria', 'academy-rosina': 'academy', 'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
     'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
 }
@@ -29,7 +29,7 @@ MENUS = {
               ('Academy', 'academy/', 'academy'), ('Revista', 'revista.html', 'comun'), ('Sobre nosotras', 'sobre-nosotras.html', 'comun'), ('Rosina: regalos e ideas', 'universo-rosina.html', 'universo')],
     # Solo categorías que tienen productos en el inventario (8-oct-2026: hoy solo Lanas). Cuando se carguen Hilos, Agujas, Herrajes,
     # Accesorios o Relleno al ERP, agregar aquí su enlace (merceria/catalogo/#<categoria>-merceria) y en MOVIL['merceria'] y PIE.
-    'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Lanas', 'merceria/catalogo/#lanas-merceria', 'merceria'),
+    'merceria': [('Catálogo', 'merceria/catalogo/', 'merceria'), ('Paleta de colores', 'merceria/paleta-de-colores/', 'merceria'),
                  ('Tienda física', 'merceria/tienda-fisica/', 'merceria'),
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria'),
                  ('Sobre nosotras', 'sobre-nosotras.html', 'merceria'),
@@ -70,7 +70,7 @@ PIE = {
                 [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Precios', 'precios.html'),
                  ('Historias que tejimos', 'index.html#historias'), ('Comprar en línea', 'https://lana-rosa-crochet.cercia.co/')]),
     'merceria': ('Mercería Lana Rosa: insumos para tejedoras. Lanas e hilos para crochet. Villamaría, Caldas.', 'Mercería',
-                 [('Catálogo', 'merceria/catalogo/'), ('Lanas', 'merceria/catalogo/#lanas-merceria'),
+                 [('Catálogo', 'merceria/catalogo/'), ('Paleta de colores', 'merceria/paleta-de-colores/'),
                   ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'),
                   ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/'),
                   ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
@@ -110,6 +110,7 @@ MOVIL = {
     <p class="grupo-nav">Catálogo</p>
     <a href="merceria/catalogo/">Todo el catálogo</a>
     <a href="merceria/catalogo/#lanas-merceria">Lanas</a>
+    <a href="merceria/paleta-de-colores/">Paleta de colores</a>
     <p class="grupo-nav">Visítanos</p>
     <a href="merceria/tienda-fisica/">Tienda física: horario y dirección</a>
     <p class="grupo-nav">Rosina</p>
@@ -268,7 +269,7 @@ PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
 # Pie simple (8-oct-2026): marca + casas con iconos pequeños, tres columnas cortas, una línea de pagos/apoyo y una de legales.
 PIE_SIMPLE = {
     'crochet': ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Historias que tejimos', 'index.html#historias')]),
-    'merceria': ('Mercería', [('Catálogo', 'merceria/catalogo/'), ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'), ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/')]),
+    'merceria': ('Mercería', [('Catálogo', 'merceria/catalogo/'), ('Paleta de colores', 'merceria/paleta-de-colores/'), ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'), ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/')]),
     'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda para tejedoras', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('Rosina: tutoriales y material gratis', 'academy/rosina/'), ('La aventura de Rosina', 'aventuras-de-rosina/'), ('Sobre Academy', 'academy/sobre-academy/')]),
 }
 PIE_SIMPLE_COMUN = ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'), ('Lana Rosa Academy', 'academy/')])
