@@ -46,7 +46,7 @@ def leer():
         d['minutos'] = max(1, round(palabras / 200))
         primera = re.search(r'<p>(.*?)</p>', d['cuerpo'], re.S)
         d['resumen'] = texto(primera.group(1)) if primera else ''
-        d['descripcion'] = recorte(d['resumen'], 155)
+        d['descripcion'] = d.get('descripcion_seo') or recorte(d['resumen'], 155)
         arts[slug] = d
     return [arts[s] for s in ORDEN]
 
@@ -170,7 +170,7 @@ def main():
                   'publisher': {'@type': 'Organization', 'name': 'Lana Rosa Crochet'},
                   'blogPost': [{'@type': 'BlogPosting', 'headline': texto(d['titulo']), 'datePublished': d['publicado'],
                                 'url': f'{SITIO}/revista/{d["slug"]}/'} for d in arts]})
-    out = pagina(plantilla, TITLE='Revista: crochet, regalos y bienestar | Lana Rosa Crochet',
+    out = pagina(plantilla, TITLE='Revista de crochet, regalos y bienestar | Lana Rosa',
                  DESC='Guías de crochet para principiantes, materiales para tu primer amigurumi, cuidados de tus tejidos y cómo pedir un amigurumi personalizado. Desde nuestro taller en Villamaría, Caldas.',
                  URL=SITIO + '/revista.html', OGTIPO='website', OGTITLE='Revista — Lana Rosa Crochet', LD=ld, MAIN=main_html,
                  SCRIPTS=SCRIPT_PORTADA % {'antiguos': json.dumps({**{d['slug']: d['slug'] for d in arts}, **ANTIGUOS})}, PREF='')
@@ -211,7 +211,7 @@ def main():
             {'@type': 'ListItem', 'position': 1, 'name': 'Inicio', 'item': SITIO + '/'},
             {'@type': 'ListItem', 'position': 2, 'name': 'Revista', 'item': SITIO + '/revista.html'},
             {'@type': 'ListItem', 'position': 3, 'name': titulo_txt, 'item': url}]}
-        out = pagina(plantilla, TITLE=e(titulo_txt) + ' | Revista Lana Rosa', DESC=e(d['descripcion']), URL=url, OGTIPO='article',
+        out = pagina(plantilla, TITLE=e(d.get('titulo_seo') or (titulo_txt + ' | Revista Lana Rosa')), DESC=e(d['descripcion']), URL=url, OGTIPO='article',
                      OGTITLE=e(titulo_txt), LD=ld_json(obj) + '\n' + ld_json(migas), MAIN=main_a, SCRIPTS='', PREF=casas[0])
         os.makedirs(os.path.join(RAIZ, 'revista', d['slug']), exist_ok=True)
         open(os.path.join(RAIZ, 'revista', d['slug'], 'index.html'), 'w', encoding='utf-8').write(out)
