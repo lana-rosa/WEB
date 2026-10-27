@@ -21,7 +21,8 @@
         var fila = cols.map(function (c) { return valorCampo(T.prefijo + r + '-' + c); });
         if (fila.some(function (v) { return v === true || (v !== false && v !== ''); })) filas.push(fila.map(function (v, i) { return /^(precio|abono|costo|ovillos|cantidad|horas)$/.test(cols[i]) ? numeroSi(v) : v; }));
       }
-      if (filas.length) salida.push({ nombre: tituloHoja(T.cuerpo.closest('.hoja-agenda').id), columnas: nombres, filas: filas });
+      var hojaT = T.cuerpo.closest('.hoja-agenda');   // las hojas bloqueadas del modo «hojas gratis» no se exportan
+      if (filas.length && hojaT) salida.push({ nombre: tituloHoja(hojaT.id), columnas: nombres, filas: filas });
     });
     return salida;
   }
