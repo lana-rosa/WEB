@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+"""Prueba (27-oct-2026) de las hojas con versiones de la Agenda para tejedoras: prioridades del mes, ficha de proyecto, semana y ferias.
+Uso: con un servidor local en el puerto 8765:  /usr/bin/python3 herramientas/pruebas/probar_agenda_versiones.py [carpeta_capturas]"""
+import sys, json, datetime, os, tempfile
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from agenda_util import *
+T = Prueba()
+CAP = sys.argv[1] if len(sys.argv) > 1 else None
+def cap(pg, n):
+    if CAP: os.makedirs(CAP, exist_ok=True); pg.screenshot(path=os.path.join(CAP, n))
+MESES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+h = datetime.date.today(); mes_hoy = '%s %d' % (MESES[h.month - 1], h.year)
+sig = (h.month % 12); mes_sig = '%s %d' % (MESES[sig], h.year + (1 if h.month == 12 else 0))
+def items(pg, hoja): return pg.evaluate("h => [...document.querySelectorAll('#'+h+' .vers-item')].map(x => [x.querySelector('.ficha-titulo').textContent, x.classList.contains('abierta')])", hoja)
+def guardado(pg): return json.loads(pg.evaluate("localStorage.getItem('rosinaAgenda') || '{}'"))
+with sync_playwright() as p:
+    b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
+    ctx = contexto(b, 390); pg = abrir(ctx, 'prioridades-mes')
+    T.v('prioridades: el mes se pone solo con el nombre y el año', pg.input_value('#ag-pm-mes') == mes_hoy, pg.input_value('#ag-pm-mes'))
+    T.v('lo que se pone solo no se guarda hasta que la persona escribe', 'ag-pm-mes' not in guardado(pg), guardado(pg))
+    T.v('hay una sola ficha y está abierta, con el nombre del mes', items(pg, 'prioridades-mes') == [[mes_hoy, True]], items(pg, 'prioridades-mes'))
+    T.v('las casillas de texto son renglones que se amplían', pg.evaluate("document.getElementById('ag-pm-frase').tagName") == 'TEXTAREA')
+    pg.fill('#ag-pm-frase', 'Un punto a la vez'); pg.fill('#ag-pm-p1', 'Terminar el oso'); pg.check('#ag-pm-ok1'); pg.fill('#ag-pm-meta', '$500.000'); pg.wait_for_timeout(300)
+    T.v('al escribir queda guardado con los nombres de siempre', guardado(pg).get('ag-pm-frase') == 'Un punto a la vez' and guardado(pg).get('ag-pm-ok1') is True)
+    T.v('la cabecera muestra cuántas prioridades van', '1 de 1' in pg.inner_text('#prioridades-mes .vers-item.abierta .ficha-meta'), pg.inner_text('#prioridades-mes .vers-item.abierta .ficha-meta'))
+    pg.click('#prioridades-mes .vers-nueva'); pg.wait_for_timeout(400)
+    T.v('«Agregar el mes siguiente» crea la ficha con el nombre del mes que sigue', items(pg, 'prioridades-mes') == [[mes_hoy, False], [mes_sig, True]], items(pg, 'prioridades-mes'))
+    T.v('la ficha nueva empieza en blanco', pg.input_value('#ag-pm-frase') == '' and not pg.is_checked('#ag-pm-ok1') and pg.input_value('#ag-pm-mes') == mes_sig)
+    pg.fill('#ag-pm-frase', 'Respirar'); pg.wait_for_timeout(300)
+    pg.click('#prioridades-mes .vers-item:first-child .vers-cab'); pg.wait_for_timeout(400)
+    T.v('al abrir el mes anterior vuelven sus datos', pg.input_value('#ag-pm-frase') == 'Un punto a la vez' and pg.is_checked('#ag-pm-ok1') and pg.input_value('#ag-pm-meta') == '$500.000')
+    T.v('el mes siguiente queda guardado con su frase', json.loads(pg.evaluate("localStorage.getItem('rosinaAgenda')"))['_ver']['prioridades-mes']['v']['k2'].get('ag-pm-frase') == 'Respirar')
+    cap(pg, 'versiones-prioridades-390.png')
+    pg.reload(); pg.wait_for_timeout(1500)
+    T.v('al volver a entrar siguen los dos meses y la misma ficha abierta', items(pg, 'prioridades-mes') == [[mes_hoy, True], [mes_sig, False]], items(pg, 'prioridades-mes'))
+    T.v('sin desplazamiento horizontal a 390 px', pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"))
+    pg.click('#prioridades-mes .vers-borrar'); pg.wait_for_timeout(400)
+    T.v('borrar un mes deja el otro con sus datos', items(pg, 'prioridades-mes') == [[mes_sig, True]] and pg.input_value('#ag-pm-frase') == 'Respirar', items(pg, 'prioridades-mes'))
+    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
+    # ficha de proyecto: varios proyectos y el calendario los ve todos
+    ctx = contexto(b, 1280); pg = abrir(ctx, 'ficha-proyecto')
+    T.v('ficha de proyecto: ya no hay contador de 100 vueltas', pg.locator('#vueltas-grid').count() == 0 and pg.locator('a[href="/calculadoras-rosina.html#contador"]').count() == 1)
+    pg.fill('#ag-nombre', 'Bufanda lila'); pg.fill('#ag-para', 'Mamá'); pg.fill('#ag-fin', '15/12/2026'); pg.fill('#ag-notas', 'Punto elástico'); pg.wait_for_timeout(300)
+    pg.click('#ficha-proyecto .vers-nueva'); pg.wait_for_timeout(300)
+    T.v('«Agregar otro proyecto» abre una ficha en blanco y deja la anterior en la lista', items(pg, 'ficha-proyecto') == [['Bufanda lila', False], ['Proyecto sin nombre', True]] and pg.input_value('#ag-nombre') == '', items(pg, 'ficha-proyecto'))
+    pg.fill('#ag-nombre', 'Gorro bebé'); pg.fill('#ag-fin', '20/12/2026'); pg.wait_for_timeout(300)
+    T.v('la cabecera toma el nombre del proyecto', items(pg, 'ficha-proyecto')[1][0] == 'Gorro bebé', items(pg, 'ficha-proyecto'))
+    ev = pg.evaluate("window.lrAgenda.eventos().filter(e => e.clave.startsWith('ficha:')).map(e => e.titulo)")
+    T.v('el calendario incluye las entregas de todos los proyectos', len(ev) == 2 and any('Bufanda' in x for x in ev) and any('Gorro' in x for x in ev), ev)
+    with pg.expect_download() as d: pg.click('#agenda-excel')
+    ruta = os.path.join(tempfile.mkdtemp(), 'a.xlsx'); d.value.save_as(ruta)
+    import openpyxl
+    wb = openpyxl.load_workbook(ruta)
+    T.v('Excel: una hoja «Ficha de proyecto» con una fila por proyecto', 'Ficha de proyecto' in wb.sheetnames and wb['Ficha de proyecto'].max_row == 3, wb.sheetnames)
+    filas = [[c.value for c in r] for r in wb['Ficha de proyecto'].iter_rows()]
+    T.v('Excel: trae el nombre y las preguntas como encabezados', filas[0][:3] == ['Nombre', 'Proyecto', 'Para quién'] and filas[1][0] == 'Bufanda lila', filas[0][:4])
+    cap(pg, 'versiones-proyecto-1280.png')
+    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
+    # semana
+    ctx = contexto(b, 390); pg = abrir(ctx, 'semana-tejiendo')
+    lunes = h - datetime.timedelta(days=h.weekday()); f1 = lunes.strftime('%d/%m/%Y'); f2 = (lunes + datetime.timedelta(days=7)).strftime('%d/%m/%Y')
+    T.v('semana: la fecha del lunes se pone sola', pg.input_value('#ag-semana') == f1, pg.input_value('#ag-semana'))
+    pg.fill('#ag-lun', 'Tejer 2 horas'); pg.wait_for_timeout(200)
+    pg.click('#semana-tejiendo .vers-nueva'); pg.wait_for_timeout(300)
+    T.v('«Agregar la semana siguiente» propone el lunes que sigue', pg.input_value('#ag-semana') == f2 and items(pg, 'semana-tejiendo') == [['Semana del ' + f1, False], ['Semana del ' + f2, True]], items(pg, 'semana-tejiendo'))
+    T.v('la semana nueva no arrastra lo escrito', pg.input_value('#ag-lun') == '')
+    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
+    # ferias con contacto
+    ctx = contexto(b, 390); pg = abrir(ctx, 'ferias-mercados')
+    T.v('ferias: tiene nombre de contacto y teléfono', pg.locator('#ag-fr-contacto').count() == 1 and pg.locator('#ag-fr-tel').count() == 1)
+    pg.fill('#ag-fr-nombre', 'Feria del Libro'); pg.fill('#ag-fr-contacto', 'Doña Marta'); pg.fill('#ag-fr-tel', '3001234567'); pg.fill('#ag-fr-fecha', '10/11/2026'); pg.wait_for_timeout(300)
+    T.v('el contacto se guarda y sale en el calendario', guardado(pg).get('ag-fr-tel') == '3001234567' and 'Marta' in pg.evaluate("window.lrAgenda.eventos().filter(e => e.clave.startsWith('feria:'))[0].detalle"))
+    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
+    # datos de antes: la ficha que ya tenían queda como primera versión
+    ctx = contexto(b, 1280, datos={'ag-nombre': 'Manta vieja', 'ag-para': 'Abuela', 'ag-pm-mes': 'Septiembre 2026', 'ag-pm-frase': 'Antes'}); pg = abrir(ctx, 'ficha-proyecto')
+    T.v('datos de antes: la ficha existente aparece como el primer proyecto', items(pg, 'ficha-proyecto') == [['Manta vieja', True]] and pg.input_value('#ag-para') == 'Abuela', items(pg, 'ficha-proyecto'))
+    pg.goto(BASE + '/agenda-rosina.html#prioridades-mes'); pg.wait_for_timeout(900)
+    T.v('datos de antes: el mes escrito a mano se respeta', items(pg, 'prioridades-mes') == [['Septiembre 2026', True]] and pg.input_value('#ag-pm-frase') == 'Antes', items(pg, 'prioridades-mes'))
+    pg.click('#prioridades-mes .vers-nueva'); pg.wait_for_timeout(300)
+    T.v('el mes siguiente de «Septiembre 2026» es «Octubre 2026»', pg.input_value('#ag-pm-mes') == 'Octubre 2026', pg.input_value('#ag-pm-mes'))
+    # borrar todo
+    pg.evaluate("localStorage.setItem('rosinaAgendaCopia', new Date().toISOString().slice(0,10))")
+    pg.click('#agenda-borrar'); pg.wait_for_timeout(700)
+    T.v('«Borrar lo escrito» deja una sola ficha en blanco', items(pg, 'prioridades-mes') == [[mes_hoy, True]] and pg.input_value('#ag-pm-frase') == '', items(pg, 'prioridades-mes'))
+    T.v('y no deja datos escritos por sí solo', not [k for k in guardado(pg) if k not in ('ag-anio', '_anios')], guardado(pg))
+    ctx.close(); b.close()
+T.fin()

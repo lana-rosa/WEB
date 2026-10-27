@@ -36,6 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=42">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=1">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -457,6 +458,9 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .hoja-agenda { scroll-margin-top: 20px; }
 .agenda-layout { scroll-margin-top: 12px; }
 .pestanas-agenda { top: 16px; }
+.buscar-fijo { margin: 0 0 12px; }
+.buscar-fijo .buscar-agenda { background: var(--blanco); box-shadow: var(--sombra-suave); padding: 6px 8px 6px 16px; }
+@media print { .buscar-fijo { display: none !important; } }
 .barra-toggle { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 12px; padding: 10px 16px; border-radius: 14px; border: 1.5px solid var(--rosa-medio); background: #fff; font: inherit; font-weight: 700; font-size: .92rem; color: var(--tinta); cursor: pointer; box-shadow: var(--sombra-suave); }
 .barra-toggle .flecha { transition: transform .2s ease; font-size: 1.1rem; }
 .barra-toggle[aria-expanded="true"] .flecha { transform: rotate(180deg); }
@@ -935,6 +939,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="enlace-copia" id="nube-borrar" hidden>🗑️ Borrar mi copia en la nube</button>
       <button type="button" class="enlace-copia" id="agenda-cargar">⬆️ Cargar una copia</button>
       <button type="button" class="enlace-copia" id="agenda-ics">📅 Fechas al calendario (.ics)</button>
+      <button type="button" class="enlace-copia" id="agenda-excel">📊 Exportar a Excel</button>
       <input type="file" id="agenda-archivo" accept=".json,application/json" hidden>
       <span class="nube-estado" id="nube-estado" role="status"></span>
       <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular; o actívala en tu cuenta (opcional y gratis) y vuelve a tenerla aunque borres el historial. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
@@ -945,14 +950,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="contenedor">
       <div class="zona-agenda" id="zona-agenda">
       <div class="contenido-agenda" id="contenido-agenda">
-      <button type="button" class="barra-toggle no-imprimir" id="barra-toggle" aria-expanded="false" aria-controls="barra-agenda"><span>🔍 Buscar en mi agenda · letra y resaltar</span><span class="flecha" aria-hidden="true">▾</span></button>
-      <div class="barra-agenda no-imprimir" id="barra-agenda" role="toolbar" aria-label="Herramientas de la agenda">
-        <div class="buscar-agenda">
+      <div class="buscar-fijo no-imprimir">
+        <div class="buscar-agenda" role="search">
           <span aria-hidden="true">🔍</span>
           <input type="search" id="buscar-agenda" placeholder="Buscar en mi agenda…" aria-label="Buscar en mi agenda">
           <span id="resultado-busqueda" class="resultado-busqueda" aria-live="polite"></span>
           <button type="button" id="siguiente-busqueda" aria-label="Siguiente resultado" hidden>↓</button>
         </div>
+      </div>
+      <button type="button" class="barra-toggle no-imprimir" id="barra-toggle" aria-expanded="false" aria-controls="barra-agenda"><span>🎨 Color de la letra y resaltar</span><span class="flecha" aria-hidden="true">▾</span></button>
+      <div class="barra-agenda no-imprimir" id="barra-agenda" role="toolbar" aria-label="Herramientas de la agenda">
         <div class="grupo-colores" aria-label="Color de la letra">
           <span class="etiqueta-colores">Letra</span>
           <button type="button" class="muestra-color" data-color="" style="--c:#45454A" aria-label="Letra normal"></button>
@@ -1094,6 +1101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Prioridades del mes</h3><p>Lo más importante de este mes, con una frase que te acompañe.</p></div>
         </header>
+        <div class="vers-cuerpo">
         <div class="grid-ficha">
           <div class="linea"><label for="ag-pm-mes">Mes</label><input id="ag-pm-mes" data-guardar></div>
           <div class="linea"><label for="ag-pm-meta">Meta de ventas del mes</label><input id="ag-pm-meta" data-guardar></div>
@@ -1111,6 +1119,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="linea ancha"><label for="ag-pm-habito">Hábito del mes</label><input id="ag-pm-habito" data-guardar></div>
           <div class="linea ancha"><label for="ag-pm-gracias">Por lo que estoy agradecida</label><textarea id="ag-pm-gracias" rows="2" data-guardar></textarea></div>
           <div class="linea ancha"><label for="ag-pm-final">Cómo me fue este mes</label><textarea id="ag-pm-final" rows="3" data-guardar></textarea></div>
+        </div>
         </div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> al empezar el mes elige solo tres prioridades. Marca cada una cuando la logres y celebra: ¡cada punto cuenta!</p>
       </article>
@@ -1341,6 +1350,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Ficha de proyecto</h3><p>Anota todo para poder repetirlo (¡o regalarlo!) cuando quieras.</p></div>
         </header>
+        <div class="vers-cuerpo">
         <div class="grid-ficha">
           <div class="linea"><label for="ag-nombre">Proyecto</label><input id="ag-nombre" data-guardar></div>
           <div class="linea"><label for="ag-para">Para quién</label><input id="ag-para" data-guardar></div>
@@ -1353,19 +1363,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="linea"><label for="ag-muestra">Muestra (puntos × vueltas en 10 cm)</label><input id="ag-muestra" data-guardar></div>
           <div class="linea"><label for="ag-medidas">Medidas finales</label><input id="ag-medidas" data-guardar></div>
           <div class="linea ancha">
-            <label>Contador de vueltas — marca cada vuelta terminada (hasta 100)</label>
-            <div class="vueltas-grid" id="vueltas-grid"></div>
+            <label>Contador de vueltas</label>
             <p class="no-imprimir acceso-contador"><a class="boton-secundario boton-chico" href="/calculadoras-rosina.html#contador">🔢 Abrir el contador de vueltas digital</a></p>
           </div>
           <div class="linea ancha"><label for="ag-notas">Notas y cambios al patrón</label><textarea id="ag-notas" rows="4" data-guardar></textarea></div>
         </div>
-      </article>
+        </div>
+        </article>
 
       <article class="hoja-agenda" id="semana-tejiendo">
         <header>
           <img src="/img/mini/rosina-aprende.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Mi semana tejiendo</h3><p>Semana del <input id="ag-semana" data-guardar style="border:none;border-bottom:1.5px solid rgba(69,69,74,0.25);background:transparent;font:inherit;width:12ch;" aria-label="Fecha de la semana"></p></div>
         </header>
+        <div class="vers-cuerpo">
         <div class="semana">
           <div class="dia"><strong>Lunes</strong><textarea aria-label="Lunes" data-guardar id="ag-lun"></textarea></div>
           <div class="dia"><strong>Martes</strong><textarea aria-label="Martes" data-guardar id="ag-mar"></textarea></div>
@@ -1379,7 +1390,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="linea"><label for="ag-meta">Mi meta de la semana</label><textarea id="ag-meta" rows="3" data-guardar></textarea></div>
           <div class="linea"><label for="ag-comprar">Materiales por comprar</label><textarea id="ag-comprar" rows="3" data-guardar></textarea></div>
         </div>
-      </article>
+        </div>
+        </article>
 
       <article class="hoja-agenda" id="control-pedidos">
         <header>
@@ -1556,16 +1568,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-15-ramo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Ferias y mercados</h3><p>Prepara tu puesto y anota cómo te fue.</p></div>
         </header>
+        <div class="vers-cuerpo">
         <div class="grid-ficha">
           <div class="linea"><label for="ag-fr-nombre">Feria o mercado</label><input id="ag-fr-nombre" data-guardar></div>
           <div class="linea"><label for="ag-fr-fecha">Fecha</label><input id="ag-fr-fecha" data-guardar><button type="button" class="boton-cal boton-cal-campo no-imprimir" data-cal="feria">📅 Añadir a Google Calendar</button></div>
           <div class="linea"><label for="ag-fr-lugar">Lugar</label><input id="ag-fr-lugar" data-guardar></div>
+          <div class="linea"><label for="ag-fr-contacto">Nombre de contacto</label><input id="ag-fr-contacto" data-guardar></div>
+          <div class="linea"><label for="ag-fr-tel">Teléfono de contacto</label><input id="ag-fr-tel" data-guardar inputmode="tel"></div>
           <div class="linea"><label for="ag-fr-costo">Costo del puesto</label><input id="ag-fr-costo" data-guardar inputmode="numeric"></div>
           <div class="linea ancha"><label>Qué llevar</label><div class="lista-llevar"><label><input type="checkbox" id="ag-fr-l1" data-guardar> Mesa y mantel</label><label><input type="checkbox" id="ag-fr-l2" data-guardar> Productos con su precio</label><label><input type="checkbox" id="ag-fr-l3" data-guardar> Código QR de Nequi o Bre-B</label><label><input type="checkbox" id="ag-fr-l4" data-guardar> Cambio (sencillo)</label><label><input type="checkbox" id="ag-fr-l5" data-guardar> Bolsas y empaques</label><label><input type="checkbox" id="ag-fr-l6" data-guardar> Tarjetas de presentación</label><label><input type="checkbox" id="ag-fr-l7" data-guardar> Exhibidores o canastas</label><label><input type="checkbox" id="ag-fr-l8" data-guardar> Libreta para anotar ventas y pedidos</label><label><input type="checkbox" id="ag-fr-l9" data-guardar> Agua y algo de comer</label><label><input type="checkbox" id="ag-fr-l10" data-guardar> Cargador del celular</label></div></div>
           <div class="linea"><label for="ag-fr-vendido">Total vendido</label><input id="ag-fr-vendido" data-guardar inputmode="numeric"></div>
           <div class="linea"><label for="ag-fr-pedidos">Pedidos que salieron</label><input id="ag-fr-pedidos" data-guardar></div>
           <div class="linea ancha"><label for="ag-fr-mas">Lo que más se vendió</label><textarea id="ag-fr-mas" rows="3" data-guardar></textarea></div>
           <div class="linea ancha"><label for="ag-fr-mejorar">Qué mejorar para la próxima</label><textarea id="ag-fr-mejorar" rows="3" data-guardar></textarea></div>
+        </div>
         </div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> lleva piezas pequeñas y de precio bajo, como llaveros; son las que más se venden por impulso y atraen a la gente a tu puesto.</p>
       </article>
@@ -1923,26 +1939,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* ---------- Agenda ---------- */
   var CLAVE_AGENDA = 'rosinaAgenda';
   var CLAVE_COPIA = 'rosinaAgendaCopia'; /* fecha de la última copia descargada en este dispositivo (solo para el aviso al borrar) */
-  var vueltasGrid = document.getElementById('vueltas-grid');
-  for (var i = 1; i <= 100; i++) {
-    vueltasGrid.insertAdjacentHTML('beforeend', '<label><input type="checkbox" id="ag-v' + i + '" data-guardar><span>' + i + '</span></label>');
-  }
   var datos = {};
   try { datos = JSON.parse(leer(CLAVE_AGENDA)) || {}; } catch (e) {}
   function avisarGuardado() { if (window.lrAgenda && window.lrAgenda.alGuardar) window.lrAgenda.alGuardar(); }
-  function guardarDatos() { escribir(CLAVE_AGENDA, JSON.stringify(datos)); avisarGuardado(); }
+  function guardarDatos() { escribir(CLAVE_AGENDA, JSON.stringify(datos)); avisarGuardado(); if (window.lrFichas) window.lrFichas.alGuardar(); if (window.lrVersiones) window.lrVersiones.alGuardar(); }
   /* Tablas con renglones: se pueden agregar más al final de cada hoja */
   var tablas = {};
   function htmlFila(t, r) {
-    return '<tr>' + t.cols.map(function(c, i) {
+    /* Cada renglón es una ficha: cabecera que se abre y se cierra, un renglón (ampliable) por cada pregunta y botón para borrarla */
+    var celdas = t.cols.map(function(c, i) {
       var col = typeof c === 'string' ? c : c.id;
-      var id = t.prefijo + r + '-' + col, aria = ' aria-label="' + col + ' ' + t.etiqueta + ' ' + r + '"';
-      var et = ' data-label="' + (t.titulos[i] || '') + '"';
+      var id = t.prefijo + r + '-' + col, aria = ' aria-label="' + (t.titulos[i] || col) + ' ' + t.etiqueta + ' ' + r + '"';
+      var et = ' data-label="' + (t.titulos[i] || '') + '" data-col="' + col + '"';
       if (c.opciones) return '<td' + et + '><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select><span class="opciones-imp" aria-hidden="true">' + c.opciones.map(function(o) { return '<i>○ ' + o + '</i>'; }).join(' ') + '</span></td>';
-      if (c.check) return '<td class="celda-check"' + et + '><input type="checkbox" id="' + id + '" data-guardar' + aria + '></td>';
-      if (c.cal) return '<td class="celda-cal no-imprimir"><button type="button" class="boton-cal" data-cal="' + c.cal + '" data-fila="' + r + '" aria-label="Añadir a Google Calendar el renglón ' + r + '" title="Añadir a Google Calendar">📅<span class="solo-movil"> Añadir a Google Calendar</span></button></td>';
-      return '<td' + et + '><input id="' + id + '" data-guardar' + aria + '></td>';
-    }).join('') + '</tr>';
+      if (c.check) return '<td class="celda-check"' + et + '><label class="check-ficha"><input type="checkbox" id="' + id + '" data-guardar' + aria + '><span>' + (t.titulos[i] || '') + '</span></label></td>';
+      if (c.cal) return '<td class="celda-cal no-imprimir" data-col="cal"><button type="button" class="boton-cal" data-cal="' + c.cal + '" data-fila="' + r + '" aria-label="Añadir a Google Calendar la ficha ' + r + '" title="Añadir a Google Calendar">📅<span class="solo-movil"> Añadir a Google Calendar</span></button></td>';
+      return '<td' + et + '><textarea rows="1" id="' + id + '" data-guardar' + aria + '></textarea></td>';
+    }).join('');
+    return '<tr class="ficha" data-fila="' + r + '"><td class="ficha-cab-td"><button type="button" class="ficha-cab" aria-expanded="false"><span class="ficha-flecha" aria-hidden="true">▸</span><span class="ficha-titulo"></span><span class="ficha-meta"></span></button></td>' + celdas +
+      '<td class="ficha-acciones no-imprimir"><button type="button" class="ficha-borrar boton-secundario boton-chico" data-fila="' + r + '">🗑️ Borrar esta ficha</button></td></tr>';
   }
   function filasTabla(idTabla, prefijo, cols, n, etiqueta) {
     var cuerpo = document.getElementById(idTabla);
@@ -1963,12 +1978,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     datos._filas = datos._filas || {}; datos._filas[idTabla] = t.n; guardarDatos();
     return t.cuerpo.lastElementChild;
   }
+  /* Puente con /js/agenda/fichas.js (fichas desplegables, buscador y exportación a Excel) */
+  window.lrAgendaNucleo = {
+    tablas: tablas, datos: function() { return datos; }, guardar: guardarDatos, agregarRenglon: agregarRenglon,
+    leerFecha: function(t) { return leerFecha(t); }
+  };
   document.getElementById('agenda').addEventListener('click', function(e) {
     var b = e.target.closest('.agregar-renglon'); if (!b) return;
+    if (window.lrFichas) { window.lrFichas.agregar(b.dataset.tabla); return; }
     var fila = agregarRenglon(b.dataset.tabla);
-    if (fila) { var primero = fila.querySelector('input, select'); if (primero) primero.focus(); }
+    if (fila) { var primero = fila.querySelector('input, textarea, select'); if (primero) primero.focus(); }
   });
-  filasTabla('tabla-pedidos', 'ag-p', ['cliente', 'pedido', 'entrega', 'precio', 'abono', 'estado', { id: 'cal', cal: 'pedido' }], 8, 'del pedido');
+  filasTabla('tabla-pedidos', 'ag-p', ['cliente', 'pedido', 'entrega', 'precio', 'abono', { id: 'estado', opciones: ['Cotizado', 'Pedido confirmado', 'En proceso', 'Terminado', 'Despachado', 'Entregado', 'Cancelado'] }, { id: 'cal', cal: 'pedido' }], 8, 'del pedido');
   filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
   filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
   filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
@@ -2000,7 +2021,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function camposAgenda() { return document.querySelectorAll('#agenda [data-guardar]'); }
   camposAgenda().forEach(function(campo) {
     if (datos[campo.id] !== undefined) {
-      if (campo.type === 'checkbox') campo.checked = !!datos[campo.id]; else campo.value = datos[campo.id];
+      if (campo.type === 'checkbox') campo.checked = !!datos[campo.id];
+      else {
+        if (campo.tagName === 'SELECT' && datos[campo.id] && !Array.prototype.some.call(campo.options, function(o) { return o.value === datos[campo.id]; })) { var op = document.createElement('option'); op.textContent = datos[campo.id]; campo.appendChild(op); }
+        campo.value = datos[campo.id];
+      }
     }
   });
   function guardarCampo(e) {
@@ -2034,6 +2059,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     duena.value = ''; tituloDuena();
     estilos = {}; camposAgenda().forEach(function(el) { el.style.color = ''; el.style.backgroundColor = ''; });
     iniciarAnios();
+    if (window.lrFichas) window.lrFichas.reiniciar();
+    if (window.lrVersiones) window.lrVersiones.reiniciar();
     if (window.lrFinReset) window.lrFinReset();
   });
 
@@ -2090,14 +2117,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return { fecha: celdaFila('tabla-clientas', f, 'cumpleanos'), titulo: 'Cumpleaños de ' + (n || 'una clienta'), anual: true,
         detalles: [['WhatsApp', celdaFila('tabla-clientas', f, 'whatsapp')], ['Notas', celdaFila('tabla-clientas', f, 'notas')]] };
     },
-    ficha: function() {
-      var n = valorDe('ag-nombre'), para = valorDe('ag-para');
-      return { fecha: valorDe('ag-fin'), titulo: 'Entrega: ' + (n || 'proyecto') + (para ? ' (para ' + para + ')' : ''),
-        detalles: [['Proyecto', n], ['Para quién', para], ['Patrón', valorDe('ag-patron')]] };
+    ficha: function(k) {
+      var g = function(id) { return window.lrVersiones ? window.lrVersiones.valor('ficha-proyecto', k, id) : valorDe(id); };
+      var n = g('ag-nombre'), para = g('ag-para');
+      return { fecha: g('ag-fin'), titulo: 'Entrega: ' + (n || 'proyecto') + (para ? ' (para ' + para + ')' : ''),
+        detalles: [['Proyecto', n], ['Para quién', para], ['Patrón', g('ag-patron')]] };
     },
-    feria: function() {
-      return { fecha: valorDe('ag-fr-fecha'), titulo: valorDe('ag-fr-nombre') || 'Feria o mercado', lugar: valorDe('ag-fr-lugar'),
-        detalles: [['Costo del puesto', valorDe('ag-fr-costo')]] };
+    feria: function(k) {
+      var g = function(id) { return window.lrVersiones ? window.lrVersiones.valor('ferias-mercados', k, id) : valorDe(id); };
+      return { fecha: g('ag-fr-fecha'), titulo: g('ag-fr-nombre') || 'Feria o mercado', lugar: g('ag-fr-lugar'),
+        detalles: [['Costo del puesto', g('ag-fr-costo')], ['Contacto', [g('ag-fr-contacto'), g('ag-fr-tel')].filter(Boolean).join(' · ')]] };
     }
   };
   function eventoDe(tipo, fila) {
@@ -2136,7 +2165,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (ev.f) lista.push(ev);
       }
     });
-    ['ficha', 'feria'].forEach(function(t) { var ev = eventoDe(t); if (ev.f) lista.push(ev); });
+    [['ficha', 'ficha-proyecto'], ['feria', 'ferias-mercados']].forEach(function(par) {
+      (window.lrVersiones ? window.lrVersiones.claves(par[1]) : [null]).forEach(function(k) { var ev = eventoDe(par[0], k); if (ev.f) lista.push(ev); });
+    });
     return lista;
   }
   /* Para la sincronización con Google Calendar (módulo al final de la página) */
@@ -3407,6 +3438,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.querySelectorAll('.coincide-actual').forEach(function(x) { x.classList.remove('coincide-actual'); });
     var el = coincidencias[posicion]; el.classList.add('coincide-actual');
     var hojaEl = el.closest('.hoja-agenda'); if (hojaEl) mostrarHoja(hojaEl.id);
+    if (window.lrFichas) window.lrFichas.abrirDe(el);
     resBusqueda.textContent = (posicion + 1) + ' de ' + coincidencias.length;
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -3639,5 +3671,9 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=22" defer></script>
+<script src="/js/agenda/fichas.js?v=1" defer></script>
+<script src="/js/agenda/formas.js?v=1" defer></script>
+<script src="/js/agenda/xlsx.js?v=1" defer></script>
+<script src="/js/agenda/exportar.js?v=1" defer></script>
 </body>
 </html>

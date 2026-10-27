@@ -1,0 +1,101 @@
+/* Agenda para tejedoras: fichas desplegables (27-oct-2026).
+   Cada renglón de una tabla es una ficha: cabecera con el título, y al abrirla un renglón (ampliable) por cada pregunta. */
+
+#agenda .hoja-agenda .tabla-scroll { overflow: visible; box-shadow: none; border: none; }
+#agenda .tabla-agenda { min-width: 0 !important; width: 100%; border: none; display: block; background: transparent; }
+#agenda .tabla-agenda thead { display: none; }
+#agenda .tabla-agenda tbody { display: block; }
+#agenda .tabla-agenda tr.ficha { display: block; background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 16px; margin: 0 0 10px; padding: 0; overflow: hidden; }
+#agenda .tabla-agenda tr.ficha[hidden] { display: none; }
+#agenda .tabla-agenda tr.ficha > td { display: block; padding: 0; border: none; min-width: 0; background: transparent; }
+#agenda .tabla-agenda tr.ficha:not(.abierta) > td:not(.ficha-cab-td) { display: none; }
+
+/* Cabecera de la ficha */
+#agenda .ficha-cab-td { padding: 0 !important; }
+.ficha-cab { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 52px; padding: 10px 14px; border: none; background: var(--rosa-suave); color: var(--tinta); font: inherit; text-align: left; cursor: pointer; }
+.ficha-cab:hover { filter: brightness(0.96); }
+.ficha-cab:focus-visible { outline: 3px solid var(--lila); outline-offset: -3px; }
+.ficha-flecha { flex: none; color: var(--rosa-texto); font-size: 1rem; transition: transform .15s; }
+tr.ficha.abierta .ficha-flecha { transform: rotate(90deg); }
+.ficha-titulo { flex: 1 1 auto; min-width: 0; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ficha-titulo.vacia { color: var(--tinta-suave); font-weight: 600; font-style: italic; }
+.ficha-meta { flex: none; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: 55%; }
+.ficha-chip { display: inline-block; font-size: 0.74rem; font-weight: 700; line-height: 1; padding: 5px 9px; border-radius: 999px; background: var(--blanco); color: var(--tinta); border: 1px solid rgba(69,69,74,0.18); white-space: nowrap; }
+.ficha-chip.ok { background: #E3F5EA; color: #1F6B42; border-color: #BFE3CC; }
+.ficha-chip.curso { background: #E6E7FD; color: #3D3FA0; border-color: #CFD1F9; }
+.ficha-chip.alarma { background: #FFE3E3; color: #9B1C1C; border-color: #F4B5B5; }
+.ficha-chip.aviso { background: #FFF3CD; color: #7A5200; border-color: #F1DC9A; }
+.ficha-chip.gris { background: #EEE; color: #555; }
+
+/* Ficha abierta: un renglón (ampliable) por cada pregunta */
+#agenda .tabla-agenda tr.ficha.abierta { padding-bottom: 14px; }
+#agenda .tabla-agenda tr.ficha.abierta > td:not(.ficha-cab-td) { padding: 10px 14px 0; }
+@media screen and (min-width: 700px) {
+  #agenda .tabla-agenda tr.ficha.abierta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 8px; }
+  #agenda .tabla-agenda tr.ficha.abierta > .ficha-cab-td, #agenda .tabla-agenda tr.ficha.abierta > .ficha-acciones, #agenda .tabla-agenda tr.ficha.abierta > td.celda-cal, #agenda .tabla-agenda tr.ficha.abierta > td.ancha { grid-column: 1 / -1; }
+}
+#agenda .tabla-agenda td[data-label]::before { content: attr(data-label); display: block; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--rosa-texto); margin-bottom: 2px; }
+#agenda .tabla-agenda td textarea, #agenda .tabla-agenda td select {
+  display: block; width: 100%; box-sizing: border-box; font-family: var(--fuente-cuerpo); font-size: 1rem; color: var(--tinta);
+  border: none; border-bottom: 1.5px solid rgba(69,69,74,0.25); background: transparent; padding: 6px 2px; line-height: 1.5;
+  min-height: 2.4em; resize: none; overflow: hidden; field-sizing: content;
+}
+#agenda .tabla-agenda td select { border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: var(--blanco); padding: 8px 10px; min-height: 44px; }
+#agenda .tabla-agenda td textarea:focus, #agenda .tabla-agenda td select:focus { outline: none; border-bottom-color: var(--rosa-principal); }
+#agenda .tabla-agenda td select:focus { outline: 3px solid var(--lila); outline-offset: 1px; }
+#agenda .tabla-agenda td.celda-check { display: block; }
+#agenda .tabla-agenda td.celda-check::before { display: none; }
+.check-ficha { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 700; color: var(--rosa-texto); cursor: pointer; }
+.check-ficha input { width: 22px; height: 22px; accent-color: var(--rosa-principal); flex: none; }
+.ficha-acciones { text-align: right; }
+.ficha-acciones .boton-secundario { color: #8E1457; }
+.tabla-agenda td.celda-cal { text-align: left; width: auto; }
+
+/* Fichas sin llenar que no se muestran; la agenda empieza con una sola */
+.agregar-renglon-wrap { margin: 12px 0 0; }
+.lista-vacia { margin: 0 0 10px; color: var(--tinta-suave); font-style: italic; }
+
+/* Alarma de entregas próximas */
+.aviso-alarma { margin: 0 0 12px; padding: 10px 14px; border-radius: 12px; background: #FFF3CD; color: #7A5200; font-weight: 700; }
+.aviso-alarma.roja { background: #FFE3E3; color: #9B1C1C; }
+.aviso-alarma[hidden] { display: none; }
+
+/* Fichas cerradas que ya están dominadas / listas: lista compacta */
+tr.ficha.cumplida:not(.abierta) { border-style: dashed; }
+tr.ficha.cumplida:not(.abierta) .ficha-cab { background: #F3F8F5; min-height: 44px; }
+
+/* Impresión: las fichas con datos salen abiertas; en blanco salen unas pocas fichas vacías */
+@media print {
+  #agenda .tabla-agenda tr.ficha { display: block !important; break-inside: avoid; border: 1px solid #ccc; margin: 0 0 8px; }
+  #agenda .tabla-agenda tr.ficha > td:not(.ficha-cab-td):not(.ficha-acciones) { display: block !important; padding: 4px 10px 0; }
+  #agenda .tabla-agenda tr.ficha > .ficha-acciones, #agenda .tabla-agenda tr.ficha > td.celda-cal { display: none !important; }
+  #agenda .tabla-agenda tr.ficha[hidden] { display: none !important; }
+  #agenda .tabla-agenda tr.ficha .ficha-flecha { display: none; }
+  .ficha-cab { background: #fff !important; min-height: 0; padding: 6px 10px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  #agenda .tabla-agenda td textarea { overflow: visible; }
+  .aviso-alarma { display: none !important; }
+}
+
+/* Cabecera de la ficha en el celular: el título arriba y las etiquetas debajo */
+@media (max-width: 560px) {
+  .ficha-cab { flex-wrap: wrap; row-gap: 4px; }
+  .ficha-titulo { white-space: normal; flex: 1 1 calc(100% - 30px); }
+  .ficha-meta { flex: 1 1 100%; max-width: 100%; justify-content: flex-start; padding-left: 26px; }
+}
+
+/* El botón del calendario dentro de la ficha siempre lleva su texto */
+#agenda tr.ficha .solo-movil { display: inline; }
+#agenda tr.ficha td.celda-cal .boton-cal { padding: 8px 14px; }
+
+/* Hojas de una sola ficha con versiones (mes, proyecto, semana, feria) */
+.vers-barra { margin: 0 0 12px; }
+.vers-item { background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 16px; margin: 0 0 10px; overflow: hidden; }
+.vers-item .vers-cab { border-radius: 0; }
+.vers-item:not(.abierta) .vers-body { display: none; }
+.vers-item.abierta .ficha-flecha { transform: rotate(90deg); }
+.vers-item.abierta > .vers-body { padding: 14px 14px 12px; }
+.vers-acciones { margin: 14px 0 0; text-align: right; }
+.vers-acciones .boton-secundario { color: #8E1457; }
+.linea textarea.una-linea { min-height: 2.4em; height: auto; background-image: none; line-height: 1.5; resize: none; overflow: hidden; border-bottom: 1.5px solid rgba(69,69,74,0.25); field-sizing: content; }
+.linea textarea.una-linea:focus { border-bottom-color: var(--rosa-principal); }
+@media print { .vers-item:not(.abierta) { display: none !important; } .vers-item { border: none; } .vers-item .vers-cab { display: none; } .vers-item.abierta > .vers-body { padding: 0; } }
