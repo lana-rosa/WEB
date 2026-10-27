@@ -75,7 +75,7 @@ PIE = {
                   ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/'),
                   ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
-                [('Inicio de Academy', 'academy/'), ('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Sobre Academy', 'academy/sobre-academy/'),
+                [('Inicio de Academy', 'academy/'), ('Talleres y clases', 'academy/talleres/'), ('Agenda para tejedoras', 'agenda-rosina.html'), ('Sobre Academy', 'academy/sobre-academy/'),
                  ('Empieza aquí', 'academy/empieza-aqui/'), ('Tutoriales', 'aprende.html#crea'), ('Rosina: tutoriales y material gratis', 'academy/rosina/'), ('Glosario', 'glosario-rosina.html'),
                  ('Paletas de color', 'paletas-rosina.html'), ('Calculadoras', 'calculadoras-rosina.html')]),
 }
@@ -136,7 +136,7 @@ MOVIL = {
     <a href="aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
     <p class="grupo-nav">Rosina</p>
     <a href="academy/rosina/">🐑 Rosina: tutoriales y material gratis</a>
-    <a href="agenda-rosina.html">📅 Agenda de Rosina</a>
+    <a href="agenda-rosina.html">📅 Agenda para tejedoras</a>
     <p class="grupo-nav">Ideas</p>
     <a href="revista.html?casa=academy">Revista</a>
     <p class="grupo-nav">Lana Rosa</p>
@@ -269,7 +269,7 @@ PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
 PIE_SIMPLE = {
     'crochet': ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Historias que tejimos', 'index.html#historias')]),
     'merceria': ('Mercería', [('Catálogo', 'merceria/catalogo/'), ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'), ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/')]),
-    'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda de Rosina', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('Rosina: tutoriales y material gratis', 'academy/rosina/'), ('La aventura de Rosina', 'aventuras-de-rosina/'), ('Sobre Academy', 'academy/sobre-academy/')]),
+    'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda para tejedoras', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('Rosina: tutoriales y material gratis', 'academy/rosina/'), ('La aventura de Rosina', 'aventuras-de-rosina/'), ('Sobre Academy', 'academy/sobre-academy/')]),
 }
 PIE_SIMPLE_COMUN = ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'), ('Lana Rosa Academy', 'academy/')])
 CASAS_ICONO = {'crochet': ('🧸', 'Tienda'), 'merceria': ('🧶', 'Mercería'), 'academy': ('🎓', 'Academy')}
