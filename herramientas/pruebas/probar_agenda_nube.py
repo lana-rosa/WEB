@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prueba (27-oct-2026) de la copia de la Agenda de Rosina en la cuenta y del recordatorio de copia, con una base simulada.
+"""Prueba (27-oct-2026) de la copia de la Agenda para tejedoras en la cuenta y del recordatorio de copia, con una base simulada.
 Uso: con un servidor local en el puerto 8765: python3 herramientas/pruebas/probar_agenda_nube.py"""
 import json, os, sys, time, datetime
 from playwright.sync_api import sync_playwright

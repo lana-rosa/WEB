@@ -18,7 +18,7 @@ R = {
     'abrev': ('📖', 'Abreviaturas en 9 idiomas', 'Para leer cualquier patrón', '/recursos-rosina.html#abreviaturas'),
     'paletas': ('🎨', 'Paletas de color', 'Combinaciones para tus proyectos', '/paletas-rosina.html'),
     'calc': ('🧮', 'Calculadoras', 'Cuánta lana, qué gancho y más', '/calculadoras-rosina.html'),
-    'agenda': ('📅', 'Agenda de Rosina', 'Organiza tus proyectos de tejido', '/agenda-rosina.html'),
+    'agenda': ('📅', 'Agenda para tejedoras', 'Organiza tus proyectos de tejido', '/agenda-rosina.html'),
     'checklist': ('✅', 'Checklist: tu primer amigurumi', 'Lo que necesitas, paso a paso', '/recursos-rosina.html#checklist'),
     'regalos': ('💝', 'Stickers, fondos e íconos', 'Regalos de Rosina para tu celular', '/recursos-rosina.html'),
     'cuida': ('🧺', 'Cuida tu pieza', 'Cómo lavar y guardar tu amigurumi', '/p/'),

@@ -1,4 +1,4 @@
-"""Prueba (23-oct-2026): «Cargar una copia» de la Agenda de Rosina no deja pasar HTML.
+"""Prueba (23-oct-2026): «Cargar una copia» de la Agenda para tejedoras no deja pasar HTML.
 Uso: python3 herramientas/pruebas/probar_agenda_copia.py   (servidor local en el puerto 8765)"""
 import json, os, sys, tempfile
 from playwright.sync_api import sync_playwright

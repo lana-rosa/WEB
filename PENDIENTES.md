@@ -356,3 +356,10 @@ Hoy: sincronización **apagada** en la agenda desde el 13-oct (piezas en `herram
 - [ ] Sara: en el Merchant Center, comprobar «fichas gratuitas», política de devoluciones y envíos; opcional: Bing Webmaster Tools con el sitemap.
 - [ ] Agenda con lápiz: los campos de la agenda son `input` y `textarea` normales, así que la escritura a mano con Apple Pencil (Escritura a mano/Scribble) y S Pen se convierte en texto sin cambios. **Pendiente de decidir con Sara** si además quiere dibujar o escribir libremente sobre las hojas (tinta que se guarda).
 - [ ] SEG-10, SEG-11, SEG-12, SEG-14 y REN-01/REN-02 siguen abiertos (SEG-11 después del pago de prueba real).
+
+## Prepararnos para Google UCP en Latinoamérica (Sara, 27-oct-2026)
+Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-UCP-COPILOT.md`). Cuando llegue a Latinoamérica:
+- [ ] **Configurar PayPal y/o Stripe** como medio de pago de la tienda (hoy solo Wompi; `paypal-pagos` existe en Supabase pero está sin usar para la tienda): Copilot Checkout y los pagos de UCP los exigen.
+- [ ] Entrar con **todos los productos listos** (tienda y mercería); **los personalizados quedan por fuera** (Google los excluye).
+- [ ] Merchant Center en regla: fichas gratuitas, devoluciones y envíos (ver explicación a Sara del 27-oct).
+- [ ] Revisar el estado de UCP en Latinoamérica cada trimestre (próxima: enero de 2027).
