@@ -339,7 +339,7 @@ Hoy: sincronización **apagada** en la agenda desde el 13-oct (piezas en `herram
 - [x] Personaliza: «Rosina te ayuda a crear» con el mismo formato de «Diligencia el formulario»; mensaje de envío solo «El precio del artículo no incluye gastos de envío».
 - [x] Agenda de Rosina en tablet: revisadas las 29 hojas en 6 tamaños (768, 820, 834, 900, 1024, 1100, 1180 px): sin desplazamiento horizontal.
 - [x] Fondos de las páginas principales por casa (ver CLAUDE.md).
-- [ ] **Agenda: se pierde lo escrito al borrar los datos del navegador** (Sara, 23-oct): la agenda vive solo en el navegador. Opciones planteadas: copia en la cuenta (con autorización, ya existe `agenda_nube`), recordatorio de «Guardar una copia» y `navigator.storage.persist()`. Pendiente de decidir con Sara.
+- [x] **Agenda: se pierde lo escrito al borrar los datos del navegador** (Sara, 23-oct; decisión «ambos» el 27-oct): copia opcional y gratuita en la cuenta (con autorización, migración 31 ya aplicada en Supabase) + recordatorio de copia a los 14 días. En la rama; pendiente de publicar. **Abogada:** revisar el apartado 11 de `politicas.html#datos` (ahora sin membresía) y si conviene un plazo máximo de conservación por inactividad.
 
 ## Auditoría 360 — paquete B (26-oct-2026)
 - [x] **SEG-01:** revocado el permiso de la llave pública en 6 funciones internas (`fn_tejido_guardar_plan` ×2, `fn_tejido_guardar_capacidad`, `fn_sugerencias_tejido`, `fn_agendar_pedido_anticipo_bajo`, `fn_ficha_insumo_guardar`, `fn_ficha_insumo_obtener`; la 7.ª firma es la segunda de `fn_tejido_guardar_plan`). Verificado: el público recibe «permission denied» y la tienda, los regalos y la mercería siguen respondiendo como anónimo; las funciones anónimas pasaron de 30 a 23.
