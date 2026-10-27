@@ -829,11 +829,11 @@ main > :first-child { padding-top: 40px !important; }
 }
 </style>
 <!-- ICONOS:INICIO (generado) -->
-<link rel="icon" type="image/png" href="/img/favicon-academy-256.png">
-<link rel="apple-touch-icon" href="/img/apple-touch-icon-academy.png">
-<meta name="theme-color" content="#2F7DE1">
-<link rel="manifest" href="/manifest-academy.webmanifest">
-<meta name="apple-mobile-web-app-title" content="Lana Rosa Academy">
+<link rel="icon" type="image/png" href="/img/favicon-agenda-256.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png">
+<meta name="theme-color" content="#1E9E78">
+<link rel="manifest" href="/manifest-agenda.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Agenda para tejedoras">
 <!-- ICONOS:FIN -->
 </head>
 <body>
@@ -979,6 +979,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="seccion-suave seccion-lila" id="agenda">
     <div class="contenedor">
+      <aside class="instalar-agenda no-imprimir" id="instalar-agenda" aria-label="Instalar la agenda como app" hidden>
+        <img src="/img/app/icono-agenda-192.png" alt="" aria-hidden="true" width="56" height="56" decoding="async">
+        <div class="ia-texto"><strong>Instala tu agenda como app</strong><span>Se abre desde su propio ícono, en el celular o el computador, y funciona sin internet. Tus datos siguen guardados solo en tu dispositivo.</span><span id="ia-ayuda" hidden>En iPhone o iPad: toca el botón Compartir (el cuadro con una flecha hacia arriba) y luego «Añadir a pantalla de inicio».</span></div>
+        <div class="ia-botones"><button type="button" class="boton-primario boton-chico" id="ia-instalar">Instalar</button><button type="button" class="boton-secundario boton-chico" id="ia-luego">Ahora no</button></div>
+      </aside>
       <div class="zona-agenda" id="zona-agenda">
       <div class="contenido-agenda" id="contenido-agenda">
       <div class="buscar-fijo no-imprimir">
@@ -2164,7 +2169,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/politicas.html#datos">Datos personales</a>
     <a href="/politicas.html#cookies">Cookies</a>
     <a href="/politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>
-    <button type="button" class="boton-instalar" data-instalar hidden aria-label="Instalar la app de Lana Rosa Academy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Instalar app</button>
+    <button type="button" class="boton-instalar" data-instalar hidden aria-label="Instalar la app de Agenda para tejedoras"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Instalar app</button>
     <span class="instalar-ayuda" role="status" hidden>En iPhone: toca el botón Compartir y luego «Agregar a pantalla de inicio».</span>
     <span class="derechos">© 2026 Lana Rosa Crochet</span>
   </div>
@@ -4105,6 +4110,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/planeador.js?v=1" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
+<script src="/js/agenda/app.js?v=1" defer></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=1" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>

@@ -52,13 +52,17 @@ ICONOS_BASE = ('/img/favicon-256.png', '/img/apple-touch-icon.png', '#E74E96')
 # app instalable: manifiesto y nombre en la pantalla por casa (las páginas sin casa usan Crochet)
 APP = {'merceria': ('merceria', 'Mercería Lana Rosa'), 'academy': ('academy', 'Lana Rosa Academy')}
 APP_BASE = ('crochet', 'Lana Rosa Crochet')
+# la Agenda para tejedoras es una app propia (28-oct-2026): su página sigue en la casa Academy (menú y colores) pero se instala con su ícono verde y funciona sin internet
+APP_PAGINA = {'agenda-rosina': ('agenda', 'Agenda para tejedoras')}
+ICONOS_PAGINA = {'agenda-rosina': ('/img/favicon-agenda-256.png', '/img/apple-touch-icon-agenda.png', '#1E9E78')}
 
-def iconos(casa):
-    ico, apple, color = ICONOS.get(casa, ICONOS_BASE)
+def iconos(casa, pagina=None):
+    ico, apple, color = ICONOS_PAGINA.get(pagina) or ICONOS.get(casa, ICONOS_BASE)
+    app = APP_PAGINA.get(pagina) or APP.get(casa, APP_BASE)
     return (f'<!-- ICONOS:INICIO (generado) -->\n<link rel="icon" type="image/png" href="{ico}">\n'
             f'<link rel="apple-touch-icon" href="{apple}">\n<meta name="theme-color" content="{color}">\n'
-            f'<link rel="manifest" href="/manifest-{APP.get(casa, APP_BASE)[0]}.webmanifest">\n'
-            f'<meta name="apple-mobile-web-app-title" content="{APP.get(casa, APP_BASE)[1]}">\n<!-- ICONOS:FIN -->')
+            f'<link rel="manifest" href="/manifest-{app[0]}.webmanifest">\n'
+            f'<meta name="apple-mobile-web-app-title" content="{app[1]}">\n<!-- ICONOS:FIN -->')
 
 # nombre bajo el logo y destino del logo por casa
 LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria/'), 'academy': ('Academy', 'academy/'),
@@ -289,7 +293,7 @@ def logo_pie(casa, img, alt):
     nombre = 'componente.html' if casa not in ('merceria', 'academy') else f'componente-{casa}.html'
     return open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logo-animado', nombre), encoding='utf-8').read()
 
-def pie_casa(modelo, casa):
+def pie_casa(modelo, casa, pagina=None):
     """Pie simple: logo con las tres casas al lado y redes, tres columnas cortas, pagos y apoyo en una línea, y los legales."""
     titulo, enlaces = PIE_SIMPLE.get(casa) or PIE_SIMPLE_COMUN
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa-360.webp', 'Lana Rosa Crochet'))
@@ -304,7 +308,7 @@ def pie_casa(modelo, casa):
     # en Mercería y Academy el universo de Rosina ya está en la columna de la casa: no se repite
     universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">Rosina: regalos e ideas</a></li>'
     horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
-    nombre_app = APP.get(casa, APP_BASE)[1]
+    nombre_app = (APP_PAGINA.get(pagina) or APP.get(casa, APP_BASE))[1]
     return f'''<footer class="pie-rico">
   <div class="contenedor pie-top">
     <div class="pie-marca">
@@ -430,7 +434,7 @@ def main():
             if a < 0 or b < 10:
                 print('sin encabezado:', n); continue
             s = s[:a] + absolutas(encabezado(n)) + s[b:]
-        bloque = f'<!-- PIE:INICIO (generado) -->\n{absolutas(pie_casa(modelo, CASA_DE.get(n) or "crochet"))}\n<!-- PIE:FIN -->'
+        bloque = f'<!-- PIE:INICIO (generado) -->\n{absolutas(pie_casa(modelo, CASA_DE.get(n) or "crochet", n))}\n<!-- PIE:FIN -->'
         if '<!-- PIE:INICIO' in s:
             s = re.sub(r'<!-- PIE:INICIO.*?<!-- PIE:FIN -->', lambda m: bloque, s, flags=re.S)
         else:
@@ -439,7 +443,7 @@ def main():
         # íconos de pestaña y color de la barra: quita los que había y pone los de la casa
         s = re.sub(r'<!-- ICONOS:INICIO.*?<!-- ICONOS:FIN -->\n?', '', s, flags=re.S)
         s = re.sub(r'<link rel="icon"[^>]*>\n?|<link rel="apple-touch-icon"[^>]*>\n?|<meta name="theme-color"[^>]*>\n?', '', s)
-        s = s.replace('</head>', iconos(casa) + '\n</head>', 1)
+        s = s.replace('</head>', iconos(casa, n) + '\n</head>', 1)
         pref = re.search(r'<html lang="es-CO"[^>]*?(data-casa-pref="[^"]*")', s)   # casa preferida de los artículos de la Revista (la usa js/casa-menu.js)
         s = re.sub(r'<html lang="es-CO"[^>]*>', '<html lang="es-CO"' + (f' data-casa="{casa}"' if casa else '') + (' ' + pref.group(1) if pref else '') + '>', s, count=1)
         s = con_barra(s, n, casa)

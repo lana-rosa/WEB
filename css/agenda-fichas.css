@@ -344,3 +344,13 @@ html.agenda-cerrada .intro-agenda:not(.en-construccion), html.agenda-cerrada #ag
 .promo-txt small { font-size: 0.85rem; color: var(--tinta-suave); line-height: 1.35; }
 .promo-btn { margin-top: 4px; font-weight: 700; font-size: 0.85rem; color: var(--rosa-texto); }
 @media print { .promo-eco { display: none; } }
+
+/* ---- Tarjeta «Instala tu agenda como app» ---- */
+.instalar-agenda { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 0 0 16px; padding: 12px 16px; border: 2px solid #1E9E78; border-radius: 18px; background: var(--blanco); }
+.instalar-agenda[hidden] { display: none; }
+.instalar-agenda img { width: 56px; height: 56px; border-radius: 14px; flex: none; }
+.ia-texto { flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ia-texto strong { font-family: var(--fuente-titulo); font-size: 1.05rem; color: var(--tinta); }
+.ia-texto span { font-size: 0.9rem; color: var(--tinta-suave); }
+.ia-botones { display: flex; gap: 8px; flex-wrap: wrap; }
+@media print { .instalar-agenda { display: none; } }

@@ -1,4 +1,4 @@
-"""Genera los íconos de las tres apps instalables (img/app/): 192, 512 y 512 "maskable" para Tienda (Crochet), Mercería y Academy.
+"""Genera los íconos de las cuatro apps instalables (img/app/): 192, 512 y 512 "maskable" para Tienda (Crochet), Mercería, Academy y la Agenda para tejedoras (verde menta; también su favicon y el apple-touch-icon).
 Uso: python3 herramientas/generar_iconos_app.py
 Parte de los íconos de la pestaña de cada casa (la ovejita con la lana en un círculo del color de la casa: rosado, lila y azul); miden 256 px, así que se amplían y se afilan los bordes."""
 import os
@@ -36,3 +36,23 @@ for casa, f in FUENTES.items():
     lienzo.alpha_composite(chico, (56, 56))
     lienzo.save(os.path.join(R, 'img', 'app', f'icono-{casa}-maskable-512.png'), optimize=True)
 print('ok')
+
+# ---- Agenda para tejedoras (28-oct-2026): la misma ovejita del ícono de Academy, con el disco en verde menta ----
+VERDE = (30, 158, 120)
+def recolorear(im, color):
+    """Cambia el azul del disco por `color` conservando el dibujo blanco (mezcla según cuánto se aleja el píxel del azul original)."""
+    im = im.copy().convert('RGBA'); base = im.getpixel((im.width // 2, int(im.width * 0.09)))[:3]; px = im.load()
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, b, a = px[x, y]
+            t = max(0.0, min(1.0, (r - base[0]) / max(1, 255 - base[0])))
+            px[x, y] = (int(color[0] + (255 - color[0]) * t), int(color[1] + (255 - color[1]) * t), int(color[2] + (255 - color[2]) * t), a)
+    return im
+src = recolorear(sin_aro(Image.open(os.path.join(R, 'img/favicon-academy-256.png')).convert('RGBA')), VERDE)
+src.save(os.path.join(R, 'img', 'favicon-agenda-256.png'), optimize=True)
+afilar(src, 180).save(os.path.join(R, 'img', 'apple-touch-icon-agenda.png'), optimize=True)
+for lado in (192, 512):
+    afilar(src, lado).save(os.path.join(R, 'img', 'app', f'icono-agenda-{lado}.png'), optimize=True)
+lienzo = Image.new('RGBA', (512, 512), VERDE + (255,)); lienzo.alpha_composite(afilar(src, 400), (56, 56))
+lienzo.save(os.path.join(R, 'img', 'app', 'icono-agenda-maskable-512.png'), optimize=True)
+print('ok agenda')
