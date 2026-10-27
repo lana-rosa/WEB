@@ -1014,10 +1014,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 32</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 32 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 37</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 37 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
+          <a href="#planeador-dia" data-hoja="planeador-dia">🗓️ Planeador del día</a>
           <a href="#portada-agenda" data-hoja="portada-agenda">🌸 Portada</a>
           <p class="menu-grupo">Mi tablero</p>
           <a href="#tablero-agenda" data-hoja="tablero-agenda">📈 Mi tablero</a>
@@ -1032,6 +1033,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#lo-que-aprendi" data-hoja="lo-que-aprendi">🌟 Lo que aprendí</a>
           <a href="#mis-ideas" data-hoja="mis-ideas">💭 Mis ideas</a>
           <a href="#disena-patron" data-hoja="disena-patron">✏️ Diseña tu patrón</a>
+          <a href="#prendas-medida" data-hoja="prendas-medida">👗 Prendas a medida</a>
           <a href="#hoja-puntos" data-hoja="hoja-puntos">⚫ Hoja de puntos</a>
           <p class="menu-grupo">Mis materiales</p>
           <a href="#inventario-lanas" data-hoja="inventario-lanas">🧶 Inventario de lanas</a>
@@ -1070,6 +1072,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
         </header>
         <div class="indice-grupo" style="--c:#F7B3D4"><h4>Mi agenda</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="planeador-dia"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Planeador del día</strong><small>Tu día, tus tareas y los números del mes</small></span></button>
           <button type="button" class="atajo" data-ir="portada-agenda"><span class="atajo-ic" aria-hidden="true">🌸</span><span><strong>Portada</strong><small>Elige el fondo y tu nombre, y písala</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#FFE08A"><h4>Mi tablero</h4><div class="atajos">
@@ -1086,6 +1089,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="lo-que-aprendi"><span class="atajo-ic" aria-hidden="true">🌟</span><span><strong>Lo que aprendí</strong><small>Puntos y trucos nuevos</small></span></button>
           <button type="button" class="atajo" data-ir="mis-ideas"><span class="atajo-ic" aria-hidden="true">💭</span><span><strong>Mis ideas</strong><small>Pensamientos e ideas, escritos o hablados</small></span></button>
           <button type="button" class="atajo" data-ir="hoja-puntos"><span class="atajo-ic" aria-hidden="true">⚫</span><span><strong>Hoja de puntos</strong><small>Para dibujar esquemas y diseños</small></span></button>
+          <button type="button" class="atajo" data-ir="prendas-medida"><span class="atajo-ic" aria-hidden="true">👗</span><span><strong>Prendas a medida</strong><small>Tallas XS a XL, maniquí y cálculos</small></span></button>
           <button type="button" class="atajo" data-ir="disena-patron"><span class="atajo-ic" aria-hidden="true">✏️</span><span><strong>Diseña tu patrón</strong><small>Tu propio patrón, paso a paso</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#B9BCFB"><h4>Mis materiales</h4><div class="atajos">
@@ -1117,6 +1121,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="diario-tejido"><span class="atajo-ic" aria-hidden="true">📔</span><span><strong>Diario de tejido</strong><small>Cómo te sentiste tejiendo</small></span></button>
           <button type="button" class="atajo" data-ir="registro-pausas"><span class="atajo-ic" aria-hidden="true">🧘</span><span><strong>Registro de pausas activas</strong><small>Cuida tus manos y tu espalda</small></span></button>
         </div></div>
+      </article>
+      <article class="hoja-agenda" id="planeador-dia">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Planeador del día</h3><p>Todo lo que tienes para hoy en un solo lugar: pedidos, entregas, ferias, tareas y tus notas.</p></div>
+        </header>
+        <div class="pl-nav no-imprimir">
+          <button type="button" id="pl-ant" aria-label="Día anterior">‹</button>
+          <button type="button" id="pl-hoy" class="boton-secundario boton-chico">Hoy</button>
+          <input type="date" id="pl-fecha" aria-label="Elegir un día">
+          <button type="button" id="pl-sig" aria-label="Día siguiente">›</button>
+        </div>
+        <h4 class="pl-titulo" id="pl-titulo" aria-live="polite"></h4>
+        <div class="pl-semana no-imprimir" id="pl-semana" role="group" aria-label="La semana"></div>
+        <div class="pl-bloque">
+          <h4 class="sub-hoja">Lo que tengo agendado</h4>
+          <ul class="pl-eventos" id="pl-eventos"></ul>
+          <p class="pl-vacio" id="pl-vacio" hidden>Nada agendado para este día. Escribe fechas en tus pedidos, ferias o proyectos y aparecerán aquí.</p>
+        </div>
+        <div class="pl-bloque">
+          <h4 class="sub-hoja">Mis tareas de hoy</h4>
+          <form class="pl-nueva no-imprimir" id="pl-form" autocomplete="off"><input id="pl-tarea" maxlength="120" placeholder="Escribe una tarea y toca Agregar" aria-label="Nueva tarea"><button class="boton-primario boton-chico" type="submit">Agregar</button></form>
+          <ul class="pl-tareas" id="pl-tareas"></ul>
+        </div>
+        <div class="pl-bloque">
+          <h4 class="sub-hoja">Notas del día</h4>
+          <textarea id="pl-notas" rows="5" class="pl-notas" aria-label="Notas del día" placeholder="Lo que quiero recordar de este día…"></textarea>
+        </div>
+        <div class="pl-bloque no-imprimir">
+          <h4 class="sub-hoja">Mi día en Google Calendar</h4>
+          <p class="pl-ayuda">Si usas Google Calendar, abre este día allí o crea un evento sin salir de aquí. Es gratis y no necesita que conectes nada.</p>
+          <p class="pl-botones"><a class="boton-secundario boton-chico" id="pl-gcal" target="_blank" rel="noopener">📅 Ver este día en Google Calendar</a> <a class="boton-secundario boton-chico" id="pl-gcal-nuevo" target="_blank" rel="noopener">➕ Crear un evento para este día</a></p>
+        </div>
+        <div class="pl-bloque pl-numeros">
+          <h4 class="sub-hoja">Este mes en números</h4>
+          <div class="pl-nav no-imprimir"><button type="button" id="pl-mes-ant" aria-label="Mes anterior">‹</button><strong id="pl-mes-txt" aria-live="polite"></strong><button type="button" id="pl-mes-sig" aria-label="Mes siguiente">›</button></div>
+          <div class="pl-tiles" id="pl-tiles"></div>
+          <p class="pl-ayuda no-imprimir">Los números salen solos de tus hojas: clientas, ventas, gastos, proyectos cumplidos y lo que aprendiste.</p>
+        </div>
       </article>
       <article class="hoja-agenda" id="portada-agenda">
         <header>
@@ -1609,7 +1652,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
-            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th><th>Avance (con fecha)</th><th>Ya lo cumplí</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
+            <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th><th>Avance (con fecha)</th><th>Ya lo cumplí</th><th>Fecha en que lo cumplí</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-fila"></tbody>
           </table>
         </div>
@@ -1685,7 +1728,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:760px;">
-            <thead><tr><th>Nombre</th><th>WhatsApp</th><th>Cumpleaños</th><th>Qué me ha comprado</th><th>Notas</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
+            <thead><tr><th>Nombre</th><th>WhatsApp</th><th>Cumpleaños</th><th>Cliente desde</th><th>Qué me ha comprado</th><th>Notas</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-clientas"></tbody>
           </table>
         </div>
@@ -1822,6 +1865,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <thead><tr><th>Fecha</th><th>De qué trata</th><th>Mi idea o pensamiento</th></tr></thead>
             <tbody id="tabla-ideas"></tbody>
           </table>
+        </div>
+      </article>
+      <article class="hoja-agenda" id="prendas-medida">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-17-gorro.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Prendas a medida</h3><p>Elige la prenda y la talla (XS a XL), escribe las medidas de tu clienta y mira cómo quedaría y cuántos puntos necesitas.</p></div>
+        </header>
+        <div class="vers-cuerpo">
+          <h4 class="sub-hoja">1. Clienta y prenda</h4>
+          <div class="grid-ficha">
+            <div class="linea"><label for="ag-pr-cliente">Clienta</label><input id="ag-pr-cliente" data-guardar></div>
+            <div class="linea"><label for="ag-pr-prenda">Prenda</label><select id="ag-pr-prenda" data-guardar><option value=""></option><option>Suéter</option><option>Chaleco</option><option>Gorro</option><option>Falda</option><option>Bufanda</option></select></div>
+            <div class="linea"><label for="ag-pr-talla">Talla de partida</label><select id="ag-pr-talla" data-guardar><option value=""></option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>A medida</option></select></div>
+            <div class="linea"><label for="ag-pr-ajuste">Cómo le queda</label><select id="ag-pr-ajuste" data-guardar><option value=""></option><option>Ajustado</option><option>Normal</option><option>Holgado</option></select></div>
+            <div class="linea"><label for="ag-pr-color">Color de la prenda</label><input id="ag-pr-color" data-guardar type="color" value="#E74E96"></div>
+          </div>
+          <h4 class="sub-hoja">2. Medidas de la clienta (en cm)</h4>
+          <p class="pr-ayuda no-imprimir" id="pr-ayuda-medidas">Al elegir la talla se llenan con medidas de referencia; cámbialas por las medidas reales de tu clienta.</p>
+          <div class="grid-ficha pr-medidas" id="pr-medidas">
+            <div class="linea" data-m="busto"><label for="ag-pr-busto">Contorno de busto</label><input id="ag-pr-busto" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="cintura"><label for="ag-pr-cintura">Contorno de cintura</label><input id="ag-pr-cintura" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="cadera"><label for="ag-pr-cadera">Contorno de cadera</label><input id="ag-pr-cadera" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="hombros"><label for="ag-pr-hombros">Ancho de hombros</label><input id="ag-pr-hombros" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="largo"><label for="ag-pr-largo" id="pr-etq-largo">Largo de la prenda</label><input id="ag-pr-largo" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="manga"><label for="ag-pr-manga">Largo de manga (de la axila al puño)</label><input id="ag-pr-manga" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="brazo"><label for="ag-pr-brazo">Contorno del brazo</label><input id="ag-pr-brazo" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="puno"><label for="ag-pr-puno">Contorno de la muñeca</label><input id="ag-pr-puno" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="cabeza"><label for="ag-pr-cabeza">Contorno de la cabeza</label><input id="ag-pr-cabeza" data-guardar inputmode="decimal"></div>
+            <div class="linea" data-m="ancho"><label for="ag-pr-ancho">Ancho de la bufanda</label><input id="ag-pr-ancho" data-guardar inputmode="decimal"></div>
+          </div>
+          <h4 class="sub-hoja">3. Tu muestra (tensión)</h4>
+          <div class="grid-ficha">
+            <div class="linea"><label for="ag-pr-pts">Puntos en 10 cm</label><input id="ag-pr-pts" data-guardar inputmode="decimal" placeholder="Por ejemplo: 16"></div>
+            <div class="linea"><label for="ag-pr-vts">Vueltas en 10 cm</label><input id="ag-pr-vts" data-guardar inputmode="decimal" placeholder="Por ejemplo: 18"></div>
+            <div class="linea ancha"><label for="ag-pr-notas">Notas de la prenda</label><textarea id="ag-pr-notas" rows="3" data-guardar></textarea></div>
+          </div>
+        </div>
+        <div class="pr-resultado" id="pr-resultado">
+          <h4 class="sub-hoja">Así quedaría</h4>
+          <p class="pr-aviso" id="pr-aviso" role="status"></p>
+          <div class="pr-visual">
+            <figure class="pr-fig"><div id="pr-maniqui" role="img" aria-label="Maniquí con la prenda"></div><figcaption>La prenda en un maniquí con las medidas de tu clienta</figcaption></figure>
+            <figure class="pr-fig"><div id="pr-esquema" role="img" aria-label="Esquema de las piezas con sus medidas"></div><figcaption>Esquema de las piezas, en cm</figcaption></figure>
+          </div>
+          <h4 class="sub-hoja">Cuántos puntos y vueltas</h4>
+          <div class="pr-calculos" id="pr-calculos"></div>
+          <p class="pr-nota">Son cálculos de referencia para tejer a medida con tu muestra. Antes de empezar, teje y mide tu muestra lavada y ajusta si hace falta. Las medidas de las tallas XS a XL son generales; usa siempre las de tu clienta.</p>
+          <p class="no-imprimir pr-acciones"><button type="button" class="boton-primario" id="pr-imprimir">🖨️ Imprimir esquema y cálculos</button> <a class="boton-secundario" href="/calculadoras-rosina.html" target="_blank" rel="noopener">Calcular lana y aguja →</a></p>
         </div>
       </article>
       <article class="hoja-agenda" id="disena-patron">
@@ -2299,7 +2390,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     { id: 'estado', opciones: ['Cotizado', 'Pedido confirmado', 'En proceso', 'Terminado', 'Despachado', 'Entregado', 'Cancelado'] }, 'obs', { id: 'cal', cal: 'pedido' }], 8, 'del pedido');
   filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
   filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
-  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'avance', avance: true }, { id: 'cumplido', check: true }, { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
+  filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'avance', avance: true }, { id: 'cumplido', check: true }, 'cumplidoen', { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
   filasTabla('tabla-agujas', 'ag-ag', [{ id: 'medida', opciones: ['2', '2,25', '2,5', '2,75', '3', '3,25', '3,5', '3,75', '4', '4,5', '5', '5,5', '6', '6,5', '7', '8', '9', '10'] }, { id: 'material', opciones: ['Aluminio', 'Acero', 'Bambú o madera', 'Plástico', 'Ergonómica con mango', 'Otro'] }, 'compra', 'notas'], 4, 'de la aguja');
   filasTabla('tabla-gastos', 'ag-gs', ['fecha', { id: 'categoria', opciones: ['Materiales', 'Transporte', 'Ferias y mercados', 'Empaques', 'Publicidad', 'Servicios', 'Herramientas', 'Otros'] }, 'detalle', 'valor', 'proveedor', { id: 'medio', opciones: ['Efectivo', 'Nequi', 'Daviplata', 'Transferencia', 'Tarjeta', 'Otro'] }], 10, 'del gasto');
   filasTabla('tabla-contactos', 'ag-co', ['nombre', { id: 'tipo', opciones: ['Proveedor', 'Colega', 'Maestra o maestro', 'Amiga o amigo tejedor', 'Cliente frecuente', 'Otro'] }, { id: 'telefono', wa: true }, 'correo', 'redes', 'notas'], 8, 'del contacto');
@@ -2321,7 +2412,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var texto = 'Hola Rosina 🐑 Quiero consultar estos materiales de la mercería:\n' + (lineas.length ? lineas.join('\n') : '(todavía no escribí mi lista)');
     this.href = 'https://wa.me/573205072801?text=' + encodeURIComponent(texto);
   });
-  filasTabla('tabla-clientas', 'ag-cl', ['nombre', { id: 'whatsapp', wa: true }, 'cumpleanos', 'compras', 'notas', { id: 'cal', cal: 'clienta' }], 12, 'de la clienta');
+  filasTabla('tabla-clientas', 'ag-cl', ['nombre', { id: 'whatsapp', wa: true }, 'cumpleanos', 'desde', 'compras', 'notas', { id: 'cal', cal: 'clienta' }], 12, 'de la clienta');
   filasTabla('tabla-ventas', 'ag-vt', ['fecha', 'producto', 'cliente', 'precio', 'costo'], 12, 'de la venta');
   filasTabla('tabla-catalogo', 'ag-ct', ['producto', 'tamano', 'precio', 'horas'], 12, 'del producto');
   filasTabla('tabla-diario', 'ag-dr', ['fecha', { id: 'animo', opciones: ['😊 Feliz', '😌 Tranquila', '🥰 Inspirada', '😴 Cansada', '😣 Frustrada'] }, 'teji', 'frase'], 10, 'del día');
@@ -3958,6 +4049,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/voz.js?v=1" defer></script>
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
+<script src="/js/agenda/planeador.js?v=1" defer></script>
+<script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=1" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=1" defer></script>

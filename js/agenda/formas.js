@@ -55,6 +55,12 @@
       chips: function (c) { var x = []; if (c['ag-dp-nivel']) x.push([c['ag-dp-nivel'], '']); if (c['ag-dp-probado']) x.push(['✓ Probado', 'ok']); return x; },
       inicial: function () { return {}; }, siguiente: function () { return {}; }
     },
+    'prendas-medida': {
+      nuevo: '➕ Agregar otra prenda o clienta', unidad: 'prenda', vacio: 'Prenda sin nombre',
+      nombre: function (c) { var t = [c['ag-pr-cliente'], c['ag-pr-prenda'], c['ag-pr-talla'] && c['ag-pr-talla'] !== 'A medida' ? 'talla ' + c['ag-pr-talla'] : ''].filter(function (x) { return x && String(x).trim(); }); return t.length ? t.join(' · ') : 'Prenda sin nombre'; },
+      chips: function (c) { return c['ag-pr-ajuste'] ? [[c['ag-pr-ajuste'], '']] : []; },
+      inicial: function () { return {}; }, siguiente: function () { return {}; }
+    },
     'ferias-mercados': {
       nuevo: '➕ Agregar otra feria o mercado', unidad: 'feria', vacio: 'Feria sin nombre',
       nombre: function (c) { return String(c['ag-fr-nombre'] || '').trim() || 'Feria sin nombre'; },
