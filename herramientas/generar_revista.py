@@ -17,7 +17,7 @@ import html, json, math, os, re
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 ARTICULOS = os.path.join(RAIZ, 'herramientas', 'revista', 'articulos')
 SITIO = 'https://lanarosacrochet.com'
-ORDEN = ['puntos-basicos-crochet', 'colores-combinan-amigurumis', 'errores-comunes-principiantes', 'conoce-a-rosina', 'cuidar-lavar-tejidos', 'cuanto-cobrar-tejidos',
+ORDEN = ['cuanta-lana-necesito', 'puntos-basicos-crochet', 'colores-combinan-amigurumis', 'errores-comunes-principiantes', 'conoce-a-rosina', 'cuidar-lavar-tejidos', 'cuanto-cobrar-tejidos',
          'regalos-graduacion', 'anillo-magico', 'leer-patron-crochet', 'elegir-hilo-amigurumi', 'aguja-segun-hilo', 'amigurumi-de-tu-mascota',
          'fotos-amigurumi-personalizado', 'empezar-crochet', 'materiales-primer-amigurumi', 'pedir-amigurumi-personalizado', 'pausas-activas',
          'ideas-regalo', 'tejer-desconectar']
