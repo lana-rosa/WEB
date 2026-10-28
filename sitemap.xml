@@ -68,9 +68,15 @@
   </url>
   <url>
     <loc>https://lanarosacrochet.com/revista.html</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lanarosacrochet.com/revista/cuanta-lana-necesito/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://lanarosacrochet.com/revista/puntos-basicos-crochet/</loc>

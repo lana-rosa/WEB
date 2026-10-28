@@ -24,6 +24,7 @@ Cada artículo (desde el 17-oct-2026): archivo `herramientas/revista/articulos/<
 - [x] Colores que combinan en tus amigurumis: ideas con las paletas de Rosina (crochet, Mercería y Academy) — 14-oct-2026. Los tres temas estacionales de «Próximos» no correspondían a la fecha (abril, mayo o junio, agosto); se tomó este de la lista de Mercería.
 
 - [x] Los 5 puntos básicos del crochet que debes conocer (crochet, Academy) — 21-oct-2026. Los tres temas estacionales de «Próximos» no correspondían a la fecha; se tomó este de la lista de Academy (solo con lo que dice el glosario de Rosina). El slug se agregó a `ORDEN` de `generar_revista.py` (al principio, más nuevo primero).
+- [x] ¿Cuánta lana necesito para mi proyecto? Cómo calcularla con una muestra (crochet, Mercería y Academy) — 28-oct-2026. Los tres temas estacionales de «Próximos» no correspondían a la fecha; se tomó uno de la lista de Mercería (cálculo explicado solo con lo que hace la calculadora «¿Cuánta lana?» de Rosina; el ejemplo usa sus valores de muestra).
 
 ## Próximos (en este orden)
 
