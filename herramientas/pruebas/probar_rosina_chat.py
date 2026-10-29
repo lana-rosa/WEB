@@ -168,6 +168,18 @@ def main():
         preguntar(page, 'hola')
         verificar('el chat con tarjetas también funciona en la Tienda (la página donde más se usa)', page.locator('.rc-card').count() == 3)
         page.close()
+        # Agenda para tejedoras (29-oct-2026): Rosina explica cómo usar la agenda
+        page, err, pedidos = abrir_chat(ctx, base, [{'respuesta': 'Abre ⚙️ Configuración.', 'productos': [], 'sin_dato': False}], ruta='/agenda-rosina.html')
+        sug = page.locator('.rc-sug button').all_inner_texts()
+        verificar('en la agenda el saludo habla de la agenda y las sugerencias son de la agenda', 'tu agenda' in page.locator('.rc-m').first.inner_text() and any('copia' in s for s in sug) and any('Google Calendar' in s for s in sug), sug)
+        preguntar(page, '¿Cómo cambio el color?')
+        verificar('en la agenda el chat manda casa «agenda» a la función', pedidos and pedidos[-1].get('casa') == 'agenda', pedidos)
+        verificar('en la agenda el chat no da errores', not err, err)
+        page.close()
+        page, err, pedidos = abrir_chat(ctx, base, [{'respuesta': 'Hola', 'productos': [], 'sin_dato': False}], ruta='/academy/')
+        preguntar(page, 'hola')
+        verificar('en Academy la casa sigue siendo «academy»', pedidos[-1].get('casa') == 'academy', pedidos)
+        page.close()
 
         nav.close()
     srv.shutdown()
