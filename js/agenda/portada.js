@@ -17,7 +17,7 @@
   };
   var FONDOS = { flores: 'Flores', hojas: 'Hojas', madejas: 'Madejas', rosina: 'Rosina y amigos', ovejitas: 'Ovejitas', liso: 'Liso' };
   var IMAGENES = {};
-  ['flores', 'hojas', 'madejas', 'rosina', 'ovejitas'].forEach(function (k) { IMAGENES[k] = '/img/agenda/fondo-' + k + '.webp?v=3'; });
+  ['flores', 'hojas', 'madejas', 'rosina', 'ovejitas'].forEach(function (k) { IMAGENES[k] = '/img/agenda/fondo-' + k + '.webp?v=4'; });
   function pintar() {
     var d = N.datos(), f = d['ag-portada-fondo'] && FONDOS[d['ag-portada-fondo']] ? d['ag-portada-fondo'] : 'flores', c = d['ag-portada-color'] && COLORES[d['ag-portada-color']] ? d['ag-portada-color'] : 'rosa';
     var p = COLORES[c], fondo = hoja.querySelector('.portada-fondo');
@@ -40,7 +40,7 @@
     N.datos()[id] = valor; pintar();
   }
   var fb = document.getElementById('portada-fondos'), cb = document.getElementById('portada-colores');
-  Object.keys(FONDOS).forEach(function (k) { var b = document.createElement('button'); b.type = 'button'; b.dataset.v = k; b.className = 'portada-op'; if (IMAGENES[k]) { var mi = document.createElement('span'); mi.className = 'portada-mini'; mi.setAttribute('aria-hidden', 'true'); mi.style.backgroundImage = 'url("/img/agenda/fondo-' + k + '-mini.webp?v=3")'; b.appendChild(mi); } b.appendChild(document.createTextNode(FONDOS[k])); b.addEventListener('click', function () { elegir('ag-portada-fondo', k); }); fb.appendChild(b); });
+  Object.keys(FONDOS).forEach(function (k) { var b = document.createElement('button'); b.type = 'button'; b.dataset.v = k; b.className = 'portada-op'; if (IMAGENES[k]) { var mi = document.createElement('span'); mi.className = 'portada-mini'; mi.setAttribute('aria-hidden', 'true'); mi.style.backgroundImage = 'url("/img/agenda/fondo-' + k + '-mini.webp?v=4")'; b.appendChild(mi); } b.appendChild(document.createTextNode(FONDOS[k])); b.addEventListener('click', function () { elegir('ag-portada-fondo', k); }); fb.appendChild(b); });
   Object.keys(COLORES).forEach(function (k) { var b = document.createElement('button'); b.type = 'button'; b.dataset.v = k; b.className = 'portada-color'; b.style.setProperty('--c', COLORES[k].a); b.setAttribute('aria-label', COLORES[k].n); b.title = COLORES[k].n; b.addEventListener('click', function () { elegir('ag-portada-color', k); }); cb.appendChild(b); });
   /* el nombre es el mismo de «Esta agenda es de» del inicio de la página */
   var nombre = document.getElementById('portada-nombre'), duena = document.getElementById('ag-duena');
