@@ -524,3 +524,8 @@ html[data-casa="agenda"][data-tema="grafito"] .nav-principal li.g-agenda a:hover
 /* Finanzas del negocio (29-oct-2026): ya no se separa lo personal de lo del negocio */
 .fin-check[hidden], #fin-fil-neg[hidden] { display: none !important; }
 @media (max-width: 440px) { .ficha-barra, .vers-barra { gap: 4px; } .ficha-barra .boton-chico, .vers-barra .boton-chico { font-size: 0.8rem; padding-left: 8px; padding-right: 8px; } }
+
+/* Cabecera de la agenda más compacta (29-oct-2026, pedido de Sara): sin «Volver al inicio» y con menos espacio arriba y abajo */
+section.intro-rincon.intro-agenda { padding-top: 12px; padding-bottom: 10px; }
+.agenda-cabecera { margin: 0 auto 2px; }
+section#agenda.seccion-suave { padding-top: 16px; }
