@@ -53,7 +53,7 @@ with sync_playwright() as p:
     t.v('configurada: la tarjeta aparece', pg.locator('#calendario-sync').is_visible())
     t.v('muestra «Conectar con Google Calendar» y nada más', pg.locator('#cs-conectar').is_visible() and pg.locator('#cs-sincronizar').is_hidden() and pg.locator('#cs-desconectar').is_hidden() and pg.locator('#cs-quitar').is_hidden())
     t.v('dice que es gratis y opcional y enlaza a la política', 'gratis y opcional' in pg.locator('#cs-texto').inner_text() and pg.locator('#calendario-sync a[href="/politicas.html#datos"]').count() == 1)
-    t.v('avisa del mensaje «no verificada» antes de conectar', pg.locator('#cs-nota-verif').is_visible())
+    t.v('ya no avisa del mensaje «no verificada» (el permiso es no sensible) y explica el calendario aparte', pg.locator('#cs-nota-verif').is_hidden() and 'calendario aparte llamado «Agenda para tejedoras»' in pg.locator('#cs-texto').inner_text() and 'calendario propio' in pg.locator('#calendario-sync').inner_text())
     t.v('no se imprime', 'no-imprimir' in pg.locator('#calendario-sync').get_attribute('class'))
     pg.locator('#cs-conectar').click(); pg.wait_for_timeout(1200)
     t.v('«Conectar» lleva a Google', pg.url.startswith('https://accounts.google.com/'), pg.url)
