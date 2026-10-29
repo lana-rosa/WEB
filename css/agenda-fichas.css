@@ -524,3 +524,28 @@ html[data-casa="agenda"][data-tema="grafito"] .nav-principal li.g-agenda a:hover
 /* Finanzas del negocio (29-oct-2026): ya no se separa lo personal de lo del negocio */
 .fin-check[hidden], #fin-fil-neg[hidden] { display: none !important; }
 @media (max-width: 440px) { .ficha-barra, .vers-barra { gap: 4px; } .ficha-barra .boton-chico, .vers-barra .boton-chico { font-size: 0.8rem; padding-left: 8px; padding-right: 8px; } }
+
+/* Cabecera de la agenda más compacta (29-oct-2026, pedido de Sara): sin «Volver al inicio» y con menos espacio arriba y abajo */
+section.intro-rincon.intro-agenda { padding-top: 12px; padding-bottom: 10px; }
+.agenda-cabecera { margin: 0 auto 2px; }
+section#agenda.seccion-suave { padding-top: 16px; }
+
+/* Configuración: botón «Cerrar» arriba y abajo, y rueda de colores (29-oct-2026, pedido de Sara) */
+.agenda-config-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 4px; }
+.agenda-config-cab strong { font-family: var(--fuente-titulo); font-size: 1.15rem; color: var(--rosa-texto); }
+.agenda-config-cerrar { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px 16px; font: inherit; font-weight: 700; color: var(--rosa-texto); background: #fff; border: 2px solid var(--rosa-medio); border-radius: 999px; cursor: pointer; }
+.agenda-config-cerrar:hover { background: var(--rosa-suave); }
+.agenda-config-pie { margin: 0; text-align: center; }
+.ac-rueda-caja { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 26px; }
+.ac-rueda { position: relative; width: 210px; height: 210px; flex: none; border-radius: 50%; touch-action: none; cursor: crosshair; --v: 1;
+  background: radial-gradient(circle closest-side, #fff 0%, rgba(255,255,255,0) 100%), conic-gradient(#f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00); box-shadow: 0 0 0 4px #fff, 0 0 0 5.5px rgba(0,0,0,.14), 0 6px 16px rgba(0,0,0,.12); }
+.ac-rueda:focus-visible { outline: 3px solid var(--lila); outline-offset: 6px; }
+.ac-punto { position: absolute; z-index: 2; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1.5px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3); pointer-events: none; }
+.ac-lado { display: grid; gap: 10px; justify-items: start; text-align: left; max-width: 300px; }
+.ac-claridad { display: grid; gap: 4px; width: 100%; font-weight: 700; font-size: .9rem; color: var(--rosa-texto); }
+.ac-claridad input { width: 100%; accent-color: var(--rosa-principal); min-height: 28px; }
+.ac-muestra { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: .9rem; color: #3a3a3f; }
+.ac-muestra i { width: 36px; height: 36px; border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(255,255,255,.75), 0 0 0 1px rgba(0,0,0,.2); }
+.ac-ayuda { margin: 0; font-size: .85rem; color: #55555b; }
+html[data-casa="agenda"][data-tema="libre"] .nav-principal li.g-agenda a { background: var(--casa-t2); color: var(--rosa-texto); }
+html[data-casa="agenda"][data-tema="libre"] .nav-principal li.g-agenda a:hover { background: var(--rosa-boton-hover); color: #fff; }

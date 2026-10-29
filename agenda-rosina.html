@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=42">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=9">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=11">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -843,7 +843,7 @@ main > :first-child { padding-top: 40px !important; }
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png">
 <meta name="theme-color" content="#1FB06F">
-<script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta")document.documentElement.setAttribute("data-tema",t)}catch(e){}</script>
+<script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta"){document.documentElement.setAttribute("data-tema",t);if(t==="libre"){var v=JSON.parse(localStorage.getItem("lrAgendaColorVars")||"{}");for(var k in v)if(/^--[a-z0-9-]+$/.test(k)&&/^[#a-z0-9 ,.()%-]+$/i.test(v[k]))document.documentElement.style.setProperty(k,v[k])}}}catch(e){}</script>
 <link rel="manifest" href="/manifest-agenda.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Agenda para tejedoras">
 <!-- ICONOS:FIN -->
@@ -917,7 +917,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main id="contenido-principal" tabindex="-1">
   <section class="contenedor intro-rincon intro-agenda">
-    <p class="volver-rincon"><a href="/">← Volver al inicio</a></p>
     <header class="agenda-cabecera">
       <img class="portada-rosina" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" width="512" height="512" decoding="async">
       <div class="ac-titulo"><p class="eslogan">Agenda digital · 7 días gratis con tu cuenta · Lana Rosa</p><h1>Agenda para tejedoras</h1></div>
@@ -932,6 +931,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="agenda-config no-imprimir" id="agenda-config" role="region" aria-label="Configuración de la agenda" hidden>
+      <div class="agenda-config-cab"><strong>⚙️ Configuración</strong><button type="button" class="agenda-config-cerrar" data-cerrar-config aria-label="Cerrar la configuración"><span aria-hidden="true">✕</span> Cerrar</button></div>
       <div class="cuaderno-portada">
     <div class="portada-agenda">
       <label for="ag-duena">Esta agenda es de</label>
@@ -945,7 +945,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda en este dispositivo (y en tu cuenta, si activaste la copia): si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
     </div>
 
-      <div class="agenda-tour-fila"><button type="button" class="enlace-copia" id="agenda-tour-btn">🧭 Ver el tour de bienvenida</button></div>
+      <div class="agenda-tour-fila"><button type="button" class="enlace-copia" id="agenda-tour-btn">🧭 Ver el tutorial de bienvenida</button></div>
       <fieldset class="agenda-colores" id="agenda-colores"><legend>Color de la agenda</legend><div class="ac-opciones" id="ac-opciones"></div></fieldset>
     <div class="copia-agenda">
       <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
@@ -4123,8 +4123,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=24" defer></script>
-<script src="/js/agenda/config.js?v=2" defer></script>
-<script src="/js/agenda/tour.js?v=3" defer></script>
+<script src="/js/agenda/config.js?v=4" defer></script>
+<script src="/js/agenda/tour.js?v=4" defer></script>
 <script src="/js/agenda/fichas.js?v=2" defer></script>
 <script src="/js/agenda/formas.js?v=2" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
