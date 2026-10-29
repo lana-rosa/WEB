@@ -18,7 +18,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var estado = null, sb = null, TEXTOS = {
     'Mis materiales': 'Tu inventario de lanas, tus agujas y tu lista de compras.',
     'Mi emprendimiento': 'Pedidos con cuentas y saldos, clientas, ventas, catálogo de precios, ferias, gastos y resultados del negocio.',
-    'Mis finanzas': 'Ingresos, gastos, presupuesto y metas, deudas, tarjetas y análisis, con gráficas.',
+    'Finanzas del negocio': 'Tu negocio en números: ingresos y gastos del negocio, presupuesto y metas, deudas, tarjetas y análisis, con gráficas.',
     'Fechas y bienestar': 'El calendario del año con todas tus fechas, fechas especiales, diario de tejido y pausas activas.'
   };
 
@@ -47,7 +47,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   function textoTarjeta(a) {
     if (a === 'miembro') return '💎 <strong>Tu membresía está activa</strong> hasta el ' + fecha(estado.vence) + '. Tienes toda la agenda.';
     if (a === 'prueba') return '🎁 <strong>Prueba gratis:</strong> tienes toda la agenda hasta el ' + fecha(estado.prueba_hasta) + ' (' + (diasQue(estado.prueba_hasta) === 1 ? 'último día' : 'quedan ' + diasQue(estado.prueba_hasta) + ' días') + '). Después, Inicio, Mi tablero y Mis proyectos siguen gratis y el resto es con membresía desde ' + PRECIO_MES + ' al mes.';
-    return '🔒 <strong>Tu prueba gratis terminó.</strong> Inicio, Mi tablero y Mis proyectos siguen gratis. Con la membresía recuperas Materiales, Emprendimiento, Finanzas y Fechas y bienestar desde ' + PRECIO_MES + ' al mes.';
+    return '🔒 <strong>Tu prueba gratis terminó.</strong> Inicio, Mi tablero y Mis proyectos siguen gratis. Con la membresía recuperas Materiales, Emprendimiento, Finanzas del negocio y Fechas y bienestar desde ' + PRECIO_MES + ' al mes.';
   }
   function tarjeta(id, antes) {
     var t = $(id); if (t) return t;
@@ -90,7 +90,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   /* Ventana de planes y pago */
   var HTML = '<button type="button" class="mm-cerrar" id="mm-cerrar" aria-label="Cerrar">✕</button>' +
     '<h2 id="mm-titulo">Agenda completa 💎</h2><p class="mm-estado" id="mm-estado"></p>' +
-    '<ul class="mm-lista"><li>Mis materiales: inventario de lanas, agujas y lista de compras</li><li>Mi emprendimiento: pedidos con saldos, clientas, ventas, catálogo, ferias y gastos</li><li>Mis finanzas: ingresos, gastos, presupuesto, deudas, tarjetas y análisis</li><li>Fechas y bienestar: calendario del año, fechas especiales, diario y pausas activas</li></ul>' +
+    '<ul class="mm-lista"><li>Mis materiales: inventario de lanas, agujas y lista de compras</li><li>Mi emprendimiento: pedidos con saldos, clientas, ventas, catálogo, ferias y gastos</li><li>Finanzas del negocio: ingresos, gastos, presupuesto, deudas, tarjetas y análisis del negocio</li><li>Fechas y bienestar: calendario del año, fechas especiales, diario y pausas activas</li></ul>' +
     '<p class="mm-gratis">Siempre gratis con tu cuenta: Inicio, Mi tablero y Mis proyectos.</p>' +
     '<div class="mm-planes" role="radiogroup" aria-label="Plan de la membresía">' +
     '<label class="mm-plan"><input type="radio" name="mm-plan" value="mensual"><span><strong>Mensual</strong><em>' + PRECIO_MES + '</em><small>al mes</small></span></label>' +

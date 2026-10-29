@@ -38,7 +38,12 @@ with sync_playwright() as p:
     cap(pg, 'fichas-pedidos-390.png')
     ancho = pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"); T.v('390 px: sin desplazamiento horizontal', ancho)
     pg.click('#tabla-pedidos tr[data-fila="1"] .ficha-cab'); pg.wait_for_timeout(200)
-    pg.click('#tabla-pedidos tr[data-fila="1"] .ficha-borrar'); pg.wait_for_timeout(400)
+    # barra de abajo (29-oct-2026): Agregar · Añadir a Google Calendar · Borrar, en un solo renglón, actuando sobre la ficha activa
+    ys = pg.evaluate("[...document.querySelectorAll('#control-pedidos .ficha-barra button')].map(b => [(['agregar-renglon','barra-cal','barra-borrar'].find(c => b.classList.contains(c))), Math.round(b.getBoundingClientRect().top), Math.round(b.getBoundingClientRect().left)])")
+    T.v('la barra tiene Agregar, Añadir a Google Calendar y Borrar, en ese orden', [x[0] for x in ys] == ['agregar-renglon', 'barra-cal', 'barra-borrar'], ys)
+    T.v('390 px: los tres botones caben en un solo renglón', len(set(x[1] for x in ys)) == 1 and pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), ys)
+    T.v('los botones de cada ficha ya no se ven (solo la barra)', pg.locator('#tabla-pedidos tr[data-fila="1"] .ficha-borrar').is_hidden() and pg.locator('#control-pedidos .barra-borrar').is_visible())
+    pg.click('#control-pedidos .barra-borrar'); pg.wait_for_timeout(400)
     T.v('borrar la primera ficha sube la segunda y no deja huecos', pg.input_value('#ag-p1-cliente') == 'Luz' and pg.input_value('#ag-p2-cliente') == '' and len(vis(pg, 'tabla-pedidos')) == 1, vis(pg, 'tabla-pedidos'))
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # 2) datos de antes: renglones 1 y 3 llenos, y un estado escrito a mano

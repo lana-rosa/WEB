@@ -233,5 +233,5 @@
   } catch (e) {}
 
   // chat de ayuda de Rosina (botón flotante)
-  try { var sc = document.createElement('script'); sc.src = '/js/rosina-chat.js?v=10'; sc.defer = true; document.body.appendChild(sc); } catch (e) {}
+  try { var sc = document.createElement('script'); sc.src = '/js/rosina-chat.js?v=11'; sc.defer = true; document.body.appendChild(sc); } catch (e) {}
 })();

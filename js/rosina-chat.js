@@ -102,7 +102,7 @@
     panel = document.createElement('div'); panel.className = 'rc-panel';
     panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Chat con Rosina');
     panel.innerHTML = '<div class="rc-cab"><img src="/img/mini/rosina-saludo.webp" alt="" width="40" height="40"><div><b>Rosina</b><small>Asistente de Lana Rosa</small></div><button type="button" aria-label="Cerrar chat">×</button></div>' +
-      '<div class="rc-msgs"></div><p class="rc-aviso">No escribas datos personales (cédula, dirección, teléfono). Tu mensaje lo procesa un proveedor de inteligencia artificial. <a href="/politicas.html#ia-chat">Más información</a></p><form class="rc-form"><input type="text" maxlength="500" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta" autocomplete="off"><button type="submit">Enviar</button></form>';
+      '<div class="rc-msgs"></div><p class="rc-aviso">Tu mensaje lo procesa un proveedor de inteligencia artificial. <a href="/politicas.html#ia-chat">Más información</a></p><form class="rc-form"><input type="text" maxlength="500" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta" autocomplete="off"><button type="submit">Enviar</button></form>';
     document.body.appendChild(panel);
     msgs = panel.querySelector('.rc-msgs'); input = panel.querySelector('input'); enviar = panel.querySelector('.rc-form button');
     panel.querySelector('.rc-cab button').addEventListener('click', cerrar);
