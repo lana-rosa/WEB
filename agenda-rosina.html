@@ -52,9 +52,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/fuentes.css?v=3">
 
-<link rel="stylesheet" href="/css/comun.css?v=42">
+<link rel="stylesheet" href="/css/comun.css?v=43">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=11">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=12">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -843,6 +843,7 @@ main > :first-child { padding-top: 40px !important; }
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png">
 <meta name="theme-color" content="#1FB06F">
+<script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta"){document.documentElement.setAttribute("data-tema",t);if(t==="libre"){var v=JSON.parse(localStorage.getItem("lrAgendaColorVars")||"{}");for(var k in v)if(/^--[a-z0-9-]+$/.test(k)&&/^[#a-z0-9 ,.()%-]+$/i.test(v[k]))document.documentElement.style.setProperty(k,v[k])}}}catch(e){}</script>
 <link rel="manifest" href="/manifest-agenda.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Agenda para tejedoras">
 <!-- ICONOS:FIN -->
@@ -1318,6 +1319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-21-corazon-grande.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mi negocio en números</h3><p>Cómo va tu negocio este mes: lo que entró, lo que salió y lo que te queda. Aquí van solo los números de tu negocio, no tus gastos personales.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
           <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
           <strong class="fin-mes-txt" aria-live="polite"></strong>
@@ -1347,6 +1349,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Ingresos y gastos del negocio</h3><p>Anota lo que entra, lo que sale y lo que ahorras en tu negocio. Puedes escribirlo como lo dirías.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
           <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
           <strong class="fin-mes-txt" aria-live="polite"></strong>
@@ -1385,6 +1388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-05-ovillo-sentada.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Presupuesto y metas del negocio</h3><p>Cuánto quieres gastar en tu negocio por categoría y para qué está ahorrando tu negocio.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <h4 class="sub-hoja">Presupuesto mensual por categoría</h4>
         <div class="fin-pres" id="fin-pres"></div>
         <h4 class="sub-hoja">Metas de ahorro del negocio</h4>
@@ -1474,6 +1478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Gastos del negocio</h3><p>Materiales, transporte, ferias y todo lo que gastas en tu emprendimiento, mes a mes.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="elegir-mes no-imprimir">
           <div class="linea"><label for="gs-mes">Mes</label><select id="gs-mes"></select></div>
           <button type="button" class="boton-secundario boton-chico" id="gs-mes-sig">➕ Agregar el mes siguiente</button>
@@ -1506,6 +1511,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Resultados del negocio</h3><p>Cuánto vendiste, cuánto te costó y cuánto te quedó. Aparte de tus gastos personales.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
           <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
           <strong class="fin-mes-txt" aria-live="polite"></strong>
@@ -1545,6 +1551,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Ficha de proyecto</h3><p>Anota todo para poder repetirlo (¡o regalarlo!) cuando quieras.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">📖 Para consultar</span><a href="/glosario-rosina.html" target="_blank" rel="noopener">Glosario ilustrado</a><a href="/recursos-rosina.html#abreviaturas" target="_blank" rel="noopener">Abreviaturas</a></p>
         <div class="vers-cuerpo">
         <div class="grid-ficha">
           <div class="linea"><label for="ag-nombre">Nombre del producto</label><input id="ag-nombre" data-guardar></div>
@@ -1697,6 +1704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Proyectos por tejer</h3><p>Todo lo que quieres tejer, con su avance y la fecha de cada avance.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">📖 Para consultar</span><a href="/glosario-rosina.html" target="_blank" rel="noopener">Glosario ilustrado</a><a href="/recursos-rosina.html#abreviaturas" target="_blank" rel="noopener">Abreviaturas</a></p>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
             <thead><tr><th>Proyecto</th><th>Para quién</th><th>Fecha límite</th><th>Estado</th><th>Avance (con fecha)</th><th>Ya lo cumplí</th><th>Fecha en que lo cumplí</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
@@ -1710,6 +1718,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-11-computador.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mi colección de patrones</h3><p>Guarda dónde encontraste cada patrón para no perderlo.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">📖 Para consultar</span><a href="/glosario-rosina.html" target="_blank" rel="noopener">Glosario ilustrado</a><a href="/recursos-rosina.html#abreviaturas" target="_blank" rel="noopener">Abreviaturas</a></p>
         <p class="aviso-auto no-imprimir" id="patrones-auto" hidden></p>
         <div class="elegir-tienda oferta-merceria no-imprimir" data-categorias="Patrones">
           <label>Patrones de tejido de la Mercería Lana Rosa</label>
@@ -1857,6 +1866,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-16-diadema.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Registro de pausas activas</h3><p>Cuidar tus manos también es parte de tejer.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">🧘 Del Rincón de Rosina</span><a href="/revista/pausas-activas/" target="_blank" rel="noopener">Pausas activas para tejedoras</a></p>
         <div class="linea" style="max-width:240px; margin-bottom:14px;"><label for="ag-pa-mes">Mes</label><input id="ag-pa-mes" data-guardar></div>
         <p style="margin:0 0 8px; font-size:0.9rem;">Marca los días en que hiciste tus pausas activas mientras tejías.</p>
         <div class="vueltas-grid dias-pausas" id="pausas-grid"></div>
@@ -1868,6 +1878,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-17-gorro.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Lo que aprendí</h3><p>Puntos y técnicas nuevas: mira todo lo que has avanzado.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">📖 Para consultar</span><a href="/glosario-rosina.html" target="_blank" rel="noopener">Glosario ilustrado</a><a href="/recursos-rosina.html#abreviaturas" target="_blank" rel="noopener">Abreviaturas</a></p>
         <div class="elegir-tienda no-imprimir">
           <label for="aprendi-curso">Agregar un curso o tutorial de Lana Rosa Academy</label>
           <div class="elegir-tienda-fila">
@@ -1972,6 +1983,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <nav class="dp-pasos no-imprimir" id="dp-pasos" aria-label="Pasos para diseñar tu patrón"></nav>
           <fieldset class="dp-paso" data-paso="1" data-titulo="La idea">
             <legend>Paso 1 · La idea</legend>
+            <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Para empezar</span><a href="/recursos-rosina.html#checklist" target="_blank" rel="noopener">Checklist: tu primer amigurumi</a><a href="/paletas-rosina.html" target="_blank" rel="noopener">Paletas de colores</a></p>
             <div class="grid-ficha">
               <div class="linea ancha"><label for="ag-dp-nombre">Nombre de tu patrón</label><input id="ag-dp-nombre" data-guardar placeholder="Por ejemplo: Ovejita Rosa"></div>
               <div class="linea"><label for="ag-dp-tipo">¿Qué vas a tejer?</label><input id="ag-dp-tipo" data-guardar placeholder="Amigurumi, bufanda, bolso…"></div>
@@ -1982,6 +1994,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </fieldset>
           <fieldset class="dp-paso" data-paso="2" data-titulo="Materiales">
             <legend>Paso 2 · Materiales</legend>
+            <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramientas de Rosina</span><a href="/calculadoras-rosina.html#agujas" target="_blank" rel="noopener">Agujas y grosores</a><a href="/calculadoras-rosina.html#lana" target="_blank" rel="noopener">¿Cuánta lana necesito?</a><a href="/calculadoras-rosina.html#muestra" target="_blank" rel="noopener">Muestra</a><a href="/paletas-rosina.html" target="_blank" rel="noopener">Paleta de colores</a><a href="/recursos-rosina.html#checklist" target="_blank" rel="noopener">Checklist: tu primer amigurumi</a></p>
             <div class="grid-ficha">
               <div class="linea"><label for="ag-dp-lana">Lana o hilo (marca, grosor y colores)</label><input id="ag-dp-lana" data-guardar></div>
               <div class="linea"><label for="ag-dp-aguja">Aguja (mm)</label><input id="ag-dp-aguja" data-guardar></div>
@@ -1999,12 +2012,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </fieldset>
           <fieldset class="dp-paso" data-paso="3" data-titulo="Abreviaturas">
             <legend>Paso 3 · Abreviaturas que usas</legend>
+            <p class="herr-rosina no-imprimir"><span class="hr-t">📖 Para consultar</span><a href="/glosario-rosina.html" target="_blank" rel="noopener">Glosario ilustrado</a><a href="/recursos-rosina.html#abreviaturas" target="_blank" rel="noopener">Abreviaturas</a></p>
             <p class="dp-ayuda no-imprimir">Toca una para agregarla. Todas están en el <a href="/glosario-rosina.html">glosario de Rosina</a>.</p>
             <div class="dp-chips no-imprimir" id="dp-chips"></div>
             <div class="grid-ficha"><div class="linea ancha"><label for="ag-dp-abrev">Abreviaturas</label><textarea id="ag-dp-abrev" rows="4" data-guardar></textarea></div></div>
           </fieldset>
           <fieldset class="dp-paso" data-paso="4" data-titulo="Partes y vueltas">
             <legend>Paso 4 · Partes y vueltas</legend>
+            <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramientas de Rosina</span><a href="/calculadoras-rosina.html#aumentos" target="_blank" rel="noopener">Aumentos y disminuciones</a><a href="/calculadoras-rosina.html#esferas" target="_blank" rel="noopener">Esferas y cabezas</a><a href="/glosario-rosina.html" target="_blank" rel="noopener">Glosario ilustrado</a></p>
             <p class="dp-ayuda no-imprimir">Escribe cada parte en su casilla, una vuelta por renglón. Por ejemplo: «V1: 6 pb en am (6)».</p>
             <div id="dp-partes">
               <details class="dp-parte" open>
@@ -2113,7 +2128,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="pie-rico">
   <div class="contenedor pie-top">
     <div class="pie-marca">
-      <img class="pie-logo-agenda" src="/img/logo-agenda-360.webp" alt="Lana Rosa Agenda para tejedoras" width="190" height="121" loading="lazy" decoding="async">
+      <div class="pie-logo-anim" role="img" aria-label="Lana Rosa Agenda" style="aspect-ratio:65.649 / 38.233"><span class="la-cabeza" style="transform-origin:30.2% 56.4%"><span class="la-pos" style="left:11.231%;top:0.000%;width:37.895%;height:55.426%"><img class="la-sheep" src="/img/logo-animado/00.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:26.404%;top:20.498%;width:3.793%;height:4.852%"><img class="la-eye" src="/img/logo-animado/01.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span></span><span class="la-pos" style="left:48.569%;top:43.868%;width:25.661%;height:46.808%"><img class="la-p" style="animation-delay:2.9s" src="/img/logo-animado/02.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:0.000%;top:51.916%;width:10.635%;height:32.566%"><img class="la-p" style="animation-delay:2.2s" src="/img/logo-animado/03.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:34.363%;top:58.172%;width:13.612%;height:19.794%"><img class="la-p" style="animation-delay:2.65s" src="/img/logo-animado/04.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:22.127%;top:58.300%;width:12.495%;height:19.669%"><img class="la-p" style="animation-delay:2.5s" src="/img/logo-animado/05.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:65.750%;top:60.089%;width:34.250%;height:25.224%"><img class="la-p" style="animation-delay:3.05s" src="/img/logo-animado/06.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:10.227%;top:60.534%;width:12.459%;height:19.988%"><img class="la-p" style="animation-delay:2.35s" src="/img/logo-animado/07.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-nombre" aria-hidden="true" style="top:88.35%;height:9.14cqw;line-height:9.14cqw;font-size:6.25cqw"><span class="la-p la-t" style="animation-delay:3.6s">A</span><span class="la-p la-t" style="animation-delay:3.68s">g</span><span class="la-p la-t" style="animation-delay:3.76s">e</span><span class="la-p la-t" style="animation-delay:3.84s">n</span><span class="la-p la-t" style="animation-delay:3.92s">d</span><span class="la-p la-t" style="animation-delay:4.0s">a</span></span></div>
       <nav class="pie-casas-mini" aria-label="Casas Lana Rosa"><span class="pie-h3">Nuestras casas</span><a href="/tienda.html" data-casa="crochet" title="Tienda de amigurumis"><span aria-hidden="true">🧸</span> Tienda</a><a href="/merceria/" data-casa="merceria" title="Mercería"><span aria-hidden="true">🧶</span> Mercería</a><a href="/academy/" data-casa="academy" title="Academy"><span aria-hidden="true">🎓</span> Academy</a><a href="/agenda-rosina.html" data-casa="agenda" title="Agenda" class="casa-actual" aria-current="true"><span aria-hidden="true">📅</span> Agenda</a></nav>
     </div>
     <div class="pie-redes" aria-label="Redes sociales">

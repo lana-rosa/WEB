@@ -549,3 +549,11 @@ section#agenda.seccion-suave { padding-top: 16px; }
 .ac-ayuda { margin: 0; font-size: .85rem; color: #55555b; }
 html[data-casa="agenda"][data-tema="libre"] .nav-principal li.g-agenda a { background: var(--casa-t2); color: var(--rosa-texto); }
 html[data-casa="agenda"][data-tema="libre"] .nav-principal li.g-agenda a:hover { background: var(--rosa-boton-hover); color: #fff; }
+
+/* Enlaces a las herramientas y consultas del Rincón de Rosina dentro de las hojas (29-oct-2026, pedido de Sara) */
+.herr-rosina { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 14px; font-size: .88rem; }
+.herr-rosina .hr-t { font-weight: 700; color: var(--rosa-texto); margin-right: 2px; }
+.herr-rosina a { display: inline-flex; align-items: center; min-height: 34px; padding: 4px 12px; background: #fff; color: var(--rosa-texto); font-weight: 600; text-decoration: none; border: 1.5px solid var(--rosa-medio); border-radius: 999px; }
+.herr-rosina a::after { content: '↗'; margin-left: 6px; font-size: .8em; opacity: .7; }
+.herr-rosina a:hover { background: var(--rosa-suave); }
+.herr-rosina a:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }

@@ -59,8 +59,12 @@ APP_BASE = ('crochet', 'Lana Rosa Crochet')
 def iconos(casa, pagina=None):
     ico, apple, color = ICONOS.get(casa, ICONOS_BASE)
     app = APP.get(casa, APP_BASE)
+    # La agenda recuerda el color elegido: este script va aquí (dentro del bloque generado) para que el generador no lo borre.
+    tema = ('<script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta"){document.documentElement.setAttribute("data-tema",t);'
+            'if(t==="libre"){var v=JSON.parse(localStorage.getItem("lrAgendaColorVars")||"{}");for(var k in v)if(/^--[a-z0-9-]+$/.test(k)&&/^[#a-z0-9 ,.()%-]+$/i.test(v[k]))'
+            'document.documentElement.style.setProperty(k,v[k])}}}catch(e){}</script>\n') if casa == 'agenda' else ''
     return (f'<!-- ICONOS:INICIO (generado) -->\n<link rel="icon" type="image/png" href="{ico}">\n'
-            f'<link rel="apple-touch-icon" href="{apple}">\n<meta name="theme-color" content="{color}">\n'
+            f'<link rel="apple-touch-icon" href="{apple}">\n<meta name="theme-color" content="{color}">\n{tema}'
             f'<link rel="manifest" href="/manifest-{app[0]}.webmanifest">\n'
             f'<meta name="apple-mobile-web-app-title" content="{app[1]}">\n<!-- ICONOS:FIN -->')
 
@@ -306,10 +310,8 @@ def casas_pie_mini(casa):
     return '<nav class="pie-casas-mini" aria-label="Casas Lana Rosa"><span class="pie-h3">Nuestras casas</span>' + ''.join(items) + '</nav>'
 
 def logo_pie(casa, img, alt):
-    """Logo animado del pie sobre fondo transparente (herramientas/logo-animado/): Tienda (crochet y páginas comunes), Mercería y Academy."""
-    if casa == 'agenda':   # la Agenda no tiene logo animado: logo fijo en verde
-        return f'<img class="pie-logo-agenda" src="/{img}" alt="{alt}" width="190" height="121" loading="lazy" decoding="async">'
-    nombre = 'componente.html' if casa not in ('merceria', 'academy') else f'componente-{casa}.html'
+    """Logo animado del pie sobre fondo transparente (herramientas/logo-animado/): Tienda (crochet y páginas comunes), Mercería, Academy y Agenda."""
+    nombre = 'componente.html' if casa not in ('merceria', 'academy', 'agenda') else f'componente-{casa}.html'
     return open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logo-animado', nombre), encoding='utf-8').read()
 
 def pie_casa(modelo, casa, pagina=None):

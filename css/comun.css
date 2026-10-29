@@ -332,6 +332,7 @@ html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary:hov
 .pie-logo-anim { container-type: inline-size; }
 .pie-logo-anim .la-nombre { position: absolute; left: 0; right: 0; display: block; text-align: center; white-space: nowrap; color: #DDE6FB; font-family: var(--fuente-cuerpo); font-weight: 400; letter-spacing: .08em; pointer-events: none; }
 .pie-logo-anim .la-nombre .la-p { display: inline-block; }
+.pie-logo-anim[aria-label="Lana Rosa Agenda"] .la-nombre { color: #D3F5E4; }   /* Agenda: el nombre en verde muy claro (Academy y Mercería usan el azul/lila claro) */
 
 /* Menú móvil: el desplazamiento se queda dentro del menú y la página de atrás no se mueve mientras está abierto (23-oct-2026) */
 .nav-movil-panel { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
