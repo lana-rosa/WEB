@@ -15,7 +15,7 @@ La cinta de cada fondo (pedido de Sara: dibujos pequeños y COMPLETOS, sin desen
 Todo es determinista. Uso: /usr/bin/python3 herramientas/generar_fondos_agenda.py   (necesita numpy y Pillow)"""
 import os
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIG = os.path.join(R, 'herramientas', 'agenda-fondos', 'originales'); SAL = os.path.join(R, 'img', 'agenda'); os.makedirs(SAL, exist_ok=True)
@@ -45,8 +45,8 @@ FONDOS = {
         {'caja': (775, 600, 1055, 788), 'm': 34, 'espejo': 'abajo', 'eje': 146}, {'caja': (686, 48, 738, 110), 'm': 24}, {'caja': (385, 600, 592, 788), 'm': 34}, {'caja': (1028, 540, 1082, 596), 'm': 24},
         {'caja': (1262, 205, 1400, 445), 'm': 34, 'espejo': 'derecha', 'eje': 126, 'elipse': True}, {'caja': (1138, 225, 1170, 256), 'm': 14}, {'caja': (503, 72, 552, 130), 'm': 24},
         {'caja': (244, 380, 294, 440), 'm': 24}, {'caja': (258, 640, 320, 700), 'm': 24}]},
-    'rosina':   {'tipo': 'patron', 'alto': 170, 'largo': 760, 'crema': (255, 250, 252), 'linea': (240, 150, 183), 'portada_x0': 560},
-    'ovejitas': {'tipo': 'patron', 'alto': 170, 'largo': 760, 'crema': (255, 247, 249), 'linea': (240, 168, 188), 'portada_x0': 700},
+    'rosina':   {'tipo': 'patron', 'alto': 170, 'largo': 760, 'crema': (255, 250, 252), 'linea': (240, 150, 183), 'semilla': 11},
+    'ovejitas': {'tipo': 'patron', 'alto': 170, 'largo': 760, 'crema': (255, 247, 249), 'linea': (240, 168, 188), 'semilla': 5},
 }
 
 
@@ -73,6 +73,42 @@ def portada_marco(L):
     arriba = min(range(int(alto * 0.3), int(alto * 0.7)), key=lambda a: tinta[a - 1] + tinta[H - (alto - a)])   # dónde unir: por donde la costura corte menos dibujos
     sal = Image.new('RGB', (W, alto), (255, 255, 255)); sal.paste(P.crop((0, 0, W, arriba)), (0, 0)); sal.paste(P.crop((0, H - (alto - arriba), W, H)), (0, arriba))
     return sal
+
+
+def portada_patron(L, semilla):
+    """Portada de un patrón (Rosina y amigos, ovejitas), pedido de Sara 29-oct: personajes MÁS PEQUEÑOS y bien repartidos. Se recortan de la imagen original todos los dibujos que están enteros
+    (personajes, flores, hojitas, corazones, ovillos) y se acomodan de nuevo, reducidos, en una hoja carta: primero los personajes, separados entre sí y sin repetir el mismo al lado, y luego
+    los adornos en los espacios. Es determinista (semilla fija)."""
+    import random
+    rnd = random.Random(semilla); K = 4; a = np.asarray(L.convert('RGB'), dtype=np.int16); h, w = a.shape[:2]
+    oc = ((255 - a.min(axis=2)) >= 12); H4, W4 = h // K, w // K
+    pq = oc[:H4 * K, :W4 * K].reshape(H4, K, W4, K).mean(axis=(1, 3)) > 0.06
+    d = pq.copy(); d[1:] |= pq[:-1]; d[:-1] |= pq[1:]; d[:, 1:] |= pq[:, :-1]; d[:, :-1] |= pq[:, 1:]
+    lab, n = etiquetas(d); piezas = []
+    for i in range(1, n + 1):
+        ys, xs = np.where(lab == i)
+        if len(ys) < 6 or ys.min() == 0 or xs.min() == 0 or ys.max() == H4 - 1 or xs.max() == W4 - 1: continue    # solo las que están enteras
+        x0, x1, y0, y1 = xs.min() * K, (xs.max() + 1) * K, ys.min() * K, (ys.max() + 1) * K
+        m = np.kron((lab[ys.min():ys.max() + 1, xs.min():xs.max() + 1] == i), np.ones((K, K), bool))
+        rec = L.crop((x0, y0, x1, y1)).convert('RGB'); mask = Image.fromarray((m[:rec.height, :rec.width] * 255).astype(np.uint8), 'L').filter(ImageFilter.MaxFilter(5))
+        piezas.append((max(rec.size), rec, mask))
+    grandes = [x for x in piezas if x[0] >= 95]; chicas = [x for x in piezas if 30 <= x[0] < 95]
+    esc = 112.0 / float(np.median([x[0] for x in grandes]))                                              # los personajes miden ~112 px de alto en la hoja de 900 px de ancho
+    W, Hh = 900, round(900 * 11 / 8.5); lienzo = Image.new('RGB', (W, Hh), (255, 255, 255)); puestos = []
+    def reducir(x, extra=1.0):
+        t, rec, mask = x; k = esc * extra; sz = (max(1, round(rec.width * k)), max(1, round(rec.height * k))); return rec.resize(sz, Image.LANCZOS), mask.resize(sz, Image.LANCZOS)
+    def libre(cx, cy, r, sep):
+        return all((cx - px) ** 2 + (cy - py) ** 2 >= (r + pr + sep) ** 2 for px, py, pr in puestos)
+    orden = list(grandes); rnd.shuffle(orden); k = 0; ultimo = None
+    for _ in range(4000):
+        x = orden[k % len(orden)]
+        if x is ultimo: k += 1; continue
+        im, mk = reducir(x); r = max(im.size) / 2.0; cx = rnd.uniform(r + 22, W - r - 22); cy = rnd.uniform(r + 22, Hh - r - 22)
+        if libre(cx, cy, r, 34): lienzo.paste(im, (round(cx - im.width / 2), round(cy - im.height / 2)), mk); puestos.append((cx, cy, r)); ultimo = x; k += 1
+    for _ in range(9000):
+        x = rnd.choice(chicas); im, mk = reducir(x, 1.0); r = max(im.size) / 2.0; cx = rnd.uniform(r + 16, W - r - 16); cy = rnd.uniform(r + 16, Hh - r - 16)
+        if libre(cx, cy, r, 16): lienzo.paste(im, (round(cx - im.width / 2), round(cy - im.height / 2)), mk); puestos.append((cx, cy, r))
+    return lienzo
 
 
 # ---------- Búsqueda de recortes ----------
@@ -216,6 +252,6 @@ if __name__ == '__main__':
     for f, c in FONDOS.items():
         L = abrir(f)
         if c['tipo'] == 'marco': guardar_portada(f, portada_marco(L))                                    # vertical y de la forma de la hoja carta
-        else: ancho_carta = round(L.height * 8.5 / 11); guardar_portada(f, L.crop((c['portada_x0'], 0, c['portada_x0'] + ancho_carta, L.height)))
+        else: guardar_portada(f, portada_patron(L, c['semilla']))                                       # personajes pequeños y repartidos, con la forma de la hoja carta
         Lh, Lv = construir(f, L, c)
         print('ok', f, '- cinta de', Lh, 'x', Lv, 'px por lado')
