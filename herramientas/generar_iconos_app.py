@@ -1,58 +1,63 @@
-"""Genera los íconos de las cuatro apps instalables (img/app/): 192, 512 y 512 "maskable" para Tienda (Crochet), Mercería, Academy y la Agenda para tejedoras (verde menta; también su favicon y el apple-touch-icon).
-Uso: python3 herramientas/generar_iconos_app.py
-Parte de los íconos de la pestaña de cada casa (la ovejita con la lana en un círculo del color de la casa: rosado, lila y azul); miden 256 px, así que se amplían y se afilan los bordes."""
+"""Genera los íconos de las cuatro apps/casas (Tienda de amigurumis, Mercería, Academy y Agenda para tejedoras) — 29-oct-2026, a pedido de Sara: redondos y con la ovejita grande.
+Uso: /usr/bin/python3 herramientas/generar_iconos_app.py   (con esta versión de Pillow; la de `python3` puede dar otro resultado)
+
+El dibujo (ovejita con el ovillo) sale de la línea blanca del ícono de Academy (img/favicon-academy-256.png, guardado la primera vez en herramientas/iconos-app/ovejita-256.png para que
+la fuente no cambie al regenerar). Se agranda, se engrosa un poco y se pone sobre un círculo del color de cada casa:
+  img/favicon-<casa>-256.png y .ico          círculo con transparencia (pestaña del navegador)
+  img/apple-touch-icon-<casa>.png (180)      cuadrado lleno de color (iOS lo redondea solo)
+  img/app/icono-<casa>-192/512.png           círculo con transparencia
+  img/app/icono-<casa>-maskable-512.png      cuadrado lleno, con la oveja dentro de la zona segura (Android lo recorta con su forma)
+Para el logo del encabezado de la Agenda: herramientas/generar_logo_agenda.py."""
 import os
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageDraw, ImageChops
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FUENTES = {'crochet': 'img/favicon-256.png', 'merceria': 'img/favicon-merceria-256.png', 'academy': 'img/favicon-academy-256.png'}
-FONDO = {'crochet': (220, 61, 135), 'merceria': (142, 87, 216), 'academy': (46, 113, 205)}   # color del centro de cada ícono (relleno del "maskable")
+FUENTE = os.path.join(R, 'herramientas', 'iconos-app', 'ovejita-256.png')
+if not os.path.exists(FUENTE):
+    os.makedirs(os.path.dirname(FUENTE), exist_ok=True)
+    Image.open(os.path.join(R, 'img', 'favicon-academy-256.png')).convert('RGBA').save(FUENTE)
+COLORES = {'crochet': (232, 78, 148), 'merceria': (142, 85, 214), 'academy': (42, 111, 203), 'agenda': (31, 176, 111)}
+ARCHIVO = {'crochet': ('img/favicon-256.png', 'img/apple-touch-icon.png', 'img/favicon.ico'), 'merceria': ('img/favicon-merceria-256.png', 'img/apple-touch-icon-merceria.png', 'img/favicon-merceria.ico'),
+           'academy': ('img/favicon-academy-256.png', 'img/apple-touch-icon-academy.png', 'img/favicon-academy.ico'), 'agenda': ('img/favicon-agenda-256.png', 'img/apple-touch-icon-agenda.png', 'img/favicon-agenda.ico')}
 
-def afilar(im, lado):
-    """Amplía un ícono pequeño y endurece el borde alfa para que no se vea borroso."""
-    g = im.resize((lado, lado), Image.LANCZOS)
-    a = g.getchannel('A').point(lambda v: 0 if v < 100 else (255 if v > 156 else int((v - 100) * 255 / 56)))
-    g.putalpha(a)
-    return g.filter(ImageFilter.UnsharpMask(radius=2, percent=90, threshold=2))
-
-def sin_aro(im):
-    """El ícono de la pestaña es un disco de color con las esquinas blancas: se pinta todo lo que queda fuera del disco con el color del disco (sin círculo blanco)."""
-    im = im.copy(); w = im.width; c = w / 2; color = im.getpixel((int(c), int(w * 0.09)))[:3] + (255,)
-    px = im.load()
+def mascara_oveja():
+    """Línea blanca del dibujo como máscara de 1536 px, suave, más gruesa y recortada a su contorno."""
+    src = Image.open(FUENTE).convert('RGBA'); w = src.width; c = w // 2
+    base = src.getpixel((c, int(w * 0.09)))[:3]
+    g = Image.new('L', src.size, 0); px = src.load(); gp = g.load()
     for y in range(w):
         for x in range(w):
-            if (x - c + .5) ** 2 + (y - c + .5) ** 2 > (w * 0.455) ** 2: px[x, y] = color
+            r, gg, b, a = px[x, y]
+            if (x - c + .5) ** 2 + (y - c + .5) ** 2 > (w * 0.45) ** 2: continue    # fuera del disco (aro blanco): no es dibujo
+            gp[x, y] = max(0, min(255, int((r - base[0]) * 255 / max(1, 255 - base[0]))))
+    g = g.resize((1536, 1536), Image.LANCZOS).filter(ImageFilter.GaussianBlur(2))
+    g = g.point(lambda v: 0 if v < 70 else (255 if v > 150 else int((v - 70) * 255 / 80)))         # borde limpio
+    g = g.filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(1.6))                    # un poco más gruesa: se lee mejor en tamaños chicos
+    return g.crop(g.getbbox())
+
+MASCARA = mascara_oveja()
+
+def dibujo(lado, color, fraccion):
+    """Cuadrado `lado` del color, con la oveja blanca centrada que ocupa `fraccion` del lado (por su dimensión mayor)."""
+    im = Image.new('RGBA', (lado, lado), color + (255,))
+    k = fraccion * lado / max(MASCARA.size); m = MASCARA.resize((max(1, round(MASCARA.width * k)), max(1, round(MASCARA.height * k))), Image.LANCZOS)
+    blanco = Image.new('RGBA', m.size, (255, 255, 255, 255)); blanco.putalpha(m)
+    im.alpha_composite(blanco, ((lado - m.width) // 2, (lado - m.height) // 2 + round(lado * 0.01)))
     return im
 
-os.makedirs(os.path.join(R, 'img', 'app'), exist_ok=True)
-for casa, f in FUENTES.items():
-    src = sin_aro(Image.open(os.path.join(R, f)).convert('RGBA'))
-    FONDO[casa] = src.getpixel((src.width // 2, int(src.width * 0.09)))[:3]
-    for lado in (192, 512):
-        im = afilar(src, lado) if src.width < lado else src.resize((lado, lado), Image.LANCZOS)
-        im.save(os.path.join(R, 'img', 'app', f'icono-{casa}-{lado}.png'), optimize=True)
-    # maskable: el sistema recorta con su propia forma, así que el dibujo va al 78 % dentro de un cuadrado lleno
-    lienzo = Image.new('RGBA', (512, 512), FONDO[casa] + (255,))
-    chico = afilar(src, 400) if src.width < 400 else src.resize((400, 400), Image.LANCZOS)
-    lienzo.alpha_composite(chico, (56, 56))
-    lienzo.save(os.path.join(R, 'img', 'app', f'icono-{casa}-maskable-512.png'), optimize=True)
-print('ok')
+def circulo(im):
+    lado = im.width; S = 4
+    m = Image.new('L', (lado * S, lado * S), 0); ImageDraw.Draw(m).ellipse((0, 0, lado * S - 1, lado * S - 1), fill=255)
+    m = m.resize((lado, lado), Image.LANCZOS); a = ImageChops.multiply(im.getchannel('A'), m); im = im.copy(); im.putalpha(a); return im
 
-# ---- Agenda para tejedoras (28-oct-2026): la misma ovejita del ícono de Academy, con el disco en verde menta ----
-VERDE = (30, 158, 120)
-def recolorear(im, color):
-    """Cambia el azul del disco por `color` conservando el dibujo blanco (mezcla según cuánto se aleja el píxel del azul original)."""
-    im = im.copy().convert('RGBA'); base = im.getpixel((im.width // 2, int(im.width * 0.09)))[:3]; px = im.load()
-    for y in range(im.height):
-        for x in range(im.width):
-            r, g, b, a = px[x, y]
-            t = max(0.0, min(1.0, (r - base[0]) / max(1, 255 - base[0])))
-            px[x, y] = (int(color[0] + (255 - color[0]) * t), int(color[1] + (255 - color[1]) * t), int(color[2] + (255 - color[2]) * t), a)
-    return im
-src = recolorear(sin_aro(Image.open(os.path.join(R, 'img/favicon-academy-256.png')).convert('RGBA')), VERDE)
-src.save(os.path.join(R, 'img', 'favicon-agenda-256.png'), optimize=True)
-afilar(src, 180).save(os.path.join(R, 'img', 'apple-touch-icon-agenda.png'), optimize=True)
-for lado in (192, 512):
-    afilar(src, lado).save(os.path.join(R, 'img', 'app', f'icono-agenda-{lado}.png'), optimize=True)
-lienzo = Image.new('RGBA', (512, 512), VERDE + (255,)); lienzo.alpha_composite(afilar(src, 400), (56, 56))
-lienzo.save(os.path.join(R, 'img', 'app', 'icono-agenda-maskable-512.png'), optimize=True)
-print('ok agenda')
+if __name__ == '__main__':
+    os.makedirs(os.path.join(R, 'img', 'app'), exist_ok=True)
+    for casa, color in COLORES.items():
+        fav, apple, ico = ARCHIVO[casa]
+        circulo(dibujo(1024, color, 0.76)).resize((256, 256), Image.LANCZOS).save(os.path.join(R, fav), optimize=True)
+        dibujo(720, color, 0.74).resize((180, 180), Image.LANCZOS).convert('RGB').save(os.path.join(R, apple), optimize=True)
+        for lado in (192, 512):
+            circulo(dibujo(1024, color, 0.76)).resize((lado, lado), Image.LANCZOS).save(os.path.join(R, 'img', 'app', f'icono-{casa}-{lado}.png'), optimize=True)
+        dibujo(1024, color, 0.58).resize((512, 512), Image.LANCZOS).convert('RGB').save(os.path.join(R, 'img', 'app', f'icono-{casa}-maskable-512.png'), optimize=True)
+        base = circulo(dibujo(1024, color, 0.86))
+        base.resize((48, 48), Image.LANCZOS).save(os.path.join(R, ico), format='ICO', sizes=[(16, 16), (32, 32), (48, 48)])
+        print('ok', casa)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-CO" data-casa="academy">
+<html lang="es-CO" data-casa="agenda">
 <head>
 <meta charset="UTF-8">
 <!-- Consentimiento de cookies (Modo de consentimiento de Google): todo en "denegado" hasta que la persona acepte -->
@@ -14,10 +14,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-M3MQ7XZD');</script>
 <!-- End Google Tag Manager -->
 <script>
-/* Puerta de la agenda (28-oct-2026, decisión de Sara): mientras AGENDA_EN_VENTA sea false, el público ve solo las hojas gratis (HOJAS_GRATIS, más abajo)
-   y un aviso de que la agenda completa está en construcción. Para verla completa, abrir /agenda-rosina.html?avance=1 (queda activado en ese navegador); ?avance=0 lo quita. */
+/* Puerta de la agenda. Desde el 29-oct-2026 (decisión de Sara) la agenda completa está abierta para todos con su cuenta (AGENDA_EN_VENTA = true).
+   Si algún día se vuelve a cerrar (AGENDA_EN_VENTA = false), el público ve solo las hojas gratis (HOJAS_GRATIS, más abajo) y un aviso de «en construcción»;
+   para verla completa: /agenda-rosina.html?avance=1 (queda activado en ese navegador; ?avance=0 lo quita) o una cuenta de agenda_acceso_previo.
+   /agenda-rosina.html?gratis=1 muestra el modo de hojas gratis solo en esa visita (para revisarlo). */
 (function () {
-  var AGENDA_EN_VENTA = false, abierta = AGENDA_EN_VENTA;
+  var AGENDA_EN_VENTA = true, abierta = AGENDA_EN_VENTA;
   try {
     var q = new URLSearchParams(location.search).get('avance');
     if (q === '1') localStorage.setItem('lrAgendaAvance', '1'); else if (q === '0') localStorage.removeItem('lrAgendaAvance');
@@ -25,13 +27,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* cuentas con acceso previo (js/agenda/acceso.js): la marca solo vale con una sesión guardada */
     if (localStorage.getItem('lrAgendaAcceso') === '1' && localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token')) abierta = true;
   } catch (e) {}
+  try { if (new URLSearchParams(location.search).get('gratis') === '1') abierta = false; } catch (e) {}
   if (!abierta) document.documentElement.classList.add('agenda-gratis');
 })();
 </script>
 <script src="/js/consentimiento.js?v=2" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agenda para tejedoras — Lana Rosa Crochet</title>
-<meta name="description" content="Hojas gratis para tejedoras: planeador del día, portada, ideas y lista de compras. La agenda completa, con pedidos, inventario y más, estará pronto a la venta.">
+<meta name="description" content="Agenda digital gratis para tejedoras: planeador del día, pedidos, inventario de lanas, ventas, patrones, prendas a medida y lápiz. Instálala como app y úsala sin internet.">
 <link rel="canonical" href="https://lanarosacrochet.com/agenda-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -39,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Agenda para tejedoras — Lana Rosa Crochet">
-<meta property="og:description" content="Agenda digital para tejedoras, en construcción: planeador, pedidos, inventario, ventas y patrones propios. Pronto a la venta.">
+<meta property="og:description" content="Agenda digital gratis para tejedoras: planeador, pedidos, inventario, ventas y patrones propios. Se instala como app.">
 <meta property="og:url" content="https://lanarosacrochet.com/agenda-rosina.html">
 <meta property="og:locale" content="es_CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -833,7 +836,7 @@ main > :first-child { padding-top: 40px !important; }
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png">
-<meta name="theme-color" content="#1E9E78">
+<meta name="theme-color" content="#1FB06F">
 <link rel="manifest" href="/manifest-agenda.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Agenda para tejedoras">
 <!-- ICONOS:FIN -->
@@ -859,18 +862,18 @@ main > :first-child { padding-top: 40px !important; }
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
-<script>try{sessionStorage.setItem("lrCasa","academy");localStorage.setItem("lrCasa","academy")}catch(e){}</script>
+<script>try{sessionStorage.setItem("lrCasa","agenda");localStorage.setItem("lrCasa","agenda")}catch(e){}</script>
 <a class="saltar-contenido" href="#contenido-principal">Saltar al contenido</a>
-<header class="encabezado" data-casa="academy">
+<header class="encabezado" data-casa="agenda">
   <div class="contenedor">
-    <a href="/academy/" class="logo"><img src="/img/logo-academy-360.webp" alt="Lana Rosa Academy" class="logo-img" width="360" height="230"><span class="texto-logo">Academy</span></a>
+    <a href="/agenda-rosina.html" class="logo"><img src="/img/logo-agenda-360.webp" alt="Lana Rosa Agenda para tejedoras" class="logo-img" width="360" height="230"><span class="texto-logo">Agenda</span></a>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
-        <li class="g-aprende grupo-inicio"><a href="/academy/talleres/">Talleres y clases</a></li>
-        <li class="g-aprende"><a href="/revista.html?casa=academy">Revista</a></li>
-        <li class="g-aprende"><a href="/academy/sobre-academy/">Sobre Academy</a></li>
-        <li class="g-aprende"><a href="/sobre-nosotras.html">Sobre nosotras</a></li>
-        <li class="g-universo"><a href="/academy/rosina/">Rosina: tutoriales y recursos</a></li>
+        <li class="g-agenda grupo-inicio"><a href="/agenda-rosina.html">Mi agenda</a></li>
+        <li class="g-agenda"><a href="/agenda-rosina.html#aprende-compra">Aprende y compra</a></li>
+        <li class="g-agenda"><a href="/recursos-rosina.html">Material gratis de Rosina</a></li>
+        <li class="g-agenda"><a href="/sobre-nosotras.html">Sobre nosotras</a></li>
+        <li class="g-agenda"><a href="/preguntas-frecuentes.html">Ayuda</a></li>
       </ul>
     </nav>
     <button class="menu-movil" id="boton-menu-movil" aria-label="Abrir menú" aria-expanded="false">☰</button>
@@ -888,46 +891,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
   <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
-    <a href="/academy/">Inicio de Academy</a>
-    <a href="/cuenta.html"><svg class="ico-linea" width="1.1em" height="1.1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.2em"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg> Mi cuenta</a>
-    <p class="grupo-nav">Cursos y clases</p>
+    <a href="/agenda-rosina.html">📅 Mi agenda</a>
+    <a href="/cuenta.html">Mi cuenta</a>
+    <p class="grupo-nav">Aprende y compra</p>
+    <a href="/agenda-rosina.html#aprende-compra">Clases, patrones y más</a>
     <a href="/academy/talleres/">Talleres y clases</a>
-    <a href="/academy/sobre-academy/">Sobre Academy</a>
-    <p class="grupo-nav">Aprende gratis</p>
-    <a href="/academy/empieza-aqui/">Empieza aquí</a>
-    <a href="/aprende.html#crea">Tutoriales <span class="etiqueta-gratis">Gratis</span></a>
+    <a href="/merceria/">Mercería</a>
     <p class="grupo-nav">Rosina</p>
-    <a href="/academy/rosina/">🐑 Rosina: tutoriales y material gratis</a>
-    <a href="/agenda-rosina.html">📅 Agenda para tejedoras</a>
-    <p class="grupo-nav">Ideas</p>
-    <a href="/revista.html?casa=academy">Revista</a>
+    <a href="/recursos-rosina.html">🐑 Material gratis de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
+    <a href="/">Tienda de amigurumis</a>
     <a href="/sobre-nosotras.html">Sobre nosotras</a>
     <p class="grupo-nav">Ayuda</p>
-    <a href="/academy/preguntas-frecuentes/">Preguntas frecuentes</a>
+    <a href="/preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="/contacto.html">Contacto</a>
   </nav>
 <!-- CASAS:FIN -->
-<!-- BARRA:INICIO (generado por herramientas/sincronizar_encabezado.py) -->
-<nav class="barra-rosina" aria-label="Rosina">
-  <div class="contenedor">
-    <a href="/academy/rosina/" class="br-hub">🐑 Rosina: tutoriales y recursos</a>
-    <a href="/recursos-rosina.html">Material gratis</a>
-    <a href="/glosario-rosina.html">Glosario</a>
-    <a href="/paletas-rosina.html">Paletas</a>
-    <a href="/calculadoras-rosina.html">Calculadoras</a>
-    <a href="/agenda-rosina.html" aria-current="page" class="br-actual">Agenda</a>
-    <a href="/academy/rosina/#conoce-a-rosina">Conoce a Rosina</a>
-  </div>
-</nav>
-<!-- BARRA:FIN -->
 
 <main id="contenido-principal" tabindex="-1">
   <section class="contenedor intro-rincon intro-agenda">
-    <p class="volver-rincon"><a href="/recursos-rosina.html">← Volver al Rincón de Rosina</a></p>
+    <p class="volver-rincon"><a href="/">← Volver al inicio</a></p>
     <div class="cuaderno-portada">
       <img class="portada-rosina" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" width="512" height="512" decoding="async">
-      <p class="eslogan">Agenda digital con tu cuenta · Rincón de Rosina</p>
+      <p class="eslogan">Agenda digital gratis con tu cuenta · Lana Rosa</p>
       <h1>Agenda para tejedoras</h1>
     <div class="portada-agenda">
       <label for="ag-duena">Esta agenda es de</label>
@@ -939,11 +925,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
     </div>
     <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda en este dispositivo (y en tu cuenta, si activaste la copia): si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
-    </div>
-    <div class="aviso-completa" id="agenda-aviso-completa">
-      <p class="aviso-construccion">🚧 La agenda completa, en construcción</p>
-      <p>Estas hojas son gratis con tu cuenta. Estamos terminando la agenda completa, con pedidos, inventario de lanas, ventas, gastos, patrones propios, prendas a medida, lápiz para escribir a mano y mucho más. Pronto estará a la venta como producto digital.</p>
-      <p class="acciones-aviso"><a class="boton-primario boton-chico" href="https://wa.me/573205072801?text=Hola%2C%20quiero%20que%20me%20avisen%20cuando%20la%20Agenda%20para%20tejedoras%20completa%20est%C3%A9%20lista" target="_blank" rel="noopener">Avísame cuando esté lista</a> <a class="boton-secundario boton-chico" href="/recursos-rosina.html">Ver los recursos gratis de Rosina</a></p>
     </div>
     <div class="agenda-recordatorio no-imprimir" id="agenda-recordatorio" role="region" aria-label="Recordatorio de copia de tu agenda" hidden>
       <p><strong>Tu agenda se guarda solo en este dispositivo.</strong> Si borras los datos del navegador (o el historial con cookies), se pierde. Guárdala en tu cuenta o descarga una copia.</p>
@@ -2103,8 +2084,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="pie-rico">
   <div class="contenedor pie-top">
     <div class="pie-marca">
-      <div class="pie-logo-anim" role="img" aria-label="Lana Rosa Academy" style="aspect-ratio:65.649 / 38.233"><span class="la-cabeza" style="transform-origin:30.2% 56.4%"><span class="la-pos" style="left:11.231%;top:0.000%;width:37.895%;height:55.426%"><img class="la-sheep" src="/img/logo-animado/00.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:26.404%;top:20.498%;width:3.793%;height:4.852%"><img class="la-eye" src="/img/logo-animado/01.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span></span><span class="la-pos" style="left:48.569%;top:43.868%;width:25.661%;height:46.808%"><img class="la-p" style="animation-delay:2.9s" src="/img/logo-animado/02.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:0.000%;top:51.916%;width:10.635%;height:32.566%"><img class="la-p" style="animation-delay:2.2s" src="/img/logo-animado/03.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:34.363%;top:58.172%;width:13.612%;height:19.794%"><img class="la-p" style="animation-delay:2.65s" src="/img/logo-animado/04.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:22.127%;top:58.300%;width:12.495%;height:19.669%"><img class="la-p" style="animation-delay:2.5s" src="/img/logo-animado/05.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:65.750%;top:60.089%;width:34.250%;height:25.224%"><img class="la-p" style="animation-delay:3.05s" src="/img/logo-animado/06.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-pos" style="left:10.227%;top:60.534%;width:12.459%;height:19.988%"><img class="la-p" style="animation-delay:2.35s" src="/img/logo-animado/07.webp" alt="" width="64" height="40" loading="lazy" decoding="async"></span><span class="la-nombre" aria-hidden="true" style="top:88.35%;height:9.14cqw;line-height:9.14cqw;font-size:6.25cqw"><span class="la-p la-t" style="animation-delay:3.6s">A</span><span class="la-p la-t" style="animation-delay:3.68s">c</span><span class="la-p la-t" style="animation-delay:3.76s">a</span><span class="la-p la-t" style="animation-delay:3.84s">d</span><span class="la-p la-t" style="animation-delay:3.92s">e</span><span class="la-p la-t" style="animation-delay:4.0s">m</span><span class="la-p la-t" style="animation-delay:4.08s">y</span></span></div>
-      <nav class="pie-casas-mini" aria-label="Casas Lana Rosa"><span class="pie-h3">Nuestras casas</span><a href="/tienda.html" data-casa="crochet" title="Tienda de amigurumis"><span aria-hidden="true">🧸</span> Tienda</a><a href="/merceria/" data-casa="merceria" title="Mercería"><span aria-hidden="true">🧶</span> Mercería</a><a href="/academy/" data-casa="academy" title="Academy" class="casa-actual" aria-current="true"><span aria-hidden="true">🎓</span> Academy</a></nav>
+      <img class="pie-logo-agenda" src="/img/logo-agenda-360.webp" alt="Lana Rosa Agenda para tejedoras" width="190" height="121" loading="lazy" decoding="async">
+      <nav class="pie-casas-mini" aria-label="Casas Lana Rosa"><span class="pie-h3">Nuestras casas</span><a href="/tienda.html" data-casa="crochet" title="Tienda de amigurumis"><span aria-hidden="true">🧸</span> Tienda</a><a href="/merceria/" data-casa="merceria" title="Mercería"><span aria-hidden="true">🧶</span> Mercería</a><a href="/academy/" data-casa="academy" title="Academy"><span aria-hidden="true">🎓</span> Academy</a><a href="/agenda-rosina.html" data-casa="agenda" title="Agenda" class="casa-actual" aria-current="true"><span aria-hidden="true">📅</span> Agenda</a></nav>
     </div>
     <div class="pie-redes" aria-label="Redes sociales">
       <a href="https://www.instagram.com/lanarosacrochet" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
@@ -2116,23 +2097,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="contenedor pie-grid">
     <div class="pie-col">
-      <p class="pie-h3">Academy</p>
+      <p class="pie-h3">Agenda</p>
       <ul>
-        <li><a href="/academy/talleres/">Talleres y clases</a></li>
-        <li><a href="/agenda-rosina.html">Agenda para tejedoras</a></li>
-        <li><a href="/academy/empieza-aqui/">Empieza aquí</a></li>
-        <li><a href="/academy/rosina/">Rosina: tutoriales y material gratis</a></li>
-        <li><a href="/aventuras-de-rosina/">La aventura de Rosina</a></li>
-        <li><a href="/academy/sobre-academy/">Sobre Academy</a></li>
+        <li><a href="/agenda-rosina.html">Mi agenda</a></li>
+        <li><a href="/agenda-rosina.html#aprende-compra">Aprende y compra</a></li>
+        <li><a href="/recursos-rosina.html">Material gratis de Rosina</a></li>
+        <li><a href="/agenda-rosina.html">Instalar la agenda como app</a></li>
       </ul>
     </div>
     <div class="pie-col">
       <p class="pie-h3">Lana Rosa</p>
       <ul>
         <li><a href="/sobre-nosotras.html">Sobre nosotras</a></li>
-        
+        <li><a href="/universo-rosina.html">Rosina: regalos e ideas</a></li>
         <li><a href="/revista.html?casa=academy">Revista</a></li>
-        <li><a href="/academy/preguntas-frecuentes/">Preguntas frecuentes</a></li>
+        <li><a href="/preguntas-frecuentes.html">Preguntas frecuentes</a></li>
         <li><a href="/precios.html">Precios</a></li>
         <li><a href="/contacto.html">Contacto</a></li>
       </ul>
@@ -4113,7 +4092,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
 <script src="/js/agenda/app.js?v=1" defer></script>
-<script type="module" src="/js/agenda/acceso.js?v=3"></script>
+<script type="module" src="/js/agenda/acceso.js?v=4"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=1" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>

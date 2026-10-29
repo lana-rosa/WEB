@@ -14,10 +14,10 @@ CASA_DE = {
     'index': 'crochet', 'tienda': 'crochet', 'personaliza': 'crochet', 'universo-rosina': 'crochet', 'p': 'crochet', 'precios': 'crochet',
     'merceria': 'merceria', 'merceria-catalogo': 'merceria', 'merceria-tienda-fisica': 'merceria', 'merceria-preguntas-frecuentes': 'merceria', 'academy-preguntas-frecuentes': 'academy', 'merceria-como-comprar': 'merceria', 'merceria-paleta-de-colores': 'merceria', 'merceria-terminos-de-venta': 'merceria', 'merceria-cambios-y-devoluciones': 'merceria', 'academy-talleres': 'academy', 'academy-sobre-academy': 'academy', 'academy-empieza-aqui': 'academy',
     'merceria-rosina': 'merceria', 'academy-rosina': 'academy', 'academy': 'academy', 'aprende': 'academy', 'recursos-rosina': 'academy', 'rosina': 'academy', 'glosario-rosina': 'academy',
-    'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'academy',
+    'paletas-rosina': 'academy', 'calculadoras-rosina': 'academy', 'agenda-rosina': 'agenda',
 }
-CASAS = [('crochet', 'Tienda de amigurumis', 'tienda.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/')]
-CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'comun': 'g-comun', 'universo': 'g-universo'}
+CASAS = [('crochet', 'Tienda de amigurumis', 'tienda.html'), ('merceria', 'Mercería', 'merceria/'), ('academy', 'Academy', 'academy/'), ('agenda', 'Agenda', 'agenda-rosina.html')]   # la cuarta casa, la Agenda para tejedoras (29-oct-2026)
+CLASE = {'crochet': 'g-tienda', 'merceria': 'g-merceria', 'academy': 'g-aprende', 'agenda': 'g-agenda', 'comun': 'g-comun', 'universo': 'g-universo'}
 
 # (texto, enlace, clase de color)
 MENUS = {
@@ -34,6 +34,9 @@ MENUS = {
                  ('Cómo comprar', 'merceria/como-comprar/', 'merceria'),
                  ('Sobre nosotras', 'sobre-nosotras.html', 'merceria'),
                  ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('Rosina: lanas e ideas', 'merceria/rosina/', 'universo')],
+    'agenda': [('Mi agenda', 'agenda-rosina.html', 'agenda'), ('Aprende y compra', 'agenda-rosina.html#aprende-compra', 'agenda'),
+               ('Material gratis de Rosina', 'recursos-rosina.html', 'agenda'), ('Sobre nosotras', 'sobre-nosotras.html', 'agenda'),
+               ('Ayuda', 'preguntas-frecuentes.html', 'agenda')],
     'academy': [('Talleres y clases', 'academy/talleres/', 'academy'),
                 ('Revista', 'revista.html?casa=academy', 'academy'),
                 ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('Sobre nosotras', 'sobre-nosotras.html', 'academy'),
@@ -41,31 +44,28 @@ MENUS = {
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
-LOGO_IMG = {'merceria': ('img/logo-merceria-360.webp', 'Lana Rosa Mercería'), 'academy': ('img/logo-academy-360.webp', 'Lana Rosa Academy')}
+LOGO_IMG = {'merceria': ('img/logo-merceria-360.webp', 'Lana Rosa Mercería'), 'academy': ('img/logo-academy-360.webp', 'Lana Rosa Academy'), 'agenda': ('img/logo-agenda-360.webp', 'Lana Rosa Agenda para tejedoras')}
 
 # íconos de la pestaña y color de la barra del celular por casa
 ICONOS = {
     'merceria': ('/img/favicon-merceria-256.png', '/img/apple-touch-icon-merceria.png', '#7C4DDB'),
     'academy': ('/img/favicon-academy-256.png', '/img/apple-touch-icon-academy.png', '#2F7DE1'),
+    'agenda': ('/img/favicon-agenda-256.png', '/img/apple-touch-icon-agenda.png', '#1FB06F'),
 }
 ICONOS_BASE = ('/img/favicon-256.png', '/img/apple-touch-icon.png', '#E74E96')
 # app instalable: manifiesto y nombre en la pantalla por casa (las páginas sin casa usan Crochet)
-APP = {'merceria': ('merceria', 'Mercería Lana Rosa'), 'academy': ('academy', 'Lana Rosa Academy')}
+APP = {'merceria': ('merceria', 'Mercería Lana Rosa'), 'academy': ('academy', 'Lana Rosa Academy'), 'agenda': ('agenda', 'Agenda para tejedoras')}
 APP_BASE = ('crochet', 'Lana Rosa Crochet')
-# la Agenda para tejedoras es una app propia (28-oct-2026): su página sigue en la casa Academy (menú y colores) pero se instala con su ícono verde y funciona sin internet
-APP_PAGINA = {'agenda-rosina': ('agenda', 'Agenda para tejedoras')}
-ICONOS_PAGINA = {'agenda-rosina': ('/img/favicon-agenda-256.png', '/img/apple-touch-icon-agenda.png', '#1E9E78')}
-
 def iconos(casa, pagina=None):
-    ico, apple, color = ICONOS_PAGINA.get(pagina) or ICONOS.get(casa, ICONOS_BASE)
-    app = APP_PAGINA.get(pagina) or APP.get(casa, APP_BASE)
+    ico, apple, color = ICONOS.get(casa, ICONOS_BASE)
+    app = APP.get(casa, APP_BASE)
     return (f'<!-- ICONOS:INICIO (generado) -->\n<link rel="icon" type="image/png" href="{ico}">\n'
             f'<link rel="apple-touch-icon" href="{apple}">\n<meta name="theme-color" content="{color}">\n'
             f'<link rel="manifest" href="/manifest-{app[0]}.webmanifest">\n'
             f'<meta name="apple-mobile-web-app-title" content="{app[1]}">\n<!-- ICONOS:FIN -->')
 
 # nombre bajo el logo y destino del logo por casa
-LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria/'), 'academy': ('Academy', 'academy/'),
+LOGO = {'crochet': ('Inicio', 'index.html'), 'merceria': ('Mercería', 'merceria/'), 'academy': ('Academy', 'academy/'), 'agenda': ('Agenda', 'agenda-rosina.html'),
         None: ('Inicio', 'index.html')}
 
 # pie por casa: (frase, titulo de columna, enlaces)  — Crochet usa el pie original
@@ -128,6 +128,22 @@ MOVIL = {
     <a href="merceria/terminos-de-venta/">Términos de venta</a>
     <a href="merceria/cambios-y-devoluciones/">Cambios y devoluciones</a>
     <a href="merceria/preguntas-frecuentes/">Preguntas frecuentes</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>''',
+    'agenda': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
+    <a href="agenda-rosina.html">📅 Mi agenda</a>
+    <a href="cuenta.html">Mi cuenta</a>
+    <p class="grupo-nav">Aprende y compra</p>
+    <a href="agenda-rosina.html#aprende-compra">Clases, patrones y más</a>
+    <a href="academy/talleres/">Talleres y clases</a>
+    <a href="merceria/">Mercería</a>
+    <p class="grupo-nav">Rosina</p>
+    <a href="recursos-rosina.html">🐑 Material gratis de Rosina</a>
+    <p class="grupo-nav">Lana Rosa</p>
+    <a href="index.html">Tienda de amigurumis</a>
+    <a href="sobre-nosotras.html">Sobre nosotras</a>
+    <p class="grupo-nav">Ayuda</p>
+    <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
     <a href="contacto.html">Contacto</a>
   </nav>''',
     'academy': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
@@ -249,7 +265,7 @@ def encabezado(pagina):
             + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=2"></script>\n<!-- CASAS:FIN -->')
 
 def js_casa_menu():
-    bloques = {c: absolutas(_encabezado(c)) for c in ('crochet', 'merceria', 'academy')}
+    bloques = {c: absolutas(_encabezado(c)) for c in ('crochet', 'merceria', 'academy', 'agenda')}
     return ('// GENERADO por herramientas/sincronizar_encabezado.py: no se edita a mano.\n'
             '// En las páginas comunes cambia el menú por el de la casa de la que viene la persona (?casa=merceria|academy, o la última casa visitada).\n'
             '(function () {\n  var B = ' + json.dumps(bloques, ensure_ascii=False) + ';\n'
@@ -263,8 +279,8 @@ def js_casa_menu():
             '  document.documentElement.setAttribute("data-casa", c);\n'
             '})();\n')
 
-PIE_FAQ = {'crochet': 'preguntas-frecuentes.html', 'merceria': 'merceria/preguntas-frecuentes/', 'academy': 'academy/preguntas-frecuentes/'}
-PIE_REVISTA = {'crochet': 'revista.html?casa=crochet', 'merceria': 'revista.html?casa=merceria', 'academy': 'revista.html?casa=academy'}
+PIE_FAQ = {'crochet': 'preguntas-frecuentes.html', 'merceria': 'merceria/preguntas-frecuentes/', 'academy': 'academy/preguntas-frecuentes/', 'agenda': 'preguntas-frecuentes.html'}
+PIE_REVISTA = {'crochet': 'revista.html?casa=crochet', 'merceria': 'revista.html?casa=merceria', 'academy': 'revista.html?casa=academy', 'agenda': 'revista.html?casa=academy'}
 PIE_COMUN = ('Tres casas, una sola familia: amigurumis, mercería y academia de crochet en Manizales / Villamaría, Colombia.', 'Nuestras casas',
              [('Tienda de amigurumis', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'),
               ('Lana Rosa Academy', 'academy/'), ('Revista', 'revista.html')])
@@ -274,10 +290,11 @@ PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
 PIE_SIMPLE = {
     'crochet': ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Historias que tejimos', 'index.html#historias')]),
     'merceria': ('Mercería', [('Catálogo', 'merceria/catalogo/'), ('Paleta de colores', 'merceria/paleta-de-colores/'), ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'), ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/')]),
+    'agenda': ('Agenda', [('Mi agenda', 'agenda-rosina.html'), ('Aprende y compra', 'agenda-rosina.html#aprende-compra'), ('Material gratis de Rosina', 'recursos-rosina.html'), ('Instalar la agenda como app', 'agenda-rosina.html')]),
     'academy': ('Academy', [('Talleres y clases', 'academy/talleres/'), ('Agenda para tejedoras', 'agenda-rosina.html'), ('Empieza aquí', 'academy/empieza-aqui/'), ('Rosina: tutoriales y material gratis', 'academy/rosina/'), ('La aventura de Rosina', 'aventuras-de-rosina/'), ('Sobre Academy', 'academy/sobre-academy/')]),
 }
 PIE_SIMPLE_COMUN = ('Tienda', [('Ver catálogo', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'), ('Lana Rosa Academy', 'academy/')])
-CASAS_ICONO = {'crochet': ('🧸', 'Tienda'), 'merceria': ('🧶', 'Mercería'), 'academy': ('🎓', 'Academy')}
+CASAS_ICONO = {'crochet': ('🧸', 'Tienda'), 'merceria': ('🧶', 'Mercería'), 'academy': ('🎓', 'Academy'), 'agenda': ('📅', 'Agenda')}
 
 def casas_pie_mini(casa):
     """Las tres casas, junto al logo del pie, con iconos pequeños; la casa actual va resaltada."""
@@ -290,6 +307,8 @@ def casas_pie_mini(casa):
 
 def logo_pie(casa, img, alt):
     """Logo animado del pie sobre fondo transparente (herramientas/logo-animado/): Tienda (crochet y páginas comunes), Mercería y Academy."""
+    if casa == 'agenda':   # la Agenda no tiene logo animado: logo fijo en verde
+        return f'<img class="pie-logo-agenda" src="/{img}" alt="{alt}" width="190" height="121" loading="lazy" decoding="async">'
     nombre = 'componente.html' if casa not in ('merceria', 'academy') else f'componente-{casa}.html'
     return open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logo-animado', nombre), encoding='utf-8').read()
 
@@ -308,7 +327,7 @@ def pie_casa(modelo, casa, pagina=None):
     # en Mercería y Academy el universo de Rosina ya está en la columna de la casa: no se repite
     universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">Rosina: regalos e ideas</a></li>'
     horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
-    nombre_app = (APP_PAGINA.get(pagina) or APP.get(casa, APP_BASE))[1]
+    nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
   <div class="contenedor pie-top">
     <div class="pie-marca">
@@ -375,7 +394,7 @@ def absolutas(html):
 
 # Barra «Rosina» (una fila corta, con los colores de la casa) en todas las páginas del Rincón de Rosina
 BARRA_PAGINAS = {'recursos-rosina': 'recursos-rosina.html', 'glosario-rosina': 'glosario-rosina.html', 'paletas-rosina': 'paletas-rosina.html',
-                 'calculadoras-rosina': 'calculadoras-rosina.html', 'agenda-rosina': 'agenda-rosina.html'}
+                 'calculadoras-rosina': 'calculadoras-rosina.html'}   # la Agenda ya es su propia casa (sin barra «Rosina»)
 BARRA_ITEMS = [('Material gratis', 'recursos-rosina.html'), ('Glosario', 'glosario-rosina.html'), ('Paletas', 'paletas-rosina.html'),
                ('Calculadoras', 'calculadoras-rosina.html'), ('Agenda', 'agenda-rosina.html')]   # «Conoce a Rosina» solo en los hubs de Mercería y Academy (la Tienda ya no lo tiene)
 HUB_TEXTO = {'crochet': 'Rosina: regalos e ideas', 'merceria': 'Rosina: lanas e ideas', 'academy': 'Rosina: tutoriales y recursos'}
