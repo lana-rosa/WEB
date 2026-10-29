@@ -442,10 +442,15 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .pestana:hover { transform: translateX(3px); }
 .pestana[aria-selected="true"] { transform: translateX(6px); box-shadow: 3px 4px 12px rgba(58,42,46,.22), inset -4px 0 0 rgba(255,255,255,.7); filter: none; }
 .pestana:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
-.chips-hojas { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
-.chips-hojas[hidden] { display: none; }
-.chips-hojas button { font: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; background: #fff; color: var(--tinta); border: 1.5px solid var(--c, var(--rosa-medio)); border-radius: 999px; padding: 7px 14px; }
-.chips-hojas button[aria-current="page"] { background: var(--c, var(--rosa-boton)); color: #3b2a30; }
+/* Las hojas de cada pestaña se eligen en una lista desplegable (29-oct-2026, a pedido de Sara; antes eran muchos botones con ícono) */
+.selector-hoja { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 12px; }
+.selector-hoja[hidden] { display: none; }
+.selector-hoja label { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--tinta-suave); }
+.selector-hoja select { appearance: none; -webkit-appearance: none; font: inherit; font-weight: 700; font-size: 1rem; color: var(--tinta); cursor: pointer; flex: 1 1 260px; max-width: 480px; min-height: 46px; min-width: 0; padding: 10px 42px 10px 20px;
+  border: 2px solid var(--c, var(--rosa-medio)); border-radius: 14px; box-shadow: inset 7px 0 0 var(--c, var(--rosa-medio));
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' fill='none' stroke='%233b2a30' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 15px center / 14px 9px; }
+.selector-hoja select:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
+.selector-hoja select:hover { background-color: var(--rosa-suave); }
 #indice-agenda .indice-grupo { margin-bottom: 20px; }
 #indice-agenda .indice-grupo h4 { margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: #3b2a30; display: inline-block; padding: 4px 14px; border-radius: 999px; background: var(--c); }
 .atajos { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
@@ -463,7 +468,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
   .pestana:hover, .pestana[aria-selected="true"] { transform: translateY(-2px); }
   .pestana[aria-selected="true"] { box-shadow: 0 -3px 8px rgba(58,42,46,.16), inset 0 -4px 0 rgba(255,255,255,.7); }
 }
-@media print { .pestanas-agenda, .chips-hojas { display: none !important; } .agenda-layout { display: block; } }
+@media print { .pestanas-agenda, .selector-hoja { display: none !important; } .agenda-layout { display: block; } }
 
 .aviso-auto { margin: 0 0 12px; background: #E8F7EE; color: #1F6B42; border-radius: 12px; padding: 9px 14px; font-size: .9rem; font-weight: 600; }
 
@@ -1041,7 +1046,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <nav class="pestanas-agenda no-imprimir" id="pestanas-agenda" aria-label="Pestañas de la agenda"></nav>
       <div class="hojas-contenido">
       <h2 class="solo-lectores">Hojas de tu agenda</h2>
-      <div class="chips-hojas no-imprimir" id="chips-hojas" hidden></div>
+      <div class="selector-hoja no-imprimir" id="selector-hoja" hidden>
+        <label for="selector-hoja-lista" id="selector-hoja-etq"></label>
+        <select id="selector-hoja-lista"></select>
+      </div>
       <article class="hoja-agenda no-imprimir" id="indice-agenda" data-gratis>
         <header>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
@@ -3752,7 +3760,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var COLOR_GRUPO = { 'Inicio': '#F7B3D4', 'Mi tablero': '#FFE08A', 'Mis proyectos': '#F28FC0', 'Mis materiales': '#B9BCFB', 'Mi emprendimiento': '#A9D3FA', 'Mis finanzas': '#B5E3C2', 'Fechas y bienestar': '#F9D49B' };
     var colorDe = function(g, i) { return COLOR_GRUPO[g.t] || COL[i % COL.length]; };
     var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
-    var nav = document.getElementById('pestanas-agenda'), chips = document.getElementById('chips-hojas');
+    var nav = document.getElementById('pestanas-agenda'), selector = document.getElementById('selector-hoja'), lista = document.getElementById('selector-hoja-lista'), etqLista = document.getElementById('selector-hoja-etq');
     var botones = grupos.map(function(g, i) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'pestana'; b.setAttribute('role', 'tab');
       b.style.setProperty('--c', colorDe(g, i)); b.textContent = etiqueta(g.t);
@@ -3763,22 +3771,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
       nav.appendChild(b); return b;
     });
+    var grupoLista = -2;   // pestaña cuyas hojas tiene la lista ahora (para no rehacerla, y conservar el foco, al cambiar de hoja dentro de la misma pestaña)
+    lista.addEventListener('change', function() {
+      var id = lista.value; if (!id) return;
+      mostrarHoja(id, window.innerWidth < 900);
+      if (history.replaceState) history.replaceState(null, '', '#' + id);
+    });
     window.lrPintarPestanas = function(id) {
       var gi = -1;
       grupos.forEach(function(g, i) { g.links.forEach(function(a) { if (a.dataset.hoja === id) gi = i; }); });
       botones.forEach(function(b, i) { b.setAttribute('aria-selected', String(i === gi)); });
-      chips.innerHTML = '';
       var g = grupos[gi];
       if (g && g.links.length > 1) {
-        chips.style.setProperty('--c', colorDe(g, gi));
-        g.links.forEach(function(a) {
-          var c = document.createElement('button'); c.type = 'button'; c.textContent = a.textContent;
-          if (a.dataset.hoja === id) c.setAttribute('aria-current', 'page');
-          c.addEventListener('click', function() { mostrarHoja(a.dataset.hoja, window.innerWidth < 900); if (history.replaceState) history.replaceState(null, '', '#' + a.dataset.hoja); });
-          chips.appendChild(c);
-        });
-        chips.hidden = false;
-      } else chips.hidden = true;
+        if (gi !== grupoLista) {
+          lista.textContent = '';
+          g.links.forEach(function(a) { var o = document.createElement('option'); o.value = a.dataset.hoja; o.textContent = a.textContent.trim(); lista.appendChild(o); });
+          selector.style.setProperty('--c', colorDe(g, gi)); grupoLista = gi;
+        }
+        lista.value = id;
+        var pos = g.links.map(function(a) { return a.dataset.hoja; }).indexOf(id) + 1;
+        etqLista.textContent = 'Hojas de ' + etiqueta(g.t) + ' · ' + pos + ' de ' + g.links.length;
+        selector.hidden = false;
+      } else { selector.hidden = true; grupoLista = -2; }
     };
     document.getElementById('indice-agenda').addEventListener('click', function(e) {
       var b = e.target.closest('[data-ir]'); if (!b) return;
