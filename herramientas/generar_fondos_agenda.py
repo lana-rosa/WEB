@@ -8,16 +8,20 @@
 
 La cinta de cada fondo: en los marcos (flores, hojas, madejas) se toma el recorte de la imagen con más color y se pega con su reflejo para que se pueda repetir sin cortes (a los lados va girado);
 en los patrones (Rosina y amigos, ovejitas) se buscan recortes cuyos extremos no cortan ningún dibujo, así los animales quedan siempre derechos y sin repetirse al revés.
+La imagen de la cinta va suavizada (pedido de Sara, 29-oct-2026: «un poco difuminadas y no en su color pleno»): un desenfoque leve (DIFUMINADO) y una mezcla del 40 % con el crema de la cinta (DESVANECIDO); las
+líneas de las orillas y las esquinas se dibujan después, nítidas. Para que se vea más o menos suave, cambiar esas dos constantes y volver a generar.
 Todo es determinista. Uso: /usr/bin/python3 herramientas/generar_fondos_agenda.py   (necesita numpy y Pillow)"""
 import os
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIG = os.path.join(R, 'herramientas', 'agenda-fondos', 'originales'); SAL = os.path.join(R, 'img', 'agenda'); os.makedirs(SAL, exist_ok=True)
 
 T = 40                       # grosor de la cinta en el archivo (px): es el `slice` del CSS (en pantalla la cinta es DELGADA: 18 px en computador, 16 en tablet y 12 en celular)
 SLICE_BORDE = T
+DIFUMINADO = 1.4             # desenfoque leve de la imagen de la cinta (px del archivo). Pedido de Sara (29-oct-2026): «un poco difuminadas»
+DESVANECIDO = 0.40           # cuánto se mezcla la imagen con el crema de la cinta: 0 = color pleno, 1 = solo crema. Pedido de Sara: «y no en su color pleno»
 # tipo: marco = acuarela con adornos en las esquinas (se gira a vertical para la portada); patron = dibujos repartidos (se recorta para la portada)
 # alto: alto del recorte de la imagen que se convierte en cinta (px de la imagen original); largo: largo de ese recorte; crema: color de la cinta; linea: color de las líneas de las orillas
 FONDOS = {
@@ -75,6 +79,12 @@ def sobre_crema(recorte, crema):
     return Image.fromarray((np.clip(a * c, 0, 1) * 255).astype(np.uint8), 'RGB')                       # multiplicar: el blanco queda crema y los colores se conservan
 
 
+def suavizar(tira, crema):
+    """La cinta algo difuminada y desvanecida: un desenfoque leve y la imagen mezclada con el crema, para que no se vea en su color pleno."""
+    a = np.asarray(tira.convert('RGB').filter(ImageFilter.GaussianBlur(DIFUMINADO)), dtype=np.float32); c = np.array(crema, dtype=np.float32)
+    return Image.fromarray(np.clip(a * (1 - DESVANECIDO) + c * DESVANECIDO, 0, 255).astype(np.uint8), 'RGB')
+
+
 def lineas_orilla(tira, color, vertical):
     """Dos líneas finas, una en cada orilla de la cinta."""
     d = ImageDraw.Draw(tira, 'RGBA'); w, h = tira.size; c = color + (120,)
@@ -89,16 +99,16 @@ def construir(f, im, c):
     if c['tipo'] == 'marco':
         a = mejor_recorte(im, largo, alto, None); usados.append(a)
         b = mejor_recorte(im, largo, alto, None, excluir=usados) or a
-        h0 = sobre_crema(im.crop((a[0], a[1], a[0] + largo, a[1] + alto)), crema).resize((round(largo * k), T), Image.LANCZOS)
-        v0 = sobre_crema(im.crop((b[0], b[1], b[0] + largo, b[1] + alto)), crema).resize((round(largo * k), T), Image.LANCZOS)
+        h0 = suavizar(sobre_crema(im.crop((a[0], a[1], a[0] + largo, a[1] + alto)), crema).resize((round(largo * k), T), Image.LANCZOS), crema)
+        v0 = suavizar(sobre_crema(im.crop((b[0], b[1], b[0] + largo, b[1] + alto)), crema).resize((round(largo * k), T), Image.LANCZOS), crema)
         horiz = Image.new('RGB', (h0.width * 2, T)); horiz.paste(h0, (0, 0)); horiz.paste(h0.transpose(Image.FLIP_LEFT_RIGHT), (h0.width, 0))    # con su reflejo: se repite sin cortes
         vert = Image.new('RGB', (v0.width * 2, T)); vert.paste(v0, (0, 0)); vert.paste(v0.transpose(Image.FLIP_LEFT_RIGHT), (v0.width, 0)); vert = vert.transpose(Image.ROTATE_90)
     else:
         a = mejor_recorte(im, largo, alto, 'lados'); usados.append(a)
         b = mejor_recorte(im, alto, int(largo * 0.8), 'arriba', excluir=usados) or mejor_recorte(im, alto, int(largo * 0.8), 'arriba')
         if not a or not b: raise SystemExit(f'{f}: no hay recortes limpios para la cinta; cambia alto/largo en FONDOS')
-        horiz = sobre_crema(im.crop((a[0], a[1], a[0] + a[2], a[1] + a[3])), crema).resize((round(a[2] * k), T), Image.LANCZOS)
-        vert = sobre_crema(im.crop((b[0], b[1], b[0] + b[2], b[1] + b[3])), crema).resize((T, round(b[3] * k)), Image.LANCZOS)
+        horiz = suavizar(sobre_crema(im.crop((a[0], a[1], a[0] + a[2], a[1] + a[3])), crema).resize((round(a[2] * k), T), Image.LANCZOS), crema)
+        vert = suavizar(sobre_crema(im.crop((b[0], b[1], b[0] + b[2], b[1] + b[3])), crema).resize((T, round(b[3] * k)), Image.LANCZOS), crema)
     horiz = lineas_orilla(horiz.convert('RGBA'), linea, False); vert = lineas_orilla(vert.convert('RGBA'), linea, True)
     Lh, Lv = horiz.width, vert.height; W, H = 2 * T + Lh, 2 * T + Lv
     ring = Image.new('RGBA', (W, H), (255, 255, 255, 0))
