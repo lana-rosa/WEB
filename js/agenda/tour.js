@@ -1,11 +1,11 @@
-/* Agenda para tejedoras: tour de bienvenida (29-oct-2026, pedido de Sara: «cuando alguien ingrese por primera vez le hacemos un tour»).
+/* Agenda para tejedoras: tutorial de bienvenida (29-oct-2026, pedido de Sara: «cuando alguien ingrese por primera vez le hacemos un tour»; desde el 29-oct se llama «tutorial» en lo que se ve; el archivo, las clases y `?tour=` conservan el nombre técnico).
    8 pasos: bienvenida, configuración, copias, Google Calendar, instalar la app, pestañas y hojas, dictar/lápiz/buscador y funciones avanzadas.
    Sale solo la primera vez (se recuerda en `localStorage.lrAgendaTour`) y se repite con «Ver el tour de bienvenida» en Configuración o con `?tour=1`; `?tour=0` lo omite.
    No sale si el navegador es automático (`navigator.webdriver`: las pruebas) salvo con `?tour=1`. Un foco recorta la pantalla alrededor del elemento y una tarjeta explica el paso. */
 (function () {
   'use strict';
   var PASOS = [
-    { t: '¡Bienvenida a tu agenda! 🌿', x: 'Te muestro en un minuto lo más importante. Puedes saltar el tour cuando quieras y volver a verlo desde ⚙️ Configuración.' },
+    { t: '¡Bienvenida a tu agenda! 🌿', x: 'Te muestro en un minuto lo más importante. Puedes saltar el tutorial cuando quieras y volver a verlo desde ⚙️ Configuración.' },
     { t: 'Configuración ⚙️', x: 'Personaliza tu agenda con tu nombre y tu color favorito. También puedes imprimir tu agenda o borrar lo que has escrito.', sel: ['#agenda-config'], abrir: true },
     { t: 'Copias de seguridad', x: 'Tu agenda se guarda en este dispositivo. Puedes descargar una copia de seguridad, importarla en otro dispositivo o vincularla a tu cuenta para recuperar tus escritos si borras el historial del navegador.', sel: ['.agenda-config .copia-agenda'], abrir: true },
     { t: 'Google Calendar 📅', x: 'Conecta tu cuenta de Google para sincronizar tus entregas, proyectos, ferias y cumpleaños con un calendario independiente llamado «Agenda para tejedoras». Recibe recordatorios para que no olvides ninguna fecha importante.\nLa conexión es gratuita y opcional. Solo necesitas tu cuenta de Google.', sel: ['#calendario-sync'], abrir: true },
@@ -55,7 +55,7 @@
     var cab = el('p', 'tour-paso', 'Paso ' + (paso + 1) + ' de ' + PASOS.length), h = el('h2', 'tour-titulo', P.t), p = el('div', 'tour-texto');
     P.x.split('\n').forEach(function (linea) { p.appendChild(el('p', null, linea)); });
     h.id = 'tour-titulo'; p.id = 'tour-texto';
-    var fila = el('div', 'tour-botones'), salt = el('button', 'tour-saltar', P.final ? 'Cerrar' : 'Saltar tour'), at = el('button', 'tour-atras', '← Atrás'), sig = el('button', 'tour-siguiente', P.final ? '¡Listo!' : 'Siguiente →');
+    var fila = el('div', 'tour-botones'), salt = el('button', 'tour-saltar', P.final ? 'Cerrar' : 'Saltar tutorial'), at = el('button', 'tour-atras', '← Atrás'), sig = el('button', 'tour-siguiente', P.final ? '¡Listo!' : 'Siguiente →');
     [salt, at, sig].forEach(function (b) { b.type = 'button'; });
     salt.addEventListener('click', function () { cerrar(P.final ? 'completo' : 'saltado'); }); at.addEventListener('click', atras); sig.addEventListener('click', siguiente);
     if (paso === 0) at.hidden = true; if (P.final) salt.hidden = true;

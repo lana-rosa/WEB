@@ -29,7 +29,7 @@ with sync_playwright() as p:
     pg.goto(BASE + '/agenda-rosina.html?tour=1'); pg.wait_for_timeout(3000); pg.keyboard.press('Escape'); pg.wait_for_timeout(200)
     T.v('Esc también lo cierra', pg.locator('.tour-tarjeta').count() == 0)
     pg.evaluate("window.lrAgendaConfig.abrir()"); pg.click('#agenda-tour-btn'); pg.wait_for_timeout(500)
-    T.v('«Ver el tour de bienvenida» en Configuración lo repite', pg.locator('.tour-tarjeta').is_visible() and 'Paso 1 de 8' in pg.inner_text('.tour-tarjeta'))
+    T.v('«Ver el tutorial de bienvenida» en Configuración lo repite', pg.locator('.tour-tarjeta').is_visible() and 'Paso 1 de 8' in pg.inner_text('.tour-tarjeta'))
     pg.keyboard.press('ArrowRight'); pg.wait_for_timeout(300); T.v('las flechas del teclado avanzan', 'Paso 2 de 8' in pg.inner_text('.tour-tarjeta'))
     ctx.close()
 T.fin()
