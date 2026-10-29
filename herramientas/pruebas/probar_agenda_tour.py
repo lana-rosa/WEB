@@ -1,0 +1,35 @@
+"""Prueba el tour de bienvenida de la Agenda para tejedoras (29-oct-2026)."""
+import sys; sys.path.insert(0, __file__.rsplit('/', 1)[0])
+from agenda_util import *
+T = Prueba()
+with sync_playwright() as p:
+    b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
+    ctx = contexto(b, 1280, 800, config_abierta=False); pg = abrir(ctx, '', 2600, config=False)
+    T.v('con un navegador automático el tour no sale solo (no estorba a las pruebas)', pg.locator('.tour-tarjeta').count() == 0)
+    for ancho, alto in ((1280, 800), (390, 800)):
+        ctx2 = contexto(b, ancho, alto, config_abierta=False); pg = ctx2.new_page(); pg.errs = []; pg.on('pageerror', lambda e: pg.errs.append(str(e)))
+        pg.goto(BASE + '/agenda-rosina.html?tour=1'); pg.wait_for_timeout(3200)
+        T.v('%d px: ?tour=1 lo muestra con el paso 1 de 8' % ancho, pg.locator('.tour-tarjeta').is_visible() and 'Paso 1 de 8' in pg.inner_text('.tour-tarjeta'), pg.inner_text('.tour-tarjeta') if pg.locator('.tour-tarjeta').count() else '')
+        vistos = []
+        for i in range(8):
+            titulo = pg.inner_text('.tour-tarjeta .tour-titulo'); vistos.append(titulo)
+            caja = pg.evaluate("(() => { const r = document.querySelector('.tour-tarjeta').getBoundingClientRect(); return [r.left, r.top, r.right, r.bottom, innerWidth, innerHeight]; })()")
+            T.v('%d px: paso %d («%s») cabe en la pantalla' % (ancho, i + 1, titulo[:24]), caja[0] >= -1 and caja[2] <= caja[4] + 1 and caja[1] >= -1 and caja[3] <= caja[5] + 1, caja)
+            if i == 1: T.v('%d px: el paso de Configuración abre el panel' % ancho, pg.locator('#agenda-config').is_visible())
+            if i == 5: T.v('%d px: al pasar a las pestañas el panel se cierra' % ancho, pg.locator('#agenda-config').is_hidden())
+            if i < 7: pg.click('.tour-siguiente'); pg.wait_for_timeout(400)
+        T.v('%d px: los 8 pasos son los pedidos' % ancho, len(vistos) == 8 and 'Bienvenida' in vistos[0] and 'Configuración' in vistos[1] and 'Copias' in vistos[2] and 'Google Calendar' in vistos[3] and 'Instala' in vistos[4] and 'Pestañas' in vistos[5] and 'hablando' in vistos[6] and 'avanzadas' in vistos[7], vistos)
+        T.v('%d px: el último paso dice «¡Listo!»' % ancho, pg.inner_text('.tour-siguiente') == '¡Listo!')
+        pg.click('.tour-siguiente'); pg.wait_for_timeout(300)
+        T.v('%d px: al terminar se cierra y se recuerda' % ancho, pg.locator('.tour-tarjeta').count() == 0 and (pg.evaluate("localStorage.getItem('lrAgendaTour')") or '').startswith('completo'))
+        T.v('%d px: sin errores de JavaScript ni desplazamiento horizontal' % ancho, not pg.errs and pg.evaluate("document.documentElement.scrollWidth") <= ancho, pg.errs[:2]); ctx2.close()
+    ctx = contexto(b, 1280, 800, config_abierta=False); pg = ctx.new_page(); pg.goto(BASE + '/agenda-rosina.html?tour=1'); pg.wait_for_timeout(3000)
+    pg.click('.tour-saltar'); pg.wait_for_timeout(300)
+    T.v('«Saltar tour» lo cierra y no vuelve a salir', pg.locator('.tour-tarjeta').count() == 0 and (pg.evaluate("localStorage.getItem('lrAgendaTour')") or '').startswith('saltado'))
+    pg.goto(BASE + '/agenda-rosina.html?tour=1'); pg.wait_for_timeout(3000); pg.keyboard.press('Escape'); pg.wait_for_timeout(200)
+    T.v('Esc también lo cierra', pg.locator('.tour-tarjeta').count() == 0)
+    pg.evaluate("window.lrAgendaConfig.abrir()"); pg.click('#agenda-tour-btn'); pg.wait_for_timeout(500)
+    T.v('«Ver el tour de bienvenida» en Configuración lo repite', pg.locator('.tour-tarjeta').is_visible() and 'Paso 1 de 8' in pg.inner_text('.tour-tarjeta'))
+    pg.keyboard.press('ArrowRight'); pg.wait_for_timeout(300); T.v('las flechas del teclado avanzan', 'Paso 2 de 8' in pg.inner_text('.tour-tarjeta'))
+    ctx.close()
+T.fin()
