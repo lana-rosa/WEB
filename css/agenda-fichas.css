@@ -152,6 +152,7 @@ body.en-blanco .aviso-alarma { display: none !important; }
 .portada-hoja[data-fondo="madejas"] .portada-fondo { background-size: 170px auto; }
 .portada-hoja[data-fondo="flores"], .portada-hoja[data-fondo="hojas"] { background: #FEFEFE; }
 .portada-hoja[data-fondo="madejas"] { background: #FDFDFB; }
+.portada-hoja[data-fondo="rosina"], .portada-hoja[data-fondo="ovejitas"] { background: #FFFFFF; }
 .portada-fondo.con-imagen { background-repeat: no-repeat; background-size: contain; background-position: center; }
 .portada-op { display: inline-flex; align-items: center; gap: 8px; }
 .portada-mini { width: 22px; height: 34px; border-radius: 4px; background-size: cover; background-position: center; border: 1px solid rgba(69,69,74,0.25); flex: none; }
@@ -162,12 +163,15 @@ body.en-blanco .aviso-alarma { display: none !important; }
 #agenda[data-fondo-hojas="flores"] .hoja-agenda { background-image: url("/img/agenda/fondo-flores-arriba.webp"), url("/img/agenda/fondo-flores-abajo.webp"); }
 #agenda[data-fondo-hojas="hojas"] .hoja-agenda { background-image: url("/img/agenda/fondo-hojas-arriba.webp"), url("/img/agenda/fondo-hojas-abajo.webp"); }
 #agenda[data-fondo-hojas="madejas"] .hoja-agenda { background-image: url("/img/agenda/fondo-madejas-arriba.webp"), url("/img/agenda/fondo-madejas-abajo.webp"); }
+#agenda[data-fondo-hojas="rosina"] .hoja-agenda { background-image: url("/img/agenda/fondo-rosina-arriba.webp"), url("/img/agenda/fondo-rosina-abajo.webp"); }
+#agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { background-image: url("/img/agenda/fondo-ovejitas-arriba.webp"), url("/img/agenda/fondo-ovejitas-abajo.webp"); }
 @media (max-width: 700px) {
   #agenda[data-fondo-hojas="flores"] .hoja-agenda { background-image: url("/img/agenda/fondo-flores-v-arriba.webp"), url("/img/agenda/fondo-flores-v-abajo.webp"); }
   #agenda[data-fondo-hojas="hojas"] .hoja-agenda { background-image: url("/img/agenda/fondo-hojas-v-arriba.webp"), url("/img/agenda/fondo-hojas-v-abajo.webp"); }
   #agenda[data-fondo-hojas="madejas"] .hoja-agenda { background-image: url("/img/agenda/fondo-madejas-v-arriba.webp"), url("/img/agenda/fondo-madejas-v-abajo.webp"); }
+  #agenda[data-fondo-hojas="rosina"] .hoja-agenda { background-image: url("/img/agenda/fondo-rosina-v-arriba.webp"), url("/img/agenda/fondo-rosina-v-abajo.webp"); }
+  #agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { background-image: url("/img/agenda/fondo-ovejitas-v-arriba.webp"), url("/img/agenda/fondo-ovejitas-v-abajo.webp"); }
 }
-.portada-fondo.con-rosina img { position: absolute; width: 30%; height: auto; opacity: .95; }
 .portada-tarjeta { position: absolute; left: 11%; right: 11%; top: 16%; bottom: 16%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.94); border-radius: 8cqw; border: 0.7cqw solid var(--pc-a, #F28FC0); padding: 4cqw; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .portada-tarjeta img { width: 24cqw; height: 24cqw; object-fit: contain; margin: 0 0 1cqw; }
 .portada-marca { margin: 0; font-size: 3.2cqw; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pc-b, #E74E96); font-weight: 700; }
