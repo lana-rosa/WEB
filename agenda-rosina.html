@@ -34,7 +34,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="/js/consentimiento.js?v=2" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Agenda para tejedoras — Lana Rosa Crochet</title>
-<meta name="description" content="Agenda digital gratis para tejedoras: planeador del día, pedidos, inventario de lanas, ventas, patrones, prendas a medida y lápiz. Instálala como app y úsala sin internet.">
+<meta name="description" content="Agenda digital para tejedoras con 7 días gratis: planeador, pedidos, inventario de lanas, ventas y patrones. Instálala como app y úsala sin internet.">
 <link rel="canonical" href="https://lanarosacrochet.com/agenda-rosina.html">
 <link rel="privacy-policy" href="https://lanarosacrochet.com/politicas.html#datos">
 <link rel="terms-of-service" href="https://lanarosacrochet.com/politicas.html#uso">
@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lana Rosa Crochet">
 <meta property="og:title" content="Agenda para tejedoras — Lana Rosa Crochet">
-<meta property="og:description" content="Agenda digital gratis para tejedoras: planeador, pedidos, inventario, ventas y patrones propios. Se instala como app.">
+<meta property="og:description" content="Agenda digital para tejedoras, 7 días gratis: planeador, pedidos, inventario, ventas y patrones propios. Se instala como app.">
 <meta property="og:url" content="https://lanarosacrochet.com/agenda-rosina.html">
 <meta property="og:locale" content="es_CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -798,7 +798,8 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .mn-lista { margin: 0 0 12px; padding-left: 18px; display: grid; gap: 8px; font-size: 0.88rem; line-height: 1.45; }
 #mn-ahora-no { display: block; margin: 10px auto 0; }
 .modal-membresia .nota-pie { display: block; margin-top: 10px; text-align: center; font-size: 0.78rem; color: #6E6E73; }
-@media print { .candado-pago, .membresia-tarjeta, .modal-membresia { display: none !important; } }
+@media print { .candado-pago, .membresia-tarjeta, .modal-membresia, .hoja-agenda.sin-membresia { display: none !important; } }
+.mm-gratis { margin: 0 0 14px; text-align: center; font-size: 0.88rem; font-weight: 700; color: var(--rosa-texto); }
 @media (max-width: 520px) { .acciones-hoja { flex-wrap: nowrap; } .acciones-hoja button { flex: 1; padding: 8px 6px; font-size: 0.8rem; } }
 /* Mismo espacio arriba en todas las páginas (29-sep-2026) */
 main > :first-child { padding-top: 40px !important; }
@@ -919,7 +920,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="volver-rincon"><a href="/">← Volver al inicio</a></p>
     <header class="agenda-cabecera">
       <img class="portada-rosina" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" width="512" height="512" decoding="async">
-      <div class="ac-titulo"><p class="eslogan">Agenda digital gratis con tu cuenta · Lana Rosa</p><h1>Agenda para tejedoras</h1></div>
+      <div class="ac-titulo"><p class="eslogan">Agenda digital · 7 días gratis con tu cuenta · Lana Rosa</p><h1>Agenda para tejedoras</h1></div>
       <button type="button" class="agenda-config-btn no-imprimir" id="agenda-config-btn" aria-expanded="false" aria-controls="agenda-config"><span aria-hidden="true">⚙️</span><span class="acb-txt">Configuración</span></button>
     </header>
     <div class="agenda-recordatorio no-imprimir" id="agenda-recordatorio" role="region" aria-label="Recordatorio de copia de tu agenda" hidden>
@@ -936,7 +937,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
     </div>
-    <p class="intro" id="agenda-intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo con tu cuenta gratis (se guardan en tu dispositivo y, si quieres, también en tu cuenta) o imprímelas, llenas o en blanco, para escribir a mano.</p>
+    <p class="intro" id="agenda-intro">Abre el índice, elige una pestaña y llena tus hojas aquí mismo con tu cuenta, gratis los primeros 7 días con todas las hojas (se guardan en tu dispositivo y, si quieres, también en tu cuenta), o imprímelas, llenas o en blanco, para escribir a mano.</p>
     <div class="acciones" style="justify-content:center; margin-top:18px;">
       <button type="button" class="boton-primario" data-imprimir="agenda">🖨️ Imprimir agenda</button>
       <button type="button" class="boton-secundario" id="agenda-borrar">Borrar lo escrito</button>
@@ -2083,8 +2084,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="candado-agenda no-imprimir" role="region" aria-label="Agenda solo para quienes tienen cuenta">
         <p class="candado-icono" aria-hidden="true">🔒</p>
-        <h2 id="candado-titulo">La agenda para tejedoras es gratis con tu cuenta</h2>
-        <p id="candado-texto">Usa todas las hojas: proyectos, pedidos, lanas, ventas, finanzas, tablero, calendario del año y más. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.</p>
+        <h2 id="candado-titulo">Prueba la agenda para tejedoras 7 días gratis con tu cuenta</h2>
+        <p id="candado-texto">Usa todas las hojas durante 7 días: proyectos, pedidos, lanas, ventas, finanzas, tablero, calendario del año y más. Después, Inicio, Mi tablero y Mis proyectos siguen gratis y el resto es con membresía desde $5.000 al mes. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.</p>
         <a class="boton-google-agenda" href="/cuenta.html?google=1&amp;volver=agenda-rosina.html"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.4-4.7 7l7.3 5.7c4.3-4 6.8-9.9 6.8-17.2z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-2.9-.8-4.7s.3-3.3.8-4.7l-7.9-6.1C.9 16.4 0 20.100 0 24s.9 7.600 2.600 10.800l7.900-6.100z"/><path fill="#34A853" d="M24 48c6.3 0 11.600-2.100 15.500-5.700l-7.300-5.700c-2 1.400-4.700 2.300-8.200 2.300-6.300 0-11.600-4.100-13.500-9.800l-7.900 6.100C6.500 42.600 14.600 48 24 48z"/></svg> Continuar con Google</a>
         <p class="separador-candado"><span>o con tu correo</span></p>
         <div class="acciones" style="justify-content:center;">
@@ -4120,7 +4121,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=23" defer></script>
 <script src="/js/agenda/config.js?v=2" defer></script>
-<script src="/js/agenda/tour.js?v=2" defer></script>
+<script src="/js/agenda/tour.js?v=3" defer></script>
 <script src="/js/agenda/fichas.js?v=1" defer></script>
 <script src="/js/agenda/formas.js?v=1" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
@@ -4137,6 +4138,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
 <script type="module" src="/js/agenda/google-calendar.js?v=1"></script>
+<script type="module" src="/js/agenda/membresia.js?v=1"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=2" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
