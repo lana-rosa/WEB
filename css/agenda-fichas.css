@@ -156,28 +156,20 @@ body.en-blanco .aviso-alarma { display: none !important; }
 .portada-fondo.con-imagen { background-repeat: no-repeat; background-size: contain; background-position: center; }
 .portada-op { display: inline-flex; align-items: center; gap: 8px; }
 .portada-mini { width: 22px; height: 34px; border-radius: 4px; background-size: cover; background-position: center; border: 1px solid rgba(69,69,74,0.25); flex: none; }
-/* Los mismos fondos como marco de todas las hojas de la agenda (solo si la persona eligió uno en la Portada). Los archivos los genera herramientas/generar_fondos_agenda.py.
-   Marcos (flores, hojas, madejas): la mitad de arriba pegada arriba y la de abajo pegada abajo; en el celular se usa la versión vertical. */
-#agenda[data-fondo-hojas] .hoja-agenda { background-color: #fff; background-repeat: no-repeat; background-size: 100% auto; background-position: center top, center bottom; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-#agenda[data-fondo-hojas] .hoja-agenda > header { background: rgba(255,255,255,0.82); border-radius: 14px; padding-left: 10px; padding-right: 10px; }
-#agenda[data-fondo-hojas="flores"] .hoja-agenda { background-image: url("/img/agenda/fondo-flores-arriba.webp"), url("/img/agenda/fondo-flores-abajo.webp"); }
-#agenda[data-fondo-hojas="hojas"] .hoja-agenda { background-image: url("/img/agenda/fondo-hojas-arriba.webp"), url("/img/agenda/fondo-hojas-abajo.webp"); }
-#agenda[data-fondo-hojas="madejas"] .hoja-agenda { background-image: url("/img/agenda/fondo-madejas-arriba.webp"), url("/img/agenda/fondo-madejas-abajo.webp"); }
-@media (max-width: 700px) {
-  #agenda[data-fondo-hojas="flores"] .hoja-agenda { background-image: url("/img/agenda/fondo-flores-v-arriba.webp"), url("/img/agenda/fondo-flores-v-abajo.webp"); }
-  #agenda[data-fondo-hojas="hojas"] .hoja-agenda { background-image: url("/img/agenda/fondo-hojas-v-arriba.webp"), url("/img/agenda/fondo-hojas-v-abajo.webp"); }
-  #agenda[data-fondo-hojas="madejas"] .hoja-agenda { background-image: url("/img/agenda/fondo-madejas-v-arriba.webp"), url("/img/agenda/fondo-madejas-v-abajo.webp"); }
-}
-/* Patrones (Rosina y amigos, Ovejitas): el dibujo es el BORDE de la hoja por los cuatro lados (border-image sobre un anillo de piezas limpias que arma el mismo script; el número es su `slice`,
-   SLICE_BORDE del script, y debe coincidir; `round` repite las piezas de cada lado un número exacto de veces, sin cortar dibujos). El anillo va debajo del contenido y la hoja deja más espacio por dentro para que no se encime. */
-#agenda[data-fondo-hojas="rosina"] .hoja-agenda, #agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { --bw: 92px; padding: calc(var(--bw) + 4px); isolation: isolate; }
-#agenda[data-fondo-hojas="rosina"] .hoja-agenda > header, #agenda[data-fondo-hojas="ovejitas"] .hoja-agenda > header { background: transparent; padding-left: 0; padding-right: 0; }
-#agenda[data-fondo-hojas="rosina"] .hoja-agenda::before, #agenda[data-fondo-hojas="ovejitas"] .hoja-agenda::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border: var(--bw) solid transparent; clip-path: inset(0 round var(--radio-suave)); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-#agenda[data-fondo-hojas="rosina"] .hoja-agenda::before { border-image: url("/img/agenda/fondo-rosina-borde.webp") 150 round; }
-#agenda[data-fondo-hojas="ovejitas"] .hoja-agenda::before { border-image: url("/img/agenda/fondo-ovejitas-borde.webp") 150 round; }
-@media (max-width: 900px) { #agenda[data-fondo-hojas="rosina"] .hoja-agenda, #agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { --bw: 68px; } }
-@media (max-width: 520px) { #agenda[data-fondo-hojas="rosina"] .hoja-agenda, #agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { --bw: 42px; } }
-@media print { #agenda[data-fondo-hojas="rosina"] .hoja-agenda, #agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { --bw: 52px; padding: 38px 40px !important; } }
+/* La CINTA de las hojas (29-oct-2026, a pedido de Sara: «una cinta delgada pegada por todo el rededor», y que se vea delgada): si la persona eligió un fondo en la Portada, todas las hojas llevan
+   una cinta delgada con el estilo de ese fondo por los cuatro lados, con las esquinas en ángulo. Es un anillo (`fondo-<f>-borde.webp`, que genera herramientas/generar_fondos_agenda.py) puesto con
+   `border-image`: el número es su `slice` (SLICE_BORDE del script, 40) y `round` repite la cinta un número exacto de veces. Va debajo del contenido, con una sombrita fina para que se vea pegada.
+   Su ancho (`--bw`) es siempre menor que el relleno de la hoja (28 px), así el contenido no se mueve. «Liso» no lleva cinta. */
+#agenda[data-fondo-hojas] .hoja-agenda { --bw: 18px; isolation: isolate; }
+#agenda[data-fondo-hojas] .hoja-agenda::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border: var(--bw) solid transparent; border-image: var(--cinta) 40 round; clip-path: inset(0 round var(--radio-suave)); filter: drop-shadow(0 1px 1px rgba(58,42,46,0.2)); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+#agenda[data-fondo-hojas="flores"] .hoja-agenda { --cinta: url("/img/agenda/fondo-flores-borde.webp"); }
+#agenda[data-fondo-hojas="hojas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-hojas-borde.webp"); }
+#agenda[data-fondo-hojas="madejas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-madejas-borde.webp"); }
+#agenda[data-fondo-hojas="rosina"] .hoja-agenda { --cinta: url("/img/agenda/fondo-rosina-borde.webp"); }
+#agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-ovejitas-borde.webp"); }
+@media (max-width: 900px) { #agenda[data-fondo-hojas] .hoja-agenda { --bw: 16px; } }
+@media (max-width: 520px) { #agenda[data-fondo-hojas] .hoja-agenda { --bw: 12px; } }
+@media print { #agenda[data-fondo-hojas] .hoja-agenda { --bw: 14px; padding: 22px 24px !important; } }
 .portada-tarjeta { position: absolute; left: 11%; right: 11%; top: 16%; bottom: 16%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: rgba(255,255,255,0.94); border-radius: 8cqw; border: 0.7cqw solid var(--pc-a, #F28FC0); padding: 4cqw; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .portada-tarjeta img { width: 24cqw; height: 24cqw; object-fit: contain; margin: 0 0 1cqw; }
 .portada-marca { margin: 0; font-size: 3.2cqw; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pc-b, #E74E96); font-weight: 700; }
