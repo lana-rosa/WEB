@@ -44,7 +44,7 @@
   function deFinanzas() {
     var f = (N.datos()._fin || {}), salida = [];
     var movs = (f.movs || []).slice().sort(function (a, b) { return String(a.f).localeCompare(String(b.f)); });
-    if (movs.length) salida.push({ nombre: 'Mis movimientos', columnas: ['Fecha', 'Tipo', 'Categoría', 'Descripción', 'Valor', 'Medio de pago'],
+    if (movs.length) salida.push({ nombre: 'Ingresos y gastos del negocio', columnas: ['Fecha', 'Tipo', 'Categoría', 'Descripción', 'Valor', 'Medio de pago'],
       filas: movs.map(function (m) { return [m.f, m.t === 'i' ? 'Ingreso' : 'Gasto', m.c || '', m.d || '', Number(m.v) || 0, m.m || '']; }) });
     return salida;
   }

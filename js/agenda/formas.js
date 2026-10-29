@@ -115,8 +115,6 @@
       var cu = document.createElement('div'); cu.className = 'vers-body'; it.appendChild(cu);
       if (abierta) {
         cu.appendChild(cuerpo);
-        var ac = document.createElement('p'); ac.className = 'vers-acciones no-imprimir';
-        ac.innerHTML = '<button type="button" class="vers-borrar boton-secundario boton-chico">🗑️ Borrar este ' + H.unidad + '</button>'; cu.appendChild(ac);
       }
       lista.appendChild(it);
     });
@@ -170,9 +168,10 @@
   function montar(id) {
     var art = hojaEl(id), cuerpo = art.querySelector('.vers-cuerpo'); if (!cuerpo) return;
     var H = HOJAS[id], barra = document.createElement('div'); barra.className = 'vers-barra no-imprimir';
-    barra.innerHTML = '<button type="button" class="vers-nueva boton-secundario boton-chico"></button>'; barra.firstChild.textContent = H.nuevo;
+    barra.innerHTML = '<button type="button" class="vers-nueva boton-secundario boton-chico"></button><button type="button" class="vers-borrar boton-secundario boton-chico">🗑️ <span class="t-largo"></span><span class="t-corto">Borrar</span></button>';
+    barra.firstChild.textContent = H.nuevo; barra.querySelector('.t-largo').textContent = 'Borrar este ' + H.unidad;
     var lista = document.createElement('div'); lista.className = 'vers-lista';
-    cuerpo.parentNode.insertBefore(lista, cuerpo); cuerpo.parentNode.insertBefore(barra, lista);
+    cuerpo.parentNode.insertBefore(lista, cuerpo); lista.insertAdjacentElement('afterend', barra);   // la barra (Agregar · Borrar) va debajo de la lista
     UI[id] = { cuerpo: cuerpo, lista: lista };
     /* la primera vez que se abre la hoja sin nada escrito, el mes o la semana se ponen solos */
     var ini = H.inicial(), V = ver(id);

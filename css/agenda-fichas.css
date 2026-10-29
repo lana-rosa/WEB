@@ -502,3 +502,25 @@ html[data-casa="agenda"][data-tema="grafito"] .nav-principal li.g-agenda a:hover
 }
 #tabla-pedidos td[data-col="totalcompra"]::before { content: attr(data-label) " · se calcula solo"; }
 #tabla-pedidos td[data-col="saldo"]::before { content: attr(data-label) " · se calcula solo"; }
+
+/* Barra de abajo de cada lista de fichas (29-oct-2026, pedido de Sara): Agregar · Añadir a Google Calendar · Borrar, en un solo renglón.
+   Los botones de Calendar y Borrar actúan sobre la ficha activa (la última que se abrió o tocó); los que había dentro de cada ficha quedan ocultos. */
+#agenda .tabla-agenda tr.ficha > td.ficha-acciones, #agenda .tabla-agenda tr.ficha > td.celda-cal { display: none !important; }
+.ficha-barra { display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; }
+.ficha-barra .boton-chico { white-space: nowrap; flex: 0 0 auto; }
+.ficha-barra .barra-borrar { color: #8E1457; }
+.ficha-barra button:disabled { opacity: .45; cursor: not-allowed; }
+.ficha-barra .t-corto { display: none; }
+@media (max-width: 560px) { .ficha-barra { gap: 6px; } .ficha-barra .boton-chico { padding-left: 10px; padding-right: 10px; } .ficha-barra .t-largo { display: none; } .ficha-barra .t-corto { display: inline; } }
+@media (max-width: 380px) { .ficha-barra { flex-wrap: wrap; } }
+.varias-abiertas tr.ficha.abierta.activa { box-shadow: 0 0 0 2px var(--rosa-principal); }
+/* Hojas de una sola ficha con versiones (mes, proyecto, semana, feria): Agregar y Borrar debajo de la lista, en un solo renglón */
+.vers-barra { display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; margin: 12px 0 0; }
+.vers-barra .boton-chico { white-space: nowrap; flex: 0 0 auto; }
+.vers-barra .vers-borrar { color: #8E1457; }
+.vers-barra .t-corto { display: none; }
+@media (max-width: 560px) { .vers-barra { gap: 6px; } .vers-barra .boton-chico { padding-left: 10px; padding-right: 10px; } .vers-barra .t-largo { display: none; } .vers-barra .t-corto { display: inline; } }
+@media (max-width: 380px) { .vers-barra { flex-wrap: wrap; } }
+/* Finanzas del negocio (29-oct-2026): ya no se separa lo personal de lo del negocio */
+.fin-check[hidden], #fin-fil-neg[hidden] { display: none !important; }
+@media (max-width: 440px) { .ficha-barra, .vers-barra { gap: 4px; } .ficha-barra .boton-chico, .vers-barra .boton-chico { font-size: 0.8rem; padding-left: 8px; padding-right: 8px; } }

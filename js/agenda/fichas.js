@@ -133,8 +133,13 @@
     for (r = 1; r <= n; r++) if (S.abiertas[r]) S.mostradas[r] = true;
     for (r = 1; r <= n; r++) if (tieneDatos(tabla, r) || S.mostradas[r]) visibles++;
     if (!visibles) { S.mostradas[1] = true; S.abiertas[1] = true; }
+    var abiertasN = 0, primera = 0;
+    for (r = 1; r <= n; r++) { var tr0 = fila(tabla, r); if (tr0 && S.abiertas[r] && (tieneDatos(tabla, r) || S.mostradas[r])) { abiertasN++; if (!primera) primera = r; } }
+    S.act = (S.activa && S.abiertas[S.activa] && (tieneDatos(tabla, S.activa) || S.mostradas[S.activa])) ? S.activa : primera;   // ficha sobre la que actúan «Añadir a Google Calendar» y «Borrar»
+    T(tabla).cuerpo.classList.toggle('varias-abiertas', abiertasN > 1);
     for (r = 1; r <= n; r++) {
       var tr = fila(tabla, r); if (!tr) continue;
+      tr.classList.toggle('activa', r === S.act);
       var mostrar = tieneDatos(tabla, r) || !!S.mostradas[r];
       tr.hidden = !mostrar;
       var abierta = mostrar && !!S.abiertas[r];
@@ -143,6 +148,17 @@
       if (mostrar) pintarCab(tabla, r);
       if (abierta) creceFila(tr);
     }
+    barraEstado(tabla);
+  }
+  /* Barra de abajo (Agregar · Añadir a Google Calendar · Borrar): los botones de Calendar y Borrar actúan sobre la ficha activa (la última que se abrió o tocó) */
+  function barraDe(tabla) { var c = T(tabla).cuerpo.closest('.tabla-scroll'); var b = c && c.nextElementSibling; return b && b.classList.contains('ficha-barra') ? b : null; }
+  function barraEstado(tabla) {
+    var b = barraDe(tabla); if (!b) return;
+    var S = est(tabla), tr = S.act ? fila(tabla, S.act) : null, nombre = tr ? tr.querySelector('.ficha-titulo').textContent : '';
+    b.querySelectorAll('.barra-cal, .barra-borrar').forEach(function (x) {
+      x.disabled = !tr;
+      x.title = tr ? (x.classList.contains('barra-borrar') ? 'Borrar «' + nombre + '»' : 'Añadir a Google Calendar «' + nombre + '»') : 'Abre una ficha para usar este botón';
+    });
   }
 
   var avisoEspera = null;
@@ -176,7 +192,7 @@
     if (!elegida) { for (r = 1; r <= n; r++) if (!tieneDatos(tabla, r)) { elegida = r; break; } }
     if (!elegida) { var nueva = N.agregarRenglon(tabla); if (nueva) elegida = T(tabla).n; }
     if (!elegida) return;
-    S.mostradas[elegida] = true; S.abiertas[elegida] = true;
+    S.mostradas[elegida] = true; S.abiertas[elegida] = true; S.activa = elegida;
     aplicar(tabla);
     var porDefecto = { 'tabla-clientas': 'desde', 'tabla-aprendi': 'fecha', 'tabla-ideas': 'fecha' }[tabla];
     if (porDefecto) { var cd = campo(tabla, elegida, porDefecto); if (cd && !cd.value) { cd.value = hoyTxt(); N.datos()[cd.id] = cd.value; N.guardar(); } }
@@ -201,6 +217,7 @@
       });
       if (k < n) { S.abiertas[k] = S.abiertas[k + 1]; S.mostradas[k] = S.mostradas[k + 1]; } else { S.abiertas[k] = false; S.mostradas[k] = false; }
     }
+    S.activa = 0;
     N.guardar();
     if (window.lrAgenda && window.lrAgenda.alCambiar) window.lrAgenda.alCambiar();
     aplicar(tabla);
@@ -209,7 +226,7 @@
   function abrirDe(el) {
     var tr = el && el.closest && el.closest('tr.ficha'); if (!tr) return;
     var tabla = tr.closest('tbody').id, r = +tr.dataset.fila, S = est(tabla);
-    S.mostradas[r] = true; S.abiertas[r] = true; aplicar(tabla);
+    S.mostradas[r] = true; S.abiertas[r] = true; S.activa = r; aplicar(tabla);
   }
 
   function iniciar() {
@@ -217,14 +234,20 @@
       if (!T(tabla)) return;
       T(tabla).cuerpo.closest('table').classList.add('tabla-fichas');
       var b = T(tabla).cuerpo.closest('.tabla-scroll').parentNode.querySelector('.agregar-renglon[data-tabla="' + tabla + '"]');
-      if (b) b.textContent = LISTAS[tabla].agregar;
+      if (b) {
+        b.textContent = LISTAS[tabla].agregar;
+        var wrap = b.parentNode; wrap.classList.add('ficha-barra');
+        var conCal = T(tabla).cols.some(function (c) { return c && c.cal; });
+        if (conCal) wrap.insertAdjacentHTML('beforeend', '<button type="button" class="boton-secundario boton-chico barra-cal" disabled>📅 <span class="t-largo">Añadir a Google Calendar</span><span class="t-corto">Google</span></button>');
+        wrap.insertAdjacentHTML('beforeend', '<button type="button" class="boton-secundario boton-chico barra-borrar" disabled>🗑️ <span class="t-largo">Borrar esta ficha</span><span class="t-corto">Borrar</span></button>');
+      }
     });
     var zona = document.getElementById('agenda');
     zona.addEventListener('click', function (e) {
       var cab = e.target.closest('tr.ficha .ficha-cab');
       if (cab) {
         var tr = cab.closest('tr.ficha'), tabla = tr.closest('tbody').id, r = +tr.dataset.fila, S = est(tabla);
-        S.abiertas[r] = !tr.classList.contains('abierta'); S.mostradas[r] = true; aplicar(tabla);
+        S.abiertas[r] = !tr.classList.contains('abierta'); S.mostradas[r] = true; if (S.abiertas[r]) S.activa = r; aplicar(tabla);
         if (S.abiertas[r]) { var p = tr.querySelector('textarea, select'); if (p && e.detail === 0) p.focus(); }
         return;
       }
@@ -232,6 +255,12 @@
       if (av) {
         var ta = av.parentNode.querySelector('textarea'), h = new Date(), f = ('0' + h.getDate()).slice(-2) + '/' + ('0' + (h.getMonth() + 1)).slice(-2) + '/' + h.getFullYear();
         ta.value = (ta.value.trim() ? ta.value.replace(/\s+$/, '') + '\n' : '') + f + ' — '; ta.dispatchEvent(new Event('input', { bubbles: true })); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); return;
+      }
+      var bb = e.target.closest('.barra-cal, .barra-borrar');
+      if (bb) {
+        var wrap2 = bb.closest('.ficha-barra'), tabla3 = wrap2.querySelector('.agregar-renglon').dataset.tabla, r3 = est(tabla3).act, tr3 = r3 ? fila(tabla3, r3) : null;
+        var origen = tr3 && tr3.querySelector(bb.classList.contains('barra-borrar') ? '.ficha-borrar' : '.boton-cal'); if (origen) origen.click();
+        return;
       }
       var bo = e.target.closest('.ficha-borrar');
       if (bo) {
@@ -254,6 +283,12 @@
       }
       crece(e.target); pintarCab(tabla, r); avisoEntregas(); avisoAgujas();
     };
+    zona.addEventListener('focusin', function (e) {
+      var tr = e.target.closest && e.target.closest('tr.ficha.abierta'); if (!tr) return;
+      var tabla = tr.closest('tbody').id; if (!LISTAS[tabla]) return;
+      var S = est(tabla), r = +tr.dataset.fila; if (S.activa === r) return;
+      S.activa = r; aplicar(tabla);
+    });
     zona.addEventListener('input', enTabla);
     zona.addEventListener('change', enTabla);
     window.addEventListener('resize', function () { if (autoCrece) document.querySelectorAll('#agenda tr.ficha.abierta').forEach(creceFila); });
