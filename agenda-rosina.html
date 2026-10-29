@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=42">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=7">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=8">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -1036,7 +1036,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#mis-ideas" data-hoja="mis-ideas">💭 Mis ideas</a>
           <a href="#disena-patron" data-hoja="disena-patron">✏️ Diseña tu patrón</a>
           <a href="#prendas-medida" data-hoja="prendas-medida">👗 Prendas a medida</a>
-          <a href="#hoja-puntos" data-hoja="hoja-puntos">⚫ Hoja de puntos</a>
+          <a href="#hoja-puntos" data-hoja="hoja-puntos">⚫ Hoja de dibujo</a>
           <p class="menu-grupo">Mis materiales</p>
           <a href="#inventario-lanas" data-hoja="inventario-lanas">🧶 Inventario de lanas</a>
           <a href="#mis-agujas" data-hoja="mis-agujas"><svg class="ic-aguja" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 20L18 6"/><ellipse cx="18.6" cy="5.4" rx="1" ry="2.4" transform="rotate(45 18.6 5.4)"/><path d="M16.5 7.5C21 10 21 15 14.5 15.5"/></svg> Mis agujas</a>
@@ -1094,7 +1094,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="anio-tejiendo"><span class="atajo-ic" aria-hidden="true">⭐</span><span><strong>Mi año tejiendo</strong><small>Tus metas y logros</small></span></button>
           <button type="button" class="atajo" data-ir="lo-que-aprendi"><span class="atajo-ic" aria-hidden="true">🌟</span><span><strong>Lo que aprendí</strong><small>Puntos y trucos nuevos</small></span></button>
           <button type="button" class="atajo" data-ir="mis-ideas"><span class="atajo-ic" aria-hidden="true">💭</span><span><strong>Mis ideas</strong><small>Pensamientos e ideas, escritos o hablados</small></span></button>
-          <button type="button" class="atajo" data-ir="hoja-puntos"><span class="atajo-ic" aria-hidden="true">⚫</span><span><strong>Hoja de puntos</strong><small>Para dibujar esquemas y diseños</small></span></button>
+          <button type="button" class="atajo" data-ir="hoja-puntos"><span class="atajo-ic" aria-hidden="true">⚫</span><span><strong>Hoja de dibujo</strong><small>Para dibujar esquemas y diseños</small></span></button>
           <button type="button" class="atajo" data-ir="prendas-medida"><span class="atajo-ic" aria-hidden="true">👗</span><span><strong>Prendas a medida</strong><small>Tallas XS a XL, maniquí y cálculos</small></span></button>
           <button type="button" class="atajo" data-ir="disena-patron"><span class="atajo-ic" aria-hidden="true">✏️</span><span><strong>Diseña tu patrón</strong><small>Tu propio patrón, paso a paso</small></span></button>
         </div></div>
@@ -1615,7 +1615,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:640px;">
-            <thead><tr><th>Cliente</th><th>Teléfono</th><th>Dirección</th><th>Producto</th><th>Cantidad</th><th>Valor unidad</th><th class="col-oculta">Valor total</th><th>Costo de envío</th><th>Total compra</th><th>Total abonado</th><th>Saldo pendiente</th><th>Fecha de reserva</th><th>Fecha de entrega</th><th>Fecha de envío</th><th>Medio de pago</th><th>Forma de envío</th><th>Estado</th><th>Observaciones</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
+            <thead><tr><th>Cliente</th><th>Teléfono</th><th>Producto</th><th>Detalles adicionales</th><th>Fecha de reserva</th><th>Fecha de entrega</th><th>Estado</th><th>Cantidad</th><th>Valor por unidad</th><th class="col-oculta">Valor total</th><th>Costo de envío</th><th>Total de la compra</th><th>Abono</th><th>Saldo pendiente</th><th>Medio de pago</th><th>Dirección</th><th>Medio de envío</th><th>Fecha de envío</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-pedidos"></tbody>
           </table>
         </div>
@@ -1886,7 +1886,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="hoja-agenda" id="hoja-puntos">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Hoja de puntos</h3><p>Una hoja en blanco con puntos para dibujar esquemas, diseños y patrones.</p></div>
+          <div><h3>Hoja de dibujo</h3><p>Una hoja con puntos para dibujar esquemas, diseños y patrones, con todos los colores.</p></div>
         </header>
         <div class="puntos-paginas no-imprimir">
           <button type="button" class="boton-secundario boton-chico" id="puntos-ant">← Anterior</button>
@@ -2418,21 +2418,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     /* Cada renglón es una ficha: cabecera que se abre y se cierra, un renglón (ampliable) por cada pregunta y botón para borrarla */
     var celdas = t.cols.map(function(c, i) {
       var col = typeof c === 'string' ? c : c.id;
+      var sec = t.secciones && t.secciones[col] ? '<td class="ficha-seccion" aria-hidden="true"><span>' + t.secciones[col] + '</span></td>' : '';
       var id = t.prefijo + r + '-' + col, aria = ' aria-label="' + (t.titulos[i] || col) + ' ' + t.etiqueta + ' ' + r + '"';
       var et = ' data-label="' + (t.titulos[i] || '') + '" data-col="' + col + '"';
-      if (c.opciones) return '<td' + et + '><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select><span class="opciones-imp" aria-hidden="true">' + c.opciones.map(function(o) { return '<i>○ ' + o + '</i>'; }).join(' ') + '</span></td>';
-      if (c.check) return '<td class="celda-check"' + et + '><label class="check-ficha"><input type="checkbox" id="' + id + '" data-guardar' + aria + '><span>' + (t.titulos[i] || '') + '</span></label></td>';
-      if (c.cal) return '<td class="celda-cal no-imprimir" data-col="cal"><button type="button" class="boton-cal" data-cal="' + c.cal + '" data-fila="' + r + '" aria-label="Añadir a Google Calendar la ficha ' + r + '" title="Añadir a Google Calendar">📅<span class="solo-movil"> Añadir a Google Calendar</span></button></td>';
-      return '<td' + et + '><textarea rows="1" id="' + id + '" data-guardar' + aria + (c.wa ? ' inputmode="tel"' : '') + '></textarea>' + (c.avance ? '<button type="button" class="avance-btn boton-secundario boton-chico no-imprimir">➕ Anotar avance de hoy</button>' : '') + (c.wa ? '<a class="wa-link no-imprimir" target="_blank" rel="noopener" hidden>💬 Escribir por WhatsApp</a>' : '') + '</td>';
+      if (c.opciones) return sec + '<td' + et + '><select id="' + id + '" data-guardar' + aria + '><option value=""></option>' + c.opciones.map(function(o) { return '<option>' + o + '</option>'; }).join('') + '</select><span class="opciones-imp" aria-hidden="true">' + c.opciones.map(function(o) { return '<i>○ ' + o + '</i>'; }).join(' ') + '</span></td>';
+      if (c.check) return sec + '<td class="celda-check"' + et + '><label class="check-ficha"><input type="checkbox" id="' + id + '" data-guardar' + aria + '><span>' + (t.titulos[i] || '') + '</span></label></td>';
+      if (c.cal) return sec + '<td class="celda-cal no-imprimir" data-col="cal"><button type="button" class="boton-cal" data-cal="' + c.cal + '" data-fila="' + r + '" aria-label="Añadir a Google Calendar la ficha ' + r + '" title="Añadir a Google Calendar">📅<span class="solo-movil"> Añadir a Google Calendar</span></button></td>';
+      return sec + '<td' + et + '><textarea rows="1" id="' + id + '" data-guardar' + aria + (c.wa ? ' inputmode="tel"' : '') + '></textarea>' + (c.avance ? '<button type="button" class="avance-btn boton-secundario boton-chico no-imprimir">➕ Anotar avance de hoy</button>' : '') + (c.wa ? '<a class="wa-link no-imprimir" target="_blank" rel="noopener" hidden>💬 Escribir por WhatsApp</a>' : '') + '</td>';
     }).join('');
     return '<tr class="ficha" data-fila="' + r + '"><td class="ficha-cab-td"><button type="button" class="ficha-cab" aria-expanded="false"><span class="ficha-flecha" aria-hidden="true">▸</span><span class="ficha-titulo"></span><span class="ficha-meta"></span></button></td>' + celdas +
       '<td class="ficha-acciones no-imprimir"><button type="button" class="ficha-borrar boton-secundario boton-chico" data-fila="' + r + '">🗑️ Borrar esta ficha</button></td></tr>';
   }
-  function filasTabla(idTabla, prefijo, cols, n, etiqueta) {
+  function filasTabla(idTabla, prefijo, cols, n, etiqueta, secciones) {
     var cuerpo = document.getElementById(idTabla);
     var titulos = Array.prototype.map.call(cuerpo.closest('table').querySelectorAll('thead th'), function(th) { return th.textContent.replace(/"/g, ''); });
     var guardadas = (datos._filas && datos._filas[idTabla]) || 0;
-    var t = tablas[idTabla] = { cuerpo: cuerpo, prefijo: prefijo, cols: cols, etiqueta: etiqueta, titulos: titulos, n: Math.max(n, guardadas) };
+    var t = tablas[idTabla] = { cuerpo: cuerpo, prefijo: prefijo, cols: cols, etiqueta: etiqueta, titulos: titulos, secciones: secciones || null, n: Math.max(n, guardadas) };
     var html = '';
     for (var r = 1; r <= t.n; r++) html += htmlFila(t, r);
     cuerpo.insertAdjacentHTML('beforeend', html);
@@ -2458,10 +2459,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var fila = agregarRenglon(b.dataset.tabla);
     if (fila) { var primero = fila.querySelector('input, textarea, select'); if (primero) primero.focus(); }
   });
-  filasTabla('tabla-pedidos', 'ag-p', [{ id: 'cliente' }, { id: 'telefono', wa: true }, 'direccion', 'pedido', 'cantidad', 'valorunidad', 'precio', 'costoenvio', 'totalcompra', 'abono', 'saldo', 'reserva', 'entrega', 'envio',
+  var CANTIDADES = []; for (var q = 1; q <= 20; q++) CANTIDADES.push(String(q));
+  filasTabla('tabla-pedidos', 'ag-p', [{ id: 'cliente' }, { id: 'telefono', wa: true },
+    'pedido', 'obs', 'reserva', 'entrega', { id: 'estado', opciones: ['Cotizado', 'Pedido confirmado', 'En proceso', 'Terminado', 'Despachado', 'Entregado', 'Cancelado'] },
+    { id: 'cantidad', opciones: CANTIDADES }, 'valorunidad', 'precio', 'costoenvio', 'totalcompra', 'abono', 'saldo',
     { id: 'medio', opciones: ['Efectivo', 'Nequi', 'Daviplata', 'Transferencia Bancolombia', 'Otra transferencia', 'Tarjeta', 'Wompi', 'Pago contra entrega', 'Otro'] },
-    { id: 'forma', opciones: ['Recoge en tienda', 'Domicilio (moto)', 'Servientrega', 'Interrapidísimo', 'Coordinadora', 'Otra transportadora', 'Entrega personal', 'Otro'] },
-    { id: 'estado', opciones: ['Cotizado', 'Pedido confirmado', 'En proceso', 'Terminado', 'Despachado', 'Entregado', 'Cancelado'] }, 'obs', { id: 'cal', cal: 'pedido' }], 8, 'del pedido');
+    'direccion', { id: 'forma', opciones: ['Recoge en tienda', 'Domicilio (moto)', 'Servientrega', 'Interrapidísimo', 'Coordinadora', 'Otra transportadora', 'Entrega personal', 'Otro'] }, 'envio',
+    { id: 'cal', cal: 'pedido' }], 8, 'del pedido',
+    { cliente: '👤 Datos del cliente', pedido: '🧶 Producto y detalles adicionales', cantidad: '💰 Precio y pago', direccion: '🚚 Datos y medio de envío' });
   filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
   filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
   filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'avance', avance: true }, { id: 'cumplido', check: true }, 'cumplidoen', { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
@@ -2597,7 +2602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     pedidoEnvio: function(f) {
       var cli = celdaFila('tabla-pedidos', f, 'cliente'), ped = celdaFila('tabla-pedidos', f, 'pedido');
       return { fecha: celdaFila('tabla-pedidos', f, 'envio'), titulo: 'Envío: ' + (ped || 'pedido') + (cli ? ' — ' + cli : ''),
-        detalles: [['Cliente', cli], ['Teléfono', celdaFila('tabla-pedidos', f, 'telefono')], ['Dirección', celdaFila('tabla-pedidos', f, 'direccion')], ['Forma de envío', celdaFila('tabla-pedidos', f, 'forma')], ['Saldo pendiente', celdaFila('tabla-pedidos', f, 'saldo')]] };
+        detalles: [['Cliente', cli], ['Teléfono', celdaFila('tabla-pedidos', f, 'telefono')], ['Dirección', celdaFila('tabla-pedidos', f, 'direccion')], ['Medio de envío', celdaFila('tabla-pedidos', f, 'forma')], ['Saldo pendiente', celdaFila('tabla-pedidos', f, 'saldo')]] };
     },
     ficha: function(k) {
       var g = function(id) { return window.lrVersiones ? window.lrVersiones.valor('ficha-proyecto', k, id) : valorDe(id); };
@@ -4133,7 +4138,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
 <script type="module" src="/js/agenda/google-calendar.js?v=1"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
-<script src="/js/agenda/dibujo.js?v=1" defer></script>
+<script src="/js/agenda/dibujo.js?v=2" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=1" defer></script>
 <script src="/js/agenda/exportar.js?v=1" defer></script>

@@ -45,6 +45,8 @@ tr.ficha.abierta .ficha-flecha { transform: rotate(90deg); }
 #agenda .tabla-agenda td select:focus { outline: 3px solid var(--lila); outline-offset: 1px; }
 #agenda .tabla-agenda td.celda-check { display: block; }
 #agenda .tabla-agenda td.celda-check::before { display: none; }
+#agenda .tabla-agenda td.celda-check { width: auto; min-width: 0; max-width: none; padding-left: 14px; padding-right: 14px; text-align: left !important; }
+.check-ficha span { white-space: nowrap; }
 .check-ficha { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 700; color: var(--rosa-texto); cursor: pointer; }
 .check-ficha input { width: 22px; height: 22px; accent-color: var(--rosa-principal); flex: none; }
 .ficha-acciones { text-align: right; }
@@ -265,7 +267,7 @@ html.agenda-gratis [data-completa] { display: none !important; }
 
 .avance-btn { margin-top: 6px; }
 
-/* Lienzos para dibujar y hoja de puntos */
+/* Lienzos para dibujar y hoja de dibujo (antes hoja de puntos) */
 .dib-wrap { width: 100%; }
 .dib-barra { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 8px; }
 .dib-barra button, .dib-subir { font: inherit; cursor: pointer; min-width: 40px; min-height: 40px; border-radius: 12px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); font-size: 1.05rem; padding: 4px 8px; display: inline-flex; align-items: center; justify-content: center; }
@@ -273,6 +275,11 @@ html.agenda-gratis [data-completa] { display: none !important; }
 .dib-barra button[aria-pressed="true"] { border-color: var(--rosa-principal); background: var(--rosa-suave); }
 .dib-barra .dib-color { width: 34px; min-width: 34px; height: 34px; min-height: 34px; padding: 0; border-radius: 50%; background: var(--c); border: 3px solid #fff; box-shadow: 0 0 0 1.5px rgba(69,69,74,0.3); }
 .dib-barra .dib-color[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--tinta); background: var(--c); }
+/* Selector libre: cualquier color (rueda de colores; al elegir uno, la rueda se pinta de ese color) */
+.dib-barra .dib-color-libre { position: relative; cursor: pointer; display: inline-block; background: conic-gradient(#E53935, #FBC02D, #3FAE73, #26C6DA, #4C9BEA, #8E5BD9, #E74E96, #E53935); }
+.dib-barra .dib-color-libre.activo { background: var(--c); box-shadow: 0 0 0 3px var(--tinta); }
+.dib-barra .dib-color-libre input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; padding: 0; border: 0; }
+.dib-barra .dib-color-libre:focus-within { outline: 3px solid var(--lila); outline-offset: 2px; }
 .dib-barra .dib-ancho i { display: block; width: 22px; background: var(--tinta); border-radius: 4px; }
 .dib-dedo { display: inline-flex; align-items: center; gap: 4px; font-size: 0.85rem; font-weight: 700; min-height: 40px; }
 .dib-aviso { flex: 1 1 100%; font-size: 0.82rem; color: #8E1457; font-weight: 600; }
@@ -472,3 +479,26 @@ html[data-casa="agenda"][data-tema="grafito"] .nav-principal li.g-agenda a { bac
 html[data-casa="agenda"][data-tema="grafito"] .nav-principal li.g-agenda a:hover { background: #3F3F46; color: #fff; }
 .ac-grupo { flex-basis: 100%; margin: 6px 0 0; font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--rosa-texto); }
 .ac-grupo:first-child { margin-top: 0; }
+
+/* Separación entre el tip de Rosina y lo que sigue (29-oct-2026) */
+#agenda .tip-agenda { margin-bottom: 16px; }
+#agenda .tip-agenda:last-child { margin-bottom: 0; }
+
+/* «Qué llevar» (ferias): cada opción en un solo renglón cuando hay espacio */
+.lista-llevar { grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
+@media (min-width: 700px) { .lista-llevar label { white-space: nowrap; } }
+
+/* Secciones dentro de una ficha (29-oct-2026, pedido de Sara: Control de pedidos por secciones: cliente, producto, precio y envío) */
+#agenda .tabla-agenda tr.ficha > td.ficha-seccion { display: block; }
+#agenda .tabla-agenda tr.ficha:not(.abierta) > td.ficha-seccion { display: none; }
+#agenda .tabla-agenda tr.ficha.abierta > td.ficha-seccion { grid-column: 1 / -1; padding: 18px 14px 0; }
+#agenda .tabla-agenda tr.ficha.abierta > td.ficha-seccion:first-of-type { padding-top: 14px; }
+.ficha-seccion span { display: block; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1.02rem; color: var(--rosa-texto); padding: 0 0 6px; border-bottom: 2px dashed var(--rosa-medio); }
+#tabla-pedidos td[data-col="pedido"], #tabla-pedidos td[data-col="obs"], #tabla-pedidos td[data-col="direccion"] { grid-column: 1 / -1; }
+#tabla-pedidos td[data-col="totalcompra"] textarea, #tabla-pedidos td[data-col="saldo"] textarea { font-weight: 700; background: var(--rosa-suave); border-radius: 8px 8px 0 0; padding-left: 8px; }
+@media print {
+  #agenda table.tabla-fichas tr.ficha > td.ficha-seccion { grid-column: 1 / -1; padding: 8px 10px 0 !important; }
+  .ficha-seccion span { font-size: 0.85rem; border-bottom: 1px solid #999; color: #333; }
+}
+#tabla-pedidos td[data-col="totalcompra"]::before { content: attr(data-label) " · se calcula solo"; }
+#tabla-pedidos td[data-col="saldo"]::before { content: attr(data-label) " · se calcula solo"; }

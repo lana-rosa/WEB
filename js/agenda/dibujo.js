@@ -1,12 +1,15 @@
 /* Agenda para tejedoras: lienzos para dibujar (28-oct-2026).
    Un lienzo con lápiz, borrador, colores, deshacer, foto de fondo y descarga. Sirve para el «Dibujo del diseño» de cada proyecto
-   (a mano o subiendo una foto) y para la «Hoja de puntos». Los trazos se guardan con la agenda en datos._dib[clave]:
+   (a mano o subiendo una foto) y para la «Hoja de dibujo». Los trazos se guardan con la agenda en datos._dib[clave]:
    { s: [[color, grosor, x1, y1, x2, y2, …], …], img: 'data:image/jpeg…' } con x e y en milésimas del ancho del lienzo. */
 (function () {
   'use strict';
   var N = window.lrAgendaNucleo;
   if (!N) return;
-  var COLORES = ['#2B2B30', '#E74E96', '#4C9BEA', '#3FAE73', '#F0933B'], NOMBRES = ['negro', 'rosa', 'azul', 'verde', 'naranja'], ANCHOS = [1.6, 3, 6];
+  /* Los 5 primeros colores son los de siempre (los trazos guardan el número); se suman 7 más y un selector libre (el trazo guarda el color #rrggbb). */
+  var COLORES = ['#2B2B30', '#E74E96', '#4C9BEA', '#3FAE73', '#F0933B', '#E53935', '#FBC02D', '#8E5BD9', '#26C6DA', '#8D5A3B', '#9AA0A6', '#F8BBD0'],
+    NOMBRES = ['negro', 'rosa', 'azul', 'verde', 'naranja', 'rojo', 'amarillo', 'morado', 'turquesa', 'café', 'gris', 'rosa claro'], ANCHOS = [1.6, 3, 6];
+  function colorDe(v) { return typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v) ? v : (COLORES[v] || COLORES[0]); }
   var MAX_IMG_TOTAL = 1800000, MAX_PUNTOS = 150000;
 
   function almacen() { var d = N.datos(); return d._dib || (d._dib = {}); }
@@ -20,6 +23,7 @@
     var barra = document.createElement('div'); barra.className = 'dib-barra no-imprimir'; barra.setAttribute('role', 'toolbar'); barra.setAttribute('aria-label', 'Herramientas del dibujo');
     barra.innerHTML = '<button type="button" data-h="pluma" aria-pressed="true" title="Dibujar">✏️</button><button type="button" data-h="borrar" aria-pressed="false" title="Borrar un trazo">🧽</button>' +
       COLORES.map(function (c, i) { return '<button type="button" class="dib-color" data-c="' + i + '" aria-label="Color ' + NOMBRES[i] + '" style="--c:' + c + '" aria-pressed="' + (i === 0) + '"></button>'; }).join('') +
+      '<label class="dib-color dib-color-libre" title="Elegir cualquier color" aria-label="Elegir cualquier color"><input type="color" value="#2B2B30"></label>' +
       ANCHOS.map(function (a, i) { return '<button type="button" class="dib-ancho" data-a="' + i + '" aria-label="Línea ' + ['fina', 'media', 'gruesa'][i] + '" aria-pressed="' + (i === 1) + '"><i style="height:' + Math.max(2, a) + 'px"></i></button>'; }).join('') +
       '<button type="button" data-acc="deshacer" title="Deshacer">↩️</button><button type="button" data-acc="limpiar" title="Borrar todo el dibujo">🗑️</button>' +
       (foto ? '<label class="dib-subir" title="Subir una foto del diseño">📷 Subir foto<input type="file" accept="image/*" hidden></label>' : '') +
@@ -38,7 +42,7 @@
       caja.style.height = h + 'px'; canvas.style.width = w + 'px'; canvas.style.height = h + 'px'; canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); pintar();
     }
     function trazo(s) {
-      var k = u(), p = s.slice(2), n = p.length / 2; ctx.strokeStyle = ctx.fillStyle = COLORES[s[0]] || COLORES[0]; ctx.lineWidth = ANCHOS[s[1]] || ANCHOS[1];
+      var k = u(), p = s.slice(2), n = p.length / 2; ctx.strokeStyle = ctx.fillStyle = colorDe(s[0]); ctx.lineWidth = ANCHOS[s[1]] || ANCHOS[1];
       if (n <= 1) { ctx.beginPath(); ctx.arc(p[0] * k, p[1] * k, ctx.lineWidth / 2, 0, Math.PI * 2); ctx.fill(); return; }
       ctx.beginPath(); ctx.moveTo(p[0] * k, p[1] * k); for (var i = 1; i < n; i++) ctx.lineTo(p[i * 2] * k, p[i * 2 + 1] * k); ctx.stroke();
     }
@@ -64,7 +68,7 @@
     function sumar(e) {
       var p = punto(e), s = actual, n = s.length;
       if (n >= 4 && Math.hypot(p[0] - s[n - 2], p[1] - s[n - 1]) < 1.2 / u()) return; s.push(p[0], p[1]);
-      var k = u(); ctx.strokeStyle = COLORES[s[0]]; ctx.lineWidth = ANCHOS[s[1]]; ctx.beginPath(); ctx.moveTo((n >= 4 ? s[n - 2] : p[0]) * k, (n >= 4 ? s[n - 1] : p[1]) * k); ctx.lineTo(p[0] * k, p[1] * k); ctx.stroke();
+      var k = u(); ctx.strokeStyle = colorDe(s[0]); ctx.lineWidth = ANCHOS[s[1]]; ctx.beginPath(); ctx.moveTo((n >= 4 ? s[n - 2] : p[0]) * k, (n >= 4 ? s[n - 1] : p[1]) * k); ctx.lineTo(p[0] * k, p[1] * k); ctx.stroke();
     }
     canvas.addEventListener('pointerdown', function (e) {
       if (!clave) return; try { canvas.setPointerCapture(e.pointerId); } catch (x) {}
@@ -99,6 +103,12 @@
       barra.querySelectorAll('[data-h]').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.h === est.herr)); });
       barra.querySelectorAll('[data-c]').forEach(function (x) { x.setAttribute('aria-pressed', String(+x.dataset.c === est.color)); });
       barra.querySelectorAll('[data-a]').forEach(function (x) { x.setAttribute('aria-pressed', String(+x.dataset.a === est.ancho)); });
+      libre.classList.toggle('activo', typeof est.color === 'string');
+    });
+    var libre = barra.querySelector('.dib-color-libre'), selector = libre.querySelector('input');
+    selector.addEventListener('input', function () {
+      est.color = selector.value; libre.style.setProperty('--c', selector.value); libre.classList.add('activo');
+      barra.querySelectorAll('[data-c]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
     });
     barra.querySelector('.dib-dedo input').addEventListener('change', function (e) { est.dedo = e.target.checked; decir(est.dedo ? 'El dedo dibuja.' : 'El dedo mueve la página; dibuja con el lápiz digital o el mouse.'); });
     /* foto del diseño: se reduce y se guarda con la agenda */
@@ -123,7 +133,7 @@
       var w = 1000, h = Math.round(w * relacion), c = document.createElement('canvas'); c.width = w; c.height = h; var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, w, h);
       function trazos() {
         x.lineCap = 'round'; x.lineJoin = 'round';
-        reg(false).s.forEach(function (s) { x.strokeStyle = x.fillStyle = COLORES[s[0]] || COLORES[0]; x.lineWidth = (ANCHOS[s[1]] || 3) * (1000 / (canvas.clientWidth || 1000)); var p = s.slice(2); x.beginPath(); x.moveTo(p[0], p[1]); for (var i = 1; i < p.length / 2; i++) x.lineTo(p[i * 2], p[i * 2 + 1]); x.stroke(); });
+        reg(false).s.forEach(function (s) { x.strokeStyle = x.fillStyle = colorDe(s[0]); x.lineWidth = (ANCHOS[s[1]] || 3) * (1000 / (canvas.clientWidth || 1000)); var p = s.slice(2); x.beginPath(); x.moveTo(p[0], p[1]); for (var i = 1; i < p.length / 2; i++) x.lineTo(p[i * 2], p[i * 2 + 1]); x.stroke(); });
         var a = document.createElement('a'); a.href = c.toDataURL('image/png'); a.download = (op.archivo || 'dibujo') + '.png'; document.body.appendChild(a); a.click(); a.remove();
       }
       var r = reg(false); if (r.img) { var im = new Image(); im.onload = function () { var e = Math.min(w / im.width, h / im.height); x.drawImage(im, (w - im.width * e) / 2, (h - im.height * e) / 2, im.width * e, im.height * e); trazos(); }; im.src = r.img; } else trazos();
@@ -141,14 +151,14 @@
     pads.proyecto = montar(cont, { clave: clave(), relacion: 0.72, archivo: 'dibujo-del-diseno', etiqueta: 'Dibujo del diseño del proyecto' });
     document.addEventListener('version-cambiada', function (e) { if (e.detail.hoja === 'ficha-proyecto') pads.proyecto.cambiarClave(clave()); });
   }
-  /* Hoja de puntos: varias páginas */
+  /* Hoja de dibujo (antes «Hoja de puntos»; el id y las claves `puntos:` siguen igual para no perder lo dibujado): varias páginas */
   function iniciarPuntos() {
     var cont = document.getElementById('puntos-lienzo'); if (!cont) return;
     var pagina = 1, pad = null, info = document.getElementById('puntos-cuenta'), ant = document.getElementById('puntos-ant'), sig = document.getElementById('puntos-sig'), nueva = document.getElementById('puntos-nueva');
     function total() { var d = N.datos(); return Math.max(1, d._puntosN || 1); }
     function pintar() {
       info.textContent = 'Página ' + pagina + ' de ' + total(); ant.disabled = pagina <= 1; sig.disabled = pagina >= total();
-      if (!pad) pad = montar(cont, { clave: 'puntos:' + pagina, fondo: 'puntos', foto: false, relacion: 1.2, archivo: 'hoja-de-puntos', etiqueta: 'Hoja de puntos para dibujar' }); else pad.cambiarClave('puntos:' + pagina);
+      if (!pad) pad = montar(cont, { clave: 'puntos:' + pagina, fondo: 'puntos', foto: false, relacion: 1.2, archivo: 'hoja-de-dibujo', etiqueta: 'Hoja de dibujo con puntos' }); else pad.cambiarClave('puntos:' + pagina);
     }
     ant.addEventListener('click', function () { pagina = Math.max(1, pagina - 1); pintar(); }); sig.addEventListener('click', function () { pagina = Math.min(total(), pagina + 1); pintar(); });
     nueva.addEventListener('click', function () { var d = N.datos(); d._puntosN = total() + 1; N.guardar(); pagina = d._puntosN; pintar(); });
