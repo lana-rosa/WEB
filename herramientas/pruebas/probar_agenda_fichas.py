@@ -64,7 +64,7 @@ with sync_playwright() as p:
         wb = openpyxl.load_workbook(ruta); nombres = wb.sheetnames
         T.v('Excel: tiene una hoja por cada hoja de la agenda con datos', 'Control de pedidos' in nombres and 'Lista de compras' in nombres, nombres)
         ws = wb['Control de pedidos']; filas = [[c.value for c in r] for r in ws.iter_rows()]
-        T.v('Excel: encabezados y filas correctos (sin las fichas vacías)', filas[0][:2] == ['Cliente', 'Teléfono'] and filas[0][3] == 'Producto' and len(filas) == 3 and filas[1][0] == 'Sara' and filas[2][0] == 'Marta' and filas[1][3] == 'Gorro', filas)
+        T.v('Excel: encabezados y filas correctos (sin las fichas vacías)', filas[0][:2] == ['Cliente', 'Teléfono'] and filas[0][2] == 'Producto' and len(filas) == 3 and filas[1][0] == 'Sara' and filas[2][0] == 'Marta' and filas[1][2] == 'Gorro', filas)
         T.v('Excel: la casilla marcada sale como «Sí»', [c.value for c in list(wb['Lista de compras'].iter_rows())[1]][3] == 'Sí', [[c.value for c in r] for r in wb['Lista de compras'].iter_rows()])
     except ImportError:
         T.v('openpyxl instalado para leer el Excel', False, 'pip install openpyxl')

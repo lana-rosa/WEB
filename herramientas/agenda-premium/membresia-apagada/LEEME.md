@@ -1,6 +1,6 @@
 # Membresía de la Agenda de Rosina — piezas apagadas (12-oct-2026)
 
-Sara decidió el 12-oct-2026 dejar la Agenda de Rosina **completa y gratuita** con la cuenta y no vender la membresía por ahora.
+(Nota 29-oct-2026: la membresía volvió a encenderse con otro diseño: ver `js/agenda/membresia.js`; estas piezas quedan solo como historial.) Sara decidió el 12-oct-2026 dejar la Agenda de Rosina **completa y gratuita** con la cuenta y no vender la membresía por ahora.
 Estas tres piezas se sacaron de `agenda-rosina.html` (para que el sitio y el chat de Rosina no hablen de una membresía que no se vende) y se guardaron aquí tal cual estaban:
 
 | Archivo | Qué es | Dónde volver a ponerlo en `agenda-rosina.html` |

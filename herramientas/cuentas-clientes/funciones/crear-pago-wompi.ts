@@ -34,13 +34,14 @@ const CATEGORIA_EMPAQUES = 'Empaques'; // las bolsas se cobran en la venta, no s
 const CENTRO_MERCERIA = '2c1577b5-514e-4952-ba15-4feb64ea1879'; // Tienda/Mercería: el mismo filtro de obtener_merceria_web
 // Versión vigente de las condiciones de la membresía (= su «Fecha de actualización» en politicas.html#membresia). Si cambian de forma
 // importante: subir esta versión, la de agenda-rosina.html (VERSION_CONDICIONES) y la de la base (fn_nube_version).
-const VERSION_CONDICIONES = '2026-10-12';
-// La membresía NO está a la venta desde el 12-oct-2026 (la agenda completa es gratuita). Para volver a venderla: true, tras la revisión de la abogada.
-const MEMBRESIA_EN_VENTA = false;
-// Membresía de la Agenda de Rosina (COP)
+const VERSION_CONDICIONES = '2026-10-29';
+// Membresía a la venta desde el 29-oct-2026 (pedido de Sara): prueba gratis de 7 días y, después, las tres primeras pestañas gratis; el resto con membresía.
+// (Estuvo apagada del 12 al 29-oct-2026.) Pendiente: revisión de las condiciones por la abogada.
+const MEMBRESIA_EN_VENTA = true;
+// Membresía de la Agenda para tejedoras (COP): mensual $5.000, anual $45.000 (3 meses gratis)
 const PRECIOS_MEMBRESIA: Record<string, { valor: number; nombre: string }> = {
-  mensual: { valor: 7000, nombre: 'Membresía Agenda de Rosina · Mensual' },
-  anual: { valor: 57000, nombre: 'Membresía Agenda de Rosina · Anual' },
+  mensual: { valor: 5000, nombre: 'Membresía Agenda para tejedoras · Mensual' },
+  anual: { valor: 45000, nombre: 'Membresía Agenda para tejedoras · Anual' },
 };
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -78,7 +79,7 @@ Deno.serve(async (req) => {
 
   // ---- Membresía de la Agenda de Rosina ----
   if (body?.accion === 'membresia') {
-    if (!MEMBRESIA_EN_VENTA) return json({ error: 'La membresía no está disponible por ahora: la Agenda de Rosina completa es gratuita con tu cuenta.' }, 403);
+    if (!MEMBRESIA_EN_VENTA) return json({ error: 'La membresía no está disponible por ahora.' }, 403);
     const plan = String(body?.plan || '');
     const precio = PRECIOS_MEMBRESIA[plan];
     if (!precio) return json({ error: 'Elige el plan mensual o anual.' }, 400);
