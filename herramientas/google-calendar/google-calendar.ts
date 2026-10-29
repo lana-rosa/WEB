@@ -3,7 +3,8 @@
 //   GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET   (cliente OAuth "Aplicación web" de Google Cloud; ver herramientas/google-calendar/README.md)
 //   CALENDAR_TOKEN_KEY                        (texto largo al azar, 40 caracteres o más: cifra los permisos guardados)
 //   CALENDAR_STATE_SECRET                     (texto largo al azar: firma el "state" del inicio de sesión de Google)
-// Solo se pide el permiso "calendar.events" (crear y editar eventos). No se lee ningún otro dato de Google.
+// Solo se pide el permiso NO sensible "calendar.app.created" (29-oct-2026; antes "calendar.events", que exigía la verificación de Google): la función crea un calendario
+// secundario «Agenda para tejedoras» en la cuenta de Google de la persona y solo toca los eventos de ese calendario. No se lee ningún otro dato de Google (ni sus otros eventos).
 //   POST { accion: 'estado' }                          -> { configurado, conectado, correo, ultima }
 //   POST { accion: 'conectar' }                        -> { url }  (la web manda a la persona a esa dirección de Google)
 //   GET  ?code=...&state=...                           -> Google vuelve aquí; se guarda el permiso cifrado y se redirige a la agenda
@@ -11,7 +12,7 @@
 //                                                      -> crea, actualiza y borra en Google Calendar lo que cambió (por "clave").
 //                                                         Seguro: si habría que borrar más de MAX_BORRADO_SIN_PREGUNTAR fechas de una vez (por ejemplo, una agenda vacía en otro dispositivo),
 //                                                         no se borra nada y se responde { retenidos: N }; la persona debe confirmarlo (confirmarBorrado: true).
-//   POST { accion: 'desconectar' }                     -> revoca el permiso en Google y borra lo guardado (los eventos ya creados quedan)
+//   POST { accion: 'desconectar' }                     -> borra el calendario «Agenda para tejedoras» de Google, revoca el permiso y borra lo guardado
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const SITIO = 'https://lanarosacrochet.com';
@@ -77,7 +78,17 @@ function cuerpoEvento(e: any) {
 }
 const limpio = (v: unknown, max: number) => String(v ?? '').replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, max);
 const FECHA_OK = /^\d{4}-\d{2}-\d{2}$/;
-const CAL = 'https://www.googleapis.com/calendar/v3/calendars/primary/events';
+const CAL_API = 'https://www.googleapis.com/calendar/v3/calendars';
+const NOMBRE_CALENDARIO = 'Agenda para tejedoras';
+const enc = encodeURIComponent;
+async function crearCalendario(acceso: string): Promise<string | null> {
+  const r = await fetch(CAL_API, {
+    method: 'POST', headers: { Authorization: 'Bearer ' + acceso, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ summary: NOMBRE_CALENDARIO, description: 'Las fechas de tu Agenda para tejedoras (lanarosacrochet.com). Se actualizan solas mientras tengas conectada la agenda; puedes ocultar o borrar este calendario cuando quieras.', timeZone: 'America/Bogota' }),
+  });
+  if (!r.ok) return null;
+  return (await r.json()).id as string;
+}
 async function huella(e: any) { return hmac(JSON.stringify([e.titulo, e.detalle, e.lugar, e.fecha, !!e.anual])); }
 
 Deno.serve(async (req) => {
@@ -102,7 +113,9 @@ Deno.serve(async (req) => {
     if (!t.refresh_token) return volver('sin_permiso');   // pasa si ya había dado permiso: se vuelve a pedir con prompt=consent
     let correo = '';
     try { const p = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: 'Bearer ' + t.access_token } }); correo = (await p.json()).email || ''; } catch { /* el correo es solo informativo */ }
-    await sb.from('google_calendar_cuentas').upsert({ user_id: uid, refresh_token: await cifrar(t.refresh_token), google_correo: correo || null, updated_at: new Date().toISOString() });
+    let calId: string | null = null;
+    try { calId = await crearCalendario(t.access_token); } catch { /* si falla, se crea en la primera sincronización */ }
+    await sb.from('google_calendar_cuentas').upsert({ user_id: uid, refresh_token: await cifrar(t.refresh_token), google_correo: correo || null, calendar_id: calId, updated_at: new Date().toISOString() });
     return volver('conectado');
   }
   if (req.method !== 'POST') return json({ error: 'Método no permitido' }, 405);
@@ -117,21 +130,25 @@ Deno.serve(async (req) => {
   const uid = u?.user?.id;
   if (!uid) return json({ error: 'Inicia sesión para conectar tu calendario.' }, 401);
 
-  const { data: cuenta } = await sb.from('google_calendar_cuentas').select('refresh_token, google_correo, ultima_sincronizacion').eq('user_id', uid).maybeSingle();
+  const { data: cuenta } = await sb.from('google_calendar_cuentas').select('refresh_token, google_correo, ultima_sincronizacion, calendar_id').eq('user_id', uid).maybeSingle();
 
   if (body.accion === 'estado') return json({ configurado: true, conectado: !!cuenta, correo: cuenta?.google_correo || null, ultima: cuenta?.ultima_sincronizacion || null });
 
   if (body.accion === 'conectar') {
     const q = new URLSearchParams({
       client_id: env('GOOGLE_CLIENT_ID'), redirect_uri: REDIRECT(), response_type: 'code', access_type: 'offline', prompt: 'consent',
-      scope: 'https://www.googleapis.com/auth/calendar.events openid email', include_granted_scopes: 'true', state: await crearState(uid),
+      scope: 'https://www.googleapis.com/auth/calendar.app.created openid email', state: await crearState(uid),
     });
     return json({ url: 'https://accounts.google.com/o/oauth2/v2/auth?' + q });
   }
 
   if (body.accion === 'desconectar') {
     if (cuenta) {
-      try { await fetch('https://oauth2.googleapis.com/revoke?token=' + encodeURIComponent(await descifrar(cuenta.refresh_token)), { method: 'POST' }); } catch { /* si ya estaba revocado, seguimos */ }
+      try {
+        const refresh = await descifrar(cuenta.refresh_token);
+        if (cuenta.calendar_id) { try { await fetch(`${CAL_API}/${enc(cuenta.calendar_id)}`, { method: 'DELETE', headers: { Authorization: 'Bearer ' + await tokenDeAcceso(refresh) } }); } catch { /* si ya no existe, seguimos */ } }
+        await fetch('https://oauth2.googleapis.com/revoke?token=' + enc(refresh), { method: 'POST' });
+      } catch { /* si ya estaba revocado, seguimos */ }
     }
     await sb.from('google_calendar_eventos').delete().eq('user_id', uid);
     await sb.from('google_calendar_cuentas').delete().eq('user_id', uid);
@@ -154,18 +171,26 @@ Deno.serve(async (req) => {
     const mapa = new Map((previos || []).map((p: any) => [p.clave, p]));
     const claves = new Set(eventos.map((e: any) => e.clave));
     let creados = 0, actualizados = 0, borrados = 0, sinCambio = 0, fallos = 0, retenidos = 0;
+    let calId: string | null = cuenta.calendar_id || null, calendarioRehecho = false;
+    const evUrl = () => `${CAL_API}/${enc(calId as string)}/events`;
+    const calendarioNuevo = async () => {      // crea «Agenda para tejedoras» (la primera vez o si la persona lo borró) y olvida los eventos del anterior
+      const id = await crearCalendario(acceso); if (!id) return false;
+      calId = id; await sb.from('google_calendar_cuentas').update({ calendar_id: id }).eq('user_id', uid); await sb.from('google_calendar_eventos').delete().eq('user_id', uid); mapa.clear(); return true;
+    };
+    if (!calId && !(await calendarioNuevo())) return json({ error: 'No pudimos crear tu calendario «Agenda para tejedoras» en Google Calendar. Inténtalo otra vez.' }, 502);
 
     for (const e of eventos) {
       const h = await huella(e), previo: any = mapa.get(e.clave);
       if (previo && previo.huella === h) { sinCambio++; continue; }
       let id: string | null = null;
       if (previo) {
-        const r = await fetch(`${CAL}/${previo.event_id}`, { method: 'PUT', headers: cab, body: JSON.stringify(cuerpoEvento(e)) });
+        const r = await fetch(`${evUrl()}/${previo.event_id}`, { method: 'PUT', headers: cab, body: JSON.stringify(cuerpoEvento(e)) });
         if (r.ok) { id = previo.event_id; actualizados++; }
         else if (r.status !== 404 && r.status !== 410) { fallos++; continue; }
       }
       if (!id) {
-        const r = await fetch(CAL, { method: 'POST', headers: cab, body: JSON.stringify(cuerpoEvento(e)) });
+        let r = await fetch(evUrl(), { method: 'POST', headers: cab, body: JSON.stringify(cuerpoEvento(e)) });
+        if (r.status === 404 && !calendarioRehecho) { calendarioRehecho = true; if (await calendarioNuevo()) r = await fetch(evUrl(), { method: 'POST', headers: cab, body: JSON.stringify(cuerpoEvento(e)) }); }
         if (!r.ok) { fallos++; continue; }
         id = (await r.json()).id; creados++;
       }
@@ -176,7 +201,7 @@ Deno.serve(async (req) => {
     if (!borrar) retenidos = aBorrar.length;
     for (const [clave, p] of mapa as Map<string, any>) {
       if (claves.has(clave) || !borrar) continue;
-      const r = await fetch(`${CAL}/${p.event_id}`, { method: 'DELETE', headers: cab });
+      const r = await fetch(`${evUrl()}/${p.event_id}`, { method: 'DELETE', headers: cab });
       if (r.ok || r.status === 404 || r.status === 410) { await sb.from('google_calendar_eventos').delete().eq('user_id', uid).eq('clave', clave); borrados++; } else fallos++;
     }
     await sb.from('google_calendar_cuentas').update({ ultima_sincronizacion: new Date().toISOString() }).eq('user_id', uid);

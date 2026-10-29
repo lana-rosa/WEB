@@ -1,5 +1,7 @@
 # Verificación de la app con Google (Google Calendar) — textos y guion
 
+> **29-oct-2026: ya NO hace falta.** La agenda pasó al permiso no sensible `calendar.app.created` (calendario propio «Agenda para tejedoras»); Google no pide verificación para permisos no sensibles. Esta guía queda por si algún día se vuelve a pedir un permiso sensible (por ejemplo `calendar.events` para escribir en el calendario principal). La marca (logo, dominio `lanarosacrochet.com` verificado en Search Console) ya está verificada.
+
 Preparado el 8-oct-2026. Sirve para quitar el aviso "Google no ha verificado esta app" y el límite de 100 personas. El permiso `calendar.events` es **sensible**, así que Google pide: dominio verificado, política de privacidad con ciertas frases, justificación del permiso y un video. El texto para Google va en **inglés** (lo revisa un equipo internacional). El texto para la política publicada va en español.
 
 ## 0. Cuenta de prueba para el video y para Google (29-oct-2026)
