@@ -428,6 +428,8 @@ html[data-casa="agenda"][data-tema="azulado"] .nav-principal li.g-agenda a:hover
 .tour-paso { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--rosa-texto); letter-spacing: .03em; }
 .tour-tarjeta .tour-titulo { margin: 0 0 6px; font-family: var(--fuente-titulo); font-size: 1.25rem; line-height: 1.15; color: var(--rosa-texto); }
 .tour-texto { margin: 0 0 10px; font-size: .96rem; line-height: 1.45; }
+.tour-texto p { margin: 0 0 7px; }
+.tour-texto p:last-child { margin-bottom: 0; }
 .tour-puntos { display: flex; gap: 6px; margin: 0 0 12px; }
 .tour-puntos i { width: 8px; height: 8px; border-radius: 50%; background: var(--rosa-medio); opacity: .55; }
 .tour-puntos i.on { background: var(--rosa-boton); opacity: 1; width: 20px; border-radius: 6px; }
@@ -440,3 +442,33 @@ html[data-casa="agenda"][data-tema="azulado"] .nav-principal li.g-agenda a:hover
 .tour-botones button:focus-visible { outline: 3px solid var(--rosa-texto); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .tour-foco { transition: none; } }
 @media print { .tour-capa, .tour-foco, .tour-tarjeta { display: none !important; } }
+/* Otros colores de la agenda (29-oct-2026, pedido de Sara: «más opciones de colores») */
+html[data-casa="agenda"][data-tema="rosa"] { --tinte: #FEF2F7; --rosa-principal: #E74E96; --rosa-medio: #F6A8CB; --rosa-suave: #FDEEF5; --rosa-hover: #B0356F; --rosa-rgb: 231, 78, 150; --rosa-texto: #C81B6D; --rosa-boton: #E01E79; --rosa-boton-hover: #B0356F; --casa-t1: #FEF2F7; --casa-t2: #FBE4EF; }
+html[data-casa="agenda"][data-tema="rosa"] .nav-principal li.g-agenda a { background: #FBE4EF; color: #C81B6D; }
+html[data-casa="agenda"][data-tema="rosa"] .nav-principal li.g-agenda a:hover { background: #E01E79; color: #fff; }
+html[data-casa="agenda"][data-tema="lila"] { --tinte: #F1EAFF; --rosa-principal: #7C4DDB; --rosa-medio: #BFA3F5; --rosa-suave: #F3EEFF; --rosa-hover: #5E32B8; --rosa-rgb: 124, 77, 219; --rosa-texto: #4B1FA6; --rosa-boton: #7A3FD6; --rosa-boton-hover: #5E32B8; --casa-t1: #F1EAFF; --casa-t2: #E3D7FA; }
+html[data-casa="agenda"][data-tema="lila"] .nav-principal li.g-agenda a { background: #E3D7FA; color: #4B1FA6; }
+html[data-casa="agenda"][data-tema="lila"] .nav-principal li.g-agenda a:hover { background: #7A3FD6; color: #fff; }
+html[data-casa="agenda"][data-tema="azul"] { --tinte: #E8F1FF; --rosa-principal: #2F7DE1; --rosa-medio: #9CC4F7; --rosa-suave: #EEF4FF; --rosa-hover: #1556B5; --rosa-rgb: 47, 125, 225; --rosa-texto: #12418F; --rosa-boton: #1F6FDB; --rosa-boton-hover: #1556B5; --casa-t1: #E8F1FF; --casa-t2: #D6E6FC; }
+html[data-casa="agenda"][data-tema="azul"] .nav-principal li.g-agenda a { background: #D6E6FC; color: #12418F; }
+html[data-casa="agenda"][data-tema="azul"] .nav-principal li.g-agenda a:hover { background: #1F6FDB; color: #fff; }
+html[data-casa="agenda"][data-tema="cielo"] { --tinte: #E0F2FE; --rosa-principal: #0EA5E9; --rosa-medio: #7DD3FC; --rosa-suave: #F0F9FF; --rosa-hover: #0369A1; --rosa-rgb: 14, 165, 233; --rosa-texto: #075985; --rosa-boton: #0369A1; --rosa-boton-hover: #075985; --casa-t1: #E0F2FE; --casa-t2: #BAE6FD; }
+html[data-casa="agenda"][data-tema="cielo"] .nav-principal li.g-agenda a { background: #BAE6FD; color: #075985; }
+html[data-casa="agenda"][data-tema="cielo"] .nav-principal li.g-agenda a:hover { background: #0369A1; color: #fff; }
+html[data-casa="agenda"][data-tema="mostaza"] { --tinte: #FFF3C4; --rosa-principal: #D4A017; --rosa-medio: #F4D77A; --rosa-suave: #FFF8E1; --rosa-hover: #8A6508; --rosa-rgb: 212, 160, 23; --rosa-texto: #6B4E06; --rosa-boton: #8A6508; --rosa-boton-hover: #6B4E06; --casa-t1: #FFF3C4; --casa-t2: #FCE79A; }
+html[data-casa="agenda"][data-tema="mostaza"] .nav-principal li.g-agenda a { background: #FCE79A; color: #6B4E06; }
+html[data-casa="agenda"][data-tema="mostaza"] .nav-principal li.g-agenda a:hover { background: #8A6508; color: #fff; }
+html[data-casa="agenda"][data-tema="durazno"] { --tinte: #FFEDD5; --rosa-principal: #F97316; --rosa-medio: #FDBA74; --rosa-suave: #FFF7ED; --rosa-hover: #C2410C; --rosa-rgb: 249, 115, 22; --rosa-texto: #9A3412; --rosa-boton: #C2410C; --rosa-boton-hover: #9A3412; --casa-t1: #FFEDD5; --casa-t2: #FED7AA; }
+html[data-casa="agenda"][data-tema="durazno"] .nav-principal li.g-agenda a { background: #FED7AA; color: #9A3412; }
+html[data-casa="agenda"][data-tema="durazno"] .nav-principal li.g-agenda a:hover { background: #C2410C; color: #fff; }
+html[data-casa="agenda"][data-tema="coral"] { --tinte: #FFE4E6; --rosa-principal: #F43F5E; --rosa-medio: #FDA4AF; --rosa-suave: #FFF1F2; --rosa-hover: #BE123C; --rosa-rgb: 244, 63, 94; --rosa-texto: #9F1239; --rosa-boton: #BE123C; --rosa-boton-hover: #9F1239; --casa-t1: #FFE4E6; --casa-t2: #FECDD3; }
+html[data-casa="agenda"][data-tema="coral"] .nav-principal li.g-agenda a { background: #FECDD3; color: #9F1239; }
+html[data-casa="agenda"][data-tema="coral"] .nav-principal li.g-agenda a:hover { background: #BE123C; color: #fff; }
+html[data-casa="agenda"][data-tema="vino"] { --tinte: #F5E1E8; --rosa-principal: #881337; --rosa-medio: #D8A4B4; --rosa-suave: #FBF1F4; --rosa-hover: #5F0D26; --rosa-rgb: 136, 19, 55; --rosa-texto: #6B0F2D; --rosa-boton: #7F1D3A; --rosa-boton-hover: #5F0D26; --casa-t1: #F5E1E8; --casa-t2: #EBC6D2; }
+html[data-casa="agenda"][data-tema="vino"] .nav-principal li.g-agenda a { background: #EBC6D2; color: #6B0F2D; }
+html[data-casa="agenda"][data-tema="vino"] .nav-principal li.g-agenda a:hover { background: #7F1D3A; color: #fff; }
+html[data-casa="agenda"][data-tema="grafito"] { --tinte: #EDEDEF; --rosa-principal: #52525B; --rosa-medio: #A1A1AA; --rosa-suave: #F4F4F5; --rosa-hover: #27272A; --rosa-rgb: 82, 82, 91; --rosa-texto: #27272A; --rosa-boton: #3F3F46; --rosa-boton-hover: #27272A; --casa-t1: #EDEDEF; --casa-t2: #D9D9DD; }
+html[data-casa="agenda"][data-tema="grafito"] .nav-principal li.g-agenda a { background: #D9D9DD; color: #27272A; }
+html[data-casa="agenda"][data-tema="grafito"] .nav-principal li.g-agenda a:hover { background: #3F3F46; color: #fff; }
+.ac-grupo { flex-basis: 100%; margin: 6px 0 0; font-size: .8rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--rosa-texto); }
+.ac-grupo:first-child { margin-top: 0; }

@@ -6,13 +6,13 @@
   'use strict';
   var PASOS = [
     { t: '¡Bienvenida a tu agenda! 🌿', x: 'Te muestro en un minuto lo más importante. Puedes saltar el tour cuando quieras y volver a verlo desde ⚙️ Configuración.' },
-    { t: 'Configuración ⚙️', x: 'Aquí escribes tu nombre, eliges el color de tu agenda entre 7 verdes y encuentras imprimir y borrar lo escrito.', sel: ['#agenda-config'], abrir: true },
-    { t: 'Copias de tu agenda', x: 'Tu agenda se guarda en este dispositivo. Descarga una copia, cárgala en otro aparato o actívala en tu cuenta (gratis y opcional) para recuperarla si borras el historial del navegador.', sel: ['.agenda-config .copia-agenda'], abrir: true },
-    { t: 'Google Calendar 📅', x: 'Conéctalo y tus entregas, proyectos, ferias y cumpleaños aparecen solos en un calendario aparte llamado «Agenda para tejedoras», con recordatorio. Es gratis y opcional (necesitas tu cuenta).', sel: ['#calendario-sync'], abrir: true },
-    { t: 'Instala la app 📲', x: 'Instálala para abrirla desde su propio ícono y usarla aun sin internet. En computador y Android: el botón «Instalar» de la barra de direcciones o el menú del navegador. En iPhone: Compartir → «Añadir a pantalla de inicio».', sel: ['#instalar-agenda'] },
-    { t: 'Pestañas y hojas', x: 'Las pestañas de la derecha (Inicio, Tablero, Proyectos…) agrupan las hojas. Al elegir una pestaña, escoge la hoja en la lista «Hojas de…». El Índice de Inicio las muestra todas.', sel: ['#pestanas-agenda', '#selector-hoja'] },
-    { t: 'Escribir hablando, a mano y buscar', x: '🎤 Dictar: toca una casilla y luego «Dictar» para escribir con tu voz (el audio lo procesa tu navegador, no lo guardamos). ✏️ Lápiz: escribe o dibuja sobre la hoja con lápiz digital o mouse; el dedo solo mueve la página, salvo que actives «Dedo». 🔍 El buscador encuentra cualquier cosa que hayas escrito.', sel: ['.buscar-fijo'] },
-    { t: 'Funciones avanzadas ✨', x: 'Planeador del día y tablero con tus números · pedidos con saldos y WhatsApp · ventas y gastos por mes · Diseña tu patrón · prendas a medida con maniquí · mercería y clases en «Aprende y compra» · exportar a Excel · y en cada hoja, «Agregar ficha» para sumar las que necesites.', final: true }
+    { t: 'Configuración ⚙️', x: 'Personaliza tu agenda con tu nombre y tu color favorito. También puedes imprimir tu agenda o borrar lo que has escrito.', sel: ['#agenda-config'], abrir: true },
+    { t: 'Copias de seguridad', x: 'Tu agenda se guarda en este dispositivo. Puedes descargar una copia de seguridad, importarla en otro dispositivo o vincularla a tu cuenta para recuperar tus escritos si borras el historial del navegador.', sel: ['.agenda-config .copia-agenda'], abrir: true },
+    { t: 'Google Calendar 📅', x: 'Conecta tu cuenta de Google para sincronizar tus entregas, proyectos, ferias y cumpleaños con un calendario independiente llamado «Agenda para tejedoras». Recibe recordatorios para que no olvides ninguna fecha importante.\nLa conexión es gratuita y opcional. Solo necesitas tu cuenta de Google.', sel: ['#calendario-sync'], abrir: true },
+    { t: 'Instala la app 📲', x: 'Añade la agenda a tu dispositivo para abrirla desde su propio ícono y acceder a ella incluso sin conexión a internet.\n💻 Computador y Android: busca la opción «Instalar» en la barra de direcciones o en el menú del navegador.\n📱 iPhone: pulsa «Compartir» y selecciona «Añadir a pantalla de inicio».\n¡Ten tu agenda siempre a mano!', sel: ['#instalar-agenda'] },
+    { t: 'Pestañas y hojas 📑', x: 'Las pestañas de la derecha (Inicio, Tablero, Proyectos…) organizan tu agenda por secciones. Selecciona una pestaña y elige la hoja que quieras consultar en la lista «Hojas de…». ¿Quieres verlas todas? Encuéntralas en el Índice de Inicio.', sel: ['#pestanas-agenda', '#selector-hoja'] },
+    { t: 'Dictado, escritura a mano y búsqueda ✍️', x: '🎤 Dictado por voz: selecciona una casilla y pulsa «Dictar» para convertir tu voz en texto. El audio lo procesa el servicio de voz de tu navegador y Lana Rosa no lo guarda.\n✏️ Lápiz digital: escribe o dibuja sobre la hoja con un lápiz digital o el mouse. Por defecto, el dedo sirve para desplazarte por la página; activa la opción «Dedo» si quieres escribir con él.\n🔍 Buscador: encuentra rápidamente cualquier texto que hayas escrito en tu agenda.', sel: ['.buscar-fijo'] },
+    { t: 'Funciones avanzadas ✨', x: 'Organiza tu día, visualiza tus números en el tablero y lleva el control de tus pedidos, saldos y ventas. Registra gastos mensuales, escribe por WhatsApp a tus clientas con un toque y exporta tus datos a Excel.\nAdemás, puedes diseñar tus propios patrones, crear prendas a medida con ayuda del maniquí y explorar la mercería y las clases en «Aprende y compra».\n¿Necesitas más espacio? Usa la opción «Agregar ficha» en cada hoja para añadir todas las que necesites.', final: true }
   ];
   var q = new URLSearchParams(location.search).get('tour'), paso = 0, capa, foco, tarjeta, abrioPanel = false, activo = false;
   function visto() { try { return !!localStorage.getItem('lrAgendaTour'); } catch (e) { return true; } }
@@ -52,7 +52,8 @@
     else if (!P.abrir && abrioPanel && window.lrAgendaConfig) { window.lrAgendaConfig.cerrar(); abrioPanel = false; }
     var objetivo = buscar(P.sel);
     if (objetivo) { var y = objetivo.getBoundingClientRect().top + window.scrollY - 96; window.scrollTo({ top: Math.max(0, y) }); }
-    var cab = el('p', 'tour-paso', 'Paso ' + (paso + 1) + ' de ' + PASOS.length), h = el('h2', 'tour-titulo', P.t), p = el('p', 'tour-texto', P.x);
+    var cab = el('p', 'tour-paso', 'Paso ' + (paso + 1) + ' de ' + PASOS.length), h = el('h2', 'tour-titulo', P.t), p = el('div', 'tour-texto');
+    P.x.split('\n').forEach(function (linea) { p.appendChild(el('p', null, linea)); });
     h.id = 'tour-titulo'; p.id = 'tour-texto';
     var fila = el('div', 'tour-botones'), salt = el('button', 'tour-saltar', P.final ? 'Cerrar' : 'Saltar tour'), at = el('button', 'tour-atras', '← Atrás'), sig = el('button', 'tour-siguiente', P.final ? '¡Listo!' : 'Siguiente →');
     [salt, at, sig].forEach(function (b) { b.type = 'button'; });

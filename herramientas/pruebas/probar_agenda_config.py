@@ -15,10 +15,10 @@ with sync_playwright() as p:
         T.v('%d px: sin desplazamiento horizontal ni errores' % ancho, pg.evaluate("document.documentElement.scrollWidth") <= ancho and not pg.errs, pg.errs[:2]); ctx.close()
     ctx = contexto(b, 1280, 900); pg = abrir(ctx, '', 1500)
     ops = pg.evaluate("[...document.querySelectorAll('#ac-opciones .ac-op')].map(b => b.textContent)")
-    T.v('hay 7 verdes para elegir', len(ops) == 7 and all('Verde' in o for o in ops), ops)
+    T.v('hay 16 colores: 7 verdes y 9 más', len(ops) == 16 and sum('Verde' in o for o in ops) == 7, ops)
     T.v('el menta (de siempre) viene elegido', pg.get_attribute('#ac-opciones [data-t="menta"]', 'aria-pressed') == 'true' and pg.evaluate("!document.documentElement.hasAttribute('data-tema')"))
     boton0 = pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--rosa-boton').trim()")
-    for tema in ('esmeralda', 'bosque', 'oliva', 'pistacho', 'salvia', 'azulado'):
+    for tema in ('esmeralda', 'bosque', 'oliva', 'pistacho', 'salvia', 'azulado', 'rosa', 'lila', 'azul', 'cielo', 'mostaza', 'durazno', 'coral', 'vino', 'grafito'):
         pg.click('#ac-opciones [data-t="%s"]' % tema); pg.wait_for_timeout(100)
         c = pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--rosa-boton').trim()")
         T.v('«%s» cambia el color de los botones' % tema, c and c.lower() != boton0.lower() and pg.get_attribute('html', 'data-tema') == tema, (boton0, c))

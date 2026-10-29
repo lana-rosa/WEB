@@ -45,10 +45,11 @@
   document.head.appendChild(css);
 
   var dc = document.documentElement.getAttribute('data-casa');
-  var casa = /^\/merceria(\/|$)/.test(location.pathname) ? 'merceria' : /^\/academy(\/|$)/.test(location.pathname) ? 'academy' : (dc === 'academy' ? 'academy' : dc === 'merceria' ? 'merceria' : 'tienda');
+  var casa = /^\/merceria(\/|$)/.test(location.pathname) ? 'merceria' : /^\/academy(\/|$)/.test(location.pathname) ? 'academy' : (dc === 'agenda' || /^\/agenda-rosina(\.html)?$/.test(location.pathname) ? 'agenda' : dc === 'academy' ? 'academy' : dc === 'merceria' ? 'merceria' : 'tienda');
   var SUG = {
     tienda: ['¿Qué amigurumi me recomiendan de regalo?', '¿Cómo funciona Personaliza?', '¿Cómo hago un pedido?', '¿Cómo pago?'],
     merceria: ['¿Qué lana usar para un amigurumi?', '¿Qué aguja uso con cada hilo?', '¿Qué necesito para empezar a tejer?', '¿Cuál es el horario de la tienda?'],
+    agenda: ['¿Cómo hago una copia de mi agenda?', '¿Cómo conecto Google Calendar?', '¿Dónde encuentro cada hoja?', '¿Cómo uso el lápiz o dicto?'],
     academy: ['¿Cómo empiezo a tejer crochet?', '¿Cómo leo un patrón?', '¿Qué talleres tienen?', '¿Qué es el anillo mágico?']
   };
   var hist = [], ocupado = false, panel, msgs, input, enviar;
@@ -106,7 +107,9 @@
     msgs = panel.querySelector('.rc-msgs'); input = panel.querySelector('input'); enviar = panel.querySelector('.rc-form button');
     panel.querySelector('.rc-cab button').addEventListener('click', cerrar);
     panel.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); mandar(input.value); });
-    burbuja('assistant', '¡Hola! Soy Rosina, la asistente de Lana Rosa 🌸 Te ayudo con nuestros productos, pedidos, envíos, talleres y dudas de la página. ¿Qué necesitas?');
+    burbuja('assistant', casa === 'agenda'
+      ? '¡Hola! Soy Rosina 🌸 Te cuento cómo usar tu agenda: dónde está cada hoja, cómo configurarla, hacer copias, conectar Google Calendar y más. ¿Qué quieres saber?'
+      : '¡Hola! Soy Rosina, la asistente de Lana Rosa 🌸 Te ayudo con nuestros productos, pedidos, envíos, talleres y dudas de la página. ¿Qué necesitas?');
     var s = document.createElement('div'); s.className = 'rc-sug';
     SUG[casa].forEach(function (q) {
       var b = document.createElement('button'); b.type = 'button'; b.textContent = q;

@@ -18,7 +18,7 @@ with sync_playwright() as p:
             if i == 1: T.v('%d px: el paso de Configuración abre el panel' % ancho, pg.locator('#agenda-config').is_visible())
             if i == 5: T.v('%d px: al pasar a las pestañas el panel se cierra' % ancho, pg.locator('#agenda-config').is_hidden())
             if i < 7: pg.click('.tour-siguiente'); pg.wait_for_timeout(400)
-        T.v('%d px: los 8 pasos son los pedidos' % ancho, len(vistos) == 8 and 'Bienvenida' in vistos[0] and 'Configuración' in vistos[1] and 'Copias' in vistos[2] and 'Google Calendar' in vistos[3] and 'Instala' in vistos[4] and 'Pestañas' in vistos[5] and 'hablando' in vistos[6] and 'avanzadas' in vistos[7], vistos)
+        T.v('%d px: los 8 pasos son los pedidos' % ancho, len(vistos) == 8 and 'Bienvenida' in vistos[0] and 'Configuración' in vistos[1] and 'Copias' in vistos[2] and 'Google Calendar' in vistos[3] and 'Instala' in vistos[4] and 'Pestañas' in vistos[5] and 'Dictado' in vistos[6] and 'avanzadas' in vistos[7], vistos)
         T.v('%d px: el último paso dice «¡Listo!»' % ancho, pg.inner_text('.tour-siguiente') == '¡Listo!')
         pg.click('.tour-siguiente'); pg.wait_for_timeout(300)
         T.v('%d px: al terminar se cierra y se recuerda' % ancho, pg.locator('.tour-tarjeta').count() == 0 and (pg.evaluate("localStorage.getItem('lrAgendaTour')") or '').startswith('completo'))
