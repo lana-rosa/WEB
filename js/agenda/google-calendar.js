@@ -15,6 +15,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   if (!visible) return;
   var txt = document.getElementById('cs-texto'), av = document.getElementById('cs-aviso'), nota = document.getElementById('cs-nota-verif');
   var bCon = document.getElementById('cs-conectar'), bSin = document.getElementById('cs-sincronizar'), bDes = document.getElementById('cs-desconectar'), bQuitar = document.getElementById('cs-quitar');
+  function abrirConfig() { if (window.lrAgendaConfig) window.lrAgendaConfig.abrir(); }
   var sb, estado = null, temporizador = null, ocupado = false, retenidos = 0;
   function aviso(t) { av.textContent = t || ''; }
   function eventos() { return window.lrAgenda && window.lrAgenda.eventos ? window.lrAgenda.eventos() : []; }
@@ -75,6 +76,6 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   });
   var q = new URLSearchParams(location.search).get('calendario');
   var mensajes = { cancelado: 'No se conectó: cancelaste el permiso de Google.', sin_permiso: 'Google no entregó el permiso. Inténtalo otra vez y acepta el acceso al calendario.', error: 'Algo salió mal al conectar con Google. Inténtalo otra vez.', no_configurado: 'La sincronización todavía no está activa.' };
-  if (q === 'conectado') { estado = await llamar('estado'); pintar(); caja.scrollIntoView({ block: 'center' }); await sincronizar(true); history.replaceState(null, '', location.pathname + location.hash); }
-  else if (mensajes[q]) { aviso(mensajes[q]); caja.scrollIntoView({ block: 'center' }); history.replaceState(null, '', location.pathname + location.hash); }
+  if (q === 'conectado') { estado = await llamar('estado'); pintar(); abrirConfig(); caja.scrollIntoView({ block: 'center' }); await sincronizar(true); history.replaceState(null, '', location.pathname + location.hash); }
+  else if (mensajes[q]) { aviso(mensajes[q]); abrirConfig(); caja.scrollIntoView({ block: 'center' }); history.replaceState(null, '', location.pathname + location.hash); }
 })();

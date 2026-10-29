@@ -11,8 +11,9 @@ class Prueba:
         print(('  ok   ' if ok else '  FALLA ') + n + ('' if ok else '  → ' + str(d))); s.bien += bool(ok); s.mal += (not ok)
     def fin(s):
         print('\n%d comprobaciones correctas, %d con falla.' % (s.bien, s.mal)); raise SystemExit(1 if s.mal else 0)
-def contexto(b, ancho=1280, alto=900, datos=None, **kw):
+def contexto(b, ancho=1280, alto=900, datos=None, config_abierta=True, **kw):
     ctx = b.new_context(viewport={'width': ancho, 'height': alto}, **kw)
+    if config_abierta: ctx.add_init_script("window.addEventListener('load', () => setTimeout(() => window.lrAgendaConfig && window.lrAgendaConfig.abrir(), 30));")   # el panel de Configuración empieza cerrado; las pruebas de copias, nube, etc. lo necesitan abierto
     ctx.add_init_script("if (!localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token')) localStorage.setItem('sb-ngjoognzvehwjtpqwrqe-auth-token', %s);"
                         "localStorage.setItem('lrAgendaAvance', '1');"
                         "if (!localStorage.getItem('lrConsent')) localStorage.setItem('lrConsent', JSON.stringify({v:1,a:false,t:Date.now()}));" % json.dumps(SESION))
@@ -20,8 +21,9 @@ def contexto(b, ancho=1280, alto=900, datos=None, **kw):
     ctx.route('**/rest/v1/rpc/**', lambda r: r.fulfill(status=200, content_type='application/json', body='null' if 'agenda_nube' in r.request.url else '[]'))
     ctx.route('**/googletagmanager.com/**', lambda r: r.abort()); ctx.route('**/google.com/**', lambda r: r.abort())
     return ctx
-def abrir(ctx, hoja='', espera=1500):
+def abrir(ctx, hoja='', espera=1500, config=True):
     pg = ctx.new_page(); pg.on('dialog', lambda d: d.accept()); pg.errs = []
     pg.on('pageerror', lambda e: pg.errs.append(str(e)))
     pg.goto(BASE + '/agenda-rosina.html' + ('#' + hoja if hoja else '')); pg.wait_for_timeout(espera)
+    if config: pg.evaluate("window.lrAgendaConfig && window.lrAgendaConfig.abrir()")   # el panel de Configuración empieza cerrado; las pruebas de copias, nube, etc. lo necesitan abierto
     return pg
