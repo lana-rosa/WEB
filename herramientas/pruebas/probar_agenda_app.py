@@ -8,7 +8,7 @@ T = Prueba(); CAP = sys.argv[1] if len(sys.argv) > 1 else None
 RAIZ = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
 m = json.load(open(os.path.join(RAIZ, 'manifest-agenda.webmanifest')))
 T.v('el manifiesto tiene nombre, inicio en la agenda y modo app', m['name'] == 'Agenda para tejedoras' and m['start_url'].startswith('/agenda-rosina.html') and m['display'] == 'standalone' and m['scope'] == '/')
-T.v('tiene íconos 192, 512 y maskable y todos existen', {i['sizes'] + i['purpose'] for i in m['icons']} >= {'192x192any', '512x512any', '512x512maskable'} and all(os.path.exists(os.path.join(RAIZ, i['src'].split('?')[0].lstrip('/'))) for i in m['icons']))
+T.v('tiene íconos redondos 192 y 512 (sin maskable: en el computador salía cuadrado y verde liso) y todos existen', {i['sizes'] + i['purpose'] for i in m['icons']} == {'192x192any', '512x512any'} and all(os.path.exists(os.path.join(RAIZ, i['src'].split('?')[0].lstrip('/'))) for i in m['icons']))
 T.v('los atajos del manifiesto apuntan a hojas que existen', all(('#' + sh['url'].split('#')[1]) and ('id="%s"' % sh['url'].split('#')[1]) in open(os.path.join(RAIZ, 'agenda-rosina.html')).read() for sh in m['shortcuts']))
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
