@@ -419,3 +419,24 @@ html[data-casa="agenda"][data-tema="azulado"] .nav-principal li.g-agenda a:hover
 .agenda-config .copia-agenda { margin-top: 0; }
 .agenda-config .calendario-sync { margin: 0 auto; width: 100%; }
 @media print { .agenda-config, .agenda-config-btn { display: none !important; } }
+/* Tour de bienvenida (29-oct-2026) */
+.agenda-tour-fila { text-align: center; }
+.tour-capa { position: fixed; inset: 0; z-index: 99990; background: transparent; }
+.tour-capa.tour-sin-foco { background: rgba(20,32,26,.6); }
+.tour-foco { position: fixed; z-index: 99991; border-radius: 14px; pointer-events: none; box-shadow: 0 0 0 100vmax rgba(20,32,26,.6), 0 0 0 3px #fff inset, 0 0 0 4px var(--rosa-principal); transition: top .25s, left .25s, width .25s, height .25s; }
+.tour-tarjeta { position: fixed; z-index: 99992; box-sizing: border-box; padding: 16px 18px 14px; background: #fff; color: #2f2f33; border-radius: 18px; border: 2px solid var(--rosa-medio); box-shadow: 0 14px 40px rgba(0,0,0,.28); text-align: left; max-height: calc(100vh - 24px); overflow: auto; }
+.tour-paso { margin: 0 0 2px; font-size: .78rem; font-weight: 700; color: var(--rosa-texto); letter-spacing: .03em; }
+.tour-tarjeta .tour-titulo { margin: 0 0 6px; font-family: var(--fuente-titulo); font-size: 1.25rem; line-height: 1.15; color: var(--rosa-texto); }
+.tour-texto { margin: 0 0 10px; font-size: .96rem; line-height: 1.45; }
+.tour-puntos { display: flex; gap: 6px; margin: 0 0 12px; }
+.tour-puntos i { width: 8px; height: 8px; border-radius: 50%; background: var(--rosa-medio); opacity: .55; }
+.tour-puntos i.on { background: var(--rosa-boton); opacity: 1; width: 20px; border-radius: 6px; }
+.tour-botones { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.tour-botones button { min-height: 42px; padding: 8px 16px; font: inherit; font-weight: 700; border-radius: 999px; cursor: pointer; }
+.tour-siguiente { color: var(--sobre-principal); background: var(--rosa-boton); border: 2px solid var(--rosa-boton); }
+.tour-siguiente:hover { background: var(--rosa-boton-hover); }
+.tour-atras { color: var(--rosa-texto); background: #fff; border: 2px solid var(--rosa-medio); }
+.tour-saltar { margin-right: auto; color: #5a5a60; background: transparent; border: none; text-decoration: underline; padding-left: 4px; }
+.tour-botones button:focus-visible { outline: 3px solid var(--rosa-texto); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .tour-foco { transition: none; } }
+@media print { .tour-capa, .tour-foco, .tour-tarjeta { display: none !important; } }
