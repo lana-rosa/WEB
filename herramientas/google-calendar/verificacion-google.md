@@ -2,14 +2,8 @@
 
 Preparado el 8-oct-2026. Sirve para quitar el aviso "Google no ha verificado esta app" y el límite de 100 personas. El permiso `calendar.events` es **sensible**, así que Google pide: dominio verificado, política de privacidad con ciertas frases, justificación del permiso y un video. El texto para Google va en **inglés** (lo revisa un equipo internacional). El texto para la política publicada va en español.
 
-## 0. OJO: la membresía y la verificación (8-oct-2026)
-Cuando se encienda la membresía (`MEMBRESIA_ACTIVA = true` en `agenda-rosina.html`), la tarjeta **Google Calendar** queda dentro de las hojas de pago: solo la ven las cuentas con membresía activa. Para el video (y para cualquier revisor de Google) hay que usar una **cuenta de prueba con membresía activa, sin pagar**. Se la activa desde Supabase → SQL Editor (cambia el correo):
-```sql
-insert into membresias_agenda (user_id, plan, vence_at)
-select id, 'mensual', now() + interval '90 days' from auth.users where lower(email) = lower('correo-de-prueba@gmail.com')
-on conflict (user_id) do update set vence_at = excluded.vence_at, plan = excluded.plan;
-```
-Además, en el formulario de Google conviene decir que la sincronización forma parte de la membresía de la Agenda de Rosina (con enlace a `https://lanarosacrochet.com/politicas.html#membresia`) y que el video muestra el flujo completo con la cuenta de prueba. Si Google pide acceso al revisor, se le entrega esa misma cuenta de prueba (el ingreso es por enlace al correo o con Google).
+## 0. Cuenta de prueba para el video y para Google (29-oct-2026)
+La Agenda para tejedoras es **gratis con la cuenta** (no hay membresía) y la tarjeta **Google Calendar** sale a todas las personas con sesión (`ABIERTO = true` en `js/agenda/google-calendar.js`). Para el video y para el revisor de Google basta una **cuenta de prueba** de Lana Rosa (se entra con enlace al correo o con Google): créala en `lanarosacrochet.com/cuenta.html` y, en el formulario de Google, dale ese acceso al revisor. En el formulario, di que la sincronización es una función **gratuita y opcional** de la agenda («Agenda para tejedoras»). Si se prefiere mostrarla solo con enlace (`?gcal=1`, con `ABIERTO = false`), poner ese enlace en las instrucciones al revisor.
 
 ## 1. Antes de enviar (lista de chequeo)
 - [ ] **Dominio verificado en Google Search Console** (`lanarosacrochet.com`) con la **misma cuenta** que es propietaria del proyecto `lana-rosa-web` en Google Cloud. Search Console → Agregar propiedad → Dominio → registro TXT en Cloudflare (DNS).
@@ -42,7 +36,7 @@ Va dentro de `politicas.html#datos`, como un apartado nuevo.
 **Scope:** `https://www.googleapis.com/auth/calendar.events`
 
 **How will the scope be used? (Scope justification)**
-> Lana Rosa Crochet is a handmade-crochet business in Colombia. Our website includes a free "Rosina's Planner" (agenda-rosina.html) where crocheters keep their orders, projects and special dates. An optional feature lets a signed-in user connect their Google Calendar so that the dates in the planner appear as all-day events in their primary calendar, with a reminder the evening before. We need the `calendar.events` scope to create, update and delete only those events that our planner generated (each one is tagged with a private property so we can find it again). We do not read, list, copy or store any other events from the user's calendar. We chose this scope because it is the narrowest one that allows creating and editing events; the broader `calendar` scope is not needed and not requested. The user can disconnect at any time from the planner (we revoke the token at Google and delete our stored data) or from their Google Account permissions page.
+> Lana Rosa Crochet is a handmade-crochet business in Colombia. Our website includes a free "Crochet Planner" (agenda-rosina.html) where crocheters keep their orders, projects and special dates. An optional feature lets a signed-in user connect their Google Calendar so that the dates in the planner appear as all-day events in their primary calendar, with a reminder the evening before. We need the `calendar.events` scope to create, update and delete only those events that our planner generated (each one is tagged with a private property so we can find it again). We do not read, list, copy or store any other events from the user's calendar. We chose this scope because it is the narrowest one that allows creating and editing events; the broader `calendar` scope is not needed and not requested. The user can disconnect at any time from the planner (we revoke the token at Google and delete our stored data) or from their Google Account permissions page.
 
 **Why is a narrower scope not enough?**
 > `calendar.events.owned` and `calendar.app.created` (calendar-only) are not suitable because the user wants the events to appear in their own primary calendar, next to their other events. `calendar.events` is the minimal scope that allows writing to the primary calendar.
@@ -61,9 +55,9 @@ Google pide que el video muestre: (a) la pantalla de consentimiento de OAuth con
 
 | # | Qué se ve | Qué decir o subtitular (inglés) |
 |---|---|---|
-| 1 | Página de inicio `lanarosacrochet.com` y luego el menú → Rincón de Rosina → Agenda de Rosina | "This is Lana Rosa Crochet, a handmade crochet shop. Rosina's Planner is a free tool for crocheters." |
+| 1 | Página de inicio `lanarosacrochet.com` y luego la casa «Agenda» (o `/agenda-rosina.html`) | "This is Lana Rosa Crochet, a handmade crochet shop. Crochet Planner is a free tool for crocheters." |
 | 2 | Agenda abierta con sesión iniciada; se ven pedidos / fechas especiales de ejemplo | "The user keeps orders, projects and special dates in the planner." |
-| 3 | Bajar a la tarjeta **Google Calendar** y mostrar el texto (que dice qué hace) y el enlace a la política de privacidad | "At the bottom, the user can optionally connect Google Calendar. We explain what it does and link to our privacy policy." |
+| 3 | En la parte de arriba (debajo de los botones de copia) mostrar la tarjeta **Google Calendar** y su texto (que dice qué hace) y el enlace a la política de privacidad | "Near the top, the user can optionally connect Google Calendar. We explain what it does and link to our privacy policy." |
 | 4 | Tocar **Conectar con Google Calendar** | "The user clicks Connect." |
 | 5 | **Pantalla de Google (consentimiento).** Detener 5 segundos con la **barra de direcciones visible** (se ve `client_id=…`); se lee el nombre de la app y el permiso "See, edit, share, and permanently delete…" / "View and edit events on all your calendars" | "Google asks for permission. The app is Lana Rosa Crochet and the only calendar permission is to view and edit events." |
 | 6 | Tocar **Continue / Allow** | "The user grants access." |

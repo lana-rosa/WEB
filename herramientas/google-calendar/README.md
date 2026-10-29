@@ -1,6 +1,6 @@
 # Sincronización de la agenda de Rosina con Google Calendar
 
-Estado (13-oct-2026): **APAGADO en la web por decisión de Sara** (la tarjeta y el módulo se sacaron de `agenda-rosina.html` y están en `herramientas/google-calendar/agenda-apagada/`; la función y las tablas siguen creadas, con 0 cuentas conectadas). Para volver a ofrecerlo: devolver esas dos piezas a la agenda y revisar `politicas.html#datos` apartado 10. Estado anterior (8-oct-2026): **ACTIVO y probado por Sara** (proyecto de Google Cloud `lana-rosa-web`, cliente OAuth "Agenda de Rosina", app en producción sin verificar: hasta 100 personas, con el aviso "Google no ha verificado esta app"). Pendiente: enviar la verificación a Google (ver paso 7) para quitar el aviso y el límite. Antes: el código estuvo publicado pero apagado. La tarjeta "Google Calendar" de `agenda-rosina.html` solo aparece cuando la Edge Function `google-calendar` responde que está configurada (es decir, cuando existen los 4 secretos de abajo). Mientras tanto, la agenda sigue con los botones "Añadir a Google Calendar" y el archivo `.ics`, que no necesitan permisos.
+Estado (29-oct-2026): **ENCENDIDO otra vez** por pedido de Sara, gratis con la cuenta (tarjeta en `agenda-rosina.html`, módulo `js/agenda/google-calendar.js`; función `google-calendar` v11 desplegada y con sus 4 secretos; app de Google en producción sin verificar: aviso «Google no ha verificado esta app» y tope de 100 personas hasta enviar la verificación, ver `verificacion-google.md`). La función ya no borra de golpe más de 3 fechas de Google Calendar sin confirmación (`confirmarBorrado`). Historial: apagado el 13-oct-2026 (piezas en `agenda-apagada/`); antes, activo y probado por Sara el 8-oct-2026.
 
 ## Cómo funciona
 - La clienta (con sesión) toca **Conectar con Google Calendar** → la función la manda a Google → Google pide permiso `calendar.events` (crear y editar eventos; no lee otros eventos) → vuelve a la función, que guarda el permiso **cifrado** (AES-GCM) en `google_calendar_cuentas` y la regresa a la agenda.
@@ -23,4 +23,5 @@ Estado (13-oct-2026): **APAGADO en la web por decisión de Sara** (la tarjeta y 
 ## Archivos
 - `google-calendar.ts`: la Edge Function (nombre `google-calendar`, `verify_jwt = false`, valida la sesión dentro).
 - Tablas `google_calendar_cuentas` y `google_calendar_eventos` (RLS activa y sin políticas: solo la función las toca).
-- `agenda-rosina.html`: tarjeta y módulo al final de la página; `window.lrAgenda` entrega los eventos.
+- `agenda-rosina.html`: tarjeta `#calendario-sync`; `js/agenda/google-calendar.js`: el módulo; `window.lrAgenda` entrega los eventos.
+- `probar_funcion.mjs` y `herramientas/pruebas/probar_agenda_google_calendar.py`: pruebas.

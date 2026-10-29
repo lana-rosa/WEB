@@ -4,8 +4,8 @@
    Única excepción (28-oct-2026): la Agenda para tejedoras es una app instalable que debe abrir sin internet (sus datos ya viven en el dispositivo).
    Su página y los archivos que ella carga (código, estilos, fuentes e imágenes) se guardan, primero se pide a la red y la copia solo se usa si no hay conexión,
    así las actualizaciones llegan de inmediato. Nunca se guardan datos de la base ni pagos (van a otros dominios). */
-const VERSION = 'lr-app-v4';
-const AGENDA = 'lr-agenda-v1';
+const VERSION = 'lr-app-v5';
+const AGENDA = 'lr-agenda-v2';
 const OFFLINE = '/offline.html';
 const PAGINA_AGENDA = '/agenda-rosina.html';
 

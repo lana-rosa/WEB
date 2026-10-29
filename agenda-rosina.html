@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=42">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=1">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=2">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -654,7 +654,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .cs-botones { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
 .cs-aviso { margin: 8px 0 0; min-height: 1.2em; font-size: 0.85rem; font-weight: 600; color: #8E1457; }
 .calendario-sync .nota-copia { display: block; margin-top: 8px; }
-.calendario-sync.bloqueado-pago { display: none !important; }
+.calendario-sync .nota-copia[hidden] { display: none; }
 /* Tarjetas, análisis y negocio (8-oct-2026) */
 .fa-tabla { width: 100%; border-collapse: collapse; } .fa-tabla th, .fa-tabla td { padding: 7px 8px; font-size: .88rem; border-bottom: 1px solid #F0E4EA; text-align: left; vertical-align: top; } .fa-tabla .der { text-align: right; white-space: nowrap; } .fa-tabla .ing { color: #1c5cab; font-weight: 700; } .fa-tabla .gas { color: #B24A1F; font-weight: 700; } .fa-tabla thead th { font-size: .78rem; color: var(--tinta-suave); text-transform: uppercase; letter-spacing: .03em; } .fa-tabla .pt, .fa-barra .pt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
 .fa-tabla tr.fa-total td { border-top: 1.5px solid #E4D3DC; } .fa-tabla tr.fa-sec th { text-align: left; font-family: var(--fuente-titulo); color: var(--rosa-texto); background: var(--rosa-suave); padding: 6px 8px; font-size: .88rem; }
@@ -949,6 +949,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input type="file" id="agenda-archivo" accept=".json,application/json" hidden>
       <span class="nube-estado" id="nube-estado" role="status"></span>
       <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular; o actívala en tu cuenta (opcional y gratis) y vuelve a tenerla aunque borres el historial. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
+    </div>
+    <div class="calendario-sync no-imprimir" id="calendario-sync" hidden>
+      <p class="cs-titulo"><span aria-hidden="true">📅</span> Google Calendar</p>
+      <p class="cs-texto" id="cs-texto"></p>
+      <div class="cs-botones">
+        <button type="button" class="boton-primario boton-chico" id="cs-conectar" hidden>Conectar con Google Calendar</button>
+        <button type="button" class="boton-secundario boton-chico" id="cs-sincronizar" hidden>Sincronizar ahora</button>
+        <button type="button" class="boton-secundario boton-chico" id="cs-quitar" hidden>Quitar esas fechas</button>
+        <button type="button" class="enlace-copia" id="cs-desconectar" hidden>Desconectar</button>
+      </div>
+      <p class="cs-aviso" id="cs-aviso" role="status"></p>
+      <small class="nota-copia">Solo enviamos a Google las fechas y los textos de esas hojas (no el resto de tu agenda) y solo pedimos permiso para crear y editar los eventos que genera la agenda: no leemos tus otros eventos. Puedes desconectar cuando quieras. <a href="/politicas.html#datos">Más en la política de datos (apartado 10)</a>.</small>
+      <small class="nota-copia" id="cs-nota-verif" hidden>Mientras Google termina de verificar nuestra aplicación, puede mostrarte el aviso «Google no ha verificado esta app»: es normal. Para seguir, toca «Configuración avanzada» y luego «Ir a lanarosacrochet.com».</small>
     </div>
   </section>
 
@@ -1594,7 +1607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:640px;">
-            <thead><tr><th>Cliente</th><th>Teléfono</th><th>Dirección</th><th>Producto</th><th>Cantidad</th><th>Valor unidad</th><th>Valor total</th><th>Costo de envío</th><th>Total compra</th><th>Total abonado</th><th>Saldo pendiente</th><th>Fecha de reserva</th><th>Fecha de entrega</th><th>Fecha de envío</th><th>Medio de pago</th><th>Forma de envío</th><th>Estado</th><th>Observaciones</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
+            <thead><tr><th>Cliente</th><th>Teléfono</th><th>Dirección</th><th>Producto</th><th>Cantidad</th><th>Valor unidad</th><th class="col-oculta">Valor total</th><th>Costo de envío</th><th>Total compra</th><th>Total abonado</th><th>Saldo pendiente</th><th>Fecha de reserva</th><th>Fecha de entrega</th><th>Fecha de envío</th><th>Medio de pago</th><th>Forma de envío</th><th>Estado</th><th>Observaciones</th><th class="col-cal no-imprimir">Calendario</th></tr></thead>
             <tbody id="tabla-pedidos"></tbody>
           </table>
         </div>
@@ -2556,7 +2569,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     pedido: function(f) {
       var cli = celdaFila('tabla-pedidos', f, 'cliente'), ped = celdaFila('tabla-pedidos', f, 'pedido');
       return { fecha: celdaFila('tabla-pedidos', f, 'entrega'), titulo: 'Entrega: ' + (ped || 'pedido') + (cli ? ' — ' + cli : ''),
-        detalles: [['Cliente', cli], ['Pedido', ped], ['Precio', celdaFila('tabla-pedidos', f, 'precio')], ['Abono', celdaFila('tabla-pedidos', f, 'abono')], ['Estado', celdaFila('tabla-pedidos', f, 'estado')]] };
+        detalles: [['Cliente', cli], ['Pedido', ped], ['Total', celdaFila('tabla-pedidos', f, 'totalcompra') || celdaFila('tabla-pedidos', f, 'precio')], ['Abono', celdaFila('tabla-pedidos', f, 'abono')], ['Estado', celdaFila('tabla-pedidos', f, 'estado')]] };
     },
     proyecto: function(f) {
       var pr = celdaFila('tabla-fila', f, 'proyecto'), para = celdaFila('tabla-fila', f, 'para');
@@ -3478,7 +3491,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var t = tablas['tabla-pedidos'], lista = [], total = 0, h0 = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
       for (var r = 1; r <= t.n; r++) {
         var v = function(c) { var e = document.getElementById('ag-p' + r + '-' + c); return e ? e.value.trim() : ''; };
-        var precio = num(v('precio')), falta = precio - num(v('abono')); if (!precio || falta <= 0) continue;
+        var precio = num(v('totalcompra')) || num(v('precio')), falta = precio - num(v('abono')); if (!precio || falta <= 0) continue;
         var fe = leerFecha(v('entrega')), fecha = fe && !fe.sinAnio ? new Date(fe.a, fe.m - 1, fe.d) : null;
         lista.push({ cli: v('cliente'), ped: v('pedido'), falta: falta, fecha: fecha, vencido: !!(fecha && fecha < h0 && !/entreg|terminad|listo|despachad/i.test(v('estado'))) }); total += falta;
       }
@@ -3631,7 +3644,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el('tab-mes-txt').textContent = MESES[mes.m - 1] + ' ' + mes.y;
       var ins = [], g = '';
       /* Pedidos */
-      var ped = filas('tabla-pedidos', ['cliente', 'pedido', 'entrega', 'precio', 'abono', 'estado']);
+      var ped = filas('tabla-pedidos', ['cliente', 'pedido', 'entrega', 'precio', 'totalcompra', 'abono', 'estado']);
+      ped.forEach(function(p) { p.precio = num(p.totalcompra) || num(p.precio); });
       var hechos = function(p) { return /entreg|terminad|listo|despachad/i.test(p.estado); };
       var abiertos = ped.filter(function(p) { return !hechos(p); });
       var porCobrar = ped.reduce(function(a, p) { return a + Math.max(0, num(p.precio) - num(p.abono)); }, 0);
@@ -4098,7 +4112,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/meses.js?v=1" defer></script>
 <script src="/js/agenda/pedidos.js?v=1" defer></script>
 <script src="/js/agenda/anio.js?v=1" defer></script>
-<script src="/js/agenda/portada.js?v=1" defer></script>
+<script src="/js/agenda/portada.js?v=2" defer></script>
 <script src="/js/agenda/voz.js?v=1" defer></script>
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
@@ -4107,6 +4121,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/promo.js?v=1" defer></script>
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
+<script type="module" src="/js/agenda/google-calendar.js?v=1"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=1" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>

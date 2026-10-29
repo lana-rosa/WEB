@@ -1,5 +1,6 @@
 /* Agenda para tejedoras: control de pedidos con cuentas (27-oct-2026).
-   Calcula solo el valor total (cantidad × valor unidad), el total de la compra (con el envío) y el saldo pendiente, y resume lo que se debe.
+   Calcula solo el total de la compra (cantidad × valor unidad + envío) y el saldo pendiente, y resume lo que se debe. Desde el 29-oct-2026 «Valor total» no se ve (era lo mismo que «Total compra»):
+   queda oculto en `ag-pN-precio` con el valor de los productos sin envío, para no perder lo ya guardado ni lo que leen el calendario, el tablero y las deudas.
    También pone el enlace de WhatsApp debajo de cada teléfono (pedidos, clientas y contactos). */
 (function () {
   'use strict';
@@ -11,12 +12,18 @@
   function pesos(n) { return '$' + Math.round(n).toLocaleString('es-CO'); }
   function poner(e, v) { if (!e || e.value === v) return false; e.value = v; N.datos()[e.id] = v; return true; }
 
-  /* Cantidad × valor unidad → valor total; valor total + envío → total compra; total compra − abonado → saldo */
-  function calcular(r) {
-    var cambio = false, cant = num(campo(r, 'cantidad').value), vu = num(campo(r, 'valorunidad').value);
-    if (cant !== null && vu !== null) cambio = poner(campo(r, 'precio'), pesos(cant * vu)) || cambio;
-    var tot = num(campo(r, 'precio').value);
-    if (tot !== null) cambio = poner(campo(r, 'totalcompra'), pesos(tot + (num(campo(r, 'costoenvio').value) || 0))) || cambio;
+  /* Cantidad × valor unidad (+ envío) → total compra; total compra − abonado → saldo. Si la persona escribe el total a mano, el valor de los productos es ese total menos el envío */
+  function calcular(r, origen) {
+    var cambio = false, envio = num(campo(r, 'costoenvio').value) || 0;
+    if (origen === 'totalcompra') {
+      var tc = num(campo(r, 'totalcompra').value);
+      if (tc !== null) cambio = poner(campo(r, 'precio'), pesos(tc - envio)) || cambio;
+    } else {
+      var cant = num(campo(r, 'cantidad').value), vu = num(campo(r, 'valorunidad').value);
+      if (origen === 'productos' && cant !== null && vu !== null) cambio = poner(campo(r, 'precio'), pesos(cant * vu)) || cambio;   // solo al cambiar cantidad o valor unidad (si no, se pisaría un total escrito a mano)
+      var sub = num(campo(r, 'precio').value);
+      if (sub !== null) cambio = poner(campo(r, 'totalcompra'), pesos(sub + envio)) || cambio;
+    }
     var compra = num(campo(r, 'totalcompra').value);
     if (compra !== null) cambio = poner(campo(r, 'saldo'), pesos(compra - (num(campo(r, 'abono').value) || 0))) || cambio;
     return cambio;
@@ -36,7 +43,7 @@
   document.getElementById('control-pedidos').addEventListener('input', function (e) {
     var tr = e.target.closest && e.target.closest('tr.ficha'); if (!tr) return;
     var r = +tr.dataset.fila;
-    if (/-(cantidad|valorunidad|precio|costoenvio|abono)$/.test(e.target.id) && calcular(r)) { N.guardar(); if (window.lrFichas) window.lrFichas.refrescar(); }
+    if (/-(cantidad|valorunidad|totalcompra|costoenvio|abono)$/.test(e.target.id) && calcular(r, /-totalcompra$/.test(e.target.id) ? 'totalcompra' : /-(cantidad|valorunidad)$/.test(e.target.id) ? 'productos' : '')) { N.guardar(); if (window.lrFichas) window.lrFichas.refrescar(); }
     resumen();
   });
   document.addEventListener('agenda-guardada', resumen);
