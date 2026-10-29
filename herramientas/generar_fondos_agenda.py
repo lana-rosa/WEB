@@ -1,6 +1,6 @@
 """Fondos de la Agenda para tejedoras (29-oct-2026). A partir de las imágenes que pasó Sara (herramientas/agenda-fondos/originales/<fondo>.webp, horizontales) genera en img/agenda/:
 
-  fondo-<f>.webp          la Portada: los marcos (flores, hojas, madejas) se giran a vertical; los patrones (rosina = Rosina y amigos, ovejitas) NO se giran: se recortan con la forma de la hoja carta
+  fondo-<f>.webp          la Portada: los marcos (flores, hojas, madejas) se giran a vertical y se ajustan a la forma de la hoja carta (se unen la parte de arriba y la de abajo de la imagen, sin el centro vacío); los patrones (rosina = Rosina y amigos, ovejitas) NO se giran: se recortan con la forma de la hoja carta
   fondo-<f>-mini.webp     miniatura del botón de la Portada
   fondo-<f>-borde.webp    la CINTA de las hojas de la agenda (pedido de Sara: «una cinta delgada pegada por todo el rededor»): un anillo transparente con una cinta del estilo de ese fondo
                           (dibujos pequeños sobre un fondo crema, con una línea fina en cada orilla y las esquinas en ángulo, como una cinta que se dobla). En el CSS se usa con
@@ -62,6 +62,17 @@ def guardar_portada(f, im):
     im = im.resize((900, round(900 * im.height / im.width)), Image.LANCZOS)
     im.save(os.path.join(SAL, f'fondo-{f}.webp'), quality=80, method=6)
     im.resize((96, round(96 * im.height / im.width)), Image.LANCZOS).save(os.path.join(SAL, f'fondo-{f}-mini.webp'), quality=80)
+
+
+def portada_marco(L):
+    """Portada de un marco (flores, hojas, madejas) con la forma exacta de la hoja carta: la imagen se gira a vertical y, como los dibujos están en los extremos y el centro es papel vacío
+    (además la tarjeta de la portada lo tapa), se juntan la parte de arriba y la de abajo hasta completar 8,5 × 11. Así llena toda la hoja, sin franjas vacías a los lados."""
+    P = L.transpose(Image.ROTATE_270); W, H = P.size                                                      # 90° a la derecha: vertical
+    alto = round(W * 11 / 8.5)
+    tinta = ((255 - np.asarray(P.convert('RGB'), dtype=np.int16).min(axis=2)) >= 14).sum(axis=1)       # cuánto dibujo hay en cada fila
+    arriba = min(range(int(alto * 0.3), int(alto * 0.7)), key=lambda a: tinta[a - 1] + tinta[H - (alto - a)])   # dónde unir: por donde la costura corte menos dibujos
+    sal = Image.new('RGB', (W, alto), (255, 255, 255)); sal.paste(P.crop((0, 0, W, arriba)), (0, 0)); sal.paste(P.crop((0, H - (alto - arriba), W, H)), (0, arriba))
+    return sal
 
 
 # ---------- Búsqueda de recortes ----------
@@ -204,7 +215,7 @@ def construir(f, im, c):
 if __name__ == '__main__':
     for f, c in FONDOS.items():
         L = abrir(f)
-        if c['tipo'] == 'marco': guardar_portada(f, L.transpose(Image.ROTATE_270))                      # 90° a la derecha: vertical
+        if c['tipo'] == 'marco': guardar_portada(f, portada_marco(L))                                    # vertical y de la forma de la hoja carta
         else: ancho_carta = round(L.height * 8.5 / 11); guardar_portada(f, L.crop((c['portada_x0'], 0, c['portada_x0'] + ancho_carta, L.height)))
         Lh, Lv = construir(f, L, c)
         print('ok', f, '- cinta de', Lh, 'x', Lv, 'px por lado')

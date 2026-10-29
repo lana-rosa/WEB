@@ -149,11 +149,11 @@ body.en-blanco .aviso-alarma { display: none !important; }
 .portada-op:focus-visible, .portada-color:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
 .portada-hoja { position: relative; width: 100%; max-width: 520px; margin: 0 auto 14px; aspect-ratio: 8.5 / 11; border-radius: 18px; overflow: hidden; background: var(--pc-base, #FDEAF3); box-shadow: 0 6px 24px rgba(69,69,74,0.18); container-type: inline-size; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .portada-fondo { position: absolute; inset: 0; background-repeat: repeat; background-size: 150px auto; }
-.portada-hoja[data-fondo="madejas"] .portada-fondo { background-size: 170px auto; }
+.portada-hoja[data-fondo="madejas"] .portada-fondo:not(.con-imagen) { background-size: 170px auto; }
 .portada-hoja[data-fondo="flores"], .portada-hoja[data-fondo="hojas"] { background: #FEFEFE; }
 .portada-hoja[data-fondo="madejas"] { background: #FDFDFB; }
 .portada-hoja[data-fondo="rosina"], .portada-hoja[data-fondo="ovejitas"] { background: #FFFFFF; }
-.portada-fondo.con-imagen { background-repeat: no-repeat; background-size: contain; background-position: center; }
+.portada-fondo.con-imagen { background-repeat: no-repeat; background-size: cover; background-position: center; }
 .portada-op { display: inline-flex; align-items: center; gap: 8px; }
 .portada-mini { width: 22px; height: 34px; border-radius: 4px; background-size: cover; background-position: center; border: 1px solid rgba(69,69,74,0.25); flex: none; }
 /* La CINTA de las hojas (29-oct-2026, a pedido de Sara: «una cinta delgada pegada por todo el rededor», y que se vea delgada): si la persona eligió un fondo en la Portada, todas las hojas llevan
