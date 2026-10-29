@@ -322,10 +322,10 @@ def pie_casa(modelo, casa, pagina=None):
         return f'\n        <li><a href="{h}"{ext}>{t}</a></li>'
     lis = ''.join(li(t, h) for t, h in enlaces)
     faq = PIE_FAQ.get(casa, 'preguntas-frecuentes.html')
-    universo_href = {'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/'}.get(casa, 'universo-rosina.html')  # cada casa tiene su propio hub de Rosina
+    universo_href = {'merceria': 'merceria/rosina/', 'academy': 'academy/rosina/', 'agenda': 'academy/rosina/'}.get(casa, 'universo-rosina.html')  # cada casa tiene su propio hub de Rosina
     rev = PIE_REVISTA.get(casa, 'revista.html')
     # en Mercería y Academy el universo de Rosina ya está en la columna de la casa: no se repite
-    universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">Rosina: regalos e ideas</a></li>'
+    universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">{"Rosina: tutoriales y recursos" if casa == "agenda" else "Rosina: regalos e ideas"}</a></li>'
     horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
