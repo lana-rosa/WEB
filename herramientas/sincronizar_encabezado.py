@@ -310,10 +310,8 @@ def casas_pie_mini(casa):
     return '<nav class="pie-casas-mini" aria-label="Casas Lana Rosa"><span class="pie-h3">Nuestras casas</span>' + ''.join(items) + '</nav>'
 
 def logo_pie(casa, img, alt):
-    """Logo animado del pie sobre fondo transparente (herramientas/logo-animado/): Tienda (crochet y páginas comunes), Mercería y Academy."""
-    if casa == 'agenda':   # la Agenda no tiene logo animado: logo fijo en verde
-        return f'<img class="pie-logo-agenda" src="/{img}" alt="{alt}" width="190" height="121" loading="lazy" decoding="async">'
-    nombre = 'componente.html' if casa not in ('merceria', 'academy') else f'componente-{casa}.html'
+    """Logo animado del pie sobre fondo transparente (herramientas/logo-animado/): Tienda (crochet y páginas comunes), Mercería, Academy y Agenda."""
+    nombre = 'componente.html' if casa not in ('merceria', 'academy', 'agenda') else f'componente-{casa}.html'
     return open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logo-animado', nombre), encoding='utf-8').read()
 
 def pie_casa(modelo, casa, pagina=None):

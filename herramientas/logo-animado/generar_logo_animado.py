@@ -45,7 +45,7 @@ def con_nombre(nombre, tipo_delays):
             '<span class="la-cabeza" style="transform-origin:' + ORIGEN + '">' + cab + '</span>' + capas8 + nombre_html + '</div>')
 def delays(texto):
     return [(c, round(3.60 + .08 * i, 2)) for i, c in enumerate(texto)]
-for casa, nombre in (('merceria', 'Mercería'), ('academy', 'Academy')):
+for casa, nombre in (('merceria', 'Mercería'), ('academy', 'Academy'), ('agenda', 'Agenda')):
     open(os.path.join(os.path.dirname(__file__), f'componente-{casa}.html'), 'w', encoding='utf-8').write(con_nombre(nombre, delays(nombre)))
 
 print('listo:', ASPECTO, ORIGEN, len(comp), 'bytes de HTML')
