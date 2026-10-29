@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=42">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=4">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=5">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -842,6 +842,7 @@ main > :first-child { padding-top: 40px !important; }
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png">
 <meta name="theme-color" content="#1FB06F">
+<script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta")document.documentElement.setAttribute("data-tema",t)}catch(e){}</script>
 <link rel="manifest" href="/manifest-agenda.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Agenda para tejedoras">
 <!-- ICONOS:FIN -->
@@ -916,10 +917,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main id="contenido-principal" tabindex="-1">
   <section class="contenedor intro-rincon intro-agenda">
     <p class="volver-rincon"><a href="/">← Volver al inicio</a></p>
-    <div class="cuaderno-portada">
+    <header class="agenda-cabecera">
       <img class="portada-rosina" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" width="512" height="512" decoding="async">
-      <p class="eslogan">Agenda digital gratis con tu cuenta · Lana Rosa</p>
-      <h1>Agenda para tejedoras</h1>
+      <div class="ac-titulo"><p class="eslogan">Agenda digital gratis con tu cuenta · Lana Rosa</p><h1>Agenda para tejedoras</h1></div>
+      <button type="button" class="agenda-config-btn no-imprimir" id="agenda-config-btn" aria-expanded="false" aria-controls="agenda-config"><span aria-hidden="true">⚙️</span><span class="acb-txt">Configuración</span></button>
+    </header>
+    <div class="agenda-recordatorio no-imprimir" id="agenda-recordatorio" role="region" aria-label="Recordatorio de copia de tu agenda" hidden>
+      <p><strong>Tu agenda se guarda solo en este dispositivo.</strong> Si borras los datos del navegador (o el historial con cookies), se pierde. Guárdala en tu cuenta o descarga una copia.</p>
+      <div class="acciones-rec">
+        <button type="button" class="boton-primario boton-chico" id="rec-nube">☁️ Guardar en mi cuenta</button>
+        <button type="button" class="boton-secundario boton-chico" id="rec-copia">⬇️ Descargar una copia</button>
+        <button type="button" class="enlace-copia" id="rec-despues">Ahora no</button>
+      </div>
+    </div>
+    <div class="agenda-config no-imprimir" id="agenda-config" role="region" aria-label="Configuración de la agenda" hidden>
+      <div class="cuaderno-portada">
     <div class="portada-agenda">
       <label for="ag-duena">Esta agenda es de</label>
       <input id="ag-duena" data-guardar-portada placeholder="Escribe tu nombre" maxlength="40">
@@ -931,14 +943,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda en este dispositivo (y en tu cuenta, si activaste la copia): si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
     </div>
-    <div class="agenda-recordatorio no-imprimir" id="agenda-recordatorio" role="region" aria-label="Recordatorio de copia de tu agenda" hidden>
-      <p><strong>Tu agenda se guarda solo en este dispositivo.</strong> Si borras los datos del navegador (o el historial con cookies), se pierde. Guárdala en tu cuenta o descarga una copia.</p>
-      <div class="acciones-rec">
-        <button type="button" class="boton-primario boton-chico" id="rec-nube">☁️ Guardar en mi cuenta</button>
-        <button type="button" class="boton-secundario boton-chico" id="rec-copia">⬇️ Descargar una copia</button>
-        <button type="button" class="enlace-copia" id="rec-despues">Ahora no</button>
-      </div>
-    </div>
+
+      <fieldset class="agenda-colores" id="agenda-colores"><legend>Color de la agenda</legend><div class="ac-opciones" id="ac-opciones"></div></fieldset>
     <div class="copia-agenda">
       <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
       <button type="button" class="enlace-copia" id="nube-activar" hidden>☁️ Guardar mi agenda en mi cuenta</button>
@@ -962,6 +968,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="cs-aviso" id="cs-aviso" role="status"></p>
       <small class="nota-copia">Solo enviamos a Google las fechas y los textos de esas hojas (no el resto de tu agenda) y solo pedimos permiso para crear un calendario propio («Agenda para tejedoras») y escribir en él: no podemos ver tus otros calendarios ni tus otros eventos. Puedes desconectar cuando quieras. <a href="/politicas.html#datos">Más en la política de datos (apartado 10)</a>.</small>
       <small class="nota-copia" id="cs-nota-verif" hidden>Google puede mostrarte el aviso «Google no ha verificado esta app»: es normal. Para seguir, toca «Configuración avanzada» y luego «Ir a lanarosacrochet.com».</small>
+    </div>
     </div>
   </section>
 
@@ -4106,6 +4113,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=22" defer></script>
+<script src="/js/agenda/config.js?v=1" defer></script>
 <script src="/js/agenda/fichas.js?v=1" defer></script>
 <script src="/js/agenda/formas.js?v=1" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>

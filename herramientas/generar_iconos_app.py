@@ -52,11 +52,13 @@ def circulo(im):
 if __name__ == '__main__':
     os.makedirs(os.path.join(R, 'img', 'app'), exist_ok=True)
     for casa, color in COLORES.items():
+        if os.environ.get('SOLO') and os.environ['SOLO'] != casa: continue                 # SOLO=agenda regenera solo esa casa
         fav, apple, ico = ARCHIVO[casa]
-        circulo(dibujo(1024, color, 0.76)).resize((256, 256), Image.LANCZOS).save(os.path.join(R, fav), optimize=True)
-        dibujo(720, color, 0.74).resize((180, 180), Image.LANCZOS).convert('RGB').save(os.path.join(R, apple), optimize=True)
+        circulo(dibujo(1024, color, 0.86 if casa == 'agenda' else 0.76)).resize((256, 256), Image.LANCZOS).save(os.path.join(R, fav), optimize=True)
+        dibujo(720, color, 0.86 if casa == 'agenda' else 0.74).resize((180, 180), Image.LANCZOS).convert('RGB').save(os.path.join(R, apple), optimize=True)
         for lado in (192, 512):
-            circulo(dibujo(1024, color, 0.76)).resize((lado, lado), Image.LANCZOS).save(os.path.join(R, 'img', 'app', f'icono-{casa}-{lado}.png'), optimize=True)
+            if casa == 'agenda': dibujo(1024, color, 0.84).resize((lado, lado), Image.LANCZOS).save(os.path.join(R, 'img', 'app', f'icono-{casa}-{lado}.png'), optimize=True)   # 29-oct, pedido de Sara: Windows lo muestra cuadrado, así que lleno y con la ovejita más grande
+            else: circulo(dibujo(1024, color, 0.76)).resize((lado, lado), Image.LANCZOS).save(os.path.join(R, 'img', 'app', f'icono-{casa}-{lado}.png'), optimize=True)
         dibujo(1024, color, 0.58).resize((512, 512), Image.LANCZOS).convert('RGB').save(os.path.join(R, 'img', 'app', f'icono-{casa}-maskable-512.png'), optimize=True)
         base = circulo(dibujo(1024, color, 0.86))
         base.resize((48, 48), Image.LANCZOS).save(os.path.join(R, ico), format='ICO', sizes=[(16, 16), (32, 32), (48, 48)])

@@ -12,7 +12,7 @@ def cerrar(ctx):
         resp = ruta.fetch(); ruta.fulfill(response=resp, body=resp.text().replace('var AGENDA_EN_VENTA = true', 'var AGENDA_EN_VENTA = false'))
     ctx.route('**/agenda-rosina.html*', r)
 def publico(b, ancho, datos=None, cerrada=True):
-    ctx = b.new_context(viewport={'width': ancho, 'height': 900}); (cerrar(ctx) if cerrada else None); ctx.route('**/googletagmanager.com/**', lambda r: r.abort()); ctx.route('**/rest/v1/**', lambda r: r.fulfill(status=200, content_type='application/json', body='[]'))
+    ctx = b.new_context(viewport={'width': ancho, 'height': 900}); ctx.add_init_script("window.addEventListener('load', () => setTimeout(() => window.lrAgendaConfig && window.lrAgendaConfig.abrir(), 30));"); (cerrar(ctx) if cerrada else None); ctx.route('**/googletagmanager.com/**', lambda r: r.abort()); ctx.route('**/rest/v1/**', lambda r: r.fulfill(status=200, content_type='application/json', body='[]'))
     if datos is not None: ctx.add_init_script("if (!sessionStorage.getItem('i')) { localStorage.setItem('rosinaAgenda', %s); sessionStorage.setItem('i', '1'); }" % json.dumps(json.dumps(datos)))
     pg = ctx.new_page(); pg.errs = []; pg.on('pageerror', lambda e: pg.errs.append(str(e))); pg.on('dialog', lambda d: d.accept()); return ctx, pg
 with sync_playwright() as p:
