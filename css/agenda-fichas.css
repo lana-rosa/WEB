@@ -162,11 +162,11 @@ body.en-blanco .aviso-alarma { display: none !important; }
    Su ancho (`--bw`) es siempre menor que el relleno de la hoja (28 px), así el contenido no se mueve. «Liso» no lleva cinta. */
 #agenda[data-fondo-hojas] .hoja-agenda { --bw: 18px; isolation: isolate; }
 #agenda[data-fondo-hojas] .hoja-agenda::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border: var(--bw) solid transparent; border-image: var(--cinta) 40 round; clip-path: inset(0 round var(--radio-suave)); filter: drop-shadow(0 1px 1px rgba(58,42,46,0.2)); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-#agenda[data-fondo-hojas="flores"] .hoja-agenda { --cinta: url("/img/agenda/fondo-flores-borde.webp"); }
-#agenda[data-fondo-hojas="hojas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-hojas-borde.webp"); }
-#agenda[data-fondo-hojas="madejas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-madejas-borde.webp"); }
-#agenda[data-fondo-hojas="rosina"] .hoja-agenda { --cinta: url("/img/agenda/fondo-rosina-borde.webp"); }
-#agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-ovejitas-borde.webp"); }
+#agenda[data-fondo-hojas="flores"] .hoja-agenda { --cinta: url("/img/agenda/fondo-flores-borde.webp?v=2"); }
+#agenda[data-fondo-hojas="hojas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-hojas-borde.webp?v=2"); }
+#agenda[data-fondo-hojas="madejas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-madejas-borde.webp?v=2"); }
+#agenda[data-fondo-hojas="rosina"] .hoja-agenda { --cinta: url("/img/agenda/fondo-rosina-borde.webp?v=2"); }
+#agenda[data-fondo-hojas="ovejitas"] .hoja-agenda { --cinta: url("/img/agenda/fondo-ovejitas-borde.webp?v=2"); }
 @media (max-width: 900px) { #agenda[data-fondo-hojas] .hoja-agenda { --bw: 16px; } }
 @media (max-width: 520px) { #agenda[data-fondo-hojas] .hoja-agenda { --bw: 12px; } }
 @media print { #agenda[data-fondo-hojas] .hoja-agenda { --bw: 14px; padding: 22px 24px !important; } }
@@ -374,3 +374,6 @@ html.agenda-gratis [data-completa] { display: none !important; }
 .ia-texto span { font-size: 0.9rem; color: var(--tinta-suave); }
 .ia-botones { display: flex; gap: 8px; flex-wrap: wrap; }
 @media print { .instalar-agenda { display: none; } }
+
+/* Pedidos (29-oct-2026, pedido de Sara): «Valor total» y «Total compra» eran lo mismo; solo se ve «Total compra» (cantidad × valor unidad + envío). El valor de los productos sigue guardado y calculado en `ag-pN-precio`, oculto. */
+.col-oculta, #tabla-pedidos td[data-col="precio"] { display: none !important; }

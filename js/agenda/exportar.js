@@ -15,7 +15,7 @@
     Object.keys(F.LISTAS).forEach(function (tabla) {
       var T = N.tablas[tabla]; if (!T) return;
       var cols = [], nombres = [];
-      T.cols.forEach(function (c, i) { var id = typeof c === 'string' ? c : c.id; if (id === 'cal') return; cols.push(id); nombres.push(T.titulos[i] || id); });
+      T.cols.forEach(function (c, i) { var id = typeof c === 'string' ? c : c.id; if (id === 'cal' || (tabla === 'tabla-pedidos' && id === 'precio')) return; cols.push(id); nombres.push(T.titulos[i] || id); });
       var filas = [];
       for (var r = 1; r <= T.n; r++) {
         var fila = cols.map(function (c) { return valorCampo(T.prefijo + r + '-' + c); });

@@ -7,8 +7,10 @@
 //   POST { accion: 'estado' }                          -> { configurado, conectado, correo, ultima }
 //   POST { accion: 'conectar' }                        -> { url }  (la web manda a la persona a esa dirección de Google)
 //   GET  ?code=...&state=...                           -> Google vuelve aquí; se guarda el permiso cifrado y se redirige a la agenda
-//   POST { accion: 'sincronizar', eventos: [ {clave, titulo, detalle, lugar, fecha:'AAAA-MM-DD', anual} ] }
-//                                                      -> crea, actualiza y borra en Google Calendar lo que cambió (por "clave")
+//   POST { accion: 'sincronizar', eventos: [ {clave, titulo, detalle, lugar, fecha:'AAAA-MM-DD', anual} ], confirmarBorrado?: true }
+//                                                      -> crea, actualiza y borra en Google Calendar lo que cambió (por "clave").
+//                                                         Seguro: si habría que borrar más de MAX_BORRADO_SIN_PREGUNTAR fechas de una vez (por ejemplo, una agenda vacía en otro dispositivo),
+//                                                         no se borra nada y se responde { retenidos: N }; la persona debe confirmarlo (confirmarBorrado: true).
 //   POST { accion: 'desconectar' }                     -> revoca el permiso en Google y borra lo guardado (los eventos ya creados quedan)
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
@@ -24,6 +26,7 @@ const env = (k: string) => (Deno.env.get(k) || '').trim();
 const configurado = () => !!(env('GOOGLE_CLIENT_ID') && env('GOOGLE_CLIENT_SECRET') && env('CALENDAR_TOKEN_KEY') && env('CALENDAR_STATE_SECRET'));
 const REDIRECT = () => env('SUPABASE_URL') + '/functions/v1/google-calendar';
 const MAX_EVENTOS = 300;
+const MAX_BORRADO_SIN_PREGUNTAR = 3;
 
 // ---------- cifrado de los permisos (AES-GCM) ----------
 const b64 = (u: Uint8Array) => btoa(String.fromCharCode(...u));
@@ -150,7 +153,7 @@ Deno.serve(async (req) => {
     const { data: previos } = await sb.from('google_calendar_eventos').select('clave, event_id, huella').eq('user_id', uid);
     const mapa = new Map((previos || []).map((p: any) => [p.clave, p]));
     const claves = new Set(eventos.map((e: any) => e.clave));
-    let creados = 0, actualizados = 0, borrados = 0, sinCambio = 0, fallos = 0;
+    let creados = 0, actualizados = 0, borrados = 0, sinCambio = 0, fallos = 0, retenidos = 0;
 
     for (const e of eventos) {
       const h = await huella(e), previo: any = mapa.get(e.clave);
@@ -168,13 +171,16 @@ Deno.serve(async (req) => {
       }
       await sb.from('google_calendar_eventos').upsert({ user_id: uid, clave: e.clave, event_id: id, huella: h });
     }
+    const aBorrar = [...(mapa as Map<string, any>).keys()].filter((k) => !claves.has(k));
+    const borrar = aBorrar.length <= MAX_BORRADO_SIN_PREGUNTAR || body.confirmarBorrado === true;
+    if (!borrar) retenidos = aBorrar.length;
     for (const [clave, p] of mapa as Map<string, any>) {
-      if (claves.has(clave)) continue;
+      if (claves.has(clave) || !borrar) continue;
       const r = await fetch(`${CAL}/${p.event_id}`, { method: 'DELETE', headers: cab });
       if (r.ok || r.status === 404 || r.status === 410) { await sb.from('google_calendar_eventos').delete().eq('user_id', uid).eq('clave', clave); borrados++; } else fallos++;
     }
     await sb.from('google_calendar_cuentas').update({ ultima_sincronizacion: new Date().toISOString() }).eq('user_id', uid);
-    return json({ ok: fallos === 0, creados, actualizados, borrados, sinCambio, fallos });
+    return json({ ok: fallos === 0, creados, actualizados, borrados, sinCambio, fallos, retenidos });
   }
 
   return json({ error: 'Acción no válida' }, 400);
