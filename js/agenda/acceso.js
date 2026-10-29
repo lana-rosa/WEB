@@ -11,6 +11,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     try { var g = (sessionStorage.getItem(RECARGA) || '').split(':'); if (g[0] === sentido && Date.now() - parseInt(g[1], 10) < 15000) return; sessionStorage.setItem(RECARGA, sentido + ':' + Date.now()); } catch (e) {}
     location.reload();
   }
+  if (!gratis && !tenia) return;   // con la agenda abierta para todos no hace falta preguntar nada
   if (!haySesionGuardada()) { try { localStorage.removeItem(CLAVE); } catch (e) {} return; }
   var esta = null;
   try {

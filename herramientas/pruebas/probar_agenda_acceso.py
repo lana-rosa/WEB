@@ -5,8 +5,12 @@ import sys, os, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from agenda_util import *
 T = Prueba()
+def cerrar(ctx):
+    def r(ruta):
+        resp = ruta.fetch(); ruta.fulfill(response=resp, body=resp.text().replace('var AGENDA_EN_VENTA = true', 'var AGENDA_EN_VENTA = false'))
+    ctx.route('**/agenda-rosina.html*', r)
 def contexto_cuenta(b, en_lista, con_sesion=True):
-    ctx = b.new_context(viewport={'width': 390, 'height': 900})
+    ctx = b.new_context(viewport={'width': 390, 'height': 900}); cerrar(ctx)   # la puerta se prueba cerrada, que es cuando sirve el acceso previo
     if con_sesion: ctx.add_init_script("if (!localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token')) localStorage.setItem('sb-ngjoognzvehwjtpqwrqe-auth-token', %s);" % json.dumps(SESION))
     ctx.add_init_script("localStorage.setItem('lrConsent', JSON.stringify({v:1,a:false,t:Date.now()}));")
     ctx.route('**/googletagmanager.com/**', lambda r: r.abort())

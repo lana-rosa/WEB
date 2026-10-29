@@ -1,6 +1,7 @@
 /* Agenda para tejedoras: portada imprimible (27-oct-2026).
    Se elige el fondo (flores, hojas, madejas, Rosina o liso) y el color; sale el nombre escrito en «Esta agenda es de».
-   Los fondos se dibujan aquí mismo (sin imágenes externas) para que se vean igual en pantalla y al imprimir. */
+   Desde el 29-oct-2026 los fondos de flores, hojas y madejas son las acuarelas de Sara (`img/agenda/fondo-*.webp`, en vertical, con su miniatura `-mini`): se ven en la portada y,
+   con la misma imagen, en todas las hojas de la agenda cuando la persona elige ese fondo (atributo `data-fondo-hojas` de `#agenda`; Rosina y liso dejan las hojas blancas). */
 (function () {
   'use strict';
   var N = window.lrAgendaNucleo, hoja = document.getElementById('portada-hoja');
@@ -16,24 +17,7 @@
   var FONDOS = { flores: 'Flores', hojas: 'Hojas', madejas: 'Madejas', rosina: 'Rosina', liso: 'Liso' };
   var STICKERS = ['rosina-02-corazon', 'rosina-03-ovillo-corazon', 'rosina-05-ovillo-sentada', 'rosina-06-idea', 'rosina-08-feliz', 'rosina-12-pulgar-arriba', 'rosina-15-ramo', 'rosina-17-gorro'];
 
-  function svgUri(w, h, cuerpo) { return 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '">' + cuerpo + '</svg>') + '")'; }
-  function flor(cx, cy, r, c1, c2) {
-    var x = '', i; for (i = 0; i < 5; i++) { var a = i * 72 * Math.PI / 180; x += '<circle cx="' + (cx + Math.sin(a) * r * 1.25).toFixed(1) + '" cy="' + (cy - Math.cos(a) * r * 1.25).toFixed(1) + '" r="' + r + '" fill="' + c1 + '"/>'; }
-    return x + '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * 0.75).toFixed(1) + '" fill="' + c2 + '"/>';
-  }
-  function hojaSvg(x, y, ang, esc, col) { return '<g transform="translate(' + x + ',' + y + ') rotate(' + ang + ') scale(' + esc + ')"><path d="M0,0 C8,-12 26,-12 34,0 C26,12 8,12 0,0 Z" fill="' + col + '"/><path d="M2,0 L30,0" stroke="#fff" stroke-width="1.5" opacity=".7"/></g>'; }
-  function madeja(cx, cy, r, c1, c2) {
-    var id = 'm' + cx + cy;
-    return '<defs><clipPath id="' + id + '"><circle cx="' + cx + '" cy="' + cy + '" r="' + r + '"/></clipPath></defs><circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + c1 + '"/>' +
-      '<g clip-path="url(#' + id + ')" fill="none" stroke="' + c2 + '" stroke-width="2" stroke-linecap="round"><path d="M' + (cx - r) + ',' + (cy - r * 0.3) + ' Q' + cx + ',' + (cy - r * 0.9) + ' ' + (cx + r) + ',' + (cy + r * 0.2) + '"/><path d="M' + (cx - r) + ',' + (cy + r * 0.2) + ' Q' + cx + ',' + (cy - r * 0.4) + ' ' + (cx + r) + ',' + (cy + r * 0.7) + '"/><path d="M' + (cx - r) + ',' + (cy + r * 0.7) + ' Q' + cx + ',' + (cy + r * 0.1) + ' ' + (cx + r) + ',' + (cy + r * 1.2) + '"/></g>' +
-      '<path d="M' + (cx + r * 0.6) + ',' + (cy + r * 0.8) + ' q8,10 18,4 t16,2" fill="none" stroke="' + c2 + '" stroke-width="2" stroke-linecap="round"/>';
-  }
-  function fondoSvg(tipo, p) {
-    if (tipo === 'flores') return svgUri(150, 150, flor(38, 38, 9, p.a, p.c) + flor(112, 108, 7, p.b, p.c) + '<circle cx="112" cy="36" r="3" fill="' + p.a + '"/><circle cx="36" cy="112" r="3" fill="' + p.b + '"/>' + hojaSvg(60, 70, 35, 0.6, p.h) + hojaSvg(88, 120, -40, 0.5, p.h));
-    if (tipo === 'hojas') return svgUri(140, 140, hojaSvg(20, 30, 40, 1, p.a) + hojaSvg(95, 25, -30, 0.8, p.b) + hojaSvg(40, 100, -50, 0.9, p.b) + hojaSvg(105, 105, 25, 1, p.a) + hojaSvg(70, 65, 90, 0.6, p.h));
-    if (tipo === 'madejas') return svgUri(170, 170, madeja(42, 44, 20, p.a, p.c) + madeja(124, 120, 16, p.b, p.c) + '<circle cx="128" cy="38" r="3" fill="' + p.a + '"/><circle cx="40" cy="132" r="3" fill="' + p.b + '"/>');
-    return '';
-  }
+  var IMAGENES = { flores: '/img/agenda/fondo-flores.webp', hojas: '/img/agenda/fondo-hojas.webp', madejas: '/img/agenda/fondo-madejas.webp' };
   function pintar() {
     var d = N.datos(), f = d['ag-portada-fondo'] && FONDOS[d['ag-portada-fondo']] ? d['ag-portada-fondo'] : 'flores', c = d['ag-portada-color'] && COLORES[d['ag-portada-color']] ? d['ag-portada-color'] : 'rosa';
     var p = COLORES[c], fondo = hoja.querySelector('.portada-fondo');
@@ -44,7 +28,11 @@
         var im = document.createElement('img'); im.src = '/img/stickers/' + STICKERS[i % STICKERS.length] + '.webp'; im.alt = ''; im.width = 512; im.height = 512; im.decoding = 'async';
         im.style.left = (i % 3) * 33 + (Math.floor(i / 3) % 2 ? 4 : -3) + '%'; im.style.top = Math.floor(i / 3) * 25 + '%'; im.style.transform = 'rotate(' + [-12, 8, -6, 14, -9, 6][i % 6] + 'deg)'; fondo.appendChild(im);
       }
-    } else fondo.style.backgroundImage = fondoSvg(f, p);
+    } else if (IMAGENES[f]) fondo.style.backgroundImage = 'url("' + IMAGENES[f] + '")';
+    fondo.classList.toggle('con-imagen', !!IMAGENES[f]);
+    /* las hojas de la agenda usan el mismo fondo, pero solo si la persona lo eligió (por defecto quedan blancas) */
+    var zona = document.getElementById('agenda'), elegido = d['ag-portada-fondo'] && IMAGENES[d['ag-portada-fondo']] ? d['ag-portada-fondo'] : '';
+    if (zona) { if (elegido) zona.dataset.fondoHojas = elegido; else delete zona.dataset.fondoHojas; }
     document.querySelectorAll('#portada-fondos button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === f)); });
     document.querySelectorAll('#portada-colores button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === c)); });
     var nombre = String(d['ag-duena'] || '').trim();
@@ -58,7 +46,7 @@
     N.datos()[id] = valor; pintar();
   }
   var fb = document.getElementById('portada-fondos'), cb = document.getElementById('portada-colores');
-  Object.keys(FONDOS).forEach(function (k) { var b = document.createElement('button'); b.type = 'button'; b.dataset.v = k; b.className = 'portada-op'; b.textContent = FONDOS[k]; b.addEventListener('click', function () { elegir('ag-portada-fondo', k); }); fb.appendChild(b); });
+  Object.keys(FONDOS).forEach(function (k) { var b = document.createElement('button'); b.type = 'button'; b.dataset.v = k; b.className = 'portada-op'; if (IMAGENES[k]) { var mi = document.createElement('span'); mi.className = 'portada-mini'; mi.setAttribute('aria-hidden', 'true'); mi.style.backgroundImage = 'url("/img/agenda/fondo-' + k + '-mini.webp")'; b.appendChild(mi); } b.appendChild(document.createTextNode(FONDOS[k])); b.addEventListener('click', function () { elegir('ag-portada-fondo', k); }); fb.appendChild(b); });
   Object.keys(COLORES).forEach(function (k) { var b = document.createElement('button'); b.type = 'button'; b.dataset.v = k; b.className = 'portada-color'; b.style.setProperty('--c', COLORES[k].a); b.setAttribute('aria-label', COLORES[k].n); b.title = COLORES[k].n; b.addEventListener('click', function () { elegir('ag-portada-color', k); }); cb.appendChild(b); });
   /* el nombre es el mismo de «Esta agenda es de» del inicio de la página */
   var nombre = document.getElementById('portada-nombre'), duena = document.getElementById('ag-duena');

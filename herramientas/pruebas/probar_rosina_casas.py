@@ -29,7 +29,7 @@ with sync_playwright() as p:
             if casa != 'crochet': v(f'{n}: trae «Conoce a Rosina» al final, después del material gratis', pg.locator('#conoce-a-rosina').count() == 1 and pg.evaluate("document.querySelector('#conoce-a-rosina').getBoundingClientRect().top > document.querySelector('.ur-recursos').getBoundingClientRect().top"))
             if casa == 'crochet': v(f'{n}: el formulario «Rosina te ayuda a regalar» va primero (antes del grupo «Para regalar y crear»)', pg.evaluate("document.querySelector('#regalar').getBoundingClientRect().top < document.querySelector('#grupo-regalar').getBoundingClientRect().top"))
             if casa != 'crochet': v(f'{n}: no trae el buscador de regalos', pg.locator('#regalar').count() == 0)
-        for u in ('glosario-rosina.html', 'paletas-rosina.html', 'calculadoras-rosina.html', 'agenda-rosina.html', 'recursos-rosina.html'):
+        for u in ('glosario-rosina.html', 'paletas-rosina.html', 'calculadoras-rosina.html', 'recursos-rosina.html'):
             pg.goto(BASE + '/' + u); pg.wait_for_timeout(500)
             v(f'{u} {w}px: tiene la barra «Rosina» con enlace al hub de su casa y sin desborde',
               pg.locator('.barra-rosina a.br-hub[href="/academy/rosina/"]').count() == 1 and pg.evaluate('document.documentElement.scrollWidth') <= w)

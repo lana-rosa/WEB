@@ -213,7 +213,7 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 #ed-historias:not(.abiertas) .ed-historia:nth-child(-n+6) { display: block; }
 #ed-historias:not(.abiertas) .ed-historia:nth-child(n+7) { display: none; }
 @media (max-width: 700px) { #ed-historias { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.ed-universo-lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 900px; margin: 0 auto; }
+.ed-universo-lista { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; max-width: 1080px; margin: 0 auto; }
 .ed-universo-item { display: flex; flex-direction: column; gap: 2px; padding: 18px 20px; border-radius: 18px; background: var(--blanco); border: 1px solid var(--linea); text-decoration: none; color: var(--tinta); }
 .ed-universo-item:hover { border-color: var(--rosa-principal); }
 .ed-universo-item span { font-size: 1.5rem; line-height: 1.2; }
@@ -221,6 +221,7 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-universo-item small { color: var(--tinta-suave); font-size: 0.92rem; line-height: 1.4; }
 .ed-universo-rosina { display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 900px; margin: 22px auto 0; font-size: 0.95rem; }
 .ed-universo-rosina img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+@media (max-width: 1000px) { .ed-universo-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .ed-universo-lista { grid-template-columns: 1fr; } }
 .ed-proceso-intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; margin-bottom: clamp(20px, 3vw, 32px); }
 .ed-proceso-intro img { width: 100%; height: auto; border-radius: 22px; display: block; }
