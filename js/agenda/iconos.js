@@ -36,8 +36,8 @@
     '1F464': 'persona', '1F69A': 'camion', '1F4DD': 'hoja', '1F4B5': 'moneda', '1F3C6': 'estrella', '23F0': 'reloj', '26A0': 'alerta', '1F4B2': 'moneda', '2728': 'estrella', '1F369': 'grafica', '1F536': 'punto', '1F389': 'estrella', '1F382': 'regalo', '1F9F0': 'llave', '1F4D6': 'libro', '1F9F8': 'corazon', '1F4F0': 'hoja', '1F49D': 'regalo', '1F4BB': 'portatil', '1F4F7': 'camara', '1F4A1': 'sol' };
   // Emoji de adorno que se quitan sin ícono (Rosina solo va en las ilustraciones)
   var QUITAR = { '1F411': 1 };
-  var RE = /^(\s*)((?:[\u{1F300}-\u{1FAFF}☀-➿⬀-⯿↩▶▪⚫](?:️|︎)?(?:‍[\u{1F300}-\u{1FAFF}☀-➿](?:️)?)*)+)\s*/u;
-  var BLANCO = '.ficha-barra button, .agregar-renglon, .boton-primario, .boton-secundario, .boton-chico, .boton-cal, .hojas-pasos button, summary, #agenda-config button, #agenda-config a, .barra-agenda button, .barra-toggle span:first-child, .buscar-agenda > span:first-child, .ficha-seccion span, .atajo-ic, .tab-k .t, .indice-grupo h4, .tab-grupo h4, .conexion-aviso button, .tour-botones button, .tip-agenda, .hr-t, .herr-rosina a, .promo-ic, .pl-t-ic, h4.sub-hoja, .tab-lectura h4, .fin-rosina h4, .fin-rosina li > span:first-child, .tab-lectura li > span:first-child, label.dib-subir, .dib-barra button, a.boton-primario, a.boton-secundario, #menu-hojas-actual';
+  var RE = /^(\s*)((?:[\u{1F300}-\u{1FAFF}\u2300-\u23FF☀-➿⬀-⯿↩▶▪⚫](?:️|︎)?(?:‍[\u{1F300}-\u{1FAFF}☀-➿](?:️)?)*)+)\s*/u;
+  var BLANCO = '.ficha-barra button, .agregar-renglon, .boton-primario, .boton-secundario, .boton-chico, .boton-cal, .hojas-pasos button, summary, #agenda-config button, #agenda-config a, .barra-agenda button, .barra-toggle span:first-child, .buscar-agenda > span:first-child, .ficha-seccion span, .atajo-ic, .tab-k .t, .indice-grupo h4, .tab-grupo h4, .conexion-aviso button, .tour-botones button, .tip-agenda, .hr-t, .herr-rosina a, .promo-ic, .pl-t-ic, h4.sub-hoja, .tab-lectura h4, .fin-rosina h4, .fin-rosina li > span:first-child, .tab-lectura li > span:first-child, label.dib-subir, .dib-barra button, a.boton-primario, a.boton-secundario, #menu-hojas-actual, .aviso-alarma, .resumen-pedidos, .ficha-chip.alarma, .ficha-chip.aviso';
   var EXCLUIR = '.ficha-cab, .pestana, .tinta-barra, .vs-hoja, .pn-accion, textarea, input';
 
   function clave(texto) { var cp = texto.codePointAt(0); return cp.toString(16).toUpperCase(); }
@@ -46,7 +46,7 @@
     var p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', P[nombre]); s.appendChild(p); return s;
   }
   function procesar(el) {
-    if (el.dataset.ic || el.closest(EXCLUIR)) return; el.dataset.ic = '1';
+    if (el.closest(EXCLUIR) && !el.matches('.ficha-chip.alarma, .ficha-chip.aviso')) return;   // los chips de alarma son texto nuestro aunque estén dentro de la ficha   // los avisos se vuelven a escribir con textContent: se revisa cada vez si el texto empieza con un emoji
     var nodo = null; for (var i = 0; i < el.childNodes.length; i++) { if (el.childNodes[i].nodeType === 3 && el.childNodes[i].nodeValue.trim()) { nodo = el.childNodes[i]; break; } }
     if (!nodo) return;
     var m = nodo.nodeValue.match(RE); if (!m) return;
