@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es-CO"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maqueta · Mi panel con vida</title>
+<style>
+@font-face{font-family:Fraunces;font-weight:600;src:url(/fonts/fraunces-600.woff2) format('woff2')}
+@font-face{font-family:'Hanken Grotesk';font-weight:400 800;src:url(/fonts/hanken-grotesk-latin.woff2) format('woff2')}
+:root{--vino:#743D50;--vino-osc:#5C2F3F;--fram:#EB6B96;--rosa:#E8D5D4;--claro:#FFF8F7;--salvia:#4F7A57;--dorado:#8A6A2E;--teal:#3F6E73;--tinta:#382632}
+*{box-sizing:border-box}
+body{margin:0;background:var(--claro);font-family:'Hanken Grotesk',system-ui,sans-serif;color:var(--tinta)}
+.wrap{max-width:1180px;margin:0 auto;padding:20px}
+.aviso{font-size:.8rem;color:#6B5560;margin:0 0 12px}
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:30px 32px;min-height:230px;color:#fff;background:linear-gradient(120deg,#743D50 0%,#A04A72 55%,#EB6B96 100%);display:flex;align-items:center}
+.hero h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.7rem,1.2rem + 1.6vw,2.5rem);margin:0 0 6px;line-height:1.15}
+.hero p{margin:0;max-width:44ch;opacity:.95}
+.hero .frase{margin-top:14px;display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:8px 14px;border-radius:999px;font-size:.92rem}
+.hero img.rosina{position:absolute;right:30px;bottom:-6px;height:96%;max-height:260px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.18))}
+.hero .ovillo{position:absolute;border-radius:50%;opacity:.22;background:#fff}
+.hero .o1{width:150px;height:150px;right:230px;top:-50px}.hero .o2{width:70px;height:70px;right:110px;top:20px}.hero .o3{width:100px;height:100px;left:46%;bottom:-40px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+.kpi{border-radius:22px;padding:16px 18px;display:flex;gap:12px;align-items:center}
+.kpi .ic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.7)}
+.kpi svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.kpi small{display:block;font-weight:700;font-size:.82rem;opacity:.85}.kpi strong{display:block;font-size:1.55rem;line-height:1.15}.kpi span{font-size:.78rem;opacity:.85}
+.k1{background:#F8DDE6;color:#8E2F55}.k2{background:#F6EBD0;color:#7A5C1F}.k3{background:#DDEEDD;color:#2F6A3C}.k4{background:#E9DFF0;color:#5B3F6E}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:#fff;border:1px solid #F0DDE0;border-radius:22px;padding:18px 20px;box-shadow:0 8px 26px rgba(118,45,74,.06)}
+.card h2{font-size:1.02rem;margin:0 0 12px;display:flex;justify-content:space-between;align-items:center;color:var(--vino-osc)}
+.card h2 a{font-size:.8rem;font-weight:600;color:var(--vino)}
+.donut{display:flex;gap:18px;align-items:center}
+.donut svg{width:132px;height:132px;flex:none}
+.leyenda{display:grid;gap:8px;font-size:.9rem}.leyenda i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:8px}
+.barras{display:flex;align-items:flex-end;gap:10px;height:150px;padding-top:8px}
+.barras div{flex:1;text-align:center;font-size:.74rem;color:#6B5560}
+.barras b{display:block;border-radius:10px 10px 4px 4px;background:linear-gradient(#EB6B96,#F7B6CB);margin-bottom:6px}
+.barras .hoy b{background:linear-gradient(#743D50,#A04A72)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center;font-size:.8rem}
+.cal span{padding:6px 0;border-radius:10px;position:relative;color:#6B5560}.cal .t{font-weight:700;color:#8a7380;font-size:.7rem}
+.cal .hoy{background:var(--vino);color:#fff}.cal .ev::after{content:'';position:absolute;left:50%;bottom:2px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--fram)}
+.lista{display:grid;gap:9px}.fila{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:16px;background:#FFF3F5}
+.fila .f{flex:none;width:46px;text-align:center;background:#fff;border-radius:12px;padding:4px 0;font-weight:800;line-height:1.1}.fila .f small{display:block;font-size:.62rem;color:var(--vino)}
+.fila .x{flex:1;font-size:.92rem;font-weight:600}.fila .x small{display:block;font-weight:500;color:#6B5560}
+.chip{font-size:.72rem;font-weight:700;border-radius:999px;padding:3px 9px;background:#F6EBD0;color:#7A5C1F}
+.tareas{display:grid;gap:8px}.tareas label{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;background:#EEF5EE;font-size:.92rem}
+.tareas input{accent-color:var(--salvia);width:18px;height:18px}.tareas .ok{text-decoration:line-through;opacity:.6}
+.acc{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.acc button{font:inherit;font-weight:700;border:0;border-radius:16px;padding:14px;background:#FDE6EE;color:var(--vino-osc);display:flex;gap:8px;align-items:center;justify-content:center}
+.acc button:nth-child(2){background:#E9DFF0}.acc button:nth-child(3){background:#DDEEDD}.acc button:nth-child(4){background:#F6EBD0}
+.vacio{display:flex;gap:14px;align-items:center}.vacio img{height:86px}
+.span2{grid-column:span 2}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.span2{grid-column:auto}.acc{grid-template-columns:repeat(2,1fr)}
+ .hero{padding:22px;min-height:210px}.hero img.rosina{height:62%;right:8px}.hero p,.hero .frase{max-width:62%}}
+</style></head><body><div class="wrap">
+<p class="aviso">MAQUETA con datos de ejemplo (no es la agenda real). Las ilustraciones son las poses de Rosina que ya existen en el sitio.</p>
+<section class="hero">
+  <span class="ovillo o1"></span><span class="ovillo o2"></span><span class="ovillo o3"></span>
+  <div><h1>Buenas tardes, Sara</h1><p>Hoy tienes 1 entrega y 2 proyectos en el gancho. ¡Una vuelta más y lo logras!</p><span class="frase">✨ Tejer es mi terapia</span></div>
+  <img class="rosina" src="/img/aventuras/rosina-original/tejiendo.webp" alt="">
+</section>
+<section class="kpis">
+  <div class="kpi k1"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div><small>Ventas de octubre</small><strong>$ 285.000</strong><span>4 ventas anotadas</span></div></div>
+  <div class="kpi k2"><span class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6"/></svg></span><div><small>Gastos del mes</small><strong>$ 96.000</strong><span>3 gastos anotados</span></div></div>
+  <div class="kpi k3"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-9M15 6h6v6"/></svg></span><div><small>Te quedó</small><strong>$ 189.000</strong><span>Ganancia del mes</span></div></div>
+  <div class="kpi k4"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg></span><div><small>Pedidos activos</small><strong>3</strong><span>Por cobrar $ 120.000</span></div></div>
+</section>
+<section class="grid">
+  <div class="card"><h2>Mis proyectos <a href="#">Ver todos</a></h2>
+    <div class="donut"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" fill="none" stroke="#F3E6E9" stroke-width="6"/>
+      <circle cx="21" cy="21" r="15.9" fill="none" stroke="#4F7A57" stroke-width="6" stroke-dasharray="33 67" stroke-dashoffset="25"/>
+      <circle cx="21" cy="21" r="15.9" fill="none" stroke="#EB6B96" stroke-width="6" stroke-dasharray="45 55" stroke-dashoffset="-8"/>
+      <circle cx="21" cy="21" r="15.9" fill="none" stroke="#F0C27A" stroke-width="6" stroke-dasharray="22 78" stroke-dashoffset="-53"/>
+      <text x="21" y="23" text-anchor="middle" font-size="9" font-weight="800" fill="#5C2F3F">9</text><text x="21" y="29" text-anchor="middle" font-size="3.4" fill="#6B5560">proyectos</text></svg>
+      <div class="leyenda"><span><i style="background:#4F7A57"></i>Terminados · 3</span><span><i style="background:#EB6B96"></i>Tejiendo · 4</span><span><i style="background:#F0C27A"></i>Por empezar · 2</span></div></div></div>
+  <div class="card"><h2>Ventas de la semana <a href="#">Ver ventas</a></h2>
+    <div class="barras"><div><b style="height:40px"></b>L</div><div><b style="height:78px"></b>M</div><div><b style="height:22px"></b>M</div><div class="hoy"><b style="height:120px"></b>J</div><div><b style="height:60px"></b>V</div><div><b style="height:96px"></b>S</div><div><b style="height:14px"></b>D</div></div></div>
+  <div class="card"><h2>Octubre 2026 <a href="#">Ver calendario</a></h2>
+    <div class="cal"><span class="t">L</span><span class="t">M</span><span class="t">M</span><span class="t">J</span><span class="t">V</span><span class="t">S</span><span class="t">D</span>
+    <span>.</span><span>.</span><span>.</span><span>1</span><span>2</span><span class="ev">3</span><span>4</span><span>5</span><span>6</span><span class="ev">7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span class="ev">14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span class="ev">22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span class="hoy ev">30</span><span>31</span></div></div>
+  <div class="card span2"><h2>Próximas fechas <a href="#">Ver calendario</a></h2>
+    <div class="lista">
+      <div class="fila"><div class="f"><small>NOV</small>02</div><div class="x">Entrega: Osito — María Gómez<small>Pedido en proceso</small></div><span class="chip">En 3 días</span></div>
+      <div class="fila"><div class="f"><small>NOV</small>08</div><div class="x">Cumpleaños de Laura<small>Fecha especial</small></div><span class="chip" style="background:#F8DDE6;color:#8E2F55">Cumpleaños</span></div></div></div>
+  <div class="card"><h2>Para hacer hoy <a href="#">Planeador</a></h2>
+    <div class="tareas"><label><input type="checkbox" checked><span class="ok">Empacar el pedido de María</span></label><label><input type="checkbox"><span>Comprar lana rosa</span></label><label><input type="checkbox"><span>Publicar foto del osito</span></label></div></div>
+</section>
+<section class="acc"><button>＋ Anotar pedido</button><button>＋ Nuevo proyecto</button><button>＋ Anotar venta</button><button>＋ Anotar gasto</button></section>
+<section class="card" style="margin-top:14px"><h2>Así se vería una hoja vacía</h2><div class="vacio"><img src="/img/aventuras/rosina-original/idea.webp" alt=""><div><b>Aún no tienes proyectos</b><br><span style="color:#6B5560">Anota el primero y Rosina te ayuda a seguirle el hilo.</span></div></div></section>
+</div></body></html>
