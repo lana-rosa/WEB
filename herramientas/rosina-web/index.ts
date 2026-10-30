@@ -1,7 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v36 (30-oct-2026; PENDIENTE DE DESPLEGAR): GUIA_AGENDA describe el nuevo Mi panel (saludo con Rosina, círculo de proyectos, barras de ventas de la semana, calendario del mes y tareas de hoy), el color por sección y el rosa frambuesa.
+// v36 (30-oct-2026; desplegada y probada): GUIA_AGENDA describe el nuevo Mi panel (saludo con Rosina, círculo de proyectos, barras de ventas de la semana, calendario del mes y tareas de hoy), el color por sección y el rosa frambuesa.
 // v35 (30-oct-2026; desplegada): GUIA_AGENDA explica el botón de ayuda único, los íconos de línea, los ejemplos de hojas vacías y «Empieza aquí».
 // v34 (30-oct-2026; desplegada): GUIA_AGENDA explica Mi panel, el menú lateral y la vista de sección; 39 hojas.
 // v33 (30-oct-2026; desplegada): GUIA_AGENDA explica el candado firme (exportaciones) y la solicitud de eliminación de datos.
