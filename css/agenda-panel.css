@@ -112,3 +112,10 @@ body .pestana:focus-visible { outline: 3px solid #743D50; outline-offset: 2px; }
   .hoja-agenda > header h3 { font-size: 1.2rem; line-height: 1.2; } .hoja-agenda > header p { font-size: .82rem; }
   .pl-nav { flex-wrap: wrap; } .pl-nav input[type="date"] { flex: 1 1 140px; min-width: 0; font-size: 1rem; }
 }
+
+/* Íconos en las tarjetas de la vista de sección (30-oct-2026, pedido de Sara: «no veo iconos en la agenda») */
+.vs-top { display: flex; align-items: center; gap: 12px; }
+.vs-ic { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 14px; background: #F1E3E2; color: #743D50; display: grid; place-items: center; }
+.vs-ic svg { width: 24px; height: 24px; }
+.vs-hoja:hover .vs-ic { background: #743D50; color: #fff; }
+.vs-hoja.bloq .vs-ic { background: #E8D5D4; }
