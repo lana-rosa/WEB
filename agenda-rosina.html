@@ -367,6 +367,16 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .nota-copia { flex-basis: 100%; text-align: center; color: var(--tinta-suave); font-size: 0.8rem; }
 .enlace-copia { background: none; border: none; color: var(--rosa-texto); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; min-height: 28px; padding: 4px 6px; }
 @media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } .agenda-recordatorio { display: none !important; } }
+.donde-datos { margin: 10px 0 14px; border: 1px solid var(--borde, #d8eee2); border-radius: 14px; background: #fff; padding: 0; text-align: left; }
+.donde-datos summary { cursor: pointer; padding: 12px 16px; font-weight: 800; color: var(--rosa-oscuro, #0c8556); list-style: none; }
+.donde-datos summary::-webkit-details-marker { display: none; }
+.donde-datos summary::after { content: "▾"; float: right; }
+.donde-datos[open] summary::after { content: "▴"; }
+.dd-cuerpo { padding: 0 16px 14px; font-size: 0.93rem; line-height: 1.5; }
+.dd-cuerpo ul { margin: 6px 0 8px; padding-left: 18px; }
+.dd-cuerpo li { margin: 6px 0; }
+.dd-estado { margin: 0 0 6px; padding: 8px 12px; border-radius: 10px; background: var(--rosa-suave, #e8f7ef); font-weight: 700; }
+.dd-estado:empty { display: none; }
 .nube-estado { display: block; width: 100%; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--tinta-suave); margin: 4px 0 0; }
 .agenda-recordatorio { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; background: #FFF8E1; border: 2px solid #FFE08A; border-radius: 18px; padding: 12px 16px; margin: 0 0 16px; font-size: 0.92rem; }
 .agenda-recordatorio[hidden] { display: none; }
@@ -927,6 +937,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="agenda-config no-imprimir" id="agenda-config" role="region" aria-label="Configuración de la agenda" hidden>
       <div class="agenda-config-cab"><strong>⚙️ Configuración</strong><button type="button" class="agenda-config-cerrar" data-cerrar-config aria-label="Cerrar la configuración"><span aria-hidden="true">✕</span> Cerrar</button></div>
+      <details class="donde-datos" id="donde-datos">
+        <summary>🔒 ¿Dónde se guardan mis datos?</summary>
+        <div class="dd-cuerpo">
+          <p class="dd-estado" id="dd-estado" role="status"></p>
+          <ul>
+            <li><strong>En tu dispositivo:</strong> todo lo que escribes se guarda en este celular, tablet o computador, en este navegador. Es lo que ves cada vez que abres la agenda.</li>
+            <li><strong>En tu cuenta:</strong> solo tu nombre y tu correo, y el estado de tu membresía. Tus hojas <strong>no</strong> viajan a tu cuenta, a menos que actives «☁️ Guardar mi agenda en mi cuenta», que es opcional y pide tu autorización.</li>
+            <li><strong>Si inicias sesión en otro celular o navegador:</strong> la agenda llegará vacía, salvo que tengas la copia en tu cuenta activa o cargues un archivo de copia.</li>
+            <li><strong>Si cierras sesión:</strong> tus hojas siguen guardadas en este dispositivo; cerrar sesión no las borra. Si otra persona usa este mismo navegador, aunque entre con otra cuenta, verá lo mismo. Si compartes el dispositivo, usa «Borrar lo escrito» (después de guardar una copia) o tu propio perfil del navegador.</li>
+            <li><strong>Si borras el historial o los datos del navegador, o cambias de celular:</strong> se pierde lo guardado en el dispositivo. Para no perderlo, usa «⬇️ Guardar una copia» cada cierto tiempo o activa la copia en tu cuenta.</li>
+            <li><strong>Si pierdes el dispositivo:</strong> entra con tu correo en uno nuevo y recupera tu copia en la cuenta (si la tenías activa) o carga tu archivo de copia.</li>
+            <li><strong>Quién lo ve:</strong> nadie del equipo de Lana Rosa ve lo que escribes en tus hojas. Si activas la copia en tu cuenta, queda guardada para ti y puedes borrarla cuando quieras. Los datos de tus clientas (nombres, teléfonos, cumpleaños) quedan solo donde tú los guardes.</li>
+          </ul>
+          <small>Más detalles en la <a href="/politicas.html#datos">Política de datos</a>.</small>
+        </div>
+      </details>
       <div class="cuaderno-portada">
     <div class="portada-agenda">
       <label for="ag-duena">Esta agenda es de</label>
@@ -4156,5 +4182,17 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=1" defer></script>
 <script src="/js/agenda/exportar.js?v=1" defer></script>
+<script>
+// «¿Dónde se guardan mis datos?»: dice si hoy la copia en la cuenta está activa (30-oct-2026).
+(function () {
+  var d = document.getElementById('donde-datos'); if (!d) return;
+  function pintar() {
+    var e = document.getElementById('dd-estado'); if (!e) return;
+    var on = window.lrNube && window.lrNube.activa === true;
+    e.textContent = window.lrNube ? (on ? '☁️ Hoy: tu agenda se guarda en este dispositivo y también en tu cuenta.' : '📱 Hoy: tu agenda se guarda solo en este dispositivo. Activa la copia en tu cuenta si quieres tenerla en otros dispositivos.') : '';
+  }
+  d.addEventListener('toggle', function () { if (d.open) pintar(); });
+})();
+</script>
 </body>
 </html>
