@@ -27,7 +27,7 @@
       ANCHOS.map(function (a, i) { return '<button type="button" class="dib-ancho" data-a="' + i + '" aria-label="Línea ' + ['fina', 'media', 'gruesa'][i] + '" aria-pressed="' + (i === 1) + '"><i style="height:' + Math.max(2, a) + 'px"></i></button>'; }).join('') +
       '<button type="button" data-acc="deshacer" title="Deshacer">↩️</button><button type="button" data-acc="limpiar" title="Borrar todo el dibujo">🗑️</button>' +
       (foto ? '<label class="dib-subir" title="Subir una foto del diseño">📷 Subir foto<input type="file" accept="image/*" hidden></label>' : '') +
-      '<button type="button" data-acc="bajar" title="Bajar el dibujo como imagen">⬇️</button><label class="dib-dedo"><input type="checkbox" checked> Dedo</label><span class="dib-aviso" role="status" aria-live="polite"></span>';
+      '<button type="button" data-acc="bajar" title="Bajar el dibujo como imagen">⬇️</button><button type="button" class="dib-pantalla" data-acc="pantalla" aria-expanded="false" title="Dibujar en pantalla completa">⤢ <span>Pantalla completa</span></button><label class="dib-dedo"><input type="checkbox" checked> Dedo</label><span class="dib-aviso" role="status" aria-live="polite"></span>';
     var caja = document.createElement('div'); caja.className = 'dib-caja dib-fondo-' + fondo;
     var imgFondo = document.createElement('img'); imgFondo.className = 'dib-foto'; imgFondo.alt = ''; imgFondo.hidden = true;
     var canvas = document.createElement('canvas'); canvas.className = 'dib-canvas'; canvas.setAttribute('aria-label', op.etiqueta || 'Lienzo para dibujar');
@@ -100,6 +100,7 @@
         var r = reg(false); if (!r.s.length && !r.img) { decir('El dibujo está vacío.'); return; }
         if (!confirm('¿Borrar todo el dibujo' + (r.img ? ' y la foto' : '') + '?')) return; delete almacen()[clave]; pila = []; pintar(); guardar();
       } else if (b.dataset.acc === 'bajar') bajar();
+      else if (b.dataset.acc === 'pantalla') { completo(!cont.classList.contains('dib-completo')); return; }
       barra.querySelectorAll('[data-h]').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.h === est.herr)); });
       barra.querySelectorAll('[data-c]').forEach(function (x) { x.setAttribute('aria-pressed', String(+x.dataset.c === est.color)); });
       barra.querySelectorAll('[data-a]').forEach(function (x) { x.setAttribute('aria-pressed', String(+x.dataset.a === est.ancho)); });
@@ -137,6 +138,32 @@
         var a = document.createElement('a'); a.href = c.toDataURL('image/png'); a.download = (op.archivo || 'dibujo') + '.png'; document.body.appendChild(a); a.click(); a.remove();
       }
       var r = reg(false); if (r.img) { var im = new Image(); im.onload = function () { var e = Math.min(w / im.width, h / im.height); x.drawImage(im, (w - im.width * e) / 2, (h - im.height * e) / 2, im.width * e, im.height * e); trazos(); }; im.src = r.img; } else trazos();
+    }
+    /* Pantalla completa (30-oct-2026, solo en celular y tablet): el contenedor pasa a `body` (un ancestro con contención de diseño rompería `position: fixed`)
+       y vuelve a su lugar al salir. El lienzo conserva su proporción (los trazos están en milésimas del ancho) y se ajusta al espacio que queda bajo la barra. */
+    var marca = null, pant = barra.querySelector('.dib-pantalla'), roCont = null;
+    function fijarCaja() {
+      if (!cont.classList.contains('dib-completo')) { caja.style.width = ''; return; }
+      var lado = getComputedStyle(cont).flexDirection === 'row', aw = cont.clientWidth - 16 - (lado ? barra.offsetWidth + 8 : 0), ah = cont.clientHeight - 16 - (lado ? 0 : barra.offsetHeight + 8);
+      caja.style.width = Math.max(120, Math.floor(Math.min(aw, ah / relacion))) + 'px'; ajustar();
+    }
+    function tecla(e) { if (e.key === 'Escape') completo(false); }
+    function completo(si) {
+      if (si === cont.classList.contains('dib-completo')) return;
+      if (si) {
+        marca = document.createComment('dib'); cont.parentNode.insertBefore(marca, cont); document.body.appendChild(cont);
+        cont.classList.add('dib-completo'); cont.setAttribute('role', 'dialog'); cont.setAttribute('aria-modal', 'true'); cont.setAttribute('aria-label', (op.etiqueta || 'Lienzo para dibujar') + ', pantalla completa');
+        document.body.classList.add('dib-bloqueo'); pant.innerHTML = '✕ <span>Salir</span>'; pant.setAttribute('aria-expanded', 'true'); pant.title = 'Salir de pantalla completa';
+        document.addEventListener('keydown', tecla);
+        if (window.ResizeObserver) { roCont = new ResizeObserver(fijarCaja); roCont.observe(cont); } else window.addEventListener('resize', fijarCaja);
+        fijarCaja(); pant.focus();
+      } else {
+        document.removeEventListener('keydown', tecla); if (roCont) { roCont.disconnect(); roCont = null; } else window.removeEventListener('resize', fijarCaja);
+        cont.classList.remove('dib-completo'); cont.removeAttribute('role'); cont.removeAttribute('aria-modal'); cont.removeAttribute('aria-label'); document.body.classList.remove('dib-bloqueo');
+        if (marca && marca.parentNode) { marca.parentNode.insertBefore(cont, marca); marca.remove(); } marca = null;
+        pant.innerHTML = '⤢ <span>Pantalla completa</span>'; pant.setAttribute('aria-expanded', 'false'); pant.title = 'Dibujar en pantalla completa';
+        fijarCaja(); pant.focus();
+      }
     }
     if (window.ResizeObserver) new ResizeObserver(ajustar).observe(caja); else window.addEventListener('resize', ajustar);
     setTimeout(ajustar, 0);
