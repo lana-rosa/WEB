@@ -5,6 +5,7 @@
    3) letra mínima de 12 px; 4) la barra de abajo en celulares angostos muestra el nombre solo de la sección activa. */
 .ficha-barra { flex-wrap: wrap; }
 .ficha-barra .boton-chico { flex: 1 1 auto; }
+@media (max-width: 520px) { .ficha-barra { flex-wrap: nowrap; } .ficha-barra .boton-chico { flex: 0 0 auto; } }   /* en celular los textos son cortos y caben en un renglón */
 
 @media (pointer: coarse), (max-width: 1023px) {
   #agenda .boton-chico, #agenda .boton-cal, #agenda .pn-enlace, #agenda .dp-paso-btn, #agenda .pl-dia, #agenda .vers-nueva, #agenda .vers-borrar, #agenda .avance-btn, #agenda .mes-volver,
