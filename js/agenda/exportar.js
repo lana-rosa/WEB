@@ -63,7 +63,12 @@
     return v;
   }
   function tiparHojas(hojas) { return hojas.map(function (h) { return { nombre: h.nombre, columnas: h.columnas, filas: h.filas.map(function (fila) { return fila.map(function (v, i) { return tipar(v, h.columnas[i]); }); }) }; }); }
-  function reunir() { return tiparHojas([].concat(deListas(), deVersiones(), deAnio(), deVision(), deFinanzas(), window.lrIdeas && window.lrIdeas.paraExcel ? window.lrIdeas.paraExcel() : [])); }
+  /* Candado de la membresía (30-oct-2026, decisión de Sara): las hojas bloqueadas no se exportan a Excel (la copia de seguridad .json y la copia en la cuenta siguen incluyendo todo: son tus datos) */
+  function sinBloqueadas(hojas) {
+    var bloq = {}; document.querySelectorAll('.hoja-agenda.sin-membresia header h3').forEach(function (h) { bloq[h.textContent.trim()] = true; });
+    return hojas.filter(function (h) { return !bloq[h.nombre]; });
+  }
+  function reunir() { return sinBloqueadas(tiparHojas([].concat(deListas(), deVersiones(), deAnio(), deVision(), deFinanzas(), window.lrIdeas && window.lrIdeas.paraExcel ? window.lrIdeas.paraExcel() : []))); }
   function descargar() {
     var hojas = reunir();
     if (!hojas.length) { alert('Todavía no hay nada escrito para exportar. Llena alguna hoja de tu agenda y vuelve a intentarlo.'); return; }

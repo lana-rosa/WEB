@@ -15,8 +15,8 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 | Copia en la cuenta (nube) | Opcional, gratis | Solo con autorización expresa; se recupera sola si la agenda del dispositivo queda vacía; se puede borrar. | ⚙️ Configuración, `politicas.html#datos` apartado 11 (`VERSION_NUBE` = `fn_nube_version()` = 2026-10-27) |
 | Copia en archivo (.json) | Disponible | «Guardar una copia» / «Cargar una copia». | ⚙️ Configuración |
 | Google Calendar | Opcional, gratis | Crea el calendario aparte «Agenda para tejedoras» (permiso no sensible); «Desconectar» lo borra. Desde el 29-oct (estuvo apagado del 13 al 29-oct). | `js/agenda/google-calendar.js`, `politicas.html#datos` apartado 10, tour (paso 4), `GUIA_AGENDA` |
-| Archivo .ics y «Añadir a Google Calendar» por fila | Disponible | Fechas al calendario sin conectar nada. | ⚙️ Configuración |
-| Exportar a Excel | Disponible | Un libro .xlsx con una hoja por cada hoja con datos. | ⚙️ Configuración |
+| Archivo .ics y «Añadir a Google Calendar» por fila | Disponible | Fechas al calendario sin conectar nada. Con la membresía vencida no incluye fechas de hojas bloqueadas. | ⚙️ Configuración |
+| Exportar a Excel | Disponible | Un libro .xlsx con una hoja por cada hoja con datos, con importes y fechas reales. Con la membresía vencida no incluye las hojas bloqueadas. | ⚙️ Configuración |
 | Conexiones entre hojas | Disponible (solo al tocar el botón) | Pedidos «Entregado» → Mis ventas; lanas con 0 ovillos → Lista de compras; Diario de tejido → Mi año tejiendo. | `js/agenda/conexiones.js`, `GUIA_AGENDA` |
 | Dictar (voz) | Disponible | Usa el servicio de voz del navegador; Lana Rosa no guarda el audio. | `politicas.html#datos`, tour |
 | Lápiz digital | Disponible, **falta probar con lápiz real en iPad y Samsung** | Lápiz digital y mouse dibujan; el dedo mueve la página salvo «Dedo». | tour, `GUIA_AGENDA` |
