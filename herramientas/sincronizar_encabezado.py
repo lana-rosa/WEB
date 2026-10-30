@@ -303,6 +303,7 @@ def casas_pie_mini(casa):
     items = []
     for k, nombre, href in CASAS:
         ico, corto = CASAS_ICONO.get(k, ('', nombre))
+        if casa == 'agenda': corto = {'crochet': 'Tienda de Amigurumis', 'academy': 'Academia'}.get(k, corto)   # pedido de Sara, 30-oct: en el pie de la agenda los nombres completos
         act = ' class="casa-actual" aria-current="true"' if k == casa else ''
         items.append(f'<a href="{href}" data-casa="{k}" title="{nombre}"{act}><span aria-hidden="true">{ico}</span> {corto}</a>')
     return '<nav class="pie-casas-mini" aria-label="Casas Lana Rosa"><span class="pie-h3">Nuestras casas</span>' + ''.join(items) + '</nav>'
