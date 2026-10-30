@@ -397,3 +397,5 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [x] **Acceso previo a la agenda completa por cuenta (28-oct):** `jennifer7610@gmail.com` ve la agenda completa al entrar con esa cuenta (tabla `agenda_acceso_previo`, `js/agenda/acceso.js`). Para dar acceso a otra persona: agregar su correo (en minúsculas) en esa tabla desde el panel de Supabase.
 - [x] **Agenda gratis con publicidad propia (28-oct):** hecho con el modo «hojas gratis» (ver arriba). Si Sara quiere otras hojas gratis, se cambia `HOJAS_GRATIS` en `agenda-rosina.html`.
 - [ ] **Cómo se va a vender la agenda** (decidir con Sara): precio, pago (Wompi), cómo se activa por cuenta y política de condiciones.
+
+- [ ] Agenda, etapa 4 (30-oct-2026): propuesta de sistema de diseño en `herramientas/agenda-auditoria/ETAPA-4-sistema-de-diseno.html`, a la espera de las 6 decisiones de Sara (paleta, DynaPuff solo en títulos, íconos de línea, un solo botón flotante, «Empieza aquí», orden de olas). Nada aplicado todavía; etapa 5 = aplicarlo por olas.
