@@ -14,7 +14,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     ctx = contexto(b, 390, datos={'ag-nombre': 'Bufanda lila', 'ag-ec-nombre': 'Luisa'}); pg = abrir(ctx, 'planeador-dia', 1500)
     T.v('la página enlaza su propio manifiesto, color e ícono', pg.get_attribute('link[rel=manifest]', 'href') == '/manifest-agenda.webmanifest' and pg.get_attribute('meta[name=theme-color]', 'content') == '#1FB06F' and 'agenda' in pg.get_attribute('link[rel=apple-touch-icon]', 'href') and pg.get_attribute('meta[name=apple-mobile-web-app-title]', 'content') == 'Agenda para tejedoras')
-    T.v('el pie ofrece instalar «Agenda para tejedoras», no Academy', 'Agenda para tejedoras' in (pg.get_attribute('[data-instalar]', 'aria-label') or ''), pg.get_attribute('[data-instalar]', 'aria-label'))
+    T.v('el pie mínimo ya no lleva botón de instalar (la tarjeta «Instala tu agenda como app» cubre eso) y sí logo, políticas, autoría y derechos', pg.locator('.pie-minimo [data-instalar]').count() == 0 and pg.locator('.pie-minimo .pie-logo-anim').count() == 1 and pg.locator('.pie-minimo .pie-legal a[href="/politicas.html"]').count() == 1 and 'Agenda creada por Lana Rosa Crochet' in pg.inner_text('.pie-minimo') and '© 2026' in pg.inner_text('.pie-minimo'))
     T.v('el manifiesto se puede pedir al servidor', urllib.request.urlopen(BASE + '/manifest-agenda.webmanifest').status == 200)
     T.v('la tarjeta de instalar está oculta hasta que el navegador ofrece instalar', pg.locator('#instalar-agenda').is_hidden())
     pg.evaluate("""() => { window.__prompts = 0; const e = new Event('beforeinstallprompt'); e.prompt = () => { window.__prompts++; }; e.userChoice = Promise.resolve({ outcome: 'accepted' }); window.dispatchEvent(e); }""")

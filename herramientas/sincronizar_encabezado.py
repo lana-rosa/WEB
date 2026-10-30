@@ -312,8 +312,23 @@ def logo_pie(casa, img, alt):
 
 def pie_casa(modelo, casa, pagina=None):
     """Pie simple: logo con las tres casas al lado y redes, tres columnas cortas, pagos y apoyo en una línea, y los legales."""
-    titulo, enlaces = PIE_SIMPLE.get(casa) or PIE_SIMPLE_COMUN
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa-360.webp', 'Lana Rosa Crochet'))
+    if casa == 'agenda':   # pie mínimo de la Agenda (pedido de Sara, 30-oct-2026): solo logo, políticas, autoría y derechos
+        return f'''<footer class="pie-rico pie-minimo">
+  <div class="contenedor pie-min-fila">
+    <div class="pie-marca">
+      {logo_pie(casa, img, alt)}
+    </div>
+    <div class="pie-legal">
+      <a href="/politicas.html">Políticas</a>
+      <a href="/politicas.html#datos">Datos personales</a>
+      <a href="/politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>
+      <span class="autoria">Agenda creada por Lana Rosa Crochet</span>
+      <span class="derechos">© 2026 Lana Rosa Crochet. Todos los derechos reservados.</span>
+    </div>
+  </div>
+</footer>'''
+    titulo, enlaces = PIE_SIMPLE.get(casa) or PIE_SIMPLE_COMUN
     def li(t, h, extra=''):
         if not h: return f'\n        <li>{t}</li>'
         ext = ' target="_blank" rel="noopener"' if h.startswith('http') else ''
