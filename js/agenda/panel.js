@@ -200,6 +200,7 @@
 
   /* ---------- Vista de sección: las hojas de una sección como tarjetas ---------- */
   var POSES = [[/proyect/i, 'gancho'], [/material/i, 'ovillo'], [/emprend/i, 'cartel'], [/finanz/i, 'contando'], [/fecha|bienestar/i, 'flor']];   // la pose de Rosina de cada sección
+  var DESC = { 'semana-tejiendo': 'Qué vas a tejer cada día de la semana.' };   // hojas cuyo subtítulo lleva un campo y no sirve como descripción
   var vista = null;
   function crearVista() {
     vista = txt('section', 'vista-seccion no-imprimir'); vista.id = 'vista-seccion'; vista.hidden = true; vista.setAttribute('aria-labelledby', 'vs-titulo');
@@ -222,7 +223,7 @@
         var b = txt('button', 'pn-card vs-hoja' + (bl ? ' bloq' : '')); b.type = 'button';
         var top = txt('span', 'vs-top'), ic = window.lrIconos && window.lrIconos.de ? window.lrIconos.de(a.textContent) : null;
         if (ic) { var ins = txt('span', 'vs-ic'); ins.appendChild(ic); top.appendChild(ins); }
-        top.appendChild(txt('b', '', limpio(a.textContent))); b.appendChild(top); if (p) b.appendChild(txt('small', '', p.textContent));
+        top.appendChild(txt('b', '', limpio(a.textContent))); b.appendChild(top); if (DESC[id]) b.appendChild(txt('small', '', DESC[id])); else if (p) b.appendChild(txt('small', '', p.textContent));
         if (bl) b.appendChild(txt('span', 'pn-chip', 'Con membresía'));
         b.addEventListener('click', function () { ir(id); }); g.appendChild(b);
       });
