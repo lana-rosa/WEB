@@ -35,8 +35,7 @@ MENUS = {
                  ('Sobre nosotras', 'sobre-nosotras.html', 'merceria'),
                  ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('Rosina: lanas e ideas', 'merceria/rosina/', 'universo')],
     'agenda': [('Mi agenda', 'agenda-rosina.html', 'agenda'), ('Aprende y compra', 'agenda-rosina.html#aprende-compra', 'agenda'),
-               ('Material gratis de Rosina', 'recursos-rosina.html', 'agenda'), ('Sobre nosotras', 'sobre-nosotras.html', 'agenda'),
-               ('Ayuda', 'preguntas-frecuentes.html', 'agenda')],
+               ('Material gratis de Rosina', 'recursos-rosina.html', 'agenda'), ('Sobre nosotras', 'sobre-nosotras.html', 'agenda')],   # sin «Ayuda» (pedido de Sara, 30-oct)
     'academy': [('Talleres y clases', 'academy/talleres/', 'academy'),
                 ('Revista', 'revista.html?casa=academy', 'academy'),
                 ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('Sobre nosotras', 'sobre-nosotras.html', 'academy'),
