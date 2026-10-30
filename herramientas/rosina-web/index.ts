@@ -1,7 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v31 (30-oct-2026; PENDIENTE DE DESPLEGAR): GUIA_AGENDA explica «¿Dónde se guardan mis datos?».
+// v31 (30-oct-2026): GUIA_AGENDA explica «¿Dónde se guardan mis datos?», el aviso de otra cuenta en el mismo navegador y las conexiones entre hojas.
 // v30 (29-oct-2026): GUIA_AGENDA menciona las tiras «Herramientas de Rosina» (enlaces al Rincón de Rosina) en finanzas, proyectos, Diseña tu patrón y pausas activas.
 // v29 (29-oct-2026; antes v22 a v28): casa «agenda»: Rosina explica cómo usar la Agenda para tejedoras (GUIA_AGENDA); el consumo se mide bajo «academy» (la tabla solo admite tres casas).
 // v21 (27-oct-2026): la IP del límite sale de cf-connecting-ip (SEG-13) y se quita /rosina.html (ahora es una redirección).
