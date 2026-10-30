@@ -40,7 +40,7 @@ def dibujo(lado, color, fraccion):
     """Cuadrado `lado` del color, con la oveja blanca centrada que ocupa `fraccion` del lado (por su dimensión mayor)."""
     im = Image.new('RGBA', (lado, lado), color + (255,))
     k = fraccion * lado / max(MASCARA.size); m = MASCARA.resize((max(1, round(MASCARA.width * k)), max(1, round(MASCARA.height * k))), Image.LANCZOS)
-    blanco = Image.new('RGBA', m.size, (255, 255, 255, 255)); blanco.putalpha(m)
+    blanco = Image.new('RGBA', m.size, (232, 213, 212, 255) if color == COLORES['agenda'] else (255, 255, 255, 255)); blanco.putalpha(m)
     im.alpha_composite(blanco, ((lado - m.width) // 2, (lado - m.height) // 2 + round(lado * 0.01)))
     return im
 
