@@ -1,0 +1,26 @@
+/* Agenda para tejedoras · arreglos de base del diagnóstico multidispositivo (fase 1; 30-oct-2026).
+   Solo presentación: ningún dato ni función cambia. Se carga al final (después de agenda-panel.css).
+   1) la barra de botones de las listas se parte en dos renglones si no cabe (antes se salía en 600 px);
+   2) zonas de toque de 44 px en pantallas táctiles y menores de 1024 px (en computador con mouse se conserva el tamaño compacto);
+   3) letra mínima de 12 px; 4) la barra de abajo en celulares angostos muestra el nombre solo de la sección activa. */
+.ficha-barra { flex-wrap: wrap; }
+.ficha-barra .boton-chico { flex: 1 1 auto; }
+
+@media (pointer: coarse), (max-width: 1023px) {
+  #agenda .boton-chico, #agenda .boton-cal, #agenda .pn-enlace, #agenda .dp-paso-btn, #agenda .pl-dia, #agenda .vers-nueva, #agenda .vers-borrar, #agenda .avance-btn, #agenda .mes-volver,
+  #agenda .agc-d, #agenda .agc-flecha, #agenda .dib-color, #agenda .dib-ancho, #agenda summary, #agenda input[type="color"], #agenda .pl-nav button { min-height: 44px; }
+  #agenda .agc-flecha, #agenda #tab-mes-ant, #agenda #tab-mes-sig, #agenda .pl-nav button, #agenda .dib-color, #agenda .dib-ancho, #agenda input[type="color"] { min-width: 44px; }
+  #agenda .pn-enlace { padding: 0 8px; }
+  #agenda .dias-pausas label { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  #agenda textarea { min-height: 44px !important; }
+  #agenda button:not(.ficha-cab):not(.pestana):not(.pl-dia):not(.agc-d) { min-height: 44px; min-width: 44px; }
+  #agenda .dp-paso-btn { min-width: 0; }
+}
+#agenda input#ag-semana { font-size: 1rem !important; }
+#agenda small, #agenda .pn-chip, #agenda .ficha-chip, #agenda .dias-pausas span, #agenda .pn-fecha small { font-size: max(12px, 0.78rem); }
+
+@media (max-width: 420px) {
+  body .pestana:not([aria-selected="true"]) .p-corto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  body .pestana[aria-selected="true"] { flex: 2.2 1 0; }
+  body .pestana .p-corto { font-size: .72rem; }
+}
