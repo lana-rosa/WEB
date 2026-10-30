@@ -1,0 +1,26 @@
+/* Un color de acento por sección (30-oct-2026, pedido de Sara: «se ve muy aburrida», opción 1). Todos con contraste ≥ 4,5 sobre blanco.
+   0 Panel vino · 1 Tablero ciruela · 2 Proyectos vino · 3 Materiales salvia · 4 Emprendimiento dorado · 5 Finanzas verde azulado · 6 Fechas y bienestar coral */
+#agenda { --sec-fg: #743D50; --sec-bg: #F1E3E2; }
+#agenda[data-sec="1"] { --sec-fg: #6B4A7A; --sec-bg: #EADFF0; }
+#agenda[data-sec="2"] { --sec-fg: #743D50; --sec-bg: #F1E3E2; }
+#agenda[data-sec="3"] { --sec-fg: #4F7A57; --sec-bg: #E1EEE0; }
+#agenda[data-sec="4"] { --sec-fg: #8A6A2E; --sec-bg: #F6EBD0; }
+#agenda[data-sec="5"] { --sec-fg: #3F6E73; --sec-bg: #D9ECEC; }
+#agenda[data-sec="6"] { --sec-fg: #A8506A; --sec-bg: #FADFE4; }
+
+/* Menú lateral: cada sección con su color (el ícono siempre; el fondo al estar elegida) */
+body .pestana:nth-child(1) { --p-fg: #743D50; --p-bg: #F1E3E2; } body .pestana:nth-child(2) { --p-fg: #6B4A7A; --p-bg: #EADFF0; }
+body .pestana:nth-child(3) { --p-fg: #743D50; --p-bg: #F1E3E2; } body .pestana:nth-child(4) { --p-fg: #4F7A57; --p-bg: #E1EEE0; }
+body .pestana:nth-child(5) { --p-fg: #8A6A2E; --p-bg: #F6EBD0; } body .pestana:nth-child(6) { --p-fg: #3F6E73; --p-bg: #D9ECEC; }
+body .pestana:nth-child(7) { --p-fg: #A8506A; --p-bg: #FADFE4; }
+body .pestana .ic-lateral { color: var(--p-fg); }
+body .pestana[aria-selected="true"] { background: var(--p-bg); }
+
+/* Vista de sección y hojas */
+#agenda .vs-ic { background: var(--sec-bg); color: var(--sec-fg); }
+#agenda .vs-hoja:hover { border-color: var(--sec-fg); }
+#agenda .vs-hoja:hover .vs-ic { background: var(--sec-fg); color: #fff; }
+#agenda .vs-cab h2 { color: var(--sec-fg); }
+#agenda .hoja-agenda { box-shadow: inset 0 5px 0 var(--sec-fg); }
+#agenda .hoja-agenda > header h3 { color: var(--sec-fg) !important; }
+@media print { #agenda .hoja-agenda { box-shadow: none; } }
