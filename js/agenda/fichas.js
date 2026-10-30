@@ -186,12 +186,20 @@
     });
   }
 
+  /* Al llegar a 200 fichas en una lista ya no se pueden agregar más: se avisa (antes no pasaba nada) y se sugiere guardar una copia y empezar una lista nueva el año siguiente */
+  function limiteLleno(tabla) {
+    var cuerpo = T(tabla).cuerpo, hoja = cuerpo.closest('.hoja-agenda'); if (!hoja) return;
+    var p = hoja.querySelector('.aviso-limite');
+    if (!p) { p = document.createElement('p'); p.className = 'aviso-limite aviso-auto no-imprimir'; p.setAttribute('role', 'status'); var barra = hoja.querySelector('.ficha-barra'); (barra || cuerpo.closest('.tabla-scroll')).insertAdjacentElement('beforebegin', p); }
+    p.textContent = 'Esta lista ya tiene 200 fichas, que es el máximo. Descarga una copia en ⚙️ Configuración y borra las fichas que ya no necesites (por ejemplo las de años anteriores) para seguir agregando.';
+    clearTimeout(p._t); p._t = setTimeout(function () { if (p.parentNode) p.remove(); }, 12000);
+  }
   function agregar(tabla) {
     var S = est(tabla), n = T(tabla).n, r, elegida = 0;
     for (r = 1; r <= n; r++) if (!tieneDatos(tabla, r) && S.mostradas[r]) { elegida = r; break; }   // ya hay una ficha nueva sin llenar
     if (!elegida) { for (r = 1; r <= n; r++) if (!tieneDatos(tabla, r)) { elegida = r; break; } }
     if (!elegida) { var nueva = N.agregarRenglon(tabla); if (nueva) elegida = T(tabla).n; }
-    if (!elegida) return;
+    if (!elegida) { limiteLleno(tabla); return; }
     S.mostradas[elegida] = true; S.abiertas[elegida] = true; S.activa = elegida;
     aplicar(tabla);
     var porDefecto = { 'tabla-clientas': 'desde', 'tabla-aprendi': 'fecha', 'tabla-ideas': 'fecha' }[tabla];

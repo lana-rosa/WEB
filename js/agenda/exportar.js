@@ -48,7 +48,22 @@
       filas: movs.map(function (m) { return [m.f, m.t === 'i' ? 'Ingreso' : 'Gasto', m.c || '', m.d || '', Number(m.v) || 0, m.m || '']; }) });
     return salida;
   }
-  function reunir() { return [].concat(deListas(), deVersiones(), deAnio(), deVision(), deFinanzas(), window.lrIdeas && window.lrIdeas.paraExcel ? window.lrIdeas.paraExcel() : []); }
+  /* Importes y fechas como números y fechas de Excel (antes salían como texto y no se podían sumar ni ordenar) */
+  var COL_DINERO = /valor|precio|costo|total|saldo|abono|ingreso|gasto|monto|cuota|meta|presupuesto|pago/i;
+  function serial(a, m, d) { var t = Date.UTC(a, m - 1, d), x = new Date(t); if (x.getUTCFullYear() !== a || x.getUTCMonth() !== m - 1 || x.getUTCDate() !== d) return null; return Math.round(t / 86400000) + 25569; }
+  function tipar(v, col) {
+    if (typeof v === 'number') return COL_DINERO.test(col || '') ? { n: v, f: 'peso' } : v;
+    if (typeof v !== 'string') return v;
+    var t = v.trim(), f = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(t), i = /^(\d{4})-(\d{2})-(\d{2})$/.exec(t), n;
+    if (f && (n = serial(+f[3], +f[2], +f[1])) !== null) return { n: n, f: 'fecha' };
+    if (i && (n = serial(+i[1], +i[2], +i[3])) !== null) return { n: n, f: 'fecha' };
+    var m = /^\$\s*(-?\d{1,3}(?:[.\s]\d{3})*|-?\d+)(?:,(\d{1,2}))?$/.exec(t);   // «$ 170.000», «$85.000», «$ 1.250,50»
+    if (m) return { n: Number(m[1].replace(/[.\s]/g, '') + (m[2] ? '.' + m[2] : '')), f: 'peso' };
+    if (COL_DINERO.test(col || '') && /^-?\d{1,3}(?:\.\d{3})+$|^-?\d+$/.test(t)) return { n: Number(t.replace(/\./g, '')), f: 'peso' };
+    return v;
+  }
+  function tiparHojas(hojas) { return hojas.map(function (h) { return { nombre: h.nombre, columnas: h.columnas, filas: h.filas.map(function (fila) { return fila.map(function (v, i) { return tipar(v, h.columnas[i]); }); }) }; }); }
+  function reunir() { return tiparHojas([].concat(deListas(), deVersiones(), deAnio(), deVision(), deFinanzas(), window.lrIdeas && window.lrIdeas.paraExcel ? window.lrIdeas.paraExcel() : [])); }
   function descargar() {
     var hojas = reunir();
     if (!hojas.length) { alert('Todavía no hay nada escrito para exportar. Llena alguna hoja de tu agenda y vuelve a intentarlo.'); return; }

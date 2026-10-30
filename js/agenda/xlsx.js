@@ -1,5 +1,5 @@
 /* Escritor mínimo de archivos Excel (.xlsx) sin librerías: un libro con varias hojas de texto y números.
-   window.lrXlsx.crear([{ nombre, columnas: [..], filas: [[..], ..] }]) devuelve un Blob. El archivo es un ZIP sin compresión. */
+   window.lrXlsx.crear([{ nombre, columnas: [..], filas: [[..], ..] }]) devuelve un Blob. Una celda puede ser un texto, un número, o { n: número, f: 'peso' | 'fecha' } (número con formato de pesos o fecha de Excel; 30-oct-2026). El archivo es un ZIP sin compresión. */
 (function () {
   'use strict';
   var TABLA = (function () { var t = [], c, n, k; for (n = 0; n < 256; n++) { c = n; for (k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
@@ -14,6 +14,7 @@
   }
   function celda(v, r, c, estilo) {
     var ref = letra(c) + r, s = estilo ? ' s="1"' : '';
+    if (v && typeof v === 'object' && isFinite(v.n)) return '<c r="' + ref + '" s="' + (v.f === 'fecha' ? 3 : 2) + '"><v>' + v.n + '</v></c>';
     if (typeof v === 'number' && isFinite(v)) return '<c r="' + ref + '"' + s + '><v>' + v + '</v></c>';
     if (v === true) v = 'Sí'; else if (v === false || v == null) v = '';
     v = String(v); if (v === '') return '';
@@ -21,7 +22,7 @@
   }
   function hojaXml(h) {
     var filas = [h.columnas].concat(h.filas), cols = h.columnas.length, ancho = [];
-    filas.forEach(function (f) { f.forEach(function (v, i) { var l = String(v == null ? '' : v).split('\n').reduce(function (m, x) { return Math.max(m, x.length); }, 0); ancho[i] = Math.min(60, Math.max(ancho[i] || 10, l + 2)); }); });
+    filas.forEach(function (f) { f.forEach(function (v, i) { var l = String(v == null ? '' : (v && typeof v === 'object' ? (v.f === 'fecha' ? '00/00/0000' : '$ 000.000.000') : v)).split('\n').reduce(function (m, x) { return Math.max(m, x.length); }, 0); ancho[i] = Math.min(60, Math.max(ancho[i] || 10, l + 2)); }); });
     var x = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols>';
     for (var i = 0; i < cols; i++) x += '<col min="' + (i + 1) + '" max="' + (i + 1) + '" width="' + (ancho[i] || 12) + '" customWidth="1"/>';
     x += '</cols><sheetData>';
@@ -53,7 +54,7 @@
     hojas.forEach(function (h, i) { wb += '<sheet name="' + esc(nombres[i]) + '" sheetId="' + (i + 1) + '" r:id="rId' + (i + 1) + '"/>'; rel += '<Relationship Id="rId' + (i + 1) + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet' + (i + 1) + '.xml"/>'; a.push({ n: 'xl/worksheets/sheet' + (i + 1) + '.xml', c: hojaXml(h) }); });
     rel += '<Relationship Id="rId' + (hojas.length + 1) + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>';
     a.push({ n: 'xl/workbook.xml', c: wb + '</sheets></workbook>' }); a.push({ n: 'xl/_rels/workbook.xml.rels', c: rel });
-    a.push({ n: 'xl/styles.xml', c: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE74E96"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>' });
+    a.push({ n: 'xl/styles.xml', c: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="2"><numFmt numFmtId="164" formatCode="&quot;$&quot;#,##0"/><numFmt numFmtId="165" formatCode="dd/mm/yyyy"/></numFmts><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE74E96"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="4"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>' });
     return zip(a);
   }
   window.lrXlsx = { crear: crear };
