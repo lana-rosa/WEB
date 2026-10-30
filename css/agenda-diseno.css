@@ -52,3 +52,7 @@ body { color: #2B1B21; }
 .ficha-titulo.vacia { color: var(--tinta-ayuda); }
 
 @media print { .hoja-agenda { border: 0; box-shadow: none; } .hoja-agenda > header { border-bottom: 2px dashed #D6B4B8; } }
+
+/* Opción A (30-oct-2026, pedido de Sara «que no se vea infantil»): sin el dibujo de Rosina junto al título de cada hoja; el contorno de cada fondo se conserva */
+.hoja-agenda > header > img { display: none !important; }
+@media (max-width: 520px) { .ficha-barra .boton-chico { padding: 6px 10px; gap: 6px; } .ficha-barra { gap: 6px; } }

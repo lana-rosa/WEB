@@ -55,7 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/comun.css?v=43">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <link rel="stylesheet" href="/css/agenda-fichas.css?v=23">
-<link rel="stylesheet" href="/css/agenda-diseno.css?v=2">
+<link rel="stylesheet" href="/css/agenda-diseno.css?v=5">
+<link rel="stylesheet" href="/css/agenda-panel.css?v=2">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #D6B4B8; --rosa-suave: #FBE4EF;
@@ -1047,9 +1048,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 38</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 38 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 39</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 39 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
+          <a href="#panel-agenda" data-hoja="panel-agenda">Mi panel</a>
           <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
           <a href="#planeador-dia" data-hoja="planeador-dia">🗓️ Planeador del día</a>
           <a href="#portada-agenda" data-hoja="portada-agenda">🌸 Portada</a>
@@ -1103,10 +1105,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label for="selector-hoja-lista" id="selector-hoja-etq"></label>
         <select id="selector-hoja-lista"></select>
       </div>
+      <article class="hoja-agenda no-imprimir" id="panel-agenda" data-gratis>
+        <header>
+          <div><h3>Mi panel</h3><p>Lo más importante de tu agenda hoy: tus números del mes, lo que viene y lo que estás tejiendo.</p></div>
+        </header>
+        <div id="panel-contenido" class="panel-contenido"></div>
+      </article>
       <article class="hoja-agenda no-imprimir" id="indice-agenda" data-gratis>
         <header>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
-          <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes saltar con las pestañas de la derecha.</p></div>
+          <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes ir a otra sección con el menú de la izquierda.</p></div>
         </header>
         <div class="indice-grupo" style="--c:#E8D5D4"><h4>Mi agenda</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="planeador-dia"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Planeador del día</strong><small>Tu día, tus tareas y los números del mes</small></span></button>
@@ -2359,7 +2367,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    pero sin la clase hoja-agenda: no cuentan, no se abren, no se buscan ni se imprimen. Para cambiar cuáles son gratis, editar HOJAS_GRATIS. */
 (function () {
   if (!document.documentElement.classList.contains('agenda-gratis')) return;
-  var HOJAS_GRATIS = ['indice-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra', 'mis-ideas', 'lista-compras'];
+  var HOJAS_GRATIS = ['panel-agenda', 'indice-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra', 'mis-ideas', 'lista-compras'];
   window.lrHojasGratis = HOJAS_GRATIS;
   document.querySelectorAll('#agenda .hoja-agenda').forEach(function (h) { if (HOJAS_GRATIS.indexOf(h.id) < 0) { h.classList.remove('hoja-agenda'); h.classList.add('hoja-bloqueada'); h.setAttribute('aria-hidden', 'true'); } });
   var lista = document.getElementById('menu-hojas-lista'), porId = {};
@@ -3818,11 +3826,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var colorDe = function(g, i) { return COLOR_GRUPO[g.t] || COL[i % COL.length]; };
     var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t === 'Finanzas del negocio' ? 'Finanzas' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
     var nav = document.getElementById('pestanas-agenda'), selector = document.getElementById('selector-hoja'), lista = document.getElementById('selector-hoja-lista'), etqLista = document.getElementById('selector-hoja-etq');
+    var ICONOS_LATERAL = [
+      '<path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/>',
+      '<rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/>',
+      '<circle cx="12" cy="12" r="8"/><path d="M5 9c4 1 9 1 14 0M4.5 14c5 1.5 10 1.5 15 0M9 4.5c-1 5 0 10 3 15"/>',
+      '<circle cx="12" cy="12" r="8"/><path d="M6 8c4 3 8 3 12 0M5 13c4 3 10 3 14 0M16 20c2-3 4-3 5-3"/>',
+      '<path d="M4 8h16l-1 12H5L4 8zM8 8V6a4 4 0 018 0v2"/>',
+      '<circle cx="12" cy="12" r="9"/><path d="M14.5 9c-.5-1-1.5-1.5-2.5-1.5-1.5 0-2.5.8-2.500 2s1 1.700 2.500 2 2.500.8 2.500 2-1 2-2.500 2c-1.200 0-2.200-.600-2.700-1.600M12 6v1.500M12 16.500V18"/>',
+      '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'
+    ].map(function(d) { return '<svg class="ic-lateral" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">' + d + '</svg>'; });
     var botones = grupos.map(function(g, i) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'pestana'; b.setAttribute('role', 'tab');
-      b.style.setProperty('--c', colorDe(g, i)); b.textContent = etiqueta(g.t);
+      b.style.setProperty('--c', colorDe(g, i)); b.innerHTML = (ICONOS_LATERAL[i] || '') + '<span class="p-largo">' + (i === 0 ? 'Mi panel' : g.t) + '</span><span class="p-corto">' + (i === 0 ? 'Panel' : etiqueta(g.t)) + '</span>';
       b.addEventListener('click', function() {
         var destino = g.links[0]; if (!destino) return;
+        if (i > 0 && g.links.length > 1 && window.lrSeccion) {
+          window.lrSeccion.abrir(g.t, g.links);
+          botones.forEach(function(x, j) { x.setAttribute('aria-selected', String(j === i)); });
+          return;
+        }
         mostrarHoja(destino.dataset.hoja, window.innerWidth < 900);
         if (history.replaceState) history.replaceState(null, '', '#' + destino.dataset.hoja);
       });
@@ -3835,6 +3857,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (history.replaceState) history.replaceState(null, '', '#' + id);
     });
     window.lrPintarPestanas = function(id) {
+      if (window.lrSeccion) window.lrSeccion.cerrar();
+      if (id === 'panel-agenda' && window.lrPintarPanel) window.lrPintarPanel();
       var gi = -1;
       grupos.forEach(function(g, i) { g.links.forEach(function(a) { if (a.dataset.hoja === id) gi = i; }); });
       botones.forEach(function(b, i) { b.setAttribute('aria-selected', String(i === gi)); });
@@ -3858,6 +3882,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   })();
   function abrirHoja(h, abrir) { if (abrir) mostrarHoja(h.id); }
+  window.lrIrAHoja = function(id) { mostrarHoja(id, true); if (history.replaceState) history.replaceState(null, '', '#' + id); };
   enlacesMenu.forEach(function(a) {
     a.addEventListener('click', function(e) {
       e.preventDefault(); mostrarHoja(a.dataset.hoja, window.innerWidth < 900);
@@ -3870,11 +3895,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (id && document.getElementById(id) && document.getElementById(id).classList.contains('hoja-agenda')) { mostrarHoja(id); document.querySelector('.agenda-layout').scrollIntoView(); return true; }
     return false;
   }
-  if (!abrirDesdeAncla()) mostrarHoja(leer(CLAVE_HOJA) || 'indice-agenda');
+  if (!abrirDesdeAncla()) mostrarHoja('panel-agenda');
   historiaLista = true;
   window.addEventListener('popstate', function() {
     var id = location.hash.slice(1), h = id && document.getElementById(id);
-    if (!h || !h.classList.contains('hoja-agenda')) id = 'indice-agenda';
+    if (!h || !h.classList.contains('hoja-agenda')) id = 'panel-agenda';
     enPop = true; mostrarHoja(id, false); enPop = false;
     document.querySelector('.agenda-layout').scrollIntoView();
   });
@@ -4150,7 +4175,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=24" defer></script>
 <script src="/js/agenda/config.js?v=6" defer></script>
-<script src="/js/agenda/tour.js?v=4" defer></script>
+<script src="/js/agenda/tour.js?v=5" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
 <script src="/js/agenda/formas.js?v=2" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
@@ -4163,6 +4188,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=1" defer></script>
+<script src="/js/agenda/panel.js?v=1" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
 <script src="/js/agenda/app.js?v=1" defer></script>

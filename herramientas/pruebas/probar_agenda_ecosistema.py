@@ -21,7 +21,7 @@ def preparar(ctx, descarga=None):
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     ctx = contexto(b, 390); preparar(ctx); pg = abrir(ctx, 'aprende-compra', 2000)
-    T.v('la hoja abre y está en el menú dentro de «Inicio»', pg.evaluate("document.querySelector('#aprende-compra').classList.contains('abierta')") and pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a')].slice(0, 4).map(a => a.dataset.hoja)") == ['indice-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra'])
+    T.v('la hoja abre y está en el menú dentro de «Inicio»', pg.evaluate("document.querySelector('#aprende-compra').classList.contains('abierta')") and pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a')].slice(0, 5).map(a => a.dataset.hoja)") == ['panel-agenda', 'indice-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra'])
     T.v('el valor estimado inicia en $25.000 (1 hora, 1 persona)', '$25.000' in pg.inner_text('#ec-total'), pg.inner_text('#ec-total'))
     pg.fill('#ag-ec-nombre', 'Luisa'); pg.select_option('#ag-ec-tema', 'Tejer un amigurumi'); pg.select_option('#ag-ec-nivel', 'Sé lo básico'); pg.select_option('#ag-ec-personas', '2'); pg.select_option('#ag-ec-horas', '3'); pg.fill('#ag-ec-cuando', 'Sábados en la mañana'); pg.wait_for_timeout(300)
     T.v('2 personas × 3 horas = $150.000', '$150.000' in pg.inner_text('#ec-total'), pg.inner_text('#ec-total'))

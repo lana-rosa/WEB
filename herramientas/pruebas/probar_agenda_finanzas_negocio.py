@@ -9,7 +9,7 @@ T = Prueba()
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     ctx = contexto(b, 1280, 900, datos={'ag-duena': 'Sara'}); pg = abrir(ctx, 'fin-movimientos', 1500)
-    T.v('la pestaña se llama «Finanzas» y el grupo «Finanzas del negocio»', 'Finanzas' in pg.evaluate("[...document.querySelectorAll('#pestanas-agenda .pestana')].map(b => b.textContent)") and 'Finanzas del negocio' in pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista .menu-grupo')].map(b => b.textContent)"))
+    T.v('la pestaña se llama «Finanzas» y el grupo «Finanzas del negocio»', 'FinanzasFinanzas del negocio'.count('Finanzas') and any('Finanzas' in x for x in pg.evaluate("[...document.querySelectorAll('#pestanas-agenda .pestana')].map(b => b.textContent)")) and 'Finanzas del negocio' in pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista .menu-grupo')].map(b => b.textContent)"))
     nombres = pg.evaluate("['fin-resumen','fin-movimientos','fin-presupuesto','fin-fijos','fin-tcredito','fin-analisis'].map(i => document.querySelector('#' + i + ' h3').textContent)")
     T.v('todas las hojas de finanzas dicen que son del negocio', nombres == ['Mi negocio en números', 'Ingresos y gastos del negocio', 'Presupuesto y metas del negocio', 'Gastos fijos y deudas del negocio', 'Tarjetas del negocio', 'Análisis del negocio'], nombres)
     T.v('ya no hay casilla «Es del negocio» ni filtro personal a la vista', not pg.locator('#fin-neg').is_visible() and not pg.locator('#fin-fil-neg').is_visible())

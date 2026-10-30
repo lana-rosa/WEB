@@ -399,3 +399,5 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] **Cómo se va a vender la agenda** (decidir con Sara): precio, pago (Wompi), cómo se activa por cuenta y política de condiciones.
 
 - [ ] Agenda, etapa 4 (30-oct-2026): propuesta de sistema de diseño en `herramientas/agenda-auditoria/ETAPA-4-sistema-de-diseno.html`, a la espera de las 6 decisiones de Sara (paleta, DynaPuff solo en títulos, íconos de línea, un solo botón flotante, «Empieza aquí», orden de olas). Nada aplicado todavía; etapa 5 = aplicarlo por olas.
+
+- [ ] Agenda, etapa 5 (30-oct-2026): hecho en la rama, sin publicar: ola 1 (diseño), Mi panel + menú lateral + vista de sección, sin Rosina en las cabeceras. Faltan ola 2 (íconos de línea), ola 3 (un solo botón flotante, cabecera de hoja en celular) y ola 4 (estados vacíos, «Empieza aquí»). Al publicar: desplegar `rosina-web` v34.
