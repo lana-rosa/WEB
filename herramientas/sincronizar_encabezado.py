@@ -144,9 +144,6 @@ MOVIL = {
     <a href="recursos-rosina.html">🐑 Material gratis de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
-    <p class="grupo-nav">Ayuda</p>
-    <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
-    <a href="contacto.html">Contacto</a>
   </nav>''',
     'academy': '''  <nav class="nav-movil-panel" id="nav-movil-panel" aria-label="Navegación móvil">
     <a href="academy/">Inicio de Academy</a>
