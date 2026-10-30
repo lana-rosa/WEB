@@ -15,7 +15,7 @@ FUENTE = os.path.join(R, 'herramientas', 'iconos-app', 'ovejita-256.png')
 if not os.path.exists(FUENTE):
     os.makedirs(os.path.dirname(FUENTE), exist_ok=True)
     Image.open(os.path.join(R, 'img', 'favicon-academy-256.png')).convert('RGBA').save(FUENTE)
-COLORES = {'crochet': (232, 78, 148), 'merceria': (142, 85, 214), 'academy': (42, 111, 203), 'agenda': (31, 176, 111)}
+COLORES = {'crochet': (232, 78, 148), 'merceria': (142, 85, 214), 'academy': (42, 111, 203), 'agenda': (116, 61, 80)}
 ARCHIVO = {'crochet': ('img/favicon-256.png', 'img/apple-touch-icon.png', 'img/favicon.ico'), 'merceria': ('img/favicon-merceria-256.png', 'img/apple-touch-icon-merceria.png', 'img/favicon-merceria.ico'),
            'academy': ('img/favicon-academy-256.png', 'img/apple-touch-icon-academy.png', 'img/favicon-academy.ico'), 'agenda': ('img/favicon-agenda-256.png', 'img/apple-touch-icon-agenda.png', 'img/favicon-agenda.ico')}
 

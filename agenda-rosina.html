@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=43">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=20">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=23">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -373,15 +373,15 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .dd-espacio:empty { display: none; }
 @media print { .aviso-sin-guardar { display: none !important; } }
 .agenda-recordatorio { display: none !important; } }
-.donde-datos { margin: 10px 0 14px; border: 1px solid var(--borde, #d8eee2); border-radius: 14px; background: #fff; padding: 0; text-align: left; }
-.donde-datos summary { cursor: pointer; padding: 12px 16px; font-weight: 800; color: var(--rosa-oscuro, #0c8556); list-style: none; }
+.donde-datos { margin: 10px 0 14px; border: 1px solid var(--rosa-medio, #E8D5D4); border-radius: 14px; background: #fff; padding: 0; text-align: left; }
+.donde-datos summary { cursor: pointer; padding: 12px 16px; font-weight: 800; color: var(--rosa-texto, #5C2F3F); list-style: none; }
 .donde-datos summary::-webkit-details-marker { display: none; }
 .donde-datos summary::after { content: "▾"; float: right; }
 .donde-datos[open] summary::after { content: "▴"; }
 .dd-cuerpo { padding: 0 16px 14px; font-size: 0.93rem; line-height: 1.5; }
 .dd-cuerpo ul { margin: 6px 0 8px; padding-left: 18px; }
 .dd-cuerpo li { margin: 6px 0; }
-.dd-estado { margin: 0 0 6px; padding: 8px 12px; border-radius: 10px; background: var(--rosa-suave, #e8f7ef); font-weight: 700; }
+.dd-estado { margin: 0 0 6px; padding: 8px 12px; border-radius: 10px; background: var(--rosa-suave, #F6EEED); font-weight: 700; }
 .dd-estado:empty { display: none; }
 .nube-estado { display: block; width: 100%; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--tinta-suave); margin: 4px 0 0; }
 .agenda-recordatorio { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; background: #FFF8E1; border: 2px solid #FFE08A; border-radius: 18px; padding: 12px 16px; margin: 0 0 16px; font-size: 0.92rem; }
@@ -486,7 +486,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 }
 @media print { .pestanas-agenda, .selector-hoja { display: none !important; } .agenda-layout { display: block; } }
 
-.aviso-auto { margin: 0 0 12px; background: #E8F7EE; color: #1F6B42; border-radius: 12px; padding: 9px 14px; font-size: .9rem; font-weight: 600; }
+.aviso-auto { margin: 0 0 12px; background: var(--rosa-suave); color: var(--rosa-texto); border-radius: 12px; padding: 9px 14px; font-size: .9rem; font-weight: 600; }
 
 /* Logo de Lana Rosa arriba a la derecha en todas las hojas (8-oct-2026) */
 .hoja-agenda > header::after { content: ""; margin-left: auto; flex: none; width: 124px; height: 72px; background: url("/img/logo-lana-rosa-nuevo.webp") right center / contain no-repeat; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -542,7 +542,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .fin-leg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; }
 .fin-pres-fila { display: grid; grid-template-columns: 130px 1fr auto; gap: 10px; align-items: center; font-size: .86rem; margin: 6px 0; }
 .fin-progreso { height: 10px; border-radius: 99px; background: #EEE; overflow: hidden; }
-.fin-progreso i { display: block; height: 100%; border-radius: 99px; background: #3DBE7A; }
+.fin-progreso i { display: block; height: 100%; border-radius: 99px; background: var(--rosa-principal); }
 .fin-progreso.pasa i { background: #F0647F; }
 .fin-rapido { margin: 0 0 12px; }
 .fin-rapido label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--rosa-texto); }
@@ -858,7 +858,7 @@ main > :first-child { padding-top: 40px !important; }
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png">
-<meta name="theme-color" content="#1FB06F">
+<meta name="theme-color" content="#743D50">
 <script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta"){document.documentElement.setAttribute("data-tema",t);if(t==="libre"){var v=JSON.parse(localStorage.getItem("lrAgendaColorVars")||"{}");for(var k in v)if(/^--[a-z0-9-]+$/.test(k)&&/^[#a-z0-9 ,.()%-]+$/i.test(v[k]))document.documentElement.style.setProperty(k,v[k])}}}catch(e){}</script>
 <link rel="manifest" href="/manifest-agenda.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Agenda para tejedoras">
@@ -890,6 +890,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="encabezado" data-casa="agenda">
   <div class="contenedor">
     <a href="/agenda-rosina.html" class="logo"><img src="/img/logo-agenda-360.webp" alt="Lana Rosa Agenda para tejedoras" class="logo-img" width="360" height="230"><span class="texto-logo">Agenda</span></a>
+    <span class="titulo-barra-agenda">Agenda para tejedoras</span>
     <nav aria-label="Navegación principal">
       <ul class="nav-principal">
         <li class="g-agenda grupo-inicio"><a href="/agenda-rosina.html">Mi agenda</a></li>
@@ -906,6 +907,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button type="submit" aria-label="Buscar"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
       </form>
     </div>
+    <button type="button" class="boton-config-barra no-imprimir" id="agenda-config-btn" aria-label="Configuración" title="Configuración" aria-expanded="false" aria-controls="agenda-config"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     <a href="/cuenta.html" class="boton-cuenta-header" aria-label="Mi cuenta"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="solo-lectores">Mi cuenta</span></a>
     <button class="boton-carrito-header" id="boton-carrito" aria-label="Ver carrito de compras">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg><span class="solo-lectores">Carrito</span><span class="contador-carrito" id="contador-carrito">0</span>
@@ -928,11 +930,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main id="contenido-principal" tabindex="-1">
   <section class="contenedor intro-rincon intro-agenda">
-    <header class="agenda-cabecera">
-      <img class="portada-rosina" src="/img/stickers/rosina-07-leyendo.webp" alt="" aria-hidden="true" width="512" height="512" decoding="async">
-      <div class="ac-titulo"><p class="eslogan">Agenda digital · 7 días gratis con tu cuenta · Lana Rosa</p><h1>Agenda para tejedoras</h1></div>
-      <button type="button" class="agenda-config-btn no-imprimir" id="agenda-config-btn" aria-expanded="false" aria-controls="agenda-config"><span aria-hidden="true">⚙️</span><span class="acb-txt">Configuración</span></button>
-    </header>
+    <h1 class="solo-lectores">Agenda para tejedoras</h1>
     <div class="aviso-sin-guardar no-imprimir" id="aviso-sin-guardar" role="alert" hidden>
       <p id="asg-texto"></p>
       <div class="acciones-rec"><button type="button" class="boton-primario boton-chico" id="asg-copia">⬇️ Descargar una copia ahora</button></div>
@@ -4150,7 +4148,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=24" defer></script>
-<script src="/js/agenda/config.js?v=4" defer></script>
+<script src="/js/agenda/config.js?v=6" defer></script>
 <script src="/js/agenda/tour.js?v=4" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
 <script src="/js/agenda/formas.js?v=2" defer></script>
