@@ -1,0 +1,12 @@
+/* PRUEBA (30-oct-2026, paleta que Sara trajo de ChatGPT): rosa frambuesa #EB6B96 solo como detalle (no para letras ni botones con texto blanco: contraste 3:1)
+   y fondo rosa muy claro #FFF8F7 con tarjetas blancas. Se carga después de agenda-colores.css. */
+html:root { --marfil: #FFF8F7; --papel: #FFFFFF; --frambuesa: #EB6B96; --rosa-claro: #FFF8F7; }
+#agenda .hoja-agenda { box-shadow: inset 0 5px 0 var(--sec-fg), 0 10px 30px rgba(118, 45, 74, .07); }
+#agenda .hoja-agenda::after { content: ''; display: block; position: absolute; left: 0; right: 0; top: 0; height: 5px; background: linear-gradient(90deg, var(--sec-fg) 0 70%, var(--frambuesa)); border-radius: 22px 22px 0 0; pointer-events: none; }
+body .pestana[aria-selected="true"] { box-shadow: inset 4px 0 0 var(--frambuesa); }
+.titulo-barra-agenda { text-decoration: none; }
+.cabecera, header.cabecera-sitio { border-bottom-color: var(--frambuesa); }
+.pn-card:hover, .vs-hoja:hover { border-color: var(--frambuesa) !important; box-shadow: 0 6px 20px rgba(235, 107, 150, .18); }
+.pn-accion { background: #FDE6EE; } .pn-accion:hover { background: #FAD0DF; }
+.pn-kpi { border-top: 3px solid var(--frambuesa); }
+@media print { #agenda .hoja-agenda::after { display: none; } }
