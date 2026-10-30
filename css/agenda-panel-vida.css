@@ -75,3 +75,4 @@
 #agenda .ea-enc { display: flex; align-items: center; justify-content: space-between; gap: 10px; } #agenda .ea-enc img { height: 64px; width: auto; }
 @media (max-width: 520px) { #agenda .vs-cab { padding: 14px 16px; min-height: 0; } #agenda .vs-rosina { height: 84px; margin: -4px 0 -10px; } }
 @media print { #agenda .vs-rosina { display: none; } }
+#agenda .vacio-ejemplo[hidden] { display: none; }   /* el display:flex de arriba le ganaba al atributo hidden */
