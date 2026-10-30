@@ -1,0 +1,67 @@
+/* Mi panel con más vida (30-oct-2026, Sara aprobó la maqueta: «pásalo a la agenda real»): saludo con Rosina, números con color e ícono,
+   círculo de proyectos, barras de ventas de la semana, calendario del mes y tareas del día. Solo presentación; los datos salen de las hojas como siempre. */
+#agenda .pn-hero { position: relative; overflow: hidden; border-radius: 28px; padding: 28px 30px; min-height: 220px; color: #fff; display: flex; align-items: center;
+  background: linear-gradient(120deg, #743D50 0%, #A04A72 55%, #EB6B96 100%); box-shadow: 0 12px 30px rgba(118, 45, 74, .18); }
+#agenda .pn-hero-t { position: relative; z-index: 1; max-width: 52ch; }
+#agenda .pn-hero h4 { margin: 0 0 6px; color: #fff !important; font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem); line-height: 1.15; }
+#agenda .pn-hero p { margin: 0; color: #fff; opacity: .96; font-size: 1.02rem; }
+#agenda .pn-frase { display: inline-block; margin-top: 14px; padding: 8px 14px; border-radius: 999px; background: rgba(255, 255, 255, .2); border: 1px solid rgba(255, 255, 255, .4); font-size: .92rem; font-weight: 600; }
+#agenda .pn-rosina { position: absolute; right: 28px; bottom: -6px; height: 96%; max-height: 250px; width: auto; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .2)); pointer-events: none; }
+#agenda .pn-bola { position: absolute; border-radius: 50%; background: #fff; opacity: .2; pointer-events: none; }
+#agenda .pn-bola.b1 { width: 150px; height: 150px; right: 220px; top: -50px; } #agenda .pn-bola.b2 { width: 70px; height: 70px; right: 100px; top: 20px; } #agenda .pn-bola.b3 { width: 100px; height: 100px; left: 46%; bottom: -40px; }
+
+#agenda .pn-kpis { gap: 14px; }
+#agenda .pn-kpi { display: flex; align-items: center; gap: 12px; border: 0; border-top: 0; border-radius: 22px; padding: 16px 18px; box-shadow: none; }
+#agenda .pn-kpi-ic { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: rgba(255, 255, 255, .72); }
+#agenda .pn-kpi-ic svg { width: 24px; height: 24px; }
+#agenda .pn-kpi-t { min-width: 0; }
+#agenda .pn-kpi.k1 { background: #F8DDE6; color: #8E2F55; } #agenda .pn-kpi.k2 { background: #F6EBD0; color: #7A5C1F; }
+#agenda .pn-kpi.k3 { background: #DDEEDD; color: #2F6A3C; } #agenda .pn-kpi.k4 { background: #E9DFF0; color: #5B3F6E; }
+#agenda .pn-kpi.k3.mal { background: #FBE1DE; color: #9A2B22; }
+#agenda .pn-kpi small, #agenda .pn-kpi span:not(.pn-kpi-ic) { color: inherit; opacity: .88; }
+#agenda .pn-kpi strong { color: inherit !important; }
+
+#agenda .pn-graf { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+#agenda .pn-card { border-radius: 22px; }
+#agenda .pn-donut-caja { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+#agenda .pn-donut { width: 128px; height: 128px; flex: none; }
+#agenda .pn-leyenda { display: grid; gap: 8px; font-size: .9rem; } #agenda .pn-leyenda i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 8px; }
+#agenda .pn-vacio-rosina { display: flex; align-items: center; gap: 12px; } #agenda .pn-vacio-rosina img { flex: none; height: 86px; width: auto; }
+#agenda .pn-barras { display: flex; align-items: flex-end; gap: 10px; height: 150px; padding-top: 8px; }
+#agenda .pn-barras > div { flex: 1; text-align: center; font-size: .78rem; color: #6B5560; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+#agenda .pn-barras b { display: block; border-radius: 10px 10px 4px 4px; background: linear-gradient(#EB6B96, #F7B6CB); margin-bottom: 6px; }
+#agenda .pn-barras .hoy b { background: linear-gradient(#743D50, #A04A72); }
+#agenda .pn-total { margin: 8px 0 0; font-weight: 700; color: #5C2F3F; }
+#agenda .pn-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center; font-size: .82rem; }
+#agenda .pn-cal span { padding: 6px 0; border-radius: 10px; position: relative; color: #4f3b45; }
+#agenda .pn-cal .pn-cal-t { font-weight: 700; font-size: .72rem; color: #7d6772; }
+#agenda .pn-cal .hoy { background: #743D50; color: #fff; font-weight: 700; }
+#agenda .pn-cal .ev::after { content: ''; position: absolute; left: 50%; bottom: 2px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #EB6B96; }
+#agenda .pn-cal .hoy.ev::after { background: #fff; }
+#agenda .pn-dos { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+#agenda .pn-fila { background: #FFF3F5; border: 0; border-radius: 16px; padding: 10px 12px; margin-bottom: 8px; width: 100%; }
+#agenda .pn-fila:hover { background: #FDE6EE; }
+#agenda .pn-fecha { background: #fff; }
+#agenda .pn-tarea { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; font: inherit; border: 0; background: #EEF5EE; border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; color: inherit; min-height: 44px; }
+#agenda .pn-tarea-m { flex: none; width: 20px; height: 20px; border-radius: 6px; border: 2px solid #4F7A57; display: grid; place-items: center; font-size: .8rem; font-weight: 800; color: #fff; }
+#agenda .pn-tarea.ok { opacity: .65; text-decoration: line-through; } #agenda .pn-tarea.ok .pn-tarea-m { background: #4F7A57; }
+#agenda .pn-acciones .pn-accion:nth-child(1) { background: #FDE6EE; } #agenda .pn-acciones .pn-accion:nth-child(2) { background: #E9DFF0; }
+#agenda .pn-acciones .pn-accion:nth-child(3) { background: #DDEEDD; } #agenda .pn-acciones .pn-accion:nth-child(4) { background: #F6EBD0; }
+#agenda .pn-acciones .pn-accion.sec { background: #fff; }
+
+@media (max-width: 1100px) { #agenda .pn-graf { grid-template-columns: repeat(2, minmax(0, 1fr)); } #agenda .pn-graf > :first-child { grid-column: 1 / -1; } }
+@media (max-width: 900px) {
+  #agenda .pn-hero { padding: 22px; min-height: 210px; } #agenda .pn-rosina { height: 62%; right: 6px; } #agenda .pn-hero-t { max-width: 64%; }
+  #agenda .pn-graf, #agenda .pn-dos { grid-template-columns: minmax(0, 1fr); } #agenda .pn-graf > :first-child { grid-column: auto; }
+}
+@media print { #agenda .pn-rosina, #agenda .pn-bola { display: none; } }
+/* El saludo ya hace de encabezado: el título «Mi panel» queda solo para lectores de pantalla */
+#agenda #panel-agenda > header { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); border: 0; }
+#agenda #panel-agenda { box-shadow: none; } #agenda #panel-agenda::after, #agenda #panel-agenda { border-top: 0; }
+@media (max-width: 520px) {
+  #agenda .pn-hero { flex-direction: column; align-items: flex-start; padding: 22px 20px 0; min-height: 0; }
+  #agenda .pn-hero-t { max-width: 100%; }
+  #agenda .pn-rosina { position: static; align-self: flex-end; height: 130px; max-height: none; margin: 6px 0 -4px; }
+  #agenda .pn-kpi { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; }
+  #agenda .pn-kpi-ic { width: 38px; height: 38px; } #agenda .pn-kpi strong { font-size: 1.25rem; overflow-wrap: anywhere; }
+}
