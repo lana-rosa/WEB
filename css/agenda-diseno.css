@@ -1,0 +1,54 @@
+/* Agenda para tejedoras · sistema de diseño «elegante» (etapa 5, ola 1; 30-oct-2026).
+   Se carga al final y solo en agenda-rosina.html. Reglas: DynaPuff solo en el título de cada hoja, la portada y la marca;
+   todo lo demás en Hanken Grotesk; botones de 44 px; letra de 16 px en casillas (evita el zoom del iPhone); foco visible. */
+html:root {
+  --fuente-titulo: 'Emoji Lana', 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --fuente-hoja: 'Emoji Lana', 'DynaPuff', sans-serif;
+  --vino: #743D50; --vino-osc: #5C2F3F; --rosa-emp: #E8D5D4; --tinta-ayuda: #6B5560; --linea-diseno: #E3D3D2;
+}
+/* Títulos: solo el de cada hoja, la portada y la marca llevan DynaPuff */
+.hoja-agenda > header h3, .portada-titulo, .portada-nombre, .portada-agenda input, .logo, .titulo-barra-agenda { font-family: var(--fuente-hoja); }
+h2, h3, h4, legend, .sub-hoja, .ficha-seccion span, .tab-grupo h4, .indice-grupo h4 { font-weight: 700; letter-spacing: 0; }
+.hoja-agenda > header h3 { font-weight: 600; color: var(--vino-osc); }
+.modal-membresia h2, .mm-plan em, .candado-pago h4 { font-family: var(--fuente-titulo); font-weight: 700; }
+body { color: #2B1B21; }
+.hoja-agenda header p, .ayuda, small { color: var(--tinta-ayuda); }
+
+/* Hoja: tarjeta más serena */
+.hoja-agenda { border: 1px solid var(--linea-diseno); box-shadow: 0 6px 24px rgba(92, 47, 63, 0.07); }
+.hoja-agenda > header { border-bottom: 1px solid var(--linea-diseno); }
+.hoja-agenda header img.avatar-sticker { background: #F6EEED; }
+
+/* Botones: 44 px de alto, redondeados, foco visible */
+.boton-primario, .boton-secundario, .boton-plegar, .ficha-barra button, .hojas-pasos button {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box;
+}
+.boton-primario { background: var(--vino); border-color: var(--vino); color: #fff; }
+.boton-primario:hover { background: var(--vino-osc); border-color: var(--vino-osc); }
+.boton-secundario, .boton-plegar { background: #fff; color: var(--vino); border-color: var(--vino); }
+.boton-secundario:hover, .boton-plegar:hover { background: #F6EEED; border-color: var(--vino-osc); }
+.boton-chico { min-height: 40px; padding: 6px 16px; }
+.boton-cal { min-height: 36px; border-color: var(--vino); color: var(--vino); }
+.ficha-barra .barra-borrar, .ficha-acciones .boton-secundario { color: #B3261E; border-color: #B3261E; background: #fff; }
+.ficha-barra .barra-borrar:hover { background: #FDECEA; }
+:where(button, a, input, select, textarea, summary):focus-visible { outline: 3px solid var(--vino); outline-offset: 2px; }
+
+/* Casillas: 16 px de letra y 44 px de alto en celular y tableta */
+#agenda input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]),
+#agenda select, #agenda textarea { font-size: 1rem; min-height: 44px; box-sizing: border-box; color: #2B1B21; }
+#agenda textarea { min-height: 44px; }
+#agenda input:focus, #agenda select:focus, #agenda textarea:focus { outline: 3px solid var(--vino); outline-offset: 2px; border-radius: 6px; }
+
+/* Fichas: cabecera rosa suave, etiquetas con la familia de la paleta */
+.ficha-cab { background: #F6EEED; min-height: 52px; }
+.ficha-cab:focus-visible { outline: 3px solid var(--vino); }
+.ficha-flecha { color: var(--vino); }
+.ficha-chip { border-color: var(--rosa-emp); color: var(--vino-osc); background: #fff; }
+.ficha-chip.curso { background: var(--rosa-emp); color: var(--vino-osc); border-color: var(--rosa-emp); }
+.ficha-chip.ok { background: #DDF1E6; color: #1F7A4D; border-color: #BFE3CC; }
+.ficha-chip.aviso { background: #FBEBC8; color: #8A5A00; border-color: #F1DC9A; }
+.ficha-chip.alarma { background: #FDECEA; color: #B3261E; border-color: #F4B5B5; }
+.ficha-chip.gris { background: #F2EDEE; color: var(--tinta-ayuda); }
+.ficha-titulo.vacia { color: var(--tinta-ayuda); }
+
+@media print { .hoja-agenda { border: 0; box-shadow: none; } .hoja-agenda > header { border-bottom: 2px dashed #D6B4B8; } }
