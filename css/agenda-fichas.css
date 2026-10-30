@@ -557,3 +557,13 @@ html[data-casa="agenda"][data-tema="libre"] .nav-principal li.g-agenda a:hover {
 .herr-rosina a::after { content: '↗'; margin-left: 6px; font-size: .8em; opacity: .7; }
 .herr-rosina a:hover { background: var(--rosa-suave); }
 .herr-rosina a:focus-visible { outline: 3px solid var(--lila); outline-offset: 2px; }
+
+/* Aviso de agenda de otra cuenta en este navegador (js/agenda/dueno.js, 30-oct-2026) */
+html.dueno-abierto { overflow: hidden; }
+.dueno-fondo { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(20, 30, 25, 0.72); }
+.dueno-caja { max-width: 460px; width: 100%; max-height: 92vh; overflow: auto; background: var(--blanco, #fff); color: var(--tinta, #23332b); border-radius: 18px; padding: 22px 20px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+.dueno-caja h2 { margin: 0 0 10px; font-size: 1.2rem; }
+.dueno-caja p { margin: 0 0 14px; line-height: 1.5; }
+.dueno-botones { display: grid; gap: 10px; margin-bottom: 12px; }
+.dueno-botones button { width: 100%; white-space: normal; }
+.dueno-caja small { display: block; color: var(--tinta-suave, #566); line-height: 1.45; }
