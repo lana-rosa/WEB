@@ -58,7 +58,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-diseno.css?v=7">
 <link rel="stylesheet" href="/css/agenda-panel.css?v=3">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=3">
-<link rel="stylesheet" href="/css/agenda-editorial.css?v=1">
+<link rel="stylesheet" href="/css/agenda-editorial.css?v=3">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #D6B4B8; --rosa-suave: #FBE4EF;
@@ -762,7 +762,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .fin-grafica-dona { width: 170px; flex: none; } .fin-grafica-dona svg { display: block; width: 100%; height: auto; }
 .fin-dona-t { font: 700 11px 'Hanken Grotesk', sans-serif; fill: #6E6E73; } .fin-dona-n { font: 700 17px 'DynaPuff', cursive; fill: #45454A; }
 .fin-leyenda li { display: grid; grid-template-columns: 11px 1fr auto auto; gap: 8px; align-items: center; } .fin-leyenda b { margin-left: 0; min-width: 3.2ch; text-align: right; } .fin-leyenda small { min-width: 8ch; text-align: right; color: var(--tinta-suave); }
-.fin-progreso i { background: #2a78d6; } .fin-progreso.pasa i { background: #eb6834; }
+.fin-progreso i { background: #6E9470; } .fin-progreso.pasa i { background: #743D50; }
 .fin-pres-fila .pt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
 .fin-pres-alerta { font-size: .78rem; font-weight: 700; color: #8E1457; margin: -2px 0 4px; }
 .fin-insights { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .92rem; }
@@ -1371,7 +1371,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="fin-caja-cab"><h4 class="sub-hoja">Ingresos y gastos del negocio</h4>
             <div class="fin-seg no-imprimir" role="group" aria-label="Meses a mostrar"><button type="button" data-fin-rango="6" aria-pressed="true">6 meses</button><button type="button" data-fin-rango="12" aria-pressed="false">12 meses</button></div></div>
           <div class="fin-grafica" id="fin-barras"></div>
-          <div class="fin-leg"><span><i style="background:#2a78d6"></i>Ingresos</span><span><i style="background:#eb6834"></i>Gastos</span><span class="fin-leg-nota no-imprimir">Toca un mes para verlo en detalle</span></div>
+          <div class="fin-leg"><span><i style="background:#6E9470"></i>Ingresos</span><span><i style="background:#743D50"></i>Gastos</span><span class="fin-leg-nota no-imprimir">Toca un mes para verlo en detalle</span></div>
           <details class="fin-tabla-vista no-imprimir"><summary>Ver como tabla</summary><div class="tabla-scroll"><table class="tabla-agenda fin-tabla" id="fin-evol-tabla"><thead><tr><th>Mes</th><th class="der">Ingresos</th><th class="der">Gastos</th><th class="der">Saldo</th></tr></thead><tbody></tbody></table></div></details>
         </div>
         <div class="fin-dos">
@@ -1503,7 +1503,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="fin-caja">
           <h4 class="sub-hoja">Cuánto ahorra tu negocio mes a mes</h4>
           <div class="fin-grafica" id="fa-ahorro"></div>
-          <div class="fin-leg"><span><i style="background:#2a78d6"></i>Te quedó dinero</span><span><i style="background:#eb6834"></i>Gastaste más de lo que entró</span><span class="fin-leg-nota no-imprimir">% de tus ingresos de cada mes</span></div>
+          <div class="fin-leg"><span><i style="background:#6E9470"></i>Te quedó dinero</span><span><i style="background:#743D50"></i>Gastaste más de lo que entró</span><span class="fin-leg-nota no-imprimir">% de tus ingresos de cada mes</span></div>
         </div>
         <div class="fin-caja">
           <div class="fin-caja-cab"><h4 class="sub-hoja">Resumen del año</h4>
@@ -1564,7 +1564,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="fin-caja-cab"><h4 class="sub-hoja">Flujo de caja del negocio</h4>
             <div class="fin-seg no-imprimir" role="group" aria-label="Meses a mostrar"><button type="button" data-fin-rango="6" aria-pressed="true">6 meses</button><button type="button" data-fin-rango="12" aria-pressed="false">12 meses</button></div></div>
           <div class="fin-grafica" id="fn-flujo"></div>
-          <div class="fin-leg"><span><i style="background:#2a78d6"></i>Entradas</span><span><i style="background:#eb6834"></i>Salidas</span></div>
+          <div class="fin-leg"><span><i style="background:#6E9470"></i>Entradas</span><span><i style="background:#743D50"></i>Salidas</span></div>
         </div>
         <div class="fin-dos">
           <div class="fin-caja"><h4 class="sub-hoja">Por cobrar (tus pedidos)</h4><div id="fn-cobrar"></div></div>
@@ -3033,8 +3033,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var MEDIOS = ['Efectivo', 'Tarjeta', 'Transferencia', 'Nequi / Daviplata', 'Otro'];
     var NOMBRE_T = { g: 'Gasto', i: 'Ingreso', a: 'Ahorro / inversión' };
     /* Colores validados (daltonismo, contraste); cada categoría conserva siempre el suyo */
-    var C_ING = '#2a78d6', C_GAS = '#eb6834', C_AHO = '#4a3aa7';
-    var CATCOL = { 'Empaques': '#7a5ac8', 'Transporte y envíos': '#1baf7a', 'Ferias y mercados': '#eb6834', 'Publicidad': '#2a9d8f', 'Herramientas y equipos': '#c27c0e', 'Arriendo': '#2a78d6', 'Impuestos': '#7c7b76', 'Vivienda': '#2a78d6', 'Mercado': '#eb6834', 'Transporte': '#1baf7a', 'Salud': '#eda100', 'Materiales (lanas)': '#e87ba4', 'Servicios': '#008300', 'Educación': '#4a3aa7', 'Ocio': '#e34948', 'Ropa': '#7c7b76', 'Deudas': '#3d3c39', 'Otros': '#b9b8b3' };
+    var C_ING = '#6E9470', C_GAS = '#743D50', C_AHO = '#B8975A';   /* paleta de la agenda: salvia, vinotinto y dorado apagado (antes azul, naranja y morado) */
+    var CATCOL = { 'Empaques': '#9C6F86', 'Transporte y envíos': '#6E9470', 'Ferias y mercados': '#B8975A', 'Publicidad': '#7D8FA0', 'Herramientas y equipos': '#A5794F', 'Arriendo': '#5C2F3F', 'Impuestos': '#8A7F80', 'Vivienda': '#5C2F3F', 'Mercado': '#B8975A', 'Transporte': '#6E9470', 'Salud': '#C98C7B', 'Materiales (lanas)': '#D6B4B8', 'Materiales': '#D6B4B8', 'Servicios': '#4F7F5A', 'Educación': '#9C6F86', 'Ocio': '#C98C7B', 'Ropa': '#8A7F80', 'Deudas': '#3B2A30', 'Otros': '#CDBFB9' };
     var colorCat = function(c) { return CATCOL[c] || '#b9b8b3'; };
     /* Lo del negocio: las ventas, los talleres y los materiales cuentan solos; cualquier movimiento se puede marcar o desmarcar */
     var NEG_CATS = ['Ventas', 'Talleres', 'Materiales (lanas)'];
@@ -4186,7 +4186,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/planeador.js?v=1" defer></script>
 <script src="/js/agenda/vacios.js?v=1" defer></script>
 <script src="/js/agenda/panel.js?v=2" defer></script>
-<script src="/js/agenda/iconos.js?v=3" defer></script>
+<script src="/js/agenda/iconos.js?v=5" defer></script>
 <script src="/js/agenda/ayuda.js?v=2" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
