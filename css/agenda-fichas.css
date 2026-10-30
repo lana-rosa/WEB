@@ -572,3 +572,9 @@ html.dueno-abierto { overflow: hidden; }
 .conexion-aviso { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .conexion-aviso .ca-boton { white-space: normal; }
 .conexion-ok { margin: 6px 0; }
+
+/* Revisión de interfaz (30-oct-2026): listas desplegables con el mismo estilo de las casillas, casillas más fáciles de tocar y enlaces de las ofertas con más zona de toque */
+.linea select { width: 100%; min-height: 40px; padding: 6px 10px; border: 1.5px solid rgba(69, 69, 74, 0.25); border-radius: 10px; background-color: var(--blanco, #fff); color: var(--tinta); font-family: var(--fuente-cuerpo); font-size: 0.98rem; }
+.linea select:focus-visible { outline: 3px solid var(--rosa-principal); outline-offset: 1px; border-color: var(--rosa-principal); }
+#agenda input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--rosa-principal); flex: none; }
+.oferta-merceria a { display: inline-block; padding: 6px 4px; min-height: 28px; }

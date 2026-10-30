@@ -23,7 +23,7 @@
     var barra = document.createElement('div'); barra.className = 'dib-barra no-imprimir'; barra.setAttribute('role', 'toolbar'); barra.setAttribute('aria-label', 'Herramientas del dibujo');
     barra.innerHTML = '<button type="button" data-h="pluma" aria-pressed="true" title="Dibujar">✏️</button><button type="button" data-h="borrar" aria-pressed="false" title="Borrar un trazo">🧽</button>' +
       COLORES.map(function (c, i) { return '<button type="button" class="dib-color" data-c="' + i + '" aria-label="Color ' + NOMBRES[i] + '" style="--c:' + c + '" aria-pressed="' + (i === 0) + '"></button>'; }).join('') +
-      '<label class="dib-color dib-color-libre" title="Elegir cualquier color" aria-label="Elegir cualquier color"><input type="color" value="#2B2B30"></label>' +
+      '<label class="dib-color dib-color-libre" title="Elegir cualquier color" aria-label="Elegir cualquier color"><input type="color" value="#2B2B30" aria-label="Elegir cualquier color"></label>' +
       ANCHOS.map(function (a, i) { return '<button type="button" class="dib-ancho" data-a="' + i + '" aria-label="Línea ' + ['fina', 'media', 'gruesa'][i] + '" aria-pressed="' + (i === 1) + '"><i style="height:' + Math.max(2, a) + 'px"></i></button>'; }).join('') +
       '<button type="button" data-acc="deshacer" title="Deshacer">↩️</button><button type="button" data-acc="limpiar" title="Borrar todo el dibujo">🗑️</button>' +
       (foto ? '<label class="dib-subir" title="Subir una foto del diseño">📷 Subir foto<input type="file" accept="image/*" hidden></label>' : '') +
