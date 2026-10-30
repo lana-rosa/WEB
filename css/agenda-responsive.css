@@ -12,7 +12,10 @@
   #agenda .agc-d, #agenda .agc-flecha, #agenda .dib-color, #agenda .dib-ancho, #agenda summary, #agenda input[type="color"], #agenda .pl-nav button { min-height: 44px; }
   #agenda .agc-flecha, #agenda #tab-mes-ant, #agenda #tab-mes-sig, #agenda .pl-nav button, #agenda .dib-color, #agenda .dib-ancho, #agenda input[type="color"] { min-width: 44px; }
   #agenda .pn-enlace { padding: 0 8px; }
-  #agenda .dias-pausas label { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  #agenda .dias-pausas { grid-template-columns: repeat(auto-fill, 44px); gap: 6px; }   /* 31 días: con 30 px de círculo y 44 px de toque se pisaban */
+  #agenda .dias-pausas label { width: 44px; height: 44px; min-height: 44px; min-width: 44px; }
+  #agenda .herr-rosina a { min-height: 44px; display: inline-flex; align-items: center; }
+  #agenda label:has(> input[type="checkbox"]:not(.sr-only)) { min-height: 44px; }
   #agenda textarea { min-height: 44px !important; }
   #agenda button:not(.ficha-cab):not(.pestana):not(.pl-dia):not(.agc-d) { min-height: 44px; min-width: 44px; }
   #agenda .dp-paso-btn { min-width: 0; }
@@ -25,3 +28,4 @@
   body .pestana[aria-selected="true"] { flex: 2.2 1 0; }
   body .pestana .p-corto { font-size: .72rem; }
 }
+#agenda .lista-llevar label { white-space: normal !important; }   /* «Libreta para anotar ventas y pedidos» se cortaba contra el borde en la ficha de ferias */
