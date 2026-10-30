@@ -61,3 +61,9 @@ body { color: #2B1B21; }
    Las reglas de la cinta de agenda-fichas.css y las imágenes `-borde` se conservan por si se quiere volver a ponerla; basta quitar este bloque. */
 #agenda[data-fondo-hojas] .hoja-agenda::before { display: none !important; }
 @media print { #agenda[data-fondo-hojas] .hoja-agenda { padding: 28px !important; } }
+
+/* Íconos de línea (js/agenda/iconos.js): reemplazan al emoji que abría el texto de botones y enlaces */
+.ic-l { width: 1.2em; height: 1.2em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.22em; margin-right: .25em; }
+.ic-l-g { width: 26px; height: 26px; margin: 0; color: #5C2F3F; }
+.atajo-ic { background: #F6EEED !important; }
+.ficha-barra .ic-l { margin-right: 0; }
