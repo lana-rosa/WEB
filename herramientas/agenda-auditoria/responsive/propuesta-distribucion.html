@@ -1,0 +1,48 @@
+<!doctype html><html lang="es-CO"><head><meta charset="utf-8"><title>Propuesta de distribución por tamaño de pantalla</title>
+<style>
+body{margin:0;padding:24px;background:#F3E9E8;font:14px/1.4 "Hanken Grotesk",system-ui,sans-serif;color:#2B1B21}
+h1{font-family:Georgia,serif;color:#5C2F3F;font-size:26px;margin:0 0 4px}p.s{margin:0 0 18px;color:#6B5560}
+.fila{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
+.d{background:#fff;border:2px solid #5C2F3F;border-radius:14px;padding:8px;position:relative}
+.d h3{margin:0 0 6px;font-size:13px;color:#5C2F3F;font-family:Georgia,serif}.d small{display:block;color:#6B5560;margin:4px 0 0;font-size:11px;max-width:100%}
+.b{background:#F6EEED;border:1px solid #E3D3D2;border-radius:8px;font-size:10px;color:#5C2F3F;display:grid;place-items:center;text-align:center;padding:2px}
+.v{background:#743D50;color:#fff;border:0}.r{background:#E8D5D4}.g{background:#DDEBDD;color:#2F5D3A;border-color:#B9D4BD}
+.grid{display:grid;gap:5px}
+</style></head><body>
+<h1>Cómo se reorganiza la agenda según la pantalla</h1><p class="s">Dibujos de bloques (no son la interfaz final). Vinotinto = acción principal · rosa = contenido · verde salvia = estados y apoyo.</p>
+<div class="fila">
+<div class="d" style="width:170px"><h3>Celular (320–599 px)</h3>
+<div class="grid" style="height:360px;grid-template-rows:22px auto 1fr 36px;">
+<div class="b v">Barra: título · ⚙ · cuenta</div>
+<div class="grid" style="grid-template-columns:1fr 1fr;height:64px"><div class="b">Ventas</div><div class="b">Gastos</div><div class="b g">Te quedó</div><div class="b">Pedidos</div></div>
+<div class="grid" style="grid-template-rows:1fr 1fr 1fr"><div class="b">Próximas fechas</div><div class="b">Proyectos</div><div class="b r">Acciones rápidas</div></div>
+<div class="b v">Barra inferior: 5 secciones + «Más»</div></div>
+<small>Una columna. Herramientas (buscar, dictar, lápiz, color) se pliegan en un solo botón. Todo toque ≥ 44 px. Una tabla = fichas. Hoja de dibujo a pantalla completa.</small></div>
+
+<div class="d" style="width:300px"><h3>Celular apaisado (menos de 500 px de alto)</h3>
+<div class="grid" style="height:150px;grid-template-columns:34px 1fr 1fr;"><div class="b v">Riel</div><div class="grid" style="grid-template-rows:1fr 1fr"><div class="b">Ventas · Gastos</div><div class="b">Próximas fechas</div></div><div class="grid" style="grid-template-rows:1fr 1fr"><div class="b g">Te quedó</div><div class="b">Proyectos</div></div></div>
+<small>La barra de abajo pasa a un riel lateral delgado para no comerse la altura. Dos columnas.</small></div>
+
+<div class="d" style="width:330px"><h3>Tablet vertical (600–1023 px)</h3>
+<div class="grid" style="height:360px;grid-template-rows:22px auto 1fr 36px">
+<div class="b v">Barra superior con búsqueda</div>
+<div class="grid" style="grid-template-columns:repeat(4,1fr);height:48px"><div class="b">Ventas</div><div class="b">Gastos</div><div class="b g">Te quedó</div><div class="b">Pedidos</div></div>
+<div class="grid" style="grid-template-columns:1fr 1fr"><div class="b">Próximas fechas</div><div class="grid" style="grid-template-rows:1fr 1fr"><div class="b">Proyectos</div><div class="b r">Acciones</div></div></div>
+<div class="b v">Barra inferior con nombres</div></div>
+<small>Dos columnas en tarjetas, fichas en 2 columnas, formularios en 2 columnas. Tablas anchas con desplazamiento propio y columna fija.</small></div>
+
+<div class="d" style="width:520px"><h3>Tablet apaisada y portátil (1024–1439 px)</h3>
+<div class="grid" style="height:320px;grid-template-columns:120px 1fr 150px">
+<div class="b v" style="align-self:stretch">Menú lateral (íconos + nombres)</div>
+<div class="grid" style="grid-template-rows:50px 1fr 1fr"><div class="grid" style="grid-template-columns:repeat(4,1fr)"><div class="b">Ventas</div><div class="b">Gastos</div><div class="b g">Te quedó</div><div class="b">Pedidos</div></div><div class="b">Próximas fechas</div><div class="b">Proyectos</div></div>
+<div class="grid" style="grid-template-rows:1fr 1fr"><div class="b r">Acciones</div><div class="b g">Consejo del día</div></div></div>
+<small>Menú lateral + contenido + columna de apoyo. La hoja ocupa hasta 1100 px.</small></div>
+
+<div class="d" style="width:640px"><h3>Escritorio y monitor grande (1440–1920 px)</h3>
+<div class="grid" style="height:300px;grid-template-columns:110px 1fr 1fr 150px;">
+<div class="b v" style="align-self:stretch">Menú lateral</div>
+<div class="grid" style="grid-template-rows:50px 1fr"><div class="grid" style="grid-template-columns:1fr 1fr"><div class="b">Ventas</div><div class="b">Gastos</div></div><div class="b">Próximas fechas</div></div>
+<div class="grid" style="grid-template-rows:50px 1fr"><div class="grid" style="grid-template-columns:1fr 1fr"><div class="b g">Te quedó</div><div class="b">Pedidos</div></div><div class="b">Proyectos</div></div>
+<div class="grid" style="grid-template-rows:1fr 1fr"><div class="b r">Acciones</div><div class="b g">Consejo</div></div></div>
+<small>Ancho máximo cómodo (≈ 1360 px) centrado: no se estira el texto, se reparte en columnas. Hoy el contenido se queda en 854 px y sobra más de la mitad de un monitor de 1920.</small></div>
+</div></body></html>
