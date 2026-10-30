@@ -26,7 +26,7 @@
   }
   boton.addEventListener('click', function () { abrir(menu.hidden); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { abrir(false); boton.focus(); } });
-  document.addEventListener('click', function (e) { if (!menu.hidden && !cont.contains(e.target)) abrir(false); });
+  document.addEventListener('click', function (e) { if (!menu.hidden && e.composedPath().indexOf(cont) < 0) abrir(false); });
   menu.addEventListener('click', function (e) {
     var b = e.target.closest('[data-af]'); if (!b) return; var que = b.dataset.af;
     abrir(false);

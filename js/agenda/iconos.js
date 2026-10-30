@@ -24,6 +24,7 @@
     tarjeta: 'M3 6h18v12H3zM3 10h18M7 15h4', lupa: 'M11 4a7 7 0 100 14 7 7 0 000-14zM20 20l-4-4', regalo: 'M4 11h16v10H4zM3 7h18v4H3zM12 7v14M12 7c-2 0-4-1-4-3s3-2 4 3c1-5 4-5 4-3s-2 3-4 3',
     persona: 'M12 8a2.500 2.500 0 100-5 2.500 2.500 0 000 5zM5 20c0-4 3-6 7-6s7 2 7 6', casa: 'M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6', play: 'M7 4l13 8-13 8z', numeral: 'M5 9h14M5 15h14M10 4L8 20M16 4l-2 16',
     candado: 'M5 11h14v9H5zM8 11V8a4 4 0 018 0v3', portatil: 'M5 5h14v10H5zM2 19h20', camara: 'M4 8h4l2-3h4l2 3h4v12H4zM12 11a3.500 3.500 0 100 7 3.500 3.500 0 000-7z',
+    camion: 'M2 6h11v10H2zM13 9h4l4 4v3h-8zM6 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z', reloj: 'M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2', alerta: 'M12 3l10 18H2zM12 10v5M12 18h.01',
     flecha: 'M12 5v14m0 0l-5-5m5 5l5-5', sol: 'M12 8a4 4 0 100 8 4 4 0 000-8zM12 2v3M12 19v3M2 12h3M19 12h3'
   };
   var DE = { '1F5D1': 'papelera', '1F4C5': 'calendario', '1F5D3': 'calendario', '2795': 'mas', '2B07': 'bajar', '2B06': 'subir', '1F5A8': 'imprimir', '270F': 'lapiz', '1F9FD': 'borrador', '21A9': 'deshacer',
@@ -31,7 +32,7 @@
     '1F393': 'birrete', '1F469': 'birrete', '1F4C8': 'tendencia', '1F308': 'arco', '1F3AF': 'diana', '1F9F5': 'ovillo', '1F9F6': 'ovillo', '2B50': 'estrella', '1F31F': 'estrella', '1F4AD': 'globo', '26AB': 'punto',
     '1F457': 'camisa', '1F6CD': 'bolsa', '1F4E6': 'caja', '1F495': 'corazon', '1F4B0': 'moneda', '1F437': 'moneda', '1F3F7': 'etiqueta', '1F3AA': 'bandera', '1F4C7': 'contactos', '1F9EE': 'calculadora',
     '1F501': 'repetir', '1F4B3': 'tarjeta', '1F50E': 'lupa', '1F50D': 'lupa', '1F381': 'regalo', '1F9D8': 'persona', '1F3E0': 'casa', '1F4AC': 'globo', '25B6': 'play', '1F522': 'numeral', '1F512': 'candado',
-    '1F4BB': 'portatil', '1F4F7': 'camara', '1F4A1': 'sol' };
+    '1F464': 'persona', '1F69A': 'camion', '1F4DD': 'hoja', '1F4B5': 'moneda', '1F3C6': 'estrella', '23F0': 'reloj', '26A0': 'alerta', '1F4B2': 'moneda', '1F4BB': 'portatil', '1F4F7': 'camara', '1F4A1': 'sol' };
   // Emoji de adorno que se quitan sin ícono (Rosina solo va en las ilustraciones)
   var QUITAR = { '1F411': 1 };
   var RE = /^(\s*)((?:[\u{1F300}-\u{1FAFF}☀-➿⬀-⯿↩▶▪⚫](?:️|︎)?(?:‍[\u{1F300}-\u{1FAFF}☀-➿](?:️)?)*)+)\s*/u;

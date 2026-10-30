@@ -71,6 +71,7 @@
     cab.appendChild(txt('p', '', DIAS[hoy.getDay()].replace(/^./, function (c) { return c.toUpperCase(); }) + ' ' + hoy.getDate() + ' de ' + MESES[hoy.getMonth()] + ' · ' + partes.join(' y ') + '.'));
     cont.appendChild(cab);
 
+    if (!ped.length && !filas('tabla-ventas', ['precio']).length && !filas('tabla-gastos', ['valor']).length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
     var k = txt('div', 'pn-kpis'); k.setAttribute('role', 'group'); k.setAttribute('aria-label', 'Números de ' + MESES[hoy.getMonth()]);
     k.appendChild(tarjeta('Ventas de ' + MESES[hoy.getMonth()], fm(vend), ventas.length + (ventas.length === 1 ? ' venta anotada' : ' ventas anotadas')));
     k.appendChild(tarjeta('Gastos del mes', fm(gas), gastos.length + (gastos.length === 1 ? ' gasto anotado' : ' gastos anotados')));
