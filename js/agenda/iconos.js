@@ -25,6 +25,7 @@
     persona: 'M12 8a2.500 2.500 0 100-5 2.500 2.500 0 000 5zM5 20c0-4 3-6 7-6s7 2 7 6', casa: 'M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6', play: 'M7 4l13 8-13 8z', numeral: 'M5 9h14M5 15h14M10 4L8 20M16 4l-2 16',
     candado: 'M5 11h14v9H5zM8 11V8a4 4 0 018 0v3', portatil: 'M5 5h14v10H5zM2 19h20', camara: 'M4 8h4l2-3h4l2 3h4v12H4zM12 11a3.500 3.500 0 100 7 3.500 3.500 0 000-7z',
     camion: 'M2 6h11v10H2zM13 9h4l4 4v3h-8zM6 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z', reloj: 'M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2', alerta: 'M12 3l10 18H2zM12 10v5M12 18h.01',
+    llave: 'M14.700 6.300a4 4 0 00-5.400 5.400L3 18l3 3 6.300-6.300a4 4 0 005.400-5.400l-2.500 2.500-2.500-2.500z',
     flecha: 'M12 5v14m0 0l-5-5m5 5l5-5', sol: 'M12 8a4 4 0 100 8 4 4 0 000-8zM12 2v3M12 19v3M2 12h3M19 12h3'
   };
   var DE = { '1F5D1': 'papelera', '1F4C5': 'calendario', '1F5D3': 'calendario', '2795': 'mas', '2B07': 'bajar', '2B06': 'subir', '1F5A8': 'imprimir', '270F': 'lapiz', '1F9FD': 'borrador', '21A9': 'deshacer',
@@ -32,12 +33,12 @@
     '1F393': 'birrete', '1F469': 'birrete', '1F4C8': 'tendencia', '1F308': 'arco', '1F3AF': 'diana', '1F9F5': 'ovillo', '1F9F6': 'ovillo', '2B50': 'estrella', '1F31F': 'estrella', '1F4AD': 'globo', '26AB': 'punto',
     '1F457': 'camisa', '1F6CD': 'bolsa', '1F4E6': 'caja', '1F495': 'corazon', '1F4B0': 'moneda', '1F437': 'moneda', '1F3F7': 'etiqueta', '1F3AA': 'bandera', '1F4C7': 'contactos', '1F9EE': 'calculadora',
     '1F501': 'repetir', '1F4B3': 'tarjeta', '1F50E': 'lupa', '1F50D': 'lupa', '1F381': 'regalo', '1F9D8': 'persona', '1F3E0': 'casa', '1F4AC': 'globo', '25B6': 'play', '1F522': 'numeral', '1F512': 'candado',
-    '1F464': 'persona', '1F69A': 'camion', '1F4DD': 'hoja', '1F4B5': 'moneda', '1F3C6': 'estrella', '23F0': 'reloj', '26A0': 'alerta', '1F4B2': 'moneda', '1F4BB': 'portatil', '1F4F7': 'camara', '1F4A1': 'sol' };
+    '1F464': 'persona', '1F69A': 'camion', '1F4DD': 'hoja', '1F4B5': 'moneda', '1F3C6': 'estrella', '23F0': 'reloj', '26A0': 'alerta', '1F4B2': 'moneda', '2728': 'estrella', '1F369': 'grafica', '1F536': 'punto', '1F389': 'estrella', '1F382': 'regalo', '1F9F0': 'llave', '1F4D6': 'libro', '1F9F8': 'corazon', '1F4F0': 'hoja', '1F49D': 'regalo', '1F4BB': 'portatil', '1F4F7': 'camara', '1F4A1': 'sol' };
   // Emoji de adorno que se quitan sin ícono (Rosina solo va en las ilustraciones)
   var QUITAR = { '1F411': 1 };
   var RE = /^(\s*)((?:[\u{1F300}-\u{1FAFF}☀-➿⬀-⯿↩▶▪⚫](?:️|︎)?(?:‍[\u{1F300}-\u{1FAFF}☀-➿](?:️)?)*)+)\s*/u;
-  var BLANCO = '.ficha-barra button, .agregar-renglon, .boton-primario, .boton-secundario, .boton-chico, .boton-cal, .hojas-pasos button, summary, #agenda-config button, #agenda-config a, .barra-agenda button, .barra-toggle span:first-child, .buscar-agenda > span:first-child, .ficha-seccion span, .atajo-ic, .tab-k .t, .indice-grupo h4, .tab-grupo h4, .conexion-aviso button, .tour-botones button, a.boton-primario, a.boton-secundario, #menu-hojas-actual';
-  var EXCLUIR = '.ficha-cab, .pestana, .dib-barra, .tinta-barra, .vs-hoja, .pn-accion, textarea, input';
+  var BLANCO = '.ficha-barra button, .agregar-renglon, .boton-primario, .boton-secundario, .boton-chico, .boton-cal, .hojas-pasos button, summary, #agenda-config button, #agenda-config a, .barra-agenda button, .barra-toggle span:first-child, .buscar-agenda > span:first-child, .ficha-seccion span, .atajo-ic, .tab-k .t, .indice-grupo h4, .tab-grupo h4, .conexion-aviso button, .tour-botones button, .tip-agenda, .hr-t, .herr-rosina a, .promo-ic, .pl-t-ic, h4.sub-hoja, .tab-lectura h4, .fin-rosina h4, .fin-rosina li > span:first-child, .tab-lectura li > span:first-child, label.dib-subir, .dib-barra button, a.boton-primario, a.boton-secundario, #menu-hojas-actual';
+  var EXCLUIR = '.ficha-cab, .pestana, .tinta-barra, .vs-hoja, .pn-accion, textarea, input';
 
   function clave(texto) { var cp = texto.codePointAt(0); return cp.toString(16).toUpperCase(); }
   function svg(nombre, grande) {
@@ -56,7 +57,9 @@
       if (texto) { icono.after(document.createTextNode(' ')); }
     }
     if (texto) nodo.parentNode.replaceChild(texto, nodo); else nodo.parentNode.removeChild(nodo);
-    if (!nombre && el.classList.contains('atajo-ic')) el.appendChild(svg('hoja', true));
+    if (el.tagName === 'BUTTON' && !(el.textContent || '').trim() && !el.getAttribute('aria-label') && el.title) el.setAttribute('aria-label', el.title);
+    if (!nombre && (el.classList.contains('atajo-ic') || el.classList.contains('promo-ic') || el.classList.contains('pl-t-ic'))) el.appendChild(svg('estrella', el.classList.contains('atajo-ic')));
+    else if (nombre && !QUITAR[k] && (el.classList.contains('promo-ic') || el.classList.contains('pl-t-ic'))) { var g = el.querySelector('svg'); if (g) g.setAttribute('class', 'ic-l ic-l-m'); }
   }
   function limpiarLista() {
     var l = document.getElementById('selector-hoja-lista'); if (!l) return;

@@ -54,3 +54,20 @@ body, #agenda.seccion-suave, #agenda { background: var(--marfil) !important; }
 }
 
 @media print { .hoja-agenda { container-type: normal; } body, #agenda { background: #fff !important; } }
+
+/* Gráficas y cifras de finanzas en la paleta de la agenda (antes azul, naranja y morado): ingresos = salvia, gastos = vinotinto, ahorro = dorado apagado */
+#agenda .fin-tabla .ing, #agenda .fin-totales .ing { color: #3F6B47; }
+#agenda .fin-tabla .gas, #agenda .fin-totales .gas, #agenda .ff-valor.gas, .fin-tarj.gas strong { color: #8A3F3A; }
+#agenda .fin-tabla .aho, #agenda .fin-totales .aho, #agenda .ff-valor.aho, .fin-tarj.aho strong { color: #8A6A2E; }
+#agenda .fin-tarj.aho { background: var(--crema); }
+.ic-l-m { width: 1.35em; height: 1.35em; margin: 0; }
+
+/* Tarjetas de finanzas y variaciones en la paleta (ganaban los colores azul/naranja de la hoja de estilos en línea) */
+#agenda .fin-tarj, #agenda .fin-tarj.ing, #agenda .fin-tarj.gas, #agenda .fin-tarj.aho, #agenda .fin-tarj.sal { background: var(--crema); border-color: #EADFD3; }
+#agenda .fin-tarj.ing strong { color: #3F6B47; } #agenda .fin-tarj.gas strong { color: #8A3F3A; } #agenda .fin-tarj.aho strong { color: #8A6A2E; }
+#agenda .sube-bien { color: #3F6B47; } #agenda .sube-mal { color: #8A3F3A; }
+/* Planeador en celular: flechas y fecha en un renglón, «Hoy» debajo */
+@media (max-width: 520px) {
+  #agenda .pl-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  #agenda #pl-ant { order: 1; } #agenda #pl-fecha { order: 2; flex: 1 1 0; min-width: 0; } #agenda #pl-sig { order: 3; } #agenda #pl-hoy { order: 4; flex: 1 1 100%; }
+}
