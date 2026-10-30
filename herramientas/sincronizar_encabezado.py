@@ -35,8 +35,7 @@ MENUS = {
                  ('Sobre nosotras', 'sobre-nosotras.html', 'merceria'),
                  ('Ayuda', 'merceria/preguntas-frecuentes/', 'merceria'), ('Rosina: lanas e ideas', 'merceria/rosina/', 'universo')],
     'agenda': [('Mi agenda', 'agenda-rosina.html', 'agenda'), ('Aprende y compra', 'agenda-rosina.html#aprende-compra', 'agenda'),
-               ('Material gratis de Rosina', 'recursos-rosina.html', 'agenda'), ('Sobre nosotras', 'sobre-nosotras.html', 'agenda'),
-               ('Ayuda', 'preguntas-frecuentes.html', 'agenda')],
+               ('Material gratis de Rosina', 'recursos-rosina.html', 'agenda'), ('Sobre nosotras', 'sobre-nosotras.html', 'agenda')],   # sin «Ayuda» (pedido de Sara, 30-oct)
     'academy': [('Talleres y clases', 'academy/talleres/', 'academy'),
                 ('Revista', 'revista.html?casa=academy', 'academy'),
                 ('Sobre Academy', 'academy/sobre-academy/', 'academy'), ('Sobre nosotras', 'sobre-nosotras.html', 'academy'),
@@ -144,7 +143,6 @@ MOVIL = {
     <p class="grupo-nav">Rosina</p>
     <a href="recursos-rosina.html">🐑 Material gratis de Rosina</a>
     <p class="grupo-nav">Lana Rosa</p>
-    <a href="index.html">Tienda de amigurumis</a>
     <a href="sobre-nosotras.html">Sobre nosotras</a>
     <p class="grupo-nav">Ayuda</p>
     <a href="preguntas-frecuentes.html">Preguntas frecuentes</a>
