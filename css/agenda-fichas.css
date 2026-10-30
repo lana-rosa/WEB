@@ -606,3 +606,20 @@ html.dueno-abierto { overflow: hidden; }
 @media print { .boton-config-barra { display: none !important; } }
 section.intro-rincon.intro-agenda { padding-top: 0 !important; padding-bottom: 0 !important; }   /* sin la cabecera de la hoja ya no hace falta la franja de arriba */
 .intro-agenda:has(.agenda-config:not([hidden])), .intro-agenda:has(.aviso-sin-guardar:not([hidden])), .intro-agenda:has(.agenda-recordatorio:not([hidden])) { padding-top: 12px !important; padding-bottom: 6px !important; }
+
+/* Dibujar en pantalla completa (30-oct-2026): el botón solo sale en celular y tablet; el contenedor pasa a ocupar toda la pantalla */
+.dib-barra .dib-pantalla { display: none; font-weight: 700; font-size: 0.85rem; gap: 4px; }
+@media (max-width: 1023px), (pointer: coarse) { .dib-barra .dib-pantalla { display: inline-flex; } }
+body.dib-bloqueo { overflow: hidden; }
+.dib-contenedor.dib-completo { position: fixed; inset: 0; z-index: 2000; background: #FFFDF9; display: flex; flex-direction: column; padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); box-sizing: border-box; overflow: hidden; }
+.dib-completo .dib-barra { flex: 0 0 auto; margin: 0 0 8px; max-height: 40vh; overflow-y: auto; }
+.dib-completo .dib-barra button, .dib-completo .dib-subir, .dib-completo .dib-dedo { min-height: 44px; min-width: 44px; flex: 0 0 auto; }
+.dib-completo .dib-barra .dib-color, .dib-completo .dib-barra .dib-ancho { min-width: 44px; min-height: 44px; }
+.dib-completo .dib-pantalla { display: inline-flex !important; background: var(--rosa-suave); border-color: var(--rosa-principal); }
+.dib-completo .dib-caja { flex: 0 0 auto; margin: 0 auto; width: auto; }
+/* celular acostado: las herramientas van en una columna a la izquierda y el lienzo usa todo el alto */
+@media (orientation: landscape) and (max-height: 520px) {
+  .dib-contenedor.dib-completo { flex-direction: row; align-items: flex-start; gap: 8px; }
+  .dib-completo .dib-barra { flex: 0 0 168px; width: 168px; margin: 0; max-height: 100%; }
+  .dib-completo .dib-caja { margin: 0 auto; }
+}

@@ -1,0 +1,37 @@
+"""Dibujo en pantalla completa (30-oct-2026). Uso: /usr/bin/python3 probar_agenda_dibujo_completo.py"""
+from agenda_util import *
+T = Prueba()
+def trazo(pg, x1, y1, x2, y2):
+    pg.mouse.move(x1, y1); pg.mouse.down(); pg.mouse.move((x1 + x2) / 2, (y1 + y2) / 2, steps=4); pg.mouse.move(x2, y2, steps=4); pg.mouse.up()
+with sync_playwright() as p:
+    b = p.chromium.launch(executable_path=CHROMIUM)
+    for (w, h, nombre) in [(390, 844, 'celular'), (844, 390, 'celular apaisado'), (768, 1024, 'tablet')]:
+        pg = abrir(contexto(b, w, h, config_abierta=False, has_touch=True), 'hoja-puntos', 1500, config=False)
+        T.v(nombre + ': el botón «Pantalla completa» se ve', pg.is_visible('#hoja-puntos .dib-pantalla'))
+        pg.evaluate("window.__pad = document.querySelector('#hoja-puntos .dib-contenedor').parentNode")
+        pg.click('#hoja-puntos .dib-pantalla'); pg.wait_for_timeout(500)
+        r = pg.evaluate("(()=>{const c=document.querySelector('.dib-contenedor.dib-completo'),k=c.querySelector('.dib-caja').getBoundingClientRect(),br=c.querySelector('.dib-barra').getBoundingClientRect(),cv=c.querySelector('canvas');return {c:c.parentNode===document.body,w:innerWidth,h:innerHeight,kw:k.width,kh:k.height,kl:k.left,kr:k.right,kb:k.bottom,kt:k.top,bb:br.bottom,cvw:cv.clientWidth,cvh:cv.clientHeight,sw:document.documentElement.scrollWidth,ov:getComputedStyle(document.body).overflow}})()")
+        T.v(nombre + ': el dibujo pasa a ocupar la pantalla', r['c'] and r['ov'] == 'hidden', r)
+        T.v(nombre + ': el lienzo cabe entero (no se sale por abajo ni por los lados)', r['kb'] <= r['h'] + 1 and r['kl'] >= -1 and r['kr'] <= r['w'] + 1 and (r['w'] > r['h'] or r['kt'] >= r['bb'] - 1), r)
+        T.v(nombre + ': el lienzo es más grande que antes (≥ 290 px de ancho, o ≥ 300 de alto apaisado)', r['kw'] >= 290 or r['kh'] >= 340, r)
+        T.v(nombre + ': la proporción del lienzo se conserva (1,2)', abs(r['kh'] / r['kw'] - 1.2) < 0.03, r)
+        T.v(nombre + ': sin desborde lateral', r['sw'] <= r['w'])
+        T.v(nombre + ': el foco queda en el botón de salir', pg.evaluate("document.activeElement.classList.contains('dib-pantalla')"))
+        # dibujar con el mouse dentro
+        bb = pg.evaluate("(()=>{const k=document.querySelector('.dib-completo canvas').getBoundingClientRect();return [k.left,k.top,k.width,k.height]})()")
+        trazo(pg, bb[0] + 30, bb[1] + 30, bb[0] + bb[2] - 30, bb[1] + bb[3] / 2); pg.wait_for_timeout(300)
+        ns = pg.evaluate("(JSON.parse(localStorage.rosinaAgenda||'{}')._dib||{})['puntos:1']&&JSON.parse(localStorage.rosinaAgenda)._dib['puntos:1'].s.length")
+        T.v(nombre + ': se puede dibujar y queda guardado', ns == 1, ns)
+        T.v(nombre + ': los botones miden al menos 44 px', pg.evaluate("[...document.querySelectorAll('.dib-completo .dib-barra button, .dib-completo .dib-color')].every(x=>{const r=x.getBoundingClientRect();return r.height>=43.5&&r.width>=43.5})"))
+        pg.keyboard.press('Escape'); pg.wait_for_timeout(400)
+        T.v(nombre + ': Esc sale y el dibujo vuelve a su hoja', pg.evaluate("(()=>{const c=document.querySelector('#hoja-puntos .dib-contenedor')||window.__pad.querySelector('.dib-contenedor');return !c.classList.contains('dib-completo')&&c.parentNode===window.__pad&&getComputedStyle(document.body).overflow!=='hidden'})()"), '')
+        T.v(nombre + ': lo dibujado se conserva al volver', pg.evaluate("JSON.parse(localStorage.rosinaAgenda)._dib['puntos:1'].s.length") == 1)
+        pg.click('#hoja-puntos .dib-pantalla'); pg.wait_for_timeout(300); pg.click('.dib-completo .dib-pantalla'); pg.wait_for_timeout(300)
+        T.v(nombre + ': el botón «Salir» también cierra', not pg.evaluate("!!document.querySelector('.dib-completo')"))
+        T.v(nombre + ': sin errores de JavaScript', not pg.errs, pg.errs)
+    pc = abrir(contexto(b, 1280, 900, config_abierta=False), 'hoja-puntos', 1500, config=False)
+    T.v('computador: el botón no se muestra', not pc.is_visible('#hoja-puntos .dib-pantalla'))
+    pp = abrir(contexto(b, 390, 844, config_abierta=False, has_touch=True), 'ficha-proyecto', 1500, config=False)
+    T.v('«Dibujo del diseño» del proyecto también tiene el botón', pp.is_visible('#dibujo-proyecto .dib-pantalla'))
+    b.close()
+T.fin()
