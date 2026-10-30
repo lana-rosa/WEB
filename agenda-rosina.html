@@ -2500,6 +2500,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var cuerpo = document.getElementById(idTabla);
     var titulos = Array.prototype.map.call(cuerpo.closest('table').querySelectorAll('thead th'), function(th) { return th.textContent.replace(/"/g, ''); });
     var guardadas = (datos._filas && datos._filas[idTabla]) || 0;
+    /* Si hay datos en renglones más allá de los guardados (por ejemplo, una copia hecha a mano o muy antigua sin «_filas»), se crean esos renglones para que nada quede escrito pero invisible (30-oct-2026) */
+    var tope = 0, pre = prefijo + '', k, m; for (k in datos) { if (k.indexOf(pre) === 0 && (m = /^(\d+)-/.exec(k.slice(pre.length))) && datos[k] !== '' && +m[1] > tope && +m[1] <= 200) tope = +m[1]; }
+    if (tope > guardadas) { guardadas = tope; datos._filas = datos._filas || {}; datos._filas[idTabla] = tope; }
     var t = tablas[idTabla] = { cuerpo: cuerpo, prefijo: prefijo, cols: cols, etiqueta: etiqueta, titulos: titulos, secciones: secciones || null, n: Math.max(n, guardadas) };
     var html = '';
     for (var r = 1; r <= t.n; r++) html += htmlFila(t, r);
@@ -4193,7 +4196,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/animaciones.js?v=24" defer></script>
 <script src="/js/agenda/config.js?v=4" defer></script>
 <script src="/js/agenda/tour.js?v=4" defer></script>
-<script src="/js/agenda/fichas.js?v=2" defer></script>
+<script src="/js/agenda/fichas.js?v=3" defer></script>
 <script src="/js/agenda/formas.js?v=2" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
 <script src="/js/agenda/meses.js?v=1" defer></script>
@@ -4215,8 +4218,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=3" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
-<script src="/js/agenda/xlsx.js?v=1" defer></script>
-<script src="/js/agenda/exportar.js?v=1" defer></script>
+<script src="/js/agenda/xlsx.js?v=2" defer></script>
+<script src="/js/agenda/exportar.js?v=2" defer></script>
 <script>
 // «¿Dónde se guardan mis datos?»: dice si hoy la copia en la cuenta está activa (30-oct-2026).
 (function () {
