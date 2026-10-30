@@ -567,3 +567,8 @@ html.dueno-abierto { overflow: hidden; }
 .dueno-botones { display: grid; gap: 10px; margin-bottom: 12px; }
 .dueno-botones button { width: 100%; white-space: normal; }
 .dueno-caja small { display: block; color: var(--tinta-suave, #566); line-height: 1.45; }
+
+/* Conexiones entre hojas (js/agenda/conexiones.js, 30-oct-2026) */
+.conexion-aviso { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.conexion-aviso .ca-boton { white-space: normal; }
+.conexion-ok { margin: 6px 0; }
