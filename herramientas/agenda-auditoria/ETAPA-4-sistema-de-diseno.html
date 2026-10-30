@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda para tejedoras · Sistema de diseño (propuesta)</title>
+<link rel="stylesheet" href="/css/fuentes.css">
+<style>
+:root{--vino:#743D50;--vino-osc:#5C2F3F;--rosa:#E8D5D4;--rosa-suave:#F6EEED;--tinta:#2B1B21;--tinta-2:#6B5560;--linea:#E3D3D2;--ok:#1F7A4D;--aviso:#8A5A00;--alerta:#B3261E}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--tinta);font:16px/1.55 "Hanken Grotesk",system-ui,sans-serif}
+.w{max-width:1040px;margin:0 auto;padding:24px 16px 64px}
+h1,h2,h3{font-family:"DynaPuff",system-ui,sans-serif;color:var(--vino-osc);line-height:1.15}
+h1{font-size:2rem;margin:.2em 0}
+h2{font-size:1.5rem;margin:2.2em 0 .4em;padding-top:1em;border-top:2px solid var(--rosa)}
+h3{font-size:1.1rem;margin:1.4em 0 .4em}
+.nota{background:var(--rosa-suave);border-left:4px solid var(--vino);padding:12px 16px;border-radius:8px;margin:12px 0}
+.cuadro{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.col{border:1px solid var(--linea);border-radius:12px;overflow:hidden;font-size:.85rem}
+.col i{display:block;height:64px}.col div{padding:8px 10px}.col b{display:block}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.par{grid-template-columns:1fr}}
+.antes,.despues{border:1px solid var(--linea);border-radius:12px;padding:14px}
+.antes h4,.despues h4{margin:0 0 8px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--tinta-2)}
+.despues{border-color:var(--vino)}
+.ic{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;vertical-align:-6px}
+.iconos{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.iconos div{border:1px solid var(--linea);border-radius:10px;padding:12px 6px;text-align:center;font-size:.8rem;color:var(--vino)}
+.iconos .ic{display:block;margin:0 auto 6px;width:28px;height:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--vino);background:var(--vino);color:#fff;font:600 1rem "Hanken Grotesk",sans-serif;cursor:pointer}
+.btn.sec{background:#fff;color:var(--vino)}
+.btn.ter{background:transparent;border-color:transparent;color:var(--vino);text-decoration:underline}
+.btn.pel{background:#fff;border-color:var(--alerta);color:var(--alerta)}
+.fila{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0}
+.campo{display:block;width:100%;min-height:44px;padding:10px 12px;border:1.5px solid var(--linea);border-radius:10px;font:1rem "Hanken Grotesk",sans-serif;background:#fff;color:var(--tinta)}
+.campo:focus{outline:3px solid var(--vino);outline-offset:2px}
+label{font-weight:600;font-size:.9rem;display:block;margin:10px 0 4px}
+.ficha{border:1px solid var(--linea);border-radius:14px;background:#fff;overflow:hidden}
+.ficha>header{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--rosa-suave)}
+.ficha>header b{flex:1}
+.chip{font-size:.75rem;padding:2px 10px;border-radius:999px;background:var(--rosa);color:var(--vino-osc);font-weight:600}
+.chip.ok{background:#DDF1E6;color:var(--ok)}.chip.av{background:#FBEBC8;color:var(--aviso)}
+.ficha .cuerpo{padding:12px 14px}
+.hoja{border:1px solid var(--linea);border-radius:16px;padding:16px;background:#fff;max-width:420px}
+.hoja .cab{display:flex;gap:10px;align-items:center;color:var(--vino)}
+.hoja .cab h3{margin:0;font-size:1.25rem}
+.vacio{border:2px dashed var(--rosa);border-radius:14px;padding:18px;text-align:center;color:var(--tinta-2)}
+.vacio .ic{width:36px;height:36px;color:var(--vino);margin-bottom:6px}
+.aviso-a{display:flex;gap:10px;padding:12px 14px;border-radius:10px;margin:8px 0}
+.aviso-a.in{background:var(--rosa-suave);color:var(--vino-osc)}.aviso-a.al{background:#FDECEA;color:var(--alerta)}.aviso-a.am{background:#FBEBC8;color:var(--aviso)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}td,th{border:1px solid var(--linea);padding:8px 10px;text-align:left}th{background:var(--rosa-suave)}
+.mov{max-width:390px;border:8px solid var(--tinta);border-radius:28px;overflow:hidden;background:#fff}
+.mov .barra{background:var(--vino);color:#fff;display:flex;align-items:center;gap:8px;padding:10px 12px}
+.mov .barra b{flex:1;font-family:"DynaPuff",sans-serif;font-size:.95rem}
+.mov .c{padding:12px}
+.flot{position:relative;height:60px}
+.flot span{position:absolute;right:8px;bottom:6px;width:52px;height:52px;border-radius:50%;background:var(--vino);color:#fff;display:grid;place-items:center;box-shadow:0 4px 10px #0003}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-inicio" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/></symbol>
+<symbol id="i-tablero" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/></symbol>
+<symbol id="i-proyecto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M5 9c4 1 9 1 14 0M4.5 14c5 1.5 10 1.5 15 0M9 4.5c-1 5 0 10 3 15"/></symbol>
+<symbol id="i-lana" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M6 8c4 3 8 3 12 0M5 13c4 3 10 3 14 0M16 20c2-3 4-3 5-3"/></symbol>
+<symbol id="i-negocio" viewBox="0 0 24 24"><path d="M4 8h16l-1 12H5L4 8zM8 8V6a4 4 0 018 0v2"/></symbol>
+<symbol id="i-finanzas" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.5 9c-.5-1-1.500-1.500-2.500-1.500-1.500 0-2.500.8-2.500 2s1 1.700 2.500 2 2.500.8 2.500 2-1 2-2.500 2c-1.200 0-2.200-.6-2.700-1.600M12 6v1.500M12 16.500V18"/></symbol>
+<symbol id="i-fechas" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-config" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
+<symbol id="i-copia" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3"/></symbol>
+<symbol id="i-nube" viewBox="0 0 24 24"><path d="M7 18a4 4 0 010-8 5.500 5.500 0 0110.500 1A3.500 3.500 0 0117 18H7z"/></symbol>
+<symbol id="i-candado" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></symbol>
+<symbol id="i-mas" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-papelera" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></symbol>
+<symbol id="i-lapiz" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1zM14 7l3 3"/></symbol>
+<symbol id="i-buscar" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+<symbol id="i-imprimir" viewBox="0 0 24 24"><path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></symbol>
+<symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3zM12 10v5M12 18v.5"/></symbol>
+<symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.500l3 3 5-6"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.500v.5"/></symbol>
+<symbol id="i-flecha" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-cuenta" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+</defs></svg>
+
+<div class="w">
+<p class="chip">Etapa 4 · Propuesta para aprobar · 30-oct-2026</p>
+<h1>Sistema de diseño de la Agenda para tejedoras</h1>
+<p>Este documento muestra <b>cómo se verá y se sentirá</b> la agenda cuando la rediseñemos en la etapa 5. <b>Todavía no se aplicó nada</b>: la agenda publicada sigue igual. Tu estilo elegido: <b>elegante</b>.</p>
+<div class="nota"><b>Qué te pido:</b> mirar cada sección y decirme «sí», «sí, pero cambia X» o «no» (al final hay una lista con 6 decisiones). Con tu aprobación aplico todo por olas, empezando por el celular.</div>
+
+<h2>1 · Idea general</h2>
+<ul>
+<li><b>Elegante y tranquila:</b> mucho espacio en blanco, vinotinto solo donde hay que actuar, rosa empolvado para fondos suaves y detalles.</li>
+<li><b>Un solo lenguaje:</b> los mismos botones, tarjetas, íconos y avisos en las 38 hojas.</li>
+<li><b>Primero el celular:</b> todo se toca con el dedo (mínimo 44 px de alto) y se lee sin acercar.</li>
+<li><b>Rosina solo en ilustraciones</b> (portada, tutorial, estados vacíos grandes), no como emoji suelto en cada botón.</li>
+<li><b>No se pierde nada:</b> las hojas, los datos y las funciones son los mismos; cambia la apariencia.</li>
+</ul>
+
+<h2>2 · Color</h2>
+<div class="cuadro">
+<div class="col"><i style="background:#743D50"></i><div><b>Vinotinto</b>#743D50<br>Botones, títulos de acción, barra de arriba. Con texto blanco: contraste 8,3.</div></div>
+<div class="col"><i style="background:#5C2F3F"></i><div><b>Vino oscuro</b>#5C2F3F<br>Títulos y texto sobre rosa. Contraste 9,5.</div></div>
+<div class="col"><i style="background:#E8D5D4"></i><div><b>Rosa empolvado</b>#E8D5D4<br>Detalles, etiquetas, bordes de énfasis.</div></div>
+<div class="col"><i style="background:#F6EEED;border-bottom:1px solid #E3D3D2"></i><div><b>Rosa suave</b>#F6EEED<br>Fondo de cabeceras de ficha y avisos informativos.</div></div>
+<div class="col"><i style="background:#2B1B21"></i><div><b>Tinta</b>#2B1B21<br>Texto principal. Contraste 16.</div></div>
+<div class="col"><i style="background:#6B5560"></i><div><b>Tinta suave</b>#6B5560<br>Texto de ayuda. Contraste 6,8 (cumple).</div></div>
+</div>
+<h3>Colores con significado (se mantienen aparte del vinotinto)</h3>
+<div class="cuadro">
+<div class="col"><i style="background:#1F7A4D"></i><div><b>Bien / listo</b>#1F7A4D</div></div>
+<div class="col"><i style="background:#8A5A00"></i><div><b>Atención</b>#8A5A00 sobre #FBEBC8</div></div>
+<div class="col"><i style="background:#B3261E"></i><div><b>Alerta / borrar</b>#B3261E</div></div>
+</div>
+<p>Reglas: nunca comunicar algo <b>solo con color</b> (siempre ícono o texto); texto mínimo 4,5 de contraste; la persona puede seguir cambiando el color principal desde Configuración (la rueda actual se conserva).</p>
+
+<h2>3 · Letras</h2>
+<table>
+<tr><th>Uso</th><th>Letra</th><th>Tamaño</th></tr>
+<tr><td>Título de hoja</td><td style="font-family:DynaPuff">DynaPuff</td><td>1,5 rem (celular 1,3)</td></tr>
+<tr><td>Subtítulos y fichas</td><td><b>Hanken Grotesk</b> negrita</td><td>1,05 rem</td></tr>
+<tr><td>Texto y casillas</td><td>Hanken Grotesk</td><td>1 rem (nunca menos de 16 px en casillas: evita el zoom del iPhone)</td></tr>
+<tr><td>Ayudas y etiquetas</td><td>Hanken Grotesk</td><td>0,85 rem</td></tr>
+</table>
+<p><b>DynaPuff solo para el título de cada hoja y la marca</b>; todo lo demás va en Hanken Grotesk, más limpio y elegante.</p>
+
+<h2>4 · Íconos: de emoji de color a línea fina</h2>
+<p>Hoy hay emoji de colores (📅 🧶 🗑️ 💎 ➕…) que cambian según el celular y compiten con la paleta. Propuesta: <b>un solo estilo de línea de 1,75 px</b>, que toma el color del texto y se ve igual en iPhone, Samsung y computador.</p>
+<div class="iconos">
+<div><svg class="ic"><use href="#i-inicio"/></svg>Inicio</div>
+<div><svg class="ic"><use href="#i-tablero"/></svg>Mi tablero</div>
+<div><svg class="ic"><use href="#i-proyecto"/></svg>Proyectos</div>
+<div><svg class="ic"><use href="#i-lana"/></svg>Materiales</div>
+<div><svg class="ic"><use href="#i-negocio"/></svg>Emprendimiento</div>
+<div><svg class="ic"><use href="#i-finanzas"/></svg>Finanzas</div>
+<div><svg class="ic"><use href="#i-fechas"/></svg>Fechas</div>
+<div><svg class="ic"><use href="#i-config"/></svg>Configuración</div>
+<div><svg class="ic"><use href="#i-copia"/></svg>Copia</div>
+<div><svg class="ic"><use href="#i-nube"/></svg>Nube</div>
+<div><svg class="ic"><use href="#i-candado"/></svg>Bloqueada</div>
+<div><svg class="ic"><use href="#i-mas"/></svg>Agregar</div>
+<div><svg class="ic"><use href="#i-papelera"/></svg>Borrar</div>
+<div><svg class="ic"><use href="#i-mic"/></svg>Dictar</div>
+<div><svg class="ic"><use href="#i-lapiz"/></svg>Lápiz</div>
+<div><svg class="ic"><use href="#i-buscar"/></svg>Buscar</div>
+<div><svg class="ic"><use href="#i-imprimir"/></svg>Imprimir</div>
+<div><svg class="ic"><use href="#i-cuenta"/></svg>Cuenta</div>
+</div>
+<div class="nota">Los íconos de arriba son un <b>borrador mío</b> para que veas el estilo. Si lo apruebas, los afino uno por uno (y compruebo que se vean bien pequeños). Cada ícono llevará siempre texto o nombre accesible para lectores de pantalla.</div>
+
+<h2>5 · Botones</h2>
+<div class="fila">
+<button class="btn"><svg class="ic"><use href="#i-mas"/></svg>Agregar ficha</button>
+<button class="btn sec"><svg class="ic"><use href="#i-copia"/></svg>Descargar copia</button>
+<button class="btn ter">Ahora no</button>
+<button class="btn pel"><svg class="ic"><use href="#i-papelera"/></svg>Borrar esta ficha</button>
+</div>
+<ul>
+<li><b>Principal</b> (relleno vinotinto): una sola por pantalla, la acción más importante.</li>
+<li><b>Secundario</b> (borde): acciones de apoyo. <b>Texto</b>: «Ahora no», «Cancelar».</li>
+<li><b>Peligro</b> (rojo con borde): borrar; siempre pide confirmar.</li>
+<li>Alto mínimo <b>44 px</b>, bordes redondeados, foco con aro vinotinto visible al usar teclado.</li>
+</ul>
+
+<h2>6 · Campos, fichas y etiquetas</h2>
+<div class="par">
+<div>
+<label for="x1">Cliente</label><input id="x1" class="campo" value="María Gómez">
+<label for="x2">Producto</label><input id="x2" class="campo" placeholder="Ej.: Osito de 20 cm">
+</div>
+<div class="ficha">
+<header><svg class="ic" style="color:var(--vino)"><use href="#i-proyecto"/></svg><b>Chaleco de María</b><span class="chip av">En proceso</span><svg class="ic"><use href="#i-flecha"/></svg></header>
+<div class="cuerpo">Entrega: 15 nov · Saldo: $ 40.000</div>
+</div>
+</div>
+<p>Fichas: título + etiqueta de estado (con texto, no solo color) + flecha para abrir. Cerradas se leen en una línea; abiertas muestran los campos con 44 px de alto y letra de 16 px.</p>
+
+<h2>7 · Avisos y estados</h2>
+<div class="aviso-a in"><svg class="ic"><use href="#i-info"/></svg><span>Tienes 3 pedidos entregados que no están en Mis ventas. <b>Pasarlos a Mis ventas</b></span></div>
+<div class="aviso-a am"><svg class="ic"><use href="#i-alerta"/></svg><span>Tu agenda usa el 82 % del espacio del navegador. Descarga una copia.</span></div>
+<div class="aviso-a al"><svg class="ic"><use href="#i-alerta"/></svg><span><b>Este navegador no está guardando.</b> <u>Descargar una copia ahora</u></span></div>
+<div class="vacio"><svg class="ic"><use href="#i-proyecto"/></svg><div><b>Aún no tienes proyectos</b><br>Toca «Agregar ficha» y empieza por el nombre. Todo se guarda solo.</div></div>
+<p>Cada <b>hoja vacía</b> tendrá un ejemplo corto y una frase de qué hacer primero (hoy muchas se ven como una tabla en blanco).</p>
+
+<h2>8 · Una hoja en el celular (390 px)</h2>
+<div class="par">
+<div class="antes"><h4>Hoy</h4>Barra con varios botones con emoji, selector de hojas, un botón flotante de Rosina, otro de WhatsApp y una flecha: <b>hasta 3 círculos flotantes</b> tapan casillas.</div>
+<div class="despues"><h4>Propuesta</h4>Barra vinotinto limpia, título de la hoja, lista de fichas y <b>un solo botón flotante</b> abajo a la derecha que abre «Ayuda y contacto» (Rosina, WhatsApp, subir).</div>
+</div>
+<br>
+<div class="mov">
+<div class="barra"><svg class="ic"><use href="#i-inicio"/></svg><b>Agenda para tejedoras</b><svg class="ic"><use href="#i-config"/></svg><svg class="ic"><use href="#i-cuenta"/></svg></div>
+<div class="c">
+<div class="hoja" style="border:0;padding:0"><div class="cab"><svg class="ic"><use href="#i-proyecto"/></svg><h3>Proyectos por tejer</h3></div></div>
+<div style="margin:10px 0"><span class="chip">Mis proyectos · 2 de 12 ▾</span></div>
+<div class="ficha" style="margin-bottom:8px"><header><b>Chaleco de María</b><span class="chip av">En proceso</span></header></div>
+<div class="ficha" style="margin-bottom:8px"><header><b>Manta bebé</b><span class="chip ok">Listo</span></header></div>
+<div class="fila"><button class="btn" style="flex:1"><svg class="ic"><use href="#i-mas"/></svg>Agregar</button><button class="btn sec" style="flex:1"><svg class="ic"><use href="#i-fechas"/></svg>Calendario</button></div>
+<div class="flot"><span><svg class="ic"><use href="#i-info"/></svg></span></div>
+</div></div>
+
+<h2>9 · Navegación más simple</h2>
+<ul>
+<li><b>«Empieza aquí»</b> en el Índice: 3 tarjetas grandes (Anotar un pedido, Planear un proyecto, Ver cuánto gané) en vez de 38 hojas de golpe.</li>
+<li>Las pestañas se conservan (Inicio, Mi tablero, Proyectos, Materiales, Emprendimiento, Finanzas, Fechas) pero con ícono de línea y nombre corto.</li>
+<li>El menú de hojas sigue siendo la lista desplegable de hoy.</li>
+<li><b>No se quita ninguna hoja</b> ni se cambia la membresía.</li>
+</ul>
+
+<h2>10 · Cómo lo aplicaría (etapa 5, por olas)</h2>
+<table>
+<tr><th>Ola</th><th>Qué cambia</th><th>Riesgo</th></tr>
+<tr><td>1</td><td>Colores, letras, botones y campos (solo CSS, en celular y computador)</td><td>Bajo</td></tr>
+<tr><td>2</td><td>Íconos de línea en lugar de emoji (barra, pestañas, botones de fichas)</td><td>Bajo-medio: hay que revisar cada pantalla</td></tr>
+<tr><td>3</td><td>Un solo botón flotante y cabecera de hoja en celular</td><td>Medio: toca el chat de Rosina y WhatsApp</td></tr>
+<tr><td>4</td><td>Estados vacíos con ejemplos y «Empieza aquí»</td><td>Bajo</td></tr>
+</table>
+<p>Después de cada ola: pruebas automáticas (las ~25 suites), capturas en 390 y 1280 px para que las veas <b>antes de publicar</b>, y nada se publica sin tu «sí».</p>
+
+<h2>11 · Tus 6 decisiones</h2>
+<ol>
+<li><b>Paleta y contrastes</b> como están en la sección 2 (¿sí / cambiar algún color?).</li>
+<li><b>DynaPuff solo en títulos de hoja</b> y todo lo demás en Hanken Grotesk (¿sí?).</li>
+<li><b>Íconos de línea</b> en lugar de emoji de color (¿sí? El estilo del borrador, ¿te gusta?).</li>
+<li><b>Un solo botón flotante</b> que agrupa Rosina, WhatsApp y subir (¿sí?).</li>
+<li><b>«Empieza aquí»</b> con 3 tarjetas en el Índice (¿sí? ¿cuáles 3 prefieres?).</li>
+<li><b>Orden de las olas</b> y empezar por el celular (¿sí?).</li>
+</ol>
+<p style="color:var(--tinta-2);font-size:.85rem">Pendiente de verificar al aplicar: lectura con lector de pantalla real y navegadores distintos de Chrome (hoy solo tengo Chromium).</p>
+</div>
+</body>
+</html>

@@ -18,7 +18,7 @@ datos = {'ag-p1-cliente': 'Ana', 'ag-p1-pedido': 'Oso de 15 cm', 'ag-p1-entrega'
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     ctx = contexto(b, 390, datos=datos); pg = abrir(ctx, 'planeador-dia', 1800)
-    T.v('el planeador es la primera hoja del grupo «Inicio»', pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a')].slice(0, 3).map(a => a.dataset.hoja)") == ['indice-agenda', 'planeador-dia', 'portada-agenda'])
+    T.v('el planeador es la primera hoja del grupo «Inicio»', pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a')].slice(0, 4).map(a => a.dataset.hoja)") == ['panel-agenda', 'indice-agenda', 'planeador-dia', 'portada-agenda'])
     T.v('abre en el día de hoy', ' · hoy' in pg.inner_text('#pl-titulo') and pg.input_value('#pl-fecha') == h.isoformat(), pg.inner_text('#pl-titulo'))
     ev = pg.inner_text('#pl-eventos')
     T.v('muestra la entrega del pedido, la feria, el proyecto y el cumpleaños de hoy', all(x in ev for x in ['Entrega: Oso de 15 cm', 'Feria del Libro', 'Entrega: Bufanda', 'Cumpleaños de Luna'.replace('Luna', 'Luz')]), ev)

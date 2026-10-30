@@ -6,7 +6,7 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 
 | Función | Estado hoy | Qué se le dice a la persona | Dónde está el texto |
 |---|---|---|---|
-| Agenda con cuenta | Disponible | Se usa con una cuenta de Lana Rosa (correo, sin contraseña). 38 hojas. | `agenda-rosina.html`, `academy/index.html`, `academy/preguntas-frecuentes/`, `llms.txt`, `index.html`, `recursos-rosina.html`, hub de Rosina (`generar_universo_casas.py`) |
+| Agenda con cuenta | Disponible | Se usa con una cuenta de Lana Rosa (correo, sin contraseña). 39 hojas. | `agenda-rosina.html`, `academy/index.html`, `academy/preguntas-frecuentes/`, `llms.txt`, `index.html`, `recursos-rosina.html`, hub de Rosina (`generar_universo_casas.py`) |
 | Prueba gratis | Disponible | 7 días con todas las hojas, desde que se crea la cuenta (las cuentas anteriores al 29-oct tienen hasta el 5-nov). | `js/agenda/membresia.js`, `politicas.html#membresia`, tour (paso 6), Rosina (`GUIA_AGENDA`) |
 | Pestañas gratis después de la prueba | Disponible | Inicio, Mi tablero y Mis proyectos. | igual que arriba |
 | Membresía | Disponible | Materiales, Emprendimiento, Finanzas del negocio y Fechas y bienestar: $5.000 COP al mes o $45.000 COP al año; pago con Wompi, sin renovación automática. El candado es de la página; lo escrito sigue en el dispositivo. **Texto legal pendiente de revisión de la abogada.** | `politicas.html#membresia`, `js/agenda/membresia.js`, `crear-pago-wompi` (precios) |
