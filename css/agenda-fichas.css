@@ -578,3 +578,5 @@ html.dueno-abierto { overflow: hidden; }
 .linea select:focus-visible { outline: 3px solid var(--rosa-principal); outline-offset: 1px; border-color: var(--rosa-principal); }
 #agenda input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--rosa-principal); flex: none; }
 .oferta-merceria a { display: inline-block; padding: 6px 4px; min-height: 28px; }
+
+.mes .mes-diario { display: block; margin: 2px 0 4px; font-size: 0.78rem; font-weight: 700; color: var(--rosa-texto); }

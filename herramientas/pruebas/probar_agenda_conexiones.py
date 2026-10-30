@@ -6,7 +6,10 @@ DATOS = {'ag-p1-cliente': 'Ana', 'ag-p1-pedido': 'Osito', 'ag-p1-estado': 'Entre
          'ag-p2-cliente': 'Luisa', 'ag-p2-pedido': 'Conejo', 'ag-p2-estado': 'En proceso', 'ag-p2-totalcompra': '$ 60.000',
          'ag-p3-cliente': 'Marta', 'ag-p3-pedido': 'Gato', 'ag-p3-estado': 'Entregado', 'ag-p3-totalcompra': '$ 70.000',
          'ag-l1-marca': 'Alize', 'ag-l1-color': 'Rosa', 'ag-l1-grosor': '4', 'ag-l1-ovillos': '0',
-         'ag-l2-marca': 'Gatito', 'ag-l2-color': 'Azul', 'ag-l2-ovillos': '3'}
+         'ag-l2-marca': 'Gatito', 'ag-l2-color': 'Azul', 'ag-l2-ovillos': '3',
+         'ag-dr1-fecha': '10/10/2026', 'ag-dr1-animo': '😊 Feliz', 'ag-dr1-teji': 'Osito', 'ag-dr1-frase': 'Qué rico',
+         'ag-dr2-fecha': '20/10/2026', 'ag-dr2-animo': '😊 Feliz', 'ag-dr2-teji': 'Gato',
+         'ag-dr3-fecha': '05/03/2025', 'ag-dr3-teji': 'Bufanda', 'ag-anio': '2026'}
 IR = "(h)=>{const a=document.querySelector('#menu-hojas-lista a[data-hoja=\"'+h+'\"]'); if(a) a.click()}"
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
@@ -28,6 +31,13 @@ with sync_playwright() as p:
         T.v(n + 'la lana agotada queda en la Lista de compras con su color y 1 ovillo', d.get('ag-c1-material') == 'Lana Alize 4' and d.get('ag-c1-color') == 'Rosa' and d.get('ag-c1-cantidad') == '1 ovillo' and not d.get('ag-c2-material'), {k: v for k, v in d.items() if k.startswith('ag-c')})
         pg.reload(); pg.wait_for_timeout(1200); pg.evaluate(IR, 'inventario-lanas'); pg.wait_for_timeout(400)
         T.v(n + 'sin duplicar la segunda vez', pg.locator('#inventario-lanas .conexion-compras').count() == 0)
+        pg.evaluate(IR, 'anio-tejiendo'); pg.wait_for_timeout(500)
+        T.v(n + 'año: octubre muestra «2 días en el diario» y marzo (de 2025) no aparece en 2026', '2 días en el diario' in pg.inner_text('#anio-tejiendo .mes:nth-child(10) .mes-diario') and pg.locator('#anio-tejiendo .mes:nth-child(3) .mes-diario').count() == 0, pg.inner_text('#anio-tejiendo .meses'))
+        T.v(n + 'año: el botón ofrece traer 2 entradas', '(2)' in pg.inner_text('#ag-anio-diario'), pg.inner_text('#ag-anio-diario'))
+        pg.click('#ag-anio-diario'); pg.wait_for_timeout(500)
+        d = pg.evaluate("JSON.parse(localStorage.getItem('rosinaAgenda'))")
+        T.v(n + 'año: octubre recibe las dos líneas del diario con su ánimo y frase', '📔 10/10 · Osito (😊 Feliz) — «Qué rico»' in d.get('ag-mes-10', '') and '📔 20/10 · Gato' in d.get('ag-mes-10', '') and not d.get('ag-mes-3'), d.get('ag-mes-10'))
+        T.v(n + 'año: no duplica al tocar de nuevo y el botón queda inactivo', pg.locator('#ag-anio-diario').is_disabled() and d.get('ag-mes-10', '').count('📔') == 2)
         T.v(n + 'los avisos no se imprimen', pg.evaluate("[...document.querySelectorAll('.conexion-aviso, .conexion-ok')].every(e => e.classList.contains('no-imprimir'))"))
         T.v(n + 'sin desplazamiento horizontal ni errores', pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1") and not pg.errs, pg.errs[:2])
         if ancho == 390:

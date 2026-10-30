@@ -17,7 +17,7 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 | Google Calendar | Opcional, gratis | Crea el calendario aparte «Agenda para tejedoras» (permiso no sensible); «Desconectar» lo borra. Desde el 29-oct (estuvo apagado del 13 al 29-oct). | `js/agenda/google-calendar.js`, `politicas.html#datos` apartado 10, tour (paso 4), `GUIA_AGENDA` |
 | Archivo .ics y «Añadir a Google Calendar» por fila | Disponible | Fechas al calendario sin conectar nada. | ⚙️ Configuración |
 | Exportar a Excel | Disponible | Un libro .xlsx con una hoja por cada hoja con datos. | ⚙️ Configuración |
-| Conexiones entre hojas | Disponible (solo al tocar el botón) | Pedidos «Entregado» → Mis ventas; lanas con 0 ovillos → Lista de compras. | `js/agenda/conexiones.js`, `GUIA_AGENDA` |
+| Conexiones entre hojas | Disponible (solo al tocar el botón) | Pedidos «Entregado» → Mis ventas; lanas con 0 ovillos → Lista de compras; Diario de tejido → Mi año tejiendo. | `js/agenda/conexiones.js`, `GUIA_AGENDA` |
 | Dictar (voz) | Disponible | Usa el servicio de voz del navegador; Lana Rosa no guarda el audio. | `politicas.html#datos`, tour |
 | Lápiz digital | Disponible, **falta probar con lápiz real en iPad y Samsung** | Lápiz digital y mouse dibujan; el dedo mueve la página salvo «Dedo». | tour, `GUIA_AGENDA` |
 | App instalable | Disponible | Ícono redondo; funciona sin internet. | `js/agenda/app.js`, tour |

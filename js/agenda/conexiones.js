@@ -1,7 +1,8 @@
 /* Agenda para tejedoras: conexiones entre hojas (30-oct-2026, revisión de la agenda pedida por Sara). Para no escribir dos veces lo mismo:
    · Control de pedidos → Mis ventas: los pedidos en estado «Entregado» se pasan de una vez a Mis ventas (fecha de entrega, producto, cliente y total de la compra).
    · Inventario de lanas → Lista de compras: las lanas con 0 ovillos se agregan a la lista de compras.
-   Las dos acciones se repiten sin duplicar (se compara lo que ya está) y solo las hace la persona al tocar el botón. */
+   · Diario de tejido → Mi año tejiendo (30-oct-2026): cada mes del año muestra cuántos días anotaste en el diario y cómo te sentiste, y un botón trae lo que tejiste esos días al texto de cada mes.
+   Las acciones se repiten sin duplicar (se compara lo que ya está) y solo las hace la persona al tocar el botón. */
 (function () {
   'use strict';
   var N = window.lrAgendaNucleo;
@@ -76,12 +77,63 @@
     return n ? 'Agregué ' + n + (n === 1 ? ' lana' : ' lanas') + ' a tu Lista de compras.' : '';
   }
 
+  /* ---------- Diario de tejido → Mi año tejiendo ---------- */
+  function entradasDiario(anio) {   // [{m, d, animo, teji, frase}] del año elegido
+    var D = N.tablas['tabla-diario'], lista = [];
+    if (!D) return lista;
+    for (var r = 1; r <= D.n; r++) {
+      var f = N.leerFecha ? N.leerFecha(val('tabla-diario', r, 'fecha')) : null; if (!f || String(f.a) !== String(anio)) continue;
+      var e = { m: f.m, d: f.d, animo: val('tabla-diario', r, 'animo'), teji: val('tabla-diario', r, 'teji'), frase: val('tabla-diario', r, 'frase') };
+      if (e.animo || e.teji || e.frase) lista.push(e);
+    }
+    return lista;
+  }
+  function lineaDiario(e) { return '📔 ' + ('0' + e.d).slice(-2) + '/' + ('0' + e.m).slice(-2) + ' · ' + (e.teji || 'Día de tejido') + (e.animo ? ' (' + e.animo + ')' : '') + (e.frase ? ' — «' + e.frase + '»' : ''); }
+  function anioElegido() { var a = document.getElementById('ag-anio'); return a ? a.value : ''; }
+  function resumenMes(lista) {
+    if (!lista.length) return '';
+    var cuenta = {}, mejor = ''; lista.forEach(function (e) { if (e.animo) { cuenta[e.animo] = (cuenta[e.animo] || 0) + 1; if (!mejor || cuenta[e.animo] > cuenta[mejor]) mejor = e.animo; } });
+    return '📔 ' + lista.length + (lista.length === 1 ? ' día' : ' días') + ' en el diario' + (mejor ? ' · más: ' + mejor : '');
+  }
+  function pintarDiarioEnAnio() {
+    var hoja = document.getElementById('anio-tejiendo'); if (!hoja || !N.tablas['tabla-diario']) return;
+    var anio = anioElegido(), todas = entradasDiario(anio);
+    hoja.querySelectorAll('.mes').forEach(function (c, i) {
+      var l = c.querySelector('.mes-diario');
+      var t = resumenMes(todas.filter(function (e) { return e.m === i + 1; }));
+      if (!t) { if (l) l.remove(); return; }
+      if (!l) { l = document.createElement('small'); l.className = 'mes-diario no-imprimir'; c.querySelector('strong').insertAdjacentElement('afterend', l); }
+      l.textContent = t;
+    });
+    var b = document.getElementById('ag-anio-diario');
+    if (b) { var pend = pendientesDiario(anio).length; b.hidden = !todas.length; b.textContent = pend ? '📔 Traer mi diario a este año (' + pend + ')' : '📔 Tu diario ya está en este año'; b.disabled = !pend; }
+  }
+  function textoMes(m) { var ta = document.getElementById('ag-mes-' + m); return ta ? ta.value : ''; }
+  function pendientesDiario(anio) { return entradasDiario(anio).filter(function (e) { return textoMes(e.m).indexOf(lineaDiario(e)) < 0; }); }
+  function traerDiario() {
+    var anio = anioElegido(), pend = pendientesDiario(anio), n = 0;
+    pend.forEach(function (e) {
+      var ta = document.getElementById('ag-mes-' + e.m); if (!ta) return;
+      ta.value = (ta.value.trim() ? ta.value.replace(/\s+$/, '') + '\n' : '') + lineaDiario(e);
+      N.datos()[ta.id] = ta.value; ta.dispatchEvent(new Event('input', { bubbles: true })); n++;
+    });
+    N.guardar(); pintarDiarioEnAnio();
+    return n ? 'Traje ' + n + (n === 1 ? ' día' : ' días') + ' de tu diario a Mi año tejiendo (' + anio + '). Puedes editar lo que quieras.' : '';
+  }
+  (function () {
+    var cab = document.querySelector('#anio-tejiendo .elegir-anio'); if (!cab || !N.tablas['tabla-diario']) return;
+    var b = document.createElement('button'); b.type = 'button'; b.id = 'ag-anio-diario'; b.className = 'boton-secundario boton-chico no-imprimir'; b.hidden = true;
+    b.addEventListener('click', function () { var msg = traerDiario(); mostrar(document.getElementById('anio-tejiendo'), msg); });
+    cab.appendChild(b);
+    var sel = document.getElementById('ag-anio-sel'); if (sel) sel.addEventListener('change', function () { setTimeout(pintarDiarioEnAnio, 120); });
+  })();
+
   function revisar() {
     var v = pendientesVentas();
     aviso('control-pedidos', 'conexion-ventas', v.length ? '💰 ' + (v.length === 1 ? 'Tienes 1 pedido entregado' : 'Tienes ' + v.length + ' pedidos entregados') + ' que aún no está en Mis ventas.' : '', v.length === 1 ? 'Pasarlo a Mis ventas' : 'Pasarlos a Mis ventas', pasarAVentas);
     var a = agotadas();
     aviso('inventario-lanas', 'conexion-compras', a.length ? '🛍️ ' + (a.length === 1 ? 'Tienes 1 lana con 0 ovillos' : 'Tienes ' + a.length + ' lanas con 0 ovillos') + ' que no está en tu Lista de compras.' : '', a.length === 1 ? 'Agregarla a la lista' : 'Agregarlas a la lista', pasarACompras);
   }
-  var t = null; document.addEventListener('agenda-guardada', function () { clearTimeout(t); t = setTimeout(revisar, 300); });
-  revisar();
+  var t = null; document.addEventListener('agenda-guardada', function () { clearTimeout(t); t = setTimeout(function () { revisar(); pintarDiarioEnAnio(); }, 300); });
+  revisar(); pintarDiarioEnAnio();
 })();
