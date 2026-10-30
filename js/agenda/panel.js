@@ -46,41 +46,120 @@
     out.sort(function (a, b) { return a.f - b.f; });
     return out.slice(0, max);
   }
-  function tarjeta(titulo, valor, sub, clase) {
-    var c = txt('div', 'pn-card pn-kpi' + (clase ? ' ' + clase : '')); c.appendChild(txt('small', '', titulo)); c.appendChild(txt('strong', '', valor)); c.appendChild(txt('span', '', sub)); return c;
+  var FRASES = ['Tejer es mi terapia', 'Una vuelta más y lo logras', 'Tú puedes con este proyecto', 'Hecho a mano, con amor', 'Hoy también cuenta: una vuelta a la vez', 'Tu talento tiene valor'];
+  var ESTADOS = [['Terminado', 'Terminados', '#4F7A57'], ['Tejiendo', 'Tejiendo', '#EB6B96'], ['Por empezar', 'Por empezar', '#F0C27A']];
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function sv(tag, attrs) { var e = document.createElementNS(SVGNS, tag); Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); }); return e; }
+  function ic(nombre) { return window.lrIconos && window.lrIconos.por ? window.lrIconos.por(nombre) : document.createComment(''); }
+  function tarjeta(titulo, valor, sub, clase, icon) {
+    var c = txt('div', 'pn-card pn-kpi' + (clase ? ' ' + clase : '')), i = txt('span', 'pn-kpi-ic'); i.appendChild(ic(icon)); c.appendChild(i);
+    var d = txt('div', 'pn-kpi-t'); d.appendChild(txt('small', '', titulo)); d.appendChild(txt('strong', '', valor)); d.appendChild(txt('span', '', sub)); c.appendChild(d); return c;
+  }
+  function cabecera(titulo, enlaceTxt, hojaId) {
+    var h = txt('h4', '', titulo); if (enlaceTxt) { var v = txt('button', 'pn-enlace', enlaceTxt); v.type = 'button'; v.addEventListener('click', function () { ir(hojaId); }); h.appendChild(v); } return h;
+  }
+  function donut(cuentas, total) {
+    var s = sv('svg', { viewBox: '0 0 42 42', 'class': 'pn-donut', role: 'img', 'aria-label': total + (total === 1 ? ' proyecto' : ' proyectos') + ': ' + ESTADOS.map(function (e, i) { return cuentas[i] + ' ' + e[1].toLowerCase(); }).join(', ') });
+    s.appendChild(sv('circle', { cx: 21, cy: 21, r: 15.9, fill: 'none', stroke: '#F3E6E9', 'stroke-width': 6 }));
+    var acum = 0;
+    cuentas.forEach(function (n, i) {
+      if (!n || !total) return; var pct = n / total * 100;
+      s.appendChild(sv('circle', { cx: 21, cy: 21, r: 15.9, fill: 'none', stroke: ESTADOS[i][2], 'stroke-width': 6, 'stroke-dasharray': pct + ' ' + (100 - pct), 'stroke-dashoffset': 25 - acum }));
+      acum += pct;
+    });
+    var t1 = sv('text', { x: 21, y: 23, 'text-anchor': 'middle', 'font-size': 9, 'font-weight': 800, fill: '#5C2F3F' }); t1.textContent = String(total); s.appendChild(t1);
+    var t2 = sv('text', { x: 21, y: 29, 'text-anchor': 'middle', 'font-size': 3.4, fill: '#6B5560' }); t2.textContent = total === 1 ? 'proyecto' : 'proyectos'; s.appendChild(t2);
+    return s;
+  }
+  function semanaVentas(hoy, ventas) {
+    var lun = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() - ((hoy.getDay() + 6) % 7)), v = [0, 0, 0, 0, 0, 0, 0];
+    ventas.forEach(function (f) {
+      var d = N.leerFecha ? N.leerFecha(f.fecha) : null; if (!d || d.sinAnio) return;
+      var i = Math.round((new Date(d.a, d.m - 1, d.d) - lun) / 86400000); if (i >= 0 && i < 7) v[i] += pesos(f.precio);
+    });
+    return { v: v, hoy: (hoy.getDay() + 6) % 7 };
+  }
+  function calendarioMini(hoy, evs) {
+    var a = hoy.getFullYear(), m = hoy.getMonth(), marcados = {};
+    evs.forEach(function (e) {
+      var p = String(e.fecha).split('-'); if (p.length !== 3) return;
+      if (e.anual ? +p[1] - 1 === m : +p[0] === a && +p[1] - 1 === m) marcados[+p[2]] = 1;
+    });
+    var g = txt('div', 'pn-cal'), ini = (new Date(a, m, 1).getDay() + 6) % 7, n = new Date(a, m + 1, 0).getDate(), con = Object.keys(marcados);
+    g.setAttribute('role', 'img'); g.setAttribute('aria-label', MESES[m] + ' ' + a + (con.length ? ': hay algo agendado los días ' + con.join(', ') : ': nada agendado este mes'));
+    ['L', 'M', 'M', 'J', 'V', 'S', 'D'].forEach(function (d) { g.appendChild(txt('span', 'pn-cal-t', d)); });
+    for (var i = 0; i < ini; i++) g.appendChild(txt('span', ''));
+    for (var d = 1; d <= n; d++) g.appendChild(txt('span', (d === hoy.getDate() ? 'hoy ' : '') + (marcados[d] ? 'ev' : ''), String(d)));
+    return g;
   }
   function pintar() {
     var hoy = new Date(); hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
     var enMes = function (t) { var f = N.leerFecha ? N.leerFecha(t) : null; return !!f && f.a === hoy.getFullYear() && f.m === hoy.getMonth() + 1; };
-    var ventas = filas('tabla-ventas', ['fecha', 'precio']).filter(function (f) { return enMes(f.fecha); }), vend = ventas.reduce(function (s, f) { return s + pesos(f.precio); }, 0);
+    var todasVentas = filas('tabla-ventas', ['fecha', 'precio']);
+    var ventas = todasVentas.filter(function (f) { return enMes(f.fecha); }), vend = ventas.reduce(function (s, f) { return s + pesos(f.precio); }, 0);
     var gastos = filas('tabla-gastos', ['fecha', 'valor']).filter(function (f) { return enMes(f.fecha); }), gas = gastos.reduce(function (s, f) { return s + pesos(f.valor); }, 0);
     var ped = filas('tabla-pedidos', ['cliente', 'entrega', 'estado', 'precio', 'totalcompra', 'abono']);
     var activos = ped.filter(function (p) { return !/entreg|cancel|despachad|terminad/i.test(p.estado); });
     var semana = activos.filter(function (p) { var f = N.leerFecha ? N.leerFecha(p.entrega) : null; if (!f || f.sinAnio) return false; var d = Math.round((new Date(f.a, f.m - 1, f.d) - hoy) / 86400000); return d >= 0 && d <= 7; }).length;
     var cobrar = activos.reduce(function (s, p) { return s + Math.max(0, (pesos(p.totalcompra) || pesos(p.precio)) - pesos(p.abono)); }, 0);
-    var proy = filas('tabla-fila', ['proyecto', 'para', 'fecha', 'estado']).filter(function (p) { return p.proyecto && p.estado !== 'Terminado'; });
+    var todosProy = filas('tabla-fila', ['proyecto', 'para', 'fecha', 'estado']).filter(function (p) { return p.proyecto; });
+    var proy = todosProy.filter(function (p) { return p.estado !== 'Terminado'; });
     proy.sort(function (a, b) { return (a.estado === 'Tejiendo' ? 0 : 1) - (b.estado === 'Tejiendo' ? 0 : 1); });
     var tejiendo = proy.filter(function (p) { return p.estado === 'Tejiendo'; }).length;
-    var prox = proximas(hoy, 5);
+    var prox = proximas(hoy, 5), evs = (window.lrAgenda && window.lrAgenda.eventos) ? window.lrAgenda.eventos() : [];
 
     cont.textContent = '';
-    var cab = txt('div', 'pn-saludo'); cab.appendChild(txt('h4', '', saludo(new Date())));
+    /* Saludo con Rosina */
+    var hero = txt('section', 'pn-hero'); hero.appendChild(txt('span', 'pn-bola b1')); hero.appendChild(txt('span', 'pn-bola b2')); hero.appendChild(txt('span', 'pn-bola b3'));
+    var tx = txt('div', 'pn-hero-t'); tx.appendChild(txt('h4', '', saludo(new Date())));
     var partes = [];
     partes.push(semana ? 'Tienes ' + semana + (semana === 1 ? ' entrega' : ' entregas') + ' esta semana' : 'No tienes entregas esta semana');
     partes.push(tejiendo ? tejiendo + (tejiendo === 1 ? ' proyecto' : ' proyectos') + ' en el gancho' : 'ningún proyecto tejiéndose ahora');
-    cab.appendChild(txt('p', '', DIAS[hoy.getDay()].replace(/^./, function (c) { return c.toUpperCase(); }) + ' ' + hoy.getDate() + ' de ' + MESES[hoy.getMonth()] + ' · ' + partes.join(' y ') + '.'));
-    cont.appendChild(cab);
+    tx.appendChild(txt('p', '', DIAS[hoy.getDay()].replace(/^./, function (c) { return c.toUpperCase(); }) + ' ' + hoy.getDate() + ' de ' + MESES[hoy.getMonth()] + ' · ' + partes.join(' y ') + '.'));
+    var dia = Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / 86400000); tx.appendChild(txt('span', 'pn-frase', FRASES[dia % FRASES.length]));
+    hero.appendChild(tx); var im = document.createElement('img'); im.className = 'pn-rosina'; im.src = '/img/aventuras/rosina-original/tejiendo.webp'; im.alt = ''; im.width = 260; im.height = 260; hero.appendChild(im);
+    cont.appendChild(hero);
 
-    if (!ped.length && !filas('tabla-ventas', ['precio']).length && !filas('tabla-gastos', ['valor']).length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
+    if (!ped.length && !todasVentas.length && !filas('tabla-gastos', ['valor']).length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
     var k = txt('div', 'pn-kpis'); k.setAttribute('role', 'group'); k.setAttribute('aria-label', 'Números de ' + MESES[hoy.getMonth()]);
-    k.appendChild(tarjeta('Ventas de ' + MESES[hoy.getMonth()], fm(vend), ventas.length + (ventas.length === 1 ? ' venta anotada' : ' ventas anotadas')));
-    k.appendChild(tarjeta('Gastos del mes', fm(gas), gastos.length + (gastos.length === 1 ? ' gasto anotado' : ' gastos anotados')));
-    k.appendChild(tarjeta('Te quedó', fm(vend - gas), vend || gas ? (vend - gas >= 0 ? 'Ganancia del mes' : 'Este mes gastaste más de lo que vendiste') : 'Aparece cuando anotes ventas y gastos', vend - gas > 0 ? 'bien' : vend - gas < 0 ? 'mal' : ''));
-    k.appendChild(tarjeta('Pedidos activos', String(activos.length), activos.length ? (cobrar ? 'Por cobrar ' + fm(cobrar) : 'Todo cobrado') : 'Anota tu primer pedido'));
+    k.appendChild(tarjeta('Ventas de ' + MESES[hoy.getMonth()], fm(vend), ventas.length + (ventas.length === 1 ? ' venta anotada' : ' ventas anotadas'), 'k1', 'grafica'));
+    k.appendChild(tarjeta('Gastos del mes', fm(gas), gastos.length + (gastos.length === 1 ? ' gasto anotado' : ' gastos anotados'), 'k2', 'recibo'));
+    k.appendChild(tarjeta('Te quedó', fm(vend - gas), vend || gas ? (vend - gas >= 0 ? 'Ganancia del mes' : 'Este mes gastaste más de lo que vendiste') : 'Aparece cuando anotes ventas y gastos', 'k3 ' + (vend - gas > 0 ? 'bien' : vend - gas < 0 ? 'mal' : ''), 'tendencia'));
+    k.appendChild(tarjeta('Pedidos activos', String(activos.length), activos.length ? (cobrar ? 'Por cobrar ' + fm(cobrar) : 'Todo cobrado') : 'Anota tu primer pedido', 'k4', 'bolsa'));
     cont.appendChild(k);
 
+    /* Tres tarjetas con gráficos: proyectos, ventas de la semana y calendario del mes */
+    var gr = txt('div', 'pn-graf');
+    var cp = txt('div', 'pn-card'); cp.appendChild(cabecera('Mis proyectos', 'Ver todos', 'proyectos-fila'));
+    if (!todosProy.length) { var vp = txt('div', 'pn-vacio-rosina'); var ii = document.createElement('img'); ii.src = '/img/aventuras/rosina-original/idea.webp'; ii.alt = ''; ii.width = 86; ii.height = 86; vp.appendChild(ii); vp.appendChild(txt('p', 'pn-vacio', 'Aquí verás tus proyectos terminados, tejiéndose y por empezar. Agrega el primero con «Nuevo proyecto».')); cp.appendChild(vp); }
+    else {
+      var cuentas = ESTADOS.map(function (e, i) { return todosProy.filter(function (p) { return i === 2 ? (p.estado !== 'Terminado' && p.estado !== 'Tejiendo') : p.estado === e[0]; }).length; });
+      var dn = txt('div', 'pn-donut-caja'); dn.appendChild(donut(cuentas, todosProy.length));
+      var ley = txt('div', 'pn-leyenda'); ESTADOS.forEach(function (e, i) { var s = txt('span', '', e[1] + ' · ' + cuentas[i]); var pt = txt('i'); pt.style.background = e[2]; s.insertBefore(pt, s.firstChild); ley.appendChild(s); });
+      dn.appendChild(ley); cp.appendChild(dn);
+      proy.slice(0, 3).forEach(function (p) {
+        var fila = txt('button', 'pn-fila'); fila.type = 'button'; fila.addEventListener('click', function () { ir('proyectos-fila'); });
+        var t = txt('span', 'pn-t'); t.appendChild(txt('b', '', p.proyecto)); var sub = [p.para ? 'Para ' + p.para : '', p.fecha ? 'Fecha: ' + p.fecha : ''].filter(Boolean).join(' · '); if (sub) t.appendChild(txt('small', '', sub));
+        fila.appendChild(t); fila.appendChild(txt('span', 'pn-chip' + (p.estado === 'Tejiendo' ? ' av' : ''), p.estado || 'Por empezar')); cp.appendChild(fila);
+      });
+    }
+    gr.appendChild(cp);
+    var cv = txt('div', 'pn-card'); cv.appendChild(cabecera('Ventas de la semana', 'Ver ventas', 'ventas-mes'));
+    var sw = semanaVentas(hoy, todasVentas), mx = Math.max.apply(null, sw.v), tot = sw.v.reduce(function (a, b) { return a + b; }, 0);
+    if (!tot) cv.appendChild(txt('p', 'pn-vacio', 'Cuando anotes ventas con fecha en «Mis ventas del mes», aquí verás cómo te fue cada día de esta semana.'));
+    else {
+      var ba = txt('div', 'pn-barras'); ba.setAttribute('role', 'img'); ba.setAttribute('aria-label', 'Ventas de esta semana, de lunes a domingo: ' + sw.v.map(function (x) { return fm(x); }).join(', '));
+      ['L', 'M', 'M', 'J', 'V', 'S', 'D'].forEach(function (d, i) {
+        var c = txt('div', i === sw.hoy ? 'hoy' : ''), b = txt('b'); b.style.height = Math.max(6, Math.round(sw.v[i] / mx * 120)) + 'px'; b.title = fm(sw.v[i]); c.appendChild(b); c.appendChild(txt('span', '', d)); ba.appendChild(c);
+      });
+      cv.appendChild(ba); cv.appendChild(txt('p', 'pn-total', 'Esta semana: ' + fm(tot)));
+    }
+    gr.appendChild(cv);
+    var cc = txt('div', 'pn-card'); cc.appendChild(cabecera(MESES[hoy.getMonth()].replace(/^./, function (c) { return c.toUpperCase(); }) + ' ' + hoy.getFullYear(), 'Ver calendario', 'calendario-anual')); cc.appendChild(calendarioMini(hoy, evs)); gr.appendChild(cc);
+    cont.appendChild(gr);
+
     var dos = txt('div', 'pn-dos');
-    var cf = txt('div', 'pn-card'); var h1 = txt('h4', '', 'Próximas fechas'); var v1 = txt('button', 'pn-enlace', 'Ver calendario'); v1.type = 'button'; v1.addEventListener('click', function () { ir('calendario-anual'); }); h1.appendChild(v1); cf.appendChild(h1);
+    var cf = txt('div', 'pn-card'); cf.appendChild(cabecera('Próximas fechas', 'Ver calendario', 'calendario-anual'));
     if (!prox.length) cf.appendChild(txt('p', 'pn-vacio', 'Todavía no hay fechas. Escribe la entrega de un pedido, una feria o un cumpleaños y aparecen aquí.'));
     prox.forEach(function (e) {
       var fila = txt('button', 'pn-fila'); fila.type = 'button'; fila.addEventListener('click', function () { ir(HOJA_DE[e.tipo] || 'calendario-anual'); });
@@ -89,14 +168,14 @@
       fila.appendChild(fe); fila.appendChild(t); fila.appendChild(txt('span', 'pn-chip', TIPOS[e.tipo] || 'Fecha')); cf.appendChild(fila);
     });
     dos.appendChild(cf);
-    var cp = txt('div', 'pn-card'); var h2 = txt('h4', '', 'Mis proyectos en curso'); var v2 = txt('button', 'pn-enlace', 'Ver todos'); v2.type = 'button'; v2.addEventListener('click', function () { ir('proyectos-fila'); }); h2.appendChild(v2); cp.appendChild(h2);
-    if (!proy.length) cp.appendChild(txt('p', 'pn-vacio', 'Aquí salen los proyectos que estás tejiendo o por empezar. Agrega el primero con «Nuevo proyecto».'));
-    proy.slice(0, 5).forEach(function (p) {
-      var fila = txt('button', 'pn-fila'); fila.type = 'button'; fila.addEventListener('click', function () { ir('proyectos-fila'); });
-      var t = txt('span', 'pn-t'); t.appendChild(txt('b', '', p.proyecto)); var sub = [p.para ? 'Para ' + p.para : '', p.fecha ? 'Fecha: ' + p.fecha : ''].filter(Boolean).join(' · '); if (sub) t.appendChild(txt('small', '', sub));
-      fila.appendChild(t); fila.appendChild(txt('span', 'pn-chip' + (p.estado === 'Tejiendo' ? ' av' : ''), p.estado || 'Por empezar')); cp.appendChild(fila);
+    var ch = txt('div', 'pn-card'); ch.appendChild(cabecera('Para hacer hoy', 'Planeador', 'planeador-dia'));
+    var reg = (N.datos()._dias || {})[iso(hoy)], tareas = reg && reg.t ? reg.t : [];
+    if (!tareas.length) ch.appendChild(txt('p', 'pn-vacio', 'Anota tus tareas del día en el Planeador y aparecen aquí.'));
+    tareas.slice(0, 5).forEach(function (t) {
+      var b = txt('button', 'pn-tarea' + (t.ok ? ' ok' : '')); b.type = 'button'; b.addEventListener('click', function () { ir('planeador-dia'); });
+      b.appendChild(txt('span', 'pn-tarea-m', t.ok ? '✓' : '')); b.appendChild(txt('span', '', String(t.x || ''))); ch.appendChild(b);
     });
-    dos.appendChild(cp); cont.appendChild(dos);
+    dos.appendChild(ch); cont.appendChild(dos);
 
     var ca = txt('div', 'pn-card'); ca.appendChild(txt('h4', '', 'Acciones rápidas'));
     var ac = txt('div', 'pn-acciones');
@@ -113,7 +192,7 @@
       var b = txt('button', 'pn-accion sec', a[0]); b.type = 'button'; b.addEventListener('click', function () { ir(a[1]); }); lm.appendChild(b);
     });
     mas.appendChild(lm); cont.appendChild(mas);
-    cont.appendChild(txt('p', 'pn-nota', 'Estos números salen de lo que escribes en tus hojas: Mis ventas, Gastos del negocio, Control de pedidos y Proyectos por tejer.'));
+    cont.appendChild(txt('p', 'pn-nota', 'Estos números salen de lo que escribes en tus hojas: Mis ventas, Gastos del negocio, Control de pedidos, Proyectos por tejer y el Planeador.'));
   }
   window.lrPintarPanel = pintar;
   document.addEventListener('agenda-guardada', function () { if (hoja.classList.contains('abierta')) pintar(); });
