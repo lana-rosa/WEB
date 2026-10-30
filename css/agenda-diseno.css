@@ -56,3 +56,8 @@ body { color: #2B1B21; }
 /* Opción A (30-oct-2026, pedido de Sara «que no se vea infantil»): sin el dibujo de Rosina junto al título de cada hoja; el contorno de cada fondo se conserva */
 .hoja-agenda > header > img { display: none !important; }
 @media (max-width: 520px) { .ficha-barra .boton-chico { padding: 6px 10px; gap: 6px; } .ficha-barra { gap: 6px; } }
+
+/* Sin cinta ni contorno en las hojas (30-oct-2026, pedido de Sara: «no se ve como quiero, mejor quitemos esa parte»): el fondo elegido se ve solo en la Portada.
+   Las reglas de la cinta de agenda-fichas.css y las imágenes `-borde` se conservan por si se quiere volver a ponerla; basta quitar este bloque. */
+#agenda[data-fondo-hojas] .hoja-agenda::before { display: none !important; }
+@media print { #agenda[data-fondo-hojas] .hoja-agenda { padding: 28px !important; } }
