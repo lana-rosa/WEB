@@ -105,6 +105,7 @@ button.boton-secundario { font: inherit; font-weight: 600; cursor: pointer; }
 .ed-casa-academy { background: #EAF2FD; }
 .ed-casa-academy:hover { border-color: #8DB8F0; }
 .ed-casa-ir { font-weight: 700; margin-top: auto; padding-top: 6px; }
+.ed-otras-casas-una { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin: 0 auto; }   /* una sola casa (Academy muestra solo la Mercería) */
 @media (max-width: 760px) { .ed-otras-casas { grid-template-columns: 1fr; } }
 .ed-rosina { display: block; border-radius: 22px; overflow: hidden; }
 .ed-rosina img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
