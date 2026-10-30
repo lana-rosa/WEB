@@ -5,6 +5,7 @@
 (function () {
   'use strict';
   var N = window.lrAgendaNucleo; if (!N) return;
+  var POSE = { 'tabla-pedidos': 'cartel', 'tabla-lanas': 'ovillo', 'tabla-compras': 'ovillo', 'tabla-fila': 'gancho', 'tabla-diario': 'leyendo', 'tabla-aprendi': 'leyendo', 'tabla-ventas': 'celebra' };   // pose de Rosina junto al ejemplo; las demás usan «idea»
   var EJEMPLOS = {
     'tabla-pedidos': 'Aún no hay pedidos. Toca «Agregar pedido» y anota quién lo pidió, qué producto es y cuándo lo entregas. Ejemplo: «Osito de 20 cm para María, entrega el 15 de noviembre».',
     'tabla-fila': 'Aún no hay proyectos. Anota lo que quieres tejer y para quién. Ejemplo: «Chaleco para María · Tejiendo · fecha límite 15/11».',
@@ -36,7 +37,8 @@
   var avisos = {};
   Object.keys(EJEMPLOS).forEach(function (t) {
     var T = N.tablas[t]; if (!T || !T.cuerpo) return;
-    var tabla = T.cuerpo.closest('table') || T.cuerpo; var p = document.createElement('p'); p.className = 'vacio-ejemplo no-imprimir'; p.textContent = EJEMPLOS[t];
+    var tabla = T.cuerpo.closest('table') || T.cuerpo; var p = document.createElement('p'); p.className = 'vacio-ejemplo no-imprimir'; var im = document.createElement('img'); im.src = '/img/agenda/rosina/' + (POSE[t] || 'idea') + '.webp'; im.alt = ''; im.width = 56; im.height = 56; p.appendChild(im);
+    p.appendChild(document.createTextNode(EJEMPLOS[t]));
     tabla.parentNode.insertBefore(p, tabla); avisos[t] = p;
   });
   var espera = 0;
@@ -49,7 +51,8 @@
   var PASOS = [['Anotar un pedido', 'Quién lo pidió, qué es y cuándo lo entregas', 'control-pedidos', 'tabla-pedidos'], ['Planear un proyecto', 'Lo que quieres tejer, para quién y para cuándo', 'proyectos-fila', 'tabla-fila'], ['Ver cuánto ganaste', 'Tus ventas y gastos del mes y lo que te quedó', 'ventas-mes', null]];
   window.lrEmpiezaAqui = function () {
     var d = document.createElement('div'); d.className = 'empieza-aqui no-imprimir';
-    var h = document.createElement('h4'); h.textContent = 'Empieza aquí'; d.appendChild(h);
+    var enc = document.createElement('div'); enc.className = 'ea-enc'; var h = document.createElement('h4'); h.textContent = 'Empieza aquí'; enc.appendChild(h);
+    var ri = document.createElement('img'); ri.src = '/img/agenda/rosina/celebra.webp'; ri.alt = ''; ri.width = 64; ri.height = 64; enc.appendChild(ri); d.appendChild(enc);
     var g = document.createElement('div'); g.className = 'ea-pasos';
     PASOS.forEach(function (p, i) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'pn-card ea-paso';

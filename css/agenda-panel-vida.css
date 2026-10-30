@@ -65,3 +65,14 @@
   #agenda .pn-kpi { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; }
   #agenda .pn-kpi-ic { width: 38px; height: 38px; } #agenda .pn-kpi strong { font-size: 1.25rem; overflow-wrap: anywhere; }
 }
+
+/* Rosina en la vista de sección y en los estados vacíos (30-oct-2026, Sara: «sigue con las ilustraciones en las secciones») */
+#agenda .vs-cab { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 14px; padding: 18px 22px; min-height: 120px; border-radius: 24px; overflow: hidden;
+  background: linear-gradient(120deg, var(--sec-bg) 0%, #fff 100%); border: 1px solid rgba(116, 61, 80, .08); }
+#agenda .vs-cab-t { min-width: 0; } #agenda .vs-cab h2 { margin: 0; } #agenda .vs-cab p { margin: 4px 0 0; }
+#agenda .vs-rosina { flex: none; height: 118px; width: auto; margin: -6px 0 -14px; filter: drop-shadow(0 6px 10px rgba(92, 47, 63, .18)); pointer-events: none; }
+#agenda .vacio-ejemplo { display: flex; align-items: center; gap: 12px; } #agenda .vacio-ejemplo img { flex: none; height: 56px; width: auto; }
+#agenda .ea-enc { display: flex; align-items: center; justify-content: space-between; gap: 10px; } #agenda .ea-enc img { height: 64px; width: auto; }
+@media (max-width: 520px) { #agenda .vs-cab { padding: 14px 16px; min-height: 0; } #agenda .vs-rosina { height: 84px; margin: -4px 0 -10px; } }
+@media print { #agenda .vs-rosina { display: none; } }
+#agenda .vacio-ejemplo[hidden] { display: none; }   /* el display:flex de arriba le ganaba al atributo hidden */
