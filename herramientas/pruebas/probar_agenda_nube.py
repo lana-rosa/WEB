@@ -43,9 +43,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     # 1) recordatorio sin cuenta
     ctx = contexto(b, sesion=False); pg, errs = listo(ctx)
-    v('sin copia reciente y con datos: sale el recordatorio', pg.locator('#agenda-recordatorio').is_visible())
-    pg.click('#rec-despues'); v('«Ahora no» lo oculta', not pg.locator('#agenda-recordatorio').is_visible())
-    pg.reload(); pg.wait_for_timeout(1000); v('«Ahora no» se recuerda 3 días', not pg.locator('#agenda-recordatorio').is_visible())
+    v('el aviso «Protege tu agenda» está apagado (30-oct-2026, pedido de Sara) aunque haya datos sin copia', not pg.locator('#agenda-recordatorio').is_visible())
     pg.evaluate("localStorage.removeItem('lrAgendaRecordatorio'); localStorage.setItem('rosinaAgendaCopia', new Date().toISOString().slice(0,10))"); pg.reload(); pg.wait_for_timeout(1000)
     v('con una copia de hoy no sale el recordatorio', not pg.locator('#agenda-recordatorio').is_visible())
     pg.evaluate("localStorage.removeItem('rosinaAgendaCopia'); localStorage.removeItem('rosinaAgenda')"); pg.reload(); pg.wait_for_timeout(1000)
@@ -81,6 +79,6 @@ with sync_playwright() as p:
     # 5) a 390 px sin desplazamiento horizontal y con el recordatorio
     ctx = contexto(b, sesion=False); ctx.new_page().close(); pg = ctx.new_page(); pg.set_viewport_size({'width': 390, 'height': 800}); pg.on('dialog', lambda d: d.accept())
     pg.goto(BASE + '/agenda-rosina.html?avance=1'); pg.wait_for_timeout(1000); pg.evaluate("d => localStorage.setItem('rosinaAgenda', JSON.stringify(d))", LOCAL); pg.reload(); pg.wait_for_timeout(1200)
-    v('390 px: el recordatorio no genera desplazamiento horizontal', pg.evaluate('document.documentElement.scrollWidth') <= 390 and pg.locator('#agenda-recordatorio').is_visible())
+    v('390 px: sin desplazamiento horizontal', pg.evaluate('document.documentElement.scrollWidth') <= 390 and True)
     ctx.close(); b.close()
 print(f'\n{bien} comprobaciones correctas, {mal} con falla.'); sys.exit(1 if mal else 0)

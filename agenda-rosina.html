@@ -55,8 +55,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/comun.css?v=43">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <link rel="stylesheet" href="/css/agenda-fichas.css?v=23">
-<link rel="stylesheet" href="/css/agenda-diseno.css?v=6">
-<link rel="stylesheet" href="/css/agenda-panel.css?v=2">
+<link rel="stylesheet" href="/css/agenda-diseno.css?v=7">
+<link rel="stylesheet" href="/css/agenda-panel.css?v=3">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #D6B4B8; --rosa-suave: #FBE4EF;
@@ -2150,14 +2150,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <section class="contenedor no-imprimir" style="text-align:center;">
-    <h2>¿Te gustó el material de Rosina?</h2>
-    <p style="color:var(--tinta-suave); max-width:56ch; margin:0 auto 20px;">Compártelo con tus amigas tejedoras y síguenos para recibir más tips. Si quieres aprender con nosotras en persona, mira nuestros talleres.</p>
-    <div class="acciones" style="justify-content:center;">
-      <a class="boton-primario" href="/aprende.html">Ver talleres</a>
-      <a class="boton-secundario" href="/academy/rosina/#conoce-a-rosina">Conocer a Rosina</a>
-    </div>
-  </section>
 </main>
 <!-- marca-impresion -->
 <div class="marca-impresion marca-imp-abajo" aria-hidden="true"><strong>Lana Rosa Crochet</strong><span>WhatsApp 320 507 2801</span><span>contacto@lanarosacrochet.com</span><span>lanarosacrochet.com</span><span>Instagram @lanarosacrochet</span><span>Villamaría, Caldas</span></div>
@@ -4048,8 +4040,10 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     window.lrNube = { activa: estado.nube === true };
     recordatorio();
   }
+  var RECORDATORIO_ACTIVO = false;
   function recordatorio() {
     var r = $('agenda-recordatorio'); if (!r) return;
+    if (!RECORDATORIO_ACTIVO) { r.hidden = true; return; }   // 30-oct-2026, pedido de Sara: el aviso «Protege tu agenda» se quitó (salía y se iba sin alcanzar a leerlo en el celular); para volver a mostrarlo, true
     var ultima = lsGet(CLAVE_COPIA), dias = ultima ? (Date.now() - Date.parse(ultima)) / 86400000 : Infinity;
     var espera = Number(lsGet(CL_REC) || 0);
     r.hidden = !(estado.nube !== true && hayLocal() && dias >= DIAS_RECORDATORIO && !(espera && Date.now() - espera < DIAS_ESPERA * 86400000));
@@ -4188,7 +4182,10 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=1" defer></script>
-<script src="/js/agenda/panel.js?v=1" defer></script>
+<script src="/js/agenda/vacios.js?v=1" defer></script>
+<script src="/js/agenda/panel.js?v=2" defer></script>
+<script src="/js/agenda/iconos.js?v=3" defer></script>
+<script src="/js/agenda/ayuda.js?v=2" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
 <script src="/js/agenda/app.js?v=1" defer></script>

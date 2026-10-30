@@ -66,8 +66,11 @@ def abrir_chat(ctx, base, respuestas, ruta='/contacto.html'):
     page.route('**/rest/v1/rpc/obtener_regalos_web', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(CATALOGO_FOTOS)))
     page.route('**/functions/v1/rosina-web', funcion)
     page.goto(base + ruta, wait_until='load')
-    page.wait_for_selector('.rc-boton', timeout=8000)
-    page.click('.rc-boton')
+    page.wait_for_selector('.rc-boton', state='attached', timeout=8000)
+    if 'agenda-rosina' in ruta:   # en la agenda hay un solo botón flotante de ayuda: «Preguntar a Rosina» abre el chat
+        page.click('#af-boton'); page.click('[data-af="rosina"]')
+    else:
+        page.click('.rc-boton')
     page.wait_for_selector('.rc-panel.abierto')
     return page, errores, pedidos
 
