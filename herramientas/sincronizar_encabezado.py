@@ -49,7 +49,7 @@ LOGO_IMG = {'merceria': ('img/logo-merceria-360.webp', 'Lana Rosa Mercería'), '
 ICONOS = {
     'merceria': ('/img/favicon-merceria-256.png', '/img/apple-touch-icon-merceria.png', '#7C4DDB'),
     'academy': ('/img/favicon-academy-256.png', '/img/apple-touch-icon-academy.png', '#2F7DE1'),
-    'agenda': ('/img/favicon-agenda-256.png', '/img/apple-touch-icon-agenda.png', '#1FB06F'),
+    'agenda': ('/img/favicon-agenda-256.png', '/img/apple-touch-icon-agenda.png', '#743D50'),
 }
 ICONOS_BASE = ('/img/favicon-256.png', '/img/apple-touch-icon.png', '#E74E96')
 # app instalable: manifiesto y nombre en la pantalla por casa (las páginas sin casa usan Crochet)
@@ -223,12 +223,15 @@ def _encabezado(casa):
     <a href="precios.html">Precios</a>
   </nav>'''
     texto, enlace = LOGO[casa]
+    # Agenda (30-oct-2026, pedido de Sara): el título va en la barra de arriba y el engranaje de Configuración al lado de «Mi cuenta»
+    titulo_barra = '    <span class="titulo-barra-agenda">Agenda para tejedoras</span>\n' if casa == 'agenda' else ''
+    boton_config = ('    <button type="button" class="boton-config-barra no-imprimir" id="agenda-config-btn" aria-label="Configuración" title="Configuración" aria-expanded="false" aria-controls="agenda-config"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>\n' if casa == 'agenda' else '')
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa-360.webp', 'Lana Rosa Crochet'))
     return f'''<a class="saltar-contenido" href="#contenido-principal">Saltar al contenido</a>
 {anuncios(casa)}<header class="encabezado" data-casa="{casa}">
   <div class="contenedor">
     <a href="{enlace}" class="logo"><img src="{img}" alt="{alt}" class="logo-img" width="360" height="230"><span class="texto-logo">{texto}</span></a>
-    <nav aria-label="Navegación principal">
+{titulo_barra}    <nav aria-label="Navegación principal">
       <ul class="nav-principal">
 {chr(10).join(lis)}
       </ul>
@@ -241,7 +244,7 @@ def _encabezado(casa):
         <button type="submit" aria-label="Buscar"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
       </form>
     </div>
-    <a href="cuenta.html" class="boton-cuenta-header" aria-label="Mi cuenta"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="solo-lectores">Mi cuenta</span></a>
+{boton_config}    <a href="cuenta.html" class="boton-cuenta-header" aria-label="Mi cuenta"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="solo-lectores">Mi cuenta</span></a>
     <button class="boton-carrito-header" id="boton-carrito" aria-label="Ver carrito de compras">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg><span class="solo-lectores">Carrito</span><span class="contador-carrito" id="contador-carrito">0</span>
     </button>
@@ -312,8 +315,23 @@ def logo_pie(casa, img, alt):
 
 def pie_casa(modelo, casa, pagina=None):
     """Pie simple: logo con las tres casas al lado y redes, tres columnas cortas, pagos y apoyo en una línea, y los legales."""
-    titulo, enlaces = PIE_SIMPLE.get(casa) or PIE_SIMPLE_COMUN
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa-360.webp', 'Lana Rosa Crochet'))
+    if casa == 'agenda':   # pie mínimo de la Agenda (pedido de Sara, 30-oct-2026): solo logo, políticas, autoría y derechos
+        return f'''<footer class="pie-rico pie-minimo">
+  <div class="contenedor pie-min-fila">
+    <div class="pie-marca">
+      {logo_pie(casa, img, alt)}
+    </div>
+    <div class="pie-legal">
+      <a href="/politicas.html">Políticas</a>
+      <a href="/politicas.html#datos">Datos personales</a>
+      <a href="/politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>
+      <span class="autoria">Agenda creada por Lana Rosa Crochet</span>
+      <span class="derechos">© 2026 Lana Rosa Crochet. Todos los derechos reservados.</span>
+    </div>
+  </div>
+</footer>'''
+    titulo, enlaces = PIE_SIMPLE.get(casa) or PIE_SIMPLE_COMUN
     def li(t, h, extra=''):
         if not h: return f'\n        <li>{t}</li>'
         ext = ' target="_blank" rel="noopener"' if h.startswith('http') else ''

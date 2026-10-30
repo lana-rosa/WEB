@@ -64,7 +64,7 @@ tr.ficha.abierta .ficha-flecha { transform: rotate(90deg); }
 
 /* Fichas cerradas que ya están dominadas / listas: lista compacta */
 tr.ficha.cumplida:not(.abierta) { border-style: dashed; }
-tr.ficha.cumplida:not(.abierta) .ficha-cab { background: #F3F8F5; min-height: 44px; }
+tr.ficha.cumplida:not(.abierta) .ficha-cab { background: var(--rosa-suave); min-height: 44px; }
 
 /* Impresión: las fichas con datos salen abiertas; en blanco salen unas pocas fichas vacías */
 @media print {
@@ -202,7 +202,7 @@ body.en-blanco .aviso-alarma { display: none !important; }
 .dp-paso-btn .dp-num { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--rosa-suave); color: var(--rosa-texto); font-size: 0.8rem; }
 .dp-paso-btn[aria-current="step"] { background: var(--rosa-boton); color: var(--sobre-principal); border-color: var(--rosa-principal); }
 .dp-paso-btn[aria-current="step"] .dp-num { background: var(--blanco); color: var(--rosa-boton); }
-.dp-paso-btn.hecho .dp-num { background: #DDF3E4; color: #1F6B42; }
+.dp-paso-btn.hecho .dp-num { background: var(--rosa-suave); color: var(--rosa-texto); }
 @media (max-width: 520px) { .dp-paso-btn .dp-tit { display: none; } .dp-paso-btn { padding: 6px; } }
 .dp-paso { border: none; margin: 0; padding: 0; min-width: 0; display: none; }
 .dp-paso.activo { display: block; }
@@ -252,7 +252,7 @@ body.en-blanco .tinta-canvas { display: none; }
 .prioridad textarea.una-linea:focus { outline: none; border-bottom-color: var(--rosa-principal); }
 
 /* Enlace de WhatsApp bajo el teléfono */
-.wa-link { display: inline-block; margin-top: 4px; font-size: 0.85rem; font-weight: 700; color: #1F6B42; text-decoration: underline; }
+.wa-link { display: inline-block; margin-top: 4px; font-size: 0.85rem; font-weight: 700; color: var(--rosa-texto); text-decoration: underline; }
 .wa-link[hidden] { display: none; }
 .resumen-pedidos { font-weight: 700; }
 
@@ -373,7 +373,7 @@ html.agenda-gratis [data-completa] { display: none !important; }
 @media print { .promo-eco { display: none; } }
 
 /* ---- Tarjeta «Instala tu agenda como app» ---- */
-.instalar-agenda { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 0 0 16px; padding: 12px 16px; border: 2px solid #1E9E78; border-radius: 18px; background: var(--blanco); }
+.instalar-agenda { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 0 0 16px; padding: 12px 16px; border: 2px solid var(--rosa-principal); border-radius: 18px; background: var(--blanco); }
 .instalar-agenda[hidden] { display: none; }
 .instalar-agenda img { width: 56px; height: 56px; border-radius: 14px; flex: none; }
 .ia-texto { flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
@@ -580,3 +580,29 @@ html.dueno-abierto { overflow: hidden; }
 .oferta-merceria a { display: inline-block; padding: 6px 4px; min-height: 28px; }
 
 .mes .mes-diario { display: block; margin: 2px 0 4px; font-size: 0.78rem; font-weight: 700; color: var(--rosa-texto); }
+
+/* Encabezado y pie mínimos de la agenda (pedido de Sara, 30-oct-2026): arriba solo el logo y «Mi cuenta» (sin menú general, búsqueda ni carrito); abajo solo logo, políticas, autoría y derechos. Los elementos se ocultan (no se quitan) para no romper otros scripts. */
+.encabezado[data-casa="agenda"] nav[aria-label="Navegación principal"], .encabezado[data-casa="agenda"] .menu-movil, .encabezado[data-casa="agenda"] .contenedor-buscar-header, .encabezado[data-casa="agenda"] .boton-carrito-header, .nav-movil-panel { display: none !important; }
+.encabezado[data-casa="agenda"] .contenedor { justify-content: space-between; }
+/* Pie mínimo: logo pequeño a la izquierda y el texto a un lado (pedido de Sara, 30-oct-2026) */
+.pie-minimo .pie-min-fila { display: flex; align-items: center; gap: 12px 28px; padding-top: 16px; padding-bottom: 16px; }
+.pie-minimo .pie-marca { margin: 0; flex: none; }
+.pie-minimo .pie-logo-anim { width: 104px; margin: 0; }
+.pie-minimo .pie-legal { flex: 1 1 auto; border-top: 0; padding-top: 0; justify-content: flex-start; text-align: left; gap: 2px 16px; }
+.pie-minimo .pie-legal .autoria, .pie-minimo .pie-legal .derechos { margin-left: 0; opacity: 0.8; }
+.pie-minimo .pie-legal .derechos { flex-basis: 100%; }
+@media (max-width: 520px) { .pie-minimo .pie-min-fila { gap: 8px 14px; } .pie-minimo .pie-logo-anim { width: 78px; } .pie-minimo .pie-legal { font-size: 0.74rem; } }
+.pie-minimo .pie-legal .derechos { text-align: left; width: 100%; }
+@media (max-width: 520px) { .pie-minimo .pie-min-fila { padding-right: 76px; } }   /* deja libre el lado de los botones flotantes */
+
+/* Barra de arriba de la agenda (30-oct-2026, pedido de Sara): título «Agenda para tejedoras» junto al logo y engranaje de Configuración al lado de «Mi cuenta» */
+.titulo-barra-agenda { flex: 1 1 auto; min-width: 0; margin: 0 8px 0 4px; font-family: 'DynaPuff', cursive; font-weight: 700; font-size: clamp(1rem, 3.6vw, 1.45rem); line-height: 1.1; color: var(--rosa-texto); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.boton-config-barra { position: relative; background: var(--blanco); border: 1.5px solid var(--rosa-medio); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; color: var(--rosa-texto); cursor: pointer; flex: none; padding: 0; margin-left: 8px; }
+.boton-config-barra:hover, .boton-config-barra[aria-expanded="true"] { border-color: var(--rosa-principal); background: var(--rosa-suave); }
+.boton-config-barra svg { display: block; transition: transform .25s; }
+.boton-config-barra[aria-expanded="true"] svg { transform: rotate(60deg); }
+.agenda-config { scroll-margin-top: 78px; }
+@media (max-width: 520px) { .titulo-barra-agenda { font-size: 0.98rem; } .boton-config-barra { width: 38px; height: 38px; margin-left: 4px; } }
+@media print { .boton-config-barra { display: none !important; } }
+section.intro-rincon.intro-agenda { padding-top: 0 !important; padding-bottom: 0 !important; }   /* sin la cabecera de la hoja ya no hace falta la franja de arriba */
+.intro-agenda:has(.agenda-config:not([hidden])), .intro-agenda:has(.aviso-sin-guardar:not([hidden])), .intro-agenda:has(.agenda-recordatorio:not([hidden])) { padding-top: 12px !important; padding-bottom: 6px !important; }

@@ -4,7 +4,7 @@ import os, tempfile
 from PIL import Image, ImageDraw
 from playwright.sync_api import sync_playwright
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VERDE = (31, 176, 111); VERDE_OSCURO = (8, 92, 56); PILDORA = (228, 246, 237)
+CLARO = (232, 213, 212); VERDE = (116, 61, 80); VERDE_OSCURO = (92, 47, 63); PILDORA = (232, 213, 212)   # vinotinto #743D50, texto #5C2F3F y rosa empolvado #E8D5D4 (30-oct-2026; antes verde)
 src = Image.open(os.path.join(R, 'img', 'logo-academy-360.webp')).convert('RGB'); px = src.load(); w, h = src.size
 base = src.getpixel((5, 5))
 # 1) recolorear: el azul de fondo pasa a verde y el blanco queda blanco (mezcla según lo cerca que esté del blanco)
@@ -12,7 +12,7 @@ out = Image.new('RGB', src.size); po = out.load()
 for y in range(h):
     for x in range(w):
         r, g, b = px[x, y]; t = max(0.0, min(1.0, (r - base[0]) / (255 - base[0])))
-        po[x, y] = tuple(round(VERDE[i] + (255 - VERDE[i]) * t) for i in range(3))
+        po[x, y] = tuple(round(VERDE[i] + (CLARO[i] - VERDE[i]) * t) for i in range(3))   # la oveja y las letras en rosa empolvado
 # 2) la píldora: se borra el texto «Academy» y se vuelve a dibujar redonda
 S = 4; x0, y0, x1, y1 = 122, 185, 238, 212
 pil = Image.new('RGBA', ((x1 - x0) * S, (y1 - y0) * S), (0, 0, 0, 0)); ImageDraw.Draw(pil).rounded_rectangle((0, 0, pil.width - 1, pil.height - 1), radius=(y1 - y0) * S // 2, fill=PILDORA + (255,))

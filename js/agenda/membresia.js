@@ -65,7 +65,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
       var c = hoja.querySelector(':scope > .candado-pago');
       if (bloquear && !c) {
         c = document.createElement('div'); c.className = 'candado-pago no-imprimir';
-        c.innerHTML = '<div class="cp-ic" aria-hidden="true">💎</div><h4>Hoja de la membresía</h4><p></p><button type="button" class="boton-primario boton-chico" data-abrir-membresia>Ver planes desde ' + PRECIO_MES + ' al mes</button><small>Tus hojas gratis siguen igual y lo que ya escribiste sigue guardado en este dispositivo.</small>';
+        c.innerHTML = '<div class="cp-ic" aria-hidden="true">💎</div><h4>Hoja de la membresía</h4><p></p><button type="button" class="boton-primario boton-chico" data-abrir-membresia>Ver planes desde ' + PRECIO_MES + ' al mes</button><small>Tus hojas gratis siguen igual y lo que ya escribiste sigue guardado en este dispositivo: puedes bajarlo en «Guardar una copia» (⚙️ Configuración).</small>';
         c.querySelector('p').textContent = (TEXTOS[h.grupo] || 'Esta hoja es parte de la agenda completa.') + ' Esta hoja es de la membresía.';
         var cab = hoja.querySelector('header'); if (cab) cab.insertAdjacentElement('afterend', c); else hoja.insertBefore(c, hoja.firstChild);
       }

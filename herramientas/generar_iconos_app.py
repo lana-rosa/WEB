@@ -15,7 +15,7 @@ FUENTE = os.path.join(R, 'herramientas', 'iconos-app', 'ovejita-256.png')
 if not os.path.exists(FUENTE):
     os.makedirs(os.path.dirname(FUENTE), exist_ok=True)
     Image.open(os.path.join(R, 'img', 'favicon-academy-256.png')).convert('RGBA').save(FUENTE)
-COLORES = {'crochet': (232, 78, 148), 'merceria': (142, 85, 214), 'academy': (42, 111, 203), 'agenda': (31, 176, 111)}
+COLORES = {'crochet': (232, 78, 148), 'merceria': (142, 85, 214), 'academy': (42, 111, 203), 'agenda': (116, 61, 80)}
 ARCHIVO = {'crochet': ('img/favicon-256.png', 'img/apple-touch-icon.png', 'img/favicon.ico'), 'merceria': ('img/favicon-merceria-256.png', 'img/apple-touch-icon-merceria.png', 'img/favicon-merceria.ico'),
            'academy': ('img/favicon-academy-256.png', 'img/apple-touch-icon-academy.png', 'img/favicon-academy.ico'), 'agenda': ('img/favicon-agenda-256.png', 'img/apple-touch-icon-agenda.png', 'img/favicon-agenda.ico')}
 
@@ -40,7 +40,7 @@ def dibujo(lado, color, fraccion):
     """Cuadrado `lado` del color, con la oveja blanca centrada que ocupa `fraccion` del lado (por su dimensión mayor)."""
     im = Image.new('RGBA', (lado, lado), color + (255,))
     k = fraccion * lado / max(MASCARA.size); m = MASCARA.resize((max(1, round(MASCARA.width * k)), max(1, round(MASCARA.height * k))), Image.LANCZOS)
-    blanco = Image.new('RGBA', m.size, (255, 255, 255, 255)); blanco.putalpha(m)
+    blanco = Image.new('RGBA', m.size, (232, 213, 212, 255) if color == COLORES['agenda'] else (255, 255, 255, 255)); blanco.putalpha(m)
     im.alpha_composite(blanco, ((lado - m.width) // 2, (lado - m.height) // 2 + round(lado * 0.01)))
     return im
 

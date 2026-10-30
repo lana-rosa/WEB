@@ -332,7 +332,7 @@ html :is(.faq-item, .det-tamanos, .ur-opciones, .uc-mas, .por-que) > summary:hov
 .pie-logo-anim { container-type: inline-size; }
 .pie-logo-anim .la-nombre { position: absolute; left: 0; right: 0; display: block; text-align: center; white-space: nowrap; color: #DDE6FB; font-family: var(--fuente-cuerpo); font-weight: 400; letter-spacing: .08em; pointer-events: none; }
 .pie-logo-anim .la-nombre .la-p { display: inline-block; }
-.pie-logo-anim[aria-label="Lana Rosa Agenda"] .la-nombre { color: #D3F5E4; }   /* Agenda: el nombre en verde muy claro (Academy y Mercería usan el azul/lila claro) */
+.pie-logo-anim[aria-label="Lana Rosa Agenda"] .la-nombre { color: #E8D5D4; }   /* Agenda: el nombre en rosa empolvado (Academy y Mercería usan el azul/lila claro) */
 
 /* Menú móvil: el desplazamiento se queda dentro del menú y la página de atrás no se mueve mientras está abierto (23-oct-2026) */
 .nav-movil-panel { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
@@ -367,7 +367,7 @@ html[data-casa="agenda"] #agenda { background: var(--casa-t2); }
 main:focus { outline: none; }
 @media print { .saltar-contenido { display: none !important; } }
 
-/* ===== Cuarta casa: Agenda para tejedoras (29-oct-2026). Verde vivo; copia las reglas de Academy (arriba) y cambia los colores ===== */
-html[data-casa="agenda"] { --tinte: #E6F7EE; --rosa-principal: #12A66E; --rosa-medio: #8FDDB8; --rosa-suave: #EAF8F1; --rosa-hover: #0B7A50; --rosa-rgb: 18, 166, 110; --rosa-texto: #0A6B45; --rosa-boton: #0C8556; --rosa-boton-hover: #096A44; --sobre-principal: #fff; --casa-t1: #E6F7EE; --casa-t2: #CFF0DF; }
-.nav-principal li.g-agenda a { background: #CDEFDD; color: #0A6B45; }
-.nav-principal li.g-agenda a:hover { background: #12A66E; color: #fff; }
+/* ===== Cuarta casa: Agenda para tejedoras (29-oct-2026). Desde el 30-oct-2026 (pedido de Sara) la paleta es VINOTINTO #743D50 (color principal) y ROSA EMPOLVADO #E8D5D4 (detalles y acentos); antes era verde. Copia las reglas de Academy (arriba) y cambia los colores ===== */
+html[data-casa="agenda"] { --tinte: #F4EAE9; --rosa-principal: #743D50; --rosa-medio: #E8D5D4; --rosa-suave: #F6EEED; --rosa-hover: #5C2F3F; --rosa-rgb: 116, 61, 80; --rosa-texto: #5C2F3F; --rosa-boton: #743D50; --rosa-boton-hover: #5C2F3F; --sobre-principal: #fff; --casa-t1: #F7F0EF; --casa-t2: #E8D5D4; }
+.nav-principal li.g-agenda a { background: #E8D5D4; color: #5C2F3F; }
+.nav-principal li.g-agenda a:hover { background: #743D50; color: #fff; }
