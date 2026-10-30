@@ -137,7 +137,9 @@
       enlaces.forEach(function (a) {
         var id = a.dataset.hoja, src = document.getElementById(id), p = src ? src.querySelector(':scope > header p') : null, bl = src && src.classList.contains('sin-membresia');
         var b = txt('button', 'pn-card vs-hoja' + (bl ? ' bloq' : '')); b.type = 'button';
-        b.appendChild(txt('b', '', limpio(a.textContent))); if (p) b.appendChild(txt('small', '', p.textContent));
+        var top = txt('span', 'vs-top'), ic = window.lrIconos && window.lrIconos.de ? window.lrIconos.de(a.textContent) : null;
+        if (ic) { var ins = txt('span', 'vs-ic'); ins.appendChild(ic); top.appendChild(ins); }
+        top.appendChild(txt('b', '', limpio(a.textContent))); b.appendChild(top); if (p) b.appendChild(txt('small', '', p.textContent));
         if (bl) b.appendChild(txt('span', 'pn-chip', 'Con membresía'));
         b.addEventListener('click', function () { ir(id); }); g.appendChild(b);
       });

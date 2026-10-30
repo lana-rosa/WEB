@@ -70,5 +70,6 @@
   new MutationObserver(function () { if (!espera) espera = setTimeout(pasada, 60); }).observe(zona, { childList: true, subtree: true });
   var lista = document.getElementById('selector-hoja-lista'); if (lista) new MutationObserver(function () { limpiarLista(); }).observe(lista, { childList: true });
   pasada();
-  window.lrIconos = { pasada: pasada };
+  /* de(texto): el ícono de línea que corresponde al emoji con que empieza un texto (para las tarjetas de la vista de sección); si no hay, el de «hoja» */
+  window.lrIconos = { pasada: pasada, de: function (t) { var m = String(t || '').match(RE); var n = m && DE[clave(m[2])]; return svg(n && !QUITAR[clave(m[2])] ? n : 'hoja', false); } };
 })();
