@@ -28,8 +28,8 @@ body, #agenda.seccion-suave, #agenda { background: var(--marfil) !important; }
 @container hoja (min-width: 720px) {
   .fin-tarjetas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .fin-dos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  #agenda #control-pedidos .tabla-agenda tbody { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px; align-items: start; }
-  #agenda #control-pedidos .tabla-agenda tbody > tr.ficha.abierta { grid-column: 1 / -1; }
+  #agenda table.tabla-fichas tbody { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px; align-items: start; }
+  #agenda table.tabla-fichas tbody > tr.ficha.abierta { grid-column: 1 / -1; }
   .portada-controles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 }
 @container hoja (min-width: 980px) {
