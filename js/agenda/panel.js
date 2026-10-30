@@ -117,7 +117,7 @@
     partes.push(tejiendo ? tejiendo + (tejiendo === 1 ? ' proyecto' : ' proyectos') + ' en el gancho' : 'ningún proyecto tejiéndose ahora');
     tx.appendChild(txt('p', '', DIAS[hoy.getDay()].replace(/^./, function (c) { return c.toUpperCase(); }) + ' ' + hoy.getDate() + ' de ' + MESES[hoy.getMonth()] + ' · ' + partes.join(' y ') + '.'));
     var dia = Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / 86400000); tx.appendChild(txt('span', 'pn-frase', FRASES[dia % FRASES.length]));
-    hero.appendChild(tx); var im = document.createElement('img'); im.className = 'pn-rosina'; im.src = '/img/aventuras/rosina-original/tejiendo.webp'; im.alt = ''; im.width = 260; im.height = 260; hero.appendChild(im);
+    hero.appendChild(tx); var im = document.createElement('img'); im.className = 'pn-rosina'; im.src = '/img/agenda/rosina/tejiendo.webp'; im.alt = ''; im.width = 260; im.height = 260; hero.appendChild(im);
     cont.appendChild(hero);
 
     if (!ped.length && !todasVentas.length && !filas('tabla-gastos', ['valor']).length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
@@ -131,7 +131,7 @@
     /* Tres tarjetas con gráficos: proyectos, ventas de la semana y calendario del mes */
     var gr = txt('div', 'pn-graf');
     var cp = txt('div', 'pn-card'); cp.appendChild(cabecera('Mis proyectos', 'Ver todos', 'proyectos-fila'));
-    if (!todosProy.length) { var vp = txt('div', 'pn-vacio-rosina'); var ii = document.createElement('img'); ii.src = '/img/aventuras/rosina-original/idea.webp'; ii.alt = ''; ii.width = 86; ii.height = 86; vp.appendChild(ii); vp.appendChild(txt('p', 'pn-vacio', 'Aquí verás tus proyectos terminados, tejiéndose y por empezar. Agrega el primero con «Nuevo proyecto».')); cp.appendChild(vp); }
+    if (!todosProy.length) { var vp = txt('div', 'pn-vacio-rosina'); var ii = document.createElement('img'); ii.src = '/img/agenda/rosina/idea.webp'; ii.alt = ''; ii.width = 86; ii.height = 86; vp.appendChild(ii); vp.appendChild(txt('p', 'pn-vacio', 'Aquí verás tus proyectos terminados, tejiéndose y por empezar. Agrega el primero con «Nuevo proyecto».')); cp.appendChild(vp); }
     else {
       var cuentas = ESTADOS.map(function (e, i) { return todosProy.filter(function (p) { return i === 2 ? (p.estado !== 'Terminado' && p.estado !== 'Tejiendo') : p.estado === e[0]; }).length; });
       var dn = txt('div', 'pn-donut-caja'); dn.appendChild(donut(cuentas, todosProy.length));
@@ -199,6 +199,7 @@
   pintar();
 
   /* ---------- Vista de sección: las hojas de una sección como tarjetas ---------- */
+  var POSES = [[/proyect/i, 'gancho'], [/material/i, 'ovillo'], [/emprend/i, 'cartel'], [/finanz/i, 'contando'], [/fecha|bienestar/i, 'flor']];   // la pose de Rosina de cada sección
   var vista = null;
   function crearVista() {
     vista = txt('section', 'vista-seccion no-imprimir'); vista.id = 'vista-seccion'; vista.hidden = true; vista.setAttribute('aria-labelledby', 'vs-titulo');
@@ -210,8 +211,11 @@
       if (!vista) crearVista();
       vista.textContent = '';
       document.querySelectorAll('#agenda .hoja-agenda.abierta').forEach(function (h) { h.classList.remove('abierta'); });
-      var cab = txt('div', 'vs-cab'); var h = txt('h2', '', titulo); h.id = 'vs-titulo'; h.tabIndex = -1; cab.appendChild(h);
-      cab.appendChild(txt('p', '', enlaces.length + (enlaces.length === 1 ? ' hoja' : ' hojas') + '. Toca una para abrirla.')); vista.appendChild(cab);
+      var cab = txt('div', 'vs-cab'), ct = txt('div', 'vs-cab-t'); var h = txt('h2', '', titulo); h.id = 'vs-titulo'; h.tabIndex = -1; ct.appendChild(h);
+      ct.appendChild(txt('p', '', enlaces.length + (enlaces.length === 1 ? ' hoja' : ' hojas') + '. Toca una para abrirla.')); cab.appendChild(ct);
+      var pose = POSES.filter(function (x) { return x[0].test(titulo); })[0];
+      if (pose) { var im = document.createElement('img'); im.className = 'vs-rosina'; im.src = '/img/agenda/rosina/' + pose[1] + '.webp'; im.alt = ''; im.width = 120; im.height = 120; cab.appendChild(im); }
+      vista.appendChild(cab);
       var g = txt('div', 'vs-hojas');
       enlaces.forEach(function (a) {
         var id = a.dataset.hoja, src = document.getElementById(id), p = src ? src.querySelector(':scope > header p') : null, bl = src && src.classList.contains('sin-membresia');
