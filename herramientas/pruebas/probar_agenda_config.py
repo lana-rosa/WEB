@@ -29,6 +29,7 @@ with sync_playwright() as p:
     T.v('ya no hay colores separados en «Verdes» y «Otros colores»: solo la rueda', pg.locator('#ac-opciones .ac-op').count() == 0 and pg.locator('#ac-rueda').is_visible() and pg.locator('#ac-claridad').is_visible())
     T.v('el verde menta de siempre sigue sin cambios', pg.evaluate("!document.documentElement.hasAttribute('data-tema')"))
     boton0 = pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--rosa-boton').trim()")
+    pg.locator('#ac-rueda').scroll_into_view_if_needed(); pg.wait_for_timeout(200)
     caja = pg.locator('#ac-rueda').bounding_box(); cx, cy, r = caja['x'] + caja['width'] / 2, caja['y'] + caja['height'] / 2, caja['width'] / 2
     pg.mouse.click(cx + r * 0.8, cy)   # a la derecha: tono azul-violeta
     pg.wait_for_timeout(200)
