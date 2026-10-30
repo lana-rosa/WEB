@@ -366,7 +366,13 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 @media print { .aviso-borrar { display: none !important; } }
 .nota-copia { flex-basis: 100%; text-align: center; color: var(--tinta-suave); font-size: 0.8rem; }
 .enlace-copia { background: none; border: none; color: var(--rosa-texto); font-family: var(--fuente-cuerpo); font-weight: 700; font-size: 0.88rem; cursor: pointer; text-decoration: underline; min-height: 28px; padding: 4px 6px; }
-@media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } .agenda-recordatorio { display: none !important; } }
+@media print { .portada-agenda input { border: none; } .copia-agenda { display: none !important; } .aviso-sin-guardar { position: sticky; top: 0; z-index: 900; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 14px; background: #FDE8E8; border: 2px solid #E57373; color: #5A1A1A; border-radius: 14px; padding: 10px 16px; margin: 0 0 14px; font-size: 0.93rem; box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+.aviso-sin-guardar.lleno { background: #FFF3D6; border-color: #F2B84B; color: #5A3E00; }
+.aviso-sin-guardar p { margin: 0; flex: 1 1 260px; }
+.dd-espacio { margin: 0 0 6px; font-size: 0.9rem; }
+.dd-espacio:empty { display: none; }
+@media print { .aviso-sin-guardar { display: none !important; } }
+.agenda-recordatorio { display: none !important; } }
 .donde-datos { margin: 10px 0 14px; border: 1px solid var(--borde, #d8eee2); border-radius: 14px; background: #fff; padding: 0; text-align: left; }
 .donde-datos summary { cursor: pointer; padding: 12px 16px; font-weight: 800; color: var(--rosa-oscuro, #0c8556); list-style: none; }
 .donde-datos summary::-webkit-details-marker { display: none; }
@@ -927,8 +933,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ac-titulo"><p class="eslogan">Agenda digital · 7 días gratis con tu cuenta · Lana Rosa</p><h1>Agenda para tejedoras</h1></div>
       <button type="button" class="agenda-config-btn no-imprimir" id="agenda-config-btn" aria-expanded="false" aria-controls="agenda-config"><span aria-hidden="true">⚙️</span><span class="acb-txt">Configuración</span></button>
     </header>
+    <div class="aviso-sin-guardar no-imprimir" id="aviso-sin-guardar" role="alert" hidden>
+      <p id="asg-texto"></p>
+      <div class="acciones-rec"><button type="button" class="boton-primario boton-chico" id="asg-copia">⬇️ Descargar una copia ahora</button></div>
+    </div>
     <div class="agenda-recordatorio no-imprimir" id="agenda-recordatorio" role="region" aria-label="Recordatorio de copia de tu agenda" hidden>
-      <p><strong>Tu agenda se guarda solo en este dispositivo.</strong> Si borras los datos del navegador (o el historial con cookies), se pierde. Guárdala en tu cuenta o descarga una copia.</p>
+      <p><strong>Protege tu agenda: hoy solo está en este dispositivo.</strong> Si borras el historial, cambias de celular o se llena el navegador, <strong>se pierde</strong>. Guárdala en tu cuenta (gratis y con tu autorización) o descarga una copia.</p>
       <div class="acciones-rec">
         <button type="button" class="boton-primario boton-chico" id="rec-nube">☁️ Guardar en mi cuenta</button>
         <button type="button" class="boton-secundario boton-chico" id="rec-copia">⬇️ Descargar una copia</button>
@@ -941,6 +951,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <summary>🔒 ¿Dónde se guardan mis datos?</summary>
         <div class="dd-cuerpo">
           <p class="dd-estado" id="dd-estado" role="status"></p>
+          <p class="dd-espacio" id="dd-espacio"></p>
           <ul>
             <li><strong>En tu dispositivo:</strong> todo lo que escribes se guarda en este celular, tablet o computador, en este navegador. Es lo que ves cada vez que abres la agenda.</li>
             <li><strong>En tu cuenta:</strong> solo tu nombre y tu correo, y el estado de tu membresía. Tus hojas <strong>no</strong> viajan a tu cuenta, a menos que actives «☁️ Guardar mi agenda en mi cuenta», que es opcional y pide tu autorización.</li>
@@ -2423,7 +2434,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function() {
   /* ---------- Almacenamiento seguro (solo en este dispositivo) ---------- */
   function leer(clave) { try { return localStorage.getItem(clave); } catch (e) { return null; } }
-  function escribir(clave, valor) { try { localStorage.setItem(clave, valor); } catch (e) {} }
+  /* Si el navegador no deja guardar (espacio lleno o bloqueado) se avisa de inmediato y se ofrece bajar una copia con lo que hay en pantalla (30-oct-2026, auditoría C1) */
+  function avisoGuardado(estado) {
+    var a = document.getElementById('aviso-sin-guardar'); if (!a) return;
+    a.hidden = !estado; a.className = 'aviso-sin-guardar no-imprimir' + (estado === 'lleno' ? ' lleno' : '');
+    if (estado === 'error') document.getElementById('asg-texto').innerHTML = '<strong>⚠️ No se pudo guardar tu último cambio.</strong> El espacio de este navegador está lleno o bloqueado. <strong>No cierres esta página:</strong> descarga una copia ahora para no perder lo que escribiste.';
+    if (estado === 'lleno') document.getElementById('asg-texto').innerHTML = '<strong>Tu agenda está llegando al límite de espacio de este navegador.</strong> Descarga una copia y guarda tu agenda en tu cuenta antes de agregar más fotos o dibujos.';
+  }
+  function espacioUsado() { var n = 0; try { for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); n += k.length + (localStorage.getItem(k) || '').length; } } catch (e) {} return n; }
+  var LIMITE_ESPACIO = 5000000;   // caracteres: el límite habitual de los navegadores es de unos 5 millones (≈ 10 MB)
+  function medirEspacio() {
+    var u = espacioUsado(), pct = Math.min(100, Math.round(u / LIMITE_ESPACIO * 100)), e = document.getElementById('dd-espacio');
+    if (e) e.textContent = '💾 Espacio de este navegador usado por tu agenda y tu cuenta: ' + pct + ' %' + (pct >= 80 ? ' (casi lleno)' : '') + '.';
+    var a = document.getElementById('aviso-sin-guardar'); if (a && (a.hidden || a.classList.contains('lleno'))) avisoGuardado(pct >= 80 ? 'lleno' : '');
+    return pct;
+  }
+  window.lrMedirEspacio = medirEspacio;
+  var _medir = null;
+  function escribir(clave, valor) {
+    try { localStorage.setItem(clave, valor); if (clave === CLAVE_AGENDA) { var a = document.getElementById('aviso-sin-guardar'); if (a && !a.hidden && !a.classList.contains('lleno')) avisoGuardado(''); clearTimeout(_medir); _medir = setTimeout(medirEspacio, 1500); } return true; }
+    catch (e) { if (clave === CLAVE_AGENDA) avisoGuardado('error'); return false; }
+  }
   function borrar(clave) { try { localStorage.removeItem(clave); } catch (e) {} }
 
   /* ---------- Imprimir solo una sección ---------- */
@@ -2726,6 +2757,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_ics', cantidad: lista.length });
   });
 
+  document.getElementById('asg-copia').addEventListener('click', function() { document.getElementById('agenda-descargar').click(); });
+  setTimeout(medirEspacio, 800);
   document.getElementById('agenda-descargar').addEventListener('click', function() {
     var blob = new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
     var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-' + new Date().toISOString().slice(0, 10) + '.json';
@@ -4013,7 +4046,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 (function () {
   var VERSION_NUBE = '2026-10-27';   // = fn_nube_version() en la base y politicas.html#datos, apartado 11: se suben juntos
   var CL_BASE = 'lrNubeBase', CL_SUCIO = 'lrNubeSucio', CLAVE_AG = 'rosinaAgenda', CLAVE_COPIA = 'rosinaAgendaCopia', CL_REC = 'lrAgendaRecordatorio';
-  var DIAS_RECORDATORIO = 14, DIAS_ESPERA = 7;
+  var DIAS_RECORDATORIO = 14, DIAS_ESPERA = 3;   // «Ahora no» calla 3 días (antes 7): la copia en la cuenta se propone con más insistencia (decisión de Sara, 30-oct-2026)
   var $ = function (id) { return document.getElementById(id); };
   var sb = null, estado = { nube: null }, nube = { listo: false, ocupado: false, t: null };   // estado.nube: true = autorizada, false = sin autorizar, null = aún no se sabe
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }

@@ -45,7 +45,7 @@ with sync_playwright() as p:
     ctx = contexto(b, sesion=False); pg, errs = listo(ctx)
     v('sin copia reciente y con datos: sale el recordatorio', pg.locator('#agenda-recordatorio').is_visible())
     pg.click('#rec-despues'); v('«Ahora no» lo oculta', not pg.locator('#agenda-recordatorio').is_visible())
-    pg.reload(); pg.wait_for_timeout(1000); v('«Ahora no» se recuerda una semana', not pg.locator('#agenda-recordatorio').is_visible())
+    pg.reload(); pg.wait_for_timeout(1000); v('«Ahora no» se recuerda 3 días', not pg.locator('#agenda-recordatorio').is_visible())
     pg.evaluate("localStorage.removeItem('lrAgendaRecordatorio'); localStorage.setItem('rosinaAgendaCopia', new Date().toISOString().slice(0,10))"); pg.reload(); pg.wait_for_timeout(1000)
     v('con una copia de hoy no sale el recordatorio', not pg.locator('#agenda-recordatorio').is_visible())
     pg.evaluate("localStorage.removeItem('rosinaAgendaCopia'); localStorage.removeItem('rosinaAgenda')"); pg.reload(); pg.wait_for_timeout(1000)
