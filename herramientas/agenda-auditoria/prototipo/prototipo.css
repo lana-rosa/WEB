@@ -1,0 +1,53 @@
+/* PROTOTIPO (30-oct-2026) · NO se carga en la web publicada. Se inyecta con auditar/prototipo.py para ver cómo quedarían Portada, Mi tablero,
+   Control de pedidos y Mi negocio en números en 5 tamaños. Si Sara lo aprueba, esto pasa a css/agenda-responsive.css / agenda-diseno.css.
+   Dirección: editorial, cálida, contemporánea; marfil/crema + vinotinto + rosa empolvado + verde salvia; títulos con serifa (Fraunces, licencia OFL). */
+@font-face { font-family: 'Fraunces'; font-weight: 500; font-display: swap; src: url(/herramientas/agenda-auditoria/prototipo/fonts/fraunces-500.ttf) format('truetype'); }
+@font-face { font-family: 'Fraunces'; font-weight: 600; font-display: swap; src: url(/herramientas/agenda-auditoria/prototipo/fonts/fraunces-600.ttf) format('truetype'); }
+html:root { --marfil: #FBF7F0; --crema: #F4ECDF; --papel: #FFFDF9; --salvia: #7F9C80; --salvia-osc: #3F6B47; --salvia-suave: #E2EBDF; --serif: 'Fraunces', Georgia, 'Times New Roman', serif; --fuente-hoja: 'Fraunces', Georgia, serif; --fuente-titulo: 'Hanken Grotesk', sans-serif; }
+body, #agenda.seccion-suave, #agenda { background: var(--marfil) !important; }
+#agenda .contenedor { max-width: 1360px; }
+
+/* Títulos con serifa; números y controles en sans */
+.hoja-agenda > header h3, .pn-saludo h4, .vs-cab h2, .empieza-aqui h4, .tab-grupo h4, .fin-caja h4, .fin-caja-cab h4, .portada-titulo, #agenda h2, .titulo-barra-agenda { font-family: var(--serif) !important; font-weight: 600; letter-spacing: -0.005em; }
+.hoja-agenda > header h3 { font-size: clamp(1.45rem, 1.1rem + 1vw, 2rem); color: #4A2433; }
+.hoja-agenda > header p { max-width: 62ch; }
+.hoja-agenda { background: var(--papel); border-color: #EADFD3; box-shadow: 0 1px 0 #fff inset, 0 10px 30px rgba(92, 47, 63, .06); container-type: inline-size; container-name: hoja; }
+.hoja-agenda > header { border-bottom: 1px solid #EADFD3; }
+.tab-k strong, .fin-tarj strong, .pn-kpi strong { font-family: 'Hanken Grotesk', sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+/* Verde salvia para estados y apoyo */
+.ficha-chip.ok, .pn-kpi.bien strong { background: var(--salvia-suave); color: var(--salvia-osc); border-color: #C9DAC6; }
+.pn-kpi.bien strong, .tab-k.bien strong { background: none; }
+.tab-lectura { background: linear-gradient(135deg, var(--salvia-suave), #F6F1E6); border-color: #D5E3D0; }
+.fin-tarj { background: var(--crema); border-color: #EADFD3; } .fin-tarj.ing, .fin-tarj.gas, .fin-tarj.aho, .fin-tarj.sal { background: var(--crema); }
+.fin-tarj.ing strong { color: var(--salvia-osc); } .fin-tarj.gas strong { color: #9A4B3A; } .fin-tarj.aho strong { color: #5C2F3F; }
+.tab-grupo { background: var(--crema); }
+
+/* Distribución por ANCHO DE LA HOJA (consultas de contenedor), no solo de la pantalla */
+@container hoja (min-width: 720px) {
+  .fin-tarjetas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .fin-dos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  #agenda #control-pedidos .tabla-agenda tbody { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px; align-items: start; }
+  #agenda #control-pedidos .tabla-agenda tbody > tr.ficha.abierta { grid-column: 1 / -1; }
+  .portada-controles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+@container hoja (min-width: 980px) {
+  #tablero-agenda .tab-lectura { float: right; width: 32%; margin: 0 0 14px 18px; }
+  #tab-grupos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+  #tab-grupos .tab-grupo { margin: 0; }
+  #agenda #control-pedidos .tabla-agenda tbody { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  #portada-agenda { display: grid; grid-template-columns: minmax(300px, 380px) 1fr; column-gap: 28px; align-items: start; }
+  #portada-agenda > header, #portada-agenda > .tip-agenda, #portada-agenda > .portada-imprimir, #portada-agenda > .promo-eco { grid-column: 1 / -1; }
+  #portada-agenda .portada-controles { grid-template-columns: 1fr; }
+  #portada-agenda .portada-hoja { grid-column: 2; grid-row: 2 / span 4; max-width: 520px; margin: 0; }
+}
+@container hoja (min-width: 1180px) { #tab-grupos { grid-template-columns: repeat(3, minmax(0, 1fr)); } #agenda #control-pedidos .tabla-agenda tbody { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
+
+/* Celular apaisado (poca altura): la barra de abajo pasa a un riel lateral delgado */
+@media (orientation: landscape) and (max-height: 520px) {
+  body .agenda-layout { padding-bottom: 0 !important; padding-left: 64px; }
+  body .agenda-layout .pestanas-agenda { position: fixed; left: 0; top: 0; bottom: 0; right: auto; width: 60px; flex-direction: column; justify-content: center; padding: 6px 4px; border-radius: 0 16px 16px 0; border: 1px solid #EADFD3; border-left: 0; background: #fff; box-shadow: 4px 0 18px rgba(92, 47, 63, .08); overflow-y: auto; gap: 2px; }
+  body .pestana { min-height: 44px; flex: none; width: 100%; padding: 4px 0; } body .pestana .p-corto, body .pestana .p-largo { display: none !important; }
+  body .pestana[aria-selected="true"] { flex: none; }
+  .ayuda-flotante { bottom: 16px !important; }
+  .pn-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } .pn-dos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
