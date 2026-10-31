@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-panel.css?v=14">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=14">
-<link rel="stylesheet" href="/css/agenda-colores.css?v=16">
+<link rel="stylesheet" href="/css/agenda-colores.css?v=18">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
 <link rel="stylesheet" href="/css/agenda-panel-vida.css?v=28">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=14">
@@ -2944,9 +2944,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var COL = ['#F5C2DB', '#D6B4B8', '#CBA6AD', '#C09AA3', '#F28FC0'];
     /* c = fondo de la tarjeta, p = color del puntito. Además del color, cada tipo lleva su nombre y su ícono */
     var TIPO = {
-      pedido: { n: 'Entrega', ic: '📦', c: '#CFE6FB', p: '#2a78d6', hoja: 'control-pedidos' }, pedidoEnvio: { n: 'Envío', ic: '🚚', c: '#E1E2FD', p: '#4a3aa7', hoja: 'control-pedidos' }, ficha: { n: 'Entrega', ic: '📋', c: '#CFE6FB', p: '#2a78d6', hoja: 'ficha-proyecto' },
-      proyecto: { n: 'Proyecto', ic: '🧵', c: '#FBD5E8', p: '#E74E96', hoja: 'proyectos-fila' }, fecha: { n: 'Fecha especial', ic: '🎁', c: '#FFEFC2', p: '#c98500', hoja: 'fechas-especiales' },
-      feria: { n: 'Feria', ic: '🎪', c: '#D4F1DF', p: '#1baf7a', hoja: 'ferias-mercados' }, clienta: { n: 'Cumpleaños', ic: '🎂', c: '#E1E2FD', p: '#4a3aa7', hoja: 'mis-clientas' }
+      pedido: { n: 'Entrega', ic: '📦', img: 'entrega', c: '#CFE6FB', p: '#2a78d6', hoja: 'control-pedidos' }, pedidoEnvio: { n: 'Envío', ic: '🚚', img: 'entrega', c: '#E1E2FD', p: '#4a3aa7', hoja: 'control-pedidos' }, ficha: { n: 'Entrega', ic: '📋', img: 'entrega', c: '#CFE6FB', p: '#2a78d6', hoja: 'ficha-proyecto' },
+      proyecto: { n: 'Proyecto', ic: '🧵', img: 'ovillo', c: '#FBD5E8', p: '#E74E96', hoja: 'proyectos-fila' }, fecha: { n: 'Fecha especial', ic: '🎁', img: 'regalo', c: '#FFEFC2', p: '#c98500', hoja: 'fechas-especiales' },
+      feria: { n: 'Feria', ic: '🎪', img: 'feria', c: '#D4F1DF', p: '#1baf7a', hoja: 'ferias-mercados' }, clienta: { n: 'Cumpleaños', ic: '🎂', img: 'cumple', c: '#E1E2FD', p: '#4a3aa7', hoja: 'mis-clientas' }
     };
     function dd(n) { return ('0' + n).slice(-2); }
     function dia0(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
@@ -2987,7 +2987,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           var det = e.detalle.map(function(x) { var s = document.createElement('span'); s.textContent = x; return s.outerHTML; }).join('');
           var ti = document.createElement('strong'); ti.textContent = e.titulo;
           var lu = e.lugar ? (function() { var s = document.createElement('span'); s.textContent = '📍 ' + e.lugar; return s.outerHTML; })() : '';
-          h += '<li class="agc-ev"><div class="agc-hora" aria-hidden="true"><span>' + t.ic + '</span><small>' + t.n + '</small></div><div class="agc-tarjeta" style="--c:' + t.c + '"><small class="agc-tipo">' + t.n + '</small>' + ti.outerHTML + '<div class="agc-det">' + lu + det + '</div><button type="button" class="agc-ir no-imprimir" data-hoja="' + t.hoja + '">Abrir la hoja →</button></div></li>';
+          h += '<li class="agc-ev"><div class="agc-hora" aria-hidden="true"><span>' + (t.img ? '<img src="/img/agenda/menu/tipo-' + t.img + '.webp?v=1" width="40" height="40" alt="" loading="lazy">' : t.ic) + '</span><small>' + t.n + '</small></div><div class="agc-tarjeta" style="--c:' + t.c + '"><small class="agc-tipo">' + t.n + '</small>' + ti.outerHTML + '<div class="agc-det">' + lu + det + '</div><button type="button" class="agc-ir no-imprimir" data-hoja="' + t.hoja + '">Abrir la hoja →</button></div></li>';
         });
         h += '</ul>';
       }
@@ -3000,7 +3000,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         evs.forEach(function(e) {
           if (n >= 8) return; n++;
           var t = TIPO[e.tipo], ti = document.createElement('span'); ti.className = 'agc-p-t'; ti.textContent = e.titulo;
-          h += '<button type="button" class="agc-p" data-d="' + iso(d) + '" style="--c:' + t.c + '"><span class="agc-p-f"><b>' + d.getDate() + '</b><small>' + MESES[d.getMonth()].slice(0, 3) + '</small></span>' + ti.outerHTML + '<small class="agc-p-n">' + t.ic + ' ' + t.n + (i === 0 ? ' · hoy' : (i === 1 ? ' · mañana' : '')) + '</small></button>';
+          h += '<button type="button" class="agc-p" data-d="' + iso(d) + '" style="--c:' + t.c + '"><span class="agc-p-f"><b>' + d.getDate() + '</b><small>' + MESES[d.getMonth()].slice(0, 3) + '</small></span>' + ti.outerHTML + '<small class="agc-p-n">' + (t.img ? '<img class="agc-mini" src="/img/agenda/menu/tipo-' + t.img + '.webp?v=1" width="18" height="18" alt="" loading="lazy"> ' : t.ic + ' ') + t.n + (i === 0 ? ' · hoy' : (i === 1 ? ' · mañana' : '')) + '</small></button>';
         });
       }
       el('agc-prox').innerHTML = h || '<p class="agc-vacio">Todavía no tienes fechas en los próximos 90 días.</p>';
@@ -4201,7 +4201,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/voz.js?v=2" defer></script>
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
-<script src="/js/agenda/planeador.js?v=1" defer></script>
+<script src="/js/agenda/planeador.js?v=2" defer></script>
 <script src="/js/agenda/vacios.js?v=3" defer></script>
 <script src="/js/agenda/panel.js?v=23" defer></script>
 <script src="/js/agenda/iconos.js?v=13" defer></script>

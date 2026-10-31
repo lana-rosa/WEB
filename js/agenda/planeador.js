@@ -8,8 +8,8 @@
   var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'], CORTOS = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
   var TIPOS = {
-    pedido: { n: 'Entrega', ic: '📦', hoja: 'control-pedidos' }, pedidoEnvio: { n: 'Envío', ic: '🚚', hoja: 'control-pedidos' }, ficha: { n: 'Entrega de proyecto', ic: '📋', hoja: 'ficha-proyecto' },
-    proyecto: { n: 'Proyecto', ic: '🧵', hoja: 'proyectos-fila' }, fecha: { n: 'Fecha especial', ic: '🎁', hoja: 'fechas-especiales' }, feria: { n: 'Feria', ic: '🎪', hoja: 'ferias-mercados' }, clienta: { n: 'Cumpleaños', ic: '🎂', hoja: 'mis-clientas' }
+    pedido: { n: 'Entrega', ic: '📦', img: 'entrega', hoja: 'control-pedidos' }, pedidoEnvio: { n: 'Envío', ic: '🚚', img: 'entrega', hoja: 'control-pedidos' }, ficha: { n: 'Entrega de proyecto', ic: '📋', img: 'entrega', hoja: 'ficha-proyecto' },
+    proyecto: { n: 'Proyecto', ic: '🧵', img: 'ovillo', hoja: 'proyectos-fila' }, fecha: { n: 'Fecha especial', ic: '🎁', img: 'regalo', hoja: 'fechas-especiales' }, feria: { n: 'Feria', ic: '🎪', img: 'feria', hoja: 'ferias-mercados' }, clienta: { n: 'Cumpleaños', ic: '🎂', img: 'cumple', hoja: 'mis-clientas' }
   };
   function dd(n) { return ('0' + n).slice(-2); }
   function iso(d) { return d.getFullYear() + '-' + dd(d.getMonth() + 1) + '-' + dd(d.getDate()); }
@@ -43,7 +43,7 @@
     var ul = el('pl-eventos'), evs = eventosDe(sel); ul.textContent = '';
     evs.forEach(function (e) {
       var tipo = TIPOS[e.clave.split(':')[0]] || TIPOS.fecha, li = document.createElement('li'); li.className = 'pl-evento';
-      var ic = document.createElement('span'); ic.className = 'pl-ic'; ic.setAttribute('aria-hidden', 'true'); ic.textContent = tipo.ic; li.appendChild(ic);
+      var ic = document.createElement('span'); ic.className = 'pl-ic'; ic.setAttribute('aria-hidden', 'true'); if (tipo.img) { var im = document.createElement('img'); im.src = '/img/agenda/menu/tipo-' + tipo.img + '.webp?v=1'; im.alt = ''; im.width = 32; im.height = 32; ic.appendChild(im); } else ic.textContent = tipo.ic; li.appendChild(ic);
       var cu = document.createElement('div'), t = document.createElement('strong'); t.textContent = e.titulo; cu.appendChild(t);
       var s = document.createElement('small'); s.textContent = tipo.n + (e.lugar ? ' · ' + e.lugar : ''); cu.appendChild(s);
       (e.detalle || '').split('\n').filter(function (x) { return x && x.indexOf('Desde la agenda') !== 0 && !/^(Cliente|Pedido|Proyecto|Para quién): /.test(x); }).slice(0, 3).forEach(function (x) { var p = document.createElement('span'); p.className = 'pl-det'; p.textContent = x; cu.appendChild(p); });

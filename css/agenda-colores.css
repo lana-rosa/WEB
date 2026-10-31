@@ -41,3 +41,8 @@ body .pestana img.ic-dibujo { width: 40px; height: 40px; object-fit: contain; fl
 .ic-l.ic-img { width: 1.5em; height: 1.5em; margin: -.25em .2em -.25em -.1em; vertical-align: middle; object-fit: contain; stroke: none; fill: none; }
 .ficha-barra .ic-l.ic-img { margin: -.3em 0; }
 #agenda-config-btn img { width: 32px; height: 32px; display: block; }
+
+/* Íconos dibujados de los tipos de fecha (calendario y planeador; 31-oct-2026, diseño de Sara) */
+.agc-hora span img, .pl-ic img { width: 40px; height: 40px; display: block; margin: 0 auto; object-fit: contain; }
+.pl-ic img { width: 32px; height: 32px; }
+.agc-p-n .agc-mini { width: 18px; height: 18px; vertical-align: -4px; object-fit: contain; }
