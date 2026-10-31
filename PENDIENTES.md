@@ -11,7 +11,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial comp
 - [x] Etapa 1: avisos de hoy y consejo de Rosina en Mi panel (gratis).
 - [ ] Etapa 0 (la hace Sara): entrevistas con ~10 usuarias, pruebas en iPhone/Samsung/iPad, pago real de $5.000, revisión de la abogada.
 - [x] Etapa 2: meta de ventas → semanas y días; «¿cuánto necesito vender al mes?» (de pago). Hecha el 31-oct-2026; probar las fórmulas con las cifras reales de Sara.
-- [x] Etapa 3: historial por clienta (hecha el 31-oct-2026). · [x] Etapa 4: costo por producto y precio sugerido (hecha el 31-oct-2026). · [x] Etapa 5: inventario con costo y mínimo (hecha el 31-oct-2026; falta desplegar `rosina-web` v43 al publicar). · [ ] Etapa 6: informe mensual para imprimir.
+- [x] Etapa 3: historial por clienta (hecha el 31-oct-2026). · [x] Etapa 4: costo por producto y precio sugerido (hecha el 31-oct-2026). · [x] Etapa 5: inventario con costo y mínimo (hecha el 31-oct-2026; publicada #481; `rosina-web` v43 desplegada; falta desplegar v44, que aclara que los avisos de lanas no salen en «Avisos de hoy», junto con la etapa 6). · [ ] Etapa 6: informe mensual para imprimir.
 - [x] Tablero gráfico en cada sección (31-oct-2026).
 - [ ] Etapa 7: núcleo de datos por usuaria (migración con deshacer). · [ ] Etapa 8: inventario con movimientos y conexiones.
 - [ ] Al terminar cada etapa: actualizar `GUIA_AGENDA` de `rosina-web` y volver a desplegarla.
