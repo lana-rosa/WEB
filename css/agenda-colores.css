@@ -36,3 +36,8 @@ body .pestana[aria-selected="true"] { background: var(--p-bg); }
 /* Íconos dibujados del menú de secciones (31-oct-2026, diseño de Sara): imágenes a color, no toman el color del texto */
 body .pestana img.ic-dibujo { width: 40px; height: 40px; object-fit: contain; flex: none; }
 @media (max-width: 820px) { body .pestana img.ic-dibujo { width: 30px; height: 30px; } }
+
+/* Íconos dibujados de los botones de acción (31-oct-2026, diseño de Sara) */
+.ic-l.ic-img { width: 1.75em; height: 1.75em; margin: -.3em .15em -.3em -.2em; vertical-align: middle; object-fit: contain; stroke: none; fill: none; }
+.ficha-barra .ic-l.ic-img { margin: -.3em 0; }
+#agenda-config-btn img { width: 32px; height: 32px; display: block; }
