@@ -73,6 +73,10 @@
     if (typeof HOJAS_IMG === 'undefined') return;
     var enl = document.querySelectorAll('#menu-hojas-lista [data-hoja]'), mapa = {};
     Array.prototype.forEach.call(enl, function (a) { mapa[limpioN(a.textContent)] = a.dataset.hoja; });
+    zona.querySelectorAll('.atajo[data-ir] .atajo-ic').forEach(function (c) {   // atajos del Índice: el dibujo de la hoja a la que llevan
+      if (c.dataset.icHoja) return; var id = c.closest('.atajo').dataset.ir; if (!HOJAS_IMG[id]) return;
+      var im = hoja(id, ''); im.width = 44; im.height = 44; c.textContent = ''; c.appendChild(im); c.classList.add('con-dibujo'); c.dataset.icHoja = '1';
+    });
     zona.querySelectorAll('.hojas-pasos .paso-ant, .hojas-pasos .paso-sig').forEach(function (b) {
       if (b.dataset.icHoja) return; var g = b.querySelector('.ic-l'); if (!g) return;
       var t = limpioN(b.textContent.replace(/Siguiente hoja|Hoja anterior|[←→]/g, '')); var id = mapa[t]; if (!id || !HOJAS_IMG[id]) return;
