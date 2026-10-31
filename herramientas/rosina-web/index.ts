@@ -1,8 +1,8 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v42 (31-oct-2026; pendiente de desplegar): GUIA_AGENDA explica el costo por producto y precio sugerido de «Mi catálogo de precios» y el tablero gráfico («Cómo vas») de cada sección.
-// v41 (31-oct-2026; pendiente de desplegar): GUIA_AGENDA explica el historial de cada clienta en «Mis clientas».
+// v42 (31-oct-2026; desplegada): GUIA_AGENDA explica el costo por producto y precio sugerido de «Mi catálogo de precios» y el tablero gráfico («Cómo vas») de cada sección.
+// v41 (31-oct-2026; desplegada): GUIA_AGENDA explica el historial de cada clienta en «Mis clientas».
 // v40 (31-oct-2026; desplegada): GUIA_AGENDA explica la meta de ventas del mes, «¿Cuánto necesito vender al mes?» y las gráficas del negocio (punto de equilibrio en Mi panel; en «Mi negocio en números»: punto de equilibrio, ventas del mes contra la meta y utilidad de cada mes).
 // v39 (31-oct-2026; desplegada): GUIA_AGENDA explica «Avisos de hoy» (con contadores y «Ver todos»), «Consejo de Rosina» y el menú lateral que se esconde.
 // v38 (31-oct-2026): la agenda se puede ver en inglés y portugués; el chat manda `idioma` (en|pt|es) y Rosina responde en ese idioma; GUIA_AGENDA explica el selector ES/EN/PT.
