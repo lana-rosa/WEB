@@ -12,4 +12,16 @@
   }
   new MutationObserver(marcar).observe(menu, { attributes: true, attributeFilter: ['aria-selected'], subtree: true, childList: true });
   marcar();
+
+  /* Ícono de línea de cada hoja junto a su título (31-oct-2026, «le falta vida»): sale del emoji con que empieza su enlace en el menú de hojas */
+  function iconosDeHoja() {
+    if (!window.lrIconos || !window.lrIconos.de) return;
+    zona.querySelectorAll('.hoja-agenda').forEach(function (h) {
+      var cab = h.querySelector(':scope > header'); if (!cab || cab.querySelector('.hoja-ic') || h.id === 'panel-agenda' || h.id === 'portada-agenda') return;
+      var a = document.querySelector('#menu-hojas-lista a[data-hoja="' + h.id + '"]'); if (!a) return;
+      var b = document.createElement('span'); b.className = 'hoja-ic'; b.setAttribute('aria-hidden', 'true'); b.appendChild(window.lrIconos.de(a.textContent));
+      cab.insertBefore(b, cab.firstChild);
+    });
+  }
+  iconosDeHoja(); setTimeout(iconosDeHoja, 800);
 })();

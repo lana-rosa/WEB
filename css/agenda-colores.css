@@ -24,3 +24,11 @@ body .pestana[aria-selected="true"] { background: var(--p-bg); }
 #agenda .hoja-agenda { box-shadow: inset 0 5px 0 var(--sec-fg); }
 #agenda .hoja-agenda > header h3 { color: var(--sec-fg) !important; }
 @media print { #agenda .hoja-agenda { box-shadow: none; } }
+
+/* Más vida (31-oct-2026, Sara: «a los colores y los íconos les falta un poco de vida»): ícono de la hoja junto a su título y botones con el color de la sección */
+#agenda .hoja-ic { flex: none; width: 50px; height: 50px; border-radius: 16px; display: grid; place-items: center; background: var(--sec-bg); color: var(--sec-fg); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .6); }
+#agenda .hoja-ic svg { width: 26px; height: 26px; }
+#agenda .ficha-barra button:first-child, #agenda .agregar-renglon, #agenda .vers-nueva { border-color: var(--sec-fg); color: var(--sec-fg); }
+#agenda .ficha-barra button:first-child:hover, #agenda .agregar-renglon:hover, #agenda .vers-nueva:hover { background: var(--sec-bg); }
+#agenda .ficha-chip:not(.alarma):not(.aviso):not(.ok) { background: var(--sec-bg); color: var(--sec-fg); border-color: transparent; }
+@media (max-width: 520px) { #agenda .hoja-ic { width: 42px; height: 42px; border-radius: 14px; } #agenda .hoja-ic svg { width: 22px; height: 22px; } }

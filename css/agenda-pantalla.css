@@ -1,0 +1,14 @@
+/* Fondo de pantalla de la agenda (31-oct-2026, pedido de Sara): el estilo de portada elegido (Flores, Hojas o Madejas) queda de fondo de toda la agenda.
+   `#agenda[data-fondo-hojas]` lo pone portada.js solo cuando la persona eligió un estilo; «Liso» o ninguno deja el fondo rosa claro de siempre.
+   En computador se usa la acuarela horizontal; en teléfono vertical, la de la portada (con los dibujos en los bordes). Un velo claro mantiene la lectura. */
+html body #agenda[data-fondo-hojas] { background: transparent !important; }
+body:has(#agenda[data-fondo-hojas])::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-size: cover; background-position: center; background-repeat: no-repeat; }
+body:has(#agenda[data-fondo-hojas="flores"])::before { background-image: linear-gradient(rgba(255, 248, 247, .30), rgba(255, 248, 247, .30)), url("/img/agenda/pantalla-flores.webp"); }
+body:has(#agenda[data-fondo-hojas="hojas"])::before { background-image: linear-gradient(rgba(255, 248, 247, .30), rgba(255, 248, 247, .30)), url("/img/agenda/pantalla-hojas.webp"); }
+body:has(#agenda[data-fondo-hojas="madejas"])::before { background-image: linear-gradient(rgba(255, 248, 247, .30), rgba(255, 248, 247, .30)), url("/img/agenda/pantalla-madejas.webp"); }
+@media (max-width: 820px) and (orientation: portrait) {
+  body:has(#agenda[data-fondo-hojas="flores"])::before { background-image: linear-gradient(rgba(255, 248, 247, .20), rgba(255, 248, 247, .20)), url("/img/agenda/fondo-flores.webp?v=4"); }
+  body:has(#agenda[data-fondo-hojas="hojas"])::before { background-image: linear-gradient(rgba(255, 248, 247, .20), rgba(255, 248, 247, .20)), url("/img/agenda/fondo-hojas.webp?v=4"); }
+  body:has(#agenda[data-fondo-hojas="madejas"])::before { background-image: linear-gradient(rgba(255, 248, 247, .20), rgba(255, 248, 247, .20)), url("/img/agenda/fondo-madejas.webp?v=4"); }
+}
+@media print { body::before { display: none !important; } }
