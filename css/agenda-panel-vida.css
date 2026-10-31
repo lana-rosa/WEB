@@ -85,3 +85,8 @@
 #agenda .pn-aviso-ic svg { width: 16px; height: 16px; }
 #agenda .pn-consejo p { margin: 0 0 10px; }
 @media print { #agenda .pn-avisos, #agenda .pn-consejo { display: none; } }
+#agenda .pn-av-resumen { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+#agenda .pn-av-chip { display: inline-flex; align-items: baseline; gap: 2px; padding: 4px 10px; border-radius: 999px; background: #FBE4EF; color: #8A1F55; font-size: .85rem; }
+#agenda .pn-av-chip.mal { background: #FDE2E2; color: #B42318; }
+#agenda .pn-av-chip b { font-size: 1rem; }
+#agenda .pn-av-mas { margin-top: 4px; }

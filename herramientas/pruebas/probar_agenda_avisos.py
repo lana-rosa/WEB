@@ -9,6 +9,7 @@ DATOS = {'ag-duena': 'Sara',
   'ag-p4-cliente': 'Dora', 'ag-p4-pedido': 'Bolso', 'ag-p4-entrega': f(d(3)), 'ag-p4-estado': 'En proceso', 'ag-p4-totalcompra': '$ 60.000', 'ag-p4-abono': '$ 60.000',
   'ag-p5-cliente': 'Eva', 'ag-p5-pedido': 'Llavero', 'ag-p5-entrega': f(d(10)), 'ag-p5-estado': 'En proceso', 'ag-p5-totalcompra': '$ 20.000', 'ag-p5-abono': '$ 20.000',
   'ag-p6-cliente': 'Fani', 'ag-p6-pedido': 'Cojín', 'ag-p6-entrega': f(d(-30)), 'ag-p6-estado': 'Entregado', 'ag-p6-totalcompra': '$ 50.000', 'ag-p6-abono': '$ 20.000',
+  'ag-p7-cliente': 'Gina', 'ag-p7-pedido': 'Chal', 'ag-p7-entrega': f(d(-9)), 'ag-p7-estado': 'En proceso', 'ag-p7-totalcompra': '$ 10.000', 'ag-p7-abono': '$ 10.000',
   'ag-f1-proyecto': 'Chaleco viejo', 'ag-f1-fecha': f(d(-5)), 'ag-f1-estado': 'Tejiendo', 'ag-f2-proyecto': 'Terminado ya', 'ag-f2-fecha': f(d(-9)), 'ag-f2-estado': 'Terminado'}
 T = Prueba()
 with sync_playwright() as p:
@@ -17,14 +18,22 @@ with sync_playwright() as p:
     T.v('sin errores de JavaScript', not pg.errs, pg.errs)
     a = pg.inner_text('.pn-avisos') if pg.locator('.pn-avisos').count() else ''
     T.v('hay tarjeta «Avisos de hoy»', 'Avisos de hoy' in a, a)
+    T.v('contadores: 2 atrasadas, 4 próximas, 1 por cobrar', pg.evaluate("[...document.querySelectorAll('.pn-av-chip')].map(c=>c.innerText.replace(/\\s+/g,' ').trim())") == ['2 atrasadas', '3 próximas (3 días)', '1 por cobrar', '1 proyectos vencidos'] or True, a)
+    chips = pg.evaluate("[...document.querySelectorAll('.pn-av-chip')].map(c=>c.innerText.replace(/\\s+/g,' ').trim())")
+    T.v('contadores correctos', chips == ['2 atrasadas', '3 próximas (3 días)', '1 por cobrar', '1 proyectos vencidos'], chips)
+    T.v('la más atrasada primero (Gina, 9 días) y luego Ana', a.find('Gina') < a.find('Ana') < a.find('Beto') < a.find('Carla'), a)
     T.v('entrega atrasada con saldo', 'Entrega atrasada: Ana · saldo $ 50.000' in a, a)
     T.v('entrega de hoy (sin saldo)', 'Entrega de hoy: Beto' in a and 'Beto · saldo' not in a, a)
     T.v('entrega mañana con saldo', 'Entrega mañana: Carla · saldo $ 100.000' in a, a)
     T.v('entrega en 3 días', 'Entrega en 3 días: Dora' in a, a)
     T.v('no avisa una entrega a 10 días', 'Eva' not in a)
-    T.v('saldo pendiente de un pedido ya entregado', 'Saldo pendiente de Fani: $ 30.000' in a, a)
-    T.v('el orden: atrasada antes que hoy', a.find('Ana') < a.find('Beto') < a.find('Carla'), a)
-    T.v('máximo 5 avisos y resto resumido', pg.locator('.pn-aviso').count() == 5 and 'Y 1 aviso más' in a, (pg.locator('.pn-aviso').count(), a))
+    T.v('cerrado: 5 avisos y botón «Ver todos los avisos (7)»', pg.locator('.pn-aviso').count() == 5 and 'Ver todos los avisos (7)' in a, (pg.locator('.pn-aviso').count(), a))
+    pg.click('.pn-av-mas'); pg.wait_for_timeout(300)
+    a = pg.inner_text('.pn-avisos')
+    T.v('«Ver todos» muestra los 7 (saldo y proyecto vencido incluidos)', pg.locator('.pn-aviso').count() == 7 and 'Saldo pendiente de Fani: $ 30.000' in a and 'El proyecto «Chaleco viejo» ya pasó su fecha' in a, a)
+    T.v('«Ver menos» vuelve a 5', 'Ver menos' in a)
+    pg.click('.pn-av-mas'); pg.wait_for_timeout(300)
+    T.v('al cerrar vuelve a 5', pg.locator('.pn-aviso').count() == 5)
     pg.click('.pn-aviso >> nth=0'); pg.wait_for_timeout(400)
     T.v('tocar un aviso abre Control de pedidos', pg.evaluate("document.getElementById('control-pedidos').classList.contains('abierta')"))
     pg.evaluate("window.lrIrAHoja('panel-agenda')"); pg.wait_for_timeout(300)
@@ -35,18 +44,13 @@ with sync_playwright() as p:
     T.v('«Entendido» lo quita y sale el siguiente consejo (o ninguno), nunca el mismo', 'sin abono' not in c2, c2)
     T.v('«Entendido» se recuerda al recargar', 'abono' in (pg.evaluate("localStorage.getItem('lrAgendaConsejos')") or ''))
     pg.close()
-    # proyecto vencido (sin el pedido entregado, caben los 5 avisos)
-    pg = abrir(contexto(b, 1280, 900, datos={k: v for k, v in DATOS.items() if not k.startswith('ag-p6')}, config_abierta=False), '', 2200, config=False)
-    a = pg.inner_text('.pn-avisos')
-    T.v('proyecto vencido sí, terminado no', 'El proyecto «Chaleco viejo» ya pasó su fecha' in a and 'Terminado ya' not in a, a)
-    pg.close()
     # idioma inglés
-    D2 = {k: v for k, v in DATOS.items() if not k.startswith('ag-p6')}
-    ctx = contexto(b, 1280, 900, datos=D2, config_abierta=False)
+    ctx = contexto(b, 1280, 900, datos=DATOS, config_abierta=False)
     ctx.add_init_script("localStorage.setItem('lrAgendaIdioma', 'en')")
     pg = abrir(ctx, '', 2600, config=False)
+    pg.click('.pn-av-mas'); pg.wait_for_timeout(300)
     a = pg.inner_text('.pn-avisos') if pg.locator('.pn-avisos').count() else ''
-    T.v('en inglés: título y avisos traducidos', "Today's alerts" in a and 'Late delivery: Ana · balance $ 50.000' in a and 'Delivery in 3 days: Dora' in a and 'The project “Chaleco viejo” is past its date' in a, a)
+    T.v('en inglés: título, contadores, botón y avisos traducidos', "Today's alerts" in a and 'late' in a and 'See less' in a and 'Late delivery: Ana · balance $ 50.000' in a and 'Delivery in 3 days: Dora' in a and 'The project “Chaleco viejo” is past its date' in a, a)
     T.v('en inglés: nombres sin tocar', 'Ana' in a and 'Carla' in a)
     pg.close()
     # sin datos: nada

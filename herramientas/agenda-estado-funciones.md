@@ -37,3 +37,4 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 | Tutorial, avisos, ventanas del navegador, dictado y chat de Rosina en otros idiomas | Hecho (etapa 3, 31-oct-2026) | `datos_etapa3.py`, `idioma.js`, `rosina-web` v38 |
 | Ventanas legales (copia en la nube, pago de membresía), WhatsApp, .ics, cálculos de Prendas a medida | Siguen en español a propósito | — |
 | Avisos de hoy y consejo de Rosina (Mi panel) | Hecha 31-oct-2026 (Plus, etapa 1): entregas atrasadas o próximas, saldos y proyectos vencidos; un consejo descartable. Gratis | `js/agenda/panel.js`, `probar_agenda_avisos.py` |
+| Menú lateral que se esconde (computador) y barra de íconos (tableta) | Hecha 31-oct-2026 | `js/agenda/menu-lateral.js`, `css/agenda-menu.css`, `probar_agenda_menu.py` |
