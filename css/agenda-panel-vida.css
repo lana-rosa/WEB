@@ -142,3 +142,18 @@
 #agenda .ct-pct { font-weight: 700; text-align: right; }
 @media (max-width: 520px) { #agenda .ct-barra { grid-template-columns: 1fr 52px; } #agenda .ct-barra .ct-pista { grid-column: 1 / -1; grid-row: 2; } }
 @media print { #agenda .ct-reglas, #agenda td.ct-calculo { display: none !important; } }
+
+/* Tableros de cada sección (31-oct-2026) */
+#agenda .vs-dash { margin: 4px 0 18px; } #agenda .db-titulo { margin: 0 0 10px; font-size: 1.15rem; color: #8E1457; }
+#agenda .db-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; align-items: start; }
+#agenda .db-card h4 { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+#agenda .db-donut-wrap { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; } #agenda .db-donut { width: 130px; height: 130px; flex: none; }
+#agenda .db-donut-n { font: 700 8px 'DynaPuff', cursive; fill: #45454A; }
+#agenda .db-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 8px 0; }
+#agenda .db-kpi { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 14px; background: #FFF3F5; }
+#agenda .db-kpi span { font-size: .85rem; color: #6B5560; } #agenda .db-kpi b { font-size: 1.3rem; color: #8E1457; } #agenda .db-kpi small { color: #6B5560; }
+#agenda .db-kpi.db-alerta { background: #FDE2E2; } #agenda .db-kpi.db-alerta b { color: #B42318; }
+@media (max-width: 520px) { #agenda .db-grid { grid-template-columns: minmax(0, 1fr); } }
+@media print { #agenda .vs-dash { display: none; } }
+#agenda .db-card .ct-barra { grid-template-columns: minmax(70px, 120px) 1fr 74px; } #agenda .db-card .ct-pct { white-space: nowrap; } #agenda .db-card h4 .pn-enlace { white-space: nowrap; }
+@media (max-width: 520px) { #agenda .db-card .ct-barra { grid-template-columns: 1fr 74px; } }

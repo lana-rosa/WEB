@@ -162,7 +162,7 @@
   function iniciar() {
     selector();
     if (lang === 'es') { listo = true; return; }
-    var s = document.createElement('script'); s.src = '/js/agenda/i18n/' + lang + '.js?v=8';
+    var s = document.createElement('script'); s.src = '/js/agenda/i18n/' + lang + '.js?v=9';
     s.onload = s.onerror = function () { listo = true; pasar(document.body); observar(); document.title = tr(document.title); };
     document.head.appendChild(s);
   }
