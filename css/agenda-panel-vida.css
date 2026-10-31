@@ -124,3 +124,36 @@
 #agenda .cl-aviso { margin: 6px 0; font-weight: 600; color: #8E1457; } #agenda .cl-vacio { margin: 0; color: #6B5560; }
 #agenda .cl-recientes { list-style: none; margin: 0; padding: 0; } #agenda .cl-recientes li { padding: 4px 0; border-top: 1px solid #F5D5E5; font-size: .92rem; }
 @media print { #agenda td.cl-historial { display: none !important; } }
+
+/* Plus, etapa 4 (31-oct-2026): costo por producto y precio sugerido */
+#agenda .ct-reglas { margin: 6px 0 14px; padding: 12px 14px; border-radius: 14px; background: #FEF2F7; }
+#agenda .ct-campos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 18px; }
+#agenda .ct-nota { margin: 4px 0 8px; color: #6B5560; font-size: .92rem; }
+#agenda td.ct-calculo { display: block; grid-column: 1 / -1; margin-top: 8px; padding: 10px 12px; border-radius: 14px; background: #FEF2F7; }
+#agenda .ct-lista li { background: #fff; }
+#agenda .ct-aviso { margin: 8px 0 4px; padding: 8px 10px; border-radius: 10px; font-weight: 600; background: #fff; color: #45454A; }
+#agenda .ct-aviso.mal { background: #FDE2E2; color: #B42318; } #agenda .ct-aviso.alerta { background: #FFF3D6; color: #7A5200; } #agenda .ct-aviso.bien { background: #E6F4EA; color: #1E6B3A; }
+#agenda .ct-barras { display: grid; gap: 8px; margin: 8px 0 4px; }
+#agenda .ct-barra { display: grid; grid-template-columns: minmax(80px, 160px) 1fr 52px; gap: 10px; align-items: center; }
+#agenda .ct-nom { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#agenda .ct-pista { position: relative; height: 16px; border-radius: 8px; background: #F4E6EC; }
+#agenda .ct-rel { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 8px; } #agenda .ct-rel.bien { background: #4F8A5B; } #agenda .ct-rel.alerta { background: #D9A441; } #agenda .ct-rel.mal { background: #C81B6D; }
+#agenda .ct-meta { position: absolute; top: -3px; bottom: -3px; width: 3px; background: #45454A; border-radius: 2px; }
+#agenda .ct-pct { font-weight: 700; text-align: right; }
+@media (max-width: 520px) { #agenda .ct-barra { grid-template-columns: 1fr 52px; } #agenda .ct-barra .ct-pista { grid-column: 1 / -1; grid-row: 2; } }
+@media print { #agenda .ct-reglas, #agenda td.ct-calculo { display: none !important; } }
+
+/* Tableros de cada sección (31-oct-2026) */
+#agenda .vs-dash { margin: 4px 0 18px; } #agenda .db-titulo { margin: 0 0 10px; font-size: 1.15rem; color: #8E1457; }
+#agenda .db-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; align-items: start; }
+#agenda .db-card h4 { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+#agenda .db-donut-wrap { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; } #agenda .db-donut { width: 130px; height: 130px; flex: none; }
+#agenda .db-donut-n { font: 700 8px 'DynaPuff', cursive; fill: #45454A; }
+#agenda .db-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 8px 0; }
+#agenda .db-kpi { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 14px; background: #FFF3F5; }
+#agenda .db-kpi span { font-size: .85rem; color: #6B5560; } #agenda .db-kpi b { font-size: 1.3rem; color: #8E1457; } #agenda .db-kpi small { color: #6B5560; }
+#agenda .db-kpi.db-alerta { background: #FDE2E2; } #agenda .db-kpi.db-alerta b { color: #B42318; }
+@media (max-width: 520px) { #agenda .db-grid { grid-template-columns: minmax(0, 1fr); } }
+@media print { #agenda .vs-dash { display: none; } }
+#agenda .db-card .ct-barra { grid-template-columns: minmax(70px, 120px) 1fr 74px; } #agenda .db-card .ct-pct { white-space: nowrap; } #agenda .db-card h4 .pn-enlace { white-space: nowrap; }
+@media (max-width: 520px) { #agenda .db-card .ct-barra { grid-template-columns: 1fr 74px; } }

@@ -112,7 +112,7 @@
   function repintar() { if (pendiente) return; pendiente = true; setTimeout(function () { pendiente = false; var h = document.getElementById('fin-resumen'); if (h && h.classList.contains('abierta')) enFinanzas(); if (window.lrPintarPanel && document.getElementById('panel-agenda').classList.contains('abierta')) window.lrPintarPanel(); }, 120); }
   document.addEventListener('agenda-guardada', repintar);
   var fr = document.getElementById('fin-resumen'); if (fr) new MutationObserver(function () { if (fr.classList.contains('abierta')) enFinanzas(); }).observe(fr, { attributes: true, attributeFilter: ['class'] });
-  window.lrGraficas = { equilibrio: enPanel, finanzas: enFinanzas };
+  window.lrGraficas = { equilibrio: enPanel, finanzas: enFinanzas, equilibrioEn: equilibrio, utilidadEn: utilidad, acumuladoEn: acumulado, bloqueada: bloqueada };
   if (window.lrPintarPanel) window.lrPintarPanel();
   if (fr && fr.classList.contains('abierta')) enFinanzas();
 })();

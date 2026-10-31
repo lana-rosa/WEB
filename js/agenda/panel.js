@@ -283,6 +283,8 @@
       var pose = POSES.filter(function (x) { return x[0].test(titulo); })[0];
       if (pose) { var im = document.createElement('img'); im.className = 'vs-rosina'; im.src = '/img/agenda/rosina/' + pose[1] + '.webp'; im.alt = ''; im.width = 120; im.height = 120; cab.appendChild(im); }
       vista.appendChild(cab);
+      var db = txt('div', 'vs-dash'); db.setAttribute('role', 'region'); db.setAttribute('aria-label', 'Cómo vas en ' + titulo); vista.appendChild(db);
+      if (window.lrDashboards) window.lrDashboards.pintar(titulo, db);
       var g = txt('div', 'vs-hojas');
       enlaces.forEach(function (a) {
         var id = a.dataset.hoja, src = document.getElementById(id), p = src ? src.querySelector(':scope > header p') : null, bl = src && src.classList.contains('sin-membresia');

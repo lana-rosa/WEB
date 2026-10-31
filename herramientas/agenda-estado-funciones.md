@@ -41,3 +41,5 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 | Meta de ventas del mes y «¿Cuánto necesito vender al mes?» (membresía) | Hecha 31-oct-2026 (Plus, etapa 2) | `js/agenda/metas-ventas.js`, `probar_agenda_metas.py` |
 | Gráficas del negocio: punto de equilibrio (Mi panel y finanzas), ventas contra meta y utilidad por mes | Hecha 31-oct-2026 (Plus) | `js/agenda/graficas.js`, `probar_agenda_graficas.py` |
 | Historial de cada clienta en «Mis clientas» (membresía) | Hecha 31-oct-2026 (Plus, etapa 3) | `js/agenda/clientas-historial.js`, `probar_agenda_historial.py` |
+| Costo por producto y precio sugerido en Mi catálogo de precios (membresía) | Hecha 31-oct-2026 (Plus, etapa 4) | `js/agenda/costos.js`, `probar_agenda_costos.py` |
+| Tablero gráfico («Cómo vas») al abrir cada sección | Hecho 31-oct-2026 | `js/agenda/dashboards.js`, `probar_agenda_dashboards.py` |
