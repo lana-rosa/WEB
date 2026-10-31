@@ -102,3 +102,15 @@
 #agenda .mv-lista li span { font-size: .85rem; color: #6B5560; } #agenda .mv-lista li b { font-size: 1.15rem; color: #8E1457; }
 #agenda .mv-usar { margin-top: 4px; }
 @media print { #agenda .mv-contenedor { display: none; } }
+
+/* Gráficas del negocio (31-oct-2026) */
+#agenda .gr-svg { display: block; width: 100%; height: auto; }
+#agenda .gr-t { font: 700 12px 'Hanken Grotesk', sans-serif; fill: #6B5560; } #agenda .gr-blanco { fill: #fff; } #agenda .gr-lila { fill: #4B4FC9; } #agenda .gr-mes { font-weight: 600; }
+#agenda .gr-leyenda { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 6px 0 2px; font-size: .86rem; color: #6B5560; }
+#agenda .gr-leyenda span { display: inline-flex; align-items: center; gap: 6px; } #agenda .gr-leyenda i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+#agenda .gr-leyenda i.gr-raya { background: repeating-linear-gradient(90deg, #45454A 0 4px, transparent 4px 7px) !important; height: 3px; border-radius: 0; }
+#agenda .gr-leyenda i.gr-punteada { background: repeating-linear-gradient(90deg, #8A7A82 0 2px, transparent 2px 6px) !important; height: 3px; border-radius: 0; }
+#agenda .gr-resumen { margin: 8px 0 0; font-weight: 600; color: #45454A; }
+#agenda .gr-fila { margin-top: 14px; } #agenda .gr-caja { min-width: 0; }
+#agenda .pn-equilibrio { margin-top: 14px; }
+@media print { #agenda .gr-caja, #agenda .pn-equilibrio { display: none; } }

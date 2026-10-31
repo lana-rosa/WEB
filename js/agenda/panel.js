@@ -184,6 +184,12 @@
     k.appendChild(tarjeta('Pedidos activos', String(activos.length), activos.length ? (cobrar ? 'Por cobrar ' + fm(cobrar) : 'Todo cobrado') : 'Anota tu primer pedido', 'k4', 'bolsa'));
     cont.appendChild(k);
 
+    /* Punto de equilibrio del mes, en gráfica (solo si ya hay gastos fijos y margen; Plus, 31-oct-2026) */
+    if (window.lrGraficas) {
+      var pe = txt('div', 'pn-card pn-equilibrio'); pe.appendChild(cabecera('Punto de equilibrio del mes', 'Ver finanzas', 'fin-resumen'));
+      var cuerpo = txt('div', 'pn-pe-cuerpo'); pe.appendChild(cuerpo);
+      if (window.lrGraficas.equilibrio(cuerpo)) cont.appendChild(pe);
+    }
     /* Tres tarjetas con gráficos: proyectos, ventas de la semana y calendario del mes */
     var gr = txt('div', 'pn-graf');
     var cp = txt('div', 'pn-card'); cp.appendChild(cabecera('Mis proyectos', 'Ver todos', 'proyectos-fila'));

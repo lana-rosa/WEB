@@ -30,11 +30,13 @@
 
   /* ---- números que se calculan ---- */
   function ventasDelMes(y, m) {
+    var dm = new Date(y, m, 0).getDate(), dia = []; for (var i = 0; i <= dm; i++) dia.push(0);
     var v = filas('tabla-ventas', ['fecha', 'precio']).filter(function (r) { return enMes(r.fecha, y, m); });
-    var tot = v.reduce(function (s, r) { return s + num(r.precio); }, 0);
-    if (tot > 0) return { total: tot, fuente: 'ventas', n: v.length };
-    var ing = (fin().movs || []).filter(function (x) { return x && x.t === 'i' && String(x.f || '').slice(0, 7) === clave(y, m); }).reduce(function (s, x) { return s + num(x.v); }, 0);
-    return { total: ing, fuente: ing > 0 ? 'ingresos' : 'ventas', n: 0 };
+    var tot = v.reduce(function (s, r) { var f = N.leerFecha(r.fecha), p = num(r.precio); if (f && f.d >= 1 && f.d <= dm) dia[f.d] += p; return s + p; }, 0);
+    if (tot > 0) return { total: tot, fuente: 'ventas', n: v.length, porDia: dia };
+    var ing = 0;
+    (fin().movs || []).forEach(function (x) { if (x && x.t === 'i' && String(x.f || '').slice(0, 7) === clave(y, m)) { var d = parseInt(String(x.f).slice(8, 10), 10), p = num(x.v); ing += p; if (d >= 1 && d <= dm) dia[d] += p; } });
+    return { total: ing, fuente: ing > 0 ? 'ingresos' : 'ventas', n: 0, porDia: dia };
   }
   function margenReal(hoy) {
     var ok = 0, venta = 0, costo = 0, n = 0;
@@ -113,5 +115,14 @@
   document.addEventListener('agenda-guardada', function () { if (hoja.classList.contains('abierta')) pintar(); });
   new MutationObserver(function () { if (hoja.classList.contains('abierta')) pintar(); }).observe(hoja, { attributes: true, attributeFilter: ['class'] });
   if (hoja.classList.contains('abierta')) pintar();
-  window.lrMetasVentas = { pintar: pintar };
+  /* Datos para las gráficas del panel y de Finanzas (solo lectura) */
+  function calcular(y, m) {
+    var hoy = new Date(); y = y || hoy.getFullYear(); m = m || hoy.getMonth() + 1;
+    var mm = metas(), vd = ventasDelMes(y, m), fj = fijosMes(), mr = margenReal(hoy), propio = num(mm.margen), margen = propio > 0 ? propio : (mr && mr.pct > 0 ? mr.pct : 0);
+    var eq = margen && fj.fijos ? fj.fijos / (margen / 100) : 0, eqC = margen && (fj.fijos || fj.cuotas) ? (fj.fijos + fj.cuotas) / (margen / 100) : 0;
+    return { y: y, m: m, dias: new Date(y, m, 0).getDate(), hoyDia: (hoy.getFullYear() === y && hoy.getMonth() + 1 === m) ? hoy.getDate() : new Date(y, m, 0).getDate(),
+      ventas: vd.total, porDia: vd.porDia, fuente: vd.fuente, meta: num(mm.metas[clave(y, m)]), fijos: fj.fijos, cuotas: fj.cuotas, margen: margen, eq: eq, eqCuotas: eqC };
+  }
+  window.lrMetasVentas = { pintar: pintar, calcular: calcular };
+  document.dispatchEvent(new Event('metas-ventas-listas'));
 })();
