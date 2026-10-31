@@ -61,7 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=14">
 <link rel="stylesheet" href="/css/agenda-colores.css?v=12">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
-<link rel="stylesheet" href="/css/agenda-panel-vida.css?v=23">
+<link rel="stylesheet" href="/css/agenda-panel-vida.css?v=24">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=14">
 <link rel="stylesheet" href="/css/agenda-idioma.css?v=2">
 <link rel="stylesheet" href="/css/agenda-pantalla.css?v=11">
@@ -1692,7 +1692,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:640px;">
-            <thead><tr><th>Marca</th><th>Color</th><th>Grosor</th><th>Ovillos</th><th>Lo usé en</th></tr></thead>
+            <thead><tr><th>Marca</th><th>Color</th><th>Grosor</th><th>Ovillos</th><th>Lo usé en</th><th>Costo por ovillo ($)</th><th>Avísame si quedan menos de (ovillos)</th></tr></thead>
             <tbody id="tabla-lanas"></tbody>
           </table>
         </div>
@@ -2499,7 +2499,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     'direccion', { id: 'forma', opciones: ['Recoge en tienda', 'Domicilio (moto)', 'Servientrega', 'Interrapidísimo', 'Coordinadora', 'Otra transportadora', 'Entrega personal', 'Otro'] }, 'envio',
     { id: 'cal', cal: 'pedido' }], 8, 'del pedido',
     { cliente: '👤 Datos del cliente', pedido: '🧶 Producto y detalles adicionales', cantidad: '💰 Precio y pago', direccion: '🚚 Datos y medio de envío' });
-  filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso'], 12, 'de la lana');
+  filasTabla('tabla-lanas', 'ag-l', ['marca', 'color', 'grosor', 'ovillos', 'uso', 'costo', 'minimo'], 12, 'de la lana');
   filasTabla('tabla-compras', 'ag-c', ['material', 'color', 'cantidad', { id: 'comprado', check: true }], 10, 'de la compra');
   filasTabla('tabla-fila', 'ag-f', ['proyecto', 'para', 'fecha', { id: 'estado', opciones: ['Por empezar', 'Tejiendo', 'Terminado'] }, { id: 'avance', avance: true }, { id: 'cumplido', check: true }, 'cumplidoen', { id: 'cal', cal: 'proyecto' }], 10, 'del proyecto');
   filasTabla('tabla-agujas', 'ag-ag', [{ id: 'medida', opciones: ['2', '2,25', '2,5', '2,75', '3', '3,25', '3,5', '3,75', '4', '4,5', '5', '5,5', '6', '6,5', '7', '8', '9', '10'] }, { id: 'material', opciones: ['Aluminio', 'Acero', 'Bambú o madera', 'Plástico', 'Ergonómica con mango', 'Otro'] }, 'compra', 'notas'], 4, 'de la aguja');
@@ -2852,7 +2852,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     nuevas.forEach(function(it) {
       var fila = 0;
       for (var r = 1; r <= t.n; r++) {
-        if (['marca', 'color', 'grosor', 'ovillos', 'uso'].every(function(c) { return !document.getElementById('ag-l' + r + '-' + c).value.trim(); })) { fila = r; break; }
+        if (['marca', 'color', 'grosor', 'ovillos', 'uso', 'costo', 'minimo'].every(function(c) { return !document.getElementById('ag-l' + r + '-' + c).value.trim(); })) { fila = r; break; }
       }
       if (!fila) { agregarRenglon('tabla-lanas'); fila = t.n; }
       var f = String(it.fecha || '').split('-'), fecha = f.length === 3 ? f[2] + '/' + f[1] + '/' + f[0] : '';
@@ -4178,7 +4178,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=14" defer></script>
+<script src="/js/agenda/idioma.js?v=15" defer></script>
 <script src="/js/agenda/config.js?v=16" defer></script>
 <script src="/js/agenda/tour.js?v=5" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
@@ -4186,7 +4186,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/merceria.js?v=1" defer></script>
 <script src="/js/agenda/meses.js?v=1" defer></script>
 <script src="/js/agenda/pedidos.js?v=1" defer></script>
-<script src="/js/agenda/conexiones.js?v=3" defer></script>
+<script src="/js/agenda/conexiones.js?v=4" defer></script>
 <script src="/js/agenda/anio.js?v=1" defer></script>
 <script src="/js/agenda/portada.js?v=5" defer></script>
 <script src="/js/agenda/voz.js?v=2" defer></script>
@@ -4202,7 +4202,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/graficas.js?v=3" defer></script>
 <script src="/js/agenda/clientas-historial.js?v=2" defer></script>
 <script src="/js/agenda/costos.js?v=1" defer></script>
-<script src="/js/agenda/dashboards.js?v=2" defer></script>
+<script src="/js/agenda/inventario.js?v=1" defer></script>
+<script src="/js/agenda/dashboards.js?v=3" defer></script>
 <script src="/js/agenda/ayuda.js?v=3" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>

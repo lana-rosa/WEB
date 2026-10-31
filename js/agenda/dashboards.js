@@ -85,7 +85,10 @@
     var k = tarjeta('Tu lana', 'inventario-lanas', 'Ver inventario');
     if (!la.length) k.appendChild(vacio('Anota tus lanas en «Inventario de lanas» y aquí verás cuántos ovillos tienes y cuáles se acabaron.'));
     else {
-      k.appendChild(kpis([['Ovillos en total', tot], ['Lanas distintas', la.length], ['Se acabaron', cero, cero ? '¿Las agregas a la lista?' : 'Todo con existencias', cero ? 'db-alerta' : '']]));
+      var iv = window.lrInventario ? window.lrInventario.resumen() : null, bajoMin = iv ? iv.porAcabar.length : cero;
+      var kp = [['Ovillos en total', tot], ['Lanas distintas', la.length], [iv ? 'Por acabarse' : 'Se acabaron', bajoMin, bajoMin ? '¿Las agregas a la lista?' : 'Todo con existencias', bajoMin ? 'db-alerta' : '']];
+      if (iv && iv.conCosto) kp.splice(1, 0, ['Dinero en lana', '$ ' + Math.round(iv.valor).toLocaleString('es-CO'), iv.sinCosto ? iv.sinCosto + ' sin costo' : 'Ovillos × costo']);
+      k.appendChild(kpis(kp));
       var por = {}; la.forEach(function (l) { var m = l.marca || 'Sin marca'; por[m] = (por[m] || 0) + num(l.ovillos); });
       var top = Object.keys(por).map(function (m) { return { n: m, v: por[m] }; }).sort(function (a, b) { return b.v - a.v; }).slice(0, 5);
       if (top.some(function (x) { return x.v; })) { k.appendChild(el('h5', 'cl-titulo cl-sub', 'Ovillos por marca')); k.appendChild(barrasH(top, LILA)); } }

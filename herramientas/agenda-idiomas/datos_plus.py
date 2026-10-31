@@ -151,3 +151,28 @@ FILAS = [
  ('Tus pausas activas', 'Your active breaks', 'Suas pausas ativas'), ('Ver registro', 'See log', 'Ver registro'), ('Días con pausas activas', 'Days with active breaks', 'Dias com pausas ativas'), ('de 31 días del mes', 'of 31 days of the month', 'de 31 dias do mês'),
  ('Entendido', 'Got it', 'Entendi'),
 ]
+
+# Plus etapa 5: inventario de lanas con costo y mínimo (31-oct-2026)
+FILAS += [
+ ('Costo por ovillo ($)', 'Cost per skein ($)', 'Custo por novelo ($)'), ('Avísame si quedan menos de (ovillos)', 'Warn me when fewer than (skeins) are left', 'Avise-me quando restarem menos de (novelos)'),
+ ('Resumen de tu inventario', 'Your inventory summary', 'Resumo do seu estoque'), ('Tu inventario en números', 'Your inventory in numbers', 'Seu estoque em números'),
+ ('Dinero en lana', 'Money in yarn', 'Dinheiro em lã'), ('Anota el costo de cada ovillo', 'Write down the cost of each skein', 'Anote o custo de cada novelo'), ('Ovillos × costo de cada uno', 'Skeins × cost of each', 'Novelos × custo de cada um'),
+ ('Sin contar {n#} lana sin costo', 'Not counting {n} yarn with no cost', 'Sem contar {n} lã sem custo'), ('Sin contar {n#} lanas sin costo', 'Not counting {n} yarns with no cost', 'Sem contar {n} lãs sem custo'),
+ ('{n#} lana distinta', '{n} different yarn', '{n} lã diferente'), ('{n#} lanas distintas', '{n} different yarns', '{n} lãs diferentes'),
+ ('Costo promedio por ovillo', 'Average cost per skein', 'Custo médio por novelo'), ('Aparece cuando anotas costos', 'Shows up when you write down costs', 'Aparece quando você anota os custos'),
+ ('Por acabarse', 'Running low', 'Acabando'), ('Mira cuáles abajo', 'See which ones below', 'Veja quais abaixo'),
+ ('Se acabó', 'Ran out', 'Acabou'), ('Queda 1', '1 left', 'Resta 1'), ('Quedan {n#}', '{n} left', 'Restam {n}'), ('Y {n#} más.', 'And {n} more.', 'E mais {n}.'),
+ ('Si anotas lo que pagaste por cada ovillo, la agenda te dice cuánto dinero tienes guardado en lana. Y con «Avísame si quedan menos de», te avisa antes de que se acabe.',
+  'If you write down what you paid for each skein, the planner tells you how much money you have stored in yarn. And with «Warn me when fewer than», it warns you before you run out.',
+  'Se você anotar quanto pagou por cada novelo, a agenda mostra quanto dinheiro você tem guardado em lã. E com «Avise-me quando restarem menos de», ela avisa antes de acabar.'),
+ ('Valor de esta lana', 'Value of this yarn', 'Valor desta lã'), ('Anota cuántos ovillos tienes para ver su valor.', 'Write down how many skeins you have to see its value.', 'Anote quantos novelos você tem para ver o valor.'),
+ ('Se acabó. Puedes pasarla a tu Lista de compras con el aviso de arriba.', 'It ran out. You can move it to your Shopping list with the notice above.', 'Acabou. Você pode passá-la para a Lista de compras com o aviso acima.'),
+ ('Te queda 1 ovillo y tu mínimo es {m#}. ¿La compras?', 'You have 1 skein left and your minimum is {m}. Buy it?', 'Resta 1 novelo e seu mínimo é {m}. Vai comprar?'),
+ ('Te quedan {n#} ovillos y tu mínimo es {m#}. ¿La compras?', 'You have {n} skeins left and your minimum is {m}. Buy it?', 'Restam {n} novelos e seu mínimo é {m}. Vai comprar?'),
+ ('Tienes más de tu mínimo ({m#}).', 'You have more than your minimum ({m}).', 'Você tem mais que o mínimo ({m}).'),
+ ('{n#} sin costo', '{n} with no cost', '{n} sem custo'), ('Ovillos × costo', 'Skeins × cost', 'Novelos × custo'),
+]
+FILAS += [
+ ('Tienes 1 lana agotada o por acabarse que no está en tu Lista de compras.', 'You have 1 yarn that ran out or is running low and is not on your Shopping list.', 'Você tem 1 lã acabada ou acabando que não está na sua Lista de compras.'),
+ ('Tienes {n#} lanas agotadas o por acabarse que no están en tu Lista de compras.', 'You have {n} yarns that ran out or are running low and are not on your Shopping list.', 'Você tem {n} lãs acabadas ou acabando que não estão na sua Lista de compras.'),
+]
