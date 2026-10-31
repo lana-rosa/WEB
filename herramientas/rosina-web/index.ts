@@ -1,7 +1,8 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v39 (31-oct-2026; pendiente de desplegar): GUIA_AGENDA explica «Avisos de hoy» (con contadores y «Ver todos»), «Consejo de Rosina» y el menú lateral que se esconde.
+// v40 (31-oct-2026; desplegada): GUIA_AGENDA explica la meta de ventas del mes, «¿Cuánto necesito vender al mes?» y las gráficas del negocio (punto de equilibrio en Mi panel; en «Mi negocio en números»: punto de equilibrio, ventas del mes contra la meta y utilidad de cada mes).
+// v39 (31-oct-2026; desplegada): GUIA_AGENDA explica «Avisos de hoy» (con contadores y «Ver todos»), «Consejo de Rosina» y el menú lateral que se esconde.
 // v38 (31-oct-2026): la agenda se puede ver en inglés y portugués; el chat manda `idioma` (en|pt|es) y Rosina responde en ese idioma; GUIA_AGENDA explica el selector ES/EN/PT.
 // v37 (31-oct-2026; desplegada): GUIA_AGENDA describe el fondo de pantalla elegido en la Portada (Flores, Hojas, Madejas, Liso) el ícono de color de cada hoja, los colores oficiales de Lana Rosa (rosa #E74E96, lila y azul) en toda la agenda y el botón de ayuda sin WhatsApp; en Configuración el botón para volver a ese color se llama «Volver al rosa de Lana Rosa».
 // v36 (30-oct-2026; desplegada y probada): GUIA_AGENDA describe el nuevo Mi panel (saludo con Rosina, círculo de proyectos, barras de ventas de la semana, calendario del mes y tareas de hoy), el color por sección y el rosa frambuesa.
