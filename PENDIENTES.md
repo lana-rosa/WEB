@@ -14,7 +14,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial comp
 - [ ] Etapa 3: historial por clienta. · [ ] Etapa 4: costo por producto y precio sugerido. · [ ] Etapa 5: inventario con costo y mínimo. · [ ] Etapa 6: informe mensual para imprimir.
 - [ ] Etapa 7: núcleo de datos por usuaria (migración con deshacer). · [ ] Etapa 8: inventario con movimientos y conexiones.
 - [ ] Al terminar cada etapa: actualizar `GUIA_AGENDA` de `rosina-web` y volver a desplegarla.
-- [ ] Al final: documento de marketing con las funcionalidades de la agenda.
+- [x] Documento de marketing: `herramientas/marketing-agenda/CAMPANA-INDEPENDIZATE.md` (31-oct-2026). Falta decidir el nombre (tejedoras/emprendedoras), construir la página `/independizate/` y producir la serie «Independízate».
 - [ ] Al final: cobro en dólares para vender la agenda en el exterior (Wompi no cobra en USD en todos los casos; revisar PayPal —ya hay `paypal_ajustes` en la base— y Stripe; precios por país, impuestos y textos legales).
 
 ## 🔴 1. Urgente: lo que bloquea la Mercería y la apertura (meta: hasta el 23-oct)
