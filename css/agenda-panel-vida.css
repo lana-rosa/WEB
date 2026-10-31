@@ -76,3 +76,12 @@
 @media (max-width: 520px) { #agenda .vs-cab { padding: 14px 16px; min-height: 0; } #agenda .vs-rosina { height: 84px; margin: -4px 0 -10px; } }
 @media print { #agenda .vs-rosina { display: none; } }
 #agenda .vacio-ejemplo[hidden] { display: none; }   /* el display:flex de arriba le ganaba al atributo hidden */
+
+/* Plus, etapa 1 (31-oct-2026): avisos de hoy y consejo de Rosina en Mi panel */
+#agenda .pn-avisos, #agenda .pn-consejo { margin-top: 14px; }
+#agenda .pn-aviso { display: flex; align-items: center; gap: 10px; text-align: left; min-height: 44px; }
+#agenda .pn-aviso-ic { flex: none; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: #FBE4EF; color: #B0356F; }
+#agenda .pn-aviso.mal .pn-aviso-ic { background: #FDE2E2; color: #B42318; }
+#agenda .pn-aviso-ic svg { width: 16px; height: 16px; }
+#agenda .pn-consejo p { margin: 0 0 10px; }
+@media print { #agenda .pn-avisos, #agenda .pn-consejo { display: none; } }

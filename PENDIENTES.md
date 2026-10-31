@@ -7,6 +7,16 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial comp
 
 ---
 
+## ⭐ Plus para emprendedoras (plan acordado con Sara, 31-oct-2026)
+- [x] Etapa 1: avisos de hoy y consejo de Rosina en Mi panel (gratis).
+- [ ] Etapa 0 (la hace Sara): entrevistas con ~10 usuarias, pruebas en iPhone/Samsung/iPad, pago real de $5.000, revisión de la abogada.
+- [ ] Etapa 2: meta de ventas → semanas y días; «¿cuánto necesito vender al mes?» (de pago).
+- [ ] Etapa 3: historial por clienta. · [ ] Etapa 4: costo por producto y precio sugerido. · [ ] Etapa 5: inventario con costo y mínimo. · [ ] Etapa 6: informe mensual para imprimir.
+- [ ] Etapa 7: núcleo de datos por usuaria (migración con deshacer). · [ ] Etapa 8: inventario con movimientos y conexiones.
+- [ ] Al terminar cada etapa: actualizar `GUIA_AGENDA` de `rosina-web` y volver a desplegarla.
+- [ ] Al final: documento de marketing con las funcionalidades de la agenda.
+- [ ] Al final: cobro en dólares para vender la agenda en el exterior (Wompi no cobra en USD en todos los casos; revisar PayPal —ya hay `paypal_ajustes` en la base— y Stripe; precios por país, impuestos y textos legales).
+
 ## 🔴 1. Urgente: lo que bloquea la Mercería y la apertura (meta: hasta el 23-oct)
 
 - [ ] **(22-oct-2026, Sara) Ya se están cargando productos, pero al inventario del TALLER (lo que hay hoy es para tejer); los pedidos de lo que se venderá en la Mercería se hacen la próxima semana (~26-oct a 1-nov) y ahí se cargan sus existencias.** Mientras tanto el catálogo de la Mercería sigue en «Muy pronto» (es lo esperado). **Regla de Sara (22-oct-2026): el inventario del TALLER es para tejer (insumos propios); el inventario de la TIENDA es para vender (lo de la Mercería).** **Plantilla de carga mejorada el 22-oct-2026** (`herramientas/merceria-carga/plantilla_carga_merceria.xlsx`: aviso de que es solo para lo que se vende, hoja «Resumen», columna de revisión automática y filas hasta la 150; Sara la llena con los pedidos de la próxima semana y se la envía a Claude). Al cargar la Mercería, cada ítem va al inventario de la Tienda; revisar que los insumos del Taller no se vean en la web de la Mercería y que cada ítem esté en el centro de costo correcto.
@@ -406,4 +416,4 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 
 - [ ] **Agenda responsive, prototipo (30-oct-2026):** `herramientas/agenda-auditoria/prototipo/` (`prototipo.css` inyectado con `herramientas/pruebas/prototipo_agenda_responsive.py`; NO está en la web). Muestra Portada, Mi tablero, Control de pedidos y Mi negocio en números en 5 tamaños con serifa Fraunces (OFL; para la web hay que pasarla a woff2 y servirla desde `/fonts`), marfil/crema, verde salvia, distribución por ancho de la hoja (consultas de contenedor) y riel lateral en celular apaisado. Falta: aprobación de Sara, recolorear gráficos (azul/naranja → paleta), quitar emoji restantes en textos, pruebas en celulares reales.
 
-- [ ] **Agenda en español, inglés y portugués (31-oct-2026, pedido de Sara):** etapas 1 y 2 publicadas (#472, #473); etapa 3 (tutorial, avisos, ventanas, voz, chat de Rosina v38) hecha en la rama, sin publicar. Quedan en español a propósito: políticas, ventanas legales de la copia en la nube y del pago de la membresía (esperan a la abogada), mensajes de WhatsApp, archivo .ics, cálculos de «Prendas a medida» y tarjetas de membresía. Traducciones de una IA sin revisión humana (`herramientas/agenda-idiomas/REVISION.tsv`).
+- [ ] **Agenda en español, inglés y portugués (31-oct-2026, pedido de Sara):** etapas 1 y 2 publicadas (#472, #473); etapa 3 (tutorial, avisos, ventanas, voz, chat de Rosina v38) publicada (#474). Quedan en español a propósito: políticas, ventanas legales de la copia en la nube y del pago de la membresía (esperan a la abogada), mensajes de WhatsApp, archivo .ics, cálculos de «Prendas a medida» y tarjetas de membresía. Traducciones de una IA sin revisión humana (`herramientas/agenda-idiomas/REVISION.tsv`).
