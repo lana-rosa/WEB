@@ -100,7 +100,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     '<label class="mm-acepto"><input type="checkbox" id="mm-acepto-inicio"><span>Solicito que el servicio comience inmediatamente después de aprobarse mi pago y entiendo las consecuencias que esto puede tener sobre mi derecho de retracto, en los términos legalmente aplicables (<a href="/politicas.html#membresia" target="_blank" rel="noopener">apartado 5 de las condiciones</a>).</span></label></div>' +
     '<button type="button" class="boton-primario" id="mm-pagar">Pagar con Wompi</button><p class="cs-aviso" id="mm-aviso" role="status"></p>' +
     '<small class="nota-pie">Pago seguro con Wompi (tarjeta, PSE, Nequi y más). No hay cobro automático: te avisamos antes de que venza. Tus hojas gratis y tus datos siguen siendo tuyos. Guardamos la fecha y hora en que aceptas.</small>';
-  var dlg = document.createElement('dialog'); dlg.className = 'modal-membresia no-imprimir'; dlg.id = 'modal-membresia'; dlg.setAttribute('aria-labelledby', 'mm-titulo'); dlg.innerHTML = HTML;
+  var dlg = document.createElement('dialog'); dlg.className = 'modal-membresia no-imprimir'; dlg.id = 'modal-membresia'; dlg.setAttribute('data-no-traducir', '');   /* texto legal: queda en español hasta que lo revise la abogada */ dlg.setAttribute('aria-labelledby', 'mm-titulo'); dlg.innerHTML = HTML;
   document.body.appendChild(dlg);
   function cerrar() { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
   function abrir() {

@@ -47,7 +47,7 @@
     base = destino.value; activo = true; botones.forEach(function (b) { poner(b, b === boton); });
     destino.focus({ preventScroll: true });
     function iniciar() {
-      rec = new SR(); rec.lang = 'es-CO'; rec.continuous = true; rec.interimResults = true;
+      rec = new SR(); rec.lang = (window.lrI18n && window.lrI18n.voz) || 'es-CO'; rec.continuous = true; rec.interimResults = true;
       rec.onresult = function (ev) {
         var parcial = '';
         for (var i = ev.resultIndex; i < ev.results.length; i++) {

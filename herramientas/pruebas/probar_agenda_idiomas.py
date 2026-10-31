@@ -59,6 +59,25 @@ with sync_playwright() as p:
         guardado = pg.evaluate("JSON.parse(localStorage.getItem('rosinaAgenda'))['ag-p2-estado']")
         T.v('[%s] el estado elegido se guarda en español (%s → Entregado)' % (idioma, etiqueta), guardado == 'Entregado', guardado)
         pg.context.close()
+    # --- etapa 3: tutorial, ventanas del navegador, chat de Rosina y dictado
+    for idioma, bien, borrar_txt, chat_ph, voz in (('en', 'Welcome to your planner', 'Delete everything you wrote', 'Write your question', 'en-US'), ('pt', 'Bem-vinda à sua agenda', 'Apagar tudo o que você escreveu', 'Escreva a sua pergunta', 'pt-BR')):
+        ctx = contexto(b, 1280, 900, datos=DATOS, config_abierta=False); ctx.add_init_script("localStorage.setItem('lrAgendaIdioma', '%s')" % idioma)
+        cuerpos = []
+        ctx.route('**/functions/v1/rosina-web', lambda r: (cuerpos.append(r.request.post_data), r.fulfill(status=200, content_type='application/json', headers={'access-control-allow-origin': '*'}, body='{"respuesta":"ok","productos":[]}'))[1])
+        pg = ctx.new_page(); pg.errs = []; pg.on('pageerror', lambda e: pg.errs.append(str(e))); dialogos = []
+        pg.on('dialog', lambda d: (dialogos.append(d.message), d.dismiss())); pg.goto(BASE + '/agenda-rosina.html?tour=1'); pg.wait_for_timeout(2500)
+        T.v('[%s] el tutorial de bienvenida está traducido' % idioma, bien in pg.inner_text('.tour-tarjeta'), pg.inner_text('.tour-tarjeta')[:80])
+        pg.keyboard.press('Escape'); pg.evaluate("document.querySelector('.tour-saltar') && document.querySelector('.tour-saltar').click()"); pg.wait_for_timeout(300)
+        pg.evaluate("window.lrAgendaConfig.abrir()"); pg.wait_for_timeout(300); pg.click('#agenda-borrar'); pg.wait_for_timeout(400)
+        T.v('[%s] la ventana de confirmación del navegador sale traducida' % idioma, any(borrar_txt in d for d in dialogos), dialogos)
+        pg.evaluate("window.lrAgendaConfig.cerrar()"); pg.click('#af-boton'); pg.click('#af-menu [data-af=rosina]'); pg.wait_for_timeout(600)
+        T.v('[%s] el chat de Rosina está traducido' % idioma, chat_ph in (pg.get_attribute('.rc-form input', 'placeholder') or ''), pg.get_attribute('.rc-form input', 'placeholder'))
+        pg.fill('.rc-form input', 'hola'); pg.click('.rc-form button'); pg.wait_for_timeout(700)
+        T.v('[%s] el chat le dice a la función en qué idioma contestar' % idioma, bool(cuerpos) and ('"idioma":"%s"' % idioma) in cuerpos[0], cuerpos[:1])
+        T.v('[%s] el dictado usa el idioma elegido' % idioma, pg.evaluate("window.lrI18n.voz") == voz)
+        T.v('[%s] la ventana de pago de la membresía y la autorización de la nube quedan en español (texto legal)' % idioma, pg.evaluate("document.getElementById('modal-nube').hasAttribute('data-no-traducir')"))
+        T.v('[%s] sin errores en el tutorial ni el chat' % idioma, not pg.errs, pg.errs)
+        ctx.close()
     # ?idioma=pt fija el idioma
     ctx = contexto(b, 1280, 900, datos=DATOS, config_abierta=False); pg = ctx.new_page(); pg.goto(BASE + '/agenda-rosina.html?idioma=pt'); pg.wait_for_timeout(2200)
     T.v('?idioma=pt la deja en portugués y la recuerda', pg.evaluate("document.documentElement.lang") == 'pt-BR' and pg.evaluate("localStorage.getItem('lrAgendaIdioma')") == 'pt')

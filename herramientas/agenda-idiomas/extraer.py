@@ -18,7 +18,7 @@ def tomar(pg, vista):
         if t not in salida: salida[t] = [donde, vista]
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM)
-    for ancho, alto in (((1280, 900),) if vistas == "hojas" else ((1280, 900), (390, 844))):
+    for ancho, alto in (((1280, 900),) if vistas in ("hojas", "resto") else ((1280, 900), (390, 844))):
         ctx = contexto(b, ancho, alto, datos=DATOS, config_abierta=False); ctx.add_init_script("localStorage.setItem('lrAgendaIdioma','%s')" % idioma)
         pg = abrir(ctx, '', 2500, config=False); tag = '%d' % ancho
         if vistas in ('etapa1', 'todo'):
@@ -35,6 +35,9 @@ with sync_playwright() as p:
                 pg.evaluate("window.lrIrAHoja && window.lrIrAHoja('%s')" % h); pg.wait_for_timeout(350)
                 for t, donde in pg.evaluate("window.lrI18n.faltan(document.getElementById('%s'), true)" % h):   # todo el cuerpo de la hoja, también lo oculto (fichas cerradas)
                     if t not in salida: salida[t] = [donde, 'hoja-%s' % h]
+        if vistas in ('resto', 'todo'):   # toda la página, también lo oculto (ventanas, tarjetas, avisos) fuera de las hojas
+            for t, donde in pg.evaluate("window.lrI18n.faltan(document.body, true)"):
+                if t not in salida: salida[t] = [donde, 'pagina-' + tag]
         if vistas == 'etapa1':   # los títulos y subtítulos de todas las hojas (alimentan la lista «Hojas de…» y las tarjetas de sección)
             ids = pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a[data-hoja]')].map(a => a.dataset.hoja)")
             for h in ids:
