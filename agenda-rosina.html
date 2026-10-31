@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-panel.css?v=14">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=14">
-<link rel="stylesheet" href="/css/agenda-colores.css?v=12">
+<link rel="stylesheet" href="/css/agenda-colores.css?v=14">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
 <link rel="stylesheet" href="/css/agenda-panel-vida.css?v=28">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=14">
@@ -3843,15 +3843,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var colorDe = function(g, i) { return COLOR_GRUPO[g.t] || COL[i % COL.length]; };
     var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t === 'Finanzas del negocio' ? 'Finanzas' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
     var nav = document.getElementById('pestanas-agenda'), selector = document.getElementById('selector-hoja'), lista = document.getElementById('selector-hoja-lista'), etqLista = document.getElementById('selector-hoja-etq');
-    var ICONOS_LATERAL = [
-      '<path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/>',
-      '<rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/>',
-      '<path d="M20 3L7 16M17 6l2 2"/><path d="M7 16c-1.800.4-3 1.800-2.500 3.500.2.800 1 1 1.700.6"/><circle cx="17" cy="18" r="3.500"/>',
-      '<path d="M3 7.500L12 3l9 4.500v9L12 21l-9-4.500v-9zM3 7.500l9 4.500 9-4.500M12 12v9M7.500 5.200l9 4.500"/>',
-      '<path d="M4 9l1.500-5h13L20 9M4 9v11h16V9M4 9c0 2.200 3.500 2.200 4 0 .5 2.200 3.500 2.200 4 0 .5 2.200 3.500 2.200 4 0 .5 2.200 4 2.200 4 0M10 20v-6h4v6"/>',
-      '<circle cx="12" cy="12" r="9"/><path d="M14.5 9c-.5-1-1.500-1.500-2.500-1.500-1.500 0-2.500.8-2.500 2s1 1.700 2.500 2 2.500.8 2.500 2-1 2-2.500 2c-1.200 0-2.200-.600-2.700-1.600M12 6v1.500M12 16.500V18"/>',
-      '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 19l-2.600-2.400a1.700 1.700 0 012.600-2.200 1.700 1.700 0 012.600 2.200z"/>'
-    ].map(function(d) { return '<svg class="ic-lateral" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">' + d + '</svg>'; });
+    var ICONOS_LATERAL = ['panel', 'tablero', 'proyectos', 'materiales', 'emprendimiento', 'finanzas', 'fechas'].map(function(n) {
+      return '<img class="ic-lateral ic-dibujo" src="/img/agenda/menu/' + n + '.webp?v=1" width="40" height="40" alt="" aria-hidden="true" decoding="async">';
+    });
     var botones = grupos.map(function(g, i) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'pestana'; b.setAttribute('role', 'tab');
       b.style.setProperty('--c', colorDe(g, i)); b.innerHTML = (ICONOS_LATERAL[i] || '') + '<span class="p-largo">' + (i === 0 ? 'Mi panel' : g.t) + '</span><span class="p-corto">' + (i === 0 ? 'Panel' : etiqueta(g.t)) + '</span>';
