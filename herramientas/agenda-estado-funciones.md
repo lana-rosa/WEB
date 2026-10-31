@@ -27,3 +27,10 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 ## Pendientes de decisión
 - Revisión de la abogada: `politicas.html#membresia` (precios y prueba), `#ia-chat` (alinear con el aviso del chat) y un plazo de conservación de la copia en la nube por inactividad.
 - Si se agrega o cambia una función: actualizar esta tabla, `GUIA_AGENDA` (y desplegar `rosina-web`), el tutorial (`tour.js`), `politicas.html` y las preguntas frecuentes.
+
+## Idiomas (31-oct-2026)
+| Función | Estado | Dónde está el texto |
+|---|---|---|
+| Selector ES / EN / PT | Etapa 1: menú, Mi panel, secciones, Configuración, títulos de hojas, pie | `js/agenda/idioma.js`, `js/agenda/i18n/`, `herramientas/agenda-idiomas/` |
+| Cuerpo de las hojas, tutorial, avisos y Rosina en otros idiomas | Pendiente (etapas 2 y 3) | — |
+| Políticas en otros idiomas | No: quedan en español hasta la revisión de la abogada | `politicas.html` |

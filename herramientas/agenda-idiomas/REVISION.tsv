@@ -1,0 +1,333 @@
+español	inglés	portugués
+Saltar al contenido	Skip to content	Ir para o conteúdo
+Lana Rosa Agenda para tejedoras	Lana Rosa Planner for crocheters	Lana Rosa Agenda para crocheteiras
+Agenda para tejedoras	Planner for crocheters	Agenda para crocheteiras
+Configuración	Settings	Configurações
+Mi cuenta	My account	Minha conta
+Agenda de {n}	{n}'s planner	Agenda de {n}
+Buscar en mi agenda	Search my planner	Buscar na minha agenda
+Buscar en mi agenda…	Search my planner…	Buscar na minha agenda…
+Dictar	Dictate	Ditar
+Lápiz	Pen	Caneta
+Color de la letra y resaltar	Text color and highlight	Cor da letra e marca-texto
+Ayuda	Help	Ajuda
+Ayuda: Rosina y subir	Help: Rosina and back to top	Ajuda: Rosina e voltar ao topo
+Preguntar a Rosina	Ask Rosina	Perguntar à Rosina
+Subir	Back to top	Voltar ao topo
+Idioma	Language	Idioma
+Pestañas de la agenda	Planner tabs	Abas da agenda
+Hojas de tu agenda	Your planner pages	Páginas da sua agenda
+Mi panel	My dashboard	Meu painel
+Mi tablero	My overview	Minha visão geral
+Mis proyectos	My projects	Meus projetos
+Mis materiales	My supplies	Meus materiais
+Mi emprendimiento	My business	Meu negócio
+Finanzas del negocio	Business finances	Finanças do negócio
+Fechas y bienestar	Dates & wellbeing	Datas e bem-estar
+Panel	Home	Início
+Tablero	Overview	Resumo
+Proyectos	Projects	Projetos
+Materiales	Supplies	Materiais
+Emprendimiento	Business	Negócio
+Finanzas	Finances	Finanças
+Bienestar	Wellness	Bem-estar
+enero	January	janeiro
+febrero	February	fevereiro
+marzo	March	março
+abril	April	abril
+mayo	May	maio
+junio	June	junho
+julio	July	julho
+agosto	August	agosto
+septiembre	September	setembro
+octubre	October	outubro
+noviembre	November	novembro
+diciembre	December	dezembro
+Enero	January	Janeiro
+Febrero	February	Fevereiro
+Marzo	March	Março
+Abril	April	Abril
+Mayo	May	Maio
+Junio	June	Junho
+Julio	July	Julho
+Agosto	August	Agosto
+Septiembre	September	Setembro
+Octubre	October	Outubro
+Noviembre	November	Novembro
+Diciembre	December	Dezembro
+ene	Jan	jan
+feb	Feb	fev
+mar	Mar	mar
+abr	Apr	abr
+may	May	mai
+jun	Jun	jun
+jul	Jul	jul
+ago	Aug	ago
+sep	Sep	set
+oct	Oct	out
+nov	Nov	nov
+dic	Dec	dez
+Lunes	Monday	Segunda-feira
+Martes	Tuesday	Terça-feira
+Miércoles	Wednesday	Quarta-feira
+Jueves	Thursday	Quinta-feira
+Viernes	Friday	Sexta-feira
+Sábado	Saturday	Sábado
+Domingo	Sunday	Domingo
+lunes	Monday	segunda-feira
+martes	Tuesday	terça-feira
+miércoles	Wednesday	quarta-feira
+jueves	Thursday	quinta-feira
+viernes	Friday	sexta-feira
+sábado	Saturday	sábado
+domingo	Sunday	domingo
+Lo más importante de tu agenda hoy: tus números del mes, lo que viene y lo que estás tejiendo.	The most important things in your planner today: this month's numbers, what's coming up and what you're crocheting.	O mais importante da sua agenda hoje: os números do mês, o que vem por aí e o que você está crochetando.
+Buenos días	Good morning	Bom dia
+Buenas tardes	Good afternoon	Boa tarde
+Buenas noches	Good evening	Boa noite
+Buenos días, {n}	Good morning, {n}	Bom dia, {n}
+Buenas tardes, {n}	Good afternoon, {n}	Boa tarde, {n}
+Buenas noches, {n}	Good evening, {n}	Boa noite, {n}
+{w=lunes|martes|miércoles|jueves|viernes|sábado|domingo} {d#} de {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre} · {r}	{w}, {m} {d} · {r}	{w}, {d} de {m} · {r}
+{a=Tienes .+?|No tienes entregas esta semana} y {b=\d+ proyectos? en el gancho|ningún proyecto tejiéndose ahora}.	{a} and {b}.	{a} e {b}.
+Tienes {n#} entrega esta semana	You have {n} delivery this week	Você tem {n} entrega esta semana
+Tienes {n#} entregas esta semana	You have {n} deliveries this week	Você tem {n} entregas esta semana
+No tienes entregas esta semana	You have no deliveries this week	Você não tem entregas esta semana
+{n#} proyecto en el gancho	{n} project on the hook	{n} projeto na agulha
+{n#} proyectos en el gancho	{n} projects on the hook	{n} projetos na agulha
+ningún proyecto tejiéndose ahora	no projects being crocheted right now	nenhum projeto sendo crochetado agora
+Tejer es mi terapia	Crochet is my therapy	Crochê é a minha terapia
+Una vuelta más y lo logras	One more round and you’ve got it	Mais uma carreira e você consegue
+Tú puedes con este proyecto	You can do this project	Você consegue com este projeto
+Hecho a mano, con amor	Handmade, with love	Feito à mão, com amor
+Hoy también cuenta: una vuelta a la vez	Today counts too: one round at a time	Hoje também conta: uma carreira de cada vez
+Tu talento tiene valor	Your talent has value	O seu talento tem valor
+Números de {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre}	{m} numbers	Números de {m}
+Ventas de {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre}	{m} sales	Vendas de {m}
+{n#} venta anotada	{n} sale recorded	{n} venda registrada
+{n#} ventas anotadas	{n} sales recorded	{n} vendas registradas
+{n#} gasto anotado	{n} expense recorded	{n} despesa registrada
+{n#} gastos anotados	{n} expenses recorded	{n} despesas registradas
+Gastos del mes	This month's expenses	Despesas do mês
+Te quedó	You kept	Sobrou para você
+Ganancia del mes	This month's profit	Lucro do mês
+Este mes gastaste más de lo que vendiste	This month you spent more than you sold	Neste mês você gastou mais do que vendeu
+Aparece cuando anotes ventas y gastos	Shows up once you record sales and expenses	Aparece quando você registrar vendas e despesas
+Pedidos activos	Active orders	Pedidos ativos
+Anota tu primer pedido	Record your first order	Registre o seu primeiro pedido
+Todo cobrado	All paid	Tudo recebido
+Por cobrar {v}	To collect {v}	A receber {v}
+Ver todos	See all	Ver todos
+Terminados · {n#}	Finished · {n}	Concluídos · {n}
+Tejiendo · {n#}	Crocheting · {n}	Crochetando · {n}
+Por empezar · {n#}	To start · {n}	Para começar · {n}
+Terminado	Finished	Concluído
+Tejiendo	Crocheting	Crochetando
+Por empezar	To start	Para começar
+Aquí verás tus proyectos terminados, tejiéndose y por empezar. Agrega el primero con «Nuevo proyecto».	Here you will see your finished projects, the ones in progress and the ones to start. Add the first one with “New project”.	Aqui você verá os projetos concluídos, em andamento e por começar. Adicione o primeiro com «Novo projeto».
+Ventas de la semana	This week's sales	Vendas da semana
+Ver ventas	See sales	Ver vendas
+Ventas de esta semana, de lunes a domingo: {v}	This week's sales, Monday to Sunday: {v}	Vendas desta semana, de segunda a domingo: {v}
+Esta semana: {v}	This week: {v}	Esta semana: {v}
+Cuando anotes ventas con fecha en «Mis ventas del mes», aquí verás cómo te fue cada día de esta semana.	When you record sales with a date in “My sales this month”, you will see how each day of this week went.	Quando você registrar vendas com data em «Minhas vendas do mês», aqui verá como foi cada dia desta semana.
+{m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre} {y#}	{m} {y}	{m} {y}
+Ver calendario	See calendar	Ver calendário
+{m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre} {y#}: nada agendado este mes	{m} {y}: nothing scheduled this month	{m} {y}: nada agendado neste mês
+{m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre} {y#}: hay algo agendado los días {d}	{m} {y}: something is scheduled on days {d}	{m} {y}: há algo agendado nos dias {d}
+Próximas fechas	Upcoming dates	Próximas datas
+Todavía no hay fechas. Escribe la entrega de un pedido, una feria o un cumpleaños y aparecen aquí.	There are no dates yet. Write down an order delivery, a fair or a birthday and they will show up here.	Ainda não há datas. Escreva a entrega de um pedido, uma feira ou um aniversário e eles aparecem aqui.
+Entrega: {a} — {b}	Delivery: {a} — {b}	Entrega: {a} — {b}
+Entrega: {a}	Delivery: {a}	Entrega: {a}
+Cliente: {a}	Client: {a}	Cliente: {a}
+Entrega	Delivery	Entrega
+Para hacer hoy	To do today	Para fazer hoje
+Planeador	Daily planner	Planejador
+Anota tus tareas del día en el Planeador y aparecen aquí.	Write your tasks for the day in the Daily planner and they show up here.	Anote as tarefas do dia no Planejador e elas aparecem aqui.
+Acciones rápidas	Quick actions	Ações rápidas
+Anotar pedido	Add order	Anotar pedido
+Nuevo proyecto	New project	Novo projeto
+Anotar venta	Add sale	Anotar venda
+Anotar gasto	Add expense	Anotar despesa
+Más en Inicio	More in Home	Mais em Início
+Estos números salen de lo que escribes en tus hojas: Mis ventas, Gastos del negocio, Control de pedidos, Proyectos por tejer y el Planeador.	These numbers come from what you write in your pages: My sales, Business expenses, Order tracking, Projects to crochet and the Daily planner.	Estes números vêm do que você escreve nas suas páginas: Minhas vendas, Despesas do negócio, Controle de pedidos, Projetos para crochetar e o Planejador.
+Rosina lee todas tus hojas y te muestra cómo vas, con indicadores claros.	Rosina reads all your pages and shows you how you are doing, with clear indicators.	A Rosina lê todas as suas páginas e mostra como você está indo, com indicadores claros.
+Índice de hojas	Page index	Índice de páginas
+Índice	Index	Índice
+Siguiente hoja →	Next page →	Próxima página →
+Hoja anterior	Previous page	Página anterior
+Imprimir esta hoja	Print this page	Imprimir esta página
+Imprimir en blanco	Print blank	Imprimir em branco
+Hojas de {s} · {a#} de {b#}	Pages of {s} · {a} of {b}	Páginas de {s} · {a} de {b}
+Toca una hoja para abrirla. También puedes ir a otra sección con el menú de la izquierda.	Tap a page to open it. You can also go to another section with the menu on the left.	Toque numa página para abri-la. Você também pode ir para outra seção pelo menu da esquerda.
+{n#} hojas. Toca una para abrirla.	{n} pages. Tap one to open it.	{n} páginas. Toque numa para abri-la.
+Políticas	Policies	Políticas
+Datos personales	Personal data	Dados pessoais
+Configurar cookies	Cookie settings	Configurar cookies
+Agenda creada por Lana Rosa Crochet	Planner created by Lana Rosa Crochet	Agenda criada pela Lana Rosa Crochet
+2026 Lana Rosa Crochet. Todos los derechos reservados.	2026 Lana Rosa Crochet. All rights reserved.	2026 Lana Rosa Crochet. Todos os direitos reservados.
+Lana Rosa Agenda	Lana Rosa Planner	Lana Rosa Agenda
+Configuración de la agenda	Planner settings	Configurações da agenda
+Cerrar la configuración	Close settings	Fechar as configurações
+Cerrar configuración	Close settings	Fechar configurações
+Cerrar	Close	Fechar
+¿Dónde se guardan mis datos?	Where is my data stored?	Onde ficam guardados os meus dados?
+Espacio de este navegador usado por tu agenda y tu cuenta: {n#} %.	Space used in this browser by your planner and your account: {n}%.	Espaço deste navegador usado pela sua agenda e pela sua conta: {n}%.
+En tu dispositivo	On your device	No seu dispositivo
+todo lo que escribes se guarda en este celular, tablet o computador, en este navegador. Es lo que ves cada vez que abres la agenda.	everything you write is saved on this phone, tablet or computer, in this browser. It is what you see every time you open the planner.	tudo o que você escreve fica guardado neste celular, tablet ou computador, neste navegador. É o que você vê toda vez que abre a agenda.
+En tu cuenta	In your account	Na sua conta
+solo tu nombre y tu correo, y el estado de tu membresía. Tus hojas	only your name and email, and your membership status. Your pages	somente o seu nome e e-mail, e o estado da sua assinatura. Suas páginas
+no	do not	não
+viajan a tu cuenta, a menos que actives «☁️ Guardar mi agenda en mi cuenta», que es opcional y pide tu autorización.	travel to your account, unless you turn on “☁️ Save my planner to my account”, which is optional and asks for your permission.	vão para a sua conta, a menos que você ative «☁️ Guardar minha agenda na minha conta», que é opcional e pede a sua autorização.
+Si inicias sesión en otro celular o navegador	If you sign in on another phone or browser	Se você entrar em outro celular ou navegador
+la agenda llegará vacía, salvo que tengas la copia en tu cuenta activa o cargues un archivo de copia.	the planner will arrive empty, unless you have the account backup turned on or you load a backup file.	a agenda chegará vazia, a menos que você tenha a cópia na conta ativada ou carregue um arquivo de cópia.
+Si cierras sesión	If you sign out	Se você sair da conta
+tus hojas siguen guardadas en este dispositivo; cerrar sesión no las borra. Si otra persona usa este mismo navegador, aunque entre con otra cuenta, verá lo mismo. Si compartes el dispositivo, usa «Borrar lo escrito» (después de guardar una copia) o tu propio perfil del navegador.	your pages stay saved on this device; signing out does not delete them. If someone else uses this same browser, even with another account, they will see the same thing. If you share the device, use “Delete what I wrote” (after saving a backup) or your own browser profile.	as suas páginas continuam guardadas neste dispositivo; sair da conta não as apaga. Se outra pessoa usar este mesmo navegador, mesmo entrando com outra conta, verá o mesmo. Se você compartilha o dispositivo, use «Apagar o que escrevi» (depois de guardar uma cópia) ou o seu próprio perfil do navegador.
+Si borras el historial o los datos del navegador, o cambias de celular	If you clear your browser history or data, or change phones	Se você apagar o histórico ou os dados do navegador, ou trocar de celular
+se pierde lo guardado en el dispositivo. Para no perderlo, usa «⬇️ Guardar una copia» cada cierto tiempo o activa la copia en tu cuenta.	what is saved on the device is lost. To avoid losing it, use “⬇️ Save a backup” from time to time or turn on the account backup.	o que está guardado no dispositivo se perde. Para não perder, use «⬇️ Guardar uma cópia» de vez em quando ou ative a cópia na conta.
+Si pierdes el dispositivo	If you lose your device	Se você perder o dispositivo
+entra con tu correo en uno nuevo y recupera tu copia en la cuenta (si la tenías activa) o carga tu archivo de copia.	sign in with your email on a new one and recover your account backup (if you had it on) or load your backup file.	entre com o seu e-mail em um novo e recupere a sua cópia na conta (se estava ativada) ou carregue o seu arquivo de cópia.
+Quién lo ve	Who can see it	Quem pode ver
+nadie del equipo de Lana Rosa ve lo que escribes en tus hojas. Si activas la copia en tu cuenta, queda guardada para ti y puedes borrarla cuando quieras. Los datos de tus clientas (nombres, teléfonos, cumpleaños) quedan solo donde tú los guardes.	nobody on the Lana Rosa team sees what you write in your pages. If you turn on the account backup, it is saved for you and you can delete it whenever you want. Your clients’ data (names, phone numbers, birthdays) stays only where you save it.	ninguém da equipe da Lana Rosa vê o que você escreve nas suas páginas. Se ativar a cópia na conta, ela fica guardada para você e pode ser apagada quando quiser. Os dados das suas clientes (nomes, telefones, aniversários) ficam somente onde você os guardar.
+Más detalles en la	More details in the	Mais detalhes na
+Política de datos	Data policy	Política de dados
+Esta agenda es de	This planner belongs to	Esta agenda é de
+Escribe tu nombre	Write your name	Escreva o seu nome
+Abre el índice, elige una pestaña y llena tus hojas aquí mismo con tu cuenta, gratis los primeros 7 días con todas las hojas (se guardan en tu dispositivo y, si quieres, también en tu cuenta), o imprímelas, llenas o en blanco, para escribir a mano.	Open the index, choose a tab and fill in your pages right here with your account, free for the first 7 days with all the pages (they are saved on your device and, if you want, in your account too), or print them, filled in or blank, to write by hand.	Abra o índice, escolha uma aba e preencha as suas páginas aqui mesmo com a sua conta, grátis nos primeiros 7 dias com todas as páginas (elas ficam guardadas no seu dispositivo e, se quiser, também na sua conta), ou imprima-as, preenchidas ou em branco, para escrever à mão.
+Imprimir agenda	Print planner	Imprimir agenda
+Borrar lo escrito	Delete what I wrote	Apagar o que escrevi
+Tu agenda se guarda en este dispositivo (y en tu cuenta, si activaste la copia): si la borras,	Your planner is saved on this device (and in your account, if you turned on the backup): if you delete it,	A sua agenda fica guardada neste dispositivo (e na sua conta, se ativou a cópia): se você a apagar,
+se elimina de inmediato y no se puede recuperar	it is deleted immediately and cannot be recovered	ela é eliminada na hora e não pode ser recuperada
+Antes de borrar, usa «Guardar una copia».	Before deleting, use “Save a backup”.	Antes de apagar, use «Guardar uma cópia».
+Ver el tutorial de bienvenida	See the welcome tutorial	Ver o tutorial de boas-vindas
+Color de la agenda	Planner color	Cor da agenda
+Rueda de colores. Toca o arrastra para elegir el color; con el teclado usa las flechas.	Color wheel. Tap or drag to choose the color; with the keyboard use the arrow keys.	Roda de cores. Toque ou arraste para escolher a cor; com o teclado use as setas.
+Claridad	Lightness	Luminosidade
+Claridad del color	Color lightness	Luminosidade da cor
+Toca o arrastra sobre la rueda para elegir cualquier color. Se guarda en este dispositivo.	Tap or drag on the wheel to choose any color. It is saved on this device.	Toque ou arraste na roda para escolher qualquer cor. Fica guardada neste dispositivo.
+Volver al rosa de Lana Rosa	Back to Lana Rosa pink	Voltar ao rosa da Lana Rosa
+Guardar una copia	Save a backup	Guardar uma cópia
+Borrar mi copia en la nube	Delete my cloud backup	Apagar a minha cópia na nuvem
+Cargar una copia	Load a backup	Carregar uma cópia
+Fechas al calendario (.ics)	Dates to calendar (.ics)	Datas para o calendário (.ics)
+Exportar a Excel	Export to Excel	Exportar para Excel
+No se pudo guardar en tu cuenta; se reintenta con el próximo cambio.	It could not be saved to your account; it will be retried with the next change.	Não foi possível guardar na sua conta; será tentado de novo na próxima alteração.
+Guarda una copia para no perder tu agenda o para pasarla a otro celular; o actívala en tu cuenta (opcional y gratis) y vuelve a tenerla aunque borres el historial. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.	Save a backup so you do not lose your planner or to move it to another phone; or turn it on in your account (optional and free) and have it back even if you clear your history. The calendar button downloads all your dates (deliveries, projects, special dates, fairs and birthdays) to open them in Google Calendar, Apple or Outlook.	Guarde uma cópia para não perder a sua agenda ou para levá-la a outro celular; ou ative-a na sua conta (opcional e grátis) e volte a tê-la mesmo que apague o histórico. O botão do calendário baixa todas as suas datas (entregas, projetos, datas especiais, feiras e aniversários) para abri-las no Google Agenda, Apple ou Outlook.
+Mi visión del año	My vision for the year	Minha visão do ano
+12 hojas. Toca una para abrirla.	12 pages. Tap one to open it.	12 páginas. Toque numa para abri-la.
+Lo que sueñas y quieres cuidar este año, en una sola hoja.	What you dream of and want to take care of this year, on a single page.	O que você sonha e quer cuidar neste ano, em uma única página.
+Prioridades del mes	Priorities of the month	Prioridades do mês
+Lo más importante de este mes, con una frase que te acompañe.	The most important things this month, with a phrase to keep you company.	O mais importante deste mês, com uma frase para te acompanhar.
+Ficha de proyecto	Project sheet	Ficha de projeto
+Anota todo para poder repetirlo (¡o regalarlo!) cuando quieras.	Write everything down so you can repeat it (or give it as a gift!) whenever you want.	Anote tudo para poder repetir (ou presentear!) quando quiser.
+Mi semana tejiendo	My crochet week	Minha semana de crochê
+Qué vas a tejer cada día de la semana.	What you will crochet each day of the week.	O que você vai crochetar em cada dia da semana.
+Proyectos por tejer	Projects to crochet	Projetos para crochetar
+Todo lo que quieres tejer, con su avance y la fecha de cada avance.	Everything you want to crochet, with its progress and the date of each step.	Tudo o que você quer crochetar, com o andamento e a data de cada avanço.
+Mis patrones	My patterns	Minhas receitas
+Guarda dónde encontraste cada patrón para no perderlo.	Keep track of where you found each pattern so you do not lose it.	Guarde onde encontrou cada receita para não perdê-la.
+Mi colección de patrones	My pattern collection	Minha coleção de receitas
+Mi año tejiendo	My crochet year	Meu ano de crochê
+Lo que terminaste cada mes.	What you finished each month.	O que você terminou em cada mês.
+Lo que aprendí	What I learned	O que aprendi
+Puntos y técnicas nuevas: mira todo lo que has avanzado.	New stitches and techniques: look at how far you have come.	Pontos e técnicas novas: veja o quanto você avançou.
+Mis ideas	My ideas	Minhas ideias
+Pensamientos e ideas para nuevos proyectos: escríbelos o dícelos con tu voz.	Thoughts and ideas for new projects: write them or say them with your voice.	Pensamentos e ideias para novos projetos: escreva-os ou diga-os com a sua voz.
+Diseña tu patrón	Design your pattern	Crie a sua receita
+Escribe tu propio patrón paso a paso y déjalo listo para imprimir.	Write your own pattern step by step and have it ready to print.	Escreva a sua própria receita passo a passo e deixe-a pronta para imprimir.
+Prendas a medida	Made-to-measure garments	Peças sob medida
+Elige la prenda y la talla (XS a XL), escribe las medidas de tu clienta y mira cómo quedaría y cuántos puntos necesitas.	Choose the garment and the size (XS to XL), write your client’s measurements and see how it would look and how many stitches you need.	Escolha a peça e o tamanho (XS a XL), escreva as medidas da sua cliente e veja como ficaria e quantos pontos você precisa.
+Hoja de dibujo	Drawing page	Página de desenho
+Una hoja con puntos para dibujar esquemas, diseños y patrones, con todos los colores.	A dotted page to draw diagrams, designs and patterns, in all the colors.	Uma página pontilhada para desenhar esquemas, desenhos e receitas, com todas as cores.
+3 hojas. Toca una para abrirla.	3 pages. Tap one to open it.	3 páginas. Toque numa para abri-la.
+Inventario de lanas	Yarn inventory	Inventário de lãs
+Inventario de lanas e hilos	Yarn and thread inventory	Inventário de lãs e linhas
+Sabe qué tienes antes de comprar: así no repites colores ni te quedas corta.	Know what you have before you buy: so you do not repeat colors or run short.	Saiba o que você tem antes de comprar: assim não repete cores nem fica sem.
+Mis agujas	My hooks	Minhas agulhas
+Marca las que ya tienes y verás de un vistazo cuáles te faltan.	Mark the ones you already have and you will see at a glance which ones you are missing.	Marque as que você já tem e verá de relance quais faltam.
+Lista de compras	Shopping list	Lista de compras
+Anota lo que necesitas y, si quieres, envíasela a Lana Rosa por WhatsApp.	Write down what you need and, if you want, send it to Lana Rosa by WhatsApp.	Anote o que você precisa e, se quiser, envie para a Lana Rosa pelo WhatsApp.
+8 hojas. Toca una para abrirla.	8 pages. Tap one to open it.	8 páginas. Toque numa para abri-la.
+Control de pedidos	Order tracking	Controle de pedidos
+Para tejedoras emprendedoras: que ningún pedido se te escape.	For crocheters with a business: do not let any order slip away.	Para crocheteiras empreendedoras: que nenhum pedido escape.
+Mis clientas	My clients	Minhas clientes
+Quién te compra, qué le gusta y cuándo es su cumpleaños.	Who buys from you, what they like and when their birthday is.	Quem compra de você, o que gosta e quando é o aniversário.
+Mis ventas del mes	My sales this month	Minhas vendas do mês
+Lo que vendiste, lo que te costó y lo que ganaste.	What you sold, what it cost you and what you earned.	O que você vendeu, o que custou e o que ganhou.
+Mi catálogo de precios	My price catalog	Meu catálogo de preços
+Tus productos con su precio, para responder rápido cuando te pregunten.	Your products with their price, to answer quickly when someone asks.	Seus produtos com o preço, para responder rápido quando perguntarem.
+Ferias y mercados	Fairs and markets	Feiras e mercados
+Prepara tu puesto y anota cómo te fue.	Get your stall ready and write down how it went.	Prepare a sua barraca e anote como foi.
+Gastos del negocio	Business expenses	Despesas do negócio
+Materiales, transporte, ferias y todo lo que gastas en tu emprendimiento, mes a mes.	Supplies, transport, fairs and everything you spend on your business, month by month.	Materiais, transporte, feiras e tudo o que você gasta no seu negócio, mês a mês.
+Contactos	Contacts	Contatos
+Proveedores, colegas, maestras y amigas tejedoras: todos en un solo lugar.	Suppliers, colleagues, teachers and crochet friends: all in one place.	Fornecedores, colegas, professoras e amigas crocheteiras: tudo em um só lugar.
+Resultados del negocio	Business results	Resultados do negócio
+Cuánto vendiste, cuánto te costó y cuánto te quedó. Aparte de tus gastos personales.	How much you sold, how much it cost and how much you kept. Separate from your personal expenses.	Quanto você vendeu, quanto custou e quanto sobrou. À parte das suas despesas pessoais.
+6 hojas. Toca una para abrirla.	6 pages. Tap one to open it.	6 páginas. Toque numa para abri-la.
+Mi negocio en números	My business in numbers	Meu negócio em números
+Cómo va tu negocio este mes: lo que entró, lo que salió y lo que te queda. Aquí van solo los números de tu negocio, no tus gastos personales.	How your business is doing this month: what came in, what went out and what is left. Only your business numbers go here, not your personal expenses.	Como vai o seu negócio neste mês: o que entrou, o que saiu e o que sobra. Aqui vão apenas os números do seu negócio, não as suas despesas pessoais.
+Ingresos y gastos del negocio	Business income and expenses	Receitas e despesas do negócio
+Anota lo que entra, lo que sale y lo que ahorras en tu negocio. Puedes escribirlo como lo dirías.	Write down what comes in, what goes out and what you save in your business. You can write it the way you would say it.	Anote o que entra, o que sai e o que você poupa no seu negócio. Pode escrever como falaria.
+Presupuesto y metas del negocio	Business budget and goals	Orçamento e metas do negócio
+Cuánto quieres gastar en tu negocio por categoría y para qué está ahorrando tu negocio.	How much you want to spend in your business by category and what your business is saving for.	Quanto você quer gastar no seu negócio por categoria e para que o seu negócio está poupando.
+Gastos fijos y deudas del negocio	Fixed expenses and business debts	Despesas fixas e dívidas do negócio
+Lo que tu negocio paga cada mes y lo que todavía debe. Los gastos fijos se anotan solos.	What your business pays every month and what it still owes. Fixed expenses are recorded automatically.	O que o seu negócio paga todo mês e o que ainda deve. As despesas fixas se anotam sozinhas.
+Tarjetas del negocio	Business cards	Cartões do negócio
+El cupo, el corte y el pago de las tarjetas de crédito que usas para tu negocio, y cuánto debes en cada una.	The limit, the statement date and the payment of the credit cards you use for your business, and how much you owe on each one.	O limite, o fechamento e o pagamento dos cartões de crédito que você usa no negócio, e quanto deve em cada um.
+Análisis del negocio	Business analysis	Análise do negócio
+Compara los meses de tu negocio, mira cuánto ahorra y cómo va tu año.	Compare your business months, see how much it saves and how your year is going.	Compare os meses do seu negócio, veja quanto poupa e como vai o seu ano.
+4 hojas. Toca una para abrirla.	4 pages. Tap one to open it.	4 páginas. Toque numa para abri-la.
+Calendario del año	Year calendar	Calendário do ano
+Tus entregas, fechas especiales, ferias y cumpleaños, todo en un vistazo.	Your deliveries, special dates, fairs and birthdays, all at a glance.	Suas entregas, datas especiais, feiras e aniversários, tudo de relance.
+Fechas especiales	Special dates	Datas especiais
+Para tejer los regalos con tiempo y sin carreras.	To crochet gifts in time and without rushing.	Para crochetar os presentes com tempo e sem correria.
+Diario de tejido	Crochet diary	Diário de crochê
+Cómo te sentiste tejiendo hoy.	How you felt crocheting today.	Como você se sentiu crochetando hoje.
+Registro de pausas activas	Active break log	Registro de pausas ativas
+Cuidar tus manos también es parte de tejer.	Taking care of your hands is part of crocheting too.	Cuidar das suas mãos também faz parte do crochê.
+Planeador del día	Daily planner	Planejador do dia
+Todo lo que tienes para hoy en un solo lugar: pedidos, entregas, ferias, tareas y tus notas.	Everything you have for today in one place: orders, deliveries, fairs, tasks and your notes.	Tudo o que você tem para hoje em um só lugar: pedidos, entregas, feiras, tarefas e as suas notas.
+Portada	Cover	Capa
+Dale tu estilo a la agenda: elige el fondo y imprímela como tapa de tu cuaderno.	Give the planner your own style: choose the background and print it as the cover of your notebook.	Dê o seu estilo à agenda: escolha o fundo e imprima como capa do seu caderno.
+Aprende y compra	Learn and shop	Aprenda e compre
+Aprende y compra en Lana Rosa	Learn and shop at Lana Rosa	Aprenda e compre na Lana Rosa
+Pide una clase personalizada, mira los cursos, compra patrones y encuentra todo lo que tenemos para ti.	Ask for a private class, see the courses, buy patterns and find everything we have for you.	Peça uma aula particular, veja os cursos, compre receitas e encontre tudo o que temos para você.
+Semana del	Week of	Semana de
+Lo que veo en tu agenda	What I see in your planner	O que vejo na sua agenda
+Rosina dice	Rosina says	A Rosina diz
+el tablero se arma solo con lo que escribes en tus hojas (pedidos, ventas, finanzas, proyectos, clientas, materiales y bienestar). Entre más lo llenes, más claro se ve. Solo tú ves tus datos.	the overview builds itself from what you write in your pages (orders, sales, finances, projects, clients, supplies and wellbeing). The more you fill it in, the clearer it looks. Only you see your data.	o resumo se monta sozinho com o que você escreve nas suas páginas (pedidos, vendas, finanças, projetos, clientes, materiais e bem-estar). Quanto mais você preenche, mais claro fica. Só você vê os seus dados.
+Pedidos	Orders	Pedidos
+Pedidos en curso	Orders in progress	Pedidos em andamento
+Entregas esta semana	Deliveries this week	Entregas esta semana
+Sin atrasos	No delays	Sem atrasos
+Por cobrar	To collect	A receber
+Ventas	Sales	Vendas
+Vendido en el mes	Sold this month	Vendido no mês
+Proyectos y aprendizaje	Projects and learning	Projetos e aprendizado
+Proyectos en fila	Projects in the queue	Projetos na fila
+Lo que más vendió	Best seller	O que mais vendeu
+Mes anterior	Previous month	Mês anterior
+Mes siguiente	Next month	Próximo mês
+Tienes	You have	Você tem
+entrega en los próximos 7 días (la primera, de {a}).	delivery in the next 7 days (the first one, for {a}).	entrega nos próximos 7 dias (a primeira, de {a}).
+entregas en los próximos 7 días (la primera, de {a}).	deliveries in the next 7 days (the first one, for {a}).	entregas nos próximos 7 dias (a primeira, de {a}).
+Te falta por cobrar	You still need to collect	Falta você receber
+de tus pedidos.	from your orders.	dos seus pedidos.
+En {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre} vendiste	In {m} you sold	Em {m} você vendeu
+y te quedaron	and you kept	e sobraram
+(margen del {n#} %). Tu estrella	({n}% margin). Your star product	(margem de {n}%). O seu campeão de vendas
+{n#} en total, {k#} entregados	{n} in total, {k} delivered	{n} no total, {k} entregues
+{n#} en total, {k#} entregado	{n} in total, {k} delivered	{n} no total, {k} entregue
+De {v} en pedidos	Out of {v} in orders	De {v} em pedidos
+{n#} venta	{n} sale	{n} venda
+{n#} ventas	{n} sales	{n} vendas
+{n#} % de lo vendido	{n}% of what was sold	{n}% do que foi vendido
+Margen {n#} %	Margin {n}%	Margem {n}%
+{a#} tejiendo · {b#} por empezar · {c#} terminados	{a} crocheting · {b} to start · {c} finished	{a} crochetando · {b} para começar · {c} concluídos
+{a#} tejiendo · {b#} por empezar · {c#} terminado	{a} crocheting · {b} to start · {c} finished	{a} crochetando · {b} para começar · {c} concluído
+Tu carrito	Your cart	Seu carrinho
+Cerrar carrito	Close cart	Fechar carrinho
+Total	Total	Total
+Continuar compra	Continue shopping	Continuar comprando
+Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.	Secure payment with Wompi: card, PSE, Nequi, Bre-B and more.	Pagamento seguro com Wompi: cartão, PSE, Nequi, Bre-B e mais.
+Pedir por WhatsApp	Order via WhatsApp	Pedir pelo WhatsApp

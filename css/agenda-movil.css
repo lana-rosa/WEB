@@ -25,3 +25,11 @@
   #agenda .ficha-barra .boton-chico { flex: 1 1 30%; min-width: 0; justify-content: center; }
   #agenda .ficha-barra .boton-chico:first-child { flex-basis: 100%; }
 }
+
+/* Lista «Hojas de…» siempre a la vista en el teléfono (31-oct-2026, pedido de Sara: «me toca darle a siguiente página»): se queda pegada arriba al bajar por la hoja */
+@media (max-width: 820px) {
+  #agenda .selector-hoja:not([hidden]) { position: sticky; top: 0; z-index: 25; margin: 0 -4px 8px; padding: 6px 4px 8px; background: rgba(255, 248, 247, 0.96); backdrop-filter: blur(6px); box-shadow: 0 6px 10px -8px rgba(142, 20, 87, 0.35); }
+  #agenda .selector-hoja label { flex: 0 0 100%; font-size: 0.72rem; margin: 0; }
+  #agenda .selector-hoja select { flex: 1 1 100%; max-width: none; }
+}
+@media print { #agenda .selector-hoja { position: static; box-shadow: none; } }

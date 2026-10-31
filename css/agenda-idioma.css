@@ -1,0 +1,8 @@
+/* Selector de idioma de la agenda (ES / EN / PT), junto al engranaje de Configuración (js/agenda/idioma.js) */
+.agenda-idioma { position: relative; display: inline-flex; align-items: center; flex: none; height: 42px; border: 1.5px solid var(--rosa-medio); border-radius: 21px; background: var(--blanco, #fff); color: var(--rosa-texto); padding: 0 6px 0 10px; gap: 4px; cursor: pointer; }
+.agenda-idioma:hover, .agenda-idioma:focus-within { border-color: var(--rosa-principal); background: var(--rosa-suave); }
+.agenda-idioma select { appearance: none; -webkit-appearance: none; border: 0; background: transparent; font: inherit; font-weight: 800; font-size: .82rem; letter-spacing: .04em; color: inherit; cursor: pointer; padding: 8px 14px 8px 2px; min-height: 40px; min-width: 40px; }
+.agenda-idioma select:focus-visible { outline: 3px solid var(--rosa-texto); outline-offset: 2px; border-radius: 8px; }
+.agenda-idioma::after { content: ""; position: absolute; right: 9px; top: 50%; width: 5px; height: 5px; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+@media (max-width: 420px) { .agenda-idioma { padding: 0 4px 0 7px; gap: 2px; } .agenda-idioma-ic { display: none; } .agenda-idioma select { padding-left: 4px; } }
+@media print { .agenda-idioma { display: none !important; } }

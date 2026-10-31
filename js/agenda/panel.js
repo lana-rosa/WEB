@@ -46,6 +46,8 @@
     out.sort(function (a, b) { return a.f - b.f; });
     return out.slice(0, max);
   }
+  // Iniciales de lunes a domingo según el idioma elegido (js/agenda/idioma.js)
+  function INICIALES() { var l = window.lrI18n ? window.lrI18n.lang : 'es'; return l === 'en' ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'] : l === 'pt' ? ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'] : ['L', 'M', 'M', 'J', 'V', 'S', 'D']; }
   var FRASES = ['Tejer es mi terapia', 'Una vuelta más y lo logras', 'Tú puedes con este proyecto', 'Hecho a mano, con amor', 'Hoy también cuenta: una vuelta a la vez', 'Tu talento tiene valor'];
   var ESTADOS = [['Terminado', 'Terminados', '#4F7A57'], ['Tejiendo', 'Tejiendo', '#E74E96'], ['Por empezar', 'Por empezar', '#9EA2F9']];
   var SVGNS = 'http://www.w3.org/2000/svg';
@@ -87,7 +89,7 @@
     });
     var g = txt('div', 'pn-cal'), ini = (new Date(a, m, 1).getDay() + 6) % 7, n = new Date(a, m + 1, 0).getDate(), con = Object.keys(marcados);
     g.setAttribute('role', 'img'); g.setAttribute('aria-label', MESES[m] + ' ' + a + (con.length ? ': hay algo agendado los días ' + con.join(', ') : ': nada agendado este mes'));
-    ['L', 'M', 'M', 'J', 'V', 'S', 'D'].forEach(function (d) { g.appendChild(txt('span', 'pn-cal-t', d)); });
+    INICIALES().forEach(function (d) { g.appendChild(txt('span', 'pn-cal-t', d)); });
     for (var i = 0; i < ini; i++) g.appendChild(txt('span', ''));
     for (var d = 1; d <= n; d++) g.appendChild(txt('span', (d === hoy.getDate() ? 'hoy ' : '') + (marcados[d] ? 'ev' : ''), String(d)));
     return g;
@@ -149,7 +151,7 @@
     if (!tot) cv.appendChild(txt('p', 'pn-vacio', 'Cuando anotes ventas con fecha en «Mis ventas del mes», aquí verás cómo te fue cada día de esta semana.'));
     else {
       var ba = txt('div', 'pn-barras'); ba.setAttribute('role', 'img'); ba.setAttribute('aria-label', 'Ventas de esta semana, de lunes a domingo: ' + sw.v.map(function (x) { return fm(x); }).join(', '));
-      ['L', 'M', 'M', 'J', 'V', 'S', 'D'].forEach(function (d, i) {
+      INICIALES().forEach(function (d, i) {
         var c = txt('div', i === sw.hoy ? 'hoy' : ''), b = txt('b'); b.style.height = Math.max(6, Math.round(sw.v[i] / mx * 120)) + 'px'; b.title = fm(sw.v[i]); c.appendChild(b); c.appendChild(txt('span', '', d)); ba.appendChild(c);
       });
       cv.appendChild(ba); cv.appendChild(txt('p', 'pn-total', 'Esta semana: ' + fm(tot)));
