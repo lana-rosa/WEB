@@ -46,3 +46,9 @@ body .pestana img.ic-dibujo { width: 40px; height: 40px; object-fit: contain; fl
 .agc-hora span img, .pl-ic img { width: 40px; height: 40px; display: block; margin: 0 auto; object-fit: contain; }
 .pl-ic img { width: 32px; height: 32px; }
 .agc-p-n .agc-mini { width: 18px; height: 18px; vertical-align: -4px; object-fit: contain; }
+
+/* Íconos dibujados de las hojas (31-oct-2026, diseño de Sara): sin recuadro de color ni relleno al pasar el mouse */
+#agenda .vs-ic:has(img), #agenda .hoja-ic:has(img) { background: none; box-shadow: none; width: auto; height: auto; }
+#agenda .vs-hoja:hover .vs-ic:has(img) { background: none; }
+#agenda .ic-hoja { width: 56px; height: 56px; object-fit: contain; display: block; }
+@media (max-width: 520px) { #agenda .ic-hoja { width: 44px; height: 44px; } }

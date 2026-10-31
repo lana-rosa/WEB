@@ -19,7 +19,7 @@
     zona.querySelectorAll('.hoja-agenda').forEach(function (h) {
       var cab = h.querySelector(':scope > header'); if (!cab || cab.querySelector('.hoja-ic') || h.id === 'panel-agenda' || h.id === 'portada-agenda') return;
       var a = document.querySelector('#menu-hojas-lista a[data-hoja="' + h.id + '"]'); if (!a) return;
-      var b = document.createElement('span'); b.className = 'hoja-ic'; b.setAttribute('aria-hidden', 'true'); b.appendChild(window.lrIconos.de(a.textContent));
+      var b = document.createElement('span'); b.className = 'hoja-ic'; b.setAttribute('aria-hidden', 'true'); b.appendChild(window.lrIconos.hoja ? window.lrIconos.hoja(h.id, a.textContent) : window.lrIconos.de(a.textContent));
       cab.insertBefore(b, cab.firstChild);
     });
   }
