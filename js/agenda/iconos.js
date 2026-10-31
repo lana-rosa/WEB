@@ -44,7 +44,7 @@
   /* Íconos dibujados por Sara (31-oct-2026) para los botones de acción: si la acción tiene dibujo se usa la imagen; las demás siguen con el ícono de línea */
   var IMG = { papelera: 'eliminar', mas: 'agregar', imprimir: 'imprimir', bajar: 'descargar', subir: 'subir', calendario: 'calendario', mic: 'dictar', lapiz: 'lapiz', nube: 'nube', lupa: 'buscar' };
   function svg(nombre, grande) {
-    if (IMG[nombre] && !grande) { var im = document.createElement('img'); im.src = '/img/agenda/menu/btn-' + IMG[nombre] + '.webp?v=1'; im.className = 'ic-l ic-img'; im.alt = ''; im.setAttribute('aria-hidden', 'true'); im.width = 28; im.height = 28; im.decoding = 'async'; return im; }
+    if (IMG[nombre] && !grande) { var im = document.createElement('img'); im.src = '/img/agenda/menu/btn-' + IMG[nombre] + '.webp?v=2'; im.className = 'ic-l ic-img'; im.alt = ''; im.setAttribute('aria-hidden', 'true'); im.width = 28; im.height = 28; im.decoding = 'async'; return im; }
     var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('class', 'ic-l' + (grande ? ' ic-l-g' : '')); s.setAttribute('aria-hidden', 'true'); s.setAttribute('focusable', 'false');
     var p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', P[nombre]); s.appendChild(p); return s;
   }

@@ -225,7 +225,7 @@ def _encabezado(casa):
     texto, enlace = LOGO[casa]
     # Agenda (30-oct-2026, pedido de Sara): el título va en la barra de arriba y el engranaje de Configuración al lado de «Mi cuenta»
     titulo_barra = '    <span class="titulo-barra-agenda">Agenda para tejedoras</span>\n' if casa == 'agenda' else ''
-    boton_config = ('    <button type="button" class="boton-config-barra no-imprimir" id="agenda-config-btn" aria-label="Configuración" title="Configuración" aria-expanded="false" aria-controls="agenda-config"><img src="/img/agenda/menu/btn-config.webp?v=1" width="32" height="32" alt="" aria-hidden="true" decoding="async"></button>\n' if casa == 'agenda' else '')
+    boton_config = ('    <button type="button" class="boton-config-barra no-imprimir" id="agenda-config-btn" aria-label="Configuración" title="Configuración" aria-expanded="false" aria-controls="agenda-config"><img src="/img/agenda/menu/btn-config.webp?v=2" width="32" height="32" alt="" aria-hidden="true" decoding="async"></button>\n' if casa == 'agenda' else '')
     img, alt = LOGO_IMG.get(casa, ('img/logo-lana-rosa-360.webp', 'Lana Rosa Crochet'))
     return f'''<a class="saltar-contenido" href="#contenido-principal">Saltar al contenido</a>
 {anuncios(casa)}<header class="encabezado" data-casa="{casa}">

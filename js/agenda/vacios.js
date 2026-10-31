@@ -5,7 +5,7 @@
 (function () {
   'use strict';
   var N = window.lrAgendaNucleo; if (!N) return;
-  var POSE = { 'tabla-pedidos': 'cartel', 'tabla-lanas': 'ovillo', 'tabla-compras': 'ovillo', 'tabla-fila': 'gancho', 'tabla-diario': 'leyendo', 'tabla-aprendi': 'leyendo', 'tabla-ventas': 'celebra' };   // pose de Rosina junto al ejemplo; las demás usan «idea»
+  var POSE = { 'tabla-pedidos': 'cartel', 'tabla-lanas': 'ovillo', 'tabla-compras': 'lista', 'tabla-fila': 'gancho', 'tabla-diario': 'leyendo', 'tabla-aprendi': 'leyendo', 'tabla-ventas': 'dinero', 'tabla-gastos': 'frasco', 'tabla-catalogo': 'grafica', 'tabla-clientas': 'corazon', 'tabla-fechas': 'pastel' };   // pose de Rosina junto al ejemplo; las demás usan «idea»
   var EJEMPLOS = {
     'tabla-pedidos': 'Aún no hay pedidos. Toca «Agregar pedido» y anota quién lo pidió, qué producto es y cuándo lo entregas. Ejemplo: «Osito de 20 cm para María, entrega el 15 de noviembre».',
     'tabla-fila': 'Aún no hay proyectos. Anota lo que quieres tejer y para quién. Ejemplo: «Chaleco para María · Tejiendo · fecha límite 15/11».',
