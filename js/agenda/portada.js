@@ -15,11 +15,11 @@
     verde:   { n: 'Verde',   base: '#E8F7EE', a: '#8FD3A8', b: '#3FAE73', c: '#FFFFFF', h: '#F7B3D4' },
     durazno: { n: 'Durazno', base: '#FFF0E1', a: '#F9C48B', b: '#F0933B', c: '#FFFFFF', h: '#9BD3B0' }
   };
-  var FONDOS = { flores: 'Flores', hojas: 'Hojas', madejas: 'Madejas', liso: 'Liso' };   // «Rosina y amigos» y «Ovejitas» se quitaron el 31-oct-2026 (pedido de Sara)
+  var FONDOS = { liso: 'Liso' };   // Flores, Hojas y Madejas se quitaron el 31-oct-2026 (pedido de Jennifer: «de señora»); vendrán fondos modernos
+  /* antes: flores, hojas, madejas */   // «Rosina y amigos» y «Ovejitas» se quitaron el 31-oct-2026 (pedido de Sara)
   var IMAGENES = {};
-  ['flores', 'hojas', 'madejas'].forEach(function (k) { IMAGENES[k] = '/img/agenda/fondo-' + k + '.webp?v=4'; });
   function pintar() {
-    var d = N.datos(), f = d['ag-portada-fondo'] && FONDOS[d['ag-portada-fondo']] ? d['ag-portada-fondo'] : 'flores', c = d['ag-portada-color'] && COLORES[d['ag-portada-color']] ? d['ag-portada-color'] : 'rosa';
+    var d = N.datos(), f = d['ag-portada-fondo'] && FONDOS[d['ag-portada-fondo']] ? d['ag-portada-fondo'] : 'liso', c = d['ag-portada-color'] && COLORES[d['ag-portada-color']] ? d['ag-portada-color'] : 'rosa';
     var p = COLORES[c], fondo = hoja.querySelector('.portada-fondo');
     hoja.dataset.fondo = f; hoja.dataset.color = c; hoja.style.setProperty('--pc-base', p.base); hoja.style.setProperty('--pc-a', p.a); hoja.style.setProperty('--pc-b', p.b);
     fondo.textContent = ''; fondo.style.backgroundImage = IMAGENES[f] ? 'url("' + IMAGENES[f] + '")' : '';
