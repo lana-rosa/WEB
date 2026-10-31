@@ -18,3 +18,10 @@
 }
 /* El fondo de la franja de la semana sigue el color de la sección (antes era un lila fijo) */
 #agenda .agc-semana { background: var(--sec-bg, #F1E3E2); }
+
+/* Barra «Agregar · Google · Borrar» de las listas: en teléfonos de 360 px los tres botones sumaban más que el ancho y el último se salía */
+@media (max-width: 380px) {
+  #agenda .ficha-barra { flex-wrap: wrap; }
+  #agenda .ficha-barra .boton-chico { flex: 1 1 30%; min-width: 0; justify-content: center; }
+  #agenda .ficha-barra .boton-chico:first-child { flex-basis: 100%; }
+}
