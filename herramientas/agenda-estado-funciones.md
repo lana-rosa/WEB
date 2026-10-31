@@ -39,3 +39,4 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 | Avisos de hoy y consejo de Rosina (Mi panel) | Hecha 31-oct-2026 (Plus, etapa 1): entregas atrasadas o próximas, saldos y proyectos vencidos; un consejo descartable. Gratis | `js/agenda/panel.js`, `probar_agenda_avisos.py` |
 | Menú lateral que se esconde (computador) y barra de íconos (tableta) | Hecha 31-oct-2026 | `js/agenda/menu-lateral.js`, `css/agenda-menu.css`, `probar_agenda_menu.py` |
 | Meta de ventas del mes y «¿Cuánto necesito vender al mes?» (membresía) | Hecha 31-oct-2026 (Plus, etapa 2) | `js/agenda/metas-ventas.js`, `probar_agenda_metas.py` |
+| Gráficas del negocio: punto de equilibrio (Mi panel y finanzas), ventas contra meta y utilidad por mes | Hecha 31-oct-2026 (Plus) | `js/agenda/graficas.js`, `probar_agenda_graficas.py` |
