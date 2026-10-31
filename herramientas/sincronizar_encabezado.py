@@ -43,13 +43,13 @@ MENUS = {
 }
 
 # imagen del logo por casa (las demás usan el logo rosa de Lana Rosa Crochet)
-LOGO_IMG = {'merceria': ('img/logo-merceria-360.webp', 'Lana Rosa Mercería'), 'academy': ('img/logo-academy-360.webp', 'Lana Rosa Academy'), 'agenda': ('img/logo-agenda-360.webp', 'Lana Rosa Agenda para tejedoras')}
+LOGO_IMG = {'merceria': ('img/logo-merceria-360.webp', 'Lana Rosa Mercería'), 'academy': ('img/logo-academy-360.webp', 'Lana Rosa Academy'), 'agenda': ('img/logo-agenda-360.webp?v=8', 'Lana Rosa Agenda para tejedoras')}
 
 # íconos de la pestaña y color de la barra del celular por casa
 ICONOS = {
     'merceria': ('/img/favicon-merceria-256.png', '/img/apple-touch-icon-merceria.png', '#7C4DDB'),
     'academy': ('/img/favicon-academy-256.png', '/img/apple-touch-icon-academy.png', '#2F7DE1'),
-    'agenda': ('/img/favicon-agenda-256.png', '/img/apple-touch-icon-agenda.png', '#9EA2F9'),
+    'agenda': ('/img/favicon-agenda-256.png?v=8', '/img/apple-touch-icon-agenda.png?v=8', '#9EA2F9'),
 }
 ICONOS_BASE = ('/img/favicon-256.png', '/img/apple-touch-icon.png', '#E74E96')
 # app instalable: manifiesto y nombre en la pantalla por casa (las páginas sin casa usan Crochet)
