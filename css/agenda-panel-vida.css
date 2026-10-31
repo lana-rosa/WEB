@@ -1,7 +1,7 @@
 /* Mi panel con más vida (30-oct-2026, Sara aprobó la maqueta: «pásalo a la agenda real»): saludo con Rosina, números con color e ícono,
    círculo de proyectos, barras de ventas de la semana, calendario del mes y tareas del día. Solo presentación; los datos salen de las hojas como siempre. */
 #agenda .pn-hero { position: relative; overflow: hidden; border-radius: 28px; padding: 28px 30px; min-height: 220px; color: #fff; display: flex; align-items: center;
-  background: linear-gradient(120deg, #743D50 0%, #A04A72 55%, #EB6B96 100%); box-shadow: 0 12px 30px rgba(118, 45, 74, .18); }
+  background: linear-gradient(120deg, #C81B6D 0%, #E01E79 55%, #E74E96 100%); box-shadow: 0 12px 30px rgba(200, 27, 109, .18); }
 #agenda .pn-hero-t { position: relative; z-index: 1; max-width: 52ch; }
 #agenda .pn-hero h4 { margin: 0 0 6px; color: #fff !important; font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem); line-height: 1.15; }
 #agenda .pn-hero p { margin: 0; color: #fff; opacity: .96; font-size: 1.02rem; }
@@ -15,8 +15,8 @@
 #agenda .pn-kpi-ic { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: rgba(255, 255, 255, .72); }
 #agenda .pn-kpi-ic svg { width: 24px; height: 24px; }
 #agenda .pn-kpi-t { min-width: 0; }
-#agenda .pn-kpi.k1 { background: #F8DDE6; color: #8E2F55; } #agenda .pn-kpi.k2 { background: #F6EBD0; color: #7A5C1F; }
-#agenda .pn-kpi.k3 { background: #DDEEDD; color: #2F6A3C; } #agenda .pn-kpi.k4 { background: #E9DFF0; color: #5B3F6E; }
+#agenda .pn-kpi.k1 { background: #F8DDE6; color: #8E2F55; } #agenda .pn-kpi.k2 { background: #E6E7FD; color: #4B4FB8; }
+#agenda .pn-kpi.k3 { background: #DDEEDD; color: #2F6A3C; } #agenda .pn-kpi.k4 { background: #E1F0FE; color: #12418F; }
 #agenda .pn-kpi.k3.mal { background: #FBE1DE; color: #9A2B22; }
 #agenda .pn-kpi small, #agenda .pn-kpi span:not(.pn-kpi-ic) { color: inherit; opacity: .88; }
 #agenda .pn-kpi strong { color: inherit !important; }
@@ -29,14 +29,14 @@
 #agenda .pn-vacio-rosina { display: flex; align-items: center; gap: 12px; } #agenda .pn-vacio-rosina img { flex: none; height: 86px; width: auto; }
 #agenda .pn-barras { display: flex; align-items: flex-end; gap: 10px; height: 150px; padding-top: 8px; }
 #agenda .pn-barras > div { flex: 1; text-align: center; font-size: .78rem; color: #6B5560; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
-#agenda .pn-barras b { display: block; border-radius: 10px 10px 4px 4px; background: linear-gradient(#EB6B96, #F7B6CB); margin-bottom: 6px; }
-#agenda .pn-barras .hoy b { background: linear-gradient(#743D50, #A04A72); }
-#agenda .pn-total { margin: 8px 0 0; font-weight: 700; color: #5C2F3F; }
+#agenda .pn-barras b { display: block; border-radius: 10px 10px 4px 4px; background: linear-gradient(#E74E96, #F7B6CB); margin-bottom: 6px; }
+#agenda .pn-barras .hoy b { background: linear-gradient(#C81B6D, #E01E79); }
+#agenda .pn-total { margin: 8px 0 0; font-weight: 700; color: #8E1457; }
 #agenda .pn-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center; font-size: .82rem; }
 #agenda .pn-cal span { padding: 6px 0; border-radius: 10px; position: relative; color: #4f3b45; }
 #agenda .pn-cal .pn-cal-t { font-weight: 700; font-size: .72rem; color: #7d6772; }
-#agenda .pn-cal .hoy { background: #743D50; color: #fff; font-weight: 700; }
-#agenda .pn-cal .ev::after { content: ''; position: absolute; left: 50%; bottom: 2px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #EB6B96; }
+#agenda .pn-cal .hoy { background: #C81B6D; color: #fff; font-weight: 700; }
+#agenda .pn-cal .ev::after { content: ''; position: absolute; left: 50%; bottom: 2px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #E74E96; }
 #agenda .pn-cal .hoy.ev::after { background: #fff; }
 #agenda .pn-dos { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
 #agenda .pn-fila { background: #FFF3F5; border: 0; border-radius: 16px; padding: 10px 12px; margin-bottom: 8px; width: 100%; }
@@ -45,8 +45,8 @@
 #agenda .pn-tarea { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; font: inherit; border: 0; background: #EEF5EE; border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; color: inherit; min-height: 44px; }
 #agenda .pn-tarea-m { flex: none; width: 20px; height: 20px; border-radius: 6px; border: 2px solid #4F7A57; display: grid; place-items: center; font-size: .8rem; font-weight: 800; color: #fff; }
 #agenda .pn-tarea.ok { opacity: .65; text-decoration: line-through; } #agenda .pn-tarea.ok .pn-tarea-m { background: #4F7A57; }
-#agenda .pn-acciones .pn-accion:nth-child(1) { background: #FDE6EE; } #agenda .pn-acciones .pn-accion:nth-child(2) { background: #E9DFF0; }
-#agenda .pn-acciones .pn-accion:nth-child(3) { background: #DDEEDD; } #agenda .pn-acciones .pn-accion:nth-child(4) { background: #F6EBD0; }
+#agenda .pn-acciones .pn-accion:nth-child(1) { background: #FDE6EE; } #agenda .pn-acciones .pn-accion:nth-child(2) { background: #E6E7FD; }
+#agenda .pn-acciones .pn-accion:nth-child(3) { background: #DDEEDD; } #agenda .pn-acciones .pn-accion:nth-child(4) { background: #E1F0FE; }
 #agenda .pn-acciones .pn-accion.sec { background: #fff; }
 
 @media (max-width: 1100px) { #agenda .pn-graf { grid-template-columns: repeat(2, minmax(0, 1fr)); } #agenda .pn-graf > :first-child { grid-column: 1 / -1; } }
@@ -68,9 +68,9 @@
 
 /* Rosina en la vista de sección y en los estados vacíos (30-oct-2026, Sara: «sigue con las ilustraciones en las secciones») */
 #agenda .vs-cab { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 14px; padding: 18px 22px; min-height: 120px; border-radius: 24px; overflow: hidden;
-  background: linear-gradient(120deg, var(--sec-bg) 0%, #fff 100%); border: 1px solid rgba(116, 61, 80, .08); }
+  background: linear-gradient(120deg, var(--sec-bg) 0%, #fff 100%); border: 1px solid rgba(200, 27, 109, .08); }
 #agenda .vs-cab-t { min-width: 0; } #agenda .vs-cab h2 { margin: 0; } #agenda .vs-cab p { margin: 4px 0 0; }
-#agenda .vs-rosina { flex: none; height: 118px; width: auto; margin: -6px 0 -14px; filter: drop-shadow(0 6px 10px rgba(92, 47, 63, .18)); pointer-events: none; }
+#agenda .vs-rosina { flex: none; height: 118px; width: auto; margin: -6px 0 -14px; filter: drop-shadow(0 6px 10px rgba(142, 20, 87, .18)); pointer-events: none; }
 #agenda .vacio-ejemplo { display: flex; align-items: center; gap: 12px; } #agenda .vacio-ejemplo img { flex: none; height: 56px; width: auto; }
 #agenda .ea-enc { display: flex; align-items: center; justify-content: space-between; gap: 10px; } #agenda .ea-enc img { height: 64px; width: auto; }
 @media (max-width: 520px) { #agenda .vs-cab { padding: 14px 16px; min-height: 0; } #agenda .vs-rosina { height: 84px; margin: -4px 0 -10px; } }

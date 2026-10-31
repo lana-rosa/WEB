@@ -27,7 +27,7 @@ with sync_playwright() as p:
     # rueda de colores
     ctx = contexto(b, 1280, 900); pg = abrir(ctx, '', 1500)
     T.v('ya no hay colores separados en «Verdes» y «Otros colores»: solo la rueda', pg.locator('#ac-opciones .ac-op').count() == 0 and pg.locator('#ac-rueda').is_visible() and pg.locator('#ac-claridad').is_visible())
-    T.v('el vinotinto de siempre sigue sin cambios', pg.evaluate("!document.documentElement.hasAttribute('data-tema')"))
+    T.v('el rosa de siempre sigue sin cambios', pg.evaluate("!document.documentElement.hasAttribute('data-tema')"))
     boton0 = pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--rosa-boton').trim()")
     pg.locator('#ac-rueda').scroll_into_view_if_needed(); pg.wait_for_timeout(200)
     caja = pg.locator('#ac-rueda').bounding_box(); cx, cy, r = caja['x'] + caja['width'] / 2, caja['y'] + caja['height'] / 2, caja['width'] / 2
@@ -56,7 +56,7 @@ with sync_playwright() as p:
     pg.reload(); pg.wait_for_timeout(1500)
     T.v('el color elegido se recuerda al volver (en este dispositivo)', pg.get_attribute('html', 'data-tema') == 'libre' and pg.evaluate("localStorage.getItem('lrAgendaColor')") == elegido and pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--rosa-principal').trim().toUpperCase()") == elegido, elegido)
     pg.evaluate("window.lrAgendaConfig.abrir()"); pg.click('#ac-reset'); pg.wait_for_timeout(200)
-    T.v('«Volver al vinotinto» quita el color elegido', pg.evaluate("!document.documentElement.hasAttribute('data-tema') && !document.documentElement.getAttribute('style') && localStorage.getItem('lrAgendaTema') === null"))
+    T.v('«Volver al rosa» quita el color elegido', pg.evaluate("!document.documentElement.hasAttribute('data-tema') && !document.documentElement.getAttribute('style') && localStorage.getItem('lrAgendaTema') === null"))
     pg.focus('#ac-rueda'); pg.keyboard.press('ArrowRight'); pg.wait_for_timeout(100)
     T.v('con el teclado también se puede elegir (flechas)', pg.get_attribute('html', 'data-tema') == 'libre')
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()

@@ -4,7 +4,7 @@
 html:root {
   --fuente-titulo: 'Emoji Lana', 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --fuente-hoja: 'Emoji Lana', 'DynaPuff', sans-serif;
-  --vino: #743D50; --vino-osc: #5C2F3F; --rosa-emp: #E8D5D4; --tinta-ayuda: #6B5560; --linea-diseno: #E3D3D2;
+  --vino: #C81B6D; --vino-osc: #8E1457; --rosa-emp: #F5C2DB; --tinta-ayuda: #6B5560; --linea-diseno: #F5C2DB;
 }
 /* Títulos: solo el de cada hoja, la portada y la marca llevan DynaPuff */
 .hoja-agenda > header h3, .portada-titulo, .portada-nombre, .portada-agenda input, .logo, .titulo-barra-agenda { font-family: var(--fuente-hoja); }
@@ -15,9 +15,9 @@ body { color: #2B1B21; }
 .hoja-agenda header p, .ayuda, small { color: var(--tinta-ayuda); }
 
 /* Hoja: tarjeta más serena */
-.hoja-agenda { border: 1px solid var(--linea-diseno); box-shadow: 0 6px 24px rgba(92, 47, 63, 0.07); }
+.hoja-agenda { border: 1px solid var(--linea-diseno); box-shadow: 0 6px 24px rgba(142, 20, 87, 0.07); }
 .hoja-agenda > header { border-bottom: 1px solid var(--linea-diseno); }
-.hoja-agenda header img.avatar-sticker { background: #F6EEED; }
+.hoja-agenda header img.avatar-sticker { background: #FEF2F7; }
 
 /* Botones: 44 px de alto, redondeados, foco visible */
 .boton-primario, .boton-secundario, .boton-plegar, .ficha-barra button, .hojas-pasos button {
@@ -26,7 +26,7 @@ body { color: #2B1B21; }
 .boton-primario { background: var(--vino); border-color: var(--vino); color: #fff; }
 .boton-primario:hover { background: var(--vino-osc); border-color: var(--vino-osc); }
 .boton-secundario, .boton-plegar { background: #fff; color: var(--vino); border-color: var(--vino); }
-.boton-secundario:hover, .boton-plegar:hover { background: #F6EEED; border-color: var(--vino-osc); }
+.boton-secundario:hover, .boton-plegar:hover { background: #FEF2F7; border-color: var(--vino-osc); }
 .boton-chico { min-height: 40px; padding: 6px 16px; }
 .boton-cal { min-height: 36px; border-color: var(--vino); color: var(--vino); }
 .ficha-barra .barra-borrar, .ficha-acciones .boton-secundario { color: #B3261E; border-color: #B3261E; background: #fff; }
@@ -40,7 +40,7 @@ body { color: #2B1B21; }
 #agenda input:focus, #agenda select:focus, #agenda textarea:focus { outline: 3px solid var(--vino); outline-offset: 2px; border-radius: 6px; }
 
 /* Fichas: cabecera rosa suave, etiquetas con la familia de la paleta */
-.ficha-cab { background: #F6EEED; min-height: 52px; }
+.ficha-cab { background: #FEF2F7; min-height: 52px; }
 .ficha-cab:focus-visible { outline: 3px solid var(--vino); }
 .ficha-flecha { color: var(--vino); }
 .ficha-chip { border-color: var(--rosa-emp); color: var(--vino-osc); background: #fff; }
@@ -64,6 +64,6 @@ body { color: #2B1B21; }
 
 /* Íconos de línea (js/agenda/iconos.js): reemplazan al emoji que abría el texto de botones y enlaces */
 .ic-l { width: 1.2em; height: 1.2em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.22em; margin-right: .25em; }
-.ic-l-g { width: 26px; height: 26px; margin: 0; color: #5C2F3F; }
-.atajo-ic { background: #F6EEED !important; }
+.ic-l-g { width: 26px; height: 26px; margin: 0; color: #8E1457; }
+.atajo-ic { background: #FEF2F7 !important; }
 .ficha-barra .ic-l { margin-right: 0; }

@@ -611,7 +611,7 @@ section.intro-rincon.intro-agenda { padding-top: 0 !important; padding-bottom: 0
 .dib-barra .dib-pantalla { display: none; font-weight: 700; font-size: 0.85rem; gap: 4px; }
 @media (max-width: 1023px), (pointer: coarse) { .dib-barra .dib-pantalla { display: inline-flex; } }
 body.dib-bloqueo { overflow: hidden; }
-.dib-contenedor.dib-completo { position: fixed; inset: 0; z-index: 2000; background: #FFFDF9; display: flex; flex-direction: column; padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); box-sizing: border-box; overflow: hidden; }
+.dib-contenedor.dib-completo { position: fixed; inset: 0; z-index: 2000; background: #FFFFFF; display: flex; flex-direction: column; padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); box-sizing: border-box; overflow: hidden; }
 .dib-completo .dib-barra { flex: 0 0 auto; margin: 0 0 8px; max-height: 40vh; overflow-y: auto; }
 .dib-completo .dib-barra button, .dib-completo .dib-subir, .dib-completo .dib-dedo { min-height: 44px; min-width: 44px; flex: 0 0 auto; }
 .dib-completo .dib-barra .dib-color, .dib-completo .dib-barra .dib-ancho { min-width: 44px; min-height: 44px; }

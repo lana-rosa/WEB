@@ -4,7 +4,7 @@
    Color (pedido de Sara, 29-oct: «todo el círculo cromático, para que escojan el color»): una rueda de colores (tono y intensidad) y una barra de claridad. Del color elegido se
    calculan las variables de color de la agenda (principal, botón con texto blanco legible, tintes suaves, texto oscuro) y se guardan en este dispositivo
    (`localStorage.lrAgendaTema = 'libre'`, `lrAgendaColor`, `lrAgendaColorVars`; un script del <head> de agenda-rosina.html las pone antes de pintar). Los temas fijos de antes
-   (esmeralda, bosque… en css/agenda-fichas.css) siguen funcionando para quien ya los tenía elegidos. «Volver al vinotinto» quita todo.
+   (esmeralda, bosque… en css/agenda-fichas.css) siguen funcionando para quien ya los tenía elegidos. «Volver al rosa de Lana Rosa» quita todo.
    `window.lrAgendaConfig.abrir()` lo usan otros módulos (por ejemplo, la vuelta de Google Calendar) para mostrar el panel. */
 (function () {
   'use strict';
@@ -19,7 +19,7 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden && !document.querySelector('dialog[open]')) { poner(false); btn.focus(); } });
 
   /* ---- Color ---- */
-  var caja = document.getElementById('ac-opciones'), VERDE = '#743D50';
+  var caja = document.getElementById('ac-opciones'), VERDE = '#C81B6D';
   function aHex(r, g, b) { return '#' + [r, g, b].map(function (v) { return ('0' + Math.round(v).toString(16)).slice(-2); }).join('').toUpperCase(); }
   function hsvARgb(h, s, v) { var c = v * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = v - c, r = 0, g = 0, b = 0; if (h < 60) { r = c; g = x; } else if (h < 120) { r = x; g = c; } else if (h < 180) { g = c; b = x; } else if (h < 240) { g = x; b = c; } else if (h < 300) { r = x; b = c; } else { r = c; b = x; } return [(r + m) * 255, (g + m) * 255, (b + m) * 255]; }
   function rgbAHsl(r, g, b) { r /= 255; g /= 255; b /= 255; var mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn, h = 0, s = 0; if (d) { s = d / (1 - Math.abs(2 * l - 1)); if (mx === r) h = ((g - b) / d) % 6; else if (mx === g) h = (b - r) / d + 2; else h = (r - g) / d + 4; h *= 60; if (h < 0) h += 360; } return [h, s, l]; }
@@ -62,7 +62,7 @@
     '<div class="ac-lado"><label class="ac-claridad">Claridad<input type="range" id="ac-claridad" min="30" max="100" step="1" aria-label="Claridad del color"></label>' +
     '<div class="ac-muestra"><i id="ac-vista" aria-hidden="true"></i><span id="ac-hex"></span></div>' +
     '<p class="ac-ayuda">Toca o arrastra sobre la rueda para elegir cualquier color. Se guarda en este dispositivo.</p>' +
-    '<button type="button" class="enlace-copia" id="ac-reset">↩ Volver al vinotinto</button></div></div>';
+    '<button type="button" class="enlace-copia" id="ac-reset">↩ Volver al rosa de Lana Rosa</button></div></div>';
   var rueda = document.getElementById('ac-rueda'), punto = document.getElementById('ac-punto'), clar = document.getElementById('ac-claridad'), vista = document.getElementById('ac-vista'), hexTxt = document.getElementById('ac-hex');
   function pintar(guardar) {
     var rgb = hsvARgb(est.h, est.s, est.v), a = est.h * Math.PI / 180, rad = est.s * 50;
@@ -90,7 +90,7 @@
     rueda.style.setProperty('--v', String(est.v));
     var rgb = hsvARgb(est.h, est.s, est.v), a = est.h * Math.PI / 180, rad = est.s * 50;
     punto.style.left = (50 + Math.sin(a) * rad) + '%'; punto.style.top = (50 - Math.cos(a) * rad) + '%'; punto.style.background = aHex(rgb[0], rgb[1], rgb[2]);
-    clar.value = Math.round(est.v * 100); vista.style.background = VERDE; hexTxt.textContent = VERDE + ' (vinotinto)';
+    clar.value = Math.round(est.v * 100); vista.style.background = VERDE; hexTxt.textContent = VERDE + ' (rosa Lana Rosa)';
   }
   /* al cargar: solo se dibuja la rueda; el color ya lo puso el script del <head> */
   rueda.style.setProperty('--v', String(est.v));
