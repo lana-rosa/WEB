@@ -47,7 +47,7 @@
     return out.slice(0, max);
   }
   var FRASES = ['Tejer es mi terapia', 'Una vuelta más y lo logras', 'Tú puedes con este proyecto', 'Hecho a mano, con amor', 'Hoy también cuenta: una vuelta a la vez', 'Tu talento tiene valor'];
-  var ESTADOS = [['Terminado', 'Terminados', '#4F7A57'], ['Tejiendo', 'Tejiendo', '#EB6B96'], ['Por empezar', 'Por empezar', '#F0C27A']];
+  var ESTADOS = [['Terminado', 'Terminados', '#4F7A57'], ['Tejiendo', 'Tejiendo', '#E74E96'], ['Por empezar', 'Por empezar', '#9EA2F9']];
   var SVGNS = 'http://www.w3.org/2000/svg';
   function sv(tag, attrs) { var e = document.createElementNS(SVGNS, tag); Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); }); return e; }
   function ic(nombre) { return window.lrIconos && window.lrIconos.por ? window.lrIconos.por(nombre) : document.createComment(''); }
@@ -60,14 +60,14 @@
   }
   function donut(cuentas, total) {
     var s = sv('svg', { viewBox: '0 0 42 42', 'class': 'pn-donut', role: 'img', 'aria-label': total + (total === 1 ? ' proyecto' : ' proyectos') + ': ' + ESTADOS.map(function (e, i) { return cuentas[i] + ' ' + e[1].toLowerCase(); }).join(', ') });
-    s.appendChild(sv('circle', { cx: 21, cy: 21, r: 15.9, fill: 'none', stroke: '#F3E6E9', 'stroke-width': 6 }));
+    s.appendChild(sv('circle', { cx: 21, cy: 21, r: 15.9, fill: 'none', stroke: '#FBE4EF', 'stroke-width': 6 }));
     var acum = 0;
     cuentas.forEach(function (n, i) {
       if (!n || !total) return; var pct = n / total * 100;
       s.appendChild(sv('circle', { cx: 21, cy: 21, r: 15.9, fill: 'none', stroke: ESTADOS[i][2], 'stroke-width': 6, 'stroke-dasharray': pct + ' ' + (100 - pct), 'stroke-dashoffset': 25 - acum }));
       acum += pct;
     });
-    var t1 = sv('text', { x: 21, y: 23, 'text-anchor': 'middle', 'font-size': 9, 'font-weight': 800, fill: '#5C2F3F' }); t1.textContent = String(total); s.appendChild(t1);
+    var t1 = sv('text', { x: 21, y: 23, 'text-anchor': 'middle', 'font-size': 9, 'font-weight': 800, fill: '#8E1457' }); t1.textContent = String(total); s.appendChild(t1);
     var t2 = sv('text', { x: 21, y: 29, 'text-anchor': 'middle', 'font-size': 3.4, fill: '#6B5560' }); t2.textContent = total === 1 ? 'proyecto' : 'proyectos'; s.appendChild(t2);
     return s;
   }
