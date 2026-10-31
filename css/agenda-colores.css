@@ -52,3 +52,7 @@ body .pestana img.ic-dibujo { width: 40px; height: 40px; object-fit: contain; fl
 #agenda .vs-hoja:hover .vs-ic:has(img) { background: none; }
 #agenda .ic-hoja { width: 56px; height: 56px; object-fit: contain; display: block; }
 @media (max-width: 520px) { #agenda .ic-hoja { width: 44px; height: 44px; } }
+
+/* Números de Mi panel con dibujo propio (31-oct-2026, diseño de Sara) */
+#agenda .pn-kpi-ic:has(.pn-kpi-img) { background: none; box-shadow: none; width: 52px; height: 52px; }
+#agenda .pn-kpi-img { width: 48px; height: 48px; object-fit: contain; display: block; }

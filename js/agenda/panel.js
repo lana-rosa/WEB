@@ -56,7 +56,9 @@
   function sv(tag, attrs) { var e = document.createElementNS(SVGNS, tag); Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); }); return e; }
   function ic(nombre) { return window.lrIconos && window.lrIconos.por ? window.lrIconos.por(nombre) : document.createComment(''); }
   function tarjeta(titulo, valor, sub, clase, icon) {
-    var c = txt('div', 'pn-card pn-kpi' + (clase ? ' ' + clase : '')), i = txt('span', 'pn-kpi-ic'); i.appendChild(ic(icon)); c.appendChild(i);
+    var c = txt('div', 'pn-card pn-kpi' + (clase ? ' ' + clase : '')), i = txt('span', 'pn-kpi-ic'), kimg = { k1: 'ventas', k2: 'gastos', k3: 'quedo', k4: 'pedidos' }[(clase || '').split(' ')[0]];
+    if (kimg) { var im = document.createElement('img'); im.src = '/img/agenda/ui/kpi-' + kimg + '.webp?v=1'; im.alt = ''; im.className = 'pn-kpi-img'; im.width = 48; im.height = 48; im.setAttribute('aria-hidden', 'true'); i.appendChild(im); } else i.appendChild(ic(icon));
+    c.appendChild(i);
     var d = txt('div', 'pn-kpi-t'); d.appendChild(txt('small', '', titulo)); d.appendChild(txt('strong', '', valor)); d.appendChild(txt('span', '', sub)); c.appendChild(d); return c;
   }
   function cabecera(titulo, enlaceTxt, hojaId) {
