@@ -265,7 +265,7 @@
   pintar();
 
   /* ---------- Vista de sección: las hojas de una sección como tarjetas ---------- */
-  var POSES = [[/proyect/i, 'gancho'], [/material/i, 'ovillo'], [/emprend/i, 'cartel'], [/finanz/i, 'contando'], [/fecha|bienestar/i, 'flor']];   // la pose de Rosina de cada sección
+  var POSES = [[/proyect/i, 'gancho'], [/material/i, 'ovillo'], [/emprend/i, 'cartel'], [/finanz/i, 'calculadora'], [/fecha|bienestar/i, 'flor']];   // la pose de Rosina de cada sección
   var DESC = { 'semana-tejiendo': 'Qué vas a tejer cada día de la semana.' };   // hojas cuyo subtítulo lleva un campo y no sirve como descripción
   var vista = null;
   function crearVista() {
