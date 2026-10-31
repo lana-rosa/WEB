@@ -47,6 +47,11 @@
     });
     return venta > 0 ? { pct: Math.round((venta - costo) / venta * 100), n: n } : null;
   }
+  function margenDe(hoy) {   // 1.º las ventas con costo; si no hay, el promedio de «Mi catálogo de precios»
+    var mr = margenReal(hoy); if (mr) { mr.fuente = 'ventas'; return mr; }
+    var c = window.lrCostos && window.lrCostos.margenPromedio ? window.lrCostos.margenPromedio() : null;
+    return c && c.pct > 0 ? { pct: c.pct, n: c.n, fuente: 'catalogo' } : null;
+  }
   function fijosMes() {
     var f = fin(), fijos = (f.fijos || []).filter(function (x) { return x && x.activo && (x.t === 'g' || x.t === 's'); }).reduce(function (s, x) { return s + num(x.v); }, 0);
     var cuotas = (f.deudas || []).filter(function (d) { return d && num(d.pagadas) < num(d.cuotas); }).reduce(function (s, d) { return s + num(d.cuota); }, 0);
@@ -92,7 +97,7 @@
     }
     /* 2. ¿Cuánto necesito vender al mes? */
     c.appendChild(el('h4', 'sub-hoja', '¿Cuánto necesito vender al mes?'));
-    var fj = fijosMes(), mr = margenReal(hoy), propio = num(mm.margen);
+    var fj = fijosMes(), mr = margenDe(hoy), propio = num(mm.margen);
     var lm = el('div', 'linea mv-linea'); var lbm = el('label', '', 'Margen de ganancia (%), si quieres usar otro'); lbm.setAttribute('for', 'mv-margen');
     var im = el('input'); im.id = 'mv-margen'; im.setAttribute('inputmode', 'numeric'); im.setAttribute('placeholder', mr ? String(mr.pct) : 'Ej. 40'); im.value = propio ? String(propio) : '';
     im.addEventListener('change', function () { var v = Math.max(0, Math.min(95, num(im.value))); var d = metas(); d.margen = v || ''; N.guardar(); pintar(true); });
@@ -101,8 +106,8 @@
     if (!fj.fijos && !fj.cuotas) { c.appendChild(el('p', 'fin-vacio', 'Para calcularlo, agrega tus pagos del negocio en «Gastos fijos y deudas del negocio» (arriendo, internet, programas…).')); c.appendChild(lm); return; }
     c.appendChild(el('p', 'mv-nota', 'Tus gastos fijos del negocio suman ' + plata(fj.fijos) + ' al mes' + (fj.cuotas ? ' y las cuotas de deudas, ' + plata(fj.cuotas) : '') + '.'));
     c.appendChild(lm);
-    if (!margen) { c.appendChild(el('p', 'fin-vacio', 'Falta tu margen de ganancia. Anota el costo de tus materiales en «Mis ventas del mes» (columna «Costo») o escribe un porcentaje arriba.')); return; }
-    c.appendChild(el('p', 'mv-nota', propio > 0 ? 'Uso el margen que escribiste: ' + margen + ' %.' : 'Tu margen real es ' + margen + ' % (de ' + mr.n + (mr.n === 1 ? ' venta' : ' ventas') + ' con costo anotado en los últimos 3 meses).'));
+    if (!margen) { c.appendChild(el('p', 'fin-vacio', 'Falta tu margen de ganancia. Anota el costo de tus productos en «Mi catálogo de precios» o el costo de tus ventas en «Mis ventas del mes», o escribe un porcentaje arriba.')); return; }
+    c.appendChild(el('p', 'mv-nota', propio > 0 ? 'Uso el margen que escribiste: ' + margen + ' %.' : mr.fuente === 'catalogo' ? 'Tu margen es ' + margen + ' % (promedio de ' + mr.n + (mr.n === 1 ? ' producto' : ' productos') + ' de «Mi catálogo de precios»).' : 'Tu margen real es ' + margen + ' % (de ' + mr.n + (mr.n === 1 ? ' venta' : ' ventas') + ' con costo anotado en los últimos 3 meses).'));
     var eq = fj.fijos / (margen / 100), eqCuotas = (fj.fijos + fj.cuotas) / (margen / 100);
     var ul2 = el('ul', 'mv-lista');
     [['Para cubrir tus gastos fijos', plata(eq) + ' al mes'], ['Por semana', plata(eq / 4.345)], ['Por día de venta (30)', plata(eq / 30)]].forEach(function (p) { var li = el('li'); li.appendChild(el('span', '', p[0])); li.appendChild(el('b', '', p[1])); ul2.appendChild(li); });
@@ -113,12 +118,13 @@
     bt.addEventListener('click', function () { metas().metas[k] = Math.ceil(base / 1000) * 1000; N.guardar(); pintar(true); }); c.appendChild(bt);
   }
   document.addEventListener('agenda-guardada', function () { if (hoja.classList.contains('abierta')) pintar(); });
+  document.addEventListener('costos-listos', function () { if (hoja.classList.contains('abierta')) pintar(true); if (window.lrPintarPanel) window.lrPintarPanel(); });
   new MutationObserver(function () { if (hoja.classList.contains('abierta')) pintar(); }).observe(hoja, { attributes: true, attributeFilter: ['class'] });
   if (hoja.classList.contains('abierta')) pintar();
   /* Datos para las gráficas del panel y de Finanzas (solo lectura) */
   function calcular(y, m) {
     var hoy = new Date(); y = y || hoy.getFullYear(); m = m || hoy.getMonth() + 1;
-    var mm = metas(), vd = ventasDelMes(y, m), fj = fijosMes(), mr = margenReal(hoy), propio = num(mm.margen), margen = propio > 0 ? propio : (mr && mr.pct > 0 ? mr.pct : 0);
+    var mm = metas(), vd = ventasDelMes(y, m), fj = fijosMes(), mr = margenDe(hoy), propio = num(mm.margen), margen = propio > 0 ? propio : (mr && mr.pct > 0 ? mr.pct : 0);
     var eq = margen && fj.fijos ? fj.fijos / (margen / 100) : 0, eqC = margen && (fj.fijos || fj.cuotas) ? (fj.fijos + fj.cuotas) / (margen / 100) : 0;
     return { y: y, m: m, dias: new Date(y, m, 0).getDate(), hoyDia: (hoy.getFullYear() === y && hoy.getMonth() + 1 === m) ? hoy.getDate() : new Date(y, m, 0).getDate(),
       ventas: vd.total, porDia: vd.porDia, fuente: vd.fuente, meta: num(mm.metas[clave(y, m)]), fijos: fj.fijos, cuotas: fj.cuotas, margen: margen, eq: eq, eqCuotas: eqC };

@@ -61,7 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=14">
 <link rel="stylesheet" href="/css/agenda-colores.css?v=12">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
-<link rel="stylesheet" href="/css/agenda-panel-vida.css?v=20">
+<link rel="stylesheet" href="/css/agenda-panel-vida.css?v=21">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=14">
 <link rel="stylesheet" href="/css/agenda-idioma.css?v=2">
 <link rel="stylesheet" href="/css/agenda-pantalla.css?v=11">
@@ -1862,11 +1862,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="hoja-agenda" id="catalogo-precios">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-09-cartel.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Mi catálogo de precios</h3><p>Tus productos con su precio, para responder rápido cuando te pregunten.</p></div>
+          <div><h3>Mi catálogo de precios</h3><p>Tus productos con su precio, su costo y lo que te dejan. Anota materiales, empaque y horas y la agenda calcula cuánto cobrar.</p></div>
         </header>
+          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
-            <thead><tr><th>Producto</th><th>Tamaño</th><th>Precio</th><th>Horas de tejido</th></tr></thead>
+            <thead><tr><th>Producto</th><th>Tamaño</th><th>Precio</th><th>Horas de tejido</th><th>Materiales ($)</th><th>Empaque y otros ($)</th></tr></thead>
             <tbody id="tabla-catalogo"></tbody>
           </table>
         </div>
@@ -2524,7 +2525,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   filasTabla('tabla-clientas', 'ag-cl', ['nombre', { id: 'whatsapp', wa: true }, 'cumpleanos', 'desde', 'compras', 'notas', { id: 'cal', cal: 'clienta' }], 12, 'de la clienta');
   filasTabla('tabla-ventas', 'ag-vt', ['fecha', 'producto', 'cliente', 'precio', 'costo'], 12, 'de la venta');
-  filasTabla('tabla-catalogo', 'ag-ct', ['producto', 'tamano', 'precio', 'horas'], 12, 'del producto');
+  filasTabla('tabla-catalogo', 'ag-ct', ['producto', 'tamano', 'precio', 'horas', 'materiales', 'empaque'], 12, 'del producto');
   filasTabla('tabla-diario', 'ag-dr', ['fecha', { id: 'animo', opciones: ['😊 Feliz', '😌 Tranquila', '🥰 Inspirada', '😴 Cansada', '😣 Frustrada'] }, 'teji', 'frase'], 10, 'del día');
   filasTabla('tabla-ideas', 'ag-id', ['fecha', 'tema', 'nota'], 3, 'de la idea');
   filasTabla('tabla-aprendi', 'ag-ap', ['fecha', 'tecnica', 'donde', { id: 'domino', check: true }], 10, 'de lo aprendido');
@@ -4177,7 +4178,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=12" defer></script>
+<script src="/js/agenda/idioma.js?v=13" defer></script>
 <script src="/js/agenda/config.js?v=16" defer></script>
 <script src="/js/agenda/tour.js?v=5" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
@@ -4197,9 +4198,10 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/iconos.js?v=11" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=2" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=2" defer></script>
-<script src="/js/agenda/metas-ventas.js?v=2" defer></script>
+<script src="/js/agenda/metas-ventas.js?v=4" defer></script>
 <script src="/js/agenda/graficas.js?v=2" defer></script>
 <script src="/js/agenda/clientas-historial.js?v=2" defer></script>
+<script src="/js/agenda/costos.js?v=1" defer></script>
 <script src="/js/agenda/ayuda.js?v=3" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
