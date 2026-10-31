@@ -129,7 +129,7 @@
     input.value = ''; burbuja('user', texto); hist.push({ role: 'user', content: texto });
     ocupado = true; enviar.disabled = true;
     var pens = burbuja('assistant', 'Pensando…');
-    fetch(URL_CHAT, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY }, body: JSON.stringify({ mensajes: hist.slice(-8), casa: casa }) })
+    fetch(URL_CHAT, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY }, body: JSON.stringify({ mensajes: hist.slice(-8), casa: casa, idioma: (casa === 'agenda' && window.lrI18n) ? window.lrI18n.lang : 'es' }) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (x) {
         pens.remove();

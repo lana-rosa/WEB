@@ -1,6 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
+// v38 (31-oct-2026): la agenda se puede ver en inglés y portugués; el chat manda `idioma` (en|pt|es) y Rosina responde en ese idioma; GUIA_AGENDA explica el selector ES/EN/PT.
 // v37 (31-oct-2026; desplegada): GUIA_AGENDA describe el fondo de pantalla elegido en la Portada (Flores, Hojas, Madejas, Liso) el ícono de color de cada hoja, los colores oficiales de Lana Rosa (rosa #E74E96, lila y azul) en toda la agenda y el botón de ayuda sin WhatsApp; en Configuración el botón para volver a ese color se llama «Volver al rosa de Lana Rosa».
 // v36 (30-oct-2026; desplegada y probada): GUIA_AGENDA describe el nuevo Mi panel (saludo con Rosina, círculo de proyectos, barras de ventas de la semana, calendario del mes y tareas de hoy), el color por sección y el rosa frambuesa.
 // v35 (30-oct-2026; desplegada): GUIA_AGENDA explica el botón de ayuda único, los íconos de línea, los ejemplos de hojas vacías y «Empieza aquí».
@@ -116,11 +117,17 @@ const GUIA_AGENDA = `GUÍA DE LA AGENDA PARA TEJEDORAS (lo que la persona ve y p
 - Conexiones entre hojas: en Control de pedidos, si hay pedidos en estado «Entregado» que no están en Mis ventas, sale un aviso con el botón «Pasarlos a Mis ventas» (pasa fecha de entrega, producto, cliente y total; después la persona escribe el costo de materiales para ver la ganancia; no se duplican). En Inventario de lanas, las lanas con 0 ovillos se pueden pasar a la Lista de compras con el botón «Agregarlas a la lista». En Mi año tejiendo, cada mes muestra cuántos días anotaste en el Diario de tejido y el botón «📔 Traer mi diario a este año» agrega lo que tejiste cada día al texto del mes (sin duplicar).
 - Con la membresía vencida, las hojas de pago se bloquean y mientras tanto no salen en «Exportar a Excel» ni en las fechas al calendario (.ics o Google Calendar); «Guardar una copia» (el archivo de copia de seguridad) sí incluye todo lo escrito, y al renovar todo vuelve a exportarse. Para eliminar la cuenta y los datos: «Mi cuenta» → «Mis datos» → «Solicitar la eliminación de mi cuenta y mis datos» (abre un correo ya escrito; se atiende en máximo 15 días hábiles).
 - Botón de ayuda (círculo rosa abajo a la derecha, con signo de interrogación): un solo botón flotante que abre un menú con «Preguntar a Rosina» (abre este chat) y «Subir». En la agenda ya no hay otros círculos flotantes. Los botones llevan íconos de línea en lugar de emoji, y las hojas de listas vacías muestran una frase con un ejemplo; el Índice y Mi panel (cuando la agenda está vacía) muestran «Empieza aquí» con tres pasos: Anotar un pedido, Planear un proyecto y Ver cuánto ganaste.
-- Imprimir: 🖨️ Imprimir agenda (todas las hojas con datos más 3 fichas en blanco por lista), o imprimir una sola hoja con el botón de imprimir de esa hoja.
+- Idiomas (31-oct-2026): junto al engranaje de la barra de arriba hay un selector «ES / EN / PT»: la agenda se puede ver en español, inglés o portugués de Brasil (se guarda la elección y la página se recarga; también se puede abrir con ?idioma=en o ?idioma=pt). Se traducen el menú, las hojas, los avisos, el tutorial y este chat; lo que la persona escribe nunca se traduce, y lo guardado queda igual en cualquier idioma. Por ahora siguen solo en español: las políticas, la ventana de pago de la membresía, la autorización de la copia en la nube, los mensajes de WhatsApp (los lee el equipo), el cálculo de «Prendas a medida» (los textos de cómo tejer cada pieza), y la hoja «Ingresos y gastos» entiende lo que se escribe en español.\n- Imprimir: 🖨️ Imprimir agenda (todas las hojas con datos más 3 fichas en blanco por lista), o imprimir una sola hoja con el botón de imprimir de esa hoja.
 - Para ver una explicación guiada, 🧭 Ver el tutorial de bienvenida en ⚙️ Configuración. Si no resuelve algo, WhatsApp 573205072801.`;
 
 // Va al FINAL del prompt (después del conocimiento largo): sin esto el modelo respondía preguntas de la agenda como si fueran de la tienda.
 const RECORDATORIO_AGENDA = `\nRECORDATORIO (agenda): la persona está DENTRO de la Agenda para tejedoras. Interpreta sus preguntas como sobre la agenda (por ejemplo «pedidos», «colores», «copias», «hojas», «WhatsApp», «clientas» se refieren a las hojas y botones de la agenda), y respóndelas con la GUÍA DE LA AGENDA y con pasos cortos. Solo habla de comprar en la tienda o la mercería si lo pide claramente. Si la guía no lo dice, no lo inventes: sugiere el tutorial 🧭 o el WhatsApp.`;
+
+// Idioma de la agenda (selector ES/EN/PT): va al FINAL del prompt para que lo cumpla aunque el conocimiento y la guía estén en español.
+const RECORDATORIO_IDIOMA: Record<string, string> = {
+  en: `\nLANGUAGE (mandatory): the person uses the planner in ENGLISH. Answer ALWAYS in English, with the same warm, short style. The GUIDE and the knowledge are written in Spanish, and the planner screens the person sees are already translated: translate the names of buttons, tabs and pages naturally and, the first time, add the Spanish name in parentheses. Never translate what the person wrote in their own planner. Prices and the WhatsApp number do not change. The policies, the membership payment and the cloud backup authorization are only in Spanish: say so if asked.`,
+  pt: `\nIDIOMA (obrigatório): a pessoa usa a agenda em PORTUGUÊS DO BRASIL. Responda SEMPRE em português do Brasil, com o mesmo estilo caloroso e breve. O GUIA e o conhecimento estão escritos em espanhol, e as telas da agenda que a pessoa vê já estão traduzidas: traduza com naturalidade os nomes de botões, abas e páginas e, na primeira vez, coloque entre parênteses o nome em espanhol. Nunca traduza o que a pessoa escreveu na própria agenda. Os preços e o número do WhatsApp não mudam. As políticas, o pagamento da assinatura e a autorização da cópia na nuvem estão somente em espanhol: avise se perguntarem.`,
+};
 
 const ROLES: Record<string, string> = {
   tienda: "La persona está en la TIENDA DE AMIGURUMIS: asesórala sobre amigurumis y los productos de la tienda (cuál elegir según el regalo, la edad, el gusto o el presupuesto; tamaños, materiales, cuidados, tiempos de elaboración) y sobre pedidos personalizados (Personaliza). Recomienda 1 a 3 productos concretos del catálogo y muéstralos con su código (la tarjeta lleva la foto, el precio y si hay en existencia o es por encargo).",
@@ -154,7 +161,7 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "Método no permitido" }, 405, h);
   if (!origen || !ORIGENES.includes(origen)) return json({ error: "No permitido" }, 403, h);
 
-  let cuerpo: { mensajes?: { role: string; content: string }[]; casa?: string };
+  let cuerpo: { mensajes?: { role: string; content: string }[]; casa?: string; idioma?: string };
   try { cuerpo = await req.json(); } catch { return json({ error: "Solicitud inválida" }, 400, h); }
   const mensajes = (cuerpo.mensajes || []).slice(-8)
     .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
@@ -185,6 +192,7 @@ Deno.serve(async (req) => {
   const saber = await conocimiento();
   const cat = await catalogo(sb).catch(() => ({ texto: "", mapa: new Map<string, Regalo>() }));
   const casa = ["tienda", "merceria", "academy", "agenda"].includes(cuerpo.casa || "") ? cuerpo.casa! : "tienda";
+  const idioma = casa === "agenda" && ["en", "pt"].includes(cuerpo.idioma || "") ? cuerpo.idioma! : "es";
   const casaMedida = casa === "agenda" ? "academy" : casa;   // fn_rosina_registrar_consumo y rosina_sin_respuesta solo admiten tres casas
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -194,7 +202,7 @@ Deno.serve(async (req) => {
       system: [
         { type: "text", text: REGLAS + "\n" + REGLAS_TARJETAS + "\n" + ROLES[casa] },
         { type: "text", text: "CONOCIMIENTO PÚBLICO (texto de las páginas del sitio):\n" + saber + "\n\n" + cat.texto, cache_control: { type: "ephemeral" } },
-        { type: "text", text: RECORDATORIO_TARJETAS + (casa === "agenda" ? RECORDATORIO_AGENDA : "") },
+        { type: "text", text: RECORDATORIO_TARJETAS + (casa === "agenda" ? RECORDATORIO_AGENDA : "") + (idioma !== "es" ? RECORDATORIO_IDIOMA[idioma] : "") },
       ],
       messages: mensajes,
     }),

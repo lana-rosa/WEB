@@ -34,3 +34,5 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 | Selector ES / EN / PT | Etapa 1: menú, Mi panel, secciones, Configuración, títulos de hojas, pie | `js/agenda/idioma.js`, `js/agenda/i18n/`, `herramientas/agenda-idiomas/` |
 | Cuerpo de las hojas, tutorial, avisos y Rosina en otros idiomas | Pendiente (etapas 2 y 3) | — |
 | Políticas en otros idiomas | No: quedan en español hasta la revisión de la abogada | `politicas.html` |
+| Tutorial, avisos, ventanas del navegador, dictado y chat de Rosina en otros idiomas | Hecho (etapa 3, 31-oct-2026) | `datos_etapa3.py`, `idioma.js`, `rosina-web` v38 |
+| Ventanas legales (copia en la nube, pago de membresía), WhatsApp, .ics, cálculos de Prendas a medida | Siguen en español a propósito | — |

@@ -146,7 +146,17 @@
     return lista;
   }
 
-  window.lrI18n = { lang: lang, t: tr, add: agregar, faltan: faltan, permitidos: PERMITIDOS };
+  // Ventanas del navegador (alert, confirm, prompt): no son parte de la página, por eso se traducen aquí antes de mostrarlas
+  if (lang !== 'es') {
+    ['alert', 'confirm', 'prompt'].forEach(function (nombre) {
+      var orig = window[nombre]; if (!orig) return;
+      window[nombre] = function (msg) { var a = Array.prototype.slice.call(arguments); if (typeof a[0] === 'string') a[0] = tr(a[0]); return orig.apply(window, a); };
+    });
+  }
+  // Idioma del dictado por voz (js/agenda/voz.js lo lee)
+  var VOZ = { es: 'es-CO', en: 'en-US', pt: 'pt-BR' };
+
+  window.lrI18n = { lang: lang, voz: VOZ[lang], t: tr, add: agregar, faltan: faltan, permitidos: PERMITIDOS };
   document.documentElement.setAttribute('lang', PERMITIDOS[lang]);
 
   function iniciar() {
