@@ -5,12 +5,12 @@
    En celular apaisado la barra de abajo pasa a un riel lateral. Al imprimir no se aplica nada de esto. */
 @font-face { font-family: 'Fraunces'; font-weight: 500; font-display: swap; src: url(/fonts/fraunces-500.woff2) format('woff2'); }
 @font-face { font-family: 'Fraunces'; font-weight: 600; font-display: swap; src: url(/fonts/fraunces-600.woff2) format('woff2'); }
-html:root { --marfil: #FEF2F7; --crema: #FBE4EF; --papel: #FFFFFF; --salvia: #7F9C80; --salvia-osc: #3F6B47; --salvia-suave: #E2EBDF; --serif: 'Fraunces', Georgia, 'Times New Roman', serif; --fuente-hoja: 'Fraunces', Georgia, serif; --fuente-titulo: 'Hanken Grotesk', sans-serif; }
+html:root { --marfil: #FEF2F7; --crema: #FBE4EF; --papel: #FFFFFF; --salvia: #7F9C80; --salvia-osc: #3F6B47; --salvia-suave: #E2EBDF; --serif: 'Emoji Lana', 'DynaPuff', sans-serif; --fuente-hoja: 'Emoji Lana', 'DynaPuff', sans-serif; --fuente-titulo: 'Hanken Grotesk', sans-serif; }
 body, #agenda.seccion-suave, #agenda { background: var(--marfil) !important; }
 #agenda .contenedor { max-width: 1360px; }
 
 /* Títulos con serifa; números y controles en sans */
-.hoja-agenda > header h3, .pn-saludo h4, .vs-cab h2, .empieza-aqui h4, .tab-grupo h4, .fin-caja h4, .fin-caja-cab h4, .portada-titulo, #agenda h2, .titulo-barra-agenda { font-family: var(--serif) !important; font-weight: 600; letter-spacing: -0.005em; }
+.hoja-agenda > header h3, .pn-hero h4, .pn-card > h4, .pn-card h4, .pn-consejo h4, .vs-hoja b, .pn-saludo h4, .vs-cab h2, .empieza-aqui h4, .tab-grupo h4, .fin-caja h4, .fin-caja-cab h4, .portada-titulo, #agenda h2, .titulo-barra-agenda { font-family: var(--serif) !important; font-weight: 600; letter-spacing: -0.005em; }
 .hoja-agenda > header h3 { font-size: clamp(1.45rem, 1.1rem + 1vw, 2rem); color: #8E1457; }
 .hoja-agenda > header p { max-width: 62ch; }
 .hoja-agenda { background: var(--papel); border-color: #F5D5E5; box-shadow: 0 1px 0 #fff inset, 0 10px 30px rgba(142, 20, 87, .06); container-type: inline-size; container-name: hoja; }
@@ -71,3 +71,7 @@ body, #agenda.seccion-suave, #agenda { background: var(--marfil) !important; }
   #agenda .pl-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
   #agenda #pl-ant { order: 1; } #agenda #pl-fecha { order: 2; flex: 1 1 0; min-width: 0; } #agenda #pl-sig { order: 3; } #agenda #pl-hoy { order: 4; flex: 1 1 100%; }
 }
+
+/* Tipografía de la página principal de Lana Rosa en los títulos (31-oct-2026, pedido de Sara): DynaPuff en títulos, Hanken Grotesk en texto y enlaces */
+#agenda .pn-card > h4, #agenda .pn-card h4, #agenda .pn-consejo h4 { font-size: 1.02rem; line-height: 1.2; }
+#agenda .pn-card h4 .pn-enlace, #agenda .pn-card h4 button, #agenda .pn-card h4 a { font-family: 'Hanken Grotesk', sans-serif; font-weight: 600; font-size: .82rem; white-space: nowrap; }
