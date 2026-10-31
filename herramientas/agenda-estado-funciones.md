@@ -40,3 +40,4 @@ Estados: **Disponible** · **Opcional** (la persona lo activa) · **Apagada** ·
 | Menú lateral que se esconde (computador) y barra de íconos (tableta) | Hecha 31-oct-2026 | `js/agenda/menu-lateral.js`, `css/agenda-menu.css`, `probar_agenda_menu.py` |
 | Meta de ventas del mes y «¿Cuánto necesito vender al mes?» (membresía) | Hecha 31-oct-2026 (Plus, etapa 2) | `js/agenda/metas-ventas.js`, `probar_agenda_metas.py` |
 | Gráficas del negocio: punto de equilibrio (Mi panel y finanzas), ventas contra meta y utilidad por mes | Hecha 31-oct-2026 (Plus) | `js/agenda/graficas.js`, `probar_agenda_graficas.py` |
+| Historial de cada clienta en «Mis clientas» (membresía) | Hecha 31-oct-2026 (Plus, etapa 3) | `js/agenda/clientas-historial.js`, `probar_agenda_historial.py` |

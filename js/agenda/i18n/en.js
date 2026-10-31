@@ -1459,5 +1459,15 @@ window.lrI18n.add("en", {
 "Llevas {a} de los {b} que necesitas para no perder este mes ({p#} %).": "You have {a} of the {b} you need to avoid losing this month ({p} %).",
 "Vas al día o adelantada con tu meta.": "You are on track or ahead of your goal.",
 "Vas por debajo del ritmo que necesitas para llegar a tu meta.": "You are below the pace you need to reach your goal.",
+"Historial de compras": "Purchase history",
+"Todavía no tiene pedidos anotados. Cuando anotes un pedido a su nombre, aquí verás cuánto te ha comprado.": "She has no recorded orders yet. When you record an order in her name, you will see here how much she has bought.",
+"Total comprado": "Total purchased",
+"Última compra": "Last purchase",
+"Al día": "Paid up",
+"Promedio por pedido": "Average per order",
+"{n#} en proceso": "{n} in progress",
+"Hace {n#} días que no te compra. ¿Le escribes?": "It has been {n} days since she last bought from you. Will you write to her?",
+"Pedidos recientes": "Recent orders",
+"Venta anotada": "Recorded sale",
 "Entendido": "Got it"
 });

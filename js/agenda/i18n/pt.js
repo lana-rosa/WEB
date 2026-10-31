@@ -1459,5 +1459,15 @@ window.lrI18n.add("pt", {
 "Llevas {a} de los {b} que necesitas para no perder este mes ({p#} %).": "Você tem {a} dos {b} de que precisa para não perder neste mês ({p} %).",
 "Vas al día o adelantada con tu meta.": "Você está em dia ou adiantada com a sua meta.",
 "Vas por debajo del ritmo que necesitas para llegar a tu meta.": "Você está abaixo do ritmo de que precisa para chegar à sua meta.",
+"Historial de compras": "Histórico de compras",
+"Todavía no tiene pedidos anotados. Cuando anotes un pedido a su nombre, aquí verás cuánto te ha comprado.": "Ela ainda não tem pedidos anotados. Quando você anotar um pedido no nome dela, verá aqui quanto ela já comprou.",
+"Total comprado": "Total comprado",
+"Última compra": "Última compra",
+"Al día": "Em dia",
+"Promedio por pedido": "Média por pedido",
+"{n#} en proceso": "{n} em andamento",
+"Hace {n#} días que no te compra. ¿Le escribes?": "Faz {n} dias que ela não compra de você. Vai escrever para ela?",
+"Pedidos recientes": "Pedidos recentes",
+"Venta anotada": "Venda anotada",
 "Entendido": "Entendi"
 });

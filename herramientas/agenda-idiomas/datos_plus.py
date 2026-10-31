@@ -82,5 +82,12 @@ FILAS = [
  ('Llevas {a} de los {b} que necesitas para no perder este mes ({p#} %).', 'You have {a} of the {b} you need to avoid losing this month ({p} %).', 'Você tem {a} dos {b} de que precisa para não perder neste mês ({p} %).'),
  ('Vas al día o adelantada con tu meta.', 'You are on track or ahead of your goal.', 'Você está em dia ou adiantada com a sua meta.'),
  ('Vas por debajo del ritmo que necesitas para llegar a tu meta.', 'You are below the pace you need to reach your goal.', 'Você está abaixo do ritmo de que precisa para chegar à sua meta.'),
+ ('Historial de compras', 'Purchase history', 'Histórico de compras'),
+ ('Todavía no tiene pedidos anotados. Cuando anotes un pedido a su nombre, aquí verás cuánto te ha comprado.', 'She has no recorded orders yet. When you record an order in her name, you will see here how much she has bought.', 'Ela ainda não tem pedidos anotados. Quando você anotar um pedido no nome dela, verá aqui quanto ela já comprou.'),
+ ('Pedidos', 'Orders', 'Pedidos'), ('Total comprado', 'Total purchased', 'Total comprado'), ('Última compra', 'Last purchase', 'Última compra'),
+ ('Al día', 'Paid up', 'Em dia'), ('Promedio por pedido', 'Average per order', 'Média por pedido'),
+ ('{n#} en proceso', '{n} in progress', '{n} em andamento'),
+ ('Hace {n#} días que no te compra. ¿Le escribes?', 'It has been {n} days since she last bought from you. Will you write to her?', 'Faz {n} dias que ela não compra de você. Vai escrever para ela?'),
+ ('Pedidos recientes', 'Recent orders', 'Pedidos recentes'), ('Venta anotada', 'Recorded sale', 'Venda anotada'),
  ('Entendido', 'Got it', 'Entendi'),
 ]
