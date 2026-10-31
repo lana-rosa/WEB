@@ -25,7 +25,7 @@ with sync_playwright() as p:
         pg.reload(); pg.wait_for_timeout(1200); pg.evaluate(IR, 'control-pedidos'); pg.wait_for_timeout(400)
         T.v(n + 'al volver a entrar no ofrece de nuevo lo ya pasado (sin duplicar)', pg.locator('#control-pedidos .conexion-ventas').count() == 0)
         pg.evaluate(IR, 'inventario-lanas'); pg.wait_for_timeout(500)
-        T.v(n + 'lanas: avisa de la lana con 0 ovillos (y no de la que tiene 3)', '1 lana con 0 ovillos' in pg.inner_text('#inventario-lanas .conexion-compras'), pg.inner_text('#inventario-lanas'))
+        T.v(n + 'lanas: avisa de la lana con 0 ovillos (y no de la que tiene 3)', '1 lana agotada o por acabarse' in pg.inner_text('#inventario-lanas .conexion-compras'), pg.inner_text('#inventario-lanas'))
         pg.click('#inventario-lanas .conexion-compras .ca-boton'); pg.wait_for_timeout(600)
         d = pg.evaluate("JSON.parse(localStorage.getItem('rosinaAgenda'))")
         T.v(n + 'la lana agotada queda en la Lista de compras con su color y 1 ovillo', d.get('ag-c1-material') == 'Lana Alize 4' and d.get('ag-c1-color') == 'Rosa' and d.get('ag-c1-cantidad') == '1 ovillo' and not d.get('ag-c2-material'), {k: v for k, v in d.items() if k.startswith('ag-c')})

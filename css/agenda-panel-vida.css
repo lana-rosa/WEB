@@ -157,3 +157,21 @@
 @media print { #agenda .vs-dash { display: none; } }
 #agenda .db-card .ct-barra { grid-template-columns: minmax(70px, 120px) 1fr 74px; } #agenda .db-card .ct-pct { white-space: nowrap; } #agenda .db-card h4 .pn-enlace { white-space: nowrap; }
 @media (max-width: 520px) { #agenda .db-card .ct-barra { grid-template-columns: 1fr 74px; } }
+
+/* ---- Plus etapa 5: inventario de lanas con costo y mínimo ---- */
+#agenda .iv-resumen { margin: 6px 0 14px; padding: 12px 14px; border-radius: 14px; background: #FEF2F7; }
+#agenda .iv-fila { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+#agenda .iv-kpi { background: #fff; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+#agenda .iv-k { font-size: .85rem; color: #6B5560; }
+#agenda .iv-v { font-size: 1.25rem; color: #3D2B33; }
+#agenda .iv-n { font-size: .8rem; color: #6B5560; }
+#agenda .iv-kpi.iv-alerta .iv-v { color: #A8302E; }
+#agenda .iv-lista { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+#agenda .iv-lista li { display: flex; justify-content: space-between; gap: 10px; background: #fff; border-radius: 10px; padding: 8px 12px; }
+#agenda .iv-nota, #agenda .iv-mas { margin: 8px 0 0; color: #6B5560; font-size: .92rem; }
+#agenda td.iv-calculo { display: block; grid-column: 1 / -1; margin-top: 8px; padding: 10px 12px; border-radius: 14px; background: #FEF2F7; }
+#agenda .iv-linea { display: flex; justify-content: space-between; gap: 10px; margin: 0 0 6px; background: #fff; border-radius: 10px; padding: 8px 12px; }
+#agenda .iv-aviso { margin: 4px 0 0; padding: 8px 12px; border-radius: 10px; font-size: .92rem; background: #fff; color: #3D2B33; }
+#agenda .iv-aviso.mal { background: #FDE8E8; color: #8E2321; }
+#agenda .iv-aviso.alerta { background: #FFF3D6; color: #7A5200; }
+#agenda .iv-aviso.bien { background: #E7F4EA; color: #1F5E2E; }

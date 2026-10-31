@@ -64,7 +64,9 @@
     for (r = 1; r <= N.tablas['tabla-compras'].n; r++) { var ck = celda('tabla-compras', r, 'comprado'); if (ck && ck.checked) continue; ya[limpiar(val('tabla-compras', r, 'material')) + '|' + limpiar(val('tabla-compras', r, 'color'))] = true; }
     for (r = 1; r <= N.tablas['tabla-lanas'].n; r++) {
       var marca = val('tabla-lanas', r, 'marca'), color = val('tabla-lanas', r, 'color'), ov = val('tabla-lanas', r, 'ovillos');
-      if ((!marca && !color) || !/^0+([.,]0+)?(\s*ovillos?)?$/i.test(ov)) continue;
+      var ovn = parseFloat(String(ov).replace(',', '.')), mn = parseFloat(String(val('tabla-lanas', r, 'minimo')).replace(',', '.'));
+      var enCero = /^0+([.,]0+)?(\s*ovillos?)?$/i.test(ov), bajoMin = isFinite(ovn) && isFinite(mn) && mn > 0 && ovn <= mn;
+      if ((!marca && !color) || (!enCero && !bajoMin)) continue;
       var mat = ['Lana', marca, val('tabla-lanas', r, 'grosor')].filter(Boolean).join(' ').replace(/^Lana (Lana)/i, 'Lana');
       if (ya[limpiar(mat) + '|' + limpiar(color)]) continue;
       lista.push({ material: mat, color: color });
@@ -132,7 +134,7 @@
     var v = pendientesVentas();
     aviso('control-pedidos', 'conexion-ventas', v.length ? '💰 ' + (v.length === 1 ? 'Tienes 1 pedido entregado' : 'Tienes ' + v.length + ' pedidos entregados') + ' que aún no está en Mis ventas.' : '', v.length === 1 ? 'Pasarlo a Mis ventas' : 'Pasarlos a Mis ventas', pasarAVentas);
     var a = agotadas();
-    aviso('inventario-lanas', 'conexion-compras', a.length ? '🛍️ ' + (a.length === 1 ? 'Tienes 1 lana con 0 ovillos' : 'Tienes ' + a.length + ' lanas con 0 ovillos') + ' que no está en tu Lista de compras.' : '', a.length === 1 ? 'Agregarla a la lista' : 'Agregarlas a la lista', pasarACompras);
+    aviso('inventario-lanas', 'conexion-compras', a.length ? '🛍️ ' + (a.length === 1 ? 'Tienes 1 lana agotada o por acabarse' : 'Tienes ' + a.length + ' lanas agotadas o por acabarse') + (a.length === 1 ? ' que no está' : ' que no están') + ' en tu Lista de compras.' : '', a.length === 1 ? 'Agregarla a la lista' : 'Agregarlas a la lista', pasarACompras);
   }
   var t = null; document.addEventListener('agenda-guardada', function () { clearTimeout(t); t = setTimeout(function () { revisar(); pintarDiarioEnAnio(); }, 300); });
   revisar(); pintarDiarioEnAnio();

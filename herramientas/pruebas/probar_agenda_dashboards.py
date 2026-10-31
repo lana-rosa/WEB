@@ -27,7 +27,7 @@ with sync_playwright() as p:
     T.v('Mis proyectos: próxima fecha en 10 días', 'Manta' in a and 'en 10 días' in a, a)
     T.v('Mis proyectos: ideas 2, patrones 2 (1 tejido), técnicas 1 (1 dominada)', 'Ideas guardadas' in a and '1 ya tejidos' in a and '1 ya dominadas' in a, a)
     a = seccion(pg, 3)
-    T.v('Mis materiales: 8 ovillos, 3 lanas, 1 se acabó', 'Ovillos en total\n8' in a.replace('\n\n', '\n') and 'Lanas distintas\n3' in a.replace('\n\n', '\n') and 'Se acabaron\n1' in a.replace('\n\n', '\n'), a)
+    T.v('Mis materiales: 8 ovillos, 3 lanas, 1 por acabarse', 'Ovillos en total\n8' in a.replace('\n\n', '\n') and 'Lanas distintas\n3' in a.replace('\n\n', '\n') and 'Por acabarse\n1' in a.replace('\n\n', '\n'), a)
     T.v('Mis materiales: ovillos por marca y compras 1 de 2', 'Alize' in a and 'Comprado · 1' in a and 'Por comprar · 1' in a, a)
     a = seccion(pg, 4)
     T.v('Mi emprendimiento: ventas de 6 meses con gráfica', pg.locator('.vs-dash svg.gr-svg').count() >= 1 and 'Tus ventas de los últimos 6 meses' in a, a)
