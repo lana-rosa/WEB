@@ -209,3 +209,11 @@
   body.imprimiendo-informe .inf-kpi, body.imprimiendo-informe .inf-lista li { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .inf-barra { display: none !important; }
 }
+
+/* ---- Plus etapa 7: sincronización con Google Drive ---- */
+.drive-sync { margin-top: 12px; }
+.ds-lista { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+.ds-lista li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px; background: #FAF6F8; font-size: .92rem; }
+.ds-lista[hidden] { display: none; }
+.drive-banner { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 1500; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; max-width: calc(100vw - 32px); padding: 10px 16px; border-radius: 14px; background: #fff; color: #3D2B33; box-shadow: 0 6px 24px rgba(61, 43, 51, .25); border: 1.5px solid #F28FC0; }
+@media print { .drive-banner, .drive-sync { display: none !important; } }

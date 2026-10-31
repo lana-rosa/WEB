@@ -3,7 +3,7 @@
    si entra una cuenta distinta y hay hojas escritas, se pregunta antes de mostrarlas. Es solo una protección de la página (los datos siguen en el dispositivo). */
 (function () {
   var SES = 'sb-ngjoognzvehwjtpqwrqe-auth-token', DUENO = 'lrAgendaDueno';
-  var BORRAR = ['rosinaAgenda', 'rosinaAgendaCopia', 'rosinaAgendaHoja', 'lrNubeBase', 'lrNubeSucio', 'lrAgendaRecordatorio', 'lrMembresia'];
+  var BORRAR = ['rosinaAgenda', 'rosinaAgendaCopia', 'rosinaAgendaHoja', 'lrNubeBase', 'lrNubeSucio', 'lrAgendaRecordatorio', 'lrMembresia', 'lrDriveBase', 'lrDriveRev', 'lrDriveUid', 'lrDriveSnap', 'lrDriveAvisos'];
   var uid = null, anterior = null, datos = null;
   try {
     var s = JSON.parse(localStorage.getItem(SES) || 'null'); uid = s && s.user && s.user.id;
