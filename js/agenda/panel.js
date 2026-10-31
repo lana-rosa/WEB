@@ -96,8 +96,9 @@
     for (var d = 1; d <= n; d++) g.appendChild(txt('span', (d === hoy.getDate() ? 'hoy ' : '') + (marcados[d] ? 'ev' : ''), String(d)));
     return g;
   }
+  var avisosTodos = false, diaPintado = '';
   function pintar() {
-    var hoy = new Date(); hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+    var hoy = new Date(); hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()); diaPintado = iso(hoy);
     var enMes = function (t) { var f = N.leerFecha ? N.leerFecha(t) : null; return !!f && f.a === hoy.getFullYear() && f.m === hoy.getMonth() + 1; };
     var todasVentas = filas('tabla-ventas', ['fecha', 'precio']);
     var ventas = todasVentas.filter(function (f) { return enMes(f.fecha); }), vend = ventas.reduce(function (s, f) { return s + pesos(f.precio); }, 0);
@@ -128,24 +129,35 @@
     var dif = function (t) { var f = N.leerFecha ? N.leerFecha(t) : null; return (!f || f.sinAnio) ? null : Math.round((new Date(f.a, f.m - 1, f.d) - hoy) / 86400000); };
     var av = [], quien = function (p) { return p.cliente || p.pedido || 'pedido'; };
     var saldoDe = function (p) { return Math.max(0, (pesos(p.totalcompra) || pesos(p.precio)) - pesos(p.abono)); };
+    /* av: [prioridad, nivel, texto, hoja, días, grupo]; dentro de cada prioridad, primero el más atrasado / el que vence antes */
     activos.forEach(function (p) {
       var d = dif(p.entrega); if (d === null || d > 3) return;
       var sal = saldoDe(p), extra = sal ? ' · saldo ' + fm(sal) : '';
-      if (d < 0) av.push([0, 'mal', 'Entrega atrasada: ' + quien(p) + extra, 'control-pedidos']);
-      else if (d === 0) av.push([1, 'alerta', 'Entrega de hoy: ' + quien(p) + extra, 'control-pedidos']);
-      else if (d === 1) av.push([2, 'alerta', 'Entrega mañana: ' + quien(p) + extra, 'control-pedidos']);
-      else av.push([3, 'alerta', 'Entrega en ' + d + ' días: ' + quien(p) + extra, 'control-pedidos']);
+      if (d < 0) av.push([0, 'mal', 'Entrega atrasada: ' + quien(p) + extra, 'control-pedidos', d, 'atr']);
+      else if (d === 0) av.push([1, 'alerta', 'Entrega de hoy: ' + quien(p) + extra, 'control-pedidos', d, 'prox']);
+      else if (d === 1) av.push([2, 'alerta', 'Entrega mañana: ' + quien(p) + extra, 'control-pedidos', d, 'prox']);
+      else av.push([3, 'alerta', 'Entrega en ' + d + ' días: ' + quien(p) + extra, 'control-pedidos', d, 'prox']);
     });
-    ped.filter(function (p) { return /entreg/i.test(p.estado) && saldoDe(p) > 0; }).forEach(function (p) { av.push([4, 'alerta', 'Saldo pendiente de ' + quien(p) + ': ' + fm(saldoDe(p)), 'control-pedidos']); });
-    todosProy.filter(function (p) { var d = dif(p.fecha); return p.estado !== 'Terminado' && d !== null && d < 0; }).forEach(function (p) { av.push([5, 'mal', 'El proyecto «' + p.proyecto + '» ya pasó su fecha', 'proyectos-fila']); });
-    av.sort(function (a, b) { return a[0] - b[0]; });
+    ped.filter(function (p) { return /entreg/i.test(p.estado) && saldoDe(p) > 0; }).forEach(function (p) { av.push([4, 'alerta', 'Saldo pendiente de ' + quien(p) + ': ' + fm(saldoDe(p)), 'control-pedidos', dif(p.entrega) || 0, 'cob']); });
+    todosProy.filter(function (p) { var d = dif(p.fecha); return p.estado !== 'Terminado' && d !== null && d < 0; }).forEach(function (p) { av.push([5, 'mal', 'El proyecto «' + p.proyecto + '» ya pasó su fecha', 'proyectos-fila', dif(p.fecha), 'proy']); });
+    av.sort(function (a, b) { return a[0] - b[0] || a[4] - b[4]; });
     if (av.length) {
       var ta = txt('div', 'pn-card pn-avisos'); ta.setAttribute('role', 'region'); ta.setAttribute('aria-label', 'Avisos de hoy'); ta.appendChild(txt('h4', '', 'Avisos de hoy'));
-      av.slice(0, 5).forEach(function (a) {
+      var cuenta = { atr: 0, prox: 0, cob: 0, proy: 0 }; av.forEach(function (a) { cuenta[a[5]]++; });
+      var resumen = txt('div', 'pn-av-resumen');
+      [['atr', 'atrasadas', 'mal'], ['prox', 'próximas (3 días)', ''], ['cob', 'por cobrar', ''], ['proy', 'proyectos vencidos', 'mal']].forEach(function (c) {
+        if (!cuenta[c[0]]) return; var ch = txt('span', 'pn-av-chip ' + c[2]); ch.appendChild(txt('b', '', String(cuenta[c[0]]))); ch.appendChild(txt('span', '', ' ' + c[1])); resumen.appendChild(ch);
+      });
+      ta.appendChild(resumen);
+      var ver = avisosTodos ? av : av.slice(0, 5);
+      ver.forEach(function (a) {
         var fila = txt('button', 'pn-fila pn-aviso ' + a[1]); fila.type = 'button'; fila.addEventListener('click', function () { ir(a[3]); });
         var i = txt('span', 'pn-aviso-ic'); i.setAttribute('aria-hidden', 'true'); i.appendChild(ic(a[1] === 'mal' ? 'alerta' : 'reloj')); fila.appendChild(i); fila.appendChild(txt('span', 'pn-t', a[2])); ta.appendChild(fila);
       });
-      if (av.length > 5) ta.appendChild(txt('p', 'pn-vacio', 'Y ' + (av.length - 5) + (av.length - 5 === 1 ? ' aviso más' : ' avisos más') + ' en Control de pedidos.'));
+      if (av.length > 5) {
+        var mas = txt('button', 'pn-accion sec pn-av-mas', avisosTodos ? 'Ver menos' : 'Ver todos los avisos (' + av.length + ')'); mas.type = 'button'; mas.setAttribute('aria-expanded', avisosTodos ? 'true' : 'false');
+        mas.addEventListener('click', function () { avisosTodos = !avisosTodos; pintar(); }); ta.appendChild(mas);
+      }
       cont.appendChild(ta);
     }
     var off = {}; try { off = JSON.parse(localStorage.getItem('lrAgendaConsejos') || '{}') || {}; } catch (e) { off = {}; }
@@ -239,6 +251,10 @@
     cont.appendChild(txt('p', 'pn-nota', 'Estos números salen de lo que escribes en tus hojas: Mis ventas, Gastos del negocio, Control de pedidos, Proyectos por tejer y el Planeador.'));
   }
   window.lrPintarPanel = pintar;
+  /* Si la página queda abierta de un día para otro (o se vuelve a ella), los avisos se renuevan con la fecha de hoy */
+  function nuevoDia() { if (hoja.classList.contains('abierta') && diaPintado && diaPintado !== iso(new Date())) pintar(); }
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) nuevoDia(); });
+  setInterval(nuevoDia, 60000);
   document.addEventListener('agenda-guardada', function () { if (hoja.classList.contains('abierta')) pintar(); });
   pintar();
 
