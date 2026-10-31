@@ -56,3 +56,9 @@ body .pestana img.ic-dibujo { width: 40px; height: 40px; object-fit: contain; fl
 /* Números de Mi panel con dibujo propio (31-oct-2026, diseño de Sara) */
 #agenda .pn-kpi-ic:has(.pn-kpi-img) { background: none; box-shadow: none; width: 52px; height: 52px; }
 #agenda .pn-kpi-img { width: 48px; height: 48px; object-fit: contain; display: block; }
+
+/* Rosina pensando en el consejo de Mi panel (31-oct-2026, diseño de Sara) */
+#agenda .pn-consejo { position: relative; }
+#agenda .pn-consejo-img { position: absolute; right: 14px; top: 10px; width: 72px; height: 72px; object-fit: contain; pointer-events: none; }
+@media (max-width: 520px) { #agenda .pn-consejo-img { width: 52px; height: 52px; right: 8px; top: 8px; } }
+@media print { #agenda .pn-consejo-img { display: none; } }

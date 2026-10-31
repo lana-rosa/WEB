@@ -170,7 +170,7 @@
       ['gancho', tejiendo >= 4, 'Tienes muchos proyectos en el gancho a la vez. Terminar uno antes de empezar otro ayuda a cumplir las fechas.', 'proyectos-fila']
     ].filter(function (c) { return c[1] && !off[c[0]]; })[0];
     if (CONSEJOS) {
-      var cr = txt('div', 'pn-card pn-consejo'); cr.appendChild(txt('h4', '', 'Consejo de Rosina'));
+      var cr = txt('div', 'pn-card pn-consejo'); var cimg = document.createElement('img'); cimg.className = 'pn-consejo-img'; cimg.src = '/img/agenda/rosina/pensando.webp'; cimg.alt = ''; cimg.width = 72; cimg.height = 72; cimg.setAttribute('aria-hidden', 'true'); cr.appendChild(cimg); cr.appendChild(txt('h4', '', 'Consejo de Rosina'));
       cr.appendChild(txt('p', '', CONSEJOS[2]));
       var bs = txt('div', 'pn-acciones');
       var b1 = txt('button', 'pn-accion', 'Ir a la hoja'); b1.type = 'button'; b1.addEventListener('click', function () { ir(CONSEJOS[3]); });
