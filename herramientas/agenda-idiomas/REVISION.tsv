@@ -55,18 +55,6 @@ Septiembre	September	Setembro
 Octubre	October	Outubro
 Noviembre	November	Novembro
 Diciembre	December	Dezembro
-ene	Jan	jan
-feb	Feb	fev
-mar	Mar	mar
-abr	Apr	abr
-may	May	mai
-jun	Jun	jun
-jul	Jul	jul
-ago	Aug	ago
-sep	Sep	set
-oct	Oct	out
-nov	Nov	nov
-dic	Dec	dez
 Lunes	Monday	Segunda-feira
 Martes	Tuesday	Terça-feira
 Miércoles	Wednesday	Quarta-feira
@@ -331,3 +319,857 @@ Total	Total	Total
 Continuar compra	Continue shopping	Continuar comprando
 Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.	Secure payment with Wompi: card, PSE, Nequi, Bre-B and more.	Pagamento seguro com Wompi: cartão, PSE, Nequi, Bre-B e mais.
 Pedir por WhatsApp	Order via WhatsApp	Pedir pelo WhatsApp
+{t=Entregas|Fechas límite}: {c}.	{t}: {c}.	{t}: {c}.
+{a=\d+ atrasadas?} y {b=\d+ llegan? en los próximos 3 días}	{a} and {b}	{a} e {b}
+{n#} atrasada	{n} overdue	{n} atrasado
+{n#} atrasadas	{n} overdue	{n} atrasados
+{n#} llega en los próximos 3 días	{n} arrives in the next 3 days	{n} chega nos próximos 3 dias
+{n#} llegan en los próximos 3 días	{n} arrive in the next 3 days	{n} chegam nos próximos 3 dias
+Entregas	Deliveries	Entregas
+Fechas límite	Deadlines	Prazos
+Pedidos: {a} en total · Por cobrar: {b} — ¡todo está pago!	Orders: {a} in total · To collect: {b} — everything is paid!	Pedidos: {a} no total · A receber: {b} — tudo pago!
+Pedidos: {a} en total · Por cobrar: {b} ({n#} pedido con saldo)	Orders: {a} in total · To collect: {b} ({n} order with a balance)	Pedidos: {a} no total · A receber: {b} ({n} pedido com saldo)
+Pedidos: {a} en total · Por cobrar: {b} ({n#} pedidos con saldo)	Orders: {a} in total · To collect: {b} ({n} orders with a balance)	Pedidos: {a} no total · A receber: {b} ({n} pedidos com saldo)
+Aún no hay pedidos. Toca «Agregar pedido» y anota quién lo pidió, qué producto es y cuándo lo entregas. Ejemplo: «Osito de 20 cm para María, entrega el 15 de noviembre».	There are no orders yet. Tap “Add order” and write down who ordered it, what product it is and when you deliver it. Example: “20 cm teddy bear for María, delivery on November 15”.	Ainda não há pedidos. Toque em «Adicionar pedido» e anote quem pediu, qual é o produto e quando você entrega. Exemplo: «Ursinho de 20 cm para a María, entrega em 15 de novembro».
+Cliente	Client	Cliente
+Teléfono	Phone	Telefone
+Producto	Product	Produto
+Detalles adicionales	Additional details	Detalhes adicionais
+Fecha de reserva	Booking date	Data da reserva
+Valor por unidad	Price per unit	Valor por unidade
+Valor total	Total value	Valor total
+Costo de envío	Shipping cost	Custo de envio
+Total de la compra	Order total	Total da compra
+Abono	Deposit	Sinal
+Saldo pendiente	Balance due	Saldo pendente
+Medio de pago	Payment method	Forma de pagamento
+Dirección	Address	Endereço
+Medio de envío	Shipping method	Forma de envio
+Fecha de envío	Shipping date	Data de envio
+Datos del cliente	Client details	Dados do cliente
+Escribir por WhatsApp	Write on WhatsApp	Escrever pelo WhatsApp
+Producto y detalles adicionales	Product and additional details	Produto e detalhes adicionais
+Precio y pago	Price and payment	Preço e pagamento
+Datos y medio de envío	Shipping details and method	Dados e forma de envio
+Estado del pedido {n#}	Order {n} status	Status do pedido {n}
+Cantidad del pedido {n#}	Order {n} quantity	Quantidade do pedido {n}
+Medio de pago del pedido {n#}	Order {n} payment method	Forma de pagamento do pedido {n}
+Medio de envío del pedido {n#}	Order {n} shipping method	Forma de envio do pedido {n}
+Cotizado	Quoted	Orçado
+Pedido confirmado	Order confirmed	Pedido confirmado
+En proceso	In progress	Em andamento
+Despachado	Shipped	Enviado
+Entregado	Delivered	Entregue
+Cancelado	Cancelled	Cancelado
+Efectivo	Cash	Dinheiro
+Nequi	Nequi	Nequi
+Daviplata	Daviplata	Daviplata
+Transferencia Bancolombia	Bancolombia transfer	Transferência Bancolombia
+Otra transferencia	Other transfer	Outra transferência
+Tarjeta	Card	Cartão
+Wompi	Wompi	Wompi
+Pago contra entrega	Cash on delivery	Pagamento na entrega
+Recoge en tienda	Store pickup	Retirada na loja
+Domicilio (moto)	Local delivery (motorbike)	Entrega local (moto)
+Servientrega	Servientrega	Servientrega
+Interrapidísimo	Interrapidísimo	Interrapidísimo
+Coordinadora	Coordinadora	Coordinadora
+Otra transportadora	Other carrier	Outra transportadora
+Entrega personal	Hand delivery	Entrega em mãos
+Agregar pedido	Add order	Adicionar pedido
+Aún no hay clientas. Se agregan solas cuando anotas un pedido, o escríbelas aquí con su WhatsApp y su cumpleaños.	There are no clients yet. They are added automatically when you record an order, or write them here with their WhatsApp and birthday.	Ainda não há clientes. Elas são adicionadas sozinhas quando você anota um pedido, ou escreva-as aqui com o WhatsApp e o aniversário.
+Nombre	Name	Nome
+WhatsApp	WhatsApp	WhatsApp
+Cumpleaños	Birthday	Aniversário
+Cliente desde	Client since	Cliente desde
+Qué me ha comprado	What she has bought from me	O que ela já comprou de mim
+Añadir a Google Calendar la ficha {n#}	Add card {n} to Google Calendar	Adicionar a ficha {n} ao Google Agenda
+Añadir a Google Calendar «{a}»	Add “{a}” to Google Calendar	Adicionar «{a}» ao Google Agenda
+Borrar «{a}»	Delete “{a}”	Apagar «{a}»
+Agregar clienta	Add client	Adicionar cliente
+escríbeles en su cumpleaños; un mensaje cariñoso hace que vuelvan a comprarte.	write to them on their birthday; a warm message makes them buy from you again.	escreva para elas no aniversário; uma mensagem carinhosa faz com que voltem a comprar de você.
+Todos los meses	All months	Todos os meses
+{m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre} {y#} ({n#})	{m} {y} ({n})	{m} {y} ({n})
+Aún no hay ventas. Anota cada venta con su precio y lo que gastaste en materiales: la hoja te dice cuánto te quedó. Ejemplo: «Osito · María · $ 85.000 · costo $ 20.000».	There are no sales yet. Record each sale with its price and what you spent on supplies: the page tells you how much you kept. Example: “Teddy bear · María · $ 85.000 · cost $ 20.000”.	Ainda não há vendas. Anote cada venda com o preço e o que você gastou em materiais: a página diz quanto sobrou. Exemplo: «Ursinho · María · $ 85.000 · custo $ 20.000».
+Precio de venta	Sale price	Preço de venda
+Costo de materiales	Cost of supplies	Custo dos materiais
+Agregar venta	Add sale	Adicionar venda
+para saber cuánto cobrar por cada pieza usa la	to know how much to charge for each piece, use the	para saber quanto cobrar por cada peça, use a
+calculadora de costos	cost calculator	calculadora de custos
+Aún no hay productos. Anota lo que vendes con su precio para responder rápido. Ejemplo: «Llavero de oveja · $ 15.000».	There are no products yet. Write down what you sell with its price to answer quickly. Example: “Sheep keychain · $ 15.000”.	Ainda não há produtos. Anote o que você vende com o preço para responder rápido. Exemplo: «Chaveiro de ovelha · $ 15.000».
+Tamaño	Size	Tamanho
+Precio	Price	Preço
+Horas de tejido	Crochet hours	Horas de crochê
+Agregar producto	Add product	Adicionar produto
+Feria o mercado	Fair or market	Feira ou mercado
+Lugar	Place	Local
+Nombre de contacto	Contact name	Nome do contato
+Teléfono de contacto	Contact phone	Telefone de contato
+Costo del puesto	Stall cost	Custo da barraca
+Qué llevar	What to bring	O que levar
+Mesa y mantel	Table and tablecloth	Mesa e toalha
+Productos con su precio	Products with their price	Produtos com o preço
+Código QR de Nequi o Bre-B	Nequi or Bre-B QR code	Código QR do Nequi ou Bre-B
+Cambio (sencillo)	Change (small bills and coins)	Troco
+Bolsas y empaques	Bags and packaging	Sacolas e embalagens
+Tarjetas de presentación	Business cards	Cartões de visita
+Exhibidores o canastas	Displays or baskets	Expositores ou cestas
+Libreta para anotar ventas y pedidos	Notebook to write down sales and orders	Caderneta para anotar vendas e pedidos
+Agua y algo de comer	Water and something to eat	Água e algo para comer
+Cargador del celular	Phone charger	Carregador do celular
+Total vendido	Total sold	Total vendido
+Pedidos que salieron	Orders taken	Pedidos que saíram
+Lo que más se vendió	Best sellers	O que mais vendeu
+Qué mejorar para la próxima	What to improve next time	O que melhorar na próxima
+Agregar otra feria o mercado	Add another fair or market	Adicionar outra feira ou mercado
+Borrar esta feria	Delete this fair	Apagar esta feira
+lleva piezas pequeñas y de precio bajo, como llaveros; son las que más se venden por impulso y atraen a la gente a tu puesto.	bring small, low-priced pieces such as keychains; they sell the most on impulse and draw people to your stall.	leve peças pequenas e de preço baixo, como chaveiros; são as que mais vendem por impulso e atraem as pessoas à sua barraca.
+Herramienta de Rosina	Rosina’s tool	Ferramenta da Rosina
+Calculadora de costos y precio de venta	Cost and sale price calculator	Calculadora de custos e preço de venda
+Aún no hay gastos. Anota lo que gastas en tu negocio (lana, empaques, envíos…). Ejemplo: «Lana algodón · Materiales · $ 60.000».	There are no expenses yet. Write down what you spend on your business (yarn, packaging, shipping…). Example: “Cotton yarn · Supplies · $ 60.000”.	Ainda não há despesas. Anote o que você gasta no seu negócio (lã, embalagens, envios…). Exemplo: «Lã de algodão · Materiais · $ 60.000».
+Categoría	Category	Categoria
+En qué gasté	What I spent on	Com o que gastei
+Valor	Amount	Valor
+Proveedor o lugar	Supplier or place	Fornecedor ou local
+Categoría del gasto {n#}	Expense {n} category	Categoria da despesa {n}
+Medio de pago del gasto {n#}	Expense {n} payment method	Forma de pagamento da despesa {n}
+Transporte	Transport	Transporte
+Empaques	Packaging	Embalagens
+Publicidad	Advertising	Publicidade
+Servicios	Services	Serviços
+Herramientas	Tools	Ferramentas
+Otros	Other	Outros
+Transferencia	Transfer	Transferência
+Agregar gasto	Add expense	Adicionar despesa
+anota cada gasto el mismo día; al final del mes sabrás cuánto te costó tejer y cuánto te quedó de verdad.	write down each expense the same day; at the end of the month you will know how much it cost you to crochet and how much you really kept.	anote cada despesa no mesmo dia; no fim do mês você saberá quanto custou crochetar e quanto realmente sobrou.
+Aún no hay contactos. Guarda proveedores, colegas y maestras. Ejemplo: «Doña Luz · lanas · 300 000 0000».	There are no contacts yet. Save suppliers, colleagues and teachers. Example: “Doña Luz · yarns · 300 000 0000”.	Ainda não há contatos. Guarde fornecedores, colegas e professoras. Exemplo: «Dona Luz · lãs · 300 000 0000».
+Quién es	Who they are	Quem é
+Correo	Email	E-mail
+Redes sociales	Social media	Redes sociais
+Quién es del contacto {n#}	Who contact {n} is	Quem é o contato {n}
+Proveedor	Supplier	Fornecedor
+Colega	Colleague	Colega
+Maestra o maestro	Teacher	Professora ou professor
+Amiga o amigo tejedor	Crochet friend	Amiga ou amigo crocheteiro
+Cliente frecuente	Regular client	Cliente frequente
+Agregar contacto	Add contact	Adicionar contato
+guarda aquí a quien te vende lana, te enseña o te ayuda con las ferias; cuando lo necesites, un toque y le escribes por WhatsApp.	save here whoever sells you yarn, teaches you or helps you at fairs; when you need them, one tap and you write to them on WhatsApp.	guarde aqui quem vende lã para você, ensina ou ajuda nas feiras; quando precisar, um toque e você escreve pelo WhatsApp.
+Ventas e ingresos	Sales and income	Vendas e receitas
+del negocio este mes	of the business this month	do negócio neste mês
+Costos y gastos	Costs and expenses	Custos e despesas
+Utilidad del mes	Profit of the month	Lucro do mês
+Anota ventas para verla	Record sales to see it	Anote vendas para ver
+{n#} pedido con saldo	{n} order with a balance	{n} pedido com saldo
+{n#} pedidos con saldo	{n} orders with a balance	{n} pedidos com saldo
+Resultados del mes	Results of the month	Resultados do mês
+Ingresos	Income	Receitas
+Sin ingresos del negocio este mes	No business income this month	Sem receitas do negócio neste mês
+Total ingresos	Total income	Total de receitas
+Sin gastos del negocio este mes	No business expenses this month	Sem despesas do negócio neste mês
+Total costos y gastos	Total costs and expenses	Total de custos e despesas
+Flujo de caja del negocio	Business cash flow	Fluxo de caixa do negócio
+Meses a mostrar	Months to show	Meses a mostrar
+{n#} meses	{n} months	{n} meses
+Entradas	Money in	Entradas
+Salidas	Money out	Saídas
+Te deben	You are owed	Devem a você
+Por pagar este mes	To pay this month	A pagar neste mês
+No tienes pagos pendientes este mes. ¡Bien!	You have no pending payments this month. Great!	Você não tem pagamentos pendentes neste mês. Ótimo!
+En «Mis ventas del mes» anotaste {v} este mes. Esa hoja es aparte: aquí solo cuentan los movimientos del negocio, para no contar dos veces.	In “My sales this month” you recorded {v} this month. That page is separate: here only business movements count, so nothing is counted twice.	Em «Minhas vendas do mês» você anotou {v} neste mês. Essa página é à parte: aqui só contam os movimentos do negócio, para não contar duas vezes.
+todo lo que anotas en	everything you write in	tudo o que você anota em
+cuenta aquí. Anota solo lo del negocio (ventas, materiales, ferias, envíos…) y verás tu utilidad real; tus gastos personales llévalos aparte.	counts here. Write down only what belongs to the business (sales, supplies, fairs, shipping…) and you will see your real profit; keep your personal expenses separate.	conta aqui. Anote só o que é do negócio (vendas, materiais, feiras, envios…) e você verá o seu lucro real; as suas despesas pessoais, leve à parte.
+Año	Year	Ano
+Mi palabra del año	My word of the year	Minha palavra do ano
+Mi frase del año	My phrase of the year	Minha frase do ano
+Un versículo o frase que me acompaña	A verse or phrase that keeps me company	Um versículo ou frase que me acompanha
+Mis 3 metas grandes	My 3 big goals	Minhas 3 grandes metas
+Lo que quiero tejer este año	What I want to crochet this year	O que quero crochetar neste ano
+Lo que quiero aprender	What I want to learn	O que quero aprender
+Hábitos que quiero cuidar	Habits I want to take care of	Hábitos que quero cuidar
+Lo que quiero soltar	What I want to let go of	O que quero soltar
+Mi gran sueño para este año	My big dream for this year	Meu grande sonho para este ano
+escribe tu visión con calma y vuelve a leerla cada mes. Las metas pequeñas y constantes llegan más lejos que las grandes sin plan.	write your vision calmly and read it again every month. Small, steady goals go further than big ones without a plan.	escreva a sua visão com calma e releia a cada mês. Metas pequenas e constantes chegam mais longe do que as grandes sem plano.
+Mes	Month	Mês
+Meta de ventas del mes	Sales goal for the month	Meta de vendas do mês
+Frase del mes	Phrase of the month	Frase do mês
+Mis 3 prioridades	My 3 priorities	Minhas 3 prioridades
+Prioridad {n#} lista	Priority {n} done	Prioridade {n} concluída
+Prioridad {n#}	Priority {n}	Prioridade {n}
+Proyectos del mes	Projects of the month	Projetos do mês
+Lo que quiero terminar	What I want to finish	O que quero terminar
+Hábito del mes	Habit of the month	Hábito do mês
+Por lo que estoy agradecida	What I am grateful for	Pelo que sou grata
+Cómo me fue este mes	How this month went	Como foi este mês
+Agregar el mes siguiente	Add next month	Adicionar o mês seguinte
+Borrar este mes	Delete this month	Apagar este mês
+Borrar	Delete	Apagar
+al empezar el mes elige solo tres prioridades. Marca cada una cuando la logres y celebra: ¡cada punto cuenta!	at the start of the month choose only three priorities. Check each one when you achieve it and celebrate: every stitch counts!	ao começar o mês escolha apenas três prioridades. Marque cada uma quando conseguir e comemore: cada ponto conta!
+Para consultar	To look up	Para consultar
+Glosario ilustrado	Illustrated glossary	Glossário ilustrado
+Abreviaturas	Abbreviations	Abreviaturas
+Nombre del producto	Product name	Nome do produto
+Para quién	For whom	Para quem
+Autor o autora del patrón	Pattern author	Autor ou autora da receita
+Patrón / fuente	Pattern / source	Receita / fonte
+Fecha de inicio	Start date	Data de início
+Fecha de entrega	Delivery date	Data de entrega
+Añadir a Google Calendar	Add to Google Calendar	Adicionar ao Google Agenda
+Marca de la lana	Yarn brand	Marca da lã
+Tipo y grosor de la lana	Yarn type and weight	Tipo e espessura da lã
+Número de aguja (mm)	Hook size (mm)	Número da agulha (mm)
+Colores	Colors	Cores
+Muestras de lana (de la paleta de la Mercería)	Yarn swatches (from the Mercería palette)	Amostras de lã (da paleta da Mercería)
+Colores de la paleta de la Mercería	Colors from the Mercería palette	Cores da paleta da Mercería
+No pudimos cargar la paleta ahora	We could not load the palette right now	Não conseguimos carregar a paleta agora
+Agregar muestra	Add swatch	Adicionar amostra
+Ver la paleta y comprar →	See the palette and shop →	Ver a paleta e comprar →
+Tensión (puntos × vueltas en 10 cm)	Gauge (stitches × rows in 10 cm)	Tensão (pontos × carreiras em 10 cm)
+Medidas finales	Final measurements	Medidas finais
+Puntos utilizados	Stitches used	Pontos utilizados
+Ajustes que hice al patrón	Changes I made to the pattern	Ajustes que fiz na receita
+Notas importantes	Important notes	Notas importantes
+Contador de vueltas	Round counter	Contador de carreiras
+Abrir el contador de vueltas digital	Open the digital round counter	Abrir o contador de carreiras digital
+Dibujo del diseño (dibújalo a mano o sube una foto)	Design drawing (draw it by hand or upload a photo)	Desenho do projeto (desenhe à mão ou envie uma foto)
+Herramientas del dibujo	Drawing tools	Ferramentas de desenho
+Dibujar	Draw	Desenhar
+Borrar un trazo	Erase a stroke	Apagar um traço
+Color negro	Black	Preto
+Color rosa	Pink	Rosa
+Color azul	Blue	Azul
+Color verde	Green	Verde
+Color naranja	Orange	Laranja
+Color rojo	Red	Vermelho
+Color amarillo	Yellow	Amarelo
+Color morado	Purple	Roxo
+Color turquesa	Turquoise	Turquesa
+Color café	Brown	Marrom
+Color gris	Gray	Cinza
+Color rosa claro	Light pink	Rosa claro
+Elegir cualquier color	Choose any color	Escolher qualquer cor
+Línea fina	Thin line	Linha fina
+Línea media	Medium line	Linha média
+Línea gruesa	Thick line	Linha grossa
+Deshacer	Undo	Desfazer
+Borrar todo el dibujo	Erase the whole drawing	Apagar todo o desenho
+Subir una foto del diseño	Upload a photo of the design	Enviar uma foto do projeto
+Subir foto	Upload photo	Enviar foto
+Bajar el dibujo como imagen	Download the drawing as an image	Baixar o desenho como imagem
+Dibujar en pantalla completa	Draw in full screen	Desenhar em tela cheia
+Pantalla completa	Full screen	Tela cheia
+Dedo	Finger	Dedo
+Dibujo del diseño del proyecto	Project design drawing	Desenho do projeto
+Agregar otro proyecto	Add another project	Adicionar outro projeto
+Borrar este proyecto	Delete this project	Apagar este projeto
+Materiales de la Mercería Lana Rosa para tu proyecto	Lana Rosa Mercería supplies for your project	Materiais da Mercería Lana Rosa para o seu projeto
+Materiales de la Mercería	Mercería supplies	Materiais da Mercería
+Pronto habrá existencias en línea	Stock will be available online soon	Em breve haverá estoque online
+Agregar a mi lista de compras	Add to my shopping list	Adicionar à minha lista de compras
+Mientras tanto	In the meantime	Enquanto isso
+Ver la Mercería	See the Mercería	Ver a Mercería
+Preguntar por WhatsApp	Ask on WhatsApp	Perguntar pelo WhatsApp
+Fecha de la semana	Date of the week	Data da semana
+Mi meta de la semana	My goal for the week	Minha meta da semana
+Materiales por comprar	Supplies to buy	Materiais para comprar
+Agregar la semana siguiente	Add next week	Adicionar a semana seguinte
+Borrar esta semana	Delete this week	Apagar esta semana
+Aún no hay proyectos. Anota lo que quieres tejer y para quién. Ejemplo: «Chaleco para María · Tejiendo · fecha límite 15/11».	There are no projects yet. Write down what you want to crochet and for whom. Example: “Vest for María · Crocheting · deadline 15/11”.	Ainda não há projetos. Anote o que você quer crochetar e para quem. Exemplo: «Colete para a María · Crochetando · prazo 15/11».
+Proyecto	Project	Projeto
+Fecha límite	Deadline	Prazo
+Estado	Status	Status
+Avance (con fecha)	Progress (with date)	Andamento (com data)
+Ya lo cumplí	Done	Já cumpri
+Fecha en que lo cumplí	Date I completed it	Data em que cumpri
+Calendario	Calendar	Calendário
+Estado del proyecto {n#}	Project {n} status	Status do projeto {n}
+Ya lo cumplí del proyecto {n#}	Project {n} done	Projeto {n} cumprido
+Anotar avance de hoy	Add today’s progress	Anotar o andamento de hoje
+Borrar esta ficha	Delete this card	Apagar esta ficha
+Agregar proyecto	Add project	Adicionar projeto
+Abre una ficha para usar este botón	Open a card to use this button	Abra uma ficha para usar este botão
+Google	Google	Google
+Patrones de tejido de la Mercería Lana Rosa	Crochet patterns from Lana Rosa Mercería	Receitas de crochê da Mercería Lana Rosa
+Patrones de la Mercería	Mercería patterns	Receitas da Mercería
+Aún no hay patrones. Guarda aquí los que encuentres o compres. Ejemplo: «Osito de apego · fácil».	There are no patterns yet. Save here the ones you find or buy. Example: “Comfort teddy bear · easy”.	Ainda não há receitas. Guarde aqui as que encontrar ou comprar. Exemplo: «Ursinho de apego · fácil».
+Patrón	Pattern	Receita
+Dónde lo encontré	Where I found it	Onde encontrei
+Dificultad	Difficulty	Dificuldade
+Ya lo guardé	Saved	Já guardei
+Dónde lo guardé	Where I saved it	Onde guardei
+Ya lo tejí	Already crocheted	Já crochetei
+Dificultad del patrón {n#}	Pattern {n} difficulty	Dificuldade da receita {n}
+Fácil	Easy	Fácil
+Media	Medium	Média
+Difícil	Hard	Difícil
+Ya lo guardé del patrón {n#}	Pattern {n} saved	Receita {n} guardada
+Ya lo tejí del patrón {n#}	Pattern {n} crocheted	Receita {n} crochetada
+Agregar patrón	Add pattern	Adicionar receita
+Agregar año	Add year	Adicionar ano
+Tu diario ya está en este año	Your diary is already in this year	O seu diário já está neste ano
+Volver al año	Back to the year	Voltar ao ano
+Abrir {m=Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre} a página entera	Open {m} as a full page	Abrir {m} em página inteira
+Toca para escribir…	Tap to write…	Toque para escrever…
+anota cada pieza que termines, aunque sea pequeña. Al final del año te vas a sorprender de todo lo que tejiste.	write down every piece you finish, even a small one. At the end of the year you will be surprised by everything you crocheted.	anote cada peça que terminar, mesmo pequena. No fim do ano você vai se surpreender com tudo o que crochetou.
+Enero	January	Janeiro
+Agregar un curso o tutorial de Lana Rosa Academy	Add a course or tutorial from Lana Rosa Academy	Adicionar um curso ou tutorial da Lana Rosa Academy
+Elige un curso o tutorial…	Choose a course or tutorial…	Escolha um curso ou tutorial…
+Taller «Posavasos flor en crochet»	Workshop “Crochet flower coaster”	Oficina «Porta-copos de flor de crochê»
+Primera cadeneta y punto bajo	First chain and single crochet	Primeira correntinha e ponto baixo
+Medio punto alto, punto alto y punto alto doble	Half double crochet, double crochet and treble crochet	Ponto alto médio, ponto alto e ponto alto duplo
+Anillo mágico	Magic ring	Anel mágico
+Tejer en espiral: aumentos, disminuciones y anillo mágico invertido	Crocheting in a spiral: increases, decreases and invisible decrease ring	Crochê em espiral: aumentos, diminuições e anel mágico invertido
+Mini corazón a crochet	Mini crochet heart	Mini coração de crochê
+Mini estrella a crochet	Mini crochet star	Mini estrela de crochê
+Mini margarita a crochet	Mini crochet daisy	Mini margarida de crochê
+Llavero de medusa y de pulpo	Jellyfish and octopus keychain	Chaveiro de água-viva e de polvo
+Curso gratuito de crochet para principiantes	Free crochet course for beginners	Curso gratuito de crochê para iniciantes
+Otro video del canal (escribe cuál en la hoja)	Another video from the channel (write which one on the page)	Outro vídeo do canal (escreva qual na página)
+Agregar a lo que aprendí	Add to what I learned	Adicionar ao que aprendi
+Aún no hay técnicas anotadas. Cuenta lo que aprendes. Ejemplo: «Aro mágico · video de YouTube».	There are no techniques recorded yet. Tell what you are learning. Example: “Magic ring · YouTube video”.	Ainda não há técnicas anotadas. Conte o que você aprende. Exemplo: «Anel mágico · vídeo do YouTube».
+Fecha	Date	Data
+Punto o técnica	Stitch or technique	Ponto ou técnica
+Dónde lo aprendí	Where I learned it	Onde aprendi
+Ya lo domino	I have mastered it	Já domino
+Ya lo domino de lo aprendido {n#}	Learned item {n} mastered	Item aprendido {n} dominado
+Agregar lo que aprendí	Add what I learned	Adicionar o que aprendi
+Hablar para escribir	Speak to write	Falar para escrever
+toca «Hablar para escribir», di tu idea con calma y yo la escribo en la ficha que tengas abierta. También puedes usar el micrófono del teclado de tu celular.	tap “Speak to write”, say your idea calmly and I will write it on the card you have open. You can also use the microphone on your phone keyboard.	toque em «Falar para escrever», diga a sua ideia com calma e eu a escrevo na ficha que estiver aberta. Você também pode usar o microfone do teclado do celular.
+Aún no hay ideas. Anota lo que se te ocurra, aunque sea corto. Ejemplo: «Mantas con colores del arcoíris».	There are no ideas yet. Write down whatever comes to mind, even if it is short. Example: “Blankets in rainbow colors”.	Ainda não há ideias. Anote o que vier à cabeça, mesmo que seja curto. Exemplo: «Mantas com as cores do arco-íris».
+De qué trata	What it is about	Do que se trata
+Mi idea o pensamiento	My idea or thought	Minha ideia ou pensamento
+Agregar una idea	Add an idea	Adicionar uma ideia
+Clases personalizadas	Private classes	Aulas particulares
+Aprende crochet con acompañamiento, a tu ritmo y cuando tú quieras, en Villamaría.	Learn crochet with guidance, at your own pace and whenever you want, in Villamaría.	Aprenda crochê com acompanhamento, no seu ritmo e quando quiser, em Villamaría.
+Pedir mi clase →	Book my class →	Pedir a minha aula →
+Gastos	Expenses	Despesas
+Saldo del mes	Balance of the month	Saldo do mês
+Ahorrado e invertido	Saved and invested	Poupado e investido
+Toca un mes para verlo en detalle	Tap a month to see it in detail	Toque num mês para ver em detalhe
+Ver como tabla	See as a table	Ver como tabela
+Saldo	Balance	Saldo
+Gastos por categoría	Expenses by category	Despesas por categoria
+Sin gastos este mes.	No expenses this month.	Sem despesas neste mês.
+Presupuesto del negocio este mes	Business budget this month	Orçamento do negócio neste mês
+Define tu presupuesto en la hoja «Presupuesto y metas» para ver aquí cómo vas.	Set your budget on the “Budget and goals” page to see here how you are doing.	Defina o seu orçamento na página «Orçamento e metas» para ver aqui como você está.
+Gastos fijos del negocio este mes	Fixed business expenses this month	Despesas fixas do negócio neste mês
+Todavía no tienes pagos fijos. Agrégalos y se anotan solos cada mes.	You do not have fixed payments yet. Add them and they are recorded automatically every month.	Você ainda não tem pagamentos fixos. Adicione-os e eles são anotados sozinhos todo mês.
+Ir a «Gastos fijos y deudas»	Go to “Fixed expenses and debts”	Ir para «Despesas fixas e dívidas»
+Deudas del negocio	Business debts	Dívidas do negócio
+No tienes deudas anotadas. Si tienes cuotas, agrégalas para ver cuánto falta.	You have no debts recorded. If you have installments, add them to see how much is left.	Você não tem dívidas anotadas. Se tiver parcelas, adicione-as para ver quanto falta.
+Rosina lee tus números	Rosina reads your numbers	A Rosina lê os seus números
+Aún no hay movimientos en {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre}. Anota el primero en «Ingresos y gastos del negocio» y aquí aparecerá tu panel.	There are no movements in {m} yet. Record the first one in “Business income and expenses” and your dashboard will appear here.	Ainda não há movimentos em {m}. Anote o primeiro em «Receitas e despesas do negócio» e o seu painel aparecerá aqui.
+anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño. Regístralos en	write down every sale and every expense of your business on the same day, even a small one. Record them in	anote cada venda e cada despesa do seu negócio no mesmo dia, mesmo pequena. Registre-as em
+y aquí verás todo ordenado solito. Para tus gastos personales usa otra libreta: esta agenda es para los números del negocio.	and here you will see everything organized by itself. For your personal expenses use another notebook: this planner is for business numbers.	e aqui você verá tudo organizado sozinho. Para as suas despesas pessoais use outra caderneta: esta agenda é para os números do negócio.
+Escríbelo natural	Write it naturally	Escreva de forma natural
+Ej.: vendí 120000 un amigurumi · gasté 50 mil en lana · ahorré 100 mil para el negocio	Example (write it in Spanish): vendí 120000 un amigurumi · gasté 50 mil en lana · ahorré 100 mil para el negocio	Exemplo (escreva em espanhol): vendí 120000 un amigurumi · gasté 50 mil en lana · ahorré 100 mil para el negocio
+Tipo	Type	Tipo
+Gasto	Expense	Despesa
+Ingreso	Income	Receita
+Ahorro / inversión	Savings / investment	Poupança / investimento
+Materiales (lanas)	Supplies (yarn)	Materiais (lãs)
+Transporte y envíos	Transport and shipping	Transporte e envios
+Ferias y mercados	Fairs and markets	Feiras e mercados
+Herramientas y equipos	Tools and equipment	Ferramentas e equipamentos
+Arriendo	Rent	Aluguel
+Impuestos	Taxes	Impostos
+Deudas	Debts	Dívidas
+Nequi / Daviplata	Nequi / Daviplata	Nequi / Daviplata
+Es del negocio	It belongs to the business	É do negócio
+Descripción	Description	Descrição
+Valor ($)	Amount ($)	Valor ($)
+Cancelar	Cancel	Cancelar
+Guardar movimiento	Save movement	Guardar movimento
+Buscar en los ingresos y gastos del negocio	Search business income and expenses	Buscar nas receitas e despesas do negócio
+Buscar en los ingresos y gastos…	Search income and expenses…	Buscar nas receitas e despesas…
+Periodo	Period	Período
+Este mes	This month	Este mês
+Todo el año	The whole year	O ano todo
+Todo	All	Tudo
+Todos los tipos	All types	Todos os tipos
+Todas las categorías	All categories	Todas as categorias
+Talleres	Workshops	Oficinas
+Otros ingresos	Other income	Outras receitas
+Ahorro	Savings	Poupança
+Inversión	Investment	Investimento
+Fondo de emergencia	Emergency fund	Fundo de emergência
+Todos los medios	All methods	Todas as formas
+Personal o negocio	Personal or business	Pessoal ou negócio
+Excel (CSV)	Excel (CSV)	Excel (CSV)
+Medio	Method	Forma
+No hay movimientos con estos filtros. ¡Anota el primero!	There are no movements with these filters. Record the first one!	Não há movimentos com estes filtros. Anote o primeiro!
+Presupuesto mensual por categoría	Monthly budget by category	Orçamento mensal por categoria
+Presupuesto de {c}	Budget for {c}	Orçamento de {c}
+Metas de ahorro del negocio	Business savings goals	Metas de poupança do negócio
+Cuando anotes un ahorro en «Ingresos y gastos del negocio», lo verás aquí.	When you record savings in “Business income and expenses”, you will see them here.	Quando você anotar uma poupança em «Receitas e despesas do negócio», verá aqui.
+Nombre de la meta {n#}	Goal {n} name	Nome da meta {n}
+Mi meta (ej.: máquina de coser)	My goal (e.g. sewing machine)	Minha meta (ex.: máquina de costura)
+Valor de la meta {n#}	Goal {n} amount	Valor da meta {n}
+Meta $	Goal $	Meta $
+Ahorrado en la meta {n#}	Saved toward goal {n}	Poupado na meta {n}
+Ahorrado $	Saved $	Poupado $
+Fecha objetivo de la meta {n#}	Goal {n} target date	Data-alvo da meta {n}
+Planes del negocio para el año	Business plans for the year	Planos do negócio para o ano
+Plan {n#}	Plan {n}	Plano {n}
+Mi plan (ej.: viaje a la costa)	My plan (e.g. trip to the coast)	Meu plano (ex.: viagem à praia)
+Mes del plan {n#}	Plan {n} month	Mês do plano {n}
+Mes…	Month…	Mês…
+Costo del plan {n#}	Plan {n} cost	Custo do plano {n}
+Costo $	Cost $	Custo $
+Plan {n#} cumplido	Plan {n} done	Plano {n} cumprido
+Listo	Done	Pronto
+empieza con un presupuesto sencillo y ajústalo cada mes. Una meta pequeña que cumples vale más que una grande que se olvida.	start with a simple budget and adjust it every month. A small goal you reach is worth more than a big one that gets forgotten.	comece com um orçamento simples e ajuste-o a cada mês. Uma meta pequena que você cumpre vale mais do que uma grande que se esquece.
+Gastos fijos al mes	Fixed expenses per month	Despesas fixas por mês
+{n#} pagos activos	{n} active payments	{n} pagamentos ativos
+Ahorro programado	Scheduled savings	Poupança programada
+Nada programado	Nothing scheduled	Nada programado
+Peso de los fijos	Weight of fixed expenses	Peso das fixas
+Anota ingresos para verlo	Record income to see it	Anote receitas para ver
+Te falta pagar	You still have to pay	Falta você pagar
+Sin deudas	No debts	Sem dívidas
+Pagos del negocio que se repiten cada mes	Business payments that repeat every month	Pagamentos do negócio que se repetem todo mês
+¿Qué paga tu negocio?	What does your business pay?	O que o seu negócio paga?
+Arriendo del local, internet, programas…	Rent of the place, internet, software…	Aluguel do local, internet, programas…
+Día del mes	Day of the month	Dia do mês
+1 a 31	1 to 31	1 a 31
+Gasto fijo	Fixed expense	Despesa fixa
+Suscripción	Subscription	Assinatura
+Ahorro mensual	Monthly savings	Poupança mensal
+Agregar pago fijo	Add fixed payment	Adicionar pagamento fixo
+Aún no tienes pagos fijos. Agrega el arriendo, los servicios o una suscripción y se anotarán solos.	You do not have fixed payments yet. Add the rent, utilities or a subscription and they will be recorded automatically.	Você ainda não tem pagamentos fixos. Adicione o aluguel, os serviços ou uma assinatura e eles serão anotados sozinhos.
+Deudas y créditos del negocio	Business debts and loans	Dívidas e créditos do negócio
+¿Qué debe tu negocio?	What does your business owe?	O que o seu negócio deve?
+Préstamo, proveedor, equipo…	Loan, supplier, equipment…	Empréstimo, fornecedor, equipamento…
+Valor de la cuota ($)	Installment amount ($)	Valor da parcela ($)
+Cuotas en total	Total installments	Total de parcelas
+Cuotas ya pagadas	Installments already paid	Parcelas já pagas
+Día de pago	Payment day	Dia de pagamento
+Agregar deuda	Add debt	Adicionar dívida
+No tienes deudas anotadas.	You have no debts recorded.	Você não tem dívidas anotadas.
+un pago fijo se anota solo en	a fixed payment is recorded automatically in	um pagamento fixo é anotado sozinho em
+cada mes, desde el día que elijas. Si borras uno de esos movimientos, ese mes no se vuelve a anotar. Las cuotas de una deuda las anotas tú con el botón «Pagué la cuota», así no se anota algo que no pagaste.	every month, from the day you choose. If you delete one of those movements, that month is not recorded again. You record the installments of a debt yourself with the “I paid the installment” button, so nothing you did not pay gets recorded.	todo mês, a partir do dia que você escolher. Se apagar um desses movimentos, esse mês não é anotado de novo. As parcelas de uma dívida você mesma anota com o botão «Paguei a parcela», assim não se anota algo que você não pagou.
+Cupo total	Total limit	Limite total
+{n#} tarjetas	{n} cards	{n} cartões
+Debes en tarjetas	You owe on cards	Você deve nos cartões
+Sin tarjetas	No cards	Sem cartões
+Cupo disponible	Available limit	Limite disponível
+lo que aún puedes usar	what you can still use	o que você ainda pode usar
+Nombre de la tarjeta	Card name	Nome do cartão
+Visa del banco, Éxito…	Bank Visa, Éxito…	Visa do banco, Éxito…
+Cupo ($)	Limit ($)	Limite ($)
+Lo que debes hoy ($)	What you owe today ($)	O que você deve hoje ($)
+Día de corte	Statement day	Dia de fechamento
+Día límite de pago	Payment due day	Dia limite de pagamento
+Agregar tarjeta	Add card	Adicionar cartão
+Aún no tienes tarjetas. Agrega una para llevar su cupo, su corte y su pago.	You do not have cards yet. Add one to keep track of its limit, statement and payment.	Você ainda não tem cartões. Adicione um para acompanhar o limite, o fechamento e o pagamento.
+para que la tarjeta cuente tus compras, elige «Tarjeta: …» como medio de pago cuando anotes un gasto. Lo que pagas a la tarjeta se registra aquí y no se cuenta como otro gasto, porque la compra ya se contó cuando la hiciste. Nunca escribas el número de tu tarjeta.	so that the card counts your purchases, choose “Card: …” as the payment method when you record an expense. What you pay to the card is recorded here and is not counted as another expense, because the purchase was already counted when you made it. Never write your card number.	para que o cartão conte as suas compras, escolha «Cartão: …» como forma de pagamento quando anotar uma despesa. O que você paga ao cartão é registrado aqui e não conta como outra despesa, porque a compra já foi contada quando você a fez. Nunca escreva o número do seu cartão.
+Este mes contra el anterior	This month compared to the previous one	Este mês contra o anterior
+Cambio	Change	Variação
+Aún no hay gastos en estos dos meses.	There are no expenses in these two months yet.	Ainda não há despesas nestes dois meses.
+Cuánto ahorra tu negocio mes a mes	How much your business saves month by month	Quanto o seu negócio poupa mês a mês
+Anota ingresos en «Ingresos y gastos del negocio» para ver cuánto ahorras mes a mes.	Record income in “Business income and expenses” to see how much you save month by month.	Anote receitas em «Receitas e despesas do negócio» para ver quanto você poupa mês a mês.
+Te quedó dinero	You had money left	Sobrou dinheiro
+Gastaste más de lo que entró	You spent more than came in	Você gastou mais do que entrou
+de tus ingresos de cada mes	of your income each month	da sua receita de cada mês
+Resumen del año	Summary of the year	Resumo do ano
+Año anterior	Previous year	Ano anterior
+Año siguiente	Next year	Próximo ano
+Ingresos del año	Income of the year	Receitas do ano
+en {y#}	in {y}	em {y}
+Gastos del año	Expenses of the year	Despesas do ano
+Saldo del año	Balance of the year	Saldo do ano
+ingresos menos gastos	income minus expenses	receitas menos despesas
+Todavía no hay gastos anotados en {y#}.	There are no expenses recorded in {y} yet.	Ainda não há despesas anotadas em {y}.
+mira primero qué categoría subió más: casi siempre ahí está el ahorro más fácil. Si un mes sale en naranja, no pasa nada: ¡lo importante es la tendencia!	look first at which category went up the most: the easiest savings are almost always there. If a month shows up in orange, no worries: what matters is the trend!	olhe primeiro qual categoria subiu mais: quase sempre ali está a economia mais fácil. Se um mês aparecer em laranja, não tem problema: o importante é a tendência!
+Pasos para diseñar tu patrón	Steps to design your pattern	Passos para criar a sua receita
+La idea	The idea	A ideia
+Partes y vueltas	Parts and rounds	Partes e carreiras
+Armado	Assembly	Montagem
+Notas	Notes	Notas
+Vista previa	Preview	Pré-visualização
+Paso 1 · La idea	Step 1 · The idea	Passo 1 · A ideia
+Para empezar	To get started	Para começar
+Checklist: tu primer amigurumi	Checklist: your first amigurumi	Checklist: o seu primeiro amigurumi
+Paletas de colores	Color palettes	Paletas de cores
+Nombre de tu patrón	Name of your pattern	Nome da sua receita
+¿Qué vas a tejer?	What will you crochet?	O que você vai crochetar?
+Nivel	Level	Nível
+Principiante	Beginner	Iniciante
+Intermedio	Intermediate	Intermediário
+Avanzado	Advanced	Avançado
+Medida final	Final size	Medida final
+Cuéntalo en pocas palabras	Tell it in a few words	Conte em poucas palavras
+Paso 2 · Materiales	Step 2 · Materials	Passo 2 · Materiais
+Herramientas de Rosina	Rosina’s tools	Ferramentas da Rosina
+Agujas y grosores	Hooks and yarn weights	Agulhas e espessuras
+¿Cuánta lana necesito?	How much yarn do I need?	Quanta lã eu preciso?
+Muestra	Swatch	Amostra
+Paleta de colores	Color palette	Paleta de cores
+Lana o hilo (marca, grosor y colores)	Yarn or thread (brand, weight and colors)	Lã ou linha (marca, espessura e cores)
+Aguja (mm)	Hook (mm)	Agulha (mm)
+Otros materiales (relleno, ojos, marcadores, aguja lanera…)	Other materials (stuffing, eyes, stitch markers, yarn needle…)	Outros materiais (enchimento, olhos, marcadores, agulha de tapeceiro…)
+Muestra (puntos × vueltas en 10 cm)	Swatch (stitches × rows in 10 cm)	Amostra (pontos × carreiras em 10 cm)
+Materiales de la Mercería Lana Rosa para tu patrón	Lana Rosa Mercería supplies for your pattern	Materiais da Mercería Lana Rosa para a sua receita
+Paso 3 · Abreviaturas que usas	Step 3 · Abbreviations you use	Passo 3 · Abreviaturas que você usa
+Toca una para agregarla. Todas están en el	Tap one to add it. They are all in the	Toque numa para adicioná-la. Todas estão no
+glosario de Rosina	Rosina’s glossary	glossário da Rosina
+cad = cadeneta	ch = chain	corr = correntinha
+pd = punto deslizado	sl st = slip stitch	pd = ponto deslizado
+pb = punto bajo	sc = single crochet	pb = ponto baixo
+mpa = medio punto alto	hdc = half double crochet	mpa = meio ponto alto
+pa = punto alto	dc = double crochet	pa = ponto alto
+pad = punto alto doble	tr = treble crochet	pad = ponto alto duplo
+am = anillo mágico	mr = magic ring	am = anel mágico
+aum = aumento (2 pb en el mismo punto)	inc = increase (2 sc in the same stitch)	aum = aumento (2 pb no mesmo ponto)
+dism = disminución	dec = decrease	dim = diminuição
+dism inv = disminución invisible	inv dec = invisible decrease	dim inv = diminuição invisível
+laz = lazada	yo = yarn over	laç = laçada
+hd = hebra delantera	FLO = front loop only	hd = alça da frente
+ht = hebra trasera	BLO = back loop only	ht = alça de trás
+V = vuelta	R = round	C = carreira
+pto = punto	st = stitch	pto = ponto
+esp = espacio	sp = space	esp = espaço
+rep = repetir	rep = repeat	rep = repetir
+MP = marcador de puntos	SM = stitch marker	MP = marcador de pontos
+Paso 4 · Partes y vueltas	Step 4 · Parts and rounds	Passo 4 · Partes e carreiras
+Aumentos y disminuciones	Increases and decreases	Aumentos e diminuições
+Esferas y cabezas	Spheres and heads	Esferas e cabeças
+Escribe cada parte en su casilla, una vuelta por renglón. Por ejemplo: «V1: 6 pb en am (6)».	Write each part in its box, one round per line. For example: “R1: 6 sc in mr (6)”.	Escreva cada parte na sua caixa, uma carreira por linha. Por exemplo: «C1: 6 pb em am (6)».
+Parte {n#}	Part {n}	Parte {n}
+Nombre de la parte	Name of the part	Nome da parte
+Vueltas	Rounds	Carreiras
+Paso 5 · Armado y detalles	Step 5 · Assembly and details	Passo 5 · Montagem e detalhes
+Cómo se arma	How it is assembled	Como se monta
+Detalles y acabados (bordados, moños, ropa…)	Details and finishing (embroidery, bows, clothes…)	Detalhes e acabamentos (bordados, laços, roupas…)
+Paso 6 · Notas	Step 6 · Notes	Passo 6 · Notas
+Notas, consejos y cambios que harías	Notes, tips and changes you would make	Notas, dicas e mudanças que você faria
+Ya lo tejí siguiendo este patrón y funciona	I already crocheted it following this pattern and it works	Já crochetei seguindo esta receita e funciona
+Paso 7 · Así queda tu patrón	Step 7 · This is your pattern	Passo 7 · Assim fica a sua receita
+Imprimir mi patrón	Print my pattern	Imprimir a minha receita
+Descargar como texto	Download as text	Baixar como texto
+los patrones que diseñas son tuyos. Si los compartes o los vendes, escribe tu nombre como autora y cuida las imágenes que uses.	the patterns you design are yours. If you share or sell them, write your name as the author and take care with the images you use.	as receitas que você cria são suas. Se as compartilhar ou vender, escreva o seu nome como autora e cuide das imagens que usar.
+Atrás	Back	Voltar
+Paso {a#} de {b#}	Step {a} of {b}	Passo {a} de {b}
+Siguiente →	Next →	Próximo →
+Diseñar otro patrón	Design another pattern	Criar outra receita
+Borrar este patrón	Delete this pattern	Apagar esta receita
+1. Clienta y prenda	1. Client and garment	1. Cliente e peça
+Clienta	Client	Cliente
+Prenda	Garment	Peça
+Suéter	Sweater	Suéter
+Chaleco	Vest	Colete
+Gorro	Hat	Gorro
+Falda	Skirt	Saia
+Bufanda	Scarf	Cachecol
+Talla de partida	Starting size	Tamanho de partida
+A medida	Custom	Sob medida
+Cómo le queda	How it fits	Como fica
+Ajustado	Fitted	Ajustado
+Normal	Regular	Normal
+Holgado	Loose	Folgado
+Color de la prenda	Garment color	Cor da peça
+2. Medidas de la clienta (en cm)	2. Client measurements (in cm)	2. Medidas da cliente (em cm)
+Al elegir la talla se llenan con medidas de referencia; cámbialas por las medidas reales de tu clienta.	When you choose the size they fill in with reference measurements; change them to your client’s real measurements.	Ao escolher o tamanho elas se preenchem com medidas de referência; troque-as pelas medidas reais da sua cliente.
+Contorno de busto	Bust circumference	Contorno do busto
+Contorno de cintura	Waist circumference	Contorno da cintura
+Contorno de cadera	Hip circumference	Contorno do quadril
+Ancho de hombros	Shoulder width	Largura dos ombros
+Largo de la prenda	Garment length	Comprimento da peça
+Largo de manga (de la axila al puño)	Sleeve length (from underarm to cuff)	Comprimento da manga (da axila ao punho)
+Contorno del brazo	Arm circumference	Contorno do braço
+Contorno de la muñeca	Wrist circumference	Contorno do pulso
+Contorno de la cabeza	Head circumference	Contorno da cabeça
+Ancho de la bufanda	Scarf width	Largura do cachecol
+3. Tu muestra (tensión)	3. Your swatch (gauge)	3. A sua amostra (tensão)
+Puntos en 10 cm	Stitches in 10 cm	Pontos em 10 cm
+Vueltas en 10 cm	Rows in 10 cm	Carreiras em 10 cm
+Notas de la prenda	Garment notes	Notas da peça
+Agregar otra prenda o clienta	Add another garment or client	Adicionar outra peça ou cliente
+Borrar este prenda	Delete this garment	Apagar esta peça
+Así quedaría	This is how it would look	Assim ficaria
+Elige la prenda para empezar.	Choose the garment to start.	Escolha a peça para começar.
+Maniquí con la prenda	Mannequin with the garment	Manequim com a peça
+La prenda en un maniquí con las medidas de tu clienta	The garment on a mannequin with your client’s measurements	A peça num manequim com as medidas da sua cliente
+Esquema de las piezas con sus medidas	Diagram of the pieces with their measurements	Esquema das peças com as suas medidas
+Esquema de las piezas, en cm	Diagram of the pieces, in cm	Esquema das peças, em cm
+Cuántos puntos y vueltas	How many stitches and rows	Quantos pontos e carreiras
+Son cálculos de referencia para tejer a medida con tu muestra. Antes de empezar, teje y mide tu muestra lavada y ajusta si hace falta. Las medidas de las tallas XS a XL son generales; usa siempre las de tu clienta.	These are reference calculations for crocheting to size with your swatch. Before starting, crochet and measure your washed swatch and adjust if needed. The XS to XL sizes are general; always use your client’s own measurements.	São cálculos de referência para crochetar sob medida com a sua amostra. Antes de começar, crochete e meça a sua amostra lavada e ajuste se for preciso. As medidas dos tamanhos XS a XL são gerais; use sempre as da sua cliente.
+Imprimir esquema y cálculos	Print diagram and calculations	Imprimir esquema e cálculos
+Calcular lana y aguja →	Calculate yarn and hook →	Calcular lã e agulha →
+¿Te falta una lana o un hilo? Mira la Mercería Lana Rosa	Missing a yarn or thread? Check Lana Rosa Mercería	Está faltando uma lã ou linha? Veja a Mercería Lana Rosa
+Material de la Mercería	Mercería supply	Material da Mercería
+Aún no hay lanas. Anota las que tienes en casa para saber qué te alcanza. Ejemplo: «Alize · rosa · 3 ovillos».	There is no yarn yet. Write down what you have at home to know what is enough. Example: “Alize · pink · 3 skeins”.	Ainda não há lãs. Anote as que você tem em casa para saber o que dá. Exemplo: «Alize · rosa · 3 novelos».
+Marca	Brand	Marca
+Grosor	Weight	Espessura
+Ovillos	Skeins	Novelos
+Lo usé en	I used it in	Usei em
+Agregar lana o hilo	Add yarn or thread	Adicionar lã ou linha
+guarda la etiqueta de cada ovillo; ahí están la marca, el grosor y el número de tintura para comprar el mismo tono.	keep the label of each skein; it has the brand, the weight and the dye lot number so you can buy the same shade.	guarde a etiqueta de cada novelo; ali estão a marca, a espessura e o número do lote de tingimento para comprar o mesmo tom.
+{n} mm	{n} mm	{n} mm
+Mis agujas y cuándo las compré	My hooks and when I bought them	Minhas agulhas e quando as comprei
+anota la fecha de compra de cada aguja y te sugiero cuándo revisarla o cambiarla. Es una guía general: cámbiala antes si ves astillas, rayones o si raspa el hilo.	write down the purchase date of each hook and I will suggest when to check or replace it. It is a general guide: replace it sooner if you see splinters, scratches or if it snags the yarn.	anote a data de compra de cada agulha e eu sugiro quando revisá-la ou trocá-la. É um guia geral: troque antes se vir farpas, riscos ou se ela arranhar a linha.
+Aún no hay agujas. Anota las que usas. Ejemplo: «3,5 mm · aluminio».	There are no hooks yet. Write down the ones you use. Example: “3.5 mm · aluminum”.	Ainda não há agulhas. Anote as que você usa. Exemplo: «3,5 mm · alumínio».
+Medida (mm)	Size (mm)	Medida (mm)
+Material	Material	Material
+Fecha de compra	Purchase date	Data da compra
+Medida (mm) de la aguja {n#}	Hook {n} size (mm)	Medida (mm) da agulha {n}
+Material de la aguja {n#}	Hook {n} material	Material da agulha {n}
+Aluminio	Aluminum	Alumínio
+Acero	Steel	Aço
+Bambú o madera	Bamboo or wood	Bambu ou madeira
+Plástico	Plastic	Plástico
+Ergonómica con mango	Ergonomic with handle	Ergonômica com cabo
+Otro	Other	Outro
+Agregar una aguja	Add a hook	Adicionar uma agulha
+¿Necesitas una aguja nueva? Mira las de la Mercería Lana Rosa	Need a new hook? Check the ones at Lana Rosa Mercería	Precisa de uma agulha nova? Veja as da Mercería Lana Rosa
+Agujas y accesorios de la Mercería	Hooks and accessories from the Mercería	Agulhas e acessórios da Mercería
+Otras agujas y accesorios (agujas lanera, de tunecino, marcadores…)	Other hooks and accessories (yarn needles, Tunisian hooks, stitch markers…)	Outras agulhas e acessórios (agulhas de tapeceiro, de crochê tunisiano, marcadores…)
+Agregar un material de la Mercería Lana Rosa	Add a supply from Lana Rosa Mercería	Adicionar um material da Mercería Lana Rosa
+Agregar a mi lista	Add to my list	Adicionar à minha lista
+Aún no hay nada por comprar. Anota lo que te falta. Ejemplo: «Relleno siliconado · 1 bolsa».	There is nothing to buy yet. Write down what you are missing. Example: “Silicone stuffing · 1 bag”.	Ainda não há nada para comprar. Anote o que está faltando. Exemplo: «Enchimento de silicone · 1 saco».
+Color o referencia	Color or reference	Cor ou referência
+Cantidad	Quantity	Quantidade
+Comprado	Bought	Comprado
+Comprado de la compra {n#}	Purchase {n} bought	Compra {n} comprada
+Agregar material	Add material	Adicionar material
+Enviar mi lista por WhatsApp	Send my list on WhatsApp	Enviar minha lista pelo WhatsApp
+Días de la semana	Days of the week	Dias da semana
+Semana anterior	Previous week	Semana anterior
+Semana siguiente	Next week	Próxima semana
+{w=lunes|martes|miércoles|jueves|viernes|sábado|domingo} {d#} de {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre}, sin nada	{w}, {m} {d}, nothing scheduled	{w}, {d} de {m}, sem nada
+{w=lunes|martes|miércoles|jueves|viernes|sábado|domingo} {d#} de {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre}	{w}, {m} {d}	{w}, {d} de {m}
+hoy	today	hoje
+Nada anotado para este día. Escribe una fecha en tus hojas de pedidos, proyectos, fechas especiales, ferias o clientas y aparecerá aquí.	Nothing recorded for this day. Write a date in your orders, projects, special dates, fairs or clients pages and it will show up here.	Nada anotado para este dia. Escreva uma data nas suas páginas de pedidos, projetos, datas especiais, feiras ou clientes e ela aparecerá aqui.
+Lo que viene	What is coming	O que vem por aí
+Ver el año completo	See the whole year	Ver o ano completo
+Toca un día marcado para ver qué tienes ese día.	Tap a marked day to see what you have that day.	Toque num dia marcado para ver o que você tem nesse dia.
+este calendario se llena solo con las fechas que escribes en pedidos, proyectos en fila, fechas especiales, ferias y clientas. Los días con puntitos de color tienen algo para ti.	this calendar fills itself with the dates you write in orders, queued projects, special dates, fairs and clients. Days with colored dots have something for you.	este calendário se preenche sozinho com as datas que você escreve em pedidos, projetos na fila, datas especiais, feiras e clientes. Os dias com pontinhos coloridos têm algo para você.
+Aún no hay fechas especiales. Anota cumpleaños y celebraciones para tejer con tiempo. Ejemplo: «Cumpleaños de mamá · 20 de noviembre».	There are no special dates yet. Write down birthdays and celebrations to crochet in time. Example: “Mom’s birthday · November 20”.	Ainda não há datas especiais. Anote aniversários e comemorações para crochetar com tempo. Exemplo: «Aniversário da mamãe · 20 de novembro».
+Ocasión	Occasion	Ocasião
+Idea de regalo	Gift idea	Ideia de presente
+Ocasión de la fecha {n#}	Date {n} occasion	Ocasião da data {n}
+Listo de la fecha {n#}	Date {n} done	Data {n} pronta
+Día de la madre	Mother’s Day	Dia das Mães
+Día del padre	Father’s Day	Dia dos Pais
+Amor y amistad	Love and friendship	Amor e amizade
+Graduación	Graduation	Formatura
+Aniversario	Anniversary	Aniversário de casamento
+Otra	Other	Outra
+Agregar fecha	Add date	Adicionar data
+en Colombia el Día de la madre es el segundo domingo de mayo, el Día del padre el tercer domingo de junio y Amor y amistad el tercer sábado de septiembre. ¡Empieza a tejer al menos un mes antes!	in Colombia Mother’s Day is the second Sunday of May, Father’s Day the third Sunday of June and Love and Friendship Day the third Saturday of September. Start crocheting at least a month ahead!	na Colômbia o Dia das Mães é no segundo domingo de maio, o Dia dos Pais no terceiro domingo de junho e Amor e amizade no terceiro sábado de setembro. Comece a crochetar pelo menos um mês antes!
+Aún no hay días anotados. Cuenta cómo te fue tejiendo. Ejemplo: «Hoy terminé la cabeza del osito».	There are no days recorded yet. Tell how crocheting went. Example: “Today I finished the teddy bear’s head”.	Ainda não há dias anotados. Conte como foi crochetar. Exemplo: «Hoje terminei a cabeça do ursinho».
+¿Cómo me sentí?	How did I feel?	Como me senti?
+Qué tejí	What I crocheted	O que crochetei
+Una frase para recordar	A phrase to remember	Uma frase para lembrar
+¿Cómo me sentí? del día {n#}	How I felt on day {n}	Como me senti no dia {n}
+Feliz	Happy	Feliz
+Tranquila	Calm	Tranquila
+Inspirada	Inspired	Inspirada
+Cansada	Tired	Cansada
+Frustrada	Frustrated	Frustrada
+Agregar día	Add day	Adicionar dia
+tejer también es un momento para ti. Respira, disfruta cada vuelta y no te afanes.	crocheting is also a moment for you. Breathe, enjoy every round and do not rush.	crochetar também é um momento para você. Respire, aproveite cada carreira e não se apresse.
+Del Rincón de Rosina	From Rosina’s Corner	Do Cantinho da Rosina
+Pausas activas para tejedoras	Active breaks for crocheters	Pausas ativas para crocheteiras
+Marca los días en que hiciste tus pausas activas mientras tejías.	Mark the days you took your active breaks while crocheting.	Marque os dias em que você fez as suas pausas ativas enquanto crochetava.
+cada 30 o 40 minutos de tejido, estira manos, cuello y espalda. Mira las	every 30 or 40 minutes of crocheting, stretch your hands, neck and back. Check the	a cada 30 ou 40 minutos de crochê, alongue mãos, pescoço e costas. Veja as
+pausas activas de Rosina	Rosina’s active breaks	pausas ativas da Rosina
+Empieza aquí	Start here	Comece aqui
+Anotar un pedido	Record an order	Anotar um pedido
+Quién lo pidió, qué es y cuándo lo entregas	Who ordered it, what it is and when you deliver it	Quem pediu, o que é e quando você entrega
+Planear un proyecto	Plan a project	Planejar um projeto
+Lo que quieres tejer, para quién y para cuándo	What you want to crochet, for whom and by when	O que você quer crochetar, para quem e para quando
+Ver cuánto ganaste	See how much you earned	Ver quanto você ganhou
+Tus ventas y gastos del mes y lo que te quedó	Your sales and expenses of the month and what you kept	Suas vendas e despesas do mês e o que sobrou
+Ver planes	See plans	Ver planos
+Mi agenda	My planner	Minha agenda
+Tu día, tus tareas y los números del mes	Your day, your tasks and the numbers of the month	Seu dia, suas tarefas e os números do mês
+Elige el fondo y tu nombre, y písala	Choose the background and your name, and print it	Escolha o fundo e o seu nome, e imprima
+Clases, patrones, YouTube y más	Classes, patterns, YouTube and more	Aulas, receitas, YouTube e mais
+Indicadores y análisis de todas tus hojas	Indicators and analysis from all your pages	Indicadores e análises de todas as suas páginas
+Tus sueños, palabra y metas	Your dreams, word and goals	Seus sonhos, palavra e metas
+Tres prioridades y la frase del mes	Three priorities and the phrase of the month	Três prioridades e a frase do mês
+Todo para repetirlo o regalarlo	Everything to repeat it or give it as a gift	Tudo para repetir ou presentear
+Qué tejes cada día	What you crochet each day	O que você crocheta a cada dia
+Lo que sigue y su avance	What comes next and its progress	O que vem a seguir e o andamento
+Tu colección guardada	Your saved collection	A sua coleção guardada
+Tus metas y logros	Your goals and achievements	Suas metas e conquistas
+Puntos y trucos nuevos	New stitches and tricks	Pontos e truques novos
+Pensamientos e ideas, escritos o hablados	Thoughts and ideas, written or spoken	Pensamentos e ideias, escritos ou falados
+Para dibujar esquemas y diseños	To draw diagrams and designs	Para desenhar esquemas e desenhos
+Tallas XS a XL, maniquí y cálculos	Sizes XS to XL, mannequin and calculations	Tamanhos XS a XL, manequim e cálculos
+Tu propio patrón, paso a paso	Your own pattern, step by step	A sua própria receita, passo a passo
+Colores, marcas y cantidades	Colors, brands and quantities	Cores, marcas e quantidades
+Tallas y ganchillos	Sizes and hooks	Tamanhos e agulhas
+Lo que te falta	What you are missing	O que está faltando
+Entregas y estados	Deliveries and statuses	Entregas e status
+Contactos y cumpleaños	Contacts and birthdays	Contatos e aniversários
+Lo vendido y lo que te quedó	What was sold and what you kept	O que foi vendido e o que sobrou
+Tus productos y valores	Your products and prices	Seus produtos e valores
+Fechas y lugares	Dates and places	Datas e locais
+Materiales, transporte y ferias	Supplies, transport and fairs	Materiais, transporte e feiras
+Proveedores, colegas y maestras	Suppliers, colleagues and teachers	Fornecedores, colegas e professoras
+Ventas, costos y utilidad	Sales, costs and profit	Vendas, custos e lucro
+Lo que entra, lo que sale y lo que te queda	What comes in, what goes out and what is left	O que entra, o que sai e o que sobra
+Anota lo que entra y sale de tu negocio	Record what comes in and goes out of your business	Anote o que entra e sai do seu negócio
+Topes de gasto y ahorros del negocio	Spending limits and business savings	Limites de gasto e poupança do negócio
+Pagos del mes y cuotas del negocio	Payments of the month and business installments	Pagamentos do mês e parcelas do negócio
+Cupo, corte y pago	Limit, statement and payment	Limite, fechamento e pagamento
+Compara meses y mira tu año	Compare months and look at your year	Compare meses e veja o seu ano
+Todas tus fechas en un vistazo	All your dates at a glance	Todas as suas datas de relance
+Cumpleaños y celebraciones	Birthdays and celebrations	Aniversários e comemorações
+Cómo te sentiste tejiendo	How you felt crocheting	Como você se sentiu crochetando
+Cuida tus manos y tu espalda	Take care of your hands and your back	Cuide das suas mãos e das costas
+Día anterior	Previous day	Dia anterior
+Hoy	Today	Hoje
+Elegir un día	Choose a day	Escolher um dia
+Día siguiente	Next day	Dia seguinte
+{w=lunes|martes|miércoles|jueves|viernes|sábado|domingo} {d#} de {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre} de {y#} · hoy	{w}, {m} {d}, {y} · today	{w}, {d} de {m} de {y} · hoje
+{w=lunes|martes|miércoles|jueves|viernes|sábado|domingo} {d#} de {m=enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre} de {y#}	{w}, {m} {d}, {y}	{w}, {d} de {m} de {y}
+La semana	The week	A semana
+lun	Mon	seg
+mar	Tue	ter
+mié	Wed	qua
+jue	Thu	qui
+vie	Fri	sex
+sáb	Sat	sáb
+dom	Sun	dom
+Lo que tengo agendado	What I have scheduled	O que tenho agendado
+Nada agendado para este día. Escribe fechas en tus pedidos, ferias o proyectos y aparecerán aquí.	Nothing scheduled for this day. Write dates in your orders, fairs or projects and they will show up here.	Nada agendado para este dia. Escreva datas nos seus pedidos, feiras ou projetos e elas aparecerão aqui.
+Mis tareas de hoy	My tasks for today	Minhas tarefas de hoje
+Nueva tarea	New task	Nova tarefa
+Escribe una tarea y toca Agregar	Write a task and tap Add	Escreva uma tarefa e toque em Adicionar
+Agregar	Add	Adicionar
+Notas del día	Notes of the day	Notas do dia
+Mi día en Google Calendar	My day in Google Calendar	Meu dia no Google Agenda
+Si usas Google Calendar, abre este día allí o crea un evento sin salir de aquí. Es gratis y no necesita que conectes nada.	If you use Google Calendar, open this day there or create an event without leaving here. It is free and you do not need to connect anything.	Se você usa o Google Agenda, abra este dia lá ou crie um evento sem sair daqui. É grátis e não precisa conectar nada.
+Ver este día en Google Calendar	See this day in Google Calendar	Ver este dia no Google Agenda
+Crear un evento para este día	Create an event for this day	Criar um evento para este dia
+Este mes en números	This month in numbers	Este mês em números
+Clientas nuevas	New clients	Clientes novas
+Ventas ({n#})	Sales ({n})	Vendas ({n})
+Gastos ({n#})	Expenses ({n})	Despesas ({n})
+Proyectos tejidos	Projects crocheted	Projetos crochetados
+Clases y tutoriales vistos	Classes and tutorials watched	Aulas e tutoriais assistidos
+Pedidos entregados	Orders delivered	Pedidos entregues
+Los números salen solos de tus hojas: clientas, ventas, gastos, proyectos cumplidos y lo que aprendiste.	The numbers come from your pages by themselves: clients, sales, expenses, completed projects and what you learned.	Os números saem sozinhos das suas páginas: clientes, vendas, despesas, projetos cumpridos e o que você aprendeu.
+Del mundo Lana Rosa	From the Lana Rosa world	Do mundo Lana Rosa
+Tu historia en crochet	Your story in crochet	A sua história em crochê
+Cuéntanos tu idea y la tejemos: amigurumis personalizados a partir de tu foto.	Tell us your idea and we crochet it: custom amigurumis made from your photo.	Conte a sua ideia e nós a crochetamos: amigurumis personalizados a partir da sua foto.
+Personalizar el mío →	Customize mine →	Personalizar o meu →
+Mercería Lana Rosa	Lana Rosa Mercería	Mercería Lana Rosa
+Lanas, hilos y agujas elegidos para tejer sin sorpresas.	Yarns, threads and hooks chosen to crochet without surprises.	Lãs, linhas e agulhas escolhidas para crochetar sem surpresas.
+Ir a la Mercería →	Go to the Mercería →	Ir para a Mercería →
+Una frase o el año (opcional)	A phrase or the year (optional)	Uma frase ou o ano (opcional)
+Fondo	Background	Fundo
+Flores	Flowers	Flores
+Hojas	Leaves	Folhas
+Madejas	Skeins of yarn	Novelos
+Liso	Plain	Liso
+Color	Color	Cor
+Rosa	Pink	Rosa
+Lila	Lilac	Lilás
+Azul	Blue	Azul
+Verde	Green	Verde
+Durazno	Peach	Pêssego
+Lana Rosa Crochet	Lana Rosa Crochet	Lana Rosa Crochet
+al imprimir, activa «gráficos de fondo» (o «colores de fondo») en las opciones de impresión para que se vea el fondo completo.	when printing, turn on “background graphics” (or “background colors”) in the print options so the whole background shows.	ao imprimir, ative «gráficos de plano de fundo» (ou «cores de fundo») nas opções de impressão para que o fundo apareça por inteiro.
+Imprimir la portada	Print the cover	Imprimir a capa
+Amigurumis hechos a mano	Handmade amigurumis	Amigurumis feitos à mão
+Piezas únicas tejidas en crochet por Lana Rosa, listas para regalar.	One-of-a-kind pieces crocheted by Lana Rosa, ready to give as gifts.	Peças únicas crochetadas pela Lana Rosa, prontas para presentear.
+Ver la Tienda →	See the Shop →	Ver a Loja →
+Pide tu clase personalizada	Book your private class	Peça a sua aula particular
+En Villamaría, a la hora que acordemos. Cuéntanos qué quieres aprender y te escribimos por WhatsApp para fijar el día. Se cobra por hora, por persona, y los materiales no están incluidos.	In Villamaría, at a time we agree on. Tell us what you want to learn and we will write to you on WhatsApp to set the day. It is charged per hour, per person, and materials are not included.	Em Villamaría, no horário que combinarmos. Conte o que você quer aprender e escrevemos pelo WhatsApp para marcar o dia. É cobrado por hora, por pessoa, e os materiais não estão incluídos.
+Tu nombre	Your name	Seu nome
+¿Qué quieres aprender?	What do you want to learn?	O que você quer aprender?
+Empezar desde cero	Start from zero	Começar do zero
+Mejorar mis puntos	Improve my stitches	Melhorar os meus pontos
+Tejer un amigurumi	Crochet an amigurumi	Crochetar um amigurumi
+Tejer una prenda	Crochet a garment	Crochetar uma peça de roupa
+Leer patrones y esquemas	Read patterns and diagrams	Ler receitas e esquemas
+Terminar un proyecto que tengo	Finish a project I have	Terminar um projeto que tenho
+Otro tema	Another topic	Outro tema
+Tu nivel	Your level	Seu nível
+Nunca he tejido	I have never crocheted	Nunca crochetei
+Sé lo básico	I know the basics	Sei o básico
+Ya tejo y quiero avanzar	I already crochet and want to advance	Já crocheto e quero avançar
+¿Cuántas personas?	How many people?	Quantas pessoas?
+¿Cuántas horas?	How many hours?	Quantas horas?
+Días y horarios que te sirven	Days and times that work for you	Dias e horários que servem para você
+Algo más que quieras contarnos	Anything else you want to tell us	Algo mais que queira nos contar
+Valor estimado	Estimated price	Valor estimado
+{v} (1 hora · 1 persona)	{v} (1 hour · 1 person)	{v} (1 hora · 1 pessoa)
+Enviar mi solicitud por WhatsApp	Send my request on WhatsApp	Enviar a minha solicitação pelo WhatsApp
+Ver talleres y clases →	See workshops and classes →	Ver oficinas e aulas →
+Cursos virtuales	Online courses	Cursos online
+Muy pronto	Coming soon	Em breve
+Estamos preparando los cursos virtuales de Lana Rosa Academy para que aprendas desde donde estés y a tu ritmo. Todavía no están a la venta.	We are preparing the online courses of Lana Rosa Academy so you can learn from wherever you are and at your own pace. They are not on sale yet.	Estamos preparando os cursos online da Lana Rosa Academy para você aprender de onde estiver e no seu ritmo. Ainda não estão à venda.
+Avísenme cuando abran	Let me know when they open	Avisem-me quando abrirem
+Patrones en PDF	PDF patterns	Receitas em PDF
+Mis patrones comprados	My purchased patterns	Minhas receitas compradas
+Todavía no has comprado patrones. Los que compres aparecerán aquí, listos para descargar, y también en «Mis patrones».	You have not bought patterns yet. The ones you buy will appear here, ready to download, and also in “My patterns”.	Você ainda não comprou receitas. As que você comprar aparecerão aqui, prontas para baixar, e também em «Minhas receitas».
+Patrones a la venta	Patterns for sale	Receitas à venda
+Compra un patrón en la Mercería y lo descargas desde tu cuenta; quedará guardado aquí	Buy a pattern at the Mercería and download it from your account; it will be saved here	Compre uma receita na Mercería e baixe da sua conta; ela ficará guardada aqui
+y en «Mis patrones»	and in “My patterns”	e em «Minhas receitas»
+Ver los patrones →	See the patterns →	Ver as receitas →
+Aprende gratis en YouTube	Learn for free on YouTube	Aprenda de graça no YouTube
+En el canal de Lana Rosa Academy encuentras clases y puntos paso a paso. Suscríbete para no perderte ninguno.	On the Lana Rosa Academy channel you find classes and stitches step by step. Subscribe so you do not miss any.	No canal da Lana Rosa Academy você encontra aulas e pontos passo a passo. Inscreva-se para não perder nenhum.
+Ver el canal	See the channel	Ver o canal
+Suscribirme	Subscribe	Inscrever-me
+Todo Lana Rosa	All of Lana Rosa	Tudo da Lana Rosa
+Mira los colores reales	See the real colors	Veja as cores reais
+La paleta de la Mercería con la foto exacta de cada ovillo, su marca y su metraje.	The Mercería palette with the exact photo of each skein, its brand and its yardage.	A paleta da Mercería com a foto exata de cada novelo, a marca e a metragem.
+Ver la paleta →	See the palette →	Ver a paleta →
+Taller «Desconecta para Conectar»	“Disconnect to Connect” workshop	Oficina «Desconecte para Conectar»
+Tres horas para tejer acompañada y salir con tu pieza terminada. Sin experiencia previa.	Three hours to crochet with company and leave with your finished piece. No previous experience needed.	Três horas para crochetar acompanhada e sair com a sua peça pronta. Sem experiência prévia.
+Ver el taller →	See the workshop →	Ver a oficina →
+Clases gratis en YouTube	Free classes on YouTube	Aulas grátis no YouTube
+Aprende puntos y proyectos paso a paso en el canal de Lana Rosa Academy.	Learn stitches and projects step by step on the Lana Rosa Academy channel.	Aprenda pontos e projetos passo a passo no canal da Lana Rosa Academy.
+Ver el canal →	See the channel →	Ver o canal →
+Rosina te ayuda a regalar	Rosina helps you give gifts	A Rosina ajuda você a presentear
+Dile a Rosina para quién es el regalo y te muestra ideas reales de la Tienda.	Tell Rosina who the gift is for and she shows you real ideas from the Shop.	Diga à Rosina para quem é o presente e ela mostra ideias reais da Loja.
+Hablar con Rosina →	Talk to Rosina →	Falar com a Rosina →
+Material gratis de Rosina	Free material from Rosina	Material grátis da Rosina
+Glosario, paletas, calculadoras y fondos de pantalla para tejedoras.	Glossary, palettes, calculators and wallpapers for crocheters.	Glossário, paletas, calculadoras e papéis de parede para crocheteiras.
+Ver el material →	See the material →	Ver o material →
+La Revista de Lana Rosa	The Lana Rosa Magazine	A Revista da Lana Rosa
+Tips de tejido, cuidado de tus piezas e ideas para tu emprendimiento.	Crochet tips, care for your pieces and ideas for your business.	Dicas de crochê, cuidado com as suas peças e ideias para o seu negócio.
+Leer la Revista →	Read the Magazine →	Ler a Revista →
+Tips de tejido, cuidado de tus piezas y ideas para tu emprendimiento.	Crochet tips, care for your pieces and ideas for your business.	Dicas de crochê, cuidado com as suas peças e ideias para o seu negócio.
+Anterior	Previous	Anterior
+Página {a#} de {b#}	Page {a} of {b}	Página {a} de {b}
+Agregar página	Add page	Adicionar página
+Hoja de dibujo con puntos	Dotted drawing page	Página de desenho pontilhada
+dibuja con el lápiz digital, el dedo o el mouse. Con «⬇️» bajas la hoja como imagen, y puedes imprimirla en blanco con sus puntos.	draw with the digital pen, your finger or the mouse. With “⬇️” you download the page as an image, and you can print it blank with its dots.	desenhe com a caneta digital, o dedo ou o mouse. Com «⬇️» você baixa a página como imagem, e pode imprimi-la em branco com os pontinhos.
+Aguja nueva	New hook	Agulha nova
+Clienta nueva	New client	Cliente nova
+Contacto nuevo	New contact	Contato novo
+Día nuevo	New day	Dia novo
+Fecha nueva	New date	Data nova
+Gasto nuevo	New expense	Despesa nova
+Idea nueva	New idea	Ideia nova
+Lana nueva	New yarn	Lã nova
+Material nuevo	New material	Material novo
+Patrón nuevo	New pattern	Receita nova
+Pedido nuevo	New order	Pedido novo
+Producto nuevo	New product	Produto novo
+Proyecto nuevo	New project	Projeto novo
+Punto o técnica nueva	New stitch or technique	Ponto ou técnica nova
+Venta nueva	New sale	Venda nova
+En {n#} día	In {n} day	Em {n} dia
+En {n#} días	In {n} days	Em {n} dias
+Atrasado {n#} día	{n} day overdue	Atrasado {n} dia
+Atrasado {n#} días	{n} days overdue	Atrasado {n} dias
+Es hoy	It is today	É hoje
+Debe {v}	Owes {v}	Deve {v}
+Pagado	Paid	Pago
+Avance {f}	Progress {f}	Andamento {f}
+Cumplido	Done	Cumprido
+Guardado	Saved	Guardado
+Cámbiala: {t} de uso	Replace it: {t} of use	Troque-a: {t} de uso
+Revísala: {t} de uso	Check it: {t} of use	Revise-a: {t} de uso
+Hace {t}	{t} ago	Há {t}
+{n#} año	{n} year	{n} ano
+{n#} años	{n} years	{n} anos
+{n#} mes	{n} month	{n} mês
+{n#} meses	{n} months	{n} meses
+Concepto	Item	Item

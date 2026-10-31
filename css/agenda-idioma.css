@@ -6,3 +6,7 @@
 .agenda-idioma::after { content: ""; position: absolute; right: 9px; top: 50%; width: 5px; height: 5px; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-70%) rotate(45deg); pointer-events: none; }
 @media (max-width: 420px) { .agenda-idioma { padding: 0 4px 0 7px; gap: 2px; } .agenda-idioma-ic { display: none; } .agenda-idioma select { padding-left: 4px; } }
 @media print { .agenda-idioma { display: none !important; } }
+
+/* Textos que el CSS escribe solo (no pasan por el traductor) */
+html[lang="en"] #tabla-pedidos td[data-col="totalcompra"]::before, html[lang="en"] #tabla-pedidos td[data-col="saldo"]::before { content: attr(data-label) " · calculated automatically" !important; }
+html[lang="pt-BR"] #tabla-pedidos td[data-col="totalcompra"]::before, html[lang="pt-BR"] #tabla-pedidos td[data-col="saldo"]::before { content: attr(data-label) " · calculado automaticamente" !important; }

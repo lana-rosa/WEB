@@ -10,8 +10,8 @@
 (function () {
   'use strict';
   var CLAVE = 'lrAgendaIdioma', PERMITIDOS = { es: 'es-CO', en: 'en', pt: 'pt-BR' };
-  var ATRIBUTOS = ['aria-label', 'title', 'placeholder', 'alt'];
-  var SALTAR = 'script, style, noscript, svg, textarea, [contenteditable], [data-no-traducir], #menu-hojas-lista, .ficha-cab, .agenda-idioma';
+  var ATRIBUTOS = ['aria-label', 'title', 'placeholder', 'alt', 'data-label', 'data-titulo'];   // data-label lo pinta el CSS (content: attr(data-label)); data-titulo es el nombre de los pasos de «Diseña tu patrón»
+  var SALTAR = 'script, style, noscript, svg, textarea, [contenteditable], [data-no-traducir], #menu-hojas-lista, .ficha-titulo:not(.vacia), .agenda-idioma';
   var lang = 'es';
   try {
     var q = new URLSearchParams(location.search).get('idioma');
@@ -72,6 +72,8 @@
     if (ant && n.data === ant.out) return;           // ya está traducido y nadie lo tocó
     var src = n.data, out = tr(src);
     original.set(n, { es: src, out: out });
+    // Una opción sin atributo value toma su valor del texto: se fija en español para que lo guardado no cambie con el idioma
+    if (out !== src && padre.tagName === 'OPTION' && !padre.hasAttribute('value')) padre.setAttribute('value', norm(src));
     if (out !== src) n.data = out;
   }
   function atributos(el) {
@@ -121,20 +123,25 @@
     s.addEventListener('change', function () { try { localStorage.setItem(CLAVE, s.value); } catch (e) { /* sin almacenamiento */ } location.reload(); });
   }
 
-  // Lo que sigue visible sin traducción (para completar el diccionario). Solo se usa al preparar la traducción.
-  function faltan() {
-    var vistos = {}, w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, null), n, lista = [];
+  // Lo que queda sin traducir (para completar el diccionario). Solo se usa al preparar la traducción.
+  // raiz: elemento donde buscar (por defecto, la página); todo: true = incluye lo que está oculto (fichas cerradas, ventanas)
+  function faltan(raiz, todo) {
+    var vistos = {}, lista = [], hecho = {}; Object.keys(dic).forEach(function (k) { hecho[norm(dic[k])] = 1; });
+    raiz = raiz || document.body;
+    var w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, null), n;
     function anota(txt, donde) {
       var t = norm(txt); if (!t || !/\p{L}/u.test(t)) return; var p = partir(t);
-      if (!/\p{L}/u.test(p[1]) || buscar(p[1]) != null || vistos[p[1]]) return; vistos[p[1]] = 1; lista.push([p[1], donde]);
+      if (!/\p{L}/u.test(p[1]) || buscar(p[1]) != null || hecho[p[1]] || vistos[p[1]]) return; vistos[p[1]] = 1; lista.push([p[1], donde]);
     }
     while ((n = w.nextNode())) {
       if (n.nodeType === 3) {
         var el = n.parentElement; if (saltar(el)) continue;
-        if (!el || !el.getClientRects().length) continue;
+        if (!el || (!todo && !el.getClientRects().length)) continue;
         var rg = original.get(n); if (rg && rg.out !== rg.es && n.data === rg.out) continue;   // ya traducido
         anota(n.data, el.tagName.toLowerCase() + (el.id ? '#' + el.id : el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''));
-      } else if (!saltar(n) && n.getClientRects().length) { ATRIBUTOS.forEach(function (a) { if (!n.hasAttribute(a)) return; var r = (originalAttr.get(n) || {})[a]; if (r && r.out !== r.es && n.getAttribute(a) === r.out) return; anota(n.getAttribute(a), a); }); }
+      } else if (!saltar(n) && (todo || n.getClientRects().length)) {
+        ATRIBUTOS.forEach(function (a) { if (!n.hasAttribute(a)) return; var r = (originalAttr.get(n) || {})[a]; if (r && r.out !== r.es && n.getAttribute(a) === r.out) return; anota(n.getAttribute(a), a); });
+      }
     }
     return lista;
   }

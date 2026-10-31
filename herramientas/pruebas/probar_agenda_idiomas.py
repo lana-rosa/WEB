@@ -41,6 +41,24 @@ with sync_playwright() as p:
         T.v('[%s] el pie está traducido' % idioma, pie in pg.inner_text('footer'), pg.inner_text('footer')[:100])
         T.v('[%s] sin errores de JavaScript' % idioma, not pg.errs, pg.errs)
         pg.context.close()
+    # --- etapa 2: el cuerpo de las hojas y que lo guardado no cambie con el idioma
+    for idioma in ('en', 'pt'):
+        pg = abrir_en(b, idioma)
+        ids = pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a[data-hoja]')].map(a => a.dataset.hoja)")
+        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 39 and not pg.errs, pg.errs)
+        sin = []
+        for h in ids:
+            pg.evaluate("window.lrIrAHoja && window.lrIrAHoja('%s')" % h); pg.wait_for_timeout(120)
+            sin += [t for t, _ in pg.evaluate("window.lrI18n.faltan(document.getElementById('%s'), true)" % h) if len(t) > 3 and t not in ('Chaleco de María', 'Manta bebé', 'Sara Pérez', 'osito', 'Osito', 'María Gómez · Osito', 'Nov', 'nov') and not t.startswith('Q') ]
+        T.v('[%s] las hojas no dejan textos en español sin traducir' % idioma, len(sin) <= 6, sin[:12])
+        # elegir un estado y un medio de pago con la lista: lo guardado queda en español
+        pg.evaluate("window.lrIrAHoja('control-pedidos')"); pg.wait_for_timeout(300)
+        etiqueta = 'Delivered' if idioma == 'en' else 'Entregue'
+        pg.evaluate("document.querySelector('#control-pedidos tr.ficha')?.classList.add('abierta')")
+        pg.select_option('#ag-p2-estado', label=etiqueta, force=True); pg.wait_for_timeout(600)
+        guardado = pg.evaluate("JSON.parse(localStorage.getItem('rosinaAgenda'))['ag-p2-estado']")
+        T.v('[%s] el estado elegido se guarda en español (%s → Entregado)' % (idioma, etiqueta), guardado == 'Entregado', guardado)
+        pg.context.close()
     # ?idioma=pt fija el idioma
     ctx = contexto(b, 1280, 900, datos=DATOS, config_abierta=False); pg = ctx.new_page(); pg.goto(BASE + '/agenda-rosina.html?idioma=pt'); pg.wait_for_timeout(2200)
     T.v('?idioma=pt la deja en portugués y la recuerda', pg.evaluate("document.documentElement.lang") == 'pt-BR' and pg.evaluate("localStorage.getItem('lrAgendaIdioma')") == 'pt')
