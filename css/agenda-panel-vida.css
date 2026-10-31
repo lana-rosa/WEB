@@ -90,3 +90,15 @@
 #agenda .pn-av-chip.mal { background: #FDE2E2; color: #B42318; }
 #agenda .pn-av-chip b { font-size: 1rem; }
 #agenda .pn-av-mas { margin-top: 4px; }
+
+/* Plus, etapa 2 (31-oct-2026): meta de ventas y punto de equilibrio en «Presupuesto y metas del negocio» */
+#agenda .mv-contenedor { margin: 6px 0 18px; }
+#agenda .mv-linea { max-width: 520px; }
+#agenda .mv-cifra { margin: 8px 0 6px; font-weight: 700; }
+#agenda .mv-fuente, #agenda .mv-nota, #agenda .mv-ritmo { display: block; margin: 6px 0; color: #6B5560; }
+#agenda .mv-ok { margin: 8px 0; padding: 10px 12px; border-radius: 12px; background: #E6F4EA; color: #1E6B3A; font-weight: 700; }
+#agenda .mv-lista { list-style: none; margin: 10px 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+#agenda .mv-lista li { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 14px; background: #FFF3F5; }
+#agenda .mv-lista li span { font-size: .85rem; color: #6B5560; } #agenda .mv-lista li b { font-size: 1.15rem; color: #8E1457; }
+#agenda .mv-usar { margin-top: 4px; }
+@media print { #agenda .mv-contenedor { display: none; } }
