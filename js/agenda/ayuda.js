@@ -1,6 +1,6 @@
 /* Agenda para tejedoras: UN solo botón flotante de ayuda (etapa 5, ola 3; 30-oct-2026, decisión de Sara).
    Antes había tres círculos sobre las hojas (Rosina, WhatsApp y, en pantallas pequeñas, otro más). Ahora hay uno que abre un menú con
-   «Preguntar a Rosina» (abre el chat de siempre), «Escribir por WhatsApp» y «Subir». Los otros botones flotantes se ocultan con CSS (agenda-panel.css). */
+   «Preguntar a Rosina» (abre el chat de siempre) y «Subir» (el WhatsApp salió el 31-oct-2026, pedido de Sara). Los otros botones flotantes se ocultan con CSS (agenda-panel.css). */
 (function () {
   'use strict';
   if (!document.getElementById('agenda')) return;
@@ -14,9 +14,8 @@
   var cont = document.createElement('div'); cont.className = 'ayuda-flotante no-imprimir'; cont.id = 'agenda-ayuda';
   cont.innerHTML = '<div class="af-menu" id="af-menu" hidden role="menu" aria-label="Ayuda">' +
     '<button type="button" role="menuitem" data-af="rosina">' + svg(ICONOS.rosina) + 'Preguntar a Rosina</button>' +
-    '<a role="menuitem" data-af="whatsapp" href="https://wa.me/573205072801" target="_blank" rel="noopener">' + svg(ICONOS.whatsapp) + 'Escribir por WhatsApp</a>' +
     '<button type="button" role="menuitem" data-af="subir">' + svg(ICONOS.subir) + 'Subir</button></div>' +
-    '<button type="button" class="af-boton" id="af-boton" aria-expanded="false" aria-controls="af-menu" aria-label="Ayuda: Rosina, WhatsApp y subir">' + svg(ICONOS.ayuda) + '</button>';
+    '<button type="button" class="af-boton" id="af-boton" aria-expanded="false" aria-controls="af-menu" aria-label="Ayuda: Rosina y subir">' + svg(ICONOS.ayuda) + '</button>';
   document.body.appendChild(cont);
   var boton = document.getElementById('af-boton'), menu = document.getElementById('af-menu');
   function abrir(si) {
@@ -32,6 +31,5 @@
     abrir(false);
     if (que === 'subir') { window.scrollTo({ top: 0, behavior: 'smooth' }); boton.focus(); }
     if (que === 'rosina') { var r = document.querySelector('.rc-boton'); if (r) r.click(); }
-    if (que === 'whatsapp' && window.dataLayer) window.dataLayer.push({ event: 'clic_whatsapp', ubicacion: 'agenda_ayuda' });
   });
 })();

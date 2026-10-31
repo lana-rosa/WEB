@@ -4,7 +4,7 @@ import os, tempfile
 from PIL import Image, ImageDraw
 from playwright.sync_api import sync_playwright
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CLARO = (255, 255, 255); VERDE = (224, 30, 121); VERDE_OSCURO = (176, 53, 111); PILDORA = (255, 255, 255)   # rosa de Lana Rosa #E01E79, texto #B0356F y blanco (31-oct-2026; antes vinotinto)
+CLARO = (255, 255, 255); VERDE = (158, 162, 249); VERDE_OSCURO = (91, 96, 214); PILDORA = (255, 255, 255)   # lila de Lana Rosa #9EA2F9, texto #5B60D6 y blanco (31-oct-2026; antes fucsia y antes vinotinto)
 src = Image.open(os.path.join(R, 'img', 'logo-academy-360.webp')).convert('RGB'); px = src.load(); w, h = src.size
 base = src.getpixel((5, 5))
 # 1) recolorear: el azul de fondo pasa a verde y el blanco queda blanco (mezcla según lo cerca que esté del blanco)

@@ -64,7 +64,7 @@ with sync_playwright() as p:
     T.v('celular: el botón de ayuda queda encima de la barra de abajo', pc.evaluate("document.querySelector('#af-boton').getBoundingClientRect().bottom <= document.querySelector('.pestanas-agenda').getBoundingClientRect().top + 1"))
     T.v('hay un solo botón flotante visible (Rosina y WhatsApp salen del menú de ayuda)', pc.evaluate("['.whatsapp-flotante','.rc-boton','.saludo-rosina'].every(s => { const e = document.querySelector(s); return !e || getComputedStyle(e).display === 'none'; })") and pc.is_visible('#af-boton'))
     pc.click('#af-boton')
-    T.v('el botón de ayuda abre un menú visible con Rosina, WhatsApp y Subir', pc.is_visible('#af-menu') and pc.locator('#af-menu [data-af]').count() == 3 and pc.get_attribute('#af-menu a', 'href') == 'https://wa.me/573205072801')
+    T.v('el botón de ayuda abre un menú visible con Rosina y Subir (sin WhatsApp)', pc.is_visible('#af-menu') and pc.locator('#af-menu [data-af]').count() == 2 and pc.locator('#af-menu a').count() == 0)
     pc.keyboard.press('Escape')
     T.v('Esc cierra el menú de ayuda', pc.evaluate("document.getElementById('af-menu').hidden"))
     pe = abrir(contexto(b, 1280, 900, config_abierta=False), '', 2000, config=False)
