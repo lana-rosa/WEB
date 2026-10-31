@@ -10,7 +10,7 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial comp
 ## ⭐ Plus para emprendedoras (plan acordado con Sara, 31-oct-2026)
 - [x] Etapa 1: avisos de hoy y consejo de Rosina en Mi panel (gratis).
 - [ ] Etapa 0 (la hace Sara): entrevistas con ~10 usuarias, pruebas en iPhone/Samsung/iPad, pago real de $5.000, revisión de la abogada.
-- [ ] Etapa 2: meta de ventas → semanas y días; «¿cuánto necesito vender al mes?» (de pago).
+- [x] Etapa 2: meta de ventas → semanas y días; «¿cuánto necesito vender al mes?» (de pago). Hecha el 31-oct-2026; probar las fórmulas con las cifras reales de Sara.
 - [ ] Etapa 3: historial por clienta. · [ ] Etapa 4: costo por producto y precio sugerido. · [ ] Etapa 5: inventario con costo y mínimo. · [ ] Etapa 6: informe mensual para imprimir.
 - [ ] Etapa 7: núcleo de datos por usuaria (migración con deshacer). · [ ] Etapa 8: inventario con movimientos y conexiones.
 - [ ] Al terminar cada etapa: actualizar `GUIA_AGENDA` de `rosina-web` y volver a desplegarla.
