@@ -1,7 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v45 (31-oct-2026; pendiente de desplegar): GUIA_AGENDA explica «Guardar en tu Google Drive» (misma agenda en varios aparatos, versiones anteriores, privacidad).
+// v45 (31-oct-2026; desplegada): GUIA_AGENDA explica «Guardar en tu Google Drive» (misma agenda en varios aparatos, versiones anteriores, privacidad).
 // v44 (31-oct-2026; desplegada): aclara que los avisos de lanas por acabarse NO salen en «Avisos de hoy» y explica el informe del mes para imprimir (etapa 6).
 // v43 (31-oct-2026; desplegada): GUIA_AGENDA explica el inventario de lanas con costo por ovillo, dinero en lana y aviso de mínimo; corrige que la tarjeta de punto de equilibrio de Mi panel depende de las hojas de Finanzas (de membresía).
 // v42 (31-oct-2026; desplegada): GUIA_AGENDA explica el costo por producto y precio sugerido de «Mi catálogo de precios» y el tablero gráfico («Cómo vas») de cada sección.

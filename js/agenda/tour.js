@@ -1,20 +1,18 @@
 /* Agenda para tejedoras: tutorial de bienvenida (29-oct-2026, pedido de Sara: «cuando alguien ingrese por primera vez le hacemos un tour»; desde el 29-oct se llama «tutorial» en lo que se ve; el archivo, las clases y `?tour=` conservan el nombre técnico).
-   8 pasos: bienvenida, configuración, copias, Google Calendar, instalar la app, pestañas y hojas, dictar/lápiz/buscador y funciones avanzadas.
-   Sale solo la primera vez (se recuerda en `localStorage.lrAgendaTour`) y se repite con «Ver el tour de bienvenida» en Configuración o con `?tour=1`; `?tour=0` lo omite.
+   5 pasos cortos (1-nov-2026, antes 8): bienvenida, configuración (nombre, color, copias, Drive y Calendar), instalar la app, pestañas y hojas, y dictar/lápiz/buscador.
+   Sale solo la primera vez y solo con la sesión iniciada (se recuerda en `localStorage.lrAgendaTour`) y se repite con «Ver el tour de bienvenida» en Configuración o con `?tour=1`; `?tour=0` lo omite.
    No sale si el navegador es automático (`navigator.webdriver`: las pruebas) salvo con `?tour=1`. Un foco recorta la pantalla alrededor del elemento y una tarjeta explica el paso. */
 (function () {
   'use strict';
   var PASOS = [
     { t: '¡Bienvenida a tu agenda! 🌿', x: 'Te muestro en un minuto lo más importante. Puedes saltar el tutorial cuando quieras y volver a verlo desde ⚙️ Configuración.' },
-    { t: 'Configuración ⚙️', x: 'Personaliza tu agenda con tu nombre y tu color favorito. También puedes imprimir tu agenda o borrar lo que has escrito.', sel: ['#agenda-config'], abrir: true },
-    { t: 'Copias de seguridad', x: 'Tu agenda se guarda en este dispositivo. Puedes descargar una copia de seguridad, importarla en otro dispositivo o vincularla a tu cuenta para recuperar tus escritos si borras el historial del navegador.', sel: ['.agenda-config .copia-agenda'], abrir: true },
-    { t: 'Google Calendar 📅', x: 'Conecta tu cuenta de Google para sincronizar tus entregas, proyectos, ferias y cumpleaños con un calendario independiente llamado «Agenda para tejedoras». Recibe recordatorios para que no olvides ninguna fecha importante.\nLa conexión es gratuita y opcional. Solo necesitas tu cuenta de Google.', sel: ['#calendario-sync'], abrir: true },
-    { t: 'Instala la app 📲', x: 'Añade la agenda a tu dispositivo para abrirla desde su propio ícono y acceder a ella incluso sin conexión a internet.\n💻 Computador y Android: busca la opción «Instalar» en la barra de direcciones o en el menú del navegador.\n📱 iPhone: pulsa «Compartir» y selecciona «Añadir a pantalla de inicio».\n¡Ten tu agenda siempre a mano!', sel: ['#instalar-agenda'] },
-    { t: 'Pestañas y hojas 📑', x: 'Al abrir ves «Mi panel» con lo más importante del mes. El menú de la izquierda (en el celular, la barra de abajo) organiza tu agenda por secciones: toca una sección (Mis proyectos, Mi emprendimiento…) y verás sus hojas como tarjetas; toca la que quieras abrir. ¿Quieres verlas todas? Encuéntralas en el Índice, dentro de «Mi panel».\n💎 Tienes 7 días gratis con todas las hojas. Después, Mi panel, Mi tablero y Mis proyectos siguen gratis y las demás pestañas son con membresía desde $5.000 al mes.', sel: ['#pestanas-agenda'] },
-    { t: 'Dictado, escritura a mano y búsqueda ✍️', x: '🎤 Dictado por voz: selecciona una casilla y pulsa «Dictar» para convertir tu voz en texto. El audio lo procesa el servicio de voz de tu navegador y Lana Rosa no lo guarda.\n✏️ Lápiz digital: escribe o dibuja sobre la hoja con un lápiz digital o el mouse. Por defecto, el dedo sirve para desplazarte por la página; activa la opción «Dedo» si quieres escribir con él.\n🔍 Buscador: encuentra rápidamente cualquier texto que hayas escrito en tu agenda.', sel: ['.buscar-fijo'] },
-    { t: 'Funciones avanzadas ✨', x: 'Organiza tu día, visualiza tus números en el tablero y lleva el control de tus pedidos, saldos y ventas. Registra gastos mensuales, escribe por WhatsApp a tus clientas con un toque y exporta tus datos a Excel.\nAdemás, puedes diseñar tus propios patrones, crear prendas a medida con ayuda del maniquí y explorar la mercería y las clases en «Aprende y compra».\n¿Necesitas más espacio? Usa la opción «Agregar ficha» en cada hoja para añadir todas las que necesites.', final: true }
+    { t: 'Configuración ⚙️', x: 'Aquí pones tu nombre y tu color, y guardas tu agenda: en un archivo, en tu cuenta o en tu Google Drive para verla igual en todos tus aparatos. También puedes conectar Google Calendar. Todo es opcional.', sel: ['#agenda-config'], abrir: true },
+    { t: 'Instala la app 📲', x: 'Ábrela desde su propio ícono y también sin internet.\n💻 Computador y Android: «Instalar» en la barra del navegador.\n📱 iPhone: Compartir → «Añadir a pantalla de inicio».', sel: ['#instalar-agenda'] },
+    { t: 'Pestañas y hojas 📑', x: 'Al abrir ves «Mi panel» con lo más importante del mes. En el menú (en el celular, la barra de abajo) toca una sección y verás sus hojas.\n💎 7 días gratis con todas las hojas. Después, Mi panel, Mi tablero y Mis proyectos siguen gratis; las demás secciones desde $5.000 al mes.', sel: ['#pestanas-agenda'] },
+    { t: 'Escribe como prefieras ✍️', x: '🎤 Dicta con la voz, ✏️ escribe a mano con lápiz o 🔍 busca cualquier texto de tu agenda.\nSi te pierdes, pregúntale a Rosina con el botón de ayuda. ¡Y a tejer!', sel: ['.buscar-fijo'], final: true }
   ];
   var q = new URLSearchParams(location.search).get('tour'), paso = 0, capa, foco, tarjeta, abrioPanel = false, activo = false;
+  function haySesion() { try { var t = JSON.parse(localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token') || 'null'); return !!(t && t.user && t.user.id); } catch (e) { return false; } }   // el tutorial solo sale solo para quien ya entró con su cuenta (1-nov-2026, pedido de Sara)
   function visto() { try { return !!localStorage.getItem('lrAgendaTour'); } catch (e) { return true; } }
   function marcar(como) { try { localStorage.setItem('lrAgendaTour', como + ':' + new Date().toISOString().slice(0, 10)); } catch (e) {} (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_tour', accion: como }); }
   function visible(el) { return el && !el.hidden && el.getClientRects().length > 0; }
@@ -70,8 +68,9 @@
     if (activo) return; activo = true; paso = 0; abrioPanel = false; construir();
     document.addEventListener('keydown', teclas); window.addEventListener('resize', colocar); window.addEventListener('scroll', colocar, true); mostrar();
   }
-  window.lrAgendaTour = { iniciar: iniciar };
+  window.lrAgendaTour = { iniciar: iniciar, saleSolo: saleSolo };
   var b = document.getElementById('agenda-tour-btn'); if (b) b.addEventListener('click', function () { if (window.lrAgendaConfig) window.lrAgendaConfig.cerrar(); iniciar(); });
-  var auto = q === '1' || (q !== '0' && !visto() && !navigator.webdriver);
+  function saleSolo(ignorarRobot) { return q === '1' || (q !== '0' && haySesion() && !visto() && (ignorarRobot || !navigator.webdriver)); }
+  var auto = saleSolo(false);
   if (auto) setTimeout(function () { if (document.getElementById('agenda')) iniciar(); }, 1800);
 })();
