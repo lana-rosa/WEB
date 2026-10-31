@@ -15,9 +15,9 @@
     verde:   { n: 'Verde',   base: '#E8F7EE', a: '#8FD3A8', b: '#3FAE73', c: '#FFFFFF', h: '#F7B3D4' },
     durazno: { n: 'Durazno', base: '#FFF0E1', a: '#F9C48B', b: '#F0933B', c: '#FFFFFF', h: '#9BD3B0' }
   };
-  var FONDOS = { flores: 'Flores', hojas: 'Hojas', madejas: 'Madejas', rosina: 'Rosina y amigos', ovejitas: 'Ovejitas', liso: 'Liso' };
+  var FONDOS = { flores: 'Flores', hojas: 'Hojas', madejas: 'Madejas', liso: 'Liso' };   // «Rosina y amigos» y «Ovejitas» se quitaron el 31-oct-2026 (pedido de Sara)
   var IMAGENES = {};
-  ['flores', 'hojas', 'madejas', 'rosina', 'ovejitas'].forEach(function (k) { IMAGENES[k] = '/img/agenda/fondo-' + k + '.webp?v=4'; });
+  ['flores', 'hojas', 'madejas'].forEach(function (k) { IMAGENES[k] = '/img/agenda/fondo-' + k + '.webp?v=4'; });
   function pintar() {
     var d = N.datos(), f = d['ag-portada-fondo'] && FONDOS[d['ag-portada-fondo']] ? d['ag-portada-fondo'] : 'flores', c = d['ag-portada-color'] && COLORES[d['ag-portada-color']] ? d['ag-portada-color'] : 'rosa';
     var p = COLORES[c], fondo = hoja.querySelector('.portada-fondo');
@@ -25,7 +25,7 @@
     fondo.textContent = ''; fondo.style.backgroundImage = IMAGENES[f] ? 'url("' + IMAGENES[f] + '")' : '';
     fondo.classList.toggle('con-imagen', !!IMAGENES[f]);
     /* las hojas de la agenda usan el mismo fondo, pero solo si la persona lo eligió (por defecto quedan blancas) */
-    var zona = document.getElementById('agenda'), elegido = d['ag-portada-fondo'] && IMAGENES[d['ag-portada-fondo']] ? d['ag-portada-fondo'] : '';
+    var zona = document.getElementById('agenda'), elegido = d['ag-portada-fondo'] && IMAGENES[d['ag-portada-fondo']] ? d['ag-portada-fondo'] : '';   // el fondo elegido también queda de fondo de pantalla de toda la agenda (css/agenda-pantalla.css)
     if (zona) { if (elegido) zona.dataset.fondoHojas = elegido; else delete zona.dataset.fondoHojas; }
     document.querySelectorAll('#portada-fondos button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === f)); });
     document.querySelectorAll('#portada-colores button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === c)); });

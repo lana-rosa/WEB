@@ -27,18 +27,20 @@ with sync_playwright() as p:
     ctx = contexto(b, 390, datos={'ag-duena': 'Sara'}); pg = abrir(ctx, 'portada-agenda')
     T.v('portada: sale el nombre escrito en «Esta agenda es de»', pg.inner_text('#portada-nombre-vista') == 'Sara' and pg.input_value('#portada-nombre') == 'Sara')
     fondos = pg.evaluate("[...document.querySelectorAll('#portada-fondos button')].map(b => b.textContent)")
-    T.v('hay fondos de flores, hojas, madejas, Rosina y amigos, ovejitas y liso', fondos == ['Flores', 'Hojas', 'Madejas', 'Rosina y amigos', 'Ovejitas', 'Liso'], fondos)
+    T.v('hay fondos de flores, hojas, madejas y liso (sin Rosina y amigos ni ovejitas)', fondos == ['Flores', 'Hojas', 'Madejas', 'Liso'], fondos)
     pg.click('#portada-fondos button:has-text("Hojas")'); pg.wait_for_timeout(200)
     BORDE = "getComputedStyle(document.querySelector('#indice-agenda'), '::before').borderImageSource"
     ANCHO = "parseFloat(getComputedStyle(document.querySelector('#indice-agenda'), '::before').borderTopWidth)"
-    for etiqueta, clave in (('Flores', 'flores'), ('Hojas', 'hojas'), ('Madejas', 'madejas'), ('Rosina y amigos', 'rosina'), ('Ovejitas', 'ovejitas')):
+    for etiqueta, clave in (('Flores', 'flores'), ('Hojas', 'hojas'), ('Madejas', 'madejas')):
         pg.click('#portada-fondos button:has-text("%s")' % etiqueta); pg.wait_for_timeout(250)
         T.v('con «%s» la portada lo usa, se guarda y las hojas NO llevan cinta' % etiqueta, pg.evaluate("document.getElementById('portada-hoja').dataset.fondo") == clave and guardado(pg).get('ag-portada-fondo') == clave and ('fondo-%s.webp' % clave) in pg.evaluate("document.querySelector('.portada-fondo').style.backgroundImage") and pg.evaluate("document.querySelector('#agenda').dataset.fondoHojas") == clave and pg.evaluate("getComputedStyle(document.querySelector('#indice-agenda'), '::before').display") == 'none')
     pg.click('#portada-fondos button:has-text("Liso")'); pg.wait_for_timeout(200)
+    T.v('con «Liso» no hay fondo de pantalla', pg.evaluate("getComputedStyle(document.body, '::before').content") == 'none')
     T.v('con «Liso» las hojas quedan blancas, sin cinta, y la portada sin imagen', pg.evaluate("document.querySelector('#agenda').dataset.fondoHojas") is None and pg.evaluate("document.querySelector('.portada-fondo').style.backgroundImage") == '' and pg.evaluate(BORDE) in ('none', ''))
     pg.click('#portada-fondos button:has-text("Hojas")'); pg.wait_for_timeout(200)
-    pg.click('#portada-fondos button:has-text("Rosina y amigos")'); pg.wait_for_timeout(200)
-    T.v('las imágenes de los fondos existen (portada, miniatura y cinta)', all(os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'img', 'agenda', 'fondo-%s%s.webp' % (f, suf))) for f in ('flores', 'hojas', 'madejas', 'rosina', 'ovejitas') for suf in ('', '-mini', '-borde')))
+    pg.click('#portada-fondos button:has-text("Madejas")'); pg.wait_for_timeout(200)
+    T.v('el estilo elegido queda de fondo de pantalla de la agenda', 'madejas' in pg.evaluate("getComputedStyle(document.body, '::before').backgroundImage"))
+    T.v('las imágenes de los fondos existen (portada, miniatura y cinta)', all(os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'img', 'agenda', 'fondo-%s%s.webp' % (f, suf))) for f in ('flores', 'hojas', 'madejas') for suf in ('', '-mini', '-borde')) and all(os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'img', 'agenda', 'pantalla-%s.webp' % f)) for f in ('flores', 'hojas', 'madejas')))
     pg.click('#portada-colores button[aria-label="Lila"]'); pg.wait_for_timeout(200)
     T.v('el color también se guarda', guardado(pg).get('ag-portada-color') == 'lila' and pg.evaluate("document.getElementById('portada-hoja').dataset.color") == 'lila')
     pg.fill('#portada-nombre', 'Sara Muñoz'); pg.fill('#ag-portada-frase', 'Un punto a la vez'); pg.wait_for_timeout(300)
@@ -46,7 +48,7 @@ with sync_playwright() as p:
     T.v('la frase sale en la portada', pg.inner_text('#portada-frase-vista') == 'Un punto a la vez')
     cap(pg, 'nuevas-portada-390.png')
     pg.reload(); pg.wait_for_timeout(1500)
-    T.v('al volver a entrar la portada sigue como se dejó', pg.evaluate("document.getElementById('portada-hoja').dataset.fondo") == 'rosina' and pg.evaluate("document.getElementById('portada-hoja').dataset.color") == 'lila')
+    T.v('al volver a entrar la portada sigue como se dejó', pg.evaluate("document.getElementById('portada-hoja').dataset.fondo") == 'madejas' and pg.evaluate("document.getElementById('portada-hoja').dataset.color") == 'lila')
     pg.emulate_media(media='print'); cap(pg, 'nuevas-portada-impresion.png')
     ancho = pg.evaluate("document.querySelector('#portada-hoja').getBoundingClientRect().width"); T.v('al imprimir la portada ocupa todo el ancho', ancho > 300, ancho)
     pg.emulate_media(media='screen')
