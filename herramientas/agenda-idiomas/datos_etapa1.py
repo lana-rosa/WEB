@@ -46,8 +46,6 @@ FILAS = [
  ('Enero', 'January', 'Janeiro'), ('Febrero', 'February', 'Fevereiro'), ('Marzo', 'March', 'Março'), ('Abril', 'April', 'Abril'),
  ('Mayo', 'May', 'Maio'), ('Junio', 'June', 'Junho'), ('Julio', 'July', 'Julho'), ('Agosto', 'August', 'Agosto'),
  ('Septiembre', 'September', 'Setembro'), ('Octubre', 'October', 'Outubro'), ('Noviembre', 'November', 'Novembro'), ('Diciembre', 'December', 'Dezembro'),
- ('ene', 'Jan', 'jan'), ('feb', 'Feb', 'fev'), ('mar', 'Mar', 'mar'), ('abr', 'Apr', 'abr'), ('may', 'May', 'mai'), ('jun', 'Jun', 'jun'),
- ('jul', 'Jul', 'jul'), ('ago', 'Aug', 'ago'), ('sep', 'Sep', 'set'), ('oct', 'Oct', 'out'), ('nov', 'Nov', 'nov'), ('dic', 'Dec', 'dez'),
  ('Lunes', 'Monday', 'Segunda-feira'), ('Martes', 'Tuesday', 'Terça-feira'), ('Miércoles', 'Wednesday', 'Quarta-feira'), ('Jueves', 'Thursday', 'Quinta-feira'),
  ('Viernes', 'Friday', 'Sexta-feira'), ('Sábado', 'Saturday', 'Sábado'), ('Domingo', 'Sunday', 'Domingo'),
  ('lunes', 'Monday', 'segunda-feira'), ('martes', 'Tuesday', 'terça-feira'), ('miércoles', 'Wednesday', 'quarta-feira'), ('jueves', 'Thursday', 'quinta-feira'),

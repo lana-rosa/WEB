@@ -48,6 +48,8 @@
   }
   // Iniciales de lunes a domingo según el idioma elegido (js/agenda/idioma.js)
   function INICIALES() { var l = window.lrI18n ? window.lrI18n.lang : 'es'; return l === 'en' ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'] : l === 'pt' ? ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'] : ['L', 'M', 'M', 'J', 'V', 'S', 'D']; }
+  // Mes abreviado en el idioma elegido (no pasa por el diccionario: «mar» sería a la vez marzo y martes)
+  function MES3(i) { var l = window.lrI18n ? window.lrI18n.lang : 'es', A = { en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], pt: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'] }; return A[l] ? A[l][i] : MESES[i].slice(0, 3); }
   var FRASES = ['Tejer es mi terapia', 'Una vuelta más y lo logras', 'Tú puedes con este proyecto', 'Hecho a mano, con amor', 'Hoy también cuenta: una vuelta a la vez', 'Tu talento tiene valor'];
   var ESTADOS = [['Terminado', 'Terminados', '#4F7A57'], ['Tejiendo', 'Tejiendo', '#E74E96'], ['Por empezar', 'Por empezar', '#9EA2F9']];
   var SVGNS = 'http://www.w3.org/2000/svg';
@@ -165,7 +167,7 @@
     if (!prox.length) cf.appendChild(txt('p', 'pn-vacio', 'Todavía no hay fechas. Escribe la entrega de un pedido, una feria o un cumpleaños y aparecen aquí.'));
     prox.forEach(function (e) {
       var fila = txt('button', 'pn-fila'); fila.type = 'button'; fila.addEventListener('click', function () { ir(HOJA_DE[e.tipo] || 'calendario-anual'); });
-      var fe = txt('span', 'pn-fecha'); fe.appendChild(txt('small', '', MESES[e.f.getMonth()].slice(0, 3))); fe.appendChild(txt('b', '', dd(e.f.getDate())));
+      var fe = txt('span', 'pn-fecha'); fe.appendChild(txt('small', '', MES3(e.f.getMonth()))); fe.appendChild(txt('b', '', dd(e.f.getDate())));
       var t = txt('span', 'pn-t'); t.appendChild(txt('b', '', e.titulo)); if (e.det) t.appendChild(txt('small', '', e.det));
       fila.appendChild(fe); fila.appendChild(t); fila.appendChild(txt('span', 'pn-chip', TIPOS[e.tipo] || 'Fecha')); cf.appendChild(fila);
     });
