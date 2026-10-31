@@ -124,6 +124,46 @@
     hero.appendChild(tx); var im = document.createElement('img'); im.className = 'pn-rosina'; im.src = '/img/agenda/rosina/tejiendo.webp'; im.alt = ''; im.width = 260; im.height = 260; hero.appendChild(im);
     cont.appendChild(hero);
 
+    /* Avisos de hoy y consejo de Rosina (Plus, etapa 1, 31-oct-2026): solo leen lo ya escrito; no guardan nada (salvo el «Entendido» del consejo) */
+    var dif = function (t) { var f = N.leerFecha ? N.leerFecha(t) : null; return (!f || f.sinAnio) ? null : Math.round((new Date(f.a, f.m - 1, f.d) - hoy) / 86400000); };
+    var av = [], quien = function (p) { return p.cliente || p.pedido || 'pedido'; };
+    var saldoDe = function (p) { return Math.max(0, (pesos(p.totalcompra) || pesos(p.precio)) - pesos(p.abono)); };
+    activos.forEach(function (p) {
+      var d = dif(p.entrega); if (d === null || d > 3) return;
+      var sal = saldoDe(p), extra = sal ? ' · saldo ' + fm(sal) : '';
+      if (d < 0) av.push([0, 'mal', 'Entrega atrasada: ' + quien(p) + extra, 'control-pedidos']);
+      else if (d === 0) av.push([1, 'alerta', 'Entrega de hoy: ' + quien(p) + extra, 'control-pedidos']);
+      else if (d === 1) av.push([2, 'alerta', 'Entrega mañana: ' + quien(p) + extra, 'control-pedidos']);
+      else av.push([3, 'alerta', 'Entrega en ' + d + ' días: ' + quien(p) + extra, 'control-pedidos']);
+    });
+    ped.filter(function (p) { return /entreg/i.test(p.estado) && saldoDe(p) > 0; }).forEach(function (p) { av.push([4, 'alerta', 'Saldo pendiente de ' + quien(p) + ': ' + fm(saldoDe(p)), 'control-pedidos']); });
+    todosProy.filter(function (p) { var d = dif(p.fecha); return p.estado !== 'Terminado' && d !== null && d < 0; }).forEach(function (p) { av.push([5, 'mal', 'El proyecto «' + p.proyecto + '» ya pasó su fecha', 'proyectos-fila']); });
+    av.sort(function (a, b) { return a[0] - b[0]; });
+    if (av.length) {
+      var ta = txt('div', 'pn-card pn-avisos'); ta.setAttribute('role', 'region'); ta.setAttribute('aria-label', 'Avisos de hoy'); ta.appendChild(txt('h4', '', 'Avisos de hoy'));
+      av.slice(0, 5).forEach(function (a) {
+        var fila = txt('button', 'pn-fila pn-aviso ' + a[1]); fila.type = 'button'; fila.addEventListener('click', function () { ir(a[3]); });
+        var i = txt('span', 'pn-aviso-ic'); i.setAttribute('aria-hidden', 'true'); i.appendChild(ic(a[1] === 'mal' ? 'alerta' : 'reloj')); fila.appendChild(i); fila.appendChild(txt('span', 'pn-t', a[2])); ta.appendChild(fila);
+      });
+      if (av.length > 5) ta.appendChild(txt('p', 'pn-vacio', 'Y ' + (av.length - 5) + (av.length - 5 === 1 ? ' aviso más' : ' avisos más') + ' en Control de pedidos.'));
+      cont.appendChild(ta);
+    }
+    var off = {}; try { off = JSON.parse(localStorage.getItem('lrAgendaConsejos') || '{}') || {}; } catch (e) { off = {}; }
+    var CONSEJOS = [
+      ['abono', activos.some(function (p) { return pesos(p.totalcompra) && !pesos(p.abono); }), 'Tienes pedidos activos sin abono. Pedir un anticipo antes de tejer cuida tus materiales y tu tiempo.', 'control-pedidos'],
+      ['gastos', activos.length >= 3 && !gastos.length, 'Ya tienes varios pedidos y ningún gasto anotado este mes. Anota lo que gastas en materiales para saber cuánto te queda por cada pedido.', 'gastos-negocio'],
+      ['fechas', activos.some(function (p) { return !String(p.entrega || '').trim(); }), 'Algunos pedidos activos no tienen fecha de entrega. Con la fecha, la agenda te avisa a tiempo.', 'control-pedidos'],
+      ['gancho', tejiendo >= 4, 'Tienes muchos proyectos en el gancho a la vez. Terminar uno antes de empezar otro ayuda a cumplir las fechas.', 'proyectos-fila']
+    ].filter(function (c) { return c[1] && !off[c[0]]; })[0];
+    if (CONSEJOS) {
+      var cr = txt('div', 'pn-card pn-consejo'); cr.appendChild(txt('h4', '', 'Consejo de Rosina'));
+      cr.appendChild(txt('p', '', CONSEJOS[2]));
+      var bs = txt('div', 'pn-acciones');
+      var b1 = txt('button', 'pn-accion', 'Ir a la hoja'); b1.type = 'button'; b1.addEventListener('click', function () { ir(CONSEJOS[3]); });
+      var b2 = txt('button', 'pn-accion sec', 'Entendido'); b2.type = 'button'; b2.addEventListener('click', function () { off[CONSEJOS[0]] = 1; try { localStorage.setItem('lrAgendaConsejos', JSON.stringify(off)); } catch (e) { /* sin almacenamiento: vuelve a salir */ } pintar(); });
+      bs.appendChild(b1); bs.appendChild(b2); cr.appendChild(bs); cont.appendChild(cr);
+    }
+
     if (!ped.length && !todasVentas.length && !filas('tabla-gastos', ['valor']).length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
     var k = txt('div', 'pn-kpis'); k.setAttribute('role', 'group'); k.setAttribute('aria-label', 'Números de ' + MESES[hoy.getMonth()]);
     k.appendChild(tarjeta('Ventas de ' + MESES[hoy.getMonth()], fm(vend), ventas.length + (ventas.length === 1 ? ' venta anotada' : ' ventas anotadas'), 'k1', 'grafica'));
