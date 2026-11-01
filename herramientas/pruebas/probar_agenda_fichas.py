@@ -59,7 +59,7 @@ with sync_playwright() as p:
     T.v('lista de compras: la ficha con la casilla marcada muestra «Comprado»', 'Comprado' in pg.inner_text('#tabla-compras tr[data-fila="1"] .ficha-meta'))
     # 3) buscador: abre la ficha cerrada donde está la coincidencia
     pg.goto(BASE + '/agenda-rosina.html#indice-agenda'); pg.wait_for_timeout(800)
-    pg.click('#barra-toggle'); pg.fill('#buscar-agenda', 'Marta'); pg.wait_for_timeout(700)
+    pg.fill('#buscar-agenda', 'Marta'); pg.wait_for_timeout(700)
     T.v('el buscador abre la hoja y la ficha donde está «Marta»', pg.evaluate("document.querySelector('#control-pedidos').classList.contains('abierta') && document.querySelector('#tabla-pedidos tr[data-fila=\"3\"]').classList.contains('abierta')"))
     # 4) Excel
     with pg.expect_download() as d: pg.click('#agenda-excel')

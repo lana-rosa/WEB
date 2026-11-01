@@ -623,3 +623,16 @@ body.dib-bloqueo { overflow: hidden; }
   .dib-completo .dib-barra { flex: 0 0 168px; width: 168px; margin: 0; max-height: 100%; }
   .dib-completo .dib-caja { margin: 0 auto; }
 }
+
+/* Hoja de dibujo: paleta con 60 colores + selector (1-nov-2026, pedido de Jennifer: «solo salen unas pocas opciones») */
+.dib-barra .dib-color-libre { border: 0; padding: 0; }
+.dib-paleta { flex-basis: 100%; display: grid; grid-template-columns: repeat(12, minmax(26px, 1fr)); gap: 6px; padding: 10px; margin-top: 4px; background: #fff; border: 1.5px solid #F7C6DE; border-radius: 14px; max-width: 520px; }
+.dib-paleta[hidden] { display: none; }
+.dib-tono { width: 100%; aspect-ratio: 1; min-height: 26px; border-radius: 8px; border: 1.5px solid rgba(69, 69, 74, .2); background: var(--c); cursor: pointer; padding: 0; position: relative; display: grid; place-items: center; font: 700 1rem 'Hanken Grotesk', sans-serif; color: #45454A; }
+.dib-tono-otro { background: conic-gradient(#E53935, #FBC02D, #3FAE73, #26C6DA, #4C9BEA, #8E5BD9, #E53935); color: #fff; text-shadow: 0 0 3px #000; overflow: hidden; }
+.dib-tono-otro input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+@media (max-width: 520px) { .dib-paleta { grid-template-columns: repeat(8, minmax(30px, 1fr)); } }
+.dib-barra .dib-paleta { order: 100; flex: 0 0 100%; max-width: none; grid-template-columns: repeat(auto-fill, 34px); gap: 8px; justify-content: start; }
+.dib-barra .dib-paleta .dib-tono { width: 34px; min-height: 34px; height: 34px; }
+.dib-barra .dib-paleta .dib-tono[data-hex] { background: var(--c) !important; }
+@media (pointer: coarse) { .dib-barra .dib-paleta .dib-tono { width: 40px; min-height: 40px; height: 40px; } .dib-barra .dib-paleta { grid-template-columns: repeat(auto-fill, 40px); } }
