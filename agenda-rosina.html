@@ -3845,7 +3845,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t === 'Finanzas del negocio' ? 'Finanzas' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
     var nav = document.getElementById('pestanas-agenda'), selector = document.getElementById('selector-hoja'), lista = document.getElementById('selector-hoja-lista'), etqLista = document.getElementById('selector-hoja-etq');
     var ICONOS_LATERAL = ['panel', 'tablero', 'proyectos', 'materiales', 'emprendimiento', 'finanzas', 'fechas'].map(function(n) {
-      return '<img class="ic-lateral ic-dibujo" src="/img/agenda/menu/' + n + '.webp?v=1" width="40" height="40" alt="" aria-hidden="true" decoding="async">';
+      return '<img class="ic-lateral ic-dibujo" src="/img/agenda/menu/' + n + '.webp?v=3" width="40" height="40" alt="" aria-hidden="true" decoding="async">';
     });
     var botones = grupos.map(function(g, i) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'pestana'; b.setAttribute('role', 'tab');
