@@ -54,21 +54,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=53">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=36">
-<link rel="stylesheet" href="/css/agenda-diseno.css?v=19">
-<link rel="stylesheet" href="/css/agenda-panel.css?v=14">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=37">
+<link rel="stylesheet" href="/css/agenda-diseno.css?v=20">
+<link rel="stylesheet" href="/css/agenda-panel.css?v=15">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
-<link rel="stylesheet" href="/css/agenda-editorial.css?v=18">
-<link rel="stylesheet" href="/css/agenda-colores.css?v=28">
+<link rel="stylesheet" href="/css/agenda-editorial.css?v=19">
+<link rel="stylesheet" href="/css/agenda-colores.css?v=29">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
-<link rel="stylesheet" href="/css/agenda-panel-vida.css?v=28">
+<link rel="stylesheet" href="/css/agenda-panel-vida.css?v=29">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=14">
 <link rel="stylesheet" href="/css/agenda-idioma.css?v=2">
 <link rel="stylesheet" href="/css/agenda-pantalla.css?v=11">
-<link rel="stylesheet" href="/css/agenda-menu.css?v=1">
+<link rel="stylesheet" href="/css/agenda-menu.css?v=2">
 <style>
 :root {
-  --rosa-principal: #E74E96; --rosa-medio: #D6B4B8; --rosa-suave: #FBE4EF;
+  --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE; --lila-claro: #E6E7FD;
   --azul-acero: #93C7F9; --blanco-hueso: #FDFCFA; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
@@ -385,7 +385,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 @media print { .aviso-sin-guardar { display: none !important; } }
 .agenda-recordatorio { display: none !important; } }
 .donde-datos { margin: 10px 0 14px; border: 1px solid var(--rosa-medio, #F5C2DB); border-radius: 14px; background: #fff; padding: 0; text-align: left; }
-.donde-datos summary { cursor: pointer; padding: 12px 16px; font-weight: 800; color: var(--rosa-texto, #8E1457); list-style: none; }
+.donde-datos summary { cursor: pointer; padding: 12px 16px; font-weight: 800; color: var(--rosa-texto, #C81B6D); list-style: none; }
 .donde-datos summary::-webkit-details-marker { display: none; }
 .donde-datos summary::after { content: "▾"; float: right; }
 .donde-datos[open] summary::after { content: "▴"; }
@@ -395,7 +395,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .dd-estado { margin: 0 0 6px; padding: 8px 12px; border-radius: 10px; background: var(--rosa-suave, #FEF2F7); font-weight: 700; }
 .dd-estado:empty { display: none; }
 .nube-estado { display: block; width: 100%; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--tinta-suave); margin: 4px 0 0; }
-.agenda-recordatorio { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; background: #FFF8E1; border: 2px solid #E0C6C7; border-radius: 18px; padding: 12px 16px; margin: 0 0 16px; font-size: 0.92rem; }
+.agenda-recordatorio { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; background: #FFF8E1; border: 2px solid #E6E7FD; border-radius: 18px; padding: 12px 16px; margin: 0 0 16px; font-size: 0.92rem; }
 .agenda-recordatorio[hidden] { display: none; }
 .agenda-recordatorio p { margin: 0; flex: 1 1 320px; }
 .agenda-recordatorio .acciones-rec { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
@@ -465,7 +465,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .agenda-layout { grid-template-columns: minmax(0, 1fr) 58px; gap: 0 6px; }
 .hojas-contenido { grid-column: 1; grid-row: 1; min-width: 0; }
 .pestanas-agenda { grid-column: 2; grid-row: 1; position: sticky; top: 170px; display: flex; flex-direction: column; gap: 6px; padding-top: 18px; }
-.pestana { writing-mode: vertical-rl; border: 0; cursor: pointer; font-family: var(--fuente-titulo); font-size: 0.92rem; font-weight: 600; letter-spacing: .02em; color: #3b2a30; background: var(--c); padding: 16px 10px; min-height: 96px; border-radius: 0 14px 14px 0; box-shadow: 2px 3px 8px rgba(58,42,46,.12); transition: transform .15s ease, box-shadow .15s ease, filter .15s ease; filter: saturate(.9) brightness(1.03); }
+.pestana { writing-mode: vertical-rl; border: 0; cursor: pointer; font-family: var(--fuente-titulo); font-size: 0.92rem; font-weight: 600; letter-spacing: .02em; color: #45454A; background: var(--c); padding: 16px 10px; min-height: 96px; border-radius: 0 14px 14px 0; box-shadow: 2px 3px 8px rgba(58,42,46,.12); transition: transform .15s ease, box-shadow .15s ease, filter .15s ease; filter: saturate(.9) brightness(1.03); }
 .pestana:hover { transform: translateX(3px); }
 .pestana[aria-selected="true"] { transform: translateX(6px); box-shadow: 3px 4px 12px rgba(58,42,46,.22), inset -4px 0 0 rgba(255,255,255,.7); filter: none; }
 .pestana:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
@@ -479,7 +479,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .selector-hoja select:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
 .selector-hoja select:hover { background-color: var(--rosa-suave); }
 #indice-agenda .indice-grupo { margin-bottom: 20px; }
-#indice-agenda .indice-grupo h4 { margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: #3b2a30; display: inline-block; padding: 4px 14px; border-radius: 999px; background: var(--c); }
+#indice-agenda .indice-grupo h4 { margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: #45454A; display: inline-block; padding: 4px 14px; border-radius: 999px; background: var(--c); }
 .atajos { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
 .atajo { display: flex; align-items: center; gap: 12px; text-align: left; font: inherit; cursor: pointer; background: #fff; border: 1.5px solid var(--c); border-radius: 16px; padding: 10px 12px; color: var(--tinta); transition: transform .15s ease, box-shadow .15s ease; }
 .atajo:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(58,42,46,.12); }
@@ -525,7 +525,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .tab-lectura li { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; line-height: 1.35; }
 .tab-lectura li span { flex: none; }
 .tab-grupo { margin-bottom: 18px; }
-.tab-grupo h4 { display: inline-block; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: #3b2a30; padding: 4px 14px; border-radius: 999px; background: var(--c); }
+.tab-grupo h4 { display: inline-block; margin: 0 0 10px; font-family: var(--fuente-titulo); font-weight: 600; font-size: 1rem; color: #45454A; padding: 4px 14px; border-radius: 999px; background: var(--c); }
 .tab-tarjetas { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
 .tab-k { border: 1.5px solid var(--c); border-radius: 16px; padding: 12px 14px; background: #fff; display: flex; flex-direction: column; gap: 2px; }
 .tab-k span.t { font-size: .78rem; font-weight: 700; color: var(--tinta-suave); }
@@ -589,7 +589,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .cal-anio-barra strong { font-family: var(--fuente-titulo); font-size: 1.4rem; color: var(--rosa-texto); min-width: 4ch; text-align: center; }
 .cal-anual { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .cal-mes { border: 1.5px solid var(--rosa-suave); border-radius: 14px; padding: 8px 8px 10px; }
-.cal-mes h4 { margin: 0 0 6px; text-align: center; font-family: var(--fuente-titulo); font-weight: 600; font-size: .95rem; color: #3b2a30; border-radius: 999px; background: var(--c, var(--rosa-suave)); padding: 3px 0; }
+.cal-mes h4 { margin: 0 0 6px; text-align: center; font-family: var(--fuente-titulo); font-weight: 600; font-size: .95rem; color: #45454A; border-radius: 999px; background: var(--c, var(--rosa-suave)); padding: 3px 0; }
 .cal-dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; font-size: .74rem; }
 .cal-dias span.sem { font-weight: 800; color: var(--tinta-suave); padding: 2px 0; }
 .cal-dias button, .cal-dias i { aspect-ratio: 1; border: 0; background: transparent; font: inherit; font-size: .78rem; color: var(--tinta); border-radius: 8px; padding: 0; position: relative; }
@@ -666,7 +666,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .boton-cal-campo { margin-top: 6px; align-self: flex-start; }
 .solo-movil { display: none; }
 @media screen and (max-width: 700px) { .solo-movil { display: inline; } }
-.aviso-cal { display: block; margin-top: 4px; font-size: 0.8rem; color: #8E1457; font-weight: 600; max-width: 260px; text-align: left; }
+.aviso-cal { display: block; margin-top: 4px; font-size: 0.8rem; color: #C81B6D; font-weight: 600; max-width: 260px; text-align: left; }
 @media screen and (max-width: 700px) {
   .tabla-agenda td.celda-cal { grid-column: 1 / -1; width: auto; text-align: left; }
   .tabla-agenda td.celda-cal::before { display: none; }
@@ -679,7 +679,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .cs-texto { margin: 0 0 10px; font-size: 0.92rem; }
 .cs-botones [hidden] { display: none !important; }
 .cs-botones { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
-.cs-aviso { margin: 8px 0 0; min-height: 1.2em; font-size: 0.85rem; font-weight: 600; color: #8E1457; }
+.cs-aviso { margin: 8px 0 0; min-height: 1.2em; font-size: 0.85rem; font-weight: 600; color: #C81B6D; }
 .calendario-sync .nota-copia { display: block; margin-top: 8px; }
 .calendario-sync .nota-copia[hidden] { display: none; }
 /* Tarjetas, análisis y negocio (8-oct-2026) */
@@ -735,10 +735,10 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .agc-ev { display: grid; grid-template-columns: 74px 1fr; gap: 12px; align-items: stretch; }
 .agc-hora { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--tinta-suave); } .agc-hora span { font-size: 1.4rem; line-height: 1; } .agc-hora small { font-size: .7rem; font-weight: 700; margin-top: 3px; }
 .agc-tarjeta { background: var(--c); border-radius: 18px; padding: 12px 14px; display: grid; gap: 3px; min-width: 0; }
-.agc-tipo { font-size: .7rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #3b2a30; opacity: .75; }
+.agc-tipo { font-size: .7rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #45454A; opacity: .75; }
 .agc-tarjeta strong { font-size: 1rem; overflow-wrap: anywhere; color: #2f2f33; }
 .agc-det { display: grid; gap: 1px; font-size: .84rem; color: #3b3b40; } .agc-det span { overflow-wrap: anywhere; }
-.agc-ir { justify-self: start; margin-top: 6px; border: 0; background: rgba(255,255,255,.7); font: inherit; font-size: .8rem; font-weight: 700; padding: 5px 12px; border-radius: 999px; cursor: pointer; color: #3b2a30; }
+.agc-ir { justify-self: start; margin-top: 6px; border: 0; background: rgba(255,255,255,.7); font: inherit; font-size: .8rem; font-weight: 700; padding: 5px 12px; border-radius: 999px; cursor: pointer; color: #45454A; }
 .agc-prox { display: grid; gap: 8px; margin-bottom: 16px; }
 .agc-p { display: grid; grid-template-columns: 52px 1fr; grid-template-rows: auto auto; column-gap: 12px; align-items: center; text-align: left; border: 0; background: var(--c); font: inherit; border-radius: 16px; padding: 8px 14px 8px 8px; cursor: pointer; color: #2f2f33; }
 .agc-p-f { grid-row: 1 / 3; display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,.75); border-radius: 12px; padding: 4px 0; } .agc-p-f b { font-family: var(--fuente-titulo); font-size: 1.15rem; line-height: 1.1; } .agc-p-f small { font-size: .68rem; font-weight: 800; text-transform: uppercase; }
@@ -761,7 +761,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .fin-seg button { border: 0; background: #fff; font: inherit; font-size: .8rem; font-weight: 700; padding: 5px 12px; cursor: pointer; color: var(--tinta); }
 .fin-seg button[aria-pressed="true"] { background: var(--rosa-suave); color: var(--rosa-texto); }
 .fin-grafica svg { display: block; width: 100%; height: auto; }
-.fin-eje { font: 600 11px 'Hanken Grotesk', sans-serif; fill: #6E6E73; } .fin-eje.sel { fill: #8E1457; font-weight: 800; }
+.fin-eje { font: 600 11px 'Hanken Grotesk', sans-serif; fill: #6E6E73; } .fin-eje.sel { fill: #C81B6D; font-weight: 800; }
 .fin-leg { flex-wrap: wrap; align-items: center; } .fin-leg span { display: inline-flex; align-items: center; gap: 4px; } .fin-leg i { margin-right: 0; flex: none; }
 .fin-caja-acc { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .fin-leg-nota { margin-left: auto; font-style: italic; }
@@ -771,7 +771,7 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .fin-leyenda li { display: grid; grid-template-columns: 11px 1fr auto auto; gap: 8px; align-items: center; } .fin-leyenda b { margin-left: 0; min-width: 3.2ch; text-align: right; } .fin-leyenda small { min-width: 8ch; text-align: right; color: var(--tinta-suave); }
 .fin-progreso i { background: #6E9470; } .fin-progreso.pasa i { background: #C81B6D; }
 .fin-pres-fila .pt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
-.fin-pres-alerta { font-size: .78rem; font-weight: 700; color: #8E1457; margin: -2px 0 4px; }
+.fin-pres-alerta { font-size: .78rem; font-weight: 700; color: #C81B6D; margin: -2px 0 4px; }
 .fin-insights { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .92rem; }
 .fin-insights li { display: flex; gap: 10px; align-items: flex-start; }
 .fin-tip { position: fixed; z-index: 60; pointer-events: none; background: #45454A; color: #fff; padding: 8px 12px; border-radius: 10px; font-size: .8rem; line-height: 1.35; white-space: pre-line; box-shadow: 0 6px 18px rgba(0,0,0,.25); max-width: 240px; }
@@ -1146,10 +1146,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="portada-agenda"><span class="atajo-ic" aria-hidden="true">🌸</span><span><strong>Portada</strong><small>Elige el fondo y tu nombre, y písala</small></span></button>
           <button type="button" class="atajo" data-ir="aprende-compra"><span class="atajo-ic" aria-hidden="true">🎓</span><span><strong>Aprende y compra</strong><small>Clases, patrones, YouTube y más</small></span></button>
         </div></div>
-        <div class="indice-grupo" style="--c:#E0C6C7"><h4>Mi tablero</h4><div class="atajos">
+        <div class="indice-grupo" style="--c:#E6E7FD"><h4>Mi tablero</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="tablero-agenda"><span class="atajo-ic" aria-hidden="true">📈</span><span><strong>Mi tablero</strong><small>Indicadores y análisis de todas tus hojas</small></span></button>
         </div></div>
-        <div class="indice-grupo" style="--c:#D6B4B8"><h4>Mis proyectos</h4><div class="atajos">
+        <div class="indice-grupo" style="--c:#F28FC0"><h4>Mis proyectos</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="vision-anio"><span class="atajo-ic" aria-hidden="true">🌈</span><span><strong>Mi visión del año</strong><small>Tus sueños, palabra y metas</small></span></button>
           <button type="button" class="atajo" data-ir="prioridades-mes"><span class="atajo-ic" aria-hidden="true">🎯</span><span><strong>Prioridades del mes</strong><small>Tres prioridades y la frase del mes</small></span></button>
           <button type="button" class="atajo" data-ir="ficha-proyecto"><span class="atajo-ic" aria-hidden="true">📋</span><span><strong>Ficha de proyecto</strong><small>Todo para repetirlo o regalarlo</small></span></button>
@@ -1163,12 +1163,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="prendas-medida"><span class="atajo-ic" aria-hidden="true">👗</span><span><strong>Prendas a medida</strong><small>Tallas XS a XL, maniquí y cálculos</small></span></button>
           <button type="button" class="atajo" data-ir="disena-patron"><span class="atajo-ic" aria-hidden="true">✏️</span><span><strong>Diseña tu patrón</strong><small>Tu propio patrón, paso a paso</small></span></button>
         </div></div>
-        <div class="indice-grupo" style="--c:#CBA6AD"><h4>Mis materiales</h4><div class="atajos">
+        <div class="indice-grupo" style="--c:#B9BCF9"><h4>Mis materiales</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="inventario-lanas"><span class="atajo-ic" aria-hidden="true">🧶</span><span><strong>Inventario de lanas</strong><small>Colores, marcas y cantidades</small></span></button>
           <button type="button" class="atajo" data-ir="mis-agujas"><span class="atajo-ic" aria-hidden="true"><svg class="ic-aguja" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 20L18 6"/><ellipse cx="18.6" cy="5.4" rx="1" ry="2.4" transform="rotate(45 18.6 5.4)"/><path d="M16.5 7.5C21 10 21 15 14.5 15.5"/></svg></span><span><strong>Mis agujas</strong><small>Tallas y ganchillos</small></span></button>
           <button type="button" class="atajo" data-ir="lista-compras"><span class="atajo-ic" aria-hidden="true">🛍️</span><span><strong>Lista de compras</strong><small>Lo que te falta</small></span></button>
         </div></div>
-        <div class="indice-grupo" style="--c:#C09AA3"><h4>Mi emprendimiento</h4><div class="atajos">
+        <div class="indice-grupo" style="--c:#F28FC0"><h4>Mi emprendimiento</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="control-pedidos"><span class="atajo-ic" aria-hidden="true">📦</span><span><strong>Control de pedidos</strong><small>Entregas y estados</small></span></button>
           <button type="button" class="atajo" data-ir="mis-clientas"><span class="atajo-ic" aria-hidden="true">💕</span><span><strong>Mis clientas</strong><small>Contactos y cumpleaños</small></span></button>
           <button type="button" class="atajo" data-ir="ventas-mes"><span class="atajo-ic" aria-hidden="true">💰</span><span><strong>Mis ventas del mes</strong><small>Lo vendido y lo que te quedó</small></span></button>
@@ -1186,7 +1186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="fin-tcredito"><span class="atajo-ic" aria-hidden="true">💳</span><span><strong>Tarjetas del negocio</strong><small>Cupo, corte y pago</small></span></button>
           <button type="button" class="atajo" data-ir="fin-analisis"><span class="atajo-ic" aria-hidden="true">🔎</span><span><strong>Análisis del negocio</strong><small>Compara meses y mira tu año</small></span></button>
         </div></div>
-        <div class="indice-grupo" style="--c:#D9B9BB"><h4>Fechas y bienestar</h4><div class="atajos">
+        <div class="indice-grupo" style="--c:#FDE3EE"><h4>Fechas y bienestar</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="calendario-anual"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Calendario del año</strong><small>Todas tus fechas en un vistazo</small></span></button>
           <button type="button" class="atajo" data-ir="fechas-especiales"><span class="atajo-ic" aria-hidden="true">🎁</span><span><strong>Fechas especiales</strong><small>Cumpleaños y celebraciones</small></span></button>
           <button type="button" class="atajo" data-ir="diario-tejido"><span class="atajo-ic" aria-hidden="true">📔</span><span><strong>Diario de tejido</strong><small>Cómo te sentiste tejiendo</small></span></button>
@@ -2942,7 +2942,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function() {
     var MESES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'], DIAS_C = ['lun', 'mar', 'mié', 'jue', 'vie', 'sáb', 'dom'];
-    var COL = ['#F5C2DB', '#D6B4B8', '#CBA6AD', '#C09AA3', '#F28FC0'];
+    var COL = ['#F5C2DB', '#F28FC0', '#B9BCF9', '#F28FC0', '#F28FC0'];
     /* c = fondo de la tarjeta, p = color del puntito. Además del color, cada tipo lleva su nombre y su ícono */
     var TIPO = {
       pedido: { n: 'Entrega', ic: '📦', img: 'entrega', c: '#CFE6FB', p: '#2a78d6', hoja: 'control-pedidos' }, pedidoEnvio: { n: 'Envío', ic: '🚚', img: 'entrega', c: '#E1E2FD', p: '#4a3aa7', hoja: 'control-pedidos' }, ficha: { n: 'Entrega', ic: '📋', img: 'entrega', c: '#CFE6FB', p: '#2a78d6', hoja: 'ficha-proyecto' },
@@ -3058,7 +3058,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var NOMBRE_T = { g: 'Gasto', i: 'Ingreso', a: 'Ahorro / inversión' };
     /* Colores validados (daltonismo, contraste); cada categoría conserva siempre el suyo */
     var C_ING = '#6E9470', C_GAS = '#C81B6D', C_AHO = '#6F73D9';   /* paleta Lana Rosa: verde (ingresos), rosa (gastos) y lila (ahorro) */
-    var CATCOL = { 'Empaques': '#B0356F', 'Transporte y envíos': '#6E9470', 'Ferias y mercados': '#6F73D9', 'Publicidad': '#2F7DE1', 'Herramientas y equipos': '#93C7F9', 'Arriendo': '#8E1457', 'Impuestos': '#8A7F80', 'Vivienda': '#8E1457', 'Mercado': '#B8975A', 'Transporte': '#6E9470', 'Salud': '#C98C7B', 'Materiales (lanas)': '#D6B4B8', 'Materiales': '#D6B4B8', 'Servicios': '#4F7F5A', 'Educación': '#9C6F86', 'Ocio': '#C98C7B', 'Ropa': '#8A7F80', 'Deudas': '#3B2A30', 'Otros': '#CDBFB9' };
+    var CATCOL = { 'Empaques': '#B0356F', 'Transporte y envíos': '#6E9470', 'Ferias y mercados': '#6F73D9', 'Publicidad': '#2F7DE1', 'Herramientas y equipos': '#93C7F9', 'Arriendo': '#C81B6D', 'Impuestos': '#8A7F80', 'Vivienda': '#C81B6D', 'Mercado': '#B8975A', 'Transporte': '#6E9470', 'Salud': '#C98C7B', 'Materiales (lanas)': '#F28FC0', 'Materiales': '#F28FC0', 'Servicios': '#4F7F5A', 'Educación': '#9C6F86', 'Ocio': '#C98C7B', 'Ropa': '#8A7F80', 'Deudas': '#45454A', 'Otros': '#CDBFB9' };
     var colorCat = function(c) { return CATCOL[c] || '#b9b8b3'; };
     /* Lo del negocio: las ventas, los talleres y los materiales cuentan solos; cualquier movimiento se puede marcar o desmarcar */
     var NEG_CATS = ['Ventas', 'Talleres', 'Materiales (lanas)'];
@@ -3693,7 +3693,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function() {
     var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     var hoy = new Date(), mes = { y: hoy.getFullYear(), m: hoy.getMonth() + 1 };
-    var COL = { pedidos: '#C09AA3', fin: '#F28FC0', proy: '#D6B4B8', mat: '#CBA6AD', bien: '#D9B9BB' };
+    var COL = { pedidos: '#F28FC0', fin: '#F28FC0', proy: '#F28FC0', mat: '#B9BCF9', bien: '#FDE3EE' };
     function el(id) { return document.getElementById(id); }
     function num(s) { var x = parseFloat(String(s == null ? '' : s).replace(/[^\d]/g, '')); return isNaN(x) ? 0 : x; }
     function plata(n) { n = Math.round(n); return (n < 0 ? '−$ ' : '$ ') + Math.abs(n).toLocaleString('es-CO'); }
@@ -3738,11 +3738,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var cat = filas('tabla-catalogo', ['producto', 'tamano', 'precio', 'horas']);
       var horas = cat.filter(function(c) { return num(c.horas) && num(c.precio); });
       if (ven.length) {
-        g += '<div class="tab-grupo" style="--c:#C09AA3"><h4>Ventas</h4><div class="tab-tarjetas">' +
-          k('#C09AA3', '💰', 'Vendido en el mes', plata(tv), ven.length + ' venta' + (ven.length > 1 ? 's' : '')) +
-          k('#C09AA3', '🧶', 'Materiales', plata(tc), tv ? Math.round(tc / tv * 100) + ' % de lo vendido' : '') +
-          k('#C09AA3', '✨', 'Te quedó', plata(gan), tv ? 'Margen ' + Math.round(gan / tv * 100) + ' %' : '', { cls: gan >= 0 ? 'bien' : 'mal', pct: tv ? gan / tv * 100 : 0 }) +
-          (mejor ? k('#C09AA3', '🏆', 'Lo que más vendió', esc(mejor.charAt(0).toUpperCase() + mejor.slice(1)), plata(porProd[mejor])) : '') + '</div></div>';
+        g += '<div class="tab-grupo" style="--c:#F28FC0"><h4>Ventas</h4><div class="tab-tarjetas">' +
+          k('#F28FC0', '💰', 'Vendido en el mes', plata(tv), ven.length + ' venta' + (ven.length > 1 ? 's' : '')) +
+          k('#F28FC0', '🧶', 'Materiales', plata(tc), tv ? Math.round(tc / tv * 100) + ' % de lo vendido' : '') +
+          k('#F28FC0', '✨', 'Te quedó', plata(gan), tv ? 'Margen ' + Math.round(gan / tv * 100) + ' %' : '', { cls: gan >= 0 ? 'bien' : 'mal', pct: tv ? gan / tv * 100 : 0 }) +
+          (mejor ? k('#F28FC0', '🏆', 'Lo que más vendió', esc(mejor.charAt(0).toUpperCase() + mejor.slice(1)), plata(porProd[mejor])) : '') + '</div></div>';
         ins.push(['💰', 'En ' + MESES[mes.m - 1] + ' vendiste <b>' + plata(tv) + '</b> y te quedaron <b>' + plata(gan) + '</b>' + (tv ? ' (margen del ' + Math.round(gan / tv * 100) + ' %)' : '') + '.' + (mejor ? ' Tu estrella: <b>' + esc(mejor) + '</b>.' : '')]);
         if (tv && gan / tv < 0.3) ins.push(['🏷️', 'Tu margen está por debajo del 30 %. Revisa los precios en «Mi catálogo de precios».']);
       }
@@ -3839,8 +3839,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (n.classList.contains('menu-grupo')) grupos.push({ t: n.textContent, links: [] });
       else if (n.tagName === 'A' && grupos.length) grupos[grupos.length - 1].links.push(n);
     });
-    var COL = ['#F5C2DB', '#D6B4B8', '#CBA6AD', '#C09AA3', '#F28FC0', '#D9B9BB'];
-    var COLOR_GRUPO = { 'Inicio': '#F5C2DB', 'Mi tablero': '#E0C6C7', 'Mis proyectos': '#D6B4B8', 'Mis materiales': '#CBA6AD', 'Mi emprendimiento': '#C09AA3', 'Finanzas del negocio': '#F28FC0', 'Fechas y bienestar': '#D9B9BB' };
+    var COL = ['#F5C2DB', '#F28FC0', '#B9BCF9', '#F28FC0', '#F28FC0', '#FDE3EE'];
+    var COLOR_GRUPO = { 'Inicio': '#F5C2DB', 'Mi tablero': '#E6E7FD', 'Mis proyectos': '#F28FC0', 'Mis materiales': '#B9BCF9', 'Mi emprendimiento': '#F28FC0', 'Finanzas del negocio': '#F28FC0', 'Fechas y bienestar': '#FDE3EE' };
     var colorDe = function(g, i) { return COLOR_GRUPO[g.t] || COL[i % COL.length]; };
     var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t === 'Finanzas del negocio' ? 'Finanzas' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
     var nav = document.getElementById('pestanas-agenda'), selector = document.getElementById('selector-hoja'), lista = document.getElementById('selector-hoja-lista'), etqLista = document.getElementById('selector-hoja-etq');
@@ -4204,7 +4204,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=2" defer></script>
 <script src="/js/agenda/vacios.js?v=4" defer></script>
-<script src="/js/agenda/panel.js?v=26" defer></script>
+<script src="/js/agenda/panel.js?v=27" defer></script>
 <script src="/js/agenda/iconos.js?v=26" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=2" defer></script>

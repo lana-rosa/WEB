@@ -78,7 +78,7 @@ body .pestana img.ic-dibujo { width: 40px; height: 40px; object-fit: contain; fl
 /* Dictar y escribir a mano (1-nov-2026, pedido de Jennifer): en celular y tableta los hace el teclado; en computador «Dictar» aparece junto a la casilla */
 .voz-chip { position: fixed; z-index: 40; min-height: 30px; padding: 4px 12px; border: 1.5px solid var(--rosa-boton, #E01E79); border-radius: 999px; background: #fff; color: var(--rosa-boton, #E01E79); font: 600 .82rem 'Hanken Grotesk', sans-serif; cursor: pointer; box-shadow: 0 4px 12px rgba(200, 27, 109, .18); }
 .voz-chip[aria-pressed="true"] { background: var(--rosa-boton, #E01E79); color: #fff; }
-.tip-teclado { display: none; font-size: .82rem; color: var(--tinta-ayuda, #6B5560); }
+.tip-teclado { display: none; font-size: .82rem; color: var(--tinta-ayuda, #64646A); }
 @media (pointer: coarse) { .voz-global, #tinta-modo, .voz-estado-global { display: none !important; } .tip-teclado { display: block; flex-basis: 100%; } }
 @media print { .voz-chip, .tip-teclado { display: none !important; } }
 
@@ -89,3 +89,15 @@ html body .pie-minimo .pie-min-fila { padding-top: 6px !important; padding-botto
 html body .pie-minimo .pie-logo-anim { width: 84px !important; }
 @media (max-width: 520px) { html body .pie-minimo .pie-logo-anim { width: 64px !important; } }
 html body main#contenido-principal { padding-bottom: 12px !important; }
+
+/* Una sola familia de títulos (DynaPuff, como la página principal); todo lo demás en Hanken Grotesk (1-nov-2026, pedido de Jennifer) */
+#agenda h4, #agenda legend, #agenda .sub-hoja, #agenda .pl-titulo, #agenda .ficha-seccion span, #agenda .cl-titulo, #agenda .iv-resumen h4, #agenda .tab-grupo h4, #agenda .indice-grupo h4 { font-family: 'Emoji Lana', 'DynaPuff', sans-serif; font-weight: 600; letter-spacing: 0; }
+#agenda .pn-enlace, #agenda h4 button, #agenda h4 a { font-family: 'Hanken Grotesk', sans-serif; font-weight: 600; }
+
+/* Celular: el pie queda por encima de la barra de abajo y más delgado */
+@media (max-width: 820px) {
+  html body .pie-rico.pie-minimo { padding: 4px 0 calc(74px + env(safe-area-inset-bottom)) !important; }
+  html body .pie-minimo .pie-min-fila { padding-top: 4px !important; padding-bottom: 4px !important; gap: 4px 12px; }
+  html body main#contenido-principal { padding-bottom: 0 !important; }
+  html body #agenda { padding-bottom: 4px !important; }
+}

@@ -73,8 +73,8 @@
       s.appendChild(sv('circle', { cx: 21, cy: 21, r: 15.9, fill: 'none', stroke: ESTADOS[i][2], 'stroke-width': 6, 'stroke-dasharray': pct + ' ' + (100 - pct), 'stroke-dashoffset': 25 - acum }));
       acum += pct;
     });
-    var t1 = sv('text', { x: 21, y: 23, 'text-anchor': 'middle', 'font-size': 9, 'font-weight': 800, fill: '#8E1457' }); t1.textContent = String(total); s.appendChild(t1);
-    var t2 = sv('text', { x: 21, y: 29, 'text-anchor': 'middle', 'font-size': 3.4, fill: '#6B5560' }); t2.textContent = total === 1 ? 'proyecto' : 'proyectos'; s.appendChild(t2);
+    var t1 = sv('text', { x: 21, y: 23, 'text-anchor': 'middle', 'font-size': 9, 'font-weight': 800, fill: '#C81B6D' }); t1.textContent = String(total); s.appendChild(t1);
+    var t2 = sv('text', { x: 21, y: 29, 'text-anchor': 'middle', 'font-size': 3.4, fill: '#64646A' }); t2.textContent = total === 1 ? 'proyecto' : 'proyectos'; s.appendChild(t2);
     return s;
   }
   function semanaVentas(hoy, ventas) {
