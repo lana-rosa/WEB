@@ -1698,5 +1698,14 @@ window.lrI18n.add("en", {
 "Turco": "Turkish",
 "Nada por cobrar. Los pedidos con abono incompleto aparecen aquí (viene de «Control de pedidos»).": "Nothing to collect. Orders with a partial deposit show up here (from «Order control»).",
 "Ej. 40": "E.g. 40",
-"Todavía no tienes fechas en los próximos 90 días.": "You have no dates in the next 90 days yet."
+"Todavía no tienes fechas en los próximos 90 días.": "You have no dates in the next 90 days yet.",
+"Guardar y llevar tu agenda": "Save and take your planner with you",
+"Ayuda y recomendaciones": "Help and tips",
+"← Volver a mi agenda": "← Back to my planner",
+"Recomendación:": "Tip:",
+"para escribir más rápido, en el celular usa el micrófono del teclado para dictar y, si tienes lápiz digital, la opción «Lápiz» de cada hoja para escribir a mano. En el computador, el botón «Dictar» aparece junto a cada casilla.": "to write faster, on your phone use the keyboard microphone to dictate and, if you have a digital pencil, the “Pencil” option on each sheet to handwrite. On a computer, the “Dictate” button appears next to each field.",
+"Conectar con Google": "Connect with Google",
+"Elegir el tono y la intensidad del color": "Choose the hue and intensity of the color",
+"Agregar a mis colores": "Add to my colors",
+"Glosario y abreviaturas de crochet": "Crochet glossary and abbreviations"
 });

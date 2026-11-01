@@ -26,7 +26,7 @@ with sync_playwright() as p:
         T.v(n + 'cerca del límite (≥ 80 %) sale el aviso amarillo preventivo', pct >= 80 and pg.locator('#aviso-sin-guardar.lleno').is_visible(), pct)
         pg.evaluate(VACIAR); pg.evaluate("window.lrMedirEspacio()")
         T.v(n + 'sin relleno el aviso preventivo se quita', pg.locator('#aviso-sin-guardar').is_hidden())
-        pg.evaluate("window.lrAgendaConfig && window.lrAgendaConfig.abrir()"); pg.click('#donde-datos summary'); pg.wait_for_timeout(300)
+        pg.evaluate("window.lrAgendaConfig && window.lrAgendaConfig.abrir(true)"); pg.click('#donde-datos summary'); pg.wait_for_timeout(300)
         T.v(n + 'el apartado «¿Dónde se guardan mis datos?» muestra el porcentaje de espacio', '%' in pg.inner_text('#dd-espacio'), pg.inner_text('#dd-espacio'))
         T.v(n + 'sin desplazamiento horizontal ni errores', pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1") and not pg.errs, pg.errs[:2]); ctx.close()
     b.close()

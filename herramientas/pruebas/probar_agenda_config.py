@@ -55,7 +55,7 @@ with sync_playwright() as p:
     elegido = pg.evaluate("localStorage.getItem('lrAgendaColor')")
     pg.reload(); pg.wait_for_timeout(1500)
     T.v('el color elegido se recuerda al volver (en este dispositivo)', pg.get_attribute('html', 'data-tema') == 'libre' and pg.evaluate("localStorage.getItem('lrAgendaColor')") == elegido and pg.evaluate("getComputedStyle(document.documentElement).getPropertyValue('--rosa-principal').trim().toUpperCase()") == elegido, elegido)
-    pg.evaluate("window.lrAgendaConfig.abrir()"); pg.click('#ac-reset'); pg.wait_for_timeout(200)
+    pg.evaluate("window.lrAgendaConfig.abrir(true)"); pg.click('#ac-reset'); pg.wait_for_timeout(200)
     T.v('«Volver al rosa» quita el color elegido', pg.evaluate("!document.documentElement.hasAttribute('data-tema') && !document.documentElement.getAttribute('style') && localStorage.getItem('lrAgendaTema') === null"))
     pg.focus('#ac-rueda'); pg.keyboard.press('ArrowRight'); pg.wait_for_timeout(100)
     T.v('con el teclado también se puede elegir (flechas)', pg.get_attribute('html', 'data-tema') == 'libre')

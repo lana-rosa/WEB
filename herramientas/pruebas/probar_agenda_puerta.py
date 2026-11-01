@@ -12,7 +12,7 @@ def cerrar(ctx):
         resp = ruta.fetch(); ruta.fulfill(response=resp, body=resp.text().replace('var AGENDA_EN_VENTA = true', 'var AGENDA_EN_VENTA = false'))
     ctx.route('**/agenda-rosina.html*', r)
 def publico(b, ancho, datos=None, cerrada=True):
-    ctx = b.new_context(viewport={'width': ancho, 'height': 900}); ctx.add_init_script("window.addEventListener('load', () => setTimeout(() => window.lrAgendaConfig && window.lrAgendaConfig.abrir(), 30));"); (cerrar(ctx) if cerrada else None); ctx.route('**/googletagmanager.com/**', lambda r: r.abort()); ctx.route('**/rest/v1/**', lambda r: r.fulfill(status=200, content_type='application/json', body='[]'))
+    ctx = b.new_context(viewport={'width': ancho, 'height': 900}); ctx.add_init_script("if (!localStorage.getItem('lrConsent')) localStorage.setItem('lrConsent', JSON.stringify({v:1,a:false,t:Date.now()})); window.addEventListener('load', () => setTimeout(() => window.lrAgendaConfig && window.lrAgendaConfig.abrir(true), 30));"); (cerrar(ctx) if cerrada else None); ctx.route('**/googletagmanager.com/**', lambda r: r.abort()); ctx.route('**/rest/v1/**', lambda r: r.fulfill(status=200, content_type='application/json', body='[]'))
     if datos is not None: ctx.add_init_script("if (!sessionStorage.getItem('i')) { localStorage.setItem('rosinaAgenda', %s); sessionStorage.setItem('i', '1'); }" % json.dumps(json.dumps(datos)))
     pg = ctx.new_page(); pg.errs = []; pg.on('pageerror', lambda e: pg.errs.append(str(e))); pg.on('dialog', lambda d: d.accept()); return ctx, pg
 with sync_playwright() as p:
@@ -46,7 +46,7 @@ with sync_playwright() as p:
     pg.goto(BASE + '/agenda-rosina.html#control-pedidos'); pg.wait_for_timeout(1500)
     abierta = pg.evaluate("(document.querySelector('.hoja-agenda.abierta') || {}).id")
     T.v('una hoja de pago pedida por la dirección no se abre: queda el panel', abierta == 'panel-agenda' and not pg.is_visible('#control-pedidos'), abierta)
-    pg.fill('#buscar-agenda', 'Oso'); pg.wait_for_timeout(600)
+    pg.evaluate('window.lrLupa.abrir()'); pg.fill('#buscar-agenda', 'Oso'); pg.wait_for_timeout(600)
     T.v('la búsqueda no entra a hojas bloqueadas', 'Sin resultados' in pg.inner_text('#resultado-busqueda') or pg.inner_text('#resultado-busqueda') == '', pg.inner_text('#resultado-busqueda'))
     with pg.expect_download() as d: pg.click('#agenda-excel')
     T.v('exportar a Excel no falla con datos de hojas bloqueadas', d.value.suggested_filename.endswith('.xlsx'))

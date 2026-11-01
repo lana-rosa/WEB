@@ -36,7 +36,7 @@ with sync_playwright() as p:
             pg.locator('.pestana').nth(i).click(); pg.wait_for_timeout(350)
         t = pg.inner_text('#vista-seccion') if pg.locator('#vista-seccion').count() else ''
         T.v('[%s] la vista de sección está traducida' % idioma, 'páginas' in t.lower() if idioma == 'pt' else 'pages' in t.lower(), t[:120])
-        pg.evaluate("window.lrAgendaConfig && window.lrAgendaConfig.abrir()"); pg.wait_for_timeout(400)
+        pg.evaluate("window.lrAgendaConfig && window.lrAgendaConfig.abrir(true)"); pg.wait_for_timeout(400)
         T.v('[%s] Configuración traducida' % idioma, config in pg.inner_text('#agenda-config') or config in (pg.get_attribute('#agenda-config', 'aria-label') or ''), pg.inner_text('#agenda-config')[:100])
         T.v('[%s] el pie está traducido' % idioma, pie in pg.inner_text('footer'), pg.inner_text('footer')[:100])
         T.v('[%s] sin errores de JavaScript' % idioma, not pg.errs, pg.errs)
@@ -68,7 +68,7 @@ with sync_playwright() as p:
         pg.on('dialog', lambda d: (dialogos.append(d.message), d.dismiss())); pg.goto(BASE + '/agenda-rosina.html?tour=1'); pg.wait_for_timeout(2500)
         T.v('[%s] el tutorial de bienvenida está traducido' % idioma, bien in pg.inner_text('.tour-tarjeta'), pg.inner_text('.tour-tarjeta')[:80])
         pg.keyboard.press('Escape'); pg.evaluate("document.querySelector('.tour-saltar') && document.querySelector('.tour-saltar').click()"); pg.wait_for_timeout(300)
-        pg.evaluate("window.lrAgendaConfig.abrir()"); pg.wait_for_timeout(300); pg.click('#agenda-borrar'); pg.wait_for_timeout(400)
+        pg.evaluate("window.lrAgendaConfig.abrir(true)"); pg.wait_for_timeout(300); pg.click('#agenda-borrar'); pg.wait_for_timeout(400)
         T.v('[%s] la ventana de confirmación del navegador sale traducida' % idioma, any(borrar_txt in d for d in dialogos), dialogos)
         pg.evaluate("window.lrAgendaConfig.cerrar()"); pg.click('#af-boton'); pg.click('#af-menu [data-af=rosina]'); pg.wait_for_timeout(600)
         T.v('[%s] el chat de Rosina está traducido' % idioma, chat_ph in (pg.get_attribute('.rc-form input', 'placeholder') or ''), pg.get_attribute('.rc-form input', 'placeholder'))

@@ -10,12 +10,12 @@
   'use strict';
   var btn = document.getElementById('agenda-config-btn'), panel = document.getElementById('agenda-config');
   if (!btn || !panel) return;
-  function poner(abierto) { panel.hidden = !abierto; btn.setAttribute('aria-expanded', abierto ? 'true' : 'false'); }
-  btn.addEventListener('click', function () { poner(panel.hidden); if (!panel.hidden) setTimeout(function () { panel.scrollIntoView({ block: 'start', behavior: 'smooth' }); }, 30); });   // la barra de arriba es fija: al tocar el engranaje con la página más abajo, el panel se lleva a la vista
-  window.lrAgendaConfig = { abrir: function () { poner(true); }, cerrar: function () { poner(false); } };
+  function poner(abierto, junto) { panel.hidden = !abierto; btn.setAttribute('aria-expanded', abierto ? 'true' : 'false'); document.body.classList.toggle('config-sola', !!abierto && !junto); if (abierto && !junto) window.scrollTo(0, 0); }   // por defecto es una hoja aparte (se esconde la agenda); `junto` la deja a la vista, solo para las pruebas
+  btn.addEventListener('click', function () { poner(panel.hidden); });   // la barra de arriba es fija: al tocar el engranaje con la página más abajo, el panel se lleva a la vista
+  window.lrAgendaConfig = { abrir: function (junto) { poner(true, junto === true); }, cerrar: function () { poner(false); } };
   /* Cerrar: botón de arriba, botón de abajo y Esc */
-  var pie = document.createElement('p'); pie.className = 'agenda-config-pie'; pie.innerHTML = '<button type="button" class="boton-secundario" data-cerrar-config>Cerrar configuración</button>'; panel.appendChild(pie);
-  panel.addEventListener('click', function (e) { if (e.target.closest('[data-cerrar-config]')) { poner(false); btn.focus({ preventScroll: true }); btn.scrollIntoView({ block: 'center', behavior: 'smooth' }); } });
+  var pie = document.createElement('p'); pie.className = 'agenda-config-pie'; pie.innerHTML = '<button type="button" class="boton-secundario" data-cerrar-config>← Volver a mi agenda</button>'; panel.appendChild(pie);
+  panel.addEventListener('click', function (e) { if (e.target.closest('[data-cerrar-config]')) { poner(false); window.scrollTo(0, 0); btn.focus({ preventScroll: true }); } });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden && !document.querySelector('dialog[open]')) { poner(false); btn.focus(); } });
 
   /* ---- Color ---- */
