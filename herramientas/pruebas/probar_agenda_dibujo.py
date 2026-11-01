@@ -58,8 +58,8 @@ with sync_playwright() as p:
     T.v('«Agregar página» abre una hoja nueva en blanco', 'Página 2 de 2' in pg.inner_text('#puntos-cuenta') and guardado(pg).get('_puntosN') == 2)
     # Hoja de dibujo (antes «Hoja de puntos»): todos los colores
     T.v('se llama «Hoja de dibujo» en el menú, el índice y el título', 'Hoja de dibujo' in pg.inner_text('#menu-hojas-lista a[data-hoja="hoja-puntos"]') and 'Hoja de dibujo' in pg.inner_text('#hoja-puntos h3') and 'Hoja de puntos' not in pg.inner_text('#indice-agenda'))
-    T.v('hay 12 colores y un selector libre de cualquier color', pg.locator('#puntos-lienzo .dib-barra button.dib-color').count() == 12 and pg.locator('#puntos-lienzo .dib-color-libre input[type=color]').count() == 1)
-    pg.evaluate("() => { const i = document.querySelector('#puntos-lienzo .dib-color-libre input'); i.value = '#12abef'; i.dispatchEvent(new Event('input', {bubbles: true})); }")
+    T.v('hay 12 colores, una paleta de 60 colores más y un selector libre', pg.locator('#puntos-lienzo .dib-barra button.dib-color:not(.dib-color-libre)').count() == 12 and pg.locator('#puntos-lienzo .dib-paleta .dib-tono[data-hex]').count() >= 60 and pg.locator('#puntos-lienzo .dib-paleta input[type=color]').count() == 1)
+    pg.evaluate("() => { const i = document.querySelector('#puntos-lienzo .dib-paleta input[type=color]'); i.value = '#12abef'; i.dispatchEvent(new Event('input', {bubbles: true})); }")
     trazo(pg, '#puntos-lienzo canvas', [[70, 70], [120, 160]])
     T.v('con el selector libre el trazo guarda el color elegido', guardado(pg).get('_dib', {}).get('puntos:2', {}).get('s', [[None]])[-1][0] == '#12abef', guardado(pg).get('_dib', {}).get('puntos:2'))
     pg.click('#puntos-lienzo .dib-barra button.dib-color[data-c="7"]')

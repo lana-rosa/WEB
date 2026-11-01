@@ -23,7 +23,7 @@
     var barra = document.createElement('div'); barra.className = 'dib-barra no-imprimir'; barra.setAttribute('role', 'toolbar'); barra.setAttribute('aria-label', 'Herramientas del dibujo');
     barra.innerHTML = '<button type="button" data-h="pluma" aria-pressed="true" title="Dibujar">✏️</button><button type="button" data-h="borrar" aria-pressed="false" title="Borrar un trazo">🧽</button>' +
       COLORES.map(function (c, i) { return '<button type="button" class="dib-color" data-c="' + i + '" aria-label="Color ' + NOMBRES[i] + '" style="--c:' + c + '" aria-pressed="' + (i === 0) + '"></button>'; }).join('') +
-      '<label class="dib-color dib-color-libre" title="Elegir cualquier color" aria-label="Elegir cualquier color"><input type="color" value="#2B2B30" aria-label="Elegir cualquier color"></label>' +
+      '<button type="button" class="dib-color dib-color-libre" aria-expanded="false" title="Más colores" aria-label="Más colores"></button>' +
       ANCHOS.map(function (a, i) { return '<button type="button" class="dib-ancho" data-a="' + i + '" aria-label="Línea ' + ['fina', 'media', 'gruesa'][i] + '" aria-pressed="' + (i === 1) + '"><i style="height:' + Math.max(2, a) + 'px"></i></button>'; }).join('') +
       '<button type="button" data-acc="deshacer" title="Deshacer">↩️</button><button type="button" data-acc="limpiar" title="Borrar todo el dibujo">🗑️</button>' +
       (foto ? '<label class="dib-subir" title="Subir una foto del diseño">📷 Subir foto<input type="file" accept="image/*" hidden></label>' : '') +
@@ -106,11 +106,23 @@
       barra.querySelectorAll('[data-a]').forEach(function (x) { x.setAttribute('aria-pressed', String(+x.dataset.a === est.ancho)); });
       libre.classList.toggle('activo', typeof est.color === 'string');
     });
-    var libre = barra.querySelector('.dib-color-libre'), selector = libre.querySelector('input');
-    selector.addEventListener('input', function () {
-      est.color = selector.value; libre.style.setProperty('--c', selector.value); libre.classList.add('activo');
+    /* Más colores: una paleta propia (60 colores, de claros a oscuros) más el selector del navegador por si se quiere otro */
+    var libre = barra.querySelector('.dib-color-libre'), paleta = document.createElement('div'); paleta.className = 'dib-paleta'; paleta.hidden = true;
+    var tonos = [];
+    [0, 20, 40, 60, 90, 130, 170, 200, 220, 250, 280, 320].forEach(function (h) { [[88, 80], [78, 66], [72, 52], [70, 38], [64, 26]].forEach(function (sl) { tonos.push(hsl(h, sl[0], sl[1])); }); });
+    ['#FFFFFF', '#E0E0E0', '#BDBDBD', '#757575', '#424242', '#000000', '#D7B899', '#A47551', '#7B4B2A', '#5D4037', '#FFCCBC', '#F8BBD0'].forEach(function (c) { tonos.push(c); });
+    function hsl(h, sa, l) { sa /= 100; l /= 100; var a = sa * Math.min(l, 1 - l), f = function (n) { var k = (n + h / 30) % 12, c = l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)); return Math.round(255 * c).toString(16).padStart(2, '0'); }; return ('#' + f(0) + f(8) + f(4)).toUpperCase(); }
+    paleta.innerHTML = tonos.map(function (c) { return '<button type="button" class="dib-tono" data-hex="' + c + '" aria-label="Color ' + c + '" style="--c:' + c + '"></button>'; }).join('') +
+      '<label class="dib-tono dib-tono-otro" title="Elegir otro color con el selector" aria-label="Elegir otro color con el selector">+<input type="color" value="#2B2B30" aria-label="Elegir otro color"></label>';
+    barra.appendChild(paleta);
+    var selector = paleta.querySelector('input');
+    function elegirLibre(hex) {
+      est.color = hex; libre.style.setProperty('--c', hex); libre.classList.add('activo');
       barra.querySelectorAll('[data-c]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
-    });
+    }
+    libre.addEventListener('click', function () { paleta.hidden = !paleta.hidden; libre.setAttribute('aria-expanded', String(!paleta.hidden)); });
+    paleta.addEventListener('click', function (e) { var t = e.target.closest('.dib-tono[data-hex]'); if (t) { elegirLibre(t.dataset.hex); paleta.hidden = true; libre.setAttribute('aria-expanded', 'false'); } });
+    selector.addEventListener('input', function () { elegirLibre(selector.value); });
     barra.querySelector('.dib-dedo input').addEventListener('change', function (e) { est.dedo = e.target.checked; decir(est.dedo ? 'El dedo dibuja.' : 'El dedo mueve la página; dibuja con el lápiz digital o el mouse.'); });
     /* foto del diseño: se reduce y se guarda con la agenda */
     var entrada = barra.querySelector('.dib-subir input');
