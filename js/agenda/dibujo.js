@@ -22,7 +22,7 @@
     cont.classList.add('dib-contenedor'); cont.textContent = '';
     var barra = document.createElement('div'); barra.className = 'dib-barra no-imprimir'; barra.setAttribute('role', 'toolbar'); barra.setAttribute('aria-label', 'Herramientas del dibujo');
     barra.innerHTML = '<button type="button" data-h="pluma" aria-pressed="true" title="Dibujar">✏️</button><button type="button" data-h="borrar" aria-pressed="false" title="Borrar un trazo">🧽</button>' +
-      COLORES.map(function (c, i) { return '<button type="button" class="dib-color" data-c="' + i + '" aria-label="Color ' + NOMBRES[i] + '" style="--c:' + c + '" aria-pressed="' + (i === 0) + '"></button>'; }).join('') +
+      COLORES.slice(0, 5).map(function (c, i) { return '<button type="button" class="dib-color" data-c="' + i + '" aria-label="Color ' + NOMBRES[i] + '" style="--c:' + c + '" aria-pressed="' + (i === 0) + '"></button>'; }).join('') +
       '<button type="button" class="dib-color dib-color-libre" aria-expanded="false" title="Más colores" aria-label="Más colores"></button>' +
       ANCHOS.map(function (a, i) { return '<button type="button" class="dib-ancho" data-a="' + i + '" aria-label="Línea ' + ['fina', 'media', 'gruesa'][i] + '" aria-pressed="' + (i === 1) + '"><i style="height:' + Math.max(2, a) + 'px"></i></button>'; }).join('') +
       '<button type="button" data-acc="deshacer" title="Deshacer">↩️</button><button type="button" data-acc="limpiar" title="Borrar todo el dibujo">🗑️</button>' +
@@ -106,23 +106,42 @@
       barra.querySelectorAll('[data-a]').forEach(function (x) { x.setAttribute('aria-pressed', String(+x.dataset.a === est.ancho)); });
       libre.classList.toggle('activo', typeof est.color === 'string');
     });
-    /* Más colores: una paleta propia (60 colores, de claros a oscuros) más el selector del navegador por si se quiere otro */
-    var libre = barra.querySelector('.dib-color-libre'), paleta = document.createElement('div'); paleta.className = 'dib-paleta'; paleta.hidden = true;
-    var tonos = [];
-    [0, 20, 40, 60, 90, 130, 170, 200, 220, 250, 280, 320].forEach(function (h) { [[88, 80], [78, 66], [72, 52], [70, 38], [64, 26]].forEach(function (sl) { tonos.push(hsl(h, sl[0], sl[1])); }); });
-    ['#FFFFFF', '#E0E0E0', '#BDBDBD', '#757575', '#424242', '#000000', '#D7B899', '#A47551', '#7B4B2A', '#5D4037', '#FFCCBC', '#F8BBD0'].forEach(function (c) { tonos.push(c); });
-    function hsl(h, sa, l) { sa /= 100; l /= 100; var a = sa * Math.min(l, 1 - l), f = function (n) { var k = (n + h / 30) % 12, c = l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)); return Math.round(255 * c).toString(16).padStart(2, '0'); }; return ('#' + f(0) + f(8) + f(4)).toUpperCase(); }
-    paleta.innerHTML = tonos.map(function (c) { return '<button type="button" class="dib-tono" data-no-traducir data-hex="' + c + '" aria-label="' + c + '" style="--c:' + c + '"></button>'; }).join('') +
-      '<label class="dib-tono dib-tono-otro" title="Elegir otro color con el selector" aria-label="Elegir otro color con el selector">+<input type="color" value="#2B2B30" aria-label="Elegir otro color"></label>';
-    barra.appendChild(paleta);
-    var selector = paleta.querySelector('input');
+    /* Más colores: una rueda de colores (como la de Configuración) para elegir cualquiera, y «Agregar» lo deja guardado junto a los 5 de siempre (pedido de Jennifer, 1-nov-2026) */
+    var libre = barra.querySelector('.dib-color-libre'), rueda = document.createElement('div'); rueda.className = 'dib-rueda'; rueda.hidden = true;
+    rueda.innerHTML = '<div class="dr-disco" role="slider" tabindex="0" aria-label="Elegir el tono y la intensidad del color"><span class="dr-punto"></span></div>' +
+      '<div class="dr-lado"><label class="dr-etq">Claridad<input type="range" class="dr-claridad" min="25" max="100" value="100" aria-label="Claridad"></label>' +
+      '<div class="dr-muestra"><span class="dr-color"></span><b class="dr-hex" data-no-traducir>#E74E96</b></div>' +
+      '<button type="button" class="boton-primario boton-chico dr-agregar">Agregar a mis colores</button></div>';
+    barra.appendChild(rueda);
+    var disco = rueda.querySelector('.dr-disco'), mrc = rueda.querySelector('.dr-punto'), claridad = rueda.querySelector('.dr-claridad'), hexEl = rueda.querySelector('.dr-hex'), vista = rueda.querySelector('.dr-color');
+    var tono = 330, intens = 0.7, MIOS = 'lrDibColores', mios = [];
+    try { mios = JSON.parse(localStorage.getItem(MIOS) || '[]').filter(function (c) { return /^#[0-9a-f]{6}$/i.test(c); }).slice(0, 8); } catch (e) { mios = []; }
+    function hsv(h, sa, v) { var c = v * sa, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = v - c, r = 0, g = 0, b = 0; if (h < 60) { r = c; g = x; } else if (h < 120) { r = x; g = c; } else if (h < 180) { g = c; b = x; } else if (h < 240) { g = x; b = c; } else if (h < 300) { r = x; b = c; } else { r = c; b = x; } return '#' + [r, g, b].map(function (q) { return ('0' + Math.round((q + m) * 255).toString(16)).slice(-2); }).join('').toUpperCase(); }
+    function colorRueda() { return hsv(tono, intens, claridad.value / 100); }
+    function pintarRueda() {
+      var hex = colorRueda(); hexEl.textContent = hex; vista.style.background = hex;
+      var r = disco.clientWidth / 2, a = tono * Math.PI / 180; mrc.style.left = (r + Math.cos(a) * intens * r) + 'px'; mrc.style.top = (r + Math.sin(a) * intens * r) + 'px';
+      disco.style.setProperty('--v', claridad.value / 100); return hex;
+    }
     function elegirLibre(hex) {
       est.color = hex; libre.style.setProperty('--c', hex); libre.classList.add('activo');
-      barra.querySelectorAll('[data-c]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      barra.querySelectorAll('[data-c], .dib-mio').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
     }
-    libre.addEventListener('click', function () { paleta.hidden = !paleta.hidden; libre.setAttribute('aria-expanded', String(!paleta.hidden)); });
-    paleta.addEventListener('click', function (e) { var t = e.target.closest('.dib-tono[data-hex]'); if (t) { elegirLibre(t.dataset.hex); paleta.hidden = true; libre.setAttribute('aria-expanded', 'false'); } });
-    selector.addEventListener('input', function () { elegirLibre(selector.value); });
+    function pintarMios() {
+      barra.querySelectorAll('.dib-mio').forEach(function (x) { x.remove(); });
+      mios.forEach(function (c) { var b = document.createElement('button'); b.type = 'button'; b.className = 'dib-color dib-mio'; b.dataset.hex = c; b.style.setProperty('--c', c); b.setAttribute('aria-label', c); b.setAttribute('data-no-traducir', ''); b.setAttribute('aria-pressed', String(est.color === c)); libre.parentNode.insertBefore(b, libre); });
+    }
+    function mover(e) { var r = disco.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2, dx = e.clientX - cx, dy = e.clientY - cy; tono = (Math.atan2(dy, dx) * 180 / Math.PI + 360) % 360; intens = Math.min(1, Math.sqrt(dx * dx + dy * dy) / (r.width / 2)); elegirLibre(pintarRueda()); }
+    var arrastra = false;
+    disco.addEventListener('pointerdown', function (e) { arrastra = true; try { disco.setPointerCapture(e.pointerId); } catch (x) {} mover(e); e.preventDefault(); });
+    disco.addEventListener('pointermove', function (e) { if (arrastra) mover(e); });
+    disco.addEventListener('pointerup', function () { arrastra = false; });
+    disco.addEventListener('keydown', function (e) { var d = { ArrowLeft: [-8, 0], ArrowRight: [8, 0], ArrowUp: [0, 0.06], ArrowDown: [0, -0.06] }[e.key]; if (!d) return; tono = (tono + d[0] + 360) % 360; intens = Math.max(0, Math.min(1, intens + d[1])); elegirLibre(pintarRueda()); e.preventDefault(); });
+    claridad.addEventListener('input', function () { elegirLibre(pintarRueda()); });
+    rueda.querySelector('.dr-agregar').addEventListener('click', function () { var hex = colorRueda(); if (mios.indexOf(hex) < 0) { mios.unshift(hex); mios = mios.slice(0, 8); try { localStorage.setItem(MIOS, JSON.stringify(mios)); } catch (e) {} } elegirLibre(hex); pintarMios(); barra.querySelectorAll('.dib-mio').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.hex === hex)); }); rueda.hidden = true; libre.setAttribute('aria-expanded', 'false'); decir('Color agregado a tus colores.'); });
+    libre.addEventListener('click', function () { rueda.hidden = !rueda.hidden; libre.setAttribute('aria-expanded', String(!rueda.hidden)); if (!rueda.hidden) pintarRueda(); });
+    barra.addEventListener('click', function (e) { var m = e.target.closest('.dib-mio'); if (m) { elegirLibre(m.dataset.hex); m.setAttribute('aria-pressed', 'true'); } });
+    pintarMios();
     barra.querySelector('.dib-dedo input').addEventListener('change', function (e) { est.dedo = e.target.checked; decir(est.dedo ? 'El dedo dibuja.' : 'El dedo mueve la página; dibuja con el lápiz digital o el mouse.'); });
     /* foto del diseño: se reduce y se guarda con la agenda */
     var entrada = barra.querySelector('.dib-subir input');

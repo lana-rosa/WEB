@@ -636,3 +636,18 @@ body.dib-bloqueo { overflow: hidden; }
 .dib-barra .dib-paleta .dib-tono { width: 34px; min-height: 34px; height: 34px; }
 .dib-barra .dib-paleta .dib-tono[data-hex] { background: var(--c) !important; }
 @media (pointer: coarse) { .dib-barra .dib-paleta .dib-tono { width: 40px; min-height: 40px; height: 40px; } .dib-barra .dib-paleta { grid-template-columns: repeat(auto-fill, 40px); } }
+
+/* Hoja de dibujo: rueda de colores + «Agregar a mis colores» (1-nov-2026) */
+.dib-barra .dib-paleta { display: none !important; }
+.dib-rueda { order: 100; flex: 0 0 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; padding: 12px; margin-top: 4px; background: #fff; border: 1.5px solid #F7C6DE; border-radius: 16px; }
+.dib-rueda[hidden] { display: none; }
+.dr-disco { --v: 1; position: relative; width: 168px; height: 168px; flex: none; border-radius: 50%; cursor: crosshair; touch-action: none; background: radial-gradient(circle closest-side, #fff, rgba(255, 255, 255, 0)), conic-gradient(from 90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00); box-shadow: inset 0 0 0 1.5px rgba(69, 69, 74, .2); filter: brightness(calc(.25 + var(--v) * .75)); }
+.dr-disco:focus-visible { outline: 3px solid var(--lila, #9EA2F9); outline-offset: 3px; }
+.dr-punto { position: absolute; width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1.5px #45454A, 0 2px 6px rgba(0, 0, 0, .35); pointer-events: none; }
+.dr-lado { display: grid; gap: 10px; min-width: 190px; flex: 1 1 190px; }
+.dr-etq { display: grid; gap: 4px; font-size: .78rem; font-weight: 700; color: #C81B6D; }
+.dr-claridad { width: 100%; accent-color: #E01E79; }
+.dr-muestra { display: flex; align-items: center; gap: 10px; font-size: .9rem; }
+.dr-color { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1.5px rgba(69, 69, 74, .25); background: #E74E96; }
+.dib-barra .dib-mio { width: 28px; height: 28px; }
+.dib-rueda .dr-agregar { min-height: 44px; background: #E01E79; color: #fff; border: 0; border-radius: 999px; padding: 8px 18px; font: 700 .9rem 'Hanken Grotesk', sans-serif; cursor: pointer; }

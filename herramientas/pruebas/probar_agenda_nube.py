@@ -26,7 +26,7 @@ class Nube:
         else: out = None
         r.fulfill(status=200, content_type='application/json', body=json.dumps(out))
 def contexto(b, nube=None, sesion=True):
-    ctx = b.new_context(viewport={'width': 1280, 'height': 900}); ctx.add_init_script("window.addEventListener('load', () => setTimeout(() => window.lrAgendaConfig && window.lrAgendaConfig.abrir(), 30));")
+    ctx = b.new_context(viewport={'width': 1280, 'height': 900}); ctx.add_init_script("window.addEventListener('load', () => setTimeout(() => window.lrAgendaConfig && window.lrAgendaConfig.abrir(true), 30));")
     if sesion: ctx.add_init_script("if (!localStorage.getItem('sb-ngjoognzvehwjtpqwrqe-auth-token')) localStorage.setItem('sb-ngjoognzvehwjtpqwrqe-auth-token', %s)" % json.dumps(SESION))
     if nube: ctx.route('**/rest/v1/rpc/agenda_nube_*', nube.ruta)
     ctx.route('**/rest/v1/rpc/mis_compras_*', lambda r: r.fulfill(status=200, content_type='application/json', body='[]'))

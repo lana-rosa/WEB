@@ -54,12 +54,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=53">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=40">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=42">
 <link rel="stylesheet" href="/css/agenda-diseno.css?v=20">
 <link rel="stylesheet" href="/css/agenda-panel.css?v=15">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=19">
-<link rel="stylesheet" href="/css/agenda-colores.css?v=36">
+<link rel="stylesheet" href="/css/agenda-colores.css?v=41">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
 <link rel="stylesheet" href="/css/agenda-panel-vida.css?v=29">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=14">
@@ -918,7 +918,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button type="submit" aria-label="Buscar"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
       </form>
     </div>
-    <button type="button" class="boton-config-barra no-imprimir" id="agenda-config-btn" aria-label="Configuración" title="Configuración" aria-expanded="false" aria-controls="agenda-config"><img src="/img/agenda/menu/btn-config.webp?v=2" width="32" height="32" alt="" aria-hidden="true" decoding="async"></button>
+    <button type="button" class="boton-config-barra no-imprimir" id="agenda-config-btn" aria-label="Configuración" title="Configuración" aria-expanded="false" aria-controls="agenda-config"><img src="/img/agenda/menu/btn-config-centrado.webp?v=1" width="32" height="32" alt="" aria-hidden="true" decoding="async"></button>
     <a href="/cuenta.html" class="boton-cuenta-header" aria-label="Mi cuenta"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span class="solo-lectores">Mi cuenta</span></a>
     <button class="boton-carrito-header" id="boton-carrito" aria-label="Ver carrito de compras">
       <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg><span class="solo-lectores">Carrito</span><span class="contador-carrito" id="contador-carrito">0</span>
@@ -956,24 +956,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="agenda-config no-imprimir" id="agenda-config" role="region" aria-label="Configuración de la agenda" hidden>
       <div class="agenda-config-cab"><strong>⚙️ Configuración</strong><button type="button" class="agenda-config-cerrar" data-cerrar-config aria-label="Cerrar la configuración"><span aria-hidden="true">✕</span> Cerrar</button></div>
-      <details class="donde-datos" id="donde-datos">
-        <summary>🔒 ¿Dónde se guardan mis datos?</summary>
-        <div class="dd-cuerpo">
-          <p class="dd-estado" id="dd-estado" role="status"></p>
-          <p class="dd-espacio" id="dd-espacio"></p>
-          <ul>
-            <li><strong>En tu dispositivo:</strong> todo lo que escribes se guarda en este celular, tablet o computador, en este navegador. Es lo que ves cada vez que abres la agenda.</li>
-            <li><strong>En tu cuenta:</strong> solo tu nombre y tu correo, y el estado de tu membresía. Tus hojas <strong>no</strong> viajan a tu cuenta, a menos que actives «☁️ Guardar mi agenda en mi cuenta», que es opcional y pide tu autorización.</li>
-            <li><strong>En tu Google Drive (opcional):</strong> si conectas «Guardar en tu Google Drive», tu agenda también se guarda en una carpeta oculta de TU Drive y se sincroniza sola entre tus aparatos. Esos datos no pasan por Lana Rosa ni los puede leer nadie del equipo.</li>
-            <li><strong>Si inicias sesión en otro celular o navegador:</strong> la agenda llegará vacía, salvo que tengas conectado tu Google Drive, tengas la copia en tu cuenta activa o cargues un archivo de copia.</li>
-            <li><strong>Si cierras sesión:</strong> tus hojas siguen guardadas en este dispositivo; cerrar sesión no las borra. Si otra persona usa este mismo navegador, aunque entre con otra cuenta, verá lo mismo. Si compartes el dispositivo, usa «Borrar lo escrito» (después de guardar una copia) o tu propio perfil del navegador.</li>
-            <li><strong>Si borras el historial o los datos del navegador, o cambias de celular:</strong> se pierde lo guardado en el dispositivo. Para no perderlo, usa «⬇️ Guardar una copia» cada cierto tiempo o activa la copia en tu cuenta.</li>
-            <li><strong>Si pierdes el dispositivo:</strong> entra con tu correo en uno nuevo y recupera tu copia en la cuenta (si la tenías activa) o carga tu archivo de copia.</li>
-            <li><strong>Quién lo ve:</strong> nadie del equipo de Lana Rosa ve lo que escribes en tus hojas. Si activas la copia en tu cuenta, queda guardada para ti y puedes borrarla cuando quieras. Los datos de tus clientas (nombres, teléfonos, cumpleaños) quedan solo donde tú los guardes.</li>
-          </ul>
-          <small>Más detalles en la <a href="/politicas.html#datos">Política de datos</a>.</small>
-        </div>
-      </details>
+            <section class="cfg-grupo"><h3 class="cfg-titulo">Tu agenda</h3>
       <div class="cuaderno-portada">
     <div class="portada-agenda">
       <label for="ag-duena">Esta agenda es de</label>
@@ -987,8 +970,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda en este dispositivo (y en tu cuenta, si activaste la copia): si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
     </div>
 
-      <div class="agenda-tour-fila"><button type="button" class="enlace-copia" id="agenda-tour-btn">🧭 Ver el tutorial de bienvenida</button></div>
+      </section>
+      <section class="cfg-grupo"><h3 class="cfg-titulo">Color de la agenda</h3>
       <fieldset class="agenda-colores" id="agenda-colores"><legend>Color de la agenda</legend><div class="ac-opciones" id="ac-opciones"></div></fieldset>
+      </section>
+      <section class="cfg-grupo"><h3 class="cfg-titulo">Guardar y llevar tu agenda</h3>
     <div class="copia-agenda">
       <button type="button" class="enlace-copia" id="agenda-descargar">⬇️ Guardar una copia</button>
       <button type="button" class="enlace-copia" id="nube-activar" hidden>☁️ Guardar mi agenda en mi cuenta</button>
@@ -1000,6 +986,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="nube-estado" id="nube-estado" role="status"></span>
       <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular; o actívala en tu cuenta (opcional y gratis) y vuelve a tenerla aunque borres el historial. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
     </div>
+      </section>
+      <section class="cfg-grupo"><h3 class="cfg-titulo">Conectar con Google</h3>
     <div class="calendario-sync no-imprimir" id="calendario-sync" hidden>
       <p class="cs-titulo"><span aria-hidden="true">📅</span> Google Calendar</p>
       <p class="cs-texto" id="cs-texto"></p>
@@ -1027,6 +1015,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="cs-aviso" id="ds-aviso" role="status"></p>
       <small class="nota-copia">Tu agenda se guarda en una carpeta oculta de tu propio Google Drive que solo esta app puede abrir: no puede ver el resto de tu Drive. Lana Rosa no recibe tus datos ni puede leerlos; solo guardamos el permiso de acceso (cifrado) para sincronizarte sola, y lo puedes quitar cuando quieras. Si cambias algo en dos aparatos a la vez, se juntan los cambios y no se pierde nada. <a href="/politicas.html#datos">Más información</a>.</small>
     </div>
+      </section>
+      <section class="cfg-grupo"><h3 class="cfg-titulo">Ayuda y recomendaciones</h3>
+      <p class="cfg-reco"><strong>Recomendación:</strong> para escribir más rápido, en el celular usa el micrófono del teclado para dictar y, si tienes lápiz digital, la opción «Lápiz» de cada hoja para escribir a mano. En el computador, el botón «Dictar» aparece junto a cada casilla.</p>
+      <div class="agenda-tour-fila"><button type="button" class="enlace-copia" id="agenda-tour-btn">🧭 Ver el tutorial de bienvenida</button></div>
+      <details class="donde-datos" id="donde-datos">
+        <summary>🔒 ¿Dónde se guardan mis datos?</summary>
+        <div class="dd-cuerpo">
+          <p class="dd-estado" id="dd-estado" role="status"></p>
+          <p class="dd-espacio" id="dd-espacio"></p>
+          <ul>
+            <li><strong>En tu dispositivo:</strong> todo lo que escribes se guarda en este celular, tablet o computador, en este navegador. Es lo que ves cada vez que abres la agenda.</li>
+            <li><strong>En tu cuenta:</strong> solo tu nombre y tu correo, y el estado de tu membresía. Tus hojas <strong>no</strong> viajan a tu cuenta, a menos que actives «☁️ Guardar mi agenda en mi cuenta», que es opcional y pide tu autorización.</li>
+            <li><strong>En tu Google Drive (opcional):</strong> si conectas «Guardar en tu Google Drive», tu agenda también se guarda en una carpeta oculta de TU Drive y se sincroniza sola entre tus aparatos. Esos datos no pasan por Lana Rosa ni los puede leer nadie del equipo.</li>
+            <li><strong>Si inicias sesión en otro celular o navegador:</strong> la agenda llegará vacía, salvo que tengas conectado tu Google Drive, tengas la copia en tu cuenta activa o cargues un archivo de copia.</li>
+            <li><strong>Si cierras sesión:</strong> tus hojas siguen guardadas en este dispositivo; cerrar sesión no las borra. Si otra persona usa este mismo navegador, aunque entre con otra cuenta, verá lo mismo. Si compartes el dispositivo, usa «Borrar lo escrito» (después de guardar una copia) o tu propio perfil del navegador.</li>
+            <li><strong>Si borras el historial o los datos del navegador, o cambias de celular:</strong> se pierde lo guardado en el dispositivo. Para no perderlo, usa «⬇️ Guardar una copia» cada cierto tiempo o activa la copia en tu cuenta.</li>
+            <li><strong>Si pierdes el dispositivo:</strong> entra con tu correo en uno nuevo y recupera tu copia en la cuenta (si la tenías activa) o carga tu archivo de copia.</li>
+            <li><strong>Quién lo ve:</strong> nadie del equipo de Lana Rosa ve lo que escribes en tus hojas. Si activas la copia en tu cuenta, queda guardada para ti y puedes borrarla cuando quieras. Los datos de tus clientas (nombres, teléfonos, cumpleaños) quedan solo donde tú los guardes.</li>
+          </ul>
+          <small>Más detalles en la <a href="/politicas.html#datos">Política de datos</a>.</small>
+        </div>
+      </details>
+      </section>
     </div>
   </section>
 
@@ -1049,7 +1060,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button type="button" class="boton-secundario boton-chico voz-global" data-voz="dictar">🎤 Dictar</button>
         <button type="button" class="boton-secundario boton-chico" id="tinta-modo" aria-pressed="false">✏️ Lápiz</button>
         <span class="voz-estado voz-estado-global" role="status" aria-live="polite"></span>
-        <span class="tip-teclado no-imprimir">Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.</span>
       </div>
       <button type="button" class="barra-toggle no-imprimir" id="barra-toggle" aria-expanded="false" aria-controls="barra-agenda"><span>🎨 Color de la letra y resaltar</span><span class="flecha" aria-hidden="true">▾</span></button>
       <div class="barra-agenda no-imprimir" id="barra-agenda" role="toolbar" aria-label="Herramientas de la agenda">
@@ -4202,7 +4212,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
 <script src="/js/agenda/idioma.js?v=25" defer></script>
-<script src="/js/agenda/config.js?v=16" defer></script>
+<script src="/js/agenda/config.js?v=17" defer></script>
 <script src="/js/agenda/tour.js?v=6" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
 <script src="/js/agenda/formas.js?v=3" defer></script>
@@ -4216,11 +4226,13 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/color-casilla.js?v=1" defer></script>
 <script src="/js/agenda/recursos-datos.js?v=1" defer></script>
 <script src="/js/agenda/recursos.js?v=4" defer></script>
+<script src="/js/agenda/herramientas-abajo.js?v=1" defer></script>
+<script src="/js/agenda/lupa.js?v=1" defer></script>
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=2" defer></script>
 <script src="/js/agenda/vacios.js?v=4" defer></script>
-<script src="/js/agenda/panel.js?v=27" defer></script>
+<script src="/js/agenda/panel.js?v=28" defer></script>
 <script src="/js/agenda/iconos.js?v=28" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=2" defer></script>
@@ -4242,7 +4254,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script type="module" src="/js/agenda/drive-sync.js?v=2"></script>
 <script type="module" src="/js/agenda/membresia.js?v=3"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
-<script src="/js/agenda/dibujo.js?v=8" defer></script>
+<script src="/js/agenda/dibujo.js?v=12" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
 <script src="/js/agenda/exportar.js?v=3" defer></script>

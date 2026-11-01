@@ -272,7 +272,8 @@
   var vista = null;
   function crearVista() {
     vista = txt('section', 'vista-seccion no-imprimir'); vista.id = 'vista-seccion'; vista.hidden = true; vista.setAttribute('aria-labelledby', 'vs-titulo');
-    var padre = document.querySelector('.hojas-contenido'); padre.insertBefore(vista, padre.querySelector('.selector-hoja') ? padre.querySelector('.selector-hoja').nextSibling : padre.firstChild);
+    var padre = document.querySelector('.hojas-contenido'); var filaH = padre.querySelector('.fila-hojas'), cajaB = document.getElementById('caja-buscar'), selH = padre.querySelector('.selector-hoja'), tras = cajaB && cajaB.parentNode === padre ? cajaB : (filaH && filaH.parentNode === padre ? filaH : (selH && selH.parentNode === padre ? selH : null));   // la lista de hojas va dentro de la fila de la lupa
+    padre.insertBefore(vista, tras ? tras.nextSibling : padre.firstChild);
   }
   function limpio(t) { return String(t || '').replace(/^[^\p{L}\p{N}]+/u, '').trim(); }
   window.lrSeccion = {

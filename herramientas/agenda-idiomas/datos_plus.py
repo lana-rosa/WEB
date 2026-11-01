@@ -282,3 +282,17 @@ FILAS += [
  ('Ej. 40', 'E.g. 40', 'Ex. 40'),
  ('Todavía no tienes fechas en los próximos 90 días.', 'You have no dates in the next 90 days yet.', 'Você ainda não tem datas nos próximos 90 dias.'),
 ]
+
+FILAS += [
+ ('Guardar y llevar tu agenda', 'Save and take your planner with you', 'Salvar e levar sua agenda'),
+ ('Ayuda y recomendaciones', 'Help and tips', 'Ajuda e dicas'),
+ ('← Volver a mi agenda', '← Back to my planner', '← Voltar à minha agenda'),
+ ('Recomendación:', 'Tip:', 'Dica:'),
+ ('para escribir más rápido, en el celular usa el micrófono del teclado para dictar y, si tienes lápiz digital, la opción «Lápiz» de cada hoja para escribir a mano. En el computador, el botón «Dictar» aparece junto a cada casilla.', 'to write faster, on your phone use the keyboard microphone to dictate and, if you have a digital pencil, the “Pencil” option on each sheet to handwrite. On a computer, the “Dictate” button appears next to each field.', 'para escrever mais rápido, no celular use o microfone do teclado para ditar e, se você tem caneta digital, a opção “Lápis” de cada folha para escrever à mão. No computador, o botão “Ditar” aparece ao lado de cada campo.'),
+]
+FILAS += [('Conectar con Google', 'Connect with Google', 'Conectar com o Google')]
+FILAS += [
+ ('Elegir el tono y la intensidad del color', 'Choose the hue and intensity of the color', 'Escolher o tom e a intensidade da cor'),
+ ('Agregar a mis colores', 'Add to my colors', 'Adicionar às minhas cores'),
+ ('Glosario y abreviaturas de crochet', 'Crochet glossary and abbreviations', 'Glossário e abreviaturas de crochê'),
+]

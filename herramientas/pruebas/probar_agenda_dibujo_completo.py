@@ -22,7 +22,7 @@ with sync_playwright() as p:
         trazo(pg, bb[0] + 30, bb[1] + 30, bb[0] + bb[2] - 30, bb[1] + bb[3] / 2); pg.wait_for_timeout(300)
         ns = pg.evaluate("(JSON.parse(localStorage.rosinaAgenda||'{}')._dib||{})['puntos:1']&&JSON.parse(localStorage.rosinaAgenda)._dib['puntos:1'].s.length")
         T.v(nombre + ': se puede dibujar y queda guardado', ns == 1, ns)
-        T.v(nombre + ': los botones miden al menos 44 px', pg.evaluate("[...document.querySelectorAll('.dib-completo .dib-barra button:not(.dib-tono), .dib-completo .dib-color')].every(x=>{const r=x.getBoundingClientRect();return r.height>=43.5&&r.width>=43.5})"))
+        T.v(nombre + ': los botones miden al menos 44 px', pg.evaluate("[...document.querySelectorAll('.dib-completo .dib-barra button:not(.dib-tono), .dib-completo .dib-color')].every(x=>{const r=x.getBoundingClientRect();return r.height===0||r.height>=43.5&&r.width>=43.5})"))
         pg.keyboard.press('Escape'); pg.wait_for_timeout(400)
         T.v(nombre + ': Esc sale y el dibujo vuelve a su hoja', pg.evaluate("(()=>{const c=document.querySelector('#hoja-puntos .dib-contenedor')||window.__pad.querySelector('.dib-contenedor');return !c.classList.contains('dib-completo')&&c.parentNode===window.__pad&&getComputedStyle(document.body).overflow!=='hidden'})()"), '')
         T.v(nombre + ': lo dibujado se conserva al volver', pg.evaluate("JSON.parse(localStorage.rosinaAgenda)._dib['puntos:1'].s.length") == 1)

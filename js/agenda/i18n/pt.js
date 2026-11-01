@@ -1698,5 +1698,14 @@ window.lrI18n.add("pt", {
 "Turco": "Turco",
 "Nada por cobrar. Los pedidos con abono incompleto aparecen aquí (viene de «Control de pedidos»).": "Nada a receber. Os pedidos com sinal incompleto aparecem aqui (vem de «Controle de pedidos»).",
 "Ej. 40": "Ex. 40",
-"Todavía no tienes fechas en los próximos 90 días.": "Você ainda não tem datas nos próximos 90 dias."
+"Todavía no tienes fechas en los próximos 90 días.": "Você ainda não tem datas nos próximos 90 dias.",
+"Guardar y llevar tu agenda": "Salvar e levar sua agenda",
+"Ayuda y recomendaciones": "Ajuda e dicas",
+"← Volver a mi agenda": "← Voltar à minha agenda",
+"Recomendación:": "Dica:",
+"para escribir más rápido, en el celular usa el micrófono del teclado para dictar y, si tienes lápiz digital, la opción «Lápiz» de cada hoja para escribir a mano. En el computador, el botón «Dictar» aparece junto a cada casilla.": "para escrever mais rápido, no celular use o microfone do teclado para ditar e, se você tem caneta digital, a opção “Lápis” de cada folha para escrever à mão. No computador, o botão “Ditar” aparece ao lado de cada campo.",
+"Conectar con Google": "Conectar com o Google",
+"Elegir el tono y la intensidad del color": "Escolher o tom e a intensidade da cor",
+"Agregar a mis colores": "Adicionar às minhas cores",
+"Glosario y abreviaturas de crochet": "Glossário e abreviaturas de crochê"
 });

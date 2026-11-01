@@ -127,8 +127,11 @@ main > :first-child { padding-top: 40px !important; }
 .menu-cuenta::-webkit-scrollbar, .pestanas-cuenta.filtros::-webkit-scrollbar { height: 6px; }
 .menu-cuenta::-webkit-scrollbar-track, .pestanas-cuenta.filtros::-webkit-scrollbar-track { background: var(--rosa-suave); border-radius: 999px; }
 .menu-cuenta::-webkit-scrollbar-thumb, .pestanas-cuenta.filtros::-webkit-scrollbar-thumb { background: var(--rosa-medio); border-radius: 999px; }
-.menu-cuenta { gap: 10px; margin: 0 0 6px; }
-.menu-cuenta .item-menu { flex: 0 0 auto; min-width: 88px; scroll-snap-align: start; }
+/* Rediseño (1-nov-2026, pedido de Jennifer): el menú ya no se desliza; se acomoda en una cuadrícula con todas las secciones a la vista */
+.menu-cuenta { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 8px; margin: 0 0 14px; overflow: visible; padding: 2px 0 6px; scroll-snap-type: none; }
+.menu-cuenta .item-menu { min-width: 0; padding: 10px 4px 8px; font-size: .82rem; border-radius: 14px; box-shadow: none; border: 1.5px solid var(--rosa-suave); }
+@media (max-width: 560px) { .menu-cuenta { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; } .menu-cuenta .item-menu { font-size: .66rem; padding: 9px 1px 7px; gap: 3px; overflow-wrap: normal; letter-spacing: -.01em; } .menu-cuenta .item-menu .ico { font-size: 1.35rem; } .insignia { right: 2px; top: 2px; } }
+.pestanas-cuenta.filtros { flex-wrap: wrap; overflow: visible; }
 .pestanas-cuenta.filtros button { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; }
 .item-menu { position: relative; font: inherit; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 4px 10px; border-radius: 16px; border: 2px solid transparent; background: var(--blanco); box-shadow: var(--sombra-suave); color: var(--tinta); cursor: pointer; font-weight: 700; font-size: 0.78rem; min-width: 0; }
 .item-menu .ico { font-size: 1.5rem; line-height: 1; }
