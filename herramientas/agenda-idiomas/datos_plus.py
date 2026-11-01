@@ -251,4 +251,6 @@ FILAS += [
  ('si conectas «Guardar en tu Google Drive», tu agenda también se guarda en una carpeta oculta de TU Drive y se sincroniza sola entre tus aparatos. Esos datos no pasan por Lana Rosa ni los puede leer nadie del equipo.',
   'if you connect «Save to your Google Drive», your planner is also saved in a hidden folder of YOUR Drive and syncs by itself between your devices. That data does not pass through Lana Rosa and nobody on the team can read it.',
   'se você conectar «Salvar no seu Google Drive», sua agenda também é salva em uma pasta oculta do SEU Drive e sincroniza sozinha entre seus aparelhos. Esses dados não passam pela Lana Rosa e ninguém da equipe pode lê-los.'),
+ ('Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.', 'To dictate or handwrite, use the microphone or pen on your keyboard.', 'Para ditar ou escrever à mão, use o microfone ou a caneta do seu teclado.'),
+ ('🎤 Dictar', '🎤 Dictate', '🎤 Ditar'),
 ]

@@ -13,8 +13,27 @@
   function decir(t) { estados.forEach(function (e) { e.textContent = t || ''; }); }
   function poner(b, on) { b.textContent = on ? '⏹️ Dejar de escuchar' : (b.dataset.texto || '🎤 Hablar para escribir'); b.setAttribute('aria-pressed', String(!!on)); }
   botones.forEach(function (b) { b.dataset.texto = b.textContent; b.setAttribute('aria-pressed', 'false'); });
+  /* En computador, al escribir en una casilla aparece «Dictar» junto a ella. En celular y tableta no: el teclado ya trae el micrófono y la escritura a mano (1-nov-2026, pedido de Jennifer). */
+  var chip = null;
+  if (SR && window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+    chip = document.createElement('button'); chip.type = 'button'; chip.className = 'voz-chip no-imprimir'; chip.dataset.voz = 'dictar'; chip.textContent = '🎤 Dictar'; chip.hidden = true;
+    chip.setAttribute('aria-label', 'Dictar en esta casilla'); chip.dataset.texto = chip.textContent; chip.setAttribute('aria-pressed', 'false'); document.body.appendChild(chip); botones.push(chip);
+  }
+  function ubicarChip() {
+    if (!chip) return; var el = ultimo;
+    if (!el || !document.body.contains(el) || !(el === document.activeElement || activo) || el.offsetParent === null) { if (!activo) chip.hidden = true; return; }
+    var r = el.getBoundingClientRect(); if (r.bottom < 60 || r.top > innerHeight - 40) { chip.hidden = true; return; }
+    chip.hidden = false; var w = chip.offsetWidth || 96, top = r.top - 34 > 70 ? r.top - 34 : r.bottom + 4;
+    chip.style.top = Math.round(top) + 'px'; chip.style.left = Math.round(Math.max(8, Math.min(innerWidth - w - 8, r.right - w))) + 'px';
+  }
+  if (chip) {
+    zona.addEventListener('focusin', function () { setTimeout(ubicarChip, 0); });
+    zona.addEventListener('focusout', function () { setTimeout(ubicarChip, 250); });
+    window.addEventListener('scroll', function () { requestAnimationFrame(ubicarChip); }, true); window.addEventListener('resize', ubicarChip);
+  }
   var SELECTOR = 'textarea[data-guardar], input[data-guardar]:not([type="checkbox"]):not([type="hidden"])';
-  zona.addEventListener('focusin', function (e) { var el = e.target; if (el.matches && el.matches(SELECTOR)) ultimo = el; });
+  var SELECTOR_VOZ = 'textarea, input[type="text"], input:not([type])';
+  zona.addEventListener('focusin', function (e) { var el = e.target; if (el.matches && (el.matches(SELECTOR) || (el.matches(SELECTOR_VOZ) && !el.readOnly && !el.disabled && el.id !== 'buscar-agenda'))) ultimo = el; });
 
   function comandos(t) {
     return t.replace(/\s*\b(nueva línea|salto de línea)\b\s*/gi, '\n').replace(/\s*\bpunto y aparte\b\s*/gi, '.\n').replace(/\s+\bcoma\b/gi, ',');
