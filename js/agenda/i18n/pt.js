@@ -1670,5 +1670,12 @@ window.lrI18n.add("pt", {
 "En tu Google Drive (opcional):": "No seu Google Drive (opcional):",
 "si conectas «Guardar en tu Google Drive», tu agenda también se guarda en una carpeta oculta de TU Drive y se sincroniza sola entre tus aparatos. Esos datos no pasan por Lana Rosa ni los puede leer nadie del equipo.": "se você conectar «Salvar no seu Google Drive», sua agenda também é salva em uma pasta oculta do SEU Drive e sincroniza sozinha entre seus aparelhos. Esses dados não passam pela Lana Rosa e ninguém da equipe pode lê-los.",
 "Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.": "Para ditar ou escrever à mão, use o microfone ou a caneta do seu teclado.",
-"🎤 Dictar": "🎤 Ditar"
+"🎤 Dictar": "🎤 Ditar",
+"Recursos de Rosina": "Recursos da Rosina",
+"El glosario ilustrado y las abreviaturas de crochet, a la mano y sin salir de tu agenda.": "O glossário ilustrado e as abreviaturas de crochê, à mão e sem sair da sua agenda.",
+"Buscar un término": "Buscar um termo",
+"Puntos básicos": "Pontos básicos",
+"Técnicas de amigurumi": "Técnicas de amigurumi",
+"Partes del tejido y patrones": "Partes do tecido e receitas",
+"¿Encontraste un patrón en inglés, portugués u otro idioma? Elige los idiomas que quieres ver y busca cada punto.": "Encontrou uma receita em inglês, português ou outro idioma? Escolha os idiomas que quer ver e procure cada ponto."
 });

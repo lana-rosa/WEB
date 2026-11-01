@@ -253,4 +253,11 @@ FILAS += [
   'se você conectar «Salvar no seu Google Drive», sua agenda também é salva em uma pasta oculta do SEU Drive e sincroniza sozinha entre seus aparelhos. Esses dados não passam pela Lana Rosa e ninguém da equipe pode lê-los.'),
  ('Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.', 'To dictate or handwrite, use the microphone or pen on your keyboard.', 'Para ditar ou escrever à mão, use o microfone ou a caneta do seu teclado.'),
  ('🎤 Dictar', '🎤 Dictate', '🎤 Ditar'),
+ ('Recursos de Rosina', "Rosina's resources", 'Recursos da Rosina'),
+ ('El glosario ilustrado y las abreviaturas de crochet, a la mano y sin salir de tu agenda.', 'The illustrated glossary and crochet abbreviations, at hand and without leaving your planner.', 'O glossário ilustrado e as abreviaturas de crochê, à mão e sem sair da sua agenda.'),
+ ('Buscar un término', 'Search for a term', 'Buscar um termo'),
+ ('Puntos básicos', 'Basic stitches', 'Pontos básicos'),
+ ('Técnicas de amigurumi', 'Amigurumi techniques', 'Técnicas de amigurumi'),
+ ('Partes del tejido y patrones', 'Parts of the fabric and patterns', 'Partes do tecido e receitas'),
+ ('¿Encontraste un patrón en inglés, portugués u otro idioma? Elige los idiomas que quieres ver y busca cada punto.', 'Found a pattern in English, Portuguese or another language? Choose the languages you want to see and look up each stitch.', 'Encontrou uma receita em inglês, português ou outro idioma? Escolha os idiomas que quer ver e procure cada ponto.'),
 ]

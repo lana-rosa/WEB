@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-panel.css?v=15">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=19">
-<link rel="stylesheet" href="/css/agenda-colores.css?v=34">
+<link rel="stylesheet" href="/css/agenda-colores.css?v=36">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
 <link rel="stylesheet" href="/css/agenda-panel-vida.css?v=29">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=14">
@@ -1073,7 +1073,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="agenda-layout">
       <aside class="menu-hojas" id="menu-hojas">
-        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 39</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 39 hojas ▾</span></button>
+        <button type="button" class="menu-hojas-toggle" id="menu-hojas-toggle" aria-expanded="false" aria-controls="menu-hojas-lista"><span class="mh-texto"><small id="menu-hojas-cuenta">Hoja 1 de 40</small><span id="menu-hojas-actual">📋 Ficha de proyecto</span></span><span class="mh-pildora" aria-hidden="true">Ver las 40 hojas ▾</span></button>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#panel-agenda" data-hoja="panel-agenda">Mi panel</a>
@@ -1092,6 +1092,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#coleccion-patrones" data-hoja="coleccion-patrones">📚 Mis patrones</a>
           <a href="#anio-tejiendo" data-hoja="anio-tejiendo">⭐ Mi año tejiendo</a>
           <a href="#lo-que-aprendi" data-hoja="lo-que-aprendi">🌟 Lo que aprendí</a>
+          <a href="#recursos-rosina" data-hoja="recursos-rosina">📖 Recursos de Rosina</a>
           <a href="#mis-ideas" data-hoja="mis-ideas">💭 Mis ideas</a>
           <a href="#disena-patron" data-hoja="disena-patron">✏️ Diseña tu patrón</a>
           <a href="#prendas-medida" data-hoja="prendas-medida">👗 Prendas a medida</a>
@@ -1972,6 +1973,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div id="puntos-lienzo" class="dib-wrap"></div>
         <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> dibuja con el lápiz digital, el dedo o el mouse. Con «⬇️» bajas la hoja como imagen, y puedes imprimirla en blanco con sus puntos.</p>
+      </article>
+      <article class="hoja-agenda" id="recursos-rosina">
+        <header>
+          <div><h3>Recursos de Rosina</h3><p>El glosario ilustrado y las abreviaturas de crochet, a la mano y sin salir de tu agenda.</p></div>
+        </header>
+        <div class="rr-pestanas no-imprimir" role="tablist" aria-label="Recursos de Rosina">
+          <button type="button" role="tab" id="rr-t-glosario" data-rr="glosario" aria-selected="true" aria-controls="rr-glosario">Glosario</button>
+          <button type="button" role="tab" id="rr-t-abreviaturas" data-rr="abreviaturas" aria-selected="false" aria-controls="rr-abreviaturas">Abreviaturas</button>
+        </div>
+        <section class="rr-panel" id="rr-glosario" role="tabpanel" aria-labelledby="rr-t-glosario"></section>
+        <section class="rr-panel" id="rr-abreviaturas" role="tabpanel" aria-labelledby="rr-t-abreviaturas" hidden></section>
       </article>
       <article class="hoja-agenda" id="mis-ideas" data-gratis>
         <header>
@@ -4188,7 +4200,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=21" defer></script>
+<script src="/js/agenda/idioma.js?v=22" defer></script>
 <script src="/js/agenda/config.js?v=16" defer></script>
 <script src="/js/agenda/tour.js?v=6" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
@@ -4201,12 +4213,14 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/portada.js?v=6" defer></script>
 <script src="/js/agenda/voz.js?v=4" defer></script>
 <script src="/js/agenda/color-casilla.js?v=1" defer></script>
+<script src="/js/agenda/recursos-datos.js?v=1" defer></script>
+<script src="/js/agenda/recursos.js?v=3" defer></script>
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=2" defer></script>
 <script src="/js/agenda/vacios.js?v=4" defer></script>
 <script src="/js/agenda/panel.js?v=27" defer></script>
-<script src="/js/agenda/iconos.js?v=27" defer></script>
+<script src="/js/agenda/iconos.js?v=28" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=2" defer></script>
 <script src="/js/agenda/metas-ventas.js?v=4" defer></script>

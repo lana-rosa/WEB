@@ -20,6 +20,10 @@ Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial comp
 - [x] Documento de marketing: `herramientas/marketing-agenda/CAMPANA-INDEPENDIZATE.md` (31-oct-2026). Falta decidir el nombre (tejedoras/emprendedoras), construir la página `/independizate/` y producir la serie «Independízate».
 - [ ] Al final: cobro en dólares para vender la agenda en el exterior (Wompi no cobra en USD en todos los casos; revisar PayPal —ya hay `paypal_ajustes` en la base— y Stripe; precios por país, impuestos y textos legales).
 
+## 📖 Recursos de Rosina dentro de la agenda (1-nov-2026, pedido de Jennifer)
+- [x] Etapa 1: hoja «Recursos de Rosina» (Mis proyectos) con Glosario y Abreviaturas (`js/agenda/recursos.js`; datos generados con `herramientas/generar_recursos_agenda.py`: si cambia el glosario o la tabla del Rincón, volver a correrlo).
+- [ ] Etapa 2: Paletas de colores. [ ] Etapa 3: Calculadoras (costos, cuánta lana, etc.). [ ] Etapa 4: checklist y demás recursos descargables. Falta desplegar `rosina-web` con la guía de la hoja nueva y poner un ícono propio (hoy usa Rosina pensando).
+
 ## 🎨 Inventario de íconos de la agenda (barrido completo del 1-nov-2026, pedido de Jennifer)
 - **Hecho:** las 40 hojas, menú, botones de acción, tipos de fecha, números de Mi panel, atajos del Índice, flechas de hoja, Configuración, y los emoji que tenían ícono (casa, tarjeta, calculadora, diana, libro, persona, bandera, etc. con los dibujos que ya hay). `data-ic` en cada ícono permite volver a hacer el barrido: `python3` con Playwright recorre `article.hoja-agenda` y lista los `svg[data-ic]` que quedan.
 - **Faltan dibujos (lo que sigue en línea simple):** corazón (tarjeta «Amigurumis hechos a mano» de Portada y «Clientas» del Tablero), **play/YouTube** (3 sitios de Aprende y compra), **computador/portátil** (Cursos virtuales), **contador/numeral** (contador de vueltas en Ficha de proyecto), **brújula** (tutorial en Configuración), disquete (espacio usado en Configuración) y la flecha de «Ocultar menú». Los emoji de ánimo del Diario se quedan (los elige la persona).
