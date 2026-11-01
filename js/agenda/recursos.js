@@ -74,7 +74,7 @@
   tb.innerHTML = cab + '<tbody>' + D.abrev.filas.map(function (f) { return '<tr>' + f.map(function (c, k) { return '<td data-idioma="' + D.abrev.idiomas[k].id + '"><b>' + esc(c[0]) + '</b><small>' + esc(c[1]) + '</small></td>'; }).join('') + '</tr>'; }).join('') + '</tbody>';
   envol.appendChild(tb);
   var ojo = el('p', 'rr-ojo', '<b>¡Ojo con el inglés!</b> Los patrones de EE. UU. y del Reino Unido usan los mismos nombres para puntos distintos: el <em>double crochet</em> americano es nuestro punto alto, y el británico es nuestro punto bajo. Mira siempre de qué país es el patrón.');
-  ab.appendChild(intro); ab.appendChild(filtro); ab.appendChild(envol); ab.appendChild(ojo);
+  ojo.setAttribute('data-no-traducir', ''); ab.appendChild(intro); ab.appendChild(filtro); ab.appendChild(envol); ab.appendChild(ojo);
   function aplicar() { tb.querySelectorAll('[data-idioma]').forEach(function (c) { var id = c.dataset.idioma; c.hidden = id !== 'es' && !activos[id]; }); }
   aplicar();
   /* Las tiras «Herramienta de Rosina» de otras hojas abren esta hoja (sin salir de la agenda); sin JavaScript siguen llevando a la página de siempre */
