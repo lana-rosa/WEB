@@ -81,3 +81,11 @@ body .pestana img.ic-dibujo { width: 40px; height: 40px; object-fit: contain; fl
 .tip-teclado { display: none; font-size: .82rem; color: var(--tinta-ayuda, #6B5560); }
 @media (pointer: coarse) { .voz-global, #tinta-modo, .voz-estado-global { display: none !important; } .tip-teclado { display: block; flex-basis: 100%; } }
 @media print { .voz-chip, .tip-teclado { display: none !important; } }
+
+/* Menos espacio debajo de «Imprimir esta hoja» y pie más delgado, del tamaño del logo (1-nov-2026, pedido de Jennifer) */
+html body #agenda { padding-bottom: 8px !important; }
+html body .pie-rico.pie-minimo { padding: 6px 0 !important; }
+html body .pie-minimo .pie-min-fila { padding-top: 6px !important; padding-bottom: 6px !important; }
+html body .pie-minimo .pie-logo-anim { width: 84px !important; }
+@media (max-width: 520px) { html body .pie-minimo .pie-logo-anim { width: 64px !important; } }
+html body main#contenido-principal { padding-bottom: 12px !important; }

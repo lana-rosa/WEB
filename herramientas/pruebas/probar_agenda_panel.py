@@ -76,7 +76,7 @@ with sync_playwright() as p:
     pe.evaluate("document.querySelector('#control-pedidos tr[data-fila=\"1\"] input, #control-pedidos tr[data-fila=\"1\"] textarea').value = 'María'; document.querySelector('#control-pedidos tr[data-fila=\"1\"] input, #control-pedidos tr[data-fila=\"1\"] textarea').dispatchEvent(new Event('input', {bubbles: true}))"); pe.wait_for_timeout(700)
     T.v('al escribir, el ejemplo desaparece', not pe.is_visible('#control-pedidos .vacio-ejemplo'))
     T.v('con datos el panel no muestra «Empieza aquí»', pg.locator('#panel-contenido .ea-paso').count() == 0)
-    T.v('los íconos de línea reemplazan al emoji en la barra de herramientas', pg.locator('#agenda svg.ic-l').count() >= 5)
+    T.v('los íconos (de línea o dibujados) reemplazan al emoji en la barra de herramientas', pg.locator('#agenda .ic-l').count() >= 5)
     pc.evaluate("document.querySelectorAll('.pestana')[3].click()"); pc.wait_for_timeout(400)
     T.v('celular: la vista de sección se ve en una columna', pc.evaluate("(()=>{const r=[...document.querySelectorAll('.vs-hoja')].map(x=>Math.round(x.getBoundingClientRect().left));return r.length>0&&r.every(x=>x===r[0])})()"))
     T.v('celular: sin desbordes en la vista de sección', not pc.evaluate("document.documentElement.scrollWidth>innerWidth"))
