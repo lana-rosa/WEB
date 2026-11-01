@@ -126,3 +126,49 @@ html body .barra-agenda.flotante .ayuda-barra { display: none; }
 /* Un poco más de aire al final de la hoja, debajo de «Imprimir esta hoja» (1-nov-2026, pedido de Jennifer) */
 html body main#contenido-principal { padding-bottom: 28px !important; }
 @media (max-width: 820px) { html body main#contenido-principal { padding-bottom: 20px !important; } }
+
+/* Hoja «Recursos de Rosina» (glosario y abreviaturas dentro de la agenda; 1-nov-2026) */
+#recursos-rosina .rr-pestanas { display: flex; gap: 8px; margin: 0 0 14px; flex-wrap: wrap; }
+#recursos-rosina .rr-pestanas button { min-height: 44px; padding: 8px 20px; border-radius: 999px; border: 1.5px solid #F28FC0; background: #fff; color: #C81B6D; font: 700 .95rem 'Hanken Grotesk', sans-serif; cursor: pointer; }
+#recursos-rosina .rr-pestanas button[aria-selected="true"] { background: #E01E79; color: #fff; border-color: #E01E79; }
+#recursos-rosina .rr-barra { margin-bottom: 10px; }
+#recursos-rosina .rr-buscar { display: grid; gap: 4px; }
+#recursos-rosina .rr-etq { font-size: .78rem; font-weight: 700; color: #C81B6D; text-transform: uppercase; letter-spacing: .04em; }
+#recursos-rosina .rr-buscar input { min-height: 46px; padding: 8px 14px; border: 1.5px solid #F28FC0; border-radius: 14px; font-size: 1rem; background: #fff; }
+#recursos-rosina .rr-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+#recursos-rosina .rr-chip { min-height: 38px; padding: 6px 14px; border-radius: 999px; border: 1.5px solid #E6E7FD; background: #E6E7FD; color: #4B4FB8; font: 700 .85rem 'Hanken Grotesk', sans-serif; cursor: pointer; }
+#recursos-rosina .rr-chip[aria-pressed="true"] { background: #4B4FB8; border-color: #4B4FB8; color: #fff; }
+#recursos-rosina .rr-cuenta { font-size: .82rem; color: #64646A; margin: 0 0 6px; }
+#recursos-rosina .rr-grupo { margin-bottom: 14px; }
+#recursos-rosina .rr-termino { border: 1.5px solid #F7C6DE; border-radius: 16px; background: #fff; margin: 0 0 8px; overflow: hidden; }
+#recursos-rosina .rr-termino summary { display: flex; align-items: center; gap: 12px; padding: 8px 14px 8px 10px; cursor: pointer; list-style: none; min-height: 56px; }
+#recursos-rosina .rr-termino summary::-webkit-details-marker { display: none; }
+#recursos-rosina .rr-termino[open] summary { background: #FEF2F7; }
+#recursos-rosina .rr-sim { flex: none; width: 50px; height: 50px; display: grid; place-items: center; background: #FEF2F7; border-radius: 14px; }
+#recursos-rosina .rr-emoji { font-size: 1.6rem; }
+#recursos-rosina .rr-nom { flex: 1 1 auto; display: grid; gap: 1px; min-width: 0; }
+#recursos-rosina .rr-nom b { font-family: 'Emoji Lana', 'DynaPuff', sans-serif; font-weight: 600; color: #C81B6D; font-size: 1.02rem; }
+#recursos-rosina .rr-nom small { color: #64646A; font-size: .78rem; overflow-wrap: anywhere; }
+#recursos-rosina .rr-abrev { flex: none; padding: 3px 10px; border-radius: 999px; background: #E6E7FD; color: #4B4FB8; font-weight: 700; font-size: .82rem; }
+#recursos-rosina .rr-cuerpo { padding: 10px 16px 14px 70px; font-size: .95rem; line-height: 1.55; color: #45454A; }
+#recursos-rosina .rr-cuerpo p { margin: 0 0 8px; }
+#recursos-rosina .rr-otros { color: #64646A; font-style: italic; }
+#recursos-rosina .rr-pasos { margin: 0 0 8px 1.1rem; padding: 0; }
+#recursos-rosina .rr-tip { background: #FEF2F7; border-radius: 12px; padding: 8px 12px; }
+#recursos-rosina .rr-enlace a { color: #C81B6D; font-weight: 700; }
+#recursos-rosina .rr-vacio { color: #64646A; font-style: italic; }
+#recursos-rosina .rr-idiomas { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 10px; }
+#recursos-rosina .rr-idioma { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font-size: .88rem; }
+#recursos-rosina .rr-intro { color: #45454A; margin: 0 0 8px; }
+#recursos-rosina .rr-ojo { background: #E6E7FD; border-radius: 14px; padding: 10px 14px; margin: 12px 0 0; font-size: .9rem; color: #45454A; }
+#recursos-rosina .rr-tabla [hidden] { display: none; }
+#recursos-rosina td b { display: block; color: #C81B6D; }
+#recursos-rosina td small { color: #64646A; }
+@media (max-width: 520px) { #recursos-rosina .rr-cuerpo { padding-left: 16px; } }
+@media print { #recursos-rosina .rr-termino:not([open]) .rr-cuerpo { display: block; } }
+#recursos-rosina table.rr-tab { width: 100%; border-collapse: collapse; min-width: 560px; }
+#recursos-rosina table.rr-tab th { background: #E01E79; color: #fff; padding: 8px 10px; text-align: left; font: 700 .85rem 'Hanken Grotesk', sans-serif; position: static; }
+#recursos-rosina table.rr-tab td { padding: 8px 10px; border-bottom: 1px solid #FBE4EF; vertical-align: top; background: #fff; }
+#recursos-rosina table.rr-tab tr:nth-child(even) td { background: #FEF2F7; }
+#recursos-rosina table.rr-tab td b { display: block; font-size: 1rem; }
+#recursos-rosina table.rr-tab td small { font-size: .78rem; }
