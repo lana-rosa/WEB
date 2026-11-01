@@ -57,6 +57,7 @@ with sync_playwright() as p:
         T.v('una promoción interna abre la hoja y se mide', pg.evaluate("document.querySelector('#aprende-compra').classList.contains('abierta')") and any(e.get('event') == 'promo_agenda_click' and e.get('hoja') == 'planeador-dia' for e in pg.evaluate("window.dataLayer")), ids)
     else:
         T.v('hoy el planeador no trae promoción interna (se prueba en la hoja de ideas)', True)
+    pg.evaluate("window.lrIrAHoja('planeador-dia')"); pg.wait_for_timeout(400)   # la promoción interna anterior pudo abrir otra hoja
     pg.evaluate("window.dataLayer = []")
     pg.evaluate("document.querySelector('#planeador-dia .promo-eco .promo-tarjeta').addEventListener('click', e => e.preventDefault(), true)")
     pg.locator('#planeador-dia .promo-eco .promo-tarjeta').first.click(); pg.wait_for_timeout(300)
