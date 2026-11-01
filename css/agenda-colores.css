@@ -71,3 +71,13 @@ body .pestana img.ic-dibujo { width: 40px; height: 40px; object-fit: contain; fl
 /* Atajos del Índice con el dibujo de cada hoja (31-oct-2026, diseño de Jennifer) */
 #agenda .atajo-ic.con-dibujo { width: 52px; height: 52px; background: none; border-radius: 0; }
 #agenda .atajo-ic.con-dibujo .ic-hoja { width: 50px; height: 50px; }
+
+/* Números del Planeador: el dibujo va sobre un círculo claro para que se vea también en la tarjeta oscura (1-nov-2026) */
+#agenda .pl-t-ic .ic-img { width: 34px; height: 34px; margin: 0; padding: 3px; background: #fff; border-radius: 50%; box-shadow: 0 0 0 1px rgba(200, 27, 109, .15); }
+
+/* Dictar y escribir a mano (1-nov-2026, pedido de Jennifer): en celular y tableta los hace el teclado; en computador «Dictar» aparece junto a la casilla */
+.voz-chip { position: fixed; z-index: 40; min-height: 30px; padding: 4px 12px; border: 1.5px solid var(--rosa-boton, #E01E79); border-radius: 999px; background: #fff; color: var(--rosa-boton, #E01E79); font: 600 .82rem 'Hanken Grotesk', sans-serif; cursor: pointer; box-shadow: 0 4px 12px rgba(200, 27, 109, .18); }
+.voz-chip[aria-pressed="true"] { background: var(--rosa-boton, #E01E79); color: #fff; }
+.tip-teclado { display: none; font-size: .82rem; color: var(--tinta-ayuda, #6B5560); }
+@media (pointer: coarse) { .voz-global, #tinta-modo, .voz-estado-global { display: none !important; } .tip-teclado { display: block; flex-basis: 100%; } }
+@media print { .voz-chip, .tip-teclado { display: none !important; } }
