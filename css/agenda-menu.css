@@ -3,9 +3,9 @@
 @media (min-width: 821px) and (min-height: 521px) {
   body .agenda-layout .pestanas-agenda .menu-toggle {
     display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; margin-top: 6px; padding: 8px 12px; border: 0; border-top: 1px solid #F5D5E5; border-radius: 0 0 12px 12px;
-    background: transparent; color: #6B5560; font: 600 .88rem 'Hanken Grotesk', sans-serif; cursor: pointer; text-align: left;
+    background: transparent; color: #64646A; font: 600 .88rem 'Hanken Grotesk', sans-serif; cursor: pointer; text-align: left;
   }
-  body .agenda-layout .pestanas-agenda .menu-toggle:hover { background: #FEF2F7; color: #8E1457; }
+  body .agenda-layout .pestanas-agenda .menu-toggle:hover { background: #FEF2F7; color: #C81B6D; }
   body .agenda-layout .pestanas-agenda .menu-toggle:focus-visible, .menu-abrir:focus-visible { outline: 3px solid #C81B6D; outline-offset: 2px; }
   /* Escondido (computador): el contenido ocupa todo el ancho */
   body .agenda-layout[data-menu="oculto"] { grid-template-columns: minmax(0, 1fr); gap: 0; }
@@ -13,7 +13,7 @@
   body .agenda-layout[data-menu="oculto"] .hojas-contenido { grid-column: 1; }
   .menu-abrir {
     position: fixed; left: 0; top: 190px; z-index: 30; align-items: center; gap: 6px; min-height: 44px; padding: 8px 12px 8px 10px; border: 1px solid #F5C2DB; border-left: 0;
-    border-radius: 0 14px 14px 0; background: #fff; color: #8E1457; font: 700 .85rem 'Hanken Grotesk', sans-serif; cursor: pointer; box-shadow: 4px 4px 14px rgba(142, 20, 87, .12);
+    border-radius: 0 14px 14px 0; background: #fff; color: #C81B6D; font: 700 .85rem 'Hanken Grotesk', sans-serif; cursor: pointer; box-shadow: 4px 4px 14px rgba(142, 20, 87, .12);
   }
   .menu-abrir span { display: none; } .menu-abrir { padding: 8px 10px 8px 9px; }
   .menu-abrir[hidden] { display: none; }

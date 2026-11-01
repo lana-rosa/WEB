@@ -4,7 +4,7 @@
 html:root {
   --fuente-titulo: 'Emoji Lana', 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --fuente-hoja: 'Emoji Lana', 'DynaPuff', sans-serif;
-  --vino: #C81B6D; --vino-osc: #8E1457; --rosa-emp: #F5C2DB; --tinta-ayuda: #6B5560; --linea-diseno: #F5C2DB;
+  --vino: #C81B6D; --vino-osc: #C81B6D; --rosa-emp: #F5C2DB; --tinta-ayuda: #64646A; --linea-diseno: #F5C2DB;
 }
 /* Títulos: solo el de cada hoja, la portada y la marca llevan DynaPuff */
 .hoja-agenda > header h3, .portada-titulo, .portada-nombre, .portada-agenda input, .logo, .titulo-barra-agenda { font-family: var(--fuente-hoja); }
@@ -51,7 +51,7 @@ body { color: #2B1B21; }
 .ficha-chip.gris { background: #F2EDEE; color: var(--tinta-ayuda); }
 .ficha-titulo.vacia { color: var(--tinta-ayuda); }
 
-@media print { .hoja-agenda { border: 0; box-shadow: none; } .hoja-agenda > header { border-bottom: 2px dashed #D6B4B8; } }
+@media print { .hoja-agenda { border: 0; box-shadow: none; } .hoja-agenda > header { border-bottom: 2px dashed #F28FC0; } }
 
 /* Opción A (30-oct-2026, pedido de Sara «que no se vea infantil»): sin el dibujo de Rosina junto al título de cada hoja; el contorno de cada fondo se conserva */
 .hoja-agenda > header > img { display: none !important; }
@@ -64,6 +64,6 @@ body { color: #2B1B21; }
 
 /* Íconos de línea (js/agenda/iconos.js): reemplazan al emoji que abría el texto de botones y enlaces */
 .ic-l { width: 1.2em; height: 1.2em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.22em; margin-right: .25em; }
-.ic-l-g { width: 26px; height: 26px; margin: 0; color: #8E1457; }
+.ic-l-g { width: 26px; height: 26px; margin: 0; color: #C81B6D; }
 .atajo-ic { background: #FEF2F7 !important; }
 .ficha-barra .ic-l { margin-right: 0; }
