@@ -206,3 +206,12 @@ body.config-sola .pestanas-agenda { display: none !important; }
 .cfg-grupo .cuaderno-portada::before, .cfg-grupo .cuaderno-portada::after { display: none !important; }
 .cfg-grupo .cuaderno-portada { margin: 0 !important; max-width: none !important; }
 .cfg-grupo .cuaderno-portada .intro { text-align: left; font-size: .95rem; }
+.herr-rosina.herr-abajo { margin: 18px 0 0; padding-top: 12px; border-top: 1px dashed var(--rosa-medio); }
+/* Ingresos y gastos en el celular: formulario más ancho (1-nov-2026, pedido de Jennifer: «se ve muy estrecho») */
+@media (max-width: 560px) {
+  #agenda #fin-movimientos { padding-left: 14px; padding-right: 14px; }
+  #agenda .fin-form { grid-template-columns: 1fr; gap: 14px; padding: 16px 14px; }
+  #agenda .fin-form select, #agenda .fin-form input { min-height: 44px; font-size: 1rem; padding: 8px 4px; }
+  #agenda .fin-form .fin-form-btn { justify-content: stretch; }
+  #agenda .fin-form .fin-form-btn .boton-primario { width: 100%; }
+}
