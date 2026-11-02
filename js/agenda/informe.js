@@ -1,6 +1,7 @@
 /* Agenda para tejedoras: informe del mes para imprimir (Plus para emprendedoras, etapa 6, 31-oct-2026).
    En «Mi negocio en números» hay un botón «Informe del mes» que abre una hoja con el resumen del mes elegido (flechas para cambiar de mes):
    ingresos, gastos y lo que te quedó; ventas y lo que más vendiste; meta y punto de equilibrio; gastos por categoría; pedidos y clientas; lana en inventario.
+   Desde el 2-nov-2026: compara con el mes anterior («▲ 20 % más que en octubre»), se envía por WhatsApp (resumen en texto) y «Exportar a Excel» agrega la hoja «Informe mensual» (una fila por mes).
    Se imprime o se guarda en PDF con el botón del navegador. Solo lee lo escrito en las otras hojas; no guarda nada. Es una guía, no contabilidad oficial.
    Depende de metas-ventas.js (lrMetasVentas.calcular) e inventario.js (lrInventario.resumen), pero funciona sin ellos. API: window.lrInforme.datos(y, m), .abrir(). */
 (function () {
@@ -65,7 +66,17 @@
 
   /* ---- la hoja ---- */
   var caja = null, sel = { y: 0, m: 0 };
-  function kpi(t, v, cls) { var d = el('div', 'inf-kpi' + (cls ? ' ' + cls : '')); d.appendChild(el('span', 'inf-k', t)); d.appendChild(el('b', 'inf-v', v)); return d; }
+  function T(t) { return window.lrI18n && window.lrI18n.t ? window.lrI18n.t(t) : t; }
+  function kpi(t, v, cls, cmp) { var d = el('div', 'inf-kpi' + (cls ? ' ' + cls : '')); d.appendChild(el('span', 'inf-k', t)); d.appendChild(el('b', 'inf-v', v)); if (cmp) { var c = el('small', 'inf-cmp ' + cmp.cls, T(cmp.texto)); c.setAttribute('data-no-traducir', ''); d.appendChild(c); } return d; }
+  /* comparación con el mes anterior: «▲ 20 % más que en octubre» (en gastos, subir se pinta de alerta; en lo demás, de bien) */
+  function comparar(a, p, esGasto, mes, porMonto) {
+    if (!(p || p === 0) || (a === 0 && p === 0)) return null;
+    var sube = a > p, igual = a === p, bien = esGasto ? !sube : sube;
+    if (igual) return { texto: 'Igual que en ' + mes, cls: '' };
+    var cuerpo = (porMonto || p <= 0) ? plata(Math.abs(a - p)) : Math.round(Math.abs(a - p) / p * 100) + ' %';
+    return { texto: (sube ? '▲ ' : '▼ ') + cuerpo + (sube ? ' más' : ' menos') + ' que en ' + mes, cls: bien ? 'inf-bien' : 'inf-alerta' };
+  }
+  function mesPrevio(y, m) { m--; if (m < 1) { m = 12; y--; } return { y: y, m: m }; }
   function seccion(titulo) { var s = el('section', 'inf-sec'); s.appendChild(el('h4', 'inf-h', titulo)); return s; }
   function fila(ul, a, b, extra) { var li = el('li'); li.appendChild(el('span', '', a)); var v = el('b', extra || '', b); li.appendChild(v); ul.appendChild(li); return li; }
   function pintar() {
@@ -76,10 +87,11 @@
     if (quien) { sub.appendChild(el('span', '', 'Negocio de ')); var n = el('b', '', quien); n.setAttribute('data-no-traducir', ''); sub.appendChild(n); }
     if (!d.hay) { cuerpo.appendChild(el('p', 'inf-vacio', 'No hay nada anotado en este mes todavía. Anota tus ventas, ingresos y gastos y aquí verás el resumen.')); return; }
     var kp = el('div', 'inf-kpis');
-    kp.appendChild(kpi('Entró', d.hayMovs || d.ingresos ? plata(d.ingresos) : '—'));
-    kp.appendChild(kpi('Salió', d.hayMovs || d.gastos ? plata(d.gastos) : '—'));
-    kp.appendChild(kpi(d.utilidad >= 0 ? 'Te quedó' : 'Perdiste', d.hayMovs ? plata(Math.abs(d.utilidad)) : '—', d.hayMovs ? (d.utilidad >= 0 ? 'inf-bien' : 'inf-mal') : ''));
-    kp.appendChild(kpi('Ventas', d.ventas ? plata(d.ventas) : '—'));
+    var pv = mesPrevio(sel.y, sel.m), dp = datos(pv.y, pv.m), nmp = MESES[lang()][pv.m - 1] || MESES.es[pv.m - 1], hp = dp.hay;
+    kp.appendChild(kpi('Entró', d.hayMovs || d.ingresos ? plata(d.ingresos) : '—', '', hp && dp.hayMovs ? comparar(d.ingresos, dp.ingresos, false, nmp) : null));
+    kp.appendChild(kpi('Salió', d.hayMovs || d.gastos ? plata(d.gastos) : '—', '', hp && dp.hayMovs ? comparar(d.gastos, dp.gastos, true, nmp) : null));
+    kp.appendChild(kpi(d.utilidad >= 0 ? 'Te quedó' : 'Perdiste', d.hayMovs ? plata(Math.abs(d.utilidad)) : '—', d.hayMovs ? (d.utilidad >= 0 ? 'inf-bien' : 'inf-mal') : '', hp && dp.hayMovs && d.hayMovs ? comparar(d.utilidad, dp.utilidad, false, nmp, true) : null));
+    kp.appendChild(kpi('Ventas', d.ventas ? plata(d.ventas) : '—', '', hp && dp.ventas ? comparar(d.ventas, dp.ventas, false, nmp) : null));
     cuerpo.appendChild(kp);
     if (d.hayMovs && d.ingresos > 0) cuerpo.appendChild(el('p', 'inf-nota', d.utilidad >= 0 ? 'Por cada $ 100 que entraron, te quedaron $ ' + Math.round(d.utilidad / d.ingresos * 100) + '.' : 'Este mes salió más de lo que entró.'));
     /* ventas */
@@ -120,6 +132,31 @@
       cuerpo.appendChild(s5);
     }
   }
+  /* resumen corto en texto para compartir (lo lee la persona o su equipo: va en español) */
+  function resumenTexto(d) {
+    var mes = MESES.es[d.m - 1] + ' ' + d.y, l = ['🐑 Mi informe de ' + mes + ' (Agenda para tejedoras)'];
+    if (!d.hay) return l[0] + '\nTodavía no hay nada anotado en este mes.';
+    if (d.hayMovs || d.ingresos) l.push('Entró: ' + plata(d.ingresos));
+    if (d.hayMovs || d.gastos) l.push('Salió: ' + plata(d.gastos));
+    if (d.hayMovs) l.push((d.utilidad >= 0 ? 'Me quedó: ' : 'Perdí: ') + plata(Math.abs(d.utilidad)));
+    if (d.ventas) l.push('Ventas: ' + plata(d.ventas) + (d.nVentas ? ' (' + d.nVentas + ')' : ''));
+    if (d.meta) l.push('Meta de ventas: ' + plata(d.meta) + ' · logré el ' + Math.round(d.ventas / d.meta * 100) + ' %');
+    if (d.top.length) l.push('Lo que más vendí: ' + d.top.map(function (t) { return t.n; }).join(', '));
+    if (d.cats.length) l.push('Gasté más en: ' + d.cats.slice(0, 2).map(function (c) { return c.n + ' ' + plata(c.v); }).join(' y '));
+    if (d.porCobrar) l.push('Por cobrar hoy: ' + plata(d.porCobrar));
+    return l.join('\n');
+  }
+  /* una fila por mes con datos (últimos 12) para «Exportar a Excel» */
+  function paraExcel() {
+    if (hoja.classList.contains('sin-membresia')) return [];
+    var hoy = new Date(), y = hoy.getFullYear(), m = hoy.getMonth() + 1, filas = [];
+    for (var i = 0; i < 12; i++) {
+      var d = datos(y, m);
+      if (d.hay) filas.push([MESES.es[m - 1] + ' ' + y, d.ingresos, d.gastos, d.utilidad, d.vTotal, d.nVentas, d.meta || '', d.entregados, d.nuevas]);
+      var p = mesPrevio(y, m); y = p.y; m = p.m;
+    }
+    return filas.length ? [{ nombre: 'Informe mensual', columnas: ['Mes', 'Ingresos', 'Gastos', 'Utilidad', 'Total vendido', 'Número de ventas', 'Meta de ventas', 'Pedidos entregados', 'Clientas nuevas'], filas: filas.reverse() }] : [];
+  }
   function armar() {
     if (caja) return caja;
     caja = el('div', 'inf-caja'); caja.id = 'informe-mes'; caja.setAttribute('role', 'dialog'); caja.setAttribute('aria-modal', 'true'); caja.setAttribute('aria-labelledby', 'inf-titulo'); caja.hidden = true;
@@ -128,12 +165,14 @@
     var ant = el('button', 'boton-secundario boton-chico', '‹'); ant.type = 'button'; ant.setAttribute('aria-label', 'Mes anterior');
     var sig = el('button', 'boton-secundario boton-chico', '›'); sig.type = 'button'; sig.setAttribute('aria-label', 'Mes siguiente');
     var imp = el('button', 'boton-primario boton-chico', 'Imprimir o guardar en PDF'); imp.type = 'button';
+    var wa = el('button', 'boton-secundario boton-chico', 'Enviar por WhatsApp'); wa.type = 'button';
     var cer = el('button', 'boton-secundario boton-chico', 'Cerrar'); cer.type = 'button';
     ant.addEventListener('click', function () { sel.m--; if (sel.m < 1) { sel.m = 12; sel.y--; } pintar(); });
     sig.addEventListener('click', function () { sel.m++; if (sel.m > 12) { sel.m = 1; sel.y++; } pintar(); });
     imp.addEventListener('click', function () { document.body.classList.add('imprimiendo-informe'); var f = function () { document.body.classList.remove('imprimiendo-informe'); window.removeEventListener('afterprint', f); }; window.addEventListener('afterprint', f); window.print(); });
+    wa.addEventListener('click', function () { var d = datos(sel.y, sel.m); window.open('https://wa.me/?text=' + encodeURIComponent(resumenTexto(d)), '_blank', 'noopener'); });
     cer.addEventListener('click', cerrar);
-    barra.appendChild(ant); barra.appendChild(sig); barra.appendChild(imp); barra.appendChild(cer); h.appendChild(barra);
+    barra.appendChild(ant); barra.appendChild(sig); barra.appendChild(imp); barra.appendChild(wa); barra.appendChild(cer); h.appendChild(barra);
     var cab = el('header', 'inf-cab'); cab.appendChild(el('p', 'inf-sobre', 'Informe del mes'));
     var t = el('h3', 'inf-titulo'); t.id = 'inf-titulo'; var mm = el('span', 'inf-mes'); mm.setAttribute('data-no-traducir', ''); t.appendChild(mm); cab.appendChild(t); cab.appendChild(el('p', 'inf-quien'));
     h.appendChild(cab); h.appendChild(el('div', 'inf-cuerpo'));
@@ -160,5 +199,5 @@
     var b = el('button', 'boton-secundario boton-chico', 'Ver el informe del mes'); b.type = 'button'; b.id = 'inf-boton'; b.addEventListener('click', abrir);
     c.appendChild(b); ref.insertAdjacentElement('afterend', c);
   })();
-  window.lrInforme = { datos: datos, abrir: abrir, cerrar: cerrar };
+  window.lrInforme = { datos: datos, abrir: abrir, cerrar: cerrar, paraExcel: paraExcel, resumenTexto: resumenTexto };
 })();

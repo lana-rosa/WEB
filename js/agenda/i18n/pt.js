@@ -1768,5 +1768,11 @@ window.lrI18n.add("pt", {
 "Cuando el proyecto esté «Terminado» podrás descontar esta lana del inventario.": "Quando o projeto estiver “Terminado” você poderá descontar esta lã do estoque.",
 "Esa lana ya no está en tu inventario: {a}": "Essa lã não está mais no seu estoque: {a}",
 "Anotar la compra como gasto del negocio": "Anotar a compra como despesa do negócio",
-"Si anotas el costo por ovillo, la compra se puede anotar como gasto": "Se você anotar o custo por novelo, a compra pode ser anotada como despesa"
+"Si anotas el costo por ovillo, la compra se puede anotar como gasto": "Se você anotar o custo por novelo, a compra pode ser anotada como despesa",
+"Enviar por WhatsApp": "Enviar pelo WhatsApp",
+"▲ {p#} % más que en {m}": "▲ {p} % a mais que em {m}",
+"▼ {p#} % menos que en {m}": "▼ {p} % a menos que em {m}",
+"▲ {v} más que en {m}": "▲ {v} a mais que em {m}",
+"▼ {v} menos que en {m}": "▼ {v} a menos que em {m}",
+"Igual que en {m}": "Igual a {m}"
 });

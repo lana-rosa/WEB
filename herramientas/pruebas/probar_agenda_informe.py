@@ -14,7 +14,7 @@ D = {'ag-duena': 'Sara',
   'ag-cl1-nombre': 'Ana', 'ag-cl1-desde': f(hoy), 'ag-cl2-nombre': 'Beto', 'ag-cl2-desde': f(ant),
   'ag-l1-marca': 'Alize', 'ag-l1-color': 'Rosa', 'ag-l1-ovillos': '4', 'ag-l1-costo': '8000', 'ag-l1-minimo': '2', 'ag-l2-marca': 'Gamitex', 'ag-l2-color': 'Rojo', 'ag-l2-ovillos': '0', 'ag-l2-costo': '10000',
   '_metaVentas': {'metas': {iso(hoy)[:7]: 500000}, 'margen': 35},
-  '_fin': {'fijos': [{'id': 'a', 'n': 'Arriendo', 'v': '600000', 't': 'g', 'activo': True, 'dia': '5'}, {'id': 'b', 'n': 'Luz', 'v': '25000', 't': 'g', 'activo': True, 'dia': '5'}, {'id': 'c', 'n': 'Agua', 'v': '30000', 't': 'g', 'activo': True, 'dia': '5'}], 'deudas': [],
+  '_fin': {'fijos': [{'id': 'a', 'n': 'Arriendo', 'v': '600000', 't': 'g', 'activo': True, 'dia': '1'}, {'id': 'b', 'n': 'Luz', 'v': '25000', 't': 'g', 'activo': True, 'dia': '1'}, {'id': 'c', 'n': 'Agua', 'v': '30000', 't': 'g', 'activo': True, 'dia': '1'}], 'deudas': [],
     'movs': [{'id': '1', 't': 'i', 'f': iso(hoy), 'v': '160000', 'c': 'Ventas', 'm': 'Efectivo'}, {'id': '2', 't': 'g', 'f': iso(hoy), 'v': '60000', 'c': 'Materiales', 'm': 'Efectivo'},
              {'id': '3', 't': 'g', 'f': iso(hoy), 'v': '20000', 'c': 'Transporte y envíos', 'm': 'Efectivo'}, {'id': '4', 't': 'i', 'f': iso(ant), 'v': '900000', 'c': 'Ventas', 'm': 'Efectivo'}]}}
 T = Prueba()
@@ -28,6 +28,18 @@ with sync_playwright() as p:
     t = pg.inner_text('#informe-mes'); tn = ' '.join(t.split())
     T.v('el informe se abre con el mes de hoy y el nombre del negocio', 'Negocio de Sara' in tn and str(hoy.year) in pg.inner_text('.inf-mes'), tn[:120])
     T.v('entró 160.000, salió 735.000 (80.000 + 655.000 de pagos fijos anotados solos) y perdiste 575.000', 'Entró $ 160.000' in tn and 'Salió $ 735.000' in tn and 'Perdiste $ 575.000' in tn, tn)
+    T.v('compara con el mes anterior: entró ▼ 82 % menos (160.000 contra 900.000)', '▼ 82 % menos que en' in tn, tn[:300])
+    T.v('lo que salió se compara en dinero (el mes anterior no tenía gastos): ▲ $ 735.000 más', '▲ $ 735.000 más que en' in tn, tn[:400])
+    urls = []
+    pg.context.on('page', lambda np: urls.append(np.url))
+    pg.evaluate("window.__abierta = ''; window.open = function (u) { window.__abierta = u; return null; }")
+    pg.click('#informe-mes button:has-text("Enviar por WhatsApp")'); pg.wait_for_timeout(300)
+    ab = pg.evaluate("decodeURIComponent(window.__abierta)")
+    T.v('«Enviar por WhatsApp» arma un resumen en texto con lo del mes', ab.startswith('https://wa.me/?text=') and 'Mi informe de' in ab and 'Entró: $ 160.000' in ab and 'Salió: $ 735.000' in ab, ab[:200])
+    hs = [h for h in pg.evaluate("window.lrExportar.reunir().map(h => h.nombre)") if h == 'Informe mensual']
+    T.v('«Exportar a Excel» incluye la hoja «Informe mensual»', len(hs) == 1)
+    fl = pg.evaluate("window.lrExportar.reunir().filter(h => h.nombre === 'Informe mensual')[0].filas")
+    T.v('la hoja trae una fila por mes con datos (2) y el ingreso de este mes en números', len(fl) == 2 and fl[-1][1]['n'] == 160000, fl)
     T.v('si salió más de lo que entró lo dice', 'salió más de lo que entró' in tn, tn)
     T.v('ventas del mes: 3 ventas por $ 160.000', 'Ventas anotadas 3' in tn and 'Total vendido $ 160.000' in tn and 'Promedio por venta $ 53.333' in tn, tn)
     T.v('ganancia de las ventas con costo: 70.000 − 45.700 = 24.300', 'Ganancia (de las ventas con costo) $ 24.300' in tn, tn)
