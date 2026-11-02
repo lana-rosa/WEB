@@ -106,7 +106,7 @@
     var ref = h.querySelector('.fin-dos'); if (!ref) return;
     var specs = [['gr-equilibrio', 'Punto de equilibrio del mes', equilibrio], ['gr-acumulado', 'Ventas del mes contra tu meta', acumulado], ['gr-utilidad', 'Utilidad de cada mes', utilidad]];
     var dos = h.querySelector('#gr-fila'); if (!dos) { dos = el('div', 'fin-dos gr-fila no-imprimir'); dos.id = 'gr-fila'; ref.parentNode.insertBefore(dos, ref); }
-    specs.forEach(function (sp) { var caja = document.getElementById(sp[0]); if (!caja) { caja = tarjeta(sp[0], sp[1]); dos.appendChild(caja); } sp[2](caja.querySelector('.gr-cuerpo')); });
+    specs.forEach(function (sp) { var caja = document.getElementById(sp[0]); if (!caja) { caja = tarjeta(sp[0], sp[1]); dos.appendChild(caja); } sp[2](caja.querySelector('.gr-cuerpo'), true); });
   }
   function enPanel(cont) {
     cont.textContent = '';
