@@ -1744,5 +1744,19 @@ window.lrI18n.add("pt", {
 "Primavera": "Primavera",
 "Verano": "Verão",
 "Otoño": "Outono",
-"Invierno": "Inverno"
+"Invierno": "Inverno",
+"Compré o usé ovillos": "Comprei ou usei novelos",
+"¿Para qué? (opcional)": "Para quê? (opcional)",
+"¿Para qué?": "Para quê?",
+"Cuántos ovillos": "Quantos novelos",
+"➕ Compré": "➕ Comprei",
+"➖ Usé": "➖ Usei",
+"Deshacer el último movimiento": "Desfazer o último movimento",
+"🧶 ¿Gastaste lana en este proyecto?": "🧶 Você gastou lã neste projeto?",
+"Escribe primero la marca o el color de esta lana.": "Escreva primeiro a marca ou a cor desta lã.",
+"Escribe cuántos ovillos (un número mayor que 0).": "Escreva quantos novelos (um número maior que 0).",
+"Solo tienes {a} ovillo(s) de esta lana.": "Você só tem {a} novelo(s) desta lã.",
+"No pude cambiar los ovillos.": "Não consegui alterar os novelos.",
+"Este mes compraste {a} ovillo(s) ({g}) y usaste {b} ovillo(s).": "Neste mês você comprou {a} novelo(s) ({g}) e usou {b} novelo(s).",
+"Este mes compraste {a} ovillo(s) y usaste {b} ovillo(s).": "Neste mês você comprou {a} novelo(s) e usou {b} novelo(s)."
 });
