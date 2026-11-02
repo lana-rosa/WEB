@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-panel.css?v=15">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=19">
-<link rel="stylesheet" href="/css/agenda-colores.css?v=41">
+<link rel="stylesheet" href="/css/agenda-colores.css?v=42">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
 <link rel="stylesheet" href="/css/agenda-panel-vida.css?v=29">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=14">
@@ -3163,7 +3163,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var meses = [], y = mesSel.y, m = mesSel.m; for (var i = 0; i < n; i++) { meses.unshift({ y: y, m: m }); m--; if (m < 1) { m = 12; y--; } }
       return meses.map(function(x) { var q = movsDe(x.y, x.m); if (filtro) q = q.filter(filtro); return { y: x.y, m: x.m, i: sumar(q, 'i'), g: sumar(q, 'g') }; });
     }
+    /* Gráfica de ejemplo (1-nov-2026, pedido de Jennifer): sin datos reales se muestra con datos inventados y una nota */
+    function marcarEjemplo(cont, on) {
+      var ancla = cont.closest('.fin-dona-wrap') || cont, n = ancla.nextElementSibling; if (n && !n.classList.contains('fin-ej-nota')) n = null;
+      cont.classList.toggle('fin-ejemplo', !!on);
+      if (on && !n) { n = document.createElement('p'); n.className = 'fin-ej-nota'; n.setAttribute('role', 'note'); n.textContent = 'Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.'; ancla.parentNode.insertBefore(n, ancla.nextSibling); }
+      if (!on && n) n.remove();
+    }
     function dibujarBarras(cont, ms, aria, nom) {
+      var sinDatos = !ms.some(function(d) { return d.i || d.g; });
+      if (sinDatos) { var EI = [300000, 450000, 380000, 520000, 600000, 480000, 550000, 420000, 610000, 500000, 650000, 700000], EG = [200000, 260000, 310000, 280000, 350000, 300000, 330000, 290000, 360000, 340000, 380000, 400000]; ms = ms.map(function(d, k) { return { y: d.y, m: d.m, i: EI[k % 12], g: EG[k % 12] }; }); }
+      marcarEjemplo(cont, sinDatos);
       var max = escala(Math.max.apply(null, ms.map(function(d) { return Math.max(d.i, d.g); }).concat([1])));
       var W = Math.max(300, Math.round(cont.clientWidth || 640)), H = W < 480 ? 210 : 230, L = W < 480 ? 42 : 50, R = 6, T = 10, B = 28, ph = H - T - B, pw = W - L - R, gw = pw / ms.length, bw = Math.min(24, gw * 0.34), sep = 3;
       var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + aria + '">';
@@ -3185,7 +3195,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     function pintarDona(por, gas) {
       var cats = Object.keys(por).sort(function(a, b) { return por[b] - por[a]; }), cont = el('fin-dona'), ley = el('fin-leyenda'); ley.innerHTML = '';
-      if (!gas) { cont.innerHTML = '<svg viewBox="0 0 170 170" role="img" aria-label="Sin gastos este mes"><circle cx="85" cy="85" r="60" fill="none" stroke="#EEE" stroke-width="26"/><text x="85" y="90" text-anchor="middle" class="fin-dona-n">$ 0</text></svg>'; ley.innerHTML = '<li>Sin gastos este mes.</li>'; return; }
+      var ejemplo = !gas; marcarEjemplo(cont, ejemplo);
+      if (ejemplo) { por = { 'Materiales': 180000, 'Empaques': 60000, 'Transporte y envíos': 90000, 'Publicidad': 50000 }; gas = 380000; cats = Object.keys(por); }
       var s = '<svg viewBox="0 0 170 170" role="img" aria-label="Gastos por categoría del mes">', a = -Math.PI / 2;
       cats.forEach(function(c) {
         var pc = por[c] / gas, fin_ = a + pc * 2 * Math.PI, tipTxt = c + '&#10;' + plata(por[c]) + ' · ' + Math.round(pc * 100) + ' %';
@@ -4237,7 +4248,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=2" defer></script>
 <script src="/js/agenda/metas-ventas.js?v=4" defer></script>
-<script src="/js/agenda/graficas.js?v=3" defer></script>
+<script src="/js/agenda/graficas.js?v=4" defer></script>
 <script src="/js/agenda/clientas-historial.js?v=2" defer></script>
 <script src="/js/agenda/costos.js?v=1" defer></script>
 <script src="/js/agenda/inventario.js?v=1" defer></script>

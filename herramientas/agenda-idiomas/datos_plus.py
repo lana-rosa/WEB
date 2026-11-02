@@ -296,3 +296,4 @@ FILAS += [
  ('Agregar a mis colores', 'Add to my colors', 'Adicionar às minhas cores'),
  ('Glosario y abreviaturas de crochet', 'Crochet glossary and abbreviations', 'Glossário e abreviaturas de crochê'),
 ]
+FILAS += [('Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.', 'Sample chart with made-up data. When you enter your own, you will see your real chart here.', 'Gráfico de exemplo com dados inventados. Quando você anotar os seus, aqui verá o seu gráfico real.')]

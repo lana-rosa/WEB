@@ -1707,5 +1707,6 @@ window.lrI18n.add("en", {
 "Conectar con Google": "Connect with Google",
 "Elegir el tono y la intensidad del color": "Choose the hue and intensity of the color",
 "Agregar a mis colores": "Add to my colors",
-"Glosario y abreviaturas de crochet": "Crochet glossary and abbreviations"
+"Glosario y abreviaturas de crochet": "Crochet glossary and abbreviations",
+"Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.": "Sample chart with made-up data. When you enter your own, you will see your real chart here."
 });
