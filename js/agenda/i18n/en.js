@@ -1672,7 +1672,7 @@ window.lrI18n.add("en", {
 "Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.": "To dictate or handwrite, use the microphone or pen on your keyboard.",
 "🎤 Dictar": "🎤 Dictate",
 "Recursos de Rosina": "Rosina's resources",
-"El glosario ilustrado y las abreviaturas de crochet, a la mano y sin salir de tu agenda.": "The illustrated glossary and crochet abbreviations, at hand and without leaving your planner.",
+"El glosario ilustrado, las abreviaturas y las paletas de colores de crochet, a la mano y sin salir de tu agenda.": "The illustrated glossary, abbreviations and crochet color palettes, at hand and without leaving your planner.",
 "Buscar un término": "Search for a term",
 "Puntos básicos": "Basic stitches",
 "Técnicas de amigurumi": "Amigurumi techniques",
@@ -1708,5 +1708,10 @@ window.lrI18n.add("en", {
 "Elegir el tono y la intensidad del color": "Choose the hue and intensity of the color",
 "Agregar a mis colores": "Add to my colors",
 "Glosario y abreviaturas de crochet": "Crochet glossary and abbreviations",
-"Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.": "Sample chart with made-up data. When you enter your own, you will see your real chart here."
+"Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.": "Sample chart with made-up data. When you enter your own, you will see your real chart here.",
+"Paletas": "Palettes",
+"Combinaciones de colores listas para tu próximo proyecto. Toca un color para copiar su código.": "Color combinations ready for your next project. Tap a color to copy its code.",
+"Categorías de paletas": "Palette categories",
+"Copiado: {x}": "Copied: {x}",
+"Código: {x}": "Code: {x}"
 });

@@ -7,6 +7,7 @@ from html.parser import HTMLParser
 AQUI = os.path.dirname(os.path.abspath(__file__)); RAIZ = os.path.join(AQUI, '..')
 import sys; sys.path.insert(0, AQUI)
 import glosario_datos as g
+import paletas_datos as pa
 
 class Tabla(HTMLParser):
     def __init__(s): super().__init__(); s.dentro=False; s.fila=None; s.celda=None; s.filas=[]; s.cab=[]; s.cab_modo=False; s.prof=0
@@ -35,9 +36,10 @@ t=Tabla(); t.feed(open(os.path.join(RAIZ,'recursos-rosina.html'),encoding='utf-8
 datos={
  'categorias':[{'id':i,'n':n} for i,n in g.CATEGORIAS],
  'glosario':[{k:(list(v) if isinstance(v,tuple) else v) for k,v in d.items()} for d in g.TERMINOS],
+ 'paletas':{'categorias':[{'id':i,'n':n} for i,n in pa.CATEGORIAS], 'lista':[{'id':x['id'],'cat':x['cat'],'nombre':x['nombre'],'colores':[list(c) for c in x['colores']],'uso':x.get('uso',''),'tip':x.get('tip','')} for x in pa.PALETAS]},
  'abrev':{'idiomas':[{'id':i,'n':n} for i,n in t.cab], 'filas':t.filas},
 }
 assert len(t.filas)>=15 and len(t.cab)>=9, (len(t.filas), len(t.cab))
 salida=os.path.join(RAIZ,'js','agenda','recursos-datos.js')
 open(salida,'w',encoding='utf-8').write('/* Generado por herramientas/generar_recursos_agenda.py: no editar a mano. */\nwindow.lrRecursosDatos = '+json.dumps(datos,ensure_ascii=False)+';\n')
-print('listo:', len(datos['glosario']),'términos,',len(t.filas),'abreviaturas,',len(t.cab),'idiomas')
+print('listo:', len(datos['paletas']['lista']),'paletas,', len(datos['glosario']),'términos,',len(t.filas),'abreviaturas,',len(t.cab),'idiomas')
