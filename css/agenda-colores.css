@@ -266,3 +266,13 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #agenda .iv-mov-lista .c { color: #2E7D52; } #agenda .iv-mov-lista .u { color: #B0356F; }
 #agenda .iv-mov-mes { margin: 8px 0 0; font-size: .92rem; }
 #agenda .iv-proy { margin: 6px 0; }
+
+/* Lana de cada proyecto (2-nov-2026) */
+#agenda td.pl-lana { display: grid; gap: 6px; }
+#agenda .pl-t { margin: 0; font-weight: 700; color: var(--rosa-texto); font-size: .9rem; }
+#agenda .pl-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: .9rem; }
+#agenda .pl-lista li { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+#agenda .pl-lista li.hecho { color: #2E7D52; }
+#agenda .pl-fila { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+#agenda .pl-sel { flex: 1 1 160px; min-height: 44px; }
+#agenda .pl-n { width: 72px; min-height: 44px; }

@@ -87,7 +87,7 @@
     if (!tf) return;
     tf.querySelectorAll('tr.ficha').forEach(function (tr) {
       var k = +tr.getAttribute('data-fila'), est = document.getElementById('ag-f' + k + '-estado'), nom = (document.getElementById('ag-f' + k + '-proyecto') || {}).value || '';
-      var aviso = tr.querySelector('.iv-proy'), terminado = est && /terminad/i.test(est.value) && nom.trim();
+      var pl = (N.datos()._proyLana || {})[sin(nom)], aviso = tr.querySelector('.iv-proy'), terminado = est && /terminad/i.test(est.value) && nom.trim() && !(pl && pl.length);
       if (!terminado) { if (aviso) aviso.remove(); return; }
       if (aviso) return;
       var cuerpo = tr.querySelector('td.ficha-acciones') || tr.lastElementChild;
@@ -97,6 +97,10 @@
     });
   }
 
+  /* para «Lana de este proyecto» (proyecto-lana.js) */
+  function lanas() { var out = []; for (var k = 1; k <= IT.n; k++) { var nom = nombre(k); if (!nom) continue; var ov = cant(v(k, 'ovillos')); out.push({ k: k, nombre: nom, ov: ov == null ? 0 : ov }); } return out; }
+  function descontar(nom, n, para) { var l = lanas().filter(function (x) { return sin(x.nombre) === sin(nom); })[0]; if (!l) return T('Esa lana ya no está en tu inventario: ' + nom); return registrar(l.k, 'u', n, para); }
+
   var espera = 0;
   function programar() { clearTimeout(espera); espera = setTimeout(function () { if (hoja.classList.contains('abierta')) pintarFichas(); avisoProyecto(); }, 200); }
   document.addEventListener('agenda-guardada', programar);
@@ -104,5 +108,5 @@
   var tb = document.getElementById('tabla-lanas'); if (tb) new MutationObserver(function (r) { if (r.some(function (x) { return [].some.call(x.addedNodes, function (n) { return n.nodeName === 'TR'; }); })) programar(); }).observe(tb, { childList: true });
   if (tf) new MutationObserver(programar).observe(tf, { childList: true });
   programar();
-  window.lrInvMov = { resumenMes: resumenMes, registrar: registrar, pintar: pintarFichas };
+  window.lrInvMov = { resumenMes: resumenMes, registrar: registrar, pintar: pintarFichas, lanas: lanas, descontar: descontar, nombre: nombre };
 })();

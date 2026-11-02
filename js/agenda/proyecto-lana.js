@@ -1,0 +1,81 @@
+/* Agenda para tejedoras: lana de cada proyecto (Plus para emprendedoras, 2-nov-2026, a pedido de Jennifer: «lana por proyecto»).
+   En la hoja de la fila de proyectos, cada proyecto con nombre tiene «Lana de este proyecto»: se elige una lana del Inventario, cuántos ovillos lleva y se agrega a la lista.
+   Cuando el proyecto está «Terminado», el botón «Descontar del inventario» resta esos ovillos (queda anotado como «Usé» con el nombre del proyecto, y se puede
+   deshacer desde el inventario). La lista vive en `datos._proyLana[nombre del proyecto sin tildes ni mayúsculas] = [{ id, lana, n, hecho }]` (entra sola en copias, nube y Drive).
+   Si se cambia el nombre del proyecto, la lista queda con el nombre viejo. No resta nada sola: siempre con el botón. */
+(function () {
+  'use strict';
+  var N = window.lrAgendaNucleo, tf = document.getElementById('tabla-fila');
+  if (!N || !tf || !N.tablas['tabla-fila']) return;
+  var PR = N.tablas['tabla-fila'];
+  function el(tag, cls, t) { var e = document.createElement(tag); if (cls) e.className = cls; if (t != null) e.textContent = t; return e; }
+  function sin(t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim(); }
+  function T(t) { return window.lrI18n && window.lrI18n.t ? window.lrI18n.t(t) : t; }
+  function num(n) { return String(Math.round(n * 10) / 10).replace('.', ','); }
+  function v(k, c) { var e = document.getElementById(PR.prefijo + k + '-' + c); return e ? e.value.trim() : ''; }
+  function datos() { var d = N.datos(); if (!d._proyLana || typeof d._proyLana !== 'object' || Array.isArray(d._proyLana)) d._proyLana = {}; return d._proyLana; }
+  function lista(nom) { var d = datos(), k = sin(nom); if (!Array.isArray(d[k])) d[k] = []; return d[k]; }
+  var errores = {};   // el aviso sobrevive al repintado que sigue a cada guardado
+  function terminado(k) { return /terminad/i.test(v(k, 'estado')); }
+
+  function pintar() {
+    if (!window.lrInvMov) return;
+    tf.querySelectorAll('tr.ficha').forEach(function (tr) {
+      var k = +tr.getAttribute('data-fila'), nom = v(k, 'proyecto'), td = tr.querySelector('td.pl-lana');
+      if (!nom) { if (td) td.remove(); return; }
+      if (!td) { td = el('td', 'pl-lana no-imprimir'); td.setAttribute('data-col', 'lana'); var acc = tr.querySelector('td.celda-cal') || tr.querySelector('td.ficha-acciones'); tr.insertBefore(td, acc); }
+      var ac = document.activeElement; if (ac && (ac.tagName === 'INPUT' || ac.tagName === 'SELECT') && td.contains(ac)) return;
+      td.textContent = '';
+      var items = (datos()[sin(nom)] || []).slice(), lanas = window.lrInvMov.lanas();
+      td.appendChild(el('p', 'pl-t', 'Lana de este proyecto'));
+      if (items.length) {
+        var ul = el('ul', 'pl-lista'); ul.setAttribute('data-no-traducir', '');
+        items.forEach(function (it) {
+          var li = el('li', it.hecho ? 'hecho' : ''); li.appendChild(el('span', '', num(it.n) + ' × ' + it.lana + (it.hecho ? ' · descontada' : '')));
+          if (!it.hecho) { var q = el('button', 'enlace-copia', '✕'); q.type = 'button'; q.setAttribute('aria-label', 'Quitar'); q.addEventListener('click', function () { delete errores[sin(nom)]; var l = lista(nom), i = l.findIndex(function (x) { return x.id === it.id; }); if (i >= 0) { l.splice(i, 1); if (!l.length) delete datos()[sin(nom)]; N.guardar(); } }); li.appendChild(q); }
+          ul.appendChild(li);
+        });
+        td.appendChild(ul);
+      }
+      var msg = el('p', 'iv-aviso mal'); msg.setAttribute('role', 'alert'); msg.textContent = errores[sin(nom)] || ''; msg.hidden = !msg.textContent;
+      if (!lanas.length) {
+        td.appendChild(el('p', 'iv-aviso info', 'Primero anota tus lanas en el Inventario de lanas para poder elegirlas aquí.'));
+      } else {
+        var f = el('div', 'pl-fila');
+        var sel = el('select', 'pl-sel'); sel.setAttribute('aria-label', 'Lana');
+        lanas.forEach(function (l) { var o = el('option', '', l.nombre + ' (' + num(l.ov) + ')'); o.value = l.nombre; sel.appendChild(o); });
+        sel.setAttribute('data-no-traducir', '');
+        var c = el('input', 'pl-n'); c.type = 'number'; c.min = '0.5'; c.step = '0.5'; c.value = '1'; c.inputMode = 'decimal'; c.setAttribute('aria-label', 'Cuántos ovillos');
+        var b = el('button', 'boton-secundario boton-chico', '➕ Agregar a la lista'); b.type = 'button';
+        b.addEventListener('click', function () {
+          var n = parseFloat(String(c.value).replace(',', '.')); if (!(n > 0)) { msg.textContent = T('Escribe cuántos ovillos (un número mayor que 0).'); msg.hidden = false; return; }
+          delete errores[sin(nom)];
+          lista(nom).push({ id: 'p' + Date.now().toString(36) + Math.floor(Math.random() * 1000), lana: sel.value, n: n, hecho: false }); N.guardar();
+        });
+        f.appendChild(sel); f.appendChild(c); f.appendChild(b); td.appendChild(f);
+      }
+      var pend = items.filter(function (i) { return !i.hecho; });
+      if (pend.length && terminado(k)) {
+        var d = el('button', 'boton-primario boton-chico', 'Descontar del inventario'); d.type = 'button';
+        d.addEventListener('click', function () {
+          var l = lista(nom); delete errores[sin(nom)];
+          for (var j = 0; j < l.length; j++) {
+            if (l[j].hecho) continue;
+            var e = window.lrInvMov.descontar(l[j].lana, l[j].n, 'Proyecto: ' + nom);
+            if (e) { errores[sin(nom)] = e; msg.textContent = e; msg.hidden = false; N.guardar(); return; }
+            l[j].hecho = true; N.guardar();
+          }
+        });
+        td.appendChild(d);
+      } else if (pend.length) td.appendChild(el('p', 'iv-aviso info', 'Cuando el proyecto esté «Terminado» podrás descontar esta lana del inventario.'));
+      td.appendChild(msg);
+    });
+  }
+  var espera = 0;
+  function programar() { clearTimeout(espera); espera = setTimeout(pintar, 250); }
+  document.addEventListener('agenda-guardada', programar);
+  new MutationObserver(programar).observe(tf, { childList: true });
+  new MutationObserver(programar).observe(document.getElementById('proyectos-fila') || tf, { attributes: true, attributeFilter: ['class'] });
+  programar();
+  window.lrProyLana = { pintar: pintar };
+})();
