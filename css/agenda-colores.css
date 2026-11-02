@@ -235,3 +235,23 @@ body.config-sola .pestanas-agenda { display: none !important; }
 
 #recursos-rosina .rr-marco { width: 100%; min-height: 420px; border: 0; background: transparent; display: block; }
 @media print { #recursos-rosina .rr-marco, #recursos-rosina #rr-calculadoras { display: none !important; } }
+
+/* Checklist y descargables dentro de Recursos de Rosina (2-nov-2026) */
+#recursos-rosina .rr-ck-prog { font-weight: 700; color: var(--rosa-texto); margin: 4px 0 10px; }
+#recursos-rosina .rr-ck-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+#recursos-rosina .rr-ck-grupo { border: 1.5px solid #F7C6DE; border-radius: 16px; background: #fff; padding: 10px 14px 12px; }
+#recursos-rosina .rr-ck-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+#recursos-rosina .rr-ck-lista label { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; line-height: 1.4; min-height: 44px; padding: 4px 0; cursor: pointer; }
+#recursos-rosina .rr-ck-lista input { flex: none; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--rosa-boton); }
+#recursos-rosina .rr-ck-acc { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+#recursos-rosina .rr-st-t { margin: 12px 0 6px; font-size: .95rem; color: var(--rosa-texto); }
+#recursos-rosina .rr-st-fila { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+#recursos-rosina .rr-st { display: flex; align-items: center; justify-content: center; min-height: 84px; padding: 6px; background: #fff; border: 1.5px solid #F7C6DE; border-radius: 14px; }
+#recursos-rosina .rr-st img { width: 100%; height: auto; max-width: 84px; display: block; }
+#recursos-rosina .rr-temas { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; margin-top: 8px; }
+#recursos-rosina .rr-tema { border: 1.5px solid #F7C6DE; border-radius: 16px; background: #fff; padding: 10px; text-align: center; }
+#recursos-rosina .rr-tema h5 { margin: 8px 0; font-family: var(--fuente-titulo); font-size: .95rem; color: var(--rosa-texto); }
+#recursos-rosina .rr-tema-prev { display: flex; gap: 6px; justify-content: center; }
+#recursos-rosina .rr-tema-prev img { width: 45%; height: auto; border-radius: 8px; border: 1px solid rgba(0,0,0,.08); }
+#recursos-rosina .rr-tema-bot { display: flex; flex-direction: column; gap: 6px; }
+@media print { #recursos-rosina #rr-descargables { display: none !important; } #recursos-rosina .rr-ck-acc { display: none; } }
