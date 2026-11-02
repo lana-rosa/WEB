@@ -254,7 +254,7 @@ FILAS += [
  ('Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.', 'To dictate or handwrite, use the microphone or pen on your keyboard.', 'Para ditar ou escrever à mão, use o microfone ou a caneta do seu teclado.'),
  ('🎤 Dictar', '🎤 Dictate', '🎤 Ditar'),
  ('Recursos de Rosina', "Rosina's resources", 'Recursos da Rosina'),
- ('El glosario ilustrado, las abreviaturas y las paletas de colores de crochet, a la mano y sin salir de tu agenda.', 'The illustrated glossary, abbreviations and crochet color palettes, at hand and without leaving your planner.', 'O glossário ilustrado, as abreviaturas e as paletas de cores de crochê, à mão e sem sair da sua agenda.'),
+ ('El glosario ilustrado, las abreviaturas, las paletas de colores y las calculadoras de crochet, a la mano y sin salir de tu agenda.', 'The illustrated glossary, abbreviations, color palettes and crochet calculators, at hand and without leaving your planner.', 'O glossário ilustrado, as abreviaturas, as paletas de cores e as calculadoras de crochê, à mão e sem sair da sua agenda.'),
  ('Buscar un término', 'Search for a term', 'Buscar um termo'),
  ('Puntos básicos', 'Basic stitches', 'Pontos básicos'),
  ('Técnicas de amigurumi', 'Amigurumi techniques', 'Técnicas de amigurumi'),
@@ -303,4 +303,8 @@ FILAS += [
  ('Categorías de paletas', 'Palette categories', 'Categorias de paletas'),
  ('Copiado: {x}', 'Copied: {x}', 'Copiado: {x}'),
  ('Código: {x}', 'Code: {x}', 'Código: {x}'),
+]
+FILAS += [
+ ('Calculadoras', 'Calculators', 'Calculadoras'),
+ ('Rosina hace las cuentas por ti: elige una herramienta y todo se calcula al instante. Lo que escribes se guarda en tu dispositivo.', 'Rosina does the math for you: pick a tool and everything is calculated instantly. What you type is saved on your device.', 'A Rosina faz as contas por você: escolha uma ferramenta e tudo é calculado na hora. O que você escreve fica salvo no seu dispositivo.'),
 ]

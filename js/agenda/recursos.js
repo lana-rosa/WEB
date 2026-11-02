@@ -13,7 +13,8 @@
 
   /* ---------- pestañas ---------- */
   var pestanas = hoja.querySelectorAll('.rr-pestanas [data-rr]');
-  function mostrar(cual) {
+  function mostrar(cual, ancla) {
+    if (cual === 'calculadoras' && typeof cargarCalculadoras === 'function') cargarCalculadoras(ancla || anclaActual);
     pestanas.forEach(function (b) { var on = b.dataset.rr === cual; b.setAttribute('aria-selected', String(on)); });
     hoja.querySelectorAll('.rr-panel').forEach(function (p) { p.hidden = p.id !== 'rr-' + cual; });
   }
@@ -79,6 +80,19 @@
   function aplicar() { tb.querySelectorAll('[data-idioma]').forEach(function (c) { var id = c.dataset.idioma; c.hidden = id !== 'es' && !activos[id]; }); }
   aplicar();
 
+
+  /* ---------- calculadoras (2-nov-2026): la página de calculadoras del Rincón, incrustada sin encabezado ni pie ---------- */
+  var cp = document.getElementById('rr-calculadoras'), marco = null, anclaActual = '';
+  function cargarCalculadoras(ancla) {
+    if (!cp) return;
+    if (!marco) {
+      cp.appendChild(el('p', 'rr-intro', 'Rosina hace las cuentas por ti: elige una herramienta y todo se calcula al instante. Lo que escribes se guarda en tu dispositivo.'));
+      marco = el('iframe', 'rr-marco no-imprimir'); marco.title = 'Calculadoras de Rosina'; marco.setAttribute('loading', 'lazy'); marco.setAttribute('data-no-traducir', ''); cp.appendChild(marco);
+      var ajustar = function () { try { var d = marco.contentDocument; if (d && d.body) marco.style.height = Math.max(420, d.documentElement.scrollHeight + 4) + 'px'; } catch (e) { /* mismo sitio: no debería fallar */ } };
+      marco.addEventListener('load', function () { ajustar(); try { var d = marco.contentDocument; if (window.ResizeObserver && d.body) new ResizeObserver(ajustar).observe(d.body); } catch (e) {} setInterval(ajustar, 1500); });
+    }
+    if (ancla !== anclaActual || !marco.getAttribute('src')) { anclaActual = ancla || ''; marco.src = '/calculadoras-rosina.html?incrustada=1' + (anclaActual ? '#' + anclaActual : ''); }
+  }
   /* ---------- paletas de colores (2-nov-2026) ---------- */
   var pl = document.getElementById('rr-paletas');
   if (pl && D.paletas) {
@@ -117,8 +131,8 @@
   /* Las tiras «Herramienta de Rosina» de otras hojas abren esta hoja (sin salir de la agenda); sin JavaScript siguen llevando a la página de siempre */
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('.herr-rosina a'); if (!a || !window.lrIrAHoja) return;
-    var h = a.getAttribute('href') || '', cual = /^\/glosario-rosina\.html/.test(h) ? 'glosario' : (/^\/recursos-rosina\.html#abreviaturas/.test(h) ? 'abreviaturas' : (/^\/paletas-rosina\.html/.test(h) || /^\/recursos-rosina\.html#paletas/.test(h) ? 'paletas' : ''));
-    if (!cual) return; e.preventDefault(); window.lrIrAHoja('recursos-rosina'); mostrar(cual);
+    var h = a.getAttribute('href') || '', cual = /^\/glosario-rosina\.html/.test(h) ? 'glosario' : (/^\/recursos-rosina\.html#abreviaturas/.test(h) ? 'abreviaturas' : (/^\/paletas-rosina\.html/.test(h) || /^\/recursos-rosina\.html#paletas/.test(h) ? 'paletas' : (/^\/calculadoras-rosina\.html/.test(h) ? 'calculadoras' : '')));
+    if (!cual) return; e.preventDefault(); window.lrIrAHoja('recursos-rosina'); mostrar(cual, cual === 'calculadoras' ? (h.split('#')[1] || '') : '');
   });
   window.lrRecursos = { mostrar: mostrar };
 })();
