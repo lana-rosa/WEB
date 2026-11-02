@@ -715,8 +715,12 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .fin-plan input, .fin-plan select { border: none; border-bottom: 1.5px solid rgba(69,69,74,.25); background: transparent; font: inherit; padding: 4px 2px; min-width: 0; width: 100%; }
 .fin-plan-ok { display: flex; align-items: center; gap: 6px; font-size: .85rem; } .fin-plan-ok input { width: auto; }
 .fin-planes-info { margin: 8px 0 0; font-size: .88rem; font-weight: 600; color: var(--rosa-texto); }
+.fin-metas { display: grid; gap: 10px; margin-bottom: 14px; } .fin-metas:empty, .fin-planes:empty { display: none; }
+.fin-meta { grid-template-columns: 1fr auto; background: #fff; border: 1.5px solid #E4D3DC; border-radius: 14px; padding: 12px 14px; gap: 8px 12px; align-items: center; } .fin-meta .n { overflow-wrap: anywhere; } .fin-meta label { display: grid; gap: 2px; font-size: .78rem; color: var(--tinta-suave); } .fin-meta label input { width: 120px; max-width: 100%; }
+.fin-meta .fin-progreso, .fin-meta .quitar { grid-column: 1 / -1; } .fin-meta .quitar, .fin-plan .quitar { justify-self: start; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: .85rem; text-decoration: underline; color: var(--tinta-suave); min-height: 44px; }
+.fin-plan { grid-template-columns: 1fr auto auto; background: #fff; border: 1.5px solid #E4D3DC; border-radius: 14px; padding: 10px 14px; } .fin-plan .fin-plan-dato { font-size: .85rem; color: var(--tinta-suave); } .fin-plan .quitar { grid-column: 1 / -1; min-height: 0; padding: 0; }
 @media (max-width: 900px) { .ff-resumen { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 700px) { .fin-meta { grid-template-columns: 1fr 1fr; } .fin-meta input.n { grid-column: 1 / -1; } .fin-meta input.fm { grid-column: 1 / -1; } .fin-plan { grid-template-columns: 1fr 1fr; } .fin-plan input.n { grid-column: 1 / -1; } .ff-item { grid-template-columns: 1fr auto; } .ff-acc { grid-column: 1 / -1; } }
+@media (max-width: 700px) { .fin-meta { grid-template-columns: 1fr; } .fin-plan { grid-template-columns: 1fr auto; } .fin-plan .n { grid-column: 1 / -1; } .ff-item { grid-template-columns: 1fr auto; } .ff-acc { grid-column: 1 / -1; } }
 
 /* Calendario con semana, día y "lo que viene" (8-oct-2026) */
 .agc-barra { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 0 0 12px; }
@@ -1469,8 +1473,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="fin-pres" id="fin-pres"></div>
         <h4 class="sub-hoja">Metas de ahorro del negocio</h4>
         <p class="fin-aho-mes" id="fin-aho-mes"></p>
+        <form class="fin-form no-imprimir" id="fm-form" autocomplete="off">
+          <div class="linea"><label>Mi meta<input id="fm-n" placeholder="Ej.: máquina de coser"></label><label>Meta $<input id="fm-meta" inputmode="numeric" placeholder="$ 0"></label></div>
+          <div class="linea"><label>Ahorrado $<input id="fm-ah" inputmode="numeric" placeholder="$ 0"></label><label>Fecha objetivo<input id="fm-f" type="date"></label></div>
+          <button type="button" class="fin-form-btn" id="fm-agregar">Agregar meta</button>
+          <p class="fin-msg" id="fm-msg" role="status"></p>
+        </form>
         <div class="fin-metas" id="fin-metas"></div>
         <h4 class="sub-hoja">Planes del negocio para el año</h4>
+        <form class="fin-form no-imprimir" id="fp-form" autocomplete="off">
+          <div class="linea"><label>Mi plan<input id="fp-n" placeholder="Ej.: viaje a la costa"></label><label>Mes<select id="fp-mes"></select></label><label>Costo $<input id="fp-c" inputmode="numeric" placeholder="$ 0"></label></div>
+          <button type="button" class="fin-form-btn" id="fp-agregar">Agregar plan</button>
+          <p class="fin-msg" id="fp-msg" role="status"></p>
+        </form>
         <div class="fin-planes" id="fin-planes"></div>
         <p class="fin-planes-info" id="fin-planes-info"></p>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> empieza con un presupuesto sencillo y ajústalo cada mes. Una meta pequeña que cumples vale más que una grande que se olvida.</p>
@@ -3096,7 +3111,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function esNeg(x) { return true; }   // desde el 29-oct-2026 las finanzas de la agenda son solo las del negocio (pedido de Sara)
     var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     var hoy = new Date(), mesSel = { y: hoy.getFullYear(), m: hoy.getMonth() + 1 }, rango = 6, editId = null;
-    function fin() { datos._fin = datos._fin || {}; var f = datos._fin; f.movs = f.movs || []; f.pres = f.pres || {}; f.metas = f.metas || []; while (f.metas.length < 4) f.metas.push({ n: '', meta: '', ahorrado: '', fecha: '' }); f.fijos = f.fijos || []; f.deudas = f.deudas || []; f.tarjetas = f.tarjetas || []; f.pagosT = f.pagosT || []; f.planes = f.planes || []; while (f.planes.length < 6) f.planes.push({ n: '', mes: '', costo: '', listo: false }); return f; }
+    function fin() { datos._fin = datos._fin || {}; var f = datos._fin; f.movs = f.movs || []; f.pres = f.pres || {}; f.metas = (f.metas || []).filter(function(x) { return x && (x.n || num(x.meta) || num(x.ahorrado)); }); f.fijos = f.fijos || []; f.deudas = f.deudas || []; f.tarjetas = f.tarjetas || []; f.pagosT = f.pagosT || []; f.planes = (f.planes || []).filter(function(x) { return x && (x.n || num(x.costo)); }); return f; }
     function guardarFin() { guardarDatos(); }
     function plata(n) { n = Math.round(n); return (n < 0 ? '−$ ' : '$ ') + Math.abs(n).toLocaleString('es-CO'); }
     function corto(n) { n = Math.round(n); if (n >= 1e6) return '$' + (n / 1e6).toLocaleString('es-CO', { maximumFractionDigits: 1 }) + ' M'; if (n >= 1e3) return '$' + Math.round(n / 1e3) + ' mil'; return '$' + n; }
@@ -3655,40 +3670,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var f = fin(), pend = f.planes.filter(function(x) { return !x.listo && num(x.costo); }), tot = pend.reduce(function(a, x) { return a + num(x.costo); }, 0), restan = Math.max(1, 12 - hoy.getMonth());
       el('fin-planes-info').textContent = tot ? 'Planes por cumplir este año: ' + plata(tot) + '. Si los repartes en los ' + restan + (restan === 1 ? ' mes' : ' meses') + ' que quedan, son ' + plata(Math.ceil(tot / restan)) + ' al mes.' : '';
     }
+    function pintarMetas() {
+      var f = fin(), box = el('fin-metas'); box.innerHTML = '';
+      f.metas.forEach(function(mt, k) {
+        var d = document.createElement('div'); d.className = 'fin-meta';
+        var me = num(mt.meta), ah = num(mt.ahorrado), pc = me ? Math.min(100, ah / me * 100) : 0;
+        d.innerHTML = '<strong class="n"></strong><label>Ahorrado $<input inputmode="numeric" placeholder="$ 0"></label><div class="fin-progreso" title="' + Math.round(pc) + ' %"><i style="width:' + pc + '%"></i></div><small class="fin-meta-info"></small><button type="button" class="quitar">Borrar</button>';
+        d.querySelector('.n').textContent = mt.n || ''; d.querySelector('.fin-meta-info').textContent = infoMeta(me, ah, mt.fecha || '');
+        d.querySelector('.quitar').setAttribute('aria-label', 'Borrar la meta ' + (mt.n || ''));
+        var inp = d.querySelector('input'); inp.value = ah ? plata(ah) : ''; inp.setAttribute('aria-label', 'Ahorrado en la meta ' + (mt.n || ''));
+        inp.addEventListener('change', function() { mt.ahorrado = num(inp.value) || ''; guardarFin(); pintarMetas(); });
+        d.querySelector('.quitar').addEventListener('click', function() { if (!confirm('¿Borrar la meta «' + (mt.n || '') + '»?')) return; fin().metas.splice(k, 1); guardarFin(); pintarMetas(); });
+        box.appendChild(d);
+      });
+    }
+    function pintarPlanes() {
+      var f = fin(), box = el('fin-planes'); box.innerHTML = '';
+      f.planes.forEach(function(pn, q) {
+        var d = document.createElement('div'); d.className = 'fin-plan';
+        d.innerHTML = '<strong class="n"></strong><span class="fin-plan-dato"></span><label class="fin-plan-ok"><input type="checkbox"><span>Listo</span></label><button type="button" class="quitar">Borrar</button>';
+        d.querySelector('.n').textContent = pn.n || '';
+        d.querySelector('.fin-plan-dato').textContent = [pn.mes ? cap(MESES[+pn.mes - 1]) : '', num(pn.costo) ? plata(num(pn.costo)) : ''].filter(Boolean).join(' · ');
+        var ck = d.querySelector('input'); ck.checked = !!pn.listo; ck.setAttribute('aria-label', 'Plan ' + (pn.n || '') + ' cumplido');
+        ck.addEventListener('change', function() { pn.listo = ck.checked; guardarFin(); pintarPlanesInfo(); });
+        d.querySelector('.quitar').setAttribute('aria-label', 'Borrar el plan ' + (pn.n || ''));
+        d.querySelector('.quitar').addEventListener('click', function() { if (!confirm('¿Borrar el plan «' + (pn.n || '') + '»?')) return; fin().planes.splice(q, 1); guardarFin(); pintarPlanes(); pintarPlanesInfo(); });
+        box.appendChild(d);
+      });
+    }
     function pintarPres() {
       var f = fin(), c = el('fin-pres'); if (!c.dataset.listo) {
         c.dataset.listo = '1';
         CAT_G.forEach(function(cat) { var lab = document.createElement('label'); lab.innerHTML = '<i style="width:11px;height:11px;border-radius:50%;background:' + colorCat(cat) + ';flex:none"></i>'; var sp = document.createElement('span'); sp.textContent = cat; lab.appendChild(sp); var inp = document.createElement('input'); inp.inputMode = 'numeric'; inp.placeholder = '$ 0'; inp.setAttribute('aria-label', 'Presupuesto de ' + cat); inp.dataset.cat = cat;
           inp.addEventListener('input', function() { fin().pres[cat] = num(inp.value) || ''; guardarFin(); }); inp.addEventListener('blur', function() { inp.value = num(inp.value) ? plata(num(inp.value)) : ''; }); lab.appendChild(inp); c.appendChild(lab); });
-        var m = el('fin-metas');
-        for (var k = 0; k < 4; k++) (function(k) {
-          var d = document.createElement('div'); d.className = 'fin-meta';
-          d.innerHTML = '<input class="n" placeholder="Mi meta (ej.: máquina de coser)" aria-label="Nombre de la meta ' + (k + 1) + '"><input inputmode="numeric" placeholder="Meta $" aria-label="Valor de la meta ' + (k + 1) + '"><input inputmode="numeric" placeholder="Ahorrado $" aria-label="Ahorrado en la meta ' + (k + 1) + '"><input type="date" class="fm" aria-label="Fecha objetivo de la meta ' + (k + 1) + '"><div class="fin-progreso"><i style="width:0"></i></div><small class="fin-meta-info"></small>';
-          var ins = d.querySelectorAll('input'), barra = d.querySelector('.fin-progreso i'), info = d.querySelector('.fin-meta-info');
-          function pintaBarra() { var me = num(ins[1].value), ah = num(ins[2].value); barra.style.width = (me ? Math.min(100, ah / me * 100) : 0) + '%'; d.querySelector('.fin-progreso').title = me ? Math.round(Math.min(100, ah / me * 100)) + ' %' : ''; info.textContent = (ins[0].value || me) ? infoMeta(me, ah, ins[3].value) : ''; }
-          ins[0].addEventListener('input', function() { fin().metas[k].n = ins[0].value; guardarFin(); pintaBarra(); });
-          ins[1].addEventListener('input', function() { fin().metas[k].meta = num(ins[1].value) || ''; guardarFin(); pintaBarra(); });
-          ins[2].addEventListener('input', function() { fin().metas[k].ahorrado = num(ins[2].value) || ''; guardarFin(); pintaBarra(); });
-          ins[3].addEventListener('change', function() { fin().metas[k].fecha = ins[3].value; guardarFin(); pintaBarra(); });
-          [ins[1], ins[2]].forEach(function(i) { i.addEventListener('blur', function() { i.value = num(i.value) ? plata(num(i.value)) : ''; }); });
-          d._pintar = pintaBarra; d._ins = ins; m.appendChild(d);
-        })(k);
-        var pl = el('fin-planes');
-        for (var q = 0; q < 6; q++) (function(q) {
-          var d = document.createElement('div'); d.className = 'fin-plan';
-          d.innerHTML = '<input class="n" placeholder="Mi plan (ej.: viaje a la costa)" aria-label="Plan ' + (q + 1) + '"><select aria-label="Mes del plan ' + (q + 1) + '"><option value="">Mes…</option>' + MESES.map(function(x, i) { return '<option value="' + (i + 1) + '">' + cap(x) + '</option>'; }).join('') + '</select><input inputmode="numeric" placeholder="Costo $" aria-label="Costo del plan ' + (q + 1) + '"><label class="fin-plan-ok"><input type="checkbox" aria-label="Plan ' + (q + 1) + ' cumplido"><span>Listo</span></label>';
-          var ins = d.querySelectorAll('input'), sel = d.querySelector('select');
-          ins[0].addEventListener('input', function() { fin().planes[q].n = ins[0].value; guardarFin(); });
-          sel.addEventListener('change', function() { fin().planes[q].mes = sel.value; guardarFin(); });
-          ins[1].addEventListener('input', function() { fin().planes[q].costo = num(ins[1].value) || ''; guardarFin(); pintarPlanesInfo(); });
-          ins[1].addEventListener('blur', function() { ins[1].value = num(ins[1].value) ? plata(num(ins[1].value)) : ''; });
-          ins[2].addEventListener('change', function() { fin().planes[q].listo = ins[2].checked; guardarFin(); pintarPlanesInfo(); });
-          d._ins = ins; d._sel = sel; pl.appendChild(d);
-        })(q);
+        el('fp-mes').innerHTML = '<option value="">Mes…</option>' + MESES.map(function(x, i) { return '<option value="' + (i + 1) + '">' + cap(x) + '</option>'; }).join('');
+        ['fm-meta', 'fm-ah', 'fp-c'].forEach(function(id) { var i = el(id); i.addEventListener('blur', function() { i.value = num(i.value) ? plata(num(i.value)) : ''; }); });
+        el('fm-agregar').addEventListener('click', function() {
+          var n = el('fm-n').value.trim(), me = num(el('fm-meta').value);
+          if (!n || !me) { el('fm-msg').textContent = 'Escribe el nombre de la meta y cuánto necesitas.'; return; }
+          fin().metas.push({ n: n, meta: me, ahorrado: num(el('fm-ah').value) || '', fecha: el('fm-f').value });
+          guardarFin(); ['fm-n', 'fm-meta', 'fm-ah', 'fm-f'].forEach(function(id) { el(id).value = ''; }); el('fm-msg').textContent = 'Meta agregada.'; pintarMetas();
+        });
+        el('fp-agregar').addEventListener('click', function() {
+          var n = el('fp-n').value.trim();
+          if (!n) { el('fp-msg').textContent = 'Escribe el nombre del plan.'; return; }
+          fin().planes.push({ n: n, mes: el('fp-mes').value, costo: num(el('fp-c').value) || '', listo: false });
+          guardarFin(); ['fp-n', 'fp-mes', 'fp-c'].forEach(function(id) { el(id).value = ''; }); el('fp-msg').textContent = 'Plan agregado.'; pintarPlanes(); pintarPlanesInfo();
+        });
       }
       c.querySelectorAll('input').forEach(function(inp) { var v = num(f.pres[inp.dataset.cat]); inp.value = v ? plata(v) : ''; });
-      el('fin-metas').querySelectorAll('.fin-meta').forEach(function(d, k) { var mt = f.metas[k]; d._ins[0].value = mt.n || ''; d._ins[1].value = num(mt.meta) ? plata(num(mt.meta)) : ''; d._ins[2].value = num(mt.ahorrado) ? plata(num(mt.ahorrado)) : ''; d._ins[3].value = mt.fecha || ''; d._pintar(); });
-      el('fin-planes').querySelectorAll('.fin-plan').forEach(function(d, q) { var pn = f.planes[q]; d._ins[0].value = pn.n || ''; d._sel.value = pn.mes || ''; d._ins[1].value = num(pn.costo) ? plata(num(pn.costo)) : ''; d._ins[2].checked = !!pn.listo; });
+      pintarMetas(); pintarPlanes();
       var ah = sumar(movsDe(mesSel.y, mesSel.m), 'a');
       el('fin-aho-mes').textContent = ah ? 'Este mes ya apartaste ' + plata(ah) + ' en ahorro e inversión (lo anotas en «Ingresos y gastos del negocio»).' : 'Cuando anotes un ahorro en «Ingresos y gastos del negocio», lo verás aquí.';
       pintarPlanesInfo();

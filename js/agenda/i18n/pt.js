@@ -1774,5 +1774,18 @@ window.lrI18n.add("pt", {
 "▼ {p#} % menos que en {m}": "▼ {p} % a menos que em {m}",
 "▲ {v} más que en {m}": "▲ {v} a mais que em {m}",
 "▼ {v} menos que en {m}": "▼ {v} a menos que em {m}",
-"Igual que en {m}": "Igual a {m}"
+"Igual que en {m}": "Igual a {m}",
+"Mi meta": "Minha meta",
+"Ej.: máquina de coser": "Ex.: máquina de costura",
+"Fecha objetivo": "Data-alvo",
+"Agregar meta": "Adicionar meta",
+"Mi plan": "Meu plano",
+"Ej.: viaje a la costa": "Ex.: viagem à praia",
+"Agregar plan": "Adicionar plano",
+"Escribe el nombre de la meta y cuánto necesitas.": "Escreva o nome da meta e quanto você precisa.",
+"Meta agregada.": "Meta adicionada.",
+"Escribe el nombre del plan.": "Escreva o nome do plano.",
+"Plan agregado.": "Plano adicionado.",
+"¿Borrar la meta «{n}»?": "Apagar a meta «{n}»?",
+"¿Borrar el plan «{n}»?": "Apagar o plano «{n}»?"
 });
