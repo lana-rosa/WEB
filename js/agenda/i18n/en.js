@@ -1744,5 +1744,19 @@ window.lrI18n.add("en", {
 "Primavera": "Spring",
 "Verano": "Summer",
 "Otoño": "Autumn",
-"Invierno": "Winter"
+"Invierno": "Winter",
+"Compré o usé ovillos": "I bought or used skeins",
+"¿Para qué? (opcional)": "What for? (optional)",
+"¿Para qué?": "What for?",
+"Cuántos ovillos": "How many skeins",
+"➕ Compré": "➕ I bought",
+"➖ Usé": "➖ I used",
+"Deshacer el último movimiento": "Undo the last movement",
+"🧶 ¿Gastaste lana en este proyecto?": "🧶 Did you use yarn on this project?",
+"Escribe primero la marca o el color de esta lana.": "First write the brand or color of this yarn.",
+"Escribe cuántos ovillos (un número mayor que 0).": "Write how many skeins (a number greater than 0).",
+"Solo tienes {a} ovillo(s) de esta lana.": "You only have {a} skein(s) of this yarn.",
+"No pude cambiar los ovillos.": "I could not change the skeins.",
+"Este mes compraste {a} ovillo(s) ({g}) y usaste {b} ovillo(s).": "This month you bought {a} skein(s) ({g}) and used {b} skein(s).",
+"Este mes compraste {a} ovillo(s) y usaste {b} ovillo(s).": "This month you bought {a} skein(s) and used {b} skein(s)."
 });

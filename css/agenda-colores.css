@@ -255,3 +255,14 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #recursos-rosina .rr-tema-prev img { width: 45%; height: auto; border-radius: 8px; border: 1px solid rgba(0,0,0,.08); }
 #recursos-rosina .rr-tema-bot { display: flex; flex-direction: column; gap: 6px; }
 @media print { #recursos-rosina #rr-descargables { display: none !important; } #recursos-rosina .rr-ck-acc { display: none; } }
+
+/* Movimientos del inventario de lanas (2-nov-2026) */
+#agenda td.iv-mov { display: grid; gap: 6px; }
+#agenda .iv-mov-t { margin: 0; font-weight: 700; color: var(--rosa-texto); font-size: .9rem; }
+#agenda .iv-mov-fila { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+#agenda .iv-mov-n { width: 72px; min-height: 44px; }
+#agenda .iv-mov-para { width: 100%; min-height: 44px; }
+#agenda .iv-mov-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: .85rem; }
+#agenda .iv-mov-lista .c { color: #2E7D52; } #agenda .iv-mov-lista .u { color: #B0356F; }
+#agenda .iv-mov-mes { margin: 8px 0 0; font-size: .92rem; }
+#agenda .iv-proy { margin: 6px 0; }

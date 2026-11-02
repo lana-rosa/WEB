@@ -61,6 +61,7 @@
       t.appendChild(ul);
       if (r.porAcabar.length > 6) t.appendChild(el('p', 'iv-mas', 'Y ' + (r.porAcabar.length - 6) + ' más.'));
     }
+    var mes = window.lrInvMov && window.lrInvMov.resumenMes(); if (mes) t.appendChild(mes);
     if (!r.conCosto) t.appendChild(el('p', 'iv-nota', 'Si anotas lo que pagaste por cada ovillo, la agenda te dice cuánto dinero tienes guardado en lana. Y con «Avísame si quedan menos de», te avisa antes de que se acabe.'));
   }
 
