@@ -1707,5 +1707,6 @@ window.lrI18n.add("pt", {
 "Conectar con Google": "Conectar com o Google",
 "Elegir el tono y la intensidad del color": "Escolher o tom e a intensidade da cor",
 "Agregar a mis colores": "Adicionar às minhas cores",
-"Glosario y abreviaturas de crochet": "Glossário e abreviaturas de crochê"
+"Glosario y abreviaturas de crochet": "Glossário e abreviaturas de crochê",
+"Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.": "Gráfico de exemplo com dados inventados. Quando você anotar os seus, aqui verá o seu gráfico real."
 });

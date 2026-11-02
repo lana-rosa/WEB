@@ -24,12 +24,15 @@
   function num(t) { var n = parseInt(String(t == null ? '' : t).replace(/[^0-9]/g, ''), 10); return isFinite(n) ? n : 0; }
   function datos() { return window.lrMetasVentas ? window.lrMetasVentas.calcular() : null; }
   function bloqueada() { var h = document.getElementById('fin-presupuesto'); return !!h && h.classList.contains('sin-membresia'); }
+  /* Gráfica de ejemplo (1-nov-2026, pedido de Jennifer): sin datos reales se dibuja con datos inventados, más clara, con una nota que lo dice */
+  function notaEjemplo(c, pista) { var p = el('p', 'fin-ej-nota'); p.setAttribute('role', 'note'); p.appendChild(el('span', 'fin-ej-t', 'Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.')); if (pista) p.appendChild(el('span', 'fin-ej-pista', ' ' + pista)); c.insertBefore(p, c.firstChild); c.classList.add('gr-ejemplo'); }
   function leyenda(items) { var l = el('div', 'gr-leyenda'); items.forEach(function (i) { var s = el('span'); var p = el('i'); p.style.background = i[1]; if (i[2]) p.className = i[2]; s.appendChild(p); s.appendChild(document.createTextNode(i[0])); l.appendChild(s); }); return l; }
 
   /* ---- 1. Punto de equilibrio: barra con rayas ---- */
-  function equilibrio(c) {
-    var d = datos(); c.textContent = '';
-    if (!d || !d.eq) { c.appendChild(el('p', 'fin-vacio', 'Para ver esta gráfica agrega tus pagos en «Gastos fijos y deudas del negocio» y anota el costo en «Mis ventas del mes» (o escribe tu margen en «Presupuesto y metas del negocio»).')); return false; }
+  function equilibrio(c, conEjemplo) {
+    var d = datos(), ej = false; c.textContent = ''; c.classList.remove('gr-ejemplo');
+    var pista = 'Para ver esta gráfica agrega tus pagos en «Gastos fijos y deudas del negocio» y anota el costo en «Mis ventas del mes» (o escribe tu margen en «Presupuesto y metas del negocio»).';
+    if (!d || !d.eq) { if (!conEjemplo) return false; d = { ventas: 1200000, eq: 2000000, meta: 3000000, eqCuotas: 0, cuotas: 0 }; ej = true; }
     var W = 600, H = 96, pad = 8, tope = Math.max(d.ventas, d.eq, d.meta || 0, d.eqCuotas && d.cuotas ? d.eqCuotas : 0) * 1.12 || 1, x = function (v) { return pad + (W - 2 * pad) * v / tope; };
     var s = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'class': 'gr-svg' });
     var supera = d.ventas >= d.eq, pct = Math.round(d.ventas / d.eq * 100);
@@ -43,18 +46,19 @@
     if (d.ventas > 0) s.appendChild(sv('text', { x: Math.min(W - 8, Math.max(pad + 40, x(d.ventas) - 8)), y: 56, 'text-anchor': 'end', 'class': 'gr-t gr-blanco' }, corto(d.ventas)));
     c.appendChild(s);
     c.appendChild(leyenda([['Ventas del mes', supera ? VERDE : ROSA], ['Punto de equilibrio', '#45454A', 'gr-raya'], d.meta ? ['Tu meta', LILA] : null].filter(Boolean)));
+    if (ej) { notaEjemplo(c, pista); return true; }
     c.appendChild(el('p', 'gr-resumen', supera ? 'Ya superaste tu punto de equilibrio: lo que vendes de aquí en adelante empieza a dejarte ganancia.' : 'Llevas ' + plata(d.ventas) + ' de los ' + plata(d.eq) + ' que necesitas para no perder este mes (' + pct + ' %).'));
     return true;
   }
 
   /* ---- 2. Utilidad de cada mes (últimos 6) ---- */
   function utilidad(c) {
-    c.textContent = '';
+    c.textContent = ''; c.classList.remove('gr-ejemplo'); var ej = false;
     var f = (N.datos()._fin || {}), movs = f.movs || [], hoy = new Date(), meses = [];
     for (var i = 5; i >= 0; i--) { var d = new Date(hoy.getFullYear(), hoy.getMonth() - i, 1); meses.push({ y: d.getFullYear(), m: d.getMonth(), ing: 0, gas: 0 }); }
     movs.forEach(function (x) { if (!x || (x.t !== 'i' && x.t !== 'g')) return; var k = String(x.f || '').slice(0, 7); meses.forEach(function (ms) { if (k === ms.y + '-' + ('0' + (ms.m + 1)).slice(-2)) { if (x.t === 'i') ms.ing += num(x.v); else ms.gas += num(x.v); } }); });
     meses.forEach(function (ms) { ms.u = ms.ing - ms.gas; });
-    if (!meses.some(function (ms) { return ms.ing || ms.gas; })) { c.appendChild(el('p', 'fin-vacio', 'Cuando anotes ingresos y gastos del negocio verás aquí cuánto te queda cada mes.')); return false; }
+    if (!meses.some(function (ms) { return ms.ing || ms.gas; })) { var mu = [180000, 240000, -60000, 320000, 410000, 520000]; meses.forEach(function (ms, i) { ms.u = mu[i]; }); ej = true; }
     var W = 600, H = 210, base = 90, mx = Math.max.apply(null, meses.map(function (ms) { return Math.abs(ms.u); })) || 1, bw = 52, gap = (W - 6 * bw) / 7;
     var s = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'class': 'gr-svg' });
     s.setAttribute('aria-label', T('Utilidad de cada mes') + ': ' + meses.map(function (ms) { return MES3(ms.m) + ' ' + plata(ms.u); }).join(', '));
@@ -67,13 +71,14 @@
     });
     c.appendChild(s);
     c.appendChild(leyenda([['Te quedó', VERDE], ['Perdiste', ROSA]]));
+    if (ej) notaEjemplo(c, 'Cuando anotes ingresos y gastos del negocio verás aquí cuánto te queda cada mes.');
     return true;
   }
 
   /* ---- 3. Ventas del mes contra la meta (acumulado por día) ---- */
   function acumulado(c) {
-    var d = datos(); c.textContent = '';
-    if (!d || !d.meta) { c.appendChild(el('p', 'fin-vacio', 'Escribe tu meta de ventas en «Presupuesto y metas del negocio» y aquí verás cómo vas día a día.')); return false; }
+    var d = datos(), ej = false; c.textContent = ''; c.classList.remove('gr-ejemplo');
+    if (!d || !d.meta) { var pd = {}; [0, 100000, 0, 150000, 200000, 0, 120000, 180000, 0, 250000, 200000, 200000].forEach(function (v, i) { pd[i + 1] = v; }); d = { meta: 3000000, ventas: 1400000, eq: 1500000, dias: 30, hoyDia: 12, porDia: pd }; ej = true; }
     var W = 600, H = 220, L = 46, R = 12, top = 16, bot = 28, tope = Math.max(d.meta, d.ventas, d.eq || 0) * 1.1, n = d.dias;
     var x = function (dia) { return L + (W - L - R) * (dia - 1) / Math.max(1, n - 1); }, y = function (v) { return H - bot - (H - bot - top) * v / tope; };
     var s = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'class': 'gr-svg' });
@@ -89,6 +94,7 @@
     [1, Math.round(n / 2), n].forEach(function (dia) { s.appendChild(sv('text', { x: x(dia), y: H - 8, 'text-anchor': dia === 1 ? 'start' : dia === n ? 'end' : 'middle', 'class': 'gr-t gr-mes' }, String(dia))); });
     var c1 = el('div', 'gr-svg-wrap'); c1.appendChild(s); c.appendChild(c1);
     c.appendChild(leyenda([['Ventas del mes', ok ? VERDE : ROSA], ['Ritmo ideal para tu meta', GRIS, 'gr-punteada'], d.eq ? ['Punto de equilibrio', '#45454A', 'gr-raya'] : null].filter(Boolean)));
+    if (ej) { notaEjemplo(c, 'Escribe tu meta de ventas en «Presupuesto y metas del negocio» y aquí verás cómo vas día a día.'); return true; }
     c.appendChild(el('p', 'gr-resumen', ok ? 'Vas al día o adelantada con tu meta.' : 'Vas por debajo del ritmo que necesitas para llegar a tu meta.'));
     return true;
   }
@@ -100,7 +106,7 @@
     var ref = h.querySelector('.fin-dos'); if (!ref) return;
     var specs = [['gr-equilibrio', 'Punto de equilibrio del mes', equilibrio], ['gr-acumulado', 'Ventas del mes contra tu meta', acumulado], ['gr-utilidad', 'Utilidad de cada mes', utilidad]];
     var dos = h.querySelector('#gr-fila'); if (!dos) { dos = el('div', 'fin-dos gr-fila no-imprimir'); dos.id = 'gr-fila'; ref.parentNode.insertBefore(dos, ref); }
-    specs.forEach(function (sp) { var caja = document.getElementById(sp[0]); if (!caja) { caja = tarjeta(sp[0], sp[1]); dos.appendChild(caja); } sp[2](caja.querySelector('.gr-cuerpo')); });
+    specs.forEach(function (sp) { var caja = document.getElementById(sp[0]); if (!caja) { caja = tarjeta(sp[0], sp[1]); dos.appendChild(caja); } sp[2](caja.querySelector('.gr-cuerpo'), true); });
   }
   function enPanel(cont) {
     cont.textContent = '';

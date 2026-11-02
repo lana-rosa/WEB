@@ -215,3 +215,8 @@ body.config-sola .pestanas-agenda { display: none !important; }
   #agenda .fin-form .fin-form-btn { justify-content: stretch; }
   #agenda .fin-form .fin-form-btn .boton-primario { width: 100%; }
 }
+/* Gráficas de ejemplo en Finanzas (1-nov-2026) */
+.gr-ejemplo > :not(.fin-ej-nota), .fin-ejemplo { opacity: .5; filter: saturate(.7); pointer-events: none; }
+.fin-ej-nota { margin: 8px 0 0; padding: 8px 12px; border-radius: 10px; background: var(--rosa-suave); color: var(--rosa-texto); font-size: .86rem; line-height: 1.4; border: 1px dashed var(--rosa-medio); }
+.gr-ejemplo > .fin-ej-nota { margin: 0 0 8px; }
+.fin-ej-t { font-weight: 700; }

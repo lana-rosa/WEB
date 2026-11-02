@@ -35,7 +35,7 @@ with sync_playwright() as p:
     pg = abrir(contexto(b, 1280, 900, datos={'ag-duena': 'Sara'}, config_abierta=False), '', 2200, config=False)
     T.v('sin gastos fijos: el panel no muestra la tarjeta (nada que explicar todavía)', pg.locator('.pn-equilibrio').count() == 0)
     pg.evaluate("window.lrIrAHoja('fin-resumen')"); pg.wait_for_timeout(600)
-    T.v('en finanzas, sin datos: mensajes que explican qué anotar', pg.locator('#gr-equilibrio .fin-vacio').count() == 1 and pg.locator('#gr-utilidad .fin-vacio').count() == 1 and pg.locator('#gr-acumulado .fin-vacio').count() == 1)
+    T.v('en finanzas, sin datos: gráficas de ejemplo con su nota que explica qué anotar', all(pg.locator('#%s.gr-caja .fin-ej-nota' % i).count() == 1 and pg.locator('#%s svg' % i).count() == 1 for i in ['gr-equilibrio', 'gr-utilidad', 'gr-acumulado']))
     pg.close()
     pg = abrir(contexto(b, 390, 844, datos=D, config_abierta=False), '', 2400, config=False)
     T.v('celular, panel: sin desplazamiento horizontal', not pg.evaluate("document.documentElement.scrollWidth>innerWidth"))
