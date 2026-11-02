@@ -33,3 +33,11 @@
   #agenda .selector-hoja select { flex: 1 1 100%; max-width: none; }
 }
 @media print { #agenda .selector-hoja { position: static; box-shadow: none; } }
+
+/* 2-nov-2026 (Jennifer: «se ven dos fondos y las páginas se ven pequeñas»): en el celular la hoja usa casi todo el ancho
+   (antes la caja blanca quedaba angosta, con 24 px de rosa a cada lado) y la franja de la lista «Hojas de…» es del mismo rosa del fondo. */
+@media (max-width: 820px) {
+  body #agenda > .contenedor, body #agenda .contenedor { padding-left: 8px; padding-right: 8px; }
+  body #agenda .hoja-agenda { border-radius: 18px; }
+  html body #agenda .fila-hojas, html body #agenda .fila-hojas:not(:has(.selector-hoja[hidden])), html body #agenda .selector-hoja:not([hidden]) { background: rgba(254, 242, 247, 0.96) !important; }
+}
