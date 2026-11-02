@@ -1,6 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
+// v50 (2-nov-2026; desplegada): GUIA_AGENDA explica la lana por proyecto (lista de lanas en cada proyecto y «Descontar del inventario» al terminar).
 // v49 (2-nov-2026; desplegada): GUIA_AGENDA explica los movimientos del inventario de lanas (Compré / Usé, historial, deshacer, resumen del mes y aviso en proyectos terminados).
 // v48 (2-nov-2026; desplegada): GUIA_AGENDA explica las seis pestañas de Recursos de Rosina (agrega Checklist y Descargables).
 // v47 (2-nov-2026): GUIA_AGENDA explica Configuración como hoja aparte en cinco tarjetas, la lupa de búsqueda, la rueda de colores de la Hoja de dibujo, las herramientas de Rosina al final de la hoja y las gráficas de ejemplo.
