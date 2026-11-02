@@ -1,6 +1,6 @@
 /* Agenda para tejedoras: movimientos del inventario de lanas (Plus para emprendedoras, etapa 8, 2-nov-2026).
    En «Inventario de lanas e hilos», cada ficha tiene «Compré» y «Usé»: suman o restan ovillos de la casilla «Ovillos» y dejan anotado el movimiento
-   (fecha, cantidad y para qué) en `datos._lanaMovs` (entra solo en copias, nube, Drive y Excel de respaldo). Se ve el historial de esa lana, se puede deshacer el último
+   (fecha, cantidad y para qué) en `datos._lanaMovs`; con «Compré», si la lana tiene costo, también se anota como gasto del negocio («Materiales (lanas)») en «Ingresos y gastos» y «Deshacer» lo quita (entra solo en copias, nube, Drive y Excel de respaldo). Se ve el historial de esa lana, se puede deshacer el último
    movimiento y arriba, en «Tu inventario en números», sale lo que se compró y se usó este mes. Conexión con proyectos: en «Proyectos» (hoja de la fila), al marcar un
    proyecto como terminado sale «¿Gastaste lana en este proyecto?», que abre el inventario con el nombre del proyecto ya escrito en «¿Para qué?» (no descuenta nada solo:
    la persona dice cuánto usó). La lana se reconoce por «marca · color» (sin tildes ni mayúsculas): si se cambia el nombre, el historial viejo queda en el mes pero no en la ficha. */
@@ -27,22 +27,28 @@
     var e = campo(k, 'ovillos'); if (!e) return false;
     e.value = String(Math.round(valor * 10) / 10).replace(',', '.'); e.dispatchEvent(new Event('input', { bubbles: true })); e.dispatchEvent(new Event('change', { bubbles: true })); return true;
   }
-  function registrar(k, tipo, n, para) {
+  function registrar(k, tipo, n, para, gasto) {
     var nom = nombre(k); if (!nom) return T('Escribe primero la marca o el color de esta lana.');
     if (!(n > 0)) return T('Escribe cuántos ovillos (un número mayor que 0).');
     var actual = cant(v(k, 'ovillos')); if (actual == null) actual = 0;
     if (tipo === 'u' && n > actual) return T('Solo tienes ' + num(actual) + ' ovillo(s) de esta lana.');
     var nuevo = tipo === 'c' ? actual + n : actual - n;
     if (!ponerOvillos(k, nuevo)) return T('No pude cambiar los ovillos.');
-    lista().push({ id: 'm' + Date.now().toString(36) + Math.floor(Math.random() * 1000), f: hoy(), t: tipo, n: n, lana: nom, para: String(para || '').slice(0, 60), costo: dinero(v(k, 'costo')) });
-    N.guardar(); return '';
+    var id = 'm' + Date.now().toString(36) + Math.floor(Math.random() * 1000), costo = dinero(v(k, 'costo')), m = { id: id, f: hoy(), t: tipo, n: n, lana: nom, para: String(para || '').slice(0, 60), costo: costo };
+    if (tipo === 'c' && gasto && costo > 0) {   // la compra también queda como gasto del negocio en «Ingresos y gastos» (categoría «Materiales (lanas)»)
+      var d = N.datos(); d._fin = d._fin || {}; d._fin.movs = d._fin.movs || [];
+      d._fin.movs.push({ id: 'g' + id, f: m.f, t: 'g', c: 'Materiales (lanas)', d: 'Lana: ' + nom + ' × ' + num(n), v: Math.round(n * costo), m: '', inv: id }); m.gasto = true;
+    }
+    lista().push(m); N.guardar(); return '';
   }
   function deshacer(k) {
     var nom = sin(nombre(k)), l = lista(), i = -1;
     for (var j = l.length - 1; j >= 0; j--) if (sin(l[j].lana) === nom) { i = j; break; }
     if (i < 0) return;
     var m = l[i], actual = cant(v(k, 'ovillos')) || 0;
-    ponerOvillos(k, m.t === 'c' ? Math.max(0, actual - m.n) : actual + m.n); l.splice(i, 1); N.guardar();
+    ponerOvillos(k, m.t === 'c' ? Math.max(0, actual - m.n) : actual + m.n); l.splice(i, 1);
+    var f = N.datos()._fin; if (m.gasto && f && Array.isArray(f.movs)) f.movs = f.movs.filter(function (x) { return x.inv !== m.id; });   // quita el gasto que esa compra había anotado
+    N.guardar();
   }
 
   function pintarFichas() {
@@ -58,13 +64,15 @@
       var paraEl = el('input', 'iv-mov-para'); paraEl.type = 'text'; paraEl.maxLength = 60; paraEl.placeholder = '¿Para qué? (opcional)'; paraEl.setAttribute('aria-label', '¿Para qué?'); if (sugerido) paraEl.value = sugerido;
       var bc = el('button', 'boton-secundario boton-chico', '➕ Compré'), bu = el('button', 'boton-secundario boton-chico', '➖ Usé'); bc.type = bu.type = 'button';
       var msg = el('p', 'iv-aviso mal'); msg.setAttribute('role', 'alert'); msg.hidden = true;
-      function hacer(t) { var e = registrar(k, t, parseFloat(String(cantEl.value).replace(',', '.')), paraEl.value); if (e) { msg.textContent = e; msg.hidden = false; } else sugerido = ''; }
+      var costoK = dinero(v(k, 'costo')), gl = el('label', 'iv-mov-gasto'), gc = el('input'); gc.type = 'checkbox'; gc.checked = costoK > 0; gc.disabled = !(costoK > 0);
+      gl.appendChild(gc); gl.appendChild(el('span', '', costoK > 0 ? 'Anotar la compra como gasto del negocio' : 'Si anotas el costo por ovillo, la compra se puede anotar como gasto'));
+      function hacer(t) { var e = registrar(k, t, parseFloat(String(cantEl.value).replace(',', '.')), paraEl.value, gc.checked); if (e) { msg.textContent = e; msg.hidden = false; } else sugerido = ''; }
       bc.addEventListener('click', function () { hacer('c'); }); bu.addEventListener('click', function () { hacer('u'); });
-      f.appendChild(cantEl); f.appendChild(bc); f.appendChild(bu); td.appendChild(f); td.appendChild(paraEl); td.appendChild(msg);
+      f.appendChild(cantEl); f.appendChild(bc); f.appendChild(bu); td.appendChild(f); td.appendChild(paraEl); td.appendChild(gl); td.appendChild(msg);
       var mios = lista().filter(function (m) { return sin(m.lana) === sin(nom); }).slice(-4).reverse();
       if (mios.length) {
         var ul = el('ul', 'iv-mov-lista'); ul.setAttribute('data-no-traducir', '');
-        mios.forEach(function (m) { ul.appendChild(el('li', m.t === 'c' ? 'c' : 'u', fmt(m.f) + ' · ' + (m.t === 'c' ? '+' : '−') + num(m.n) + (m.t === 'c' ? ' compré' : ' usé') + (m.para ? ' · ' + m.para : ''))); });
+        mios.forEach(function (m) { ul.appendChild(el('li', m.t === 'c' ? 'c' : 'u', fmt(m.f) + ' · ' + (m.t === 'c' ? '+' : '−') + num(m.n) + (m.t === 'c' ? ' compré' : ' usé') + (m.para ? ' · ' + m.para : '') + (m.gasto ? ' · gasto anotado' : ''))); });
         td.appendChild(ul);
         var un = el('button', 'enlace-copia', 'Deshacer el último movimiento'); un.type = 'button'; un.addEventListener('click', function () { deshacer(k); }); td.appendChild(un);
       }

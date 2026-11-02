@@ -367,3 +367,7 @@ FILAS += [
  ('Cuando el proyecto esté «Terminado» podrás descontar esta lana del inventario.', 'When the project is “Finished” you will be able to subtract this yarn from your inventory.', 'Quando o projeto estiver “Terminado” você poderá descontar esta lã do estoque.'),
  ('Esa lana ya no está en tu inventario: {a}', 'That yarn is no longer in your inventory: {a}', 'Essa lã não está mais no seu estoque: {a}'),
 ]
+FILAS += [
+ ('Anotar la compra como gasto del negocio', 'Record the purchase as a business expense', 'Anotar a compra como despesa do negócio'),
+ ('Si anotas el costo por ovillo, la compra se puede anotar como gasto', 'If you enter the cost per skein, the purchase can be recorded as an expense', 'Se você anotar o custo por novelo, a compra pode ser anotada como despesa'),
+]
