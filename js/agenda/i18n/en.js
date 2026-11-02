@@ -1758,5 +1758,13 @@ window.lrI18n.add("en", {
 "Solo tienes {a} ovillo(s) de esta lana.": "You only have {a} skein(s) of this yarn.",
 "No pude cambiar los ovillos.": "I could not change the skeins.",
 "Este mes compraste {a} ovillo(s) ({g}) y usaste {b} ovillo(s).": "This month you bought {a} skein(s) ({g}) and used {b} skein(s).",
-"Este mes compraste {a} ovillo(s) y usaste {b} ovillo(s).": "This month you bought {a} skein(s) and used {b} skein(s)."
+"Este mes compraste {a} ovillo(s) y usaste {b} ovillo(s).": "This month you bought {a} skein(s) and used {b} skein(s).",
+"Lana de este proyecto": "Yarn for this project",
+"➕ Agregar a la lista": "➕ Add to the list",
+"Descontar del inventario": "Subtract from inventory",
+"Lana": "Yarn",
+"Quitar": "Remove",
+"Primero anota tus lanas en el Inventario de lanas para poder elegirlas aquí.": "First add your yarns in the Yarn inventory so you can pick them here.",
+"Cuando el proyecto esté «Terminado» podrás descontar esta lana del inventario.": "When the project is “Finished” you will be able to subtract this yarn from your inventory.",
+"Esa lana ya no está en tu inventario: {a}": "That yarn is no longer in your inventory: {a}"
 });

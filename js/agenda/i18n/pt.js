@@ -1758,5 +1758,13 @@ window.lrI18n.add("pt", {
 "Solo tienes {a} ovillo(s) de esta lana.": "Você só tem {a} novelo(s) desta lã.",
 "No pude cambiar los ovillos.": "Não consegui alterar os novelos.",
 "Este mes compraste {a} ovillo(s) ({g}) y usaste {b} ovillo(s).": "Neste mês você comprou {a} novelo(s) ({g}) e usou {b} novelo(s).",
-"Este mes compraste {a} ovillo(s) y usaste {b} ovillo(s).": "Neste mês você comprou {a} novelo(s) e usou {b} novelo(s)."
+"Este mes compraste {a} ovillo(s) y usaste {b} ovillo(s).": "Neste mês você comprou {a} novelo(s) e usou {b} novelo(s).",
+"Lana de este proyecto": "Lã deste projeto",
+"➕ Agregar a la lista": "➕ Adicionar à lista",
+"Descontar del inventario": "Descontar do estoque",
+"Lana": "Lã",
+"Quitar": "Remover",
+"Primero anota tus lanas en el Inventario de lanas para poder elegirlas aquí.": "Primeiro anote suas lãs no Estoque de lãs para poder escolhê-las aqui.",
+"Cuando el proyecto esté «Terminado» podrás descontar esta lana del inventario.": "Quando o projeto estiver “Terminado” você poderá descontar esta lã do estoque.",
+"Esa lana ya no está en tu inventario: {a}": "Essa lã não está mais no seu estoque: {a}"
 });
