@@ -254,7 +254,7 @@ FILAS += [
  ('Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.', 'To dictate or handwrite, use the microphone or pen on your keyboard.', 'Para ditar ou escrever à mão, use o microfone ou a caneta do seu teclado.'),
  ('🎤 Dictar', '🎤 Dictate', '🎤 Ditar'),
  ('Recursos de Rosina', "Rosina's resources", 'Recursos da Rosina'),
- ('El glosario ilustrado y las abreviaturas de crochet, a la mano y sin salir de tu agenda.', 'The illustrated glossary and crochet abbreviations, at hand and without leaving your planner.', 'O glossário ilustrado e as abreviaturas de crochê, à mão e sem sair da sua agenda.'),
+ ('El glosario ilustrado, las abreviaturas y las paletas de colores de crochet, a la mano y sin salir de tu agenda.', 'The illustrated glossary, abbreviations and crochet color palettes, at hand and without leaving your planner.', 'O glossário ilustrado, as abreviaturas e as paletas de cores de crochê, à mão e sem sair da sua agenda.'),
  ('Buscar un término', 'Search for a term', 'Buscar um termo'),
  ('Puntos básicos', 'Basic stitches', 'Pontos básicos'),
  ('Técnicas de amigurumi', 'Amigurumi techniques', 'Técnicas de amigurumi'),
@@ -297,3 +297,10 @@ FILAS += [
  ('Glosario y abreviaturas de crochet', 'Crochet glossary and abbreviations', 'Glossário e abreviaturas de crochê'),
 ]
 FILAS += [('Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.', 'Sample chart with made-up data. When you enter your own, you will see your real chart here.', 'Gráfico de exemplo com dados inventados. Quando você anotar os seus, aqui verá o seu gráfico real.')]
+FILAS += [
+ ('Paletas', 'Palettes', 'Paletas'),
+ ('Combinaciones de colores listas para tu próximo proyecto. Toca un color para copiar su código.', 'Color combinations ready for your next project. Tap a color to copy its code.', 'Combinações de cores prontas para o seu próximo projeto. Toque em uma cor para copiar o código.'),
+ ('Categorías de paletas', 'Palette categories', 'Categorias de paletas'),
+ ('Copiado: {x}', 'Copied: {x}', 'Copiado: {x}'),
+ ('Código: {x}', 'Code: {x}', 'Código: {x}'),
+]

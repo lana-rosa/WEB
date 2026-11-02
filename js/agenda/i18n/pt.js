@@ -1672,7 +1672,7 @@ window.lrI18n.add("pt", {
 "Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.": "Para ditar ou escrever à mão, use o microfone ou a caneta do seu teclado.",
 "🎤 Dictar": "🎤 Ditar",
 "Recursos de Rosina": "Recursos da Rosina",
-"El glosario ilustrado y las abreviaturas de crochet, a la mano y sin salir de tu agenda.": "O glossário ilustrado e as abreviaturas de crochê, à mão e sem sair da sua agenda.",
+"El glosario ilustrado, las abreviaturas y las paletas de colores de crochet, a la mano y sin salir de tu agenda.": "O glossário ilustrado, as abreviaturas e as paletas de cores de crochê, à mão e sem sair da sua agenda.",
 "Buscar un término": "Buscar um termo",
 "Puntos básicos": "Pontos básicos",
 "Técnicas de amigurumi": "Técnicas de amigurumi",
@@ -1708,5 +1708,10 @@ window.lrI18n.add("pt", {
 "Elegir el tono y la intensidad del color": "Escolher o tom e a intensidade da cor",
 "Agregar a mis colores": "Adicionar às minhas cores",
 "Glosario y abreviaturas de crochet": "Glossário e abreviaturas de crochê",
-"Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.": "Gráfico de exemplo com dados inventados. Quando você anotar os seus, aqui verá o seu gráfico real."
+"Gráfica de ejemplo con datos inventados. Cuando anotes los tuyos, aquí verás tu gráfica real.": "Gráfico de exemplo com dados inventados. Quando você anotar os seus, aqui verá o seu gráfico real.",
+"Paletas": "Paletas",
+"Combinaciones de colores listas para tu próximo proyecto. Toca un color para copiar su código.": "Combinações de cores prontas para o seu próximo projeto. Toque em uma cor para copiar o código.",
+"Categorías de paletas": "Categorias de paletas",
+"Copiado: {x}": "Copiado: {x}",
+"Código: {x}": "Código: {x}"
 });

@@ -220,3 +220,15 @@ body.config-sola .pestanas-agenda { display: none !important; }
 .fin-ej-nota { margin: 8px 0 0; padding: 8px 12px; border-radius: 10px; background: var(--rosa-suave); color: var(--rosa-texto); font-size: .86rem; line-height: 1.4; border: 1px dashed var(--rosa-medio); }
 .gr-ejemplo > .fin-ej-nota { margin: 0 0 8px; }
 .fin-ej-t { font-weight: 700; }
+
+/* Paletas dentro de Recursos de Rosina (2-nov-2026) */
+#recursos-rosina .rr-paleta { border: 1.5px solid #F7C6DE; border-radius: 16px; background: #fff; padding: 12px 14px; margin: 0 0 10px; }
+#recursos-rosina .rr-paleta h5 { margin: 0 0 8px; font-family: var(--fuente-titulo); font-size: 1rem; color: var(--rosa-texto); }
+#recursos-rosina .rr-colores { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 8px; }
+#recursos-rosina .rr-color { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px 8px; min-height: 44px; border: 1.5px solid #EEE; border-radius: 12px; background: #fff; cursor: pointer; font: inherit; }
+#recursos-rosina .rr-color:hover, #recursos-rosina .rr-color:focus-visible { border-color: var(--rosa-principal); }
+#recursos-rosina .rr-color i { display: block; width: 100%; height: 44px; border-radius: 8px; border: 1px solid rgba(0,0,0,.08); }
+#recursos-rosina .rr-color b { font-size: .8rem; text-align: center; line-height: 1.2; }
+#recursos-rosina .rr-color small { font-size: .72rem; color: #5A5A60; letter-spacing: .02em; }
+#recursos-rosina .rr-uso { margin: 8px 0 0; font-size: .88rem; }
+@media print { #recursos-rosina .rr-paleta { break-inside: avoid; } }

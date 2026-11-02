@@ -1,5 +1,6 @@
 /* Agenda para tejedoras: hoja «Recursos de Rosina» (1-nov-2026, pedido de Jennifer: tener los recursos gratis dentro de la agenda, sin salir).
    Etapa 1: Glosario ilustrado (buscador, categorías, cada término se despliega) y Abreviaturas de crochet en 9 idiomas (filtro de idiomas).
+   Etapa 2 (2-nov-2026): pestaña «Paletas» (tocar un color copia su código).
    Los datos salen de js/agenda/recursos-datos.js, que genera herramientas/generar_recursos_agenda.py a partir del glosario y la tabla de abreviaturas
    del Rincón de Rosina (si cambian allá, volver a correr el generador). No guarda nada: es solo para consultar. */
 (function () {
@@ -77,10 +78,46 @@
   ojo.setAttribute('data-no-traducir', ''); ab.appendChild(intro); ab.appendChild(filtro); ab.appendChild(envol); ab.appendChild(ojo);
   function aplicar() { tb.querySelectorAll('[data-idioma]').forEach(function (c) { var id = c.dataset.idioma; c.hidden = id !== 'es' && !activos[id]; }); }
   aplicar();
+
+  /* ---------- paletas de colores (2-nov-2026) ---------- */
+  var pl = document.getElementById('rr-paletas');
+  if (pl && D.paletas) {
+    var pcat = 'todas';
+    pl.appendChild(el('p', 'rr-intro', 'Combinaciones de colores listas para tu próximo proyecto. Toca un color para copiar su código.'));
+    var pchips = el('div', 'rr-chips no-imprimir'); pchips.setAttribute('role', 'group'); pchips.setAttribute('aria-label', 'Categorías de paletas');
+    [{ id: 'todas', n: 'Todos' }].concat(D.paletas.categorias).forEach(function (c) {
+      var b = el('button', 'rr-chip'); b.type = 'button'; b.textContent = c.n; b.setAttribute('aria-pressed', String(c.id === 'todas'));
+      b.addEventListener('click', function () { pcat = c.id; pchips.querySelectorAll('.rr-chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); pintarPaletas(); });
+      pchips.appendChild(b);
+    });
+    var pcopiado = el('p', 'rr-cuenta no-imprimir'); pcopiado.setAttribute('role', 'status'); pcopiado.setAttribute('aria-live', 'polite');
+    var plista = el('div', 'rr-paletas-lista'); plista.setAttribute('data-no-traducir', '');
+    pl.appendChild(pchips); pl.appendChild(pcopiado); pl.appendChild(plista);
+    plista.addEventListener('click', function (e) {
+      var b = e.target.closest('.rr-color'); if (!b) return; var hex = b.dataset.hex;
+      var fin = function (ok) { pcopiado.textContent = ok ? 'Copiado: ' + hex : 'Código: ' + hex; };
+      try { navigator.clipboard.writeText(hex).then(function () { fin(true); }, function () { fin(false); }); } catch (x) { fin(false); }
+    });
+    function pintarPaletas() {
+      plista.textContent = '';
+      D.paletas.categorias.forEach(function (c) {
+        if (pcat !== 'todas' && pcat !== c.id) return;
+        var delas = D.paletas.lista.filter(function (p) { return p.cat === c.id; }); if (!delas.length) return;
+        var g = el('section', 'rr-grupo'); g.appendChild(el('h4', 'sub-hoja', esc(c.n)));
+        delas.forEach(function (p) {
+          var t = el('div', 'rr-paleta');
+          t.innerHTML = '<h5>' + esc(p.nombre) + '</h5><div class="rr-colores">' + p.colores.map(function (k) { return '<button type="button" class="rr-color" data-hex="' + esc(k[1]) + '" aria-label="' + esc(k[0] + ' ' + k[1] + ', copiar código') + '"><i style="background:' + esc(k[1]) + '"></i><b>' + esc(k[0]) + '</b><small>' + esc(k[1]) + '</small></button>'; }).join('') + '</div>' +
+            (p.uso ? '<p class="rr-uso"><b>Ideal para:</b> ' + esc(p.uso) + '</p>' : '') + (p.tip ? '<p class="rr-tip"><b>Tip de Rosina:</b> ' + esc(p.tip) + '</p>' : '');
+          g.appendChild(t);
+        }); plista.appendChild(g);
+      });
+    }
+    pintarPaletas();
+  }
   /* Las tiras «Herramienta de Rosina» de otras hojas abren esta hoja (sin salir de la agenda); sin JavaScript siguen llevando a la página de siempre */
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('.herr-rosina a'); if (!a || !window.lrIrAHoja) return;
-    var h = a.getAttribute('href') || '', cual = /^\/glosario-rosina\.html/.test(h) ? 'glosario' : (/^\/recursos-rosina\.html#abreviaturas/.test(h) ? 'abreviaturas' : '');
+    var h = a.getAttribute('href') || '', cual = /^\/glosario-rosina\.html/.test(h) ? 'glosario' : (/^\/recursos-rosina\.html#abreviaturas/.test(h) ? 'abreviaturas' : (/^\/paletas-rosina\.html/.test(h) || /^\/recursos-rosina\.html#paletas/.test(h) ? 'paletas' : ''));
     if (!cual) return; e.preventDefault(); window.lrIrAHoja('recursos-rosina'); mostrar(cual);
   });
   window.lrRecursos = { mostrar: mostrar };
