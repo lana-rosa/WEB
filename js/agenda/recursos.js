@@ -81,6 +81,88 @@
   aplicar();
 
 
+
+  /* ---------- checklist (2-nov-2026): «Tu primer amigurumi»; el avance se guarda en el mismo lugar que en el Rincón de Rosina ---------- */
+  var ck = document.getElementById('rr-checklist');
+  if (ck && D.checklist) {
+    var CLAVE_CK = 'rosinaChecklist', marcadas = {};
+    try { marcadas = JSON.parse(localStorage.getItem(CLAVE_CK)) || {}; } catch (e) { marcadas = {}; }
+    var guardarCk = function () { try { localStorage.setItem(CLAVE_CK, JSON.stringify(marcadas)); } catch (e) { /* sin almacenamiento */ } };
+    ck.appendChild(el('p', 'rr-intro', 'Todo lo que necesitas antes de empezar, revisado por Rosina. Ve marcando lo que ya tienes (se guarda en tu dispositivo).'));
+    var prog = el('p', 'rr-ck-prog'); prog.setAttribute('role', 'status'); prog.setAttribute('aria-live', 'polite'); ck.appendChild(prog);
+    var cuerpo = el('div', 'rr-ck-grid'); cuerpo.setAttribute('data-no-traducir', '');
+    D.checklist.grupos.forEach(function (g) {
+      var caja = el('div', 'rr-ck-grupo'); caja.appendChild(el('h4', 'sub-hoja', esc(g.titulo))); var ul = el('ul', 'rr-ck-lista');
+      g.items.forEach(function (it) {
+        var li = el('li'); li.innerHTML = '<label><input type="checkbox" data-ck="' + esc(it.id) + '"><span>' + it.html + '</span></label>';
+        var c = li.querySelector('input'); c.checked = !!marcadas[it.id];
+        c.addEventListener('change', function () { marcadas[it.id] = c.checked; guardarCk(); pintarCk(); });
+        li.querySelectorAll('a').forEach(function (a) { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener'); });
+        ul.appendChild(li);
+      }); caja.appendChild(ul); cuerpo.appendChild(caja);
+    });
+    ck.appendChild(cuerpo);
+    if (D.checklist.tip) { var tp = el('p', 'rr-tip'); tp.appendChild(el('b', '', 'Tip de Rosina:')); tp.appendChild(document.createTextNode(' ' + D.checklist.tip.replace(/^Tip de Rosina:\s*/, ''))); tp.setAttribute('data-no-traducir', ''); ck.appendChild(tp); }
+    var acc = el('div', 'rr-ck-acc no-imprimir');
+    var faltan = el('a', 'boton-primario'); faltan.target = '_blank'; faltan.rel = 'noopener'; faltan.hidden = true;
+    var kit = el('a', 'boton-secundario', 'Quiero el kit completo de principiante'); kit.target = '_blank'; kit.rel = 'noopener';
+    kit.href = 'https://wa.me/573205072801?text=' + encodeURIComponent('Hola! Vengo de mi Agenda para tejedoras 🐑 Quiero el kit completo de principiante para tejer mi primer amigurumi (hilo, aguja, relleno, ojos de seguridad, aguja lanera y marcador). ¿Qué precio tiene?');
+    var borrarCk = el('button', 'boton-secundario', 'Desmarcar todo'); borrarCk.type = 'button';
+    borrarCk.addEventListener('click', function () { ck.querySelectorAll('input[data-ck]').forEach(function (c) { c.checked = false; }); marcadas = {}; guardarCk(); pintarCk(); });
+    acc.appendChild(faltan); acc.appendChild(kit); acc.appendChild(borrarCk); ck.appendChild(acc);
+    function pintarCk() {
+      var todas = ck.querySelectorAll('input[data-ck]'), listas = 0, falta = [];
+      todas.forEach(function (c) { if (c.checked) listas++; });
+      prog.textContent = listas === todas.length ? '¡Tienes todo! Ya puedes empezar tu primer amigurumi 🎉' : 'Llevas ' + listas + ' de ' + todas.length + ' listos';
+      ck.querySelectorAll('.rr-ck-grupo').forEach(function (g, k) { if (k > 1) return; g.querySelectorAll('input[data-ck]').forEach(function (c) { if (!c.checked) falta.push(c.closest('label').querySelector('strong').textContent.replace(/[.:]$/, '')); }); });
+      faltan.hidden = !falta.length;
+      if (falta.length) { faltan.textContent = 'Pedir lo que me falta (' + falta.length + ')'; faltan.href = 'https://wa.me/573205072801?text=' + encodeURIComponent('Hola! Vengo de mi Agenda para tejedoras 🐑 Estoy preparando mi primer amigurumi y me falta:\n' + falta.map(function (n) { return '• ' + n; }).join('\n') + '\n¿Me ayudan con esto?'); }
+    }
+    pintarCk();
+  }
+
+  /* ---------- descargables (2-nov-2026): stickers y fondos con íconos para el celular ---------- */
+  var ds = document.getElementById('rr-descargables');
+  if (ds && D.stickers && D.temas) {
+    ds.appendChild(el('p', 'rr-intro', 'Stickers, fondos de pantalla e íconos de Rosina para tu celular. Toca uno para descargarlo.'));
+    var sti = el('section', 'rr-grupo'); sti.appendChild(el('h4', 'sub-hoja', 'Stickers de Rosina'));
+    sti.appendChild(el('p', 'rr-intro', '36 stickers con fondo transparente (512 × 512 px, como los de WhatsApp). Toca uno o baja el paquete completo.'));
+    var zips = el('div', 'rr-ck-acc no-imprimir'); zips.innerHTML = '<a class="boton-primario" href="/img/stickers/stickers-rosina-webp.zip" download>⬇ Paquete para WhatsApp (1,1 MB)</a><a class="boton-secundario" href="/img/stickers/stickers-rosina-png.zip" download>⬇ Paquete PNG (7 MB)</a>';
+    sti.appendChild(zips);
+    var gst = el('div', 'rr-stickers'); gst.setAttribute('data-no-traducir', '');
+    D.stickers.forEach(function (g) {
+      gst.appendChild(el('h5', 'rr-st-t', esc(g.titulo)));
+      var fila = el('div', 'rr-st-fila');
+      g.items.forEach(function (s) { fila.innerHTML += '<a class="rr-st" href="' + esc(s.href) + '" download="' + esc(s.archivo) + '"><img src="' + esc(s.img) + '" alt="' + esc(s.alt) + '" loading="lazy" width="96" height="96"></a>'; });
+      gst.appendChild(fila);
+    });
+    sti.appendChild(gst); ds.appendChild(sti);
+    var fon = el('section', 'rr-grupo'); fon.appendChild(el('h4', 'sub-hoja', 'Tu celular con Rosina: fondo e íconos'));
+    fon.appendChild(el('p', 'rr-intro', 'Elige el tamaño de tu celular y el tema que más te guste. Cada uno trae el fondo de pantalla y los íconos de las apps con sus mismos colores.'));
+    var TAM = [['samsung', 'Samsung Galaxy S'], ['android', 'Otro Android'], ['iphone', 'iPhone'], ['iphone-max', 'iPhone Pro Max / Plus']];
+    var tam = 'samsung', est = 'todas';
+    var selT = el('label', 'rr-buscar no-imprimir'); selT.innerHTML = '<span class="rr-etq">Mi celular es</span><select id="rr-tamano"></select>';
+    var sTam = selT.querySelector('select'); TAM.forEach(function (t) { var o = el('option', '', t[1]); o.value = t[0]; sTam.appendChild(o); });
+    sTam.addEventListener('change', function () { tam = sTam.value; pintarTemas(); });
+    var chEst = el('div', 'rr-chips no-imprimir'); chEst.setAttribute('role', 'group'); chEst.setAttribute('aria-label', 'Elegir estación');
+    [['todas', 'Todas'], ['primavera', 'Primavera'], ['verano', 'Verano'], ['otono', 'Otoño'], ['invierno', 'Invierno'], ['todo', 'Todo el año']].forEach(function (e) {
+      var b = el('button', 'rr-chip', e[1]); b.type = 'button'; b.setAttribute('aria-pressed', String(e[0] === 'todas'));
+      b.addEventListener('click', function () { est = e[0]; chEst.querySelectorAll('.rr-chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); pintarTemas(); });
+      chEst.appendChild(b);
+    });
+    var gt = el('div', 'rr-temas'); gt.setAttribute('data-no-traducir', '');
+    fon.appendChild(selT); fon.appendChild(chEst); fon.appendChild(gt); ds.appendChild(fon);
+    function pintarTemas() {
+      gt.textContent = '';
+      D.temas.filter(function (t) { return est === 'todas' || t.estacion === est; }).forEach(function (t) {
+        var d = el('article', 'rr-tema'), url = '/img/fondos/fondo-rosina-' + t.id + '-' + tam + '.jpg';
+        d.innerHTML = '<div class="rr-tema-prev"><img src="' + esc(t.fondo) + '" alt="Fondo de pantalla: ' + esc(t.nombre) + '" loading="lazy" width="90" height="195"><img src="' + esc(t.inicio) + '" alt="Pantalla de inicio con los íconos del tema ' + esc(t.nombre) + '" loading="lazy" width="90" height="195"></div><h5>' + esc(t.nombre) + '</h5>' +
+          '<div class="rr-tema-bot no-imprimir"><a class="boton-primario boton-chico" href="' + esc(url) + '" download="fondo-rosina-' + esc(t.id) + '-' + tam + '.jpg">⬇ Fondo</a>' + (t.zip ? '<a class="boton-secundario boton-chico" href="' + esc(t.zip) + '" download>⬇ Íconos (ZIP)</a>' : '') + '</div>';
+        gt.appendChild(d);
+      });
+    }
+    pintarTemas();
+  }
   /* ---------- calculadoras (2-nov-2026): la página de calculadoras del Rincón, incrustada sin encabezado ni pie ---------- */
   var cp = document.getElementById('rr-calculadoras'), marco = null, anclaActual = '';
   function cargarCalculadoras(ancla) {
@@ -131,7 +213,7 @@
   /* Las tiras «Herramienta de Rosina» de otras hojas abren esta hoja (sin salir de la agenda); sin JavaScript siguen llevando a la página de siempre */
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('.herr-rosina a'); if (!a || !window.lrIrAHoja) return;
-    var h = a.getAttribute('href') || '', cual = /^\/glosario-rosina\.html/.test(h) ? 'glosario' : (/^\/recursos-rosina\.html#abreviaturas/.test(h) ? 'abreviaturas' : (/^\/paletas-rosina\.html/.test(h) || /^\/recursos-rosina\.html#paletas/.test(h) ? 'paletas' : (/^\/calculadoras-rosina\.html/.test(h) ? 'calculadoras' : '')));
+    var h = a.getAttribute('href') || '', cual = /^\/glosario-rosina\.html/.test(h) ? 'glosario' : (/^\/recursos-rosina\.html#abreviaturas/.test(h) ? 'abreviaturas' : (/^\/paletas-rosina\.html/.test(h) || /^\/recursos-rosina\.html#paletas/.test(h) ? 'paletas' : (/^\/calculadoras-rosina\.html/.test(h) ? 'calculadoras' : (/^\/recursos-rosina\.html#checklist/.test(h) ? 'checklist' : ''))));
     if (!cual) return; e.preventDefault(); window.lrIrAHoja('recursos-rosina'); mostrar(cual, cual === 'calculadoras' ? (h.split('#')[1] || '') : '');
   });
   window.lrRecursos = { mostrar: mostrar };

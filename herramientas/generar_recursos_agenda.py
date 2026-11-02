@@ -39,7 +39,31 @@ datos={
  'paletas':{'categorias':[{'id':i,'n':n} for i,n in pa.CATEGORIAS], 'lista':[{'id':x['id'],'cat':x['cat'],'nombre':x['nombre'],'colores':[list(c) for c in x['colores']],'uso':x.get('uso',''),'tip':x.get('tip','')} for x in pa.PALETAS]},
  'abrev':{'idiomas':[{'id':i,'n':n} for i,n in t.cab], 'filas':t.filas},
 }
+
+# ---- Checklist, stickers y temas del celular (2-nov-2026) ----
+pag = open(os.path.join(RAIZ,'recursos-rosina.html'),encoding='utf-8').read()
+def limpia(x): return re.sub(r'\s+',' ',x).strip()
+sec = pag[pag.index('id="checklist"'):pag.index('id="abreviaturas"')]
+grupos=[]
+for m in re.finditer(r'<h4>(.*?)</h4>\s*<ul class="checklist">(.*?)</ul>', sec, re.S):
+    items=[{'id':i,'html':limpia(h)} for i,h in re.findall(r'<li><label><input type="checkbox" id="([^"]+)" data-check><span>(.*?)</span></label></li>', m.group(2), re.S)]
+    grupos.append({'titulo':limpia(m.group(1)),'items':items})
+tip = re.search(r'<div class="aviso-rosina">.*?<p>(.*?)</p>', sec, re.S)
+datos['checklist']={'grupos':grupos,'tip':limpia(re.sub(r'<[^>]+>','',tip.group(1))) if tip else ''}
+sti = pag[pag.index('id="stickers"'):pag.index('id="fondos"')]
+st=[]
+for m in re.finditer(r'<h3 class="subtitulo-stickers">(.*?)</h3>\s*<div class="hoja-stickers">(.*?)</div>', sti, re.S):
+    its=[{'href':h,'archivo':d,'img':i,'alt':html.unescape(a)} for h,d,i,a in re.findall(r'<a class="sticker-mini" href="([^"]+)" download="([^"]+)"[^>]*><img src="([^"]+)" alt="([^"]*)"', m.group(2))]
+    st.append({'titulo':limpia(m.group(1)),'items':its})
+datos['stickers']=st
+fon = pag[pag.index('id="fondos"'):pag.index('¿Te gustó el material de Rosina?')]
+temas=[]
+for m in re.finditer(r'<article class="tema" data-fondo="([^"]+)" data-estacion="([^"]+)">(.*?)</article>', fon, re.S):
+    b=m.group(3); imgs=re.findall(r'<img src="([^"]+)"', b)
+    zipf=re.search(r'href="(/img/iconos-app/[^"]+\.zip)"', b)
+    temas.append({'id':m.group(1),'estacion':m.group(2),'nombre':limpia(re.search(r'<h3>(.*?)</h3>',b,re.S).group(1)),'fondo':imgs[0],'inicio':imgs[1],'zip':zipf.group(1) if zipf else ''})
+datos['temas']=temas
 assert len(t.filas)>=15 and len(t.cab)>=9, (len(t.filas), len(t.cab))
 salida=os.path.join(RAIZ,'js','agenda','recursos-datos.js')
 open(salida,'w',encoding='utf-8').write('/* Generado por herramientas/generar_recursos_agenda.py: no editar a mano. */\nwindow.lrRecursosDatos = '+json.dumps(datos,ensure_ascii=False)+';\n')
-print('listo:', len(datos['paletas']['lista']),'paletas,', len(datos['glosario']),'términos,',len(t.filas),'abreviaturas,',len(t.cab),'idiomas')
+print(len(grupos),'grupos de checklist,',sum(len(x['items']) for x in st),'stickers,',len(temas),'temas'); print('listo:', len(datos['paletas']['lista']),'paletas,', len(datos['glosario']),'términos,',len(t.filas),'abreviaturas,',len(t.cab),'idiomas')
