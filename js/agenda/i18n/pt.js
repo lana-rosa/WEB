@@ -1766,5 +1766,7 @@ window.lrI18n.add("pt", {
 "Quitar": "Remover",
 "Primero anota tus lanas en el Inventario de lanas para poder elegirlas aquí.": "Primeiro anote suas lãs no Estoque de lãs para poder escolhê-las aqui.",
 "Cuando el proyecto esté «Terminado» podrás descontar esta lana del inventario.": "Quando o projeto estiver “Terminado” você poderá descontar esta lã do estoque.",
-"Esa lana ya no está en tu inventario: {a}": "Essa lã não está mais no seu estoque: {a}"
+"Esa lana ya no está en tu inventario: {a}": "Essa lã não está mais no seu estoque: {a}",
+"Anotar la compra como gasto del negocio": "Anotar a compra como despesa do negócio",
+"Si anotas el costo por ovillo, la compra se puede anotar como gasto": "Se você anotar o custo por novelo, a compra pode ser anotada como despesa"
 });

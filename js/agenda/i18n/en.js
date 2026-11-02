@@ -1766,5 +1766,7 @@ window.lrI18n.add("en", {
 "Quitar": "Remove",
 "Primero anota tus lanas en el Inventario de lanas para poder elegirlas aquí.": "First add your yarns in the Yarn inventory so you can pick them here.",
 "Cuando el proyecto esté «Terminado» podrás descontar esta lana del inventario.": "When the project is “Finished” you will be able to subtract this yarn from your inventory.",
-"Esa lana ya no está en tu inventario: {a}": "That yarn is no longer in your inventory: {a}"
+"Esa lana ya no está en tu inventario: {a}": "That yarn is no longer in your inventory: {a}",
+"Anotar la compra como gasto del negocio": "Record the purchase as a business expense",
+"Si anotas el costo por ovillo, la compra se puede anotar como gasto": "If you enter the cost per skein, the purchase can be recorded as an expense"
 });
