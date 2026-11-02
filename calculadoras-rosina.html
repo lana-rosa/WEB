@@ -382,6 +382,17 @@ main > :first-child { padding-top: 40px !important; }
 <link rel="manifest" href="/manifest-academy.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Lana Rosa Academy">
 <!-- ICONOS:FIN -->
+<script>if (/[?&]incrustada=1/.test(location.search)) document.documentElement.classList.add('incrustada');</script>
+<style>
+/* Versión incrustada en la Agenda para tejedoras (2-nov-2026): solo las calculadoras, sin encabezado, pie ni botones flotantes */
+.incrustada .saltar-contenido, .incrustada .encabezado, .incrustada .nav-movil-panel, .incrustada .barra-rosina, .incrustada footer, .incrustada .intro-rincon .volver-rincon, .incrustada .intro-rincon .eslogan, .incrustada .intro-rincon h1, .incrustada .intro-rincon .intro,
+.incrustada .whatsapp-flotante, .incrustada .boton-subir, .incrustada .rc-boton, .incrustada .saludo-rosina, .incrustada [role="complementary"], .incrustada main > section.no-imprimir, .incrustada .lr-ck { display: none !important; }
+.incrustada body { background: transparent !important; padding-bottom: 0 !important; }
+.incrustada .intro-rincon { padding-top: 8px !important; padding-bottom: 0 !important; }
+.incrustada .seccion-suave, .incrustada main { background: transparent !important; }
+.incrustada .contenedor { max-width: none !important; padding-left: 0 !important; padding-right: 0 !important; }
+.incrustada .seccion-suave { padding-top: 12px !important; padding-bottom: 12px !important; }
+</style>
 </head>
 <body>
 <!-- marca-impresion -->

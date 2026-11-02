@@ -232,3 +232,6 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #recursos-rosina .rr-color small { font-size: .72rem; color: #5A5A60; letter-spacing: .02em; }
 #recursos-rosina .rr-uso { margin: 8px 0 0; font-size: .88rem; }
 @media print { #recursos-rosina .rr-paleta { break-inside: avoid; } }
+
+#recursos-rosina .rr-marco { width: 100%; min-height: 420px; border: 0; background: transparent; display: block; }
+@media print { #recursos-rosina .rr-marco, #recursos-rosina #rr-calculadoras { display: none !important; } }

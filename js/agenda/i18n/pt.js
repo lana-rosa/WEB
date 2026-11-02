@@ -1672,7 +1672,7 @@ window.lrI18n.add("pt", {
 "Para dictar o escribir a mano, usa el micrófono o el lápiz de tu teclado.": "Para ditar ou escrever à mão, use o microfone ou a caneta do seu teclado.",
 "🎤 Dictar": "🎤 Ditar",
 "Recursos de Rosina": "Recursos da Rosina",
-"El glosario ilustrado, las abreviaturas y las paletas de colores de crochet, a la mano y sin salir de tu agenda.": "O glossário ilustrado, as abreviaturas e as paletas de cores de crochê, à mão e sem sair da sua agenda.",
+"El glosario ilustrado, las abreviaturas, las paletas de colores y las calculadoras de crochet, a la mano y sin salir de tu agenda.": "O glossário ilustrado, as abreviaturas, as paletas de cores e as calculadoras de crochê, à mão e sem sair da sua agenda.",
 "Buscar un término": "Buscar um termo",
 "Puntos básicos": "Pontos básicos",
 "Técnicas de amigurumi": "Técnicas de amigurumi",
@@ -1713,5 +1713,7 @@ window.lrI18n.add("pt", {
 "Combinaciones de colores listas para tu próximo proyecto. Toca un color para copiar su código.": "Combinações de cores prontas para o seu próximo projeto. Toque em uma cor para copiar o código.",
 "Categorías de paletas": "Categorias de paletas",
 "Copiado: {x}": "Copiado: {x}",
-"Código: {x}": "Código: {x}"
+"Código: {x}": "Código: {x}",
+"Calculadoras": "Calculadoras",
+"Rosina hace las cuentas por ti: elige una herramienta y todo se calcula al instante. Lo que escribes se guarda en tu dispositivo.": "A Rosina faz as contas por você: escolha uma ferramenta e tudo é calculado na hora. O que você escreve fica salvo no seu dispositivo."
 });
