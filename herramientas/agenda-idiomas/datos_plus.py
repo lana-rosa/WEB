@@ -371,3 +371,11 @@ FILAS += [
  ('Anotar la compra como gasto del negocio', 'Record the purchase as a business expense', 'Anotar a compra como despesa do negócio'),
  ('Si anotas el costo por ovillo, la compra se puede anotar como gasto', 'If you enter the cost per skein, the purchase can be recorded as an expense', 'Se você anotar o custo por novelo, a compra pode ser anotada como despesa'),
 ]
+FILAS += [
+ ('Enviar por WhatsApp', 'Send by WhatsApp', 'Enviar pelo WhatsApp'),
+ ('▲ {p#} % más que en {m}', '▲ {p} % more than in {m}', '▲ {p} % a mais que em {m}'),
+ ('▼ {p#} % menos que en {m}', '▼ {p} % less than in {m}', '▼ {p} % a menos que em {m}'),
+ ('▲ {v} más que en {m}', '▲ {v} more than in {m}', '▲ {v} a mais que em {m}'),
+ ('▼ {v} menos que en {m}', '▼ {v} less than in {m}', '▼ {v} a menos que em {m}'),
+ ('Igual que en {m}', 'Same as in {m}', 'Igual a {m}'),
+]

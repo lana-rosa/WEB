@@ -49,7 +49,7 @@
     return salida;
   }
   /* Importes y fechas como números y fechas de Excel (antes salían como texto y no se podían sumar ni ordenar) */
-  var COL_DINERO = /valor|precio|costo|total|saldo|abono|ingreso|gasto|monto|cuota|meta|presupuesto|pago/i;
+  var COL_DINERO = /valor|precio|costo|total|saldo|abono|ingreso|gasto|monto|cuota|meta|presupuesto|pago|utilidad/i;
   function serial(a, m, d) { var t = Date.UTC(a, m - 1, d), x = new Date(t); if (x.getUTCFullYear() !== a || x.getUTCMonth() !== m - 1 || x.getUTCDate() !== d) return null; return Math.round(t / 86400000) + 25569; }
   function tipar(v, col) {
     if (typeof v === 'number') return COL_DINERO.test(col || '') ? { n: v, f: 'peso' } : v;
@@ -68,7 +68,7 @@
     var bloq = {}; document.querySelectorAll('.hoja-agenda.sin-membresia header h3').forEach(function (h) { bloq[h.textContent.trim()] = true; });
     return hojas.filter(function (h) { return !bloq[h.nombre]; });
   }
-  function reunir() { return sinBloqueadas(tiparHojas([].concat(deListas(), deVersiones(), deAnio(), deVision(), deFinanzas(), window.lrIdeas && window.lrIdeas.paraExcel ? window.lrIdeas.paraExcel() : []))); }
+  function reunir() { return sinBloqueadas(tiparHojas([].concat(deListas(), deVersiones(), deAnio(), deVision(), deFinanzas(), window.lrInforme && window.lrInforme.paraExcel ? window.lrInforme.paraExcel() : [], window.lrIdeas && window.lrIdeas.paraExcel ? window.lrIdeas.paraExcel() : []))); }
   function descargar() {
     var hojas = reunir();
     if (!hojas.length) { alert('Todavía no hay nada escrito para exportar. Llena alguna hoja de tu agenda y vuelve a intentarlo.'); return; }

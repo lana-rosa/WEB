@@ -1768,5 +1768,11 @@ window.lrI18n.add("en", {
 "Cuando el proyecto esté «Terminado» podrás descontar esta lana del inventario.": "When the project is “Finished” you will be able to subtract this yarn from your inventory.",
 "Esa lana ya no está en tu inventario: {a}": "That yarn is no longer in your inventory: {a}",
 "Anotar la compra como gasto del negocio": "Record the purchase as a business expense",
-"Si anotas el costo por ovillo, la compra se puede anotar como gasto": "If you enter the cost per skein, the purchase can be recorded as an expense"
+"Si anotas el costo por ovillo, la compra se puede anotar como gasto": "If you enter the cost per skein, the purchase can be recorded as an expense",
+"Enviar por WhatsApp": "Send by WhatsApp",
+"▲ {p#} % más que en {m}": "▲ {p} % more than in {m}",
+"▼ {p#} % menos que en {m}": "▼ {p} % less than in {m}",
+"▲ {v} más que en {m}": "▲ {v} more than in {m}",
+"▼ {v} menos que en {m}": "▼ {v} less than in {m}",
+"Igual que en {m}": "Same as in {m}"
 });
