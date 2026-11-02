@@ -1774,5 +1774,18 @@ window.lrI18n.add("en", {
 "▼ {p#} % menos que en {m}": "▼ {p} % less than in {m}",
 "▲ {v} más que en {m}": "▲ {v} more than in {m}",
 "▼ {v} menos que en {m}": "▼ {v} less than in {m}",
-"Igual que en {m}": "Same as in {m}"
+"Igual que en {m}": "Same as in {m}",
+"Mi meta": "My goal",
+"Ej.: máquina de coser": "E.g. sewing machine",
+"Fecha objetivo": "Target date",
+"Agregar meta": "Add goal",
+"Mi plan": "My plan",
+"Ej.: viaje a la costa": "E.g. trip to the coast",
+"Agregar plan": "Add plan",
+"Escribe el nombre de la meta y cuánto necesitas.": "Write the goal name and how much you need.",
+"Meta agregada.": "Goal added.",
+"Escribe el nombre del plan.": "Write the plan name.",
+"Plan agregado.": "Plan added.",
+"¿Borrar la meta «{n}»?": "Delete the goal «{n}»?",
+"¿Borrar el plan «{n}»?": "Delete the plan «{n}»?"
 });
