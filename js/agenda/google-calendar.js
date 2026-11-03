@@ -32,7 +32,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var conectado = !!(estado && estado.conectado);
     bCon.hidden = conectado; bSin.hidden = !conectado; bDes.hidden = !conectado; bQuitar.hidden = !(conectado && retenidos > 0);
     if (nota) nota.hidden = !(AVISO_NO_VERIFICADA && !conectado);
-    if (!conectado) txt.textContent = 'Conecta tu Google Calendar y tus entregas, proyectos, fechas especiales, ferias y cumpleaños aparecen solos en un calendario aparte llamado «Agenda para tejedoras», con un recordatorio la tarde anterior. Es gratis y opcional.';
+    if (!conectado) txt.textContent = 'Conecta tu Google Calendar y tus entregas, proyectos, fechas especiales, ferias y cumpleaños aparecen solos en un calendario aparte llamado «Agenda para tejedoras», con un recordatorio a las 9 a. m. del día anterior. Es gratis y opcional.';
     else txt.textContent = 'Conectado' + (estado.correo ? ' como ' + estado.correo : '') + '. ' + (estado.ultima ? 'Última sincronización: ' + fechaHora(estado.ultima) + ' Si no ves las fechas, en Google Calendar marca «Agenda para tejedoras» en «Mis calendarios».' : 'Todavía no se ha sincronizado.');
     if (conectado && retenidos > 0) txt.textContent += ' Hay ' + retenidos + ' fechas en tu Google Calendar que ya no están en esta agenda.';
   }
@@ -46,7 +46,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     if (r.reconectar) { estado.conectado = false; retenidos = 0; pintar(); aviso(r.error); return; }
     if (r.error) { aviso(r.error); return; }
     estado.ultima = new Date().toISOString(); retenidos = r.retenidos || 0; pintar();
-    if (r.fallos) aviso('Algunas fechas no se pudieron sincronizar. Inténtalo otra vez.');
+    if (r.omitidos) aviso('Tu agenda tiene más fechas de las que caben en Google Calendar: se enviaron las primeras 300 y ' + r.omitidos + ' no se enviaron. Revisa pedidos y fechas que ya pasaron.');
+    else if (r.fallos) aviso('Algunas fechas no se pudieron sincronizar. Inténtalo otra vez.');
     else if (retenidos) aviso('No quité nada de tu Google Calendar: ' + retenidos + ' fechas ya no están en esta agenda. Si es lo que quieres, toca «Quitar esas fechas».');
     else aviso(manual ? '¡Listo! ' + (r.creados + r.actualizados + r.borrados) + ' cambio(s) en tu calendario.' : '');
   }

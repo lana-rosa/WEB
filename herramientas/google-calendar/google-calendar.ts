@@ -69,7 +69,7 @@ function cuerpoEvento(e: any) {
   const ev: any = {
     summary: e.titulo, description: e.detalle || undefined, location: e.lugar || undefined,
     start: { date: e.fecha }, end: { date: sumarDia(e.fecha) },
-    reminders: { useDefault: false, overrides: [{ method: 'popup', minutes: 900 }] },   // la tarde anterior
+    reminders: { useDefault: false, overrides: [{ method: 'popup', minutes: 900 }] },   // 9:00 a. m. del día anterior (evento de todo el día: 24 h − 900 min)
     extendedProperties: { private: { lanarosa_clave: e.clave } },
     source: { title: 'Agenda de Rosina · Lana Rosa', url: AGENDA },
   };
@@ -113,8 +113,10 @@ Deno.serve(async (req) => {
     if (!t.refresh_token) return volver('sin_permiso');   // pasa si ya había dado permiso: se vuelve a pedir con prompt=consent
     let correo = '';
     try { const p = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: 'Bearer ' + t.access_token } }); correo = (await p.json()).email || ''; } catch { /* el correo es solo informativo */ }
-    let calId: string | null = null;
-    try { calId = await crearCalendario(t.access_token); } catch { /* si falla, se crea en la primera sincronización */ }
+    // si ya había un calendario de una conexión anterior no se crea otro (quedaría huérfano en Google); si la persona lo borró, la sincronización lo rehace
+    const { data: antes } = await sb.from('google_calendar_cuentas').select('calendar_id').eq('user_id', uid).maybeSingle();
+    let calId: string | null = antes?.calendar_id || null;
+    if (!calId) try { calId = await crearCalendario(t.access_token); } catch { /* si falla, se crea en la primera sincronización */ }
     await sb.from('google_calendar_cuentas').upsert({ user_id: uid, refresh_token: await cifrar(t.refresh_token), google_correo: correo || null, calendar_id: calId, updated_at: new Date().toISOString() });
     return volver('conectado');
   }
@@ -157,7 +159,9 @@ Deno.serve(async (req) => {
 
   if (body.accion === 'sincronizar') {
     if (!cuenta) return json({ error: 'Primero conecta tu Google Calendar.' }, 400);
-    const entrada = Array.isArray(body.eventos) ? body.eventos.slice(0, MAX_EVENTOS) : [];
+    const todas = Array.isArray(body.eventos) ? body.eventos : [];
+    const omitidos = Math.max(0, todas.length - MAX_EVENTOS);   // lo que pasa del tope no se envía; se avisa a la persona
+    const entrada = todas.slice(0, MAX_EVENTOS);
     const eventos = entrada.map((e: any) => ({
       clave: limpio(e?.clave, 60), titulo: limpio(e?.titulo, 200), detalle: limpio(e?.detalle, 1500), lugar: limpio(e?.lugar, 200),
       fecha: limpio(e?.fecha, 10), anual: !!e?.anual,
@@ -205,7 +209,7 @@ Deno.serve(async (req) => {
       if (r.ok || r.status === 404 || r.status === 410) { await sb.from('google_calendar_eventos').delete().eq('user_id', uid).eq('clave', clave); borrados++; } else fallos++;
     }
     await sb.from('google_calendar_cuentas').update({ ultima_sincronizacion: new Date().toISOString() }).eq('user_id', uid);
-    return json({ ok: fallos === 0, creados, actualizados, borrados, sinCambio, fallos, retenidos });
+    return json({ ok: fallos === 0, creados, actualizados, borrados, sinCambio, fallos, retenidos, omitidos });
   }
 
   return json({ error: 'Acción no válida' }, 400);
