@@ -137,6 +137,7 @@
 ## 12. «Google Fonts» en `#cookies` (texto desactualizado)
 - **Texto:** [`#cookies`, apartado 3 «Cookies de terceros»](https://lanarosacrochet.com/politicas.html#cookies): «entre ellos Google (Google Analytics y **Google Fonts**)».
 - **Qué hace la web:** desde el 7-oct-2026 **ninguna página pide fuentes a Google**; se sirven desde `/fonts/`. Verificado en 10 páginas: 0 solicitudes a `fonts.googleapis.com` / `fonts.gstatic.com`. (El borrador `borrador-politica-datos.md` también menciona Google Fonts: está desactualizado.)
+- **Aviso (3-nov):** el chat 7 ya preparó ese cambio en el PR #534 (aún sin fusionar); `main` todavía dice «Google Fonts». Esperar a la abogada antes de fusionarlo.
 - **Pregunta:** ¿Se aprueba quitar «y Google Fonts» de ese apartado? (Cambio de una frase. Hasta su visto bueno **no se toca**.) Además, el pie de la política de cookies dice «Última actualización: 12 de septiembre de 2026», mientras que el encabezado dice 23 de octubre: ¿se unifican las fechas al publicar?
 
 ## 13. Preguntas generales de datos (marco)

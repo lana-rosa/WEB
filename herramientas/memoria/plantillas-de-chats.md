@@ -56,6 +56,14 @@ Tema: Sitio, SEO y Revista. Lee CLAUDE.md, herramientas/memoria/estado-actual.md
 Tema: Universo de Rosina y Academy. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, herramientas/memoria/rosina-universo-y-chat.md y herramientas/memoria/aventuras-de-rosina.md. Trabaja solo en este tema. Al terminar, agrega una nota de 3 a 5 líneas al archivo del tema y actualiza estado-actual.md. Tarea: [escribe aquí lo que necesitas]
 ```
 
+## Reglas para los chats de tema (3-nov-2026, para que las notas no choquen)
+1. **Antes de empezar y antes de cada commit:** `git fetch origin main` y traer `main` a la rama (`git merge origin/main`). Nunca trabajar sobre una rama atrasada.
+2. **`estado-actual.md`:** cada chat reemplaza solo su renglón de «Por chat» (máx. 3 líneas). No agrega párrafos ni toca los renglones de otros. Lo general lo escribe el orquestador.
+3. **`PENDIENTES.md`:** solo se tocan los renglones del propio tema; lo terminado se pasa a `historial-pendientes.md`.
+4. **Cierre = PR de notas el mismo día:** al cerrar, abrir un PR solo con las notas y pedirle a Jennifer el visto bueno para fusionarlo ese día. No dejar notas varios días en una rama.
+5. **Archivos de otro tema no se tocan:** `politicas.html` y textos legales son del chat 6 y van con la abogada; `GUIA_AGENDA`/`rosina-web` del chat 3; la base de datos del chat 5. Si hace falta, se anota en `PENDIENTES.md` para ese chat.
+6. **Tareas programadas:** solo las crea el orquestador (ya hay un cierre diario a las 6:47 p. m.; no crear otro).
+
 ## Otros temas
 - Generadores, íconos, fondos y app instalable: usar la plantilla 6 cambiando el archivo por `generadores-y-pwa.md`.
 - Publicar: pedirlo en el mismo chat (PR a `main` y fusión con el visto bueno de Jennifer).

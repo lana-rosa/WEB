@@ -19,7 +19,7 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 
 ---
 
-## [ ] E1 · Rosina al día con la agenda publicada (chat 3)
+## [x] E1 · Rosina al día con la agenda publicada (chat 3) — hecho 3-nov-2026: `rosina-web` desplegada (contador de Supabase v61; en el repositorio es «v62» = etapa 2 de Calendar + puntos de miles #531); lo desplegado es idéntico al repositorio (diff vacío) y `probar_rosina_funcion.mjs` dio 43 correctas, 0 fallas
 - **Objetivo:** desplegar `rosina-web` v61 (ya en `herramientas/rosina-web/index.ts`, sin desplegar), que explica «Qué fechas enviar a Google Calendar» (#530). Revisar si #531 (puntos de miles al escribir dinero) necesita una línea en `GUIA_AGENDA`; si sí, súbela a v62 antes de desplegar.
 - **Leer:** `agenda-casa-y-rosina.md`, `agenda-google.md` (solo la parte de Conexiones).
 - **No tocar:** código de la agenda; `nucleo.ts` salvo que haga falta.
