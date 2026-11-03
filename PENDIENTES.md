@@ -3,7 +3,7 @@
 Última revisión: 9 de octubre de 2026 (reordenado y verificado contra el repositorio y la base de datos).
 Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial completo de lo hecho (y el texto anterior de este archivo) está en `herramientas/historial/PENDIENTES-hasta-2026-10-09.md`.
 
-**Fechas clave:** inauguración de la tienda física el **martes 15-dic-2026** (aplazada desde el 15-nov el 3-nov-2026; sujeta a cambios); atención normal desde el **miércoles 16-dic** (L–V 7:30 a. m.–6:15 p. m., sáb 8:00–12:00). `js/apertura.js` y el flujo `activar-apertura.yml` cambian los textos solos el 16-nov; si la fecha se mueve, cambiar `2026-11-16` en `js/apertura.js`, el cron del flujo y `herramientas/activar_apertura.py`.
+**Fechas clave:** inauguración de la tienda física el **domingo 13-dic-2026** (aplazada desde el 15-nov el 3-nov-2026; sujeta a cambios); atención normal desde el **lunes 14-dic** (L–V 7:30 a. m.–6:15 p. m., sáb 8:00–12:00). `js/apertura.js` y el flujo `activar-apertura.yml` cambian los textos solos el 16-nov; si la fecha se mueve, cambiar `2026-11-16` en `js/apertura.js`, el cron del flujo y `herramientas/activar_apertura.py`.
 
 ---
 
@@ -76,12 +76,12 @@ Solo lo **abierto** y las reglas vigentes. Lo ya hecho (con su historia) está e
 
 ## 🟠 4. Antes de la apertura (plan del 5-oct)
 
-- [ ] **(fecha por reprogramar: la apertura pasó al 15-dic) 26-oct a 6-nov:** reunión con el contador (saldos de apertura y cierre de mes: caja, bancos, cartera, cuentas por pagar); horario y fecha en el perfil de Google; foto de la tienda y portada de la Mercería.
-- [ ] **(fecha por reprogramar: la apertura pasó al 15-dic) 9 a 11-nov:** conteo físico de todo el inventario (Tienda y Taller); Claude ajusta el Kardex a lo contado.
-- [ ] **(fecha por reprogramar: la apertura pasó al 15-dic) 12 a 14-nov:** ensayo de caja con una venta real pequeña; revisar permisos de usuarias del POS; aviso de apertura en redes y en la web.
+- [ ] **(fecha por reprogramar: la apertura pasó al 13-dic) 26-oct a 6-nov:** reunión con el contador (saldos de apertura y cierre de mes: caja, bancos, cartera, cuentas por pagar); horario y fecha en el perfil de Google; foto de la tienda y portada de la Mercería.
+- [ ] **(fecha por reprogramar: la apertura pasó al 13-dic) 9 a 11-nov:** conteo físico de todo el inventario (Tienda y Taller); Claude ajusta el Kardex a lo contado.
+- [ ] **(fecha por reprogramar: la apertura pasó al 13-dic) 12 a 14-nov:** ensayo de caja con una venta real pequeña; revisar permisos de usuarias del POS; aviso de apertura en redes y en la web.
 - [ ] **Día de apertura:** abrir el primer turno con el efectivo contado. Después de revisar que todo cuadra, Sara activa «🔒 Modo producción» (Configuración → 🛡️ Respaldo y auditoría → Reinicio antes de producción). **Es permanente; no usar «🧹 Reinicio antes de producción» antes, porque borra todo.**
 - [ ] **Cuentas bancarias exclusivas** de Lana Rosa: abrirlas y registrarlas en el ERP (Bancos), y asignar los medios de pago para que el dinero de la web no quede «sin asignar». Antes de eso las conciliaciones no cuadran (se usó una cuenta personal).
-- [ ] **16-dic:** revisar que el flujo `activar-apertura` corrió (commit «Tienda física abierta…» en `main`).
+- [ ] **14-dic:** revisar que el flujo `activar-apertura` corrió (commit «Tienda física abierta…» en `main`).
 - [ ] **Perfil de Google (Sara):** revisar en 1 o 2 semanas que vuelva a salir al buscar «Lana Rosa Crochet», que se reactiven las reseñas, y agregar horario y áreas de servicio.
 
 ## 🟡 5. Datos que Sara debe pasar o registrar en el ERP
@@ -179,7 +179,7 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 - [ ] Plazo de entrega de los personalizados: Sara pidió dejar lo de las políticas (elaboración informada al comprar + envío aparte); en las políticas no hay un plazo en días, así que falta que Sara fije un número (¿15 días hábiles?) y se agrega al inicio, a las preguntas frecuentes y a `politicas.html#envios`.
 - [ ] Revisar en Google Search Console que los productos de la tienda aparezcan indexados (los datos de producto `Product` y la lista `ItemList` ya se agregan con JavaScript en `tienda.html`; no hay versión estática porque los productos vienen de Supabase). Confirmar con Sara si «1 semana después de confirmar el pago» aplica a los productos por encargo de la tienda.
 - [ ] Personaliza: falta (a) el rango de días del plazo (Sara decide), (b) saber si se manda foto del avance antes de entregar (si sí, ponerlo en los 5 pasos). La sugerencia de «pide antes del [fecha] para recibir en Navidad» **no se aplica**: la marca no menciona la Navidad; si se quiere una fecha límite, usar una fecha de otra ocasión (Amor y amistad, etc.).
-- [ ] **Recoger en la tienda:** hoy los textos dicen «Recoger en la tienda física (apertura: 15 de diciembre de 2026) es gratis»; confirmar con Sara si antes de abrir se puede recoger en el taller (y cómo coordinarlo) y ajustar el texto.
+- [ ] **Recoger en la tienda:** hoy los textos dicen «Recoger en la tienda física (apertura: 13 de diciembre de 2026) es gratis»; confirmar con Sara si antes de abrir se puede recoger en el taller (y cómo coordinarlo) y ajustar el texto.
 - [ ] **Sobre nosotras: fotos y números del equipo (Sara las pasa más adelante):** cuántas mujeres tejedoras hay en el equipo y 2 o 3 fotos del taller (manos tejiendo, una pieza a medias) para la sección «Auténtica»; confirmar que las empresas nombradas están de acuerdo en aparecer.
 - [ ] **Revista, siguientes pasos:** (a) subir los tutoriales de Instagram a YouTube (Lana Rosa Academy) y embeberlos en los artículos de «empezar a tejer» y «anillo mágico»; (b) captura de contactos (p. ej. «las 22 paletas de Rosina en PDF» o la checklist a cambio del correo): necesita decidir el texto de autorización y actualizar `politicas.html#datos` antes de activarlo; (c) agregar los artículos a `PAGINAS` de `rosina-web` (si se quiere que Rosina los lea) y volver a desplegar; (d) en Search Console, enviar el sitemap nuevo y revisar que las 18 páginas de la Revista se indexen.
 - [ ] Decidir cómo enviar las novedades (correo desde el ERP, Brevo/Mailchimp u otra herramienta) y qué contenido; hoy solo se guarda la autorización. Si se quiere pedir cuenta también para el glosario, las calculadoras o las paletas, se puede, pero Google dejaría de mostrarlas.
