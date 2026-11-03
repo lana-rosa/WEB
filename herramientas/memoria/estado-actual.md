@@ -6,7 +6,9 @@
 
 **Publicado en `main` hasta hoy (#513 a #519):** metas de ahorro y planes con un solo formulario; agenda en celular con un solo fondo y hojas más anchas; letra mínima de 12 px; dibujos y fotos en IndexedDB (fotos a 1600 px; copia en la cuenta sin fotos si pasa de 3 MB); íconos nuevos de Jennifer (Recursos de Rosina, corazón, play, portátil, 123, brújula, disquete, flecha del menú); auditoría de Google (`herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`); memoria por temas. `rosina-web` desplegada en **v58**.
 
-**En la rama sin publicar:** nada (al crear este archivo).
+**Publicado también (#522 a #526):** apertura 13-dic, Excel de finanzas, plantillas de chats (`plantillas-de-chats.md`), fechas reprogramadas, íconos de Google y confeti.
+
+**En la rama sin publicar:** plantilla 0 del chat orquestador en `plantillas-de-chats.md`. Decidido por Jennifer: orquestador con Opus 5.5 y 7 chats de tema con Sonnet 5.5; cada chat cierra con «Cierre de sesión» (anota en su tema y aquí, máx. 3 líneas).
 
 **Pendiente de Jennifer:**
 - Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).
@@ -16,9 +18,8 @@
 - Pago real de prueba de la membresía; revisión de la abogada.
 
 **Lo que puede hacer Claude cuando se le pida (en orden sugerido):**
-1. Revisar con Jennifer qué renglones de `PENDIENTES.md` ya están hechos sin marcar.
-2. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
-3. Documento de marketing de las funciones; cobro en dólares.
+1. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
+2. Documento de marketing de las funciones; cobro en dólares.
 
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026** (aplazada desde el 15-nov, 3-nov-2026); atención normal desde el lunes 14-dic. Reprogramado (3-nov): reunión con el contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
