@@ -12,7 +12,7 @@
 - **3 · Agenda Rosina e idiomas:** E1 hecho (`rosina-web` desplegada con la etapa 2 y los puntos de miles en `GUIA_AGENDA`); renglones hechos de `PENDIENTES.md` al historial. A medias: 2 preguntas de prueba para Jennifer en `agenda-casa-y-rosina.md`.
 - **4 · Tienda y Mercería:** etiquetas al día; plantilla de 34 ítems y `cargar_merceria.py` listos. Espera el Excel y las 34 fotos de Jennifer (E2) y su decisión de si se recoge en el taller antes del 13-dic.
 - **5 · Base de datos y pagos:** migraciones 41 (`search_path`) y 42 (guarda de rol en material y compras, A4b) aplicadas; auditoría A4 hecha. A medias: Jennifer prueba A4b en el ERP y enciende «Leaked password protection» (A1); sigue A5 (SEG-15). Decisiones de Jennifer: material = administrador y taller; compras = administrador.
-- **6 · Sitio, SEO y Revista:** E6 hecho en borrador: `herramientas/legal/PAQUETE-ABOGADA.md` (13 puntos); espera el visto bueno de Jennifer. No se tocó `politicas.html`.
+- **6 · Sitio, SEO y Revista:** paquete de la abogada listo (`herramientas/legal/PAQUETE-ABOGADA.md`; proveedora = Sara Loaiza Muñoz, casilla de patrones propuesta). E9 revisado: `apertura.js`, `activar_apertura.py` y el flujo coinciden (14-dic). Falta: fecha de cookies (espera sí de Jennifer), aviso de apertura en el inicio y recogida en taller.
 - **7 · Universo de Rosina y Academy:** bloque A hecho (pruebas del tema en verde). El texto de cookies («Google Fonts») pasó al chat 6 y a la abogada: ya no va en mi PR. A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas; bloques B (Jennifer) y C (abogada).
 - **8 · Marketing y contenido:** chat nuevo (3-nov). Primer encargo: E10 en `encargos.md` (campaña de apertura del 13-dic).
 
