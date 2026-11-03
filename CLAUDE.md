@@ -5,7 +5,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 **Quién escribe:** en el chat firma Jennifer (la dueña); en estos archivos «Sara» es el nombre con que antes se nombró a la dueña.
 
 ## Antes de empezar
-- **Lee `PENDIENTES.md`**: es la lista de tareas pendientes acordadas con Sara. Al terminar una, márcala con `[x]`; agrega ahí lo nuevo que quede pendiente.
+- **Lee `PENDIENTES.md`**: es la lista de tareas pendientes acordadas con Sara. **Cada chat anota ahí, en la sección de su tema, todo lo que le quede pendiente, y solo cierra (`[x]` y al historial) lo que verificó él mismo (prueba, consulta o captura) o lo que Jennifer confirmó; al cerrar, anota cómo se verificó y la fecha. Sin prueba, queda abierto.**
 - Sara suele querer ver capturas antes de publicar, salvo que pida publicar directamente. Publicar = PR a `main` y merge (GitHub Pages despliega solo).
 - **Al empezar un chat:** lee este archivo y `herramientas/memoria/estado-actual.md`; **al terminar una tarea, actualiza `estado-actual.md`** (máximo ~20 líneas).
 - **Cierre de sesión (a diario, pedido de Jennifer 3-nov-2026):** al terminar, deja anotado en el archivo de tu tema y en `estado-actual.md` (máximo 3 líneas por tema) qué se hizo, qué quedó a medias y qué decidió Jennifer; agrega a `PENDIENTES.md` lo que falte y dile qué hay sin publicar.
