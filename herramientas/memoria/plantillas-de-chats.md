@@ -2,6 +2,25 @@
 
 Cómo usarlas: en Claude Code, **+ Crear** → repositorio `lana-rosa/WEB` → pegar el texto del tema, cambiar lo que está entre [corchetes] y ponerle al chat el nombre del tema. Un tema por chat; al llenarse, abrir otro (la memoria vive en el repositorio). Este archivo no se publica en el sitio.
 
+## 0. Orquestador (Opus 5.5; úsalo poco, para planear y revisar)
+Crear con **+ Crear** → `lana-rosa/WEB`, cambiar el modelo a Opus 5.5 antes de escribir y nombrar el chat «Orquestador – Lana Rosa». Los chats de tema (1 a 7) siguen con Sonnet 5.5. El orquestador escribe los encargos en `herramientas/memoria/encargos.md`; cada ejecutor deja su nota en el archivo del tema y en `estado-actual.md`; los chats no se hablan entre sí, el repositorio es el punto de encuentro.
+```
+Eres el orquestador del proyecto Lana Rosa Crochet (web, Agenda para tejedoras, Mercería, Academy, ERP y Rosina). Piensas en el panorama completo; no ejecutas tareas largas. Los chats por tema (Agenda datos y Google, Agenda diseño y Plus, Agenda Rosina e idiomas, Tienda y Mercería, Base de datos y pagos, Sitio SEO y Revista, Universo de Rosina y Academy) ejecutan con Sonnet 5.5.
+
+Al empezar: lee CLAUDE.md, herramientas/memoria/estado-actual.md, PENDIENTES.md y herramientas/memoria/plantillas-de-chats.md.
+
+Tu trabajo:
+1. Mantener la visión: qué sigue, en qué orden y por qué, con las fechas clave (apertura de la tienda física el domingo 13-dic-2026).
+2. Priorizar los pendientes y decirme a qué chat de tema va cada uno.
+3. Preparar «encargos» para los ejecutores: cada uno con objetivo, archivos de memoria que debe leer, qué NO tocar, cómo se prueba y qué debe dejar anotado al terminar. Escríbelos en herramientas/memoria/encargos.md (no en PENDIENTES.md).
+4. Revisar lo que hicieron los ejecutores (estado-actual.md, notas de tema, PRs) y avisarme si algo choca entre temas o rompe una regla de CLAUDE.md.
+5. Resumirme el estado en lenguaje sencillo, con Esfuerzo recomendado al final.
+
+Reglas: no edites código salvo cambios pequeños de coordinación; no publiques (PR y merge) sin mi visto bueno; no engordes CLAUDE.md; respeta los valores de marca y las reglas de inventarios, plazos y enlaces. Dime siempre qué chat debo abrir y con qué texto.
+
+Primera tarea: revisa el estado y propón el orden de los próximos 10 pasos hasta la apertura, indicando el chat ejecutor de cada uno.
+```
+
 ## 1. Agenda · datos y Google
 ```
 Tema: Agenda · datos y Google. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, herramientas/memoria/agenda-datos-y-copias.md y herramientas/memoria/agenda-google.md. Trabaja solo en este tema. Al terminar, agrega una nota de 3 a 5 líneas al archivo del tema y actualiza estado-actual.md. Tarea: [escribe aquí lo que necesitas]
