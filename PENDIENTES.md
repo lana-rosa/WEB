@@ -76,9 +76,9 @@ Solo lo **abierto** y las reglas vigentes. Lo ya hecho (con su historia) está e
 
 ## 🟠 4. Antes de la apertura (plan del 5-oct)
 
-- [ ] **(fecha por reprogramar: la apertura pasó al 13-dic) 26-oct a 6-nov:** reunión con el contador (saldos de apertura y cierre de mes: caja, bancos, cartera, cuentas por pagar); horario y fecha en el perfil de Google; foto de la tienda y portada de la Mercería.
-- [ ] **(fecha por reprogramar: la apertura pasó al 13-dic) 9 a 11-nov:** conteo físico de todo el inventario (Tienda y Taller); Claude ajusta el Kardex a lo contado.
-- [ ] **(fecha por reprogramar: la apertura pasó al 13-dic) 12 a 14-nov:** ensayo de caja con una venta real pequeña; revisar permisos de usuarias del POS; aviso de apertura en redes y en la web.
+- [ ] **23-nov a 4-dic:** reunión con el contador (saldos de apertura y cierre de mes: caja, bancos, cartera, cuentas por pagar); horario y fecha en el perfil de Google; foto de la tienda y portada de la Mercería.
+- [ ] **7 a 9-dic:** conteo físico de todo el inventario (Tienda y Taller); Claude ajusta el Kardex a lo contado.
+- [ ] **10 a 12-dic:** ensayo de caja con una venta real pequeña; revisar permisos de usuarias del POS; aviso de apertura en redes y en la web.
 - [ ] **Día de apertura:** abrir el primer turno con el efectivo contado. Después de revisar que todo cuadra, Sara activa «🔒 Modo producción» (Configuración → 🛡️ Respaldo y auditoría → Reinicio antes de producción). **Es permanente; no usar «🧹 Reinicio antes de producción» antes, porque borra todo.**
 - [ ] **Cuentas bancarias exclusivas** de Lana Rosa: abrirlas y registrarlas en el ERP (Bancos), y asignar los medios de pago para que el dinero de la web no quede «sin asignar». Antes de eso las conciliaciones no cuadran (se usó una cuenta personal).
 - [ ] **14-dic:** revisar que el flujo `activar-apertura` corrió (commit «Tienda física abierta…» en `main`).
