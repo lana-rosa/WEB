@@ -20,7 +20,7 @@
 2. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
 3. Documento de marketing de las funciones; cobro en dólares.
 
-**Tema «Universo de Rosina y Academy» (3-nov-2026):** se hizo el plan de trabajo (nota en `rosina-universo-y-chat.md`); aún no se ejecuta nada. Esperando que Jennifer elija por dónde empezar.
+**Tema «Universo de Rosina y Academy» (3-nov-2026):** plan hecho y bloque A ejecutado (nota en `rosina-universo-y-chat.md`): texto de cookies corregido (en la rama, sin publicar), pruebas del tema en verde, glosario/paletas NO se regeneran. Siguen el bloque B (Jennifer) y C (abogada).
 
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026** (aplazada desde el 15-nov, 3-nov-2026); atención normal desde el lunes 14-dic. Reprogramado (3-nov): reunión con el contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
