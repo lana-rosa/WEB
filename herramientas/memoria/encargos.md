@@ -83,3 +83,33 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 - **Leer:** `herramientas/marketing-agenda/LEEME.md`, `PLAN-MAESTRO-MARKETING.md`.
 - **No tocar:** páginas del sitio ni la Revista (chat 6). Nada de Navidad, santos ni Halloween: las fechas de diciembre se nombran por la apertura, no por la temporada.
 - **Anotar:** el calendario en `herramientas/marketing-agenda/` y su renglón en `estado-actual.md`; si hace falta algo en la web (aviso de apertura), anotarlo para el chat 6 (E9).
+
+---
+## Agenda: ideas de otras agendas (aprobado por Jennifer el 3-nov-2026; informe en `herramientas/agenda-auditoria/IDEAS-DE-OTRAS-AGENDAS-2026-11.md`)
+**Hasta el 13-dic no se cambia la agenda publicada** (solo E11 en papel y E12). Desde el 14-dic, en este orden: E13 → E14 → E15 → E16 → E17.
+
+## [ ] E11 · Finanzas: revisión y propuesta, sin tocar la agenda (chat 2) — ya
+- **Objetivo:** revisar las 10 hojas con dinero (`fin-movimientos`, `fin-presupuesto`, `fin-fijos`, `fin-tcredito`, `fin-resumen`, `fin-analisis`, `fin-negocio`, `gastos-negocio`, `ventas-mes`, `catalogo-precios`) y las metas: qué campo se escribe en dos lugares, qué hoja solo repite. Proponer los dos grupos del informe (punto 4) con «cada peso se escribe una sola vez», cómo pasar los datos de las hojas que sobren sin perder nada, qué cambia en el Excel de finanzas y en el informe del mes. Revisar también las 6 hojas de tiempo (punto 5).
+- **Leer:** el informe, `agenda-membresia-y-plus.md`, `agenda-nucleo-y-fichas.md`.
+- **No tocar:** el código de la agenda (solo un documento: `herramientas/agenda-auditoria/FINANZAS-PROPUESTA.md`).
+- **Entregar a Jennifer:** dibujos o capturas de cómo quedarían las hojas y preguntas de sí o no.
+- **Anotar:** su renglón en `estado-actual.md`.
+
+## [ ] E12 · Seguridad de los datos de la agenda (chat 5) — ya
+- **Objetivo:** probar con dos cuentas de prueba que una persona no puede leer ni borrar la copia de otra (tablas y funciones de la copia en la cuenta); revisar el asesor de seguridad; dejar a Jennifer el paso de «Leaked password protection» (A1) en palabras sencillas; estudiar si conviene cifrar la copia en la cuenta con una clave de la persona (ventajas, riesgos: si olvida la clave, se pierde) y proponerlo, sin hacerlo.
+- **Leer:** el informe (punto 7), `base-de-datos-y-cuentas.md`, `agenda-datos-y-copias.md`.
+- **No tocar:** datos reales de clientas; nada se borra.
+- **Anotar:** resultado de la prueba y la propuesta en su archivo.
+
+## [ ] E13 · «Mi semana» (chat 2) — desde el 14-dic
+Horario semanal por bloques de color (clases, trabajo, tejido, pedidos) y «Hoy» arriba; usa los datos de fechas que ya existen; celular 390 px y computador 1280 px; textos en 3 idiomas y `GUIA_AGENDA` (pedirlo al chat 3). Mostrar foto a Jennifer antes de publicar.
+
+## [ ] E14 · Avisos de «Mi semana» por Google Calendar (chat 1) — después de E13
+Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, para que Google avise en el celular y en el reloj; interruptor en Conexiones; todo por `lrDibStore`/copias como hoy.
+
+## [ ] E15 · Atajos del ícono (chat 2) — con E13
+`shortcuts` en `manifest-agenda.webmanifest`: «Mi semana», «Nota rápida», «Hoy».
+
+## [ ] E16 · Proyecto con pasos y barra de avance (chat 2), luego hábitos de la semana unidos a pausas activas, luego finanzas unificadas según E11 (chat 2, con el chat 1 para pasar los datos sin perder nada)
+
+## [ ] E17 · Después: stickers y paletas de Rosina en las hojas (chat 2 con dibujos del chat 7), compartir ficha por WhatsApp (chat 2), Google Sheets (chat 1), Google Tasks (chat 1, exige verificación de Google)
