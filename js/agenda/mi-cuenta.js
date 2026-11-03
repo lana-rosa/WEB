@@ -43,6 +43,7 @@
     var m = window.lrMembresia || {}, c = menu.querySelector('#mc-chip-mem'); if (!c) return;
     var txt = ''; if (m.acceso === 'miembro') txt = 'activa'; else if (m.acceso === 'prueba' && m.prueba_hasta) { var d = Math.max(0, Math.ceil((new Date(m.prueba_hasta) - Date.now()) / 86400000)); txt = d === 1 ? 'último día' : 'quedan ' + d + ' días'; }
     c.textContent = txt; c.hidden = !txt;
+    var tab = window.matchMedia && window.matchMedia('(pointer: coarse) and (min-width: 768px)').matches, lp = menu.querySelector('#mc-lapiz'); if (lp) lp.hidden = !(tab && document.getElementById('tinta-modo'));
     var ins = document.getElementById('instalar-agenda'), bi = menu.querySelector('#mc-instalar'); if (bi) bi.hidden = !(ins && !ins.hidden);
   }
   function clic(sel) { var e = document.querySelector(sel); if (e) e.click(); }
@@ -58,6 +59,7 @@
     var orig = document.getElementById('agenda-idioma'); sel.value = orig ? orig.value : 'es';
     sel.addEventListener('change', function () { var o = document.getElementById('agenda-idioma'); if (o) { o.value = sel.value; o.dispatchEvent(new Event('change')); } });
     idi.appendChild(sel); menu.appendChild(idi);
+    var lap = item('Lápiz: escribir a mano sobre la hoja', '✏️', function () { clic('#tinta-modo'); }); lap.id = 'mc-lapiz'; lap.hidden = true; menu.appendChild(lap);   /* solo tabletas (pointer: coarse y 768 px o más) */
     menu.appendChild(item('Mi membresía', '💎', function () { clic('[data-abrir-membresia]'); }, 'mc-chip-mem'));
     menu.appendChild(item('Copias y Google', '☁️', function () { if (window.lrAgendaConfig) window.lrAgendaConfig.abrir(); setTimeout(function () { var c = document.querySelector('#agenda-config .copia-agenda'); if (c) c.scrollIntoView({ block: 'start' }); }, 80); }));
     var ins = item('Instalar la agenda', '📲', function () { clic('#ia-instalar'); }); ins.id = 'mc-instalar'; ins.hidden = true; menu.appendChild(ins);

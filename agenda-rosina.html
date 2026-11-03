@@ -66,7 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-idioma.css?v=2">
 <link rel="stylesheet" href="/css/agenda-pantalla.css?v=11">
 <link rel="stylesheet" href="/css/agenda-menu.css?v=3">
-<link rel="stylesheet" href="/css/agenda-micuenta.css?v=2">
+<link rel="stylesheet" href="/css/agenda-micuenta.css?v=3">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -1112,6 +1112,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span id="resultado-busqueda" class="resultado-busqueda" aria-live="polite"></span>
           <button type="button" id="siguiente-busqueda" aria-label="Siguiente resultado" hidden>↓</button>
         </div>
+        <button type="button" class="boton-secundario boton-chico voz-global" data-voz="dictar">🎤 Dictar</button>
+        <button type="button" class="boton-secundario boton-chico" id="tinta-modo" aria-pressed="false">✏️ Lápiz</button>
+        <span class="voz-estado voz-estado-global" role="status" aria-live="polite"></span>
       </div>
       <button type="button" class="barra-toggle no-imprimir" id="barra-toggle" aria-expanded="false" aria-controls="barra-agenda"><span>🎨 Color de la letra y resaltar</span><span class="flecha" aria-hidden="true">▾</span></button>
       <div class="barra-agenda no-imprimir" id="barra-agenda" role="toolbar" aria-label="Herramientas de la agenda">
@@ -2070,9 +2073,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="hoja-agenda" id="mis-ideas" data-gratis>
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Mis ideas</h3><p>Pensamientos e ideas para nuevos proyectos.</p></div>
+          <div><h3>Mis ideas</h3><p>Pensamientos e ideas para nuevos proyectos: escríbelos o dícelos con tu voz.</p></div>
         </header>
-        <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> anota tu idea apenas se te ocurra, aunque sea corta. Para escribir más rápido, usa el micrófono del teclado de tu celular.</p>
+        <div class="voz-barra no-imprimir">
+          <button type="button" class="boton-primario boton-chico" data-voz="dictar">🎤 Hablar para escribir</button>
+          <span class="voz-estado" role="status" aria-live="polite"></span>
+        </div>
+        <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> toca «Hablar para escribir», di tu idea con calma y yo la escribo en la ficha que tengas abierta. También puedes usar el micrófono del teclado de tu celular.</p>
         <div class="tabla-scroll" style="box-shadow:none;">
           <table class="tabla-abrev tabla-agenda" style="min-width:620px;">
             <thead><tr><th>Fecha</th><th>De qué trata</th><th>Mi idea o pensamiento</th></tr></thead>
@@ -4355,7 +4362,9 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/vacios.js?v=4" defer></script>
 <script src="/js/agenda/panel.js?v=29" defer></script>
 <script src="/js/agenda/miles.js?v=1" defer></script>
-<script src="/js/agenda/mi-cuenta.js?v=2" defer></script>
+<script src="/js/agenda/voz.js?v=4" defer></script>
+<script src="/js/agenda/tinta.js?v=1" defer></script>
+<script src="/js/agenda/mi-cuenta.js?v=3" defer></script>
 <script src="/js/agenda/iconos.js?v=29" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=3" defer></script>

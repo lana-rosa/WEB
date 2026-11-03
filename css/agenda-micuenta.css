@@ -36,3 +36,6 @@ body.mc-abierto { overflow: hidden; }
 .encabezado[data-casa="agenda"] .boton-lupa + .mc-boton { margin-left: 0; }
 .encabezado[data-casa="agenda"] .boton-lupa img { width: 30px; height: 30px; }
 .encabezado[data-casa="agenda"] .boton-lupa[aria-expanded="true"] { background: var(--rosa-suave); box-shadow: 0 0 0 2px var(--rosa-principal); }
+/* Decisión de Jennifer (3-nov-2026): «Dictar» solo en el computador; «Lápiz» solo en tabletas y dentro del menú de Mi cuenta, sin botón fijo en la barra */
+#tinta-modo { display: none !important; }
+@media (pointer: coarse) { .voz-barra { display: none !important; } }
