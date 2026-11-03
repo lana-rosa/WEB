@@ -140,7 +140,7 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 
 - [ ] **Rutina diaria (pedido de Jennifer, 3-nov-2026):** al terminar cada día, «Cierre de sesión»: anotar en el archivo del tema y en `estado-actual.md` (máx. 3 líneas) qué se hizo, qué quedó a medias y qué decidió Jennifer; agregar aquí lo que falte; y avisarle qué hay sin publicar.
 - [ ] **Historial:** limpiar los renglones duplicados al final de `herramientas/memoria/historial-pendientes.md` (sección «Verificados como hechos el 3-nov-2026»).
-- [ ] **`rosina-web` v61:** confirmar si se desplegó (la etapa 2 de Conexiones ya está en `main`, #530).
+- [ ] **Probar el chat de Rosina en la agenda (Jennifer):** `rosina-web` se desplegó el 3-nov-2026 (E1) con la etapa 2 de Calendar y los puntos de miles; probar las 2 preguntas de `agenda-casa-y-rosina.md`.
 
 - [ ] **Correos de compra y promociones:** (1) probar con la primera compra real de producción; (2) construir el envío de promociones con enlace de baja; (3) decidir si se agregan las clientas que ya compraron. También el aviso del carrito abandonado en la política de datos si el contador lo pide (va en el punto 3).
 - [ ] **Conectar CRM y ERP, fase 2:** el Worker corregido (`herramientas/cuentas-clientes/worker/`, instrucciones en su README) falta que Sara lo pegue en Cloudflare para que no duplique clientes y normalice medios de pago. La fase 2b (cobros y estados) está hecha; falta probar el recorrido completo de la web con un pago real de producción (ahora con la casa por cliente).
