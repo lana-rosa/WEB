@@ -86,7 +86,7 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 
 ---
 ## Agenda: ideas de otras agendas (aprobado por Jennifer el 3-nov-2026; informe en `herramientas/agenda-auditoria/IDEAS-DE-OTRAS-AGENDAS-2026-11.md`)
-**Hasta el 13-dic no se cambia la agenda publicada** (solo E11 en papel y E12). Desde el 14-dic, en este orden: E13 → E14 → E15 → E16 → E17.
+**Aclarado por Jennifer (3-nov-2026): las tareas de la agenda NO esperan a la apertura; se hacen ya, en paralelo.** Lo que sí tiene fecha (antes de la apertura) es la tienda: crear todos los productos en el ERP (aparecen solos en la web), subir las fotos, probar compras y la sincronización con el inventario del ERP (E2, E4, E5, E7, E8, E9). **Orden dentro del chat 2 (para no pisarse):** E11 → E18 → E13 + E15 → E19 → E16 → E17. Chat 1: E14 después de E13. Chat 5: E12 ya, sin frenar E3/E4.
 
 ## [ ] E11 · Revisión de TODA la agenda para que nada se repita (empezando por finanzas), sin tocar la agenda (chat 2) — ya
 - **Hecho (3-nov-2026): finanzas y tiempo** en `herramientas/agenda-auditoria/FINANZAS-PROPUESTA.md` (+ `FINANZAS-MAQUETA.html`); Jennifer respondió sí a las preguntas 1 a 5 (queda la 6). **Hecho también:** las demás secciones en `REVISION-HOJAS-PROPUESTA.md` (39 → 28 hojas); falta que Jennifer responda sus 10 preguntas de sí o no.
@@ -103,7 +103,7 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 - **No tocar:** datos reales de clientas; nada se borra.
 - **Anotar:** resultado de la prueba y la propuesta en su archivo.
 
-## [ ] E13 · «Mi semana» (chat 2) — desde el 14-dic
+## [ ] E13 · «Mi semana» (chat 2) — después de E11 y E18
 Horario semanal por bloques de color (clases, trabajo, tejido, pedidos) y «Hoy» arriba; usa los datos de fechas que ya existen; celular 390 px y computador 1280 px; textos en 3 idiomas y `GUIA_AGENDA` (pedirlo al chat 3). Mostrar foto a Jennifer antes de publicar.
 
 ## [ ] E14 · Avisos de «Mi semana» por Google Calendar (chat 1) — después de E13
@@ -120,7 +120,13 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 - **Objetivo:** (1) dentro de la agenda, quitar el menú de las tres rayas y dejar **un solo menú: el de «Mi cuenta»**; (2) **menos íconos arriba** (dejar solo los necesarios y el resto dentro de ese menú); (3) **imagen de perfil**: una foto propia o un ícono sugerido (animalitos y otros, en el estilo de Rosina; Jennifer puede enviar los dibujos); (4) **nombre del negocio** configurable (que salga en el informe del mes, el catálogo y lo que se comparta).
 - **Hecho 3-nov-2026:** dibujo en `herramientas/agenda-auditoria/MI-CUENTA-MAQUETA.html` (+ `.png`), esperando el sí o no de Jennifer; la agenda no se tocó.
 - **Decidido por Jennifer (3-nov-2026):** le gusta el dibujo («Mi cuenta» con un solo menú); los íconos de perfil serán **Rosina y sus amigos (la tortuga y los otros animalitos)**, no más. **Jennifer pidió construirlo ya (3-nov-2026) y aclaró que la agenda no depende del 13-dic (esa fecha es solo la apertura de la Mercería): no volver a preguntar por esa fecha.** Construido; falta su visto bueno para publicarlo.
-- **Primero:** mostrarle a Jennifer un dibujo de cómo quedaría (celular 390 px y computador 1280 px) y preguntarle con sí o no. Construir desde el 14-dic, salvo que Jennifer diga otra cosa.
+- **Primero:** mostrarle a Jennifer un dibujo de cómo quedaría (celular 390 px y computador 1280 px) y preguntarle con sí o no. Construir apenas Jennifer apruebe el dibujo.
 - **Datos:** la foto se guarda en el aparato como los dibujos (`lrDibStore`) y viaja en las copias (pedirle al chat 1 que lo revise); no se sube a nuestros servidores. El nombre del negocio va con los datos de la agenda.
 - **Avisar a otros chats:** chat 3 (`GUIA_AGENDA` y textos en 3 idiomas), chat 1 (copias y Drive con la foto), chat 6 (si la política de datos debe mencionar la foto de perfil, con la abogada).
 - **Anotar:** su renglón en `estado-actual.md` y lo pendiente en `PENDIENTES.md`.
+
+## [ ] E19 · Modo oscuro en la agenda (chat 2; pedido de Jennifer, 3-nov-2026) — después de E13
+- **Objetivo:** opción «Claro / Oscuro / Como el celular» en Configuración de la agenda; se recuerda por aparato.
+- **Cuidado especial (pedido de Jennifer: que todo se vea bien):** contraste de textos y botones (mínimo 4,5:1), colores de cada sección y de la casa, tablas y casillas, gráficas, avisos, menús, hoja de dibujo (el papel del dibujo puede quedar claro para no cambiar los colores de lo dibujado), íconos y stickers hechos con fondo claro, portada y fondos, la impresión (siempre en claro) y el chat de Rosina.
+- **Probar:** cada hoja en celular 390 px y computador 1280 px en los dos modos, con capturas para Jennifer antes de publicar; revisión de contraste con axe.
+- **Avisar:** chat 3 (`GUIA_AGENDA` y textos en 3 idiomas). El resto del sitio (Tienda, Mercería, Academy) queda en claro; si Jennifer lo quiere después, sería un encargo aparte para el chat 6.
