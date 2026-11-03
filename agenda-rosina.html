@@ -56,7 +56,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <link rel="stylesheet" href="/css/agenda-fichas.css?v=42">
 <link rel="stylesheet" href="/css/agenda-diseno.css?v=20">
-<link rel="stylesheet" href="/css/agenda-panel.css?v=15">
+<link rel="stylesheet" href="/css/agenda-panel.css?v=16">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=19">
 <link rel="stylesheet" href="/css/agenda-colores.css?v=48">
@@ -3935,6 +3935,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var destino = g.links[0]; if (!destino) return;
         if (i > 0 && g.links.length > 1 && window.lrSeccion) {
           window.lrSeccion.abrir(g.t, g.links);
+          /* en el teléfono la lista «Hojas de…» arriba, con las hojas de esta sección y sin ninguna elegida (3-nov-2026) */
+          lista.textContent = '';
+          var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Elige una hoja…'; lista.appendChild(o0);
+          g.links.forEach(function(a) { var o = document.createElement('option'); o.value = a.dataset.hoja; o.textContent = a.textContent.trim(); lista.appendChild(o); });
+          lista.value = ''; selector.style.setProperty('--c', colorDe(g, i)); grupoLista = -2;
+          etqLista.textContent = 'Hojas de ' + etiqueta(g.t) + ' · ' + g.links.length + ' hojas'; selector.hidden = window.innerWidth > 820;
           botones.forEach(function(x, j) { x.setAttribute('aria-selected', String(j === i)); });
           return;
         }
@@ -4305,7 +4311,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=2" defer></script>
 <script src="/js/agenda/vacios.js?v=4" defer></script>
-<script src="/js/agenda/panel.js?v=28" defer></script>
+<script src="/js/agenda/panel.js?v=29" defer></script>
 <script src="/js/agenda/iconos.js?v=29" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=3" defer></script>
