@@ -14,7 +14,7 @@
 - **5 · Base de datos y pagos:** migraciones 41 y 42 aplicadas; lista de seguridad lista en `herramientas/auditoria-360/LISTA-SEGURIDAD-PARA-JENNIFER.md`. A medias: Jennifer la recorre (incluye A1) y prueba A4b en el ERP; después SEG-10/11 (pagos: preguntar).
 - **6 · Sitio, SEO y Revista:** paquete de la abogada listo (`herramientas/legal/PAQUETE-ABOGADA.md`; proveedora = Sara Loaiza Muñoz, casilla de patrones propuesta). E9 revisado: `apertura.js`, `activar_apertura.py` y el flujo coinciden (14-dic). Falta: fecha de cookies (espera sí de Jennifer), aviso de apertura en el inicio y recogida en taller.
 - **7 · Universo de Rosina y Academy:** bloque A hecho (pruebas del tema en verde). El texto de cookies («Google Fonts») pasó al chat 6 y a la abogada: ya no va en mi PR. A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas; bloques B (Jennifer) y C (abogada).
-- **8 · Marketing y contenido:** chat nuevo (3-nov). Primer encargo: E10 en `encargos.md` (campaña de apertura del 13-dic).
+- **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, la Agenda se llama CrochetLab, carrito mixto Tienda+Mercería = sí (a construir, chats 4 y 5). Falta elegir línea de contenido y E10 (apertura 13-dic).
 
 ## Pendiente de Jennifer
 - Google Cloud en **Producción**; prueba real de Drive (dos aparatos) y Calendar; preguntas reales a Rosina.
