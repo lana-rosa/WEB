@@ -74,7 +74,7 @@ Los datos de cada hoja se pasan una sola vez a la hoja nueva con los mismos nomb
 2. **[SÍ, Jennifer 3-nov-2026]** ¿Anotar ventas y gastos queda gratis y el resumen con gráficas queda de pago?
 3. **[SÍ, Jennifer 3-nov-2026]** ¿Se unen las tres hojas de resumen en una?
 4. **[SÍ, Jennifer 3-nov-2026]** ¿Se unen las tres hojas de anotar en «Ventas y gastos»?
-5. ¿Se unen las hojas de tiempo (6 a 4)?
+5. **[SÍ, Jennifer 3-nov-2026]** ¿Se unen las hojas de tiempo (6 a 4)?
 6. ¿Todo esto se hace después del 13-dic (E16)?
 
 ## 7. Orden sugerido (cada paso con foto y visto bueno)
