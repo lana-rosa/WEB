@@ -117,6 +117,7 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 ## [ ] E17 · Después: stickers y paletas de Rosina en las hojas (chat 2 con dibujos del chat 7), compartir ficha por WhatsApp (chat 2), Google Sheets (chat 1), Google Tasks (chat 1, exige verificación de Google)
 
 ## [ ] E18 · «Mi cuenta» dentro de la agenda (chat 2; pedido de Jennifer, 3-nov-2026)
+- **Punto nuevo (Jennifer, 3-nov-2026): la barra «Dictar» y «Lápiz».** Los celulares y tabletas ya dictan y reconocen la letra desde el teclado. **Decidido por Jennifer (3-nov-2026): «Dictar» solo en el computador; «Lápiz» (escribir a mano encima de la hoja) solo en tabletas y dentro del menú, sin barra fija.**
 - **Objetivo:** (1) dentro de la agenda, quitar el menú de las tres rayas y dejar **un solo menú: el de «Mi cuenta»**; (2) **menos íconos arriba** (dejar solo los necesarios y el resto dentro de ese menú); (3) **imagen de perfil**: una foto propia o un ícono sugerido (animalitos y otros, en el estilo de Rosina; Jennifer puede enviar los dibujos); (4) **nombre del negocio** configurable (que salga en el informe del mes, el catálogo y lo que se comparta).
 - **Hecho 3-nov-2026:** dibujo en `herramientas/agenda-auditoria/MI-CUENTA-MAQUETA.html` (+ `.png`), esperando el sí o no de Jennifer; la agenda no se tocó.
 - **Decidido por Jennifer (3-nov-2026):** le gusta el dibujo («Mi cuenta» con un solo menú); los íconos de perfil serán **Rosina y sus amigos (la tortuga y los otros animalitos)**, no más. **Jennifer pidió construirlo ya (3-nov-2026) y aclaró que la agenda no depende del 13-dic (esa fecha es solo la apertura de la Mercería): no volver a preguntar por esa fecha.** Construido; falta su visto bueno para publicarlo.
@@ -130,3 +131,18 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 - **Cuidado especial (pedido de Jennifer: que todo se vea bien):** contraste de textos y botones (mínimo 4,5:1), colores de cada sección y de la casa, tablas y casillas, gráficas, avisos, menús, hoja de dibujo (el papel del dibujo puede quedar claro para no cambiar los colores de lo dibujado), íconos y stickers hechos con fondo claro, portada y fondos, la impresión (siempre en claro) y el chat de Rosina.
 - **Probar:** cada hoja en celular 390 px y computador 1280 px en los dos modos, con capturas para Jennifer antes de publicar; revisión de contraste con axe.
 - **Avisar:** chat 3 (`GUIA_AGENDA` y textos en 3 idiomas). El resto del sitio (Tienda, Mercería, Academy) queda en claro; si Jennifer lo quiere después, sería un encargo aparte para el chat 6.
+
+## [ ] E20 · Plan B de la Mercería para la apertura (chat 4; 3-nov-2026)
+- **Por qué:** el desembolso del Fondo Emprender está demorado y los pedidos de la Mercería no se han hecho (Jennifer).
+- **Objetivo:** proponerle a Jennifer, con sí o no, qué mostrar si el 13-dic aún no hay existencias: la Mercería en «Muy pronto» con lista de espera (ya existe), la Tienda de amigurumis completa, y qué decir en la web y en redes (avisar al chat 6 y al chat 8). Nada se publica sin su visto bueno.
+- **E4 no espera:** la compra de prueba se puede hacer ya con un producto de la Tienda; la del ovillo, cuando haya existencias.
+
+## [ ] E21 · Ícono de Configuración gigante en «Mi cuenta» cuando se llega desde la agenda (chat 6; captura de Jennifer, 3-nov-2026)
+- En `cuenta.html` con el menú de la casa Agenda, el engranaje de Configuración sale enorme (~110 px) en el encabezado. Buscar si viene de `js/casa-menu.js` (generado por `herramientas/sincronizar_encabezado.py`: no se edita a mano) o de un estilo que falta en esa página; dejarlo del tamaño de los otros íconos. Revisar las demás páginas comunes con `?casa=agenda`. Foto a Jennifer antes de publicar (nivel 🟡). Avisar al chat 2, porque E18 rehace ese encabezado en la agenda.
+
+## [ ] E22 · País, departamento y ciudad en las cuentas (chat 5 con el chat 6 para la página; pedido de Jennifer, 3-nov-2026)
+- Hoy `cuenta.html` pide «Ciudad» con texto libre y lista sugerida (4 formularios: completar cuenta, mis datos, direcciones y otro). Pedido: **primero País**; si es Colombia, **Departamento** y luego **Ciudad** en listas; si es otro país, solo el país.
+- Revisar dónde se guarda (tablas de cuentas y direcciones), que el pago, el cálculo del envío (Villamaría, Manizales, otras ciudades) y el paso al ERP/CRM sigan funcionando con los datos nuevos y con los viejos. Lista de departamentos y municipios del DANE alojada en el sitio (sin pedirla a otro servidor). Nivel 🔴 (base de datos): explicarle a Jennifer antes de cambiar.
+
+## [ ] E23 · Tutorial de bienvenida al día con «Mi cuenta» (chat 3; después de E18)
+- Cuando E18 cambie el menú y los íconos, rehacer los pasos de `js/agenda/tour.js` que los señalan (paso 2 Configuración y paso 5 «Escribe como prefieras») y sus textos en 3 idiomas; actualizar `GUIA_AGENDA`.
