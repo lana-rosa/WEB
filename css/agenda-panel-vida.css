@@ -219,3 +219,6 @@
 @media print { .drive-banner, .drive-sync { display: none !important; } }
 
 .inf-cmp { display: block; margin-top: 2px; font-size: .78rem; color: #64646A; } .inf-cmp.inf-bien { color: #2E7D52; } .inf-cmp.inf-alerta { color: #B0356F; }
+
+#agenda .cs-ic { width: 24px; height: 24px; vertical-align: -6px; margin-right: 4px; }
+#agenda .gr-fiesta { display: block; width: 56px; height: 56px; margin: 8px auto 0; }
