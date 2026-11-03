@@ -75,7 +75,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     });
     var indice = $('indice-agenda'), cfg = $('agenda-config');
     var t1 = indice && tarjeta('membresia-tarjeta', indice.querySelector('.indice-grupo'));
-    var t2 = cfg && tarjeta('membresia-config', cfg.querySelector('.copia-agenda'));
+    var t2 = cfg && tarjeta('membresia-config', cfg.querySelector('.agenda-config-cab') && cfg.querySelector('.agenda-config-cab').nextElementSibling);   /* primero de todo en Configuración (3-nov-2026) */
     [t1, t2].forEach(function (t) {
       if (!t) return;
       t.hidden = a === 'desconocido';

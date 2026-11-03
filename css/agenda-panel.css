@@ -80,6 +80,7 @@ body .pestana:focus-visible { outline: 3px solid #C81B6D; outline-offset: 2px; }
 /* En el panel y en la vista de sección arranca limpio: sin la barra de colores ni la lista de hojas (el menú lateral y las tarjetas hacen ese trabajo) */
 #agenda:has(#panel-agenda.abierta) .barra-toggle, #agenda:has(#panel-agenda.abierta) .selector-hoja,
 #agenda:has(.vista-seccion:not([hidden])) .barra-toggle { display: none; }
+@media (min-width: 821px) { #agenda:has(.vista-seccion:not([hidden])) .selector-hoja { display: none; } }
 
 /* Un solo botón flotante de ayuda (js/agenda/ayuda.js): Rosina, WhatsApp y subir. Los otros círculos flotantes se ocultan. */
 .whatsapp-flotante, .rc-boton, .saludo-rosina, .boton-subir { display: none !important; }
