@@ -8,13 +8,15 @@
 
 ## Por chat (cada uno reemplaza solo el suyo)
 - **1 · Agenda datos y Google:** publicado: auditoría, arreglos de Calendar, Conexiones etapas 1 y 2 (#525, #528, #530). A medias: interruptor de fotos de Drive (no hecho a propósito: riesgo de perder dibujos); etapas 3 y 4. Falta que Jennifer pruebe Drive y Calendar reales.
-- **2 · Agenda diseño y Plus:** publicado #527, #529, #531, #535. A medias: Jennifer revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas» (espera captura); puntos de miles en ferias, costo por ovillo y catálogo.
+- **2 · Agenda diseño y Plus:** publicado #527, #529, #531, #535. E11 hecho en papel: `FINANZAS-PROPUESTA.md` (dinero 10→5, tiempo 6→4; Jennifer dijo sí a 1–5) y `REVISION-HOJAS-PROPUESTA.md` (39→28 hojas, 10 preguntas pendientes); la agenda no se tocó.
+  E18 «Mi cuenta»: dibujo aprobado (íconos = Rosina y sus amigos); falta que Jennifer diga cuándo construirlo.
+  A medias: Jennifer revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas»; puntos de miles en ferias, costo por ovillo y catálogo.
 - **3 · Agenda Rosina e idiomas:** E1 hecho (`rosina-web` desplegada con la etapa 2 y los puntos de miles en `GUIA_AGENDA`); renglones hechos de `PENDIENTES.md` al historial. A medias: 2 preguntas de prueba para Jennifer en `agenda-casa-y-rosina.md`.
 - **4 · Tienda y Mercería:** etiquetas al día; plantilla de 34 ítems y `cargar_merceria.py` listos. Espera el Excel y las 34 fotos de Jennifer (E2) y su decisión de si se recoge en el taller antes del 13-dic.
-- **5 · Base de datos y pagos:** migraciones 41 (`search_path`) y 42 (guarda de rol en material y compras, A4b) aplicadas; auditoría A4 hecha. A medias: Jennifer prueba A4b en el ERP y enciende «Leaked password protection» (A1); sigue A5 (SEG-15). Decisiones de Jennifer: material = administrador y taller; compras = administrador.
+- **5 · Base de datos y pagos:** E12 hecho: nadie puede ver ni borrar la copia de agenda de otra persona (prueba con 2 cuentas inventadas, sin tocar clientas); cifrado con clave propuesto, no hecho. A medias: Jennifer recorre la lista de seguridad (las contraseñas filtradas no se pueden en el plan gratis: aceptado) y prueba A4b en el ERP.
 - **6 · Sitio, SEO y Revista:** paquete de la abogada listo (`herramientas/legal/PAQUETE-ABOGADA.md`; proveedora = Sara Loaiza Muñoz, casilla de patrones propuesta). E9 revisado: `apertura.js`, `activar_apertura.py` y el flujo coinciden (14-dic). Falta: fecha de cookies (espera sí de Jennifer), aviso de apertura en el inicio y recogida en taller.
 - **7 · Universo de Rosina y Academy:** bloque A hecho (pruebas del tema en verde). El texto de cookies («Google Fonts») pasó al chat 6 y a la abogada: ya no va en mi PR. A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas; bloques B (Jennifer) y C (abogada).
-- **8 · Marketing y contenido:** chat nuevo (3-nov). Primer encargo: E10 en `encargos.md` (campaña de apertura del 13-dic).
+- **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, la Agenda se llama CrochetLab, carrito mixto Tienda+Mercería = sí (a construir, chats 4 y 5). Falta elegir línea de contenido y E10 (apertura 13-dic).
 
 ## Pendiente de Jennifer
 - Google Cloud en **Producción**; prueba real de Drive (dos aparatos) y Calendar; preguntas reales a Rosina.

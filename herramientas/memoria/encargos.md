@@ -83,3 +83,66 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 - **Leer:** `herramientas/marketing-agenda/LEEME.md`, `PLAN-MAESTRO-MARKETING.md`.
 - **No tocar:** páginas del sitio ni la Revista (chat 6). Nada de Navidad, santos ni Halloween: las fechas de diciembre se nombran por la apertura, no por la temporada.
 - **Anotar:** el calendario en `herramientas/marketing-agenda/` y su renglón en `estado-actual.md`; si hace falta algo en la web (aviso de apertura), anotarlo para el chat 6 (E9).
+
+---
+## Agenda: ideas de otras agendas (aprobado por Jennifer el 3-nov-2026; informe en `herramientas/agenda-auditoria/IDEAS-DE-OTRAS-AGENDAS-2026-11.md`)
+**Aclarado por Jennifer (3-nov-2026): las tareas de la agenda NO esperan a la apertura; se hacen ya, en paralelo.** Lo que sí tiene fecha (antes de la apertura) es la tienda: crear todos los productos en el ERP (aparecen solos en la web), subir las fotos, probar compras y la sincronización con el inventario del ERP (E2, E4, E5, E7, E8, E9). **Orden dentro del chat 2 (para no pisarse):** E11 → E18 → E13 + E15 → E19 → E16 → E17. Chat 1: E14 después de E13. Chat 5: E12 ya, sin frenar E3/E4.
+
+## [ ] E11 · Revisión de TODA la agenda para que nada se repita (empezando por finanzas), sin tocar la agenda (chat 2) — ya
+- **Hecho (3-nov-2026): finanzas y tiempo** en `herramientas/agenda-auditoria/FINANZAS-PROPUESTA.md` (+ `FINANZAS-MAQUETA.html`); Jennifer respondió sí a las preguntas 1 a 5 (queda la 6). **Hecho también:** las demás secciones en `REVISION-HOJAS-PROPUESTA.md` (39 → 28 hojas); falta que Jennifer responda sus 10 preguntas de sí o no.
+- **Ampliado por Jennifer (3-nov-2026):** además de finanzas, revisar **todas las secciones y sus 39 hojas** (`img/agenda/hojas/` y el índice de la agenda): proyectos, patrones, clientas y pedidos, inventario y compras, tiempo (día, semana, mes, año), aprendizaje y Rosina. Por cada grupo: qué hojas o campos se repiten, cuál queda, cuál se une y cómo se pasan los datos. Un solo documento: `herramientas/agenda-auditoria/REVISION-HOJAS-PROPUESTA.md`.
+- **Objetivo:** revisar las 10 hojas con dinero (`fin-movimientos`, `fin-presupuesto`, `fin-fijos`, `fin-tcredito`, `fin-resumen`, `fin-analisis`, `fin-negocio`, `gastos-negocio`, `ventas-mes`, `catalogo-precios`) y las metas: qué campo se escribe en dos lugares, qué hoja solo repite. Proponer los dos grupos del informe (punto 4) con «cada peso se escribe una sola vez», cómo pasar los datos de las hojas que sobren sin perder nada, qué cambia en el Excel de finanzas y en el informe del mes. Revisar también las 6 hojas de tiempo (punto 5).
+- **Leer:** el informe, `agenda-membresia-y-plus.md`, `agenda-nucleo-y-fichas.md`.
+- **No tocar:** el código de la agenda (solo un documento: `herramientas/agenda-auditoria/FINANZAS-PROPUESTA.md`).
+- **Entregar a Jennifer:** dibujos o capturas de cómo quedarían las hojas y preguntas de sí o no.
+- **Anotar:** su renglón en `estado-actual.md`.
+
+## [x] E12 (3-nov-2026, ver `base-de-datos-y-cuentas.md`) · Seguridad de los datos de la agenda (chat 5) — ya
+- **Objetivo:** probar con dos cuentas de prueba que una persona no puede leer ni borrar la copia de otra (tablas y funciones de la copia en la cuenta); revisar el asesor de seguridad; dejar a Jennifer el paso de «Leaked password protection» (A1) en palabras sencillas; estudiar si conviene cifrar la copia en la cuenta con una clave de la persona (ventajas, riesgos: si olvida la clave, se pierde) y proponerlo, sin hacerlo.
+- **Leer:** el informe (punto 7), `base-de-datos-y-cuentas.md`, `agenda-datos-y-copias.md`.
+- **No tocar:** datos reales de clientas; nada se borra.
+- **Anotar:** resultado de la prueba y la propuesta en su archivo.
+
+## [ ] E13 · «Mi semana» (chat 2) — después de E11 y E18
+Horario semanal por bloques de color (clases, trabajo, tejido, pedidos) y «Hoy» arriba; usa los datos de fechas que ya existen; celular 390 px y computador 1280 px; textos en 3 idiomas y `GUIA_AGENDA` (pedirlo al chat 3). Mostrar foto a Jennifer antes de publicar.
+
+## [ ] E14 · Avisos de «Mi semana» por Google Calendar (chat 1) — después de E13
+Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, para que Google avise en el celular y en el reloj; interruptor en Conexiones; todo por `lrDibStore`/copias como hoy.
+
+## [ ] E15 · Atajos del ícono (chat 2) — con E13
+`shortcuts` en `manifest-agenda.webmanifest`: «Mi semana», «Nota rápida», «Hoy».
+
+## [ ] E16 · Proyecto con pasos y barra de avance (chat 2), luego hábitos de la semana unidos a pausas activas, luego finanzas unificadas según E11 (chat 2, con el chat 1 para pasar los datos sin perder nada)
+
+## [ ] E17 · Después: stickers y paletas de Rosina en las hojas (chat 2 con dibujos del chat 7), compartir ficha por WhatsApp (chat 2), Google Sheets (chat 1), Google Tasks (chat 1, exige verificación de Google)
+
+## [ ] E18 · «Mi cuenta» dentro de la agenda (chat 2; pedido de Jennifer, 3-nov-2026)
+- **Punto nuevo (Jennifer, 3-nov-2026): la barra «Dictar» y «Lápiz».** Los celulares y tabletas ya dictan y reconocen la letra desde el teclado. Propuesta del orquestador para preguntarle con sí o no: «Dictar» solo en el computador; «Lápiz» (escribir a mano encima de la hoja, que el teclado no hace) solo en tabletas y dentro del menú, no en una barra fija.
+- **Objetivo:** (1) dentro de la agenda, quitar el menú de las tres rayas y dejar **un solo menú: el de «Mi cuenta»**; (2) **menos íconos arriba** (dejar solo los necesarios y el resto dentro de ese menú); (3) **imagen de perfil**: una foto propia o un ícono sugerido (animalitos y otros, en el estilo de Rosina; Jennifer puede enviar los dibujos); (4) **nombre del negocio** configurable (que salga en el informe del mes, el catálogo y lo que se comparta).
+- **Hecho 3-nov-2026:** dibujo en `herramientas/agenda-auditoria/MI-CUENTA-MAQUETA.html` (+ `.png`), esperando el sí o no de Jennifer; la agenda no se tocó.
+- **Decidido por Jennifer (3-nov-2026):** le gusta el dibujo («Mi cuenta» con un solo menú); los íconos de perfil serán **Rosina y sus amigos (la tortuga y los otros animalitos)**, no más. Se construye ya (Jennifer, 3-nov-2026: la agenda no espera a la apertura).
+- **Primero:** mostrarle a Jennifer un dibujo de cómo quedaría (celular 390 px y computador 1280 px) y preguntarle con sí o no. Construir apenas Jennifer apruebe el dibujo.
+- **Datos:** la foto se guarda en el aparato como los dibujos (`lrDibStore`) y viaja en las copias (pedirle al chat 1 que lo revise); no se sube a nuestros servidores. El nombre del negocio va con los datos de la agenda.
+- **Avisar a otros chats:** chat 3 (`GUIA_AGENDA` y textos en 3 idiomas), chat 1 (copias y Drive con la foto), chat 6 (si la política de datos debe mencionar la foto de perfil, con la abogada).
+- **Anotar:** su renglón en `estado-actual.md` y lo pendiente en `PENDIENTES.md`.
+
+## [ ] E19 · Modo oscuro en la agenda (chat 2; pedido de Jennifer, 3-nov-2026) — después de E13
+- **Objetivo:** opción «Claro / Oscuro / Como el celular» en Configuración de la agenda; se recuerda por aparato.
+- **Cuidado especial (pedido de Jennifer: que todo se vea bien):** contraste de textos y botones (mínimo 4,5:1), colores de cada sección y de la casa, tablas y casillas, gráficas, avisos, menús, hoja de dibujo (el papel del dibujo puede quedar claro para no cambiar los colores de lo dibujado), íconos y stickers hechos con fondo claro, portada y fondos, la impresión (siempre en claro) y el chat de Rosina.
+- **Probar:** cada hoja en celular 390 px y computador 1280 px en los dos modos, con capturas para Jennifer antes de publicar; revisión de contraste con axe.
+- **Avisar:** chat 3 (`GUIA_AGENDA` y textos en 3 idiomas). El resto del sitio (Tienda, Mercería, Academy) queda en claro; si Jennifer lo quiere después, sería un encargo aparte para el chat 6.
+
+## [ ] E20 · Plan B de la Mercería para la apertura (chat 4; 3-nov-2026)
+- **Por qué:** el desembolso del Fondo Emprender está demorado y los pedidos de la Mercería no se han hecho (Jennifer).
+- **Objetivo:** proponerle a Jennifer, con sí o no, qué mostrar si el 13-dic aún no hay existencias: la Mercería en «Muy pronto» con lista de espera (ya existe), la Tienda de amigurumis completa, y qué decir en la web y en redes (avisar al chat 6 y al chat 8). Nada se publica sin su visto bueno.
+- **E4 no espera:** la compra de prueba se puede hacer ya con un producto de la Tienda; la del ovillo, cuando haya existencias.
+
+## [ ] E21 · Ícono de Configuración gigante en «Mi cuenta» cuando se llega desde la agenda (chat 6; captura de Jennifer, 3-nov-2026)
+- En `cuenta.html` con el menú de la casa Agenda, el engranaje de Configuración sale enorme (~110 px) en el encabezado. Buscar si viene de `js/casa-menu.js` (generado por `herramientas/sincronizar_encabezado.py`: no se edita a mano) o de un estilo que falta en esa página; dejarlo del tamaño de los otros íconos. Revisar las demás páginas comunes con `?casa=agenda`. Foto a Jennifer antes de publicar (nivel 🟡). Avisar al chat 2, porque E18 rehace ese encabezado en la agenda.
+
+## [ ] E22 · País, departamento y ciudad en las cuentas (chat 5 con el chat 6 para la página; pedido de Jennifer, 3-nov-2026)
+- Hoy `cuenta.html` pide «Ciudad» con texto libre y lista sugerida (4 formularios: completar cuenta, mis datos, direcciones y otro). Pedido: **primero País**; si es Colombia, **Departamento** y luego **Ciudad** en listas; si es otro país, solo el país.
+- Revisar dónde se guarda (tablas de cuentas y direcciones), que el pago, el cálculo del envío (Villamaría, Manizales, otras ciudades) y el paso al ERP/CRM sigan funcionando con los datos nuevos y con los viejos. Lista de departamentos y municipios del DANE alojada en el sitio (sin pedirla a otro servidor). Nivel 🔴 (base de datos): explicarle a Jennifer antes de cambiar.
+
+## [ ] E23 · Tutorial de bienvenida al día con «Mi cuenta» (chat 3; después de E18)
+- Cuando E18 cambie el menú y los íconos, rehacer los pasos de `js/agenda/tour.js` que los señalan (paso 2 Configuración y paso 5 «Escribe como prefieras») y sus textos en 3 idiomas; actualizar `GUIA_AGENDA`.
