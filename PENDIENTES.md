@@ -251,8 +251,12 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] **Probar la agenda abierta con una cuenta real** (Google y correo) y el botón «Instalar» en Android, iPhone y computador.
 - [ ] **Cómo se va a vender la agenda** (decidir con Sara): precio, pago (Wompi), cómo se activa por cuenta y política de condiciones.
 
-
-
-
-
+## Base de datos y pagos — plan del 3-nov-2026 (rama `claude/modest-allen-rn99x9`)
+- [ ] **A1 (Jennifer, esfuerzo bajo, 2 min):** encender «Leaked password protection» en Supabase → Authentication → Sign In / Providers → Email (o Passwords), proyecto «Lana Rosa ERP + SO». Es un interruptor del panel; Claude no puede hacerlo desde aquí. Después, volver a correr el asesor.
+- [x] **A2 revisado (3-nov-2026), sin cambios:** `fn_es_tejedora` y `fn_rol_actual` las usan unas 70 políticas de RLS que aplican al rol `public` (incluye `anon`; tablas como `inventario_items`, `terceros`, `ventas_pos`, `usuarios_roles`). **No cerrarlas a `anon`:** haría que cualquier lectura anónima de esas tablas dé «permission denied» en vez de vacío. Quedan abiertas a propósito (solo devuelven el rol de quien consulta). Alternativa a futuro, con más esfuerzo: cambiar esas políticas a `TO authenticated` y entonces cerrar las dos funciones.
+- [ ] **A2b (Claude, esfuerzo bajo):** anotar `obtener_paleta_merceria` en la lista de funciones públicas de la migración 19 (nació abierta a propósito).
+- [ ] **A3 (Claude, esfuerzo medio-alto):** migración que fije `search_path` en las 126 funciones con aviso (probar primero en una muestra; correr el asesor después).
+- [ ] **A4 (Claude, esfuerzo alto):** auditar que las funciones abiertas a `authenticated` tengan guarda de sesión y de rol por dentro.
+- [ ] **A5 (Claude + Jennifer, esfuerzo medio):** lista SEG-15 y SEG-03/10/11/12/14.
+- [ ] **B (Jennifer + Claude):** pago real de prueba con Wompi (ovillo, pieza, membresía) cuando haya existencias; mirar Merchant Center por el aviso de disponibilidad.
 
