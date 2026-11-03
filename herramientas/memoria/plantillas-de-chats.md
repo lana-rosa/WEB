@@ -69,6 +69,7 @@ Tema: Marketing y contenido. Lee CLAUDE.md, herramientas/memoria/estado-actual.m
 5. **Archivos de otro tema no se tocan:** `politicas.html` y textos legales son del chat 6 y van con la abogada; `GUIA_AGENDA`/`rosina-web` del chat 3; la base de datos del chat 5. Si hace falta, se anota en `PENDIENTES.md` para ese chat.
 6. **Tareas programadas:** solo las crea el orquestador (ya hay un cierre diario a las 6:47 p. m.; no crear otro).
 7. **Cómo hablarle a Jennifer:** palabras sencillas, sin términos de sistemas; una sola pregunta de sí o no a la vez; con foto si es algo que se ve. Ejemplo: no «¿hago el merge del PR?», sino «¿Lo pongo en la página? Sí o no». Niveles 🟢🟡🔴 en `CLAUDE.md` (línea «Publicar»).
+8. **Cómo terminar cada respuesta:** con dos líneas fijas: «**Siguiente tarea sugerida:** …» (una sola, en palabras sencillas) y «**Esfuerzo:** bajo / medio / alto / extra / max» (el que necesita esa tarea).
 
 ## Otros temas
 - Generadores, íconos, fondos y app instalable: usar la plantilla 6 cambiando el archivo por `generadores-y-pwa.md`.
