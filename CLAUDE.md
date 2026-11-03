@@ -7,6 +7,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 ## Antes de empezar
 - **Lee `PENDIENTES.md`**: es la lista de tareas pendientes acordadas con Sara. Al terminar una, márcala con `[x]`; agrega ahí lo nuevo que quede pendiente.
 - Sara suele querer ver capturas antes de publicar, salvo que pida publicar directamente. Publicar = PR a `main` y merge (GitHub Pages despliega solo).
+- **Al empezar un chat:** lee este archivo y `herramientas/memoria/estado-actual.md`; **al terminar una tarea, actualiza `estado-actual.md`** (máximo ~20 líneas).
 - **Memoria por temas (3-nov-2026, para gastar menos):** este archivo es corto a propósito y se carga completo en cada mensaje. **No lo engordes.** Lo detallado de cada tema vive en `herramientas/memoria/<tema>.md` (índice abajo): ante una tarea, busca el tema en el índice, abre **solo** ese archivo y trabaja desde ahí. Al terminar, agrega una nota de 3 a 5 líneas (qué cambió, dónde está, cómo se prueba) al archivo del tema, no aquí. Si algo es una regla que nunca cambia, una línea aquí; si es historia o detalle, al archivo del tema. `herramientas/` no se publica en el sitio.
 
 ## Estructura
@@ -43,6 +44,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 | Mercería, tienda física, personalizados, listas de espera, fotos de productos, Google Shopping | `tienda-merceria.md` |
 | SEO, Revista, cookies, fuentes, medición | `sitio-seo-revista-cookies.md` |
 | Generadores de `herramientas/`, íconos y fondos, app instalable (PWA) | `generadores-y-pwa.md` |
+| **En qué estamos ahora (leer primero en un chat nuevo)** | `estado-actual.md` |
 | Lo pendiente (abierto) | `PENDIENTES.md` en la raíz |
 | Lo ya hecho, cómo y cuándo | `historial-pendientes.md` |
 

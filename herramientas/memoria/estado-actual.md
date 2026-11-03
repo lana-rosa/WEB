@@ -1,0 +1,25 @@
+# Estado actual (léelo primero en un chat nuevo)
+
+> Actualizado: 3-nov-2026. Al terminar cada tarea, actualiza este archivo (máximo ~20 líneas). El detalle de cada tema está en su archivo (índice en `CLAUDE.md`).
+
+**Rama de trabajo:** `claude/sweet-hypatia-6sqpmv`; tras cada publicación se vuelve a `origin/main`. Publicar = PR a `main` + squash con el visto bueno de Jennifer (la dueña; en archivos antiguos aparece como «Sara»).
+
+**Publicado en `main` hasta hoy (#513 a #519):** metas de ahorro y planes con un solo formulario; agenda en celular con un solo fondo y hojas más anchas; letra mínima de 12 px; dibujos y fotos en IndexedDB (fotos a 1600 px; copia en la cuenta sin fotos si pasa de 3 MB); íconos nuevos de Jennifer (Recursos de Rosina, corazón, play, portátil, 123, brújula, disquete, flecha del menú); auditoría de Google (`herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`); memoria por temas. `rosina-web` desplegada en **v58**.
+
+**En la rama sin publicar:** nada (al crear este archivo).
+
+**Pendiente de Jennifer:**
+- Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).
+- Prueba real de Drive en dos aparatos y de Calendar (actualizar y borrar).
+- Probar en su celular: dibujos y fotos grandes tras recargar; «Guardar una copia» con dibujos.
+- Preguntarle cosas reales a Rosina (no se puede probar el chat desde el entorno).
+- Pago real de prueba de la membresía; revisión de la abogada.
+
+**Lo que puede hacer Claude cuando se le pida (en orden sugerido):**
+1. Revisar con Jennifer qué renglones de `PENDIENTES.md` ya están hechos sin marcar.
+2. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
+3. Documento de marketing de las funciones; cobro en dólares.
+
+**Fechas clave:** la tienda física abre el 15-nov-2026. Conteo físico 9-11 nov; ensayo de caja 12-14 nov.
+
+**Reglas de oro (no olvidar):** desplegar `rosina-web` enviando `nucleo.ts` e `index.ts` COMPLETOS y comparar con lo desplegado; todo lo que lea la agenda completa debe pasar por `lrDibStore`; correr las pruebas de `herramientas/pruebas/` antes de publicar; no publicar sin el visto bueno de Jennifer.
