@@ -20,7 +20,7 @@
 2. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
 3. Documento de marketing de las funciones; cobro en dólares.
 
-**Plan Tienda y Mercería (3-nov-2026):** bloque A hecho salvo Merchant Center (lo mira Sara) y los textos de «Recoger en la tienda»; plan en nota en `tienda-merceria.md`; lo que bloquea es el Excel de la Mercería y las 34 fotos de Sara.
+**Tienda y Mercería (3-nov-2026):** plan hecho; bloque A y revisión de plantilla/script de carga hechos (nada que corregir). A medias: Excel lleno y 34 fotos de Sara; texto «Recoger en la tienda». Jennifer decidió empezar por A y revisar la carga.
 
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026** (aplazada desde el 15-nov, 3-nov-2026); atención normal desde el lunes 14-dic. Reprogramado (3-nov): reunión con el contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
