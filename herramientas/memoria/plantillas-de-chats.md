@@ -56,6 +56,11 @@ Tema: Sitio, SEO y Revista. Lee CLAUDE.md, herramientas/memoria/estado-actual.md
 Tema: Universo de Rosina y Academy. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, herramientas/memoria/rosina-universo-y-chat.md y herramientas/memoria/aventuras-de-rosina.md. Trabaja solo en este tema. Al terminar, agrega una nota de 3 a 5 líneas al archivo del tema y actualiza estado-actual.md. Tarea: [escribe aquí lo que necesitas]
 ```
 
+## 8. Marketing y contenido
+```
+Tema: Marketing y contenido. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, PENDIENTES.md (solo los renglones de marketing), herramientas/marketing-agenda/LEEME.md y, según la tarea, PLAN-MAESTRO-MARKETING.md, CAMPANA-CROCHET-TRADICION-Y-EXPRESION.md o CAMPANA-INDEPENDIZATE.md. Respeta los valores de marca de CLAUDE.md (sin Navidad, santos ni Halloween) y la voz de marca de Lana Rosa. Para guiones, carruseles, stories e ideas usa las skills de Lana Rosa (lana-rosa-contenido, lana-rosa-guiones, lana-rosa-carruseles, lana-rosa-ideas-contenido, instagram-stories). Al terminar, anota 3 a 5 líneas en herramientas/marketing-agenda/LEEME.md y una línea en estado-actual.md. Tarea: [escribe aquí lo que necesitas]
+```
+
 ## Reglas para los chats de tema (3-nov-2026, para que las notas no choquen)
 1. **Antes de empezar y antes de cada commit:** `git fetch origin main` y traer `main` a la rama (`git merge origin/main`). Nunca trabajar sobre una rama atrasada.
 2. **`estado-actual.md`:** cada chat reemplaza solo su renglón de «Por chat» (máx. 3 líneas). No agrega párrafos ni toca los renglones de otros. Lo general lo escribe el orquestador.
@@ -66,4 +71,5 @@ Tema: Universo de Rosina y Academy. Lee CLAUDE.md, herramientas/memoria/estado-a
 
 ## Otros temas
 - Generadores, íconos, fondos y app instalable: usar la plantilla 6 cambiando el archivo por `generadores-y-pwa.md`.
+- ERP y CRM son repositorios aparte (`lana-rosa/erp`, `lana-rosa/crm`): un chat por repositorio, coordinados por el orquestador.
 - Publicar: pedirlo en el mismo chat (PR a `main` y fusión con el visto bueno de Jennifer).
