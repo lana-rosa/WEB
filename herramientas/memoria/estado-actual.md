@@ -18,6 +18,8 @@
 Decisiones de Jennifer: lista «Hojas de…» arriba, solo ✕ para cerrar, puntos de miles en toda casilla de dinero. Detalle en `agenda-diseno-y-pantallas.md` y `PENDIENTES.md`.
 **Cierre agenda · datos y Google (3-nov-2026):** hecho y publicado: auditoría, arreglos de Calendar, «Conexiones e integraciones» etapas 1 y 2 (#525, #528, #530; `google-calendar` v13, `rosina-web` v60). A medias: `rosina-web` v61 (guía de los interruptores) escrita pero sin desplegar; interruptor de fotos de Drive no hecho a propósito (riesgo de perder dibujos). Decisiones de Jennifer: aprobó cada etapa y los pushes forzados de la rama; falta que pruebe el chat v60 y Drive/Calendar reales.
 
+**E6 (3-nov, chat Sitio/SEO/Revista):** borrador del paquete para la abogada en `herramientas/legal/PAQUETE-ABOGADA.md`, sin publicar; espera el visto bueno de Jennifer. No se cambió `politicas.html`.
+
 **Pendiente de Jennifer:**
 - Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).
 - Prueba real de Drive en dos aparatos y de Calendar (actualizar y borrar).

@@ -55,7 +55,7 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 - **No tocar:** textos de plazos (son reglas de CLAUDE.md).
 - **Anotar:** qué quedó para Jennifer.
 
-## [ ] E6 · Paquete para la abogada (chat 6)
+## [ ] E6 · Paquete para la abogada (chat 6) — borrador hecho el 3-nov en `herramientas/legal/PAQUETE-ABOGADA.md`; falta visto bueno de Jennifer y publicar
 - **Objetivo:** un solo documento `herramientas/legal/PAQUETE-ABOGADA.md` con cada punto abierto, el enlace exacto al texto publicado y la pregunta concreta: política de datos (cuenta, carrito, bono, Rosina, Wompi), retracto del catálogo, Mercería (términos y cambios), copias de seguridad, Calendar/Drive (apartados 10 y 12), voz y lápiz, chat de Rosina, Cloudflare, fotos de Personaliza, patrones, «Google Fonts» en `#cookies`. Si `herramientas/legal/` es nuevo, revisar que quede fuera del sitio publicado (el flujo excluye `herramientas/`).
 - **Leer:** `sitio-seo-revista-cookies.md`, `PENDIENTES.md` (secciones 2, 3 y auditorías).
 - **No tocar:** `politicas.html` (no cambiar textos legales sin la abogada).
