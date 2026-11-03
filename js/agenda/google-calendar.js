@@ -18,7 +18,22 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   function abrirConfig() { if (window.lrAgendaConfig) window.lrAgendaConfig.abrir(); }
   var sb, estado = null, temporizador = null, ocupado = false, retenidos = 0;
   function aviso(t) { av.textContent = t || ''; }
-  function eventos() { return window.lrAgenda && window.lrAgenda.eventos ? window.lrAgenda.eventos() : []; }
+  /* Qué tipos de fechas se envían (etapa 2 de «Conexiones e integraciones», 3-nov-2026). La elección vive dentro de los datos de la agenda (`_gcalTipos`: solo los tipos apagados, con valor false),
+     así viaja con las copias y con Google Drive y todos los aparatos envían lo mismo (si no, dos aparatos se pelearían las fechas). Por defecto se envía todo. */
+  var TIPOS = { entregas: ['pedido'], envios: ['pedidoEnvio'], proyectos: ['proyecto', 'ficha'], fechas: ['fecha'], ferias: ['feria'], cumples: ['clienta'] };
+  var tipos = document.getElementById('cs-tipos');
+  function datosAg() { var N = window.lrAgendaNucleo; return N && N.datos ? N.datos() : null; }
+  function tipoActivo(id) { var d = datosAg(); return !(d && d._gcalTipos && d._gcalTipos[id] === false); }
+  function eventos() {
+    var lista = window.lrAgenda && window.lrAgenda.eventos ? window.lrAgenda.eventos() : [], off = {};
+    Object.keys(TIPOS).forEach(function (id) { if (!tipoActivo(id)) TIPOS[id].forEach(function (c) { off[c] = true; }); });
+    return lista.filter(function (e) { return !off[String(e.clave).split(':')[0]]; });
+  }
+  function pintarTipos() {
+    if (!tipos) return;
+    [].forEach.call(tipos.querySelectorAll('input[data-tipo]'), function (c) { c.checked = tipoActivo(c.getAttribute('data-tipo')); });
+  }
+  function tiposApagados() { return Object.keys(TIPOS).filter(function (id) { return !tipoActivo(id); }); }
   async function llamar(accion, extra) {
     var r = await sb.functions.invoke('google-calendar', { body: Object.assign({ accion: accion }, extra || {}) });
     if (r.error) {
@@ -30,6 +45,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   function fechaHora(iso) { var f = new Date(iso).toLocaleString('es-CO', { dateStyle: 'medium', timeStyle: 'short' }); return f + (/\.$/.test(f) ? '' : '.'); }
   function pintar() {
     var conectado = !!(estado && estado.conectado);
+    if (tipos) { tipos.hidden = !conectado; pintarTipos(); }
     bCon.hidden = conectado; bSin.hidden = !conectado; bDes.hidden = !conectado; bQuitar.hidden = !(conectado && retenidos > 0);
     if (nota) nota.hidden = !(AVISO_NO_VERIFICADA && !conectado);
     if (!conectado) txt.textContent = 'Conecta tu Google Calendar y tus entregas, proyectos, fechas especiales, ferias y cumpleaños aparecen solos en un calendario aparte llamado «Agenda para tejedoras», con un recordatorio a las 9 a. m. del día anterior. Es gratis y opcional.';
@@ -55,7 +71,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var e0 = await llamar('estado');
   if (!e0 || e0.configurado !== true) return;           // todavía no está activo: la tarjeta no aparece
   estado = e0; caja.hidden = false; pintar();
-  window.lrGcal = { estado: function () { return estado; } };   // lo lee el resumen de «Conexiones e integraciones» (centro-conexiones.js)
+  window.lrGcal = { estado: function () { return estado; }, tiposApagados: tiposApagados, etiquetaTipo: function (id) { var c = tipos && tipos.querySelector('input[data-tipo="' + id + '"]'); return c ? c.parentNode.textContent.trim() : id; } };   // lo lee el resumen de «Conexiones e integraciones» (centro-conexiones.js)
   bCon.addEventListener('click', async function () {
     bCon.disabled = true; aviso('Abriendo Google…');
     (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_google_conectar' });
@@ -64,6 +80,14 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     bCon.disabled = false; aviso(r.error || 'No pudimos iniciar la conexión.');
   });
   bSin.addEventListener('click', function () { sincronizar(true); });
+  if (tipos) tipos.addEventListener('change', function (e) {
+    var c = e.target.closest('input[data-tipo]'), d = datosAg(), N = window.lrAgendaNucleo; if (!c || !d || !N) return;
+    var o = Object.assign({}, d._gcalTipos || {}); if (c.checked) delete o[c.getAttribute('data-tipo')]; else o[c.getAttribute('data-tipo')] = false;
+    if (Object.keys(o).length) d._gcalTipos = o; else delete d._gcalTipos;
+    N.guardar();      // dispara «agenda-guardada»: 4 s después se sincroniza sola
+    aviso(tiposApagados().length === Object.keys(TIPOS).length ? 'Quitaste todos los tipos: no se enviará nada. Toca «Sincronizar ahora» para quitar de tu Google Calendar lo que ya estaba.' : '');
+    document.dispatchEvent(new CustomEvent('conexiones-cambio'));
+  });
   bQuitar.addEventListener('click', function () {
     if (!confirm('¿Quitar de tu Google Calendar las ' + retenidos + ' fechas que ya no están en esta agenda? Solo se quitan las que creó la agenda; tus otros eventos no se tocan.')) return;
     sincronizar(true, true);

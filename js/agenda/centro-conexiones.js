@@ -2,7 +2,7 @@
    Un resumen al inicio de la tarjeta de Configuración con una fila por servicio (Google Calendar, Google Drive y la copia en la cuenta de Lana Rosa): estado, cuenta conectada,
    última sincronización, último aviso y un botón para ir a administrarla. SOLO LEE lo que ya existe (las tarjetas `#calendario-sync` y `#drive-sync`, `window.lrGcal`,
    `window.lrDrive` y `window.lrNube`); no conecta, no desconecta, no pide permisos ni toca datos. Los textos de las filas son cortos y fijos para que el diccionario ES/EN/PT los traduzca.
-   Se actualiza solo cuando cambian esas tarjetas (MutationObserver). Prueba: herramientas/pruebas/probar_agenda_centro_conexiones.py. */
+   Etapa 2: también dice qué tipos de fechas envía Calendar (`window.lrGcal.tiposApagados()`). Se actualiza solo cuando cambian esas tarjetas (MutationObserver). Prueba: herramientas/pruebas/probar_agenda_centro_conexiones.py. */
 (function () {
   'use strict';
   var lista = document.getElementById('cx-resumen');
@@ -24,6 +24,14 @@
       else f.detalle.push(['Todavía no se ha sincronizado.']);
     } else { f.estado = 'No conectado'; f.clase = ''; f.detalle = [['Opcional: tú decides si lo conectas.']]; }
     f.aviso = textoDe(idAviso);
+    if (e && e.conectado && idCaja === 'calendario-sync' && window.lrGcal && window.lrGcal.tiposApagados) {   // qué tipos de fechas envía (etapa 2)
+      var off = window.lrGcal.tiposApagados();
+      if (!off.length) f.detalle.push(['Envía todos los tipos de fechas.']);
+      else {
+        var ids = ['entregas', 'envios', 'proyectos', 'fechas', 'ferias', 'cumples'].filter(function (x) { return off.indexOf(x) < 0; });
+        f.detalle.push(['Envía:'], [ids.length ? ids.map(window.lrGcal.etiquetaTipo).join(', ') : 'nada por ahora', !ids.length ? false : true]);
+      }
+    }
     return f;
   }
   function filas() {
@@ -71,6 +79,6 @@
     var e = document.getElementById(id); if (e) obs.observe(e, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
   });
   [800, 2500, 6000].forEach(function (ms) { setTimeout(pintar, ms); });   // las tarjetas se arman después de consultar a Supabase
-  document.addEventListener('agenda-guardada', pronto);
+  document.addEventListener('agenda-guardada', pronto); document.addEventListener('conexiones-cambio', pronto);
   window.lrCentroConexiones = { actualizar: pintar };
 })();
