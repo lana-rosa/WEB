@@ -1,6 +1,6 @@
 # Revisión de todas las hojas de la agenda: qué se repite (E11 ampliado, 3-nov-2026)
 
-> **Solo propuesta. No se cambió nada de la agenda.** Finanzas y tiempo ya están en `FINANZAS-PROPUESTA.md` (Jennifer dijo sí a las preguntas 1 a 5). Aquí van las demás secciones. Se hace desde el 14-dic (E16).
+> **Solo propuesta. No se cambió nada de la agenda.** Finanzas y tiempo ya están en `FINANZAS-PROPUESTA.md` (Jennifer dijo sí a las preguntas 1 a 5). Aquí van las demás secciones. No hay que esperar a la apertura de la Mercería (13-dic): la agenda sigue su propio ritmo.
 
 ## Lo que se repite, por sección
 **Inicio y tableros**
@@ -65,4 +65,4 @@ Mi día cuenta dentro de Mi tiempo. Total: 3 + 7 + 4 + 2 + 6 + 2 + 3 = **27**, m
 7. ¿**Mis clientas** deja de pedir «Qué me ha comprado» a mano y lo muestra solo desde los pedidos?
 8. ¿«Materiales por comprar» de la semana pasa a la **Lista de compras**?
 9. ¿La tira «Calculadora de costos» queda solo en **Mi catálogo de precios**?
-10. ¿Todo esto se hace **después del 13-dic**, en el orden de E16?
+10. *(Quitada: Jennifer aclaró el 3-nov-2026 que la agenda no espera al 13-dic.)*
