@@ -130,3 +130,8 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 - **Cuidado especial (pedido de Jennifer: que todo se vea bien):** contraste de textos y botones (mínimo 4,5:1), colores de cada sección y de la casa, tablas y casillas, gráficas, avisos, menús, hoja de dibujo (el papel del dibujo puede quedar claro para no cambiar los colores de lo dibujado), íconos y stickers hechos con fondo claro, portada y fondos, la impresión (siempre en claro) y el chat de Rosina.
 - **Probar:** cada hoja en celular 390 px y computador 1280 px en los dos modos, con capturas para Jennifer antes de publicar; revisión de contraste con axe.
 - **Avisar:** chat 3 (`GUIA_AGENDA` y textos en 3 idiomas). El resto del sitio (Tienda, Mercería, Academy) queda en claro; si Jennifer lo quiere después, sería un encargo aparte para el chat 6.
+
+## [ ] E20 · Plan B de la Mercería para la apertura (chat 4; 3-nov-2026)
+- **Por qué:** el desembolso del Fondo Emprender está demorado y los pedidos de la Mercería no se han hecho (Jennifer).
+- **Objetivo:** proponerle a Jennifer, con sí o no, qué mostrar si el 13-dic aún no hay existencias: la Mercería en «Muy pronto» con lista de espera (ya existe), la Tienda de amigurumis completa, y qué decir en la web y en redes (avisar al chat 6 y al chat 8). Nada se publica sin su visto bueno.
+- **E4 no espera:** la compra de prueba se puede hacer ya con un producto de la Tienda; la del ovillo, cuando haya existencias.
