@@ -3,7 +3,7 @@ import sys; sys.path.insert(0, __file__.rsplit('/', 1)[0])
 from agenda_util import *
 T = Prueba()
 with sync_playwright() as p:
-    b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
+    b = p.chromium.launch(executable_path=CHROMIUM)
     for ancho in (1280, 390):
         ctx = contexto(b, ancho, 900, config_abierta=False); pg = abrir(ctx, '', 1500, config=False)
         T.v('%d px: arriba solo se ve el título y el engranaje (el panel empieza cerrado)' % ancho, pg.locator('#agenda-config-btn').is_visible() and pg.locator('#agenda-config').is_hidden() and pg.locator('#agenda-descargar').is_hidden() and pg.locator('#ag-duena').is_hidden() and pg.locator('[data-imprimir="agenda"]').is_hidden())
@@ -16,9 +16,9 @@ with sync_playwright() as p:
     # cerrar el panel: botón de arriba, botón de abajo y Esc
     for ancho in (1280, 390):
         ctx = contexto(b, ancho, 900); pg = abrir(ctx, '', 1500); n = '%d px: ' % ancho
-        T.v(n + 'el panel tiene «✕ Cerrar» arriba y «Cerrar configuración» abajo', pg.locator('.agenda-config-cerrar').is_visible() and 'Cerrar' in pg.inner_text('.agenda-config-cerrar') and pg.locator('.agenda-config-pie button').count() == 1)
+        T.v(n + 'el panel tiene «✕» (solo la X) arriba y «Cerrar configuración» abajo', pg.locator('.agenda-config-cerrar').is_visible() and pg.inner_text('.agenda-config-cerrar').strip() == '✕' and pg.get_attribute('.agenda-config-cerrar', 'aria-label') and pg.locator('.agenda-config-pie button').count() == 1)
         pg.click('.agenda-config-cerrar'); pg.wait_for_timeout(300)
-        T.v(n + '«✕ Cerrar» cierra el panel y el engranaje queda en «cerrado»', pg.locator('#agenda-config').is_hidden() and pg.get_attribute('#agenda-config-btn', 'aria-expanded') == 'false')
+        T.v(n + '«✕» cierra el panel y el engranaje queda en «cerrado»', pg.locator('#agenda-config').is_hidden() and pg.get_attribute('#agenda-config-btn', 'aria-expanded') == 'false')
         pg.click('#agenda-config-btn'); pg.wait_for_timeout(200); pg.locator('.agenda-config-pie button').scroll_into_view_if_needed(); pg.click('.agenda-config-pie button'); pg.wait_for_timeout(300)
         T.v(n + '«Cerrar configuración» de abajo también cierra', pg.locator('#agenda-config').is_hidden())
         pg.click('#agenda-config-btn'); pg.wait_for_timeout(200); pg.keyboard.press('Escape'); pg.wait_for_timeout(200)
