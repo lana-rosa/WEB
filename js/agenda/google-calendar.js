@@ -55,6 +55,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var e0 = await llamar('estado');
   if (!e0 || e0.configurado !== true) return;           // todavía no está activo: la tarjeta no aparece
   estado = e0; caja.hidden = false; pintar();
+  window.lrGcal = { estado: function () { return estado; } };   // lo lee el resumen de «Conexiones e integraciones» (centro-conexiones.js)
   bCon.addEventListener('click', async function () {
     bCon.disabled = true; aviso('Abriendo Google…');
     (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_google_conectar' });
