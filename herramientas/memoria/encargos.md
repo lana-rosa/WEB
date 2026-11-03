@@ -77,3 +77,9 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 - **No tocar:** plazos de entrega; nada de Navidad en los anuncios (valores de marca).
 - **Probar:** `python3 herramientas/revisar_enlaces.py`; 390 px y 1280 px.
 - **Limpieza de paso:** en `PENDIENTES.md` hay renglones viejos que piden «fijar el plazo de personalizados (¿15 días?)» y dicen que la apertura cambia el «16-nov»: la regla de plazos ya está decidida (8 días hábiles) y la fecha es el 14-dic; pasarlos al historial.
+
+## [ ] E10 · Campaña de apertura en redes (chat 8 · Marketing y contenido)
+- **Objetivo:** (1) leer `PLAN-MAESTRO-MARKETING.md` y preguntarle a Jennifer, una por una y con sí o no u opciones cortas, las 3 decisiones pendientes (tono inclusivo o femenino, nombre de la línea 4, carrito mixto Tienda + Mercería); (2) armar el calendario de Instagram y Facebook del 4-nov al 14-dic para la apertura de la tienda física (domingo 13-dic): cuenta regresiva, la Mercería, los personalizados (8 días hábiles), la Agenda y el día de apertura; (3) guiones de los primeros 4 reels y 2 carruseles.
+- **Leer:** `herramientas/marketing-agenda/LEEME.md`, `PLAN-MAESTRO-MARKETING.md`.
+- **No tocar:** páginas del sitio ni la Revista (chat 6). Nada de Navidad, santos ni Halloween: las fechas de diciembre se nombran por la apertura, no por la temporada.
+- **Anotar:** el calendario en `herramientas/marketing-agenda/` y su renglón en `estado-actual.md`; si hace falta algo en la web (aviso de apertura), anotarlo para el chat 6 (E9).

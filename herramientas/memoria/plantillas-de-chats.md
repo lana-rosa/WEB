@@ -58,16 +58,17 @@ Tema: Universo de Rosina y Academy. Lee CLAUDE.md, herramientas/memoria/estado-a
 
 ## 8. Marketing y contenido
 ```
-Tema: Marketing y contenido. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, PENDIENTES.md (solo los renglones de marketing), herramientas/marketing-agenda/LEEME.md y, según la tarea, PLAN-MAESTRO-MARKETING.md, CAMPANA-CROCHET-TRADICION-Y-EXPRESION.md o CAMPANA-INDEPENDIZATE.md. Respeta los valores de marca de CLAUDE.md (sin Navidad, santos ni Halloween) y la voz de marca de Lana Rosa. Para guiones, carruseles, stories e ideas usa las skills de Lana Rosa (lana-rosa-contenido, lana-rosa-guiones, lana-rosa-carruseles, lana-rosa-ideas-contenido, instagram-stories). Al terminar, anota 3 a 5 líneas en herramientas/marketing-agenda/LEEME.md y una línea en estado-actual.md. Tarea: [escribe aquí lo que necesitas]
+Tema: Marketing y contenido. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, PENDIENTES.md (solo los renglones de marketing), herramientas/marketing-agenda/LEEME.md y, según la tarea, PLAN-MAESTRO-MARKETING.md, CAMPANA-CROCHET-TRADICION-Y-EXPRESION.md o CAMPANA-INDEPENDIZATE.md. Respeta los valores de marca de CLAUDE.md (sin Navidad, santos ni Halloween) y la voz de marca de Lana Rosa. No toca páginas del sitio: los artículos de la Revista son del chat 6 y los textos legales también; si una campaña necesita algo en la web, lo anota en PENDIENTES.md para ese chat. Para guiones, carruseles, stories e ideas usa las skills de Lana Rosa (lana-rosa-contenido, lana-rosa-guiones, lana-rosa-carruseles, lana-rosa-ideas-contenido, instagram-stories). Al terminar, anota 3 a 5 líneas en herramientas/marketing-agenda/LEEME.md y una línea en estado-actual.md. Tarea: [escribe aquí lo que necesitas]
 ```
 
 ## Reglas para los chats de tema (3-nov-2026, para que las notas no choquen)
 1. **Antes de empezar y antes de cada commit:** `git fetch origin main` y traer `main` a la rama (`git merge origin/main`). Nunca trabajar sobre una rama atrasada.
 2. **`estado-actual.md`:** cada chat reemplaza solo su renglón de «Por chat» (máx. 3 líneas). No agrega párrafos ni toca los renglones de otros. Lo general lo escribe el orquestador.
 3. **`PENDIENTES.md`:** solo se tocan los renglones del propio tema; lo terminado se pasa a `historial-pendientes.md`.
-4. **Cierre = PR de notas el mismo día:** al cerrar, abrir un PR solo con las notas y pedirle a Jennifer el visto bueno para fusionarlo ese día. No dejar notas varios días en una rama.
+4. **Cierre = notas publicadas el mismo día, sin preguntar** (nivel 🟢 de `CLAUDE.md`): al cerrar, PR solo con notas, fusionarlo y avisar a Jennifer en una línea («Guardé las notas de hoy»). No dejar notas varios días en una rama.
 5. **Archivos de otro tema no se tocan:** `politicas.html` y textos legales son del chat 6 y van con la abogada; `GUIA_AGENDA`/`rosina-web` del chat 3; la base de datos del chat 5. Si hace falta, se anota en `PENDIENTES.md` para ese chat.
 6. **Tareas programadas:** solo las crea el orquestador (ya hay un cierre diario a las 6:47 p. m.; no crear otro).
+7. **Cómo hablarle a Jennifer:** palabras sencillas, sin términos de sistemas; una sola pregunta de sí o no a la vez; con foto si es algo que se ve. Ejemplo: no «¿hago el merge del PR?», sino «¿Lo pongo en la página? Sí o no». Niveles 🟢🟡🔴 en `CLAUDE.md` (línea «Publicar»).
 
 ## Otros temas
 - Generadores, íconos, fondos y app instalable: usar la plantilla 6 cambiando el archivo por `generadores-y-pwa.md`.
