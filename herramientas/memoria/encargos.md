@@ -95,7 +95,7 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 - **Entregar a Jennifer:** dibujos o capturas de cómo quedarían las hojas y preguntas de sí o no.
 - **Anotar:** su renglón en `estado-actual.md`.
 
-## [ ] E12 · Seguridad de los datos de la agenda (chat 5) — ya
+## [x] E12 (3-nov-2026, ver `base-de-datos-y-cuentas.md`) · Seguridad de los datos de la agenda (chat 5) — ya
 - **Objetivo:** probar con dos cuentas de prueba que una persona no puede leer ni borrar la copia de otra (tablas y funciones de la copia en la cuenta); revisar el asesor de seguridad; dejar a Jennifer el paso de «Leaked password protection» (A1) en palabras sencillas; estudiar si conviene cifrar la copia en la cuenta con una clave de la persona (ventajas, riesgos: si olvida la clave, se pierde) y proponerlo, sin hacerlo.
 - **Leer:** el informe (punto 7), `base-de-datos-y-cuentas.md`, `agenda-datos-y-copias.md`.
 - **No tocar:** datos reales de clientas; nada se borra.
