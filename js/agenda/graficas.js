@@ -47,6 +47,7 @@
     c.appendChild(s);
     c.appendChild(leyenda([['Ventas del mes', supera ? VERDE : ROSA], ['Punto de equilibrio', '#45454A', 'gr-raya'], d.meta ? ['Tu meta', LILA] : null].filter(Boolean)));
     if (ej) { notaEjemplo(c, pista); return true; }
+    if (supera && !ej) { var fi = document.createElement('img'); fi.src = '/img/agenda/rosina/confeti.webp'; fi.alt = ''; fi.width = 56; fi.height = 56; fi.className = 'gr-fiesta'; fi.loading = 'lazy'; c.appendChild(fi); }
     c.appendChild(el('p', 'gr-resumen', supera ? 'Ya superaste tu punto de equilibrio: lo que vendes de aquí en adelante empieza a dejarte ganancia.' : 'Llevas ' + plata(d.ventas) + ' de los ' + plata(d.eq) + ' que necesitas para no perder este mes (' + pct + ' %).'));
     return true;
   }
