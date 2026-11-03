@@ -10,11 +10,11 @@ Marca cada casilla. Si algo no coincide con lo que dice, toma una captura y env�
 - [ ] Tu cuenta de Supabase tiene **verificación en dos pasos**.
 
 ## 2. Cloudflare (5 min)
-- [ ] SSL/TLS: modo **Full (strict)**; «Always Use HTTPS» encendido; «Minimum TLS Version» 1.2; **HSTS** encendido.
+- [x] (3-nov-2026) Full (strict), Always Use HTTPS y TLS 1.3 encendidos; Minimum TLS subido de 1.0 a **1.2** por Jennifer. [ ] **HSTS** sigue apagado: encenderlo con calma (6 meses, sin subdominios, sin preload).
 - [ ] Tu cuenta tiene verificación en dos pasos.
 
 ## 3. GitHub (5 min)
-- [ ] Settings → Pages → **«Enforce HTTPS»** marcado.
+- [x] (3-nov-2026) Settings → Pages: «Enforce HTTPS» marcado y publicación por GitHub Actions funcionando.
 - [ ] Settings → Branches: regla para `main` (que pida revisión antes de publicar).
 - [ ] Tu cuenta tiene verificación en dos pasos.
 
@@ -22,8 +22,7 @@ Marca cada casilla. Si algo no coincide con lo que dice, toma una captura y env�
 - [ ] Google (Tag Manager, Analytics, Merchant Center) · [ ] Wompi · [ ] el correo de contacto.
 
 ## 5. Direcciones que deben responder (2 min)
-- [ ] `lanarosacrochet.com/pagina-que-no-existe` muestra «Esta página se nos destejió».
-- [ ] `lanarosacrochet.com/PENDIENTES.md` y `/herramientas/` dan error 404.
+- [x] (3-nov-2026) `/PENDIENTES.md` y `/herramientas/` dan la página de error 404: las notas internas ya no se ven desde internet.
 
 ---
 ## Lo que hago yo después (no te toca)

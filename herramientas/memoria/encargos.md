@@ -115,3 +115,10 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 ## [ ] E16 · Proyecto con pasos y barra de avance (chat 2), luego hábitos de la semana unidos a pausas activas, luego finanzas unificadas según E11 (chat 2, con el chat 1 para pasar los datos sin perder nada)
 
 ## [ ] E17 · Después: stickers y paletas de Rosina en las hojas (chat 2 con dibujos del chat 7), compartir ficha por WhatsApp (chat 2), Google Sheets (chat 1), Google Tasks (chat 1, exige verificación de Google)
+
+## [ ] E18 · «Mi cuenta» dentro de la agenda (chat 2; pedido de Jennifer, 3-nov-2026)
+- **Objetivo:** (1) dentro de la agenda, quitar el menú de las tres rayas y dejar **un solo menú: el de «Mi cuenta»**; (2) **menos íconos arriba** (dejar solo los necesarios y el resto dentro de ese menú); (3) **imagen de perfil**: una foto propia o un ícono sugerido (animalitos y otros, en el estilo de Rosina; Jennifer puede enviar los dibujos); (4) **nombre del negocio** configurable (que salga en el informe del mes, el catálogo y lo que se comparta).
+- **Primero:** mostrarle a Jennifer un dibujo de cómo quedaría (celular 390 px y computador 1280 px) y preguntarle con sí o no. Construir desde el 14-dic, salvo que Jennifer diga otra cosa.
+- **Datos:** la foto se guarda en el aparato como los dibujos (`lrDibStore`) y viaja en las copias (pedirle al chat 1 que lo revise); no se sube a nuestros servidores. El nombre del negocio va con los datos de la agenda.
+- **Avisar a otros chats:** chat 3 (`GUIA_AGENDA` y textos en 3 idiomas), chat 1 (copias y Drive con la foto), chat 6 (si la política de datos debe mencionar la foto de perfil, con la abogada).
+- **Anotar:** su renglón en `estado-actual.md` y lo pendiente en `PENDIENTES.md`.
