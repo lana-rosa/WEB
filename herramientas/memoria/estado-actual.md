@@ -20,7 +20,7 @@
 2. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
 3. Documento de marketing de las funciones; cobro en dólares.
 
-**Base de datos y pagos (cierre 3-nov):** hecho A2/A2b, A3 (migración 41 en Supabase) y auditoría A4. A medias: A4b (guarda de rol en `fn_tomar_material_pedido` y `fn_compra_*`; espera el OK de Jennifer y los roles), A1 (ella enciende contraseñas filtradas en Auth) y A5. Decisiones de Jennifer: orden A1→A4; cada respuesta lleva esfuerzo (bajo/medio/alto/extra/max) y paso siguiente. Rama sin PR, 4 commits de documentos.
+**Base de datos y pagos (cierre 3-nov):** hecho A2/A2b, A3 (migración 41 en Supabase) y auditoría A4. A4b hecho (migración 42: material = administrador y taller; compras = administrador). A medias: probar A4b en el ERP, A1 (ella enciende contraseñas filtradas en Auth) y A5. Decisiones de Jennifer: orden A1→A4; cada respuesta lleva esfuerzo (bajo/medio/alto/extra/max) y paso siguiente. Rama sin PR, 4 commits de documentos.
 
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026** (aplazada desde el 15-nov, 3-nov-2026); atención normal desde el lunes 14-dic. Reprogramado (3-nov): reunión con el contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
