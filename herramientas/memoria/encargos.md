@@ -88,14 +88,16 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 ## Agenda: ideas de otras agendas (aprobado por Jennifer el 3-nov-2026; informe en `herramientas/agenda-auditoria/IDEAS-DE-OTRAS-AGENDAS-2026-11.md`)
 **Hasta el 13-dic no se cambia la agenda publicada** (solo E11 en papel y E12). Desde el 14-dic, en este orden: E13 → E14 → E15 → E16 → E17.
 
-## [x] E11 (3-nov-2026: propuesta y maqueta en `herramientas/agenda-auditoria/FINANZAS-PROPUESTA.md`; esperan las respuestas de Jennifer) · Finanzas: revisión y propuesta, sin tocar la agenda (chat 2) — ya
+## [ ] E11 · Revisión de TODA la agenda para que nada se repita (empezando por finanzas), sin tocar la agenda (chat 2) — ya
+- **Hecho (3-nov-2026): finanzas y tiempo** en `herramientas/agenda-auditoria/FINANZAS-PROPUESTA.md` (+ `FINANZAS-MAQUETA.html`); Jennifer respondió sí a las preguntas 1 a 5 (queda la 6). **Falta:** las demás secciones, en `REVISION-HOJAS-PROPUESTA.md`.
+- **Ampliado por Jennifer (3-nov-2026):** además de finanzas, revisar **todas las secciones y sus 39 hojas** (`img/agenda/hojas/` y el índice de la agenda): proyectos, patrones, clientas y pedidos, inventario y compras, tiempo (día, semana, mes, año), aprendizaje y Rosina. Por cada grupo: qué hojas o campos se repiten, cuál queda, cuál se une y cómo se pasan los datos. Un solo documento: `herramientas/agenda-auditoria/REVISION-HOJAS-PROPUESTA.md`.
 - **Objetivo:** revisar las 10 hojas con dinero (`fin-movimientos`, `fin-presupuesto`, `fin-fijos`, `fin-tcredito`, `fin-resumen`, `fin-analisis`, `fin-negocio`, `gastos-negocio`, `ventas-mes`, `catalogo-precios`) y las metas: qué campo se escribe en dos lugares, qué hoja solo repite. Proponer los dos grupos del informe (punto 4) con «cada peso se escribe una sola vez», cómo pasar los datos de las hojas que sobren sin perder nada, qué cambia en el Excel de finanzas y en el informe del mes. Revisar también las 6 hojas de tiempo (punto 5).
 - **Leer:** el informe, `agenda-membresia-y-plus.md`, `agenda-nucleo-y-fichas.md`.
 - **No tocar:** el código de la agenda (solo un documento: `herramientas/agenda-auditoria/FINANZAS-PROPUESTA.md`).
 - **Entregar a Jennifer:** dibujos o capturas de cómo quedarían las hojas y preguntas de sí o no.
 - **Anotar:** su renglón en `estado-actual.md`.
 
-## [ ] E12 · Seguridad de los datos de la agenda (chat 5) — ya
+## [x] E12 (3-nov-2026, ver `base-de-datos-y-cuentas.md`) · Seguridad de los datos de la agenda (chat 5) — ya
 - **Objetivo:** probar con dos cuentas de prueba que una persona no puede leer ni borrar la copia de otra (tablas y funciones de la copia en la cuenta); revisar el asesor de seguridad; dejar a Jennifer el paso de «Leaked password protection» (A1) en palabras sencillas; estudiar si conviene cifrar la copia en la cuenta con una clave de la persona (ventajas, riesgos: si olvida la clave, se pierde) y proponerlo, sin hacerlo.
 - **Leer:** el informe (punto 7), `base-de-datos-y-cuentas.md`, `agenda-datos-y-copias.md`.
 - **No tocar:** datos reales de clientas; nada se borra.

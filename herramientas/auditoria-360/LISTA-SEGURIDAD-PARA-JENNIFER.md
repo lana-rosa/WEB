@@ -3,10 +3,10 @@
 Marca cada casilla. Si algo no coincide con lo que dice, toma una captura y envíamela; **no hay que cambiar nada por tu cuenta**. Detalle técnico: `LIMITACIONES_Y_PENDIENTES.md`, sección 2.
 
 ## 1. Supabase (lo más importante; 10 min)
-- [ ] Authentication → **Passwords** (o Sign In / Providers → Email): encender **«Leaked password protection»** (bloquea contraseñas ya filtradas en internet).
-- [ ] Authentication → **URL Configuration**: solo debe estar `https://lanarosacrochet.com` (y las direcciones de prueba que uses).
-- [ ] Authentication → **Rate limits**: anotar los números que aparecen.
-- [ ] Storage: deben ser **públicos** `guias-envio`, `produccion-fotos`, `fotos-productos`; deben ser **privados** `solicitudes-personalizadas` y `patrones`.
+- [x] **«Leaked password protection»**: no se puede en el plan gratis (probado el 3-nov-2026); aviso aceptado. Retomar si se pasa al plan Pro.
+- [x] (3-nov-2026, OK) Authentication → **URL Configuration**: solo debe estar `https://lanarosacrochet.com` (y las direcciones de prueba que uses).
+- [x] (3-nov-2026) Rate limits: 30 correos/hora, 30 entradas cada 5 min por conexión, 30 verificaciones cada 5 min; sin cambios.
+- [x] (3-nov-2026, OK; además privadas soportes-compras, facturas-dian, documentos-empresa y documentos-empleados) Storage: deben ser **públicos** `guias-envio`, `produccion-fotos`, `fotos-productos`; deben ser **privados** `solicitudes-personalizadas` y `patrones`.
 - [ ] Tu cuenta de Supabase tiene **verificación en dos pasos**.
 
 ## 2. Cloudflare (5 min)
