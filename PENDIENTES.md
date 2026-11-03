@@ -261,4 +261,6 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
   - Nota: `fn_op_exigir_rol` tiene un atajo con `current_setting('lanarosa.op_autorizado')`; no se puede fijar desde la API pública, riesgo bajo.
 - [ ] **A5 (Claude + Jennifer, esfuerzo medio):** lista SEG-15 y SEG-03/10/11/12/14.
 - [ ] **B (Jennifer + Claude):** pago real de prueba con Wompi (ovillo, pieza, membresía) cuando haya existencias; mirar Merchant Center por el aviso de disponibilidad.
+- [ ] **A6 (Claude, esfuerzo bajo, pendiente de publicar):** abrir PR de la rama `claude/modest-allen-rn99x9` a `main` con el visto bueno de Jennifer (solo documentos y `migracion-41-search-path-funciones.sql`; la migración 41 ya está aplicada en Supabase). La rama va atrás de `main`: actualizarla antes del PR.
+- [ ] **Regla de cierre diario (Jennifer, 3-nov-2026):** al terminar cada sesión, anotar en el archivo del tema y en `estado-actual.md` (máximo 3 líneas) qué se hizo, qué quedó a medias y qué decidió Jennifer; completar `PENDIENTES.md`; y decir qué hay sin publicar.
 
