@@ -30,6 +30,8 @@ Decisiones de Jennifer: lista «Hojas de…» arriba, solo ✕ para cerrar, punt
 2. Verificar el tamaño de `agenda.json` con fotos (etapas 1 y 2 de Conexiones y arreglos de Calendar ya están en `main`).
 3. Documento de marketing de las funciones; cobro en dólares.
 
+**Tienda y Mercería (3-nov-2026):** plan hecho; bloque A y revisión de plantilla/script de carga hechos (nada que corregir). A medias: Excel lleno y 34 fotos de Sara; texto «Recoger en la tienda». Jennifer decidió empezar por A y revisar la carga.
+
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026** (aplazada desde el 15-nov, 3-nov-2026); atención normal desde el lunes 14-dic. Reprogramado (3-nov): reunión con el contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
 **Reglas de oro (no olvidar):** desplegar `rosina-web` enviando `nucleo.ts` e `index.ts` COMPLETOS y comparar con lo desplegado; todo lo que lea la agenda completa debe pasar por `lrDibStore`; correr las pruebas de `herramientas/pruebas/` antes de publicar; no publicar sin el visto bueno de Jennifer.
