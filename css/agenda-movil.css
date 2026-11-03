@@ -41,3 +41,12 @@
   body #agenda .hoja-agenda { border-radius: 18px; }
   html body #agenda .fila-hojas, html body #agenda .fila-hojas:not(:has(.selector-hoja[hidden])), html body #agenda .selector-hoja:not([hidden]) { background: rgba(254, 242, 247, 0.96) !important; }
 }
+
+/* 3-nov-2026 (revisión de tamaños): letra de al menos 12 px y más ancho de toque en los días del Planeador */
+html body #agenda .pn-cal-t { font-size: .75rem !important; }
+.pl-dia .pl-pto { font-size: .75rem; }
+.pl-dia small { font-size: .75rem; }
+@media (max-width: 480px) {
+  #agenda .agc-d small { font-size: .75rem; letter-spacing: -.04em; }
+  #agenda .pl-semana { gap: 2px; }
+}
