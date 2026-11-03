@@ -30,3 +30,9 @@
 }
 @media (min-width: 821px) and (max-width: 1100px) and (min-height: 521px) { body .agenda-layout[data-menu="abierto"] { grid-template-columns: 220px minmax(0, 1fr); } }
 @media print { .menu-toggle, .menu-abrir { display: none !important; } }
+
+/* Íconos dibujados de Recursos de Rosina y la flecha del menú (3-nov-2026) */
+#recursos-rosina .rr-pestanas button { display: inline-flex; align-items: center; gap: 8px; padding-left: 12px; }
+#recursos-rosina .rr-pestanas .rr-ic { width: 28px; height: 28px; flex: none; }
+.menu-toggle .mt-ic { width: 22px; height: 22px; flex: none; }
+.menu-toggle .mt-ic.voltear { transform: scaleX(-1); }

@@ -19,7 +19,9 @@
     return ancho ? 'abierto' : 'riel';
   }
   var SVG = function (d) { return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + d + '</svg>'; };
-  var IC_OCULTAR = SVG('<path d="M15 6l-6 6 6 6"/>'), IC_MOSTRAR = SVG('<path d="M9 6l6 6-6 6"/>'), IC_MENU = SVG('<path d="M4 7h16M4 12h16M4 17h16"/>');
+  /* la flecha es un dibujo de Jennifer (3-nov-2026); «mostrar» es la misma volteada */
+  var FLECHA = function (voltear) { return '<img class="mt-ic' + (voltear ? ' voltear' : '') + '" src="/img/agenda/menu/btn-flecha-izq.webp?v=1" alt="" width="22" height="22" aria-hidden="true" decoding="async">'; };
+  var IC_OCULTAR = FLECHA(false), IC_MOSTRAR = FLECHA(true), IC_MENU = SVG('<path d="M4 7h16M4 12h16M4 17h16"/>');
   var toggle = null, abrir = null;
   function crear() {
     if (!toggle || !nav.contains(toggle)) {
