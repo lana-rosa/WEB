@@ -132,6 +132,7 @@ Libro digital interactivo para niños de 6 a 8 años en `/aventuras-de-rosina/` 
 - [ ] **Nombre:** que la abogada confirme que «Rosina y la gran aventura de la primera cadeneta» no choca con una marca registrada (búsqueda en la SIC) junto con la revisión de imágenes.
 - [ ] **Antes de lanzar:** quitar `noindex` (también en `privacidad.html`), añadir al `sitemap.xml` y `llms.txt`, enlazar desde `/academy/` y el Rincón de Rosina, imagen para compartir, y decidir si se mide algo (solo agregado, con consentimiento).
 - [ ] **Experta de Lana Rosa:** validar el agarre de cuchillo y la nota de tensión del hilo (meñique/anular/corazón/índice) antes de publicar; sigue pendiente toda la validación de crochet (ver `herramientas/aventuras-de-rosina/PRUEBAS.md`).
+- [ ] **Glosario y paletas (3-nov-2026):** actualizar `herramientas/plantilla-rincon.html` (menú, rutas con `/`, héroe más chico, orden de íconos) para que `generar_glosario.py herramientas` y `generar_paletas.py herramientas` den el mismo resultado que las páginas publicadas; hasta entonces NO regenerarlas.
 - [ ] Capítulos 4 a 8: plan en `herramientas/aventuras-de-rosina/HOJA-DE-RUTA.md` (no se implementaron).
 
 ## 🟢 8. Para Claude (se hace cuando Sara lo pida o llegue el dato)
