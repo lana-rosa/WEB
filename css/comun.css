@@ -45,6 +45,12 @@ main { padding-bottom: 60px; }
 @media (max-width: 600px) { .boton-subir { width: 42px; height: 42px; right: calc(74px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); } }
 .boton-cuenta-header { position: relative; background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1rem; color: var(--tinta); flex-shrink: 0; }
 .boton-cuenta-header:hover { border-color: var(--rosa-principal); }
+/* Engranaje de Configuración del menú de la Agenda: también en las páginas comunes (Mi cuenta, etc.), donde no se carga agenda-fichas.css (E21, 3-nov-2026). Mismas medidas que los otros íconos. */
+.boton-config-barra { position: relative; background: var(--blanco); border: 1.5px solid var(--rosa-medio); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex: none; padding: 0; margin-left: 8px; }
+.boton-config-barra:hover, .boton-config-barra[aria-expanded="true"] { border-color: var(--rosa-principal); background: var(--rosa-suave); }
+.boton-config-barra img { display: block; width: 32px; height: 32px; }
+@media (max-width: 520px) { .boton-config-barra { width: 38px; height: 38px; margin-left: 4px; } }
+@media print { .boton-config-barra { display: none !important; } }
 .boton-cuenta-header.con-sesion::after { content: ''; position: absolute; top: 1px; right: 1px; width: 11px; height: 11px; border-radius: 50%; background: #2e9e57; border: 2px solid var(--blanco); }
 .contenedor-buscar-header { position: relative; }
 .boton-buscar-header { background: var(--blanco); border: 1.5px solid var(--rosa-suave); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; color: var(--tinta); flex-shrink: 0; }
