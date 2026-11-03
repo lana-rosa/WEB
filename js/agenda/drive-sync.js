@@ -28,6 +28,19 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   function fechaHora(iso) { var f = new Date(iso).toLocaleString((window.lrI18n && window.lrI18n.lang === 'en') ? 'en-US' : (window.lrI18n && window.lrI18n.lang === 'pt') ? 'pt-BR' : 'es-CO', { dateStyle: 'medium', timeStyle: 'short' }); return f + (/\.$/.test(f) ? '' : '.'); }
   function leerLocal() { try { return JSON.parse(lsGet(CLAVE)) || {}; } catch (e) { return {}; } }
   function leerBase() { try { var b = lsGet(K_BASE); return b ? JSON.parse(b) : null; } catch (e) { return null; } }
+  /* Los dibujos viven en IndexedDB (dib-store.js): lo que se lee de localStorage no los trae, y la mezcla los borraría de Drive si no se suman aquí. */
+  function dibStore() { return window.lrDibStore || null; }
+  async function leerLocalC() { var L = leerLocal(), S = dibStore(); return S ? await S.completos(L) : L; }
+  async function leerBaseC() {
+    var b = leerBase(), S = dibStore(); if (!b || !S) return b;
+    await S.listo; if (!S.activo || b._dib) return b;
+    var dib = await S.leerBaseDib(); if (dib) b._dib = dib; return b;
+  }
+  async function guardarBase(obj) {   // lo último compartido con Drive; los dibujos de la base van a IndexedDB y no ocupan localStorage
+    var S = dibStore(); await (S && S.listo);
+    if (S && S.activo && await S.guardarBaseDib(obj && obj._dib)) { var o = {}; Object.keys(obj || {}).forEach(function (k) { if (k !== '_dib') o[k] = obj[k]; }); lsSet(K_BASE, JSON.stringify(o)); }
+    else lsSet(K_BASE, JSON.stringify(obj));
+  }
   function hayDatos(d) { return Object.keys(d || {}).some(function (k) { return k !== 'ag-anio' && k !== '_anios' && k !== '_filas'; }); }
   function tablas() {
     var N = window.lrAgendaNucleo, t = N && N.tablas ? N.tablas : {};
@@ -92,10 +105,11 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     if (document.documentElement.classList.contains('dueno-abierto')) return true;
     var d = lsGet(DUENO); return !!(d && uid && d !== uid);
   }
-  function aplicarLocal(datos, rev) {
-    var N = window.lrAgendaNucleo, mem = N && N.datos ? N.datos() : null;
+  async function aplicarLocal(datos, rev) {
+    var N = window.lrAgendaNucleo, mem = N && N.datos ? N.datos() : null, S = dibStore();
     if (mem) { Object.keys(mem).forEach(function (k) { delete mem[k]; }); Object.keys(datos).forEach(function (k) { mem[k] = datos[k]; }); }   // lo que la página tiene en memoria queda igual, así no pisa lo mezclado
-    lsSet(CLAVE, JSON.stringify(datos)); lsSet(K_BASE, JSON.stringify(datos)); lsSet(K_REV, rev);
+    if (S) { await S.listo; if (S.activo) await S.guardarYa(); }   // los dibujos mezclados quedan a salvo en IndexedDB antes de recargar
+    lsSet(CLAVE, S ? S.serializar(datos) : JSON.stringify(datos)); await guardarBase(datos); lsSet(K_REV, rev);
   }
   function recargarSiSeguro() {
     var t = 0, n = 0;
@@ -124,13 +138,13 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var manual = !!opc.manual;
     if (manual) aviso('Sincronizando…');
     try {
-      var L = leerLocal(), textoLocal = lsGet(CLAVE) || '', base = leerBase(), revVisto = lsGet(K_REV), tb = tablas();
+      var L = await leerLocalC(), textoLocal = lsGet(CLAVE) || '', vDib = dibStore() ? dibStore().version : 0, base = await leerBaseC(), revVisto = lsGet(K_REV), tb = tablas();
       var archivos = await buscar("name = '" + NOMBRE + "'");
       var meta = archivos[0] || null, ahora = new Date().toISOString();
       if (!meta) {   // Drive todavía no tiene la agenda
         if (!hayDatos(L)) { estado.ultima = ahora; pintar(); aviso(manual ? 'Todo listo. Tu agenda está vacía; se guardará en Drive cuando escribas.' : ''); return; }
         var rev0 = nuevaRev(); await guardarArchivo(null, NOMBRE, sobre(L), { rev: rev0 });
-        lsSet(K_BASE, JSON.stringify(L)); lsSet(K_REV, rev0); await terminar(manual, 'Tu agenda quedó guardada en tu Google Drive.'); return;
+        await guardarBase(L); lsSet(K_REV, rev0); await terminar(manual, 'Tu agenda quedó guardada en tu Google Drive.'); return;
       }
       var revRemoto = (meta.appProperties || {}).rev || '', R;
       if (base && revRemoto && revRemoto === revVisto) R = base;           // Drive no cambió desde la última vez: no hace falta bajarla
@@ -138,7 +152,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
       var f = M.fusionar(base, L, R, tb), Mx = f.resultado;
       var igualRemoto = M.igual(Mx, R), igualLocal = M.igual(Mx, L);
       if (igualRemoto && igualLocal) {   // todo igual en los dos lados
-        lsSet(K_BASE, JSON.stringify(L)); if (revRemoto) lsSet(K_REV, revRemoto); await terminar(manual, 'Tu agenda ya está al día.'); mostrarBanner(false); return;
+        await guardarBase(L); if (revRemoto) lsSet(K_REV, revRemoto); await terminar(manual, 'Tu agenda ya está al día.'); mostrarBanner(false); return;
       }
       var cambiaLocal = !igualLocal, aplicarAhora = cambiaLocal && (!!opc.forzarAplicar || ocioso());
       var rev = revRemoto;
@@ -154,20 +168,20 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
       if (f.conflictos.length) avisos.push('Cambiaste ' + f.conflictos.length + (f.conflictos.length === 1 ? ' casilla' : ' casillas') + ' de forma distinta en dos aparatos. Dejé la de este aparato; la otra quedó en «Versiones anteriores».');
       if (f.duplicadas.length) avisos.push(f.duplicadas.length + (f.duplicadas.length === 1 ? ' ficha se cambió' : ' fichas se cambiaron') + ' distinto en dos aparatos: quedaron las dos versiones. Borra la que sobre.');
       if (cambiaLocal && !aplicarAhora) {   // la persona está escribiendo: lo suyo ya quedó en Drive y lo del otro aparato espera su aviso «Actualizar» (la base es lo que ya compartimos: lo de aquí)
-        lsSet(K_BASE, JSON.stringify(L)); lsSet(K_REV, ''); pendiente = true; mostrarBanner(true);
+        await guardarBase(L); lsSet(K_REV, ''); pendiente = true; mostrarBanner(true);
         aviso('Hay cambios de otro aparato; toca «Actualizar» cuando termines de escribir.'); return;
       }
       if (cambiaLocal) {
-        if (lsGet(CLAVE) !== textoLocal) {   // la persona escribió mientras sincronizábamos: no se pisa; la base es lo que ya está en Drive de lo nuestro y se vuelve a mezclar
-          lsSet(K_BASE, JSON.stringify(L)); lsSet(K_REV, ''); otraVez = true; return;
+        if (lsGet(CLAVE) !== textoLocal || (dibStore() && dibStore().version !== vDib)) {   // la persona escribió mientras sincronizábamos: no se pisa; la base es lo que ya está en Drive de lo nuestro y se vuelve a mezclar
+          await guardarBase(L); lsSet(K_REV, ''); otraVez = true; return;
         }
-        aplicarLocal(Mx, rev); mostrarBanner(false); pendiente = false;
+        await aplicarLocal(Mx, rev); mostrarBanner(false); pendiente = false;
         try { await llamar('sincronizada'); } catch (e) {}
         estado.ultima = ahora; pintar();
         if (avisos.length) lsSet('lrDriveAvisos', JSON.stringify(avisos));
         recargarSiSeguro(); return;
       }
-      lsSet(K_BASE, JSON.stringify(Mx)); lsSet(K_REV, rev);
+      await guardarBase(Mx); lsSet(K_REV, rev);
       await terminar(manual, avisos.length ? avisos : 'Tu agenda quedó guardada en tu Google Drive.');
     } catch (e) { manejarError(e, manual); }
     finally { ocupado = false; if (otraVez) { otraVez = false; setTimeout(function () { ciclo({}); }, 1500); } }
@@ -217,12 +231,12 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     try {
       var sob = await leerArchivo(a.id), datos = sob && sob.datos; if (!datos || typeof datos !== 'object') throw new Error('vacio');
       var meta = (await buscar("name = '" + NOMBRE + "'"))[0];
-      await guardarVersion(leerLocal(), MOTIVOS.restaurar);
+      await guardarVersion(await leerLocalC(), MOTIVOS.restaurar);
       var rev = nuevaRev(); await guardarArchivo(meta ? meta.id : null, NOMBRE, sobre(datos), { rev: rev });
-      aplicarLocal(datos, rev); recargarSiSeguro();
+      await aplicarLocal(datos, rev); recargarSiSeguro();
     } catch (e) { aviso('No pudimos restaurar esa versión. Inténtalo otra vez.'); }
   }
-  function olvidarLocal() { [K_BASE, K_REV, K_UID, K_SNAP, 'lrDriveAvisos'].forEach(lsDel); }
+  function olvidarLocal() { [K_BASE, K_REV, K_UID, K_SNAP, 'lrDriveAvisos'].forEach(lsDel); if (dibStore()) dibStore().borrarBaseDib(); }
 
   /* ---------- arranque ---------- */
   try { sb = await obtenerCliente(); var ses = await sb.auth.getSession(); uid = ses && ses.data && ses.data.session && ses.data.session.user && ses.data.session.user.id; } catch (e) { return; }

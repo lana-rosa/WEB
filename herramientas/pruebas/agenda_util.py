@@ -27,3 +27,10 @@ def abrir(ctx, hoja='', espera=1500, config=True):
     pg.goto(BASE + '/agenda-rosina.html' + ('#' + hoja if hoja else '')); pg.wait_for_timeout(espera)
     if config: pg.evaluate("window.lrAgendaConfig && window.lrAgendaConfig.abrir(true)")   # el panel de Configuración empieza cerrado; las pruebas de copias, nube, etc. lo necesitan abierto
     return pg
+
+# Los dibujos viven en IndexedDB (3-nov-2026, js/agenda/dib-store.js): las pruebas los leen de ahí (esperan el guardado, que tarda ~300 ms).
+DIB_IDB = """() => new Promise(res => { const r = indexedDB.open('lrAgendaDib'); r.onerror = () => res({}); r.onsuccess = () => { const db = r.result;
+  if (!db.objectStoreNames.contains('dib')) return res({}); const st = db.transaction('dib').objectStore('dib'), o = {}; const c = st.openCursor();
+  c.onsuccess = () => { const x = c.result; if (x) { o[x.key] = x.value; x.continue(); } else res(o); }; c.onerror = () => res(o); } })"""
+def dib_idb(pg, esperar=600):
+    pg.wait_for_timeout(esperar); return pg.evaluate(DIB_IDB)

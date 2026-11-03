@@ -397,3 +397,7 @@ FILAS += [
  ('¿Borrar la meta «{n}»?', 'Delete the goal «{n}»?', 'Apagar a meta «{n}»?'),
  ('¿Borrar el plan «{n}»?', 'Delete the plan «{n}»?', 'Apagar o plano «{n}»?'),
 ]
+
+FILAS += [
+ ('No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.', 'We could not save the drawings from that backup. Your planner was not changed.', 'Não conseguimos salvar os desenhos dessa cópia. Sua agenda não foi alterada.'),
+]

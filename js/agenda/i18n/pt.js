@@ -1787,5 +1787,6 @@ window.lrI18n.add("pt", {
 "Escribe el nombre del plan.": "Escreva o nome do plano.",
 "Plan agregado.": "Plano adicionado.",
 "¿Borrar la meta «{n}»?": "Apagar a meta «{n}»?",
-"¿Borrar el plan «{n}»?": "Apagar o plano «{n}»?"
+"¿Borrar el plan «{n}»?": "Apagar o plano «{n}»?",
+"No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.": "Não conseguimos salvar os desenhos dessa cópia. Sua agenda não foi alterada."
 });

@@ -10,7 +10,8 @@
   var COLORES = ['#2B2B30', '#E74E96', '#4C9BEA', '#3FAE73', '#F0933B', '#E53935', '#FBC02D', '#8E5BD9', '#26C6DA', '#8D5A3B', '#9AA0A6', '#F8BBD0'],
     NOMBRES = ['negro', 'rosa', 'azul', 'verde', 'naranja', 'rojo', 'amarillo', 'morado', 'turquesa', 'café', 'gris', 'rosa claro'], ANCHOS = [1.6, 3, 6];
   function colorDe(v) { return typeof v === 'string' && /^#[0-9a-f]{6}$/i.test(v) ? v : (COLORES[v] || COLORES[0]); }
-  var MAX_IMG_TOTAL = 1800000, MAX_PUNTOS = 150000;
+  /* Con IndexedDB (dib-store.js) caben muchísimos más; sin él, el tope de siempre (localStorage) */
+  function topes() { return window.lrDibStore ? window.lrDibStore.limites() : { img: 1800000, puntos: 150000 }; }
 
   function almacen() { var d = N.datos(); return d._dib || (d._dib = {}); }
   function puntosTotales() { var n = 0, a = N.datos()._dib || {}; Object.keys(a).forEach(function (k) { ((a[k] && a[k].s) || []).forEach(function (s) { n += (s.length - 2) / 2; }); }); return n; }
@@ -75,7 +76,7 @@
       if (e.pointerType === 'touch' && !est.dedo) { desplazando = e.clientY; e.preventDefault(); return; }
       e.preventDefault();
       if (est.herr === 'borrar') { borrando = true; borrarEn(e); return; }
-      if (puntosTotales() > MAX_PUNTOS) { decir('Ya hay mucha tinta guardada. Borra algo o guarda una copia para seguir.'); return; }
+      if (puntosTotales() > topes().puntos) { decir('Ya hay mucha tinta guardada. Borra algo o guarda una copia para seguir.'); return; }
       var p = punto(e); actual = [est.color, est.ancho, p[0], p[1]]; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; trazo(actual);
     });
     canvas.addEventListener('pointermove', function (e) {
@@ -154,7 +155,7 @@
           var m = 760, esc = Math.min(1, m / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * esc); c.height = Math.round(im.height * esc);
           var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height);
           var url = c.toDataURL('image/jpeg', 0.62);
-          if (bytesImg() - (reg(false).img || '').length + url.length > MAX_IMG_TOTAL) { decir('Ya hay muchas fotos guardadas. Borra alguna para subir otra.'); return; }
+          if (bytesImg() - (reg(false).img || '').length + url.length > topes().img) { decir('Ya hay muchas fotos guardadas. Borra alguna para subir otra.'); return; }
           reg(true).img = url; guardar(); pintar(); decir('Foto lista. Puedes dibujar encima.');
         };
         im.onerror = function () { decir('No pude leer esa imagen.'); }; im.src = lector.result;
@@ -222,6 +223,7 @@
     nueva.addEventListener('click', function () { var d = N.datos(); d._puntosN = total() + 1; N.guardar(); pagina = d._puntosN; pintar(); });
     pintar();
   }
-  iniciarProyecto(); iniciarPuntos();
+  /* Los dibujos están en IndexedDB: no se pintan ni se dibuja antes de que terminen de cargarse (si no, se guardaría un lienzo vacío encima) */
+  (window.lrDibStore && window.lrDibStore.listo ? window.lrDibStore.listo : Promise.resolve()).then(function () { iniciarProyecto(); iniciarPuntos(); });
   window.lrDibujo = { montar: montar };
 })();
