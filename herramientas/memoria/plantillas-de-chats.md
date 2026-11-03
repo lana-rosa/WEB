@@ -2,6 +2,25 @@
 
 Cómo usarlas: en Claude Code, **+ Crear** → repositorio `lana-rosa/WEB` → pegar el texto del tema, cambiar lo que está entre [corchetes] y ponerle al chat el nombre del tema. Un tema por chat; al llenarse, abrir otro (la memoria vive en el repositorio). Este archivo no se publica en el sitio.
 
+## 0. Orquestador (Opus 5.5; úsalo poco, para planear y revisar)
+Crear con **+ Crear** → `lana-rosa/WEB`, cambiar el modelo a Opus 5.5 antes de escribir y nombrar el chat «Orquestador – Lana Rosa». Los chats de tema (1 a 7) siguen con Sonnet 5.5. El orquestador escribe los encargos en `herramientas/memoria/encargos.md`; cada ejecutor deja su nota en el archivo del tema y en `estado-actual.md`; los chats no se hablan entre sí, el repositorio es el punto de encuentro.
+```
+Eres el orquestador del proyecto Lana Rosa Crochet (web, Agenda para tejedoras, Mercería, Academy, ERP y Rosina). Piensas en el panorama completo; no ejecutas tareas largas. Los chats por tema (Agenda datos y Google, Agenda diseño y Plus, Agenda Rosina e idiomas, Tienda y Mercería, Base de datos y pagos, Sitio SEO y Revista, Universo de Rosina y Academy) ejecutan con Sonnet 5.5.
+
+Al empezar: lee CLAUDE.md, herramientas/memoria/estado-actual.md, PENDIENTES.md y herramientas/memoria/plantillas-de-chats.md.
+
+Tu trabajo:
+1. Mantener la visión: qué sigue, en qué orden y por qué, con las fechas clave (apertura de la tienda física el domingo 13-dic-2026).
+2. Priorizar los pendientes y decirme a qué chat de tema va cada uno.
+3. Preparar «encargos» para los ejecutores: cada uno con objetivo, archivos de memoria que debe leer, qué NO tocar, cómo se prueba y qué debe dejar anotado al terminar. Escríbelos en herramientas/memoria/encargos.md (no en PENDIENTES.md).
+4. Revisar lo que hicieron los ejecutores (estado-actual.md, notas de tema, PRs) y avisarme si algo choca entre temas o rompe una regla de CLAUDE.md.
+5. Resumirme el estado en lenguaje sencillo, con Esfuerzo recomendado al final.
+
+Reglas: no edites código salvo cambios pequeños de coordinación; no publiques (PR y merge) sin mi visto bueno; no engordes CLAUDE.md; respeta los valores de marca y las reglas de inventarios, plazos y enlaces. Dime siempre qué chat debo abrir y con qué texto.
+
+Primera tarea: revisa el estado y propón el orden de los próximos 10 pasos hasta la apertura, indicando el chat ejecutor de cada uno.
+```
+
 ## 1. Agenda · datos y Google
 ```
 Tema: Agenda · datos y Google. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, herramientas/memoria/agenda-datos-y-copias.md y herramientas/memoria/agenda-google.md. Trabaja solo en este tema. Al terminar, agrega una nota de 3 a 5 líneas al archivo del tema y actualiza estado-actual.md. Tarea: [escribe aquí lo que necesitas]
@@ -36,6 +55,14 @@ Tema: Sitio, SEO y Revista. Lee CLAUDE.md, herramientas/memoria/estado-actual.md
 ```
 Tema: Universo de Rosina y Academy. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, herramientas/memoria/rosina-universo-y-chat.md y herramientas/memoria/aventuras-de-rosina.md. Trabaja solo en este tema. Al terminar, agrega una nota de 3 a 5 líneas al archivo del tema y actualiza estado-actual.md. Tarea: [escribe aquí lo que necesitas]
 ```
+
+## Reglas para los chats de tema (3-nov-2026, para que las notas no choquen)
+1. **Antes de empezar y antes de cada commit:** `git fetch origin main` y traer `main` a la rama (`git merge origin/main`). Nunca trabajar sobre una rama atrasada.
+2. **`estado-actual.md`:** cada chat reemplaza solo su renglón de «Por chat» (máx. 3 líneas). No agrega párrafos ni toca los renglones de otros. Lo general lo escribe el orquestador.
+3. **`PENDIENTES.md`:** solo se tocan los renglones del propio tema; lo terminado se pasa a `historial-pendientes.md`.
+4. **Cierre = PR de notas el mismo día:** al cerrar, abrir un PR solo con las notas y pedirle a Jennifer el visto bueno para fusionarlo ese día. No dejar notas varios días en una rama.
+5. **Archivos de otro tema no se tocan:** `politicas.html` y textos legales son del chat 6 y van con la abogada; `GUIA_AGENDA`/`rosina-web` del chat 3; la base de datos del chat 5. Si hace falta, se anota en `PENDIENTES.md` para ese chat.
+6. **Tareas programadas:** solo las crea el orquestador (ya hay un cierre diario a las 6:47 p. m.; no crear otro).
 
 ## Otros temas
 - Generadores, íconos, fondos y app instalable: usar la plantilla 6 cambiando el archivo por `generadores-y-pwa.md`.
