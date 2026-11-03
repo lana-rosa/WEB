@@ -137,7 +137,7 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 - **Objetivo:** proponerle a Jennifer, con sí o no, qué mostrar si el 13-dic aún no hay existencias: la Mercería en «Muy pronto» con lista de espera (ya existe), la Tienda de amigurumis completa, y qué decir en la web y en redes (avisar al chat 6 y al chat 8). Nada se publica sin su visto bueno.
 - **E4 no espera:** la compra de prueba se puede hacer ya con un producto de la Tienda; la del ovillo, cuando haya existencias.
 
-## [ ] E21 · Ícono de Configuración gigante en «Mi cuenta» cuando se llega desde la agenda (chat 6; captura de Jennifer, 3-nov-2026)
+## [x] E21 (hecho 3-nov-2026, #569: estilos del engranaje en `css/comun.css`, `comun.css?v=43`) · Ícono de Configuración gigante en «Mi cuenta» cuando se llega desde la agenda (chat 6; captura de Jennifer, 3-nov-2026)
 - En `cuenta.html` con el menú de la casa Agenda, el engranaje de Configuración sale enorme (~110 px) en el encabezado. Buscar si viene de `js/casa-menu.js` (generado por `herramientas/sincronizar_encabezado.py`: no se edita a mano) o de un estilo que falta en esa página; dejarlo del tamaño de los otros íconos. Revisar las demás páginas comunes con `?casa=agenda`. Foto a Jennifer antes de publicar (nivel 🟡). Avisar al chat 2, porque E18 rehace ese encabezado en la agenda.
 
 ## [ ] E22 · País, departamento y ciudad en las cuentas (chat 5 con el chat 6 para la página; pedido de Jennifer, 3-nov-2026)
