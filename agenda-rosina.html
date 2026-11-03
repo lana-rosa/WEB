@@ -692,6 +692,11 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .cx-detalle { grid-column: 1 / -1; font-size: 0.85rem; color: #45454A; }
 .cx-error { grid-column: 1 / -1; font-size: 0.85rem; font-weight: 600; color: #C81B6D; }
 .cx-ir { grid-column: 1 / -1; justify-self: start; }
+.cx-tipos { margin: 10px 0 0; padding: 8px 12px; border: 1.5px solid #E4D3DC; border-radius: 12px; display: grid; gap: 4px; }
+.cx-tipos[hidden] { display: none; }
+.cx-tipos legend { font-weight: 700; font-size: 0.88rem; padding: 0 6px; color: var(--rosa-texto); }
+.cx-tipos label { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; min-height: 32px; cursor: pointer; }
+.cx-tipos input { width: 20px; height: 20px; accent-color: var(--rosa-principal); flex: none; }
 .cx-permiso { margin-top: 8px; font-size: 0.85rem; }
 .cx-permiso summary { cursor: pointer; font-weight: 600; }
 .cx-permiso ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; }
@@ -1018,6 +1023,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button type="button" class="boton-secundario boton-chico" id="cs-quitar" hidden>Quitar esas fechas</button>
         <button type="button" class="enlace-copia" id="cs-desconectar" hidden>Desconectar</button>
       </div>
+      <fieldset class="cx-tipos" id="cs-tipos" hidden>
+        <legend>Qué fechas enviar a Google Calendar</legend>
+        <label><input type="checkbox" data-tipo="entregas"> Entregas de pedidos</label>
+        <label><input type="checkbox" data-tipo="envios"> Envíos de pedidos</label>
+        <label><input type="checkbox" data-tipo="proyectos"> Proyectos y fichas de proyecto</label>
+        <label><input type="checkbox" data-tipo="fechas"> Fechas especiales</label>
+        <label><input type="checkbox" data-tipo="ferias"> Ferias y mercados</label>
+        <label><input type="checkbox" data-tipo="cumples"> Cumpleaños de clientas</label>
+        <small class="nota-copia">Si quitas un tipo, esas fechas se borran de tu Google Calendar (te pedimos confirmar si son más de 3). Lo que escribiste en tu agenda no se toca. La elección viaja con tu agenda a tus otros aparatos.</small>
+      </fieldset>
       <p class="cs-aviso" id="cs-aviso" role="status"></p>
       <details class="cx-permiso">
         <summary>¿Qué permiso pide y qué NO puede hacer?</summary>
@@ -4365,7 +4380,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script src="/js/agenda/dueno.js?v=5"></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
-<script type="module" src="/js/agenda/google-calendar.js?v=2"></script>
+<script type="module" src="/js/agenda/google-calendar.js?v=3"></script>
 <script src="/js/agenda/centro-conexiones.js?v=1" defer></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
 <script type="module" src="/js/agenda/drive-sync.js?v=3"></script>
