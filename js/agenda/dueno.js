@@ -3,7 +3,7 @@
    si entra una cuenta distinta y hay hojas escritas, se pregunta antes de mostrarlas. Es solo una protección de la página (los datos siguen en el dispositivo). */
 (function () {
   var SES = 'sb-ngjoognzvehwjtpqwrqe-auth-token', DUENO = 'lrAgendaDueno';
-  var BORRAR = ['rosinaAgenda', 'rosinaAgendaCopia', 'rosinaAgendaHoja', 'lrNubeBase', 'lrNubeSucio', 'lrAgendaRecordatorio', 'lrMembresia', 'lrDriveBase', 'lrDriveRev', 'lrDriveUid', 'lrDriveSnap', 'lrDriveAvisos'];
+  var BORRAR = ['rosinaAgenda', 'rosinaAgendaCopia', 'rosinaAgendaHoja', 'lrNubeBase', 'lrNubeSucio', 'lrAgendaRecordatorio', 'lrMembresia', 'lrDriveBase', 'lrDriveRev', 'lrDriveUid', 'lrDriveSnap', 'lrDriveAvisos', 'lrDibN'];
   var uid = null, anterior = null, datos = null;
   try {
     var s = JSON.parse(localStorage.getItem(SES) || 'null'); uid = s && s.user && s.user.id;
@@ -19,6 +19,7 @@
   }
   var hayDatos = false;
   try { hayDatos = tieneAlgo(JSON.parse(datos || 'null')); } catch (e) { hayDatos = !!datos; }
+  try { if (Number(localStorage.getItem('lrDibN') || 0) > 0) hayDatos = true; } catch (e) {}   // los dibujos viven en IndexedDB: aunque el resto esté vacío, hay algo escrito
   if (!anterior || anterior === uid || !hayDatos) { guardar(); return; }   // sin dueña conocida (primera vez), la misma cuenta o nada escrito: no hay nada que preguntar
 
   function pintar() {
@@ -35,8 +36,9 @@
       nueva.disabled = true;
       var b = document.getElementById('agenda-descargar'); if (b) b.click();   // baja la copia con lo que había
       setTimeout(function () {
-        try { BORRAR.forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {}
-        guardar(); location.reload();
+        function limpiar() { try { BORRAR.forEach(function (k) { localStorage.removeItem(k); }); } catch (e) {} guardar(); location.reload(); }
+        // los dibujos están en IndexedDB: se borran también (si no, la otra cuenta los vería)
+        if (window.lrDibStore) window.lrDibStore.borrarTodo(true).then(limpiar, limpiar); else limpiar();
       }, 900);
     });
   }

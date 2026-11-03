@@ -7,7 +7,8 @@ from agenda_util import *
 T = Prueba(); CAP = sys.argv[1] if len(sys.argv) > 1 else None
 def cap(pg, n):
     if CAP: os.makedirs(CAP, exist_ok=True); pg.screenshot(path=os.path.join(CAP, n))
-def guardado(pg): return json.loads(pg.evaluate("localStorage.getItem('rosinaAgenda') || '{}'"))
+def guardado(pg):
+    d = json.loads(pg.evaluate("localStorage.getItem('rosinaAgenda') || '{}'")); d['_dib'] = dib_idb(pg); return d   # los dibujos están en IndexedDB
 PALETA = [{'id': 'a1', 'linea': 'Lana Chelin', 'marca': 'Kusi Kusi', 'color': 'Almendra', 'codigo_color': '2110'}, {'id': 'a2', 'linea': 'Lana Ecological Cotton', 'marca': 'Papatya', 'color': 'Lila 505', 'codigo_color': '505'}]
 TRAZO = """([sel, tipo, pts]) => { const c = document.querySelector(sel); const r = c.getBoundingClientRect();
   const mk = (t, p) => new PointerEvent(t, { pointerType: tipo, pointerId: 9, isPrimary: true, bubbles: true, cancelable: true, clientX: r.left + p[0], clientY: r.top + p[1] });

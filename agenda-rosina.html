@@ -2454,6 +2454,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.title = 'Agenda para tejedoras: hojas gratis — Lana Rosa Crochet';
 })();
 </script>
+<script src="/js/agenda/dib-store.js?v=1"></script>
 <script>
 (function() {
   /* ---------- Almacenamiento seguro (solo en este dispositivo) ---------- */
@@ -2501,8 +2502,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var CLAVE_COPIA = 'rosinaAgendaCopia'; /* fecha de la última copia descargada en este dispositivo (solo para el aviso al borrar) */
   var datos = {};
   try { datos = JSON.parse(leer(CLAVE_AGENDA)) || {}; } catch (e) {}
+  function serializar() { return window.lrDibStore ? window.lrDibStore.serializar(datos) : JSON.stringify(datos); }   /* los dibujos van aparte, en IndexedDB (dib-store.js) */
+  if (window.lrDibStore) window.lrDibStore.iniciar(function() { return datos; });
   function avisarGuardado() { if (window.lrAgenda && window.lrAgenda.alGuardar) window.lrAgenda.alGuardar(); }
-  function guardarDatos() { escribir(CLAVE_AGENDA, JSON.stringify(datos)); avisarGuardado(); if (window.lrFichas) window.lrFichas.alGuardar(); if (window.lrVersiones) window.lrVersiones.alGuardar(); document.dispatchEvent(new Event('agenda-guardada')); }
+  function guardarDatos() { escribir(CLAVE_AGENDA, serializar()); if (window.lrDibStore) window.lrDibStore.alGuardar(); avisarGuardado(); if (window.lrFichas) window.lrFichas.alGuardar(); if (window.lrVersiones) window.lrVersiones.alGuardar(); document.dispatchEvent(new Event('agenda-guardada')); }
   /* Tablas con renglones: se pueden agregar más al final de cada hoja */
   var tablas = {};
   function htmlFila(t, r) {
@@ -2630,7 +2633,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!confirm('¿Borrar todo lo que escribiste en la agenda?\n\nSe elimina de inmediato y no se puede recuperar. Solo podrás volver a tenerla si guardaste una copia y la cargas después.' + (window.lrNube && window.lrNube.activa ? '\n\nComo tienes la copia en tu cuenta activada, también quedará vacía en tu cuenta.' : ''))) return;
     camposAgenda().forEach(function(campo) { if (campo.type === 'checkbox') campo.checked = false; else campo.value = ''; });
     datos = {};
-    borrar(CLAVE_AGENDA); avisarGuardado();
+    borrar(CLAVE_AGENDA); if (window.lrDibStore) window.lrDibStore.borrarTodo(); avisarGuardado();
     duena.value = ''; tituloDuena();
     estilos = {}; camposAgenda().forEach(function(el) { el.style.color = ''; el.style.backgroundColor = ''; });
     iniciarAnios();
@@ -2644,7 +2647,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var duena = document.getElementById('ag-duena');
   duena.value = datos['ag-duena'] || '';
   function tituloDuena() { document.querySelector('.intro-agenda h1').textContent = duena.value.trim() ? 'Agenda de ' + duena.value.trim() : 'Agenda para tejedoras'; }
-  duena.addEventListener('input', function() { datos['ag-duena'] = duena.value; escribir(CLAVE_AGENDA, JSON.stringify(datos)); avisarGuardado(); tituloDuena(); });
+  duena.addEventListener('input', function() { datos['ag-duena'] = duena.value; escribir(CLAVE_AGENDA, serializar()); avisarGuardado(); tituloDuena(); });
   tituloDuena();
 
   /* ---------- Calendario: botón "Añadir a Google Calendar" y archivo .ics (8-oct-2026) ---------- */
@@ -2790,10 +2793,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.getElementById('asg-copia').addEventListener('click', function() { document.getElementById('agenda-descargar').click(); });
   setTimeout(medirEspacio, 800);
   document.getElementById('agenda-descargar').addEventListener('click', function() {
-    var blob = new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
-    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-' + new Date().toISOString().slice(0, 10) + '.json';
-    document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
-    escribir(CLAVE_COPIA, new Date().toISOString().slice(0, 10));
+    /* los dibujos viven en IndexedDB: se espera a que estén cargados para que la copia salga completa */
+    (window.lrDibStore && window.lrDibStore.listo ? window.lrDibStore.listo : Promise.resolve()).then(function() {
+      var blob = new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+      escribir(CLAVE_COPIA, new Date().toISOString().slice(0, 10));
+    });
   });
   // Una copia es un archivo que puede venir de cualquier parte: se quitan < y > de todos los textos (la agenda los pinta como HTML en varias hojas), se descartan claves peligrosas y se limita la profundidad.
   function limpiarCopia(v, prof) {
@@ -2819,7 +2825,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var c = JSON.parse(lector.result);
         if (!c || !c.agendaRosina || typeof c.datos !== 'object') throw 0;
         if (!confirm('¿Reemplazar lo que tienes en esta agenda por la copia del ' + String(c.fecha || 'archivo').slice(0, 20).replace(/[<>]/g, '') + '?')) return;
-        escribir(CLAVE_AGENDA, JSON.stringify(limpiarCopia(c.datos, 0))); location.reload();
+        var limpia = limpiarCopia(c.datos, 0);
+        if (window.lrDibStore) window.lrDibStore.escribirDatos(limpia).then(function(texto) { escribir(CLAVE_AGENDA, texto); location.reload(); }, function() { alert('No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.'); });
+        else { escribir(CLAVE_AGENDA, JSON.stringify(limpia)); location.reload(); }
       } catch (e) { alert('Ese archivo no es una copia de la Agenda para tejedoras.'); }
       archivo.value = '';
     };
@@ -4001,7 +4009,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!ultimoCampo) { ayudaBarra.textContent = 'Primero toca la casilla que quieres pintar.'; return; }
     var e = estilos[ultimoCampo.id] || {}; if (valor) e[prop] = valor; else delete e[prop];
     if (e.c || e.r) estilos[ultimoCampo.id] = e; else delete estilos[ultimoCampo.id];
-    datos._estilos = estilos; escribir(CLAVE_AGENDA, JSON.stringify(datos)); aplicarEstilo(ultimoCampo);
+    datos._estilos = estilos; escribir(CLAVE_AGENDA, serializar()); aplicarEstilo(ultimoCampo);
     ultimoCampo.focus({ preventScroll: true });
   }
   document.querySelectorAll('.muestra-color, .muestra-resaltar').forEach(function(b) {
@@ -4122,8 +4130,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
   function estadoNube(t) { var e = $('nube-estado'); if (e) e.textContent = t || ''; }
   function datosLocales() { try { return JSON.parse(lsGet(CLAVE_AG)) || {}; } catch (e) { return {}; } }
-  function hayLocal() { var d = datosLocales(); return Object.keys(d).filter(function (k) { return k !== 'ag-anio' && k !== '_anios'; }).length > 0; }
-  function aplicarNube(d, marca) { if (!d || typeof d !== 'object') return; lsSet(CLAVE_AG, JSON.stringify(d)); lsSet(CL_BASE, marca); lsDel(CL_SUCIO); location.reload(); }
+  function hayLocal() { var d = datosLocales(); return Object.keys(d).filter(function (k) { return k !== 'ag-anio' && k !== '_anios'; }).length > 0 || !!(window.lrDibStore && window.lrDibStore.hayDib()); }
+  async function aplicarNube(d, marca) { if (!d || typeof d !== 'object') return; var texto = window.lrDibStore ? await window.lrDibStore.escribirDatos(d) : JSON.stringify(d); lsSet(CLAVE_AG, texto); lsSet(CL_BASE, marca); lsDel(CL_SUCIO); location.reload(); }
 
   /* ---- Botones y recordatorio ---- */
   function pintar() {
@@ -4152,7 +4160,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     if (nube.ocupado) return; nube.ocupado = true; estadoNube('☁️ Guardando en tu cuenta…');
     var otraVez = false;
     try {
-      var r = await sb.rpc('agenda_nube_guardar', { p_datos: datosLocales(), p_base: base !== undefined ? base : (lsGet(CL_BASE) || null) });
+      var r = await sb.rpc('agenda_nube_guardar', { p_datos: window.lrDibStore ? await window.lrDibStore.completos(datosLocales()) : datosLocales(), p_base: base !== undefined ? base : (lsGet(CL_BASE) || null) });
       var d = r.data || {};
       if (r.error) estadoNube('☁️ Sin conexión: se guardará en tu cuenta cuando vuelva.');
       else if (d.ok) { lsSet(CL_BASE, d.actualizado); lsDel(CL_SUCIO); estadoNube('☁️ Copia en tu cuenta guardada'); }
@@ -4299,14 +4307,14 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
 <script src="/js/agenda/app.js?v=1" defer></script>
-<script src="/js/agenda/dueno.js?v=4"></script>
+<script src="/js/agenda/dueno.js?v=5"></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
 <script type="module" src="/js/agenda/google-calendar.js?v=1"></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
-<script type="module" src="/js/agenda/drive-sync.js?v=2"></script>
+<script type="module" src="/js/agenda/drive-sync.js?v=3"></script>
 <script type="module" src="/js/agenda/membresia.js?v=3"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
-<script src="/js/agenda/dibujo.js?v=12" defer></script>
+<script src="/js/agenda/dibujo.js?v=13" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
 <script src="/js/agenda/exportar.js?v=4" defer></script>

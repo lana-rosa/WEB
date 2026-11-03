@@ -1787,5 +1787,6 @@ window.lrI18n.add("en", {
 "Escribe el nombre del plan.": "Write the plan name.",
 "Plan agregado.": "Plan added.",
 "¿Borrar la meta «{n}»?": "Delete the goal «{n}»?",
-"¿Borrar el plan «{n}»?": "Delete the plan «{n}»?"
+"¿Borrar el plan «{n}»?": "Delete the plan «{n}»?",
+"No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.": "We could not save the drawings from that backup. Your planner was not changed."
 });
