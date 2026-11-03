@@ -54,9 +54,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=53">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=42">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=43">
 <link rel="stylesheet" href="/css/agenda-diseno.css?v=20">
-<link rel="stylesheet" href="/css/agenda-panel.css?v=15">
+<link rel="stylesheet" href="/css/agenda-panel.css?v=16">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=19">
 <link rel="stylesheet" href="/css/agenda-colores.css?v=48">
@@ -682,6 +682,24 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .cs-aviso { margin: 8px 0 0; min-height: 1.2em; font-size: 0.85rem; font-weight: 600; color: #C81B6D; }
 .calendario-sync .nota-copia { display: block; margin-top: 8px; }
 .calendario-sync .nota-copia[hidden] { display: none; }
+.cx-centro { max-width: 560px; width: 100%; margin: 0; }
+.cx-intro { margin: 0 0 10px; font-size: 0.92rem; }
+.cx-resumen { list-style: none; margin: 0 0 6px; padding: 0; display: grid; gap: 8px; }
+.cx-fila { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center; background: var(--blanco); border: 1.5px solid #E4D3DC; border-radius: 14px; padding: 10px 14px; }
+.cx-nombre { font-weight: 700; color: var(--rosa-texto); }
+.cx-estado { font-size: 0.8rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: #EEE; color: #45454A; white-space: nowrap; }
+.cx-estado.cx-si { background: #DDF3E4; color: #17602F; }
+.cx-detalle { grid-column: 1 / -1; font-size: 0.85rem; color: #45454A; }
+.cx-error { grid-column: 1 / -1; font-size: 0.85rem; font-weight: 600; color: #C81B6D; }
+.cx-ir { grid-column: 1 / -1; justify-self: start; }
+.cx-tipos { margin: 10px 0 0; padding: 8px 12px; border: 1.5px solid #E4D3DC; border-radius: 12px; display: grid; gap: 4px; }
+.cx-tipos[hidden] { display: none; }
+.cx-tipos legend { font-weight: 700; font-size: 0.88rem; padding: 0 6px; color: var(--rosa-texto); }
+.cx-tipos label { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; min-height: 32px; cursor: pointer; }
+.cx-tipos input { width: 20px; height: 20px; accent-color: var(--rosa-principal); flex: none; }
+.cx-permiso { margin-top: 8px; font-size: 0.85rem; }
+.cx-permiso summary { cursor: pointer; font-weight: 600; }
+.cx-permiso ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; }
 /* Tarjetas, análisis y negocio (8-oct-2026) */
 .fa-tabla { width: 100%; border-collapse: collapse; } .fa-tabla th, .fa-tabla td { padding: 7px 8px; font-size: .88rem; border-bottom: 1px solid #F0E4EA; text-align: left; vertical-align: top; } .fa-tabla .der { text-align: right; white-space: nowrap; } .fa-tabla .ing { color: #1c5cab; font-weight: 700; } .fa-tabla .gas { color: #B24A1F; font-weight: 700; } .fa-tabla thead th { font-size: .78rem; color: var(--tinta-suave); text-transform: uppercase; letter-spacing: .03em; } .fa-tabla .pt, .fa-barra .pt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
 .fa-tabla tr.fa-total td { border-top: 1.5px solid #E4D3DC; } .fa-tabla tr.fa-sec th { text-align: left; font-family: var(--fuente-titulo); color: var(--rosa-texto); background: var(--rosa-suave); padding: 6px 8px; font-size: .88rem; }
@@ -959,7 +977,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="agenda-config no-imprimir" id="agenda-config" role="region" aria-label="Configuración de la agenda" hidden>
-      <div class="agenda-config-cab"><strong>⚙️ Configuración</strong><button type="button" class="agenda-config-cerrar" data-cerrar-config aria-label="Cerrar la configuración"><span aria-hidden="true">✕</span> Cerrar</button></div>
+      <div class="agenda-config-cab"><strong>⚙️ Configuración</strong><button type="button" class="agenda-config-cerrar" data-cerrar-config aria-label="Cerrar la configuración"><span aria-hidden="true">✕</span></button></div>
             <section class="cfg-grupo"><h3 class="cfg-titulo">Tu agenda</h3>
       <div class="cuaderno-portada">
     <div class="portada-agenda">
@@ -991,7 +1009,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <small class="nota-copia">Guarda una copia para no perder tu agenda o para pasarla a otro celular; o actívala en tu cuenta (opcional y gratis) y vuelve a tenerla aunque borres el historial. El botón del calendario baja todas tus fechas (entregas, proyectos, fechas especiales, ferias y cumpleaños) para abrirlas en Google Calendar, Apple o Outlook.</small>
     </div>
       </section>
-      <section class="cfg-grupo"><h3 class="cfg-titulo">Conectar con Google</h3>
+      <section class="cfg-grupo" id="centro-conexiones"><h3 class="cfg-titulo">Conexiones e integraciones</h3>
+    <div class="cx-centro no-imprimir">
+      <p class="cx-intro">Aquí ves qué tienes conectado y qué datos viajan. Nada se conecta ni se sube solo: tú decides, y puedes desconectar cuando quieras. Tu cuenta y tus archivos siguen siendo tuyos.</p>
+      <ul class="cx-resumen" id="cx-resumen" aria-label="Estado de tus conexiones"></ul>
+    </div>
     <div class="calendario-sync no-imprimir" id="calendario-sync" hidden>
       <p class="cs-titulo"><img class="cs-ic" src="/img/agenda/ui/gcal.webp" alt="" width="24" height="24" loading="lazy"> Google Calendar</p>
       <p class="cs-texto" id="cs-texto"></p>
@@ -1001,7 +1023,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button type="button" class="boton-secundario boton-chico" id="cs-quitar" hidden>Quitar esas fechas</button>
         <button type="button" class="enlace-copia" id="cs-desconectar" hidden>Desconectar</button>
       </div>
+      <fieldset class="cx-tipos" id="cs-tipos" hidden>
+        <legend>Qué fechas enviar a Google Calendar</legend>
+        <label><input type="checkbox" data-tipo="entregas"> Entregas de pedidos</label>
+        <label><input type="checkbox" data-tipo="envios"> Envíos de pedidos</label>
+        <label><input type="checkbox" data-tipo="proyectos"> Proyectos y fichas de proyecto</label>
+        <label><input type="checkbox" data-tipo="fechas"> Fechas especiales</label>
+        <label><input type="checkbox" data-tipo="ferias"> Ferias y mercados</label>
+        <label><input type="checkbox" data-tipo="cumples"> Cumpleaños de clientas</label>
+        <small class="nota-copia">Si quitas un tipo, esas fechas se borran de tu Google Calendar (te pedimos confirmar si son más de 3). Lo que escribiste en tu agenda no se toca. La elección viaja con tu agenda a tus otros aparatos.</small>
+      </fieldset>
       <p class="cs-aviso" id="cs-aviso" role="status"></p>
+      <details class="cx-permiso">
+        <summary>¿Qué permiso pide y qué NO puede hacer?</summary>
+        <ul>
+          <li><strong>Permiso:</strong> crear un calendario propio llamado «Agenda para tejedoras» y escribir solo en él.</li>
+          <li><strong>Qué envía:</strong> fechas y textos de entregas y envíos de pedidos, proyectos, fichas, fechas especiales, ferias y cumpleaños de clientas.</li>
+          <li><strong>Qué NO puede hacer:</strong> ver tus otros calendarios o eventos, leer tu correo o tus contactos, ni usar tu cuenta para nada más.</li>
+          <li><strong>Cómo quitarlo:</strong> «Desconectar» borra ese calendario y retira el permiso. También puedes revisarlo en <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">tu cuenta de Google</a>.</li>
+        </ul>
+      </details>
       <small class="nota-copia">Solo enviamos a Google las fechas y los textos de esas hojas (no el resto de tu agenda) y solo pedimos permiso para crear un calendario propio («Agenda para tejedoras») y escribir en él: no podemos ver tus otros calendarios ni tus otros eventos. Puedes desconectar cuando quieras. <a href="/politicas.html#datos">Más en la política de datos (apartado 10)</a>.</small>
       <small class="nota-copia" id="cs-nota-verif" hidden>Google puede mostrarte el aviso «Google no ha verificado esta app»: es normal. Para seguir, toca «Configuración avanzada» y luego «Ir a lanarosacrochet.com».</small>
     </div>
@@ -1017,6 +1058,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <ul class="ds-lista" id="ds-lista" hidden></ul>
       <p class="cs-aviso" id="ds-aviso" role="status"></p>
+      <details class="cx-permiso">
+        <summary>¿Qué permiso pide y qué NO puede hacer?</summary>
+        <ul>
+          <li><strong>Permiso:</strong> usar una carpeta oculta de la app en tu Drive (permiso «appdata»).</li>
+          <li><strong>Qué guarda:</strong> tu agenda completa, con los dibujos y sus fotos, y las últimas 5 versiones anteriores. Va directo de tu navegador a tu Drive, sin pasar por Lana Rosa.</li>
+          <li><strong>Qué NO puede hacer:</strong> ver, abrir ni borrar tus otros archivos de Drive. Tampoco aparece como una carpeta que puedas abrir: solo esta agenda la usa.</li>
+          <li><strong>Cómo quitarlo:</strong> «Desconectar» retira el permiso y deja la copia donde está; «Borrar mi agenda de Drive» borra la copia y las versiones y desconecta. También puedes revisarlo en <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">tu cuenta de Google</a>.</li>
+        </ul>
+      </details>
       <small class="nota-copia">Tu agenda se guarda en una carpeta oculta de tu propio Google Drive que solo esta app puede abrir: no puede ver el resto de tu Drive. Lana Rosa no recibe tus datos ni puede leerlos; solo guardamos el permiso de acceso (cifrado) para sincronizarte sola, y lo puedes quitar cuando quieras. Si cambias algo en dos aparatos a la vez, se juntan los cambios y no se pierde nada. <a href="/politicas.html#datos">Más información</a>.</small>
     </div>
       </section>
@@ -3935,6 +3985,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var destino = g.links[0]; if (!destino) return;
         if (i > 0 && g.links.length > 1 && window.lrSeccion) {
           window.lrSeccion.abrir(g.t, g.links);
+          /* en el teléfono la lista «Hojas de…» arriba, con las hojas de esta sección y sin ninguna elegida (3-nov-2026) */
+          lista.textContent = '';
+          var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Elige una hoja…'; lista.appendChild(o0);
+          g.links.forEach(function(a) { var o = document.createElement('option'); o.value = a.dataset.hoja; o.textContent = a.textContent.trim(); lista.appendChild(o); });
+          lista.value = ''; selector.style.setProperty('--c', colorDe(g, i)); grupoLista = -2;
+          etqLista.textContent = 'Hojas de ' + etiqueta(g.t) + ' · ' + g.links.length + ' hojas'; selector.hidden = window.innerWidth > 820;
           botones.forEach(function(x, j) { x.setAttribute('aria-selected', String(j === i)); });
           return;
         }
@@ -4305,7 +4361,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/tinta.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=2" defer></script>
 <script src="/js/agenda/vacios.js?v=4" defer></script>
-<script src="/js/agenda/panel.js?v=28" defer></script>
+<script src="/js/agenda/panel.js?v=29" defer></script>
+<script src="/js/agenda/miles.js?v=1" defer></script>
 <script src="/js/agenda/iconos.js?v=29" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=3" defer></script>
@@ -4324,10 +4381,11 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script src="/js/agenda/dueno.js?v=5"></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
-<script type="module" src="/js/agenda/google-calendar.js?v=1"></script>
+<script type="module" src="/js/agenda/google-calendar.js?v=3"></script>
+<script src="/js/agenda/centro-conexiones.js?v=1" defer></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
 <script type="module" src="/js/agenda/drive-sync.js?v=3"></script>
-<script type="module" src="/js/agenda/membresia.js?v=3"></script>
+<script type="module" src="/js/agenda/membresia.js?v=4"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=14" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>

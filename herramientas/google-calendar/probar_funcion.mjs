@@ -52,4 +52,12 @@ const con = await post({accion:'conectar'}); const q = new URL(con.url).searchPa
 v('conectar pide solo calendar.app.created (no sensible), openid y email', q.get('scope')==='https://www.googleapis.com/auth/calendar.app.created openid email' && !q.has('include_granted_scopes'), q.get('scope'));
 const vuelta = await handler(new Request('https://x/functions/v1/google-calendar?code=abc&state='+encodeURIComponent(q.get('state'))));
 v('la vuelta de Google guarda el permiso cifrado y crea el calendario', vuelta.headers.get('location').endsWith('?calendario=conectado') && db.google_calendar_cuentas.length===1 && /^cal\d+@group/.test(db.google_calendar_cuentas[0].calendar_id||'') && db.google_calendar_cuentas[0].refresh_token.includes('.'), [vuelta.headers.get('location'), db.google_calendar_cuentas[0]]);
+// reconectar sin desconectar: se conserva el calendario que ya existía (no queda uno huérfano en Google)
+const idAntes = db.google_calendar_cuentas[0].calendar_id, creadosAntes = googleLog.filter(x=>x.startsWith('POST /calendars')&&!x.includes('/events')).length;
+const con2 = await post({accion:'conectar'}); const q2 = new URL(con2.url).searchParams;
+await handler(new Request('https://x/functions/v1/google-calendar?code=abc&state='+encodeURIComponent(q2.get('state'))));
+v('reconectar sin desconectar: no crea otro calendario y conserva el id', db.google_calendar_cuentas[0].calendar_id===idAntes && googleLog.filter(x=>x.startsWith('POST /calendars')&&!x.includes('/events')).length===creadosAntes, [idAntes, db.google_calendar_cuentas[0].calendar_id]);
+// más de 300 fechas: se envían 300 y se avisa cuántas quedaron fuera
+r = await post({accion:'sincronizar',eventos:ev(305)}); v('305 fechas: se envían 300 y se avisa de 5 omitidas', r.omitidos===5 && r.creados+r.actualizados+r.sinCambio===300, r);
+r = await post({accion:'sincronizar',eventos:ev(10),confirmarBorrado:true}); v('sin pasar del tope, omitidos es 0', r.omitidos===0, r);
 console.log(`\n${bien} correctas, ${mal} con falla.`); process.exit(mal?1:0);
