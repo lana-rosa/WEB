@@ -43,7 +43,8 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 | Mercería, tienda física, personalizados, listas de espera, fotos de productos, Google Shopping | `tienda-merceria.md` |
 | SEO, Revista, cookies, fuentes, medición | `sitio-seo-revista-cookies.md` |
 | Generadores de `herramientas/`, íconos y fondos, app instalable (PWA) | `generadores-y-pwa.md` |
-| Lo pendiente y lo ya hecho | `PENDIENTES.md` (lo abierto) |
+| Lo pendiente (abierto) | `PENDIENTES.md` en la raíz |
+| Lo ya hecho, cómo y cuándo | `historial-pendientes.md` |
 
 ## Convenciones
 - **Valores de la marca:** las fundadoras son cristianas, creyentes en Cristo Jesús y cumplidoras de la Biblia. **No se celebran ni se mencionan Navidad, fechas de santos (incluido San Valentín) ni Halloween** en la web, el contenido, las paletas, los artículos ni las promociones. Sí se usan otras fechas especiales: Amor y amistad, Día de la madre, Día del padre, cumpleaños, graduaciones, etc.
