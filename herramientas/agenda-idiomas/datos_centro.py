@@ -37,3 +37,21 @@ FILAS = [
  ('Tu agenda también se guarda en tu cuenta de Lana Rosa.', 'Your planner is also saved in your Lana Rosa account.', 'Sua agenda também é salva na sua conta da Lana Rosa.'),
  ('Opcional: guarda tu agenda en tu cuenta para recuperarla.', 'Optional: save your planner in your account to recover it.', 'Opcional: salve sua agenda na sua conta para recuperá-la.'),
 ]
+FILAS += [
+ ('Qué fechas enviar a Google Calendar', 'Which dates to send to Google Calendar', 'Quais datas enviar para o Google Agenda'),
+ ('Entregas de pedidos', 'Order deliveries', 'Entregas de pedidos'),
+ ('Envíos de pedidos', 'Order shipments', 'Envios de pedidos'),
+ ('Proyectos y fichas de proyecto', 'Projects and project cards', 'Projetos e fichas de projeto'),
+ ('Fechas especiales', 'Special dates', 'Datas especiais'),
+ ('Ferias y mercados', 'Fairs and markets', 'Feiras e mercados'),
+ ('Cumpleaños de clientas', 'Clients’ birthdays', 'Aniversários de clientes'),
+ ('Si quitas un tipo, esas fechas se borran de tu Google Calendar (te pedimos confirmar si son más de 3). Lo que escribiste en tu agenda no se toca. La elección viaja con tu agenda a tus otros aparatos.',
+  'If you remove a type, those dates are deleted from your Google Calendar (we ask you to confirm if there are more than 3). What you wrote in your planner is not touched. Your choice travels with your planner to your other devices.',
+  'Se você remover um tipo, essas datas são apagadas do seu Google Agenda (pedimos confirmação se forem mais de 3). O que você escreveu na sua agenda não é alterado. Sua escolha viaja com a sua agenda para seus outros aparelhos.'),
+ ('Quitaste todos los tipos: no se enviará nada. Toca «Sincronizar ahora» para quitar de tu Google Calendar lo que ya estaba.',
+  'You removed every type: nothing will be sent. Tap “Sync now” to remove what was already in your Google Calendar.',
+  'Você removeu todos os tipos: nada será enviado. Toque em «Sincronizar agora» para remover do seu Google Agenda o que já estava.'),
+ ('Envía todos los tipos de fechas.', 'It sends every type of date.', 'Envia todos os tipos de datas.'),
+ ('Envía', 'It sends', 'Envia'),
+ ('nada por ahora', 'nothing for now', 'nada por enquanto'),
+]

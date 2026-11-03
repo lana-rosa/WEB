@@ -117,5 +117,10 @@ v('dibujos y trazos de hojas distintas se conservan los dos', r.resultado._dib.b
 base = {}; for (let i = 1; i <= 200; i++) base['ag-p' + i + '-cliente'] = 'C' + i;
 cel = { ...base, 'ag-p201-cliente': 'Nuevo' };
 const t0 = Date.now(); r = f(base, cel, base); v('agenda grande (200 fichas) se mezcla rápido', Date.now() - t0 < 500 && filas(r.resultado, 'ag-p', 'cliente').length === 201, Date.now() - t0);
+// ---- Qué fechas enviar a Google Calendar (etapa 2 de Conexiones): `_gcalTipos` viaja entre aparatos ----
+{ const b0 = { 'ag-p1-cliente': 'Ana' }; const apagado = { ...b0, _gcalTipos: { envios: false } };
+  let rr = f(b0, apagado, { ...b0 }); v('apagar un tipo en un aparato llega al otro (el otro no lo tocó)', JSON.stringify(rr.resultado._gcalTipos) === JSON.stringify({ envios: false }), rr.resultado);
+  rr = f({ ...b0, _gcalTipos: { envios: false } }, { ...b0 }, { ...b0, _gcalTipos: { envios: false } }); v('volver a encender un tipo en un aparato también llega', rr.resultado._gcalTipos === undefined, rr.resultado);
+  rr = f(b0, { ...b0, _gcalTipos: { envios: false } }, { ...b0, _gcalTipos: { ferias: false } }); v('si cada aparato apaga uno distinto no se pierde datos de las fichas y queda uno de los dos', rr.resultado['ag-p1-cliente'] === 'Ana' && !!rr.resultado._gcalTipos, rr.resultado); }
 console.log(`\n${ok} comprobaciones correctas, ${mal} con falla.`);
 process.exit(mal ? 1 : 0);
