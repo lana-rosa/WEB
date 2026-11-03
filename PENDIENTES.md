@@ -257,7 +257,7 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] **Cómo se va a vender la agenda** (decidir con Sara): precio, pago (Wompi), cómo se activa por cuenta y política de condiciones.
 
 ## Base de datos y pagos — plan del 3-nov-2026 (rama `claude/modest-allen-rn99x9`)
-- [ ] **A1 (Jennifer, esfuerzo bajo, 2 min):** encender «Leaked password protection» en Supabase → Authentication → Sign In / Providers → Email (o Passwords), proyecto «Lana Rosa ERP + SO». Es un interruptor del panel; Claude no puede hacerlo desde aquí. Después, volver a correr el asesor.
+- [x] **A1 aceptado (3-nov-2026):** «Leaked password protection» solo existe en el plan Pro de Supabase y el proyecto está en el plan gratis (Supabase lo rechazó al guardar). Se deja el aviso del asesor como aceptado: la gente entra con enlace al correo o Google, casi sin contraseñas. Volver a encenderlo si algún día se pasa a Pro.
 - [ ] **A5 (esfuerzo medio):** lista lista para Jennifer en `herramientas/auditoria-360/LISTA-SEGURIDAD-PARA-JENNIFER.md` (3-nov-2026; incluye A1). Falta que ella la recorra y envíe capturas de lo que no coincida. Después Claude: SEG-10 y SEG-11 (tocan pagos: preguntar antes), SEG-12 y SEG-14.
 - [ ] **B (Jennifer + Claude):** pago real de prueba con Wompi (ovillo, pieza, membresía) cuando haya existencias; mirar Merchant Center por el aviso de disponibilidad.
 - [ ] **A6 (Claude, esfuerzo bajo, pendiente de publicar):** abrir PR de la rama `claude/modest-allen-rn99x9` a `main` con el visto bueno de Jennifer (notas y las migraciones 41 y 42, ya aplicadas en Supabase). Rama ya al día con `main` (3-nov).
