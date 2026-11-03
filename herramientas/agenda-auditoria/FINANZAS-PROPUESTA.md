@@ -70,7 +70,7 @@
 Los datos de cada hoja se pasan una sola vez a la hoja nueva con los mismos nombres de casilla, así copias, nube y Drive no cambian.
 
 ## 6. Cosas que hay que decidir (preguntas de sí o no en el chat)
-1. ¿Vuelve lo personal? (se quitó el 29-oct; si vuelve, cada anotación lleva «personal / negocio» y el resumen del emprendimiento solo cuenta el negocio.)
+1. **[SÍ, Jennifer 3-nov-2026]** ¿Vuelve lo personal? (se quitó el 29-oct; si vuelve, cada anotación lleva «personal / negocio» y el resumen del emprendimiento solo cuenta el negocio.)
 2. ¿Anotar ventas y gastos queda gratis y el resumen con gráficas queda de pago?
 3. ¿Se unen las tres hojas de resumen en una?
 4. ¿Se unen las tres hojas de anotar en «Ventas y gastos»?
