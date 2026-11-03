@@ -6,7 +6,7 @@
 
 **Publicado en `main` hasta hoy (#513 a #519):** metas de ahorro y planes con un solo formulario; agenda en celular con un solo fondo y hojas más anchas; letra mínima de 12 px; dibujos y fotos en IndexedDB (fotos a 1600 px; copia en la cuenta sin fotos si pasa de 3 MB); íconos nuevos de Jennifer (Recursos de Rosina, corazón, play, portátil, 123, brújula, disquete, flecha del menú); auditoría de Google (`herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`); memoria por temas. `rosina-web` desplegada en **v58**.
 
-**En la rama sin publicar (`claude/dazzling-keller-q3025h`):** tarjeta de la prueba gratis al inicio de Configuración (`membresia.js` v4). Lista «Hojas de…» arriba en la vista de sección del teléfono (hecho). En revisión con Jennifer en su celular: desplazamiento horizontal en abreviaturas (esperar captura).
+**Publicado el 3-nov-2026:** #525 (arreglos pequeños de Calendar; `google-calendar` v13 y `rosina-web` v59 desplegadas; auditoría en `herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`; falta que Jennifer pruebe el chat) y #527 (tarjeta de la prueba gratis al inicio de Configuración, `membresia.js` v4; lista «Hojas de…» arriba en la vista de sección del teléfono). **En la rama sin publicar:** nada. En revisión con Jennifer en su celular: desplazamiento horizontal en abreviaturas (esperar captura).
 
 **Pendiente de Jennifer:**
 - Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).
