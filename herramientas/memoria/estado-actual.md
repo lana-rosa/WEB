@@ -12,6 +12,8 @@
 
 **Publicado el 3-nov-2026:** #525 (arreglos pequeños de Calendar; `google-calendar` v13 y `rosina-web` v59 desplegadas; auditoría en `herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`; falta que Jennifer pruebe el chat) y #527 (tarjeta de la prueba gratis al inicio de Configuración, `membresia.js` v4; lista «Hojas de…» arriba en la vista de sección del teléfono). **Etapa 2 de «Conexiones e integraciones» publicada (#530) y puntos de miles (#531); `rosina-web` v61 sigue sin desplegar (encargo E1).** Plan hasta la apertura: `encargos.md`. La etapa 1 ya está en `main` (#528, `rosina-web` v60); Jennifer debe probar el chat. En revisión con Jennifer en su celular: desplazamiento horizontal en abreviaturas (esperar captura).
 
+**Cierre 3-nov-2026 (chat Agenda · Rosina e idiomas):** revisamos `PENDIENTES.md` con Jennifer y pasamos al historial lo hecho (Etapa 8, Recursos etapas 2 a 4, plazo de personalizados). Sin cambios de código ni de `GUIA_AGENDA`. Quedó a medias: limpiar duplicados del historial y confirmar `rosina-web` v61. Jennifer aprobó aplicar los cambios y subirlos a la rama; sin PR todavía.
+
 **Agenda · diseño y Plus (cierre 3-nov):** publicados #527, #529 y #531 (prueba gratis primero en Configuración, «Hojas de…» en la sección del teléfono, solo ✕ al cerrar, puntos de miles en dinero). A medias: Jennifer aún revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas».
 Decisiones de Jennifer: lista «Hojas de…» arriba, solo ✕ para cerrar, puntos de miles en toda casilla de dinero. Detalle en `agenda-diseno-y-pantallas.md` y `PENDIENTES.md`.
 
