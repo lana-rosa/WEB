@@ -401,3 +401,7 @@ FILAS += [
 FILAS += [
  ('No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.', 'We could not save the drawings from that backup. Your planner was not changed.', 'Não conseguimos salvar os desenhos dessa cópia. Sua agenda não foi alterada.'),
 ]
+
+FILAS += [
+ ('☁️ Copia en tu cuenta guardada (sin las fotos de los dibujos, por su tamaño)', '☁️ Backup saved to your account (without the drawing photos, because of their size)', '☁️ Cópia salva na sua conta (sem as fotos dos desenhos, por causa do tamanho)'),
+]

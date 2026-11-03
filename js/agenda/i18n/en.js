@@ -1788,5 +1788,6 @@ window.lrI18n.add("en", {
 "Plan agregado.": "Plan added.",
 "¿Borrar la meta «{n}»?": "Delete the goal «{n}»?",
 "¿Borrar el plan «{n}»?": "Delete the plan «{n}»?",
-"No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.": "We could not save the drawings from that backup. Your planner was not changed."
+"No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.": "We could not save the drawings from that backup. Your planner was not changed.",
+"☁️ Copia en tu cuenta guardada (sin las fotos de los dibujos, por su tamaño)": "☁️ Backup saved to your account (without the drawing photos, because of their size)"
 });

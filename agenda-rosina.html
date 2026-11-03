@@ -4131,7 +4131,13 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   function estadoNube(t) { var e = $('nube-estado'); if (e) e.textContent = t || ''; }
   function datosLocales() { try { return JSON.parse(lsGet(CLAVE_AG)) || {}; } catch (e) { return {}; } }
   function hayLocal() { var d = datosLocales(); return Object.keys(d).filter(function (k) { return k !== 'ag-anio' && k !== '_anios'; }).length > 0 || !!(window.lrDibStore && window.lrDibStore.hayDib()); }
-  async function aplicarNube(d, marca) { if (!d || typeof d !== 'object') return; var texto = window.lrDibStore ? await window.lrDibStore.escribirDatos(d) : JSON.stringify(d); lsSet(CLAVE_AG, texto); lsSet(CL_BASE, marca); lsDel(CL_SUCIO); location.reload(); }
+  async function aplicarNube(d, marca) {
+    if (!d || typeof d !== 'object') return;
+    if (d._dibSinFotos) {   // la copia de la cuenta no trae las fotos de los dibujos: se conservan las de este dispositivo
+      var loc = (window.lrAgendaNucleo && window.lrAgendaNucleo.datos()._dib) || {}; delete d._dibSinFotos;
+      Object.keys(d._dib || {}).forEach(function (k) { if (d._dib[k] && !d._dib[k].img && loc[k] && loc[k].img) d._dib[k].img = loc[k].img; });
+    }
+    var texto = window.lrDibStore ? await window.lrDibStore.escribirDatos(d) : JSON.stringify(d); lsSet(CLAVE_AG, texto); lsSet(CL_BASE, marca); lsDel(CL_SUCIO); location.reload(); }
 
   /* ---- Botones y recordatorio ---- */
   function pintar() {
@@ -4156,14 +4162,23 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   $('nube-activar').addEventListener('click', abrirNube);
 
   /* ---- Sincronización ---- */
+  /* La copia en la cuenta tiene tope de 3 MB. Con IndexedDB las fotos de los dibujos pueden ser mucho más grandes: si no caben, a la cuenta van los trazos SIN las fotos (las fotos quedan en el dispositivo, en las copias de archivo y en Drive). */
+  var paraLaCuenta = null;
+  async function datosParaLaCuenta() {
+    var d = window.lrDibStore ? await window.lrDibStore.completos(datosLocales()) : datosLocales();
+    if (!d._dib || JSON.stringify(d).length <= 2900000) return d;
+    var o = {}; Object.keys(d).forEach(function (k) { o[k] = d[k]; }); o._dib = {};
+    Object.keys(d._dib).forEach(function (k) { var r = d._dib[k] || {}; o._dib[k] = { s: r.s || [], img: '' }; });
+    o._dibSinFotos = 1; return o;
+  }
   async function subir(base) {
     if (nube.ocupado) return; nube.ocupado = true; estadoNube('☁️ Guardando en tu cuenta…');
     var otraVez = false;
     try {
-      var r = await sb.rpc('agenda_nube_guardar', { p_datos: window.lrDibStore ? await window.lrDibStore.completos(datosLocales()) : datosLocales(), p_base: base !== undefined ? base : (lsGet(CL_BASE) || null) });
+      var r = await sb.rpc('agenda_nube_guardar', { p_datos: paraLaCuenta = await datosParaLaCuenta(), p_base: base !== undefined ? base : (lsGet(CL_BASE) || null) });
       var d = r.data || {};
       if (r.error) estadoNube('☁️ Sin conexión: se guardará en tu cuenta cuando vuelva.');
-      else if (d.ok) { lsSet(CL_BASE, d.actualizado); lsDel(CL_SUCIO); estadoNube('☁️ Copia en tu cuenta guardada'); }
+      else if (d.ok) { lsSet(CL_BASE, d.actualizado); lsDel(CL_SUCIO); estadoNube(paraLaCuenta && paraLaCuenta._dibSinFotos ? '☁️ Copia en tu cuenta guardada (sin las fotos de los dibujos, por su tamaño)' : '☁️ Copia en tu cuenta guardada'); }
       else if (d.conflicto) otraVez = true;
       else if (d.error === 'sin_consentimiento') { estado.nube = false; nube.listo = false; pintar(); estadoNube(''); }
       else estadoNube(d.error === 'muy_grande' ? '☁️ La agenda es muy grande para guardarla en la cuenta.' : '☁️ No se pudo guardar en tu cuenta; se reintenta con el próximo cambio.');
@@ -4314,7 +4329,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script type="module" src="/js/agenda/drive-sync.js?v=3"></script>
 <script type="module" src="/js/agenda/membresia.js?v=3"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
-<script src="/js/agenda/dibujo.js?v=13" defer></script>
+<script src="/js/agenda/dibujo.js?v=14" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
 <script src="/js/agenda/exportar.js?v=4" defer></script>

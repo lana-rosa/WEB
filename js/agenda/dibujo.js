@@ -152,9 +152,9 @@
       lector.onload = function () {
         var im = new Image();
         im.onload = function () {
-          var m = 760, esc = Math.min(1, m / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * esc); c.height = Math.round(im.height * esc);
+          var act = window.lrDibStore && window.lrDibStore.activo, m = act ? 1600 : 760, esc = Math.min(1, m / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * esc); c.height = Math.round(im.height * esc);
           var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height);
-          var url = c.toDataURL('image/jpeg', 0.62);
+          var url = c.toDataURL('image/jpeg', act ? 0.82 : 0.62);
           if (bytesImg() - (reg(false).img || '').length + url.length > topes().img) { decir('Ya hay muchas fotos guardadas. Borra alguna para subir otra.'); return; }
           reg(true).img = url; guardar(); pintar(); decir('Foto lista. Puedes dibujar encima.');
         };
