@@ -6,7 +6,7 @@
 
 **Publicado en `main` hasta hoy (#513 a #519):** metas de ahorro y planes con un solo formulario; agenda en celular con un solo fondo y hojas más anchas; letra mínima de 12 px; dibujos y fotos en IndexedDB (fotos a 1600 px; copia en la cuenta sin fotos si pasa de 3 MB); íconos nuevos de Jennifer (Recursos de Rosina, corazón, play, portátil, 123, brújula, disquete, flecha del menú); auditoría de Google (`herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`); memoria por temas. `rosina-web` desplegada en **v58**.
 
-**En la rama sin publicar:** nada (al crear este archivo).
+**En la rama sin publicar:** solo notas de memoria de la auditoría del ecosistema Google (3-nov-2026): matriz y plan en `herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`, **a la espera del visto bueno de Jennifer** antes de implementar (no se tocó código).
 
 **Pendiente de Jennifer:**
 - Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).
