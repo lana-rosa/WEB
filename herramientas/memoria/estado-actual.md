@@ -8,7 +8,8 @@
 
 ## Por chat (cada uno reemplaza solo el suyo)
 - **1 · Agenda datos y Google:** publicado: auditoría, arreglos de Calendar, Conexiones etapas 1 y 2 (#525, #528, #530). A medias: interruptor de fotos de Drive (no hecho a propósito: riesgo de perder dibujos); etapas 3 y 4. Falta que Jennifer pruebe Drive y Calendar reales.
-- **2 · Agenda diseño y Plus:** publicado #527, #529, #531, #535. A medias: Jennifer revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas» (espera captura); puntos de miles en ferias, costo por ovillo y catálogo.
+- **2 · Agenda diseño y Plus:** publicado #527, #529, #531, #535. E11 hecho en papel: `FINANZAS-PROPUESTA.md` + maqueta (dinero 10→5 hojas, tiempo 6→4); esperan 6 respuestas de sí o no de Jennifer; la agenda no se tocó.
+  A medias: Jennifer revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas»; puntos de miles en ferias, costo por ovillo y catálogo.
 - **3 · Agenda Rosina e idiomas:** E1 hecho (`rosina-web` desplegada con la etapa 2 y los puntos de miles en `GUIA_AGENDA`); renglones hechos de `PENDIENTES.md` al historial. A medias: 2 preguntas de prueba para Jennifer en `agenda-casa-y-rosina.md`.
 - **4 · Tienda y Mercería:** etiquetas al día; plantilla de 34 ítems y `cargar_merceria.py` listos. Espera el Excel y las 34 fotos de Jennifer (E2) y su decisión de si se recoge en el taller antes del 13-dic.
 - **5 · Base de datos y pagos:** migraciones 41 y 42 aplicadas; lista de seguridad lista en `herramientas/auditoria-360/LISTA-SEGURIDAD-PARA-JENNIFER.md`. A medias: Jennifer la recorre (incluye A1) y prueba A4b en el ERP; después SEG-10/11 (pagos: preguntar).
