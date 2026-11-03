@@ -6,7 +6,7 @@
 
 **Publicado en `main` hasta hoy (#513 a #519):** metas de ahorro y planes con un solo formulario; agenda en celular con un solo fondo y hojas más anchas; letra mínima de 12 px; dibujos y fotos en IndexedDB (fotos a 1600 px; copia en la cuenta sin fotos si pasa de 3 MB); íconos nuevos de Jennifer (Recursos de Rosina, corazón, play, portátil, 123, brújula, disquete, flecha del menú); auditoría de Google (`herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`); memoria por temas. `rosina-web` desplegada en **v58**.
 
-**En la rama sin publicar:** etapa 1 de «Conexiones e integraciones» (resumen de servicios y permisos explicados en ⚙️ Configuración; solo lee, no cambia permisos). Falta desplegar `rosina-web` v60 y publicar con el visto bueno de Jennifer; antes, que Jennifer pruebe el chat de v59.
+**En la rama sin publicar:** etapa 1 de «Conexiones e integraciones» (resumen de servicios y permisos explicados en ⚙️ Configuración; solo lee, no cambia permisos). `rosina-web` v60 ya desplegada (verificada); falta el merge del PR con el visto bueno de Jennifer y que pruebe el chat (v60).
 
 **Pendiente de Jennifer:**
 - Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).

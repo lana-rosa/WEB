@@ -1,7 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v60 (3-nov-2026; SIN desplegar): GUIA_AGENDA explica «Conexiones e integraciones» (resumen de servicios y permisos de Google Calendar y Drive).
+// v60 (3-nov-2026; desplegada): GUIA_AGENDA explica «Conexiones e integraciones» (resumen de servicios y permisos de Google Calendar y Drive).
 // v59 (3-nov-2026): GUIA_AGENDA corrige el recordatorio de Google Calendar («a las 9 a. m. del día anterior», no «la tarde anterior»).
 // v58 (3-nov-2026): GUIA_AGENDA explica que los dibujos y sus fotos se guardan en IndexedDB (más espacio) y qué cubre cada copia.
 // v53 (2-nov-2026; desplegada): GUIA_AGENDA explica metas de ahorro y planes del negocio con un solo formulario y «Agregar».
