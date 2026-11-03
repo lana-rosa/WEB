@@ -88,7 +88,8 @@ Cada encargo va a un chat de tema (plantillas en `plantillas-de-chats.md`). El e
 ## Agenda: ideas de otras agendas (aprobado por Jennifer el 3-nov-2026; informe en `herramientas/agenda-auditoria/IDEAS-DE-OTRAS-AGENDAS-2026-11.md`)
 **Hasta el 13-dic no se cambia la agenda publicada** (solo E11 en papel y E12). Desde el 14-dic, en este orden: E13 → E14 → E15 → E16 → E17.
 
-## [ ] E11 · Finanzas: revisión y propuesta, sin tocar la agenda (chat 2) — ya
+## [ ] E11 · Revisión de TODA la agenda para que nada se repita (empezando por finanzas), sin tocar la agenda (chat 2) — ya
+- **Ampliado por Jennifer (3-nov-2026):** además de finanzas, revisar **todas las secciones y sus 39 hojas** (`img/agenda/hojas/` y el índice de la agenda): proyectos, patrones, clientas y pedidos, inventario y compras, tiempo (día, semana, mes, año), aprendizaje y Rosina. Por cada grupo: qué hojas o campos se repiten, cuál queda, cuál se une y cómo se pasan los datos. Un solo documento: `herramientas/agenda-auditoria/REVISION-HOJAS-PROPUESTA.md`.
 - **Objetivo:** revisar las 10 hojas con dinero (`fin-movimientos`, `fin-presupuesto`, `fin-fijos`, `fin-tcredito`, `fin-resumen`, `fin-analisis`, `fin-negocio`, `gastos-negocio`, `ventas-mes`, `catalogo-precios`) y las metas: qué campo se escribe en dos lugares, qué hoja solo repite. Proponer los dos grupos del informe (punto 4) con «cada peso se escribe una sola vez», cómo pasar los datos de las hojas que sobren sin perder nada, qué cambia en el Excel de finanzas y en el informe del mes. Revisar también las 6 hojas de tiempo (punto 5).
 - **Leer:** el informe, `agenda-membresia-y-plus.md`, `agenda-nucleo-y-fichas.md`.
 - **No tocar:** el código de la agenda (solo un documento: `herramientas/agenda-auditoria/FINANZAS-PROPUESTA.md`).
