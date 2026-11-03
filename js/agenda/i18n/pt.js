@@ -1788,5 +1788,6 @@ window.lrI18n.add("pt", {
 "Plan agregado.": "Plano adicionado.",
 "¿Borrar la meta «{n}»?": "Apagar a meta «{n}»?",
 "¿Borrar el plan «{n}»?": "Apagar o plano «{n}»?",
-"No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.": "Não conseguimos salvar os desenhos dessa cópia. Sua agenda não foi alterada."
+"No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.": "Não conseguimos salvar os desenhos dessa cópia. Sua agenda não foi alterada.",
+"☁️ Copia en tu cuenta guardada (sin las fotos de los dibujos, por su tamaño)": "☁️ Cópia salva na sua conta (sem as fotos dos desenhos, por causa do tamanho)"
 });

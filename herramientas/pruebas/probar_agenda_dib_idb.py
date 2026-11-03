@@ -118,4 +118,47 @@ with sync_playwright() as p:
     T.v('una foto de 3 millones de letras (más que el tope antiguo) se guarda en IndexedDB y localStorage queda liviano',
         len(dib_idb(pg).get('ficha-proyecto:k1', {}).get('img', '')) > 3000000 and len(pg.evaluate("localStorage.getItem('rosinaAgenda')")) < 5000)
     T.v('y el tope nuevo es mayor', pg.evaluate("window.lrDibStore.limites().img") > 10000000); ctx.close()
+
+    # ---- 11. fotos más grandes con IndexedDB, y la copia en la cuenta (tope de 3 MB) ----
+    from PIL import Image
+    import random
+    random.seed(3); im = Image.frombytes('RGB', (2400, 1800), bytes(random.getrandbits(8) for _ in range(2400 * 1800 * 3)))
+    ruta = os.path.join(tempfile.mkdtemp(), 'foto.jpg'); im.save(ruta, quality=90)
+    ctx = contexto(b, 1280, 900, datos={'ag-duena': 'Sara'}); pg = abrir(ctx, 'ficha-proyecto', 1800)
+    pg.set_input_files('#dibujo-proyecto input[type=file]', ruta); pg.wait_for_timeout(2500)
+    g = dib_idb(pg); img = g.get('ficha-proyecto:k1', {}).get('img', '')
+    ancho = pg.evaluate("new Promise(r => { const i = new Image(); i.onload = () => r([i.width, i.height]); i.src = window.lrAgendaNucleo.datos()._dib['ficha-proyecto:k1'].img; })")
+    T.v('con IndexedDB la foto se guarda más grande (1600 px, antes 760 px)', max(ancho) == 1600, ancho)
+    T.v('y localStorage sigue liviano', len(pg.evaluate("localStorage.getItem('rosinaAgenda')")) < 5000); ctx.close()
+    ctx = contexto(b, 1280, 900, datos={'ag-duena': 'Sara'}); ctx.add_init_script("Object.defineProperty(window, 'indexedDB', { value: undefined, configurable: true });")
+    pg = abrir(ctx, 'ficha-proyecto', 1800); pg.set_input_files('#dibujo-proyecto input[type=file]', ruta); pg.wait_for_timeout(2500)
+    ancho = pg.evaluate("new Promise(r => { const i = new Image(); i.onload = () => r([i.width, i.height]); i.src = window.lrAgendaNucleo.datos()._dib['ficha-proyecto:k1'].img; })")
+    T.v('sin IndexedDB la foto sigue reducida a 760 px', max(ancho) == 760, ancho); ctx.close()
+    FOTO = {'puntos:1': {'s': [[0, 1, 5, 5, 9, 9]], 'img': ''}, 'ficha-proyecto:k1': {'s': [[1, 1, 5, 5, 9, 9]], 'img': 'data:image/jpeg;base64,' + 'C' * 3500000}}
+    subidos = []
+    ctx = contexto(b, 1280, 900, datos={'ag-duena': 'Sara', '_dib': FOTO}, config_abierta=False)
+    def rpc2(r):
+        n = r.request.url.split('/rpc/')[1].split('?')[0]; cuerpo = r.request.post_data_json or {}
+        if n == 'agenda_nube_guardar': subidos.append(cuerpo.get('p_datos') or {}); out = {'ok': True, 'actualizado': '2026-11-03T10:00:00+00:00'}
+        elif n == 'agenda_nube_leer': out = {'vacio': True}
+        else: out = None
+        r.fulfill(status=200, content_type='application/json', body=json.dumps(out))
+    ctx.route('**/rest/v1/rpc/agenda_nube_*', rpc2); pg = abrir(ctx, '', 3500, config=False)
+    u = subidos[-1] if subidos else {}
+    T.v('copia en la cuenta con fotos muy grandes: sube los trazos SIN las fotos (cabe en 3 MB) y lo marca', bool(u) and u.get('_dibSinFotos') == 1 and set(u.get('_dib', {})) == set(FOTO) and all(not v.get('img') for v in u['_dib'].values()) and len(json.dumps(u)) < 2900000, [list(u.get('_dib', {})), len(json.dumps(u))])
+    T.v('y las fotos siguen intactas en este dispositivo', len(dib_idb(pg)['ficha-proyecto:k1']['img']) == 3500000 + len('data:image/jpeg;base64,'))
+    ctx.close()
+    # restaurar desde la cuenta una copia sin fotos NO borra las fotos de este dispositivo
+    nube_datos = {'ag-duena': 'De la cuenta', '_dibSinFotos': 1, '_dib': {'puntos:1': {'s': [[2, 1, 7, 7, 9, 9]], 'img': ''}, 'ficha-proyecto:k1': {'s': [[1, 1, 5, 5, 9, 9]], 'img': ''}}}
+    ctx = contexto(b, 1280, 900, datos={'ag-duena': 'Sara', '_dib': FOTO}, config_abierta=False)
+    def rpc3(r):
+        n = r.request.url.split('/rpc/')[1].split('?')[0]; cuerpo = r.request.post_data_json or {}
+        if n == 'agenda_nube_guardar': out = {'conflicto': True, 'actualizado': '2026-11-03T09:00:00+00:00'}
+        elif n == 'agenda_nube_leer': out = {'datos': nube_datos, 'actualizado': '2026-11-03T09:00:00+00:00'}
+        else: out = None
+        r.fulfill(status=200, content_type='application/json', body=json.dumps(out))
+    ctx.route('**/rest/v1/rpc/agenda_nube_*', rpc3); pg = abrir(ctx, '', 6000, config=False)
+    g = dib_idb(pg)
+    T.v('usar la copia de la cuenta (sin fotos) conserva las fotos de este dispositivo y trae los trazos de la cuenta', len(g.get('ficha-proyecto:k1', {}).get('img', '')) > 3000000 and g.get('puntos:1', {}).get('s', [[None]])[0][0] == 2, [list(g), len(g.get('ficha-proyecto:k1', {}).get('img', ''))])
+    ctx.close()
 T.fin()
