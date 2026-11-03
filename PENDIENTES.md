@@ -242,7 +242,7 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] **Probar con aparatos reales:** lápiz digital en iPad (Apple Pencil) y Samsung (S Pen), dictado por voz en Chrome y Safari, y la agenda completa en celular y tablet.
 - [ ] **Abogada:** revisar el párrafo nuevo «Escribir con la voz y con el lápiz» de `politicas.html#datos` (apartado 11).
 - [ ] Ideas pendientes de Sara para la agenda («todavía tengo algunas ideas en mente»): anotarlas aquí cuando las diga. (Google Calendar se encendió el 29-oct por pedido de Sara.)
-- [ ] Excel: faltan en el libro las hojas de finanzas distintas de «Mis movimientos» (presupuesto, fijos, deudas, tarjetas) y el tablero.
+- [x] Excel de finanzas (3-nov-2026): ya salen presupuesto, metas, planes, gastos fijos, deudas, tarjetas y pagos a tarjetas (`exportar.js` v5, prueba `probar_agenda_excel_finanzas.py`, 10); con la membresía vencida no salen. Los tableros y gráficas no se exportan (se calculan de estos datos).
 
 ## Agenda «En construcción» y nuevas hojas (pedido de Sara del 28-oct-2026)
 - [ ] **Sara: fotos de los ovillos de la Mercería** para la paleta de colores (34 archivos de `img/productos/`); mientras tanto cada color muestra «Foto pronto».
