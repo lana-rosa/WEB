@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Cambia los textos ESTÁTICOS que dicen "inauguración prevista" por los de tienda ya abierta.
 
-Los textos visibles de las páginas ya cambian solos el 16-nov-2026 (js/apertura.js). Lo que un buscador o una IA
+Los textos visibles de las páginas ya cambian solos el 16-dic-2026 (js/apertura.js). Lo que un buscador o una IA
 lee sin ejecutar JavaScript (respuestas de preguntas frecuentes en JSON-LD, llms.txt, texto base de la página
 de la tienda física) se cambia con este script. Lo ejecuta solo el flujo .github/workflows/activar-apertura.yml
-el 16-nov-2026, y también se puede correr a mano:
+el 16-dic-2026, y también se puede correr a mano:
 
   python3 herramientas/activar_apertura.py --simular   # muestra qué cambiaría
   python3 herramientas/activar_apertura.py             # aplica los cambios
@@ -20,20 +20,20 @@ HORARIO = "Nuestra tienda física atiende de lunes a viernes de 7:30 a.m. a 6:15
 
 CAMBIOS = [
     ("merceria/preguntas-frecuentes/index.html",
-     "La inauguración está prevista para el domingo 15 de noviembre de 2026. Mira la página de la tienda para la dirección, el horario y cómo llegar.\"",
+     "La inauguración está prevista para el martes 15 de diciembre de 2026. Mira la página de la tienda para la dirección, el horario y cómo llegar.\"",
      "Ya estamos abiertas. Mira la página de la tienda para la dirección, el horario y cómo llegar.\""),
     ("llms.txt",
-     "Inauguración prevista: domingo 15 de noviembre de 2026.",
-     "Tienda abierta al público desde el 16 de noviembre de 2026."),
+     "Inauguración prevista: martes 15 de diciembre de 2026.",
+     "Tienda abierta al público desde el 16 de diciembre de 2026."),
     ("merceria/tienda-fisica/index.html",
-     "id=\"visita-estado\">Inauguración prevista: domingo 15 de noviembre de 2026</p>",
+     "id=\"visita-estado\">Inauguración prevista: martes 15 de diciembre de 2026</p>",
      "id=\"visita-estado\">Ya estamos abiertas</p>"),
 ]
 
-# «Recoger en la tienda física (apertura: 15 de noviembre de 2026) es gratis»: tras la apertura se quita el paréntesis.
+# «Recoger en la tienda física (apertura: 15 de diciembre de 2026) es gratis»: tras la apertura se quita el paréntesis.
 for _ruta in ("tienda.html", "index.html", "contacto.html", "precios.html", "llms.txt",
               "merceria/index.html", "merceria/catalogo/index.html", "merceria/preguntas-frecuentes/index.html"):
-    CAMBIOS.append((_ruta, " (apertura: 15 de noviembre de 2026)", ""))
+    CAMBIOS.append((_ruta, " (apertura: 15 de diciembre de 2026)", ""))
 
 def main():
     simular = "--simular" in sys.argv
