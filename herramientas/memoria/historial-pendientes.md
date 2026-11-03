@@ -4,12 +4,8 @@
 
 # Pendientes de la página web — Lana Rosa Crochet
 
-Última revisión: 9 de octubre de 2026 (reordenado y verificado contra el repositorio y la base de datos).
-Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial completo de lo hecho (y el texto anterior de este archivo) está en `herramientas/historial/PENDIENTES-hasta-2026-10-09.md`.
 
-**Fechas clave:** inauguración de la tienda física el **domingo 15-nov-2026** (sujeta a cambios); atención normal desde el **lunes 16-nov** (L–V 7:30 a. m.–6:15 p. m., sáb 8:00–12:00). `js/apertura.js` y el flujo `activar-apertura.yml` cambian los textos solos el 16-nov; si la fecha se mueve, cambiar `2026-11-16` en `js/apertura.js`, el cron del flujo y `herramientas/activar_apertura.py`.
 
----
 
 ## ⭐ Plus para emprendedoras (plan acordado con Sara, 31-oct-2026)
 - [x] Etapa 1: avisos de hoy y consejo de Rosina en Mi panel (gratis).

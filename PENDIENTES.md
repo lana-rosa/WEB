@@ -1,7 +1,15 @@
-## ⭐ Plus para emprendedoras (plan acordado con Sara, 31-oct-2026)
+# Pendientes de la página web — Lana Rosa Crochet
+
+Última revisión: 9 de octubre de 2026 (reordenado y verificado contra el repositorio y la base de datos).
+Marca con `[x]` lo que ya esté hecho y agrega abajo lo nuevo. El historial completo de lo hecho (y el texto anterior de este archivo) está en `herramientas/historial/PENDIENTES-hasta-2026-10-09.md`.
+
+**Fechas clave:** inauguración de la tienda física el **domingo 15-nov-2026** (sujeta a cambios); atención normal desde el **lunes 16-nov** (L–V 7:30 a. m.–6:15 p. m., sáb 8:00–12:00). `js/apertura.js` y el flujo `activar-apertura.yml` cambian los textos solos el 16-nov; si la fecha se mueve, cambiar `2026-11-16` en `js/apertura.js`, el cron del flujo y `herramientas/activar_apertura.py`.
+
+---
 
 Solo lo **abierto** y las reglas vigentes. Lo ya hecho (con su historia) está en `herramientas/memoria/historial-pendientes.md`: ábrelo solo si necesitas saber cómo o cuándo se hizo algo. Al terminar una tarea, pasa su renglón al historial (no lo dejes aquí marcado).
 
+## ⭐ Plus para emprendedoras (plan acordado con Sara, 31-oct-2026)
 - [ ] **Íconos de Jennifer (3-nov-2026, hechos; sin publicar):** hoja «Recursos de Rosina», sus 6 pestañas (`img/agenda/recursos/rr-*.webp`), corazón, play, portátil, 123, brújula, disquete y flecha de «Ocultar menú»; falta publicarlos con su OK.
 - [ ] Etapa 0 (la hace Sara): entrevistas con ~10 usuarias, pruebas en iPhone/Samsung/iPad, pago real de $5.000, revisión de la abogada.
 - [~] Etapa 7: **decisión de Sara (1-nov-2026): en lugar de tablas propias, sincronizar la agenda con el Google Drive de la usuaria (carpeta oculta, datos fuera de nuestros servidores).** PUBLICADA #483 (1-nov-2026); función `google-drive`, migración 40 y `rosina-web` v45 desplegadas; los 3 pasos de Google Cloud hechos por Sara. **Falta: probar con su Google real en dos aparatos (plan en `herramientas/google-drive/README.md`) y revisar con la abogada el apartado 12 de `politicas.html#datos`.** Las tablas propias quedan para cuando haya más usuarias. · [ ] Etapa 8: inventario con movimientos y conexiones (**hecha el 2-nov-2026**: `js/agenda/inventario-mov.js`, «Compré»/«Usé» por lana con historial en `datos._lanaMovs`, deshacer, resumen del mes y, en proyectos terminados, «¿Gastaste lana en este proyecto?» que abre el inventario con el nombre; no descuenta solo porque los proyectos no tienen campo de lana; prueba `probar_agenda_inventario_mov.py` (10); **`rosina-web` v49 desplegada el 2-nov-2026**; **lana por proyecto hecha el 2-nov-2026** (`js/agenda/proyecto-lana.js`: «Lana de este proyecto» en cada proyecto con nombre, «Descontar del inventario» al terminar; datos en `datos._proyLana`; prueba `probar_agenda_proyecto_lana.py` (9); **`rosina-web` v50 desplegada el 2-nov-2026**); **compras de lana → gasto en «Ingresos y gastos» hecho el 2-nov-2026** (casilla «Anotar la compra como gasto del negocio» en «Compré»; `_fin.movs` con `inv`; «Deshacer» lo quita; **`rosina-web` v51 desplegada el 2-nov-2026**)).
