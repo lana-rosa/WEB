@@ -10,7 +10,9 @@
 
 **Orquestador y chats:** plantilla 0 en `plantillas-de-chats.md`. Decidido por Jennifer: orquestador con Opus 5.5 y 7 chats de tema con Sonnet 5.5; cada chat cierra con «Cierre de sesión» (anota en su tema y aquí, máx. 3 líneas).
 
-**Publicado el 3-nov-2026:** #525 (arreglos pequeños de Calendar; `google-calendar` v13 y `rosina-web` v59 desplegadas; auditoría en `herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`; falta que Jennifer pruebe el chat) y #527 (tarjeta de la prueba gratis al inicio de Configuración, `membresia.js` v4; lista «Hojas de…» arriba en la vista de sección del teléfono). **Etapa 2 de «Conexiones e integraciones» (interruptores de qué fechas envía Calendar) en la rama, sin publicar; `rosina-web` v61 sin desplegar.** La etapa 1 ya está en `main` (#528, `rosina-web` v60); Jennifer debe probar el chat. En revisión con Jennifer en su celular: desplazamiento horizontal en abreviaturas (esperar captura).
+**Publicado el 3-nov-2026:** #525 (arreglos pequeños de Calendar; `google-calendar` v13 y `rosina-web` v59 desplegadas; auditoría en `herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`; falta que Jennifer pruebe el chat) y #527 (tarjeta de la prueba gratis al inicio de Configuración, `membresia.js` v4; lista «Hojas de…» arriba en la vista de sección del teléfono). **Etapas 1 y 2 de «Conexiones e integraciones» ya en `main` (#528 y #530; verificar con Jennifer si `rosina-web` v61 quedó desplegada), más #529 y #531 (puntos de miles).** Jennifer debe probar el chat. En revisión con Jennifer en su celular: desplazamiento horizontal en abreviaturas (esperar captura).
+
+**Cierre 3-nov-2026 (chat Agenda · Rosina e idiomas):** revisamos `PENDIENTES.md` con Jennifer y pasamos al historial lo hecho (Etapa 8, Recursos etapas 2 a 4, plazo de personalizados). Sin cambios de código ni de `GUIA_AGENDA`. Quedó a medias: limpiar duplicados del historial y confirmar `rosina-web` v61. Jennifer aprobó aplicar los cambios y subirlos a la rama; sin PR todavía.
 
 **Pendiente de Jennifer:**
 - Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).
