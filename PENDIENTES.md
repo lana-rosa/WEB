@@ -258,7 +258,7 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 
 ## Base de datos y pagos — plan del 3-nov-2026 (rama `claude/modest-allen-rn99x9`)
 - [ ] **A1 (Jennifer, esfuerzo bajo, 2 min):** encender «Leaked password protection» en Supabase → Authentication → Sign In / Providers → Email (o Passwords), proyecto «Lana Rosa ERP + SO». Es un interruptor del panel; Claude no puede hacerlo desde aquí. Después, volver a correr el asesor.
-- [ ] **A5 (Claude + Jennifer, esfuerzo medio):** lista SEG-15 y SEG-03/10/11/12/14.
+- [ ] **A5 (esfuerzo medio):** lista lista para Jennifer en `herramientas/auditoria-360/LISTA-SEGURIDAD-PARA-JENNIFER.md` (3-nov-2026; incluye A1). Falta que ella la recorra y envíe capturas de lo que no coincida. Después Claude: SEG-10 y SEG-11 (tocan pagos: preguntar antes), SEG-12 y SEG-14.
 - [ ] **B (Jennifer + Claude):** pago real de prueba con Wompi (ovillo, pieza, membresía) cuando haya existencias; mirar Merchant Center por el aviso de disponibilidad.
 - [ ] **A6 (Claude, esfuerzo bajo, pendiente de publicar):** abrir PR de la rama `claude/modest-allen-rn99x9` a `main` con el visto bueno de Jennifer (notas y las migraciones 41 y 42, ya aplicadas en Supabase). Rama ya al día con `main` (3-nov).
 - [ ] **A4b, revisión en el ERP (Jennifer, esfuerzo bajo):** entrar al ERP como administradora y como taller; probar «tomar material para un pedido» y «compras con requisitos» y avisar si algún rol que antes podía ya no puede.
