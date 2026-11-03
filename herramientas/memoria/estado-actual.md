@@ -10,7 +10,7 @@
 
 **Orquestador y chats:** plantilla 0 en `plantillas-de-chats.md`. Decidido por Jennifer: orquestador con Opus 5.5 y 7 chats de tema con Sonnet 5.5; cada chat cierra con «Cierre de sesión» (anota en su tema y aquí, máx. 3 líneas).
 
-**Publicado el 3-nov-2026:** #525 (arreglos pequeños de Calendar; `google-calendar` v13 y `rosina-web` v59 desplegadas; auditoría en `herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`; falta que Jennifer pruebe el chat) y #527 (tarjeta de la prueba gratis al inicio de Configuración, `membresia.js` v4; lista «Hojas de…» arriba en la vista de sección del teléfono). **Etapa 2 de «Conexiones e integraciones» (interruptores de qué fechas envía Calendar) en la rama, sin publicar; `rosina-web` v61 sin desplegar.** La etapa 1 ya está en `main` (#528, `rosina-web` v60); Jennifer debe probar el chat. En revisión con Jennifer en su celular: desplazamiento horizontal en abreviaturas (esperar captura).
+**Publicado el 3-nov-2026:** #525 (arreglos pequeños de Calendar; `google-calendar` v13 y `rosina-web` v59 desplegadas; auditoría en `herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`; falta que Jennifer pruebe el chat) y #527 (tarjeta de la prueba gratis al inicio de Configuración, `membresia.js` v4; lista «Hojas de…» arriba en la vista de sección del teléfono). **Etapa 2 de «Conexiones e integraciones» publicada (#530) y puntos de miles (#531); `rosina-web` v61 sigue sin desplegar (encargo E1).** Plan hasta la apertura: `encargos.md`. La etapa 1 ya está en `main` (#528, `rosina-web` v60); Jennifer debe probar el chat. En revisión con Jennifer en su celular: desplazamiento horizontal en abreviaturas (esperar captura).
 
 **Pendiente de Jennifer:**
 - Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).
