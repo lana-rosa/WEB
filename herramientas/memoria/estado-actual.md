@@ -20,7 +20,7 @@
 2. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
 3. Documento de marketing de las funciones; cobro en dólares.
 
-**Plan de base de datos y pagos (3-nov, solo plan):** asesor de seguridad sin errores, 5 avisos (ver nota en `base-de-datos-y-cuentas.md`); A2b y A3 hechos (migración 41, `search_path` fijado); A1/A2 revisados (A2 sin cambios; A1 lo enciende Jennifer en el panel); lo siguiente es probar Wompi de punta a punta, decidir la protección de contraseñas filtradas y revisar `fn_es_tejedora`/`fn_rol_actual` abiertas a `anon`.
+**Plan de base de datos y pagos (3-nov, solo plan):** asesor de seguridad sin errores, 5 avisos (ver nota en `base-de-datos-y-cuentas.md`); A4 auditado (3 funciones sin guarda de rol: ver A4b en `PENDIENTES.md`); A2b y A3 hechos (migración 41, `search_path` fijado); A1/A2 revisados (A2 sin cambios; A1 lo enciende Jennifer en el panel); lo siguiente es probar Wompi de punta a punta, decidir la protección de contraseñas filtradas y revisar `fn_es_tejedora`/`fn_rol_actual` abiertas a `anon`.
 
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026** (aplazada desde el 15-nov, 3-nov-2026); atención normal desde el lunes 14-dic. Reprogramado (3-nov): reunión con el contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
