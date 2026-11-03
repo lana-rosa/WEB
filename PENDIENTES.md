@@ -264,3 +264,5 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] **B (Jennifer + Claude):** pago real de prueba con Wompi (ovillo, pieza, membresía) cuando haya existencias; mirar Merchant Center por el aviso de disponibilidad.
 - [ ] **A6 (Claude, esfuerzo bajo, pendiente de publicar):** abrir PR de la rama `claude/modest-allen-rn99x9` a `main` con el visto bueno de Jennifer (notas y las migraciones 41 y 42, ya aplicadas en Supabase). Rama ya al día con `main` (3-nov).
 - [ ] **A4b, revisión en el ERP (Jennifer, esfuerzo bajo):** entrar al ERP como administradora y como taller; probar «tomar material para un pedido» y «compras con requisitos» y avisar si algún rol que antes podía ya no puede.
+- [ ] **HSTS en Cloudflare (Jennifer, esfuerzo bajo):** Edge Certificates → Enable HSTS con 6 meses, sin subdominios y sin preload. Hacerlo con calma: los navegadores lo recuerdan.
+- [ ] **Regla de revisión de `main` y dos pasos en cuentas (Jennifer, esfuerzo bajo):** ver `herramientas/auditoria-360/LISTA-SEGURIDAD-PARA-JENNIFER.md`.
