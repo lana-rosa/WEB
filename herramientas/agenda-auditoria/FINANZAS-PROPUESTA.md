@@ -75,7 +75,7 @@ Los datos de cada hoja se pasan una sola vez a la hoja nueva con los mismos nomb
 3. **[SÍ, Jennifer 3-nov-2026]** ¿Se unen las tres hojas de resumen en una?
 4. **[SÍ, Jennifer 3-nov-2026]** ¿Se unen las tres hojas de anotar en «Ventas y gastos»?
 5. **[SÍ, Jennifer 3-nov-2026]** ¿Se unen las hojas de tiempo (6 a 4)?
-6. ¿Todo esto se hace después del 13-dic (E16)?
+6. **[Jennifer 3-nov-2026: lo de finanzas se puede hacer YA, no hay que esperar al 13-dic; lo demás se pregunta aparte]** ¿Todo esto se hace después del 13-dic (E16)?
 
 ## 7. Orden sugerido (cada paso con foto y visto bueno)
 1. Una sola fuente por detrás, sin cambiar lo que se ve.
