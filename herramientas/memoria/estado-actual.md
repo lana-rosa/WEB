@@ -20,6 +20,6 @@
 2. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
 3. Documento de marketing de las funciones; cobro en dólares.
 
-**Fechas clave:** la tienda física abre el 15-nov-2026. Conteo físico 9-11 nov; ensayo de caja 12-14 nov.
+**Fechas clave:** la tienda física abre el **domingo 13-dic-2026** (aplazada desde el 15-nov, 3-nov-2026); atención normal desde el lunes 14-dic. Las fechas del conteo físico y del ensayo de caja están por reprogramar.
 
 **Reglas de oro (no olvidar):** desplegar `rosina-web` enviando `nucleo.ts` e `index.ts` COMPLETOS y comparar con lo desplegado; todo lo que lea la agenda completa debe pasar por `lrDibStore`; correr las pruebas de `herramientas/pruebas/` antes de publicar; no publicar sin el visto bueno de Jennifer.

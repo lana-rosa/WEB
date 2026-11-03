@@ -1,12 +1,12 @@
 name: Activar textos de tienda abierta
 
-# El 16-nov-2026 (primer día de atención normal) cambia los textos estáticos de "inauguración prevista"
+# El 14-dic-2026 (primer día de atención normal) cambia los textos estáticos de "inauguración prevista"
 # (JSON-LD de preguntas frecuentes, llms.txt, texto base de la tienda física) por los de tienda abierta.
 # Se puede lanzar a mano con "Run workflow". Ver herramientas/activar_apertura.py.
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 12 16 11 *"   # 16 de noviembre, 7:00 a.m. hora de Colombia
+    - cron: "0 12 14 12 *"   # 14 de diciembre, 7:00 a.m. hora de Colombia
 
 permissions:
   contents: write
@@ -14,8 +14,8 @@ permissions:
 jobs:
   activar:
     runs-on: ubuntu-latest
-    # solo a partir del 16-nov-2026 (el cron se repetiría cada año)
-    if: github.event_name == 'workflow_dispatch' || github.run_started_at >= '2026-11-16'
+    # solo a partir del 14-dic-2026 (el cron se repetiría cada año)
+    if: github.event_name == 'workflow_dispatch' || github.run_started_at >= '2026-12-14'
     steps:
       - uses: actions/checkout@v4
         with:

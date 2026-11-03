@@ -41,11 +41,33 @@
     });
     return filas.length ? [{ nombre: 'Mi visión del año', columnas: ['Pregunta', 'Respuesta'], filas: filas }] : [];
   }
+  /* Finanzas del negocio (3-nov-2026): además de «Ingresos y gastos» salen presupuesto, metas, planes, gastos fijos, deudas y tarjetas. Cada hoja de Excel lleva `hoja` = el título de la hoja
+     de la agenda de la que viene, para que el candado de la membresía funcione igual. Los importes van como {n, f:'peso'} y las cantidades como números simples. */
+  var MES_N = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  function P(v) { return { n: Number(v) || 0, f: 'peso' }; }
   function deFinanzas() {
     var f = (N.datos()._fin || {}), salida = [];
+    function agregar(hoja, nombre, columnas, filas) { if (filas.length) salida.push({ hoja: hoja, nombre: nombre, columnas: columnas, filas: filas }); }
     var movs = (f.movs || []).slice().sort(function (a, b) { return String(a.f).localeCompare(String(b.f)); });
-    if (movs.length) salida.push({ nombre: 'Ingresos y gastos del negocio', columnas: ['Fecha', 'Tipo', 'Categoría', 'Descripción', 'Valor', 'Medio de pago'],
-      filas: movs.map(function (m) { return [m.f, m.t === 'i' ? 'Ingreso' : 'Gasto', m.c || '', m.d || '', Number(m.v) || 0, m.m || '']; }) });
+    agregar('Ingresos y gastos del negocio', 'Ingresos y gastos del negocio', ['Fecha', 'Tipo', 'Categoría', 'Descripción', 'Valor', 'Medio de pago'],
+      movs.map(function (m) { return [m.f, m.t === 'i' ? 'Ingreso' : 'Gasto', m.c || '', m.d || '', Number(m.v) || 0, m.m || '']; }));
+    var HP = 'Presupuesto y metas del negocio', pres = f.pres || {};
+    agregar(HP, 'Presupuesto mensual', ['Categoría', 'Presupuesto mensual'], Object.keys(pres).filter(function (k) { return Number(pres[k]) > 0; }).map(function (k) { return [k, P(pres[k])]; }));
+    agregar(HP, 'Metas de ahorro del negocio', ['Meta', 'Valor de la meta', 'Ahorrado', 'Saldo que falta', 'Fecha objetivo'],
+      (f.metas || []).filter(function (m) { return m && (m.n || Number(m.meta)); }).map(function (m) { var me = Number(m.meta) || 0, ah = Number(m.ahorrado) || 0; return [m.n || '', P(me), P(ah), P(Math.max(0, me - ah)), m.fecha || '']; }));
+    agregar(HP, 'Planes del negocio', ['Plan', 'Mes', 'Costo', 'Cumplido'],
+      (f.planes || []).filter(function (x) { return x && (x.n || Number(x.costo)); }).map(function (x) { return [x.n || '', MES_N[(Number(x.mes) || 0) - 1] || '', P(x.costo), x.listo ? 'Sí' : 'No']; }));
+    var HF = 'Gastos fijos y deudas del negocio';
+    agregar(HF, 'Gastos fijos del negocio', ['Concepto', 'Valor', 'Día del mes', 'Tipo', 'Categoría', 'Medio de pago', 'Estado'],
+      (f.fijos || []).map(function (x) { return [x.n || '', P(x.v), Number(x.dia) || '', x.t === 'a' ? 'Ahorro e inversión' : (x.s ? 'Suscripción' : 'Gasto fijo'), x.c || '', x.m || '', x.activo === false ? 'En pausa' : 'Activo']; }));
+    agregar(HF, 'Deudas del negocio', ['Deuda', 'Valor de cada pago', 'Plazo', 'Hechas', 'Faltan', 'Día del mes', 'Saldo por pagar'],
+      (f.deudas || []).map(function (d) { var tot = Number(d.cuotas) || 0, hec = Number(d.pagadas) || 0; return [d.n || '', P(d.cuota), tot, hec, Math.max(0, tot - hec), Number(d.dia) || '', P(Math.max(0, tot - hec) * (Number(d.cuota) || 0))]; }));
+    var HT = 'Tarjetas del negocio', nomT = {};
+    (f.tarjetas || []).forEach(function (t) { nomT[t.id] = t.n; });
+    agregar(HT, 'Tarjetas del negocio', ['Tarjeta', 'Cupo', 'Saldo inicial', 'Día de corte', 'Día límite'],
+      (f.tarjetas || []).map(function (t) { return [t.n || '', P(t.cupo), P(t.saldo0), Number(t.corte) || '', Number(t.pago) || '']; }));
+    agregar(HT, 'Pagos a tarjetas', ['Fecha', 'Tarjeta', 'Valor'],
+      (f.pagosT || []).slice().sort(function (a, b) { return String(a.f).localeCompare(String(b.f)); }).map(function (x) { return [x.f || '', nomT[x.t] || '', P(x.v)]; }));
     return salida;
   }
   /* Importes y fechas como números y fechas de Excel (antes salían como texto y no se podían sumar ni ordenar) */
@@ -62,11 +84,11 @@
     if (COL_DINERO.test(col || '') && /^-?\d{1,3}(?:\.\d{3})+$|^-?\d+$/.test(t)) return { n: Number(t.replace(/\./g, '')), f: 'peso' };
     return v;
   }
-  function tiparHojas(hojas) { return hojas.map(function (h) { return { nombre: h.nombre, columnas: h.columnas, filas: h.filas.map(function (fila) { return fila.map(function (v, i) { return tipar(v, h.columnas[i]); }); }) }; }); }
+  function tiparHojas(hojas) { return hojas.map(function (h) { return { hoja: h.hoja, nombre: h.nombre, columnas: h.columnas, filas: h.filas.map(function (fila) { return fila.map(function (v, i) { return tipar(v, h.columnas[i]); }); }) }; }); }
   /* Candado de la membresía (30-oct-2026, decisión de Sara): las hojas bloqueadas no se exportan a Excel (la copia de seguridad .json y la copia en la cuenta siguen incluyendo todo: son tus datos) */
   function sinBloqueadas(hojas) {
     var bloq = {}; document.querySelectorAll('.hoja-agenda.sin-membresia header h3').forEach(function (h) { bloq[h.textContent.trim()] = true; });
-    return hojas.filter(function (h) { return !bloq[h.nombre]; });
+    return hojas.filter(function (h) { return !bloq[h.hoja || h.nombre]; });
   }
   function reunir() { return sinBloqueadas(tiparHojas([].concat(deListas(), deVersiones(), deAnio(), deVision(), deFinanzas(), window.lrInforme && window.lrInforme.paraExcel ? window.lrInforme.paraExcel() : [], window.lrIdeas && window.lrIdeas.paraExcel ? window.lrIdeas.paraExcel() : []))); }
   function descargar() {
