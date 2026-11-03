@@ -12,6 +12,9 @@
 
 **Publicado el 3-nov-2026:** #525 (arreglos pequeños de Calendar; `google-calendar` v13 y `rosina-web` v59 desplegadas; auditoría en `herramientas/agenda-auditoria/AUDITORIA-GOOGLE.md`; falta que Jennifer pruebe el chat) y #527 (tarjeta de la prueba gratis al inicio de Configuración, `membresia.js` v4; lista «Hojas de…» arriba en la vista de sección del teléfono). **Etapa 2 de «Conexiones e integraciones» (interruptores de qué fechas envía Calendar) en la rama, sin publicar; `rosina-web` v61 sin desplegar.** La etapa 1 ya está en `main` (#528, `rosina-web` v60); Jennifer debe probar el chat. En revisión con Jennifer en su celular: desplazamiento horizontal en abreviaturas (esperar captura).
 
+**Agenda · diseño y Plus (cierre 3-nov):** publicados #527, #529 y #531 (prueba gratis primero en Configuración, «Hojas de…» en la sección del teléfono, solo ✕ al cerrar, puntos de miles en dinero). A medias: Jennifer aún revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas».
+Decisiones de Jennifer: lista «Hojas de…» arriba, solo ✕ para cerrar, puntos de miles en toda casilla de dinero. Detalle en `agenda-diseno-y-pantallas.md` y `PENDIENTES.md`.
+
 **Pendiente de Jennifer:**
 - Google Cloud: confirmar que la app esté en **Producción** (no «Pruebas»).
 - Prueba real de Drive en dos aparatos y de Calendar (actualizar y borrar).
