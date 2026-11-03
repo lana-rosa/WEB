@@ -11,7 +11,7 @@
 - **2 · Agenda diseño y Plus:** publicado #527, #529, #531, #535. A medias: Jennifer revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas» (espera captura); puntos de miles en ferias, costo por ovillo y catálogo.
 - **3 · Agenda Rosina e idiomas:** E1 hecho (`rosina-web` desplegada con la etapa 2 y los puntos de miles en `GUIA_AGENDA`); renglones hechos de `PENDIENTES.md` al historial. A medias: 2 preguntas de prueba para Jennifer en `agenda-casa-y-rosina.md`.
 - **4 · Tienda y Mercería:** etiquetas al día; plantilla de 34 ítems y `cargar_merceria.py` listos. Espera el Excel y las 34 fotos de Jennifer (E2) y su decisión de si se recoge en el taller antes del 13-dic.
-- **5 · Base de datos y pagos:** migración 41 aplicada (`search_path` en 139 funciones); auditoría de guardas. A medias: **A4b** (guarda de rol en `fn_tomar_material_pedido` y `fn_compra_*`, espera los roles), A1 (Jennifer enciende «Leaked password protection» en Auth) y A5.
+- **5 · Base de datos y pagos:** migraciones 41 (`search_path`) y 42 (guarda de rol en material y compras, A4b) aplicadas; auditoría A4 hecha. A medias: Jennifer prueba A4b en el ERP y enciende «Leaked password protection» (A1); sigue A5 (SEG-15). Decisiones de Jennifer: material = administrador y taller; compras = administrador.
 - **6 · Sitio, SEO y Revista:** E6 hecho en borrador: `herramientas/legal/PAQUETE-ABOGADA.md` (13 puntos); espera el visto bueno de Jennifer. No se tocó `politicas.html`.
 - **7 · Universo de Rosina y Academy:** bloque A hecho; «Google Fonts» quitado de `politicas.html#cookies` en el PR #534, **en espera de la abogada**. No regenerar glosario ni paletas hasta actualizar `plantilla-rincon.html`.
 
