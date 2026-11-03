@@ -146,3 +146,8 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 
 ## [ ] E23 · Tutorial de bienvenida al día con «Mi cuenta» (chat 3; después de E18)
 - Cuando E18 cambie el menú y los íconos, rehacer los pasos de `js/agenda/tour.js` que los señalan (paso 2 Configuración y paso 5 «Escribe como prefieras») y sus textos en 3 idiomas; actualizar `GUIA_AGENDA`.
+
+## [ ] E24 · Menú de la casa Agenda en las páginas comunes (chat 6; captura de Jennifer, 3-nov-2026)
+- En las páginas comunes abiertas desde la agenda (como `cuenta.html` con `?casa=agenda`): **quitar los botones de arriba** («Mi agenda», «Aprende y compra», «Material gratis de Rosina», «Sobre nosotras») y **dejar solo el menú de las tres rayitas**; dentro de ese menú, **quitar «Rosina / Material gratis de Rosina»** (ese material ya está dentro de la agenda y el enlace lleva a la Academy). Solo la casa Agenda; las otras casas no cambian.
+- Se hace en `herramientas/sincronizar_encabezado.py` (genera `js/casa-menu.js`); probar con `probar_menus.py`, en 390 y 1280 px; foto a Jennifer antes de publicar (nivel 🟡).
+- Ojo: dentro de la agenda (E18, chat 2) la decisión es otra (un solo menú de «Mi cuenta», sin tres rayitas): avisar al chat 2 para que se vea coherente al pasar de la agenda a «Mi cuenta».
