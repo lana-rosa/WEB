@@ -14,6 +14,7 @@
 - **5 · Base de datos y pagos:** migraciones 41 (`search_path`) y 42 (guarda de rol en material y compras, A4b) aplicadas; auditoría A4 hecha. A medias: Jennifer prueba A4b en el ERP y enciende «Leaked password protection» (A1); sigue A5 (SEG-15). Decisiones de Jennifer: material = administrador y taller; compras = administrador.
 - **6 · Sitio, SEO y Revista:** E6 hecho en borrador: `herramientas/legal/PAQUETE-ABOGADA.md` (13 puntos); espera el visto bueno de Jennifer. No se tocó `politicas.html`.
 - **7 · Universo de Rosina y Academy:** bloque A hecho (pruebas del tema en verde). El texto de cookies («Google Fonts») pasó al chat 6 y a la abogada: ya no va en mi PR. A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas; bloques B (Jennifer) y C (abogada).
+- **8 · Marketing y contenido:** chat nuevo (3-nov). Primer encargo: E10 en `encargos.md` (campaña de apertura del 13-dic).
 
 ## Pendiente de Jennifer
 - Google Cloud en **Producción**; prueba real de Drive (dos aparatos) y Calendar; preguntas reales a Rosina.
