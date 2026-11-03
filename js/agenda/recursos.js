@@ -18,7 +18,10 @@
     pestanas.forEach(function (b) { var on = b.dataset.rr === cual; b.setAttribute('aria-selected', String(on)); });
     hoja.querySelectorAll('.rr-panel').forEach(function (p) { p.hidden = p.id !== 'rr-' + cual; });
   }
-  pestanas.forEach(function (b) { b.addEventListener('click', function () { mostrar(b.dataset.rr); }); });
+  pestanas.forEach(function (b) {   /* cada pestaña lleva su dibujo (3-nov-2026, íconos de Jennifer) */
+    if (!b.querySelector('.rr-ic')) b.insertAdjacentHTML('afterbegin', '<img class="rr-ic" src="/img/agenda/recursos/rr-' + b.dataset.rr + '.webp?v=1" alt="" width="28" height="28" aria-hidden="true" decoding="async">');
+    b.addEventListener('click', function () { mostrar(b.dataset.rr); });
+  });
 
   /* ---------- glosario ---------- */
   var gl = document.getElementById('rr-glosario'), cat = 'todas', texto = '';
