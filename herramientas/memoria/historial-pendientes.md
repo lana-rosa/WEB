@@ -254,3 +254,14 @@
   - **Verificado 3-nov-2026:** Hecho: el prototipo se aprobó y se aplicó en la fase 2 (30-oct-2026).
 - [x] **Agenda en español, inglés y portugués (31-oct-2026, pedido de Sara):** etapas 1 y 2 publicadas (#472, #473); etapa 3 (tutorial, avisos, ventanas, voz, chat de Rosina v38) publicada (#474). Quedan en español a propósito: políticas, ventanas legales de la copia en la nube y del pago de la membresía (esperan a la abogada), mensajes de WhatsApp, archivo .ics, cálculos de «Prendas a medida» y tarjetas de membresía. Traducciones de una IA sin revisión humana (`herramientas/agenda-idiomas/REVISION.tsv`).
   - **Verificado 3-nov-2026:** Hecho: etapas 1 a 3 publicadas (#472, #473, #474); lo que queda en español es a propósito.
+
+## Verificados como hechos el 3-nov-2026 (revisión con Jennifer)
+- [x] Plazo de entrega de los personalizados: Sara pidió dejar lo de las políticas (elaboración informada al comprar + envío aparte); en las políticas no hay un plazo en días, así que falta que Sara fije un número (¿15 días hábiles?) y se agrega al inicio, a las preguntas frecuentes y a `politicas.html#envios`.
+- [x] Personaliza: falta (a) el rango de días del plazo (Sara decide), (b) saber si se manda foto del avance antes de entregar (si sí, ponerlo en los 5 pasos). La sugerencia de «pide antes del [fecha] para recibir en Navidad» **no se aplica**: la marca no menciona la Navidad; si se quiere una fecha límite, usar una fecha de otra ocasión (Amor y amistad, etc.).
+- [x] En el próximo despliegue de `rosina-web`, quitar `/rosina.html` de `PAGINAS` (hoy es una redirección). Seguir recogiendo reseñas con autorización (nombre o ciudad) o capturas de WhatsApp.
+- [x] **Plus, Etapa 8 (inventario con movimientos, lana por proyecto y compras como gasto):** `js/agenda/inventario-mov.js` y `js/agenda/proyecto-lana.js`, PR #509, #510 y #511 en `main` (2-nov-2026).
+- [x] **Recursos de Rosina, etapas 2 a 4:** pestañas Paletas, Calculadoras, Checklist y Descargables (#506, #507, #508).
+- [x] **Rediseño de la agenda (27-oct) y pedido del 27-oct:** publicados (buscador, Excel, «Mis ideas», «Diseña tu patrón», lápiz, dictado).
+- [x] **Plazo de entrega de personalizados:** 8 días hábiles (decisión del 17-oct-2026), ya en `politicas.html`, preguntas frecuentes, Personaliza y `llms.txt`.
+- [x] **`/rosina.html` fuera de `PAGINAS` de `rosina-web`:** hecho en v21 (27-oct-2026).
+

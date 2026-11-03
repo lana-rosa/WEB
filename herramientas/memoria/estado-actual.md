@@ -23,8 +23,9 @@ Decisiones de Jennifer: lista «Hojas de…» arriba, solo ✕ para cerrar, punt
 - Pago real de prueba de la membresía; revisión de la abogada.
 
 **Lo que puede hacer Claude cuando se le pida (en orden sugerido):**
-1. Etapa 1 del centro de conexiones («Conexiones e integraciones»); antes, arreglos pequeños de Calendar y verificar el tamaño de `agenda.json` con fotos.
-2. Documento de marketing de las funciones; cobro en dólares.
+1. ~~Revisar renglones hechos de `PENDIENTES.md`~~ (hecho el 3-nov-2026: pasaron al historial; fecha de apertura automática corregida al 14-dic).
+2. Verificar el tamaño de `agenda.json` con fotos (etapas 1 y 2 de Conexiones y arreglos de Calendar ya están en `main`).
+3. Documento de marketing de las funciones; cobro en dólares.
 
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026** (aplazada desde el 15-nov, 3-nov-2026); atención normal desde el lunes 14-dic. Reprogramado (3-nov): reunión con el contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
