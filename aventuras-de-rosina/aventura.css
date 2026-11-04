@@ -4,7 +4,7 @@
 
 :root {
   --fucsia: #cc1786; --rosa: #ff66c4; --rosa-suave: #FBE4EF; --lila: #E6E7FD; --hueso: #FDFCFA;
-  --tinta: #3a2a2e; --tinta-suave: #5f4b52; --menta: #E6F7EE; --verde: #1f8a5b; --cielo: #EAF6FF; --amarillo: #FFF6DD; --foco: #2a4ad8;
+  --tinta: #3a2a2e; --tinta-suave: #3F3F46; --menta: #E6F7EE; --verde: #1f8a5b; --cielo: #EAF6FF; --amarillo: #FFF6DD; --foco: #2a4ad8;
   --radio: 24px;
 }
 * { box-sizing: border-box; }
