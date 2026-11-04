@@ -31,7 +31,7 @@ with sync_playwright() as p:
     T.v('Mis materiales: ovillos por marca y compras 1 de 2', 'Alize' in a and 'Comprado · 1' in a and 'Por comprar · 1' in a, a)
     a = seccion(pg, 4)
     T.v('Mi emprendimiento: ventas de 6 meses con gráfica', pg.locator('.vs-dash svg.gr-svg').count() >= 1 and 'Tus ventas de los últimos 6 meses' in a, a)
-    T.v('Mi emprendimiento: este mes vas mejor ($ 100.000 contra $ 60.000)', '$ 100.000 contra $ 60.000' in a, a)
+    T.v('Mi emprendimiento: este mes vas mejor ($ 500.000 contra $ 300.000: el total «Ventas» de movimientos manda sobre las fichas más pequeñas)', '$ 500.000 contra $ 300.000' in a, a)
     T.v('Mi emprendimiento: pedidos por estado y por cobrar $ 50.000', 'En proceso · 1' in a and 'Entregado · 1' in a and '$ 50.000' in a, a)
     T.v('Mi emprendimiento: clientas 2, nuevas 1, lo que más vendes', 'Clientas\n2' in a.replace('\n\n', '\n') and 'Nuevas este mes\n1' in a.replace('\n\n', '\n') and 'Osito' in a, a)
     a = seccion(pg, 5)

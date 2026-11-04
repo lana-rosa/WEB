@@ -55,9 +55,7 @@
   /* ---- 2. Utilidad de cada mes (últimos 6) ---- */
   function utilidad(c) {
     c.textContent = ''; c.classList.remove('gr-ejemplo'); var ej = false;
-    var f = (N.datos()._fin || {}), movs = f.movs || [], hoy = new Date(), meses = [];
-    for (var i = 5; i >= 0; i--) { var d = new Date(hoy.getFullYear(), hoy.getMonth() - i, 1); meses.push({ y: d.getFullYear(), m: d.getMonth(), ing: 0, gas: 0 }); }
-    movs.forEach(function (x) { if (!x || (x.t !== 'i' && x.t !== 'g')) return; var k = String(x.f || '').slice(0, 7); meses.forEach(function (ms) { if (k === ms.y + '-' + ('0' + (ms.m + 1)).slice(-2)) { if (x.t === 'i') ms.ing += num(x.v); else ms.gas += num(x.v); } }); });
+    var meses = window.lrDinero ? window.lrDinero.porMes(6).map(function (x) { return { y: x.y, m: x.m - 1, ing: x.entradas, gas: x.gastos }; }) : [];   /* lector único del dinero (4-nov-2026) */
     meses.forEach(function (ms) { ms.u = ms.ing - ms.gas; });
     if (!meses.some(function (ms) { return ms.ing || ms.gas; })) { var mu = [180000, 240000, -60000, 320000, 410000, 520000]; meses.forEach(function (ms, i) { ms.u = mu[i]; }); ej = true; }
     var W = 600, H = 210, base = 90, mx = Math.max.apply(null, meses.map(function (ms) { return Math.abs(ms.u); })) || 1, bw = 52, gap = (W - 6 * bw) / 7;
