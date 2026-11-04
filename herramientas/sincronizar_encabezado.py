@@ -264,7 +264,30 @@ def encabezado(pagina):
         return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","' + casa + '");localStorage.setItem("lrCasa","' + casa + '")}catch(e){}</script>\n'
                 + _encabezado(casa) + '<!-- CASAS:FIN -->')
     return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<div id="encabezado-casa" style="display:contents">\n'
-            + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=2"></script>\n<!-- CASAS:FIN -->')
+            + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=3"></script>\n<!-- CASAS:FIN -->')
+
+
+# Casa Agenda en páginas comunes (E24, 4-nov-2026): sin botones de arriba ni engranaje; las tres rayitas muestran solo lo de «Mi cuenta».
+AGENDA_COMUN_JS = (
+ '  if (c === "agenda") {\n'
+ '    var pb = cont.querySelector(".nav-principal"); if (pb && pb.parentNode) pb.parentNode.removeChild(pb);\n'
+ '    var cg = cont.querySelector("#agenda-config-btn"); if (cg && cg.parentNode) cg.parentNode.removeChild(cg);\n'
+ '    var pn = cont.querySelector("#nav-movil-panel"), bm = cont.querySelector("#boton-menu-movil");\n'
+ '    var cuenta = /\/cuenta(\.html)?$/.test(location.pathname);\n'
+ '    if (pn && !cuenta) { Array.prototype.slice.call(pn.querySelectorAll("a")).forEach(function (x) { if (/recursos-rosina/.test(x.getAttribute("href") || "")) { var g = x.previousElementSibling; x.parentNode.removeChild(x); if (g && g.className === "grupo-nav") g.parentNode.removeChild(g); } }); }\n'
+ '    if (pn && bm && cuenta) {\n'
+ '      var ITEMS = [["menu-pedidos", "🧾 Pedidos"], ["menu-mensajes", "💬 Mensajes"], ["menu-resenas", "⭐ Reseñas"], ["menu-favoritos", "💗 Favoritos"], ["menu-direcciones", "📍 Direcciones"], ["menu-carrito", "🛒 Carrito"], ["menu-solicitudes", "✨ Personalizados"], ["menu-datos", "👤 Mis datos"]];\n'
+ '      var armar = function () {\n'
+ '        pn.innerHTML = "";\n'
+ '        var cerrar = function () { pn.classList.remove("abierto"); bm.setAttribute("aria-expanded", "false"); };\n'
+ '        var nuevo = function (txt, fn, href) { var a = document.createElement("a"); a.href = href || "#"; a.textContent = txt; a.addEventListener("click", function (e) { if (fn) { e.preventDefault(); cerrar(); fn(); } }); pn.appendChild(a); };\n'
+ '        ITEMS.forEach(function (it) { var b = document.getElementById(it[0]); if (b && b.offsetParent !== null) nuevo(it[1], function () { b.click(); b.scrollIntoView({ behavior: "smooth", block: "start" }); }); });\n'
+ '        nuevo("📅 Volver a la agenda", null, "/agenda-rosina.html");\n'
+ '        var s = document.getElementById("boton-salir"); if (s && s.offsetParent !== null) nuevo("Cerrar sesión", function () { s.click(); });\n'
+ '      };\n'
+ '      armar(); bm.addEventListener("click", armar, true);\n'
+ '    }\n'
+ '  }\n')
 
 def js_casa_menu():
     bloques = {c: absolutas(_encabezado(c)) for c in ('crochet', 'merceria', 'academy', 'agenda')}
@@ -276,6 +299,7 @@ def js_casa_menu():
             '  var cont = document.getElementById("encabezado-casa");\n'
             '  if (!cont || !B[c] || c === "crochet") return;\n'
             '  cont.innerHTML = B[c];\n'
+            + AGENDA_COMUN_JS +
             '  var m = document.querySelector("main[id]"), a = cont.querySelector(".saltar-contenido");\n'
             '  if (m && a) a.setAttribute("href", "#" + m.id);\n'
             '  document.documentElement.setAttribute("data-casa", c);\n'

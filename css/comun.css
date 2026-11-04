@@ -114,7 +114,7 @@ main { padding-bottom: 60px; }
 /* ===== Franja de casas (Crochet · Mercería · Academy) y menú por casa ===== */
 .franja-casas { background: var(--blanco-hueso, #FDFCFA); border-bottom: 1px solid rgba(69,69,74,0.06); font-size: 0.74rem; }
 .franja-casas .contenedor { display: flex; justify-content: flex-end; align-items: center; gap: 2px; padding-top: 3px; padding-bottom: 3px; }
-.franja-casas a { text-decoration: none; color: var(--tinta-suave, #64646A); font-weight: 500; padding: 2px 10px; border-radius: 6px; white-space: nowrap; }
+.franja-casas a { text-decoration: none; color: var(--tinta-suave, #3F3F46); font-weight: 500; padding: 2px 10px; border-radius: 6px; white-space: nowrap; }
 .franja-casas a + a { border-left: 1px solid rgba(69,69,74,0.15); border-radius: 0; }
 .franja-casas a:hover { color: var(--tinta, #45454A); opacity: 1; }
 .franja-casas a.casa-actual { color: var(--rosa-texto); font-weight: 700; opacity: 1; }
