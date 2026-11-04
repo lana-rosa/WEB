@@ -137,7 +137,7 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 - **Objetivo:** proponerle a Jennifer, con sí o no, qué mostrar si el 13-dic aún no hay existencias: la Mercería en «Muy pronto» con lista de espera (ya existe), la Tienda de amigurumis completa, y qué decir en la web y en redes (avisar al chat 6 y al chat 8). Nada se publica sin su visto bueno.
 - **E4 no espera:** la compra de prueba se puede hacer ya con un producto de la Tienda; la del ovillo, cuando haya existencias.
 
-## [ ] E21 · Ícono de Configuración gigante en «Mi cuenta» cuando se llega desde la agenda (chat 6; captura de Jennifer, 3-nov-2026)
+## [x] E21 (hecho 3-nov-2026, #569: estilos del engranaje en `css/comun.css`, `comun.css?v=43`) · Ícono de Configuración gigante en «Mi cuenta» cuando se llega desde la agenda (chat 6; captura de Jennifer, 3-nov-2026)
 - En `cuenta.html` con el menú de la casa Agenda, el engranaje de Configuración sale enorme (~110 px) en el encabezado. Buscar si viene de `js/casa-menu.js` (generado por `herramientas/sincronizar_encabezado.py`: no se edita a mano) o de un estilo que falta en esa página; dejarlo del tamaño de los otros íconos. Revisar las demás páginas comunes con `?casa=agenda`. Foto a Jennifer antes de publicar (nivel 🟡). Avisar al chat 2, porque E18 rehace ese encabezado en la agenda.
 
 ## [ ] E22 · País, departamento y ciudad en las cuentas (chat 5 con el chat 6 para la página; pedido de Jennifer, 3-nov-2026)
@@ -146,3 +146,13 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 
 ## [ ] E23 · Tutorial de bienvenida al día con «Mi cuenta» (chat 3; después de E18)
 - Cuando E18 cambie el menú y los íconos, rehacer los pasos de `js/agenda/tour.js` que los señalan (paso 2 Configuración y paso 5 «Escribe como prefieras») y sus textos en 3 idiomas; actualizar `GUIA_AGENDA`.
+
+## [ ] E24 · Menú de la casa Agenda en las páginas comunes (chat 6; captura de Jennifer, 3-nov-2026)
+- En las páginas comunes abiertas desde la agenda (como `cuenta.html` con `?casa=agenda`): **quitar los botones de arriba** («Mi agenda», «Aprende y compra», «Material gratis de Rosina», «Sobre nosotras») y **dejar solo el menú de las tres rayitas**; dentro de ese menú, **quitar «Rosina / Material gratis de Rosina»** (ese material ya está dentro de la agenda y el enlace lleva a la Academy). Solo la casa Agenda; las otras casas no cambian.
+- Se hace en `herramientas/sincronizar_encabezado.py` (genera `js/casa-menu.js`); probar con `probar_menus.py`, en 390 y 1280 px; foto a Jennifer antes de publicar (nivel 🟡).
+- Ojo: dentro de la agenda (E18, chat 2) la decisión es otra (un solo menú de «Mi cuenta», sin tres rayitas): avisar al chat 2 para que se vea coherente al pasar de la agenda a «Mi cuenta».
+
+## [ ] E25 · Más contraste y color en las tarjetas de las secciones (chat 2; captura de Jennifer, 4-nov-2026)
+- Jennifer: «todo se ve muy monótono en cuanto al color, le falta contraste» (sección «Mis proyectos»: tarjetas blancas con borde rosa y títulos rosados, sobre fondo rosado claro).
+- **Objetivo:** proponer 2 o 3 opciones con foto (sin cambiar todavía): por ejemplo, cada tarjeta con un fondo suave de un color distinto de la paleta (rosa, lila, azul acero, durazno, verde menta) o el color propio de cada sección; títulos más oscuros; borde o sombra que separe la tarjeta del fondo; contraste mínimo 4,5:1 en textos. Mirar todas las secciones, no solo «Mis proyectos».
+- **Coordinar:** con E19 (modo oscuro) y E18 («Mi cuenta»), para no repintar dos veces. Foto a Jennifer y sí o no antes de publicar (nivel 🟡).
