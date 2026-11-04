@@ -1881,5 +1881,14 @@ window.lrI18n.add("pt", {
 "de tu ingreso promedio (3 meses)": "da sua receita média (3 meses)",
 "Tu mejor mes fue": "Seu melhor mês foi",
 "te quedaron": "sobraram",
-"Este año no has anotado ahorro ni inversión. Puedes empezar con poquito cada mes.": "Neste ano você não anotou poupança nem investimento. Você pode começar com pouco a cada mês."
+"Este año no has anotado ahorro ni inversión. Puedes empezar con poquito cada mes.": "Neste ano você não anotou poupança nem investimento. Você pode começar com pouco a cada mês.",
+"Resumen del emprendimiento": "Resumo do empreendimento",
+"Aquí solo se mira: tus números del negocio este mes, comparando meses y en el año. Lo que anotas en «Ventas y gastos» se suma solo.": "Aqui você só olha: os números do seu negócio neste mês, comparando meses e no ano. O que você anota em “Vendas e despesas” soma sozinho.",
+"Qué quieres ver": "O que você quer ver",
+"Comparar meses": "Comparar meses",
+"El año": "O ano",
+"Tus números del negocio: este mes, comparando y el año": "Os números do seu negócio: este mês, comparando e o ano",
+"Tus números: este mes, comparando y el año": "Seus números: este mês, comparando e o ano",
+"Anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño, en": "Anote cada venda e cada despesa do seu negócio no mesmo dia, mesmo pequena, em",
+"Anota el primero en «Ventas y gastos» y aquí aparecerá tu resumen.": "Anote o primeiro em “Vendas e despesas” e seu resumo aparecerá aqui."
 });

@@ -568,6 +568,12 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .fin-form select, .fin-form input { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,.25); background: transparent; font: inherit; padding: 5px 2px; }
 .fin-form-btn { justify-content: flex-end; }
 .fin-form .linea[hidden] { display: none !important; }
+.rs-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 14px; }
+.rs-tabs button { min-height: 44px; padding: 8px 18px; border-radius: 999px; border: 2px solid var(--rosa-medio); background: #fff; font: inherit; font-weight: 700; color: var(--rosa-texto); cursor: pointer; }
+.rs-tabs button[aria-selected="true"] { background: var(--rosa-boton); border-color: var(--rosa-boton); color: #fff; }
+.rs-tabs button:focus-visible { outline: 3px solid var(--rosa-boton); outline-offset: 2px; }
+.rs-panel[hidden] { display: none; }
+@media print { .rs-panel[hidden] { display: block !important; } }
 .fin-tabla td, .fin-tabla th { padding: 6px 8px; font-size: .88rem; }
 .fin-tabla .der { text-align: right; white-space: nowrap; }
 .fin-tabla .quitar { border: 0; background: transparent; cursor: pointer; font-size: 1rem; }
@@ -1177,13 +1183,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#catalogo-precios" data-hoja="catalogo-precios">🏷️ Mi catálogo de precios</a>
           <a href="#ferias-mercados" data-hoja="ferias-mercados">🎪 Ferias y mercados</a>
           <a href="#contactos" data-hoja="contactos">📇 Contactos</a>
-          <a href="#fin-negocio" data-hoja="fin-negocio">🧮 Resultados del negocio</a>
+          <a href="#fin-resumen" data-hoja="fin-resumen">📊 Resumen del emprendimiento</a>
           <p class="menu-grupo">Finanzas del negocio</p>
-          <a href="#fin-resumen" data-hoja="fin-resumen">📊 Mi negocio en números</a>
           <a href="#fin-presupuesto" data-hoja="fin-presupuesto">🐷 Presupuesto y metas del negocio</a>
           <a href="#fin-fijos" data-hoja="fin-fijos">🔁 Gastos fijos y deudas del negocio</a>
           <a href="#fin-tcredito" data-hoja="fin-tcredito">💳 Tarjetas del negocio</a>
-          <a href="#fin-analisis" data-hoja="fin-analisis">🔎 Análisis del negocio</a>
           <p class="menu-grupo">Fechas y bienestar</p>
           <a href="#calendario-anual" data-hoja="calendario-anual">🗓️ Calendario del año</a>
           <a href="#fechas-especiales" data-hoja="fechas-especiales">🎁 Fechas especiales</a>
@@ -1243,15 +1247,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="atajo" data-ir="fin-movimientos"><span class="atajo-ic" aria-hidden="true">💰</span><span><strong>Ventas y gastos</strong><small>Lo que vendes y lo que gastas, en un solo lugar</small></span></button>
           <button type="button" class="atajo" data-ir="catalogo-precios"><span class="atajo-ic" aria-hidden="true">🏷️</span><span><strong>Mi catálogo de precios</strong><small>Tus productos y valores</small></span></button>
           <button type="button" class="atajo" data-ir="ferias-mercados"><span class="atajo-ic" aria-hidden="true">🎪</span><span><strong>Ferias y mercados</strong><small>Fechas y lugares</small></span></button>
+          <button type="button" class="atajo" data-ir="fin-resumen"><span class="atajo-ic" aria-hidden="true">📊</span><span><strong>Resumen del emprendimiento</strong><small>Tus números: este mes, comparando y el año</small></span></button>
           <button type="button" class="atajo" data-ir="contactos"><span class="atajo-ic" aria-hidden="true">📇</span><span><strong>Contactos</strong><small>Proveedores, colegas y maestras</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-negocio"><span class="atajo-ic" aria-hidden="true">🧮</span><span><strong>Resultados del negocio</strong><small>Ventas, costos y utilidad</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#F28FC0"><h4>Finanzas del negocio</h4><div class="atajos">
-          <button type="button" class="atajo" data-ir="fin-resumen"><span class="atajo-ic" aria-hidden="true">📊</span><span><strong>Mi negocio en números</strong><small>Lo que entra, lo que sale y lo que te queda</small></span></button>
           <button type="button" class="atajo" data-ir="fin-presupuesto"><span class="atajo-ic" aria-hidden="true">🐷</span><span><strong>Presupuesto y metas del negocio</strong><small>Topes de gasto y ahorros del negocio</small></span></button>
           <button type="button" class="atajo" data-ir="fin-fijos"><span class="atajo-ic" aria-hidden="true">🔁</span><span><strong>Gastos fijos y deudas del negocio</strong><small>Pagos del mes y cuotas del negocio</small></span></button>
           <button type="button" class="atajo" data-ir="fin-tcredito"><span class="atajo-ic" aria-hidden="true">💳</span><span><strong>Tarjetas del negocio</strong><small>Cupo, corte y pago</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-analisis"><span class="atajo-ic" aria-hidden="true">🔎</span><span><strong>Análisis del negocio</strong><small>Compara meses y mira tu año</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#FDE3EE"><h4>Fechas y bienestar</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="calendario-anual"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Calendario del año</strong><small>Todas tus fechas en un vistazo</small></span></button>
@@ -1448,7 +1450,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="hoja-agenda" id="fin-resumen">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-21-corazon-grande.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Mi negocio en números</h3><p>Cómo va tu negocio este mes: lo que entró, lo que salió y lo que te queda. Aquí van solo los números de tu negocio, no tus gastos personales.</p></div>
+          <div><h3>Resumen del emprendimiento</h3><p>Aquí solo se mira: tus números del negocio este mes, comparando meses y en el año. Lo que anotas en «Ventas y gastos» se suma solo.</p></div>
         </header>
           <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
@@ -1456,7 +1458,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <strong class="fin-mes-txt" aria-live="polite"></strong>
           <button type="button" class="boton-secundario boton-chico" data-fin-mes="1" aria-label="Mes siguiente">›</button>
         </div>
+        <div class="rs-tabs no-imprimir" role="tablist" aria-label="Qué quieres ver">
+          <button type="button" role="tab" id="rs-t-mes" aria-controls="rs-mes" aria-selected="true" data-rs="mes">Este mes</button>
+          <button type="button" role="tab" id="rs-t-comp" aria-controls="rs-comp" aria-selected="false" data-rs="comp" tabindex="-1">Comparar meses</button>
+          <button type="button" role="tab" id="rs-t-anio" aria-controls="rs-anio" aria-selected="false" data-rs="anio" tabindex="-1">El año</button>
+        </div>
+        <div class="rs-panel" id="rs-mes" role="tabpanel" aria-labelledby="rs-t-mes">
         <div class="fin-tarjetas" id="fin-tarjetas"></div>
+        <div class="fin-caja"><h4 class="sub-hoja">Resultados del mes</h4><div class="tabla-scroll"><table class="fa-tabla" id="fn-resultados"></table></div></div>
         <div class="fin-caja">
           <div class="fin-caja-cab"><h4 class="sub-hoja">Ingresos y gastos del negocio</h4>
             <div class="fin-seg no-imprimir" role="group" aria-label="Meses a mostrar"><button type="button" data-fin-rango="6" aria-pressed="true">6 meses</button><button type="button" data-fin-rango="12" aria-pressed="false">12 meses</button></div></div>
@@ -1473,7 +1482,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="fin-caja"><h4 class="sub-hoja">Deudas del negocio</h4><div id="fin-deudas-panel"></div></div>
         </div>
         <div class="fin-caja fin-rosina"><h4 class="sub-hoja">🐑 Rosina lee tus números</h4><ul class="fin-insights" id="fin-insights"></ul></div>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño. Regístralos en <em>Ingresos y gastos del negocio</em> y aquí verás todo ordenado solito. Para tus gastos personales usa otra libreta: esta agenda es para los números del negocio.</p>
+        <div class="fin-dos">
+          <div class="fin-caja"><h4 class="sub-hoja">Por cobrar (tus pedidos)</h4><div id="fn-cobrar"></div></div>
+          <div class="fin-caja"><h4 class="sub-hoja">Por pagar este mes</h4><div id="fn-pagar"></div></div>
+        </div>
+        </div>
+        <div class="rs-panel" id="rs-comp" role="tabpanel" aria-labelledby="rs-t-comp" hidden>
+        <div class="fin-caja"><h4 class="sub-hoja">Este mes contra el anterior</h4><div class="tabla-scroll"><table class="fa-tabla" id="fa-comparar"></table></div></div>
+        <div class="fin-caja">
+          <h4 class="sub-hoja">Cuánto ahorra tu negocio mes a mes</h4>
+          <div class="fin-grafica" id="fa-ahorro"></div>
+          <div class="fin-leg"><span><i style="background:#6E9470"></i>Te quedó dinero</span><span><i style="background:#C81B6D"></i>Gastaste más de lo que entró</span><span class="fin-leg-nota no-imprimir">% de tus ingresos de cada mes</span></div>
+        </div>
+        </div>
+        <div class="rs-panel" id="rs-anio" role="tabpanel" aria-labelledby="rs-t-anio" hidden>
+        <div class="fin-caja">
+          <div class="fin-caja-cab"><h4 class="sub-hoja">Resumen del año</h4>
+            <div class="fin-caja-acc no-imprimir"><div class="fin-seg" role="group" aria-label="Año"><button type="button" id="fa-anio-ant" aria-label="Año anterior">‹</button><button type="button" id="fa-anio-txt" aria-live="polite" disabled></button><button type="button" id="fa-anio-sig" aria-label="Año siguiente">›</button></div><button type="button" class="boton-secundario boton-chico" id="fa-exportar">⬇ Excel (CSV)</button></div></div>
+          <div class="fin-tarjetas" id="fa-anio-cards"></div>
+          <div id="fa-anio-cats"></div>
+          <ul class="fin-insights" id="fa-anio-ins"></ul>
+        </div>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño, en <em>Ventas y gastos</em>, y aquí verás todo ordenado solito. Mira primero qué categoría subió más: casi siempre ahí está el ahorro más fácil.</p>
       </article>
       <article class="hoja-agenda" id="fin-movimientos">
         <header>
@@ -1593,31 +1624,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="ff-deudas" id="ft-lista"></div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> para que la tarjeta cuente tus compras, elige «Tarjeta: …» como medio de pago cuando anotes un gasto. Lo que pagas a la tarjeta se registra aquí y no se cuenta como otro gasto, porque la compra ya se contó cuando la hiciste. Nunca escribas el número de tu tarjeta.</p>
       </article>
-      <article class="hoja-agenda" id="fin-analisis">
-        <header>
-          <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Análisis del negocio</h3><p>Compara los meses de tu negocio, mira cuánto ahorra y cómo va tu año.</p></div>
-        </header>
-        <div class="fin-mes no-imprimir">
-          <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
-          <strong class="fin-mes-txt" aria-live="polite"></strong>
-          <button type="button" class="boton-secundario boton-chico" data-fin-mes="1" aria-label="Mes siguiente">›</button>
-        </div>
-        <div class="fin-caja"><h4 class="sub-hoja">Este mes contra el anterior</h4><div class="tabla-scroll"><table class="fa-tabla" id="fa-comparar"></table></div></div>
-        <div class="fin-caja">
-          <h4 class="sub-hoja">Cuánto ahorra tu negocio mes a mes</h4>
-          <div class="fin-grafica" id="fa-ahorro"></div>
-          <div class="fin-leg"><span><i style="background:#6E9470"></i>Te quedó dinero</span><span><i style="background:#C81B6D"></i>Gastaste más de lo que entró</span><span class="fin-leg-nota no-imprimir">% de tus ingresos de cada mes</span></div>
-        </div>
-        <div class="fin-caja">
-          <div class="fin-caja-cab"><h4 class="sub-hoja">Resumen del año</h4>
-            <div class="fin-caja-acc no-imprimir"><div class="fin-seg" role="group" aria-label="Año"><button type="button" id="fa-anio-ant" aria-label="Año anterior">‹</button><button type="button" id="fa-anio-txt" aria-live="polite" disabled></button><button type="button" id="fa-anio-sig" aria-label="Año siguiente">›</button></div><button type="button" class="boton-secundario boton-chico" id="fa-exportar">⬇ Excel (CSV)</button></div></div>
-          <div class="fin-tarjetas" id="fa-anio-cards"></div>
-          <div id="fa-anio-cats"></div>
-          <ul class="fin-insights" id="fa-anio-ins"></ul>
-        </div>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> mira primero qué categoría subió más: casi siempre ahí está el ahorro más fácil. Si un mes sale en naranja, no pasa nada: ¡lo importante es la tendencia!</p>
-      </article>
+      <article class="hoja-retirada" id="fin-analisis" hidden aria-hidden="true"></article>
       <article class="hoja-retirada" id="gastos-negocio" hidden aria-hidden="true">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
@@ -1651,32 +1658,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> guarda aquí a quien te vende lana, te enseña o te ayuda con las ferias; cuando lo necesites, un toque y le escribes por WhatsApp.</p>
       </article>
-      <article class="hoja-agenda" id="fin-negocio">
-        <header>
-          <img class="avatar-sticker" src="/img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Resultados del negocio</h3><p>Cuánto vendiste, cuánto te costó y cuánto te quedó. Aparte de tus gastos personales.</p></div>
-        </header>
-          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
-        <div class="fin-mes no-imprimir">
-          <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
-          <strong class="fin-mes-txt" aria-live="polite"></strong>
-          <button type="button" class="boton-secundario boton-chico" data-fin-mes="1" aria-label="Mes siguiente">›</button>
-        </div>
-        <div class="fin-tarjetas" id="fn-tarjetas"></div>
-        <div class="fin-caja"><h4 class="sub-hoja">Resultados del mes</h4><div class="tabla-scroll"><table class="fa-tabla" id="fn-resultados"></table></div></div>
-        <div class="fin-caja">
-          <div class="fin-caja-cab"><h4 class="sub-hoja">Flujo de caja del negocio</h4>
-            <div class="fin-seg no-imprimir" role="group" aria-label="Meses a mostrar"><button type="button" data-fin-rango="6" aria-pressed="true">6 meses</button><button type="button" data-fin-rango="12" aria-pressed="false">12 meses</button></div></div>
-          <div class="fin-grafica" id="fn-flujo"></div>
-          <div class="fin-leg"><span><i style="background:#6E9470"></i>Entradas</span><span><i style="background:#C81B6D"></i>Salidas</span></div>
-        </div>
-        <div class="fin-dos">
-          <div class="fin-caja"><h4 class="sub-hoja">Por cobrar (tus pedidos)</h4><div id="fn-cobrar"></div></div>
-          <div class="fin-caja"><h4 class="sub-hoja">Por pagar este mes</h4><div id="fn-pagar"></div></div>
-        </div>
-        <p class="fin-aho-mes" id="fn-nota"></p>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> todo lo que anotas en <em>Ingresos y gastos del negocio</em> cuenta aquí. Anota solo lo del negocio (ventas, materiales, ferias, envíos…) y verás tu utilidad real; tus gastos personales llévalos aparte.</p>
-      </article>
+      <article class="hoja-retirada" id="fin-negocio" hidden aria-hidden="true"></article>
       <article class="hoja-agenda" id="tablero-agenda">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
@@ -3020,7 +3002,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var menuHojas = document.getElementById('menu-hojas'), toggleMenu = document.getElementById('menu-hojas-toggle');
   var CLAVE_HOJA = 'rosinaAgendaHoja';
   var historiaLista = false, enPop = false;   // cada hoja que abres queda en el historial: «atrás» vuelve a la hoja anterior
-  var HOJAS_ANTIGUAS = { 'ventas-mes': 'fin-movimientos', 'gastos-negocio': 'fin-movimientos' };   // 4-nov-2026: pasaron a «Ventas y gastos»; los enlaces, favoritos y la última hoja abierta siguen funcionando
+  var HOJAS_ANTIGUAS = { 'ventas-mes': 'fin-movimientos', 'gastos-negocio': 'fin-movimientos', 'fin-negocio': 'fin-resumen', 'fin-analisis': 'fin-resumen' };   // 4-nov-2026: pasaron a «Ventas y gastos»; los enlaces, favoritos y la última hoja abierta siguen funcionando
   function mostrarHoja(id, desplazar) {
     id = HOJAS_ANTIGUAS[id] || id; var h = document.getElementById(id); if (!h || !h.classList.contains('hoja-agenda')) return;
     hojas.forEach(function(x) { x.classList.toggle('abierta', x === h); });
@@ -3280,7 +3262,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var ms = serie(rango);
       dibujarBarras(el('fin-barras'), ms, 'Ingresos y gastos de los últimos ' + rango + ' meses', ['Ingresos', 'Gastos']);
       el('fin-evol-tabla').querySelector('tbody').innerHTML = ms.slice().reverse().map(function(d) { return '<tr><td>' + cap(MESES[d.m - 1]) + ' ' + d.y + '</td><td class="der ing">' + plata(d.i) + '</td><td class="der gas">' + plata(d.g) + '</td><td class="der">' + plata(d.i - d.g) + '</td></tr>'; }).join('');
-      dibujarBarras(el('fn-flujo'), serie(rango, esNeg), 'Entradas y salidas del negocio de los últimos ' + rango + ' meses', ['Entradas', 'Salidas']);
     }
     function pintarDona(por, gas) {
       var cats = Object.keys(por).sort(function(a, b) { return por[b] - por[a]; }), cont = el('fin-dona'), ley = el('fin-leyenda'); ley.innerHTML = '';
@@ -3319,7 +3300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el('fin-pres-resumen').innerHTML = h || '<p class="fin-vacio">Define tu presupuesto en la hoja «Presupuesto y metas» para ver aquí cómo vas.</p>';
       /* Rosina lee tus números */
       var ins = [];
-      if (!l.length) ins.push(['📝', 'Aún no hay movimientos en ' + MESES[mesSel.m - 1] + '. Anota el primero en «Ingresos y gastos del negocio» y aquí aparecerá tu panel.']);
+      if (!l.length) ins.push(['📝', 'Aún no hay movimientos en ' + MESES[mesSel.m - 1] + '. Anota el primero en «Ventas y gastos» y aquí aparecerá tu resumen.']);
       else {
         if (gas > ing && ing > 0) ins.push(['⚠️', 'Este mes los gastos (<b>' + plata(gas) + '</b>) superan a los ingresos (<b>' + plata(ing) + '</b>).']);
         else if (ing > 0 && sal > 0) ins.push(['✨', 'Te quedó <b>' + plata(sal) + '</b>, el ' + Math.round(sal / ing * 100) + ' % de lo que entró.']);
@@ -3695,9 +3676,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var l = movsDe(mesSel.y, mesSel.m).filter(esNeg), ing = sumar(l, 'i'), gas = sumar(l, 'g'), util = ing - gas, a = mesAnt(mesSel);
       var la = movsDe(a.y, a.m).filter(esNeg), utilA = sumar(la, 'i') - sumar(la, 'g'), cob = cobrarPedidos();
       var mat = l.filter(function(x) { return x.t === 'g' && x.c === 'Materiales (lanas)'; }).reduce(function(s2, x) { return s2 + x.v; }, 0);
-      el('fn-tarjetas').innerHTML = tarjetaFF('Ventas e ingresos', plata(ing), 'del negocio este mes', 'ing') + tarjetaFF('Costos y gastos', plata(gas), mat ? 'Materiales: ' + plata(mat) : 'del negocio este mes', 'gas') +
-        tarjetaFF('Utilidad del mes', plata(util), (ing ? 'Margen ' + Math.round(util / ing * 100) + ' %' : 'Anota ventas para verla') + (utilA ? ' · ' + (util >= utilA ? '▲' : '▼') + ' vs ' + MESES[a.m - 1] : ''), 'sal' + (util < 0 ? ' neg' : '')) +
-        tarjetaFF('Por cobrar', plata(cob.total), cob.lista.length + (cob.lista.length === 1 ? ' pedido con saldo' : ' pedidos con saldo'), 'aho');
+      /* las tarjetas de arriba (ingresos, gastos, saldo, ahorro) ya están en «Resumen del emprendimiento»: aquí solo la tabla de resultados, lo por cobrar y lo por pagar (4-nov-2026) */
       var pi = {}, pg = {}; l.forEach(function(x) { if (x.t === 'i') pi[x.c] = (pi[x.c] || 0) + x.v; else if (x.t === 'g') pg[x.c] = (pg[x.c] || 0) + x.v; });
       var fila = function(n, v, cls) { return '<tr class="' + (cls || '') + '"><td data-label="Concepto">' + n + '</td><td class="der" data-label="Valor">' + v + '</td></tr>'; };
       var h = '<tbody><tr class="fa-sec"><th colspan="2">Ingresos</th></tr>';
@@ -3714,14 +3693,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       f.deudas.forEach(function(d) { if (num(d.pagadas) < num(d.cuotas) && !movDeDeuda(d, cy, cm)) { hp += '<div class="ff-fila"><span>Cuota de ' + esc(d.n) + (d.dia ? ' <small class="ff-est">día ' + d.dia + '</small>' : '') + '</span><b>' + plata(num(d.cuota)) + '</b></div>'; totP += num(d.cuota); } });
       f.tarjetas.forEach(function(t) { var sd = saldoT(t); if (sd > 0) { var pr = num(t.pago) ? proxima(num(t.pago)) : null; hp += '<div class="ff-fila"><span>Tarjeta ' + esc(t.n) + (pr ? ' <small class="ff-est">pago ' + enDias(pr.dias) + '</small>' : '') + '</span><b>' + plata(sd) + '</b></div>'; totP += sd; } });
       el('fn-pagar').innerHTML = hp ? hp + '<div class="ff-total">Por pagar: <b>' + plata(totP) + '</b></div>' : '<p class="fin-vacio">No tienes pagos pendientes este mes. ¡Bien!</p>';
-      var vt = 0, tv = tablas['tabla-ventas']; for (var r = 1; r <= tv.n; r++) { var fe = leerFecha((document.getElementById('ag-vt' + r + '-fecha') || {}).value || ''), pr2 = document.getElementById('ag-vt' + r + '-precio'); if (fe && fe.a === mesSel.y && fe.m === mesSel.m && pr2) vt += num(pr2.value); }
-      el('fn-nota').textContent = vt ? 'En «Mis ventas del mes» anotaste ' + plata(vt) + ' este mes. Esa hoja es aparte: aquí solo cuentan los movimientos del negocio, para no contar dos veces.' : '';
     }
     window.lrFinInfo = function(y, m) {
       var f = fin(), l = movsDe(y, m).filter(esNeg);
       return { tarjetas: f.tarjetas.length, saldoTarjetas: f.tarjetas.reduce(function(a, t) { return a + saldoT(t); }, 0), hayNeg: l.length > 0, ingNeg: sumar(l, 'i'), gasNeg: sumar(l, 'g') };
     };
-    ['fn-flujo', 'fa-ahorro'].forEach(function(id) { el(id).addEventListener('click', function(e) { var t = e.target.closest('[data-mes]'); if (!t) return; var p = t.getAttribute('data-mes').split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); }); ponerTips(el(id)); });
+    ['fa-ahorro'].forEach(function(id) { el(id).addEventListener('click', function(e) { var t = e.target.closest('[data-mes]'); if (!t) return; var p = t.getAttribute('data-mes').split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); }); ponerTips(el(id)); });
 
     /* --- presupuesto y metas --- */
     function infoMeta(me, ah, fecha) {
@@ -3826,9 +3803,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     el('fin-exportar').addEventListener('click', exportar);
     ponerTips(el('fin-barras')); ponerTips(el('fin-dona'));
     el('fin-barras').addEventListener('click', function(e) { var t = e.target.closest('[data-mes]'); if (!t) return; var p = t.getAttribute('data-mes').split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); });
-    var esperaRedibujo; window.addEventListener('resize', function() { clearTimeout(esperaRedibujo); esperaRedibujo = setTimeout(function() { if (el('fin-resumen').classList.contains('abierta') || el('fin-negocio').classList.contains('abierta')) pintarEvol(); if (el('fin-analisis').classList.contains('abierta')) pintarAnalisis(); }, 200); });
+    var esperaRedibujo; window.addEventListener('resize', function() { clearTimeout(esperaRedibujo); esperaRedibujo = setTimeout(function() { if (el('fin-resumen').classList.contains('abierta')) { pintarEvol(); pintarAnalisis(); } }, 200); });
     /* abrir «Ventas y gastos» ya con el tipo elegido (acciones rápidas del panel, etc.) */
     window.lrFinNuevo = function(tipo) { el('fin-t').value = tipo === 'g' ? 'g' : (tipo === 'a' ? 'a' : 'i'); opcionesCat(); if (tipo !== 'g' && tipo !== 'a') el('fin-c').value = 'Ventas', camposVenta(); var v = el(el('fin-venta-p').hidden ? 'fin-d' : 'fin-p'); if (v) v.focus({ preventScroll: false }); };
+    /* Resumen del emprendimiento: pestañas «Este mes», «Comparar meses» y «El año» (solo mira, no se escribe) */
+    function rsTab(t) {
+      ['mes', 'comp', 'anio'].forEach(function(k) { var on = k === t, b = el('rs-t-' + k); el('rs-' + k).hidden = !on; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; });
+      pintar();
+    }
+    document.querySelectorAll('[data-rs]').forEach(function(b) {
+      b.addEventListener('click', function() { rsTab(b.dataset.rs); });
+      b.addEventListener('keydown', function(e) { var o = ['mes', 'comp', 'anio'], i = o.indexOf(b.dataset.rs); if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var n = o[(i + (e.key === 'ArrowRight' ? 1 : 2)) % 3]; rsTab(n); el('rs-t-' + n).focus(); } });
+    });
+    window.lrResumenTab = rsTab;
     window.lrFinRender = function(id) { if (id === 'fin-presupuesto') pintarPres(); pintar(); };
     window.lrFinReset = function() { cancelarTarjeta(); var c = el('fin-pres'); c.innerHTML = ''; delete c.dataset.listo; el('fin-metas').innerHTML = ''; el('fin-planes').innerHTML = ''; cancelarEdicion(); cancelarFijo(); cancelarDeuda(); pintar(); };
     pintar();
@@ -4353,7 +4340,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=31"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=26" defer></script>
+<script src="/js/agenda/idioma.js?v=27" defer></script>
 <script src="/js/agenda/config.js?v=17" defer></script>
 <script src="/js/agenda/tour.js?v=6" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>

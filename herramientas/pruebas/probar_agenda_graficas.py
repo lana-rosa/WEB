@@ -20,7 +20,7 @@ with sync_playwright() as p:
     T.v('la gráfica tiene descripción para lector de pantalla', '500.000' in sv and '849.057' in sv, sv)
     T.v('las rayas del equilibrio y de la meta están dibujadas', pg.locator('.pn-equilibrio svg line').count() == 2, pg.locator('.pn-equilibrio svg line').count())
     pg.click('.pn-equilibrio .pn-enlace'); pg.wait_for_timeout(500)
-    T.v('«Ver finanzas» abre Mi negocio en números', pg.evaluate("document.getElementById('fin-resumen').classList.contains('abierta')"))
+    T.v('«Ver finanzas» abre el Resumen del emprendimiento', pg.evaluate("document.getElementById('fin-resumen').classList.contains('abierta')"))
     T.v('en finanzas: las tres gráficas nuevas', all(pg.locator('#%s svg' % i).count() == 1 for i in ('gr-equilibrio', 'gr-acumulado', 'gr-utilidad')), [pg.locator('#%s svg' % i).count() for i in ('gr-equilibrio', 'gr-acumulado', 'gr-utilidad')])
     ut = pg.get_attribute('#gr-utilidad svg', 'aria-label')
     T.v('utilidad por mes: el mes anterior −200.000 (100.000 − 300.000); este mes ya incluye los pagos fijos que se anotan solos', '−$ 200.000' in ut and '$ 0' in ut, ut)
