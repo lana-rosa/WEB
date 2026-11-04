@@ -53,4 +53,13 @@ FILAS = [
  ('Tu mejor mes fue', 'Your best month was', 'Seu melhor mês foi'),
  ('te quedaron', 'you made', 'sobraram'),
  ('Este año no has anotado ahorro ni inversión. Puedes empezar con poquito cada mes.', 'This year you have not recorded any savings or investment. You can start small each month.', 'Neste ano você não anotou poupança nem investimento. Você pode começar com pouco a cada mês.'),
+ ('Resumen del emprendimiento', 'Business summary', 'Resumo do empreendimento'),
+ ('Aquí solo se mira: tus números del negocio este mes, comparando meses y en el año. Lo que anotas en «Ventas y gastos» se suma solo.', 'Look-only sheet: your business numbers this month, comparing months and over the year. What you record in “Sales and expenses” adds up by itself.', 'Aqui você só olha: os números do seu negócio neste mês, comparando meses e no ano. O que você anota em “Vendas e despesas” soma sozinho.'),
+ ('Qué quieres ver', 'What do you want to see', 'O que você quer ver'),
+ ('Comparar meses', 'Compare months', 'Comparar meses'),
+ ('El año', 'The year', 'O ano'),
+ ('Tus números del negocio: este mes, comparando y el año', 'Your business numbers: this month, comparing and the year', 'Os números do seu negócio: este mês, comparando e o ano'),
+ ('Tus números: este mes, comparando y el año', 'Your numbers: this month, comparing and the year', 'Seus números: este mês, comparando e o ano'),
+ ('Anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño, en', 'Record every sale and expense of your business the same day, even a small one, in', 'Anote cada venda e cada despesa do seu negócio no mesmo dia, mesmo pequena, em'),
+ ('Anota el primero en «Ventas y gastos» y aquí aparecerá tu resumen.', 'Record the first one in “Sales and expenses” and your summary will appear here.', 'Anote o primeiro em “Vendas e despesas” e seu resumo aparecerá aqui.'),
 ]

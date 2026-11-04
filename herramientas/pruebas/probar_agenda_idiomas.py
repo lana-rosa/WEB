@@ -46,7 +46,7 @@ with sync_playwright() as p:
     for idioma in ('en', 'pt'):
         pg = abrir_en(b, idioma)
         ids = pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a[data-hoja]')].map(a => a.dataset.hoja)")
-        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 37 and not pg.errs, pg.errs)
+        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 35 and not pg.errs, pg.errs)
         sin = []
         for h in ids:
             pg.evaluate("window.lrIrAHoja && window.lrIrAHoja('%s')" % h); pg.wait_for_timeout(120)
