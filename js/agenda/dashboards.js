@@ -102,8 +102,8 @@
   };
   T['Mi emprendimiento'] = function (c) {
     var ms = seisMeses(); (window.lrDinero ? window.lrDinero.registros() : []).forEach(function (v) { if (v.tipo !== 'venta' && v.tipo !== 'ingreso') return; ms.forEach(function (m) { if (enMes(v.f, m.y, m.m)) m.v += v.v; }); });   /* lector único del dinero (4-nov-2026) */
-    var kv = tarjeta('Tus ventas de los últimos 6 meses', 'ventas-mes', 'Ver ventas');
-    if (!ms.some(function (m) { return m.v; })) kv.appendChild(vacio('Cuando anotes ventas con fecha en «Mis ventas del mes», aquí verás cómo van mes a mes.'));
+    var kv = tarjeta('Tus ventas de los últimos 6 meses', 'fin-movimientos', 'Ver ventas');
+    if (!ms.some(function (m) { return m.v; })) kv.appendChild(vacio('Cuando anotes ventas en «Ventas y gastos», aquí verás cómo van mes a mes.'));
     else { var w = el('div', 'gr-svg-wrap'); w.appendChild(barrasMeses(ms, VERDE, 'Ventas de los últimos 6 meses', corto)); kv.appendChild(w);
       var a = ms[5].v, b = ms[4].v; kv.appendChild(el('p', 'gr-resumen', a >= b ? 'Este mes vas igual o mejor que el anterior (' + plata(a) + ' contra ' + plata(b) + ').' : 'Este mes llevas ' + plata(a) + ', y el mes anterior vendiste ' + plata(b) + '.')); }
     c.appendChild(kv);
@@ -121,7 +121,7 @@
     }
     c.appendChild(kp);
     var h = new Date(), cl = filas('tabla-clientas', ['nombre', 'desde']).filter(function (x) { return x.nombre; }), nuevas = cl.filter(function (x) { return enMes(x.desde, h.getFullYear(), h.getMonth()); }).length;
-    var vt = filas('tabla-ventas', ['producto', 'precio']).filter(function (v) { return v.producto && num(v.precio); }), por = {}; vt.forEach(function (v) { var k = v.producto; por[k] = (por[k] || 0) + num(v.precio); });
+    var vt = (window.lrDinero ? window.lrDinero.ventasDetalle() : []).filter(function (v) { return v.producto && v.v; }), por = {}; vt.forEach(function (v) { var k = v.producto; por[k] = (por[k] || 0) + v.v; });   /* lector único (4-nov-2026) */
     var top = Object.keys(por).map(function (n) { return { n: n, v: por[n] }; }).sort(function (a, b) { return b.v - a.v; }).slice(0, 5);
     var kc = tarjeta('Tus clientas y lo que más vendes', 'mis-clientas', 'Ver clientas');
     kc.appendChild(kpis([['Clientas', cl.length], ['Nuevas este mes', nuevas]]));

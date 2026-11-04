@@ -27,7 +27,7 @@ def filas(wb, n): return [[c.value for c in r] for r in wb[n].iter_rows()]
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     wb, errs = correr(b, True)
-    T.v('con membresía salen todas las hojas de finanzas', all(n in wb.sheetnames for n in NUEVAS + ['Ingresos y gastos del negocio']), wb.sheetnames)
+    T.v('con membresía salen todas las hojas de finanzas', all(n in wb.sheetnames for n in NUEVAS + ['Ventas y gastos']), wb.sheetnames)
     pr = filas(wb, 'Presupuesto mensual'); T.v('presupuesto: solo categorías con valor, en pesos', pr[1:] == [['Materiales (lanas)', 300000], ['Empaques', 50000]] and '$' in wb['Presupuesto mensual']['B2'].number_format, pr)
     me = filas(wb, 'Metas de ahorro del negocio'); T.v('metas: una fila (la vacía no sale), con lo que falta y fecha real', len(me) == 2 and me[1][0] == 'Máquina de coser' and me[1][3] == 900000 and isinstance(me[1][4], datetime.datetime), me)
     pl = filas(wb, 'Planes del negocio'); T.v('planes: mes en palabras y cumplido Sí/No', pl[1] == ['Feria de diciembre', 'Diciembre', 250000, 'No'], pl)
@@ -37,5 +37,5 @@ with sync_playwright() as p:
     pt = filas(wb, 'Pagos a tarjetas'); T.v('pagos a tarjetas: fecha real, nombre de la tarjeta y valor', isinstance(pt[1][0], datetime.datetime) and pt[1][1] == 'Visa negocio' and pt[1][2] == 100000, pt)
     T.v('sin errores de JavaScript', not errs, errs)
     wb, errs = correr(b, False)
-    T.v('con la membresía vencida NO sale ninguna hoja de finanzas (candado)', not any(n in wb.sheetnames for n in NUEVAS + ['Ingresos y gastos del negocio']), wb.sheetnames)
+    T.v('con la membresía vencida NO sale ninguna hoja de finanzas de pago (candado), pero «Ventas y gastos» sí (es gratis, 4-nov-2026)', not any(n in wb.sheetnames for n in NUEVAS) and 'Ventas y gastos' in wb.sheetnames, wb.sheetnames)
 T.fin()
