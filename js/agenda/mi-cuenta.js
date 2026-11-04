@@ -15,8 +15,8 @@
   function src(av) {
     if (av === 'foto') { var f = (N.datos()._dib || {})['perfil:foto']; if (f && f.img) return f.img; }
     if (av && av.indexOf('animal-') === 0) return '/img/agenda/ui/animales/' + av.slice(7) + '.webp';
-    if (av && av.indexOf('rosina-') === 0) return '/img/agenda/ui/rosina-iconos/' + av.slice(7) + '.webp';
-    return '/img/agenda/ui/rosina-iconos/feliz.webp';
+    if (av && av.indexOf('rosina-') === 0) return '/img/agenda/ui/rosina-iconos/' + av.slice(7) + '.webp?v=2';
+    return '/img/agenda/ui/rosina-iconos/feliz.webp?v=2';
   }
   function correo() { try { var k = Object.keys(localStorage).filter(function (x) { return /^sb-.*-auth-token$/.test(x); })[0]; var j = JSON.parse(localStorage.getItem(k) || 'null'); return (j && j.user && j.user.email) || ''; } catch (e) { return ''; } }
   function primerNombre() { return String(N.datos()['ag-duena'] || '').trim(); }
@@ -99,7 +99,7 @@
     caja.appendChild(el('h3', '', 'Mi foto o mi ícono'));
     var rej = el('div', 'mc-rejilla'); rej.setAttribute('role', 'group'); rej.setAttribute('aria-label', 'Elige un ícono');
     function op(av, etq, url) { var b = el('button', 'mc-op'); b.type = 'button'; b.dataset.av = av; b.setAttribute('aria-label', etq); b.title = etq; var i = el('img'); i.alt = ''; i.loading = 'lazy'; i.width = 52; i.height = 52; i.src = url; b.appendChild(i); b.addEventListener('click', function () { elegir(av); }); rej.appendChild(b); }
-    ROSINA.forEach(function (n) { op('rosina-' + n, 'Rosina (' + n + ')', '/img/agenda/ui/rosina-iconos/' + n + '.webp'); });
+    ROSINA.forEach(function (n) { op('rosina-' + n, 'Rosina (' + n + ')', '/img/agenda/ui/rosina-iconos/' + n + '.webp?v=2'); });
     ANIMALES.forEach(function (n) { op('animal-' + n, NOMBRE[n], '/img/agenda/ui/animales/' + n + '.webp'); });
     caja.appendChild(rej);
     var sub = el('label', 'mc-subir boton-secundario boton-chico', '📷 Subir mi propia foto'); var f = el('input'); f.type = 'file'; f.accept = 'image/*'; f.hidden = true; sub.appendChild(f);
