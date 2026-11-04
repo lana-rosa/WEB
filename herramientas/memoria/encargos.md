@@ -151,3 +151,8 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 - En las páginas comunes abiertas desde la agenda (como `cuenta.html` con `?casa=agenda`): **quitar los botones de arriba** («Mi agenda», «Aprende y compra», «Material gratis de Rosina», «Sobre nosotras») y **dejar solo el menú de las tres rayitas**; dentro de ese menú, **quitar «Rosina / Material gratis de Rosina»** (ese material ya está dentro de la agenda y el enlace lleva a la Academy). Solo la casa Agenda; las otras casas no cambian.
 - Se hace en `herramientas/sincronizar_encabezado.py` (genera `js/casa-menu.js`); probar con `probar_menus.py`, en 390 y 1280 px; foto a Jennifer antes de publicar (nivel 🟡).
 - Ojo: dentro de la agenda (E18, chat 2) la decisión es otra (un solo menú de «Mi cuenta», sin tres rayitas): avisar al chat 2 para que se vea coherente al pasar de la agenda a «Mi cuenta».
+
+## [ ] E25 · Más contraste y color en las tarjetas de las secciones (chat 2; captura de Jennifer, 4-nov-2026)
+- Jennifer: «todo se ve muy monótono en cuanto al color, le falta contraste» (sección «Mis proyectos»: tarjetas blancas con borde rosa y títulos rosados, sobre fondo rosado claro).
+- **Objetivo:** proponer 2 o 3 opciones con foto (sin cambiar todavía): por ejemplo, cada tarjeta con un fondo suave de un color distinto de la paleta (rosa, lila, azul acero, durazno, verde menta) o el color propio de cada sección; títulos más oscuros; borde o sombra que separe la tarjeta del fondo; contraste mínimo 4,5:1 en textos. Mirar todas las secciones, no solo «Mis proyectos».
+- **Coordinar:** con E19 (modo oscuro) y E18 («Mi cuenta»), para no repintar dos veces. Foto a Jennifer y sí o no antes de publicar (nivel 🟡).
