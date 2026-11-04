@@ -18,7 +18,7 @@ with sync_playwright() as p:
     wb = openpyxl.load_workbook(ruta); T.v('el archivo se abre con una librería de Excel', len(wb.sheetnames) >= 3, wb.sheetnames)
     v = wb['Ventas y gastos']; filas = list(v.iter_rows(min_row=2, values_only=False))   # desde el 4-nov-2026 las ventas y los gastos salen en una sola hoja
     f1, f2 = filas[0], filas[1]
-    T.v('la hoja trae Fecha, Tipo, Categoría, Detalle, Producto, Cliente, Costo de materiales, Valor y Medio de pago', [c.value for c in v[1]] == ['Fecha', 'Tipo', 'Categoría', 'Detalle', 'Producto', 'Cliente', 'Costo de materiales', 'Valor', 'Medio de pago'], [c.value for c in v[1]])
+    T.v('la hoja trae Fecha, Tipo, Categoría, Detalle, Producto, Cliente, Costo de materiales, Valor, Medio de pago y De (negocio o personal)', [c.value for c in v[1]] == ['Fecha', 'Tipo', 'Categoría', 'Detalle', 'Producto', 'Cliente', 'Costo de materiales', 'Valor', 'Medio de pago', 'De'], [c.value for c in v[1]])
     T.v('precio «$ 170.000» llega como número 170000 con formato de pesos', f1[7].value == 170000 and '$' in f1[7].number_format and f1[7].data_type == 'n', (f1[7].value, f1[7].number_format))
     T.v('precio «$85.000» (sin espacio) también es número', f2[7].value == 85000, f2[7].value)
     T.v('el costo de materiales es número en pesos', f2[6].value == 15000 and '$' in f2[6].number_format, (f2[6].value, f2[6].number_format))

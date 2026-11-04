@@ -49,8 +49,8 @@
     var f = (N.datos()._fin || {}), salida = [];
     function agregar(hoja, nombre, columnas, filas) { if (filas.length) salida.push({ hoja: hoja, nombre: nombre, columnas: columnas, filas: filas }); }
     var movs = (f.movs || []).slice().sort(function (a, b) { return String(a.f).localeCompare(String(b.f)); });
-    agregar('Ventas y gastos', 'Ventas y gastos', ['Fecha', 'Tipo', 'Categoría', 'Detalle', 'Producto', 'Cliente', 'Costo de materiales', 'Valor', 'Medio de pago'],
-      movs.map(function (m) { return [m.f, m.t === 'i' ? (m.p != null ? 'Venta' : 'Ingreso') : m.t === 'a' ? 'Ahorro' : 'Gasto', m.c || '', m.d || '', m.p || '', m.cl || '', m.cm ? P(m.cm) : '', P(m.v), m.m || '']; }));
+    agregar('Ventas y gastos', 'Ventas y gastos', ['Fecha', 'Tipo', 'Categoría', 'Detalle', 'Producto', 'Cliente', 'Costo de materiales', 'Valor', 'Medio de pago', 'De'],
+      movs.map(function (m) { return [m.f, m.t === 'i' ? (m.p != null ? 'Venta' : 'Ingreso') : m.t === 'a' ? 'Ahorro' : 'Gasto', m.c || '', m.d || '', m.p || '', m.cl || '', m.cm ? P(m.cm) : '', P(m.v), m.m || '', m.neg === false ? 'Personal' : 'Negocio']; }));
     var HP = 'Presupuesto y metas del negocio', pres = f.pres || {};
     agregar(HP, 'Presupuesto mensual', ['Categoría', 'Presupuesto mensual'], Object.keys(pres).filter(function (k) { return Number(pres[k]) > 0; }).map(function (k) { return [k, P(pres[k])]; }));
     agregar(HP, 'Metas de ahorro del negocio', ['Meta', 'Valor de la meta', 'Ahorrado', 'Saldo que falta', 'Fecha objetivo'],

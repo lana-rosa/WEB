@@ -57,6 +57,29 @@ with sync_playwright() as p:
         antes = len((dato(pg).get('_fin') or {}).get('movs', [])); pg.reload(); pg.wait_for_timeout(1800)
         T.v(n + 'al recargar no se duplica nada', len((dato(pg).get('_fin') or {}).get('movs', [])) == antes, antes)
         T.v(n + 'sin desbordes ni errores de JavaScript', not pg.errs and pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), pg.errs[:2]); ctx.close()
+    # --- lo personal (4-nov-2026): se anota en el mismo lugar, pero nunca se mezcla con el negocio
+    ctx = contexto(b, 1280, 900, datos={'_fin': {'movs': [{'id': 'a', 'f': f1, 't': 'i', 'c': 'Ventas', 'd': 'Osito', 'p': 'Osito', 'cl': '', 'cm': '', 'v': 85000, 'm': ''}, {'id': 'b', 'f': f2, 't': 'g', 'c': 'Mercado', 'd': 'Mercado del mes', 'v': 300000, 'm': '', 'neg': False}, {'id': 'c', 'f': f2, 't': 'g', 'c': 'Empaques', 'd': 'Bolsas', 'v': 20000, 'm': ''}], 'fijos': [], 'deudas': []}}, config_abierta=False)
+    pg = abrir(ctx, '', 2000, config=False)
+    t = pg.evaluate("(()=>{const t=window.lrDinero.totalesMes(%d,%d);return [t.entradas,t.gastos]})()" % (hoy.year, hoy.month)); T.v('lo personal no entra en los números del negocio (entró 85.000, salió 20.000)', t == [85000, 20000], t)
+    pp = pg.evaluate("(()=>{const t=window.lrDinero.personalMes(%d,%d);return [t.gastos,t.porCat.Mercado]})()" % (hoy.year, hoy.month)); T.v('y se puede leer aparte: gastos personales 300.000 en Mercado', pp == [300000, 300000], pp)
+    inf = pg.evaluate("(()=>{const x=window.lrInforme.datos(%d,%d);return [x.ingresos,x.gastos]})()" % (hoy.year, hoy.month)); T.v('el informe del mes solo trae el negocio', inf == [85000, 20000], inf)
+    pg.evaluate("window.lrIrAHoja('fin-movimientos')"); pg.wait_for_timeout(500)
+    T.v('la lista empieza en «Mi negocio» (no muestra el mercado personal)', 'Mercado' not in pg.inner_text('#fin-tabla') and 'Bolsas' in pg.inner_text('#fin-tabla'))
+    pg.select_option('#fin-fil-neg', 'p'); pg.wait_for_timeout(300)
+    T.v('al elegir «Personal» sale el mercado con su marca «Personal»', 'Mercado' in pg.inner_text('#fin-tabla') and pg.locator('#fin-tabla .fin-personal').count() == 1 and 'Bolsas' not in pg.inner_text('#fin-tabla'), pg.inner_text('#fin-tabla')[:120])
+    pg.select_option('#fin-de', 'p'); pg.select_option('#fin-t', 'g'); pg.wait_for_timeout(200)
+    cats = pg.evaluate("[...document.querySelectorAll('#fin-c option')].map(o => o.value)")
+    T.v('con «De: Personal» las categorías son las personales y no salen los campos de venta', 'Vivienda' in cats and 'Mercado' in cats and 'Empaques' not in cats and not pg.is_visible('#fin-p'), cats)
+    pg.select_option('#fin-c', 'Salud'); pg.fill('#fin-d', 'Droguería'); pg.fill('#fin-v', '45000'); pg.click('#fin-guardar'); pg.wait_for_timeout(500)
+    mv = [x for x in (dato(pg).get('_fin') or {}).get('movs', []) if x.get('d') == 'Droguería']
+    T.v('un gasto personal nuevo se guarda con neg = falso y deja la lista en «Personal»', len(mv) == 1 and mv[0].get('neg') is False and mv[0]['c'] == 'Salud' and pg.input_value('#fin-fil-neg') == 'p', mv)
+    t = pg.evaluate("window.lrDinero.totalesMes(%d,%d).gastos" % (hoy.year, hoy.month)); T.v('y sigue sin tocar los gastos del negocio (20.000)', t == 20000, t)
+    pg.select_option('#fin-fil-neg', 'n'); pg.fill('#fin-texto', 'gasté 120 mil en mercado personal'); pg.press('#fin-texto', 'Enter'); pg.wait_for_timeout(500)
+    mv = [x for x in (dato(pg).get('_fin') or {}).get('movs', []) if x.get('v') == 120000]
+    T.v('«gasté 120 mil en mercado personal» queda como gasto personal de Mercado', len(mv) == 1 and mv[0].get('neg') is False and mv[0]['c'] == 'Mercado' and mv[0]['t'] == 'g', mv)
+    pg.select_option('#fin-fil-neg', ''); pg.wait_for_timeout(300)
+    T.v('con «Los dos» se ve todo', 'Mercado' in pg.inner_text('#fin-tabla') and 'Bolsas' in pg.inner_text('#fin-tabla'))
+    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # copias duplicadas: total del día «Ventas» + las mismas ventas por ficha
     D2 = dict(FICHAS); D2['_fin'] = {'movs': [{'id': 'x1', 'f': f1, 't': 'i', 'c': 'Ventas', 'd': 'Total', 'v': 125000, 'm': ''}]}
     ctx = contexto(b, 1280, 900, datos=D2, config_abierta=False); pg = abrir(ctx, '', 2000, config=False); fin = dato(pg)['_fin']

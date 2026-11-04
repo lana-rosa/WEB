@@ -21,7 +21,7 @@
     }
     return out;
   }
-  function registros() {
+  function registros(todo) {   // sin argumento: solo lo del negocio (lo personal nunca se mezcla); registros(true) incluye lo personal con `personal: true`
     var out = [], d = N.datos(), movs = (d._fin && d._fin.movs) || [];
     var migrado = !!(d._fin && d._fin.migrado);   // desde la migración, «Ventas y gastos» es la única hoja donde se anota: las fichas viejas quedan solo de respaldo
     var ventas = migrado ? [] : filas('tabla-ventas', ['fecha', 'producto', 'cliente', 'precio', 'costo'], true).filter(function (r) { return num(r.precio) > 0 || r.producto; });
@@ -36,8 +36,8 @@
        (el otro es un subconjunto o una copia), así no se cuenta doble ni se pierde plata. Lo que no tiene ficha equivalente (otros ingresos, pagos fijos, compras de lana) sigue contando. */
     var sV = {}, sG = {}, mV = {}, mG = {}, mes;
     out.forEach(function (r) { if (!r.f) return; var k = r.f.slice(0, 7); if (r.tipo === 'venta') sV[k] = (sV[k] || 0) + r.v; else if (r.tipo === 'gasto') sG[k] = (sG[k] || 0) + r.v; });
-    function esVentaMov(x) { return x.t === 'i' && (!String(x.c || '').trim() || /^venta/i.test(String(x.c).trim())); }
-    function esGastoMov(x) { return x.t === 'g' && !x.fijo && !x.inv; }
+    function esVentaMov(x) { return x.neg !== false && x.t === 'i' && (!String(x.c || '').trim() || /^venta/i.test(String(x.c).trim())); }
+    function esGastoMov(x) { return x.neg !== false && x.t === 'g' && !x.fijo && !x.inv; }
     movs.forEach(function (x, i) { if (!x || usados[i]) return; var k = String(x.f || '').slice(0, 7), v = num(x.v); if (esVentaMov(x)) mV[k] = (mV[k] || 0) + v; else if (esGastoMov(x)) mG[k] = (mG[k] || 0) + v; });
     var ganaMovV = {}, ganaMovG = {}; Object.keys(mV).forEach(function (k) { if (mV[k] > (sV[k] || 0)) ganaMovV[k] = 1; }); Object.keys(mG).forEach(function (k) { if (mG[k] > (sG[k] || 0)) ganaMovG[k] = 1; });
     out = out.filter(function (r) { var k = r.f.slice(0, 7); return !((r.tipo === 'venta' && ganaMovV[k]) || (r.tipo === 'gasto' && ganaMovG[k])); });
@@ -47,9 +47,9 @@
       if (esVentaMov(x) && !ganaMovV[mes] && mV[mes]) return;   // ya están las fichas de ventas de ese mes
       if (esGastoMov(x) && !ganaMovG[mes] && mG[mes]) return;   // ya están las fichas de gastos de ese mes
       var tipo = x.t === 'i' ? (x.p != null ? 'venta' : 'ingreso') : x.t === 'g' ? 'gasto' : x.t === 'a' ? 'ahorro' : ''; if (!tipo) return;   // una venta anotada en «Ventas y gastos» lleva producto (aunque sea vacío)
-      out.push({ mid: x.id, f: String(x.f || '').slice(0, 10), tipo: tipo, v: num(x.v), producto: x.p || '', cliente: x.cl || '', costo: num(x.cm), cat: x.fijo ? 'Gastos fijos' : (String(x.c || '').trim() || (tipo === 'gasto' ? 'Otros' : '')), desc: x.d || '', fijo: !!x.fijo, origen: 'movimientos' });
+      out.push({ mid: x.id, personal: x.neg === false, f: String(x.f || '').slice(0, 10), tipo: tipo, v: num(x.v), producto: x.p || '', cliente: x.cl || '', costo: num(x.cm), cat: x.fijo ? 'Gastos fijos' : (String(x.c || '').trim() || (tipo === 'gasto' ? 'Otros' : '')), desc: x.d || '', fijo: !!x.fijo, origen: 'movimientos' });
     });
-    return out;
+    return todo ? out : out.filter(function (r) { return !r.personal; });
   }
   function ventasDetalle() {   // las ventas con su detalle (producto, cliente, costo), sin descartar nada: para el top de productos, el margen y el historial de cada clienta
     var d = N.datos(), f = d._fin || {}, out = [];
@@ -83,7 +83,7 @@
     var d = N.datos(), f = d._fin || {}; if (f.migrado) return 0;
     var TV = N.tablas && N.tablas['tabla-ventas'], TG = N.tablas && N.tablas['tabla-gastos']; if (!TV || !TG) return 0;
     if (!document.getElementById(TV.prefijo + '1-fecha') || !document.getElementById(TG.prefijo + '1-fecha')) return 0;   // las fichas todavía no están pintadas
-    var previos = registros();
+    var previos = registros(true);
     var hayFichas = filas('tabla-ventas', ['fecha', 'producto', 'cliente', 'precio', 'costo']).some(function (r) { return num(r.precio) > 0 || r.producto; }) || filas('tabla-gastos', ['fecha', 'detalle', 'valor']).some(function (r) { return num(r.valor) > 0 || r.detalle; });
     if (!hayFichas) return 0;   // nada que pasar: no se escribe nada (una agenda vacía sigue vacía); si luego llega una copia con fichas, se migra entonces
     if (!d._fin) d._fin = f;
@@ -109,7 +109,12 @@
     N.guardar(); if (window.lrFinReset) window.lrFinReset();
     return pasadas;
   }
-  window.lrDinero = { registros: registros, ventasFicha: ventasDetalle, ventasDetalle: ventasDetalle, migrar: migrar, migrado: function () { var f = N.datos()._fin; return !!(f && f.migrado); }, delMes: delMes, totalesMes: totalesMes, porMes: porMes };
+  function personalMes(y, m) {   // lo personal del mes: gastos, ingresos y ahorro (aparte del negocio)
+    var k = y + '-' + dos(m), t = { y: y, m: m, entradas: 0, gastos: 0, ahorro: 0, porCat: {}, registros: [] };
+    registros(true).forEach(function (r) { if (!r.personal || r.f.slice(0, 7) !== k) return; t.registros.push(r); if (r.tipo === 'gasto') { t.gastos += r.v; var c = r.cat || 'Otros'; t.porCat[c] = (t.porCat[c] || 0) + r.v; } else if (r.tipo === 'ahorro') t.ahorro += r.v; else t.entradas += r.v; });
+    return t;
+  }
+  window.lrDinero = { registros: registros, personalMes: personalMes, ventasFicha: ventasDetalle, ventasDetalle: ventasDetalle, migrar: migrar, migrado: function () { var f = N.datos()._fin; return !!(f && f.migrado); }, delMes: delMes, totalesMes: totalesMes, porMes: porMes };
   /* se migra al abrir la agenda, y otra vez si llega una copia vieja (de otro aparato o de la cuenta) que todavía trae las fichas */
   function arrancar() { try { migrar(); } catch (e) { if (window.console) console.warn('Migración de Ventas y gastos pendiente', e); } }
   arrancar(); document.addEventListener('agenda-guardada', arrancar); window.addEventListener('load', function () { setTimeout(arrancar, 400); });

@@ -12,7 +12,7 @@ with sync_playwright() as p:
     T.v('la pestaña se llama «Finanzas» y el grupo «Finanzas del negocio»', 'FinanzasFinanzas del negocio'.count('Finanzas') and any('Finanzas' in x for x in pg.evaluate("[...document.querySelectorAll('#pestanas-agenda .pestana')].map(b => b.textContent)")) and 'Finanzas del negocio' in pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista .menu-grupo')].map(b => b.textContent)"))
     nombres = pg.evaluate("['fin-resumen','fin-movimientos','fin-presupuesto','fin-fijos','fin-tcredito'].map(i => document.querySelector('#' + i + ' h3').textContent)")
     T.v('todas las hojas de finanzas dicen que son del negocio', nombres == ['Resumen del emprendimiento', 'Ventas y gastos', 'Presupuesto y metas del negocio', 'Gastos fijos y deudas del negocio', 'Tarjetas del negocio'], nombres)
-    T.v('ya no hay casilla «Es del negocio» ni filtro personal a la vista', not pg.locator('#fin-neg').is_visible() and not pg.locator('#fin-fil-neg').is_visible())
+    T.v('lo personal volvió (4-nov-2026): el selector «De» y el filtro «Mi negocio / Personal» se ven y empiezan en «Mi negocio»', pg.locator('#fin-de').is_visible() and pg.locator('#fin-fil-neg').is_visible() and pg.input_value('#fin-de') == 'n' and pg.input_value('#fin-fil-neg') == 'n')
     T.v('el ejemplo ya no habla de «mercado»', 'mercado' not in pg.get_attribute('#fin-texto', 'placeholder').lower() and 'lana' in pg.get_attribute('#fin-texto', 'placeholder'))
     pg.fill('#fin-texto', 'gasté 50 mil en lana'); pg.press('#fin-texto', 'Enter'); pg.wait_for_timeout(300)
     pg.fill('#fin-texto', 'vendí 120000 un amigurumi'); pg.press('#fin-texto', 'Enter'); pg.wait_for_timeout(300)
