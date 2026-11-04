@@ -1890,5 +1890,14 @@ window.lrI18n.add("pt", {
 "Tus números del negocio: este mes, comparando y el año": "Os números do seu negócio: este mês, comparando e o ano",
 "Tus números: este mes, comparando y el año": "Seus números: este mês, comparando e o ano",
 "Anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño, en": "Anote cada venda e cada despesa do seu negócio no mesmo dia, mesmo pequena, em",
-"Anota el primero en «Ventas y gastos» y aquí aparecerá tu resumen.": "Anote o primeiro em “Vendas e despesas” e seu resumo aparecerá aqui."
+"Anota el primero en «Ventas y gastos» y aquí aparecerá tu resumen.": "Anote o primeiro em “Vendas e despesas” e seu resumo aparecerá aqui.",
+"De": "De quem",
+"Mi negocio": "Meu negócio",
+"Personal": "Pessoal",
+"Los dos": "Os dois",
+"Mi negocio o personal": "Meu negócio ou pessoal",
+"Servicios del hogar": "Serviços da casa",
+"Ropa y cuidado personal": "Roupa e cuidados pessoais",
+"Recreación": "Lazer",
+"Sueldo": "Salário"
 });

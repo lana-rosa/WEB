@@ -1890,5 +1890,14 @@ window.lrI18n.add("en", {
 "Tus números del negocio: este mes, comparando y el año": "Your business numbers: this month, comparing and the year",
 "Tus números: este mes, comparando y el año": "Your numbers: this month, comparing and the year",
 "Anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño, en": "Record every sale and expense of your business the same day, even a small one, in",
-"Anota el primero en «Ventas y gastos» y aquí aparecerá tu resumen.": "Record the first one in “Sales and expenses” and your summary will appear here."
+"Anota el primero en «Ventas y gastos» y aquí aparecerá tu resumen.": "Record the first one in “Sales and expenses” and your summary will appear here.",
+"De": "Whose",
+"Mi negocio": "My business",
+"Personal": "Personal",
+"Los dos": "Both",
+"Mi negocio o personal": "My business or personal",
+"Servicios del hogar": "Household services",
+"Ropa y cuidado personal": "Clothes and personal care",
+"Recreación": "Recreation",
+"Sueldo": "Salary"
 });
