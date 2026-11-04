@@ -76,7 +76,7 @@ const CSS = `
 .pg-foto img { width: 100%; height: 100%; object-fit: cover; }
 .pg-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; font-size: 0.92rem; }
 .pg-info strong { line-height: 1.25; }
-.pg-info .pg-quitar { align-self: flex-start; background: none; border: none; font: inherit; font-size: 0.82rem; color: #6E6E73; text-decoration: underline; cursor: pointer; padding: 0; }
+.pg-info .pg-quitar { align-self: flex-start; background: none; border: none; font: inherit; font-size: 0.82rem; color: #3F3F46; text-decoration: underline; cursor: pointer; padding: 0; }
 .pg-precio { font-weight: 700; white-space: nowrap; }
 .pg-cant { display: inline-flex; align-items: center; border: 1.5px solid rgba(69,69,74,0.2); border-radius: 10px; overflow: hidden; align-self: flex-start; }
 .pg-cant button { width: 30px; height: 30px; border: none; background: #fff; font-size: 1.05rem; cursor: pointer; color: #C81B6D; font-weight: 700; }
@@ -87,11 +87,11 @@ const CSS = `
 .pg-totales div span:last-child { white-space: nowrap; text-align: right; }
 .pg-totales .total { font-weight: 800; font-size: 1.02rem; border-top: 1px solid rgba(69,69,74,0.12); margin-top: 6px; padding-top: 10px; }
 .pg-totales .descuento { color: #B83E78; font-weight: 700; }
-.pg-totales .pista { color: #6E6E73; font-size: 0.82rem; }
+.pg-totales .pista { color: #3F3F46; font-size: 0.82rem; }
 .pg-confianza { margin: 14px 20px 20px; border: 1px solid rgba(69,69,74,0.12); border-radius: 12px; padding: 12px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8rem; background: #F4F9FE; }
 .pg-confianza div { display: flex; gap: 8px; align-items: flex-start; }
 .pg-confianza b { display: block; font-size: 0.82rem; }
-.pg-confianza small { color: #6E6E73; }
+.pg-confianza small { color: #3F3F46; }
 @media (max-width: 480px) { .pg-confianza { grid-template-columns: 1fr; } }
 .pg-resumen-movil > summary { list-style: none; cursor: pointer; background: #fff; border: 1px solid rgba(69,69,74,0.12); border-radius: 14px; padding: 13px 16px; font-weight: 700; display: flex; justify-content: space-between; gap: 10px; }
 .pg-resumen-movil > summary::-webkit-details-marker { display: none; }
@@ -103,7 +103,7 @@ const CSS = `
 .pago-opcion:has(input:checked) { background: #FBE4EF; border-color: #E74E96; }
 .pago-opcion input { margin-top: 3px; accent-color: #E74E96; width: 18px; height: 18px; flex-shrink: 0; }
 .pago-opcion > span { flex: 1; display: block; }
-.pago-opcion small { display: block; color: #6E6E73; font-size: 0.82rem; margin-top: 2px; }
+.pago-opcion small { display: block; color: #3F3F46; font-size: 0.82rem; margin-top: 2px; }
 .pago-opcion .pg-valor { float: right; font-weight: 700; margin-left: 10px; white-space: nowrap; }
 .pago-campo { display: flex; flex-direction: column; gap: 5px; margin-bottom: 13px; }
 .pago-campo[hidden] { display: none; }
@@ -123,8 +123,8 @@ const CSS = `
 .pago-aviso { margin: 12px 0 0; padding: 11px 14px; border-radius: 12px; background: #fdecea; color: #a12a20; font-weight: 600; font-size: 0.9rem; }
 .pago-aviso[hidden] { display: none; }
 .pago-aviso a { color: inherit; }
-.pago-nota { color: #6E6E73; font-size: 0.82rem; margin: 12px 0 0; text-align: center; }
-.nota-pago-carrito { color: #6E6E73; font-size: 0.8rem; text-align: center; margin: -4px 0 10px; }
+.pago-nota { color: #3F3F46; font-size: 0.82rem; margin: 12px 0 0; text-align: center; }
+.nota-pago-carrito { color: #3F3F46; font-size: 0.8rem; text-align: center; margin: -4px 0 10px; }
 `;
 
 let tarifas = null;
@@ -708,7 +708,7 @@ async function iniciar() {
     abrirPago();
   });
   const nota = nodo('p', 'nota-pago-carrito', ''); nota.innerHTML = IC_LOCK + ' Pago seguro con Wompi: tarjeta, PSE, Nequi, Bre-B y más.';
-  if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#6E6E73;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
+  if (!document.getElementById('estilo-pago-carrito')) { const st = document.createElement('style'); st.id = 'estilo-pago-carrito'; st.textContent = '.nota-pago-carrito{color:#3F3F46;font-size:.8rem;text-align:center;margin:0 0 10px}'; document.head.append(st); }
   wa.before(b, nota);
   const aviso = nodo('p', 'nota-pago-carrito', '');
   aviso.hidden = true; wa.before(aviso);

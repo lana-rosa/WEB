@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
   --lila: #9EA2F9;
   --lila-suave: #F0F1FE;
-  --azul-acero: #93C7F9; --blanco-hueso: #FDFCFA; --tinta: #45454A; --tinta-suave: #64646A; --blanco: #FFFFFF;
+  --azul-acero: #93C7F9; --blanco-hueso: #FDFCFA; --tinta: #45454A; --tinta-suave: #3F3F46; --blanco: #FFFFFF;
   --fuente-titulo: 'Emoji Lana', 'DynaPuff', sans-serif;
   --fuente-cuerpo: 'Emoji Lana', 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --radio-suave: 20px; --sombra-suave: 0 12px 32px rgba(58, 42, 46, 0.10);
@@ -792,7 +792,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         x.beginPath(); x.moveTo(cx + l[0] * r, cy + l[1] * r); x.quadraticCurveTo(cx, cy + (l[1] + 0.22) * r, cx + l[2] * r, cy + l[3] * r); x.stroke();
       });
       x.fillStyle = '#45454A'; x.font = '700 32px "Hanken Grotesk", sans-serif'; x.fillText(col[0], cx, cy + r + 50, paso - 20);
-      x.fillStyle = '#64646A'; x.font = '500 28px monospace'; x.fillText(col[1], cx, cy + r + 88);
+      x.fillStyle = '#3F3F46'; x.font = '500 28px monospace'; x.fillText(col[1], cx, cy + r + 88);
     });
     var y0 = 380 + filas * 300 - 40, alto = 170, seq = [];
     if (n <= 4) { seq = [0, 1, 0, 2, 0, 1, 0, n > 3 ? 3 : 2, 0, 1].map(function(i) { return p.colores[Math.min(i, n - 1)][1]; }); }
@@ -800,7 +800,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var w = (W - 120) / seq.length;
     x.save(); x.beginPath(); if (x.roundRect) x.roundRect(60, y0, W - 120, alto, 24); else x.rect(60, y0, W - 120, alto); x.clip();
     seq.forEach(function(col, i) { x.fillStyle = col; x.fillRect(60 + i * w, y0, w + 1, alto); }); x.restore();
-    x.fillStyle = '#64646A'; x.font = '500 28px "Hanken Grotesk", sans-serif'; x.fillText('Así se vería en una manta de rayas', W / 2, y0 + alto + 48);
+    x.fillStyle = '#3F3F46'; x.font = '500 28px "Hanken Grotesk", sans-serif'; x.fillText('Así se vería en una manta de rayas', W / 2, y0 + alto + 48);
     x.fillStyle = '#E74E96'; x.font = '600 36px DynaPuff, sans-serif'; x.fillText('♡ lanarosacrochet.com', W / 2, H - 60);
     return c;
   }

@@ -31,7 +31,7 @@
     '.lr-ck button:focus-visible,.lr-ck a:focus-visible,.lr-ck input:focus-visible{outline:3px solid #9EA2F9;outline-offset:2px}' +
     '.lr-ck-op{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:#FBF7F4;margin:0 0 8px}' +
     '.lr-ck-op input{width:22px;height:22px;margin-top:2px;accent-color:#E74E96;flex-shrink:0}' +
-    '.lr-ck-op strong{display:block}.lr-ck-op span{font-size:.88rem;color:#6B6B72}' +
+    '.lr-ck-op strong{display:block}.lr-ck-op span{font-size:.88rem;color:#3F3F46}' +
     '@media (max-width:560px){.lr-ck{left:10px;right:10px;bottom:10px;padding:16px}.lr-ck button{flex:1 1 auto}}';
 
   var caja = null, previo = null;
