@@ -38,7 +38,7 @@
 - **Lo que dicen:** sin cambios voluntarios por preferencia; retracto «cuando legalmente aplique» (5 días hábiles, reembolso hasta 15 días calendario); lanas e hilos por presentación completa (ovillo), no por gramos; pago contraentrega del **envío** y pago del valor de los productos a Lana Rosa; despacho el siguiente día hábil; recogida gratuita en la tienda.
 - **Qué hará la web al abrir:** la Mercería se carga con existencias en noviembre. El cobro: el valor del producto por Wompi y el envío contraentrega («ENVÍO CONTRAENTREGA»).
 - **Preguntas:**
-  1. Los términos citan como proveedora a **Sara Loaiza Muñoz (persona natural, NIT 1.055.359.694-4)**, y la política de datos dice «Lana Rosa Crochet, NIT 1055359694». ¿Se unifica quién figura como responsable en todos los documentos (y en la factura)?
+  1. **Decidido por Jennifer (3-nov-2026): la proveedora y responsable es Sara Loaiza Muñoz** (persona natural, NIT 1.055.359.694-4, nombre comercial Lana Rosa Crochet). Los términos de la Mercería ya lo dicen así; la política de datos (apartado 1) y las demás políticas dicen «Lana Rosa Crochet» sin nombrar a la persona. Pregunta: ¿cómo redactar el apartado 1 de `#datos`, el encabezado de `#cambios`/`#membresia` y el recibo para que figure «Sara Loaiza Muñoz, con nombre comercial Lana Rosa Crochet»? (No se cambia el texto hasta su visto bueno.)
   2. La Mercería dice que **no excluye** automáticamente los insumos del retracto, y la Tienda sí lo reconoce para el catálogo. ¿Es coherente? ¿Hay alguna excepción útil para lanas cortadas a medida o ya abiertas? (hoy: ninguna).
   3. El apartado 9 describe el pago «contraentrega» de forma mixta (valor de los productos a Lana Rosa, envío a la transportadora). ¿Está bien descrito para no confundir con un pago contra entrega total?
   4. El apartado 6 de cambios dice que la garantía legal aplica también a productos en promoción. ¿Se deja así?
@@ -78,6 +78,7 @@
 ## 5. Patrones digitales (PDF)
 - **Texto:** [`#membresia`, apartado 8](https://lanarosacrochet.com/politicas.html#membresia): entrega inmediata en «Mi cuenta → Mis pedidos», uso personal, derechos de autor de Lana Rosa, «no hay cambios ni devoluciones por gusto» en los casos previstos por la ley; el descuento de primera compra no aplica.
 - **Qué hace la web:** la casilla del pago (`js/pago.js`) acepta la «política de datos y de envíos y cambios», **no las condiciones de los patrones** ni pide el consentimiento de inicio inmediato. No hay ningún patrón publicado todavía.
+- **Propuesta lista para revisar (no está en la web):** casilla propia, sin marcar y obligatoria cuando el carrito lleve un patrón, con el texto: «Acepto las [condiciones de los patrones digitales](/politicas.html#membresia) (apartado 8) y pido que se me entregue el archivo de inmediato; entiendo que, por ser un contenido digital que se entrega al instante, no tiene cambios ni devoluciones por gusto, en los términos legalmente aplicables.» Se registraría como en la membresía (versión, fecha y hora del servidor en `pedidos_web`, constancia en el correo del recibo). Al tener el visto bueno, se implementa en `js/pago.js` y en `crear-pago-wompi` (chat 5) y se sube la versión. Mientras no haya patrones publicados, no hay riesgo.
 - **Preguntas:**
   1. ¿Se necesita una casilla propia y registrada (como la de la membresía) cuando el carrito lleve un patrón? ¿Con qué texto?
   2. ¿La entrega inmediata del PDF justifica negar el retracto (contenido digital)? ¿Qué debe decir el sitio antes del pago?
@@ -137,7 +138,8 @@
 ## 12. «Google Fonts» en `#cookies` (texto desactualizado)
 - **Texto:** [`#cookies`, apartado 3 «Cookies de terceros»](https://lanarosacrochet.com/politicas.html#cookies): «entre ellos Google (Google Analytics y **Google Fonts**)».
 - **Qué hace la web:** desde el 7-oct-2026 **ninguna página pide fuentes a Google**; se sirven desde `/fonts/`. Verificado en 10 páginas: 0 solicitudes a `fonts.googleapis.com` / `fonts.gstatic.com`. (El borrador `borrador-politica-datos.md` también menciona Google Fonts: está desactualizado.)
-- **Pregunta:** ¿Se aprueba quitar «y Google Fonts» de ese apartado? (Cambio de una frase. Hasta su visto bueno **no se toca**.) Además, el pie de la política de cookies dice «Última actualización: 12 de septiembre de 2026», mientras que el encabezado dice 23 de octubre: ¿se unifican las fechas al publicar?
+- **Aviso (3-nov):** el chat 7 ya preparó ese cambio en el PR #534 (aún sin fusionar); `main` todavía dice «Google Fonts». Esperar a la abogada antes de fusionarlo.
+- **Pregunta:** ¿Se aprueba quitar «y Google Fonts» de ese apartado? (Cambio de una frase. Hasta su visto bueno **no se toca**.) Además, el pie de la política de cookies dice «Última actualización: 12 de septiembre de 2026», mientras que el encabezado dice 23 de octubre: **Hecho el 3-nov-2026 por pedido de Jennifer:** el pie ahora dice 23 de octubre de 2026, igual que el encabezado. Al publicar cambios de la abogada, actualizar ambas fechas.
 
 ## 13. Preguntas generales de datos (marco)
 Vienen de la sección 7 de `herramientas/auditoria-privacidad.md`:

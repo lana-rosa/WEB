@@ -1,0 +1,53 @@
+<!doctype html><html lang="es-CO"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Maqueta: finanzas y tiempo</title>
+<style>
+:root{--r:#E74E96;--b:#E01E79;--s:#FBE4EF;--t:#FEF2F7;--l:#9EA2F9;--az:#93C7F9;--tx:#3b2a33;--g:#6E9470}
+body{margin:0;background:#fff8f7;font:15px/1.4 "Hanken Grotesk",system-ui,sans-serif;color:var(--tx)}
+h1{font-size:22px;margin:20px 16px 4px}h2{font-size:17px;margin:26px 16px 8px;color:var(--b)}p.n{margin:0 16px 10px;color:#6a5560}
+.fila{display:flex;gap:14px;flex-wrap:wrap;padding:0 16px}
+.tel{width:300px;background:#fff;border:2px solid var(--s);border-radius:22px;padding:12px;box-shadow:0 2px 10px #e74e9622}
+.tel h3{margin:0 0 8px;font-size:15px;color:var(--b)}
+.chip{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--r);margin:0 4px 6px 0;font-size:12px}.chip.on{background:var(--b);color:#fff;border-color:var(--b)}
+.ficha{background:var(--t);border-radius:12px;padding:8px 10px;margin:6px 0;display:flex;justify-content:space-between;font-size:13px}
+.v{color:var(--g);font-weight:700}.g{color:#a8506a;font-weight:700}
+.btn{background:var(--b);color:#fff;border-radius:999px;padding:8px;text-align:center;font-weight:700;margin-top:8px;font-size:13px}
+.num{display:grid;grid-template-columns:1fr 1fr;gap:6px}.num div{background:var(--s);border-radius:12px;padding:8px;font-size:12px}.num b{display:block;font-size:16px}
+.bar{height:60px;display:flex;align-items:flex-end;gap:5px;margin:8px 0}.bar i{flex:1;background:var(--l);border-radius:4px 4px 0 0}.bar i:nth-child(odd){background:var(--r)}
+.solo{font-size:11px;color:#6a5560;text-align:center;margin-top:6px}
+.hoy{width:300px;background:#fff;border:2px dashed #cdbcc4;border-radius:22px;padding:12px;font-size:13px}.hoy li{margin:3px 0}
+.flecha{align-self:center;font-size:28px;color:var(--r)}
+</style></head><body>
+<h1>Así quedarían las hojas (dibujo, no es la agenda)</h1>
+<p class="n">Cada peso se escribe una sola vez. Lo que dice «solo mira» no tiene casillas.</p>
+
+<h2>Dinero: de 10 hojas a 5</h2>
+<div class="fila">
+ <div class="hoy"><b>Hoy, para anotar una venta hay 3 sitios:</b><ul><li>Mis ventas del mes</li><li>Gastos del negocio</li><li>Ingresos y gastos</li></ul><b>Y 3 resúmenes parecidos:</b><ul><li>Resultados del negocio</li><li>Mi negocio en números</li><li>Análisis del negocio</li></ul></div>
+ <div class="flecha">➜</div>
+ <div class="tel"><h3>1 · Ventas y gastos <small>(se escribe aquí)</small></h3>
+  <span class="chip on">Todo</span><span class="chip">Ventas</span><span class="chip">Gastos</span><span class="chip">Ahorro</span>
+  <div class="ficha"><span>Amigurumi oso · Ana</span><span class="v">+ 85.000</span></div>
+  <div class="ficha"><span>Lana (Materiales)</span><span class="g">− 32.000</span></div>
+  <div class="ficha"><span>Puesto feria sábado</span><span class="g">− 40.000</span></div>
+  <div class="ficha"><span>Para mi meta de ahorro</span><span>20.000</span></div>
+  <div class="btn">Escríbelo como lo dirías: «vendí un oso por 85.000»</div></div>
+ <div class="tel"><h3>3 · Resumen del emprendimiento</h3>
+  <span class="chip on">Este mes</span><span class="chip">Comparar</span><span class="chip">El año</span>
+  <div class="num"><div>Entró<b>1.250.000</b></div><div>Salió<b>720.000</b></div><div>Te quedó<b>530.000</b></div><div>Por cobrar<b>180.000</b></div></div>
+  <div class="bar"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i><i style="height:95%"></i></div>
+  <div class="btn">Ver el informe del mes</div><div class="solo">Solo mira: aquí no se escribe</div></div>
+</div>
+<div class="fila" style="margin-top:14px">
+ <div class="tel"><h3>2 · Mi catálogo de precios</h3><div class="ficha"><span>Oso mediano</span><span class="v">sugerido 85.000</span></div><div class="solo">igual que hoy</div></div>
+ <div class="tel"><h3>4 · Presupuesto y metas <small>(personal)</small></h3><div class="ficha"><span>Meta de ventas del mes</span><b>1.500.000</b></div><div class="ficha"><span>Ahorro: máquina de coser</span><b>$ 320.000</b></div><div class="solo">la meta de ventas se escribe solo aquí</div></div>
+ <div class="tel"><h3>5 · Gastos fijos, tarjetas y deudas</h3><div class="ficha"><span>Internet</span><b>70.000</b></div><div class="ficha"><span>Tarjeta · cupo</span><b>2.000.000</b></div><div class="solo">une dos hojas</div></div>
+</div>
+
+<h2>Tiempo: de 6 hojas a 4</h2>
+<div class="fila">
+ <div class="hoy"><ul><li>Planeador del día</li><li>Mi semana tejiendo</li><li>Prioridades del mes</li><li>Mi visión del año</li><li>Calendario del año</li><li>Mi año tejiendo</li></ul></div>
+ <div class="flecha">➜</div>
+ <div class="tel"><h3>Mi día · Mi semana · Mi mes</h3><div class="ficha"><span>Mi día</span><span>planeador</span></div><div class="ficha"><span>Mi semana</span><span>horario por colores</span></div><div class="ficha"><span>Mi mes</span><span>3 prioridades (sin repetir la meta de ventas)</span></div></div>
+ <div class="tel"><h3>Mi año</h3><span class="chip on">Mi visión</span><span class="chip">Calendario</span><span class="chip">Lo que terminé</span><div class="ficha"><span>Mi palabra del año</span><span>Paciencia</span></div><div class="ficha"><span>Meta 1</span><span>Abrir la tienda</span></div></div>
+</div>
+<p class="n" style="margin-top:18px">Nada se borra: lo escrito se pasa una vez a la hoja nueva y las viejas se guardan como respaldo.</p>
+</body></html>

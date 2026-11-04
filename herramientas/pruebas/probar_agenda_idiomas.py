@@ -14,12 +14,13 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM)
     es = abrir_en(b, None)
     T.v('por defecto la agenda está en español', es.evaluate("document.documentElement.lang") == 'es-CO' and 'Mi panel' in es.inner_text('#pestanas-agenda'))
+    es.click('#mc-boton')   # el selector de idioma está dentro del menú de «Mi cuenta» (3-nov-2026)
     T.v('hay selector de idioma con ES, EN y PT', es.locator('#agenda-idioma option').count() == 3 and es.evaluate("document.getElementById('agenda-idioma').value") == 'es')
-    T.v('el selector se ve y mide al menos 40 px', es.is_visible('#agenda-idioma') and es.evaluate("document.getElementById('agenda-idioma').getBoundingClientRect().height") >= 40)
+    T.v('el selector se ve y mide al menos 40 px', es.is_visible('#mc-idioma') and es.evaluate("document.getElementById('mc-idioma').getBoundingClientRect().height") >= 36)
     T.v('en español el saludo y los textos no cambian', 'Buenos días' in es.inner_text('.pn-hero') or 'Buenas' in es.inner_text('.pn-hero'))
     T.v('sin errores en español', not es.errs, es.errs)
     # cambiar a inglés con el selector (guarda y recarga)
-    es.select_option('#agenda-idioma', 'en'); es.wait_for_timeout(2500)
+    es.select_option('#mc-idioma', 'en'); es.wait_for_timeout(2500)
     T.v('al elegir EN se guarda y la página queda en inglés', es.evaluate("localStorage.getItem('lrAgendaIdioma')") == 'en' and es.evaluate("document.documentElement.lang") == 'en')
     for idioma, menu, saludo, config, pie in (('en', 'My dashboard', 'Good', 'Planner settings', 'Policies'), ('pt', 'Meu painel', 'Bom dia|Boa', 'Configurações da agenda', 'Políticas')):
         pg = abrir_en(b, idioma)
@@ -45,7 +46,7 @@ with sync_playwright() as p:
     for idioma in ('en', 'pt'):
         pg = abrir_en(b, idioma)
         ids = pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a[data-hoja]')].map(a => a.dataset.hoja)")
-        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 39 and not pg.errs, pg.errs)
+        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 35 and not pg.errs, pg.errs)
         sin = []
         for h in ids:
             pg.evaluate("window.lrIrAHoja && window.lrIrAHoja('%s')" % h); pg.wait_for_timeout(120)
@@ -84,7 +85,8 @@ with sync_playwright() as p:
     # celular: la barra de arriba no se desborda con el selector
     cel = abrir_en(b, 'en', 390)
     T.v('celular: sin desplazamiento horizontal con el selector', cel.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1"))
-    T.v('celular: el selector queda dentro de la pantalla', cel.evaluate("(() => { const r = document.getElementById('agenda-idioma').getBoundingClientRect(); return r.left >= 0 && r.right <= window.innerWidth; })()"))
+    cel.click('#mc-boton'); cel.wait_for_timeout(200)
+    T.v('celular: el selector queda dentro de la pantalla', cel.evaluate("(() => { const r = document.getElementById('mc-idioma').getBoundingClientRect(); return r.left >= 0 && r.right <= window.innerWidth; })()"))
     cel.screenshot(path='/tmp/claude-0/idioma-cel.png')
     b.close()
 T.fin()

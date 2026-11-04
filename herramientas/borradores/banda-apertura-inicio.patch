@@ -1,0 +1,21 @@
+diff --git a/index.html b/index.html
+index 14bad1d..33125bd 100644
+--- a/index.html
++++ b/index.html
+@@ -473,6 +473,8 @@ main { padding-bottom: 0; }
+   .franja-corta[aria-label="Más de Lana Rosa"] a.franja-chip { padding: 7px 12px; font-size: .95rem; }
+   .franja-corta[aria-label="Más de Lana Rosa"] .franja-enlaces { gap: 6px; flex-wrap: nowrap; }
+ }
++.banda-apertura { display: block; margin: 18px 0 0; padding: 12px 18px; border-radius: 16px; background: var(--rosa-suave); color: var(--rosa-texto); font-weight: 700; text-decoration: none; text-align: center; font-size: 0.95rem; }
++.banda-apertura:hover { background: var(--rosa-medio); color: #fff; }
+ </style>
+ <link rel="stylesheet" href="/css/editorial.css?v=18">
+ <!-- ICONOS:INICIO (generado) -->
+@@ -555,6 +557,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ <!-- CASAS:FIN -->
+ 
+ <main id="contenido-principal" tabindex="-1" class="inicio-editorial">
++  <div class="contenedor"><a class="banda-apertura" href="/merceria/tienda-fisica/"><span data-apertura="antes">📍 Abrimos nuestra tienda física el domingo 13 de diciembre de 2026 · Ver horario →</span><span data-apertura="despues" hidden>📍 Visítanos en Villamaría · Calle 10 #5-37, Centro · Ver horario y cómo llegar →</span></a></div>
+ 
+   <!-- ============ 1. HERO ============ -->
+   <section class="ed-hero">

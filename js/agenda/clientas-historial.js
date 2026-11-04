@@ -49,7 +49,7 @@
 
   function pintar() {
     var pedidos = filas('tabla-pedidos', ['cliente', 'telefono', 'pedido', 'estado', 'entrega', 'totalcompra', 'precio', 'abono']);
-    var ventas = filas('tabla-ventas', ['fecha', 'producto', 'cliente', 'precio']);
+    var ventas = (window.lrDinero ? window.lrDinero.ventasDetalle() : []).map(function (v) { var p = String(v.f || '').split('-'); return { fecha: p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : '', producto: v.producto, cliente: v.cliente, precio: String(v.v) }; });   // lector único (4-nov-2026)
     var hoy = new Date(); hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
     hoja.querySelectorAll('#tabla-clientas tr.ficha').forEach(function (tr) {
       var k = tr.getAttribute('data-fila'), nom = document.getElementById(CL.prefijo + k + '-nombre'), wa = document.getElementById(CL.prefijo + k + '-whatsapp');

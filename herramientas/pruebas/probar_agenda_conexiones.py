@@ -1,4 +1,4 @@
-"""Prueba las conexiones entre hojas: pedidos entregados → Mis ventas y lanas en 0 → Lista de compras (js/agenda/conexiones.js, 30-oct-2026)."""
+"""Prueba las conexiones entre hojas: pedidos entregados → Ventas y gastos y lanas en 0 → Lista de compras (js/agenda/conexiones.js, 30-oct-2026)."""
 import sys; sys.path.insert(0, __file__.rsplit('/', 1)[0])
 from agenda_util import *
 T = Prueba()
@@ -20,7 +20,8 @@ with sync_playwright() as p:
         T.v(n + 'pedidos: avisa que hay 2 entregados sin pasar a ventas', '2 pedidos entregados' in pg.inner_text('#control-pedidos .conexion-ventas'), pg.inner_text('#control-pedidos'))
         pg.click('#control-pedidos .conexion-ventas .ca-boton'); pg.wait_for_timeout(600)
         d = pg.evaluate("JSON.parse(localStorage.getItem('rosinaAgenda'))")
-        T.v(n + 'los dos entregados quedan en Mis ventas (y el que está en proceso no)', d.get('ag-vt1-producto') == 'Osito' and d.get('ag-vt1-cliente') == 'Ana' and d.get('ag-vt1-precio') == '$ 85.000' and d.get('ag-vt1-fecha') == '10/10/2026' and d.get('ag-vt2-producto') == 'Gato' and 'ag-vt3-producto' not in d and not d.get('ag-vt3-producto'), {k: v for k, v in d.items() if k.startswith('ag-vt')})
+        mv = {x.get('p'): x for x in (d.get('_fin') or {}).get('movs', []) if x.get('p') is not None}
+        T.v(n + 'los dos entregados quedan en Ventas y gastos como ventas (y el que está en proceso no)', mv.get('Osito', {}).get('cl') == 'Ana' and mv['Osito']['v'] == 85000 and mv['Osito']['f'] == '2026-10-10' and mv['Osito']['t'] == 'i' and 'Gato' in mv and 'Conejo' not in mv, mv)
         T.v(n + 'muestra la confirmación y el aviso desaparece', pg.locator('#control-pedidos .conexion-ok').count() == 1 and pg.locator('#control-pedidos .conexion-ventas').count() == 0)
         pg.reload(); pg.wait_for_timeout(1200); pg.evaluate(IR, 'control-pedidos'); pg.wait_for_timeout(400)
         T.v(n + 'al volver a entrar no ofrece de nuevo lo ya pasado (sin duplicar)', pg.locator('#control-pedidos .conexion-ventas').count() == 0)

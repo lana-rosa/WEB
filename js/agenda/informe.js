@@ -31,12 +31,11 @@
 
   /* ---- los números del mes ---- */
   function datos(y, m) {
-    var k = clave(y, m), ing = 0, gas = 0, cats = {}, hayMovs = false;
-    movs().forEach(function (x) {
-      if (!x || String(x.f || '').slice(0, 7) !== k) return; var v = num(x.v); hayMovs = true;
-      if (x.t === 'i') ing += v; else if (x.t === 'g') { gas += v; var c = x.fijo ? 'Gastos fijos' : (String(x.c || 'Otros').trim() || 'Otros'); cats[c] = (cats[c] || 0) + v; }
-    });
-    var vts = filas('tabla-ventas', ['fecha', 'producto', 'cliente', 'precio', 'costo']).filter(function (r) { return enMes(r.fecha, y, m); });
+    var k = clave(y, m), cats = {}, ing = 0, gas = 0, hayMovs = false, vts = [];
+    if (window.lrDinero) {   /* lector único del dinero (4-nov-2026): ventas, ingresos y gastos de las tres hojas, cada peso una sola vez */
+      var tm = window.lrDinero.totalesMes(y, m); ing = tm.entradas; gas = tm.gastos; cats = tm.porCat; hayMovs = tm.hay;
+      vts = window.lrDinero.ventasFicha().filter(function (r) { return r.f.slice(0, 7) === k; }).map(function (r) { return { producto: r.producto, precio: String(r.v), costo: String(r.costo || '') }; });
+    }
     var vTotal = 0, conCosto = 0, gananciaCosto = 0, prod = {};
     vts.forEach(function (r) {
       var p = num(r.precio), c = num(r.costo); vTotal += p;
@@ -56,7 +55,7 @@
     var nuevas = filas('tabla-clientas', ['nombre', 'desde']).filter(function (r) { return r.nombre && enMes(r.desde, y, m); }).length;
     var mv = window.lrMetasVentas ? window.lrMetasVentas.calcular(y, m) : null;
     var inv = window.lrInventario ? window.lrInventario.resumen() : null;
-    var ventas = vTotal > 0 ? vTotal : ing;   // igual que la meta: primero «Mis ventas», si no hay, los ingresos
+    var ventas = ing;   // ventas + ingresos, ya sin contar dos veces lo mismo
     return { y: y, m: m, hay: hayMovs || vts.length > 0 || entregados > 0 || nuevas > 0, ingresos: ing, gastos: gas, utilidad: ing - gas, hayMovs: hayMovs,
       nVentas: vts.length, vTotal: vTotal, ventas: ventas, promedio: vts.length ? vTotal / vts.length : 0, conCosto: conCosto, gananciaCosto: gananciaCosto, top: top, cats: porCat,
       meta: mv ? mv.meta : 0, eq: mv ? mv.eq : 0, margen: mv ? mv.margen : 0, fijos: mv ? mv.fijos : 0,
@@ -84,7 +83,9 @@
     var mes = MESES[lang()][sel.m - 1] || MESES.es[sel.m - 1];
     caja.querySelector('.inf-mes').textContent = mes + ' ' + sel.y;
     var quien = (N.datos()['ag-duena'] || '').trim(), sub = caja.querySelector('.inf-quien'); sub.textContent = '';
-    if (quien) { sub.appendChild(el('span', '', 'Negocio de ')); var n = el('b', '', quien); n.setAttribute('data-no-traducir', ''); sub.appendChild(n); }
+    var neg = ((N.datos()._perfil || {}).negocio || '').trim();   /* nombre del negocio de «Mi cuenta» (3-nov-2026) */
+    if (neg) { var nb = el('b', '', neg); nb.setAttribute('data-no-traducir', ''); sub.appendChild(nb); if (quien) { var nq = el('span', '', ' · ' + quien); nq.setAttribute('data-no-traducir', ''); sub.appendChild(nq); } }
+    else if (quien) { sub.appendChild(el('span', '', 'Negocio de ')); var n = el('b', '', quien); n.setAttribute('data-no-traducir', ''); sub.appendChild(n); }
     if (!d.hay) { cuerpo.appendChild(el('p', 'inf-vacio', 'No hay nada anotado en este mes todavía. Anota tus ventas, ingresos y gastos y aquí verás el resumen.')); return; }
     var kp = el('div', 'inf-kpis');
     var pv = mesPrevio(sel.y, sel.m), dp = datos(pv.y, pv.m), nmp = MESES[lang()][pv.m - 1] || MESES.es[pv.m - 1], hp = dp.hay;

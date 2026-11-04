@@ -86,8 +86,9 @@
   function pintarNumeros() {
     el('pl-mes-txt').textContent = cap(MESES[mes.m]) + ' ' + mes.y;
     var nuevas = filas('tabla-clientas', ['desde']).filter(function (f) { return enMes(f.desde); }).length;
-    var ventas = filas('tabla-ventas', ['fecha', 'precio']).filter(function (f) { return enMes(f.fecha); }), vend = ventas.reduce(function (s, f) { return s + pesos(f.precio); }, 0);
-    var gastos = filas('tabla-gastos', ['fecha', 'valor']).filter(function (f) { return enMes(f.fecha); }), gas = gastos.reduce(function (s, f) { return s + pesos(f.valor); }, 0);
+    var regs = window.lrDinero ? window.lrDinero.registros() : [];   /* lector único del dinero (4-nov-2026) */
+    var ventas = regs.filter(function (r) { return (r.tipo === 'venta' || r.tipo === 'ingreso') && enMes(r.f); }), vend = ventas.reduce(function (s, r) { return s + r.v; }, 0);
+    var gastos = regs.filter(function (r) { return r.tipo === 'gasto' && enMes(r.f); }), gas = gastos.reduce(function (s, r) { return s + r.v; }, 0);
     var proy = filas('tabla-fila', ['cumplido', 'cumplidoen']).filter(function (f) { return f.cumplido === true && enMes(f.cumplidoen); }).length;
     var clases = filas('tabla-aprendi', ['fecha']).filter(function (f) { return enMes(f.fecha); }).length;
     var entreg = filas('tabla-pedidos', ['entrega', 'estado']).filter(function (f) { return f.estado === 'Entregado' && enMes(f.entrega); }).length;

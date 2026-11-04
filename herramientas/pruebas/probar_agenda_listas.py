@@ -18,28 +18,7 @@ def con_merceria(ctx, datos):
     ctx.route('**/rest/v1/rpc/obtener_merceria_web', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(datos)))
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
-    # ventas por mes
-    ant = (h.replace(day=1) - datetime.timedelta(days=1)); k_ant = '%s %d' % (MESES[ant.month - 1], ant.year); k_hoy = '%s %d' % (MESES[h.month - 1], h.year)
-    nxt_m = h.month % 12 + 1; nxt_y = h.year + (1 if h.month == 12 else 0); k_sig = '%s %d' % (MESES[nxt_m - 1], nxt_y)
-    datos = {'ag-vt1-fecha': ant.strftime('%d/%m/%Y'), 'ag-vt1-producto': 'Oso', 'ag-vt1-precio': '$50.000', 'ag-vt1-costo': '$10.000',
-             'ag-vt2-fecha': h.strftime('%d/%m/%Y'), 'ag-vt2-producto': 'Llavero', 'ag-vt2-precio': '$20.000', 'ag-vt2-costo': '$5.000',
-             'ag-vt3-fecha': h.strftime('%d/%m/%Y'), 'ag-vt3-producto': 'Gorro', 'ag-vt3-precio': '$30.000', 'ag-vt3-costo': '$8.000'}
-    ctx = contexto(b, 390, datos=datos); pg = abrir(ctx, 'ventas-mes')
-    opts = pg.evaluate("[...document.querySelectorAll('#vt-mes option')].map(o => o.textContent)")
-    T.v('ventas: la lista trae «Todos» y cada mes con su nombre y cuántas ventas tiene', opts == ['Todos los meses', k_ant + ' (1)', k_hoy + ' (2)'], opts)
-    T.v('se abre en el mes actual con sus dos ventas', pg.input_value('#vt-mes') == str(h.year * 100 + h.month) and [x[0] for x in vis(pg, 'tabla-ventas')] == [2, 3], vis(pg, 'tabla-ventas'))
-    T.v('los totales son del mes elegido ($50.000 y $13.000 de materiales → te quedó $37.000)', '$50.000' in pg.inner_text('#totales-ventas') and '$13.000' in pg.inner_text('#totales-ventas') and '$37.000' in pg.inner_text('#totales-ventas'), pg.inner_text('#totales-ventas'))
-    pg.select_option('#vt-mes', str(ant.year * 100 + ant.month)); pg.wait_for_timeout(200)
-    T.v('al elegir el mes anterior se ve solo su venta y sus totales', [x[0] for x in vis(pg, 'tabla-ventas')] == [1] and '$40.000' in pg.inner_text('#totales-ventas'), pg.inner_text('#totales-ventas'))
-    pg.click('#vt-mes-sig'); pg.wait_for_timeout(300)
-    T.v('«Agregar el mes siguiente» deja listo el mes que sigue del último', pg.evaluate("document.querySelector('#vt-mes option:checked').textContent").startswith(k_sig), pg.evaluate("document.querySelector('#vt-mes option:checked').textContent"))
-    pg.click('#ventas-mes .agregar-renglon'); pg.wait_for_timeout(500)
-    nueva = [x for x in vis(pg, 'tabla-ventas') if x[1]]
-    T.v('la venta nueva queda en el mes elegido (fecha puesta sola)', len(nueva) == 1 and pg.input_value('#ag-vt%d-fecha' % nueva[0][0]).endswith('/%02d/%d' % (nxt_m, nxt_y)), pg.input_value('#ag-vt%d-fecha' % (nueva[0][0] if nueva else 4)))
-    pg.select_option('#vt-mes', ''); pg.wait_for_timeout(200)
-    T.v('«Todos los meses» muestra todas las ventas', len(vis(pg, 'tabla-ventas')) == 4)
-    cap(pg, 'listas-ventas-390.png')
-    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
+    # (las listas por mes de «Mis ventas» y «Gastos del negocio» se retiraron el 4-nov-2026: ahora todo se anota en «Ventas y gastos», ver probar_agenda_ventas_gastos.py)
     # proyectos en fila: casilla de cumplido
     ctx = contexto(b, 390, datos={'ag-f1-proyecto': 'Manta', 'ag-f1-para': 'Abuela', 'ag-f1-fecha': (h + datetime.timedelta(days=1)).strftime('%d/%m/%Y'), 'ag-f2-proyecto': 'Gorro', 'ag-f2-estado': 'Tejiendo'}); pg = abrir(ctx, 'proyectos-fila')
     T.v('proyectos en fila: dos fichas cerradas', vis(pg, 'tabla-fila') == [[1, False], [2, False]], vis(pg, 'tabla-fila'))

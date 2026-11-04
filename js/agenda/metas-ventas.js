@@ -29,21 +29,18 @@
   function enMes(texto, y, m) { var f = N.leerFecha ? N.leerFecha(texto) : null; return !!f && f.a === y && f.m === m; }
 
   /* ---- números que se calculan ---- */
-  function ventasDelMes(y, m) {
+  function ventasDelMes(y, m) {   /* ventas + ingresos del mes, de las tres hojas y sin contar dos veces lo mismo (lector único lrDinero, 4-nov-2026) */
     var dm = new Date(y, m, 0).getDate(), dia = []; for (var i = 0; i <= dm; i++) dia.push(0);
-    var v = filas('tabla-ventas', ['fecha', 'precio']).filter(function (r) { return enMes(r.fecha, y, m); });
-    var tot = v.reduce(function (s, r) { var f = N.leerFecha(r.fecha), p = num(r.precio); if (f && f.d >= 1 && f.d <= dm) dia[f.d] += p; return s + p; }, 0);
-    if (tot > 0) return { total: tot, fuente: 'ventas', n: v.length, porDia: dia };
-    var ing = 0;
-    (fin().movs || []).forEach(function (x) { if (x && x.t === 'i' && String(x.f || '').slice(0, 7) === clave(y, m)) { var d = parseInt(String(x.f).slice(8, 10), 10), p = num(x.v); ing += p; if (d >= 1 && d <= dm) dia[d] += p; } });
-    return { total: ing, fuente: ing > 0 ? 'ingresos' : 'ventas', n: 0, porDia: dia };
+    var rs = window.lrDinero ? window.lrDinero.delMes(y, m).filter(function (r) { return r.tipo === 'venta' || r.tipo === 'ingreso'; }) : [], tot = 0, nv = 0, ni = 0;
+    rs.forEach(function (r) { var d = parseInt(r.f.slice(8, 10), 10); tot += r.v; if (r.tipo === 'venta') nv++; else ni++; if (d >= 1 && d <= dm) dia[d] += r.v; });
+    return { total: tot, fuente: nv || !ni ? 'ventas' : 'ingresos', n: nv, porDia: dia };
   }
   function margenReal(hoy) {
-    var ok = 0, venta = 0, costo = 0, n = 0;
-    filas('tabla-ventas', ['fecha', 'precio', 'costo']).forEach(function (r) {
-      var f = N.leerFecha ? N.leerFecha(r.fecha) : null; if (!f) return;
-      var dm = (hoy.getFullYear() - f.a) * 12 + (hoy.getMonth() + 1 - f.m); if (dm < 0 || dm > 2) return;
-      var p = num(r.precio), c = num(r.costo); if (p > 0 && c > 0) { venta += p; costo += c; n++; }
+    var venta = 0, costo = 0, n = 0;
+    (window.lrDinero ? window.lrDinero.ventasFicha() : []).forEach(function (r) {
+      if (!r.f) return;
+      var a = parseInt(r.f.slice(0, 4), 10), mm = parseInt(r.f.slice(5, 7), 10), dm = (hoy.getFullYear() - a) * 12 + (hoy.getMonth() + 1 - mm); if (dm < 0 || dm > 2) return;
+      if (r.v > 0 && r.costo > 0) { venta += r.v; costo += r.costo; n++; }
     });
     return venta > 0 ? { pct: Math.round((venta - costo) / venta * 100), n: n } : null;
   }
@@ -85,7 +82,7 @@
       var pct = Math.min(100, Math.round(tot / meta * 100)), dm = diasDelMes(y, m), dia = hoy.getDate(), quedan = dm - dia + 1, falta = Math.max(0, meta - tot);
       var barra = el('div', 'fin-progreso'); var i = el('i'); i.style.width = pct + '%'; barra.appendChild(i); barra.setAttribute('role', 'img'); barra.setAttribute('aria-label', pct + ' % de la meta'); 
       c.appendChild(el('p', 'mv-cifra', 'Llevas ' + plata(tot) + ' de ' + plata(meta) + ' (' + Math.round(tot / meta * 100) + ' %)')); c.appendChild(barra);
-      c.appendChild(el('small', 'mv-fuente', vd.fuente === 'ingresos' ? 'Cuento los ingresos de «Ingresos y gastos del negocio». Si anotas tus ventas en «Mis ventas del mes», uso esas.' : 'Cuento lo que anotaste en «Mis ventas del mes» de este mes.'));
+      c.appendChild(el('small', 'mv-fuente', vd.fuente === 'ingresos' ? 'Cuento los ingresos que anotaste en «Ventas y gastos». Si los anotas como venta, con su producto, también cuentan.' : 'Cuento lo que anotaste en «Ventas y gastos» de este mes.'));
       if (falta <= 0) c.appendChild(el('p', 'mv-ok', '¡Cumpliste tu meta del mes! Todo lo que vendas ahora es de más.'));
       else {
         var semanas = Math.max(1, quedan / 7), porSem = falta / semanas, porDia = falta / quedan;
