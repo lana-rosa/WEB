@@ -46,12 +46,12 @@ with sync_playwright() as p:
     for idioma in ('en', 'pt'):
         pg = abrir_en(b, idioma)
         ids = pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a[data-hoja]')].map(a => a.dataset.hoja)")
-        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 35 and not pg.errs, pg.errs)
+        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 34 and not pg.errs, pg.errs)
         sin = []
         for h in ids:
             pg.evaluate("window.lrIrAHoja && window.lrIrAHoja('%s')" % h); pg.wait_for_timeout(120)
             sin += [t for t, _ in pg.evaluate("window.lrI18n.faltan(document.getElementById('%s'), true)" % h) if len(t) > 3 and t not in ('Chaleco de María', 'Manta bebé', 'Sara Pérez', 'osito', 'Osito', 'María Gómez · Osito', 'Nov', 'nov') and not t.startswith('Q') ]
-        T.v('[%s] las hojas no dejan textos en español sin traducir' % idioma, len(sin) <= 6, sin[:12])
+        T.v('[%s] las hojas no dejan textos en español sin traducir' % idioma, len(sin) <= 6, sin[:40])
         # elegir un estado y un medio de pago con la lista: lo guardado queda en español
         pg.evaluate("window.lrIrAHoja('control-pedidos')"); pg.wait_for_timeout(300)
         etiqueta = 'Delivered' if idioma == 'en' else 'Entregue'

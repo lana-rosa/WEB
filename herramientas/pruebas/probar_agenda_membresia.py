@@ -8,7 +8,7 @@ T = Prueba(); CAP = sys.argv[1] if len(sys.argv) > 1 else None
 ahora = datetime.datetime.now(datetime.timezone.utc)
 def iso(dias): return (ahora + datetime.timedelta(days=dias)).isoformat()
 PAGAS = ['inventario-lanas', 'mis-agujas', 'lista-compras', 'control-pedidos', 'mis-clientas', 'catalogo-precios', 'ferias-mercados', 'contactos',
-         'fin-resumen', 'fin-presupuesto', 'fin-fijos', 'fin-tcredito', 'calendario-anual', 'fechas-especiales', 'diario-tejido', 'registro-pausas']
+         'fin-resumen', 'fin-presupuesto', 'fin-fijos', 'calendario-anual', 'fechas-especiales', 'diario-tejido', 'registro-pausas']
 GRATIS = ['indice-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra', 'tablero-agenda', 'vision-anio', 'prioridades-mes', 'ficha-proyecto', 'semana-tejiendo', 'proyectos-fila', 'coleccion-patrones',
           'anio-tejiendo', 'lo-que-aprendi', 'mis-ideas', 'hoja-puntos', 'prendas-medida', 'disena-patron']
 
