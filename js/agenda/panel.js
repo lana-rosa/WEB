@@ -102,9 +102,12 @@
   function pintar() {
     var hoy = new Date(); hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()); diaPintado = iso(hoy);
     var enMes = function (t) { var f = N.leerFecha ? N.leerFecha(t) : null; return !!f && f.a === hoy.getFullYear() && f.m === hoy.getMonth() + 1; };
-    var todasVentas = filas('tabla-ventas', ['fecha', 'precio']);
+    /* el dinero sale del lector único (lrDinero): ventas + ingresos y gastos de las tres hojas, sin contar dos veces lo mismo (4-nov-2026) */
+    var regs = window.lrDinero ? window.lrDinero.registros() : [];
+    var todasVentas = regs.filter(function (r) { return r.tipo === 'venta' || r.tipo === 'ingreso'; }).map(function (r) { return { fecha: r.f, precio: String(r.v) }; });
     var ventas = todasVentas.filter(function (f) { return enMes(f.fecha); }), vend = ventas.reduce(function (s, f) { return s + pesos(f.precio); }, 0);
-    var gastos = filas('tabla-gastos', ['fecha', 'valor']).filter(function (f) { return enMes(f.fecha); }), gas = gastos.reduce(function (s, f) { return s + pesos(f.valor); }, 0);
+    var todosGastos = regs.filter(function (r) { return r.tipo === 'gasto'; }).map(function (r) { return { fecha: r.f, valor: String(r.v) }; });
+    var gastos = todosGastos.filter(function (f) { return enMes(f.fecha); }), gas = gastos.reduce(function (s, f) { return s + pesos(f.valor); }, 0);
     var ped = filas('tabla-pedidos', ['cliente', 'entrega', 'estado', 'precio', 'totalcompra', 'abono']);
     var activos = ped.filter(function (p) { return !/entreg|cancel|despachad|terminad/i.test(p.estado); });
     var semana = activos.filter(function (p) { var f = N.leerFecha ? N.leerFecha(p.entrega) : null; if (!f || f.sinAnio) return false; var d = Math.round((new Date(f.a, f.m - 1, f.d) - hoy) / 86400000); return d >= 0 && d <= 7; }).length;
@@ -178,7 +181,7 @@
       bs.appendChild(b1); bs.appendChild(b2); cr.appendChild(bs); cont.appendChild(cr);
     }
 
-    if (!ped.length && !todasVentas.length && !filas('tabla-gastos', ['valor']).length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
+    if (!ped.length && !todasVentas.length && !todosGastos.length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
     var k = txt('div', 'pn-kpis'); k.setAttribute('role', 'group'); k.setAttribute('aria-label', 'Números de ' + MESES[hoy.getMonth()]);
     k.appendChild(tarjeta('Ventas de ' + MESES[hoy.getMonth()], fm(vend), ventas.length + (ventas.length === 1 ? ' venta anotada' : ' ventas anotadas'), 'k1', 'grafica'));
     k.appendChild(tarjeta('Gastos del mes', fm(gas), gastos.length + (gastos.length === 1 ? ' gasto anotado' : ' gastos anotados'), 'k2', 'recibo'));

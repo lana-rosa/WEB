@@ -9,6 +9,7 @@
 ## Por chat (cada uno reemplaza solo el suyo)
 - **1 · Agenda datos y Google:** publicado: auditoría, arreglos de Calendar, Conexiones etapas 1 y 2 (#525, #528, #530). A medias: interruptor de fotos de Drive (no hecho a propósito: riesgo de perder dibujos); etapas 3 y 4. Falta que Jennifer pruebe Drive y Calendar reales.
 - **2 · Agenda diseño y Plus:** publicado #527, #529, #531, #535. E11 hecho en papel: `FINANZAS-PROPUESTA.md` (dinero 10→5, tiempo 6→4; Jennifer dijo sí a 1–5) y `REVISION-HOJAS-PROPUESTA.md` (39→28 hojas, 10 preguntas pendientes); la agenda no se tocó.
+  «Ventas y gastos» paso 1 (lector único del dinero `lrDinero`) hecho PUBLICADO el 4-nov (#582); sigue la hoja nueva con migración.
   E25 tarjetas: Jennifer eligió la B; aplicada en `css/agenda-tarjetas.css`, PUBLICADA el 4-nov (#577).
   E18 «Mi cuenta»: PUBLICADO el 4-nov (#574): menú único, foto o ícono de Rosina y amigos, nombre del negocio, lupa arriba, Dictar solo en computador y Lápiz en el menú de tabletas. Falta: textos EN/PT y `GUIA_AGENDA` (chat 3), foto en copias (chat 1).
   A medias: Jennifer revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas»; puntos de miles en ferias, costo por ovillo y catálogo.
