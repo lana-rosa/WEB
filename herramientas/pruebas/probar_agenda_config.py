@@ -6,11 +6,11 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM)
     for ancho in (1280, 390):
         ctx = contexto(b, ancho, 900, config_abierta=False); pg = abrir(ctx, '', 1500, config=False)
-        T.v('%d px: arriba solo se ve el título y el engranaje (el panel empieza cerrado)' % ancho, pg.locator('#agenda-config-btn').is_visible() and pg.locator('#agenda-config').is_hidden() and pg.locator('#agenda-descargar').is_hidden() and pg.locator('#ag-duena').is_hidden() and pg.locator('[data-imprimir="agenda"]').is_hidden())
+        T.v('%d px: arriba solo se ve el título y la foto de «Mi cuenta» (el engranaje está dentro del menú; el panel empieza cerrado)' % ancho, pg.locator('#mc-boton').is_visible() and pg.locator('#agenda-config-btn').is_hidden() and pg.locator('#agenda-config').is_hidden() and pg.locator('#agenda-descargar').is_hidden() and pg.locator('#ag-duena').is_hidden() and pg.locator('[data-imprimir="agenda"]').is_hidden())
         T.v('%d px: el botón dice que está cerrado (aria-expanded)' % ancho, pg.get_attribute('#agenda-config-btn', 'aria-expanded') == 'false')
-        pg.click('#agenda-config-btn'); pg.wait_for_timeout(300)
+        pg.evaluate("document.getElementById('agenda-config-btn').click()"); pg.wait_for_timeout(300)
         T.v('%d px: el engranaje abre nombre, imprimir, borrar, copias, Google Calendar y colores' % ancho, all(pg.locator(s).first.is_visible() for s in ('#ag-duena', '[data-imprimir="agenda"]', '#agenda-borrar', '#agenda-descargar', '#agenda-cargar', '#agenda-ics', '#agenda-excel', '#ac-opciones')) and pg.get_attribute('#agenda-config-btn', 'aria-expanded') == 'true')
-        pg.click('#agenda-config-btn'); pg.wait_for_timeout(200)
+        pg.evaluate("document.getElementById('agenda-config-btn').click()"); pg.wait_for_timeout(200)
         T.v('%d px: y lo vuelve a cerrar' % ancho, pg.locator('#agenda-config').is_hidden())
         T.v('%d px: sin desplazamiento horizontal ni errores' % ancho, pg.evaluate("document.documentElement.scrollWidth") <= ancho and not pg.errs, pg.errs[:2]); ctx.close()
     # cerrar el panel: botón de arriba, botón de abajo y Esc
@@ -19,9 +19,9 @@ with sync_playwright() as p:
         T.v(n + 'el panel tiene «✕» (solo la X) arriba y «Cerrar configuración» abajo', pg.locator('.agenda-config-cerrar').is_visible() and pg.inner_text('.agenda-config-cerrar').strip() == '✕' and pg.get_attribute('.agenda-config-cerrar', 'aria-label') and pg.locator('.agenda-config-pie button').count() == 1)
         pg.click('.agenda-config-cerrar'); pg.wait_for_timeout(300)
         T.v(n + '«✕» cierra el panel y el engranaje queda en «cerrado»', pg.locator('#agenda-config').is_hidden() and pg.get_attribute('#agenda-config-btn', 'aria-expanded') == 'false')
-        pg.click('#agenda-config-btn'); pg.wait_for_timeout(200); pg.locator('.agenda-config-pie button').scroll_into_view_if_needed(); pg.click('.agenda-config-pie button'); pg.wait_for_timeout(300)
+        pg.evaluate("document.getElementById('agenda-config-btn').click()"); pg.wait_for_timeout(200); pg.locator('.agenda-config-pie button').scroll_into_view_if_needed(); pg.click('.agenda-config-pie button'); pg.wait_for_timeout(300)
         T.v(n + '«Cerrar configuración» de abajo también cierra', pg.locator('#agenda-config').is_hidden())
-        pg.click('#agenda-config-btn'); pg.wait_for_timeout(200); pg.keyboard.press('Escape'); pg.wait_for_timeout(200)
+        pg.evaluate("document.getElementById('agenda-config-btn').click()"); pg.wait_for_timeout(200); pg.keyboard.press('Escape'); pg.wait_for_timeout(200)
         T.v(n + 'la tecla Esc cierra', pg.locator('#agenda-config').is_hidden())
         ctx.close()
     # rueda de colores

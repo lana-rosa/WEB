@@ -1,0 +1,18 @@
+/* Tarjetas de las secciones con color y contraste (E25, opción B elegida por Jennifer el 4-nov-2026).
+   Las tarjetas de hojas de cada sección (`.vs-hoja`, js/agenda/panel.js) rotan 5 colores de la paleta (rosa, lila, azul, durazno, menta),
+   con borde del mismo tono más oscuro, título y texto en tinta oscura (contraste mínimo 4,5:1) y una sombra que las separa del fondo.
+   Los colores van en variables (--tj-fondo / --tj-borde) para poder cambiarlos en el modo oscuro (E19). Se carga al final. */
+#agenda { --tj-tinta: #3b2a33; --tj-tinta2: #4a3b43; }
+#agenda .vs-hoja { --tj-fondo: #FBE4EF; --tj-borde: #C81B6D; background: var(--tj-fondo); border: 2px solid var(--tj-borde); border-radius: 20px; box-shadow: 0 4px 10px rgba(59, 42, 51, .14); transition: transform .12s ease, box-shadow .12s ease; }
+#agenda .vs-hoja:nth-child(5n+2) { --tj-fondo: #E6E7FD; --tj-borde: #4B4FB8; }
+#agenda .vs-hoja:nth-child(5n+3) { --tj-fondo: #DCEEFE; --tj-borde: #1F6FDB; }
+#agenda .vs-hoja:nth-child(5n+4) { --tj-fondo: #FFE8D6; --tj-borde: #B4551A; }
+#agenda .vs-hoja:nth-child(5n+5) { --tj-fondo: #DDF3E6; --tj-borde: #2F7A52; }
+#agenda .vs-hoja b { color: var(--tj-tinta); }
+#agenda .vs-hoja small { color: var(--tj-tinta2); }
+#agenda .vs-hoja .vs-ic { background: #fff; box-shadow: 0 0 0 2px rgba(59, 42, 51, .22); }
+#agenda .vs-hoja:hover, #agenda .vs-hoja:focus-visible { border-color: var(--tj-borde); transform: translateY(-2px); box-shadow: 0 8px 16px rgba(59, 42, 51, .22); }
+#agenda .vs-hoja:hover .vs-ic { background: var(--tj-borde); color: #fff; }
+#agenda .vs-hoja:hover .vs-ic:has(img) { background: #fff; }
+#agenda .vs-hoja.bloq { background: var(--tj-fondo); opacity: .88; }
+@media (prefers-reduced-motion: reduce) { #agenda .vs-hoja { transition: none; } #agenda .vs-hoja:hover, #agenda .vs-hoja:focus-visible { transform: none; } }

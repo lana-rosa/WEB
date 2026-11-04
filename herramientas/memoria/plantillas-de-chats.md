@@ -78,7 +78,7 @@ Tema: Marketing y contenido. Lee CLAUDE.md, herramientas/memoria/estado-actual.m
 **Si una tarea no es tuya:** no la hagas. Dile a Jennifer, en palabras sencillas, a qué chat le toca y dale el texto listo para pegar allá. Si una parte sí es tuya, haz solo esa parte y di qué parte va a otro chat.
 
 ## Reglas para los chats de tema (3-nov-2026, para que las notas no choquen)
-1. **Antes de empezar y antes de cada commit:** `git fetch origin main` y traer `main` a la rama (`git merge origin/main`). Nunca trabajar sobre una rama atrasada.
+1. **Antes de empezar y antes de cada commit:** `git fetch origin main` y traer `main` a la rama (`git merge origin/main`). Nunca trabajar sobre una rama atrasada. **Después de traer `main`, antes de guardar:** `git grep -n -E '^(<<<<<<<|>>>>>>>)'` debe salir vacío (el 3-nov el #569 dejó marcas de choque dentro de `CLAUDE.md`).
 2. **`estado-actual.md`:** cada chat reemplaza solo su renglón de «Por chat» (máx. 3 líneas). No agrega párrafos ni toca los renglones de otros. Lo general lo escribe el orquestador.
 3. **`PENDIENTES.md`:** solo se tocan los renglones del propio tema; lo terminado se pasa a `historial-pendientes.md`.
 4. **Cierre = notas publicadas el mismo día, sin preguntar** (nivel 🟢 de `CLAUDE.md`): al cerrar, PR solo con notas, fusionarlo y avisar a Jennifer en una línea («Guardé las notas de hoy»). No dejar notas varios días en una rama.

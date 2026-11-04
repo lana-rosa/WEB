@@ -120,7 +120,7 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 - **Punto nuevo (Jennifer, 3-nov-2026): la barra «Dictar» y «Lápiz».** Los celulares y tabletas ya dictan y reconocen la letra desde el teclado. **Decidido por Jennifer (3-nov-2026): «Dictar» solo en el computador; «Lápiz» (escribir a mano encima de la hoja) solo en tabletas y dentro del menú, sin barra fija.**
 - **Objetivo:** (1) dentro de la agenda, quitar el menú de las tres rayas y dejar **un solo menú: el de «Mi cuenta»**; (2) **menos íconos arriba** (dejar solo los necesarios y el resto dentro de ese menú); (3) **imagen de perfil**: una foto propia o un ícono sugerido (animalitos y otros, en el estilo de Rosina; Jennifer puede enviar los dibujos); (4) **nombre del negocio** configurable (que salga en el informe del mes, el catálogo y lo que se comparta).
 - **Hecho 3-nov-2026:** dibujo en `herramientas/agenda-auditoria/MI-CUENTA-MAQUETA.html` (+ `.png`), esperando el sí o no de Jennifer; la agenda no se tocó.
-- **Decidido por Jennifer (3-nov-2026):** le gusta el dibujo («Mi cuenta» con un solo menú); los íconos de perfil serán **Rosina y sus amigos (la tortuga y los otros animalitos)**, no más. Se construye ya (Jennifer, 3-nov-2026: la agenda no espera a la apertura).
+- **Decidido por Jennifer (3-nov-2026):** le gusta el dibujo («Mi cuenta» con un solo menú); los íconos de perfil serán **Rosina y sus amigos (la tortuga y los otros animalitos)**, no más. **Jennifer pidió construirlo ya (3-nov-2026) y aclaró que la agenda no depende del 13-dic (esa fecha es solo la apertura de la Mercería): no volver a preguntar por esa fecha.** Construido; falta su visto bueno para publicarlo.
 - **Primero:** mostrarle a Jennifer un dibujo de cómo quedaría (celular 390 px y computador 1280 px) y preguntarle con sí o no. Construir apenas Jennifer apruebe el dibujo.
 - **Datos:** la foto se guarda en el aparato como los dibujos (`lrDibStore`) y viaja en las copias (pedirle al chat 1 que lo revise); no se sube a nuestros servidores. El nombre del negocio va con los datos de la agenda.
 - **Avisar a otros chats:** chat 3 (`GUIA_AGENDA` y textos en 3 idiomas), chat 1 (copias y Drive con la foto), chat 6 (si la política de datos debe mencionar la foto de perfil, con la abogada).
@@ -146,3 +146,16 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 
 ## [ ] E23 · Tutorial de bienvenida al día con «Mi cuenta» (chat 3; después de E18)
 - Cuando E18 cambie el menú y los íconos, rehacer los pasos de `js/agenda/tour.js` que los señalan (paso 2 Configuración y paso 5 «Escribe como prefieras») y sus textos en 3 idiomas; actualizar `GUIA_AGENDA`.
+
+## [ ] E24 · Menú de la casa Agenda en las páginas comunes (chat 6; captura de Jennifer, 3-nov-2026)
+- En las páginas comunes abiertas desde la agenda (como `cuenta.html` con `?casa=agenda`): **quitar los botones de arriba** («Mi agenda», «Aprende y compra», «Material gratis de Rosina», «Sobre nosotras») y **dejar solo el menú de las tres rayitas**; dentro de ese menú, **quitar «Rosina / Material gratis de Rosina»** (ese material ya está dentro de la agenda y el enlace lleva a la Academy). Solo la casa Agenda; las otras casas no cambian.
+- Se hace en `herramientas/sincronizar_encabezado.py` (genera `js/casa-menu.js`); probar con `probar_menus.py`, en 390 y 1280 px; foto a Jennifer antes de publicar (nivel 🟡).
+- Ojo: dentro de la agenda (E18, chat 2) la decisión es otra (un solo menú de «Mi cuenta», sin tres rayitas): avisar al chat 2 para que se vea coherente al pasar de la agenda a «Mi cuenta».
+
+## [ ] E25 (4-nov-2026: 3 opciones con foto en `herramientas/agenda-auditoria/tarjetas/`, esperando la elección de Jennifer) · Más contraste y color en las tarjetas de las secciones (chat 2; captura de Jennifer, 4-nov-2026)
+- Jennifer: «todo se ve muy monótono en cuanto al color, le falta contraste» (sección «Mis proyectos»: tarjetas blancas con borde rosa y títulos rosados, sobre fondo rosado claro).
+- **Objetivo:** proponer 2 o 3 opciones con foto (sin cambiar todavía): por ejemplo, cada tarjeta con un fondo suave de un color distinto de la paleta (rosa, lila, azul acero, durazno, verde menta) o el color propio de cada sección; títulos más oscuros; borde o sombra que separe la tarjeta del fondo; contraste mínimo 4,5:1 en textos. Mirar todas las secciones, no solo «Mis proyectos».
+- **Coordinar:** con E19 (modo oscuro) y E18 («Mi cuenta»), para no repintar dos veces. Foto a Jennifer y sí o no antes de publicar (nivel 🟡).
+
+## [ ] E26 · Letra gris más oscura (Jennifer, 4-nov-2026: «el gris que estamos usando está un poco claro»)
+- **Agenda → chat 2, dentro de E25** (mismas fotos de opciones). **Resto del sitio → chat 6**: revisar `--tinta-suave` y otros grises de texto en `css/comun.css` y en los estilos de cada página; oscurecerlos hasta al menos 4,5:1 sobre el fondo blanco y sobre los fondos de cada casa (`--casa-t1`, `--casa-t2`). Fotos antes y después a Jennifer, sí o no (nivel 🟡). Que los dos chats usen el mismo gris.

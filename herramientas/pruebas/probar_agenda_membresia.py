@@ -47,7 +47,7 @@ with sync_playwright() as p:
     pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=\"ficha-proyecto\"]').click()"); pg.wait_for_timeout(400)
     T.v('una hoja gratis sigue funcionando', pg.locator('#ficha-proyecto .candado-pago').count() == 0 and pg.locator('#ag-nombre').is_visible())
     T.v('el candado y las tarjetas no se imprimen', pg.evaluate("document.querySelector('#control-pedidos .candado-pago').classList.contains('no-imprimir')"))
-    pg.click('#agenda-config-btn'); pg.wait_for_timeout(300)
+    pg.evaluate("document.getElementById('agenda-config-btn').click()"); pg.wait_for_timeout(300)
     T.v('Configuración también muestra el estado: «Tu prueba gratis terminó»', 'terminó' in pg.inner_text('#membresia-config'), pg.inner_text('#membresia-config'))
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
 
