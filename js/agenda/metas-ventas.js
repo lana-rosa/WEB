@@ -82,7 +82,7 @@
       var pct = Math.min(100, Math.round(tot / meta * 100)), dm = diasDelMes(y, m), dia = hoy.getDate(), quedan = dm - dia + 1, falta = Math.max(0, meta - tot);
       var barra = el('div', 'fin-progreso'); var i = el('i'); i.style.width = pct + '%'; barra.appendChild(i); barra.setAttribute('role', 'img'); barra.setAttribute('aria-label', pct + ' % de la meta'); 
       c.appendChild(el('p', 'mv-cifra', 'Llevas ' + plata(tot) + ' de ' + plata(meta) + ' (' + Math.round(tot / meta * 100) + ' %)')); c.appendChild(barra);
-      c.appendChild(el('small', 'mv-fuente', vd.fuente === 'ingresos' ? 'Cuento los ingresos de «Ingresos y gastos del negocio». Si anotas tus ventas en «Mis ventas del mes», uso esas.' : 'Cuento lo que anotaste en «Mis ventas del mes» de este mes.'));
+      c.appendChild(el('small', 'mv-fuente', vd.fuente === 'ingresos' ? 'Cuento los ingresos que anotaste en «Ventas y gastos». Si los anotas como venta, con su producto, también cuentan.' : 'Cuento lo que anotaste en «Ventas y gastos» de este mes.'));
       if (falta <= 0) c.appendChild(el('p', 'mv-ok', '¡Cumpliste tu meta del mes! Todo lo que vendas ahora es de más.'));
       else {
         var semanas = Math.max(1, quedan / 7), porSem = falta / semanas, porDia = falta / quedan;

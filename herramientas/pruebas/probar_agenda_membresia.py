@@ -7,8 +7,8 @@ from agenda_util import *
 T = Prueba(); CAP = sys.argv[1] if len(sys.argv) > 1 else None
 ahora = datetime.datetime.now(datetime.timezone.utc)
 def iso(dias): return (ahora + datetime.timedelta(days=dias)).isoformat()
-PAGAS = ['inventario-lanas', 'mis-agujas', 'lista-compras', 'control-pedidos', 'mis-clientas', 'ventas-mes', 'catalogo-precios', 'ferias-mercados', 'gastos-negocio', 'contactos', 'fin-negocio',
-         'fin-resumen', 'fin-movimientos', 'fin-presupuesto', 'fin-fijos', 'fin-tcredito', 'fin-analisis', 'calendario-anual', 'fechas-especiales', 'diario-tejido', 'registro-pausas']
+PAGAS = ['inventario-lanas', 'mis-agujas', 'lista-compras', 'control-pedidos', 'mis-clientas', 'catalogo-precios', 'ferias-mercados', 'contactos', 'fin-negocio',
+         'fin-resumen', 'fin-presupuesto', 'fin-fijos', 'fin-tcredito', 'fin-analisis', 'calendario-anual', 'fechas-especiales', 'diario-tejido', 'registro-pausas']
 GRATIS = ['indice-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra', 'tablero-agenda', 'vision-anio', 'prioridades-mes', 'ficha-proyecto', 'semana-tejiendo', 'proyectos-fila', 'coleccion-patrones',
           'anio-tejiendo', 'lo-que-aprendi', 'mis-ideas', 'hoja-puntos', 'prendas-medida', 'disena-patron']
 
@@ -39,7 +39,8 @@ with sync_playwright() as p:
     # 2. prueba terminada: solo Inicio, Tablero y Proyectos
     ctx, pg = pagina(b, {'activa': False, 'prueba_hasta': iso(-1), 'en_prueba': False, 'dias_prueba': 7})
     bl = bloqueadas(pg)
-    T.v('prueba terminada: se bloquean las 21 hojas de las otras 4 pestañas', sorted(bl) == sorted(PAGAS), sorted(set(PAGAS) ^ set(bl)))
+    T.v('prueba terminada: se bloquean las hojas de pago de las otras 4 pestañas (menos «Ventas y gastos», que es gratis)', sorted(bl) == sorted(PAGAS), sorted(set(PAGAS) ^ set(bl)))
+    T.v('prueba terminada: «Ventas y gastos» sigue libre (anotar es gratis, decisión de Jennifer 4-nov-2026)', not pg.evaluate("document.getElementById('fin-movimientos').classList.contains('sin-membresia')"))
     T.v('prueba terminada: las 17 hojas de Inicio, Tablero y Proyectos siguen libres', all(pg.evaluate("(i) => !document.getElementById(i).classList.contains('sin-membresia')", i) for i in GRATIS))
     T.v('prueba terminada: el menú marca las de pago con 💎', pg.locator('#menu-hojas-lista a.de-pago').count() == len(PAGAS))
     pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=\"control-pedidos\"]').click()"); pg.wait_for_timeout(400)

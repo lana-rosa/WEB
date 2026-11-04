@@ -9,6 +9,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 (function () {
   var MEMBRESIA_ACTIVA = true;
   var PESTANAS_GRATIS = 3;                 // Inicio, Mi tablero y Mis proyectos
+  var HOJAS_SIEMPRE_GRATIS = ['fin-movimientos'];   // «Ventas y gastos» (decisión de Jennifer, 4-nov-2026): anotar las ventas y los gastos es gratis; el resumen, las gráficas y el informe son de la membresía
   var PRECIO_MES = '$5.000', PRECIO_ANIO = '$45.000';
   var CLAVE = 'lrMembresia';
   // Versión de las condiciones que la persona acepta al pagar: debe coincidir con VERSION_CONDICIONES de la función crear-pago-wompi y con la «Fecha de actualización» de politicas.html#membresia.
@@ -27,7 +28,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var lista = [], g = -1;
     document.querySelectorAll('#menu-hojas-lista > *').forEach(function (e) {
       if (e.classList.contains('menu-grupo')) { g++; return; }
-      if (e.dataset && e.dataset.hoja && g >= PESTANAS_GRATIS) lista.push({ id: e.dataset.hoja, grupo: e.parentNode.querySelectorAll('.menu-grupo')[g].textContent.trim() });
+      if (e.dataset && e.dataset.hoja && g >= PESTANAS_GRATIS && HOJAS_SIEMPRE_GRATIS.indexOf(e.dataset.hoja) < 0) lista.push({ id: e.dataset.hoja, grupo: e.parentNode.querySelectorAll('.menu-grupo')[g].textContent.trim() });
     });
     return lista;
   }

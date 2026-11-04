@@ -139,6 +139,8 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .como-whatsapp summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); }
 .como-whatsapp ol { margin: 12px 0 8px; padding-left: 20px; }
 .como-whatsapp p { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); }
+/* Hojas retiradas (4-nov-2026): «Mis ventas del mes» y «Gastos del negocio» pasaron a «Ventas y gastos»; sus fichas siguen en la página solo de respaldo */
+.hoja-retirada { display: none !important; }
 /* Abreviaturas */
 .tabla-scroll { overflow-x: auto; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); }
 .tabla-abrev { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 720px; }
@@ -565,6 +567,7 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .fin-form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 14px; margin-bottom: 14px; padding: 12px; background: var(--tinte, #FEF2F7); border-radius: 14px; }
 .fin-form select, .fin-form input { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,.25); background: transparent; font: inherit; padding: 5px 2px; }
 .fin-form-btn { justify-content: flex-end; }
+.fin-form .linea[hidden] { display: none !important; }
 .fin-tabla td, .fin-tabla th { padding: 6px 8px; font-size: .88rem; }
 .fin-tabla .der { text-align: right; white-space: nowrap; }
 .fin-tabla .quitar { border: 0; background: transparent; cursor: pointer; font-size: 1rem; }
@@ -1170,15 +1173,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="menu-grupo">Mi emprendimiento</p>
           <a href="#control-pedidos" data-hoja="control-pedidos">📦 Control de pedidos</a>
           <a href="#mis-clientas" data-hoja="mis-clientas">💕 Mis clientas</a>
-          <a href="#ventas-mes" data-hoja="ventas-mes">💰 Mis ventas del mes</a>
+          <a href="#fin-movimientos" data-hoja="fin-movimientos">💰 Ventas y gastos</a>
           <a href="#catalogo-precios" data-hoja="catalogo-precios">🏷️ Mi catálogo de precios</a>
           <a href="#ferias-mercados" data-hoja="ferias-mercados">🎪 Ferias y mercados</a>
-          <a href="#gastos-negocio" data-hoja="gastos-negocio">🧾 Gastos del negocio</a>
           <a href="#contactos" data-hoja="contactos">📇 Contactos</a>
           <a href="#fin-negocio" data-hoja="fin-negocio">🧮 Resultados del negocio</a>
           <p class="menu-grupo">Finanzas del negocio</p>
           <a href="#fin-resumen" data-hoja="fin-resumen">📊 Mi negocio en números</a>
-          <a href="#fin-movimientos" data-hoja="fin-movimientos">🧾 Ingresos y gastos del negocio</a>
           <a href="#fin-presupuesto" data-hoja="fin-presupuesto">🐷 Presupuesto y metas del negocio</a>
           <a href="#fin-fijos" data-hoja="fin-fijos">🔁 Gastos fijos y deudas del negocio</a>
           <a href="#fin-tcredito" data-hoja="fin-tcredito">💳 Tarjetas del negocio</a>
@@ -1239,16 +1240,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="indice-grupo" style="--c:#F28FC0"><h4>Mi emprendimiento</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="control-pedidos"><span class="atajo-ic" aria-hidden="true">📦</span><span><strong>Control de pedidos</strong><small>Entregas y estados</small></span></button>
           <button type="button" class="atajo" data-ir="mis-clientas"><span class="atajo-ic" aria-hidden="true">💕</span><span><strong>Mis clientas</strong><small>Contactos y cumpleaños</small></span></button>
-          <button type="button" class="atajo" data-ir="ventas-mes"><span class="atajo-ic" aria-hidden="true">💰</span><span><strong>Mis ventas del mes</strong><small>Lo vendido y lo que te quedó</small></span></button>
+          <button type="button" class="atajo" data-ir="fin-movimientos"><span class="atajo-ic" aria-hidden="true">💰</span><span><strong>Ventas y gastos</strong><small>Lo que vendes y lo que gastas, en un solo lugar</small></span></button>
           <button type="button" class="atajo" data-ir="catalogo-precios"><span class="atajo-ic" aria-hidden="true">🏷️</span><span><strong>Mi catálogo de precios</strong><small>Tus productos y valores</small></span></button>
           <button type="button" class="atajo" data-ir="ferias-mercados"><span class="atajo-ic" aria-hidden="true">🎪</span><span><strong>Ferias y mercados</strong><small>Fechas y lugares</small></span></button>
-          <button type="button" class="atajo" data-ir="gastos-negocio"><span class="atajo-ic" aria-hidden="true">🧾</span><span><strong>Gastos del negocio</strong><small>Materiales, transporte y ferias</small></span></button>
           <button type="button" class="atajo" data-ir="contactos"><span class="atajo-ic" aria-hidden="true">📇</span><span><strong>Contactos</strong><small>Proveedores, colegas y maestras</small></span></button>
           <button type="button" class="atajo" data-ir="fin-negocio"><span class="atajo-ic" aria-hidden="true">🧮</span><span><strong>Resultados del negocio</strong><small>Ventas, costos y utilidad</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#F28FC0"><h4>Finanzas del negocio</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="fin-resumen"><span class="atajo-ic" aria-hidden="true">📊</span><span><strong>Mi negocio en números</strong><small>Lo que entra, lo que sale y lo que te queda</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-movimientos"><span class="atajo-ic" aria-hidden="true">🧾</span><span><strong>Ingresos y gastos del negocio</strong><small>Anota lo que entra y sale de tu negocio</small></span></button>
           <button type="button" class="atajo" data-ir="fin-presupuesto"><span class="atajo-ic" aria-hidden="true">🐷</span><span><strong>Presupuesto y metas del negocio</strong><small>Topes de gasto y ahorros del negocio</small></span></button>
           <button type="button" class="atajo" data-ir="fin-fijos"><span class="atajo-ic" aria-hidden="true">🔁</span><span><strong>Gastos fijos y deudas del negocio</strong><small>Pagos del mes y cuotas del negocio</small></span></button>
           <button type="button" class="atajo" data-ir="fin-tcredito"><span class="atajo-ic" aria-hidden="true">💳</span><span><strong>Tarjetas del negocio</strong><small>Cupo, corte y pago</small></span></button>
@@ -1479,7 +1478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="hoja-agenda" id="fin-movimientos">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Ingresos y gastos del negocio</h3><p>Anota lo que entra, lo que sale y lo que ahorras en tu negocio. Puedes escribirlo como lo dirías.</p></div>
+          <div><h3>Ventas y gastos</h3><p>Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.</p></div>
         </header>
           <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
@@ -1489,30 +1488,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <form class="fin-rapido no-imprimir" id="fin-rapido" autocomplete="off">
           <label for="fin-texto">Escríbelo natural</label>
-          <div class="fin-rapido-fila"><input id="fin-texto" placeholder='Ej.: vendí 120000 un amigurumi · gasté 50 mil en lana · ahorré 100 mil para el negocio'><button type="submit" class="boton-primario boton-chico">Agregar</button></div>
+          <div class="fin-rapido-fila"><input id="fin-texto" placeholder='Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio'><button type="submit" class="boton-primario boton-chico">Agregar</button></div>
           <small id="fin-rapido-msg" role="status"></small>
         </form>
         <form class="fin-form no-imprimir" id="fin-form" autocomplete="off">
           <div class="linea"><label for="fin-f">Fecha</label><input type="date" id="fin-f"></div>
-          <div class="linea"><label for="fin-t">Tipo</label><select id="fin-t"><option value="g">Gasto</option><option value="i">Ingreso</option><option value="a">Ahorro / inversión</option></select></div>
+          <div class="linea"><label for="fin-t">Tipo</label><select id="fin-t"><option value="i">Venta o ingreso</option><option value="g">Gasto</option><option value="a">Ahorro / inversión</option></select></div>
           <div class="linea"><label for="fin-c">Categoría</label><select id="fin-c"></select></div>
           <div class="linea"><label for="fin-m">Medio de pago</label><select id="fin-m"></select></div>
           <div class="linea fin-check" hidden><label><input type="checkbox" id="fin-neg" checked> Es del negocio</label></div>
+          <div class="linea fin-venta" id="fin-venta-p" hidden><label for="fin-p">Producto vendido</label><input id="fin-p" maxlength="80" placeholder="Ej.: Osito de apego"></div>
+          <div class="linea fin-venta" id="fin-venta-cl" hidden><label for="fin-cl">Cliente</label><input id="fin-cl" maxlength="60" placeholder="Opcional"></div>
+          <div class="linea fin-venta" id="fin-venta-cm" hidden><label for="fin-cm">Costo de los materiales ($)</label><input id="fin-cm" inputmode="numeric" placeholder="Opcional: así sabes cuánto te quedó"></div>
           <div class="linea"><label for="fin-d">Descripción</label><input id="fin-d" maxlength="80"></div>
           <div class="linea"><label for="fin-v">Valor ($)</label><input id="fin-v" inputmode="numeric" placeholder="0"></div>
-          <div class="linea fin-form-btn"><button type="button" class="enlace-copia" id="fin-cancelar" hidden>Cancelar</button><button type="submit" class="boton-secundario" id="fin-guardar">Guardar movimiento</button></div>
+          <div class="linea fin-form-btn"><button type="button" class="enlace-copia" id="fin-cancelar" hidden>Cancelar</button><button type="submit" class="boton-secundario" id="fin-guardar">Guardar</button></div>
         </form>
         <div class="fin-filtros no-imprimir">
-          <input type="search" id="fin-buscar" placeholder="Buscar en los ingresos y gastos…" aria-label="Buscar en los ingresos y gastos del negocio">
+          <input type="search" id="fin-buscar" placeholder="Buscar en las ventas y gastos…" aria-label="Buscar en las ventas y gastos del negocio">
           <select id="fin-fil-per" aria-label="Periodo"><option value="mes">Este mes</option><option value="anio">Todo el año</option><option value="todo">Todo</option></select>
-          <select id="fin-fil-tipo" aria-label="Tipo"><option value="">Todos los tipos</option><option value="i">Ingresos</option><option value="g">Gastos</option><option value="a">Ahorro / inversión</option></select>
+          <select id="fin-fil-tipo" aria-label="Tipo"><option value="">Todo</option><option value="i">Ventas e ingresos</option><option value="g">Gastos</option><option value="a">Ahorro / inversión</option></select>
           <select id="fin-fil-cat" aria-label="Categoría"></select>
           <select id="fin-fil-med" aria-label="Medio de pago"></select>
           <select id="fin-fil-neg" aria-label="Personal o negocio" hidden><option value="">Todo</option></select>
           <button type="button" class="boton-secundario boton-chico" id="fin-exportar">⬇ Excel (CSV)</button>
         </div>
-        <div class="tabla-scroll"><table class="tabla-agenda fin-tabla" id="fin-tabla"><thead><tr><th>Fecha</th><th>Categoría</th><th>Descripción</th><th>Medio</th><th class="der">Valor</th><th class="no-imprimir"></th></tr></thead><tbody></tbody></table></div>
-        <p class="fin-vacio" id="fin-vacio">No hay movimientos con estos filtros. ¡Anota el primero!</p>
+        <div class="tabla-scroll"><table class="tabla-agenda fin-tabla" id="fin-tabla"><thead><tr><th>Fecha</th><th>Categoría</th><th>Detalle</th><th>Medio</th><th class="der">Valor</th><th class="no-imprimir"></th></tr></thead><tbody></tbody></table></div>
+        <p class="fin-vacio" id="fin-vacio">No hay ventas ni gastos con estos filtros. ¡Anota el primero!</p>
         <div class="fin-totales" id="fin-totales"></div>
       </article>
       <article class="hoja-agenda" id="fin-presupuesto">
@@ -1616,7 +1618,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> mira primero qué categoría subió más: casi siempre ahí está el ahorro más fácil. Si un mes sale en naranja, no pasa nada: ¡lo importante es la tendencia!</p>
       </article>
-      <article class="hoja-agenda" id="gastos-negocio">
+      <article class="hoja-retirada" id="gastos-negocio" hidden aria-hidden="true">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Gastos del negocio</h3><p>Materiales, transporte, ferias y todo lo que gastas en tu emprendimiento, mes a mes.</p></div>
@@ -1934,7 +1936,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> escríbeles en su cumpleaños; un mensaje cariñoso hace que vuelvan a comprarte.</p>
       </article>
 
-      <article class="hoja-agenda" id="ventas-mes">
+      <article class="hoja-retirada" id="ventas-mes" hidden aria-hidden="true">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-12-pulgar-arriba.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mis ventas del mes</h3><p>Lo que vendiste, lo que te costó y lo que ganaste.</p></div>
@@ -3018,8 +3020,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var menuHojas = document.getElementById('menu-hojas'), toggleMenu = document.getElementById('menu-hojas-toggle');
   var CLAVE_HOJA = 'rosinaAgendaHoja';
   var historiaLista = false, enPop = false;   // cada hoja que abres queda en el historial: «atrás» vuelve a la hoja anterior
+  var HOJAS_ANTIGUAS = { 'ventas-mes': 'fin-movimientos', 'gastos-negocio': 'fin-movimientos' };   // 4-nov-2026: pasaron a «Ventas y gastos»; los enlaces, favoritos y la última hoja abierta siguen funcionando
   function mostrarHoja(id, desplazar) {
-    var h = document.getElementById(id); if (!h || !h.classList.contains('hoja-agenda')) return;
+    id = HOJAS_ANTIGUAS[id] || id; var h = document.getElementById(id); if (!h || !h.classList.contains('hoja-agenda')) return;
     hojas.forEach(function(x) { x.classList.toggle('abierta', x === h); });
     enlacesMenu.forEach(function(a) { var activo = a.dataset.hoja === id; a.classList.toggle('activa', activo); if (activo) { a.setAttribute('aria-current', 'page'); document.getElementById('menu-hojas-actual').textContent = a.textContent; } else a.removeAttribute('aria-current'); });
     escribir(CLAVE_HOJA, id);
@@ -3161,7 +3164,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var CAT_A = ['Ahorro', 'Inversión', 'Fondo de emergencia'];
     var CATS = { g: CAT_G, i: CAT_I, a: CAT_A };
     var MEDIOS = ['Efectivo', 'Tarjeta', 'Transferencia', 'Nequi / Daviplata', 'Otro'];
-    var NOMBRE_T = { g: 'Gasto', i: 'Ingreso', a: 'Ahorro / inversión' };
+    var NOMBRE_T = { g: 'Gasto', i: 'Venta o ingreso', a: 'Ahorro / inversión' };
     /* Colores validados (daltonismo, contraste); cada categoría conserva siempre el suyo */
     var C_ING = '#6E9470', C_GAS = '#C81B6D', C_AHO = '#6F73D9';   /* paleta Lana Rosa: verde (ingresos), rosa (gastos) y lila (ahorro) */
     var CATCOL = { 'Empaques': '#B0356F', 'Transporte y envíos': '#6E9470', 'Ferias y mercados': '#6F73D9', 'Publicidad': '#2F7DE1', 'Herramientas y equipos': '#93C7F9', 'Arriendo': '#C81B6D', 'Impuestos': '#8A7F80', 'Vivienda': '#C81B6D', 'Mercado': '#B8975A', 'Transporte': '#6E9470', 'Salud': '#C98C7B', 'Materiales (lanas)': '#F28FC0', 'Materiales': '#F28FC0', 'Servicios': '#4F7F5A', 'Educación': '#9C6F86', 'Ocio': '#C98C7B', 'Ropa': '#8A7F80', 'Deudas': '#45454A', 'Otros': '#CDBFB9' };
@@ -3213,7 +3216,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var f = new Date(); if (/\bayer\b/.test(t)) f.setDate(f.getDate() - 1); if (/\banteayer\b/.test(t)) f.setDate(f.getDate() - 1);
       var QUITAR = /(^|\s)(gast[eé]|gasto|pagu[eé]|pago|compr[eé]|compra|vend[ií]|venta|ingreso|ingres[eé]|cobr[eé]|recib[ií]|gan[eé]|ahorr[eé]|invert[ií]|apart[eé]|guard[eé]|consign[eé]|hoy|ayer|anteayer)(?=\s|$)/gi;
       var desc = texto.replace(/\$?\s*\d[\d.,]*\s*(millones|millón|millon|mil|k)?(?![a-zA-Z])/i, ' ').replace(QUITAR, ' ').replace(/\s+/g, ' ').trim().replace(/^(en|de|por|un|una|el|la)\s+/i, '');
-      return { f: f.getFullYear() + '-' + dosd(f.getMonth() + 1) + '-' + dosd(f.getDate()), t: tipo, c: cat, d: desc.slice(0, 80), v: Math.round(v) };
+      desc = desc.replace(/\s+(por|en|de|a|para)$/i, '');
+      var r = { f: f.getFullYear() + '-' + dosd(f.getMonth() + 1) + '-' + dosd(f.getDate()), t: tipo, c: cat, d: desc.slice(0, 80), v: Math.round(v) };
+      if (tipo === 'i' && cat === 'Ventas') { r.p = r.d; r.cl = ''; r.cm = ''; }   // una venta lleva producto, cliente y costo (4-nov-2026: «Ventas y gastos»)
+      return r;
     }
     function agregar(m) { var f = fin(); m.id = Date.now() + '' + Math.floor(Math.random() * 1000); f.movs.push(m); guardarFin(); var p = m.f.split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); }
 
@@ -3349,7 +3355,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (ct) l = l.filter(function(x) { return x.c === ct; });
       if (md) l = l.filter(function(x) { return x.m === md; });
       var ng = el('fin-fil-neg').value; if (ng === 'n') l = l.filter(esNeg); else if (ng === 'p') l = l.filter(function(x) { return !esNeg(x); });
-      if (q) l = l.filter(function(x) { return sinTildes((x.d || '') + ' ' + x.c + ' ' + (x.m || '')).indexOf(q) >= 0; });
+      if (q) l = l.filter(function(x) { return sinTildes((x.d || '') + ' ' + (x.p || '') + ' ' + (x.cl || '') + ' ' + x.c + ' ' + (x.m || '')).indexOf(q) >= 0; });
       return l.sort(function(a, b) { return a.f === b.f ? (a.id < b.id ? 1 : -1) : (a.f < b.f ? 1 : -1); });
     }
     function pintarMovs() {
@@ -3357,7 +3363,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var larga = el('fin-fil-per').value !== 'mes';
       l.forEach(function(x) {
         var tr = document.createElement('tr'), p = x.f.split('-');
-        [[larga ? p[2] + '/' + p[1] + '/' + p[0].slice(2) : p[2] + '/' + p[1], 'Fecha'], [x.c, 'Categoría'], [x.d || '', 'Descripción'], [x.m || '', 'Medio']].forEach(function(t) { var td = document.createElement('td'); td.setAttribute('data-label', t[1]); td.textContent = t[0]; tr.appendChild(td); });
+        [[larga ? p[2] + '/' + p[1] + '/' + p[0].slice(2) : p[2] + '/' + p[1], 'Fecha'], [x.c, 'Categoría'], [x.p != null ? [x.p, x.cl].filter(Boolean).join(' · ') || x.d || '' : (x.d || ''), 'Detalle'], [x.m || '', 'Medio']].forEach(function(t) { var td = document.createElement('td'); td.setAttribute('data-label', t[1]); td.textContent = t[0]; if (t[1] === 'Detalle') td.setAttribute('data-no-traducir', ''); tr.appendChild(td); });   /* el detalle lo escribe la persona: no se traduce */
         var tv = document.createElement('td'); tv.setAttribute('data-label', 'Valor'); tv.className = 'der ' + (x.t === 'i' ? 'ing' : x.t === 'a' ? 'aho' : 'gas'); tv.textContent = (x.t === 'i' ? '+ ' : x.t === 'a' ? '◆ ' : '− ') + plata(x.v); tr.appendChild(tv);
         var tq = document.createElement('td'); tq.className = 'no-imprimir fin-acc';
         var be = document.createElement('button'); be.type = 'button'; be.className = 'quitar'; be.setAttribute('aria-label', 'Editar movimiento'); be.textContent = '✏️'; be.addEventListener('click', function() { editar(x); });
@@ -3370,16 +3376,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
       el('fin-vacio').hidden = !!l.length; el('fin-tabla').hidden = !l.length;
       var ing = sumar(l, 'i'), gas = sumar(l, 'g'), aho = sumar(l, 'a');
-      el('fin-totales').innerHTML = l.length ? '<span class="ing">Ingresos: ' + plata(ing) + '</span><span class="gas">Gastos: ' + plata(gas) + '</span><span class="aho">Ahorro/inversión: ' + plata(aho) + '</span><span>Saldo: ' + plata(ing - gas) + '</span>' : '';
+      el('fin-totales').innerHTML = l.length ? '<span class="ing">Ventas e ingresos: ' + plata(ing) + '</span><span class="gas">Gastos: ' + plata(gas) + '</span><span class="aho">Ahorro/inversión: ' + plata(aho) + '</span><span>Te quedó: ' + plata(ing - gas) + '</span>' : '';
     }
     function defNeg() { el('fin-neg').checked = true; }
-    function opcionesCat(sel) { var t = el('fin-t').value, s = el('fin-c'); s.innerHTML = CATS[t].map(function(c) { return '<option>' + c + '</option>'; }).join(''); if (sel) s.value = sel; defNeg(); }
+    function camposVenta() { var on = el('fin-t').value === 'i' && el('fin-c').value === 'Ventas'; ['fin-venta-p', 'fin-venta-cl', 'fin-venta-cm'].forEach(function(id) { el(id).hidden = !on; }); }
+    function opcionesCat(sel) { var t = el('fin-t').value, s = el('fin-c'); s.innerHTML = CATS[t].map(function(c) { return '<option>' + c + '</option>'; }).join(''); if (sel) s.value = sel; defNeg(); camposVenta(); }
     function editar(x) {
       editId = x.id; el('fin-f').value = x.f; el('fin-t').value = x.t; opcionesCat(x.c); el('fin-neg').checked = esNeg(x); el('fin-m').value = x.m || ''; el('fin-d').value = x.d || ''; el('fin-v').value = plata(x.v).replace('$ ', '');
+      el('fin-p').value = x.p || ''; el('fin-cl').value = x.cl || ''; el('fin-cm').value = x.cm ? plata(num(x.cm)).replace('$ ', '') : '';
       el('fin-guardar').textContent = 'Guardar cambios'; el('fin-cancelar').hidden = false; el('fin-rapido-msg').textContent = 'Editando un movimiento.';
       el('fin-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-    function cancelarEdicion() { editId = null; defNeg(); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-guardar').textContent = 'Guardar movimiento'; el('fin-cancelar').hidden = true; el('fin-rapido-msg').textContent = ''; }
+    function cancelarEdicion() { editId = null; defNeg(); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-p').value = ''; el('fin-cl').value = ''; el('fin-cm').value = ''; el('fin-guardar').textContent = 'Guardar'; el('fin-cancelar').hidden = true; el('fin-rapido-msg').textContent = ''; }
     function descargarCSV(nombre, filas) {
       var celda = function(v) { v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
       var csv = '﻿' + filas.map(function(f) { return f.map(celda).join(';'); }).join('\r\n');
@@ -3395,7 +3403,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     function exportar() {
       var celda = function(v) { v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
-      var filas = [['Fecha', 'Tipo', 'Categoría', 'Descripción', 'Medio de pago', 'Del negocio', 'Valor']].concat(fin().movs.slice().sort(function(a, b) { return a.f < b.f ? -1 : 1; }).map(function(x) { return [x.f, NOMBRE_T[x.t] || x.t, x.c, x.d || '', x.m || '', esNeg(x) ? 'Sí' : 'No', x.v]; }));
+      var filas = [['Fecha', 'Tipo', 'Categoría', 'Detalle', 'Producto', 'Cliente', 'Costo de materiales', 'Medio de pago', 'Del negocio', 'Valor']].concat(fin().movs.slice().sort(function(a, b) { return a.f < b.f ? -1 : 1; }).map(function(x) { return [x.f, NOMBRE_T[x.t] || x.t, x.c, x.d || '', x.p || '', x.cl || '', x.cm || '', x.m || '', esNeg(x) ? 'Sí' : 'No', x.v]; }));
       var csv = '﻿' + filas.map(function(f) { return f.map(celda).join(';'); }).join('\r\n');
       var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
       a.download = 'movimientos-agenda-rosina-' + hoy.getFullYear() + '-' + dosd(hoy.getMonth() + 1) + '-' + dosd(hoy.getDate()) + '.csv'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 2000);
@@ -3791,18 +3799,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     /* --- eventos --- */
     el('fin-t').addEventListener('change', function() { opcionesCat(); });
-    el('fin-c').addEventListener('change', defNeg);
+    el('fin-c').addEventListener('change', function() { defNeg(); camposVenta(); });
     opcionesCat();
     var hf = new Date(); el('fin-f').value = hf.getFullYear() + '-' + dosd(hf.getMonth() + 1) + '-' + dosd(hf.getDate());
     el('fin-form').addEventListener('submit', function(e) {
       e.preventDefault(); var v = num(el('fin-v').value); if (!v || !el('fin-f').value) { el('fin-rapido-msg').textContent = 'Escribe la fecha y el valor.'; return; }
       var m = { f: el('fin-f').value, t: el('fin-t').value, c: el('fin-c').value, d: el('fin-d').value.trim(), v: v, m: el('fin-m').value, neg: el('fin-neg').checked };
+      if (m.t === 'i' && m.c === 'Ventas') { m.p = el('fin-p').value.trim() || m.d; m.cl = el('fin-cl').value.trim(); m.cm = num(el('fin-cm').value) || ''; if (!m.d) m.d = m.p; }   // una venta lleva producto, cliente y costo de materiales
       if (editId) {
         var f = fin(), x = f.movs.filter(function(y) { return y.id === editId; })[0];
-        if (x) { x.f = m.f; x.t = m.t; x.c = m.c; x.d = m.d; x.v = m.v; x.m = m.m; x.neg = m.neg; guardarFin(); var p = m.f.split('-'); mesSel = { y: +p[0], m: +p[1] }; }
+        if (x) { x.f = m.f; x.t = m.t; x.c = m.c; x.d = m.d; x.v = m.v; x.m = m.m; x.neg = m.neg; if (m.p != null) { x.p = m.p; x.cl = m.cl; x.cm = m.cm; } else { delete x.p; delete x.cl; delete x.cm; } guardarFin(); var p = m.f.split('-'); mesSel = { y: +p[0], m: +p[1] }; }
         cancelarEdicion(); pintar(); el('fin-rapido-msg').textContent = '¡Cambios guardados!'; return;
       }
-      agregar(m); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-rapido-msg').textContent = '¡Listo, guardado!';
+      agregar(m); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-p').value = ''; el('fin-cl').value = ''; el('fin-cm').value = ''; el('fin-rapido-msg').textContent = '¡Listo, guardado!';
     });
     el('fin-cancelar').addEventListener('click', cancelarEdicion);
     el('fin-rapido').addEventListener('submit', function(e) {
@@ -3818,6 +3827,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ponerTips(el('fin-barras')); ponerTips(el('fin-dona'));
     el('fin-barras').addEventListener('click', function(e) { var t = e.target.closest('[data-mes]'); if (!t) return; var p = t.getAttribute('data-mes').split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); });
     var esperaRedibujo; window.addEventListener('resize', function() { clearTimeout(esperaRedibujo); esperaRedibujo = setTimeout(function() { if (el('fin-resumen').classList.contains('abierta') || el('fin-negocio').classList.contains('abierta')) pintarEvol(); if (el('fin-analisis').classList.contains('abierta')) pintarAnalisis(); }, 200); });
+    /* abrir «Ventas y gastos» ya con el tipo elegido (acciones rápidas del panel, etc.) */
+    window.lrFinNuevo = function(tipo) { el('fin-t').value = tipo === 'g' ? 'g' : (tipo === 'a' ? 'a' : 'i'); opcionesCat(); if (tipo !== 'g' && tipo !== 'a') el('fin-c').value = 'Ventas', camposVenta(); var v = el(el('fin-venta-p').hidden ? 'fin-d' : 'fin-p'); if (v) v.focus({ preventScroll: false }); };
     window.lrFinRender = function(id) { if (id === 'fin-presupuesto') pintarPres(); pintar(); };
     window.lrFinReset = function() { cancelarTarjeta(); var c = el('fin-pres'); c.innerHTML = ''; delete c.dataset.listo; el('fin-metas').innerHTML = ''; el('fin-planes').innerHTML = ''; cancelarEdicion(); cancelarFijo(); cancelarDeuda(); pintar(); };
     pintar();
@@ -4042,7 +4053,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   toggleMenu.addEventListener('click', function() { var ab = menuHojas.classList.toggle('abierto'); toggleMenu.setAttribute('aria-expanded', ab); });
   function abrirDesdeAncla() {
-    var id = location.hash.slice(1);
+    var id = location.hash.slice(1); id = HOJAS_ANTIGUAS[id] || id;
     if (id && document.getElementById(id) && document.getElementById(id).classList.contains('hoja-agenda')) { mostrarHoja(id); document.querySelector('.agenda-layout').scrollIntoView(); return true; }
     return false;
   }
@@ -4342,16 +4353,16 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=30"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=25" defer></script>
+<script src="/js/agenda/idioma.js?v=26" defer></script>
 <script src="/js/agenda/config.js?v=17" defer></script>
 <script src="/js/agenda/tour.js?v=6" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
 <script src="/js/agenda/formas.js?v=3" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
 <script src="/js/agenda/meses.js?v=1" defer></script>
-<script src="/js/agenda/dinero.js?v=1" defer></script>
+<script src="/js/agenda/dinero.js?v=2" defer></script>
 <script src="/js/agenda/pedidos.js?v=1" defer></script>
-<script src="/js/agenda/conexiones.js?v=4" defer></script>
+<script src="/js/agenda/conexiones.js?v=5" defer></script>
 <script src="/js/agenda/anio.js?v=1" defer></script>
 <script src="/js/agenda/portada.js?v=6" defer></script>
 <script src="/js/agenda/color-casilla.js?v=1" defer></script>
@@ -4361,8 +4372,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/lupa.js?v=2" defer></script>
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=3" defer></script>
-<script src="/js/agenda/vacios.js?v=4" defer></script>
-<script src="/js/agenda/panel.js?v=30" defer></script>
+<script src="/js/agenda/vacios.js?v=5" defer></script>
+<script src="/js/agenda/panel.js?v=31" defer></script>
 <script src="/js/agenda/miles.js?v=1" defer></script>
 <script src="/js/agenda/voz.js?v=4" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
@@ -4370,15 +4381,15 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/iconos.js?v=29" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=3" defer></script>
-<script src="/js/agenda/metas-ventas.js?v=5" defer></script>
+<script src="/js/agenda/metas-ventas.js?v=6" defer></script>
 <script src="/js/agenda/graficas.js?v=7" defer></script>
-<script src="/js/agenda/clientas-historial.js?v=2" defer></script>
+<script src="/js/agenda/clientas-historial.js?v=3" defer></script>
 <script src="/js/agenda/costos.js?v=1" defer></script>
 <script src="/js/agenda/inventario-mov.js?v=5" defer></script>
 <script src="/js/agenda/proyecto-lana.js?v=3" defer></script>
 <script src="/js/agenda/inventario.js?v=2" defer></script>
 <script src="/js/agenda/informe.js?v=4" defer></script>
-<script src="/js/agenda/dashboards.js?v=4" defer></script>
+<script src="/js/agenda/dashboards.js?v=5" defer></script>
 <script src="/js/agenda/ayuda.js?v=3" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
@@ -4389,12 +4400,12 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/centro-conexiones.js?v=1" defer></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
 <script type="module" src="/js/agenda/drive-sync.js?v=3"></script>
-<script type="module" src="/js/agenda/membresia.js?v=4"></script>
+<script type="module" src="/js/agenda/membresia.js?v=5"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=14" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
-<script src="/js/agenda/exportar.js?v=5" defer></script>
+<script src="/js/agenda/exportar.js?v=6" defer></script>
 <script>
 // «¿Dónde se guardan mis datos?»: dice si hoy la copia en la cuenta está activa (30-oct-2026).
 (function () {

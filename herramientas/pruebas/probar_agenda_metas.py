@@ -43,7 +43,7 @@ with sync_playwright() as p:
     pg.fill('#mv-meta', '200000'); pg.press('#mv-meta', 'Enter'); pg.wait_for_timeout(400)
     T.v('meta cumplida: mensaje de felicitación', 'Cumpliste tu meta' in txt(pg), txt(pg))
     T.v('no se imprime', pg.evaluate("getComputedStyle(document.getElementById('metas-ventas'), null) && !!document.querySelector('#metas-ventas.no-imprimir')"))
-    T.v('no inventó ventas: las ventas siguen siendo las de «Mis ventas»', pg.evaluate("document.getElementById('ag-vt1-precio').value") == '$ 100.000')
+    T.v('no inventó ventas: las ventas escritas en las fichas viejas siguen intactas (respaldo)', pg.evaluate("document.getElementById('ag-vt1-precio').value") == '$ 100.000')
     pg.close()
     # sin gastos fijos y sin costo
     pg = abrir(contexto(b, 390, 844, datos={'ag-duena': 'Sara', 'ag-vt1-fecha': f(hoy), 'ag-vt1-precio': '$ 50.000'}, config_abierta=False), 'fin-presupuesto', 2200, config=False)
@@ -58,7 +58,7 @@ with sync_playwright() as p:
     # ingresos del negocio cuando no hay ventas anotadas
     fi = dict(FIN); fi['movs'] = [{'id': '1', 't': 'i', 'f': hoy.strftime('%Y-%m-%d'), 'v': '250000', 'c': 'Ventas', 'm': 'Efectivo'}]
     pg = abrir(contexto(b, 1280, 900, datos={'ag-duena': 'Sara', '_fin': fi, '_metaVentas': {'metas': {'%d-%02d' % (hoy.year, hoy.month): 500000}, 'margen': ''}}, config_abierta=False), 'fin-presupuesto', 2200, config=False)
-    T.v('sin «Mis ventas»: usa los ingresos del negocio', 'Llevas $ 250.000 de $ 500.000' in txt(pg) and 'Ingresos y gastos del negocio' in txt(pg), txt(pg))
+    T.v('sin ventas con producto: usa los ingresos del negocio', 'Llevas $ 250.000 de $ 500.000' in txt(pg) and 'Ventas y gastos' in txt(pg), txt(pg))
     pg.close()
     ctx = contexto(b, 1280, 900, datos=DATOS, config_abierta=False); ctx.add_init_script("localStorage.setItem('lrAgendaIdioma','en')")
     pg = abrir(ctx, 'fin-presupuesto', 2600, config=False)

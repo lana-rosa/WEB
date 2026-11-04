@@ -11,7 +11,7 @@ with sync_playwright() as p:
     ctx = contexto(b, 1280, 900, datos={'ag-duena': 'Sara'}); pg = abrir(ctx, 'fin-movimientos', 1500)
     T.v('la pestaña se llama «Finanzas» y el grupo «Finanzas del negocio»', 'FinanzasFinanzas del negocio'.count('Finanzas') and any('Finanzas' in x for x in pg.evaluate("[...document.querySelectorAll('#pestanas-agenda .pestana')].map(b => b.textContent)")) and 'Finanzas del negocio' in pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista .menu-grupo')].map(b => b.textContent)"))
     nombres = pg.evaluate("['fin-resumen','fin-movimientos','fin-presupuesto','fin-fijos','fin-tcredito','fin-analisis'].map(i => document.querySelector('#' + i + ' h3').textContent)")
-    T.v('todas las hojas de finanzas dicen que son del negocio', nombres == ['Mi negocio en números', 'Ingresos y gastos del negocio', 'Presupuesto y metas del negocio', 'Gastos fijos y deudas del negocio', 'Tarjetas del negocio', 'Análisis del negocio'], nombres)
+    T.v('todas las hojas de finanzas dicen que son del negocio', nombres == ['Mi negocio en números', 'Ventas y gastos', 'Presupuesto y metas del negocio', 'Gastos fijos y deudas del negocio', 'Tarjetas del negocio', 'Análisis del negocio'], nombres)
     T.v('ya no hay casilla «Es del negocio» ni filtro personal a la vista', not pg.locator('#fin-neg').is_visible() and not pg.locator('#fin-fil-neg').is_visible())
     T.v('el ejemplo ya no habla de «mercado»', 'mercado' not in pg.get_attribute('#fin-texto', 'placeholder').lower() and 'lana' in pg.get_attribute('#fin-texto', 'placeholder'))
     pg.fill('#fin-texto', 'gasté 50 mil en lana'); pg.press('#fin-texto', 'Enter'); pg.wait_for_timeout(300)
@@ -22,6 +22,7 @@ with sync_playwright() as p:
     pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=\"fin-negocio\"]').click()"); pg.wait_for_timeout(500)
     t = pg.inner_text('#fn-tarjetas')
     T.v('Resultados del negocio cuenta todo lo anotado (utilidad $52.000)', '52.000' in t, t)
+    pg.evaluate("window.lrIrAHoja('fin-movimientos')"); pg.wait_for_timeout(300); pg.select_option('#fin-t', 'g'); pg.wait_for_timeout(200)   # «Ventas y gastos» empieza en «Venta o ingreso»
     cats = pg.evaluate("[...document.querySelectorAll('#fin-c option')].map(o => o.value)")
     T.v('la lista de categorías de gasto es del negocio', 'Empaques' in cats and 'Vivienda' not in cats and 'Mercado' not in cats, cats)
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
