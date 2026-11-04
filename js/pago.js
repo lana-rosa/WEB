@@ -8,6 +8,15 @@ import { haySesionGuardada, obtenerCliente } from './cuenta.js';
 // PRODUCCIÓN (pub_prod_…). Con llaves de pruebas (pub_test_…) solo lo ve quien abre ?pagosprueba=1.
 export const PAGOS_ACTIVOS = true;
 
+// Recoger en la tienda solo desde la apertura (domingo 13-dic-2026, hora de Colombia, UTC-5). Antes, el aviso lo dice; después vuelve al texto normal.
+function textoRecoger() {
+  const c = new Date(Date.now() - 5 * 3600 * 1000);
+  const hoy = Date.UTC(c.getUTCFullYear(), c.getUTCMonth(), c.getUTCDate());
+  return hoy < Date.UTC(2026, 11, 13)
+    ? 'Disponible desde el 13 de diciembre, cuando abre la tienda. Te escribimos por WhatsApp para acordar cuándo recogerlo.'
+    : 'Te escribimos por WhatsApp para acordar cuándo y dónde recogerlo.';
+}
+
 // Materiales de la Mercería (lanas, hilos…): crear-pago-wompi (v30) los cobra por ovillo completo y solo los productos; a domicilio el envío
 // lo paga la clienta a la transportadora al recibir (Términos de venta de la Mercería). Poner en false para volver a pedirlos solo por
 // WhatsApp (el botón de Wompi se oculta en los carritos con materiales).
@@ -212,7 +221,7 @@ function construirModal() {
           '<section class="pg-sec" data-paso="3" hidden><header>Envío <button type="button" class="pg-atras" data-ir="2">← Atrás</button></header><div class="pg-cuerpo">' +
             '<div role="radiogroup" aria-label="¿Cómo quieres recibir tu pedido?">' +
               '<label class="pago-opcion" id="pg-opc-dom"><input type="radio" name="pg-entrega" value="domicilio" checked><span><span class="pg-valor" id="pg-env-valor"></span><strong>Envío a domicilio</strong><small id="pg-env-detalle">Lo llevamos a tu dirección.</small></span></label>' +
-              '<label class="pago-opcion" id="pg-opc-rec"><input type="radio" name="pg-entrega" value="recogida"><span><span class="pg-valor">Gratis</span><strong>Recoger en tienda</strong><small>Te escribimos por WhatsApp para acordar cuándo y dónde recogerlo.</small></span></label>' +
+              '<label class="pago-opcion" id="pg-opc-rec"><input type="radio" name="pg-entrega" value="recogida"><span><span class="pg-valor">Gratis</span><strong>Recoger en tienda</strong><small>' + textoRecoger() + '</small></span></label>' +
             '</div>' +
             '<div class="pago-opcion" id="pg-opc-intl" hidden style="cursor:default;background:#FBE4EF;border-color:#E74E96;"><span><span class="pg-valor" id="pg-intl-valor"></span><strong>Envío internacional</strong><small id="pg-intl-detalle">Lo enviamos a tu dirección.</small></span></div>' +
             '<button type="button" class="pg-btn" data-ir="4">Continuar →</button>' +
