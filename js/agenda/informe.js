@@ -84,7 +84,9 @@
     var mes = MESES[lang()][sel.m - 1] || MESES.es[sel.m - 1];
     caja.querySelector('.inf-mes').textContent = mes + ' ' + sel.y;
     var quien = (N.datos()['ag-duena'] || '').trim(), sub = caja.querySelector('.inf-quien'); sub.textContent = '';
-    if (quien) { sub.appendChild(el('span', '', 'Negocio de ')); var n = el('b', '', quien); n.setAttribute('data-no-traducir', ''); sub.appendChild(n); }
+    var neg = ((N.datos()._perfil || {}).negocio || '').trim();   /* nombre del negocio de «Mi cuenta» (3-nov-2026) */
+    if (neg) { var nb = el('b', '', neg); nb.setAttribute('data-no-traducir', ''); sub.appendChild(nb); if (quien) { var nq = el('span', '', ' · ' + quien); nq.setAttribute('data-no-traducir', ''); sub.appendChild(nq); } }
+    else if (quien) { sub.appendChild(el('span', '', 'Negocio de ')); var n = el('b', '', quien); n.setAttribute('data-no-traducir', ''); sub.appendChild(n); }
     if (!d.hay) { cuerpo.appendChild(el('p', 'inf-vacio', 'No hay nada anotado en este mes todavía. Anota tus ventas, ingresos y gastos y aquí verás el resumen.')); return; }
     var kp = el('div', 'inf-kpis');
     var pv = mesPrevio(sel.y, sel.m), dp = datos(pv.y, pv.m), nmp = MESES[lang()][pv.m - 1] || MESES.es[pv.m - 1], hp = dp.hay;

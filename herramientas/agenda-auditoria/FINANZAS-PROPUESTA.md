@@ -1,6 +1,6 @@
 # Finanzas y tiempo: propuesta para unir hojas (encargo E11, 3-nov-2026)
 
-> **Solo propuesta. No se cambió nada de la agenda.** Cómo quedaría: `FINANZAS-MAQUETA.html` y su captura `finanzas-maqueta.png`. Se hace desde el 14-dic (E16), no antes de la apertura del 13-dic.
+> **Solo propuesta. No se cambió nada de la agenda.** Cómo quedaría: `FINANZAS-MAQUETA.html` y su captura `finanzas-maqueta.png`. Jennifer aclaró (3-nov-2026) que la agenda no espera al 13-dic (esa fecha es solo la apertura de la Mercería).
 
 ## 1. Las 10 hojas de dinero hoy
 | Hoja | Qué hace | Guarda en |
