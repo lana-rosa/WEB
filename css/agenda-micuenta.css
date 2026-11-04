@@ -39,3 +39,8 @@ body.mc-abierto { overflow: hidden; }
 /* Decisión de Jennifer (3-nov-2026): «Dictar» solo en el computador; «Lápiz» solo en tabletas y dentro del menú de Mi cuenta, sin botón fijo en la barra */
 #tinta-modo { display: none !important; }
 @media (pointer: coarse) { .voz-barra { display: none !important; } }
+
+/* esquinas: las imágenes nunca sobresalen del cuadro (en Safari el alto de una imagen dentro de un botón no se respeta); la imagen va en posición absoluta, con margen */
+.mc-op, .mc-boton, .mc-av, .mc-av-grande { position: relative; overflow: hidden; clip-path: inset(0 round 26%); }
+.mc-op img, .mc-boton img, .mc-av img, .mc-av-grande img { position: absolute; inset: 8%; width: 84%; height: 84%; max-width: none; object-fit: contain; display: block; }
+.mc-boton.con-sesion { overflow: visible; clip-path: none; } .mc-boton.con-sesion img { border-radius: 26%; }
