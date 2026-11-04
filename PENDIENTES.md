@@ -88,6 +88,8 @@ Solo lo **abierto** y las reglas vigentes. Lo ya hecho (con su historia) está e
 - [ ] **Contadora:** confirmar el texto del régimen en el recibo («Régimen Simple de Tributación · No responsable de IVA») y si el recibo web debe exigir el documento del cliente.
 
 ## 🟠 4. Antes de la apertura (plan del 5-oct)
+- [ ] **Banda de apertura en el inicio (chat 6, 4-nov-2026; Jennifer: «por ahora no»):** borrador listo y probado en 390 y 1280 px en `herramientas/borradores/banda-apertura-inicio.patch` (`git apply` lo pone en `index.html`; se cambia sola el 14-dic). Retomar cuando Jennifer diga sí, antes del 13-dic.
+- [ ] **Recoger en el taller antes del 13-dic (chat 6):** Jennifer debe decidir; hoy el pago dice «te escribimos por WhatsApp para acordar dónde recogerlo».
 
 - [ ] **23-nov a 4-dic:** reunión con el contador (saldos de apertura y cierre de mes: caja, bancos, cartera, cuentas por pagar); horario y fecha en el perfil de Google; foto de la tienda y portada de la Mercería.
 - [ ] **7 a 9-dic:** conteo físico de todo el inventario (Tienda y Taller); Claude ajusta el Kardex a lo contado.
