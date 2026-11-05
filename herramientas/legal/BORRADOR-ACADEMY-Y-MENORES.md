@@ -26,7 +26,7 @@
 
 **4. Fechas, horarios y cupos.** La fecha, hora, lugar y cupo máximo de cada taller se informan antes de abrir inscripciones. **Cupo máximo: 10 personas; mínimo: 5 para dictar el taller** (decisión de Jennifer). [POR DEFINIR: qué pasa si no se llega a 5: se reprograma o se devuelve el anticipo]. Las clases personalizadas se acuerdan por WhatsApp.
 
-**5. Cancelaciones y reprogramaciones por parte de la participante.** La participante puede cancelar o cambiar la fecha **hasta 2 días antes** del taller o la clase (decisión de Jennifer). [POR DEFINIR: si son 2 días calendario o hábiles; si cancela con menos de 2 días qué pasa con el anticipo (a tiempo, **la participante elige entre la devolución del dinero o dejarlo como saldo a favor para otra fecha**: decisión de Jennifer, 5-nov-2026; falta el plazo de devolución y hasta cuándo vale el saldo); cuántas veces puede reprogramar].
+**5. Cancelaciones y reprogramaciones por parte de la participante.** La participante puede cancelar o cambiar la fecha **hasta 2 días hábiles antes** del taller o la clase (decisión de Jennifer, 5-nov-2026: solo días hábiles, sin contar sábados, domingos ni festivos). [POR DEFINIR: si cancela con menos de 2 días qué pasa con el anticipo (a tiempo, **la participante elige entre la devolución del dinero o dejarlo como saldo a favor para otra fecha**: decisión de Jennifer, 5-nov-2026; falta el plazo de devolución y hasta cuándo vale el saldo); cuántas veces puede reprogramar].
 
 **6. Inasistencia.** [POR DEFINIR: si no asiste sin avisar, si pierde el pago, si puede recuperar la clase o tomar otra edición].
 
@@ -78,7 +78,7 @@ Datos de inscripción: mientras dure la actividad y [POR DEFINIR: plazo]; fotos 
 **Aún por definir (preguntas siguientes, una a la vez):**
 1. ~~Valor del anticipo~~ → **decidido:** referencia $25.000 (la mitad), la participante puede dar otro valor. Falta: ¿hay un mínimo para quedar reservada? ¿Fecha límite para pagar el saldo?
 2. ~~Cancelación a tiempo~~ → **decidido:** se devuelve el dinero o queda como saldo a favor para otra fecha (elige la participante). Falta: ¿en cuántos días se devuelve? ¿hasta cuándo vale el saldo? ¿Y si cancela con menos de 2 días?
-3. ¿Los 2 días son calendario o hábiles?
+3. ~~Días calendario o hábiles~~ → **decidido:** solo días hábiles.
 4. Si no se llega al mínimo de 5 personas: ¿se reprograma el taller o se devuelve el anticipo?
 5. Qué datos lleva el recibo de pago (con la contadora) y si se entrega constancia de asistencia.
 6. Si se permite vender lo tejido con el patrón del taller.
