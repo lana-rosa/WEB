@@ -83,6 +83,8 @@ Solo lo **abierto** y las reglas vigentes. Lo ya hecho (con su historia) está e
 
 ## 🔴 3. Urgente: legal y datos personales
 
+- [ ] **Respuesta de la abogada (5-nov-2026):** resumen en `herramientas/legal/RESPUESTA-ABOGADA-2026-11.md`; encargos E27 a E33 en `herramientas/memoria/encargos.md`. Aprobados para publicar: retracto (**15 días calendario**, no 30) y Google Fonts. Lo demás: borradores → Jennifer → aprobación escrita de la abogada → publicar. Prioridad técnica: guías de envío privadas (E28).
+
 - [ ] **Política de datos: agregar lo que la web ya hace** (verificado el 9-oct: `politicas.html` ya tiene Google Calendar, copia en la nube, cookies, herramientas de análisis e IA genérica, pero **no** estos puntos): cuenta de cliente (nombre, correo, teléfono, direcciones, favoritos, carrito, pedidos y reseñas); recordatorio de carrito (3 y 24 h, con enlace para no recibir más); bono de bienvenida; asistente Rosina (los mensajes se procesan con un proveedor de IA; no escribir datos sensibles); pagos con Wompi (Lana Rosa no guarda datos de tarjeta; nombrar Wompi en «Medios de pago»); correos de compra y promociones. Para aprobar con la abogada o contadora antes de publicar.
 - [ ] **Abogada:** llevar `herramientas/auditoria-privacidad.md` y `herramientas/borrador-politica-datos.md`; y revisar las dos páginas de la Mercería publicadas el 9-oct (`/merceria/terminos-de-venta/` y `/merceria/cambios-y-devoluciones/`).
 - [ ] **Decidir** si el bucket de fotos de Personaliza pasa a privado (requiere cambiar cómo el ERP muestra las fotos) y **confirmar con cada proveedor dónde se almacenan los datos** (Supabase, Wompi, Cloudflare).
