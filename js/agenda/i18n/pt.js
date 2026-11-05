@@ -1,5 +1,9 @@
 /* Diccionario PT de la Agenda (lo genera herramientas/agenda-idiomas/generar.py; no editar a mano). */
 window.lrI18n.add("pt", {
+"Antes de dictar": "Antes de ditar",
+"La función «Hablar para escribir» utiliza el servicio de reconocimiento de voz disponible en su navegador o dispositivo. El audio puede ser procesado por el proveedor de dicho servicio, de acuerdo con sus propias condiciones y políticas de privacidad. Lana Rosa Crochet no recibe ni almacena directamente las grabaciones de audio. Puede utilizar esta función de manera opcional.": "A função “Falar para escrever” usa o serviço de reconhecimento de voz disponível no seu navegador ou dispositivo. O áudio pode ser processado pelo provedor desse serviço, de acordo com suas próprias condições e políticas de privacidade. A Lana Rosa Crochet não recebe nem armazena diretamente as gravações de áudio. Você pode usar esta função de forma opcional.",
+"Ahora no": "Agora não",
+"Continuar": "Continuar",
 "Conexiones e integraciones": "Conexões e integrações",
 "Aquí ves qué tienes conectado y qué datos viajan. Nada se conecta ni se sube solo: tú decides, y puedes desconectar cuando quieras. Tu cuenta y tus archivos siguen siendo tuyos.": "Aqui você vê o que está conectado e quais dados viajam. Nada se conecta nem é enviado sozinho: você decide e pode desconectar quando quiser. Sua conta e seus arquivos continuam sendo seus.",
 "Estado de tus conexiones": "Status das suas conexões",
@@ -403,7 +407,6 @@ window.lrI18n.add("pt", {
 "Tu navegador bloqueó la ventana. Permite las ventanas emergentes para imprimir.": "O seu navegador bloqueou a janela. Permita as janelas pop-up para imprimir.",
 "Primero elige la prenda y escribe las medidas.": "Primeiro escolha a peça e escreva as medidas.",
 "No pudimos preparar la descarga. Inténtalo de nuevo.": "Não conseguimos preparar o download. Tente de novo.",
-"Al dictar, el audio lo procesa el servicio de voz de tu navegador (Google en Chrome, Apple en Safari). Lana Rosa no recibe ni guarda el audio. ¿Quieres continuar?": "Ao ditar, o áudio é processado pelo serviço de voz do seu navegador (Google no Chrome, Apple no Safari). A Lana Rosa não recebe nem guarda o áudio.\n\nQuer continuar?",
 "¿Borrar tu copia de la agenda en la nube? Se borra de nuestros servidores y se retira tu autorización; tu agenda sigue en este dispositivo. Para volver a usar la copia tendrás que autorizarla otra vez.": "Apagar a sua cópia da agenda na nuvem? Ela é apagada dos nossos servidores e a sua autorização é retirada; a sua agenda continua neste dispositivo. Para voltar a usar a cópia você terá de autorizá-la de novo.",
 "Todavía no has guardado una copia de tu agenda en este dispositivo. Si la borras ahora, se elimina de inmediato y NO se puede recuperar. Aceptar = descargar la copia primero (después puedes borrar). Cancelar = seguir sin copia.": "Você ainda não guardou uma cópia da sua agenda neste dispositivo.\n\nSe apagar agora, ela é eliminada na hora e NÃO pode ser recuperada.\n\nOK = baixar a cópia primeiro (depois você pode apagar).\nCancelar = continuar sem cópia.",
 "¿Borrar todo lo que escribiste en la agenda? Se elimina de inmediato y no se puede recuperar. Solo podrás volver a tenerla si guardaste una copia y la cargas después.": "Apagar tudo o que você escreveu na agenda?\n\nEla é eliminada na hora e não pode ser recuperada. Você só poderá tê-la de novo se tiver guardado uma cópia e carregá-la depois.",
@@ -419,7 +422,6 @@ window.lrI18n.add("pt", {
 "Guardar en mi cuenta": "Guardar na minha conta",
 "Descargar una copia": "Baixar uma cópia",
 "Descargar una copia ahora": "Baixar uma cópia agora",
-"Ahora no": "Agora não",
 "Guardar mi agenda en mi cuenta": "Guardar a minha agenda na minha conta",
 "Google Calendar": "Google Agenda",
 "Conectar con Google Calendar": "Conectar ao Google Agenda",
