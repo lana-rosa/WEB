@@ -1,7 +1,7 @@
 /* Agenda para tejedoras: meta de ventas del mes y «¿Cuánto necesito vender al mes?» (Plus para emprendedoras, etapa 2, 31-oct-2026).
-   Va en la hoja «Presupuesto y metas del negocio» (fin-presupuesto), que es de membresía.
+   Va en la hoja «Presupuesto y metas» (fin-presupuesto), que es de membresía.
    - Meta de ventas: la persona escribe cuánto quiere vender este mes; se guarda por mes en datos._metaVentas { 'AAAA-MM': pesos }.
-     Se compara con lo anotado en «Mis ventas del mes» (si no hay nada ahí, con los ingresos de «Ingresos y gastos del negocio», para no contar dos veces)
+     Se compara con lo anotado en «Mis ventas del mes» (si no hay nada ahí, con los ingresos de «Ventas y gastos», para no contar dos veces)
      y se convierte en lo que falta por semana y por día, con el ritmo de hoy.
    - Punto de equilibrio simple: gastos fijos del negocio ÷ margen de ganancia. El margen sale de las ventas que tienen costo anotado en «Mis ventas del mes»
      (últimos 3 meses) o de un porcentaje que escribe la persona. Es una guía, no contabilidad.
@@ -82,7 +82,7 @@
       var pct = Math.min(100, Math.round(tot / meta * 100)), dm = diasDelMes(y, m), dia = hoy.getDate(), quedan = dm - dia + 1, falta = Math.max(0, meta - tot);
       var barra = el('div', 'fin-progreso'); var i = el('i'); i.style.width = pct + '%'; barra.appendChild(i); barra.setAttribute('role', 'img'); barra.setAttribute('aria-label', pct + ' % de la meta'); 
       c.appendChild(el('p', 'mv-cifra', 'Llevas ' + plata(tot) + ' de ' + plata(meta) + ' (' + Math.round(tot / meta * 100) + ' %)')); c.appendChild(barra);
-      c.appendChild(el('small', 'mv-fuente', vd.fuente === 'ingresos' ? 'Cuento los ingresos de «Ingresos y gastos del negocio». Si anotas tus ventas en «Mis ventas del mes», uso esas.' : 'Cuento lo que anotaste en «Mis ventas del mes» de este mes.'));
+      c.appendChild(el('small', 'mv-fuente', vd.fuente === 'ingresos' ? 'Cuento los ingresos que anotaste en «Ventas y gastos». Si los anotas como venta, con su producto, también cuentan.' : 'Cuento lo que anotaste en «Ventas y gastos» de este mes.'));
       if (falta <= 0) c.appendChild(el('p', 'mv-ok', '¡Cumpliste tu meta del mes! Todo lo que vendas ahora es de más.'));
       else {
         var semanas = Math.max(1, quedan / 7), porSem = falta / semanas, porDia = falta / quedan;
@@ -100,7 +100,7 @@
     im.addEventListener('change', function () { var v = Math.max(0, Math.min(95, num(im.value))); var d = metas(); d.margen = v || ''; N.guardar(); pintar(true); });
     lm.appendChild(lbm); lm.appendChild(im);
     var margen = propio > 0 ? propio : (mr && mr.pct > 0 ? mr.pct : 0);
-    if (!fj.fijos && !fj.cuotas) { c.appendChild(el('p', 'fin-vacio', 'Para calcularlo, agrega tus pagos del negocio en «Gastos fijos y deudas del negocio» (arriendo, internet, programas…).')); c.appendChild(lm); return; }
+    if (!fj.fijos && !fj.cuotas) { c.appendChild(el('p', 'fin-vacio', 'Para calcularlo, agrega tus pagos del negocio en «Gastos fijos, tarjetas y deudas» (arriendo, internet, programas…).')); c.appendChild(lm); return; }
     c.appendChild(el('p', 'mv-nota', 'Tus gastos fijos del negocio suman ' + plata(fj.fijos) + ' al mes' + (fj.cuotas ? ' y las cuotas de deudas, ' + plata(fj.cuotas) : '') + '.'));
     c.appendChild(lm);
     if (!margen) { c.appendChild(el('p', 'fin-vacio', 'Falta tu margen de ganancia. Anota el costo de tus productos en «Mi catálogo de precios» o el costo de tus ventas en «Mis ventas del mes», o escribe un porcentaje arriba.')); return; }

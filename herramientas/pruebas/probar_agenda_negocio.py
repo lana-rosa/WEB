@@ -87,17 +87,6 @@ with sync_playwright() as p:
     pg.click('#proyectos-fila .avance-btn'); pg.keyboard.type('Cuadro 4'); pg.wait_for_timeout(300)
     T.v('cada avance va en su renglón y la ficha muestra el último', pg.input_value('#ag-f1-avance').count('\n') == 1 and 'Avance ' + h.strftime('%d/%m') in meta(pg, 'tabla-fila', 1), meta(pg, 'tabla-fila', 1))
     ctx.close()
-    # gastos por mes
-    ant = h.replace(day=1) - datetime.timedelta(days=1)
-    datos = {'ag-gs1-fecha': h.strftime('%d/%m/%Y'), 'ag-gs1-categoria': 'Materiales', 'ag-gs1-detalle': 'Lana', 'ag-gs1-valor': '$40.000',
-             'ag-gs2-fecha': h.strftime('%d/%m/%Y'), 'ag-gs2-categoria': 'Transporte', 'ag-gs2-detalle': 'Bus a la feria', 'ag-gs2-valor': '$10.000',
-             'ag-gs3-fecha': ant.strftime('%d/%m/%Y'), 'ag-gs3-categoria': 'Ferias y mercados', 'ag-gs3-detalle': 'Puesto', 'ag-gs3-valor': '$30.000'}
-    ctx = contexto(b, 390, datos=datos); pg = abrir(ctx, 'gastos-negocio')
-    vis = "[...document.querySelectorAll('#tabla-gastos tr.ficha')].filter(x => !x.hidden && !x.classList.contains('fuera-mes')).length"
-    T.v('gastos: el mes actual muestra sus dos gastos y suma $50.000', '$50.000' in pg.inner_text('#totales-gastos') and pg.evaluate(vis) == 2, pg.inner_text('#totales-gastos'))
-    T.v('los totales dicen en qué se fue más (Materiales)', 'Materiales' in pg.inner_text('#totales-gastos') and '$40.000' in pg.inner_text('#totales-gastos'))
-    pg.select_option('#gs-mes', str(ant.year * 100 + ant.month)); pg.wait_for_timeout(200)
-    T.v('el mes anterior muestra su gasto y su total ($30.000)', '$30.000' in pg.inner_text('#totales-gastos') and pg.evaluate(vis) == 1)
-    cap(pg, 'negocio-gastos-390.png')
-    T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close(); b.close()
+    # (los gastos por mes se retiraron el 4-nov-2026: ahora se anotan en «Ventas y gastos», ver probar_agenda_ventas_gastos.py)
+    b.close()
 T.fin()

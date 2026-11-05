@@ -48,7 +48,7 @@
   document.getElementById('agenda').addEventListener('input', function () { if (!espera) espera = setTimeout(revisar, 300); });
   setTimeout(revisar, 1500);
 
-  var PASOS = [['Anotar un pedido', 'Quién lo pidió, qué es y cuándo lo entregas', 'control-pedidos', 'tabla-pedidos'], ['Planear un proyecto', 'Lo que quieres tejer, para quién y para cuándo', 'proyectos-fila', 'tabla-fila'], ['Ver cuánto ganaste', 'Tus ventas y gastos del mes y lo que te quedó', 'ventas-mes', null]];
+  var PASOS = [['Anotar un pedido', 'Quién lo pidió, qué es y cuándo lo entregas', 'control-pedidos', 'tabla-pedidos'], ['Planear un proyecto', 'Lo que quieres tejer, para quién y para cuándo', 'proyectos-fila', 'tabla-fila'], ['Ver cuánto ganaste', 'Tus ventas y gastos del mes y lo que te quedó', 'fin-movimientos', null]];
   window.lrEmpiezaAqui = function () {
     var d = document.createElement('div'); d.className = 'empieza-aqui no-imprimir';
     var enc = document.createElement('div'); enc.className = 'ea-enc'; var h = document.createElement('h4'); h.textContent = 'Empieza aquí'; enc.appendChild(h);

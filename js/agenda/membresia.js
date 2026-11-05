@@ -9,6 +9,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 (function () {
   var MEMBRESIA_ACTIVA = true;
   var PESTANAS_GRATIS = 3;                 // Inicio, Mi tablero y Mis proyectos
+  var HOJAS_SIEMPRE_GRATIS = ['fin-movimientos'];   // «Ventas y gastos» (decisión de Jennifer, 4-nov-2026): anotar las ventas y los gastos es gratis; el resumen, las gráficas y el informe son de la membresía
   var PRECIO_MES = '$5.000', PRECIO_ANIO = '$45.000';
   var CLAVE = 'lrMembresia';
   // Versión de las condiciones que la persona acepta al pagar: debe coincidir con VERSION_CONDICIONES de la función crear-pago-wompi y con la «Fecha de actualización» de politicas.html#membresia.
@@ -18,7 +19,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var estado = null, sb = null, TEXTOS = {
     'Mis materiales': 'Tu inventario de lanas, tus agujas y tu lista de compras.',
     'Mi emprendimiento': 'Pedidos con cuentas y saldos, clientas, ventas, catálogo de precios, ferias, gastos y resultados del negocio.',
-    'Finanzas del negocio': 'Tu negocio en números: ingresos y gastos del negocio, presupuesto y metas, deudas, tarjetas y análisis, con gráficas.',
+    'Mi plata': 'Tu presupuesto y tus metas, tus gastos fijos, tarjetas y deudas, los de tu negocio y los personales, cada uno por separado.',
     'Fechas y bienestar': 'El calendario del año con todas tus fechas, fechas especiales, diario de tejido y pausas activas.'
   };
 
@@ -27,7 +28,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var lista = [], g = -1;
     document.querySelectorAll('#menu-hojas-lista > *').forEach(function (e) {
       if (e.classList.contains('menu-grupo')) { g++; return; }
-      if (e.dataset && e.dataset.hoja && g >= PESTANAS_GRATIS) lista.push({ id: e.dataset.hoja, grupo: e.parentNode.querySelectorAll('.menu-grupo')[g].textContent.trim() });
+      if (e.dataset && e.dataset.hoja && g >= PESTANAS_GRATIS && HOJAS_SIEMPRE_GRATIS.indexOf(e.dataset.hoja) < 0) lista.push({ id: e.dataset.hoja, grupo: e.parentNode.querySelectorAll('.menu-grupo')[g].textContent.trim() });
     });
     return lista;
   }

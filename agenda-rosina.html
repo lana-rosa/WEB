@@ -139,6 +139,8 @@ section.contenedor { padding-top: 20px; padding-bottom: 56px; }
 .como-whatsapp summary { cursor: pointer; font-weight: 700; color: var(--rosa-texto); }
 .como-whatsapp ol { margin: 12px 0 8px; padding-left: 20px; }
 .como-whatsapp p { margin: 0; font-size: 0.9rem; color: var(--tinta-suave); }
+/* Hojas retiradas (4-nov-2026): «Mis ventas del mes» y «Gastos del negocio» pasaron a «Ventas y gastos»; sus fichas siguen en la página solo de respaldo */
+.hoja-retirada { display: none !important; }
 /* Abreviaturas */
 .tabla-scroll { overflow-x: auto; background: var(--blanco); border-radius: var(--radio-suave); box-shadow: var(--sombra-suave); }
 .tabla-abrev { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 720px; }
@@ -565,6 +567,20 @@ section.intro-rincon { padding-top: 26px; padding-bottom: 30px; text-align: cent
 .fin-form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 14px; margin-bottom: 14px; padding: 12px; background: var(--tinte, #FEF2F7); border-radius: 14px; }
 .fin-form select, .fin-form input { width: 100%; border: none; border-bottom: 1.5px solid rgba(69,69,74,.25); background: transparent; font: inherit; padding: 5px 2px; }
 .fin-form-btn { justify-content: flex-end; }
+.fin-form .linea[hidden] { display: none !important; }
+.fin-personal { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: #E6E7FD; color: #3F43A8; font-size: .75rem; font-weight: 700; }
+.amb-sw { display: flex; border: 2px solid var(--rosa-boton); border-radius: 999px; overflow: hidden; margin: 6px 0 14px; max-width: 420px; }
+.amb-sw button { flex: 1; min-height: 44px; border: 0; background: #fff; font: inherit; font-weight: 700; color: var(--rosa-texto); cursor: pointer; }
+.amb-sw button[aria-pressed="true"] { background: var(--rosa-boton); color: #fff; }
+.amb-sw button:focus-visible { outline: 3px solid var(--rosa-boton); outline-offset: -3px; }
+.amb-p #metas-ventas { display: none !important; }
+.fin-pres label[hidden] { display: none !important; }
+.rs-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 14px; }
+.rs-tabs button { min-height: 44px; padding: 8px 18px; border-radius: 999px; border: 2px solid var(--rosa-medio); background: #fff; font: inherit; font-weight: 700; color: var(--rosa-texto); cursor: pointer; }
+.rs-tabs button[aria-selected="true"] { background: var(--rosa-boton); border-color: var(--rosa-boton); color: #fff; }
+.rs-tabs button:focus-visible { outline: 3px solid var(--rosa-boton); outline-offset: 2px; }
+.rs-panel[hidden] { display: none; }
+@media print { .rs-panel[hidden] { display: block !important; } }
 .fin-tabla td, .fin-tabla th { padding: 6px 8px; font-size: .88rem; }
 .fin-tabla .der { text-align: right; white-space: nowrap; }
 .fin-tabla .quitar { border: 0; background: transparent; cursor: pointer; font-size: 1rem; }
@@ -1170,19 +1186,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="menu-grupo">Mi emprendimiento</p>
           <a href="#control-pedidos" data-hoja="control-pedidos">📦 Control de pedidos</a>
           <a href="#mis-clientas" data-hoja="mis-clientas">💕 Mis clientas</a>
-          <a href="#ventas-mes" data-hoja="ventas-mes">💰 Mis ventas del mes</a>
+          <a href="#fin-movimientos" data-hoja="fin-movimientos">💰 Ventas y gastos</a>
           <a href="#catalogo-precios" data-hoja="catalogo-precios">🏷️ Mi catálogo de precios</a>
           <a href="#ferias-mercados" data-hoja="ferias-mercados">🎪 Ferias y mercados</a>
-          <a href="#gastos-negocio" data-hoja="gastos-negocio">🧾 Gastos del negocio</a>
           <a href="#contactos" data-hoja="contactos">📇 Contactos</a>
-          <a href="#fin-negocio" data-hoja="fin-negocio">🧮 Resultados del negocio</a>
-          <p class="menu-grupo">Finanzas del negocio</p>
-          <a href="#fin-resumen" data-hoja="fin-resumen">📊 Mi negocio en números</a>
-          <a href="#fin-movimientos" data-hoja="fin-movimientos">🧾 Ingresos y gastos del negocio</a>
-          <a href="#fin-presupuesto" data-hoja="fin-presupuesto">🐷 Presupuesto y metas del negocio</a>
-          <a href="#fin-fijos" data-hoja="fin-fijos">🔁 Gastos fijos y deudas del negocio</a>
-          <a href="#fin-tcredito" data-hoja="fin-tcredito">💳 Tarjetas del negocio</a>
-          <a href="#fin-analisis" data-hoja="fin-analisis">🔎 Análisis del negocio</a>
+          <a href="#fin-resumen" data-hoja="fin-resumen">📊 Resumen del emprendimiento</a>
+          <p class="menu-grupo">Mi plata</p>
+          <a href="#fin-presupuesto" data-hoja="fin-presupuesto">🐷 Presupuesto y metas</a>
+          <a href="#fin-fijos" data-hoja="fin-fijos">🔁 Gastos fijos, tarjetas y deudas</a>
           <p class="menu-grupo">Fechas y bienestar</p>
           <a href="#calendario-anual" data-hoja="calendario-anual">🗓️ Calendario del año</a>
           <a href="#fechas-especiales" data-hoja="fechas-especiales">🎁 Fechas especiales</a>
@@ -1239,20 +1250,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="indice-grupo" style="--c:#F28FC0"><h4>Mi emprendimiento</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="control-pedidos"><span class="atajo-ic" aria-hidden="true">📦</span><span><strong>Control de pedidos</strong><small>Entregas y estados</small></span></button>
           <button type="button" class="atajo" data-ir="mis-clientas"><span class="atajo-ic" aria-hidden="true">💕</span><span><strong>Mis clientas</strong><small>Contactos y cumpleaños</small></span></button>
-          <button type="button" class="atajo" data-ir="ventas-mes"><span class="atajo-ic" aria-hidden="true">💰</span><span><strong>Mis ventas del mes</strong><small>Lo vendido y lo que te quedó</small></span></button>
+          <button type="button" class="atajo" data-ir="fin-movimientos"><span class="atajo-ic" aria-hidden="true">💰</span><span><strong>Ventas y gastos</strong><small>Lo que vendes y lo que gastas, en un solo lugar</small></span></button>
           <button type="button" class="atajo" data-ir="catalogo-precios"><span class="atajo-ic" aria-hidden="true">🏷️</span><span><strong>Mi catálogo de precios</strong><small>Tus productos y valores</small></span></button>
           <button type="button" class="atajo" data-ir="ferias-mercados"><span class="atajo-ic" aria-hidden="true">🎪</span><span><strong>Ferias y mercados</strong><small>Fechas y lugares</small></span></button>
-          <button type="button" class="atajo" data-ir="gastos-negocio"><span class="atajo-ic" aria-hidden="true">🧾</span><span><strong>Gastos del negocio</strong><small>Materiales, transporte y ferias</small></span></button>
+          <button type="button" class="atajo" data-ir="fin-resumen"><span class="atajo-ic" aria-hidden="true">📊</span><span><strong>Resumen del emprendimiento</strong><small>Tus números: este mes, comparando y el año</small></span></button>
           <button type="button" class="atajo" data-ir="contactos"><span class="atajo-ic" aria-hidden="true">📇</span><span><strong>Contactos</strong><small>Proveedores, colegas y maestras</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-negocio"><span class="atajo-ic" aria-hidden="true">🧮</span><span><strong>Resultados del negocio</strong><small>Ventas, costos y utilidad</small></span></button>
         </div></div>
-        <div class="indice-grupo" style="--c:#F28FC0"><h4>Finanzas del negocio</h4><div class="atajos">
-          <button type="button" class="atajo" data-ir="fin-resumen"><span class="atajo-ic" aria-hidden="true">📊</span><span><strong>Mi negocio en números</strong><small>Lo que entra, lo que sale y lo que te queda</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-movimientos"><span class="atajo-ic" aria-hidden="true">🧾</span><span><strong>Ingresos y gastos del negocio</strong><small>Anota lo que entra y sale de tu negocio</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-presupuesto"><span class="atajo-ic" aria-hidden="true">🐷</span><span><strong>Presupuesto y metas del negocio</strong><small>Topes de gasto y ahorros del negocio</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-fijos"><span class="atajo-ic" aria-hidden="true">🔁</span><span><strong>Gastos fijos y deudas del negocio</strong><small>Pagos del mes y cuotas del negocio</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-tcredito"><span class="atajo-ic" aria-hidden="true">💳</span><span><strong>Tarjetas del negocio</strong><small>Cupo, corte y pago</small></span></button>
-          <button type="button" class="atajo" data-ir="fin-analisis"><span class="atajo-ic" aria-hidden="true">🔎</span><span><strong>Análisis del negocio</strong><small>Compara meses y mira tu año</small></span></button>
+        <div class="indice-grupo" style="--c:#F28FC0"><h4>Mi plata</h4><div class="atajos">
+          <button type="button" class="atajo" data-ir="fin-presupuesto"><span class="atajo-ic" aria-hidden="true">🐷</span><span><strong>Presupuesto y metas</strong><small>Topes de gasto y ahorros, tuyos o del negocio</small></span></button>
+          <button type="button" class="atajo" data-ir="fin-fijos"><span class="atajo-ic" aria-hidden="true">🔁</span><span><strong>Gastos fijos, tarjetas y deudas</strong><small>Pagos del mes, tarjetas y cuotas</small></span></button>
         </div></div>
         <div class="indice-grupo" style="--c:#FDE3EE"><h4>Fechas y bienestar</h4><div class="atajos">
           <button type="button" class="atajo" data-ir="calendario-anual"><span class="atajo-ic" aria-hidden="true">🗓️</span><span><strong>Calendario del año</strong><small>Todas tus fechas en un vistazo</small></span></button>
@@ -1449,7 +1455,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="hoja-agenda" id="fin-resumen">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-21-corazon-grande.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Mi negocio en números</h3><p>Cómo va tu negocio este mes: lo que entró, lo que salió y lo que te queda. Aquí van solo los números de tu negocio, no tus gastos personales.</p></div>
+          <div><h3>Resumen del emprendimiento</h3><p>Aquí solo se mira: tus números del negocio este mes, comparando meses y en el año. Lo que anotas en «Ventas y gastos» se suma solo.</p></div>
         </header>
           <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
@@ -1457,9 +1463,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <strong class="fin-mes-txt" aria-live="polite"></strong>
           <button type="button" class="boton-secundario boton-chico" data-fin-mes="1" aria-label="Mes siguiente">›</button>
         </div>
+        <div class="rs-tabs no-imprimir" role="tablist" aria-label="Qué quieres ver">
+          <button type="button" role="tab" id="rs-t-mes" aria-controls="rs-mes" aria-selected="true" data-rs="mes">Este mes</button>
+          <button type="button" role="tab" id="rs-t-comp" aria-controls="rs-comp" aria-selected="false" data-rs="comp" tabindex="-1">Comparar meses</button>
+          <button type="button" role="tab" id="rs-t-anio" aria-controls="rs-anio" aria-selected="false" data-rs="anio" tabindex="-1">El año</button>
+        </div>
+        <div class="rs-panel" id="rs-mes" role="tabpanel" aria-labelledby="rs-t-mes">
         <div class="fin-tarjetas" id="fin-tarjetas"></div>
+        <div class="fin-caja"><h4 class="sub-hoja">Resultados del mes</h4><div class="tabla-scroll"><table class="fa-tabla" id="fn-resultados"></table></div></div>
         <div class="fin-caja">
-          <div class="fin-caja-cab"><h4 class="sub-hoja">Ingresos y gastos del negocio</h4>
+          <div class="fin-caja-cab"><h4 class="sub-hoja">Ventas y gastos del negocio</h4>
             <div class="fin-seg no-imprimir" role="group" aria-label="Meses a mostrar"><button type="button" data-fin-rango="6" aria-pressed="true">6 meses</button><button type="button" data-fin-rango="12" aria-pressed="false">12 meses</button></div></div>
           <div class="fin-grafica" id="fin-barras"></div>
           <div class="fin-leg"><span><i style="background:#6E9470"></i>Ingresos</span><span><i style="background:#C81B6D"></i>Gastos</span><span class="fin-leg-nota no-imprimir">Toca un mes para verlo en detalle</span></div>
@@ -1474,12 +1487,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="fin-caja"><h4 class="sub-hoja">Deudas del negocio</h4><div id="fin-deudas-panel"></div></div>
         </div>
         <div class="fin-caja fin-rosina"><h4 class="sub-hoja">🐑 Rosina lee tus números</h4><ul class="fin-insights" id="fin-insights"></ul></div>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño. Regístralos en <em>Ingresos y gastos del negocio</em> y aquí verás todo ordenado solito. Para tus gastos personales usa otra libreta: esta agenda es para los números del negocio.</p>
+        <div class="fin-dos">
+          <div class="fin-caja"><h4 class="sub-hoja">Por cobrar (tus pedidos)</h4><div id="fn-cobrar"></div></div>
+          <div class="fin-caja"><h4 class="sub-hoja">Por pagar este mes</h4><div id="fn-pagar"></div></div>
+        </div>
+        </div>
+        <div class="rs-panel" id="rs-comp" role="tabpanel" aria-labelledby="rs-t-comp" hidden>
+        <div class="fin-caja"><h4 class="sub-hoja">Este mes contra el anterior</h4><div class="tabla-scroll"><table class="fa-tabla" id="fa-comparar"></table></div></div>
+        <div class="fin-caja">
+          <h4 class="sub-hoja">Cuánto ahorra tu negocio mes a mes</h4>
+          <div class="fin-grafica" id="fa-ahorro"></div>
+          <div class="fin-leg"><span><i style="background:#6E9470"></i>Te quedó dinero</span><span><i style="background:#C81B6D"></i>Gastaste más de lo que entró</span><span class="fin-leg-nota no-imprimir">% de tus ingresos de cada mes</span></div>
+        </div>
+        </div>
+        <div class="rs-panel" id="rs-anio" role="tabpanel" aria-labelledby="rs-t-anio" hidden>
+        <div class="fin-caja">
+          <div class="fin-caja-cab"><h4 class="sub-hoja">Resumen del año</h4>
+            <div class="fin-caja-acc no-imprimir"><div class="fin-seg" role="group" aria-label="Año"><button type="button" id="fa-anio-ant" aria-label="Año anterior">‹</button><button type="button" id="fa-anio-txt" aria-live="polite" disabled></button><button type="button" id="fa-anio-sig" aria-label="Año siguiente">›</button></div><button type="button" class="boton-secundario boton-chico" id="fa-exportar">⬇ Excel (CSV)</button></div></div>
+          <div class="fin-tarjetas" id="fa-anio-cards"></div>
+          <div id="fa-anio-cats"></div>
+          <ul class="fin-insights" id="fa-anio-ins"></ul>
+        </div>
+        </div>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> anota cada venta y cada gasto de tu negocio el mismo día, aunque sea pequeño, en <em>Ventas y gastos</em>, y aquí verás todo ordenado solito. Mira primero qué categoría subió más: casi siempre ahí está el ahorro más fácil.</p>
       </article>
       <article class="hoja-agenda" id="fin-movimientos">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Ingresos y gastos del negocio</h3><p>Anota lo que entra, lo que sale y lo que ahorras en tu negocio. Puedes escribirlo como lo dirías.</p></div>
+          <div><h3>Ventas y gastos</h3><p>Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.</p></div>
         </header>
           <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
@@ -1489,41 +1524,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <form class="fin-rapido no-imprimir" id="fin-rapido" autocomplete="off">
           <label for="fin-texto">Escríbelo natural</label>
-          <div class="fin-rapido-fila"><input id="fin-texto" placeholder='Ej.: vendí 120000 un amigurumi · gasté 50 mil en lana · ahorré 100 mil para el negocio'><button type="submit" class="boton-primario boton-chico">Agregar</button></div>
+          <div class="fin-rapido-fila"><input id="fin-texto" placeholder='Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio'><button type="submit" class="boton-primario boton-chico">Agregar</button></div>
           <small id="fin-rapido-msg" role="status"></small>
         </form>
         <form class="fin-form no-imprimir" id="fin-form" autocomplete="off">
           <div class="linea"><label for="fin-f">Fecha</label><input type="date" id="fin-f"></div>
-          <div class="linea"><label for="fin-t">Tipo</label><select id="fin-t"><option value="g">Gasto</option><option value="i">Ingreso</option><option value="a">Ahorro / inversión</option></select></div>
+          <div class="linea"><label for="fin-t">Tipo</label><select id="fin-t"><option value="i">Venta o ingreso</option><option value="g">Gasto</option><option value="a">Ahorro / inversión</option></select></div>
           <div class="linea"><label for="fin-c">Categoría</label><select id="fin-c"></select></div>
           <div class="linea"><label for="fin-m">Medio de pago</label><select id="fin-m"></select></div>
-          <div class="linea fin-check" hidden><label><input type="checkbox" id="fin-neg" checked> Es del negocio</label></div>
+          <div class="linea"><label for="fin-de">De</label><select id="fin-de"><option value="n">Mi negocio</option><option value="p">Personal</option></select></div>
+          <div class="linea fin-venta" id="fin-venta-p" hidden><label for="fin-p">Producto vendido</label><input id="fin-p" maxlength="80" placeholder="Ej.: Osito de apego"></div>
+          <div class="linea fin-venta" id="fin-venta-cl" hidden><label for="fin-cl">Cliente</label><input id="fin-cl" maxlength="60" placeholder="Opcional"></div>
+          <div class="linea fin-venta" id="fin-venta-cm" hidden><label for="fin-cm">Costo de los materiales ($)</label><input id="fin-cm" inputmode="numeric" placeholder="Opcional: así sabes cuánto te quedó"></div>
           <div class="linea"><label for="fin-d">Descripción</label><input id="fin-d" maxlength="80"></div>
           <div class="linea"><label for="fin-v">Valor ($)</label><input id="fin-v" inputmode="numeric" placeholder="0"></div>
-          <div class="linea fin-form-btn"><button type="button" class="enlace-copia" id="fin-cancelar" hidden>Cancelar</button><button type="submit" class="boton-secundario" id="fin-guardar">Guardar movimiento</button></div>
+          <div class="linea fin-form-btn"><button type="button" class="enlace-copia" id="fin-cancelar" hidden>Cancelar</button><button type="submit" class="boton-secundario" id="fin-guardar">Guardar</button></div>
         </form>
         <div class="fin-filtros no-imprimir">
-          <input type="search" id="fin-buscar" placeholder="Buscar en los ingresos y gastos…" aria-label="Buscar en los ingresos y gastos del negocio">
+          <input type="search" id="fin-buscar" placeholder="Buscar en las ventas y gastos…" aria-label="Buscar en las ventas y gastos del negocio">
           <select id="fin-fil-per" aria-label="Periodo"><option value="mes">Este mes</option><option value="anio">Todo el año</option><option value="todo">Todo</option></select>
-          <select id="fin-fil-tipo" aria-label="Tipo"><option value="">Todos los tipos</option><option value="i">Ingresos</option><option value="g">Gastos</option><option value="a">Ahorro / inversión</option></select>
+          <select id="fin-fil-tipo" aria-label="Tipo"><option value="">Todo</option><option value="i">Ventas e ingresos</option><option value="g">Gastos</option><option value="a">Ahorro / inversión</option></select>
           <select id="fin-fil-cat" aria-label="Categoría"></select>
           <select id="fin-fil-med" aria-label="Medio de pago"></select>
-          <select id="fin-fil-neg" aria-label="Personal o negocio" hidden><option value="">Todo</option></select>
+          <select id="fin-fil-neg" aria-label="Mi negocio o personal"><option value="n">Mi negocio</option><option value="p">Personal</option><option value="">Los dos</option></select>
           <button type="button" class="boton-secundario boton-chico" id="fin-exportar">⬇ Excel (CSV)</button>
         </div>
-        <div class="tabla-scroll"><table class="tabla-agenda fin-tabla" id="fin-tabla"><thead><tr><th>Fecha</th><th>Categoría</th><th>Descripción</th><th>Medio</th><th class="der">Valor</th><th class="no-imprimir"></th></tr></thead><tbody></tbody></table></div>
-        <p class="fin-vacio" id="fin-vacio">No hay movimientos con estos filtros. ¡Anota el primero!</p>
+        <div class="tabla-scroll"><table class="tabla-agenda fin-tabla" id="fin-tabla"><thead><tr><th>Fecha</th><th>Categoría</th><th>Detalle</th><th>Medio</th><th class="der">Valor</th><th class="no-imprimir"></th></tr></thead><tbody></tbody></table></div>
+        <p class="fin-vacio" id="fin-vacio">No hay ventas ni gastos con estos filtros. ¡Anota el primero!</p>
         <div class="fin-totales" id="fin-totales"></div>
       </article>
       <article class="hoja-agenda" id="fin-presupuesto">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-05-ovillo-sentada.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Presupuesto y metas del negocio</h3><p>Cuánto quieres gastar en tu negocio por categoría y para qué está ahorrando tu negocio.</p></div>
+          <div><h3>Presupuesto y metas</h3><p id="fpm-sub">Cuánto quieres gastar en tu negocio por categoría y para qué está ahorrando tu negocio.</p></div>
         </header>
+        <div class="amb-sw no-imprimir" role="group" aria-label="De quién son"><button type="button" data-amb="n" aria-pressed="true">Mi negocio</button><button type="button" data-amb="p" aria-pressed="false">Personal</button></div>
           <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <h4 class="sub-hoja">Presupuesto mensual por categoría</h4>
         <div class="fin-pres" id="fin-pres"></div>
-        <h4 class="sub-hoja">Metas de ahorro del negocio</h4>
+        <h4 class="sub-hoja" id="fpm-h4a">Metas de ahorro del negocio</h4>
         <p class="fin-aho-mes" id="fin-aho-mes"></p>
         <form class="fin-form no-imprimir" id="fm-form" autocomplete="off">
           <div class="linea"><label>Mi meta<input id="fm-n" placeholder="Ej.: máquina de coser"></label><label>Meta $<input id="fm-meta" inputmode="numeric" placeholder="$ 0"></label></div>
@@ -1532,7 +1571,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="fin-msg" id="fm-msg" role="status"></p>
         </form>
         <div class="fin-metas" id="fin-metas"></div>
-        <h4 class="sub-hoja">Planes del negocio para el año</h4>
+        <h4 class="sub-hoja" id="fpm-h4b">Planes del negocio para el año</h4>
         <form class="fin-form no-imprimir" id="fp-form" autocomplete="off">
           <div class="linea"><label>Mi plan<input id="fp-n" placeholder="Ej.: viaje a la costa"></label><label>Mes<select id="fp-mes"></select></label><label>Costo $<input id="fp-c" inputmode="numeric" placeholder="$ 0"></label></div>
           <button type="button" class="fin-form-btn" id="fp-agregar">Agregar plan</button>
@@ -1545,12 +1584,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="hoja-agenda" id="fin-fijos">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-18-ovillo-abrazo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Gastos fijos y deudas del negocio</h3><p>Lo que tu negocio paga cada mes y lo que todavía debe. Los gastos fijos se anotan solos.</p></div>
+          <div><h3 id="ff-h3">Gastos fijos, tarjetas y deudas</h3><p id="ff-sub">Lo que tu negocio paga cada mes y lo que todavía debe. Los gastos fijos se anotan solos.</p></div>
         </header>
+        <div class="amb-sw no-imprimir" role="group" aria-label="De quién son"><button type="button" data-amb="n" aria-pressed="true">Mi negocio</button><button type="button" data-amb="p" aria-pressed="false">Personal</button></div>
         <div class="ff-resumen" id="ff-resumen"></div>
-        <h4 class="sub-hoja">Pagos del negocio que se repiten cada mes</h4>
+        <h4 class="sub-hoja" id="ff-h4a">Pagos del negocio que se repiten cada mes</h4>
         <form class="fin-form no-imprimir" id="ff-form" autocomplete="off">
-          <div class="linea"><label for="ff-n">¿Qué paga tu negocio?</label><input id="ff-n" maxlength="60" placeholder="Arriendo del local, internet, programas…"></div>
+          <div class="linea"><label for="ff-n" id="ff-l-n">¿Qué paga tu negocio?</label><input id="ff-n" maxlength="60" placeholder="Arriendo del local, internet, programas…"></div>
           <div class="linea"><label for="ff-v">Valor ($)</label><input id="ff-v" inputmode="numeric" placeholder="0"></div>
           <div class="linea"><label for="ff-dia">Día del mes</label><input id="ff-dia" type="number" min="1" max="31" placeholder="1 a 31"></div>
           <div class="linea"><label for="ff-tipo">Tipo</label><select id="ff-tipo"><option value="g">Gasto fijo</option><option value="s">Suscripción</option><option value="a">Ahorro mensual</option></select></div>
@@ -1560,9 +1600,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </form>
         <small class="ff-msg no-imprimir" id="ff-msg" role="status"></small>
         <ul class="ff-lista" id="ff-lista"></ul>
-        <h4 class="sub-hoja">Deudas y créditos del negocio</h4>
+        <h4 class="sub-hoja" id="ff-h4b">Deudas y créditos del negocio</h4>
         <form class="fin-form no-imprimir" id="fd-form" autocomplete="off">
-          <div class="linea"><label for="fd-n">¿Qué debe tu negocio?</label><input id="fd-n" maxlength="60" placeholder="Préstamo, proveedor, equipo…"></div>
+          <div class="linea"><label for="fd-n" id="fd-l-n">¿Qué debe tu negocio?</label><input id="fd-n" maxlength="60" placeholder="Préstamo, proveedor, equipo…"></div>
           <div class="linea"><label for="fd-cuota">Valor de la cuota ($)</label><input id="fd-cuota" inputmode="numeric" placeholder="0"></div>
           <div class="linea"><label for="fd-cuotas">Cuotas en total</label><input id="fd-cuotas" type="number" min="1" max="360" placeholder="12"></div>
           <div class="linea"><label for="fd-pagadas">Cuotas ya pagadas</label><input id="fd-pagadas" type="number" min="0" max="360" placeholder="0"></div>
@@ -1571,13 +1611,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </form>
         <small class="ff-msg no-imprimir" id="fd-msg" role="status"></small>
         <div class="ff-deudas" id="fd-lista"></div>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> un pago fijo se anota solo en <em>Ingresos y gastos del negocio</em> cada mes, desde el día que elijas. Si borras uno de esos movimientos, ese mes no se vuelve a anotar. Las cuotas de una deuda las anotas tú con el botón «Pagué la cuota», así no se anota algo que no pagaste.</p>
-      </article>
-      <article class="hoja-agenda" id="fin-tcredito">
-        <header>
-          <img class="avatar-sticker" src="/img/stickers/rosina-12-pulgar-arriba.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Tarjetas del negocio</h3><p>El cupo, el corte y el pago de las tarjetas de crédito que usas para tu negocio, y cuánto debes en cada una.</p></div>
-        </header>
+        <h4 class="sub-hoja" id="ff-h4c">Tarjetas del negocio</h4>
         <div class="ff-resumen" id="ft-resumen"></div>
         <form class="fin-form no-imprimir" id="ft-form" autocomplete="off">
           <div class="linea"><label for="ft-n">Nombre de la tarjeta</label><input id="ft-n" maxlength="40" placeholder="Visa del banco, Éxito…"></div>
@@ -1589,34 +1623,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </form>
         <small class="ff-msg no-imprimir" id="ft-msg" role="status"></small>
         <div class="ff-deudas" id="ft-lista"></div>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> para que la tarjeta cuente tus compras, elige «Tarjeta: …» como medio de pago cuando anotes un gasto. Lo que pagas a la tarjeta se registra aquí y no se cuenta como otro gasto, porque la compra ya se contó cuando la hiciste. Nunca escribas el número de tu tarjeta.</p>
+        <p class="tip-agenda" id="ft-tip">💡 <strong>Rosina dice:</strong> para que la tarjeta cuente tus compras, elige «Tarjeta: …» como medio de pago cuando anotes un gasto. Lo que pagas a la tarjeta se registra aquí y no se cuenta como otro gasto, porque la compra ya se contó cuando la hiciste. Nunca escribas el número de tu tarjeta.</p>
+        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> un pago fijo se anota solo en <em>Ventas y gastos</em> cada mes, desde el día que elijas. Si borras uno de esos movimientos, ese mes no se vuelve a anotar. Las cuotas de una deuda las anotas tú con el botón «Pagué la cuota», así no se anota algo que no pagaste.</p>
       </article>
-      <article class="hoja-agenda" id="fin-analisis">
-        <header>
-          <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Análisis del negocio</h3><p>Compara los meses de tu negocio, mira cuánto ahorra y cómo va tu año.</p></div>
-        </header>
-        <div class="fin-mes no-imprimir">
-          <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
-          <strong class="fin-mes-txt" aria-live="polite"></strong>
-          <button type="button" class="boton-secundario boton-chico" data-fin-mes="1" aria-label="Mes siguiente">›</button>
-        </div>
-        <div class="fin-caja"><h4 class="sub-hoja">Este mes contra el anterior</h4><div class="tabla-scroll"><table class="fa-tabla" id="fa-comparar"></table></div></div>
-        <div class="fin-caja">
-          <h4 class="sub-hoja">Cuánto ahorra tu negocio mes a mes</h4>
-          <div class="fin-grafica" id="fa-ahorro"></div>
-          <div class="fin-leg"><span><i style="background:#6E9470"></i>Te quedó dinero</span><span><i style="background:#C81B6D"></i>Gastaste más de lo que entró</span><span class="fin-leg-nota no-imprimir">% de tus ingresos de cada mes</span></div>
-        </div>
-        <div class="fin-caja">
-          <div class="fin-caja-cab"><h4 class="sub-hoja">Resumen del año</h4>
-            <div class="fin-caja-acc no-imprimir"><div class="fin-seg" role="group" aria-label="Año"><button type="button" id="fa-anio-ant" aria-label="Año anterior">‹</button><button type="button" id="fa-anio-txt" aria-live="polite" disabled></button><button type="button" id="fa-anio-sig" aria-label="Año siguiente">›</button></div><button type="button" class="boton-secundario boton-chico" id="fa-exportar">⬇ Excel (CSV)</button></div></div>
-          <div class="fin-tarjetas" id="fa-anio-cards"></div>
-          <div id="fa-anio-cats"></div>
-          <ul class="fin-insights" id="fa-anio-ins"></ul>
-        </div>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> mira primero qué categoría subió más: casi siempre ahí está el ahorro más fácil. Si un mes sale en naranja, no pasa nada: ¡lo importante es la tendencia!</p>
-      </article>
-      <article class="hoja-agenda" id="gastos-negocio">
+      <article class="hoja-retirada" id="fin-tcredito" hidden aria-hidden="true"></article>
+      <article class="hoja-retirada" id="fin-analisis" hidden aria-hidden="true"></article>
+      <article class="hoja-retirada" id="gastos-negocio" hidden aria-hidden="true">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Gastos del negocio</h3><p>Materiales, transporte, ferias y todo lo que gastas en tu emprendimiento, mes a mes.</p></div>
@@ -1649,32 +1661,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> guarda aquí a quien te vende lana, te enseña o te ayuda con las ferias; cuando lo necesites, un toque y le escribes por WhatsApp.</p>
       </article>
-      <article class="hoja-agenda" id="fin-negocio">
-        <header>
-          <img class="avatar-sticker" src="/img/stickers/rosina-08-feliz.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
-          <div><h3>Resultados del negocio</h3><p>Cuánto vendiste, cuánto te costó y cuánto te quedó. Aparte de tus gastos personales.</p></div>
-        </header>
-          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
-        <div class="fin-mes no-imprimir">
-          <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
-          <strong class="fin-mes-txt" aria-live="polite"></strong>
-          <button type="button" class="boton-secundario boton-chico" data-fin-mes="1" aria-label="Mes siguiente">›</button>
-        </div>
-        <div class="fin-tarjetas" id="fn-tarjetas"></div>
-        <div class="fin-caja"><h4 class="sub-hoja">Resultados del mes</h4><div class="tabla-scroll"><table class="fa-tabla" id="fn-resultados"></table></div></div>
-        <div class="fin-caja">
-          <div class="fin-caja-cab"><h4 class="sub-hoja">Flujo de caja del negocio</h4>
-            <div class="fin-seg no-imprimir" role="group" aria-label="Meses a mostrar"><button type="button" data-fin-rango="6" aria-pressed="true">6 meses</button><button type="button" data-fin-rango="12" aria-pressed="false">12 meses</button></div></div>
-          <div class="fin-grafica" id="fn-flujo"></div>
-          <div class="fin-leg"><span><i style="background:#6E9470"></i>Entradas</span><span><i style="background:#C81B6D"></i>Salidas</span></div>
-        </div>
-        <div class="fin-dos">
-          <div class="fin-caja"><h4 class="sub-hoja">Por cobrar (tus pedidos)</h4><div id="fn-cobrar"></div></div>
-          <div class="fin-caja"><h4 class="sub-hoja">Por pagar este mes</h4><div id="fn-pagar"></div></div>
-        </div>
-        <p class="fin-aho-mes" id="fn-nota"></p>
-        <p class="tip-agenda">💡 <strong>Rosina dice:</strong> todo lo que anotas en <em>Ingresos y gastos del negocio</em> cuenta aquí. Anota solo lo del negocio (ventas, materiales, ferias, envíos…) y verás tu utilidad real; tus gastos personales llévalos aparte.</p>
-      </article>
+      <article class="hoja-retirada" id="fin-negocio" hidden aria-hidden="true"></article>
       <article class="hoja-agenda" id="tablero-agenda">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-06-idea.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
@@ -1934,7 +1921,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="tip-agenda">💡 <strong>Rosina dice:</strong> escríbeles en su cumpleaños; un mensaje cariñoso hace que vuelvan a comprarte.</p>
       </article>
 
-      <article class="hoja-agenda" id="ventas-mes">
+      <article class="hoja-retirada" id="ventas-mes" hidden aria-hidden="true">
         <header>
           <img class="avatar-sticker" src="/img/stickers/rosina-12-pulgar-arriba.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Mis ventas del mes</h3><p>Lo que vendiste, lo que te costó y lo que ganaste.</p></div>
@@ -3018,8 +3005,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var menuHojas = document.getElementById('menu-hojas'), toggleMenu = document.getElementById('menu-hojas-toggle');
   var CLAVE_HOJA = 'rosinaAgendaHoja';
   var historiaLista = false, enPop = false;   // cada hoja que abres queda en el historial: «atrás» vuelve a la hoja anterior
+  var HOJAS_ANTIGUAS = { 'ventas-mes': 'fin-movimientos', 'gastos-negocio': 'fin-movimientos', 'fin-negocio': 'fin-resumen', 'fin-analisis': 'fin-resumen', 'fin-tcredito': 'fin-fijos' };   // 4-nov-2026: pasaron a «Ventas y gastos»; los enlaces, favoritos y la última hoja abierta siguen funcionando
   function mostrarHoja(id, desplazar) {
-    var h = document.getElementById(id); if (!h || !h.classList.contains('hoja-agenda')) return;
+    id = HOJAS_ANTIGUAS[id] || id; var h = document.getElementById(id); if (!h || !h.classList.contains('hoja-agenda')) return;
     hojas.forEach(function(x) { x.classList.toggle('abierta', x === h); });
     enlacesMenu.forEach(function(a) { var activo = a.dataset.hoja === id; a.classList.toggle('activa', activo); if (activo) { a.setAttribute('aria-current', 'page'); document.getElementById('menu-hojas-actual').textContent = a.textContent; } else a.removeAttribute('aria-current'); });
     escribir(CLAVE_HOJA, id);
@@ -3159,28 +3147,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var CAT_G = ['Materiales (lanas)', 'Empaques', 'Transporte y envíos', 'Ferias y mercados', 'Publicidad', 'Servicios', 'Herramientas y equipos', 'Arriendo', 'Impuestos', 'Deudas', 'Otros'];   // del negocio (desde el 29-oct-2026); las categorías de antes siguen existiendo en lo ya anotado
     var CAT_I = ['Ventas', 'Talleres', 'Otros ingresos'];
     var CAT_A = ['Ahorro', 'Inversión', 'Fondo de emergencia'];
+    var CAT_PG = ['Vivienda', 'Mercado', 'Servicios del hogar', 'Transporte', 'Salud', 'Educación', 'Ropa y cuidado personal', 'Recreación', 'Deudas', 'Otros'];   // gastos personales
+    var CAT_PI = ['Sueldo', 'Otros ingresos'];   // ingresos personales
     var CATS = { g: CAT_G, i: CAT_I, a: CAT_A };
     var MEDIOS = ['Efectivo', 'Tarjeta', 'Transferencia', 'Nequi / Daviplata', 'Otro'];
-    var NOMBRE_T = { g: 'Gasto', i: 'Ingreso', a: 'Ahorro / inversión' };
+    var NOMBRE_T = { g: 'Gasto', i: 'Venta o ingreso', a: 'Ahorro / inversión' };
     /* Colores validados (daltonismo, contraste); cada categoría conserva siempre el suyo */
     var C_ING = '#6E9470', C_GAS = '#C81B6D', C_AHO = '#6F73D9';   /* paleta Lana Rosa: verde (ingresos), rosa (gastos) y lila (ahorro) */
     var CATCOL = { 'Empaques': '#B0356F', 'Transporte y envíos': '#6E9470', 'Ferias y mercados': '#6F73D9', 'Publicidad': '#2F7DE1', 'Herramientas y equipos': '#93C7F9', 'Arriendo': '#C81B6D', 'Impuestos': '#8A7F80', 'Vivienda': '#C81B6D', 'Mercado': '#B8975A', 'Transporte': '#6E9470', 'Salud': '#C98C7B', 'Materiales (lanas)': '#F28FC0', 'Materiales': '#F28FC0', 'Servicios': '#4F7F5A', 'Educación': '#9C6F86', 'Ocio': '#C98C7B', 'Ropa': '#8A7F80', 'Deudas': '#45454A', 'Otros': '#CDBFB9' };
     var colorCat = function(c) { return CATCOL[c] || '#b9b8b3'; };
     /* Lo del negocio: las ventas, los talleres y los materiales cuentan solos; cualquier movimiento se puede marcar o desmarcar */
     var NEG_CATS = ['Ventas', 'Talleres', 'Materiales (lanas)'];
-    function esNeg(x) { return true; }   // desde el 29-oct-2026 las finanzas de la agenda son solo las del negocio (pedido de Sara)
+    function esNeg(x) { return x.neg !== false; }   // 4-nov-2026 (Jennifer): vuelve lo personal; `neg: false` = personal. Lo anotado antes y todo lo que no diga nada es del negocio
     var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     var hoy = new Date(), mesSel = { y: hoy.getFullYear(), m: hoy.getMonth() + 1 }, rango = 6, editId = null;
-    function fin() { datos._fin = datos._fin || {}; var f = datos._fin; f.movs = f.movs || []; f.pres = f.pres || {}; f.metas = (f.metas || []).filter(function(x) { return x && (x.n || num(x.meta) || num(x.ahorrado)); }); f.fijos = f.fijos || []; f.deudas = f.deudas || []; f.tarjetas = f.tarjetas || []; f.pagosT = f.pagosT || []; f.planes = (f.planes || []).filter(function(x) { return x && (x.n || num(x.costo)); }); return f; }
+    /* 4-nov-2026 («Mi plata»): cada hoja de presupuesto, metas, planes, pagos fijos, deudas y tarjetas tiene dos juegos de datos: `datos._fin` (el negocio, como siempre) y `datos._finP` (lo personal).
+       `ambito` ('n' o 'p', el interruptor «Mi negocio / Personal») dice cuál ve fin(); los movimientos (`movs`) son siempre los mismos y cada uno dice si es personal (`neg: false`).
+       Los resúmenes del negocio se pintan siempre con ambito 'n' (ver pintar()). */
+    var ambito = 'n'; try { if (localStorage.getItem('lrFinAmbito') === 'p') ambito = 'p'; } catch (e) { /* sin almacenamiento */ }
+    var CAMPOS_A = ['pres', 'metas', 'fijos', 'deudas', 'tarjetas', 'pagosT', 'planes'];
+    function normFin(f) { f.pres = f.pres || {}; f.metas = (f.metas || []).filter(function(x) { return x && (x.n || num(x.meta) || num(x.ahorrado)); }); f.fijos = f.fijos || []; f.deudas = f.deudas || []; f.tarjetas = f.tarjetas || []; f.pagosT = f.pagosT || []; f.planes = (f.planes || []).filter(function(x) { return x && (x.n || num(x.costo)); }); return f; }
+    function fin() {
+      var b = normFin(datos._fin = datos._fin || {}); b.movs = b.movs || [];
+      if (ambito !== 'p') return b;
+      var pf = normFin(datos._finP = datos._finP || {}), v = {};
+      Object.defineProperty(v, 'movs', { get: function() { return b.movs; }, set: function(x) { b.movs = x; }, enumerable: true });
+      CAMPOS_A.forEach(function(k) { Object.defineProperty(v, k, { get: function() { return pf[k]; }, set: function(x) { pf[k] = x; }, enumerable: true }); });
+      return v;
+    }
+    function enNegocio(fn) { var a = ambito; ambito = 'n'; try { return fn(); } finally { ambito = a; } }
     function guardarFin() { guardarDatos(); }
     function plata(n) { n = Math.round(n); return (n < 0 ? '−$ ' : '$ ') + Math.abs(n).toLocaleString('es-CO'); }
     function corto(n) { n = Math.round(n); if (n >= 1e6) return '$' + (n / 1e6).toLocaleString('es-CO', { maximumFractionDigits: 1 }) + ' M'; if (n >= 1e3) return '$' + Math.round(n / 1e3) + ' mil'; return '$' + n; }
     function num(s) { var x = parseFloat(String(s == null ? '' : s).replace(/[^\d]/g, '')); return isNaN(x) ? 0 : x; }
     function dosd(n) { return ('0' + n).slice(-2); }
     function clave(y, m) { return y + '-' + dosd(m); }
-    function movsDe(y, m) { var k = clave(y, m); return fin().movs.filter(function(x) { return x.f.slice(0, 7) === k; }); }
+    function movsMes(y, m) { var k = clave(y, m); return fin().movs.filter(function(x) { return x.f.slice(0, 7) === k; }); }   // todo lo anotado ese mes (negocio y personal)
+    function movsAmb(y, m) { return movsMes(y, m).filter(function(x) { return ambito === 'p' ? !esNeg(x) : esNeg(x); }); }   // lo del ámbito que se está viendo en «Mi plata»
+    function movsDe(y, m) { return movsMes(y, m).filter(esNeg); }   // solo lo del negocio: todos los resúmenes, gráficas y el punto de equilibrio leen esto; lo personal nunca se mezcla
     function sumar(l, t) { return l.filter(function(x) { return x.t === t; }).reduce(function(a, x) { return a + x.v; }, 0); }
-    function medios() { return MEDIOS.concat(fin().tarjetas.map(function(t) { return 'Tarjeta: ' + t.n; })); }
+    function medios() { var t1 = ((datos._fin || {}).tarjetas || []), t2 = ((datos._finP || {}).tarjetas || []); return MEDIOS.concat(t1.concat(t2).map(function(t) { return 'Tarjeta: ' + t.n; }).filter(function(n, k, a) { return a.indexOf(n) === k; })); }
     function el(id) { return document.getElementById(id); }
     function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
     function mesAnt(o) { return o.m === 1 ? { y: o.y - 1, m: 12 } : { y: o.y, m: o.m - 1 }; }
@@ -3210,10 +3216,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (!cat && tipo === 'i' && /vendi|venta/.test(t)) cat = 'Ventas';
       if (!cat && tipo === 'a') cat = /inver/.test(t) ? 'Inversión' : (/emergencia/.test(t) ? 'Fondo de emergencia' : 'Ahorro');
       if (!cat) cat = tipo === 'g' ? 'Otros' : 'Otros ingresos';
+      var pers = /\bpersonal(es)?\b/.test(t);   // «gasté 120 mil en mercado personal» → gasto personal, sin mezclarse con el negocio
+      if (pers) {
+        cat = null; var PP = [['Vivienda', /arriendo|alquiler|casa|vivienda|administracion/], ['Mercado', /mercado|comida|super|almuerzo|restaurante|domicilio de comida/], ['Servicios del hogar', /luz|agua|internet|gas|celular|plan|servicio/], ['Transporte', /bus|gasolina|taxi|uber|pasaje|moto|transporte/], ['Salud', /salud|medic|drogueria|dentista|eps|examen/], ['Educación', /colegio|universidad|curso|matricula|pension|educacion/], ['Ropa y cuidado personal', /ropa|zapato|peluquer|cuidado|maquillaje/], ['Recreación', /cine|paseo|salida|viaje|regalo|fiesta|recreacion/], ['Deudas', /deuda|cuota|credito|prestamo/]];
+        if (tipo === 'g') PP.forEach(function(p) { if (!cat && p[1].test(limpio)) cat = p[0]; });
+        if (!cat) cat = tipo === 'g' ? 'Otros' : (tipo === 'i' ? (/sueldo|salario|nomina|quincena/.test(t) ? 'Sueldo' : 'Otros ingresos') : (/inver/.test(t) ? 'Inversión' : (/emergencia/.test(t) ? 'Fondo de emergencia' : 'Ahorro')));
+      }
       var f = new Date(); if (/\bayer\b/.test(t)) f.setDate(f.getDate() - 1); if (/\banteayer\b/.test(t)) f.setDate(f.getDate() - 1);
       var QUITAR = /(^|\s)(gast[eé]|gasto|pagu[eé]|pago|compr[eé]|compra|vend[ií]|venta|ingreso|ingres[eé]|cobr[eé]|recib[ií]|gan[eé]|ahorr[eé]|invert[ií]|apart[eé]|guard[eé]|consign[eé]|hoy|ayer|anteayer)(?=\s|$)/gi;
       var desc = texto.replace(/\$?\s*\d[\d.,]*\s*(millones|millón|millon|mil|k)?(?![a-zA-Z])/i, ' ').replace(QUITAR, ' ').replace(/\s+/g, ' ').trim().replace(/^(en|de|por|un|una|el|la)\s+/i, '');
-      return { f: f.getFullYear() + '-' + dosd(f.getMonth() + 1) + '-' + dosd(f.getDate()), t: tipo, c: cat, d: desc.slice(0, 80), v: Math.round(v) };
+      desc = desc.replace(/\bpersonal(es)?\b/gi, ' ').replace(/\s+/g, ' ').trim().replace(/\s+(por|en|de|a|para)$/i, '');
+      var r = { f: f.getFullYear() + '-' + dosd(f.getMonth() + 1) + '-' + dosd(f.getDate()), t: tipo, c: cat, d: desc.slice(0, 80), v: Math.round(v) };
+      if (pers) r.neg = false; else if (tipo === 'i' && cat === 'Ventas') { r.p = r.d; r.cl = ''; r.cm = ''; }   // una venta lleva producto, cliente y costo (4-nov-2026: «Ventas y gastos»)
+      return r;
     }
     function agregar(m) { var f = fin(); m.id = Date.now() + '' + Math.floor(Math.random() * 1000); f.movs.push(m); guardarFin(); var p = m.f.split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); }
 
@@ -3274,7 +3289,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var ms = serie(rango);
       dibujarBarras(el('fin-barras'), ms, 'Ingresos y gastos de los últimos ' + rango + ' meses', ['Ingresos', 'Gastos']);
       el('fin-evol-tabla').querySelector('tbody').innerHTML = ms.slice().reverse().map(function(d) { return '<tr><td>' + cap(MESES[d.m - 1]) + ' ' + d.y + '</td><td class="der ing">' + plata(d.i) + '</td><td class="der gas">' + plata(d.g) + '</td><td class="der">' + plata(d.i - d.g) + '</td></tr>'; }).join('');
-      dibujarBarras(el('fn-flujo'), serie(rango, esNeg), 'Entradas y salidas del negocio de los últimos ' + rango + ' meses', ['Entradas', 'Salidas']);
     }
     function pintarDona(por, gas) {
       var cats = Object.keys(por).sort(function(a, b) { return por[b] - por[a]; }), cont = el('fin-dona'), ley = el('fin-leyenda'); ley.innerHTML = '';
@@ -3313,7 +3327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el('fin-pres-resumen').innerHTML = h || '<p class="fin-vacio">Define tu presupuesto en la hoja «Presupuesto y metas» para ver aquí cómo vas.</p>';
       /* Rosina lee tus números */
       var ins = [];
-      if (!l.length) ins.push(['📝', 'Aún no hay movimientos en ' + MESES[mesSel.m - 1] + '. Anota el primero en «Ingresos y gastos del negocio» y aquí aparecerá tu panel.']);
+      if (!l.length) ins.push(['📝', 'Aún no hay movimientos en ' + MESES[mesSel.m - 1] + '. Anota el primero en «Ventas y gastos» y aquí aparecerá tu resumen.']);
       else {
         if (gas > ing && ing > 0) ins.push(['⚠️', 'Este mes los gastos (<b>' + plata(gas) + '</b>) superan a los ingresos (<b>' + plata(ing) + '</b>).']);
         else if (ing > 0 && sal > 0) ins.push(['✨', 'Te quedó <b>' + plata(sal) + '</b>, el ' + Math.round(sal / ing * 100) + ' % de lo que entró.']);
@@ -3343,13 +3357,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     function lista() {
       var per = el('fin-fil-per').value, l = fin().movs.slice();
-      if (per === 'mes') l = movsDe(mesSel.y, mesSel.m); else if (per === 'anio') l = l.filter(function(x) { return x.f.slice(0, 4) === String(mesSel.y); });
+      if (per === 'mes') l = movsMes(mesSel.y, mesSel.m); else if (per === 'anio') l = l.filter(function(x) { return x.f.slice(0, 4) === String(mesSel.y); });
       var tp = el('fin-fil-tipo').value, ct = el('fin-fil-cat').value, md = el('fin-fil-med').value, q = sinTildes(el('fin-buscar').value.trim());
       if (tp) l = l.filter(function(x) { return x.t === tp; });
       if (ct) l = l.filter(function(x) { return x.c === ct; });
       if (md) l = l.filter(function(x) { return x.m === md; });
       var ng = el('fin-fil-neg').value; if (ng === 'n') l = l.filter(esNeg); else if (ng === 'p') l = l.filter(function(x) { return !esNeg(x); });
-      if (q) l = l.filter(function(x) { return sinTildes((x.d || '') + ' ' + x.c + ' ' + (x.m || '')).indexOf(q) >= 0; });
+      if (q) l = l.filter(function(x) { return sinTildes((x.d || '') + ' ' + (x.p || '') + ' ' + (x.cl || '') + ' ' + x.c + ' ' + (x.m || '')).indexOf(q) >= 0; });
       return l.sort(function(a, b) { return a.f === b.f ? (a.id < b.id ? 1 : -1) : (a.f < b.f ? 1 : -1); });
     }
     function pintarMovs() {
@@ -3357,7 +3371,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var larga = el('fin-fil-per').value !== 'mes';
       l.forEach(function(x) {
         var tr = document.createElement('tr'), p = x.f.split('-');
-        [[larga ? p[2] + '/' + p[1] + '/' + p[0].slice(2) : p[2] + '/' + p[1], 'Fecha'], [x.c, 'Categoría'], [x.d || '', 'Descripción'], [x.m || '', 'Medio']].forEach(function(t) { var td = document.createElement('td'); td.setAttribute('data-label', t[1]); td.textContent = t[0]; tr.appendChild(td); });
+        [[larga ? p[2] + '/' + p[1] + '/' + p[0].slice(2) : p[2] + '/' + p[1], 'Fecha'], [x.c, 'Categoría'], [x.p != null ? [x.p, x.cl].filter(Boolean).join(' · ') || x.d || '' : (x.d || ''), 'Detalle'], [x.m || '', 'Medio']].forEach(function(t) { var td = document.createElement('td'); td.setAttribute('data-label', t[1]); td.textContent = t[0]; if (t[1] === 'Detalle') td.setAttribute('data-no-traducir', ''); if (t[1] === 'Categoría' && !esNeg(x)) { var chip = document.createElement('span'); chip.className = 'fin-personal'; chip.textContent = 'Personal'; td.appendChild(chip); } tr.appendChild(td); });   /* el detalle lo escribe la persona: no se traduce */
         var tv = document.createElement('td'); tv.setAttribute('data-label', 'Valor'); tv.className = 'der ' + (x.t === 'i' ? 'ing' : x.t === 'a' ? 'aho' : 'gas'); tv.textContent = (x.t === 'i' ? '+ ' : x.t === 'a' ? '◆ ' : '− ') + plata(x.v); tr.appendChild(tv);
         var tq = document.createElement('td'); tq.className = 'no-imprimir fin-acc';
         var be = document.createElement('button'); be.type = 'button'; be.className = 'quitar'; be.setAttribute('aria-label', 'Editar movimiento'); be.textContent = '✏️'; be.addEventListener('click', function() { editar(x); });
@@ -3368,18 +3382,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           guardarFin(); if (editId === x.id) cancelarEdicion(); pintar(); });
         tq.appendChild(be); tq.appendChild(b); tr.appendChild(tq); tb.appendChild(tr);
       });
-      el('fin-vacio').hidden = !!l.length; el('fin-tabla').hidden = !l.length;
+      el('fin-vacio').hidden = !!l.length;   /* el aviso de arriba cuenta lo personal oculto */ el('fin-tabla').hidden = !l.length;
       var ing = sumar(l, 'i'), gas = sumar(l, 'g'), aho = sumar(l, 'a');
-      el('fin-totales').innerHTML = l.length ? '<span class="ing">Ingresos: ' + plata(ing) + '</span><span class="gas">Gastos: ' + plata(gas) + '</span><span class="aho">Ahorro/inversión: ' + plata(aho) + '</span><span>Saldo: ' + plata(ing - gas) + '</span>' : '';
+      el('fin-totales').innerHTML = l.length ? '<span class="ing">Ventas e ingresos: ' + plata(ing) + '</span><span class="gas">Gastos: ' + plata(gas) + '</span><span class="aho">Ahorro/inversión: ' + plata(aho) + '</span><span>Te quedó: ' + plata(ing - gas) + '</span>' : '';
     }
-    function defNeg() { el('fin-neg').checked = true; }
-    function opcionesCat(sel) { var t = el('fin-t').value, s = el('fin-c'); s.innerHTML = CATS[t].map(function(c) { return '<option>' + c + '</option>'; }).join(''); if (sel) s.value = sel; defNeg(); }
+    function defNeg() { /* el selector «De» ya no se reinicia solo al cambiar de categoría */ }
+    function camposVenta() { var on = el('fin-de').value === 'n' && el('fin-t').value === 'i' && el('fin-c').value === 'Ventas'; ['fin-venta-p', 'fin-venta-cl', 'fin-venta-cm'].forEach(function(id) { el(id).hidden = !on; }); }
+    function opcionesCat(sel) { var t = el('fin-t').value, s = el('fin-c'), pers = el('fin-de').value === 'p', lista_ = pers ? (t === 'g' ? CAT_PG : t === 'i' ? CAT_PI : CAT_A) : CATS[t]; s.innerHTML = lista_.map(function(c) { return '<option>' + c + '</option>'; }).join(''); if (sel) s.value = sel; defNeg(); camposVenta(); }
     function editar(x) {
-      editId = x.id; el('fin-f').value = x.f; el('fin-t').value = x.t; opcionesCat(x.c); el('fin-neg').checked = esNeg(x); el('fin-m').value = x.m || ''; el('fin-d').value = x.d || ''; el('fin-v').value = plata(x.v).replace('$ ', '');
+      editId = x.id; el('fin-f').value = x.f; el('fin-t').value = x.t; el('fin-de').value = esNeg(x) ? 'n' : 'p'; opcionesCat(x.c); el('fin-m').value = x.m || ''; el('fin-d').value = x.d || ''; el('fin-v').value = plata(x.v).replace('$ ', '');
+      el('fin-p').value = x.p || ''; el('fin-cl').value = x.cl || ''; el('fin-cm').value = x.cm ? plata(num(x.cm)).replace('$ ', '') : '';
       el('fin-guardar').textContent = 'Guardar cambios'; el('fin-cancelar').hidden = false; el('fin-rapido-msg').textContent = 'Editando un movimiento.';
       el('fin-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-    function cancelarEdicion() { editId = null; defNeg(); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-guardar').textContent = 'Guardar movimiento'; el('fin-cancelar').hidden = true; el('fin-rapido-msg').textContent = ''; }
+    function cancelarEdicion() { editId = null; defNeg(); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-p').value = ''; el('fin-cl').value = ''; el('fin-cm').value = ''; el('fin-guardar').textContent = 'Guardar'; el('fin-cancelar').hidden = true; el('fin-rapido-msg').textContent = ''; }
     function descargarCSV(nombre, filas) {
       var celda = function(v) { v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
       var csv = '﻿' + filas.map(function(f) { return f.map(celda).join(';'); }).join('\r\n');
@@ -3395,7 +3411,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     function exportar() {
       var celda = function(v) { v = String(v == null ? '' : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
-      var filas = [['Fecha', 'Tipo', 'Categoría', 'Descripción', 'Medio de pago', 'Del negocio', 'Valor']].concat(fin().movs.slice().sort(function(a, b) { return a.f < b.f ? -1 : 1; }).map(function(x) { return [x.f, NOMBRE_T[x.t] || x.t, x.c, x.d || '', x.m || '', esNeg(x) ? 'Sí' : 'No', x.v]; }));
+      var filas = [['Fecha', 'Tipo', 'Categoría', 'Detalle', 'Producto', 'Cliente', 'Costo de materiales', 'Medio de pago', 'Del negocio', 'Valor']].concat(fin().movs.slice().sort(function(a, b) { return a.f < b.f ? -1 : 1; }).map(function(x) { return [x.f, NOMBRE_T[x.t] || x.t, x.c, x.d || '', x.p || '', x.cl || '', x.cm || '', x.m || '', esNeg(x) ? 'Sí' : 'No', x.v]; }));
       var csv = '﻿' + filas.map(function(f) { return f.map(celda).join(';'); }).join('\r\n');
       var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
       a.download = 'movimientos-agenda-rosina-' + hoy.getFullYear() + '-' + dosd(hoy.getMonth() + 1) + '-' + dosd(hoy.getDate()) + '.csv'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 2000);
@@ -3418,7 +3434,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         while (y < cy || (y === cy && m <= cm)) {
           var dia = Math.min(num(x.dia) || 1, diasMes(y, m)), mes = clave(y, m);
           if (!(y === cy && m === cm && dia > ahora.getDate()) && (x.saltados || []).indexOf(mes) < 0 && !movDeFijo(x, y, m)) {
-            f.movs.push({ id: uid(), f: mes + '-' + dosd(dia), t: x.t, c: x.c, d: x.n + ' (pago fijo)', v: num(x.v), m: x.m || '', fijo: x.id }); creado = true;
+            f.movs.push({ id: uid(), f: mes + '-' + dosd(dia), t: x.t, c: x.c, d: x.n + ' (pago fijo)', v: num(x.v), m: x.m || '', fijo: x.id, neg: ambito !== 'p' }); creado = true;
           }
           m++; if (m > 12) { m = 1; y++; }
         }
@@ -3429,7 +3445,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function saldoDeuda(d) { return Math.max(0, (num(d.cuotas) - num(d.pagadas)) * num(d.cuota)); }
     function ingresoPromedio() {
       var y = hoy.getFullYear(), m = hoy.getMonth() + 1, tot = 0, n = 0;
-      for (var i = 0; i < 3; i++) { var v = sumar(movsDe(y, m), 'i'); if (v > 0) { tot += v; n++; } m--; if (m < 1) { m = 12; y--; } }
+      for (var i = 0; i < 3; i++) { var v = sumar(movsAmb(y, m), 'i'); if (v > 0) { tot += v; n++; } m--; if (m < 1) { m = 12; y--; } }
       return n ? tot / n : 0;
     }
     function fijosInsights(ing, ins) {
@@ -3446,7 +3462,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     function pintarFijosPanel() {
       var f = fin(), fx = f.fijos.filter(function(x) { return x.activo; }), cont = el('fin-fijos-panel'), ing = sumar(movsDe(mesSel.y, mesSel.m), 'i');
-      var vacio = function(txt) { return '<p class="fin-vacio">' + txt + '<br><button type="button" class="boton-secundario boton-chico" data-ir-hoja="fin-fijos">Ir a «Gastos fijos y deudas»</button></p>'; };
+      var vacio = function(txt) { return '<p class="fin-vacio">' + txt + '<br><button type="button" class="boton-secundario boton-chico" data-ir-hoja="fin-fijos">Ir a «Gastos fijos, tarjetas y deudas»</button></p>'; };
       if (!fx.length) cont.innerHTML = vacio('Todavía no tienes pagos fijos. Agrégalos y se anotan solos cada mes.');
       else {
         var h = '', tot = 0;
@@ -3500,7 +3516,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ac.appendChild(botonFF('✏️', 'editar', d.id, 'Editar')); ac.appendChild(botonFF('🗑️', 'borrar', d.id, 'Borrar')); card.appendChild(ac); dl.appendChild(card);
       });
     }
-    function opcionesFijo(sel) { var t = el('ff-tipo').value; el('ff-c').innerHTML = (t === 'a' ? CAT_A : CAT_G).map(function(c) { return '<option>' + c + '</option>'; }).join(''); if (sel) el('ff-c').value = sel; }
+    function opcionesFijo(sel) { var t = el('ff-tipo').value; el('ff-c').innerHTML = (t === 'a' ? CAT_A : (ambito === 'p' ? CAT_PG : CAT_G)).map(function(c) { return '<option>' + c + '</option>'; }).join(''); if (sel) el('ff-c').value = sel; }
     function cancelarFijo() { editFijo = null; el('ff-n').value = ''; el('ff-v').value = ''; el('ff-dia').value = ''; el('ff-tipo').value = 'g'; opcionesFijo(); el('ff-guardar').textContent = 'Agregar pago fijo'; el('ff-cancelar').hidden = true; }
     function cancelarDeuda() { editDeuda = null; ['fd-n', 'fd-cuota', 'fd-cuotas', 'fd-pagadas', 'fd-dia'].forEach(function(i) { el(i).value = ''; }); el('fd-guardar').textContent = 'Agregar deuda'; el('fd-cancelar').hidden = true; }
     el('ff-tipo').addEventListener('change', function() { opcionesFijo(); });
@@ -3512,14 +3528,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (editFijo) { x = f.fijos.filter(function(q) { return q.id === editFijo; })[0]; } else { x = { id: uid(), desde: clave(hoy.getFullYear(), hoy.getMonth() + 1), activo: true, saltados: [] }; f.fijos.push(x); }
       if (!x) return; x.n = n; x.v = v; x.dia = dia; x.t = t; x.s = tipo === 's'; x.c = el('ff-c').value; x.m = el('ff-m').value;
       var antes = f.movs.length; aplicarFijos(); guardarFin();
-      msg.textContent = editFijo ? '¡Cambios guardados! Valen desde el próximo mes.' : '¡Listo! Se anotará el día ' + dia + ' de cada mes' + (f.movs.length > antes ? ' (este mes ya quedó en Ingresos y gastos del negocio).' : '.');
+      msg.textContent = editFijo ? '¡Cambios guardados! Valen desde el próximo mes.' : '¡Listo! Se anotará el día ' + dia + ' de cada mes' + (f.movs.length > antes ? ' (este mes ya quedó en Ventas y gastos).' : '.');
       cancelarFijo(); pintar();
     });
     el('ff-cancelar').addEventListener('click', function() { cancelarFijo(); el('ff-msg').textContent = ''; });
     el('ff-lista').addEventListener('click', function(e) {
       var b = e.target.closest('[data-acc]'); if (!b) return; var f = fin(), x = f.fijos.filter(function(q) { return q.id === b.dataset.id; })[0]; if (!x) return;
       if (b.dataset.acc === 'pausar') { x.activo = !x.activo; if (x.activo) x.desde = clave(hoy.getFullYear(), hoy.getMonth() + 1); guardarFin(); pintar(); }
-      else if (b.dataset.acc === 'borrar') { if (!confirm('¿Borrar este pago fijo? Lo que ya se anotó en Ingresos y gastos del negocio se queda.')) return; f.fijos = f.fijos.filter(function(q) { return q !== x; }); guardarFin(); if (editFijo === x.id) cancelarFijo(); pintar(); }
+      else if (b.dataset.acc === 'borrar') { if (!confirm('¿Borrar este pago fijo? Lo que ya se anotó en Ventas y gastos se queda.')) return; f.fijos = f.fijos.filter(function(q) { return q !== x; }); guardarFin(); if (editFijo === x.id) cancelarFijo(); pintar(); }
       else if (b.dataset.acc === 'editar') { editFijo = x.id; el('ff-n').value = x.n; el('ff-v').value = plata(num(x.v)).replace('$ ', ''); el('ff-dia').value = x.dia; el('ff-tipo').value = x.t === 'a' ? 'a' : (x.s ? 's' : 'g'); opcionesFijo(x.c); el('ff-m').value = x.m || ''; el('ff-guardar').textContent = 'Guardar cambios'; el('ff-cancelar').hidden = false; el('ff-form').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
     });
     el('fd-form').addEventListener('submit', function(e) {
@@ -3536,8 +3552,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var b = e.target.closest('[data-acc]'); if (!b) return; var f = fin(), d = f.deudas.filter(function(q) { return q.id === b.dataset.id; })[0]; if (!d) return;
       if (b.dataset.acc === 'pagar') {
         var ahora = new Date(); if (movDeDeuda(d, ahora.getFullYear(), ahora.getMonth() + 1) && !confirm('Ya anotaste una cuota de «' + d.n + '» este mes. ¿Anotar otra?')) return;
-        d.pagadas = num(d.pagadas) + 1; f.movs.push({ id: uid(), f: ahora.getFullYear() + '-' + dosd(ahora.getMonth() + 1) + '-' + dosd(ahora.getDate()), t: 'g', c: 'Deudas', d: d.n + ' (cuota ' + d.pagadas + ' de ' + d.cuotas + ')', v: num(d.cuota), m: '', deuda: d.id });
-        guardarFin(); el('fd-msg').textContent = '¡Cuota anotada en Ingresos y gastos del negocio!'; pintar();
+        d.pagadas = num(d.pagadas) + 1; f.movs.push({ id: uid(), f: ahora.getFullYear() + '-' + dosd(ahora.getMonth() + 1) + '-' + dosd(ahora.getDate()), t: 'g', c: 'Deudas', d: d.n + ' (cuota ' + d.pagadas + ' de ' + d.cuotas + ')', v: num(d.cuota), m: '', deuda: d.id, neg: ambito !== 'p' });
+        guardarFin(); el('fd-msg').textContent = '¡Cuota anotada en Ventas y gastos!'; pintar();
       } else if (b.dataset.acc === 'borrar') { if (!confirm('¿Borrar esta deuda? Los pagos que ya anotaste se quedan.')) return; f.deudas = f.deudas.filter(function(q) { return q !== d; }); guardarFin(); if (editDeuda === d.id) cancelarDeuda(); pintar(); }
       else if (b.dataset.acc === 'editar') { editDeuda = d.id; el('fd-n').value = d.n; el('fd-cuota').value = plata(num(d.cuota)).replace('$ ', ''); el('fd-cuotas').value = d.cuotas; el('fd-pagadas').value = d.pagadas; el('fd-dia').value = d.dia || ''; el('fd-guardar').textContent = 'Guardar cambios'; el('fd-cancelar').hidden = false; el('fd-form').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
     });
@@ -3633,7 +3649,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       el('fa-comparar').innerHTML = h + '</tbody>';
       /* ahorro mes a mes (12 meses) */
       var ms = serie(12).map(function(d) { d.t = d.i > 0 ? Math.round((d.i - d.g) / d.i * 100) : null; return d; }), cont = el('fa-ahorro'), con = ms.filter(function(d) { return d.t !== null; });
-      if (!con.length) cont.innerHTML = '<p class="fin-vacio">Anota ingresos en «Ingresos y gastos del negocio» para ver cuánto ahorras mes a mes.</p>';
+      if (!con.length) cont.innerHTML = '<p class="fin-vacio">Anota ingresos en «Ventas y gastos» para ver cuánto ahorras mes a mes.</p>';
       else {
         var lo = Math.min(0, Math.floor(Math.min.apply(null, con.map(function(d) { return d.t; })) / 10) * 10), hi = Math.max(10, Math.ceil(Math.max.apply(null, con.map(function(d) { return d.t; })) / 10) * 10), rg = hi - lo;
         var W = Math.max(300, Math.round(cont.clientWidth || 640)), H = W < 480 ? 210 : 230, L = W < 480 ? 38 : 46, R = 6, T = 14, B = 28, ph = H - T - B, pw = W - L - R, gw = pw / ms.length, bw = Math.min(26, gw * 0.5), y0 = T + ph * hi / rg;
@@ -3687,9 +3703,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var l = movsDe(mesSel.y, mesSel.m).filter(esNeg), ing = sumar(l, 'i'), gas = sumar(l, 'g'), util = ing - gas, a = mesAnt(mesSel);
       var la = movsDe(a.y, a.m).filter(esNeg), utilA = sumar(la, 'i') - sumar(la, 'g'), cob = cobrarPedidos();
       var mat = l.filter(function(x) { return x.t === 'g' && x.c === 'Materiales (lanas)'; }).reduce(function(s2, x) { return s2 + x.v; }, 0);
-      el('fn-tarjetas').innerHTML = tarjetaFF('Ventas e ingresos', plata(ing), 'del negocio este mes', 'ing') + tarjetaFF('Costos y gastos', plata(gas), mat ? 'Materiales: ' + plata(mat) : 'del negocio este mes', 'gas') +
-        tarjetaFF('Utilidad del mes', plata(util), (ing ? 'Margen ' + Math.round(util / ing * 100) + ' %' : 'Anota ventas para verla') + (utilA ? ' · ' + (util >= utilA ? '▲' : '▼') + ' vs ' + MESES[a.m - 1] : ''), 'sal' + (util < 0 ? ' neg' : '')) +
-        tarjetaFF('Por cobrar', plata(cob.total), cob.lista.length + (cob.lista.length === 1 ? ' pedido con saldo' : ' pedidos con saldo'), 'aho');
+      /* las tarjetas de arriba (ingresos, gastos, saldo, ahorro) ya están en «Resumen del emprendimiento»: aquí solo la tabla de resultados, lo por cobrar y lo por pagar (4-nov-2026) */
       var pi = {}, pg = {}; l.forEach(function(x) { if (x.t === 'i') pi[x.c] = (pi[x.c] || 0) + x.v; else if (x.t === 'g') pg[x.c] = (pg[x.c] || 0) + x.v; });
       var fila = function(n, v, cls) { return '<tr class="' + (cls || '') + '"><td data-label="Concepto">' + n + '</td><td class="der" data-label="Valor">' + v + '</td></tr>'; };
       var h = '<tbody><tr class="fa-sec"><th colspan="2">Ingresos</th></tr>';
@@ -3706,14 +3720,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       f.deudas.forEach(function(d) { if (num(d.pagadas) < num(d.cuotas) && !movDeDeuda(d, cy, cm)) { hp += '<div class="ff-fila"><span>Cuota de ' + esc(d.n) + (d.dia ? ' <small class="ff-est">día ' + d.dia + '</small>' : '') + '</span><b>' + plata(num(d.cuota)) + '</b></div>'; totP += num(d.cuota); } });
       f.tarjetas.forEach(function(t) { var sd = saldoT(t); if (sd > 0) { var pr = num(t.pago) ? proxima(num(t.pago)) : null; hp += '<div class="ff-fila"><span>Tarjeta ' + esc(t.n) + (pr ? ' <small class="ff-est">pago ' + enDias(pr.dias) + '</small>' : '') + '</span><b>' + plata(sd) + '</b></div>'; totP += sd; } });
       el('fn-pagar').innerHTML = hp ? hp + '<div class="ff-total">Por pagar: <b>' + plata(totP) + '</b></div>' : '<p class="fin-vacio">No tienes pagos pendientes este mes. ¡Bien!</p>';
-      var vt = 0, tv = tablas['tabla-ventas']; for (var r = 1; r <= tv.n; r++) { var fe = leerFecha((document.getElementById('ag-vt' + r + '-fecha') || {}).value || ''), pr2 = document.getElementById('ag-vt' + r + '-precio'); if (fe && fe.a === mesSel.y && fe.m === mesSel.m && pr2) vt += num(pr2.value); }
-      el('fn-nota').textContent = vt ? 'En «Mis ventas del mes» anotaste ' + plata(vt) + ' este mes. Esa hoja es aparte: aquí solo cuentan los movimientos del negocio, para no contar dos veces.' : '';
     }
-    window.lrFinInfo = function(y, m) {
+    window.lrFinInfo = function(y, m) { return enNegocio(function() {
       var f = fin(), l = movsDe(y, m).filter(esNeg);
       return { tarjetas: f.tarjetas.length, saldoTarjetas: f.tarjetas.reduce(function(a, t) { return a + saldoT(t); }, 0), hayNeg: l.length > 0, ingNeg: sumar(l, 'i'), gasNeg: sumar(l, 'g') };
-    };
-    ['fn-flujo', 'fa-ahorro'].forEach(function(id) { el(id).addEventListener('click', function(e) { var t = e.target.closest('[data-mes]'); if (!t) return; var p = t.getAttribute('data-mes').split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); }); ponerTips(el(id)); });
+    }); };
+    ['fa-ahorro'].forEach(function(id) { el(id).addEventListener('click', function(e) { var t = e.target.closest('[data-mes]'); if (!t) return; var p = t.getAttribute('data-mes').split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); }); ponerTips(el(id)); });
 
     /* --- presupuesto y metas --- */
     function infoMeta(me, ah, fecha) {
@@ -3761,7 +3773,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function pintarPres() {
       var f = fin(), c = el('fin-pres'); if (!c.dataset.listo) {
         c.dataset.listo = '1';
-        CAT_G.forEach(function(cat) { var lab = document.createElement('label'); lab.innerHTML = '<i style="width:11px;height:11px;border-radius:50%;background:' + colorCat(cat) + ';flex:none"></i>'; var sp = document.createElement('span'); sp.textContent = cat; lab.appendChild(sp); var inp = document.createElement('input'); inp.inputMode = 'numeric'; inp.placeholder = '$ 0'; inp.setAttribute('aria-label', 'Presupuesto de ' + cat); inp.dataset.cat = cat;
+        CAT_G.map(function(c) { return ['n', c]; }).concat(CAT_PG.map(function(c) { return ['p', c]; })).forEach(function(par) { var cat = par[1], lab = document.createElement('label'); lab.dataset.amb = par[0]; lab.innerHTML = '<i style="width:11px;height:11px;border-radius:50%;background:' + colorCat(cat) + ';flex:none"></i>'; var sp = document.createElement('span'); sp.textContent = cat; lab.appendChild(sp); var inp = document.createElement('input'); inp.inputMode = 'numeric'; inp.placeholder = '$ 0'; inp.setAttribute('aria-label', 'Presupuesto de ' + cat); inp.dataset.cat = cat;
           inp.addEventListener('input', function() { fin().pres[cat] = num(inp.value) || ''; guardarFin(); }); inp.addEventListener('blur', function() { inp.value = num(inp.value) ? plata(num(inp.value)) : ''; }); lab.appendChild(inp); c.appendChild(lab); });
         el('fp-mes').innerHTML = '<option value="">Mes…</option>' + MESES.map(function(x, i) { return '<option value="' + (i + 1) + '">' + cap(x) + '</option>'; }).join('');
         ['fm-meta', 'fm-ah', 'fp-c'].forEach(function(id) { var i = el(id); i.addEventListener('blur', function() { i.value = num(i.value) ? plata(num(i.value)) : ''; }); });
@@ -3778,37 +3790,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           guardarFin(); ['fp-n', 'fp-mes', 'fp-c'].forEach(function(id) { el(id).value = ''; }); el('fp-msg').textContent = 'Plan agregado.'; pintarPlanes(); pintarPlanesInfo();
         });
       }
-      c.querySelectorAll('input').forEach(function(inp) { var v = num(f.pres[inp.dataset.cat]); inp.value = v ? plata(v) : ''; });
+      c.querySelectorAll('label').forEach(function(lb) { lb.hidden = lb.dataset.amb !== ambito; var inp = lb.querySelector('input'); var v = num(f.pres[inp.dataset.cat]); inp.value = v ? plata(v) : ''; });
       pintarMetas(); pintarPlanes();
-      var ah = sumar(movsDe(mesSel.y, mesSel.m), 'a');
-      el('fin-aho-mes').textContent = ah ? 'Este mes ya apartaste ' + plata(ah) + ' en ahorro e inversión (lo anotas en «Ingresos y gastos del negocio»).' : 'Cuando anotes un ahorro en «Ingresos y gastos del negocio», lo verás aquí.';
+      var ah = sumar(movsAmb(mesSel.y, mesSel.m), 'a');
+      el('fin-aho-mes').textContent = ah ? 'Este mes ya apartaste ' + plata(ah) + ' en ahorro e inversión (lo anotas en «Ventas y gastos»).' : 'Cuando anotes un ahorro en «Ventas y gastos», lo verás aquí.';
       pintarPlanesInfo();
     }
     function refrescarMedios() {
       ['fin-m', 'ff-m'].forEach(function(id) { var sl = el(id), v = sl.value; sl.innerHTML = '<option value="">—</option>' + medios().map(function(c) { return '<option>' + esc(c) + '</option>'; }).join(''); sl.value = v; });
     }
-    function pintar() { tip.hidden = true; aplicarFijos(); refrescarMedios(); pintarMes(); pintarResumen(); opcionesFiltros(); pintarMovs(); pintarFijos(); pintarTarjetas(); pintarAnalisis(); pintarNegocio(); }
+    function pintar() {
+      tip.hidden = true; var a = ambito;
+      ambito = 'n'; aplicarFijos(); if (datos._finP) { ambito = 'p'; aplicarFijos(); }   // los pagos fijos de los dos se anotan solos
+      ambito = 'n'; refrescarMedios(); pintarMes(); pintarResumen(); opcionesFiltros(); pintarMovs(); pintarAnalisis(); pintarNegocio();   // todo lo del negocio, siempre
+      ambito = a; rotular(); pintarFijos(); pintarTarjetas();   // lo de «Mi plata», según el interruptor
+    }
 
     /* --- eventos --- */
     el('fin-t').addEventListener('change', function() { opcionesCat(); });
-    el('fin-c').addEventListener('change', defNeg);
+    el('fin-de').addEventListener('change', function() { opcionesCat(); });
+    el('fin-c').addEventListener('change', function() { defNeg(); camposVenta(); });
     opcionesCat();
     var hf = new Date(); el('fin-f').value = hf.getFullYear() + '-' + dosd(hf.getMonth() + 1) + '-' + dosd(hf.getDate());
     el('fin-form').addEventListener('submit', function(e) {
       e.preventDefault(); var v = num(el('fin-v').value); if (!v || !el('fin-f').value) { el('fin-rapido-msg').textContent = 'Escribe la fecha y el valor.'; return; }
-      var m = { f: el('fin-f').value, t: el('fin-t').value, c: el('fin-c').value, d: el('fin-d').value.trim(), v: v, m: el('fin-m').value, neg: el('fin-neg').checked };
+      var m = { f: el('fin-f').value, t: el('fin-t').value, c: el('fin-c').value, d: el('fin-d').value.trim(), v: v, m: el('fin-m').value, neg: el('fin-de').value !== 'p' };
+      if (m.t === 'i' && m.c === 'Ventas') { m.p = el('fin-p').value.trim() || m.d; m.cl = el('fin-cl').value.trim(); m.cm = num(el('fin-cm').value) || ''; if (!m.d) m.d = m.p; }   // una venta lleva producto, cliente y costo de materiales
       if (editId) {
         var f = fin(), x = f.movs.filter(function(y) { return y.id === editId; })[0];
-        if (x) { x.f = m.f; x.t = m.t; x.c = m.c; x.d = m.d; x.v = m.v; x.m = m.m; x.neg = m.neg; guardarFin(); var p = m.f.split('-'); mesSel = { y: +p[0], m: +p[1] }; }
+        if (x) { x.f = m.f; x.t = m.t; x.c = m.c; x.d = m.d; x.v = m.v; x.m = m.m; x.neg = m.neg; if (m.p != null) { x.p = m.p; x.cl = m.cl; x.cm = m.cm; } else { delete x.p; delete x.cl; delete x.cm; } guardarFin(); var p = m.f.split('-'); mesSel = { y: +p[0], m: +p[1] }; }
         cancelarEdicion(); pintar(); el('fin-rapido-msg').textContent = '¡Cambios guardados!'; return;
       }
-      agregar(m); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-rapido-msg').textContent = '¡Listo, guardado!';
+      el('fin-fil-neg').value = m.neg === false ? 'p' : 'n'; agregar(m); el('fin-d').value = ''; el('fin-v').value = ''; el('fin-p').value = ''; el('fin-cl').value = ''; el('fin-cm').value = ''; el('fin-rapido-msg').textContent = '¡Listo, guardado!';
     });
     el('fin-cancelar').addEventListener('click', cancelarEdicion);
     el('fin-rapido').addEventListener('submit', function(e) {
       e.preventDefault(); var r = interpretar(el('fin-texto').value); var msg = el('fin-rapido-msg');
       if (r.error) { msg.textContent = r.error; return; }
-      agregar(r); el('fin-texto').value = ''; msg.textContent = '¡Listo! ' + NOMBRE_T[r.t] + ' de ' + plata(r.v) + ' en «' + r.c + '».';
+      el('fin-fil-neg').value = r.neg === false ? 'p' : 'n'; agregar(r); el('fin-texto').value = ''; msg.textContent = '¡Listo! ' + NOMBRE_T[r.t] + ' de ' + plata(r.v) + ' en «' + r.c + '».';
     });
     document.querySelectorAll('[data-fin-mes]').forEach(function(b) { b.addEventListener('click', function() { var d = +b.dataset.finMes; mesSel.m += d; if (mesSel.m < 1) { mesSel.m = 12; mesSel.y--; } if (mesSel.m > 12) { mesSel.m = 1; mesSel.y++; } pintar(); }); });
     document.querySelectorAll('[data-fin-rango]').forEach(function(b) { b.addEventListener('click', function() { rango = +b.dataset.finRango; document.querySelectorAll('[data-fin-rango]').forEach(function(x) { x.setAttribute('aria-pressed', String(+x.dataset.finRango === rango)); }); pintarEvol(); }); });
@@ -3817,7 +3836,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     el('fin-exportar').addEventListener('click', exportar);
     ponerTips(el('fin-barras')); ponerTips(el('fin-dona'));
     el('fin-barras').addEventListener('click', function(e) { var t = e.target.closest('[data-mes]'); if (!t) return; var p = t.getAttribute('data-mes').split('-'); mesSel = { y: +p[0], m: +p[1] }; pintar(); });
-    var esperaRedibujo; window.addEventListener('resize', function() { clearTimeout(esperaRedibujo); esperaRedibujo = setTimeout(function() { if (el('fin-resumen').classList.contains('abierta') || el('fin-negocio').classList.contains('abierta')) pintarEvol(); if (el('fin-analisis').classList.contains('abierta')) pintarAnalisis(); }, 200); });
+    var esperaRedibujo; window.addEventListener('resize', function() { clearTimeout(esperaRedibujo); esperaRedibujo = setTimeout(function() { if (el('fin-resumen').classList.contains('abierta')) { pintarEvol(); pintarAnalisis(); } }, 200); });
+    /* abrir «Ventas y gastos» ya con el tipo elegido (acciones rápidas del panel, etc.) */
+    window.lrFinNuevo = function(tipo) { el('fin-t').value = tipo === 'g' ? 'g' : (tipo === 'a' ? 'a' : 'i'); opcionesCat(); if (tipo !== 'g' && tipo !== 'a') el('fin-c').value = 'Ventas', camposVenta(); var v = el(el('fin-venta-p').hidden ? 'fin-d' : 'fin-p'); if (v) v.focus({ preventScroll: false }); };
+    /* Resumen del emprendimiento: pestañas «Este mes», «Comparar meses» y «El año» (solo mira, no se escribe) */
+    function rsTab(t) {
+      ['mes', 'comp', 'anio'].forEach(function(k) { var on = k === t, b = el('rs-t-' + k); el('rs-' + k).hidden = !on; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; });
+      pintar();
+    }
+    document.querySelectorAll('[data-rs]').forEach(function(b) {
+      b.addEventListener('click', function() { rsTab(b.dataset.rs); });
+      b.addEventListener('keydown', function(e) { var o = ['mes', 'comp', 'anio'], i = o.indexOf(b.dataset.rs); if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var n = o[(i + (e.key === 'ArrowRight' ? 1 : 2)) % 3]; rsTab(n); el('rs-t-' + n).focus(); } });
+    });
+    window.lrResumenTab = rsTab;
+    /* interruptor «Mi negocio / Personal» de «Mi plata» y los rótulos de cada ámbito */
+    var ROT = {
+      n: { fpm: 'Cuánto quieres gastar en tu negocio por categoría y para qué está ahorrando tu negocio.', a: 'Metas de ahorro del negocio', b: 'Planes del negocio para el año', ffs: 'Lo que tu negocio paga cada mes y lo que todavía debe. Los gastos fijos se anotan solos.', fa: 'Pagos del negocio que se repiten cada mes', fn: '¿Qué paga tu negocio?', fb: 'Deudas y créditos del negocio', fdn: '¿Qué debe tu negocio?', fc: 'Tarjetas del negocio', fph: 'Arriendo del local, internet, programas…' },
+      p: { fpm: 'Cuánto quieres gastar por categoría y para qué estás ahorrando.', a: 'Metas de ahorro', b: 'Planes para el año', ffs: 'Lo que pagas cada mes, tus tarjetas y lo que todavía debes. Los gastos fijos se anotan solos.', fa: 'Pagos que se repiten cada mes', fn: '¿Qué pagas?', fb: 'Deudas y créditos', fdn: '¿Qué debes?', fc: 'Tarjetas', fph: 'Arriendo de la casa, internet, el gimnasio…' }
+    };
+    function rotular() {
+      var r = ROT[ambito], t = function(id, x) { var e = el(id); if (e && e.textContent !== x) e.textContent = x; };
+      t('fpm-sub', r.fpm); t('fpm-h4a', r.a); t('fpm-h4b', r.b); t('ff-sub', r.ffs); t('ff-h4a', r.fa); t('ff-l-n', r.fn); t('ff-h4b', r.fb); t('fd-l-n', r.fdn); t('ff-h4c', r.fc);
+      el('ff-n').placeholder = r.fph;
+      ['fin-presupuesto', 'fin-fijos'].forEach(function(id) { el(id).classList.toggle('amb-p', ambito === 'p'); });
+      document.querySelectorAll('.amb-sw button').forEach(function(b) { b.setAttribute('aria-pressed', String(b.dataset.amb === ambito)); });
+      opcionesFijo(el('ff-c').value);
+    }
+    document.querySelectorAll('.amb-sw button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        if (ambito === b.dataset.amb) return; ambito = b.dataset.amb; try { localStorage.setItem('lrFinAmbito', ambito); } catch (e) { /* sin almacenamiento */ }
+        cancelarFijo(); cancelarDeuda(); cancelarTarjeta(); pintarPres(); pintar();
+      });
+    });
     window.lrFinRender = function(id) { if (id === 'fin-presupuesto') pintarPres(); pintar(); };
     window.lrFinReset = function() { cancelarTarjeta(); var c = el('fin-pres'); c.innerHTML = ''; delete c.dataset.listo; el('fin-metas').innerHTML = ''; el('fin-planes').innerHTML = ''; cancelarEdicion(); cancelarFijo(); cancelarDeuda(); pintar(); };
     pintar();
@@ -3881,7 +3931,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
       /* Finanzas */
       var f = (datos._fin || { movs: [], pres: {} }), key = mes.y + '-' + ('0' + mes.m).slice(-2);
-      var ml = (f.movs || []).filter(function(x) { return x.f.slice(0, 7) === key; });
+      var ml = (f.movs || []).filter(function(x) { return x.f.slice(0, 7) === key && x.neg !== false; });
       var ing = ml.filter(function(x) { return x.t === 'i'; }).reduce(function(a, x) { return a + x.v; }, 0), gas = ml.filter(function(x) { return x.t === 'g'; }).reduce(function(a, x) { return a + x.v; }, 0);
       var tope = Object.keys(f.pres || {}).reduce(function(a, c) { return a + num(f.pres[c]); }, 0);
       var fi = window.lrFinInfo ? window.lrFinInfo(mes.y, mes.m) : null;
@@ -3973,9 +4023,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       else if (n.tagName === 'A' && grupos.length) grupos[grupos.length - 1].links.push(n);
     });
     var COL = ['#F5C2DB', '#F28FC0', '#B9BCF9', '#F28FC0', '#F28FC0', '#FDE3EE'];
-    var COLOR_GRUPO = { 'Inicio': '#F5C2DB', 'Mi tablero': '#E6E7FD', 'Mis proyectos': '#F28FC0', 'Mis materiales': '#B9BCF9', 'Mi emprendimiento': '#F28FC0', 'Finanzas del negocio': '#F28FC0', 'Fechas y bienestar': '#FDE3EE' };
+    var COLOR_GRUPO = { 'Inicio': '#F5C2DB', 'Mi tablero': '#E6E7FD', 'Mis proyectos': '#F28FC0', 'Mis materiales': '#B9BCF9', 'Mi emprendimiento': '#F28FC0', 'Mi plata': '#F28FC0', 'Fechas y bienestar': '#FDE3EE' };
     var colorDe = function(g, i) { return COLOR_GRUPO[g.t] || COL[i % COL.length]; };
-    var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t === 'Finanzas del negocio' ? 'Finanzas' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
+    var etiqueta = function(t) { return t === 'Fechas y bienestar' ? 'Bienestar' : t === 'Mi plata' ? 'Plata' : t.replace(/^Mis |^Mi /, '').replace(/^./, function(c) { return c.toUpperCase(); }); };
     var nav = document.getElementById('pestanas-agenda'), selector = document.getElementById('selector-hoja'), lista = document.getElementById('selector-hoja-lista'), etqLista = document.getElementById('selector-hoja-etq');
     var ICONOS_LATERAL = ['panel', 'tablero', 'proyectos', 'materiales', 'emprendimiento', 'finanzas', 'fechas'].map(function(n) {
       return '<img class="ic-lateral ic-dibujo" src="/img/agenda/menu/' + n + '.webp?v=3" width="40" height="40" alt="" aria-hidden="true" decoding="async">';
@@ -4042,7 +4092,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   toggleMenu.addEventListener('click', function() { var ab = menuHojas.classList.toggle('abierto'); toggleMenu.setAttribute('aria-expanded', ab); });
   function abrirDesdeAncla() {
-    var id = location.hash.slice(1);
+    var id = location.hash.slice(1); id = HOJAS_ANTIGUAS[id] || id;
     if (id && document.getElementById(id) && document.getElementById(id).classList.contains('hoja-agenda')) { mostrarHoja(id); document.querySelector('.agenda-layout').scrollIntoView(); return true; }
     return false;
   }
@@ -4342,16 +4392,16 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=31"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=25" defer></script>
+<script src="/js/agenda/idioma.js?v=30" defer></script>
 <script src="/js/agenda/config.js?v=17" defer></script>
 <script src="/js/agenda/tour.js?v=6" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
 <script src="/js/agenda/formas.js?v=3" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
 <script src="/js/agenda/meses.js?v=1" defer></script>
-<script src="/js/agenda/dinero.js?v=1" defer></script>
+<script src="/js/agenda/dinero.js?v=3" defer></script>
 <script src="/js/agenda/pedidos.js?v=1" defer></script>
-<script src="/js/agenda/conexiones.js?v=4" defer></script>
+<script src="/js/agenda/conexiones.js?v=5" defer></script>
 <script src="/js/agenda/anio.js?v=1" defer></script>
 <script src="/js/agenda/portada.js?v=6" defer></script>
 <script src="/js/agenda/color-casilla.js?v=1" defer></script>
@@ -4361,8 +4411,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/lupa.js?v=2" defer></script>
 <script src="/js/agenda/patron.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=3" defer></script>
-<script src="/js/agenda/vacios.js?v=4" defer></script>
-<script src="/js/agenda/panel.js?v=30" defer></script>
+<script src="/js/agenda/vacios.js?v=5" defer></script>
+<script src="/js/agenda/panel.js?v=31" defer></script>
 <script src="/js/agenda/miles.js?v=1" defer></script>
 <script src="/js/agenda/voz.js?v=4" defer></script>
 <script src="/js/agenda/tinta.js?v=1" defer></script>
@@ -4370,15 +4420,15 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/iconos.js?v=29" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
 <script src="/js/agenda/menu-lateral.js?v=3" defer></script>
-<script src="/js/agenda/metas-ventas.js?v=5" defer></script>
-<script src="/js/agenda/graficas.js?v=7" defer></script>
-<script src="/js/agenda/clientas-historial.js?v=2" defer></script>
+<script src="/js/agenda/metas-ventas.js?v=7" defer></script>
+<script src="/js/agenda/graficas.js?v=8" defer></script>
+<script src="/js/agenda/clientas-historial.js?v=3" defer></script>
 <script src="/js/agenda/costos.js?v=1" defer></script>
 <script src="/js/agenda/inventario-mov.js?v=5" defer></script>
 <script src="/js/agenda/proyecto-lana.js?v=3" defer></script>
 <script src="/js/agenda/inventario.js?v=2" defer></script>
 <script src="/js/agenda/informe.js?v=4" defer></script>
-<script src="/js/agenda/dashboards.js?v=4" defer></script>
+<script src="/js/agenda/dashboards.js?v=6" defer></script>
 <script src="/js/agenda/ayuda.js?v=3" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
 <script src="/js/agenda/promo.js?v=1" defer></script>
@@ -4389,12 +4439,12 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/centro-conexiones.js?v=1" defer></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
 <script type="module" src="/js/agenda/drive-sync.js?v=3"></script>
-<script type="module" src="/js/agenda/membresia.js?v=4"></script>
+<script type="module" src="/js/agenda/membresia.js?v=6"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=14" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
-<script src="/js/agenda/exportar.js?v=5" defer></script>
+<script src="/js/agenda/exportar.js?v=8" defer></script>
 <script>
 // «¿Dónde se guardan mis datos?»: dice si hoy la copia en la cuenta está activa (30-oct-2026).
 (function () {
