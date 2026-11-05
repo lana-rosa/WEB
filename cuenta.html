@@ -1141,7 +1141,27 @@ function pintarPedidos() {
       r.addEventListener('click', () => { try { navigator.clipboard.writeText(String(p.numero_guia)); } catch (e) {} avisoGuiaCopiada(art, p); });
       botones.append(r);
     }
-    if (p.guia_url && /^https?:\/\//i.test(p.guia_url)) { const r = nodo('a', 'pt-btn', 'Ver guía'); r.href = p.guia_url; r.target = '_blank'; r.rel = 'noopener'; botones.append(r); }
+    if (p.guia_url && p.numero_guia) {
+      // La guía está en un almacenamiento privado (5-nov-2026): se pide un enlace temporal (10 minutos) que solo se entrega a la dueña del pedido.
+      const r = nodo('button', 'pt-btn', 'Ver guía'); r.type = 'button';
+      r.addEventListener('click', async () => {
+        const ventana = window.open('', '_blank');   // se abre al tocar para que el navegador no la bloquee
+        r.disabled = true; const antes = r.textContent; r.textContent = 'Abriendo…';
+        try {
+          const sb = await obtenerCliente();
+          const { data, error } = await sb.functions.invoke('guia-envio', { body: { numero_guia: String(p.numero_guia) } });
+          const url = data && (data.url || data.externo);
+          if (error || !url || !/^https?:\/\//i.test(url)) throw new Error('sin enlace');
+          if (ventana) { ventana.opener = null; ventana.location.href = url; } else location.href = url;
+        } catch (e) {
+          if (ventana) ventana.close();
+          avisoGuiaCopiada(art, { numero_guia: p.numero_guia, transportadora: p.transportadora || 'la transportadora' });
+          const av = art.querySelector('.aviso-guia'); if (av) av.textContent = 'No pudimos abrir la guía en este momento. Puedes rastrear tu envío con el número ' + p.numero_guia + ' o escribirnos por WhatsApp.';
+        }
+        r.disabled = false; r.textContent = antes;
+      });
+      botones.append(r);
+    }
     const otra = nodo('a', 'pt-btn', 'Comprar de nuevo'); otra.href = '/tienda.html'; botones.append(otra);
     const ver = nodo('button', 'pt-btn', 'Ver detalles'); ver.type = 'button'; botones.append(ver);
     const comp = comprobantes[p.consecutivo];
