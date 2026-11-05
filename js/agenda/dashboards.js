@@ -1,6 +1,6 @@
 /* Agenda para tejedoras: un tablero gráfico al abrir cada sección (Plus, 31-oct-2026, pedido de Sara: «en cada sección un dashboard que muestre cómo estamos»).
    Se pinta arriba de las tarjetas de la vista de sección (panel.js llama a lrDashboards.pintar). Solo lee las hojas; no guarda nada ni se imprime.
-   Mis proyectos · Mis materiales · Mi emprendimiento · Finanzas del negocio · Fechas y bienestar (Mi panel y Mi tablero ya son tableros).
+   Mis proyectos · Mis materiales · Mi emprendimiento · Mi plata · Fechas y bienestar (Mi panel y Mi tablero ya son tableros).
    Las secciones de membresía no muestran su tablero cuando sus hojas están bloqueadas (el candado no se filtra). Los textos largos van en HTML para que el traductor los alcance;
    dentro de los SVG solo van números. Los nombres que escribe la persona llevan data-no-traducir. */
 (function () {
@@ -128,7 +128,7 @@
     if (top.length) { kc.appendChild(el('h5', 'cl-titulo cl-sub', 'Lo que más has vendido')); kc.appendChild(barrasH(top, ROSA, corto)); }
     c.appendChild(kc);
   };
-  T['Finanzas del negocio'] = function (c) {
+  T['Mi plata'] = function (c) {
     var f = N.datos()._fin || {}, ms = seisMeses(), ing = ms.map(function () { return 0; }), gas = ms.map(function () { return 0; });
     (window.lrDinero ? window.lrDinero.registros() : []).forEach(function (x) { if (x.tipo === 'ahorro') return; var k = x.f.slice(0, 7); ms.forEach(function (m, i) { if (k === m.y + '-' + ('0' + (m.m + 1)).slice(-2)) { if (x.tipo === 'gasto') gas[i] += x.v; else ing[i] += x.v; } }); });
     var k = tarjeta('Lo que entra y lo que sale', 'fin-resumen', 'Ver finanzas');
@@ -167,7 +167,7 @@
     var kpz = tarjeta('Tus pausas activas', 'registro-pausas', 'Ver registro'), barra = el('div', 'fin-progreso'), ii = el('i'); ii.style.width = Math.round(pa / 31 * 100) + '%'; barra.appendChild(ii);
     kpz.appendChild(kpis([['Días con pausas activas', pa, 'de 31 días del mes']])); kpz.appendChild(barra); c.appendChild(kpz);
   };
-  var SECCION = { 'Mis materiales': 'inventario-lanas', 'Mi emprendimiento': 'control-pedidos', 'Finanzas del negocio': 'fin-resumen', 'Fechas y bienestar': 'calendario-anual' };
+  var SECCION = { 'Mis materiales': 'inventario-lanas', 'Mi emprendimiento': 'control-pedidos', 'Mi plata': 'fin-presupuesto', 'Fechas y bienestar': 'calendario-anual' };
 
   window.lrDashboards = {
     pintar: function (titulo, cont) {

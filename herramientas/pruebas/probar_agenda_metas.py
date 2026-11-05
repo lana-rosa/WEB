@@ -48,7 +48,7 @@ with sync_playwright() as p:
     # sin gastos fijos y sin costo
     pg = abrir(contexto(b, 390, 844, datos={'ag-duena': 'Sara', 'ag-vt1-fecha': f(hoy), 'ag-vt1-precio': '$ 50.000'}, config_abierta=False), 'fin-presupuesto', 2200, config=False)
     t = txt(pg)
-    T.v('sin pagos fijos: explica cómo calcularlo', 'Gastos fijos y deudas del negocio' in t, t)
+    T.v('sin pagos fijos: explica cómo calcularlo', 'Gastos fijos, tarjetas y deudas' in t, t)
     T.v('celular: sin desplazamiento horizontal', not pg.evaluate("document.documentElement.scrollWidth>innerWidth"))
     pg.close()
     d2 = dict(DATOS); d2['ag-vt1-costo'] = ''; d2['ag-vt2-costo'] = ''

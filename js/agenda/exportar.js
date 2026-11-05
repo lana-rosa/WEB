@@ -45,31 +45,34 @@
      de la agenda de la que viene, para que el candado de la membresía funcione igual. Los importes van como {n, f:'peso'} y las cantidades como números simples. */
   var MES_N = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
   function P(v) { return { n: Number(v) || 0, f: 'peso' }; }
-  function deFinanzas() {
-    var f = (N.datos()._fin || {}), salida = [];
+  function deFinanzasDe(f, suf, conMovs) {   // `suf` = ' (personal)' para lo de «Mi plata» personal (datos._finP)
+    var salida = [];
     function agregar(hoja, nombre, columnas, filas) { if (filas.length) salida.push({ hoja: hoja, nombre: nombre, columnas: columnas, filas: filas }); }
-    var movs = (f.movs || []).slice().sort(function (a, b) { return String(a.f).localeCompare(String(b.f)); });
-    agregar('Ventas y gastos', 'Ventas y gastos', ['Fecha', 'Tipo', 'Categoría', 'Detalle', 'Producto', 'Cliente', 'Costo de materiales', 'Valor', 'Medio de pago', 'De'],
-      movs.map(function (m) { return [m.f, m.t === 'i' ? (m.p != null ? 'Venta' : 'Ingreso') : m.t === 'a' ? 'Ahorro' : 'Gasto', m.c || '', m.d || '', m.p || '', m.cl || '', m.cm ? P(m.cm) : '', P(m.v), m.m || '', m.neg === false ? 'Personal' : 'Negocio']; }));
-    var HP = 'Presupuesto y metas del negocio', pres = f.pres || {};
-    agregar(HP, 'Presupuesto mensual', ['Categoría', 'Presupuesto mensual'], Object.keys(pres).filter(function (k) { return Number(pres[k]) > 0; }).map(function (k) { return [k, P(pres[k])]; }));
-    agregar(HP, 'Metas de ahorro del negocio', ['Meta', 'Valor de la meta', 'Ahorrado', 'Saldo que falta', 'Fecha objetivo'],
+    if (conMovs) {
+      var movs = (f.movs || []).slice().sort(function (a, b) { return String(a.f).localeCompare(String(b.f)); });
+      agregar('Ventas y gastos', 'Ventas y gastos', ['Fecha', 'Tipo', 'Categoría', 'Detalle', 'Producto', 'Cliente', 'Costo de materiales', 'Valor', 'Medio de pago', 'De'],
+        movs.map(function (m) { return [m.f, m.t === 'i' ? (m.p != null ? 'Venta' : 'Ingreso') : m.t === 'a' ? 'Ahorro' : 'Gasto', m.c || '', m.d || '', m.p || '', m.cl || '', m.cm ? P(m.cm) : '', P(m.v), m.m || '', m.neg === false ? 'Personal' : 'Negocio']; }));
+    }
+    var HP = 'Presupuesto y metas', pres = f.pres || {};
+    agregar(HP, 'Presupuesto mensual' + suf, ['Categoría', 'Presupuesto mensual'], Object.keys(pres).filter(function (k) { return Number(pres[k]) > 0; }).map(function (k) { return [k, P(pres[k])]; }));
+    agregar(HP, 'Metas de ahorro del negocio' + suf, ['Meta', 'Valor de la meta', 'Ahorrado', 'Saldo que falta', 'Fecha objetivo'],
       (f.metas || []).filter(function (m) { return m && (m.n || Number(m.meta)); }).map(function (m) { var me = Number(m.meta) || 0, ah = Number(m.ahorrado) || 0; return [m.n || '', P(me), P(ah), P(Math.max(0, me - ah)), m.fecha || '']; }));
-    agregar(HP, 'Planes del negocio', ['Plan', 'Mes', 'Costo', 'Cumplido'],
+    agregar(HP, 'Planes del negocio' + suf, ['Plan', 'Mes', 'Costo', 'Cumplido'],
       (f.planes || []).filter(function (x) { return x && (x.n || Number(x.costo)); }).map(function (x) { return [x.n || '', MES_N[(Number(x.mes) || 0) - 1] || '', P(x.costo), x.listo ? 'Sí' : 'No']; }));
-    var HF = 'Gastos fijos y deudas del negocio';
-    agregar(HF, 'Gastos fijos del negocio', ['Concepto', 'Valor', 'Día del mes', 'Tipo', 'Categoría', 'Medio de pago', 'Estado'],
+    var HF = 'Gastos fijos, tarjetas y deudas';
+    agregar(HF, 'Gastos fijos del negocio' + suf, ['Concepto', 'Valor', 'Día del mes', 'Tipo', 'Categoría', 'Medio de pago', 'Estado'],
       (f.fijos || []).map(function (x) { return [x.n || '', P(x.v), Number(x.dia) || '', x.t === 'a' ? 'Ahorro e inversión' : (x.s ? 'Suscripción' : 'Gasto fijo'), x.c || '', x.m || '', x.activo === false ? 'En pausa' : 'Activo']; }));
-    agregar(HF, 'Deudas del negocio', ['Deuda', 'Valor de cada pago', 'Plazo', 'Hechas', 'Faltan', 'Día del mes', 'Saldo por pagar'],
+    agregar(HF, 'Deudas del negocio' + suf, ['Deuda', 'Valor de cada pago', 'Plazo', 'Hechas', 'Faltan', 'Día del mes', 'Saldo por pagar'],
       (f.deudas || []).map(function (d) { var tot = Number(d.cuotas) || 0, hec = Number(d.pagadas) || 0; return [d.n || '', P(d.cuota), tot, hec, Math.max(0, tot - hec), Number(d.dia) || '', P(Math.max(0, tot - hec) * (Number(d.cuota) || 0))]; }));
-    var HT = 'Tarjetas del negocio', nomT = {};
+    var HT = 'Gastos fijos, tarjetas y deudas', nomT = {};
     (f.tarjetas || []).forEach(function (t) { nomT[t.id] = t.n; });
-    agregar(HT, 'Tarjetas del negocio', ['Tarjeta', 'Cupo', 'Saldo inicial', 'Día de corte', 'Día límite'],
+    agregar(HT, 'Tarjetas del negocio' + suf, ['Tarjeta', 'Cupo', 'Saldo inicial', 'Día de corte', 'Día límite'],
       (f.tarjetas || []).map(function (t) { return [t.n || '', P(t.cupo), P(t.saldo0), Number(t.corte) || '', Number(t.pago) || '']; }));
-    agregar(HT, 'Pagos a tarjetas', ['Fecha', 'Tarjeta', 'Valor'],
+    agregar(HT, 'Pagos a tarjetas' + suf, ['Fecha', 'Tarjeta', 'Valor'],
       (f.pagosT || []).slice().sort(function (a, b) { return String(a.f).localeCompare(String(b.f)); }).map(function (x) { return [x.f || '', nomT[x.t] || '', P(x.v)]; }));
     return salida;
   }
+  function deFinanzas() { var d = N.datos(), r = deFinanzasDe(d._fin || {}, '', true); if (d._finP) r = r.concat(deFinanzasDe(d._finP, ' (personal)', false)); return r; }
   /* Importes y fechas como números y fechas de Excel (antes salían como texto y no se podían sumar ni ordenar) */
   var COL_DINERO = /valor|precio|costo|total|saldo|abono|ingreso|gasto|monto|cuota|meta|presupuesto|pago|utilidad/i;
   function serial(a, m, d) { var t = Date.UTC(a, m - 1, d), x = new Date(t); if (x.getUTCFullYear() !== a || x.getUTCMonth() !== m - 1 || x.getUTCDate() !== d) return null; return Math.round(t / 86400000) + 25569; }
