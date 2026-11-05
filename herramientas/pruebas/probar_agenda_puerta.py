@@ -33,7 +33,7 @@ with sync_playwright() as p:
         T.v('%d px: solo hay 7 hojas (las gratis) en el menú' % ancho, sorted(pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a')].map(a => a.dataset.hoja)")) == sorted(GRATIS))
         T.v('%d px: el contador dice 7 hojas' % ancho, 'de 7' in pg.inner_text('#menu-hojas-cuenta') and '7 hojas' in pg.inner_text('.mh-pildora'), pg.inner_text('#menu-hojas-cuenta'))
         T.v('%d px: el índice solo ofrece las hojas gratis' % ancho, sorted(pg.evaluate("[...document.querySelectorAll('#indice-agenda [data-ir]')].map(b => b.dataset.ir)")) == sorted(GRATIS[2:]))
-        T.v('%d px: ninguna hoja de pago se puede ver' % ancho, pg.evaluate("[...document.querySelectorAll('.hoja-bloqueada')].every(h => getComputedStyle(h).display === 'none')") and pg.locator('.hoja-bloqueada').count() == 28)   # 35 hojas menos las 7 gratis (4-nov-2026: «Ventas y gastos» y «Resumen del emprendimiento» reemplazan a 3 hojas cada una)
+        T.v('%d px: ninguna hoja de pago se puede ver' % ancho, pg.evaluate("[...document.querySelectorAll('.hoja-bloqueada')].every(h => getComputedStyle(h).display === 'none')") and pg.locator('.hoja-bloqueada').count() == 28)   # 35 hojas menos las 7 gratis (4-nov-2026: «Ventas y gastos» y «Resumen del negocio» reemplazan a 3 hojas cada una)
         pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=planeador-dia]').click()"); pg.wait_for_timeout(300)
         T.v('%d px: planeador sin «Este mes en números»' % ancho, pg.locator('#planeador-dia .pl-numeros').is_hidden() and pg.locator('#pl-tareas').count() == 1)
         T.v('%d px: hay promociones del ecosistema en la hoja' % ancho, pg.locator('#planeador-dia .promo-tarjeta').count() == 2)

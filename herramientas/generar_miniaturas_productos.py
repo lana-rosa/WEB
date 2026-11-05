@@ -19,6 +19,6 @@ for f in sorted(os.listdir(ORIGEN)):
         continue
     im = Image.open(ruta); im = im.convert('RGBA' if im.mode in ('RGBA', 'LA', 'P') else 'RGB')
     im.thumbnail((420, 525), Image.LANCZOS)
-    im.save(salida, 'WEBP', quality=78, method=6)
+    im.save(salida, 'WEBP', quality=72, method=6)
     hechas += 1; ahorro += os.path.getsize(ruta) - os.path.getsize(salida)
 print(hechas, 'miniaturas creadas;', ahorro // 1024, 'KB menos que las originales')

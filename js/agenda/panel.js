@@ -302,7 +302,7 @@
         b.addEventListener('click', function () { ir(id); }); g.appendChild(b);
       });
       vista.appendChild(g); vista.hidden = false;
-      var sel = el('selector-hoja'); if (sel) sel.hidden = window.innerWidth > 820;   /* en el teléfono la lista «Hojas de…» queda arriba (3-nov-2026); en pantallas grandes las tarjetas y el menú lateral bastan */
+      var sel = el('selector-hoja'); if (sel) sel.hidden = true;   /* en el teléfono la lista «Hojas de…» queda arriba (3-nov-2026); en pantallas grandes las tarjetas y el menú lateral bastan */
       h.focus({ preventScroll: true });
       if (window.innerWidth < 900) vista.scrollIntoView({ block: 'start' });
     },
