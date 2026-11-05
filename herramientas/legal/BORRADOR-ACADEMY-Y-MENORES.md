@@ -19,7 +19,7 @@
 **2. Servicios cubiertos.** Talleres en grupo y clases personalizadas presenciales. Los tutoriales y recursos gratuitos del Rincón de Rosina se rigen por la política de datos y las condiciones del sitio, no por estos términos.
 
 **3. Inscripción y pago.**
-- La inscripción se hace por WhatsApp y queda reservada cuando la participante paga el **anticipo** (decisión de Jennifer, 5-nov-2026). [POR DEFINIR: valor o porcentaje del anticipo y fecha límite para pagar el saldo].
+- La inscripción se hace por WhatsApp y queda reservada cuando la participante paga el **anticipo** (decisión de Jennifer, 5-nov-2026). El anticipo **de referencia es la mitad del valor** ($25.000 COP en el taller de $50.000), pero **la participante puede dar un valor distinto** (un poco más o un poco menos) y Lana Rosa lo registra en el recibo (decisión de Jennifer, 5-nov-2026). [POR DEFINIR: si hay un mínimo de anticipo para quedar reservada y la fecha límite para pagar el saldo].
 - Valor del taller: el publicado al momento de inscribirse. Valor de la clase personalizada: por hora y por persona, con mínimo de 1 hora.
 - Medios de pago: **efectivo o Bre-B** (decisión de Jennifer, 5-nov-2026). El pago se hace directamente a Sara Loaiza Muñoz, bajo el nombre comercial Lana Rosa Crochet.
 - Comprobante: **recibo de pago** (decisión de Jennifer). [POR DEFINIR con la contadora: qué datos lleva el recibo].
@@ -76,7 +76,7 @@ Datos de inscripción: mientras dure la actividad y [POR DEFINIR: plazo]; fotos 
 **Ya decidido:** (1) el cupo se reserva con **anticipo**; (2) cancelar o cambiar la fecha con **2 días** de anticipación; (3) cupo **máximo 10, mínimo 5**, edad mínima **18**; (4) **no hay clases a menores todavía**; (5) fotos de menores solo más adelante y con autorización de los padres; (6) pago en **efectivo o Bre-B** y se entrega **recibo de pago**.
 
 **Aún por definir (preguntas siguientes, una a la vez):**
-1. Valor o porcentaje del anticipo y fecha límite para pagar el saldo.
+1. ~~Valor del anticipo~~ → **decidido:** referencia $25.000 (la mitad), la participante puede dar otro valor. Falta: ¿hay un mínimo para quedar reservada? ¿Fecha límite para pagar el saldo?
 2. Con la cancelación a tiempo (2 días antes): ¿se devuelve el anticipo o queda como saldo a favor para otra fecha? ¿Y si cancela con menos de 2 días?
 3. ¿Los 2 días son calendario o hábiles?
 4. Si no se llega al mínimo de 5 personas: ¿se reprograma el taller o se devuelve el anticipo?
