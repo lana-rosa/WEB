@@ -7,7 +7,7 @@
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026**; atención normal desde el lunes 14-dic (los textos cambian solos ese día, `js/apertura.js`). Contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
 ## Por chat (cada uno reemplaza solo el suyo)
-- **1 · Agenda datos y Google:** publicado: auditoría, arreglos de Calendar, Conexiones etapas 1 y 2 (#525, #528, #530). A medias: interruptor de fotos de Drive (no hecho a propósito: riesgo de perder dibujos); etapas 3 y 4. Falta que Jennifer pruebe Drive y Calendar reales.
+- **1 · Agenda datos y Google:** publicado: auditoría, arreglos de Calendar, Conexiones etapas 1 y 2 y E30 (aviso antes de conectar Google, 5-nov; texto en borrador hasta la abogada). A medias: interruptor de fotos de Drive (no hecho a propósito: riesgo de perder dibujos); etapas 3 y 4. Falta que Jennifer pruebe Drive y Calendar reales.
 - **2 · Agenda diseño y Plus:** PUBLICADO: «Mi cuenta» (#574), tarjetas B (#577), «Ventas y gastos» pasos 1 y 2 (#582, #591), «Mis números» y sin lista «Hojas de…» en la hoja principal (#607). E11: `FINANZAS-PROPUESTA.md` y `REVISION-HOJAS-PROPUESTA.md` (10 preguntas pendientes).
   PUBLICADO 5-nov (#612): modo oscuro Claro/Oscuro/Como el celular + contraste de tarjetas y letra gris (E19+E25+E26) + buscador con un solo recuadro; `css/agenda-oscuro.css` se genera con `herramientas/agenda-oscuro/generar_oscuro.py`. Sigue el paso 3 de dinero «Resumen del emprendimiento» y el grupo personal.
   A medias: Jennifer revisa en su celular Plus, fichas, portada, dibujo, Rosina y «Abreviaturas»; chat 3: EN/PT de «Claro u oscuro», «Mis números» y `GUIA_AGENDA`.
