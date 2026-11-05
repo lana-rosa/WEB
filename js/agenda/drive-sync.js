@@ -249,6 +249,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var guardados = lsGet('lrDriveAvisos'); if (guardados) { try { aviso(JSON.parse(guardados)); } catch (e) {} lsDel('lrDriveAvisos'); }
 
   bCon.addEventListener('click', async function () {
+    if (!window.lrAvisoConexion || !(await window.lrAvisoConexion.pedir('drive'))) return;   // aviso aparte antes de conectar (E30); sin el aviso no se conecta
     bCon.disabled = true; aviso('Abriendo Google…');
     (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_drive_conectar' });
     var r = await llamar('conectar');
