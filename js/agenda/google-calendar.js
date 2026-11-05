@@ -73,6 +73,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   estado = e0; caja.hidden = false; pintar();
   window.lrGcal = { estado: function () { return estado; }, tiposApagados: tiposApagados, etiquetaTipo: function (id) { var c = tipos && tipos.querySelector('input[data-tipo="' + id + '"]'); return c ? c.parentNode.textContent.trim() : id; } };   // lo lee el resumen de «Conexiones e integraciones» (centro-conexiones.js)
   bCon.addEventListener('click', async function () {
+    if (!window.lrAvisoConexion || !(await window.lrAvisoConexion.pedir('calendar'))) return;   // aviso aparte antes de conectar (E30); sin el aviso no se conecta
     bCon.disabled = true; aviso('Abriendo Google…');
     (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_google_conectar' });
     var r = await llamar('conectar');
