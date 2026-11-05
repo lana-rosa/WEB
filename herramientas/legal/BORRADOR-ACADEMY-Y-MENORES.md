@@ -24,7 +24,7 @@
 - Medios de pago: **efectivo o Bre-B** (decisión de Jennifer, 5-nov-2026). El pago se hace directamente a Sara Loaiza Muñoz, bajo el nombre comercial Lana Rosa Crochet.
 - Comprobante: **recibo de pago** (decisión de Jennifer). [POR DEFINIR con la contadora: qué datos lleva el recibo].
 
-**4. Fechas, horarios y cupos.** La fecha, hora, lugar y cupo máximo de cada taller se informan antes de abrir inscripciones. **Cupo máximo: 10 personas; mínimo: 5 para dictar el taller** (decisión de Jennifer). [POR DEFINIR: qué pasa si no se llega a 5: se reprograma o se devuelve el anticipo]. Las clases personalizadas se acuerdan por WhatsApp.
+**4. Fechas, horarios y cupos.** La fecha, hora, lugar y cupo máximo de cada taller se informan antes de abrir inscripciones. **Cupo máximo: 10 personas.** No hay un mínimo de personas para dictar el taller (Jennifer lo quitó el 5-nov-2026: el taller se dicta con las personas inscritas). Las clases personalizadas se acuerdan por WhatsApp.
 
 **5. Cancelaciones y reprogramaciones por parte de la participante.** La participante puede cancelar o cambiar la fecha **hasta 2 días hábiles antes** del taller o la clase (decisión de Jennifer, 5-nov-2026: solo días hábiles, sin contar sábados, domingos ni festivos). [POR DEFINIR: si cancela con menos de 2 días qué pasa con el anticipo (a tiempo, **la participante elige entre la devolución del dinero o dejarlo como saldo a favor para otra fecha**: decisión de Jennifer, 5-nov-2026; falta el plazo de devolución y hasta cuándo vale el saldo); cuántas veces puede reprogramar].
 
@@ -73,13 +73,13 @@ Texto de la casilla (propuesto):
 Datos de inscripción: mientras dure la actividad y [POR DEFINIR: plazo]; fotos y videos autorizados: hasta que se retire la autorización. Registro de la autorización: lo exigido por ley para pruebas de la aceptación.
 
 ## D. Decisiones de Jennifer (5-nov-2026) y lo que aún falta
-**Ya decidido:** (1) el cupo se reserva con **anticipo**; (2) cancelar o cambiar la fecha con **2 días** de anticipación; (3) cupo **máximo 10, mínimo 5**, edad mínima **18**; (4) **no hay clases a menores todavía**; (5) fotos de menores solo más adelante y con autorización de los padres; (6) pago en **efectivo o Bre-B** y se entrega **recibo de pago**.
+**Ya decidido:** (1) el cupo se reserva con **anticipo**; (2) cancelar o cambiar la fecha con **2 días** de anticipación; (3) cupo **máximo 10, sin mínimo de personas** (Jennifer quitó el mínimo de 5), edad mínima **18**; (4) **no hay clases a menores todavía**; (5) fotos de menores solo más adelante y con autorización de los padres; (6) pago en **efectivo o Bre-B** y se entrega **recibo de pago**.
 
 **Aún por definir (preguntas siguientes, una a la vez):**
 1. ~~Valor del anticipo~~ → **decidido:** referencia $25.000 (la mitad), la participante puede dar otro valor. Falta: ¿hay un mínimo para quedar reservada? ¿Fecha límite para pagar el saldo?
 2. ~~Cancelación a tiempo~~ → **decidido:** se devuelve el dinero o queda como saldo a favor para otra fecha (elige la participante). Falta: ¿en cuántos días se devuelve? ¿hasta cuándo vale el saldo? ¿Y si cancela con menos de 2 días?
 3. ~~Días calendario o hábiles~~ → **decidido:** solo días hábiles.
-4. Si no se llega al mínimo de 5 personas: ¿se reprograma el taller o se devuelve el anticipo?
+4. ~~Si no se llega al mínimo de 5 personas~~ → **ya no aplica:** se quitó el mínimo; el taller se dicta con quien se inscriba.
 5. Qué datos lleva el recibo de pago (con la contadora) y si se entrega constancia de asistencia.
 6. Si se permite vender lo tejido con el patrón del taller.
 
