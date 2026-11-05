@@ -70,7 +70,7 @@ const CSS = `
 .pg-paso.hecho, .pg-paso.activo { color: #45454A; }
 .pg-paso.hecho::before, .pg-paso.activo::before { background: #E74E96; }
 .pg-paso.activo .pg-num { border-color: #E74E96; color: #E74E96; }
-.pg-paso.hecho .pg-num { background: #E74E96; border-color: #E74E96; color: #fff; }
+.pg-paso.hecho .pg-num { background: #E01E79; border-color: #E01E79; color: #fff; }
 .pg-paso.hecho { cursor: pointer; }
 .pg-grid { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: start; }
 @media (min-width: 880px) { .pg-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 26px; } .pg-grid > form { order: 1; } .pg-grid > .pg-resumen-movil { order: 2; } }

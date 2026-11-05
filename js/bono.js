@@ -33,25 +33,25 @@
   var estilo = document.createElement('style');
   estilo.textContent = `.modal-bono { max-height: 92vh; overflow-y: auto; }
 .modal-bono h2 { color: var(--tinta); font-family: var(--fuente-titulo); line-height: 1.25; }
-.modal-bono .boton-bono { display: block; width: 100%; background: var(--rosa-principal); color: #fff; border: none; border-radius: 999px; padding: 13px 24px; font-family: var(--fuente-titulo); font-size: 1rem; font-weight: 600; cursor: pointer; text-align: center; box-shadow: 0 4px 12px rgba(var(--rosa-rgb),0.25); }
+.modal-bono .boton-bono { display: block; width: 100%; background: var(--rosa-boton, #E01E79); color: #fff; border: none; border-radius: 999px; padding: 13px 24px; font-family: var(--fuente-titulo); font-size: 1rem; font-weight: 600; cursor: pointer; text-align: center; box-shadow: 0 4px 12px rgba(var(--rosa-rgb),0.25); }
 .modal-bono .boton-bono:hover { background: var(--rosa-hover); }
 .overlay-bono { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1002; display: none; align-items: center; justify-content: center; padding: 20px; }
 .overlay-bono.abierto { display: flex; }
 .modal-bono { background: var(--blanco-hueso); border-radius: var(--radio-suave); max-width: 420px; width: 100%; padding: 34px 28px; position: relative; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
 .modal-bono-cerrar { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; background: none; border: none; font-size: 1.8rem; line-height: 1; cursor: pointer; color: var(--tinta); border-radius: 50%; }
 .modal-bono-cerrar:hover { background: var(--rosa-suave); }
-.modal-bono .etiqueta-bono { display: inline-block; background: var(--rosa-principal); color: #fff; font-weight: 700; padding: 6px 16px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 14px; }
+.modal-bono .etiqueta-bono { display: inline-block; background: var(--rosa-boton, #E01E79); color: #fff; font-weight: 700; padding: 6px 16px; border-radius: 999px; font-size: 0.85rem; margin-bottom: 14px; }
 .modal-bono h2 { font-size: 1.4rem; margin-bottom: 8px; }
 .modal-bono p.intro-bono { color: var(--tinta-suave); margin-bottom: 6px; font-size: 0.95rem; }
-.modal-bono p.intro-bono a { color: var(--rosa-principal); font-weight: 600; }
+.modal-bono p.intro-bono a { color: var(--rosa-texto, #C81B6D); font-weight: 600; }
 .modal-bono p.nota-bono { color: var(--tinta-suave); font-size: 0.8rem; margin: 0 0 18px; }
 .modal-bono .campo-bono { margin-bottom: 12px; text-align: left; }
 .modal-bono .campo-bono input { width: 100%; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--rosa-suave); font-family: var(--fuente-cuerpo); font-size: 0.92rem; }
 .modal-bono .campo-checkbox { display: flex; align-items: flex-start; gap: 8px; text-align: left; font-size: 0.8rem; color: var(--tinta-suave); margin: 14px 0; }
 .modal-bono .campo-checkbox input { margin-top: 3px; }
-.modal-bono .campo-checkbox a { color: var(--rosa-principal); }
+.modal-bono .campo-checkbox a { color: var(--rosa-texto, #C81B6D); }
 .modal-bono .resultado-bono { display: none; background: var(--rosa-suave); border-radius: 14px; padding: 20px; margin-top: 10px; }
-.modal-bono .codigo-bono { font-size: 1.3rem; font-weight: 700; color: var(--rosa-principal); letter-spacing: 0.03em; margin: 8px 0; }`;
+.modal-bono .codigo-bono { font-size: 1.3rem; font-weight: 700; color: var(--rosa-texto, #C81B6D); letter-spacing: 0.03em; margin: 8px 0; }`;
   document.head.appendChild(estilo);
 
   var overlay = document.createElement('div');
@@ -75,7 +75,7 @@
     '<p style="margin:0; font-weight:700;">¡Listo! Tu descuento del 10% ya está reservado 🎉</p>' +
     '<p style="font-size:0.9rem; color:var(--tinta-suave); margin:8px 0 0;">Se aplica <strong>solo, en tu primera compra</strong>: cuando pagues en línea con este correo, lo verás en tu carrito, sin escribir ningún código.</p>' +
     '<a id="bono-cta" href="' + T.cta[0] + '" class="boton-bono" style="display:inline-block; margin-top:14px; width:auto; text-decoration:none;">' + T.cta[1] + ' →</a>' +
-    '<p style="margin:12px 0 0; font-size:0.85rem;"><a href="' + T.cta2[0] + '" style="color:var(--rosa-principal); font-weight:600;">' + T.cta2[1] + '</a></p>' +
+    '<p style="margin:12px 0 0; font-size:0.85rem;"><a href="' + T.cta2[0] + '" style="color:var(--rosa-texto, #C81B6D); font-weight:600;">' + T.cta2[1] + '</a></p>' +
     '<p style="font-size:0.78rem; color:var(--tinta-suave); margin:14px 0 0;">Tu código de respaldo: <strong id="codigo-bono-texto"></strong><br>Solo lo necesitas si compras en la tienda física.</p>' +
     '</div></div>';
   document.body.appendChild(overlay);

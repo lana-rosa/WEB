@@ -102,7 +102,7 @@ export function actualizarInsigniaCuenta(n) {
   try { sessionStorage.setItem(CLAVE_PENDIENTES, JSON.stringify({ n: n, t: Date.now() })); } catch (e) {}
   if (!document.getElementById('estilo-insignia-cuenta')) {
     const st = document.createElement('style'); st.id = 'estilo-insignia-cuenta';
-    st.textContent = '.insignia-cuenta{position:absolute;bottom:-4px;right:-4px;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:#E74E96;color:#fff;font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff;line-height:1}';
+    st.textContent = '.insignia-cuenta{position:absolute;bottom:-4px;right:-4px;min-width:18px;height:18px;padding:0 4px;border-radius:999px;background:#E01E79;color:#fff;font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff;line-height:1}';
     document.head.append(st);
   }
   document.querySelectorAll('.boton-cuenta-header').forEach(function (a) {
