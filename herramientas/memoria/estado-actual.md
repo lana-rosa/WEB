@@ -7,7 +7,7 @@
 **Fechas clave:** la tienda física abre el **domingo 13-dic-2026**; atención normal desde el lunes 14-dic (los textos cambian solos ese día, `js/apertura.js`). Contador 23-nov a 4-dic, conteo físico 7 a 9-dic, ensayo de caja 10 a 12-dic.
 
 ## Por chat (cada uno reemplaza solo el suyo)
-- **1 · Agenda datos y Google:** publicado: auditoría, arreglos de Calendar, Conexiones etapas 1 y 2 (#525, #528, #530). A medias: interruptor de fotos de Drive (no hecho a propósito: riesgo de perder dibujos); etapas 3 y 4. Falta que Jennifer pruebe Drive y Calendar reales.
+- **1 · Agenda datos y Google:** publicado: auditoría, arreglos de Calendar y Conexiones etapas 1 y 2. E30 (aviso antes de conectar Google) hecho y probado en una rama; **espera el sí de Jennifer (foto enviada)** y el texto final de la abogada. A medias: interruptor de fotos de Drive y etapas 3 y 4; Jennifer prueba Drive y Calendar reales.
 - **2 · Agenda diseño y Plus:** publicado #527, #529, #531, #535. E11 hecho en papel: `FINANZAS-PROPUESTA.md` (dinero 10→5, tiempo 6→4; Jennifer dijo sí a 1–5) y `REVISION-HOJAS-PROPUESTA.md` (39→28 hojas, 10 preguntas pendientes); la agenda no se tocó.
   «Ventas y gastos»: pasos 1 y 2 PUBLICADOS el 4-nov (#582, #591: lector único + hoja nueva con migración, gratis). Sigue el paso 3 «Resumen del emprendimiento» y el grupo personal; los chats 1, 3 y 6 tienen su parte en `PENDIENTES.md`.
   Decisión 5-nov: la lista «Hojas de…» ya NO va en la hoja principal de cada sección (reemplaza lo del 3-nov); PUBLICADO (#607).
