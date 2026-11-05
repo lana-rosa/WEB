@@ -15,7 +15,8 @@
 - **4 · Tienda y Mercería:** publicado: tienda sin «Ver más» y miniaturas más livianas. E32: lista de 31 personajes lista para que Jennifer decida (`herramientas/personajes/`). Espera el Excel de la Mercería y las 34 fotos (bloque B).
 - **5 · Base de datos y pagos:** E12 hecho: nadie puede ver ni borrar la copia de agenda de otra persona (prueba con 2 cuentas inventadas, sin tocar clientas); cifrado con clave propuesto, no hecho. A medias: Jennifer recorre la lista de seguridad (las contraseñas filtradas no se pueden en el plan gratis: aceptado) y prueba A4b en el ERP.
 - **6 · Sitio, SEO y Revista:** paquete de la abogada listo (`herramientas/legal/PAQUETE-ABOGADA.md`; proveedora = Sara Loaiza Muñoz, casilla de patrones propuesta). E9 revisado: `apertura.js`, `activar_apertura.py` y el flujo coinciden (14-dic). Falta: fecha de cookies (espera sí de Jennifer), aviso de apertura en el inicio y recogida en taller.
-- **7 · Universo de Rosina y Academy:** bloque A hecho (pruebas del tema en verde). El texto de cookies («Google Fonts») pasó al chat 6 y a la abogada: ya no va en mi PR. A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas; bloques B (Jennifer) y C (abogada).
+- **7 · Universo de Rosina y Academy:** bloque A hecho; E33 (5-nov): borrador de términos de la Academy y autorizaciones de menores en `herramientas/legal/BORRADOR-ACADEMY-Y-MENORES.md` (sin publicar; lo lleva el chat 6 a la abogada).
+  A medias: faltan 6 decisiones de Jennifer (cupo, cancelación, edad, fotos de menores, pagos, comprobante); actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas.
 - **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, la Agenda se llama CrochetLab, carrito mixto Tienda+Mercería = sí (a construir, chats 4 y 5). Falta elegir línea de contenido y E10 (apertura 13-dic).
 
 ## Pendiente de Jennifer
