@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-panel.css?v=16">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=19">
-<link rel="stylesheet" href="/css/agenda-colores.css?v=48">
+<link rel="stylesheet" href="/css/agenda-colores.css?v=49">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
 <link rel="stylesheet" href="/css/agenda-panel-vida.css?v=31">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=18">
@@ -67,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-pantalla.css?v=11">
 <link rel="stylesheet" href="/css/agenda-menu.css?v=3">
 <link rel="stylesheet" href="/css/agenda-micuenta.css?v=4">
-<link rel="stylesheet" href="/css/agenda-tarjetas.css?v=1">
+<link rel="stylesheet" href="/css/agenda-tarjetas.css?v=5">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -906,11 +906,13 @@ main > :first-child { padding-top: 40px !important; }
   ::-webkit-scrollbar { display: none; }
 }
 </style>
+<script>try{var m=localStorage.getItem("lrAgendaModo");if(m==="oscuro"||(m==="auto"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.setAttribute("data-modo","oscuro")}catch(e){}</script>
+<link rel="stylesheet" href="/css/agenda-oscuro.css?v=6">
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png?v=8">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png?v=8">
 <meta name="theme-color" content="#9EA2F9">
-<script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta"){document.documentElement.setAttribute("data-tema",t);if(t==="libre"){var v=JSON.parse(localStorage.getItem("lrAgendaColorVars")||"{}");for(var k in v)if(/^--[a-z0-9-]+$/.test(k)&&/^[#a-z0-9 ,.()%-]+$/i.test(v[k]))document.documentElement.style.setProperty(k,v[k])}}}catch(e){}</script>
+<script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta"){document.documentElement.setAttribute("data-tema",t);if(t==="libre"){var v=JSON.parse(localStorage.getItem("lrAgendaColorVars")||"{}");for(var k in v)if(/^--[a-z0-9-]+$/.test(k)&&/^[#a-z0-9 ,.()%-]+$/i.test(v[k]))document.documentElement.style.setProperty(k,v[k]);if(document.documentElement.getAttribute("data-modo")==="oscuro"){var w=JSON.parse(localStorage.getItem("lrAgendaColorVarsOscuro")||"{}");for(var j in w)if(/^--[a-z0-9-]+$/.test(j)&&/^[#a-z0-9 ,.()%-]+$/i.test(w[j]))document.documentElement.style.setProperty(j,w[j])}}}}catch(e){}</script>
 <link rel="manifest" href="/manifest-agenda.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Agenda para tejedoras">
 <!-- ICONOS:FIN -->
@@ -1010,6 +1012,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="aviso-borrar" id="aviso-borrar">Tu agenda se guarda en este dispositivo (y en tu cuenta, si activaste la copia): si la borras, <strong>se elimina de inmediato y no se puede recuperar</strong>. Antes de borrar, usa «Guardar una copia».</p>
     </div>
 
+      </section>
+      <section class="cfg-grupo" id="cfg-modo"><h3 class="cfg-titulo">Claro u oscuro</h3>
+      <fieldset class="agenda-modo" id="modo-opciones"><legend>Cómo se ve tu agenda</legend>
+        <label class="am-op"><input type="radio" name="agenda-modo" value="claro" checked><span class="am-ic" aria-hidden="true">☀️</span><span class="am-tx">Claro</span></label>
+        <label class="am-op"><input type="radio" name="agenda-modo" value="oscuro"><span class="am-ic" aria-hidden="true">🌙</span><span class="am-tx">Oscuro</span></label>
+        <label class="am-op"><input type="radio" name="agenda-modo" value="auto"><span class="am-ic" aria-hidden="true">📱</span><span class="am-tx">Como el celular</span></label>
+      </fieldset>
+      <small class="nota-copia">«Como el celular» cambia solo cuando tu celular o tu computador pasa de día a noche. Se guarda en este dispositivo. Al imprimir, la agenda siempre sale en claro, y la hoja de dibujo conserva su papel claro.</small>
       </section>
       <section class="cfg-grupo"><h3 class="cfg-titulo">Color de la agenda</h3>
       <fieldset class="agenda-colores" id="agenda-colores"><legend>Color de la agenda</legend><div class="ac-opciones" id="ac-opciones"></div></fieldset>
@@ -4387,8 +4397,9 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=32"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=31" defer></script>
-<script src="/js/agenda/config.js?v=17" defer></script>
+<script src="/js/agenda/idioma.js?v=32" defer></script>
+<script src="/js/agenda/modo.js?v=1" defer></script>
+<script src="/js/agenda/config.js?v=18" defer></script>
 <script src="/js/agenda/tour.js?v=6" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
 <script src="/js/agenda/formas.js?v=3" defer></script>
