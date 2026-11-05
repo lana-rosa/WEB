@@ -1337,7 +1337,7 @@ function inicializarBuscadorTienda() {
         <p class="calificacion-modal" id="modal-calificacion"></p>
         <p class="precio-modal" id="modal-precio"></p>
         <p class="descripcion-modal" id="modal-descripcion"></p>
-        <p class="aviso-personaje" id="modal-aviso-personaje" hidden>Pieza artesanal tejida a mano e inspirada en un personaje. No es un producto oficial ni está asociada a la marca del personaje.</p>
+        <p class="aviso-personaje" id="modal-aviso-personaje" hidden>Pieza artesanal tejida a mano, inspirada en un personaje de ficción. Debido a su proceso de elaboración manual, cada pieza puede presentar variaciones en sus formas, proporciones, colores y detalles. No es un producto oficial ni está patrocinada o vinculada comercialmente con los titulares del personaje.</p>
         <div class="fila-compra" id="modal-fila-compra">
           <div class="cantidad-producto">
             <button type="button" id="modal-menos" aria-label="Menos">−</button>
@@ -1349,6 +1349,7 @@ function inicializarBuscadorTienda() {
         <button type="button" class="boton-comprar-ahora" id="modal-boton-comprar"><svg class="ico-carrito" width="1.15em" height="1.15em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.22em"><path d="M3 4h2.5l2.2 10.2a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg> Comprar ahora</button>
         <a class="boton-personalizar-ficha" id="modal-boton-personalizar" href="/personaliza.html" hidden>✨ Personalizar el mío y pagar</a>
         <p class="aviso-personaje" id="modal-aviso-referencia" hidden>Las fotos son de referencia: cada amigurumi se teje a partir de tu foto o tu idea. Llenas el formulario con tus fotos y detalles y después pagas aquí mismo con Wompi.</p>
+        <p class="aviso-personaje" id="modal-aviso-persona" hidden>Pieza artesanal personalizada, tejida a mano e inspirada en una persona. Cada creación se elabora de manera individual y puede presentar variaciones en sus características, proporciones y detalles.</p>
         <div class="modal-botones">
           <a class="enlace-whatsapp-ficha" id="modal-boton-whatsapp" href="#" target="_blank" rel="noopener">¿Dudas? Escríbenos por WhatsApp</a>
         </div>
@@ -1436,12 +1437,20 @@ var RESENAS_POR_PRODUCTO = {};
     precioEl.textContent = formatoCOP(producto.precio) + ' COP';
     mostrarResenasEnModal(id);
     descripcionEl.innerHTML = escHtml(producto.descripcion).replace(/\n/g, '<br>');
-    document.getElementById('modal-aviso-personaje').hidden = !(window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id));
+    // Aviso de la ficha: piezas inspiradas en una persona real (figura pública) llevan su propio texto; las de personajes, el del párrafo (5-nov-2026, textos de Jennifer).
+    // Una pieza nueva de este tipo se agrega a IDS_FIGURA_PUBLICA (Messi y Michael Jackson hoy).
+    var IDS_FIGURA_PUBLICA = ['f4e20b3c-666a-4ec2-a4c8-656f46ee7604', 'efc61b6c-66fc-4307-8e33-c0728aff61ef'];
+    var avisoPj = document.getElementById('modal-aviso-personaje');
+    var esFiguraPublica = IDS_FIGURA_PUBLICA.indexOf(id) !== -1;
+    if (!avisoPj.dataset.textoPersonaje) avisoPj.dataset.textoPersonaje = avisoPj.textContent;
+    avisoPj.textContent = esFiguraPublica ? 'Pieza artesanal tejida a mano, inspirada en una figura pública. Es una creación artesanal independiente, no es un producto oficial ni está patrocinada o respaldada por la persona representada.' : avisoPj.dataset.textoPersonaje;
+    avisoPj.hidden = !(esFiguraPublica || (window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id)));
     var persFicha = window.datosPersonalizado({ id: id, nombre: producto.nombre });
     document.getElementById('modal-fila-compra').hidden = !!persFicha;
     document.getElementById('modal-boton-comprar').hidden = !!persFicha;
     document.getElementById('modal-boton-personalizar').hidden = !persFicha;
     document.getElementById('modal-aviso-referencia').hidden = !persFicha;
+    document.getElementById('modal-aviso-persona').hidden = !persFicha;
     if (persFicha) document.getElementById('modal-boton-personalizar').href = persFicha.url;
     var bloquePers = document.querySelector('.personalizalo-modal'); if (bloquePers) bloquePers.hidden = !!persFicha;
 
