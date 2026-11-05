@@ -926,6 +926,7 @@ html[data-modo="oscuro"] .mc-op[aria-pressed="true"] { border-color: var(--rosa-
 html[data-modo="oscuro"] .mc-msg { color: #C2E6D1; }
 html[data-modo="oscuro"] .mc-nota { color: #D3C9CE; }
 html[data-modo="oscuro"] .mc-campo input { border: 1.5px solid var(--rosa-medio); }
+html[data-modo="oscuro"] .voz-aviso-txt { color: #EEE8EB; }
 html[data-modo="oscuro"] .encabezado[data-casa="agenda"] .boton-lupa { background: #211D27; border: 1.5px solid var(--rosa-suave); }
 html[data-modo="oscuro"] .encabezado[data-casa="agenda"] .boton-lupa[aria-expanded="true"] { background: var(--rosa-suave); }
 /* ---- de /css/agenda-tarjetas.css ---- */
