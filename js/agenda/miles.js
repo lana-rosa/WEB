@@ -4,7 +4,7 @@
    quitando lo que no es dígito, así que el punto no cambia ningún cálculo. No toca días, cuotas, cantidades ni porcentajes. */
 (function () {
   'use strict';
-  var IDS = /^(fin-v|fm-meta|fm-ah|fp-c|ff-v|fd-cuota|ft-cupo|ft-saldo|ag-fr-costo|ag-fr-vendido|mv-meta|ct-hora)$/;
+  var IDS = /^(fin-v|fm-meta|fm-ah|fp-c|ff-v|fd-cuota|ft-cupo|ft-saldo|ag-fr-costo|ag-fr-vendido|mv-meta|ct-hora|fin-cm)$/;
   var COLS = /^(valor|valorunidad|precio|costoenvio|abono|costo|materiales|empaque)$/;
   function esDinero(e) {
     if (!e || !e.tagName || (e.tagName !== 'INPUT' && e.tagName !== 'TEXTAREA') || e.type === 'number' || e.readOnly) return false;

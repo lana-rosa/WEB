@@ -1,5 +1,5 @@
 /* Agenda para tejedoras: conexiones entre hojas (30-oct-2026, revisión de la agenda pedida por Sara). Para no escribir dos veces lo mismo:
-   · Control de pedidos → Mis ventas: los pedidos en estado «Entregado» se pasan de una vez a Mis ventas (fecha de entrega, producto, cliente y total de la compra).
+   · Control de pedidos → Ventas y gastos: los pedidos en estado «Entregado» se pasan de una vez a Ventas y gastos (fecha de entrega, producto, cliente y total de la compra; antes iban a Mis ventas).
    · Inventario de lanas → Lista de compras: las lanas con 0 ovillos se agregan a la lista de compras.
    · Diario de tejido → Mi año tejiendo (30-oct-2026): cada mes del año muestra cuántos días anotaste en el diario y cómo te sentiste, y un botón trae lo que tejiste esos días al texto de cada mes.
    Las acciones se repiten sin duplicar (se compara lo que ya está) y solo las hace la persona al tocar el botón. */
@@ -37,23 +37,25 @@
   /* ---------- Pedidos entregados → Mis ventas ---------- */
   var COLS_V = ['fecha', 'producto', 'cliente', 'precio', 'costo'];
   function clave(p, c, t) { return limpiar(p) + '|' + limpiar(c) + '|' + (num(t) || 0); }
-  function pendientesVentas() {
-    if (!N.tablas['tabla-pedidos'] || !N.tablas['tabla-ventas']) return [];
+  function pendientesVentas() {   // desde el 4-nov-2026 las ventas viven en «Ventas y gastos» (datos._fin.movs); se compara con lo que ya hay ahí
+    if (!N.tablas['tabla-pedidos'] || !window.lrDinero) return [];
     var ya = {}, r, lista = [];
-    for (r = 1; r <= N.tablas['tabla-ventas'].n; r++) ya[clave(val('tabla-ventas', r, 'producto'), val('tabla-ventas', r, 'cliente'), val('tabla-ventas', r, 'precio'))] = true;
+    window.lrDinero.ventasDetalle().forEach(function (x) { ya[clave(x.producto, x.cliente, x.v)] = true; });
     for (r = 1; r <= N.tablas['tabla-pedidos'].n; r++) {
       if (val('tabla-pedidos', r, 'estado') !== 'Entregado') continue;
       var total = val('tabla-pedidos', r, 'totalcompra') || val('tabla-pedidos', r, 'precio'); if (num(total) === null) continue;
       var prod = val('tabla-pedidos', r, 'pedido'), cli = val('tabla-pedidos', r, 'cliente');
       if (ya[clave(prod, cli, total)]) continue;
-      lista.push({ fecha: val('tabla-pedidos', r, 'entrega') || hoy(), producto: prod, cliente: cli, precio: total });
+      lista.push({ fecha: val('tabla-pedidos', r, 'entrega') || hoy(), producto: prod, cliente: cli, precio: total, fila: r });
     }
     return lista;
   }
+  function isoDe(texto) { var f = N.leerFecha ? N.leerFecha(texto) : null; var h = new Date(); return f && f.a ? f.a + '-' + ('0' + f.m).slice(-2) + '-' + ('0' + (f.d || 1)).slice(-2) : h.getFullYear() + '-' + ('0' + (h.getMonth() + 1)).slice(-2) + '-' + ('0' + h.getDate()).slice(-2); }
   function pasarAVentas() {
-    var lista = pendientesVentas(), n = 0;
-    lista.forEach(function (v) { var f = sitioLibre('tabla-ventas', COLS_V); if (!f) return; COLS_V.slice(0, 4).forEach(function (c) { poner('tabla-ventas', f, c, v[c]); }); n++; });
-    return n ? 'Pasé ' + n + (n === 1 ? ' pedido entregado' : ' pedidos entregados') + ' a Mis ventas. Escribe el costo de los materiales de cada venta para ver tu ganancia.' : '';
+    var lista = pendientesVentas(), n = 0, d = N.datos(), f = d._fin || (d._fin = {}); f.movs = f.movs || [];
+    lista.forEach(function (v) { f.movs.push({ id: 'pd' + v.fila + '-' + Date.now().toString(36), f: isoDe(v.fecha), t: 'i', c: 'Ventas', d: v.producto, p: v.producto, cl: v.cliente, cm: '', v: num(v.precio) || 0, m: '', o: 'pd' + v.fila }); n++; });
+    if (n && window.lrFinReset) window.lrFinReset();
+    return n ? 'Pasé ' + n + (n === 1 ? ' pedido entregado' : ' pedidos entregados') + ' a Ventas y gastos. Anota el costo de los materiales de cada venta para ver tu ganancia.' : '';
   }
 
   /* ---------- Lanas en 0 → Lista de compras ---------- */
@@ -132,7 +134,7 @@
 
   function revisar() {
     var v = pendientesVentas();
-    aviso('control-pedidos', 'conexion-ventas', v.length ? '💰 ' + (v.length === 1 ? 'Tienes 1 pedido entregado' : 'Tienes ' + v.length + ' pedidos entregados') + ' que aún no está en Mis ventas.' : '', v.length === 1 ? 'Pasarlo a Mis ventas' : 'Pasarlos a Mis ventas', pasarAVentas);
+    aviso('control-pedidos', 'conexion-ventas', v.length ? '💰 ' + (v.length === 1 ? 'Tienes 1 pedido entregado' : 'Tienes ' + v.length + ' pedidos entregados') + ' que aún no está en Ventas y gastos.' : '', v.length === 1 ? 'Pasarlo a Ventas y gastos' : 'Pasarlos a Ventas y gastos', pasarAVentas);
     var a = agotadas();
     aviso('inventario-lanas', 'conexion-compras', a.length ? '🛍️ ' + (a.length === 1 ? 'Tienes 1 lana agotada o por acabarse' : 'Tienes ' + a.length + ' lanas agotadas o por acabarse') + (a.length === 1 ? ' que no está' : ' que no están') + ' en tu Lista de compras.' : '', a.length === 1 ? 'Agregarla a la lista' : 'Agregarlas a la lista', pasarACompras);
   }

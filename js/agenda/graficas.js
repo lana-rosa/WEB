@@ -1,8 +1,8 @@
 /* Agenda para tejedoras: gráficas del negocio (Plus para emprendedoras, 31-oct-2026, pedido de Sara: «el punto de equilibrio de forma gráfica en el dashboard
    y gráficos en el módulo de finanzas»). Solo leen lo escrito en las otras hojas; no guardan nada.
-   - Punto de equilibrio del mes (barra de ventas con la raya del punto de equilibrio y la de la meta): en Mi panel y en «Mi negocio en números».
-   - Utilidad de cada mes (últimos 6 meses: ingresos − gastos de «Ingresos y gastos del negocio»): en «Mi negocio en números».
-   - Ventas del mes contra tu meta (acumulado por día, con el ritmo ideal): en «Mi negocio en números».
+   - Punto de equilibrio del mes (barra de ventas con la raya del punto de equilibrio y la de la meta): en Mi panel y en «Resumen del negocio».
+   - Utilidad de cada mes (últimos 6 meses: ingresos − gastos de «Ingresos y gastos del negocio»): en «Resumen del negocio».
+   - Ventas del mes contra tu meta (acumulado por día, con el ritmo ideal): en «Resumen del negocio».
    Los textos largos van en HTML (el traductor no entra en los SVG); dentro del SVG solo van números y meses. Depende de metas-ventas.js (lrMetasVentas.calcular). */
 (function () {
   'use strict';
@@ -31,7 +31,7 @@
   /* ---- 1. Punto de equilibrio: barra con rayas ---- */
   function equilibrio(c, conEjemplo) {
     var d = datos(), ej = false; c.textContent = ''; c.classList.remove('gr-ejemplo');
-    var pista = 'Para ver esta gráfica agrega tus pagos en «Gastos fijos y deudas del negocio» y anota el costo en «Mis ventas del mes» (o escribe tu margen en «Presupuesto y metas del negocio»).';
+    var pista = 'Para ver esta gráfica agrega tus pagos en «Gastos fijos, tarjetas y deudas» y anota el costo en «Ventas y gastos» (o escribe tu margen en «Presupuesto y metas»).';
     if (!d || !d.eq) { if (!conEjemplo) return false; d = { ventas: 1200000, eq: 2000000, meta: 3000000, eqCuotas: 0, cuotas: 0 }; ej = true; }
     var W = 600, H = 96, pad = 8, tope = Math.max(d.ventas, d.eq, d.meta || 0, d.eqCuotas && d.cuotas ? d.eqCuotas : 0) * 1.12 || 1, x = function (v) { return pad + (W - 2 * pad) * v / tope; };
     var s = sv('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'class': 'gr-svg' });
@@ -55,9 +55,7 @@
   /* ---- 2. Utilidad de cada mes (últimos 6) ---- */
   function utilidad(c) {
     c.textContent = ''; c.classList.remove('gr-ejemplo'); var ej = false;
-    var f = (N.datos()._fin || {}), movs = f.movs || [], hoy = new Date(), meses = [];
-    for (var i = 5; i >= 0; i--) { var d = new Date(hoy.getFullYear(), hoy.getMonth() - i, 1); meses.push({ y: d.getFullYear(), m: d.getMonth(), ing: 0, gas: 0 }); }
-    movs.forEach(function (x) { if (!x || (x.t !== 'i' && x.t !== 'g')) return; var k = String(x.f || '').slice(0, 7); meses.forEach(function (ms) { if (k === ms.y + '-' + ('0' + (ms.m + 1)).slice(-2)) { if (x.t === 'i') ms.ing += num(x.v); else ms.gas += num(x.v); } }); });
+    var meses = window.lrDinero ? window.lrDinero.porMes(6).map(function (x) { return { y: x.y, m: x.m - 1, ing: x.entradas, gas: x.gastos }; }) : [];   /* lector único del dinero (4-nov-2026) */
     meses.forEach(function (ms) { ms.u = ms.ing - ms.gas; });
     if (!meses.some(function (ms) { return ms.ing || ms.gas; })) { var mu = [180000, 240000, -60000, 320000, 410000, 520000]; meses.forEach(function (ms, i) { ms.u = mu[i]; }); ej = true; }
     var W = 600, H = 210, base = 90, mx = Math.max.apply(null, meses.map(function (ms) { return Math.abs(ms.u); })) || 1, bw = 52, gap = (W - 6 * bw) / 7;
@@ -95,7 +93,7 @@
     [1, Math.round(n / 2), n].forEach(function (dia) { s.appendChild(sv('text', { x: x(dia), y: H - 8, 'text-anchor': dia === 1 ? 'start' : dia === n ? 'end' : 'middle', 'class': 'gr-t gr-mes' }, String(dia))); });
     var c1 = el('div', 'gr-svg-wrap'); c1.appendChild(s); c.appendChild(c1);
     c.appendChild(leyenda([['Ventas del mes', ok ? VERDE : ROSA], ['Ritmo ideal para tu meta', GRIS, 'gr-punteada'], d.eq ? ['Punto de equilibrio', '#45454A', 'gr-raya'] : null].filter(Boolean)));
-    if (ej) { notaEjemplo(c, 'Escribe tu meta de ventas en «Presupuesto y metas del negocio» y aquí verás cómo vas día a día.'); return true; }
+    if (ej) { notaEjemplo(c, 'Escribe tu meta de ventas en «Presupuesto y metas» y aquí verás cómo vas día a día.'); return true; }
     c.appendChild(el('p', 'gr-resumen', ok ? 'Vas al día o adelantada con tu meta.' : 'Vas por debajo del ritmo que necesitas para llegar a tu meta.'));
     return true;
   }

@@ -9,12 +9,14 @@
   var lupa = document.createElement('button'); lupa.type = 'button'; lupa.id = 'buscar-lupa'; lupa.className = 'boton-lupa';
   lupa.setAttribute('aria-label', 'Buscar en mi agenda'); lupa.setAttribute('aria-expanded', 'false'); lupa.setAttribute('aria-controls', 'caja-buscar');
   lupa.innerHTML = '<img src="/img/agenda/menu/btn-buscar.webp?v=1" width="30" height="30" alt="" aria-hidden="true">';
-  fila.appendChild(lupa);
+  /* 3-nov-2026 (pedido de Jennifer): la lupa también va arriba, en la barra, junto a la foto de «Mi cuenta» */
+  var enc = document.querySelector('.encabezado[data-casa="agenda"] .contenedor'), cta = enc && (document.getElementById('mc-boton') || enc.querySelector('.boton-cuenta-header'));
+  if (enc && cta) enc.insertBefore(lupa, cta); else fila.appendChild(lupa);
   var caja = document.createElement('div'); caja.id = 'caja-buscar'; caja.className = 'caja-buscar no-imprimir'; caja.hidden = true; caja.appendChild(buscar);
   cont.insertBefore(caja, fila.nextSibling);
   function abrir(on) {
     caja.hidden = !on; lupa.setAttribute('aria-expanded', String(on));
-    if (on) { var i = document.getElementById('buscar-agenda'); if (i) i.focus(); }
+    if (on) { window.scrollTo({ top: 0 }); var i = document.getElementById('buscar-agenda'); if (i) i.focus(); }
   }
   lupa.addEventListener('click', function () { abrir(caja.hidden); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !caja.hidden) { abrir(false); lupa.focus(); } });

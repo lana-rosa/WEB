@@ -10,7 +10,7 @@
   var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
   var TIPOS = { pedido: 'Entrega', pedidoEnvio: 'Envío', ficha: 'Entrega', proyecto: 'Proyecto', fecha: 'Fecha', feria: 'Feria', clienta: 'Cumpleaños' };
   var HOJA_DE = { pedido: 'control-pedidos', pedidoEnvio: 'control-pedidos', ficha: 'ficha-proyecto', proyecto: 'proyectos-fila', fecha: 'fechas-especiales', feria: 'ferias-mercados', clienta: 'mis-clientas' };
-  var ACCIONES = [['Anotar pedido', 'control-pedidos', 'tabla-pedidos'], ['Nuevo proyecto', 'proyectos-fila', 'tabla-fila'], ['Anotar venta', 'ventas-mes', 'tabla-ventas'], ['Anotar gasto', 'gastos-negocio', 'tabla-gastos']];
+  var ACCIONES = [['Anotar pedido', 'control-pedidos', 'tabla-pedidos'], ['Nuevo proyecto', 'proyectos-fila', 'tabla-fila'], ['Anotar venta', 'fin-movimientos', 'venta'], ['Anotar gasto', 'fin-movimientos', 'gasto']];
   function el(id) { return document.getElementById(id); }
   function dd(n) { return ('0' + n).slice(-2); }
   function iso(d) { return d.getFullYear() + '-' + dd(d.getMonth() + 1) + '-' + dd(d.getDate()); }
@@ -102,9 +102,12 @@
   function pintar() {
     var hoy = new Date(); hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate()); diaPintado = iso(hoy);
     var enMes = function (t) { var f = N.leerFecha ? N.leerFecha(t) : null; return !!f && f.a === hoy.getFullYear() && f.m === hoy.getMonth() + 1; };
-    var todasVentas = filas('tabla-ventas', ['fecha', 'precio']);
+    /* el dinero sale del lector único (lrDinero): ventas + ingresos y gastos de las tres hojas, sin contar dos veces lo mismo (4-nov-2026) */
+    var regs = window.lrDinero ? window.lrDinero.registros() : [];
+    var todasVentas = regs.filter(function (r) { return r.tipo === 'venta' || r.tipo === 'ingreso'; }).map(function (r) { return { fecha: r.f, precio: String(r.v) }; });
     var ventas = todasVentas.filter(function (f) { return enMes(f.fecha); }), vend = ventas.reduce(function (s, f) { return s + pesos(f.precio); }, 0);
-    var gastos = filas('tabla-gastos', ['fecha', 'valor']).filter(function (f) { return enMes(f.fecha); }), gas = gastos.reduce(function (s, f) { return s + pesos(f.valor); }, 0);
+    var todosGastos = regs.filter(function (r) { return r.tipo === 'gasto'; }).map(function (r) { return { fecha: r.f, valor: String(r.v) }; });
+    var gastos = todosGastos.filter(function (f) { return enMes(f.fecha); }), gas = gastos.reduce(function (s, f) { return s + pesos(f.valor); }, 0);
     var ped = filas('tabla-pedidos', ['cliente', 'entrega', 'estado', 'precio', 'totalcompra', 'abono']);
     var activos = ped.filter(function (p) { return !/entreg|cancel|despachad|terminad/i.test(p.estado); });
     var semana = activos.filter(function (p) { var f = N.leerFecha ? N.leerFecha(p.entrega) : null; if (!f || f.sinAnio) return false; var d = Math.round((new Date(f.a, f.m - 1, f.d) - hoy) / 86400000); return d >= 0 && d <= 7; }).length;
@@ -165,7 +168,7 @@
     var off = {}; try { off = JSON.parse(localStorage.getItem('lrAgendaConsejos') || '{}') || {}; } catch (e) { off = {}; }
     var CONSEJOS = [
       ['abono', activos.some(function (p) { return pesos(p.totalcompra) && !pesos(p.abono); }), 'Tienes pedidos activos sin abono. Pedir un anticipo antes de tejer cuida tus materiales y tu tiempo.', 'control-pedidos'],
-      ['gastos', activos.length >= 3 && !gastos.length, 'Ya tienes varios pedidos y ningún gasto anotado este mes. Anota lo que gastas en materiales para saber cuánto te queda por cada pedido.', 'gastos-negocio'],
+      ['gastos', activos.length >= 3 && !gastos.length, 'Ya tienes varios pedidos y ningún gasto anotado este mes. Anota lo que gastas en materiales para saber cuánto te queda por cada pedido.', 'fin-movimientos'],
       ['fechas', activos.some(function (p) { return !String(p.entrega || '').trim(); }), 'Algunos pedidos activos no tienen fecha de entrega. Con la fecha, la agenda te avisa a tiempo.', 'control-pedidos'],
       ['gancho', tejiendo >= 4, 'Tienes muchos proyectos en el gancho a la vez. Terminar uno antes de empezar otro ayuda a cumplir las fechas.', 'proyectos-fila']
     ].filter(function (c) { return c[1] && !off[c[0]]; })[0];
@@ -178,7 +181,7 @@
       bs.appendChild(b1); bs.appendChild(b2); cr.appendChild(bs); cont.appendChild(cr);
     }
 
-    if (!ped.length && !todasVentas.length && !filas('tabla-gastos', ['valor']).length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
+    if (!ped.length && !todasVentas.length && !todosGastos.length && !proy.length && window.lrEmpiezaAqui) cont.appendChild(window.lrEmpiezaAqui());
     var k = txt('div', 'pn-kpis'); k.setAttribute('role', 'group'); k.setAttribute('aria-label', 'Números de ' + MESES[hoy.getMonth()]);
     k.appendChild(tarjeta('Ventas de ' + MESES[hoy.getMonth()], fm(vend), ventas.length + (ventas.length === 1 ? ' venta anotada' : ' ventas anotadas'), 'k1', 'grafica'));
     k.appendChild(tarjeta('Gastos del mes', fm(gas), gastos.length + (gastos.length === 1 ? ' gasto anotado' : ' gastos anotados'), 'k2', 'recibo'));
@@ -208,9 +211,9 @@
       });
     }
     gr.appendChild(cp);
-    var cv = txt('div', 'pn-card'); cv.appendChild(cabecera('Ventas de la semana', 'Ver ventas', 'ventas-mes'));
+    var cv = txt('div', 'pn-card'); cv.appendChild(cabecera('Ventas de la semana', 'Ver ventas', 'fin-movimientos'));
     var sw = semanaVentas(hoy, todasVentas), mx = Math.max.apply(null, sw.v), tot = sw.v.reduce(function (a, b) { return a + b; }, 0);
-    if (!tot) cv.appendChild(txt('p', 'pn-vacio', 'Cuando anotes ventas con fecha en «Mis ventas del mes», aquí verás cómo te fue cada día de esta semana.'));
+    if (!tot) cv.appendChild(txt('p', 'pn-vacio', 'Cuando anotes ventas en «Ventas y gastos», aquí verás cómo te fue cada día de esta semana.'));
     else {
       var ba = txt('div', 'pn-barras'); ba.setAttribute('role', 'img'); ba.setAttribute('aria-label', 'Ventas de esta semana, de lunes a domingo: ' + sw.v.map(function (x) { return fm(x); }).join(', '));
       INICIALES().forEach(function (d, i) {
@@ -245,7 +248,7 @@
     var ac = txt('div', 'pn-acciones');
     ACCIONES.forEach(function (a) {
       var b = txt('button', 'pn-accion', '+ ' + a[0]); b.type = 'button';
-      b.addEventListener('click', function () { ir(a[1]); setTimeout(function () { if (window.lrFichas) window.lrFichas.agregar(a[2]); else if (N.agregarRenglon) N.agregarRenglon(a[2]); }, 80); });
+      b.addEventListener('click', function () { ir(a[1]); setTimeout(function () { if (a[2] === 'venta' || a[2] === 'gasto') { if (window.lrFinNuevo) window.lrFinNuevo(a[2] === 'venta' ? 'i' : 'g'); } else if (window.lrFichas) window.lrFichas.agregar(a[2]); else if (N.agregarRenglon) N.agregarRenglon(a[2]); }, 80); });
       ac.appendChild(b);
     });
     ca.appendChild(ac); cont.appendChild(ca);
@@ -256,7 +259,7 @@
       var b = txt('button', 'pn-accion sec', a[0]); b.type = 'button'; b.addEventListener('click', function () { ir(a[1]); }); lm.appendChild(b);
     });
     mas.appendChild(lm); cont.appendChild(mas);
-    cont.appendChild(txt('p', 'pn-nota', 'Estos números salen de lo que escribes en tus hojas: Mis ventas, Gastos del negocio, Control de pedidos, Proyectos por tejer y el Planeador.'));
+    cont.appendChild(txt('p', 'pn-nota', 'Estos números salen de lo que escribes en tus hojas: Ventas y gastos, Control de pedidos, Proyectos por tejer y el Planeador.'));
   }
   window.lrPintarPanel = pintar;
   /* Si la página queda abierta de un día para otro (o se vuelve a ella), los avisos se renuevan con la fecha de hoy */
@@ -299,7 +302,7 @@
         b.addEventListener('click', function () { ir(id); }); g.appendChild(b);
       });
       vista.appendChild(g); vista.hidden = false;
-      var sel = el('selector-hoja'); if (sel) sel.hidden = window.innerWidth > 820;   /* en el teléfono la lista «Hojas de…» queda arriba (3-nov-2026); en pantallas grandes las tarjetas y el menú lateral bastan */
+      var sel = el('selector-hoja'); if (sel) sel.hidden = true;   /* en el teléfono la lista «Hojas de…» queda arriba (3-nov-2026); en pantallas grandes las tarjetas y el menú lateral bastan */
       h.focus({ preventScroll: true });
       if (window.innerWidth < 900) vista.scrollIntoView({ block: 'start' });
     },

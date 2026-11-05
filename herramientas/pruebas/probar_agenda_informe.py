@@ -22,7 +22,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM)
     pg = abrir(contexto(b, 1280, 1000, datos=D, config_abierta=False), 'fin-resumen', 2600, config=False)
     T.v('sin errores de JavaScript', not pg.errs, pg.errs)
-    T.v('el botón «Ver el informe del mes» está en Mi negocio en números', pg.locator('#fin-resumen #inf-boton').count() == 1)
+    T.v('el botón «Ver el informe del mes» está en el Resumen del negocio', pg.locator('#fin-resumen #inf-boton').count() == 1)
     T.v('el informe empieza oculto', pg.locator('#informe-mes:visible').count() == 0)
     pg.click('#inf-boton'); pg.wait_for_timeout(500)
     t = pg.inner_text('#informe-mes'); tn = ' '.join(t.split())
