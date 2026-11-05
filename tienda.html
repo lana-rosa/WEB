@@ -1436,7 +1436,14 @@ var RESENAS_POR_PRODUCTO = {};
     precioEl.textContent = formatoCOP(producto.precio) + ' COP';
     mostrarResenasEnModal(id);
     descripcionEl.innerHTML = escHtml(producto.descripcion).replace(/\n/g, '<br>');
-    document.getElementById('modal-aviso-personaje').hidden = !(window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id));
+    // Aviso de la ficha: piezas inspiradas en una persona real (figura pública) llevan su propio texto; las de personajes, el del párrafo (5-nov-2026, textos de Jennifer).
+    // Una pieza nueva de este tipo se agrega a IDS_FIGURA_PUBLICA (Messi y Michael Jackson hoy).
+    var IDS_FIGURA_PUBLICA = ['f4e20b3c-666a-4ec2-a4c8-656f46ee7604', 'efc61b6c-66fc-4307-8e33-c0728aff61ef'];
+    var avisoPj = document.getElementById('modal-aviso-personaje');
+    var esFiguraPublica = IDS_FIGURA_PUBLICA.indexOf(id) !== -1;
+    if (!avisoPj.dataset.textoPersonaje) avisoPj.dataset.textoPersonaje = avisoPj.textContent;
+    avisoPj.textContent = esFiguraPublica ? 'Pieza artesanal tejida a mano, inspirada en una figura pública. Es una creación artesanal independiente, no es un producto oficial ni está patrocinada o respaldada por la persona representada.' : avisoPj.dataset.textoPersonaje;
+    avisoPj.hidden = !(esFiguraPublica || (window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id)));
     var persFicha = window.datosPersonalizado({ id: id, nombre: producto.nombre });
     document.getElementById('modal-fila-compra').hidden = !!persFicha;
     document.getElementById('modal-boton-comprar').hidden = !!persFicha;
