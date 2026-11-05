@@ -160,3 +160,39 @@ Enviar los bloques al calendario propio «Agenda para tejedoras» con su aviso, 
 ## [x] E26 (hecho 4-nov-2026, #584, parte del sitio; la agenda va con el chat 2) · Letra gris más oscura (Jennifer, 4-nov-2026: «el gris que estamos usando está un poco claro»)
 - **Agenda → chat 2, dentro de E25** (mismas fotos de opciones). **Resto del sitio → chat 6**: revisar `--tinta-suave` y otros grises de texto en `css/comun.css` y en los estilos de cada página; oscurecerlos hasta al menos 4,5:1 sobre el fondo blanco y sobre los fondos de cada casa (`--casa-t1`, `--casa-t2`). Fotos antes y después a Jennifer, sí o no (nivel 🟡). Que los dos chats usen el mismo gris.
 - **E24 ampliado (Jennifer, 4-nov-2026, captura de `cuenta.html` desde la agenda):** (1) quitar también el **engranaje de Configuración** del encabezado (no lleva a ningún lado y ya está en el perfil de la agenda); (2) las **tres rayitas** deben mostrar **solo las opciones de «Mi cuenta»**: Pedidos, Mensajes, Reseñas, Favoritos, Direcciones, Carrito, Personalizados, Mis datos y Cerrar sesión (y un enlace para volver a la agenda), no el menú del sitio.
+
+---
+## Respuesta de la abogada (5-nov-2026) — leer `herramientas/legal/RESPUESTA-ABOGADA-2026-11.md`
+Regla: los textos legales se preparan como borrador, Jennifer los ve, **la abogada da aprobación escrita** y luego se publican. Ya aprobados para publicar (con foto a Jennifer): punto 1 (retracto, **15 días**, no 30) y punto 12 (Google Fonts). Fase 1 antes de la apertura.
+
+## [ ] E27 · Textos legales según la abogada (chat 6) — fase 1 ya
+- **Publicar ya** (con foto a Jennifer): retracto con el texto del punto 1 y **15 días calendario**; 7 días solo como recomendación; diferencia retracto/garantía; retracto solo para compras por internet; coherencia en preguntas frecuentes, Personaliza y Mercería. Google Fonts fuera y **fechas unificadas** de la política de cookies.
+- **Borradores para la abogada** (un solo documento `herramientas/legal/BORRADORES-FASE-1.md`, con el texto actual y el propuesto): identificación única de la titular en todas las páginas (punto 2); términos de la Mercería (retracto de insumos, pago del envío, garantía en promociones); política de datos completa (punto 3 y 13: finalidades, proveedores por categoría, reseñas, bono, consultas y reclamos, seguridad, conservación por categoría, supresión, cookies por tipo); membresía (punto 4: texto de inicio inmediato, prueba gratis, separar la copia gratuita); copias (punto 7); Calendar/Drive (punto 8, texto del acceso del equipo); voz y lápiz (punto 9); aviso del chat con Anthropic (punto 10).
+- Después de la aprobación escrita: publicar, actualizar fechas y avisar al chat 5 para subir las versiones de las autorizaciones en el código. Anotar las respuestas en la tabla de `PAQUETE-ABOGADA.md`.
+- **Fase 2 (después):** términos de Lana Rosa Academy (con el chat 7), condiciones de patrones (con el chat 5), aviso de realidad aumentada (con el chat 7). Verificar Cloudflare con las solicitudes de red (punto 11).
+
+## [ ] E28 · Cambios técnicos de la abogada (chat 5) — fase 1 ya
+- **Prioridad:** bucket `guias-envio` privado, enlaces firmados con vencimiento, acceso restringido y borrado de guías viejas (punto 6). Explicarle a Jennifer antes (nivel 🔴).
+- Identificación de la titular en comprobantes y correos de compra (texto del punto 2; cuando la abogada apruebe).
+- Casilla de personalizados (ya pedida): texto como información y prueba, **no como renuncia**.
+- Bono: separar la entrega del bono de la autorización de publicidad. Reseñas: publicar solo nombre de pila o seudónimo.
+- Registro de solicitudes de supresión que se vuelva a aplicar si se restaura una copia (punto 7).
+- **Inventario de proveedores** para la abogada: proveedor, país donde se procesan los datos, rol (responsable/encargado), subencargados, contrato (Supabase en São Paulo, GitHub, Google, Cloudflare, Anthropic, Wompi, correo). En `herramientas/legal/INVENTARIO-PROVEEDORES.md`.
+- Membresía: cuando la abogada apruebe el texto nuevo de la segunda casilla, subir `VERSION_CONDICIONES`. Patrones: casilla propia antes del primer patrón (fase 2).
+
+## [ ] E29 · Rosina sin afirmaciones de seguridad infantil (chat 3)
+- En `rosina-web` (`nucleo.ts`/`index.ts`): Rosina no dice que un peluche es seguro para bebés, apto para recién nacidos ni que cumple normas; usa datos verificables (materiales, relleno, medidas, edad recomendada, piezas pequeñas, supervisión). Nivel 🔴 (Rosina): explicarle a Jennifer y probar con preguntas sobre bebés antes de desplegar. El aviso del chat con Anthropic lo redacta el chat 6 (E27).
+
+## [ ] E30 · Aviso antes de conectar Google Calendar y Drive (chat 1)
+- Antes de conectar cada servicio, una ventana que diga qué datos se consultan, qué se guarda, para qué, qué permisos pide, cómo desconectar y qué pasa después (punto 8). Texto final con el chat 6 y la abogada. Foto a Jennifer.
+
+## [ ] E31 · Aviso antes de dictar (chat 2, con E18)
+- Al tocar «Dictar» (solo computador), mostrar una vez el texto del punto 9 antes de activar el micrófono. Textos en 3 idiomas con el chat 3.
+
+## [ ] E32 · Personajes y datos de los peluches (chat 4, con Jennifer)
+- Lista de las 27 piezas «personaje» para que Jennifer decida una por una (punto 13: priorizar propios, sin nombres de franquicia como oficiales, sin logotipos). En las fichas de amigurumis: materiales, relleno, medidas, edad recomendada y si tiene piezas pequeñas (datos que Jennifer confirme).
+
+## [ ] E33 · Academy y menores (chat 7) — antes de vender cupos
+- Borrador de términos de Lana Rosa Academy (punto 2) y de las autorizaciones de menores (inscribe el representante; fotos y videos aparte), para que el chat 6 los lleve a la abogada.
+
+**De Jennifer:** revisar con la contadora los recibos (qué documento y qué datos); autorizaciones escritas de las fotos de la galería; contratos con proveedores (Supabase en Brasil) con la abogada; la aprobación escrita de la abogada para la fase 1.
