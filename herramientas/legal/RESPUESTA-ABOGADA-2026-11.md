@@ -93,3 +93,10 @@
 - **Personajes (27 piezas):** «inspirado, no oficial» no es autorización; priorizar personajes propios, no usar nombres de franquicias como oficiales, no logotipos, no copiar diseños; revisar una por una y pedir licencias.
 - **Realidad aumentada:** aviso propio (cámara, imágenes, si salen del aparato, proveedor, Google/Apple) verificado antes de publicar.
 - **Supresión:** verificar identidad, registrar, eliminar, revisar copias y sistemas, confirmar y guardar evidencia; explicar lo que se conserva por ley y por qué.
+
+## Fuentes que la abogada pide entregar junto al documento (5-nov-2026)
+- **Ley 2439 de 2024:** modificó el régimen de comercio electrónico y fijó el plazo especial de **15 días calendario** para devolver el dinero por retracto en estas compras.
+- **SIC, orientaciones de 2026:** lista actualizada de países con nivel adecuado de protección de datos y análisis de transferencias y transmisiones internacionales.
+- **SIC, RNBD:** quiénes deben inscribir sus bases de datos; no estar obligado al registro no quita las demás obligaciones de protección de datos.
+- Normas base: Ley 1480 de 2011, Ley 1581 de 2012, Decreto 1074 de 2015, Ley 527 de 1999, Ley 23 de 1982, Decisión Andina 351 de 1993, Decisión Andina 486 de 2000, Ley 962 de 2005 (art. 28).
+- **Recomendación de la abogada:** contrastar **cada punto con el funcionamiento actual de la web** y después revisar y aprobar los textos definitivos.
