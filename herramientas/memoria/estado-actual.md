@@ -18,7 +18,7 @@
 - **5 · Base de datos y pagos:** E12 hecho: nadie puede ver ni borrar la copia de agenda de otra persona (prueba con 2 cuentas inventadas, sin tocar clientas); cifrado con clave propuesto, no hecho. A medias: Jennifer recorre la lista de seguridad (las contraseñas filtradas no se pueden en el plan gratis: aceptado) y prueba A4b en el ERP.
 - **6 · Sitio, SEO y Revista:** paquete de la abogada listo (`herramientas/legal/PAQUETE-ABOGADA.md`; proveedora = Sara Loaiza Muñoz, casilla de patrones propuesta). E9 revisado: `apertura.js`, `activar_apertura.py` y el flujo coinciden (14-dic). Falta: fecha de cookies (espera sí de Jennifer), aviso de apertura en el inicio y recogida en taller.
 - **7 · Universo de Rosina y Academy:** bloque A hecho (pruebas del tema en verde). El texto de cookies («Google Fonts») pasó al chat 6 y a la abogada: ya no va en mi PR. A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas; bloques B (Jennifer) y C (abogada).
-- **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, la Agenda se llama CrochetLab, carrito mixto Tienda+Mercería = sí (a construir, chats 4 y 5). Falta elegir línea de contenido y E10 (apertura 13-dic).
+- **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, la Agenda se llama CrochetLab, carrito mixto Tienda+Mercería = sí (a construir, chats 4 y 5). Primeros guiones de la línea 1 listos (borrador). Falta E10 (apertura 13-dic).
 
 ## Pendiente de Jennifer
 - Google Cloud en **Producción**; prueba real de Drive (dos aparatos) y Calendar; preguntas reales a Rosina.
