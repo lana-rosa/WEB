@@ -17,7 +17,7 @@
 - **6 · Sitio, SEO y Revista:** paquete de la abogada listo (`herramientas/legal/PAQUETE-ABOGADA.md`; proveedora = Sara Loaiza Muñoz, casilla de patrones propuesta). E9 revisado: `apertura.js`, `activar_apertura.py` y el flujo coinciden (14-dic). Falta: fecha de cookies (espera sí de Jennifer), aviso de apertura en el inicio y recogida en taller.
 - **7 · Universo de Rosina y Academy:** bloque A hecho; E33 (5-nov): borrador de términos de la Academy y autorizaciones de menores en `herramientas/legal/BORRADOR-ACADEMY-Y-MENORES.md` (sin publicar; lo lleva el chat 6 a la abogada).
   Avisos de personajes/figuras/personas en el chat y en Regalar: hechos en la rama, esperan el sí de Jennifer con fotos (no publicado).
-  A medias: faltan 6 decisiones de Jennifer (cupo, cancelación, edad, fotos de menores, pagos, comprobante); actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas.
+  A medias: Jennifer ya respondió las 6 (anticipo, 2 días, cupo 5–10, mayores de 18, efectivo/Bre-B, recibo); faltan 6 detalles (monto del anticipo, devolución, etc.); actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas.
 - **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, la Agenda se llama CrochetLab, carrito mixto Tienda+Mercería = sí (a construir, chats 4 y 5). Falta elegir línea de contenido y E10 (apertura 13-dic).
 
 ## Pendiente de Jennifer
