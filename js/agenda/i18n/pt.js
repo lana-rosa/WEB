@@ -1909,6 +1909,7 @@ window.lrI18n.add("pt", {
 "Recreación": "Lazer",
 "Sueldo": "Salário",
 "Mis números": "Meus números",
+"Números": "Números",
 "Presupuesto y metas": "Orçamento e metas",
 "Gastos fijos, tarjetas y deudas": "Despesas fixas, cartões e dívidas",
 "Topes de gasto y ahorros, tuyos o del negocio": "Limites de gasto e poupança, seus ou do negócio",

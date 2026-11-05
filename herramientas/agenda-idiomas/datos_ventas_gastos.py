@@ -72,6 +72,7 @@ FILAS = [
  ('Recreación', 'Recreation', 'Lazer'),
  ('Sueldo', 'Salary', 'Salário'),
  ('Mis números', 'My numbers', 'Meus números'),
+ ('Números', 'Numbers', 'Números'),   # pestaña corta del menú de abajo en el celular (5-nov-2026)
  ('Presupuesto y metas', 'Budget and goals', 'Orçamento e metas'),
  ('Gastos fijos, tarjetas y deudas', 'Fixed expenses, cards and debts', 'Despesas fixas, cartões e dívidas'),
  ('Topes de gasto y ahorros, tuyos o del negocio', 'Spending limits and savings, yours or the business’s', 'Limites de gasto e poupança, seus ou do negócio'),
