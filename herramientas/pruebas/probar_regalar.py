@@ -223,7 +223,13 @@ def main():
             verificar('R4 los precios en pantalla son exactamente los del catálogo (%d tarjetas de amigurumis)' % page.locator('.ur-card').count(), not malos, malos[:3])
             nota = page.locator('.ur-pj-nota').count()
             hay_pj = any(x['es_personaje'] and x['categoria_web'] == 'Amigurumis' and x['en_existencia'] and not x['personalizable_base'] for x in CATALOGO)
-            verificar('las piezas inspiradas en personajes llevan el aviso «no son productos oficiales» una sola vez por sección', nota == (1 if hay_pj else 0) and page.locator('.ur-card .ur-pj').count() == 0, nota)
+            AV_PJ = 'Pieza artesanal tejida a mano, inspirada en un personaje de ficción.'
+            AV_PE = 'Pieza artesanal personalizada, tejida a mano e inspirada en una persona.'
+            notas_sec = [[n.inner_text() for n in sec.locator('.ur-pj-nota').all()] for sec in page.locator('.ur-seccion').all()]
+            todas = [t for lst in notas_sec for t in lst]
+            verificar('los avisos de personajes, figuras públicas y personas salen con el texto aprobado y una sola vez por sección',
+                      all(len(lst) == len(set(lst)) for lst in notas_sec) and all(t.startswith((AV_PJ, AV_PE, 'Pieza artesanal tejida a mano, inspirada en una figura pública.')) for t in todas)
+                      and (any(t.startswith(AV_PJ) for t in todas) == hay_pj) and page.locator('.ur-card .ur-pj').count() == 0, notas_sec)
             verificar('sin scroll horizontal tras filtrar', sin_scroll_horizontal(page))
             if CAPTURAS:
                 page.evaluate("document.querySelector('.ur-resumen').scrollIntoView()")
