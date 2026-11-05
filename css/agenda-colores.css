@@ -287,3 +287,7 @@ body.config-sola .pestanas-agenda { display: none !important; }
 .am-op:has(input:checked) { border-color: var(--rosa-boton); background: var(--rosa-suave); box-shadow: 0 0 0 1px var(--rosa-boton) inset; }
 .am-op:has(input:focus-visible) { outline: 3px solid var(--rosa-boton); outline-offset: 2px; }
 @media (max-width: 380px) { .am-op { font-size: .84rem; } }
+
+/* Buscador (5-nov-2026, pedido de Jennifer): un solo recuadro, el redondo. El campo de adentro no dibuja otro rectángulo al enfocarse; el foco se ve en el borde redondo (anillo grueso, visible para quien usa el teclado) */
+html body .buscar-agenda input:focus, html body .buscar-agenda input:focus-visible { outline: none !important; box-shadow: none; }
+html body .buscar-agenda:focus-within { border-color: var(--rosa-boton); box-shadow: 0 0 0 3px var(--rosa-boton); }

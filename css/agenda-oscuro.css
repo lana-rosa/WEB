@@ -722,6 +722,9 @@ html[data-modo="oscuro"] .cfg-grupo .agenda-modo { border: 0; }
 html[data-modo="oscuro"] .am-op { background: #211D27; border: 2px solid var(--rosa-suave); color: #EEE8EB; }
 html[data-modo="oscuro"] .am-op:has(input:checked) { background: var(--rosa-suave); border-color: var(--rosa-boton); }
 html[data-modo="oscuro"] .am-op:has(input:focus-visible) { outline: 3px solid var(--rosa-boton); }
+html[data-modo="oscuro"] body .buscar-agenda input:focus,
+html[data-modo="oscuro"] body .buscar-agenda input:focus-visible { outline: none !important; }
+html[data-modo="oscuro"] body .buscar-agenda:focus-within { border-color: var(--rosa-boton); }
 /* ---- de /css/agenda-frambuesa.css ---- */
 html[data-modo="oscuro"]:root { --marfil: #331421; --papel: #211D27; --rosa-claro: #331421; }
 html[data-modo="oscuro"] #agenda .hoja-agenda::after { background: linear-gradient(90deg, var(--sec-fg) 0 70%, var(--frambuesa)); }
@@ -1435,5 +1438,7 @@ html[data-modo="oscuro"] body .rc-sug button { color: var(--rosa-texto, #F28FC0)
 /* lienzos de dibujo: el papel se queda claro (los trazos y los colores se eligen pensando en papel blanco) */
 html[data-modo="oscuro"] .dib-caja { background-color: #fff; }
 html[data-modo="oscuro"] .dib-fondo-puntos { background-image: radial-gradient(circle, #8a8a92 1.3px, transparent 1.6px); }
+/* buscador: el borde redondo se resalta al enfocar (en oscuro, en rosa claro) */
+html[data-modo="oscuro"] body .buscar-agenda:focus-within { border-color: #F28FC0; box-shadow: 0 0 0 3px #F28FC0; }
 
 }

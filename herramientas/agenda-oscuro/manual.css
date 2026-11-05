@@ -45,3 +45,5 @@ html[data-modo="oscuro"] body .rc-sug button { color: var(--rosa-texto, #F28FC0)
 /* lienzos de dibujo: el papel se queda claro (los trazos y los colores se eligen pensando en papel blanco) */
 html[data-modo="oscuro"] .dib-caja { background-color: #fff; }
 html[data-modo="oscuro"] .dib-fondo-puntos { background-image: radial-gradient(circle, #8a8a92 1.3px, transparent 1.6px); }
+/* buscador: el borde redondo se resalta al enfocar (en oscuro, en rosa claro) */
+html[data-modo="oscuro"] body .buscar-agenda:focus-within { border-color: #F28FC0; box-shadow: 0 0 0 3px #F28FC0; }
