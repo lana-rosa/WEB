@@ -1,8 +1,8 @@
 /* Agenda para tejedoras: gráficas del negocio (Plus para emprendedoras, 31-oct-2026, pedido de Sara: «el punto de equilibrio de forma gráfica en el dashboard
    y gráficos en el módulo de finanzas»). Solo leen lo escrito en las otras hojas; no guardan nada.
-   - Punto de equilibrio del mes (barra de ventas con la raya del punto de equilibrio y la de la meta): en Mi panel y en «Mi negocio en números».
-   - Utilidad de cada mes (últimos 6 meses: ingresos − gastos de «Ingresos y gastos del negocio»): en «Mi negocio en números».
-   - Ventas del mes contra tu meta (acumulado por día, con el ritmo ideal): en «Mi negocio en números».
+   - Punto de equilibrio del mes (barra de ventas con la raya del punto de equilibrio y la de la meta): en Mi panel y en «Resumen del negocio».
+   - Utilidad de cada mes (últimos 6 meses: ingresos − gastos de «Ingresos y gastos del negocio»): en «Resumen del negocio».
+   - Ventas del mes contra tu meta (acumulado por día, con el ritmo ideal): en «Resumen del negocio».
    Los textos largos van en HTML (el traductor no entra en los SVG); dentro del SVG solo van números y meses. Depende de metas-ventas.js (lrMetasVentas.calcular). */
 (function () {
   'use strict';

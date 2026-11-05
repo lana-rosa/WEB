@@ -19,7 +19,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var estado = null, sb = null, TEXTOS = {
     'Mis materiales': 'Tu inventario de lanas, tus agujas y tu lista de compras.',
     'Mi emprendimiento': 'Pedidos con cuentas y saldos, clientas, ventas, catálogo de precios, ferias, gastos y resultados del negocio.',
-    'Mi plata': 'Tu presupuesto y tus metas, tus gastos fijos, tarjetas y deudas, los de tu negocio y los personales, cada uno por separado.',
+    'Mis números': 'Tu presupuesto y tus metas, tus gastos fijos, tarjetas y deudas, los de tu negocio y los personales, cada uno por separado.',
     'Fechas y bienestar': 'El calendario del año con todas tus fechas, fechas especiales, diario de tejido y pausas activas.'
   };
 

@@ -1,5 +1,5 @@
 /* Agenda para tejedoras: informe del mes para imprimir (Plus para emprendedoras, etapa 6, 31-oct-2026).
-   En «Mi negocio en números» hay un botón «Informe del mes» que abre una hoja con el resumen del mes elegido (flechas para cambiar de mes):
+   En «Resumen del negocio» hay un botón «Informe del mes» que abre una hoja con el resumen del mes elegido (flechas para cambiar de mes):
    ingresos, gastos y lo que te quedó; ventas y lo que más vendiste; meta y punto de equilibrio; gastos por categoría; pedidos y clientas; lana en inventario.
    Desde el 2-nov-2026: compara con el mes anterior («▲ 20 % más que en octubre»), se envía por WhatsApp (resumen en texto) y «Exportar a Excel» agrega la hoja «Informe mensual» (una fila por mes).
    Se imprime o se guarda en PDF con el botón del navegador. Solo lee lo escrito en las otras hojas; no guarda nada. Es una guía, no contabilidad oficial.
@@ -192,7 +192,7 @@
   }
   function cerrar() { if (!caja) return; caja.hidden = true; document.body.classList.remove('informe-abierto'); if (volverA && volverA.focus) volverA.focus(); }
 
-  /* botón en «Mi negocio en números» */
+  /* botón en «Resumen del negocio» */
   (function () {
     var ref = hoja.querySelector('.fin-mes'); if (!ref || hoja.querySelector('#inf-boton')) return;
     var c = el('div', 'inf-acceso no-imprimir');
