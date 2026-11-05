@@ -61,7 +61,8 @@ def iconos(casa, pagina=None):
     # La agenda recuerda el color elegido: este script va aquí (dentro del bloque generado) para que el generador no lo borre.
     tema = ('<script>try{var t=localStorage.getItem("lrAgendaTema");if(t&&/^[a-z]+$/.test(t)&&t!=="menta"){document.documentElement.setAttribute("data-tema",t);'
             'if(t==="libre"){var v=JSON.parse(localStorage.getItem("lrAgendaColorVars")||"{}");for(var k in v)if(/^--[a-z0-9-]+$/.test(k)&&/^[#a-z0-9 ,.()%-]+$/i.test(v[k]))'
-            'document.documentElement.style.setProperty(k,v[k])}}}catch(e){}</script>\n') if casa == 'agenda' else ''
+            'document.documentElement.style.setProperty(k,v[k]);'
+            'if(document.documentElement.getAttribute("data-modo")==="oscuro"){var w=JSON.parse(localStorage.getItem("lrAgendaColorVarsOscuro")||"{}");for(var j in w)if(/^--[a-z0-9-]+$/.test(j)&&/^[#a-z0-9 ,.()%-]+$/i.test(w[j]))document.documentElement.style.setProperty(j,w[j])}}}}catch(e){}</script>\n') if casa == 'agenda' else ''
     return (f'<!-- ICONOS:INICIO (generado) -->\n<link rel="icon" type="image/png" href="{ico}">\n'
             f'<link rel="apple-touch-icon" href="{apple}">\n<meta name="theme-color" content="{color}">\n{tema}'
             f'<link rel="manifest" href="/manifest-{app[0]}.webmanifest">\n'

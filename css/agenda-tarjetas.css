@@ -16,3 +16,21 @@
 #agenda .vs-hoja:hover .vs-ic:has(img) { background: #fff; }
 #agenda .vs-hoja.bloq { background: var(--tj-fondo); opacity: .88; }
 @media (prefers-reduced-motion: reduce) { #agenda .vs-hoja { transition: none; } #agenda .vs-hoja:hover, #agenda .vs-hoja:focus-visible { transform: none; } }
+
+/* Contraste del texto (E26, 5-nov-2026): textos de color que quedaban entre 3,5 y 4,5:1 sobre sus fondos suaves; ahora todos llegan a 4,5:1 o más */
+html body .hojas-pasos .paso-sig small, html body .pl-dia.sel small { color: #fff; }
+html body .pl-dia .pl-pto { color: #C81B6D; }
+html body .pestana[aria-selected="true"] .p-largo, html body .pestana[aria-selected="true"] .p-corto { color: #3b2a33; color: color-mix(in srgb, var(--p-fg, #C81B6D) 72%, #1b0f16); }
+#agenda .pn-chip { color: #9C1255; }
+#agenda .pn-chip.av { color: #B3145E; }
+#agenda .pn-kpi-t, #agenda .pn-kpi-t * { color: #A8135A; }
+#agenda .pn-accion { color: #B3145E; }
+html #agenda .tab-grupo h4, html #indice-agenda .indice-grupo h4 { color: #2B2B30; }
+html body .portada-marca, html body .portada-nombre { color: #C81B6D; color: color-mix(in srgb, var(--pc-b, #E74E96) 68%, #000); }
+html #agenda .ficha-chip:not(.alarma):not(.aviso):not(.ok) { color: color-mix(in srgb, var(--sec-fg) 78%, #000); }
+html #agenda .vueltas-grid label:has(input:checked) { background: var(--rosa-boton); border-color: var(--rosa-boton); }
+html #agenda .vueltas-grid input:checked + span { color: #fff; }
+/* Chat de Rosina dentro de la agenda: el rosa de los botones (con texto blanco legible, 4,5:1) y el texto de las sugerencias */
+html body .rc-cab, html body .rc-m.yo div, html body .rc-form button { background: var(--rosa-boton, #E01E79); }
+html body .rc-cab small { color: #fff; opacity: 1; }
+html body .rc-sug button { color: var(--rosa-texto, #C81B6D); }

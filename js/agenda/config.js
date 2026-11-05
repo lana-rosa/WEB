@@ -42,14 +42,32 @@
     return v;
   }
   function limpiarVars() { ['--rosa-principal', '--rosa-rgb', '--rosa-boton', '--rosa-boton-hover', '--rosa-hover', '--rosa-texto', '--rosa-medio', '--rosa-suave', '--tinte', '--casa-t1', '--casa-t2'].forEach(function (k) { document.documentElement.style.removeProperty(k); }); }
-  function aplicarColor(rgb, guardar) {
-    var v = derivar(rgb); document.documentElement.setAttribute('data-tema', 'libre');
-    Object.keys(v).forEach(function (k) { document.documentElement.style.setProperty(k, v[k]); });
-    if (guardar) { try { localStorage.setItem('lrAgendaTema', 'libre'); localStorage.setItem('lrAgendaColor', v['--rosa-principal']); localStorage.setItem('lrAgendaColorVars', JSON.stringify(v)); } catch (e) {} }
+  /* Modo oscuro (5-nov-2026): del mismo color elegido salen los tonos oscuros (texto claro del color, fondos apagados). Se guardan aparte para que el <head> los ponga antes de pintar. */
+  function contrasteCon(rgb, fondo) { var a = luz(rgb), b = luz(fondo); return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05); }
+  function derivarOscuro(rgb) {
+    var t = rgbAHsl(rgb[0], rgb[1], rgb[2]), h = t[0], s = t[1], cs = Math.min(s, 0.85) * 0.5, lt = 0.74, v = {};
+    while (lt < 0.96 && contrasteCon(hslARgb(h, Math.max(s, 0.25) * 0.9, lt), [42, 37, 49]) < 5) lt += 0.02;   // texto de color sobre fondo oscuro, >= 5:1
+    v['--rosa-texto'] = hsl(h, Math.max(s, 0.25) * 0.9, lt);
+    v['--rosa-suave'] = hsl(h, cs, 0.17); v['--tinte'] = hsl(h, cs, 0.15); v['--casa-t1'] = hsl(h, cs, 0.15); v['--casa-t2'] = hsl(h, cs, 0.19);
+    return v;
   }
+  function oscuroAhora() { return document.documentElement.getAttribute('data-modo') === 'oscuro'; }
+  function aplicarColor(rgb, guardar) {
+    var v = derivar(rgb), vo = derivarOscuro(rgb); document.documentElement.setAttribute('data-tema', 'libre');
+    Object.keys(v).forEach(function (k) { document.documentElement.style.setProperty(k, v[k]); });
+    if (oscuroAhora()) Object.keys(vo).forEach(function (k) { document.documentElement.style.setProperty(k, vo[k]); });
+    if (guardar) { try { localStorage.setItem('lrAgendaTema', 'libre'); localStorage.setItem('lrAgendaColor', v['--rosa-principal']); localStorage.setItem('lrAgendaColorVars', JSON.stringify(v)); localStorage.setItem('lrAgendaColorVarsOscuro', JSON.stringify(vo)); } catch (e) {} }
+  }
+  function alCambiarModo() {   // al cambiar entre claro y oscuro, el color elegido se recalcula para el modo nuevo
+    var h = ''; try { h = localStorage.getItem('lrAgendaColor') || ''; } catch (e) {}
+    if (document.documentElement.getAttribute('data-tema') !== 'libre' || !/^#[0-9a-f]{6}$/i.test(h)) return;
+    aplicarColor([parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5), 16)], true);
+  }
+  document.addEventListener('lrmodo', alCambiarModo);
+  if (oscuroAhora()) alCambiarModo();   // quien ya había elegido un color antes del modo oscuro no tiene guardados sus tonos oscuros
   function volverAlVerde() {
     document.documentElement.removeAttribute('data-tema'); limpiarVars();
-    try { localStorage.removeItem('lrAgendaTema'); localStorage.removeItem('lrAgendaColor'); localStorage.removeItem('lrAgendaColorVars'); } catch (e) {}
+    try { localStorage.removeItem('lrAgendaTema'); localStorage.removeItem('lrAgendaColor'); localStorage.removeItem('lrAgendaColorVars'); localStorage.removeItem('lrAgendaColorVarsOscuro'); } catch (e) {}
   }
 
   /* Rueda: el ángulo es el tono, la distancia al centro es la intensidad; la barra de abajo es la claridad */
