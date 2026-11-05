@@ -50,5 +50,5 @@
 - **Contraste (E26):** parche en `css/agenda-tarjetas.css` (chips, etiquetas de color, «Siguiente hoja», portada, chat de Rosina) para que el modo claro también llegue a 4,5:1; revisión automática de todos los textos en `fotos.py` (resultado 5-nov: 0 textos bajos en oscuro y 0 en claro, en celular y computador).
 - **Cómo se prueba:** `python3 herramientas/pruebas/probar_agenda_modo_oscuro.py` y `python3 herramientas/agenda-oscuro/fotos.py <carpeta>` (fotos de cada hoja en los dos modos y los dos tamaños).
 
-## Aviso antes de dictar (E31, 5-nov-2026) — construido, pendiente del visto bueno de Jennifer
+## Aviso antes de dictar (E31, 5-nov-2026) — PUBLICADO el 5-nov-2026 (#613)
 - `js/agenda/voz.js`: ventana propia (`.mc-dlg`, accesible, foco en «Continuar», Esc = «Ahora no») con el texto del punto 9 de `herramientas/legal/RESPUESTA-ABOGADA-2026-11.md`, antes de activar el micrófono; se recuerda en `localStorage.lrVozAviso2` (el aviso viejo `lrVozAviso` ya no cuenta). Textos EN/PT provisionales en `datos_aviso_voz.py`. Prueba: `probar_agenda_aviso_voz.py`.
