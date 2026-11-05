@@ -1,4 +1,4 @@
-"""«Mi plata» (4-nov-2026): presupuesto y metas, y gastos fijos + tarjetas + deudas, cada uno con el interruptor «Mi negocio / Personal». Lo personal vive en datos._finP y nunca toca los números del negocio."""
+"""«Mis números» (4-nov-2026): presupuesto y metas, y gastos fijos + tarjetas + deudas, cada uno con el interruptor «Mi negocio / Personal». Lo personal vive en datos._finP y nunca toca los números del negocio."""
 from agenda_util import *
 from datetime import date
 T = Prueba()
@@ -12,7 +12,7 @@ with sync_playwright() as p:
     for ancho, alto, kw in ((1280, 900, {}), (390, 844, {'has_touch': True, 'is_mobile': True})):
         n = '%d px: ' % ancho
         ctx = contexto(b, ancho, alto, datos=D, config_abierta=False, **kw); pg = abrir(ctx, '', 2200, config=False)
-        T.v(n + 'el grupo «Mi plata» tiene solo «Presupuesto y metas» y «Gastos fijos, tarjetas y deudas»', pg.evaluate("(()=>{let g='',o=[];[...document.querySelectorAll('#menu-hojas-lista > *')].forEach(e=>{if(e.classList.contains('menu-grupo'))g=e.textContent.trim();else if(g==='Mi plata')o.push(e.textContent.trim())});return JSON.stringify(o)})()") == '["🐷 Presupuesto y metas","🔁 Gastos fijos, tarjetas y deudas"]')
+        T.v(n + 'el grupo «Mis números» tiene solo «Presupuesto y metas» y «Gastos fijos, tarjetas y deudas»', pg.evaluate("(()=>{let g='',o=[];[...document.querySelectorAll('#menu-hojas-lista > *')].forEach(e=>{if(e.classList.contains('menu-grupo'))g=e.textContent.trim();else if(g==='Mis números')o.push(e.textContent.trim())});return JSON.stringify(o)})()") == '["🐷 Presupuesto y metas","🔁 Gastos fijos, tarjetas y deudas"]')
         pg.evaluate("window.lrIrAHoja('fin-tcredito')"); pg.wait_for_timeout(600)
         T.v(n + 'el enlace a «Tarjetas del negocio» abre Gastos fijos, tarjetas y deudas', pg.evaluate("document.getElementById('fin-fijos').classList.contains('abierta')") and pg.is_visible('#ft-form'))
         T.v(n + 'empieza en «Mi negocio» y muestra el pago fijo del negocio', pg.get_attribute('.amb-sw button[data-amb=n] >> nth=1', 'aria-pressed') == 'true' and 'Internet del taller' in pg.inner_text('#ff-lista') and pg.input_value('#ff-n') == '')
