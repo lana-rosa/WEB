@@ -42,6 +42,7 @@ Solo lo **abierto** y las reglas vigentes. Lo ya hecho (con su historia) está e
 
 ## 🔴 1. Urgente: lo que bloquea la Mercería y la apertura (meta: hasta el 23-oct)
 
+- [ ] **Texto de figura pública acortado (Jennifer, 6-nov-2026):** cambiado en `tienda.html`; probado en 390 y 1280 px con Messi. En la rama, sin publicar: falta el sí de Jennifer (🔴). El chat 7 debe usar esta versión en Rosina y Regalar.
 - [ ] **Avisos de personajes, pendientes (5-nov-2026):** (b) los avisos de `js/rosina-chat.js` y `js/universo/regalar.js`: **hechos en la rama (5-nov-2026, chat 7), pruebas verdes; falta que Jennifer los vea en fotos y diga sí para ponerlos en la página**; (c) `politicas.html` (línea 473, chat 6) tiene un párrafo parecido: pasarle a la abogada los tres textos; (d) lista de 31 piezas en `herramientas/personajes/LISTA-PERSONAJES-E32.md` sin decidir.
 - [ ] **Certificado de «hipoalergénica» (5-nov-2026):** conseguir el certificado del proveedor del hilo o del relleno; solo con él se puede volver a usar la palabra en las fichas.
 - [ ] **E32 · Personajes (pedido del orquestador, 5-nov-2026):** lista de las 31 piezas en `herramientas/personajes/LISTA-PERSONAJES-E32.md`, para que Jennifer marque A/B/C/R en cada una. Sin tocar productos hasta su sí. Además: confirmar edad recomendada, ojos, piezas pequeñas, lavado y proveedor del hilo (40 de 72 productos dicen «hipoalergénica» sin evidencia).
