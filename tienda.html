@@ -1443,7 +1443,7 @@ var RESENAS_POR_PRODUCTO = {};
     var avisoPj = document.getElementById('modal-aviso-personaje');
     var esFiguraPublica = IDS_FIGURA_PUBLICA.indexOf(id) !== -1;
     if (!avisoPj.dataset.textoPersonaje) avisoPj.dataset.textoPersonaje = avisoPj.textContent;
-    avisoPj.textContent = esFiguraPublica ? 'Pieza artesanal tejida a mano, inspirada en una figura pública. Es una creación artesanal independiente, no es un producto oficial ni está patrocinada o respaldada por la persona representada.' : avisoPj.dataset.textoPersonaje;
+    avisoPj.textContent = esFiguraPublica ? 'Pieza artesanal tejida a mano, inspirada en una figura pública. Es una creación artesanal independiente y no corresponde a un producto oficial.' : avisoPj.dataset.textoPersonaje;
     avisoPj.hidden = !(esFiguraPublica || (window.PRODUCTOS_PERSONAJE && window.PRODUCTOS_PERSONAJE.has(id)));
     var persFicha = window.datosPersonalizado({ id: id, nombre: producto.nombre });
     document.getElementById('modal-fila-compra').hidden = !!persFicha;
