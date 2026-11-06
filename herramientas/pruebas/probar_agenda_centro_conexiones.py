@@ -37,7 +37,7 @@ with sync_playwright() as p:
     # 1. nada configurado
     ctx, pg = pagina(b, Funcion(configurada=False), Funcion(configurada=False))
     t.v('el apartado se llama «Conexiones e integraciones»', pg.locator('#centro-conexiones h3').inner_text().strip() == 'Conexiones e integraciones')
-    t.v('hay una fila por servicio (Calendar, Drive, Drive para archivos y copia en la cuenta)', pg.locator('#cx-resumen li').count() == 4, pg.locator('#cx-resumen li').count())
+    t.v('hay una fila por servicio (Calendar, Drive, Drive para archivos, copia en la cuenta) y la de copias y exportaciones', pg.locator('#cx-resumen li').count() == 5, pg.locator('#cx-resumen li').count())
     t.v('Calendar y Drive sin configurar: «No disponible» y sin botón', 'No disponible' in fila(pg, 'Google Calendar').inner_text() and 'No disponible' in fila(pg, 'Google Drive').inner_text() and fila(pg, 'Google Calendar').locator('button').count() == 0)
     t.v('no se imprime', 'no-imprimir' in pg.locator('.cx-centro').get_attribute('class'))
     t.v('sin errores de JavaScript', not pg.errs, pg.errs); ctx.close()
