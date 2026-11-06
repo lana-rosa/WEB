@@ -68,3 +68,7 @@ Dos cosas que la abogada pide cuidar:
 | Nombre del proveedor y ficha del hilo (para la palabra «hipoalergénica») | |
 
 Con las respuestas, Claude actualiza las fichas (con el sí de Jennifer, porque se ven en la página) y vuelve a revisar lo que dice Rosina.
+
+## Decisiones de Jennifer
+- **6-nov-2026, One Piece (6 piezas):** se quedan en la web con el nombre «Amigurumi inspirado en [personaje] (One Piece)» (el llavero: «Llavero inspirado en Luffy (One Piece)»), sin la medida. Cambiado en la base y verificado con consulta (nombres nuevos, las 6 siguen con su aviso y fuera de Google Shopping). Pendiente: que la abogada confirme que «inspirado en» basta. Para revertir: volver a los nombres de la tabla de arriba.
+- Faltan las otras 25 piezas (Harry Potter, Disney, Gravity Falls, Dragon Ball, personas reales, otras marcas y Ernesto Pérez).
