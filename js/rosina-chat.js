@@ -68,6 +68,17 @@
   var pesos = function (n) { return '$' + Math.round(Number(n) || 0).toLocaleString('es-CO'); };
   // Tarjetas de producto: el servidor solo manda ids que existen en el catálogo; aquí se arma todo con textContent (nada se inserta como HTML)
   // y el enlace se construye con el id, no con una dirección que venga en la respuesta.
+  // Avisos de las piezas inspiradas en personajes, figuras públicas y personas (textos de Jennifer, 5-nov-2026; los mismos de la ficha de tienda.html).
+  // Una pieza nueva de figura pública se agrega a IDS_FIGURA_PUBLICA (Messi y Michael Jackson hoy); los «Amigurumi personalizado» se reconocen por el nombre.
+  var IDS_FIGURA_PUBLICA = ['f4e20b3c-666a-4ec2-a4c8-656f46ee7604', 'efc61b6c-66fc-4307-8e33-c0728aff61ef'];
+  var AVISO_PERSONAJE = 'Pieza artesanal tejida a mano, inspirada en un personaje de ficción. Debido a su proceso de elaboración manual, cada pieza puede presentar variaciones en sus formas, proporciones, colores y detalles. No es un producto oficial ni está patrocinada o vinculada comercialmente con los titulares del personaje.';
+  var AVISO_FIGURA = 'Pieza artesanal tejida a mano, inspirada en una figura pública. Es una creación artesanal independiente, no es un producto oficial ni está patrocinada o respaldada por la persona representada.';
+  var AVISO_PERSONA = 'Pieza artesanal personalizada, tejida a mano e inspirada en una persona. Cada creación se elabora de manera individual y puede presentar variaciones en sus características, proporciones y detalles.';
+  function avisoDe(p) {
+    if (IDS_FIGURA_PUBLICA.indexOf(p.id) !== -1) return AVISO_FIGURA;
+    if (/^Amigurumi personalizado \d+ cm$/.test(String(p.nombre))) return AVISO_PERSONA;
+    return p.personaje ? AVISO_PERSONAJE : '';
+  }
   function tarjetas(lista) {
     if (!Array.isArray(lista) || !lista.length) return;
     function nombreSinMedida(n) { n = String(n == null ? '' : n); if (/^Amigurumi personalizado \d+ cm$/.test(n)) return n; return n.replace(/\s*\(\s*\d+(?:[.,]\d+)?\s*cm\s*\)/gi, '').replace(/\s*\d+(?:[.,]\d+)?\s*cm(?:\s*[*x×]\s*\d+(?:[.,]\d+)?\s*cm)?/gi, '').replace(/\s{2,}/g, ' ').trim(); }
@@ -83,7 +94,8 @@
       var est = document.createElement('span'); est.className = 'rc-e' + (p.estado === 'existencia' ? '' : ' enc');
       est.textContent = p.estado === 'existencia' ? 'En existencia' : p.estado === 'personalizado' ? 'Se teje a partir de tu foto o idea' : 'Por encargo' + (typeof p.elaboracion === 'string' && p.elaboracion ? ' · ' + p.elaboracion : '');
       txt.append(nombre, precio, est);
-      if (p.personaje && p.estado !== 'personalizado') { var pj = document.createElement('span'); pj.className = 'rc-pj'; pj.textContent = 'Pieza artesanal inspirada en un personaje; no es un producto oficial.'; txt.append(pj); }
+      var avisoPj = avisoDe(p);
+      if (avisoPj) { var pj = document.createElement('span'); pj.className = 'rc-pj'; pj.textContent = avisoPj; txt.append(pj); }
       a.append(img, txt);
       a.addEventListener('click', function () { evento('rosina_tarjeta_clic', { item_id: p.id, posicion: i + 1 }); });
       cont.appendChild(a);
