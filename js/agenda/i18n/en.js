@@ -1909,6 +1909,7 @@ window.lrI18n.add("en", {
 "Recreación": "Recreation",
 "Sueldo": "Salary",
 "Mis números": "My numbers",
+"Números": "Numbers",
 "Presupuesto y metas": "Budget and goals",
 "Gastos fijos, tarjetas y deudas": "Fixed expenses, cards and debts",
 "Topes de gasto y ahorros, tuyos o del negocio": "Spending limits and savings, yours or the business’s",
