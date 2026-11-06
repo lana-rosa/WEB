@@ -142,6 +142,7 @@ with sync_playwright() as p:
     # ver y restaurar
     pg.click('#ds-versiones'); pg.wait_for_timeout(900)
     t.v('«Versiones anteriores» muestra la lista con «Restaurar»', pg.locator('#ds-lista li button').count() == 1, pg.inner_text('#ds-lista'))
+    t.v('el resumen de Conexiones cuenta las versiones anteriores de Drive (etapa 3)', pg.evaluate("window.lrDrive.versiones()") == 1 and 'Versiones anteriores en Drive' in pg.inner_text('#cx-resumen'), pg.inner_text('#cx-resumen'))
     pg.click('#ds-lista li button'); pg.wait_for_timeout(3500)
     t.v('restaurar vuelve a esa versión y la sube a Drive', n.datos().get('ag-mes-1') == 'Desde el computador' and local(pg).get('ag-mes-1') == 'Desde el computador', [n.datos(), local(pg)])
     t.v('antes de restaurar se guardó lo que había (se puede volver)', any(a['contenido']['datos'].get('ag-mes-1') == 'Desde el celular' for a in n.anteriores()), [a['contenido']['datos'].get('ag-mes-1') for a in n.anteriores()])

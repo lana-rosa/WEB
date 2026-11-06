@@ -55,3 +55,16 @@ FILAS += [
  ('Envía', 'It sends', 'Envia'),
  ('nada por ahora', 'nothing for now', 'nada por enquanto'),
 ]
+FILAS += [
+ ('Copias y exportaciones', 'Backups and exports', 'Cópias e exportações'),
+ ('Última copia descargada', 'Last backup downloaded', 'Última cópia baixada'),
+ ('Todavía no has descargado una copia.', 'You have not downloaded a backup yet.', 'Você ainda não baixou uma cópia.'),
+ ('Última copia en tu cuenta', 'Last backup in your account', 'Última cópia na sua conta'),
+ ('Versiones anteriores en Drive', 'Previous versions in Drive', 'Versões anteriores no Drive'),
+ ('Última exportación a Excel', 'Last export to Excel', 'Última exportação para o Excel'),
+ ('Últimas fechas al calendario', 'Last dates sent to a calendar file', 'Últimas datas para o arquivo de calendário'),
+ ('Al día', 'Up to date', 'Em dia'),
+ ('Conviene guardar una copia', 'A backup is a good idea', 'Convém salvar uma cópia'),
+ ('Estas fechas son de este aparato.', 'These dates are from this device.', 'Estas datas são deste aparelho.'),
+ ('Guardar una copia ahora', 'Save a backup now', 'Salvar uma cópia agora'),
+]
