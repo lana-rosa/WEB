@@ -71,4 +71,5 @@ Con las respuestas, Claude actualiza las fichas (con el sí de Jennifer, porque 
 
 ## Decisiones de Jennifer
 - **6-nov-2026, One Piece (6 piezas):** se quedan en la web con el nombre «Amigurumi inspirado en [personaje] (One Piece)» (el llavero: «Llavero inspirado en Luffy (One Piece)»), sin la medida. Cambiado en la base y verificado con consulta (nombres nuevos, las 6 siguen con su aviso y fuera de Google Shopping). Pendiente: que la abogada confirme que «inspirado en» basta. Para revertir: volver a los nombres de la tabla de arriba.
-- Faltan las otras 25 piezas (Harry Potter, Disney, Gravity Falls, Dragon Ball, personas reales, otras marcas y Ernesto Pérez).
+- **6-nov-2026, Harry Potter (3 piezas):** renombradas a «Amigurumi inspirado en Harry Potter», «…en Hermione (Harry Potter)» y «…en Ron (Harry Potter)»; verificado con consulta (aviso activo, fuera de Google). **Regla de Jennifer: siempre el mismo estilo «inspirado en [personaje] (marca)», sin medida.**
+- Faltan las otras 22 piezas (Disney, Gravity Falls, Dragon Ball, personas reales, otras marcas y Ernesto Pérez); nombres propuestos a Jennifer el 6-nov, sin aplicar hasta su sí.
