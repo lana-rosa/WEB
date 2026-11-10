@@ -25,7 +25,7 @@
       titulo: 'Antes de conectar Google Drive',
       filas: [
         ['Qué datos se consultan', 'Solo la dirección de tu cuenta de Google y el archivo de tu agenda que esta app guardó en su carpeta oculta. No leemos ningún otro archivo de tu Drive.'],
-        ['Qué se crea o se guarda', 'En una carpeta oculta de tu Drive se guarda un archivo con toda tu agenda (incluidos tus dibujos y sus fotos) y hasta 5 versiones anteriores. Los datos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y la dirección de tu cuenta de Google.'],
+        ['Qué se crea o se guarda', 'En una carpeta oculta de tu Drive se guarda un archivo con tu agenda, un archivo aparte por cada foto de tus dibujos y hasta 5 versiones anteriores de la agenda. Los datos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y la dirección de tu cuenta de Google.'],
         ['Para qué', 'Para ver la misma agenda en tu celular, tu tablet y tu computador, con copias para volver atrás si algo se mezcla mal.'],
         ['Qué permiso pide', 'Usar solo la carpeta oculta de esta app en tu Drive. No puede ver, abrir ni borrar tus otros archivos, y tampoco verás esa carpeta para abrirla.'],
         ['Cómo desconectar', 'Cuando quieras, con «Desconectar» (quita el permiso) o «Borrar mi agenda de Drive» (borra la copia y las versiones y desconecta), en la tarjeta de Google Drive de ⚙️ Configuración. También puedes quitar el permiso en los permisos de tu cuenta de Google.'],

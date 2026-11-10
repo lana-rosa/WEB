@@ -22,7 +22,7 @@ window.lrI18n.add("pt", {
 "«Desconectar» borra ese calendario y retira el permiso. También puedes revisarlo en": "«Desconectar» apaga essa agenda e retira a permissão. Você também pode revisar em",
 "tu cuenta de Google": "sua conta do Google",
 "usar una carpeta oculta de la app en tu Drive (permiso «appdata»).": "usar uma pasta oculta do app no seu Drive (permissão «appdata»).",
-"tu agenda completa, con los dibujos y sus fotos, y las últimas 5 versiones anteriores. Va directo de tu navegador a tu Drive, sin pasar por Lana Rosa.": "sua agenda completa, com os desenhos e suas fotos, e as últimas 5 versões anteriores. Vai direto do seu navegador para o seu Drive, sem passar pela Lana Rosa.",
+"tu agenda completa, con los dibujos y sus fotos (cada foto en su propio archivo), y las últimas 5 versiones anteriores. Va directo de tu navegador a tu Drive, sin pasar por Lana Rosa.": "sua agenda completa, com os desenhos e suas fotos (cada foto em seu próprio arquivo), e as últimas 5 versões anteriores. Vai direto do seu navegador para o seu Drive, sem passar pela Lana Rosa.",
 "ver, abrir ni borrar tus otros archivos de Drive. Tampoco aparece como una carpeta que puedas abrir: solo esta agenda la usa.": "ver, abrir nem apagar seus outros arquivos do Drive. Também não aparece como uma pasta que você possa abrir: só esta agenda a usa.",
 "«Desconectar» retira el permiso y deja la copia donde está; «Borrar mi agenda de Drive» borra la copia y las versiones y desconecta. También puedes revisarlo en": "«Desconectar» retira a permissão e deixa a cópia onde está; «Apagar minha agenda do Drive» apaga a cópia e as versões e desconecta. Você também pode revisar em",
 "Copia en tu cuenta de Lana Rosa": "Cópia na sua conta da Lana Rosa",

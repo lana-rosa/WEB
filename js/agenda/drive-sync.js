@@ -86,12 +86,92 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   function sobre(datos) { return { v: 1, app: 'agenda-tejedoras', guardado: new Date().toISOString(), datos: datos }; }
   function nuevaRev() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
 
+  /* ---------- fotos de los dibujos en archivos propios (6-nov-2026) ----------
+     Las fotos de los dibujos (hasta 12 por patrón, a 1600 px) hacían crecer agenda.json por encima de lo que aguanta la subida «multipart» (~5 MB) y se resubían completas en cada cambio.
+     Ahora, en Drive, cada foto va en su propio archivo `foto-<huella>.json` ({ img }) con nombre por contenido (SHA-256), y agenda.json lleva en su lugar `imgRef: <huella>` (y img vacía).
+     La mezcla se hace SIEMPRE en esa «forma Drive»; lo local sigue con las fotos completas. Reglas de seguridad: (1) antes de escribir agenda.json (o una versión anterior) se suben los archivos
+     de las fotos que cita; (2) al bajar, si falta una foto NO se aplica nada (se reintenta); (3) un agenda.json viejo con las fotos dentro se entiende igual y se migra solo en la siguiente subida;
+     (4) los archivos de fotos que ya nadie cita (ni agenda.json ni las 5 versiones) se limpian, solo los de más de un día; (5) «Borrar mi agenda de Drive» borra también las fotos.
+     Si el navegador no tiene `crypto.subtle`, todo sigue como antes (fotos dentro de agenda.json). */
+  var PREFIJO_FOTO = 'foto-', GRACIA_FOTOS = 24 * 3600000;
+  var CRIPTO = !!(window.crypto && window.crypto.subtle && window.TextEncoder);
+  async function huellaFoto(txt) {
+    var buf = new Uint8Array(await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt)));
+    var h = ''; for (var i = 0; i < 16; i++) h += ('0' + buf[i].toString(16)).slice(-2); return h;
+  }
+  function nombreFoto(h) { return PREFIJO_FOTO + h + '.json'; }
+  async function aFormaDrive(datos, pool) {   // copia de los datos con las fotos reemplazadas por su huella; `pool` guarda huella → foto para poder subirlas
+    if (!CRIPTO || !datos || !datos._dib) return datos;
+    var o = {}; Object.keys(datos).forEach(function (k) { o[k] = datos[k]; }); o._dib = {};
+    var claves = Object.keys(datos._dib);
+    for (var i = 0; i < claves.length; i++) {
+      var e = datos._dib[claves[i]];
+      if (e && typeof e === 'object' && typeof e.img === 'string' && e.img) {
+        var h = await huellaFoto(e.img), c = {}; pool[h] = e.img;
+        Object.keys(e).forEach(function (f) { c[f] = e[f]; }); c.img = ''; c.imgRef = h; o._dib[claves[i]] = c;
+      } else o._dib[claves[i]] = e;
+    }
+    return o;
+  }
+  function huellasDe(datos) { var r = {}; if (datos && datos._dib) Object.keys(datos._dib).forEach(function (k) { var e = datos._dib[k]; if (e && typeof e.imgRef === 'string' && e.imgRef) r[e.imgRef] = 1; }); return Object.keys(r); }
+  async function listarFotos() {   // { huella: {id, createdTime} } de lo que ya hay en Drive (con páginas)
+    var r = {}, token = '';
+    for (var vuelta = 0; vuelta < 50; vuelta++) {
+      var u = API + '?spaces=appDataFolder&pageSize=1000&q=' + encodeURIComponent("name contains '" + PREFIJO_FOTO + "'") + '&fields=' + encodeURIComponent('nextPageToken,files(id,name,createdTime)') + (token ? '&pageToken=' + encodeURIComponent(token) : '');
+      var resp = await drive(u); if (!resp.ok) throw fallo(resp, 'listar fotos'); var j = await resp.json();
+      (j.files || []).forEach(function (a) { var m = /^foto-([0-9a-f]{32})\.json$/.exec(a.name || ''); if (m && !r[m[1]]) r[m[1]] = { id: a.id, createdTime: a.createdTime }; });
+      token = j.nextPageToken || ''; if (!token) break;
+    }
+    return r;
+  }
+  async function subirFotos(datos, pool) {   // sube las fotos que cita `datos` y que Drive todavía no tiene; si alguna no se puede subir, falla (y no se escribe agenda.json)
+    var citadas = huellasDe(datos); if (!citadas.length) return;
+    var hay = await listarFotos();
+    for (var i = 0; i < citadas.length; i++) {
+      var h = citadas[i]; if (hay[h]) continue;
+      if (typeof pool[h] !== 'string') continue;   // ni aquí ni en Drive: ya no se puede recuperar; no se bloquea la sincronización por eso
+      await guardarArchivo(null, nombreFoto(h), { img: pool[h] }, { tipo: 'foto' });
+    }
+  }
+  async function bajarFoto(h) {
+    var f = (await buscar("name = '" + nombreFoto(h) + "'", 'createdTime desc', 'id'))[0]; if (!f) throw new Error('foto_no_esta');
+    var o = await leerArchivo(f.id); if (!o || typeof o.img !== 'string' || o.img.indexOf('data:image/') !== 0) throw new Error('foto_invalida');
+    return o.img;
+  }
+  async function aFormaLocal(datos, pool) {   // lo contrario: devuelve los datos con las fotos completas (las que no estén a mano se bajan; si falta una, falla y no se aplica nada)
+    if (!datos || !datos._dib) return datos;
+    var o = {}; Object.keys(datos).forEach(function (k) { o[k] = datos[k]; }); o._dib = {};
+    var claves = Object.keys(datos._dib);
+    for (var i = 0; i < claves.length; i++) {
+      var e = datos._dib[claves[i]];
+      if (e && typeof e === 'object' && typeof e.imgRef === 'string' && e.imgRef && !e.img) {
+        var h = e.imgRef, c = {};
+        if (typeof pool[h] !== 'string') { try { pool[h] = await bajarFoto(h); } catch (x) { if (!x || (x.message !== 'foto_no_esta' && x.message !== 'foto_invalida')) throw x; pool[h] = null; } }   // un fallo de red o de permiso se reintenta; si el archivo de verdad no existe, esa foto ya se perdió y se sigue sin ella
+        Object.keys(e).forEach(function (f) { if (f !== 'imgRef' || pool[h] === null) c[f] = e[f]; }); c.img = pool[h] || ''; o._dib[claves[i]] = c;
+      } else o._dib[claves[i]] = e;
+    }
+    return o;
+  }
+  async function limpiarFotos() {   // borra los archivos de fotos que ya no cita agenda.json ni ninguna versión anterior (y tienen más de un día)
+    var hay = await listarFotos(), hs = Object.keys(hay); if (!hs.length) return;
+    var citadas = {}, principal = (await buscar("name = '" + NOMBRE + "'"))[0];
+    if (!principal) return;   // sin agenda no se borra nada
+    var lista = [principal].concat(await buscar("name contains '" + PREFIJO_ANT + "'", 'createdTime desc', 'id'));
+    for (var i = 0; i < lista.length; i++) { var sb2 = await leerArchivo(lista[i].id); huellasDe(sb2 && sb2.datos).forEach(function (h) { citadas[h] = 1; }); }
+    for (var j = 0; j < hs.length; j++) {
+      var h = hs[j]; if (citadas[h]) continue;
+      if (Date.now() - new Date(hay[h].createdTime).getTime() < GRACIA_FOTOS) continue;
+      await borrarArchivo(hay[h].id);
+    }
+  }
+
   /* ---------- versiones anteriores ---------- */
   async function guardarVersion(datos, motivo) {
     var ts = new Date().toISOString().replace(/[:.]/g, '-');
     await guardarArchivo(null, PREFIJO_ANT + ts + '.json', sobre(datos), { tipo: 'anterior', motivo: motivo });
     lsSet(K_SNAP, String(Date.now()));
     try { var todas = await buscar("name contains '" + PREFIJO_ANT + "'", 'createdTime desc', 'id,name,createdTime'); for (var i = MAX_ANTERIORES; i < todas.length; i++) await borrarArchivo(todas[i].id); } catch (e) { /* limpiar es opcional */ }
+    try { if (CRIPTO) await limpiarFotos(); } catch (e) { /* limpiar las fotos viejas también es opcional */ }
   }
   var MOTIVOS = { conflicto: 'Antes de mezclar dos cambios en la misma casilla', periodica: 'Copia automática', restaurar: 'Antes de restaurar otra versión', mezcla: 'Antes de juntar cambios de otro aparato' };
 
@@ -139,18 +219,20 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     if (manual) aviso('Sincronizando…');
     try {
       var L = await leerLocalC(), textoLocal = lsGet(CLAVE) || '', vDib = dibStore() ? dibStore().version : 0, base = await leerBaseC(), revVisto = lsGet(K_REV), tb = tablas();
+      var pool = {}, Lr = await aFormaDrive(L, pool), Br = base ? await aFormaDrive(base, pool) : base;   // la mezcla se hace en la «forma Drive» (fotos aparte)
       var archivos = await buscar("name = '" + NOMBRE + "'");
       var meta = archivos[0] || null, ahora = new Date().toISOString();
       if (!meta) {   // Drive todavía no tiene la agenda
         if (!hayDatos(L)) { estado.ultima = ahora; pintar(); aviso(manual ? 'Todo listo. Tu agenda está vacía; se guardará en Drive cuando escribas.' : ''); return; }
-        var rev0 = nuevaRev(); await guardarArchivo(null, NOMBRE, sobre(L), { rev: rev0 });
+        var rev0 = nuevaRev(); await subirFotos(Lr, pool); await guardarArchivo(null, NOMBRE, sobre(Lr), { rev: rev0 });
         await guardarBase(L); lsSet(K_REV, rev0); await terminar(manual, 'Tu agenda quedó guardada en tu Google Drive.'); return;
       }
       var revRemoto = (meta.appProperties || {}).rev || '', R;
-      if (base && revRemoto && revRemoto === revVisto) R = base;           // Drive no cambió desde la última vez: no hace falta bajarla
+      if (base && revRemoto && revRemoto === revVisto) R = Br;           // Drive no cambió desde la última vez: no hace falta bajarla
       else { var sob = await leerArchivo(meta.id); R = sob && sob.datos && typeof sob.datos === 'object' ? sob.datos : {}; }
-      var f = M.fusionar(base, L, R, tb), Mx = f.resultado;
-      var igualRemoto = M.igual(Mx, R), igualLocal = M.igual(Mx, L);
+      var Rr = await aFormaDrive(R, pool);   // un agenda.json viejo (fotos dentro) se entiende igual; como R no cambia, igualRemoto será falso y se migra solo
+      var f = M.fusionar(Br, Lr, Rr, tb), Mx = f.resultado;
+      var igualRemoto = M.igual(Mx, R), igualLocal = M.igual(Mx, Lr);
       if (igualRemoto && igualLocal) {   // todo igual en los dos lados
         await guardarBase(L); if (revRemoto) lsSet(K_REV, revRemoto); await terminar(manual, 'Tu agenda ya está al día.'); mostrarBanner(false); return;
       }
@@ -160,7 +242,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
         var haceMucho = Date.now() - Number(lsGet(K_SNAP) || 0) > HORAS_ENTRE_VERSIONES * 3600000;
         if (Object.keys(R).length && (f.conflictos.length || f.duplicadas.length)) await guardarVersion(R, MOTIVOS.conflicto);
         else if (Object.keys(R).length && haceMucho) await guardarVersion(R, cambiaLocal ? MOTIVOS.mezcla : MOTIVOS.periodica);
-        rev = nuevaRev(); await guardarArchivo(meta.id, NOMBRE, sobre(Mx), { rev: rev });
+        rev = nuevaRev(); await subirFotos(Mx, pool); await guardarArchivo(meta.id, NOMBRE, sobre(Mx), { rev: rev });
         var ver = await buscar("name = '" + NOMBRE + "'");
         if (!ver[0] || (ver[0].appProperties || {}).rev !== rev) { otraVez = true; aviso(manual ? 'Otro aparato guardó al mismo tiempo; vuelvo a intentarlo.' : ''); return; }   // alguien escribió justo en medio: la base no cambia y se mezcla de nuevo
       }
@@ -172,16 +254,17 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
         aviso('Hay cambios de otro aparato; toca «Actualizar» cuando termines de escribir.'); return;
       }
       if (cambiaLocal) {
+        var Mfull = await aFormaLocal(Mx, pool);   // fotos completas (si falta alguna, falla aquí y no se aplica nada)
         if (lsGet(CLAVE) !== textoLocal || (dibStore() && dibStore().version !== vDib)) {   // la persona escribió mientras sincronizábamos: no se pisa; la base es lo que ya está en Drive de lo nuestro y se vuelve a mezclar
           await guardarBase(L); lsSet(K_REV, ''); otraVez = true; return;
         }
-        await aplicarLocal(Mx, rev); mostrarBanner(false); pendiente = false;
+        await aplicarLocal(Mfull, rev); mostrarBanner(false); pendiente = false;
         try { await llamar('sincronizada'); } catch (e) {}
         estado.ultima = ahora; pintar();
         if (avisos.length) lsSet('lrDriveAvisos', JSON.stringify(avisos));
         recargarSiSeguro(); return;
       }
-      await guardarBase(Mx); lsSet(K_REV, rev);
+      await guardarBase(L); lsSet(K_REV, rev);   // lo local ya es igual a lo mezclado
       await terminar(manual, avisos.length ? avisos : 'Tu agenda quedó guardada en tu Google Drive.');
     } catch (e) { manejarError(e, manual); }
     finally { ocupado = false; if (otraVez) { otraVez = false; setTimeout(function () { ciclo({}); }, 1500); } }
@@ -231,9 +314,12 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     try {
       var sob = await leerArchivo(a.id), datos = sob && sob.datos; if (!datos || typeof datos !== 'object') throw new Error('vacio');
       var meta = (await buscar("name = '" + NOMBRE + "'"))[0];
-      await guardarVersion(await leerLocalC(), MOTIVOS.restaurar);
-      var rev = nuevaRev(); await guardarArchivo(meta ? meta.id : null, NOMBRE, sobre(datos), { rev: rev });
-      await aplicarLocal(datos, rev); recargarSiSeguro();
+      var poolR = {}, completos = await aFormaLocal(datos, poolR);   // fotos completas de esa versión (si falta alguna, no se restaura)
+      var actual = await aFormaDrive(await leerLocalC(), poolR); await subirFotos(actual, poolR);
+      await guardarVersion(actual, MOTIVOS.restaurar);
+      var nuevo = await aFormaDrive(completos, poolR); await subirFotos(nuevo, poolR);
+      var rev = nuevaRev(); await guardarArchivo(meta ? meta.id : null, NOMBRE, sobre(nuevo), { rev: rev });
+      await aplicarLocal(completos, rev); recargarSiSeguro();
     } catch (e) { aviso('No pudimos restaurar esa versión. Inténtalo otra vez.'); }
   }
   function olvidarLocal() { [K_BASE, K_REV, K_UID, K_SNAP, 'lrDriveAvisos'].forEach(lsDel); if (dibStore()) dibStore().borrarBaseDib(); }
@@ -265,7 +351,12 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   bBor.addEventListener('click', async function () {
     if (!confirm('¿Borrar tu agenda de tu Google Drive y desconectar? Se borran la copia y las versiones anteriores que hay en tu Drive. Tu agenda en este aparato no se toca.')) return;
     aviso('Borrando de tu Drive…');
-    try { var todos = await buscar("trashed = false", 'createdTime desc', 'id'); for (var i = 0; i < todos.length; i++) await borrarArchivo(todos[i].id); }
+    try {
+      for (var vuelta = 0; vuelta < 100; vuelta++) {   // la búsqueda devuelve de a 20: se repite hasta que no quede nada (con las fotos en archivos propios puede haber muchos)
+        var todos = await buscar("trashed = false", 'createdTime desc', 'id'); if (!todos.length) break;
+        for (var i = 0; i < todos.length; i++) await borrarArchivo(todos[i].id);
+      }
+    }
     catch (e) { aviso('No pudimos borrar todo de tu Drive. Inténtalo otra vez.'); return; }
     await llamar('desconectar'); estado = { conectado: false }; acceso = null; olvidarLocal(); pintar(); aviso('Listo: borramos tu agenda de tu Drive y desconectamos.');
   });
