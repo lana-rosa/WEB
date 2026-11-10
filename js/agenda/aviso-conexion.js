@@ -38,13 +38,13 @@
       titulo: 'Antes de conectar tu Drive para guardar informes y copias',
       filas: [
         ['Qué datos se consultan', 'Solo la dirección de tu cuenta de Google, para mostrarte con qué cuenta conectaste. No leemos tus archivos de Drive.'],
-        ['Qué se crea o se guarda', 'Solo cuando tú lo pides con un botón: se crea la carpeta «Agenda para tejedoras» en tu Drive y en ella se guarda el Excel de tu agenda o una copia de seguridad (esta puede incluir tus dibujos y sus fotos, y los datos que hayas anotado de tus clientas). Los archivos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. Nunca se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y la dirección de tu cuenta de Google.'],
-        ['Para qué', 'Para que tengas tus informes y tus copias de seguridad en tu propio Drive, donde tú los puedes abrir, mover y compartir.'],
+        ['Qué se crea o se guarda', 'Solo cuando tú lo pides con un botón: se crea la carpeta «Agenda para tejedoras» en tu Drive y en ella se guarda tu agenda como hoja de cálculo de Google (Google Sheets) o una copia de seguridad (esta puede incluir tus dibujos y sus fotos, y los datos que hayas anotado de tus clientas). Los archivos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. Nunca se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y la dirección de tu cuenta de Google.'],
+        ['Para qué', 'Para que tengas tu agenda como hoja de cálculo de Google, lista para abrir y editar sin descargar nada, y tus copias de seguridad en tu propio Drive, donde tú los puedes abrir, mover y compartir.'],
         ['Qué permiso pide', 'Crear y ver solo los archivos y la carpeta que esta app crea. No puede ver, abrir ni borrar tus otros archivos o carpetas de Drive.'],
         ['Cómo desconectar', 'Cuando quieras, con el botón «Desconectar» de la tarjeta «Guardar informes y copias en tu Drive» en ⚙️ Configuración. También puedes quitar el permiso en los permisos de tu cuenta de Google.'],
         ['Qué pasa después', 'Al desconectar retiramos el permiso y borramos lo que guardábamos de tu conexión. Lo que ya guardaste en tu carpeta de Drive se queda ahí, es tuyo y lo puedes borrar cuando quieras. Tu agenda en la web no se toca.']
       ],
-      acepto: 'Entiendo lo anterior y autorizo guardar en mi Google Drive, solo cuando yo lo pida, el Excel y las copias de seguridad de mi agenda.',
+      acepto: 'Entiendo lo anterior y autorizo guardar en mi Google Drive, solo cuando yo lo pida, mi agenda como hoja de cálculo de Google y las copias de seguridad.',
       boton: 'Conectar Google Drive'
     }
   };

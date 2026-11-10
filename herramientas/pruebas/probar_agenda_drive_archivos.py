@@ -29,7 +29,7 @@ class Nube:
         if '/upload/' in url and 'uploadType=multipart' in url:
             cuerpo = r.post_data_buffer or b''; txt = cuerpo.decode('latin1')
             meta = json.loads(re.search(r'\r\n\r\n(\{.*?\})\r\n--', txt, re.S).group(1))
-            s.n += 1; fid = 'a%d' % s.n; s.archivos[fid] = {'id': fid, 'name': meta['name'], 'parents': meta.get('parents'), 'bytes': len(cuerpo), 'via': 'multipart'}
+            s.n += 1; fid = 'a%d' % s.n; s.archivos[fid] = {'id': fid, 'name': meta['name'], 'parents': meta.get('parents'), 'bytes': len(cuerpo), 'via': 'multipart', 'mime': meta.get('mimeType')}
             return js({'id': fid, 'name': meta['name']})
         if '/upload/' in url and 'uploadType=resumable' in url:
             if r.method == 'POST':
@@ -78,12 +78,13 @@ with sync_playwright() as p:
     t.v('conectada: muestra el correo y los botones de guardar, sin «Conectar»', 'sara@gmail.com' in pg.inner_text('#da-texto') and pg.locator('#da-excel').is_visible() and pg.locator('#da-copia').is_visible() and pg.locator('#da-conectar').is_hidden() and pg.locator('#da-abrir').is_hidden())
     t.v('no sube nada por sí sola', not n.archivos and not n.carpetas)
     pg.click('#da-excel'); pg.wait_for_timeout(2500)
-    xs = [a for a in n.archivos.values() if a['name'].endswith('.xlsx')]
-    t.v('«Guardar el Excel»: crea la carpeta «Agenda para tejedoras» y sube un .xlsx con fecha y hora en el nombre', len(n.carpetas) == 1 and len(xs) == 1 and re.match(r'^agenda-para-tejedoras-\d{4}-\d{2}-\d{2}-\d{4}\.xlsx$', xs[0]['name']) and xs[0]['parents'] == list(n.carpetas), [list(n.carpetas), [a['name'] for a in n.archivos.values()]])
-    t.v('el archivo tiene el contenido del libro (un .xlsx es un zip: empieza con PK)', xs[0]['bytes'] > 1000)
+    xs = [a for a in n.archivos.values() if a['name'].startswith('Agenda para tejedoras ')]
+    t.v('«Guardar como hoja de Google»: crea la carpeta «Agenda para tejedoras» y sube el libro pidiendo que Drive lo convierta en hoja de Google, con fecha y hora en el nombre', len(n.carpetas) == 1 and len(xs) == 1 and re.match(r'^Agenda para tejedoras \d{4}-\d{2}-\d{2}-\d{4}$', xs[0]['name']) and xs[0]['mime'] == 'application/vnd.google-apps.spreadsheet' and xs[0]['parents'] == list(n.carpetas), [list(n.carpetas), [a['name'] for a in n.archivos.values()]])
+    t.v('el archivo trae el contenido del libro de Excel (para que Drive lo convierta)', xs[0]['bytes'] > 1000)
     t.v('lo dice y aparece «Abrir mi carpeta»', 'Listo' in pg.inner_text('#da-aviso') and pg.locator('#da-abrir').is_visible(), pg.inner_text('#da-aviso'))
     pg.click('#da-copia'); pg.wait_for_timeout(2500)
     js_ = [a for a in n.archivos.values() if a['name'].endswith('.json')]
+    t.v('la copia de seguridad NO se convierte (sigue siendo un .json)', not js_[0].get('mime'))
     t.v('«Guardar una copia»: sube el .json a la misma carpeta (no crea otra)', len(js_) == 1 and len(n.carpetas) == 1 and js_[0]['parents'] == list(n.carpetas) and re.match(r'^agenda-rosina-\d{4}-\d{2}-\d{2}-\d{4}\.json$', js_[0]['name']), [list(n.carpetas), [a['name'] for a in n.archivos.values()]])
     t.v('la función anota el último guardado y la fila de Conexiones lo muestra', 'guardado' in n.llamadas and 'Último guardado' in pg.inner_text('#cx-resumen'), pg.inner_text('#cx-resumen'))
     t.v('«Desconectar» avisa a la función y vuelve a «Conectar» (lo guardado se queda en su Drive)', (pg.click('#da-desconectar'), pg.wait_for_timeout(800))[1] is None and 'desconectar' in n.llamadas and pg.locator('#da-conectar').is_visible() and len(n.archivos) == 2)

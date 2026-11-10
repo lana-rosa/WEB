@@ -1,4 +1,4 @@
-/* Agenda para tejedoras: guardar el Excel y las copias de seguridad en una carpeta VISIBLE del Google Drive de la persona (Conexiones e integraciones, etapa 4, 10-nov-2026).
+/* Agenda para tejedoras: guardar la agenda como hoja de Google (el libro de Excel, convertido por Drive) y las copias de seguridad en una carpeta VISIBLE del Google Drive de la persona (Conexiones e integraciones, etapa 4, 10-nov-2026).
    Es una conexión APARTE de la sincronización de Drive (drive-sync.js, carpeta oculta `drive.appdata`): permiso `drive.file` (la app solo ve lo que ella misma crea, no el resto del Drive),
    su propia función de Supabase (`google-drive-archivos`, solo consigue el permiso y entrega una llave de ~1 hora) y su propio aviso antes de conectar (aviso-conexion.js, servicio «archivos»).
    Los archivos van directo del navegador al Drive de la persona: no pasan por Lana Rosa. Solo se sube cuando la persona toca un botón; nunca solo, y nunca se borra ni se sobrescribe nada
@@ -11,7 +11,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var txt = document.getElementById('da-texto'), av = document.getElementById('da-aviso');
   var bCon = document.getElementById('da-conectar'), bXls = document.getElementById('da-excel'), bCop = document.getElementById('da-copia'), bAbrir = document.getElementById('da-abrir'), bDes = document.getElementById('da-desconectar');
   var API = 'https://www.googleapis.com/drive/v3/files', SUBIR = 'https://www.googleapis.com/upload/drive/v3/files', CARPETA = 'Agenda para tejedoras', MIME_CARPETA = 'application/vnd.google-apps.folder';
-  var MAX_MULTIPARTE = 4 * 1024 * 1024;
+  var MAX_MULTIPARTE = 4 * 1024 * 1024, HOJA_GOOGLE = 'application/vnd.google-apps.spreadsheet';
   var sb = null, estado = null, acceso = null, ocupado = false, carpeta = null;
   function aviso(t) { av.textContent = t || ''; }
   function abrirConfig() { if (window.lrAgendaConfig) window.lrAgendaConfig.abrir(); }
@@ -45,8 +45,9 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     }
     carpeta = f; return f;
   }
-  async function subirArchivo(nombre, tipo, blob, idCarpeta) {   // hasta 4 MB de una vez; más grande, por partes (resumible)
+  async function subirArchivo(nombre, tipo, blob, idCarpeta, comoHojaGoogle) {   // hasta 4 MB de una vez; más grande, por partes (resumible)
     var meta = { name: nombre, parents: [idCarpeta] };
+    if (comoHojaGoogle) meta.mimeType = HOJA_GOOGLE;   // Drive convierte el libro de Excel en una hoja de cálculo de Google (Google Sheets) al subirlo
     if (blob.size <= MAX_MULTIPARTE) {
       var b = 'lr' + Math.random().toString(36).slice(2) + Date.now().toString(36);
       var cuerpo = new Blob(['--' + b + '\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n' + JSON.stringify(meta) + '\r\n--' + b + '\r\nContent-Type: ' + tipo + '\r\n\r\n', blob, '\r\n--' + b + '--']);
@@ -66,12 +67,12 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
       if (que === 'excel') {
         blob = window.lrExportar && window.lrExportar.crearBlob ? window.lrExportar.crearBlob() : null;
         if (!blob) { aviso('Todavía no hay nada escrito para exportar. Llena alguna hoja de tu agenda y vuelve a intentarlo.'); return; }
-        nombre = 'agenda-para-tejedoras-' + marca() + '.xlsx'; tipo = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        nombre = 'Agenda para tejedoras ' + marca(); tipo = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';   // sin extensión: queda como hoja de Google
       } else {
         blob = await window.lrAgendaCopia.crear(); nombre = 'agenda-rosina-' + marca() + '.json'; tipo = 'application/json';
       }
       aviso('Guardando en tu Drive…');
-      var c = await asegurarCarpeta(), f = await subirArchivo(nombre, tipo, blob, c.id);
+      var c = await asegurarCarpeta(), f = await subirArchivo(nombre, tipo, blob, c.id, que === 'excel');
       try { await llamar('guardado'); } catch (e) {}
       estado.ultimo = new Date().toISOString();
       (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_drive_archivos', tipo: que });
@@ -88,7 +89,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var c = !!(estado && estado.conectado);
     bCon.hidden = c; bXls.hidden = !c; bCop.hidden = !c; bAbrir.hidden = !(c && carpeta && carpeta.webViewLink); bDes.hidden = !c;
     bXls.disabled = bCop.disabled = ocupado;
-    if (!c) txt.textContent = 'Guarda tu Excel y tus copias de seguridad en una carpeta de tu propio Google Drive, que tú puedes abrir, mover y compartir. Solo se guarda cuando tú lo pides. Es gratis y opcional.';
+    if (!c) txt.textContent = 'Guarda tu agenda como hoja de cálculo de Google (Google Sheets, que se abre y se edita sin descargar nada) y tus copias de seguridad en una carpeta de tu propio Google Drive, que tú puedes abrir, mover y compartir. Solo se guarda cuando tú lo pides. Es gratis y opcional.';
     else {
       txt.textContent = '';
       [estado.correo ? ('Conectado como ' + estado.correo + '.') : 'Conectado.', estado.ultimo ? ('Último guardado: ' + fechaHora(estado.ultimo)) : 'Todavía no has guardado nada.'].forEach(function (x, i) {
@@ -117,7 +118,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   });
   var q = new URLSearchParams(location.search).get('driveArchivos');
   var mensajes = { cancelado: 'No se conectó: cancelaste el permiso de Google.', sin_permiso: 'Google no entregó el permiso de Drive. Inténtalo otra vez y deja marcado el acceso a Drive.', error: 'Algo salió mal al conectar con Google. Inténtalo otra vez.', no_configurado: 'El guardado en tu Drive todavía no está activo.' };
-  if (q === 'conectado') { estado = await llamar('estado'); pintar(); abrirConfig(); caja.scrollIntoView({ block: 'center' }); aviso('Conectado. Ya puedes guardar tu Excel o una copia en tu Drive.'); history.replaceState(null, '', location.pathname + location.hash); }
+  if (q === 'conectado') { estado = await llamar('estado'); pintar(); abrirConfig(); caja.scrollIntoView({ block: 'center' }); aviso('Conectado. Ya puedes guardar tu agenda como hoja de Google o una copia en tu Drive.'); history.replaceState(null, '', location.pathname + location.hash); }
   else if (mensajes[q]) { aviso(mensajes[q]); abrirConfig(); caja.scrollIntoView({ block: 'center' }); history.replaceState(null, '', location.pathname + location.hash); }
   window.lrDriveArchivos = { estado: function () { return estado; } };
 })();
