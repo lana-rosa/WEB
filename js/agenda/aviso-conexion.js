@@ -1,7 +1,7 @@
 /* Agenda para tejedoras: aviso ANTES de conectar Google Calendar o Google Drive (encargo E30, punto 8 de herramientas/legal/RESPUESTA-ABOGADA-2026-11.md; 5-nov-2026).
    Una ventana propia, aparte de la aceptación general de la cuenta, que dice: qué datos se consultan, qué se crea o guarda, para qué, qué permisos pide, cómo desconectar y qué pasa después,
    más el texto sobre el acceso del equipo (literal de la abogada). El botón «Conectar» solo se activa al marcar la casilla; «Cancelar» o cerrar no conecta nada.
-   Uso: `window.lrAvisoConexion.pedir('calendar' | 'drive')` devuelve una promesa con true (autorizó) o false. Los botones «Conectar» de google-calendar.js y drive-sync.js lo piden SIEMPRE
+   Uso: `window.lrAvisoConexion.pedir('calendar' | 'drive' | 'archivos')` devuelve una promesa con true (autorizó) o false. Los botones «Conectar» de google-calendar.js y drive-sync.js lo piden SIEMPRE
    antes de abrir Google y, si este módulo no está, NO conectan. Texto solo en español (como la autorización de la copia en la nube): `data-no-traducir`. TEXTO EN BORRADOR hasta que lo apruebe la abogada.
    Si cambia lo que la función sincroniza, actualizar estos textos y `politicas.html#datos` (chat 6). Prueba: herramientas/pruebas/probar_agenda_aviso_conexion.py. */
 (function () {
@@ -32,6 +32,19 @@
         ['Qué pasa después', 'Con «Desconectar» tu agenda sigue funcionando en este aparato y lo guardado en tu Drive se queda ahí hasta que lo borres. Con «Borrar mi agenda de Drive» se borra todo lo guardado en tu Drive. En ambos casos retiramos el permiso y borramos lo que guardábamos de tu conexión.']
       ],
       acepto: 'Entiendo lo anterior y autorizo guardar mi agenda en la carpeta oculta de mi Google Drive.',
+      boton: 'Conectar Google Drive'
+    },
+    archivos: {
+      titulo: 'Antes de conectar tu Drive para guardar informes y copias',
+      filas: [
+        ['Qué datos se consultan', 'Solo la dirección de tu cuenta de Google, para mostrarte con qué cuenta conectaste. No leemos tus archivos de Drive.'],
+        ['Qué se crea o se guarda', 'Solo cuando tú lo pides con un botón: se crea la carpeta «Agenda para tejedoras» en tu Drive y en ella se guarda tu agenda como hoja de cálculo de Google (Google Sheets) o una copia de seguridad (esta puede incluir tus dibujos y sus fotos, y los datos que hayas anotado de tus clientas). Los archivos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. Nunca se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y la dirección de tu cuenta de Google.'],
+        ['Para qué', 'Para que tengas tu agenda como hoja de cálculo de Google, lista para abrir y editar sin descargar nada, y tus copias de seguridad en tu propio Drive, donde tú los puedes abrir, mover y compartir.'],
+        ['Qué permiso pide', 'Crear y ver solo los archivos y la carpeta que esta app crea. No puede ver, abrir ni borrar tus otros archivos o carpetas de Drive.'],
+        ['Cómo desconectar', 'Cuando quieras, con el botón «Desconectar» de la tarjeta «Guardar informes y copias en tu Drive» en ⚙️ Configuración. También puedes quitar el permiso en los permisos de tu cuenta de Google.'],
+        ['Qué pasa después', 'Al desconectar retiramos el permiso y borramos lo que guardábamos de tu conexión. Lo que ya guardaste en tu carpeta de Drive se queda ahí, es tuyo y lo puedes borrar cuando quieras. Tu agenda en la web no se toca.']
+      ],
+      acepto: 'Entiendo lo anterior y autorizo guardar en mi Google Drive, solo cuando yo lo pida, mi agenda como hoja de cálculo de Google y las copias de seguridad.',
       boton: 'Conectar Google Drive'
     }
   };
