@@ -197,3 +197,6 @@ Regla: los textos legales se preparan como borrador, Jennifer los ve, **la aboga
 - Borrador de términos de Lana Rosa Academy (punto 2) y de las autorizaciones de menores (inscribe el representante; fotos y videos aparte), para que el chat 6 los lleve a la abogada.
 
 **De Jennifer:** revisar con la contadora los recibos (qué documento y qué datos); autorizaciones escritas de las fotos de la galería; contratos con proveedores (Supabase en Brasil) con la abogada; la aprobación escrita de la abogada para la fase 1.
+
+## [ ] E34 · Ideas de «Tejedora Artesana Pro» para «Mi emprendimiento» (chat 2, con el chat 1) — después de E11
+- Informe: `herramientas/agenda-auditoria/COMPARACION-TEJEDORA-ARTESANA-PRO.md`. Orden propuesto: cronómetro por proyecto → anticipo, cobros parciales y «Saldo por cobrar» → presupuesto en PDF por WhatsApp → pedido y proyecto unidos con materiales reservados → lista de compras que pasa al inventario → medidas y gustos en la ficha de clienta. Revisar primero qué de esto ya existe en nuestras hojas (pedidos, clientas, inventario, proyecto-lana). Ideas, no copia: textos y diseño propios. Fotos a Jennifer antes de publicar.
