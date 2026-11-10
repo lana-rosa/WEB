@@ -36,7 +36,7 @@
 
 **9. Edad.** **Edad mínima: 18 años**, en el taller en grupo y en la clase personalizada (decisión de Jennifer). **Por ahora no se dan clases a menores de edad.** Si más adelante se ofrecen, se usará la sección C.
 
-**10. Qué es y qué no es el servicio.** Es una formación práctica y recreativa de crochet. No es educación formal ni certifica una profesión. [POR DEFINIR: si se entrega constancia de asistencia].
+**10. Qué es y qué no es el servicio.** Es una formación práctica y recreativa de crochet. No es educación formal ni certifica una profesión. **Al terminar el taller se entrega una constancia de asistencia** (decisión de Jennifer, 10-nov-2026): dice que la persona participó, sin dar título ni certificar una profesión. [POR DEFINIR: qué datos lleva y quién la firma].
 
 **11. Seguridad en el aula.** Se usan agujas y tijeras. Quien asiste debe seguir las indicaciones de la instructora; como por ahora solo asisten personas mayores de 18 años, no aplica el acompañamiento de adultos.
 
@@ -80,7 +80,7 @@ Datos de inscripción: mientras dure la actividad y [POR DEFINIR: plazo]; fotos 
 2. ~~Cancelación a tiempo~~ → **decidido:** se devuelve el dinero o queda como saldo a favor para otra fecha (elige la participante). Falta: ¿en cuántos días se devuelve? ¿hasta cuándo vale el saldo? ¿Y si cancela con menos de 2 días?
 3. ~~Días calendario o hábiles~~ → **decidido:** solo días hábiles.
 4. ~~Si no se llega al mínimo de 5 personas~~ → **ya no aplica:** se quitó el mínimo; el taller se dicta con quien se inscriba.
-5. ~~Datos del recibo~~ → **decidido (10-nov-2026):** nombre de quien paga, fecha, valor, taller o clase y si es anticipo o pago completo; la contadora puede pedir más. Falta: ¿se entrega constancia de asistencia?
+5. ~~Datos del recibo~~ → **decidido (10-nov-2026):** nombre de quien paga, fecha, valor, taller o clase y si es anticipo o pago completo; la contadora puede pedir más. Constancia de asistencia: **sí se entrega** (decidido el 10-nov-2026); falta definir qué datos lleva y quién la firma.
 6. Si se permite vender lo tejido con el patrón del taller.
 
 ## E. Qué falta en el código antes de publicar (no se hizo)
