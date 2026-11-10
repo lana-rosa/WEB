@@ -166,7 +166,7 @@ Vienen de la sección 7 de `herramientas/auditoria-privacidad.md`:
 ## Espacio para las respuestas de la abogada
 | # | Respuesta | Texto que se cambia | Fecha de publicación |
 |---|---|---|---|
-| 1 | | | |
+| 1 | Aprobado con ajustes (5-nov-2026): texto del retracto de la abogada; reembolso **15 días calendario** (Ley 2439 de 2024, no 30); 7 días solo como recomendación; retracto solo para compras por internet; personalizados sin retracto sin afectar la garantía. Detalle en `RESPUESTA-ABOGADA-2026-11.md` | `politicas.html#cambios` apartados 1, 2, 5 y 6; `merceria/cambios-y-devoluciones/` apartado 4 | Pendiente del visto bueno de Jennifer |
 | 2 | | | |
 | 3 | | | |
 | 4 | | | |

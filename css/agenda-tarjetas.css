@@ -16,3 +16,66 @@
 #agenda .vs-hoja:hover .vs-ic:has(img) { background: #fff; }
 #agenda .vs-hoja.bloq { background: var(--tj-fondo); opacity: .88; }
 @media (prefers-reduced-motion: reduce) { #agenda .vs-hoja { transition: none; } #agenda .vs-hoja:hover, #agenda .vs-hoja:focus-visible { transform: none; } }
+
+/* Contraste del texto (E26, 5-nov-2026): textos de color que quedaban entre 3,5 y 4,5:1 sobre sus fondos suaves; ahora todos llegan a 4,5:1 o más */
+html body .hojas-pasos .paso-sig small, html body .pl-dia.sel small { color: #fff; }
+html body .pl-dia .pl-pto { color: #C81B6D; }
+html body .pestana[aria-selected="true"] .p-largo, html body .pestana[aria-selected="true"] .p-corto { color: #3b2a33; color: color-mix(in srgb, var(--p-fg, #C81B6D) 72%, #1b0f16); }
+#agenda .pn-chip { color: #9C1255; }
+#agenda .pn-chip.av { color: #B3145E; }
+#agenda .pn-kpi-t, #agenda .pn-kpi-t * { color: #A8135A; }
+#agenda .pn-accion { color: #B3145E; }
+html #agenda .tab-grupo h4, html #indice-agenda .indice-grupo h4 { color: #2B2B30; }
+html body .portada-marca, html body .portada-nombre { color: #C81B6D; color: color-mix(in srgb, var(--pc-b, #E74E96) 68%, #000); }
+html #agenda .ficha-chip:not(.alarma):not(.aviso):not(.ok) { color: color-mix(in srgb, var(--sec-fg) 78%, #000); }
+html #agenda .vueltas-grid label:has(input:checked) { background: var(--rosa-boton); border-color: var(--rosa-boton); }
+html #agenda .vueltas-grid input:checked + span { color: #fff; }
+/* Chat de Rosina dentro de la agenda: el rosa de los botones (con texto blanco legible, 4,5:1) y el texto de las sugerencias */
+html body .rc-cab, html body .rc-m.yo div, html body .rc-form button { background: var(--rosa-boton, #E01E79); }
+html body .rc-cab small { color: #fff; opacity: 1; }
+html body .rc-sug button { color: var(--rosa-texto, #C81B6D); }
+
+/* «Patrones que diseñé» dentro de Mi colección de patrones (6-nov-2026) */
+.pp-propios { margin: 0 0 18px; padding: 14px; border: 1.5px solid var(--rosa-medio); border-radius: 16px; background: var(--blanco); }
+.pp-propios .sub-hoja { margin: 0 0 4px; }
+.pp-lista { list-style: none; margin: 8px 0 10px; padding: 0; display: grid; gap: 8px; }
+.pp-item { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; min-height: 48px; padding: 8px 12px; border: 1.5px solid var(--rosa-suave); border-radius: 12px; background: var(--rosa-suave); color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.pp-item:hover, .pp-item:focus-visible { border-color: var(--rosa-boton); }
+.pp-nombre { font-weight: 700; flex: 1 1 140px; overflow-wrap: anywhere; }
+.pp-meta { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.pp-abrir { font-weight: 700; color: var(--rosa-texto); white-space: nowrap; }
+.pp-vacio { margin: 8px 0 10px; color: var(--tinta-suave); }
+
+/* Diseña tu patrón: partes sin número fijo y fotos (6-nov-2026) */
+.dp-parte[hidden] { display: none; }
+.dp-mas { margin: 10px 0 0; }
+.dp-fotos-caja > label { font-weight: 700; }
+.dp-fotos-rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 8px 0; }
+.dp-foto { margin: 0; display: grid; gap: 6px; padding: 8px; border: 1.5px solid var(--rosa-suave); border-radius: 12px; background: var(--blanco); }
+.dp-foto img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; display: block; }
+.dp-foto input { width: 100%; min-height: 40px; padding: 4px 8px; border: 1.5px solid var(--rosa-medio); border-radius: 8px; font: inherit; font-size: .85rem; background: var(--blanco); }
+.dp-fotos-msg { margin: 6px 0 0; min-height: 1.2em; font-size: .875rem; color: var(--rosa-texto); }
+.dp-fotos-vista figure { margin: 0 0 10px; } .dp-fotos-vista img { max-width: 100%; height: auto; border-radius: 8px; }
+.dp-fotos-vista figcaption { font-size: .85rem; color: var(--tinta-suave); }
+
+/* Dibujo del diseño cerrado por defecto, con miniatura (6-nov-2026) */
+.dib-resumen { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 10px 12px; border: 1.5px dashed var(--rosa-medio); border-radius: 14px; background: var(--blanco); }
+.dib-mini { width: 120px; max-width: 40%; height: auto; border-radius: 8px; border: 1.5px solid var(--rosa-suave); background: #fff; }
+.dib-resumen-txt { margin: 0; flex: 1 1 160px; color: var(--tinta-suave); }
+.dib-resumen-txt:empty { display: none; }
+.dib-contenedor.dib-cerrado { height: 0; overflow: hidden; visibility: hidden; margin: 0; padding: 0; }
+@media print { .dib-resumen { display: none !important; } .dib-contenedor.dib-cerrado { height: auto !important; overflow: visible !important; visibility: visible !important; } }
+
+/* Final de las hojas más simple (6-nov-2026): tira de Rosina, compra de materiales y «Del mundo Lana Rosa» en una línea que se abre */
+.herr-plegable, .tienda-plegable { margin: 14px 0 0; border: 1.5px solid var(--rosa-suave); border-radius: 12px; background: var(--blanco); }
+.herr-plegable.herr-abajo { border-top: 1.5px solid var(--rosa-suave); padding-top: 0; margin-top: 18px; }
+.herr-plegable > summary, .tienda-plegable > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; padding: 8px 14px; font-weight: 700; font-size: .92rem; color: var(--rosa-texto); list-style: none; }
+.herr-plegable > summary::-webkit-details-marker, .tienda-plegable > summary::-webkit-details-marker { display: none; }
+.herr-plegable > summary::after, .tienda-plegable > summary::after { content: '▾'; margin-left: auto; padding-left: 10px; transition: transform .15s; }
+.herr-plegable[open] > summary::after, .tienda-plegable[open] > summary::after { transform: rotate(180deg); }
+.herr-plegable > .herr-rosina { margin: 0; padding: 0 14px 12px; border: 0; }
+.tienda-plegable > .elegir-tienda { margin: 0; padding: 0 14px 12px; border: 0; background: none; box-shadow: none; }
+.promo-linea { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0; }
+.promo-linea .promo-etq { margin: 0; }
+.promo-enlace { background: none; border: 0; padding: 4px 0; font: inherit; font-weight: 700; font-size: .92rem; color: var(--rosa-texto); text-decoration: underline; cursor: pointer; min-height: 34px; text-align: left; }
+@media print { .herr-plegable, .tienda-plegable { display: none !important; } }

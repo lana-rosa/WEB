@@ -53,6 +53,8 @@ class Nube:
         lista = list(s.archivos.values())
         if "name = 'agenda.json'" in q: lista = [a for a in lista if a['name'] == 'agenda.json']
         elif "name contains 'agenda-anterior-'" in q: lista = [a for a in lista if a['name'].startswith('agenda-anterior-')]
+        elif "name contains 'foto-'" in q: lista = [a for a in lista if a['name'].startswith('foto-')]
+        elif "name = 'foto-" in q: nom = re.search(r"name = '([^']+)'", q).group(1); lista = [a for a in lista if a['name'] == nom]
         lista = sorted(lista, key=lambda a: a['createdTime'], reverse=True)
         return json_({'files': [{k: v for k, v in a.items() if k != 'contenido'} for a in lista]})
 
@@ -88,7 +90,7 @@ with sync_playwright() as p:
     t.v('sin conectar: la tarjeta aparece con «Conectar con Google Drive» y nada más', pg.locator('#ds-conectar').is_visible() and pg.locator('#ds-sincronizar').is_hidden() and pg.locator('#ds-desconectar').is_hidden() and pg.locator('#ds-borrar').is_hidden())
     t.v('explica que es gratis, que va a SU Drive y que Lana Rosa no ve los datos', 'gratis y opcional' in tx and 'no pasan por Lana Rosa' in tx and 'nadie del equipo' in tx, tx)
     t.v('no se imprime', 'no-imprimir' in pg.locator('#drive-sync').get_attribute('class'))
-    pg.click('#ds-conectar'); pg.wait_for_timeout(1200)
+    pg.click('#ds-conectar'); pg.wait_for_timeout(500); pg.check('#mc-acepto'); pg.click('#mc-conectar'); pg.wait_for_timeout(1200)   # aviso antes de conectar (E30)
     t.v('«Conectar» lleva a Google', pg.url.startswith('https://accounts.google.com/'), pg.url)
     t.v('sin errores de JavaScript', not pg.errs, pg.errs); ctx.close()
 

@@ -106,6 +106,7 @@ def main():
             textos = [tarjetas.nth(i).inner_text() for i in range(3)]
             verificar('cada tarjeta lleva nombre y precio del catálogo (%s)' % en_existencia['nombre'], sm(en_existencia['nombre']) in textos[0] and ('{:,.0f}'.format(en_existencia['precio']).replace(',', '.')) in textos[0], textos[0])
             verificar('«En existencia», «Por encargo · tiempo» y «Desde… se teje a partir de tu foto o idea» según el estado', 'En existencia' in textos[0] and 'Por encargo · 8 a 10 días hábiles' in textos[1] and textos[2].count('Desde') == 1 and 'Se teje a partir de tu foto o idea' in textos[2], textos)
+            verificar('la tarjeta del «Amigurumi personalizado» lleva el aviso de persona y las otras no llevan avisos que no les tocan', 'inspirada en una persona. Cada creación se elabora de manera individual' in textos[2] and 'inspirada en un personaje' not in ' '.join(textos[:2]), textos)
             verificar('el enlace lleva a la ficha del producto y abre en otra pestaña (el chat no se pierde)', tarjetas.nth(0).get_attribute('href') == '/tienda.html?producto=' + en_existencia['id'] and tarjetas.nth(0).get_attribute('target') == '_blank' and 'noopener' in tarjetas.nth(0).get_attribute('rel'))
             verificar('la foto sale de /img/productos/ con texto alternativo vacío (el nombre ya está al lado)', tarjetas.nth(0).locator('img').get_attribute('src') == '/img/productos/' + en_existencia['foto_url'] and tarjetas.nth(0).locator('img').get_attribute('alt') == '')
             alto = tarjetas.nth(0).bounding_box()['height']

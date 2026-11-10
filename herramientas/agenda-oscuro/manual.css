@@ -1,0 +1,49 @@
+/* Lo que se arregla a mano en el modo oscuro (se pega al final de css/agenda-oscuro.css al generarlo). */
+html[data-modo="oscuro"] { color-scheme: dark; }
+html[data-modo="oscuro"] body { background: #16131A; color: #EFE9F1; }
+/* el pie usa --tinta como fondo: aquí --tinta es el color del texto, así que el fondo se fija */
+html[data-modo="oscuro"] .pie { background: #0E0C11; color: #EFE9F1; }
+html[data-modo="oscuro"] .pie h3, html[data-modo="oscuro"] .pie a { color: #EFE9F1; }
+html[data-modo="oscuro"] body, html[data-modo="oscuro"] #agenda.seccion-suave, html[data-modo="oscuro"] #agenda { background: #16131A !important; }
+/* pie de la agenda (usa --tinta como fondo; en oscuro --tinta es el color del texto) */
+html[data-modo="oscuro"] .pie-rico { background: #0E0C11; color: #EFE9F1; }
+html[data-modo="oscuro"] .pie-rico a, html[data-modo="oscuro"] .pie-rico p { color: #EFE9F1; }
+/* aviso de cookies (sus estilos viven en js/consentimiento.js) */
+html[data-modo="oscuro"] .lr-ck { background: #211D27; color: #EFE9F1; border-color: #3B3444; box-shadow: 0 12px 36px rgba(0,0,0,.55); }
+html[data-modo="oscuro"] .lr-ck h2, html[data-modo="oscuro"] .lr-ck a { color: #F28FC0; }
+html[data-modo="oscuro"] .lr-ck button { background: #211D27; color: #F28FC0; border-color: #E74E96; }
+html[data-modo="oscuro"] .lr-ck button.lr-ck-si { background: #C81B6D; color: #fff; border-color: #C81B6D; }
+html[data-modo="oscuro"] .lr-ck-op { background: #2A2531; }
+html[data-modo="oscuro"] .lr-ck-op span { color: #CFC7D4; }
+/* gráficas: sus colores van como atributos del dibujo (js/agenda/graficas.js, dashboards.js, panel.js) */
+html[data-modo="oscuro"] svg [stroke="#F4E6EC"], html[data-modo="oscuro"] svg [stroke="#FBE4EF"], html[data-modo="oscuro"] svg [stroke="#E3D5DB"] { stroke: #3A2F42; }
+html[data-modo="oscuro"] svg [fill="#F4E6EC"], html[data-modo="oscuro"] svg [fill="#FBE4EF"], html[data-modo="oscuro"] svg [fill="#E3D5DB"] { fill: #3A2F42; }
+html[data-modo="oscuro"] svg [stroke="#CFC3C9"], html[data-modo="oscuro"] svg [stroke="#EADDE3"] { stroke: #51475A; }
+html[data-modo="oscuro"] svg [stroke="#45454A"] { stroke: #D9D2DE; }
+html[data-modo="oscuro"] svg [fill="#C81B6D"] { fill: #F28FC0; }
+html[data-modo="oscuro"] svg [fill="#64646A"], html[data-modo="oscuro"] svg [fill="#8A7A82"] { fill: #BBB2C0; }
+html[data-modo="oscuro"] svg [fill="#45454A"] { fill: #E3DCE8; }
+/* textos sueltos que no entran en la regla general */
+html[data-modo="oscuro"] .nota-pago-carrito { color: #CFC7D4; }
+html[data-modo="oscuro"] .hojas-pasos .paso-sig small, html[data-modo="oscuro"] .pl-dia.sel small, html[data-modo="oscuro"] #agenda .pn-cal .hoy { color: #fff; }
+html[data-modo="oscuro"] #agenda .pn-kpi-t, html[data-modo="oscuro"] #agenda .pn-kpi-t * { color: #EFE9F1; }
+/* tarjetas de colores vivos (Mi tablero, Índice): fondo claro que se queda, texto oscuro */
+html[data-modo="oscuro"] #agenda .tab-grupo h4, html[data-modo="oscuro"] #indice-agenda .indice-grupo h4 { color: #2B2B30; }
+html[data-modo="oscuro"] .agc-p-t, html[data-modo="oscuro"] .agc-p-n { color: #2B2B30; }
+/* la portada es una hoja de papel: se queda clara (como se imprime) */
+html[data-modo="oscuro"] .portada-hoja { --tinta: #45454A; --tinta-suave: #64646A; }
+html[data-modo="oscuro"] .portada-tarjeta { background: rgba(255,255,255,0.94); }
+html[data-modo="oscuro"] .portada-titulo, html[data-modo="oscuro"] .portada-frase { color: #45454A; }
+html[data-modo="oscuro"] .portada-de { color: #64646A; }
+html[data-modo="oscuro"] .portada-marca, html[data-modo="oscuro"] .portada-nombre { color: #C81B6D; color: color-mix(in srgb, var(--pc-b, #E74E96) 68%, #000); }
+html[data-modo="oscuro"] .dp-paso-btn[aria-current="step"] .dp-num { color: #fff; background: #C81B6D; }
+html[data-modo="oscuro"] #agenda .vueltas-grid input:checked + span { color: #fff; }
+/* chat de Rosina: encabezado y burbujas con el rosa de botón (texto blanco 4,5:1) */
+html[data-modo="oscuro"] body .rc-cab, html[data-modo="oscuro"] body .rc-m.yo div, html[data-modo="oscuro"] body .rc-form button { background: var(--rosa-boton, #E01E79); color: #fff; }
+html[data-modo="oscuro"] body .rc-cab small { color: #fff; opacity: 1; }
+html[data-modo="oscuro"] body .rc-sug button { color: var(--rosa-texto, #F28FC0); }
+/* lienzos de dibujo: el papel se queda claro (los trazos y los colores se eligen pensando en papel blanco) */
+html[data-modo="oscuro"] .dib-caja { background-color: #fff; }
+html[data-modo="oscuro"] .dib-fondo-puntos { background-image: radial-gradient(circle, #8a8a92 1.3px, transparent 1.6px); }
+/* buscador: el borde redondo se resalta al enfocar (en oscuro, en rosa claro) */
+html[data-modo="oscuro"] body .buscar-agenda:focus-within { border-color: #F28FC0; box-shadow: 0 0 0 3px #F28FC0; }

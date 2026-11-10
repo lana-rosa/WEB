@@ -55,7 +55,7 @@ with sync_playwright() as p:
     t.v('dice que es gratis y opcional y enlaza a la política', 'gratis y opcional' in pg.locator('#cs-texto').inner_text() and pg.locator('#calendario-sync a[href="/politicas.html#datos"]').count() == 1)
     t.v('ya no avisa del mensaje «no verificada» (el permiso es no sensible) y explica el calendario aparte', pg.locator('#cs-nota-verif').is_hidden() and 'calendario aparte llamado «Agenda para tejedoras»' in pg.locator('#cs-texto').inner_text() and 'calendario propio' in pg.locator('#calendario-sync').inner_text())
     t.v('no se imprime', 'no-imprimir' in pg.locator('#calendario-sync').get_attribute('class'))
-    pg.locator('#cs-conectar').click(); pg.wait_for_timeout(1200)
+    pg.locator('#cs-conectar').click(); pg.wait_for_timeout(500); pg.locator('#mc-acepto').check(); pg.locator('#mc-conectar').click(); pg.wait_for_timeout(1200)   # aviso antes de conectar (E30)
     t.v('«Conectar» lleva a Google', pg.url.startswith('https://accounts.google.com/'), pg.url)
     t.v('sin errores de JavaScript', not pg.errs, pg.errs); ctx.close()
 

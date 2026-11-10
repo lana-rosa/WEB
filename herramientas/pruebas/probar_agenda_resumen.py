@@ -1,4 +1,4 @@
-"""«Resumen del emprendimiento» (4-nov-2026): une «Mi negocio en números», «Resultados del negocio» y «Análisis del negocio» en una sola hoja que solo mira (pestañas Este mes · Comparar meses · El año)."""
+"""«Resumen del negocio» (4-nov-2026): une «Mi negocio en números», «Resultados del negocio» y «Análisis del negocio» en una sola hoja que solo mira (pestañas Este mes · Comparar meses · El año)."""
 from agenda_util import *
 from datetime import date
 T = Prueba()
@@ -11,7 +11,7 @@ with sync_playwright() as p:
     for ancho, alto, kw in ((1280, 900, {}), (390, 844, {'has_touch': True, 'is_mobile': True})):
         n = '%d px: ' % ancho
         pg = abrir(contexto(b, ancho, alto, datos=D, config_abierta=False, **kw), '', 2200, config=False)
-        T.v(n + 'en el menú solo hay «Resumen del emprendimiento» (no Resultados, Mi negocio en números ni Análisis)', pg.evaluate("(()=>{const t=[...document.querySelectorAll('#menu-hojas-lista a')].map(a=>a.textContent);return t.some(x=>x.indexOf('Resumen del emprendimiento')>=0)&&!t.some(x=>/Resultados del negocio|Mi negocio en números|Análisis del negocio/.test(x))})()"))
+        T.v(n + 'en el menú solo hay «Resumen del negocio» (no Resultados, Mi negocio en números ni Análisis)', pg.evaluate("(()=>{const t=[...document.querySelectorAll('#menu-hojas-lista a')].map(a=>a.textContent);return t.some(x=>x.indexOf('Resumen del negocio')>=0)&&!t.some(x=>/Resultados del negocio|Mi negocio en números|Análisis del negocio/.test(x))})()"))
         pg.evaluate("window.lrIrAHoja('fin-negocio')"); pg.wait_for_timeout(700)
         T.v(n + 'los enlaces a «Resultados del negocio» abren el Resumen', pg.evaluate("document.getElementById('fin-resumen').classList.contains('abierta')"))
         T.v(n + 'Este mes: tarjetas, tabla de resultados, gráfica, por cobrar y por pagar', all(pg.evaluate("s=>{const e=document.querySelector(s);return !!e&&e.offsetParent!==null&&e.innerText.trim().length>0}", s_) for s_ in ('#fin-tarjetas', '#fn-resultados', '#fin-barras', '#fn-cobrar', '#fn-pagar')))

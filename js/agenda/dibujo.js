@@ -208,7 +208,34 @@
     var cont = document.getElementById('dibujo-proyecto'); if (!cont) return;
     function clave() { var k = window.lrVersiones ? window.lrVersiones.actual('ficha-proyecto') : 'k1'; return 'ficha-proyecto:' + k; }
     pads.proyecto = montar(cont, { clave: clave(), relacion: 0.72, archivo: 'dibujo-del-diseno', etiqueta: 'Dibujo del diseño del proyecto' });
-    document.addEventListener('version-cambiada', function (e) { if (e.detail.hoja === 'ficha-proyecto') pads.proyecto.cambiarClave(clave()); });
+    document.addEventListener('version-cambiada', function (e) { if (e.detail.hoja === 'ficha-proyecto') { pads.proyecto.cambiarClave(clave()); cerrar(); } });
+    /* 6-nov-2026 (pedido de Jennifer: «que no queden totalmente visibles y recarguen la hoja»): el dibujo está CERRADO por defecto; en su lugar se ve una miniatura
+       (si ya hay dibujo o foto) y el botón «Abrir dibujo». El lienzo sigue montado (con su ancho) pero sin alto, y al imprimir se ve completo. */
+    var res = document.createElement('div'); res.className = 'dib-resumen no-imprimir';
+    var mini = document.createElement('img'); mini.className = 'dib-mini'; mini.alt = 'Vista previa del dibujo del diseño'; mini.hidden = true;
+    var txt = document.createElement('p'); txt.className = 'dib-resumen-txt';
+    var abrirB = document.createElement('button'); abrirB.type = 'button'; abrirB.className = 'boton-secundario boton-chico dib-abrir'; abrirB.setAttribute('aria-expanded', 'false'); abrirB.setAttribute('aria-controls', 'dibujo-proyecto');
+    res.appendChild(mini); res.appendChild(txt); res.appendChild(abrirB); cont.parentNode.insertBefore(res, cont); cont.classList.add('dib-cerrado');
+    function hecho(r) { return !!(r && ((r.s && r.s.length) || r.img)); }
+    function miniatura() {
+      var r = almacen()[clave()], w = 360, h = Math.round(w * 0.72);
+      if (!hecho(r)) { mini.hidden = true; txt.textContent = 'Todavía no hay dibujo. Ábrelo para dibujar a mano o subir una foto.'; abrirB.textContent = '✏️ Abrir dibujo'; return; }
+      var c = document.createElement('canvas'); c.width = w; c.height = h; var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, w, h);
+      function trazos() {
+        x.lineCap = 'round'; x.lineJoin = 'round'; var k = w / 1000, ancho = cont.clientWidth || 700;
+        (r.s || []).forEach(function (t) { x.strokeStyle = colorDe(t[0]); x.lineWidth = Math.max(1, (ANCHOS[t[1]] || 3) * w / ancho); var p = t.slice(2); x.beginPath(); x.moveTo(p[0] * k, p[1] * k); for (var i = 1; i < p.length / 2; i++) x.lineTo(p[i * 2] * k, p[i * 2 + 1] * k); x.stroke(); });
+        mini.src = c.toDataURL('image/jpeg', 0.8); mini.hidden = false;
+      }
+      if (r.img) { var im = new Image(); im.onload = function () { var e = Math.min(w / im.width, h / im.height); x.drawImage(im, (w - im.width * e) / 2, (h - im.height * e) / 2, im.width * e, im.height * e); trazos(); }; im.src = r.img; } else trazos();
+      txt.textContent = 'Tu dibujo está guardado.'; abrirB.textContent = '✏️ Abrir dibujo';
+    }
+    function cerrar() { cont.classList.add('dib-cerrado'); abrirB.setAttribute('aria-expanded', 'false'); miniatura(); }
+    abrirB.addEventListener('click', function () {
+      var abierto = abrirB.getAttribute('aria-expanded') === 'true';
+      if (abierto) { cerrar(); return; }
+      cont.classList.remove('dib-cerrado'); abrirB.setAttribute('aria-expanded', 'true'); abrirB.textContent = '✕ Cerrar dibujo'; mini.hidden = true; txt.textContent = ''; pads.proyecto.repintar();
+    });
+    miniatura();
   }
   /* Hoja de dibujo (antes «Hoja de puntos»; el id y las claves `puntos:` siguen igual para no perder lo dibujado): varias páginas */
   function iniciarPuntos() {

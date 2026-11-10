@@ -45,7 +45,7 @@
      de la agenda de la que viene, para que el candado de la membresía funcione igual. Los importes van como {n, f:'peso'} y las cantidades como números simples. */
   var MES_N = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
   function P(v) { return { n: Number(v) || 0, f: 'peso' }; }
-  function deFinanzasDe(f, suf, conMovs) {   // `suf` = ' (personal)' para lo de «Mi plata» personal (datos._finP)
+  function deFinanzasDe(f, suf, conMovs) {   // `suf` = ' (personal)' para lo de «Mis números» personal (datos._finP)
     var salida = [];
     function agregar(hoja, nombre, columnas, filas) { if (filas.length) salida.push({ hoja: hoja, nombre: nombre, columnas: columnas, filas: filas }); }
     if (conMovs) {
@@ -104,5 +104,6 @@
   }
   var b = document.getElementById('agenda-excel');
   if (b) b.addEventListener('click', descargar);
-  window.lrExportar = { reunir: reunir, descargar: descargar };
+  function crearBlob() { var hojas = reunir(); return hojas.length ? window.lrXlsx.crear(hojas) : null; }   // el mismo libro de Excel, sin descargarlo (lo usa «Guardar en tu Drive»)
+  window.lrExportar = { reunir: reunir, descargar: descargar, crearBlob: crearBlob };
 })();

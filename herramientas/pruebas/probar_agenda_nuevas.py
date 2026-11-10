@@ -13,7 +13,7 @@ window.__voz = { n: 0, ultimo: null };
 class SRFalsa { constructor() { window.__voz.ultimo = this; window.__voz.n++; } start() { window.__voz.activo = true; } stop() { window.__voz.activo = false; if (this.onend) this.onend(); } }
 Object.defineProperty(window, 'SpeechRecognition', { value: SRFalsa, configurable: true }); Object.defineProperty(window, 'webkitSpeechRecognition', { value: SRFalsa, configurable: true });
 window.__decir = function (texto, final) { var r = window.__voz.ultimo; var res = [{ transcript: texto, isFinal: !!final }]; res[0] = Object.assign([{ transcript: texto }], { isFinal: !!final }); r.onresult({ resultIndex: 0, results: [res[0]] }); };
-localStorage.setItem('lrVozAviso', '1');
+localStorage.setItem('lrVozAviso2', '1');
 """
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
@@ -62,7 +62,7 @@ with sync_playwright() as p:
     T.v('con una ficha nueva abierta, dicta en ella', pg.input_value('#ag-id2-nota') == 'Otra idea' and pg.input_value('#ag-id1-nota') == t, pg.input_value('#ag-id2-nota'))
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     ctx = contexto(b, 390); ctx.add_init_script("Object.defineProperty(window, 'SpeechRecognition', { value: undefined, configurable: true }); Object.defineProperty(window, 'webkitSpeechRecognition', { value: undefined, configurable: true });"); pg = abrir(ctx, 'mis-ideas')   # sin reconocimiento de voz del navegador
-    pg.evaluate("localStorage.setItem('lrVozAviso','1')"); pg.click('#mis-ideas [data-voz="dictar"]'); pg.wait_for_timeout(200)
+    pg.evaluate("localStorage.setItem('lrVozAviso2','1')"); pg.click('#mis-ideas [data-voz="dictar"]'); pg.wait_for_timeout(200)
     T.v('si el navegador no puede dictar lo explica', 'micrófono del teclado' in pg.inner_text('#mis-ideas .voz-estado'), pg.inner_text('#mis-ideas .voz-estado')); ctx.close()
     # diseña tu patrón
     ctx = contexto(b, 390, datos={'ag-duena': 'Sara'}); pg = abrir(ctx, 'disena-patron')

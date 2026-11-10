@@ -1,0 +1,143 @@
+diff --git a/herramientas/cuentas-clientes/funciones/crear-pago-wompi.ts b/herramientas/cuentas-clientes/funciones/crear-pago-wompi.ts
+index a270f22..7657622 100644
+--- a/herramientas/cuentas-clientes/funciones/crear-pago-wompi.ts
++++ b/herramientas/cuentas-clientes/funciones/crear-pago-wompi.ts
+@@ -35,6 +35,10 @@ const CENTRO_MERCERIA = '2c1577b5-514e-4952-ba15-4feb64ea1879'; // Tienda/Mercer
+ // Versión vigente de las condiciones de la membresía (= su «Fecha de actualización» en politicas.html#membresia). Si cambian de forma
+ // importante: subir esta versión, la de agenda-rosina.html (VERSION_CONDICIONES) y la de la base (fn_nube_version).
+ const VERSION_CONDICIONES = '2026-10-29';
++// Casilla «sin derecho de retracto» de los amigurumis personalizados (abogada, 5-nov-2026). APAGADA: no se despliega hasta que el chat 6 confirme
++// el texto final y se aplique la migración 43 (columnas acepta_sin_retracto_*). Para encender: true aquí y CASILLA_SIN_RETRACTO_ACTIVA en js/pago.js.
++const EXIGIR_SIN_RETRACTO = false;
++const VERSION_SIN_RETRACTO = '2026-11-05-provisional';
+ // Membresía a la venta desde el 29-oct-2026 (pedido de Sara): prueba gratis de 7 días y, después, las tres primeras pestañas gratis; el resto con membresía.
+ // (Estuvo apagada del 12 al 29-oct-2026.) Pendiente: revisión de las condiciones por la abogada.
+ const MEMBRESIA_EN_VENTA = true;
+@@ -182,6 +186,12 @@ Deno.serve(async (req) => {
+     return json({ error: (recoge || digital) ? 'Revisa tus datos: nombre, correo y teléfono.' : 'Revisa tus datos: nombre, correo, teléfono, ciudad y dirección.' }, 400);
+ 
+   if (hayPersonalizados && !cotizando && !/Solicitud personalizada/i.test(notas)) return json({ error: 'Para pagar un amigurumi personalizado primero cuéntanos cómo lo quieres en el formulario de Personaliza.' }, 400);
++  const sinRetracto = EXIGIR_SIN_RETRACTO && hayPersonalizados && !cotizando;
++  if (sinRetracto) {
++    const ar = body?.acepta_sin_retracto || {};
++    if (ar.acepta !== true) return json({ error: 'Para pagar un amigurumi personalizado marca la casilla sobre el derecho de retracto.' }, 400);
++    if (ar.version !== VERSION_SIN_RETRACTO) return json({ error: 'El texto se actualizó. Recarga la página, léelo y vuelve a marcar la casilla.' }, 409);
++  }
+ 
+   // Envío: digital o recoger en tienda = $0; a domicilio = tarifa de la ciudad (o la de "Otro (nacional)").
+   // Materiales de la Mercería a domicilio: se cobra $0 en línea (envío contraentrega) y se informa el estimado.
+@@ -235,6 +245,7 @@ Deno.serve(async (req) => {
+   const { data: pedido, error: e2 } = await sb.from('pedidos_web').insert({
+     referencia, user_id: userId, nombre, correo, telefono, ciudad, direccion, notas: notasPedido || null,
+     subtotal, envio: Number(envio), total, descuento_pct: pct, descuento, es_digital: digital, envio_al_recibir: envioAlRecibir,
++    ...(sinRetracto ? { acepta_sin_retracto_at: new Date().toISOString(), acepta_sin_retracto_version: VERSION_SIN_RETRACTO } : {}),
+   }).select('id').single();
+   if (e2 || !pedido) return json({ error: 'No pudimos crear tu pedido.' }, 500);
+ 
+diff --git a/herramientas/cuentas-clientes/migracion-43-acepta-sin-retracto.sql b/herramientas/cuentas-clientes/migracion-43-acepta-sin-retracto.sql
+new file mode 100644
+index 0000000..619d1b3
+--- /dev/null
++++ b/herramientas/cuentas-clientes/migracion-43-acepta-sin-retracto.sql
+@@ -0,0 +1,8 @@
++-- Migración 43 (5-nov-2026, pedido de la abogada): constancia de que la clienta marcó la casilla «sin derecho de retracto»
++-- al pagar un amigurumi personalizado. PREPARADA, SIN APLICAR: se aplica junto con el despliegue de crear-pago-wompi cuando el chat 6 confirme el texto.
++-- Solo agrega dos columnas opcionales; no cambia permisos ni datos existentes (la tabla ya tiene RLS cerrado).
++alter table public.pedidos_web
++  add column if not exists acepta_sin_retracto_at timestamptz,
++  add column if not exists acepta_sin_retracto_version text;
++comment on column public.pedidos_web.acepta_sin_retracto_at is 'Hora del servidor en que la clienta marcó la casilla de personalizado sin retracto';
++-- Reversa: alter table public.pedidos_web drop column acepta_sin_retracto_at, drop column acepta_sin_retracto_version;
+diff --git a/js/pago.js b/js/pago.js
+index b344d1f..3b53ba2 100644
+--- a/js/pago.js
++++ b/js/pago.js
+@@ -37,6 +37,16 @@ const soloWhatsApp = () => hayMateriales() && (hayOtros() || !PAGO_EN_LINEA_MERC
+ // deja el producto en el carrito. El radicado viaja en las notas del pedido; no llevan descuento de primera compra (lo exige también el servidor).
+ const esPers = (i) => /^Amigurumi personalizado \d+ cm$/.test((i && i.nombre) || '');
+ const hayPers = () => leerCarrito().some(esPers);
++// Casilla «sin derecho de retracto» para los personalizados (pedido de la abogada, 5-nov-2026). APAGADA hasta que el chat 6 confirme el texto final
++// con la política y se aplique la migración 43 y el servidor (crear-pago-wompi). Para encenderla: poner true aquí y en crear-pago-wompi.ts.
++const CASILLA_SIN_RETRACTO_ACTIVA = false;
++const VERSION_SIN_RETRACTO = '2026-11-05-provisional';
++const TEXTO_SIN_RETRACTO = 'Entiendo que este producto se hace a mi medida y por eso no tiene derecho de retracto; conserva la garantía legal.';
++const pideSinRetracto = () => CASILLA_SIN_RETRACTO_ACTIVA && hayPers();
++// Casillas agrupadas (pedido de Jennifer, 5-nov-2026): la aceptación de políticas, la de «sin retracto» (solo personalizados) y la de confirmar la
++// dirección se reúnen en UNA casilla, con «Ver el texto completo» desplegable. APAGADO hasta que la abogada y el chat 6 den el visto bueno.
++const CASILLAS_AGRUPADAS = false;
++const agrupa = () => CASILLAS_AGRUPADAS;
+ const radicadoPers = () => { try { const r = JSON.parse(localStorage.getItem('lrSolicitudPersonalizada')); return r && r.radicado ? String(r.radicado) : ''; } catch (e) { return ''; } };
+ 
+ const SUPABASE_URL = 'https://ngjoognzvehwjtpqwrqe.supabase.co';
+@@ -124,6 +134,10 @@ const CSS = `
+ @media (max-width: 480px) { .pago-fila { grid-template-columns: 1fr; gap: 0; } }
+ .pago-acepto { display: flex; gap: 10px; align-items: flex-start; font-size: 0.86rem; margin: 4px 0 12px; }
+ .pago-acepto[hidden] { display: none; }
++.pago-condiciones { margin: -6px 0 12px 28px; font-size: 0.84rem; }
++.pago-condiciones summary { cursor: pointer; color: #C2185B; font-weight: 600; }
++.pago-condiciones ul { margin: 8px 0 0; padding-left: 18px; color: #3F3F46; }
++.pago-condiciones li { margin-bottom: 6px; }
+ .pago-acepto input { margin-top: 3px; accent-color: #E74E96; width: 18px; height: 18px; flex-shrink: 0; }
+ .pg-btn { width: 100%; font: inherit; font-weight: 700; padding: 14px; border-radius: 999px; border: none; background: #E01E79; color: #fff; cursor: pointer; margin-top: 6px; }
+ .pg-btn:hover { background: #B83E78; }
+@@ -231,6 +245,8 @@ function construirModal() {
+             '<label class="pago-opcion" id="pg-met-wompi"><input type="radio" name="pg-metodo" value="wompi" checked><span><strong>Wompi</strong><small>Tarjeta crédito o débito, PSE, Nequi, Bancolombia, Bre-B y más. Pagas en el sitio seguro de Wompi.</small></span></label>' +
+             '<label class="pago-opcion" id="pg-met-paypal" hidden><input type="radio" name="pg-metodo" value="paypal"><span><strong>PayPal</strong><small>Pagas en dólares (US$) con tu cuenta de PayPal o con tarjeta, en el sitio seguro de PayPal. Para pedidos fuera de Colombia.</small></span></label>' +
+             '<label class="pago-acepto"><input type="checkbox" id="pg-acepto"><span>Acepto la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="/politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.</span></label>' +
++            '<details class="pago-condiciones" id="pg-cond" hidden><summary>Ver el texto completo</summary><div id="pg-cond-cuerpo"></div></details>' +
++            '<label class="pago-acepto" id="pg-sin-retracto-caja" hidden><input type="checkbox" id="pg-sin-retracto"><span id="pg-sin-retracto-texto"></span></label>' +
+             '<label class="pago-acepto" id="pg-confirma-caja"><input type="checkbox" id="pg-confirma"><span id="pg-confirma-texto">Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.</span></label>' +
+             '<label class="pago-acepto" id="pg-cuenta-caja"><input type="checkbox" id="pg-cuenta"><span>Crear mi cuenta con este correo para ver el estado de mi pedido. Sin contraseña: te enviamos un correo para activarla cuando pagues.</span></label>' +
+             '<label class="pago-acepto" id="pg-promos-caja"><input type="checkbox" id="pg-promos"><span>Quiero recibir información de Lana Rosa: promociones, nuevos productos y novedades. Puedes darte de baja cuando quieras.</span></label>' +
+@@ -526,7 +542,26 @@ function actualizarResumen() {
+     }
+   }
+   $('pg-confirma-caja').hidden = recoge;
++  { const cr = $('pg-sin-retracto-caja'); if (cr) { cr.hidden = !pideSinRetracto(); const t = $('pg-sin-retracto-texto'); if (t) t.textContent = TEXTO_SIN_RETRACTO; } }
+   const ciuTxt = intl ? $('pg-ciudad-intl').value.trim() + ', ' + $('pg-pais').value : ciu;
++  if (agrupa()) { // una sola casilla + texto completo desplegable
++    $('pg-confirma-caja').hidden = true; $('pg-sin-retracto-caja').hidden = true;
++    const sp2 = $('pg-acepto').parentNode.querySelector('span');
++    const partes = ['la política de tratamiento de datos', 'la política de envíos y cambios'];
++    if (pideSinRetracto()) partes.push('que mi amigurumi personalizado no tiene derecho de retracto');
++    if (!recoge) partes.push('que mi dirección de envío es correcta');
++    sp2.textContent = 'Acepto las condiciones de mi compra: ' + partes.join(', ').replace(/, ([^,]*)$/, ' y $1') + '.';
++    const cuerpo = $('pg-cond-cuerpo'); cuerpo.replaceChildren();
++    const ul = document.createElement('ul');
++    const li1 = document.createElement('li');
++    li1.innerHTML = materiales
++      ? 'Acepto la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a>, los <a href="/merceria/terminos-de-venta/" target="_blank" rel="noopener">términos de venta de la Mercería</a> y su <a href="/merceria/cambios-y-devoluciones/" target="_blank" rel="noopener">política de cambios, devoluciones y garantías</a>.'
++      : 'Acepto la <a href="/politicas.html#datos" target="_blank" rel="noopener">política de tratamiento de datos</a> y la <a href="/politicas.html" target="_blank" rel="noopener">política de envíos y cambios</a>.';
++    ul.append(li1);
++    if (pideSinRetracto()) { const l = document.createElement('li'); l.textContent = TEXTO_SIN_RETRACTO; ul.append(l); }
++    if (!recoge) { const l = document.createElement('li'); l.textContent = 'Confirmo que mi dirección de envío' + (dir ? ' (' + dir + (ciuTxt ? ', ' + ciuTxt : '') + ')' : '') + ' es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.' + (intl ? ' Entiendo que los impuestos o aranceles de importación de mi país, si aplican, corren por mi cuenta.' : ''); ul.append(l); }
++    cuerpo.append(ul); $('pg-cond').hidden = false;
++  } else { const d = $('pg-cond'); if (d) d.hidden = true; }
+   $('pg-confirma-texto').textContent = 'Confirmo que mi dirección de envío' + (dir ? ' (' + dir + (ciuTxt ? ', ' + ciuTxt : '') + ')' : '') + ' es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales.' + (intl ? ' Entiendo que los impuestos o aranceles de importación de mi país, si aplican, corren por mi cuenta.' : '');
+ }
+ function aviso(html) {
+@@ -590,8 +625,9 @@ async function enviar(e) {
+   const intl = !digital && esIntl();
+   const conPaypal = !digital && metodoElegido() === 'paypal';
+   if (!recoge && !intl && ciudad === 'Otro (nacional)') direccion = otra + ' — ' + direccion;
+-  if (!$('pg-acepto').checked) return aviso('Para continuar, acepta la política de datos y de envíos.');
+-  if (!recoge && !$('pg-confirma').checked) return aviso('Confirma que tu dirección de envío es correcta.');
++  if (!$('pg-acepto').checked) return aviso(agrupa() ? 'Para continuar, marca la casilla de las condiciones de tu compra.' : 'Para continuar, acepta la política de datos y de envíos.');
++  if (!agrupa() && pideSinRetracto() && !$('pg-sin-retracto').checked) return aviso('Para continuar con un amigurumi personalizado, marca la casilla sobre el derecho de retracto.');
++  if (!agrupa() && !recoge && !$('pg-confirma').checked) return aviso('Confirma que tu dirección de envío es correcta.');
+   if (hayPers() && !radicadoPers()) {
+     const f = document.createDocumentFragment(); f.append('Para pagar un amigurumi personalizado primero cuéntanos cómo lo quieres en el formulario. ');
+     const a = document.createElement('a'); a.href = '/personaliza.html#form-personalizado'; a.textContent = 'Ir al formulario'; f.append(a, '.');
+@@ -606,9 +642,10 @@ async function enviar(e) {
+     if (token) headers.Authorization = 'Bearer ' + token;
+     const items = leerCarrito().map((i) => ({ id: i.id, cantidad: i.cantidad }));
+     const notasPedido = hayPers() ? ('Solicitud personalizada ' + radicadoPers() + (notas ? ' · ' + notas : '')).slice(0, 480) : notas;
++    const aceptaSinRetracto = pideSinRetracto() ? { acepta_sin_retracto: { acepta: true, version: VERSION_SIN_RETRACTO } } : {};
+     const cuerpo = intl
+-      ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas: notasPedido }, items }
+-      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas: notasPedido, entrega: digital ? 'digital' : (recoge ? 'recogida' : 'domicilio') }, items };
++      ? { cliente: { nombre, correo, telefono, pais: $('pg-pais').value, ciudad: $('pg-ciudad-intl').value.trim(), direccion, notas: notasPedido }, items, ...aceptaSinRetracto }
++      : { cliente: { nombre, correo, telefono, ciudad, direccion, notas: notasPedido, entrega: digital ? 'digital' : (recoge ? 'recogida' : 'domicilio') }, items, ...aceptaSinRetracto };
+     const res = await fetch(SUPABASE_URL + (conPaypal ? '/functions/v1/paypal-pagos' : '/functions/v1/crear-pago-wompi'), {
+       method: 'POST', headers, body: JSON.stringify(conPaypal ? { accion: 'crear', ...cuerpo } : cuerpo)
+     });

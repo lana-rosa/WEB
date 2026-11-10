@@ -32,6 +32,7 @@ with sync_playwright() as p:
     pc = abrir(contexto(b, 1280, 900, config_abierta=False), 'hoja-puntos', 1500, config=False)
     T.v('computador: el botón no se muestra', not pc.is_visible('#hoja-puntos .dib-pantalla'))
     pp = abrir(contexto(b, 390, 844, config_abierta=False, has_touch=True), 'ficha-proyecto', 1500, config=False)
+    pp.click('.dib-abrir'); pp.wait_for_timeout(400)   # el dibujo del diseño empieza cerrado (6-nov-2026)
     T.v('«Dibujo del diseño» del proyecto también tiene el botón', pp.is_visible('#dibujo-proyecto .dib-pantalla'))
     b.close()
 T.fin()
