@@ -36,7 +36,7 @@
 
 **9. Edad.** **Edad mínima: 18 años**, en el taller en grupo y en la clase personalizada (decisión de Jennifer). **Por ahora no se dan clases a menores de edad.** Si más adelante se ofrecen, se usará la sección C.
 
-**10. Qué es y qué no es el servicio.** Es una formación práctica y recreativa de crochet. No es educación formal ni certifica una profesión. **Al terminar el taller se entrega una constancia de asistencia** (decisión de Jennifer, 10-nov-2026): dice que la persona participó, sin dar título ni certificar una profesión. [POR DEFINIR: qué datos lleva y quién la firma].
+**10. Qué es y qué no es el servicio.** Es una formación práctica y recreativa de crochet. No es educación formal ni certifica una profesión. **Al terminar el taller se entrega una constancia de asistencia** (decisión de Jennifer, 10-nov-2026): dice que la persona participó, sin dar título ni certificar una profesión. **Firma principal: Sara Loaiza Muñoz** (nombre comercial Lana Rosa Crochet); **también puede firmar Jennifer Muñoz Bedoya** (decisión de Jennifer, 10-nov-2026). Datos propuestos: nombre de la participante, nombre del taller o clase, fecha, duración, lugar y firma. [POR DEFINIR: si se agrega una línea sobre la certificación de competencia laboral del SENA de las instructoras (ver sección F)].
 
 **11. Seguridad en el aula.** Se usan agujas y tijeras. Quien asiste debe seguir las indicaciones de la instructora; como por ahora solo asisten personas mayores de 18 años, no aplica el acompañamiento de adultos.
 
@@ -80,10 +80,15 @@ Datos de inscripción: mientras dure la actividad y [POR DEFINIR: plazo]; fotos 
 2. ~~Cancelación a tiempo~~ → **decidido:** se devuelve el dinero o queda como saldo a favor para otra fecha (elige la participante). Falta: ¿en cuántos días se devuelve? ¿hasta cuándo vale el saldo? ¿Y si cancela con menos de 2 días?
 3. ~~Días calendario o hábiles~~ → **decidido:** solo días hábiles.
 4. ~~Si no se llega al mínimo de 5 personas~~ → **ya no aplica:** se quitó el mínimo; el taller se dicta con quien se inscriba.
-5. ~~Datos del recibo~~ → **decidido (10-nov-2026):** nombre de quien paga, fecha, valor, taller o clase y si es anticipo o pago completo; la contadora puede pedir más. Constancia de asistencia: **sí se entrega** (decidido el 10-nov-2026); falta definir qué datos lleva y quién la firma.
+5. ~~Datos del recibo~~ → **decidido (10-nov-2026):** nombre de quien paga, fecha, valor, taller o clase y si es anticipo o pago completo; la contadora puede pedir más. Constancia de asistencia: **sí se entrega**; firma principal Sara, también puede firmar Jennifer (decidido el 10-nov-2026). Datos propuestos en el punto 10. Falta: ¿se menciona la certificación del SENA?
 6. Si se permite vender lo tejido con el patrón del taller.
 
 ## E. Qué falta en el código antes de publicar (no se hizo)
 - Un mensaje o formulario de inscripción que muestre estos términos y guarde la versión aceptada (hoy se reserva por WhatsApp). Las dos casillas separadas (datos / fotos) solo se necesitan cuando haya clases a menores; para adultos basta la autorización de datos y, aparte, la de fotos si se toman.
 - Enlace a estos términos desde `academy/talleres/` y las preguntas frecuentes, y conservar prueba de aceptación.
 - Todo esto va **después** de la aprobación escrita de la abogada.
+
+## F. Certificación de competencia laboral de las instructoras (dato para la abogada)
+- Jennifer entregó (10-nov-2026) los dos certificados: **Sara Loaiza Muñoz** y **Jennifer Muñoz Bedoya** tienen el *Certificado de Competencia Laboral* del SENA en la norma **«Entrelazar hilos según técnica de tejido manual y tipo de agujas — Nivel avanzado»**, código 250701123, versión 2, firmado en Manizales el 31-jul-2025 (verificable en certificados.sena.edu.co con el número que trae cada certificado).
+- **Los PDF no se guardan en el repositorio** (traen cédulas): quedan con Jennifer. Aquí solo se anota el dato.
+- Posible línea de la constancia (solo si Jennifer dice que sí y la abogada la aprueba): *«Taller dictado por instructoras con certificación de competencia laboral del SENA en tejido manual (nivel avanzado).»* Cuidados: decir que son las **instructoras** quienes tienen la certificación, **no** que el SENA certifica o avala el taller; no usar el escudo ni el logo del SENA; no publicar cédulas ni números de registro.
