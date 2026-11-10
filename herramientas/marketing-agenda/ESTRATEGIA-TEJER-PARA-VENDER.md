@@ -148,3 +148,12 @@ Mapa: **Contenido gratis** (Revista, redes, YouTube) → **Herramientas gratis**
 - La agenda no debe crecer en hojas: todo va dentro de las existentes.
 - Patrones, ebook y talleres pagos necesitan sus condiciones legales aprobadas antes de vender.
 - La marca no menciona Navidad ni fechas que no celebra, también en el calendario de temporadas.
+
+---
+## Segunda línea (aprobada por Jennifer, 10-nov-2026): calidad y buenos acabados
+Propuesta de la semana del 9 al 15-nov («De un tejido bonito a un producto bien terminado»). Revisada por el orquestador contra lo que ya existe:
+- **Ya existe, se mejora (no se duplica):** calculadora de consumo de lana y de muestra (`calculadoras-rosina.html`, pestañas «lana» y «muestra»); muestras de lana en la ficha del proyecto y la hoja «Lo que aprendí» (agenda); ficha de cuidados por pieza con QR.
+- **Nuevo y aprobado para empezar:** **Pasaporte de calidad para amigurumis** (PDF, chat 7): producto, hilo y aguja, medidas finales, fotos del proceso, revisión de puntos parejos, relleno y forma, costuras y uniones, detalles y bordados, limpieza y presentación, correcciones y aprobación final. Probarlo con Jennifer y las tejedoras del taller antes de llevarlo a la agenda.
+- **Después:** lista de revisión configurable **dentro de la ficha del proyecto o del pedido** de la agenda (sin módulo nuevo, chat 2); sección de la Revista «El arte de los buenos acabados» con «Prueba y aprende» (chat 6); campaña en redes **después** de la de ROSA para no pisarse (chat 8).
+- **Para el equipo de Lana Rosa:** el control de calidad de la producción va en el **ERP** (ficha técnica y «Mi producción»), no en la agenda.
+- **Con validación previa:** curso «Acabados» de 5 módulos, reto de 5 días, organizador de ganchillos (3 prototipos + preguntar a 10-15 tejedoras), muestrario de puntos. Sin certificado por ahora.
