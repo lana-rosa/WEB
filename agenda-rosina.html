@@ -4283,7 +4283,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var d = window.lrDibStore ? await window.lrDibStore.completos(datosLocales()) : datosLocales();
     if (!d._dib || JSON.stringify(d).length <= 2900000) return d;
     var o = {}; Object.keys(d).forEach(function (k) { o[k] = d[k]; }); o._dib = {};
-    Object.keys(d._dib).forEach(function (k) { var r = d._dib[k] || {}; o._dib[k] = { s: r.s || [], img: '' }; });
+    Object.keys(d._dib).forEach(function (k) { var r = d._dib[k] || {}, c = {}; Object.keys(r).forEach(function (f) { c[f] = r[f]; }); c.s = r.s || []; c.img = ''; o._dib[k] = c; });   // sin las fotos pero conservando el resto (por ejemplo la descripción `t` de las fotos de «Diseña tu patrón»)
     o._dibSinFotos = 1; return o;
   }
   async function subir(base) {
@@ -4444,7 +4444,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script src="/js/agenda/dueno.js?v=5"></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
-<script src="/js/agenda/aviso-conexion.js?v=1"></script>
+<script src="/js/agenda/aviso-conexion.js?v=2"></script>
 <script type="module" src="/js/agenda/google-calendar.js?v=4"></script>
 <script src="/js/agenda/centro-conexiones.js?v=1" defer></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>

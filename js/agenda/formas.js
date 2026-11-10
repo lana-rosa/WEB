@@ -150,7 +150,7 @@
   function borrar(id) {
     var H = HOJAS[id], V = ver(id), i = V.orden.indexOf(V.actual);
     if (!confirm('¿Borrar «' + H.nombre(captura(id)) + '»?\n\nSe elimina de inmediato y no se puede recuperar (solo si guardaste una copia de tu agenda).')) return;
-    var dib = N.datos()._dib; if (dib) { delete dib[id + ':' + V.actual]; Object.keys(dib).forEach(function (q) { if (q.indexOf(id + ':' + V.actual + ':') === 0) delete dib[q]; }); }   // el dibujo y las fotos de esa ficha también se van
+    var dib = N.datos()._dib; if (dib) { var base = id + ':' + V.actual; Object.keys(dib).forEach(function (kd) { if (kd === base || kd.indexOf(base + ':') === 0) delete dib[kd]; }); }   // el dibujo de esa ficha y sus fotos (`<hoja>:<ficha>:f<n>`) también se van
     delete V.v[V.actual]; V.orden.splice(i, 1);
     if (!V.orden.length) { var k = nuevaClave(V); V.orden = [k]; V.v[k] = H.inicial(); V.actual = k; }
     else V.actual = V.orden[Math.max(0, i - 1)];

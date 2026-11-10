@@ -11,10 +11,10 @@
     calendar: {
       titulo: 'Antes de conectar Google Calendar',
       filas: [
-        ['Qué datos se consultan', 'Solo tu correo de Google, para mostrarte con qué cuenta conectaste. No leemos tus otros calendarios, tus eventos ni tu correo electrónico.'],
-        ['Qué se crea o se guarda', 'Se crea en tu Google un calendario aparte llamado «Agenda para tejedoras» y se escriben en él las fechas de tu agenda: entregas y envíos de pedidos, proyectos, fichas de proyecto, fechas especiales, ferias y cumpleaños de clientas (con títulos y detalles como cliente, pedido o total). Esos textos pasan por nuestro servidor solo para llegar a Google y no los guardamos. En Lana Rosa guardamos tu permiso de acceso (cifrado), tu correo de Google, el identificador del calendario y una lista de lo ya enviado para actualizar sin duplicar.'],
+        ['Qué datos se consultan', 'Solo la dirección de tu cuenta de Google, para mostrarte con qué cuenta conectaste. No leemos tus calendarios, tus eventos ni el contenido de tu correo.'],
+        ['Qué se crea o se guarda', 'Se crea en tu Google un calendario aparte llamado «Agenda para tejedoras» y se escriben en él las fechas de tu agenda: entregas y envíos de pedidos, proyectos, fichas de proyecto, fechas especiales, ferias y cumpleaños de clientas (con títulos y detalles como cliente, pedido o total). Esos textos pasan por nuestro servidor solo para llegar a Google y no los guardamos. En Lana Rosa guardamos tu permiso de acceso (cifrado), la dirección de tu cuenta de Google, el identificador del calendario y una lista de lo ya enviado para actualizar sin duplicar.'],
         ['Para qué', 'Para que veas tus fechas en tu Google Calendar y recibas el recordatorio, y para actualizarlas sola cuando cambies tu agenda.'],
-        ['Qué permiso pide', 'Crear un calendario propio y escribir solo en él, y ver tu correo. No puede ver tus otros calendarios ni usar tu cuenta para nada más.'],
+        ['Qué permiso pide', 'Crear un calendario propio y escribir solo en él, y ver la dirección de tu cuenta de Google. No puede leer ningún calendario, evento ni mensaje tuyo, ni usar tu cuenta para nada más.'],
         ['Cómo desconectar', 'Cuando quieras, con el botón «Desconectar» de la tarjeta de Google Calendar en ⚙️ Configuración. También puedes quitar el permiso en los permisos de tu cuenta de Google.'],
         ['Qué pasa después', 'Al desconectar se borra de tu Google el calendario «Agenda para tejedoras» con sus fechas, retiramos el permiso y borramos lo que guardábamos de tu conexión. Tu agenda en la web no se toca.']
       ],
@@ -24,8 +24,8 @@
     drive: {
       titulo: 'Antes de conectar Google Drive',
       filas: [
-        ['Qué datos se consultan', 'Solo tu correo de Google y el archivo de tu agenda que esta app guardó en su carpeta oculta. No leemos ningún otro archivo de tu Drive.'],
-        ['Qué se crea o se guarda', 'En una carpeta oculta de tu Drive se guarda un archivo con toda tu agenda (incluidos tus dibujos y sus fotos) y hasta 5 versiones anteriores. Los datos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y tu correo de Google.'],
+        ['Qué datos se consultan', 'Solo la dirección de tu cuenta de Google y el archivo de tu agenda que esta app guardó en su carpeta oculta. No leemos ningún otro archivo de tu Drive.'],
+        ['Qué se crea o se guarda', 'En una carpeta oculta de tu Drive se guarda un archivo con toda tu agenda (incluidos tus dibujos y sus fotos) y hasta 5 versiones anteriores. Los datos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y la dirección de tu cuenta de Google.'],
         ['Para qué', 'Para ver la misma agenda en tu celular, tu tablet y tu computador, con copias para volver atrás si algo se mezcla mal.'],
         ['Qué permiso pide', 'Usar solo la carpeta oculta de esta app en tu Drive. No puede ver, abrir ni borrar tus otros archivos, y tampoco verás esa carpeta para abrirla.'],
         ['Cómo desconectar', 'Cuando quieras, con «Desconectar» (quita el permiso) o «Borrar mi agenda de Drive» (borra la copia y las versiones y desconecta), en la tarjeta de Google Drive de ⚙️ Configuración. También puedes quitar el permiso en los permisos de tu cuenta de Google.'],
