@@ -22,7 +22,7 @@
 - La inscripción se hace por WhatsApp y queda reservada cuando la participante paga el **anticipo** (decisión de Jennifer, 5-nov-2026). El anticipo **de referencia es la mitad del valor** ($25.000 COP en el taller de $50.000), pero **la participante puede dar un valor distinto** (un poco más o un poco menos) y Lana Rosa lo registra en el recibo (decisión de Jennifer, 5-nov-2026). [POR DEFINIR: si hay un mínimo de anticipo para quedar reservada y la fecha límite para pagar el saldo].
 - Valor del taller: el publicado al momento de inscribirse. Valor de la clase personalizada: por hora y por persona, con mínimo de 1 hora.
 - Medios de pago: **efectivo o Bre-B** (decisión de Jennifer, 5-nov-2026). El pago se hace directamente a Sara Loaiza Muñoz, bajo el nombre comercial Lana Rosa Crochet.
-- Comprobante: **recibo de pago** (decisión de Jennifer). [POR DEFINIR con la contadora: qué datos lleva el recibo].
+- Comprobante: **recibo de pago** (decisión de Jennifer). Datos del recibo (aprobados por Jennifer el 10-nov-2026): nombre de quien paga, fecha, valor pagado, taller o clase, y si es anticipo o pago completo. [POR DEFINIR con la contadora: si hace falta algún dato más].
 
 **4. Fechas, horarios y cupos.** La fecha, hora, lugar y cupo máximo de cada taller se informan antes de abrir inscripciones. **Cupo máximo: 10 personas.** No hay un mínimo de personas para dictar el taller (Jennifer lo quitó el 5-nov-2026: el taller se dicta con las personas inscritas). Las clases personalizadas se acuerdan por WhatsApp.
 
@@ -80,7 +80,7 @@ Datos de inscripción: mientras dure la actividad y [POR DEFINIR: plazo]; fotos 
 2. ~~Cancelación a tiempo~~ → **decidido:** se devuelve el dinero o queda como saldo a favor para otra fecha (elige la participante). Falta: ¿en cuántos días se devuelve? ¿hasta cuándo vale el saldo? ¿Y si cancela con menos de 2 días?
 3. ~~Días calendario o hábiles~~ → **decidido:** solo días hábiles.
 4. ~~Si no se llega al mínimo de 5 personas~~ → **ya no aplica:** se quitó el mínimo; el taller se dicta con quien se inscriba.
-5. Qué datos lleva el recibo de pago (con la contadora) y si se entrega constancia de asistencia.
+5. ~~Datos del recibo~~ → **decidido (10-nov-2026):** nombre de quien paga, fecha, valor, taller o clase y si es anticipo o pago completo; la contadora puede pedir más. Falta: ¿se entrega constancia de asistencia?
 6. Si se permite vender lo tejido con el patrón del taller.
 
 ## E. Qué falta en el código antes de publicar (no se hizo)
