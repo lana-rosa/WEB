@@ -67,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-pantalla.css?v=11">
 <link rel="stylesheet" href="/css/agenda-menu.css?v=3">
 <link rel="stylesheet" href="/css/agenda-micuenta.css?v=5">
-<link rel="stylesheet" href="/css/agenda-tarjetas.css?v=5">
+<link rel="stylesheet" href="/css/agenda-tarjetas.css?v=9">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -907,7 +907,7 @@ main > :first-child { padding-top: 40px !important; }
 }
 </style>
 <script>try{var m=localStorage.getItem("lrAgendaModo");if(m==="oscuro"||(m==="auto"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.setAttribute("data-modo","oscuro")}catch(e){}</script>
-<link rel="stylesheet" href="/css/agenda-oscuro.css?v=8">
+<link rel="stylesheet" href="/css/agenda-oscuro.css?v=9">
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png?v=8">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png?v=8">
@@ -2225,6 +2225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </details>
             </div>
+            <p class="no-imprimir dp-mas"><button type="button" class="boton-secundario boton-chico" id="dp-parte-mas">➕ Añadir parte</button></p>
           </fieldset>
           <fieldset class="dp-paso" data-paso="5" data-titulo="Armado">
             <legend>Paso 5 · Armado y detalles</legend>
@@ -2237,6 +2238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <legend>Paso 6 · Notas</legend>
             <div class="grid-ficha">
               <div class="linea ancha"><label for="ag-dp-notas">Notas, consejos y cambios que harías</label><textarea id="ag-dp-notas" rows="4" data-guardar></textarea></div>
+              <div class="linea ancha dp-fotos-caja no-imprimir"><label id="dp-fotos-t">Fotos del resultado y de los pasos</label><p class="dp-ayuda">Sube fotos de cómo quedó y de los pasos importantes. Se guardan en este aparato, igual que tus dibujos, y viajan en tus copias.</p><div id="dp-fotos" role="group" aria-labelledby="dp-fotos-t"></div></div>
               <div class="linea ancha"><label class="check-linea"><input type="checkbox" id="ag-dp-probado" data-guardar> Ya lo tejí siguiendo este patrón y funciona</label></div>
             </div>
           </fieldset>
@@ -4413,9 +4415,10 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/color-casilla.js?v=1" defer></script>
 <script src="/js/agenda/recursos-datos.js?v=3" defer></script>
 <script src="/js/agenda/recursos.js?v=8" defer></script>
-<script src="/js/agenda/herramientas-abajo.js?v=1" defer></script>
+<script src="/js/agenda/herramientas-abajo.js?v=2" defer></script>
 <script src="/js/agenda/lupa.js?v=2" defer></script>
-<script src="/js/agenda/patron.js?v=1" defer></script>
+<script src="/js/agenda/patron.js?v=2" defer></script>
+<script src="/js/agenda/patrones-propios.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=3" defer></script>
 <script src="/js/agenda/vacios.js?v=5" defer></script>
 <script src="/js/agenda/panel.js?v=32" defer></script>
@@ -4429,7 +4432,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/metas-ventas.js?v=7" defer></script>
 <script src="/js/agenda/graficas.js?v=9" defer></script>
 <script src="/js/agenda/clientas-historial.js?v=3" defer></script>
-<script src="/js/agenda/costos.js?v=1" defer></script>
+<script src="/js/agenda/costos.js?v=2" defer></script>
 <script src="/js/agenda/inventario-mov.js?v=5" defer></script>
 <script src="/js/agenda/proyecto-lana.js?v=3" defer></script>
 <script src="/js/agenda/inventario.js?v=2" defer></script>
@@ -4437,7 +4440,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/dashboards.js?v=7" defer></script>
 <script src="/js/agenda/ayuda.js?v=3" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
-<script src="/js/agenda/promo.js?v=1" defer></script>
+<script src="/js/agenda/promo.js?v=2" defer></script>
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script src="/js/agenda/dueno.js?v=5"></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
@@ -4448,7 +4451,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script type="module" src="/js/agenda/drive-sync.js?v=4"></script>
 <script type="module" src="/js/agenda/membresia.js?v=7"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
-<script src="/js/agenda/dibujo.js?v=14" defer></script>
+<script src="/js/agenda/dibujo.js?v=15" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
 <script src="/js/agenda/exportar.js?v=9" defer></script>

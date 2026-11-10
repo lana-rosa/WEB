@@ -50,5 +50,11 @@
 - **Contraste (E26):** parche en `css/agenda-tarjetas.css` (chips, etiquetas de color, «Siguiente hoja», portada, chat de Rosina) para que el modo claro también llegue a 4,5:1; revisión automática de todos los textos en `fotos.py` (resultado 5-nov: 0 textos bajos en oscuro y 0 en claro, en celular y computador).
 - **Cómo se prueba:** `python3 herramientas/pruebas/probar_agenda_modo_oscuro.py` y `python3 herramientas/agenda-oscuro/fotos.py <carpeta>` (fotos de cada hoja en los dos modos y los dos tamaños).
 
-## Aviso antes de dictar (E31, 5-nov-2026) — construido, pendiente del visto bueno de Jennifer
+## Aviso antes de dictar (E31, 5-nov-2026) — PUBLICADO el 5-nov-2026 (#613)
 - `js/agenda/voz.js`: ventana propia (`.mc-dlg`, accesible, foco en «Continuar», Esc = «Ahora no») con el texto del punto 9 de `herramientas/legal/RESPUESTA-ABOGADA-2026-11.md`, antes de activar el micrófono; se recuerda en `localStorage.lrVozAviso2` (el aviso viejo `lrVozAviso` ya no cuenta). Textos EN/PT provisionales en `datos_aviso_voz.py`. Prueba: `probar_agenda_aviso_voz.py`.
+
+## Simplificar la agenda (6-nov-2026) — construido, pendiente del visto bueno de Jennifer
+- **Dibujo del diseño** (`dibujo.js`, `iniciarProyecto`): `#dibujo-proyecto` queda con la clase `dib-cerrado` (sin alto, con ancho, para que el lienzo siga midiendo bien) y arriba una miniatura + «Abrir dibujo»; al cambiar de ficha se vuelve a cerrar; al imprimir se ve completo. Las pruebas que dibujan primero hacen clic en `.dib-abrir`.
+- **Final de las hojas** (`herramientas-abajo.js`, `promo.js`): cada `.herr-rosina` va dentro de `<details class="herr-plegable">`, cada `.elegir-tienda.oferta-merceria` dentro de `<details class="tienda-plegable">` y «Del mundo Lana Rosa» es una línea (`.promo-linea`, 1 promoción). Quien busque esos elementos (como `costos.js`) debe mirar dentro del `details`.
+- **Diseña tu patrón** (`patron.js`): partes sin tope (HTML trae 6; se ven 3 o las que tengan algo; «Añadir parte» crea `ag-dp-pN-nombre|vueltas` de la 7 en adelante) y fotos por patrón en `datos._dib['disena-patron:<ficha>:f<n>']`; `formas.js` expone `lrVersiones.lista/valores/abrir/agregar` y al borrar una ficha borra también sus fotos. `patrones-propios.js` pinta «Patrones que diseñé» en Mis patrones (no copia datos).
+- **Pruebas:** `probar_agenda_simplificar.py` (24) y fotos de antes y después con `herramientas/agenda-oscuro/fotos_simplificar.py <carpeta> [despues]`.
