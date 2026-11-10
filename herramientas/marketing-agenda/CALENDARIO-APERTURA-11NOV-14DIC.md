@@ -3,7 +3,7 @@
 Encargo E10. Instagram y Facebook (lo mismo en ambas; en Facebook se cambia el hashtag por un enlace). Tono inclusivo («tejedoras y tejedores»). **Sin Navidad, santos ni Halloween: diciembre se nombra por la apertura.** Cuenta regresiva hasta el domingo **13-dic** (día 0). Atención normal desde el lunes 14-dic.
 
 **Reglas:** disponible = se despacha el siguiente día hábil; personalizado = 8 días hábiles de elaboración y se despacha el siguiente día hábil, con foto de aprobación antes de enviar. No prometer fechas exactas de entrega. No prometer ingresos. Reseñas sin nombre. Pedidos por WhatsApp 573205072801.
-**Pendiente antes de publicar [ ]:** dirección y horario de la tienda; programa de la inauguración; fotos reales del local y del taller; si la Mercería ya tiene existencias (si no, se usa «muy pronto» + lista de espera); **nombre «CrochetLab»: no usarlo en público hasta que el chat 6 confirme cuándo se publica; mientras tanto decir «la Agenda para tejedoras»**. Todo texto lo aprueba Jennifer.
+**Pendiente antes de publicar [ ]:** dirección y horario de la tienda; programa de la inauguración; fotos reales del local y del taller; si la Mercería ya tiene existencias (si no, se usa «muy pronto» + lista de espera); **nombre de la agenda: «CrochetLab» está en pausa (ya existe una aplicación con ese nombre); en toda pieza se dice «la agenda de Lana Rosa» hasta que Jennifer confirme un nombre definitivo**. Todo texto lo aprueba Jennifer.
 
 Ritmo: 1 pieza de feed por día (3 Reels, 2 carruseles y 2 fotos por semana) + stories casi a diario. Piezas con guion completo = **R** (Reel), **C** (carrusel), **S** (stories), en `GUIONES-APERTURA-SEMANAS-1-Y-2.md`.
 
@@ -30,7 +30,7 @@ Ritmo: 1 pieza de feed por día (3 Reels, 2 carruseles y 2 fotos por semana) + s
 | dom 29-nov | 14 | Stories | «Faltan 2 semanas»: lista de espera de la Mercería |
 | lun 30-nov | 13 | Reel | Una tejedora, una historia (con permiso de la persona) |
 | mar 1-dic | 12 | Carrusel | Los 4 mundos de Lana Rosa: Tienda, Mercería, Academy y la Agenda |
-| mié 2-dic | 11 | Reel | La Agenda para tejedoras (CrochetLab solo si el chat 6 ya lo confirmó): «Tu proyecto, ordenado» |
+| mié 2-dic | 11 | Reel | La agenda de Lana Rosa: «Tu proyecto, ordenado» |
 | jue 3-dic | 10 | Stories | Demostración de la agenda: costos de un proyecto (solo lo que ya existe) |
 | vie 4-dic | 9 | Carrusel | «Faltan 9 días»: lo que habrá el día de la inauguración [programa por confirmar] |
 | sáb 5-dic | 8 | Foto | El equipo: «Quiénes te van a recibir» |
@@ -45,7 +45,7 @@ Ritmo: 1 pieza de feed por día (3 Reels, 2 carruseles y 2 fotos por semana) + s
 | lun 14-dic | — | Reel + stories | «Ya estamos abiertos»: atención normal, horario, gracias por venir |
 
 ## Textos para la web que esto necesita (se anotan para el chat 6, no los toco)
-- Aviso de apertura en el inicio (ya está en E9). Si se usa «CrochetLab» en redes, que la web lo diga el mismo día.
+- Aviso de apertura en el inicio (ya está en E9). Si Jennifer elige un nombre definitivo para la agenda, que la web y las redes lo cambien el mismo día.
 
 ## Medir
 Guardados, compartidos y mensajes al WhatsApp por pieza; subir lo que funcione, repetir en Reels.

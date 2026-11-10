@@ -19,3 +19,4 @@ Reglas comunes: enseñar antes de vender; no prometer ingresos ni resultados gar
 - Falta: elegir por cuál línea de contenido empezar y la investigación con fuentes originales; campaña de apertura 13-dic (E10 en `encargos.md`).
 - **5-nov-2026:** primeros guiones de la línea 1 (historia) en `GUIONES-LINEA-1-HISTORIA.md`; falta visto bueno de Jennifer y verificar «más de 200 años».
 - **10-nov-2026 (E10):** calendario completo y guiones de las 2 primeras semanas (borrador). «200 años» cambiado por «desde el siglo XIX». Falta: visto bueno de Jennifer, dirección/horario/programa, fotos, y que el chat 6 diga cuándo se publica «CrochetLab».
+- **10-nov-2026 (aviso del Orquestador, de parte de Jennifer):** «CrochetLab» en pausa porque ya existe una aplicación con ese nombre. En campañas se dice «la agenda de Lana Rosa» hasta que Jennifer confirme un nombre. Revisados calendario, plan maestro y notas: sin el nombre en ninguna pieza.

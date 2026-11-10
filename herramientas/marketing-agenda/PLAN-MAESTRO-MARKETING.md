@@ -52,7 +52,7 @@ Tu estructura coincide con lo que ya construimos, lo cual simplifica el trabajo:
 
 ## 3. Lo que veo y necesito que decidas
 
-> **Decidido por Jennifer (3-nov-2026):** (1) tono **inclusivo** («tejedoras y tejedores»); (3) la línea de la Agenda se llama **CrochetLab**; (5) **sí** se podrá comprar Tienda y Mercería en un mismo carrito (falta desarrollo: pagos, chats 4 y 5; mientras no exista, no se promete). Siguen abiertas la 2 («reinventa») y la 4 a 6.
+> **Decidido por Jennifer (3-nov-2026):** (1) tono **inclusivo** («tejedoras y tejedores»); (3) el nombre «CrochetLab» quedó **en pausa el 10-nov** (ya existe una aplicación así); se usa «la agenda de Lana Rosa» hasta que Jennifer confirme otro; (5) **sí** se podrá comprar Tienda y Mercería en un mismo carrito (falta desarrollo: pagos, chats 4 y 5; mientras no exista, no se promete). Siguen abiertas la 2 («reinventa») y la 4 a 6.
 
 1. **[Decisión] Tono inclusivo vs. lenguaje femenino.** El principio 7 dice «no limitar la comunicación a un solo perfil», pero el eslogan «Independízate como una profesional» y «Agenda para emprendedoras» van en femenino. Opciones: (a) **mantener el femenino** en la campaña de emprendimiento porque ahí está la comunidad principal, y usar **lenguaje neutro** en la comunicación general («quien teje», «tu proyecto», «tejedoras y tejedores» cuando convenga); (b) neutralizar todo. Mi recomendación: **(a)**. No hay que explicar ni disculparse: la marca habla a su comunidad y acoge a todos.
 2. **[Decisión] «Nunca deja de reinventarse».** Es un absoluto que el propio principio 7 pide evitar. Propuesta: «una técnica que atraviesa generaciones y se reinventa».
