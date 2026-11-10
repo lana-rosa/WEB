@@ -46,12 +46,12 @@ with sync_playwright() as p:
     # promociones en las hojas gratis propuestas
     ctx = contexto(b, 1280); preparar(ctx); pg = abrir(ctx, 'planeador-dia', 1800)
     for h in ['planeador-dia', 'portada-agenda', 'mis-ideas', 'lista-compras']:
-        T.v('«%s» muestra 2 promociones del ecosistema' % h, pg.locator('#%s .promo-eco .promo-tarjeta' % h).count() == 2)
-    T.v('las promociones no repiten la propia hoja', pg.locator('#planeador-dia .promo-eco .promo-tarjeta').count() == 2)
+        T.v('«%s» muestra una promoción del ecosistema, en una línea' % h, pg.locator('#%s .promo-eco .promo-enlace' % h).count() == 1 and pg.locator('#%s .promo-eco .promo-tarjeta' % h).count() == 0)
+    T.v('las promociones no repiten la propia hoja', pg.locator('#planeador-dia .promo-eco .promo-enlace').count() == 1)
     pg.evaluate("window.dataLayer = []")
-    tar = pg.locator('#planeador-dia .promo-eco .promo-tarjeta[data-promo]')
-    ids = [tar.nth(i).get_attribute('data-promo') for i in range(2)]
-    interna = pg.evaluate("[...document.querySelectorAll('#planeador-dia .promo-eco .promo-tarjeta')].findIndex(t => t.tagName === 'BUTTON')")
+    tar = pg.locator('#planeador-dia .promo-eco .promo-enlace[data-promo]')
+    ids = [tar.nth(i).get_attribute('data-promo') for i in range(1)]
+    interna = pg.evaluate("[...document.querySelectorAll('#planeador-dia .promo-eco .promo-enlace')].findIndex(t => t.tagName === 'BUTTON')")
     if interna >= 0:
         tar.nth(interna).click(); pg.wait_for_timeout(500)
         T.v('una promoción interna abre la hoja y se mide', pg.evaluate("document.querySelector('#aprende-compra').classList.contains('abierta')") and any(e.get('event') == 'promo_agenda_click' and e.get('hoja') == 'planeador-dia' for e in pg.evaluate("window.dataLayer")), ids)
@@ -59,8 +59,8 @@ with sync_playwright() as p:
         T.v('hoy el planeador no trae promoción interna (se prueba en la hoja de ideas)', True)
     pg.evaluate("window.lrIrAHoja('planeador-dia')"); pg.wait_for_timeout(400)   # la promoción interna anterior pudo abrir otra hoja
     pg.evaluate("window.dataLayer = []")
-    pg.evaluate("document.querySelector('#planeador-dia .promo-eco .promo-tarjeta').addEventListener('click', e => e.preventDefault(), true)")
-    pg.locator('#planeador-dia .promo-eco .promo-tarjeta').first.click(); pg.wait_for_timeout(300)
+    pg.evaluate("document.querySelector('#planeador-dia .promo-eco .promo-enlace').addEventListener('click', e => e.preventDefault(), true)")
+    pg.locator('#planeador-dia .promo-eco .promo-enlace').first.click(); pg.wait_for_timeout(300)
     T.v('cada clic en una promoción se mide con su hoja', any(e.get('event') == 'promo_agenda_click' and e.get('hoja') == 'planeador-dia' and e.get('promo') for e in pg.evaluate("window.dataLayer")), pg.evaluate("window.dataLayer"))
     T.v('1280: sin desplazamiento horizontal', pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"))
     T.v('1280: sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()

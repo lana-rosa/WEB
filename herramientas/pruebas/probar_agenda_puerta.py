@@ -36,7 +36,7 @@ with sync_playwright() as p:
         T.v('%d px: ninguna hoja de pago se puede ver' % ancho, pg.evaluate("[...document.querySelectorAll('.hoja-bloqueada')].every(h => getComputedStyle(h).display === 'none')") and pg.locator('.hoja-bloqueada').count() == 28)   # 35 hojas menos las 7 gratis (4-nov-2026: «Ventas y gastos» y «Resumen del negocio» reemplazan a 3 hojas cada una)
         pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=planeador-dia]').click()"); pg.wait_for_timeout(300)
         T.v('%d px: planeador sin «Este mes en números»' % ancho, pg.locator('#planeador-dia .pl-numeros').is_hidden() and pg.locator('#pl-tareas').count() == 1)
-        T.v('%d px: hay promociones del ecosistema en la hoja' % ancho, pg.locator('#planeador-dia .promo-tarjeta').count() == 2)
+        T.v('%d px: hay una promoción del ecosistema en la hoja' % ancho, pg.locator('#planeador-dia .promo-enlace').count() == 1)
         T.v('%d px: sin desplazamiento horizontal' % ancho, pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"))
         if CAP:
             os.makedirs(CAP, exist_ok=True); pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=indice-agenda]').click()"); pg.wait_for_timeout(300); pg.screenshot(path=os.path.join(CAP, 'gratis-%d.png' % ancho), full_page=False)
