@@ -70,7 +70,16 @@
     document.body.classList.toggle('tinta-activa', !!on);
     if (on) { adoptar(hojaAbierta()); ajustar(); }
   }
-  if (boton) boton.addEventListener('click', function () { modo(!est.modo); });
+  /* Aviso del lápiz (E31, punto 9 de la abogada, 6-nov-2026): la primera vez que se activa en un aparato se informa que los trazos hacen parte de la agenda y que
+     viajan en las copias si la persona las activa. Es solo informativo: el lápiz se activa igual. Se recuerda en `localStorage.lrTintaAviso`. */
+  var AVISO_TINTA = 'lrTintaAviso';
+  function avisoTinta() {
+    var visto = false; try { visto = !!localStorage.getItem(AVISO_TINTA); } catch (e) { visto = true; }
+    if (visto || !window.lrAviso) return;
+    try { localStorage.setItem(AVISO_TINTA, '1'); } catch (e) {}
+    window.lrAviso({ titulo: 'Sobre tus trazos', si: 'Entendido', texto: 'Lo que escribas o dibujes con el lápiz es parte de tu agenda y se guarda en este aparato. Si activas la copia en tu cuenta o en Google Drive, tus trazos también viajan en esas copias. Tú decides si las activas.' });
+  }
+  if (boton) boton.addEventListener('click', function () { var activar = !est.modo; modo(activar); if (activar) avisoTinta(); });
   barra.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     if (b.dataset.h) est.herr = b.dataset.h; else if (b.dataset.c) est.color = +b.dataset.c; else if (b.dataset.a) est.ancho = +b.dataset.a;

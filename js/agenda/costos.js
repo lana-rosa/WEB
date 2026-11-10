@@ -46,7 +46,7 @@
   function asegurarCabecera() {
     if (cabecera && hoja.contains(cabecera)) return cabecera;
     cabecera = el('div', 'ct-reglas no-imprimir'); cabecera.id = 'ct-reglas';
-    var ref = hoja.querySelector('.herr-rosina') || hoja.querySelector('header'); ref.parentNode.insertBefore(cabecera, ref.nextSibling);
+    var ref = hoja.querySelector('.herr-rosina') || hoja.querySelector('header'); if (ref.closest('.herr-plegable')) ref = ref.closest('.herr-plegable'); ref.parentNode.insertBefore(cabecera, ref.nextSibling);   // la tira de Rosina ahora va plegada (6-nov-2026): las reglas de precio van después, no dentro
     return cabecera;
   }
   function pintarReglas(lista) {

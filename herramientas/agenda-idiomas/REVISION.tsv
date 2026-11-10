@@ -3,6 +3,9 @@ Antes de dictar	Before you dictate	Antes de ditar
 La función «Hablar para escribir» utiliza el servicio de reconocimiento de voz disponible en su navegador o dispositivo. El audio puede ser procesado por el proveedor de dicho servicio, de acuerdo con sus propias condiciones y políticas de privacidad. Lana Rosa Crochet no recibe ni almacena directamente las grabaciones de audio. Puede utilizar esta función de manera opcional.	The “Speak to write” feature uses the speech recognition service available in your browser or device. The audio may be processed by the provider of that service, under its own terms and privacy policies. Lana Rosa Crochet does not directly receive or store audio recordings. You may use this feature on an optional basis.	A função “Falar para escrever” usa o serviço de reconhecimento de voz disponível no seu navegador ou dispositivo. O áudio pode ser processado pelo provedor desse serviço, de acordo com suas próprias condições e políticas de privacidade. A Lana Rosa Crochet não recebe nem armazena diretamente as gravações de áudio. Você pode usar esta função de forma opcional.
 Ahora no	Not now	Agora não
 Continuar	Continue	Continuar
+Sobre tus trazos	About your strokes	Sobre os seus traços
+Lo que escribas o dibujes con el lápiz es parte de tu agenda y se guarda en este aparato. Si activas la copia en tu cuenta o en Google Drive, tus trazos también viajan en esas copias. Tú decides si las activas.	What you write or draw with the pencil is part of your agenda and is saved on this device. If you turn on the backup in your account or in Google Drive, your strokes also travel in those backups. You decide whether to turn them on.	O que você escrever ou desenhar com o lápis faz parte da sua agenda e fica salvo neste aparelho. Se você ativar a cópia na sua conta ou no Google Drive, seus traços também vão nessas cópias. Você decide se as ativa.
+Entendido	Got it	Entendi
 Conexiones e integraciones	Connections and integrations	Conexões e integrações
 Aquí ves qué tienes conectado y qué datos viajan. Nada se conecta ni se sube solo: tú decides, y puedes desconectar cuando quieras. Tu cuenta y tus archivos siguen siendo tuyos.	Here you can see what you have connected and what data travels. Nothing connects or uploads by itself: you decide, and you can disconnect whenever you want. Your account and your files stay yours.	Aqui você vê o que está conectado e quais dados viajam. Nada se conecta nem é enviado sozinho: você decide e pode desconectar quando quiser. Sua conta e seus arquivos continuam sendo seus.
 Estado de tus conexiones	Status of your connections	Status das suas conexões
@@ -18,7 +21,7 @@ ver tus otros calendarios o eventos, leer tu correo o tus contactos, ni usar tu 
 «Desconectar» borra ese calendario y retira el permiso. También puedes revisarlo en	“Disconnect” deletes that calendar and removes the permission. You can also review it in	«Desconectar» apaga essa agenda e retira a permissão. Você também pode revisar em
 tu cuenta de Google	your Google account	sua conta do Google
 usar una carpeta oculta de la app en tu Drive (permiso «appdata»).	use a hidden app folder in your Drive (“appdata” permission).	usar uma pasta oculta do app no seu Drive (permissão «appdata»).
-tu agenda completa, con los dibujos y sus fotos, y las últimas 5 versiones anteriores. Va directo de tu navegador a tu Drive, sin pasar por Lana Rosa.	your whole planner, with the drawings and their photos, and the last 5 previous versions. It goes straight from your browser to your Drive, without passing through Lana Rosa.	sua agenda completa, com os desenhos e suas fotos, e as últimas 5 versões anteriores. Vai direto do seu navegador para o seu Drive, sem passar pela Lana Rosa.
+tu agenda completa, con los dibujos y sus fotos (cada foto en su propio archivo), y las últimas 5 versiones anteriores. Va directo de tu navegador a tu Drive, sin pasar por Lana Rosa.	your whole planner, with the drawings and their photos (each photo in its own file), and the last 5 previous versions. It goes straight from your browser to your Drive, without passing through Lana Rosa.	sua agenda completa, com os desenhos e suas fotos (cada foto em seu próprio arquivo), e as últimas 5 versões anteriores. Vai direto do seu navegador para o seu Drive, sem passar pela Lana Rosa.
 ver, abrir ni borrar tus otros archivos de Drive. Tampoco aparece como una carpeta que puedas abrir: solo esta agenda la usa.	see, open or delete your other Drive files. It also does not show up as a folder you can open: only this planner uses it.	ver, abrir nem apagar seus outros arquivos do Drive. Também não aparece como uma pasta que você possa abrir: só esta agenda a usa.
 «Desconectar» retira el permiso y deja la copia donde está; «Borrar mi agenda de Drive» borra la copia y las versiones y desconecta. También puedes revisarlo en	“Disconnect” removes the permission and leaves the copy where it is; “Delete my planner from Drive” deletes the copy and the versions and disconnects. You can also review it in	«Desconectar» retira a permissão e deixa a cópia onde está; «Apagar minha agenda do Drive» apaga a cópia e as versões e desconecta. Você também pode revisar em
 Copia en tu cuenta de Lana Rosa	Copy in your Lana Rosa account	Cópia na sua conta da Lana Rosa
@@ -47,6 +50,22 @@ Quitaste todos los tipos: no se enviará nada. Toca «Sincronizar ahora» para q
 Envía todos los tipos de fechas.	It sends every type of date.	Envia todos os tipos de datas.
 Envía	It sends	Envia
 nada por ahora	nothing for now	nada por enquanto
+Guardar informes y copias en tu Drive	Save reports and backups in your Drive	Salvar relatórios e cópias no seu Drive
+Guarda tu agenda como hoja de cálculo de Google (Google Sheets, que se abre y se edita sin descargar nada) y tus copias de seguridad en una carpeta de tu propio Google Drive, que tú puedes abrir, mover y compartir. Solo se guarda cuando tú lo pides. Es gratis y opcional.	Save your planner as a Google Sheet (it opens and can be edited without downloading anything) and your backups in a folder of your own Google Drive, which you can open, move and share. It is only saved when you ask for it. It is free and optional.	Salve sua agenda como planilha do Google (abre e se edita sem baixar nada) e suas cópias de segurança em uma pasta do seu próprio Google Drive, que você pode abrir, mover e compartilhar. Só é salvo quando você pede. É grátis e opcional.
+Guardar como hoja de Google en mi Drive	Save as a Google Sheet in my Drive	Salvar como planilha do Google no meu Drive
+Guardar una copia en mi Drive	Save a backup in my Drive	Salvar uma cópia no meu Drive
+Abrir mi carpeta	Open my folder	Abrir minha pasta
+Último guardado	Last saved	Último salvamento
+Todavía no has guardado nada.	You have not saved anything yet.	Você ainda não salvou nada.
+Informes y copias en tu Drive	Reports and backups in your Drive	Relatórios e cópias no seu Drive
+crear y ver solo los archivos y la carpeta que esta app crea en tu Drive (permiso «file»).	create and see only the files and the folder that this app creates in your Drive (“file” permission).	criar e ver somente os arquivos e a pasta que este app cria no seu Drive (permissão «file»).
+solo cuando tú lo pides, tu agenda como hoja de cálculo de Google (Google Sheets) o una copia de seguridad, en la carpeta «Agenda para tejedoras» de tu Drive. Van directo de tu navegador a tu Drive, sin pasar por Lana Rosa. No se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre.	only when you ask for it, your planner as a Google Sheet or a backup, in the “Planner for crocheters” folder of your Drive. They go straight from your browser to your Drive, without passing through Lana Rosa. Nothing is deleted or replaced: each file has the date and time in its name.	somente quando você pede, sua agenda como planilha do Google ou uma cópia de segurança, na pasta «Agenda para crocheteiras» do seu Drive. Vão direto do seu navegador para o seu Drive, sem passar pela Lana Rosa. Nada é apagado nem substituído: cada arquivo leva a data e a hora no nome.
+ver, abrir ni borrar tus otros archivos o carpetas de Drive.	see, open or delete your other Drive files or folders.	ver, abrir nem apagar seus outros arquivos ou pastas do Drive.
+«Desconectar» retira el permiso y deja lo ya guardado en tu carpeta (es tuyo). También puedes revisarlo en	“Disconnect” removes the permission and leaves what you already saved in your folder (it is yours). You can also review it in	«Desconectar» retira a permissão e deixa o que você já salvou na sua pasta (é seu). Você também pode revisar em
+Guardando en tu Drive…	Saving in your Drive…	Salvando no seu Drive…
+Listo: guardé «{n}» en la carpeta «Agenda para tejedoras» de tu Drive.	Done: I saved “{n}” in the “Planner for crocheters” folder of your Drive.	Pronto: salvei «{n}» na pasta «Agenda para crocheteiras» do seu Drive.
+No pudimos guardar en tu Drive ahora. Inténtalo otra vez.	We could not save in your Drive right now. Try again.	Não conseguimos salvar no seu Drive agora. Tente de novo.
+Conectado. Ya puedes guardar tu agenda como hoja de Google o una copia en tu Drive.	Connected. You can now save your planner as a Google Sheet or a backup in your Drive.	Conectado. Agora você pode salvar sua agenda como planilha do Google ou uma cópia no seu Drive.
 Saltar al contenido	Skip to content	Ir para o conteúdo
 Lana Rosa Agenda para tejedoras	Lana Rosa Planner for crocheters	Lana Rosa Agenda para crocheteiras
 Agenda para tejedoras	Planner for crocheters	Agenda para crocheteiras
@@ -1881,6 +1900,47 @@ Ahorrado $	Saved $	Poupado $
 ¿Borrar el plan «{n}»?	Delete the plan «{n}»?	Apagar o plano «{n}»?
 No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.	We could not save the drawings from that backup. Your planner was not changed.	Não conseguimos salvar os desenhos dessa cópia. Sua agenda não foi alterada.
 ☁️ Copia en tu cuenta guardada (sin las fotos de los dibujos, por su tamaño)	☁️ Backup saved to your account (without the drawing photos, because of their size)	☁️ Cópia salva na sua conta (sem as fotos dos desenhos, por causa do tamanho)
+✏️ Patrones que diseñé	✏️ Patterns I designed	✏️ Receitas que criei
+Se guardan solos, con su nombre, desde «Diseña tu patrón». Toca uno para abrirlo.	They save themselves, with their name, from “Design your pattern”. Tap one to open it.	Eles são salvos sozinhos, com o nome, em “Crie a sua receita”. Toque em um para abri-lo.
+Aún no has diseñado ninguno. Cuando escribas el nombre de tu primer patrón, aparecerá aquí.	You have not designed any yet. When you write the name of your first pattern, it will appear here.	Você ainda não criou nenhum. Quando escrever o nome do sua primeira receita, ela aparecerá aqui.
+➕ Diseñar un patrón	➕ Design a pattern	➕ Criar uma receita
+➕ Diseñar mi primer patrón	➕ Design my first pattern	➕ Criar minha primeira receita
+Abrir →	Open →	Abrir →
+Vista previa del dibujo del diseño	Preview of the design drawing	Prévia do desenho do projeto
+Todavía no hay dibujo. Ábrelo para dibujar a mano o subir una foto.	There is no drawing yet. Open it to draw by hand or upload a photo.	Ainda não há desenho. Abra para desenhar à mão ou enviar uma foto.
+Tu dibujo está guardado.	Your drawing is saved.	Seu desenho está salvo.
+✏️ Abrir dibujo	✏️ Open drawing	✏️ Abrir desenho
+✕ Cerrar dibujo	✕ Close drawing	✕ Fechar desenho
+➕ Añadir parte	➕ Add part	➕ Adicionar parte
+Por ejemplo: Cola	For example: Tail	Por exemplo: Rabo
+Fotos del resultado y de los pasos	Photos of the result and the steps	Fotos do resultado e dos passos
+Sube fotos de cómo quedó y de los pasos importantes. Se guardan en este aparato, igual que tus dibujos, y viajan en tus copias.	Upload photos of how it turned out and of the important steps. They are saved on this device, just like your drawings, and travel in your backups.	Envie fotos de como ficou e dos passos importantes. Elas ficam salvas neste aparelho, como seus desenhos, e vão nas suas cópias.
+📷 Subir fotos	📷 Upload photos	📷 Enviar fotos
+Qué muestra (Paso 3: la cabeza)	What it shows (Step 3: the head)	O que mostra (Passo 3: a cabeça)
+Qué muestra esta foto	What this photo shows	O que esta foto mostra
+Quitar esta foto	Remove this photo	Remover esta foto
+Máximo 12 fotos por patrón.	Maximum 12 photos per pattern.	Máximo de 12 fotos por receita.
+No pude leer esa imagen.	I could not read that image.	Não consegui ler essa imagem.
+Foto del patrón	Pattern photo	Foto da receita
+Fotos	Photos	Fotos
+Amigurumis hechos a mano →	Handmade amigurumis →	Amigurumis feitos à mão →
+Tu historia en crochet →	Your story in crochet →	A sua história em crochê →
+Mercería Lana Rosa →	Lana Rosa Mercería →	Mercería Lana Rosa →
+Mira los colores reales →	See the real colors →	Veja as cores reais →
+Clases personalizadas →	Private classes →	Aulas particulares →
+Taller «Desconecta para Conectar» →	“Disconnect to Connect” workshop →	Oficina «Desconecte para Conectar» →
+Patrones en PDF →	PDF patterns →	Receitas em PDF →
+Clases gratis en YouTube →	Free classes on YouTube →	Aulas grátis no YouTube →
+Rosina te ayuda a regalar →	Rosina helps you give gifts →	A Rosina ajuda você a presentear →
+Material gratis de Rosina →	Free material from Rosina →	Material grátis da Rosina →
+La Revista de Lana Rosa →	The Lana Rosa Magazine →	A Revista da Lana Rosa →
+Abrir dibujo	Open drawing	Abrir desenho
+Cerrar dibujo	Close drawing	Fechar desenho
+Patrones que diseñé	Patterns I designed	Receitas que criei
+Diseñar un patrón	Design a pattern	Criar uma receita
+Diseñar mi primer patrón	Design my first pattern	Criar minha primeira receita
+Añadir parte	Add part	Adicionar parte
+Subir fotos	Upload photos	Enviar fotos
 Ventas y gastos	Sales and expenses	Vendas e despesas
 Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.	Record all the money of your business here, just once: what you sell, what you spend and what you save. You can write it the way you would say it.	Anote aqui todo o dinheiro do seu negócio, uma só vez: o que você vende, o que gasta e o que poupa. Você pode escrever como falaria.
 Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio	Example (write it in Spanish): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio	Exemplo (escreva em espanhol): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio

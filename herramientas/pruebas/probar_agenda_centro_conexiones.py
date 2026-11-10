@@ -37,7 +37,7 @@ with sync_playwright() as p:
     # 1. nada configurado
     ctx, pg = pagina(b, Funcion(configurada=False), Funcion(configurada=False))
     t.v('el apartado se llama «Conexiones e integraciones»', pg.locator('#centro-conexiones h3').inner_text().strip() == 'Conexiones e integraciones')
-    t.v('hay una fila por servicio (Calendar, Drive y copia en la cuenta)', pg.locator('#cx-resumen li').count() == 3, pg.locator('#cx-resumen li').count())
+    t.v('hay una fila por servicio (Calendar, Drive, Drive para archivos y copia en la cuenta)', pg.locator('#cx-resumen li').count() == 4, pg.locator('#cx-resumen li').count())
     t.v('Calendar y Drive sin configurar: «No disponible» y sin botón', 'No disponible' in fila(pg, 'Google Calendar').inner_text() and 'No disponible' in fila(pg, 'Google Drive').inner_text() and fila(pg, 'Google Calendar').locator('button').count() == 0)
     t.v('no se imprime', 'no-imprimir' in pg.locator('.cx-centro').get_attribute('class'))
     t.v('sin errores de JavaScript', not pg.errs, pg.errs); ctx.close()
@@ -47,7 +47,7 @@ with sync_playwright() as p:
     t.v('sin conectar: «No conectado» en Calendar y Drive', 'No conectado' in fila(pg, 'Google Calendar').inner_text() and 'No conectado' in fila(pg, 'Google Drive').inner_text())
     t.v('cada fila ofrece «Ver y administrar»', fila(pg, 'Google Calendar').locator('button').count() == 1 and fila(pg, 'Google Drive').locator('button').count() == 1)
     t.v('las dos tarjetas explican permiso y lo que NO pueden hacer', pg.locator('#calendario-sync .cx-permiso').count() == 1 and pg.locator('#drive-sync .cx-permiso').count() == 1 and 'NO puede' in pg.locator('#calendario-sync .cx-permiso').inner_text() + pg.locator('#drive-sync .cx-permiso').inner_text(), '')
-    t.v('el enlace a la cuenta de Google abre en otra pestaña y con rel seguro', pg.locator('.cx-permiso a[href="https://myaccount.google.com/permissions"][target="_blank"][rel~="noopener"]').count() == 2)
+    t.v('el enlace a la cuenta de Google abre en otra pestaña y con rel seguro', pg.locator('.cx-permiso a[href="https://myaccount.google.com/permissions"][target="_blank"][rel~="noopener"]').count() == 3)
     pg.locator('#centro-conexiones button', has_text='Ver y administrar').first.click(); pg.wait_for_timeout(300)
     t.v('«Ver y administrar» lleva a la tarjeta y no conecta nada', not any(a in ('conectar', 'desconectar', 'sincronizar') for a in cal.llamadas + drv.llamadas), cal.llamadas + drv.llamadas)
     t.v('sin errores de JavaScript', not pg.errs, pg.errs); ctx.close()

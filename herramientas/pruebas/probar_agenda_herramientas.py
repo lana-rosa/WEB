@@ -12,7 +12,7 @@ def destino_ok(href):
     t = open(f, encoding='utf-8').read()
     return not ancla or ('id="%s"' % ancla in t or 'data-ancla="%s"' % ancla in t)
 ESPERADO = {
-    'fin-resumen': ['/calculadoras-rosina.html#costos'], 'fin-movimientos': ['/calculadoras-rosina.html#costos'], 'fin-presupuesto': ['/calculadoras-rosina.html#costos'],
+    'catalogo-precios': ['/calculadoras-rosina.html#costos'],   # 10-nov-2026: la calculadora de costos solo va en el catálogo de precios
     'ficha-proyecto': ['/glosario-rosina.html', '/recursos-rosina.html#abreviaturas'], 'proyectos-fila': ['/glosario-rosina.html', '/recursos-rosina.html#abreviaturas'],
     'coleccion-patrones': ['/glosario-rosina.html', '/recursos-rosina.html#abreviaturas'], 'lo-que-aprendi': ['/glosario-rosina.html', '/recursos-rosina.html#abreviaturas'],
     'registro-pausas': ['/revista/pausas-activas/'],
@@ -25,7 +25,7 @@ with sync_playwright() as p:
     for ancho in (1280, 390):
         ctx = contexto(b, ancho, 900); pg = abrir(ctx, 'fin-resumen', 1500); n = '%d px: ' % ancho
         for hoja, hrefs in ESPERADO.items():
-            hs = pg.evaluate("(i) => [...document.querySelectorAll('#' + i + ' > .herr-rosina a')].map(a => a.getAttribute('href'))", hoja)
+            hs = pg.evaluate("(i) => [...document.querySelectorAll('#' + i + ' > .herr-plegable > .herr-rosina a')].map(a => a.getAttribute('href'))", hoja)
             T.v(n + hoja + ': tiene los enlaces pedidos', hs == hrefs, hs)
             T.v(n + hoja + ': los enlaces llegan a una página y a una sección que existen', all(destino_ok(h) for h in hs), [h for h in hs if not destino_ok(h)])
         for paso, hrefs in PASOS.items():
@@ -35,7 +35,7 @@ with sync_playwright() as p:
         T.v(n + 'todos abren en otra pestaña (no se pierde la agenda) y no se imprimen', pg.evaluate("[...document.querySelectorAll('.herr-rosina a')].every(a => a.target === '_blank' && a.rel.includes('noopener') && a.closest('.herr-rosina').classList.contains('no-imprimir'))"))
         pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=\"disena-patron\"]').click()"); pg.wait_for_timeout(400)
         pg.evaluate("document.querySelector('#dp-pasos button:nth-child(2)') && document.querySelector('#dp-pasos button:nth-child(2)').click()"); pg.wait_for_timeout(300)
-        T.v(n + 'en el paso 2 se ven los enlaces de materiales', pg.locator('#disena-patron fieldset[data-paso="2"] .herr-rosina').is_visible() and pg.locator('#disena-patron fieldset[data-paso="1"] .herr-rosina').is_hidden())
+        T.v(n + 'en el paso 2 se ven los enlaces de materiales', pg.locator('#disena-patron fieldset[data-paso="2"] .herr-plegable').is_visible() and pg.locator('#disena-patron fieldset[data-paso="1"] .herr-plegable').is_hidden())
         T.v(n + 'sin desplazamiento horizontal ni errores', pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1") and not pg.errs, pg.errs[:2]); ctx.close()
     b.close()
 T.fin()

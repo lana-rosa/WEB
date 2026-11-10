@@ -67,29 +67,34 @@
     if (!visto) { avisar(boton, function () { try { localStorage.setItem(AVISO, '1'); } catch (e) {} continuar(boton); }); return; }
     continuar(boton);
   }
-  /* Aviso antes de activar el micrófono (texto de la abogada, sin cambios) */
-  function avisar(boton, seguir) {
+  /* Ventana de aviso (accesible, propia): la usan el aviso del micrófono (texto de la abogada, sin cambios) y el del lápiz (E31, 6-nov-2026).
+     window.lrAviso({ titulo, texto, si, no, foco, alCerrar(aceptó) }): sin `no` solo lleva el botón «si» (aviso informativo). */
+  function aviso(op) {
     var dlg = document.createElement('div'); dlg.className = 'mc-dlg no-imprimir voz-aviso'; dlg.setAttribute('role', 'dialog'); dlg.setAttribute('aria-modal', 'true'); dlg.setAttribute('aria-labelledby', 'voz-aviso-tit'); dlg.setAttribute('aria-describedby', 'voz-aviso-txt');
     var caja = document.createElement('div'); caja.className = 'mc-caja';
-    var h = document.createElement('h2'); h.id = 'voz-aviso-tit'; h.textContent = 'Antes de dictar'; caja.appendChild(h);
-    var t = document.createElement('p'); t.id = 'voz-aviso-txt'; t.className = 'voz-aviso-txt';
-    t.textContent = 'La función «Hablar para escribir» utiliza el servicio de reconocimiento de voz disponible en su navegador o dispositivo. El audio puede ser procesado por el proveedor de dicho servicio, de acuerdo con sus propias condiciones y políticas de privacidad. Lana Rosa Crochet no recibe ni almacena directamente las grabaciones de audio. Puede utilizar esta función de manera opcional.';
-    caja.appendChild(t);
+    var h = document.createElement('h2'); h.id = 'voz-aviso-tit'; h.textContent = op.titulo; caja.appendChild(h);
+    var t = document.createElement('p'); t.id = 'voz-aviso-txt'; t.className = 'voz-aviso-txt'; t.textContent = op.texto; caja.appendChild(t);
     var f = document.createElement('div'); f.className = 'voz-aviso-botones';
-    var no = document.createElement('button'); no.type = 'button'; no.className = 'boton-secundario'; no.textContent = 'Ahora no';
-    var si = document.createElement('button'); si.type = 'button'; si.className = 'boton-primario'; si.textContent = 'Continuar';
-    f.appendChild(no); f.appendChild(si); caja.appendChild(f); dlg.appendChild(caja); document.body.appendChild(dlg); document.body.classList.add('mc-abierto');
-    function cerrar(sigue) {
+    var no = null, si = document.createElement('button'); si.type = 'button'; si.className = 'boton-primario'; si.textContent = op.si || 'Continuar';
+    if (op.no) { no = document.createElement('button'); no.type = 'button'; no.className = 'boton-secundario'; no.textContent = op.no; f.appendChild(no); }
+    f.appendChild(si); caja.appendChild(f); dlg.appendChild(caja); document.body.appendChild(dlg); document.body.classList.add('mc-abierto');
+    function cerrar(acepto) {
       document.removeEventListener('keydown', teclas, true); if (dlg.parentNode) dlg.parentNode.removeChild(dlg); document.body.classList.remove('mc-abierto');
-      if (sigue) seguir(); else { try { boton.focus({ preventScroll: true }); } catch (e) {} }
+      if (op.alCerrar) op.alCerrar(acepto);
+      else if (!acepto && op.foco) { try { op.foco.focus({ preventScroll: true }); } catch (e) {} }
     }
     function teclas(e) {
-      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); cerrar(false); }
-      else if (e.key === 'Tab') { e.preventDefault(); (document.activeElement === si ? no : si).focus(); }
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); cerrar(!no); }
+      else if (e.key === 'Tab') { e.preventDefault(); if (no) (document.activeElement === si ? no : si).focus(); else si.focus(); }
     }
-    no.addEventListener('click', function () { cerrar(false); }); si.addEventListener('click', function () { cerrar(true); });
-    dlg.addEventListener('click', function (e) { if (e.target === dlg) cerrar(false); });
+    if (no) no.addEventListener('click', function () { cerrar(false); }); si.addEventListener('click', function () { cerrar(true); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) cerrar(!no); });
     document.addEventListener('keydown', teclas, true); si.focus();
+  }
+  window.lrAviso = aviso;
+  function avisar(boton, seguir) {
+    aviso({ titulo: 'Antes de dictar', si: 'Continuar', no: 'Ahora no', foco: boton, alCerrar: function (acepto) { if (acepto) seguir(); else { try { boton.focus({ preventScroll: true }); } catch (e) {} } },
+      texto: 'La función «Hablar para escribir» utiliza el servicio de reconocimiento de voz disponible en su navegador o dispositivo. El audio puede ser procesado por el proveedor de dicho servicio, de acuerdo con sus propias condiciones y políticas de privacidad. Lana Rosa Crochet no recibe ni almacena directamente las grabaciones de audio. Puede utilizar esta función de manera opcional.' });
   }
   function continuar(boton) {
     base = destino.value; activo = true; botones.forEach(function (b) { poner(b, b === boton); });

@@ -15,7 +15,7 @@ TRAZO = """([tipo, pts]) => { const c = document.querySelector('.tinta-canvas');
 def trazo(pg, tipo, pts): pg.evaluate(TRAZO, [tipo, pts]); pg.wait_for_timeout(120)
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
-    ctx = contexto(b, 768, 900); pg = abrir(ctx, 'ficha-proyecto')
+    ctx = contexto(b, 768, 900); ctx.add_init_script("localStorage.setItem('lrTintaAviso','1')"); pg = abrir(ctx, 'ficha-proyecto')
     T.v('el botón «Lápiz» existe (oculto: se abre desde el menú de Mi cuenta en tabletas, 3-nov-2026)', pg.locator('#tinta-modo').count() == 1)
     T.v('sin activar, el lienzo no tapa las casillas', pg.evaluate("getComputedStyle(document.querySelector('.tinta-canvas')).pointerEvents") == 'none')
     pg.evaluate("document.getElementById('tinta-modo').click()"); pg.wait_for_timeout(300)
@@ -57,7 +57,7 @@ with sync_playwright() as p:
     T.v('sin desplazamiento horizontal', pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"))
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # imprimir en blanco no lleva tinta
-    ctx = contexto(b, 1280, 900, datos={'_tinta': {'ficha-proyecto': [[0, 1, 100, 100, 300, 200, 500, 150]]}}); pg = abrir(ctx, 'ficha-proyecto')
+    ctx = contexto(b, 1280, 900, datos={'_tinta': {'ficha-proyecto': [[0, 1, 100, 100, 300, 200, 500, 150]]}}); ctx.add_init_script("localStorage.setItem('lrTintaAviso','1')"); pg = abrir(ctx, 'ficha-proyecto')
     pg.evaluate("document.body.classList.add('en-blanco')")
     T.v('al imprimir en blanco la tinta no sale', pg.evaluate("getComputedStyle(document.querySelector('.tinta-canvas')).display") == 'none')
     ctx.close(); b.close()

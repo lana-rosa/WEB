@@ -20,7 +20,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     # (las listas por mes de «Mis ventas» y «Gastos del negocio» se retiraron el 4-nov-2026: ahora todo se anota en «Ventas y gastos», ver probar_agenda_ventas_gastos.py)
     # proyectos en fila: casilla de cumplido
-    ctx = contexto(b, 390, datos={'ag-f1-proyecto': 'Manta', 'ag-f1-para': 'Abuela', 'ag-f1-fecha': (h + datetime.timedelta(days=1)).strftime('%d/%m/%Y'), 'ag-f2-proyecto': 'Gorro', 'ag-f2-estado': 'Tejiendo'}); pg = abrir(ctx, 'proyectos-fila')
+    ctx = contexto(b, 390, datos={'ag-f1-proyecto': 'Manta', 'ag-f1-para': 'Abuela', 'ag-f1-fecha': (h + datetime.timedelta(days=1)).strftime('%d/%m/%Y'), 'ag-f2-proyecto': 'Gorro', 'ag-f2-estado': 'Tejiendo'}); pg = abrir(ctx, 'proyectos-fila'); pg.evaluate("document.querySelectorAll('.tienda-plegable,.herr-plegable').forEach(d => d.open = true)")
     T.v('proyectos en fila: dos fichas cerradas', vis(pg, 'tabla-fila') == [[1, False], [2, False]], vis(pg, 'tabla-fila'))
     T.v('el proyecto con fecha cercana avisa', 'En 1 día' in meta(pg, 'tabla-fila', 1), meta(pg, 'tabla-fila', 1))
     pg.click('#tabla-fila tr[data-fila="1"] .ficha-cab'); pg.wait_for_timeout(200)
@@ -30,7 +30,7 @@ with sync_playwright() as p:
     T.v('el proyecto cumplido muestra la etiqueta, ya no avisa y pasa al final', 'Cumplido' in meta(pg, 'tabla-fila', 1) and 'En 1 día' not in meta(pg, 'tabla-fila', 1) and pg.evaluate("document.querySelector('#tabla-fila tr[data-fila=\"1\"]').classList.contains('al-final')"))
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # patrones
-    ctx = contexto(b, 390, datos={'ag-pt1-patron': 'Zorro', 'ag-pt1-fuente': 'Ravelry\nlink largo https://x.co/abc'}); pg = abrir(ctx, 'coleccion-patrones')
+    ctx = contexto(b, 390, datos={'ag-pt1-patron': 'Zorro', 'ag-pt1-fuente': 'Ravelry\nlink largo https://x.co/abc'}); pg = abrir(ctx, 'coleccion-patrones'); pg.evaluate("document.querySelectorAll('.tienda-plegable,.herr-plegable').forEach(d => d.open = true)")
     T.v('patrones: cada pregunta es un renglón (ya lo guardé y dónde lo guardé)', pg.locator('#ag-pt1-guardado').count() == 1 and pg.evaluate("document.getElementById('ag-pt1-dondeguardo').tagName") == 'TEXTAREA')
     pg.click('#tabla-patrones tr[data-fila="1"] .ficha-cab'); pg.wait_for_timeout(200)
     pg.check('#ag-pt1-guardado'); pg.fill('#ag-pt1-dondeguardo', 'Carpeta Patrones en el celular'); pg.wait_for_timeout(300)
@@ -39,7 +39,7 @@ with sync_playwright() as p:
     T.v('«Dónde lo encontré» ocupa al menos un renglón y crece con el texto', alto > 40, alto)
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # lo que aprendí
-    ctx = contexto(b, 390, datos={'ag-ap1-tecnica': 'Anillo mágico', 'ag-ap1-donde': 'Taller', 'ag-ap2-tecnica': 'Punto alto', 'ag-ap2-domino': True}); pg = abrir(ctx, 'lo-que-aprendi')
+    ctx = contexto(b, 390, datos={'ag-ap1-tecnica': 'Anillo mágico', 'ag-ap1-donde': 'Taller', 'ag-ap2-tecnica': 'Punto alto', 'ag-ap2-domino': True}); pg = abrir(ctx, 'lo-que-aprendi'); pg.evaluate("document.querySelectorAll('.tienda-plegable,.herr-plegable').forEach(d => d.open = true)")
     T.v('lo que aprendí: lo que ya domina queda cerrado y compacto al final', vis(pg, 'tabla-aprendi') == [[1, False], [2, False]] and pg.evaluate("document.querySelector('#tabla-aprendi tr[data-fila=\"2\"]').classList.contains('al-final')"))
     pg.click('#tabla-aprendi tr[data-fila="1"] .ficha-cab'); pg.check('#ag-ap1-domino'); pg.wait_for_timeout(400)
     T.v('al marcar «Ya lo domino» la ficha se minimiza sola', vis(pg, 'tabla-aprendi')[0] == [1, False], vis(pg, 'tabla-aprendi'))
@@ -48,7 +48,7 @@ with sync_playwright() as p:
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # agujas
     comprada_vieja = '%d' % (h.year - 3); comprada_nueva = '%s %d' % (MESES[h.month - 1].lower()[:3], h.year)
-    ctx = contexto(b, 390, datos={'ag-ag1-medida': '3', 'ag-ag1-material': 'Bambú o madera', 'ag-ag1-compra': 'ene ' + comprada_vieja, 'ag-ag2-medida': '4', 'ag-ag2-material': 'Aluminio', 'ag-ag2-compra': comprada_nueva}); con_merceria(ctx, MERC); pg = abrir(ctx, 'mis-agujas')
+    ctx = contexto(b, 390, datos={'ag-ag1-medida': '3', 'ag-ag1-material': 'Bambú o madera', 'ag-ag1-compra': 'ene ' + comprada_vieja, 'ag-ag2-medida': '4', 'ag-ag2-material': 'Aluminio', 'ag-ag2-compra': comprada_nueva}); con_merceria(ctx, MERC); pg = abrir(ctx, 'mis-agujas'); pg.evaluate("document.querySelectorAll('.tienda-plegable,.herr-plegable').forEach(d => d.open = true)")
     T.v('agujas: la de bambú comprada hace 3 años dice que la cambie', 'Cámbiala' in meta(pg, 'tabla-agujas', 1), meta(pg, 'tabla-agujas', 1))
     T.v('la de aluminio comprada este mes no avisa', 'Cámbiala' not in meta(pg, 'tabla-agujas', 2) and 'Revísala' not in meta(pg, 'tabla-agujas', 2), meta(pg, 'tabla-agujas', 2))
     T.v('arriba de la lista sale el aviso con la guía general', 'para cambiar' in pg.inner_text('#mis-agujas .aviso-agujas'), pg.inner_text('#mis-agujas .aviso-agujas'))
@@ -59,12 +59,12 @@ with sync_playwright() as p:
     cap(pg, 'listas-agujas-390.png')
     T.v('sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # inventario y Mercería
-    ctx = contexto(b, 390); con_merceria(ctx, MERC); pg = abrir(ctx, 'inventario-lanas')
+    ctx = contexto(b, 390); con_merceria(ctx, MERC); pg = abrir(ctx, 'inventario-lanas'); pg.evaluate("document.querySelectorAll('.tienda-plegable,.herr-plegable').forEach(d => d.open = true)")
     opts = pg.evaluate("[...document.querySelectorAll('#inventario-lanas .merc-sel option')].map(o => o.textContent)")
     T.v('inventario: ofrece las lanas de la Mercería con el precio del ovillo', any('Alize — Rosa — $6.000' in o for o in opts), opts)
     T.v('inventario: color, grosor, ovillos y «lo usé en» tienen su propio renglón', all(pg.locator('#ag-l1-' + c).count() == 1 for c in ['color', 'grosor', 'ovillos', 'uso']))
     ctx.close()
-    ctx = contexto(b, 390); con_merceria(ctx, [x for x in MERC if x['categoria'] == 'Relleno']); pg = abrir(ctx, 'inventario-lanas')
+    ctx = contexto(b, 390); con_merceria(ctx, [x for x in MERC if x['categoria'] == 'Relleno']); pg = abrir(ctx, 'inventario-lanas'); pg.evaluate("document.querySelectorAll('.tienda-plegable,.herr-plegable').forEach(d => d.open = true)")
     T.v('sin existencias en línea: lo dice y lleva a la Mercería', 'Pronto' in pg.inner_text('#inventario-lanas .merc-sel') and pg.locator('#inventario-lanas .merc-ayuda a[href="/merceria/catalogo/"]').count() == 1, pg.inner_text('#inventario-lanas .oferta-merceria'))
     ctx.close(); b.close()
 T.fin()

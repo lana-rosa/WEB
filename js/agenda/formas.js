@@ -150,7 +150,7 @@
   function borrar(id) {
     var H = HOJAS[id], V = ver(id), i = V.orden.indexOf(V.actual);
     if (!confirm('¿Borrar «' + H.nombre(captura(id)) + '»?\n\nSe elimina de inmediato y no se puede recuperar (solo si guardaste una copia de tu agenda).')) return;
-    var dib = N.datos()._dib; if (dib) delete dib[id + ':' + V.actual];   // el dibujo de esa ficha también se va
+    var dib = N.datos()._dib; if (dib) { var base = id + ':' + V.actual; Object.keys(dib).forEach(function (kd) { if (kd === base || kd.indexOf(base + ':') === 0) delete dib[kd]; }); }   // el dibujo de esa ficha y sus fotos (`<hoja>:<ficha>:f<n>`) también se van
     delete V.v[V.actual]; V.orden.splice(i, 1);
     if (!V.orden.length) { var k = nuevaClave(V); V.orden = [k]; V.v[k] = H.inicial(); V.actual = k; }
     else V.actual = V.orden[Math.max(0, i - 1)];
@@ -219,6 +219,11 @@
   Object.keys(HOJAS).forEach(montar);
   window.lrVersiones = {
     paraExcel: paraExcel, valor: valor, claves: claves, actual: function (id) { return ver(id).actual; },
+    /* lista de fichas de una hoja: [{k, nombre, chips}] (la que está abierta se lee de la pantalla); `valores` devuelve lo escrito en una ficha; `abrir` la pone a la vista (E-patrones, 6-nov-2026) */
+    lista: function (id) { var H = HOJAS[id], V = ver(id); if (!H) return []; return V.orden.map(function (k) { var c = k === V.actual ? captura(id) : (V.v[k] || {}); return { k: k, nombre: H.nombre(c), chips: H.chips(c) }; }); },
+    valores: function (id, k) { var V = ver(id); return k === V.actual ? captura(id) : Object.assign({}, V.v[k] || {}); },
+    abrir: function (id, k) { cambiar(id, k); if (window.lrIrAHoja) window.lrIrAHoja(id); },
+    agregar: function (id) { agregar(id); },
     alGuardar: function () { Object.keys(UI).forEach(function (id) { var V = ver(id); V.v[V.actual] = captura(id); }); },
     reiniciar: function () { Object.keys(UI).forEach(function (id) { camposDe(id).forEach(function (e) { poner(e, ''); }); N.datos()._ver = {}; ver(id); prellenar(id); pintar(id); }); }
   };
