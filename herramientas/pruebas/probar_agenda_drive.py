@@ -53,6 +53,8 @@ class Nube:
         lista = list(s.archivos.values())
         if "name = 'agenda.json'" in q: lista = [a for a in lista if a['name'] == 'agenda.json']
         elif "name contains 'agenda-anterior-'" in q: lista = [a for a in lista if a['name'].startswith('agenda-anterior-')]
+        elif "name contains 'foto-'" in q: lista = [a for a in lista if a['name'].startswith('foto-')]
+        elif "name = 'foto-" in q: nom = re.search(r"name = '([^']+)'", q).group(1); lista = [a for a in lista if a['name'] == nom]
         lista = sorted(lista, key=lambda a: a['createdTime'], reverse=True)
         return json_({'files': [{k: v for k, v in a.items() if k != 'contenido'} for a in lista]})
 
