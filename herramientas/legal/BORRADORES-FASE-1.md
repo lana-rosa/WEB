@@ -167,7 +167,7 @@ No se publica ningún patrón hasta tener sus condiciones. Propuesta lista (no e
 **Borrador nuestro 1 — pie de todas las páginas (junto al ©):**
 > © 2026 Lana Rosa Crochet®. Marca registrada. El diseño de Rosina está registrado ante la SIC.
 
-(Corrección de Jennifer, 10-nov: en el pie no va el nombre de la titular. En la sección de políticas la titular queda como recomendó la abogada.)
+(Decidido por Jennifer, 10-nov: esta es la versión final del pie, sin el nombre de la titular y sin «ante la SIC» después de «Marca registrada». En la sección de políticas la titular queda como recomendó la abogada.)
 
 **Borrador nuestro 2 — sección nueva en las políticas «Propiedad intelectual y marcas registradas»:**
 > **Marcas y diseños registrados.** La marca mixta «LR Lana Rosa Crochet» está registrada ante la Superintendencia de Industria y Comercio (SIC) a nombre de Sara Loaiza Muñoz: certificado n.º 804997, resolución 102668 del 4 de diciembre de 2025, vigente hasta el 21 de enero de 2036, en las clases 24, 25, 28 y 41. El diseño de Rosina está registrado ante la SIC como diseño industrial «Personaje»: resolución 82895, vigente del 29 de julio de 2025 al 29 de julio de 2035.
