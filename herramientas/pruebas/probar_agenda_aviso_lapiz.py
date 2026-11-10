@@ -1,0 +1,21 @@
+"""Aviso del lápiz (E31, punto 9 de la abogada, 6-nov-2026): la primera vez que se activa «Lápiz» en un aparato se informa que los trazos son parte de la agenda y viajan en las copias si se activan. Uso: python3 probar_agenda_aviso_lapiz.py"""
+from agenda_util import *
+T = Prueba()
+with sync_playwright() as p:
+    b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
+    ctx = contexto(b, 1280, 900, datos={'ag-duena': 'Sara'}, config_abierta=False); pg = abrir(ctx, 'mis-ideas', 1800, config=False)
+    pg.evaluate("document.getElementById('tinta-modo').click()"); pg.wait_for_timeout(400)
+    T.v('la primera vez que se activa el lápiz sale el aviso, y el lápiz queda activo', pg.locator('.voz-aviso').count() == 1 and pg.get_attribute('#tinta-modo', 'aria-pressed') == 'true')
+    t = pg.inner_text('.voz-aviso')
+    T.v('dice que los trazos son parte de la agenda y viajan en las copias si se activan', 'parte de tu agenda' in t and 'copia en tu cuenta' in t and 'Google Drive' in t, t[:160])
+    T.v('es una ventana accesible con un solo botón «Entendido»', pg.evaluate("(() => { const d = document.querySelector('.voz-aviso'); return d.getAttribute('role') === 'dialog' && d.querySelectorAll('button').length === 1 && document.activeElement.textContent === 'Entendido'; })()"))
+    pg.click('.voz-aviso .boton-primario'); pg.wait_for_timeout(300)
+    T.v('«Entendido» cierra el aviso y el lápiz sigue activo', pg.locator('.voz-aviso').count() == 0 and pg.get_attribute('#tinta-modo', 'aria-pressed') == 'true' and pg.evaluate("localStorage.getItem('lrTintaAviso')") == '1')
+    pg.evaluate("document.getElementById('tinta-modo').click()"); pg.wait_for_timeout(200); pg.evaluate("document.getElementById('tinta-modo').click()"); pg.wait_for_timeout(300)
+    T.v('la segunda vez ya no sale', pg.locator('.voz-aviso').count() == 0)
+    T.v('sin errores de JavaScript', not pg.errs, pg.errs); ctx.close()
+    ctx = contexto(b, 1280, 900, datos={'ag-duena': 'Sara'}, config_abierta=False); ctx.add_init_script("localStorage.setItem('lrAgendaIdioma','en')")
+    pg = abrir(ctx, 'mis-ideas', 2200, config=False); pg.evaluate("document.getElementById('tinta-modo').click()"); pg.wait_for_timeout(600)
+    T.v('en inglés el aviso sale en inglés', 'About your strokes' in pg.inner_text('.voz-aviso') and 'Got it' in pg.inner_text('.voz-aviso'), pg.inner_text('.voz-aviso')[:80])
+    ctx.close(); b.close()
+T.fin()
