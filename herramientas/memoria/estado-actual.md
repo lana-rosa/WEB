@@ -19,7 +19,7 @@
 - **7 · Universo de Rosina y Academy:** bloque A hecho; E33 (5-nov): borrador de términos de la Academy y autorizaciones de menores en `herramientas/legal/BORRADOR-ACADEMY-Y-MENORES.md` (sin publicar; lo lleva el chat 6 a la abogada).
   Avisos de personajes/figuras/personas en el chat y en Regalar: hechos en la rama, esperan el sí de Jennifer con fotos (no publicado).
   A medias: Jennifer ya respondió las 6 (anticipo, 2 días, cupo máximo 10 sin mínimo, mayores de 18, efectivo/Bre-B, recibo); faltan 6 detalles (monto del anticipo, devolución, etc.); actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas.
-- **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, Agenda = CrochetLab, carrito mixto = sí (a construir, chats 4 y 5). Guiones de la línea 1 listos (borrador). 10-nov: calendario y guiones de 2 semanas listos para aprobar (E10).
+- **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, nombre «CrochetLab» en pausa (10-nov): decir «la agenda de Lana Rosa»; carrito mixto = sí (a construir, chats 4 y 5). Guiones de la línea 1 listos (borrador). 10-nov: calendario y guiones de 2 semanas listos para aprobar (E10).
 
 ## Pendiente de Jennifer
 - Google Cloud en **Producción**; prueba real de Drive (dos aparatos) y Calendar; preguntas reales a Rosina.
