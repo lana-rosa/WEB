@@ -36,3 +36,15 @@ Cada artículo (desde el 17-oct-2026): archivo `herramientas/revista/articulos/<
 La Revista ya se puede ver por casa (`revista.html?casa=merceria` y `?casa=academy`). Hoy la Mercería tiene 2 artículos y Academy 4; estos temas llenan lo que falta (solo con información real, sin inventar):
 - **Mercería:** cómo elegir la lana para un amigurumi (algodón, acrílico, chenille: qué cambia en el tejido); qué aguja de crochet usar con cada grosor de hilo; cuántos ovillos necesito para un amigurumi de 13 cm; ~~colores que combinan (con las paletas de Rosina)~~ (publicado 14-oct); cómo guardar y cuidar la lana.
 - **Academy:** qué se aprende en el taller "Desconecta para Conectar"; los 5 puntos básicos del crochet; errores comunes de principiantes y cómo arreglarlos; cómo leer un patrón (con el glosario de Rosina).
+
+## Serie «Tejer para vender» (para después del 14-dic-2026; agregada el 10-nov-2026 por pedido de Jennifer)
+Fuente: sección 2.2 de `herramientas/marketing-agenda/ESTRATEGIA-TEJER-PARA-VENDER.md`. **Reglas de la serie:** solo datos reales de Lana Rosa (precios, costos, fotos, experiencia propia); **sin estadísticas inventadas**; la guía «Qué tejer para vender» de Quintaesencia (Argentina) es de otra autora y solo inspira: **no copiar su texto, su checklist, su reto ni su estructura**. Cada artículo termina con un enlace suave (descarga gratis del Rincón, hoja de la agenda o taller). Se publican de a uno por semana, empezando por los dos primeros. Revista de la casa Academy (emprendimiento).
+- [ ] 1. «Me encanta» no es «lo compro»: cómo leer lo que dicen de tus tejidos — **empezar por este**
+- [ ] 2. El Método ROSA explicado con una pieza real de Lana Rosa — **segundo**. Método propio de Lana Rosa: **R** Resuelve algo, **O** Optimiza tu tiempo, **S** Sostiene su precio, **A** te Anima a tejerla; cuatro «sí» = pieza para probar; dos o más «no» = para regalar, practicar o más adelante
+- [ ] 3. Cuánto cobrar por un amigurumi en Colombia: la cuenta paso a paso, con la calculadora. Ojo: ya existe «Cuánto cobrar por tus tejidos» (6-oct); este debe ser distinto y enlazar a aquel
+- [ ] 4. Fotos que venden con el celular: lo que aprendimos fotografiando nuestra tienda
+- [ ] 5. Cuántas piezas tejer antes de saber si se venden
+- [ ] 6. Calendario de temporadas para tejedoras colombianas. **Sin Navidad, santos ni Halloween** (valores de la marca); sí Amor y amistad, Día de la madre, Día del padre, cumpleaños y graduaciones
+- [ ] 7. Piezas que conviene dejar para después (y por qué no son «malas»)
+- [ ] 8. Familias de productos: cómo una sola pieza se vuelve un set para regalar
+Antes de escribir: revisar los datos con Jennifer (qué piezas y precios reales se pueden mostrar) y el nombre de la agenda, que está en pausa (ver `PENDIENTES.md`).
