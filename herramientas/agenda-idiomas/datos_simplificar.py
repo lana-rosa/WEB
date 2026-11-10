@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """Simplificación de la agenda (6-nov-2026): dibujo del diseño cerrado, «Patrones que diseñé», partes y fotos en «Diseña tu patrón». Traducción provisional: la revisa el chat de idiomas."""
 FILAS = [
- ('✏️ Patrones que diseñé', '✏️ Patterns I designed', '✏️ Padrões que criei'),
- ('Se guardan solos, con su nombre, desde «Diseña tu patrón». Toca uno para abrirlo.', 'They save themselves, with their name, from “Design your pattern”. Tap one to open it.', 'Eles são salvos sozinhos, com o nome, em “Crie seu padrão”. Toque em um para abri-lo.'),
- ('Aún no has diseñado ninguno. Cuando escribas el nombre de tu primer patrón, aparecerá aquí.', 'You have not designed any yet. When you write the name of your first pattern, it will appear here.', 'Você ainda não criou nenhum. Quando escrever o nome do seu primeiro padrão, ele aparecerá aqui.'),
- ('➕ Diseñar un patrón', '➕ Design a pattern', '➕ Criar um padrão'),
- ('➕ Diseñar mi primer patrón', '➕ Design my first pattern', '➕ Criar meu primeiro padrão'),
+ ('✏️ Patrones que diseñé', '✏️ Patterns I designed', '✏️ Receitas que criei'),
+ ('Se guardan solos, con su nombre, desde «Diseña tu patrón». Toca uno para abrirlo.', 'They save themselves, with their name, from “Design your pattern”. Tap one to open it.', 'Eles são salvos sozinhos, com o nome, em “Crie a sua receita”. Toque em um para abri-lo.'),
+ ('Aún no has diseñado ninguno. Cuando escribas el nombre de tu primer patrón, aparecerá aquí.', 'You have not designed any yet. When you write the name of your first pattern, it will appear here.', 'Você ainda não criou nenhum. Quando escrever o nome do sua primeira receita, ela aparecerá aqui.'),
+ ('➕ Diseñar un patrón', '➕ Design a pattern', '➕ Criar uma receita'),
+ ('➕ Diseñar mi primer patrón', '➕ Design my first pattern', '➕ Criar minha primeira receita'),
  ('Abrir →', 'Open →', 'Abrir →'),
  ('Vista previa del dibujo del diseño', 'Preview of the design drawing', 'Prévia do desenho do projeto'),
  ('Todavía no hay dibujo. Ábrelo para dibujar a mano o subir una foto.', 'There is no drawing yet. Open it to draw by hand or upload a photo.', 'Ainda não há desenho. Abra para desenhar à mão ou enviar uma foto.'),
@@ -20,9 +20,9 @@ FILAS = [
  ('Qué muestra (Paso 3: la cabeza)', 'What it shows (Step 3: the head)', 'O que mostra (Passo 3: a cabeça)'),
  ('Qué muestra esta foto', 'What this photo shows', 'O que esta foto mostra'),
  ('Quitar esta foto', 'Remove this photo', 'Remover esta foto'),
- ('Máximo 12 fotos por patrón.', 'Maximum 12 photos per pattern.', 'Máximo de 12 fotos por padrão.'),
+ ('Máximo 12 fotos por patrón.', 'Maximum 12 photos per pattern.', 'Máximo de 12 fotos por receita.'),
  ('No pude leer esa imagen.', 'I could not read that image.', 'Não consegui ler essa imagem.'),
- ('Foto del patrón', 'Pattern photo', 'Foto do padrão'),
+ ('Foto del patrón', 'Pattern photo', 'Foto da receita'),
  ('Fotos', 'Photos', 'Fotos'),
  # sin emoji (el traductor quita el emoji del principio antes de buscar) y títulos de «Del mundo Lana Rosa» con flecha
  ('Amigurumis hechos a mano →', 'Handmade amigurumis →', 'Amigurumis feitos à mão →'),
@@ -38,9 +38,9 @@ FILAS = [
  ('La Revista de Lana Rosa →', 'The Lana Rosa Magazine →', 'A Revista da Lana Rosa →'),
  ('Abrir dibujo', 'Open drawing', 'Abrir desenho'),
  ('Cerrar dibujo', 'Close drawing', 'Fechar desenho'),
- ('Patrones que diseñé', 'Patterns I designed', 'Padrões que criei'),
- ('Diseñar un patrón', 'Design a pattern', 'Criar um padrão'),
- ('Diseñar mi primer patrón', 'Design my first pattern', 'Criar meu primeiro padrão'),
+ ('Patrones que diseñé', 'Patterns I designed', 'Receitas que criei'),
+ ('Diseñar un patrón', 'Design a pattern', 'Criar uma receita'),
+ ('Diseñar mi primer patrón', 'Design my first pattern', 'Criar minha primeira receita'),
  ('Añadir parte', 'Add part', 'Adicionar parte'),
  ('Subir fotos', 'Upload photos', 'Enviar fotos'),
 ]
