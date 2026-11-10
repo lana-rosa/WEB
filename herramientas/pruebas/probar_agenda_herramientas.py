@@ -12,7 +12,7 @@ def destino_ok(href):
     t = open(f, encoding='utf-8').read()
     return not ancla or ('id="%s"' % ancla in t or 'data-ancla="%s"' % ancla in t)
 ESPERADO = {
-    'fin-resumen': ['/calculadoras-rosina.html#costos'], 'fin-movimientos': ['/calculadoras-rosina.html#costos'], 'fin-presupuesto': ['/calculadoras-rosina.html#costos'],
+    'catalogo-precios': ['/calculadoras-rosina.html#costos'],   # 10-nov-2026: la calculadora de costos solo va en el catálogo de precios
     'ficha-proyecto': ['/glosario-rosina.html', '/recursos-rosina.html#abreviaturas'], 'proyectos-fila': ['/glosario-rosina.html', '/recursos-rosina.html#abreviaturas'],
     'coleccion-patrones': ['/glosario-rosina.html', '/recursos-rosina.html#abreviaturas'], 'lo-que-aprendi': ['/glosario-rosina.html', '/recursos-rosina.html#abreviaturas'],
     'registro-pausas': ['/revista/pausas-activas/'],

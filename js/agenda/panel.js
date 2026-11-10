@@ -255,7 +255,7 @@
 
     var mas = txt('div', 'pn-card'); mas.appendChild(txt('h4', '', 'Más en Inicio'));
     var lm = txt('div', 'pn-acciones');
-    [['Planeador del día', 'planeador-dia'], ['Portada', 'portada-agenda'], ['Aprende y compra', 'aprende-compra'], ['Índice de hojas', 'indice-agenda']].forEach(function (a) {
+    [['Planeador del día', 'planeador-dia'], ['Portada', 'portada-agenda'], ['Aprende y compra', 'aprende-compra']].forEach(function (a) {
       var b = txt('button', 'pn-accion sec', a[0]); b.type = 'button'; b.addEventListener('click', function () { ir(a[1]); }); lm.appendChild(b);
     });
     mas.appendChild(lm); cont.appendChild(mas);

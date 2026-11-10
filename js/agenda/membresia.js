@@ -74,8 +74,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
       if (m) { m.textContent = m.textContent.replace(/ 💎$/, '') + (bloquear ? ' 💎' : ''); m.classList.toggle('de-pago', bloquear); }
       var at = document.querySelector('.atajo[data-ir="' + h.id + '"]'); if (at) at.classList.toggle('de-pago', bloquear);
     });
-    var indice = $('indice-agenda'), cfg = $('agenda-config');
-    var t1 = indice && tarjeta('membresia-tarjeta', indice.querySelector('.indice-grupo'));
+    var panelC = $('panel-contenido'), cfg = $('agenda-config');
+    var t1 = panelC && tarjeta('membresia-tarjeta', panelC);   /* 10-nov-2026: la tarjeta de membresía va en Mi panel (el Índice se retiró) */
     var t2 = cfg && tarjeta('membresia-config', cfg.querySelector('.agenda-config-cab') && cfg.querySelector('.agenda-config-cab').nextElementSibling);   /* primero de todo en Configuración (3-nov-2026) */
     [t1, t2].forEach(function (t) {
       if (!t) return;

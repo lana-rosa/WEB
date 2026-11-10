@@ -12,8 +12,10 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     # 1) por defecto: claro, con las tres opciones en Configuración
     ctx = contexto(b, 1280, 900, datos=DATOS, config_abierta=False); pg = abrir(ctx, '', 1800, config=True)
-    T.v('por defecto la agenda sigue clara (sin marca de modo)', modo(pg) is None and lum(fondo(pg)) > .5, (modo(pg), fondo(pg)))
-    T.v('Configuración tiene Claro, Oscuro y Como el celular', pg.locator('#modo-opciones input[name="agenda-modo"]').count() == 3 and pg.evaluate("document.querySelector('#modo-opciones input[value=claro]').checked"))
+    T.v('por defecto la agenda sigue al celular (claro en un celular claro)', modo(pg) is None and lum(fondo(pg)) > .5, (modo(pg), fondo(pg)))
+    pg.emulate_media(color_scheme='dark'); pg.reload(); pg.wait_for_timeout(1800)
+    T.v('y con el celular en oscuro, oscura sin tocar nada', modo(pg) == 'oscuro' and lum(fondo(pg)) < .05, (modo(pg), fondo(pg))); pg.emulate_media(color_scheme='light'); pg.reload(); pg.wait_for_timeout(1800); pg.evaluate("window.lrAgendaConfig && window.lrAgendaConfig.abrir(true)")
+    T.v('Configuración tiene Claro, Oscuro y Como el celular (este último elegido)', pg.locator('#modo-opciones input[name="agenda-modo"]').count() == 3 and pg.evaluate("document.querySelector('#modo-opciones input[value=auto]').checked"))
     # 2) elegir oscuro
     pg.evaluate("document.querySelector('#modo-opciones input[value=oscuro]').click()"); pg.wait_for_timeout(400)
     T.v('elegir Oscuro: la página se pone oscura y se recuerda', modo(pg) == 'oscuro' and lum(fondo(pg)) < .05 and pg.evaluate("localStorage.getItem('lrAgendaModo')") == 'oscuro', (modo(pg), fondo(pg)))
@@ -38,7 +40,7 @@ with sync_playwright() as p:
     pg.emulate_media(color_scheme='light'); pg.wait_for_timeout(300)
     T.v('y cuando el celular pasa a claro, la agenda cambia sola', modo(pg) is None and lum(fondo(pg)) > .5, (modo(pg), fondo(pg)))
     pg.evaluate("document.querySelector('#modo-opciones input[value=claro]').click()"); pg.emulate_media(color_scheme='dark'); pg.wait_for_timeout(300)
-    T.v('«Claro» ignora el ajuste del celular', modo(pg) is None and pg.evaluate("localStorage.getItem('lrAgendaModo')") is None, modo(pg))
+    T.v('«Claro» ignora el ajuste del celular', modo(pg) is None and pg.evaluate("localStorage.getItem('lrAgendaModo')") == 'claro', modo(pg))
     # 7) color elegido en oscuro: texto de color claro; al volver a claro, vuelve el oscuro del color
     pg.evaluate("localStorage.setItem('lrAgendaColor','#2F7DE1')"); pg.evaluate("document.documentElement.setAttribute('data-tema','libre')")
     pg.evaluate("document.querySelector('#modo-opciones input[value=oscuro]').click()"); pg.wait_for_timeout(300)
