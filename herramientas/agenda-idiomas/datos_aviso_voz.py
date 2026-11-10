@@ -7,4 +7,9 @@ FILAS = [
   'A função “Falar para escrever” usa o serviço de reconhecimento de voz disponível no seu navegador ou dispositivo. O áudio pode ser processado pelo provedor desse serviço, de acordo com suas próprias condições e políticas de privacidade. A Lana Rosa Crochet não recebe nem armazena diretamente as gravações de áudio. Você pode usar esta função de forma opcional.'),
  ('Ahora no', 'Not now', 'Agora não'),
  ('Continuar', 'Continue', 'Continuar'),
+ ('Sobre tus trazos', 'About your strokes', 'Sobre os seus traços'),
+ ('Lo que escribas o dibujes con el lápiz es parte de tu agenda y se guarda en este aparato. Si activas la copia en tu cuenta o en Google Drive, tus trazos también viajan en esas copias. Tú decides si las activas.',
+  'What you write or draw with the pencil is part of your agenda and is saved on this device. If you turn on the backup in your account or in Google Drive, your strokes also travel in those backups. You decide whether to turn them on.',
+  'O que você escrever ou desenhar com o lápis faz parte da sua agenda e fica salvo neste aparelho. Se você ativar a cópia na sua conta ou no Google Drive, seus traços também vão nessas cópias. Você decide se as ativa.'),
+ ('Entendido', 'Got it', 'Entendi'),
 ]

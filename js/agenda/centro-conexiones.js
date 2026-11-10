@@ -20,7 +20,10 @@
     if (e && e.conectado) {
       f.estado = 'Conectado'; f.clase = 'cx-si'; f.detalle = [];
       if (e.correo) f.detalle.push(['Cuenta:'], [e.correo, true]);
-      if (e.ultima) { if (e.correo) f.detalle.push(['·', true]); f.detalle.push(['Última sincronización:'], [fechaHora(e.ultima), true]); }
+      if (idCaja === 'drive-archivos') {   // esta conexión guarda archivos cuando la persona lo pide: no sincroniza
+        if (e.ultimo) { if (e.correo) f.detalle.push(['·', true]); f.detalle.push(['Último guardado:'], [fechaHora(e.ultimo), true]); }
+        else f.detalle.push(['Todavía no has guardado nada.']);
+      } else if (e.ultima) { if (e.correo) f.detalle.push(['·', true]); f.detalle.push(['Última sincronización:'], [fechaHora(e.ultima), true]); }
       else f.detalle.push(['Todavía no se ha sincronizado.']);
     } else { f.estado = 'No conectado'; f.clase = ''; f.detalle = [['Opcional: tú decides si lo conectas.']]; }
     f.aviso = textoDe(idAviso);
@@ -38,6 +41,7 @@
     var out = [];
     out.push(google('Google Calendar', 'calendario-sync', 'cs-aviso', function () { return window.lrGcal && window.lrGcal.estado(); }, 'cs-conectar'));
     out.push(google('Google Drive', 'drive-sync', 'ds-aviso', function () { return window.lrDrive && window.lrDrive.estado(); }, 'ds-conectar'));
+    out.push(google('Informes y copias en tu Drive', 'drive-archivos', 'da-aviso', function () { return window.lrDriveArchivos && window.lrDriveArchivos.estado(); }, 'da-conectar'));
     var n = { nombre: 'Copia en tu cuenta de Lana Rosa', idCaja: 'nube-activar' };
     if (!window.lrNube) { n.estado = 'No disponible'; n.clase = ''; n.detalle = [['Aparece cuando inicias sesión.']]; }
     else if (window.lrNube.activa) { n.estado = 'Activada'; n.clase = 'cx-si'; n.detalle = [['Tu agenda también se guarda en tu cuenta de Lana Rosa.']]; }
@@ -75,7 +79,7 @@
   function pronto() { clearTimeout(pendiente); pendiente = setTimeout(pintar, 60); }
   pintar();
   var obs = new MutationObserver(pronto);
-  ['calendario-sync', 'drive-sync', 'nube-estado', 'nube-activar', 'nube-borrar'].forEach(function (id) {
+  ['calendario-sync', 'drive-sync', 'drive-archivos', 'nube-estado', 'nube-activar', 'nube-borrar'].forEach(function (id) {
     var e = document.getElementById(id); if (e) obs.observe(e, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
   });
   [800, 2500, 6000].forEach(function (ms) { setTimeout(pintar, ms); });   // las tarjetas se arman después de consultar a Supabase

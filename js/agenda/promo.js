@@ -36,14 +36,21 @@
     return a;
   }
   function montar(caja) {
-    var hoja = caja.dataset.hoja || '', modo = caja.dataset.modo, n = parseInt(caja.dataset.cuantas || '2', 10);
+    var hoja = caja.dataset.hoja || '', modo = caja.dataset.modo, n = parseInt(caja.dataset.cuantas || '1', 10);
     var excluir = (caja.dataset.excluir || '').split(',');
     var lista = PROMOS.filter(function (p) { return excluir.indexOf(p.id) < 0 && p.hoja !== hoja; });
     var elegidas;
     if (modo === 'todas') elegidas = lista;
     else { var ini = (diaDelAnio() + hash(hoja)) % lista.length; elegidas = []; for (var i = 0; i < n && i < lista.length; i++) elegidas.push(lista[(ini + i) % lista.length]); }
     caja.textContent = '';
-    if (modo !== 'todas') { var e = document.createElement('p'); e.className = 'promo-etq'; e.textContent = 'Del mundo Lana Rosa'; caja.appendChild(e); }
+    if (modo !== 'todas') {   // 6-nov-2026: una sola línea corta (antes dos tarjetas grandes al final de cada hoja)
+      var p = elegidas[0]; if (!p) return;
+      var fila = document.createElement('p'); fila.className = 'promo-linea'; var et = document.createElement('span'); et.className = 'promo-etq'; et.textContent = 'Del mundo Lana Rosa'; fila.appendChild(et);
+      var a = document.createElement(p.hoja ? 'button' : 'a'); a.className = 'promo-enlace'; a.dataset.promo = p.id; a.title = p.x;
+      if (p.hoja) a.type = 'button'; else { a.href = p.u; if (p.ext) { a.target = '_blank'; a.rel = 'noopener'; } }
+      a.textContent = p.ic + ' ' + p.t + ' →'; a.addEventListener('click', function () { medir(p, hoja); if (p.hoja) ir(p.hoja); });
+      fila.appendChild(a); caja.appendChild(fila); return;
+    }
     var g = document.createElement('div'); g.className = 'promo-grid';
     elegidas.forEach(function (p) { g.appendChild(tarjeta(p, hoja)); }); caja.appendChild(g);
   }

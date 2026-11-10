@@ -67,7 +67,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-pantalla.css?v=11">
 <link rel="stylesheet" href="/css/agenda-menu.css?v=3">
 <link rel="stylesheet" href="/css/agenda-micuenta.css?v=5">
-<link rel="stylesheet" href="/css/agenda-tarjetas.css?v=5">
+<link rel="stylesheet" href="/css/agenda-tarjetas.css?v=9">
 <style>
 :root {
   --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF;
@@ -907,7 +907,7 @@ main > :first-child { padding-top: 40px !important; }
 }
 </style>
 <script>try{var m=localStorage.getItem("lrAgendaModo");if(m==="oscuro"||(m==="auto"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.setAttribute("data-modo","oscuro")}catch(e){}</script>
-<link rel="stylesheet" href="/css/agenda-oscuro.css?v=8">
+<link rel="stylesheet" href="/css/agenda-oscuro.css?v=9">
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png?v=8">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png?v=8">
@@ -1090,12 +1090,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <summary>¿Qué permiso pide y qué NO puede hacer?</summary>
         <ul>
           <li><strong>Permiso:</strong> usar una carpeta oculta de la app en tu Drive (permiso «appdata»).</li>
-          <li><strong>Qué guarda:</strong> tu agenda completa, con los dibujos y sus fotos, y las últimas 5 versiones anteriores. Va directo de tu navegador a tu Drive, sin pasar por Lana Rosa.</li>
+          <li><strong>Qué guarda:</strong> tu agenda completa, con los dibujos y sus fotos (cada foto en su propio archivo), y las últimas 5 versiones anteriores. Va directo de tu navegador a tu Drive, sin pasar por Lana Rosa.</li>
           <li><strong>Qué NO puede hacer:</strong> ver, abrir ni borrar tus otros archivos de Drive. Tampoco aparece como una carpeta que puedas abrir: solo esta agenda la usa.</li>
           <li><strong>Cómo quitarlo:</strong> «Desconectar» retira el permiso y deja la copia donde está; «Borrar mi agenda de Drive» borra la copia y las versiones y desconecta. También puedes revisarlo en <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">tu cuenta de Google</a>.</li>
         </ul>
       </details>
       <small class="nota-copia">Tu agenda se guarda en una carpeta oculta de tu propio Google Drive que solo esta app puede abrir: no puede ver el resto de tu Drive. Lana Rosa no recibe tus datos ni puede leerlos; solo guardamos el permiso de acceso (cifrado) para sincronizarte sola, y lo puedes quitar cuando quieras. Si cambias algo en dos aparatos a la vez, se juntan los cambios y no se pierde nada. <a href="/politicas.html#datos">Más información</a>.</small>
+    </div>
+    <div class="calendario-sync drive-sync drive-archivos no-imprimir" id="drive-archivos" hidden>
+      <p class="cs-titulo"><img class="cs-ic" src="/img/agenda/ui/gdrive.webp" alt="" width="24" height="24" loading="lazy"> Guardar informes y copias en tu Drive</p>
+      <p class="cs-texto" id="da-texto"></p>
+      <div class="cs-botones">
+        <button type="button" class="boton-primario boton-chico" id="da-conectar" hidden>Conectar con Google Drive</button>
+        <button type="button" class="boton-secundario boton-chico" id="da-excel" hidden>Guardar como hoja de Google en mi Drive</button>
+        <button type="button" class="boton-secundario boton-chico" id="da-copia" hidden>Guardar una copia en mi Drive</button>
+        <button type="button" class="enlace-copia" id="da-abrir" hidden>Abrir mi carpeta</button>
+        <button type="button" class="enlace-copia" id="da-desconectar" hidden>Desconectar</button>
+      </div>
+      <p class="cs-aviso" id="da-aviso" role="status"></p>
+      <details class="cx-permiso">
+        <summary>¿Qué permiso pide y qué NO puede hacer?</summary>
+        <ul>
+          <li><strong>Permiso:</strong> crear y ver solo los archivos y la carpeta que esta app crea en tu Drive (permiso «file»).</li>
+          <li><strong>Qué guarda:</strong> solo cuando tú lo pides, tu agenda como hoja de cálculo de Google (Google Sheets) o una copia de seguridad, en la carpeta «Agenda para tejedoras» de tu Drive. Van directo de tu navegador a tu Drive, sin pasar por Lana Rosa. No se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre.</li>
+          <li><strong>Qué NO puede hacer:</strong> ver, abrir ni borrar tus otros archivos o carpetas de Drive.</li>
+          <li><strong>Cómo quitarlo:</strong> «Desconectar» retira el permiso y deja lo ya guardado en tu carpeta (es tuyo). También puedes revisarlo en <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">tu cuenta de Google</a>.</li>
+        </ul>
+      </details>
     </div>
       </section>
       <section class="cfg-grupo"><h3 class="cfg-titulo">Ayuda y recomendaciones</h3>
@@ -2225,6 +2246,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </details>
             </div>
+            <p class="no-imprimir dp-mas"><button type="button" class="boton-secundario boton-chico" id="dp-parte-mas">➕ Añadir parte</button></p>
           </fieldset>
           <fieldset class="dp-paso" data-paso="5" data-titulo="Armado">
             <legend>Paso 5 · Armado y detalles</legend>
@@ -2237,6 +2259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <legend>Paso 6 · Notas</legend>
             <div class="grid-ficha">
               <div class="linea ancha"><label for="ag-dp-notas">Notas, consejos y cambios que harías</label><textarea id="ag-dp-notas" rows="4" data-guardar></textarea></div>
+              <div class="linea ancha dp-fotos-caja no-imprimir"><label id="dp-fotos-t">Fotos del resultado y de los pasos</label><p class="dp-ayuda">Sube fotos de cómo quedó y de los pasos importantes. Se guardan en este aparato, igual que tus dibujos, y viajan en tus copias.</p><div id="dp-fotos" role="group" aria-labelledby="dp-fotos-t"></div></div>
               <div class="linea ancha"><label class="check-linea"><input type="checkbox" id="ag-dp-probado" data-guardar> Ya lo tejí siguiendo este patrón y funciona</label></div>
             </div>
           </fieldset>
@@ -2841,10 +2864,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   document.getElementById('asg-copia').addEventListener('click', function() { document.getElementById('agenda-descargar').click(); });
   setTimeout(medirEspacio, 800);
+  function crearCopia() {   // el archivo de la copia de seguridad (también lo usa «Guardar en tu Drive»)
+    return (window.lrDibStore && window.lrDibStore.listo ? window.lrDibStore.listo : Promise.resolve()).then(function() {
+      return new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
+    });
+  }
+  window.lrAgendaCopia = { crear: crearCopia };
   document.getElementById('agenda-descargar').addEventListener('click', function() {
     /* los dibujos viven en IndexedDB: se espera a que estén cargados para que la copia salga completa */
-    (window.lrDibStore && window.lrDibStore.listo ? window.lrDibStore.listo : Promise.resolve()).then(function() {
-      var blob = new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
+    crearCopia().then(function(blob) {
       var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-' + new Date().toISOString().slice(0, 10) + '.json';
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
       escribir(CLAVE_COPIA, new Date().toISOString().slice(0, 10));
@@ -4281,7 +4309,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     var d = window.lrDibStore ? await window.lrDibStore.completos(datosLocales()) : datosLocales();
     if (!d._dib || JSON.stringify(d).length <= 2900000) return d;
     var o = {}; Object.keys(d).forEach(function (k) { o[k] = d[k]; }); o._dib = {};
-    Object.keys(d._dib).forEach(function (k) { var r = d._dib[k] || {}; o._dib[k] = { s: r.s || [], img: '' }; });
+    Object.keys(d._dib).forEach(function (k) { var r = d._dib[k] || {}, c = {}; Object.keys(r).forEach(function (f) { c[f] = r[f]; }); c.s = r.s || []; c.img = ''; o._dib[k] = c; });   // sin las fotos pero conservando el resto (por ejemplo la descripción `t` de las fotos de «Diseña tu patrón»)
     o._dibSinFotos = 1; return o;
   }
   async function subir(base) {
@@ -4397,12 +4425,12 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=32"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=34" defer></script>
+<script src="/js/agenda/idioma.js?v=35" defer></script>
 <script src="/js/agenda/modo.js?v=1" defer></script>
 <script src="/js/agenda/config.js?v=18" defer></script>
 <script src="/js/agenda/tour.js?v=6" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
-<script src="/js/agenda/formas.js?v=3" defer></script>
+<script src="/js/agenda/formas.js?v=4" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
 <script src="/js/agenda/meses.js?v=1" defer></script>
 <script src="/js/agenda/dinero.js?v=3" defer></script>
@@ -4413,15 +4441,16 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/color-casilla.js?v=1" defer></script>
 <script src="/js/agenda/recursos-datos.js?v=3" defer></script>
 <script src="/js/agenda/recursos.js?v=8" defer></script>
-<script src="/js/agenda/herramientas-abajo.js?v=1" defer></script>
+<script src="/js/agenda/herramientas-abajo.js?v=2" defer></script>
 <script src="/js/agenda/lupa.js?v=2" defer></script>
-<script src="/js/agenda/patron.js?v=1" defer></script>
+<script src="/js/agenda/patron.js?v=2" defer></script>
+<script src="/js/agenda/patrones-propios.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=3" defer></script>
 <script src="/js/agenda/vacios.js?v=5" defer></script>
 <script src="/js/agenda/panel.js?v=32" defer></script>
 <script src="/js/agenda/miles.js?v=1" defer></script>
-<script src="/js/agenda/voz.js?v=5" defer></script>
-<script src="/js/agenda/tinta.js?v=1" defer></script>
+<script src="/js/agenda/voz.js?v=6" defer></script>
+<script src="/js/agenda/tinta.js?v=2" defer></script>
 <script src="/js/agenda/mi-cuenta.js?v=4" defer></script>
 <script src="/js/agenda/iconos.js?v=29" defer></script>
 <script src="/js/agenda/colores-seccion.js?v=3" defer></script>
@@ -4429,7 +4458,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/metas-ventas.js?v=7" defer></script>
 <script src="/js/agenda/graficas.js?v=9" defer></script>
 <script src="/js/agenda/clientas-historial.js?v=3" defer></script>
-<script src="/js/agenda/costos.js?v=1" defer></script>
+<script src="/js/agenda/costos.js?v=2" defer></script>
 <script src="/js/agenda/inventario-mov.js?v=5" defer></script>
 <script src="/js/agenda/proyecto-lana.js?v=3" defer></script>
 <script src="/js/agenda/inventario.js?v=2" defer></script>
@@ -4437,21 +4466,22 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/dashboards.js?v=7" defer></script>
 <script src="/js/agenda/ayuda.js?v=3" defer></script>
 <script src="/js/agenda/prendas.js?v=1" defer></script>
-<script src="/js/agenda/promo.js?v=1" defer></script>
+<script src="/js/agenda/promo.js?v=2" defer></script>
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script src="/js/agenda/dueno.js?v=5"></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
-<script src="/js/agenda/aviso-conexion.js?v=2"></script>
+<script src="/js/agenda/aviso-conexion.js?v=4"></script>
 <script type="module" src="/js/agenda/google-calendar.js?v=4"></script>
-<script src="/js/agenda/centro-conexiones.js?v=1" defer></script>
+<script src="/js/agenda/centro-conexiones.js?v=2" defer></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
-<script type="module" src="/js/agenda/drive-sync.js?v=4"></script>
+<script type="module" src="/js/agenda/drive-sync.js?v=5"></script>
+<script type="module" src="/js/agenda/drive-archivos.js?v=2"></script>
 <script type="module" src="/js/agenda/membresia.js?v=7"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
-<script src="/js/agenda/dibujo.js?v=14" defer></script>
+<script src="/js/agenda/dibujo.js?v=15" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
-<script src="/js/agenda/exportar.js?v=9" defer></script>
+<script src="/js/agenda/exportar.js?v=10" defer></script>
 <script>
 // «¿Dónde se guardan mis datos?»: dice si hoy la copia en la cuenta está activa (30-oct-2026).
 (function () {
