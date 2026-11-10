@@ -18,6 +18,7 @@
 - **6 · Sitio, SEO y Revista:** paquete de la abogada listo (`herramientas/legal/PAQUETE-ABOGADA.md`; proveedora = Sara Loaiza Muñoz, casilla de patrones propuesta). E9 revisado: `apertura.js`, `activar_apertura.py` y el flujo coinciden (14-dic). Falta: fecha de cookies (espera sí de Jennifer), aviso de apertura en el inicio y recogida en taller.
 - **7 · Universo de Rosina y Academy:** avisos de personajes publicados (#628); E33 borrador de términos de la Academy listo (faltan 4 detalles de Jennifer: mínimo del anticipo y fecha del saldo, plazo de devolución, datos del recibo, venta de lo tejido).
   E34 (10-nov): borrador «Método ROSA» + «Prueba de 3 a 5 piezas» en `herramientas/borradores/metodo-rosa/index.html`; Jennifer aprobó cómo se ve (10-nov); se publica después del 14-dic con su sí final.
+  E35 (10-nov): borrador del «Pasaporte de calidad para amigurumis» (1 página) en `herramientas/borradores/pasaporte-calidad/index.html`; lo prueban Jennifer y las tejedoras; sin publicar hasta su sí.
   A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas.
 - **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, nombre «CrochetLab» en pausa (10-nov): decir «la agenda de Lana Rosa»; carrito mixto = sí (a construir, chats 4 y 5). Guiones de la línea 1 listos (borrador). 10-nov: calendario, guiones de 2 semanas y borradores del Método ROSA listos para aprobar (E10).
 

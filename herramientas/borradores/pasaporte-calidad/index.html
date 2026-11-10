@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>BORRADOR · Pasaporte de calidad para amigurumis</title>
+<!-- BORRADOR (chat 7, 10-nov-2026): NO está en el sitio ni enlazado. Primero lo prueban Jennifer y las tejedoras del taller; no se publica hasta su sí.
+     Se ve con: python3 -m http.server 8765 en la raíz y abrir /herramientas/borradores/pasaporte-calidad/index.html. Textos propios de Lana Rosa.
+     Al publicar: página del Rincón con menú, GTM y consentimiento, enlace desde recursos-rosina.html y puerta de cuenta en la descarga. -->
+<link rel="stylesheet" href="/css/fuentes.css">
+<style>
+:root { --rosa:#E74E96; --rosa-texto:#C42A78; --rosa-medio:#F28FC0; --rosa-suave:#FBE4EF; --lila:#9EA2F9; --tinta:#45454A; --suave:#6B6B72; }
+* { box-sizing:border-box; }
+body { margin:0; background:#F4EEF2; color:var(--tinta); font-family:'Hanken Grotesk',Arial,sans-serif; line-height:1.35; }
+h1,h2,h3 { font-family:'DynaPuff','Hanken Grotesk',sans-serif; font-weight:600; margin:0; }
+.aviso-borrador { background:#FFF4CC; border-bottom:2px solid #E6C84A; padding:10px 16px; font-size:.9rem; text-align:center; }
+.barra { display:flex; justify-content:center; padding:14px; }
+.barra button { font:inherit; font-weight:700; border:0; border-radius:999px; padding:10px 22px; background:var(--rosa-texto); color:#fff; cursor:pointer; }
+.hoja { width:210mm; max-width:100%; min-height:297mm; margin:0 auto 24px; background:#fff; padding:10mm 12mm 8mm; box-shadow:0 4px 18px rgba(0,0,0,.12); display:flex; flex-direction:column; gap:7px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.cab { display:flex; align-items:center; justify-content:space-between; gap:10px; border-bottom:3px solid var(--rosa); padding-bottom:6px; }
+.cab img.logo { height:36px; width:auto; border-radius:7px; }
+.cab span { font-size:.7rem; font-weight:700; color:var(--rosa-texto); text-align:right; }
+.titulo { display:flex; align-items:center; gap:12px; }
+.titulo img { width:70px; height:70px; object-fit:cover; border-radius:50%; border:3px solid var(--rosa-medio); flex:none; }
+.titulo h1 { font-size:1.7rem; color:var(--rosa-texto); line-height:1.1; }
+.titulo p { margin:2px 0 0; color:var(--suave); font-size:.82rem; }
+.caja { border:2px solid var(--lila); border-radius:14px; padding:7px 10px; break-inside:avoid; }
+.caja > h2 { font-size:.95rem; color:var(--rosa-texto); margin-bottom:4px; }
+.campos { display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; font-size:.78rem; }
+.campos.dos { grid-template-columns:1fr 1fr; }
+.campos label { display:block; color:var(--suave); font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.02em; }
+.campos span { display:block; border-bottom:1px solid #B9B2B8; height:20px; }
+.span2 { grid-column:span 2; } .span4 { grid-column:span 4; }
+.fotos { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.foto { border:2px dashed var(--rosa-medio); border-radius:12px; height:30mm; display:grid; place-items:end center; padding:4px; font-size:.72rem; color:var(--suave); background:#FFFAFC; }
+table.rev { width:100%; border-collapse:collapse; font-size:.8rem; }
+table.rev th { background:var(--rosa-suave); color:var(--rosa-texto); font-size:.7rem; text-align:left; padding:4px 6px; border:1px solid #E6B8D0; }
+table.rev td { border:1px solid #D9D3D8; padding:4px 6px; vertical-align:middle; height:11mm; }
+table.rev td.n { font-weight:700; width:36%; }
+table.rev td.n small { display:block; font-weight:400; color:var(--suave); font-size:.68rem; line-height:1.2; }
+table.rev td.c { width:11%; text-align:center; font-size:.72rem; }
+.cuadro { display:inline-block; width:15px; height:15px; border:2px solid var(--rosa-medio); border-radius:4px; vertical-align:middle; }
+.linea { border-bottom:1px solid #B9B2B8; height:20px; }
+.aprob { display:grid; grid-template-columns:1.3fr 1fr; gap:6px 14px; font-size:.8rem; align-items:end; }
+.aprob b { color:var(--rosa-texto); }
+.pie { border-top:2px solid var(--rosa); margin-top:auto; padding-top:5px; text-align:center; font-size:.68rem; color:var(--suave); }
+.pie strong { color:var(--rosa); }
+@media (max-width:760px) { .hoja { padding:12px; min-height:0; } .campos { grid-template-columns:1fr 1fr; } .span4 { grid-column:span 2; } .fotos { grid-template-columns:1fr; } .tabla-ancha { overflow-x:auto; } table.rev { min-width:520px; } }
+@media print {
+  @page { size:A4; margin:0; }
+  body { background:#fff; }
+  .aviso-borrador,.barra { display:none !important; }
+  .hoja { box-shadow:none; margin:0; width:210mm; height:297mm; min-height:0; overflow:hidden; page-break-after:avoid; }
+}
+</style>
+</head>
+<body>
+<div class="aviso-borrador"><strong>BORRADOR</strong> · no está publicado. Primero lo prueban Jennifer y las tejedoras del taller; solo se publica con su sí.</div>
+<div class="barra"><button type="button" onclick="window.print()">🖨️ Imprimir</button></div>
+
+<section class="hoja" aria-label="Pasaporte de calidad para amigurumis">
+  <div class="cab"><img class="logo" src="/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" width="1142" height="731"><span>Rincón de Rosina<br>lanarosacrochet.com</span></div>
+  <div class="titulo">
+    <img src="/img/rosina-corazon.jpg" alt="" width="300" height="300">
+    <div><h1>Pasaporte de calidad</h1><p>Un amigurumi bien terminado se revisa antes de entregarse. Llénalo a mano mientras tejes y cuando termines.</p></div>
+  </div>
+
+  <div class="caja"><h2>1. Mi pieza</h2>
+    <div class="campos">
+      <div class="span2"><label>Producto</label><span></span></div>
+      <div><label>Referencia o código</label><span></span></div>
+      <div><label>Fecha</label><span></span></div>
+      <div class="span2"><label>Tejida por</label><span></span></div>
+      <div class="span2"><label>Para (cliente o regalo)</label><span></span></div>
+    </div>
+  </div>
+
+  <div class="caja"><h2>2. Hilo y aguja</h2>
+    <div class="campos">
+      <div><label>Marca y tipo de hilo</label><span></span></div>
+      <div><label>Color(es) y código</label><span></span></div>
+      <div><label>Grosor</label><span></span></div>
+      <div><label>Aguja (mm)</label><span></span></div>
+    </div>
+  </div>
+
+  <div class="caja"><h2>3. Medidas finales (ya rellena)</h2>
+    <div class="campos">
+      <div><label>Alto (cm)</label><span></span></div>
+      <div><label>Ancho (cm)</label><span></span></div>
+      <div><label>Fondo (cm)</label><span></span></div>
+      <div><label>Peso (g)</label><span></span></div>
+    </div>
+  </div>
+
+  <div class="caja"><h2>4. Fotos del proceso</h2>
+    <div class="fotos"><div class="foto">Al empezar</div><div class="foto">A medias</div><div class="foto">Terminado, con luz natural</div></div>
+  </div>
+
+  <div class="caja"><h2>5. Revisión</h2>
+    <div class="tabla-ancha"><table class="rev">
+      <thead><tr><th>Qué reviso</th><th>Pendiente</th><th>Listo</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td class="n">Puntos parejos<small>Se ven del mismo tamaño y sin huecos.</small></td><td class="c"><span class="cuadro"></span></td><td class="c"><span class="cuadro"></span></td><td></td></tr>
+        <tr><td class="n">Relleno y forma<small>Firme, sin grumos y sin que se vea la lana.</small></td><td class="c"><span class="cuadro"></span></td><td class="c"><span class="cuadro"></span></td><td></td></tr>
+        <tr><td class="n">Costuras y uniones<small>Brazos, orejas y cabeza firmes; hilos escondidos.</small></td><td class="c"><span class="cuadro"></span></td><td class="c"><span class="cuadro"></span></td><td></td></tr>
+        <tr><td class="n">Detalles y bordados<small>Ojos, nariz y boca parejos y bien asegurados.</small></td><td class="c"><span class="cuadro"></span></td><td class="c"><span class="cuadro"></span></td><td></td></tr>
+        <tr><td class="n">Limpieza y presentación<small>Sin pelusas ni hilos sueltos; lista para entregar.</small></td><td class="c"><span class="cuadro"></span></td><td class="c"><span class="cuadro"></span></td><td></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="caja"><h2>6. Correcciones que hice</h2>
+    <div class="linea"></div><div class="linea"></div>
+  </div>
+
+  <div class="caja"><h2>7. Aprobación final</h2>
+    <div class="aprob">
+      <div><b>Revisó:</b> ______________________________</div>
+      <div><b>Fecha:</b> ____ / ____ / ________</div>
+      <div><span class="cuadro"></span> Aprobada, lista para entregar &nbsp;&nbsp; <span class="cuadro"></span> Necesita ajustes</div>
+      <div><b>Firma:</b> ____________________</div>
+    </div>
+  </div>
+
+  <div class="pie"><strong>Lana Rosa Crochet</strong> · hecho con cariño en Villamaría, Caldas · Pasaporte de calidad © Lana Rosa Crochet</div>
+</section>
+</body>
+</html>
