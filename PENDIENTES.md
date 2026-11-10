@@ -305,3 +305,17 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] **E4, compra de prueba con la Tienda:** Jennifer pagará el «Gato Separador de Libros» y enviará el número `LR-XXXX` y capturas; Claude revisa pedido, ERP, correo y CRM.
 - [ ] **Plataformas de envío (encargo del Orquestador, 10-nov-2026; solo investigación):** borrador parcial en `herramientas/envios/COMPARACION-PLATAFORMAS.md`. Las páginas oficiales no se abrieron desde la sesión (red restringida): **ningún precio está confirmado**. Falta: permitir esos sitios en la red de la sesión o pedir cotización directa; confirmar «99envíos» (¿99minutos?); conexión real solo después del 13-dic y con peso y medidas en el ERP.
 
+
+## 💡 Ideas para después (guardadas por el orquestador, 10-nov-2026; no se hacen antes de la apertura salvo que Jennifer lo pida)
+Detalle en `herramientas/marketing-agenda/ESTRATEGIA-TEJER-PARA-VENDER.md`, `herramientas/agenda-auditoria/IDEAS-DE-OTRAS-AGENDAS-2026-11.md`, `herramientas/agenda-auditoria/COMPARACION-TEJEDORA-ARTESANA-PRO.md` y `herramientas/memoria/encargos.md`.
+- **Decisión de Jennifer (10-nov):** la Academy sigue con «Aprende · Crea · Conecta» (no «Emprende»); las 6 etapas (Descubrir, Elegir, Crear, Calcular, Comunicar, Vender y mejorar) son solo un mapa interno. Método ROSA aprobado.
+- [ ] **Agenda:** «Mi semana» y atajos del ícono (E13, E15); avisos por Google Calendar (E14); proyecto con pasos y hábitos (E16); stickers de Rosina, compartir ficha por WhatsApp, Google Sheets y Tasks (E17); cronómetro, saldo por cobrar, presupuesto por WhatsApp, pedido y proyecto unidos (E34); **Laboratorio de productos** con ROSA y prueba de venta, dentro de «Mis ideas» y el catálogo (estrategia); lista de revisión de calidad en la ficha o el pedido (estrategia, 2.ª línea); Play Store con widgets (2027).
+- [ ] **Academy:** taller piloto «De una idea a tu primer producto» (presencial, después de la apertura, con lista de espera antes); curso de acabados de 5 módulos; curso grabado; ebook «Del gusto a la venta». Todo con validación previa y términos de la Academy aprobados por la abogada.
+- [ ] **Rincón y descargables:** tarjeta ROSA, hoja «Prueba de 3 a 5 piezas» y Pasaporte de calidad (chat 7, en borrador); calendario colombiano de temporadas; mejorar la calculadora de lana existente.
+- [ ] **Revista:** serie «Tejer para vender» y sección «El arte de los buenos acabados» con «Prueba y aprende» (chat 6, desde el 14-dic).
+- [ ] **YouTube:** una sola serie primero, «De la idea al tejido / Lo probamos en el taller».
+- [ ] **Redes:** carrusel ROSA, reel «me encanta vs. se vende», encuesta; después, campaña de acabados (no al mismo tiempo que ROSA).
+- [ ] **Productos:** organizador de ganchillos (3 prototipos y preguntar a 10-15 tejedoras), muestrario de puntos, kits «Mi primera pieza para vender» (cuando haya Mercería), patrones con licencia para vender lo tejido (cuando la abogada apruebe las condiciones), colección educativa para niños (revisar seguridad y edad).
+- [ ] **Tienda y ventas:** carrito mixto Tienda + Mercería (decidido sí), plataformas de envío (chat 5 investiga), cobro en dólares, Hotmart/Ravelry, mercancía de Rosina, botón «Invítale un café a Rosina».
+- [ ] **Marca:** nombre nuevo de la agenda (CrochetLab pausado; Jennifer busca 2-3 nombres y los revisa en la SIC); registrar «Rosina» como marca.
+- [ ] **Equipo de Lana Rosa:** control de calidad de producción y planificador por lotes en el ERP.
