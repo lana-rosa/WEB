@@ -1190,7 +1190,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <nav class="menu-hojas-lista" id="menu-hojas-lista" aria-label="Hojas de la agenda">
           <p class="menu-grupo">Inicio</p>
           <a href="#panel-agenda" data-hoja="panel-agenda">Mi panel</a>
-          <a href="#indice-agenda" data-hoja="indice-agenda">🏠 Índice</a>
           <a href="#planeador-dia" data-hoja="planeador-dia">🗓️ Planeador del día</a>
           <a href="#portada-agenda" data-hoja="portada-agenda">🌸 Portada</a>
           <a href="#aprende-compra" data-hoja="aprende-compra">🎓 Aprende y compra</a>
@@ -1245,7 +1244,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </header>
         <div id="panel-contenido" class="panel-contenido"></div>
       </article>
-      <article class="hoja-agenda no-imprimir" id="indice-agenda" data-gratis>
+      <article class="hoja-retirada" id="indice-agenda" hidden aria-hidden="true">   <!-- 10-nov-2026: el Índice se retiró (decisión de Jennifer); Mi panel y el menú llevan a todas las hojas -->
         <header>
           <img src="/img/mini/rosina-checklist.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160">
           <div><h3>Índice</h3><p>Toca una hoja para abrirla. También puedes ir a otra sección con el menú de la izquierda.</p></div>
@@ -1488,7 +1487,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-21-corazon-grande.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Resumen del negocio</h3><p>Aquí solo se mira: tus números del negocio este mes, comparando meses y en el año. Lo que anotas en «Ventas y gastos» se suma solo.</p></div>
         </header>
-          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
           <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
           <strong class="fin-mes-txt" aria-live="polite"></strong>
@@ -1547,7 +1545,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <img class="avatar-sticker" src="/img/stickers/rosina-10-bolso.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
           <div><h3>Ventas y gastos</h3><p>Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.</p></div>
         </header>
-          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <div class="fin-mes no-imprimir">
           <button type="button" class="boton-secundario boton-chico" data-fin-mes="-1" aria-label="Mes anterior">‹</button>
           <strong class="fin-mes-txt" aria-live="polite"></strong>
@@ -1590,7 +1587,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><h3>Presupuesto y metas</h3><p id="fpm-sub">Cuánto quieres gastar en tu negocio por categoría y para qué está ahorrando tu negocio.</p></div>
         </header>
         <div class="amb-sw no-imprimir" role="group" aria-label="De quién son"><button type="button" data-amb="n" aria-pressed="true">Mi negocio</button><button type="button" data-amb="p" aria-pressed="false">Personal</button></div>
-          <p class="herr-rosina no-imprimir"><span class="hr-t">🧰 Herramienta de Rosina</span><a href="/calculadoras-rosina.html#costos" target="_blank" rel="noopener">💰 Calculadora de costos y precio de venta</a></p>
         <h4 class="sub-hoja">Presupuesto mensual por categoría</h4>
         <div class="fin-pres" id="fin-pres"></div>
         <h4 class="sub-hoja" id="fpm-h4a">Metas de ahorro del negocio</h4>
@@ -2518,7 +2514,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var g = document.createElement('div'); g.className = 'indice-grupo'; g.style.setProperty('--c', '#F5C2DB'); var h4 = document.createElement('h4'); h4.textContent = 'Hojas gratis'; g.appendChild(h4);
   var cont = document.createElement('div'); cont.className = 'atajos'; HOJAS_GRATIS.forEach(function (id) { if (atajos[id]) cont.appendChild(atajos[id]); }); g.appendChild(cont); ind.appendChild(g);
   if (atajos['planeador-dia']) atajos['planeador-dia'].querySelector('small').textContent = 'Tu día, tus tareas y tus notas';
-  var cons = document.createElement('div'); cons.className = 'indice-construccion'; cons.innerHTML = '<strong>🚧 La agenda completa está en construcción</strong><span>Pedidos, inventario de lanas, ventas, gastos, patrones propios, prendas a medida, lápiz y más. Pronto a la venta.</span>'; ind.appendChild(cons);
+  var cons = document.createElement('div'); cons.className = 'indice-construccion'; cons.innerHTML = '<strong>🚧 La agenda completa está en construcción</strong><span>Pedidos, inventario de lanas, ventas, gastos, patrones propios, prendas a medida, lápiz y más. Pronto a la venta.</span>'; document.getElementById('panel-agenda').insertBefore(cons, document.getElementById('panel-contenido'));   /* 10-nov-2026: el aviso va en Mi panel (el Índice se retiró) */
   try { var k = localStorage.getItem('rosinaAgendaHoja'); if (k && HOJAS_GRATIS.indexOf(k) < 0) localStorage.removeItem('rosinaAgendaHoja'); } catch (e) {}
   var ct = document.getElementById('candado-texto'); if (ct) ct.textContent = 'Usa las hojas gratis: planeador del día, portada, ideas y lista de compras, y entérate primero de la agenda completa. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.';
   var intro = document.getElementById('agenda-intro'); if (intro) intro.textContent = 'Abre una hoja gratis y escribe aquí mismo con tu cuenta (se guarda en tu dispositivo y, si quieres, también en tu cuenta) o imprímela, llena o en blanco, para escribir a mano.';
@@ -3043,7 +3039,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var menuHojas = document.getElementById('menu-hojas'), toggleMenu = document.getElementById('menu-hojas-toggle');
   var CLAVE_HOJA = 'rosinaAgendaHoja';
   var historiaLista = false, enPop = false;   // cada hoja que abres queda en el historial: «atrás» vuelve a la hoja anterior
-  var HOJAS_ANTIGUAS = { 'ventas-mes': 'fin-movimientos', 'gastos-negocio': 'fin-movimientos', 'fin-negocio': 'fin-resumen', 'fin-analisis': 'fin-resumen', 'fin-tcredito': 'fin-fijos' };   // 4-nov-2026: pasaron a «Ventas y gastos»; los enlaces, favoritos y la última hoja abierta siguen funcionando
+  var HOJAS_ANTIGUAS = { 'indice-agenda': 'panel-agenda', 'ventas-mes': 'fin-movimientos', 'gastos-negocio': 'fin-movimientos', 'fin-negocio': 'fin-resumen', 'fin-analisis': 'fin-resumen', 'fin-tcredito': 'fin-fijos' };   // 4-nov-2026: pasaron a «Ventas y gastos»; los enlaces, favoritos y la última hoja abierta siguen funcionando
   function mostrarHoja(id, desplazar) {
     id = HOJAS_ANTIGUAS[id] || id; var h = document.getElementById(id); if (!h || !h.classList.contains('hoja-agenda')) return;
     hojas.forEach(function(x) { x.classList.toggle('abierta', x === h); });
@@ -4447,7 +4443,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/patrones-propios.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=3" defer></script>
 <script src="/js/agenda/vacios.js?v=5" defer></script>
-<script src="/js/agenda/panel.js?v=32" defer></script>
+<script src="/js/agenda/panel.js?v=33" defer></script>
 <script src="/js/agenda/miles.js?v=1" defer></script>
 <script src="/js/agenda/voz.js?v=6" defer></script>
 <script src="/js/agenda/tinta.js?v=2" defer></script>
@@ -4476,7 +4472,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
 <script type="module" src="/js/agenda/drive-sync.js?v=5"></script>
 <script type="module" src="/js/agenda/drive-archivos.js?v=2"></script>
-<script type="module" src="/js/agenda/membresia.js?v=7"></script>
+<script type="module" src="/js/agenda/membresia.js?v=8"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=15" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>

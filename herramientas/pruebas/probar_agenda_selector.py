@@ -22,8 +22,8 @@ with sync_playwright() as p:
         T.v(n + 'con «Siguiente hoja» la lista cambia sola a la hoja nueva', pg.input_value('#selector-hoja-lista') == 'semana-tejiendo' and pg.inner_text('#selector-hoja-etq').lower().endswith('4 de 13'), pg.input_value('#selector-hoja-lista'))
         pg.click('.pestana:has-text("Tablero")'); pg.wait_for_timeout(300)
         T.v(n + 'una pestaña con una sola hoja (Tablero) no muestra la lista', pg.is_hidden('#selector-hoja'))
-        pg.click('.pestana:has-text("Panel")'); pg.wait_for_timeout(300); pg.evaluate("window.lrIrAHoja('indice-agenda')"); pg.wait_for_timeout(300)
-        T.v(n + 'la pestaña Inicio muestra las suyas: Panel, Índice, Planeador, Portada y Aprende y compra', pg.evaluate(OPC) == ['panel-agenda', 'indice-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra'] and pg.inner_text('#selector-hoja-etq').lower() == 'hojas de inicio · 2 de 5', pg.evaluate(OPC))
+        pg.click('.pestana:has-text("Panel")'); pg.wait_for_timeout(300); pg.evaluate("window.lrIrAHoja('planeador-dia')"); pg.wait_for_timeout(300)
+        T.v(n + 'la pestaña Inicio muestra las suyas: Panel, Planeador, Portada y Aprende y compra', pg.evaluate(OPC) == ['panel-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra'] and pg.inner_text('#selector-hoja-etq').lower() == 'hojas de inicio · 2 de 4', pg.evaluate(OPC))
         pg.select_option('#selector-hoja-lista', 'aprende-compra'); pg.wait_for_timeout(300)
         T.v(n + 'se puede ir a otra hoja de la misma pestaña', pg.evaluate("document.querySelector('.hoja-agenda.abierta').id") == 'aprende-compra')
         pg.go_back(); pg.wait_for_timeout(400)
@@ -36,6 +36,6 @@ with sync_playwright() as p:
         T.v(n + 'sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close()
     # modo «hojas gratis»: una sola pestaña con sus 6 hojas
     ctx = contexto(b, 390); pg = abrir(ctx, '', 0); pg.goto(BASE + '/agenda-rosina.html?gratis=1'); pg.wait_for_timeout(1800)
-    T.v('modo hojas gratis: la lista tiene las 7 hojas gratis', pg.evaluate("document.querySelectorAll('#selector-hoja-lista option').length") == 7 and 'hojas gratis' in pg.inner_text('#selector-hoja-etq').lower(), pg.inner_text('#selector-hoja-etq'))
+    T.v('modo hojas gratis: la lista tiene las 6 hojas gratis', pg.evaluate("document.querySelectorAll('#selector-hoja-lista option').length") == 6 and 'hojas gratis' in pg.inner_text('#selector-hoja-etq').lower(), pg.inner_text('#selector-hoja-etq'))
     T.v('modo hojas gratis: sin errores de JavaScript', not pg.errs, pg.errs[:2]); ctx.close(); b.close()
 T.fin()

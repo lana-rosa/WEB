@@ -9,7 +9,7 @@ ahora = datetime.datetime.now(datetime.timezone.utc)
 def iso(dias): return (ahora + datetime.timedelta(days=dias)).isoformat()
 PAGAS = ['inventario-lanas', 'mis-agujas', 'lista-compras', 'control-pedidos', 'mis-clientas', 'catalogo-precios', 'ferias-mercados', 'contactos',
          'fin-resumen', 'fin-presupuesto', 'fin-fijos', 'calendario-anual', 'fechas-especiales', 'diario-tejido', 'registro-pausas']
-GRATIS = ['indice-agenda', 'planeador-dia', 'portada-agenda', 'aprende-compra', 'tablero-agenda', 'vision-anio', 'prioridades-mes', 'ficha-proyecto', 'semana-tejiendo', 'proyectos-fila', 'coleccion-patrones',
+GRATIS = ['planeador-dia', 'portada-agenda', 'aprende-compra', 'tablero-agenda', 'vision-anio', 'prioridades-mes', 'ficha-proyecto', 'semana-tejiendo', 'proyectos-fila', 'coleccion-patrones',
           'anio-tejiendo', 'lo-que-aprendi', 'mis-ideas', 'hoja-puntos', 'prendas-medida', 'disena-patron']
 
 def pagina(b, estado, ancho=1280, pagos=None):
@@ -30,7 +30,7 @@ with sync_playwright() as p:
     # 1. prueba gratis: todo abierto y la tarjeta cuenta los días
     ctx, pg = pagina(b, {'activa': False, 'prueba_hasta': iso(4.5), 'en_prueba': True, 'dias_prueba': 7})
     T.v('en prueba: ninguna hoja bloqueada', bloqueadas(pg) == [], bloqueadas(pg))
-    pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=\"indice-agenda\"]').click()"); pg.wait_for_timeout(300)
+    pg.evaluate("document.querySelector('#menu-hojas-lista a[data-hoja=\"panel-agenda\"]').click()"); pg.wait_for_timeout(300)
     t = pg.inner_text('#membresia-tarjeta')
     T.v('en prueba: la tarjeta dice «Prueba gratis», los días que quedan y el precio', 'Prueba gratis' in t and 'quedan 5 días' in t and '$5.000' in t, t)
     T.v('en prueba: sin 💎 en el menú', pg.locator('#menu-hojas-lista a.de-pago').count() == 0)

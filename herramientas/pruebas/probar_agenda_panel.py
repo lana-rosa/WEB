@@ -69,8 +69,6 @@ with sync_playwright() as p:
     T.v('Esc cierra el menú de ayuda', pc.evaluate("document.getElementById('af-menu').hidden"))
     pe = abrir(contexto(b, 1280, 900, config_abierta=False), '', 2000, config=False)
     T.v('agenda vacía: el panel ofrece «Empieza aquí» con 3 pasos', pe.locator('#panel-contenido .ea-paso').count() == 3)
-    pe.evaluate("window.lrIrAHoja('indice-agenda')"); pe.wait_for_timeout(300)
-    T.v('el Índice también tiene «Empieza aquí»', pe.locator('#indice-agenda .ea-paso').count() == 3)
     pe.evaluate("window.lrIrAHoja('control-pedidos')"); pe.wait_for_timeout(400)
     T.v('hoja vacía: se ve el ejemplo de Control de pedidos', pe.is_visible('#control-pedidos .vacio-ejemplo'))
     pe.evaluate("document.querySelector('#control-pedidos tr[data-fila=\"1\"] input, #control-pedidos tr[data-fila=\"1\"] textarea').value = 'María'; document.querySelector('#control-pedidos tr[data-fila=\"1\"] input, #control-pedidos tr[data-fila=\"1\"] textarea').dispatchEvent(new Event('input', {bubbles: true}))"); pe.wait_for_timeout(700)
