@@ -3,6 +3,9 @@ Antes de dictar	Before you dictate	Antes de ditar
 La función «Hablar para escribir» utiliza el servicio de reconocimiento de voz disponible en su navegador o dispositivo. El audio puede ser procesado por el proveedor de dicho servicio, de acuerdo con sus propias condiciones y políticas de privacidad. Lana Rosa Crochet no recibe ni almacena directamente las grabaciones de audio. Puede utilizar esta función de manera opcional.	The “Speak to write” feature uses the speech recognition service available in your browser or device. The audio may be processed by the provider of that service, under its own terms and privacy policies. Lana Rosa Crochet does not directly receive or store audio recordings. You may use this feature on an optional basis.	A função “Falar para escrever” usa o serviço de reconhecimento de voz disponível no seu navegador ou dispositivo. O áudio pode ser processado pelo provedor desse serviço, de acordo com suas próprias condições e políticas de privacidade. A Lana Rosa Crochet não recebe nem armazena diretamente as gravações de áudio. Você pode usar esta função de forma opcional.
 Ahora no	Not now	Agora não
 Continuar	Continue	Continuar
+Sobre tus trazos	About your strokes	Sobre os seus traços
+Lo que escribas o dibujes con el lápiz es parte de tu agenda y se guarda en este aparato. Si activas la copia en tu cuenta o en Google Drive, tus trazos también viajan en esas copias. Tú decides si las activas.	What you write or draw with the pencil is part of your agenda and is saved on this device. If you turn on the backup in your account or in Google Drive, your strokes also travel in those backups. You decide whether to turn them on.	O que você escrever ou desenhar com o lápis faz parte da sua agenda e fica salvo neste aparelho. Se você ativar a cópia na sua conta ou no Google Drive, seus traços também vão nessas cópias. Você decide se as ativa.
+Entendido	Got it	Entendi
 Conexiones e integraciones	Connections and integrations	Conexões e integrações
 Aquí ves qué tienes conectado y qué datos viajan. Nada se conecta ni se sube solo: tú decides, y puedes desconectar cuando quieras. Tu cuenta y tus archivos siguen siendo tuyos.	Here you can see what you have connected and what data travels. Nothing connects or uploads by itself: you decide, and you can disconnect whenever you want. Your account and your files stay yours.	Aqui você vê o que está conectado e quais dados viajam. Nada se conecta nem é enviado sozinho: você decide e pode desconectar quando quiser. Sua conta e seus arquivos continuam sendo seus.
 Estado de tus conexiones	Status of your connections	Status das suas conexões
@@ -1881,6 +1884,47 @@ Ahorrado $	Saved $	Poupado $
 ¿Borrar el plan «{n}»?	Delete the plan «{n}»?	Apagar o plano «{n}»?
 No pudimos guardar los dibujos de esa copia. Tu agenda no se cambió.	We could not save the drawings from that backup. Your planner was not changed.	Não conseguimos salvar os desenhos dessa cópia. Sua agenda não foi alterada.
 ☁️ Copia en tu cuenta guardada (sin las fotos de los dibujos, por su tamaño)	☁️ Backup saved to your account (without the drawing photos, because of their size)	☁️ Cópia salva na sua conta (sem as fotos dos desenhos, por causa do tamanho)
+✏️ Patrones que diseñé	✏️ Patterns I designed	✏️ Receitas que criei
+Se guardan solos, con su nombre, desde «Diseña tu patrón». Toca uno para abrirlo.	They save themselves, with their name, from “Design your pattern”. Tap one to open it.	Eles são salvos sozinhos, com o nome, em “Crie a sua receita”. Toque em um para abri-lo.
+Aún no has diseñado ninguno. Cuando escribas el nombre de tu primer patrón, aparecerá aquí.	You have not designed any yet. When you write the name of your first pattern, it will appear here.	Você ainda não criou nenhum. Quando escrever o nome do sua primeira receita, ela aparecerá aqui.
+➕ Diseñar un patrón	➕ Design a pattern	➕ Criar uma receita
+➕ Diseñar mi primer patrón	➕ Design my first pattern	➕ Criar minha primeira receita
+Abrir →	Open →	Abrir →
+Vista previa del dibujo del diseño	Preview of the design drawing	Prévia do desenho do projeto
+Todavía no hay dibujo. Ábrelo para dibujar a mano o subir una foto.	There is no drawing yet. Open it to draw by hand or upload a photo.	Ainda não há desenho. Abra para desenhar à mão ou enviar uma foto.
+Tu dibujo está guardado.	Your drawing is saved.	Seu desenho está salvo.
+✏️ Abrir dibujo	✏️ Open drawing	✏️ Abrir desenho
+✕ Cerrar dibujo	✕ Close drawing	✕ Fechar desenho
+➕ Añadir parte	➕ Add part	➕ Adicionar parte
+Por ejemplo: Cola	For example: Tail	Por exemplo: Rabo
+Fotos del resultado y de los pasos	Photos of the result and the steps	Fotos do resultado e dos passos
+Sube fotos de cómo quedó y de los pasos importantes. Se guardan en este aparato, igual que tus dibujos, y viajan en tus copias.	Upload photos of how it turned out and of the important steps. They are saved on this device, just like your drawings, and travel in your backups.	Envie fotos de como ficou e dos passos importantes. Elas ficam salvas neste aparelho, como seus desenhos, e vão nas suas cópias.
+📷 Subir fotos	📷 Upload photos	📷 Enviar fotos
+Qué muestra (Paso 3: la cabeza)	What it shows (Step 3: the head)	O que mostra (Passo 3: a cabeça)
+Qué muestra esta foto	What this photo shows	O que esta foto mostra
+Quitar esta foto	Remove this photo	Remover esta foto
+Máximo 12 fotos por patrón.	Maximum 12 photos per pattern.	Máximo de 12 fotos por receita.
+No pude leer esa imagen.	I could not read that image.	Não consegui ler essa imagem.
+Foto del patrón	Pattern photo	Foto da receita
+Fotos	Photos	Fotos
+Amigurumis hechos a mano →	Handmade amigurumis →	Amigurumis feitos à mão →
+Tu historia en crochet →	Your story in crochet →	A sua história em crochê →
+Mercería Lana Rosa →	Lana Rosa Mercería →	Mercería Lana Rosa →
+Mira los colores reales →	See the real colors →	Veja as cores reais →
+Clases personalizadas →	Private classes →	Aulas particulares →
+Taller «Desconecta para Conectar» →	“Disconnect to Connect” workshop →	Oficina «Desconecte para Conectar» →
+Patrones en PDF →	PDF patterns →	Receitas em PDF →
+Clases gratis en YouTube →	Free classes on YouTube →	Aulas grátis no YouTube →
+Rosina te ayuda a regalar →	Rosina helps you give gifts →	A Rosina ajuda você a presentear →
+Material gratis de Rosina →	Free material from Rosina →	Material grátis da Rosina →
+La Revista de Lana Rosa →	The Lana Rosa Magazine →	A Revista da Lana Rosa →
+Abrir dibujo	Open drawing	Abrir desenho
+Cerrar dibujo	Close drawing	Fechar desenho
+Patrones que diseñé	Patterns I designed	Receitas que criei
+Diseñar un patrón	Design a pattern	Criar uma receita
+Diseñar mi primer patrón	Design my first pattern	Criar minha primeira receita
+Añadir parte	Add part	Adicionar parte
+Subir fotos	Upload photos	Enviar fotos
 Ventas y gastos	Sales and expenses	Vendas e despesas
 Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.	Record all the money of your business here, just once: what you sell, what you spend and what you save. You can write it the way you would say it.	Anote aqui todo o dinheiro do seu negócio, uma só vez: o que você vende, o que gasta e o que poupa. Você pode escrever como falaria.
 Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio	Example (write it in Spanish): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio	Exemplo (escreva em espanhol): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio
@@ -1951,6 +1995,7 @@ Ropa y cuidado personal	Clothes and personal care	Roupa e cuidados pessoais
 Recreación	Recreation	Lazer
 Sueldo	Salary	Salário
 Mis números	My numbers	Meus números
+Números	Numbers	Números
 Presupuesto y metas	Budget and goals	Orçamento e metas
 Gastos fijos, tarjetas y deudas	Fixed expenses, cards and debts	Despesas fixas, cartões e dívidas
 Topes de gasto y ahorros, tuyos o del negocio	Spending limits and savings, yours or the business’s	Limites de gasto e poupança, seus ou do negócio
