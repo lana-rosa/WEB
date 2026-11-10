@@ -59,5 +59,5 @@
 - **Diseña tu patrón** (`patron.js`): partes sin tope (HTML trae 6; se ven 3 o las que tengan algo; «Añadir parte» crea `ag-dp-pN-nombre|vueltas` de la 7 en adelante) y fotos por patrón en `datos._dib['disena-patron:<ficha>:f<n>']`; `formas.js` expone `lrVersiones.lista/valores/abrir/agregar` y al borrar una ficha borra también sus fotos. `patrones-propios.js` pinta «Patrones que diseñé» en Mis patrones (no copia datos).
 - **Pruebas:** `probar_agenda_simplificar.py` (24) y fotos de antes y después con `herramientas/agenda-oscuro/fotos_simplificar.py <carpeta> [despues]`.
 
-## Aviso del lápiz (E31, 6-nov-2026) — construido, pendiente del sí de Jennifer
+## Aviso del lápiz (E31, 6-nov-2026) — PUBLICADO el 10-nov-2026 (#642)
 - `voz.js` expone `window.lrAviso({titulo, texto, si, no, foco, alCerrar})` (ventana accesible `.voz-aviso`); `tinta.js` la usa la primera vez que se activa «Lápiz» (`lrTintaAviso`) con un solo botón «Entendido»: informa que los trazos son parte de la agenda y viajan en las copias si se activan. Redacción propia (la abogada solo pidió la idea). Las pruebas del lápiz ponen `lrTintaAviso` antes.
