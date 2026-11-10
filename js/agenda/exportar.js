@@ -104,5 +104,6 @@
   }
   var b = document.getElementById('agenda-excel');
   if (b) b.addEventListener('click', descargar);
-  window.lrExportar = { reunir: reunir, descargar: descargar };
+  function crearBlob() { var hojas = reunir(); return hojas.length ? window.lrXlsx.crear(hojas) : null; }   // el mismo libro de Excel, sin descargarlo (lo usa «Guardar en tu Drive»)
+  window.lrExportar = { reunir: reunir, descargar: descargar, crearBlob: crearBlob };
 })();

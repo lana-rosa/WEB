@@ -1097,6 +1097,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </details>
       <small class="nota-copia">Tu agenda se guarda en una carpeta oculta de tu propio Google Drive que solo esta app puede abrir: no puede ver el resto de tu Drive. Lana Rosa no recibe tus datos ni puede leerlos; solo guardamos el permiso de acceso (cifrado) para sincronizarte sola, y lo puedes quitar cuando quieras. Si cambias algo en dos aparatos a la vez, se juntan los cambios y no se pierde nada. <a href="/politicas.html#datos">Más información</a>.</small>
     </div>
+    <div class="calendario-sync drive-sync drive-archivos no-imprimir" id="drive-archivos" hidden>
+      <p class="cs-titulo"><img class="cs-ic" src="/img/agenda/ui/gdrive.webp" alt="" width="24" height="24" loading="lazy"> Guardar informes y copias en tu Drive</p>
+      <p class="cs-texto" id="da-texto"></p>
+      <div class="cs-botones">
+        <button type="button" class="boton-primario boton-chico" id="da-conectar" hidden>Conectar con Google Drive</button>
+        <button type="button" class="boton-secundario boton-chico" id="da-excel" hidden>Guardar el Excel en mi Drive</button>
+        <button type="button" class="boton-secundario boton-chico" id="da-copia" hidden>Guardar una copia en mi Drive</button>
+        <button type="button" class="enlace-copia" id="da-abrir" hidden>Abrir mi carpeta</button>
+        <button type="button" class="enlace-copia" id="da-desconectar" hidden>Desconectar</button>
+      </div>
+      <p class="cs-aviso" id="da-aviso" role="status"></p>
+      <details class="cx-permiso">
+        <summary>¿Qué permiso pide y qué NO puede hacer?</summary>
+        <ul>
+          <li><strong>Permiso:</strong> crear y ver solo los archivos y la carpeta que esta app crea en tu Drive (permiso «file»).</li>
+          <li><strong>Qué guarda:</strong> solo cuando tú lo pides, el Excel de tu agenda o una copia de seguridad, en la carpeta «Agenda para tejedoras» de tu Drive. Van directo de tu navegador a tu Drive, sin pasar por Lana Rosa. No se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre.</li>
+          <li><strong>Qué NO puede hacer:</strong> ver, abrir ni borrar tus otros archivos o carpetas de Drive.</li>
+          <li><strong>Cómo quitarlo:</strong> «Desconectar» retira el permiso y deja lo ya guardado en tu carpeta (es tuyo). También puedes revisarlo en <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">tu cuenta de Google</a>.</li>
+        </ul>
+      </details>
+    </div>
       </section>
       <section class="cfg-grupo"><h3 class="cfg-titulo">Ayuda y recomendaciones</h3>
       <p class="cfg-reco"><strong>Recomendación:</strong> para escribir más rápido, en el celular usa el micrófono del teclado para dictar y, si tienes lápiz digital, la opción «Lápiz» de cada hoja para escribir a mano. En el computador, el botón «Dictar» aparece junto a cada casilla.</p>
@@ -2843,10 +2864,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   document.getElementById('asg-copia').addEventListener('click', function() { document.getElementById('agenda-descargar').click(); });
   setTimeout(medirEspacio, 800);
+  function crearCopia() {   // el archivo de la copia de seguridad (también lo usa «Guardar en tu Drive»)
+    return (window.lrDibStore && window.lrDibStore.listo ? window.lrDibStore.listo : Promise.resolve()).then(function() {
+      return new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
+    });
+  }
+  window.lrAgendaCopia = { crear: crearCopia };
   document.getElementById('agenda-descargar').addEventListener('click', function() {
     /* los dibujos viven en IndexedDB: se espera a que estén cargados para que la copia salga completa */
-    (window.lrDibStore && window.lrDibStore.listo ? window.lrDibStore.listo : Promise.resolve()).then(function() {
-      var blob = new Blob([JSON.stringify({ agendaRosina: 1, fecha: new Date().toISOString().slice(0, 10), datos: datos }, null, 1)], { type: 'application/json' });
+    crearCopia().then(function(blob) {
       var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-rosina-' + new Date().toISOString().slice(0, 10) + '.json';
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
       escribir(CLAVE_COPIA, new Date().toISOString().slice(0, 10));
@@ -4444,17 +4470,18 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script src="/js/agenda/dueno.js?v=5"></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
-<script src="/js/agenda/aviso-conexion.js?v=2"></script>
+<script src="/js/agenda/aviso-conexion.js?v=3"></script>
 <script type="module" src="/js/agenda/google-calendar.js?v=4"></script>
-<script src="/js/agenda/centro-conexiones.js?v=1" defer></script>
+<script src="/js/agenda/centro-conexiones.js?v=2" defer></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
 <script type="module" src="/js/agenda/drive-sync.js?v=5"></script>
+<script type="module" src="/js/agenda/drive-archivos.js?v=1"></script>
 <script type="module" src="/js/agenda/membresia.js?v=7"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=15" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
-<script src="/js/agenda/exportar.js?v=9" defer></script>
+<script src="/js/agenda/exportar.js?v=10" defer></script>
 <script>
 // «¿Dónde se guardan mis datos?»: dice si hoy la copia en la cuenta está activa (30-oct-2026).
 (function () {
