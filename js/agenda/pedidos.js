@@ -97,4 +97,49 @@
   document.getElementById('agenda').addEventListener('input', function (e) { if (e.target.matches && e.target.matches('textarea') && e.target.parentNode.querySelector('.wa-link')) enlace(e.target); });
   document.addEventListener('agenda-guardada', todos);
   todos();
+
+  /* ---------- Producto y precio desde el catálogo (pregunta 6 de Jennifer, 11-nov-2026) ----------
+     En cada pedido, sobre «Producto», hay una lista «Elegir de mi catálogo». Al elegir un producto se escribe su nombre en el pedido y, si el pedido aún no tenía producto,
+     se pone su precio en «Valor por unidad» (y cantidad 1 si estaba vacía) y la agenda calcula el total. Todo sigue editable; si el pedido ya tenía algo escrito, el producto
+     se agrega al final y NO se toca el precio. El catálogo es la hoja «Mi catálogo de precios» (tabla-catalogo); no se copia nada, se lee al abrir la lista. */
+  var CAT = 'tabla-catalogo';
+  function productosCatalogo() {
+    var C = N.tablas[CAT], out = []; if (!C) return out;
+    for (var k = 1; k <= C.n; k++) {
+      var g = function (c) { var e = document.getElementById(C.prefijo + k + '-' + c); return e ? String(e.value || '').trim() : ''; };
+      var nombre = g('producto'); if (!nombre) continue;
+      var tam = g('tamano'); out.push({ nombre: nombre + (tam ? ' · ' + tam : ''), precio: g('precio') });
+    }
+    return out;
+  }
+  function llenarLista(sel) {
+    var lista = productosCatalogo(), previo = sel.value; sel.textContent = '';
+    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = lista.length ? 'Elegir de mi catálogo…' : 'Aún no hay productos en tu catálogo'; sel.appendChild(o0);
+    lista.forEach(function (p, i) { var o = document.createElement('option'); o.value = String(i); o.textContent = p.nombre + (p.precio ? ' — ' + p.precio : ''); o.dataset.nombre = p.nombre; o.dataset.precio = p.precio; sel.appendChild(o); });
+    sel.disabled = !lista.length; sel.value = previo && sel.querySelector('option[value="' + previo + '"]') ? previo : '';
+  }
+  function disparar(e) { if (e) e.dispatchEvent(new Event('input', { bubbles: true })); }
+  function elegir(r, sel) {
+    var o = sel.options[sel.selectedIndex]; if (!o || !o.value) return;
+    var ped = campo(r, 'pedido'), vu = campo(r, 'valorunidad'), cant = campo(r, 'cantidad'), nombre = o.dataset.nombre, precio = o.dataset.precio, aviso = sel.parentNode.querySelector('.ped-cat-aviso');
+    var tenia = ped.value.trim();
+    ped.value = tenia ? tenia.replace(/\s+$/, '') + ', ' + nombre : nombre; disparar(ped);
+    if (!tenia) {
+      if (precio) { vu.value = precio; disparar(vu); }
+      if (cant && !cant.value.trim()) { cant.value = '1'; disparar(cant); }
+      if (aviso) aviso.textContent = precio ? '✔ Puse el producto y su precio. Puedes cambiarlos.' : '✔ Puse el producto. Ese producto no tiene precio en el catálogo: escríbelo tú.';
+    } else if (aviso) aviso.textContent = '✔ Agregué el producto al pedido. El precio lo dejé como estaba: ajústalo tú.';
+    sel.value = '';
+  }
+  function selectorFila(r) {
+    var ped = campo(r, 'pedido'); if (!ped || ped.parentNode.querySelector('.ped-cat')) return;
+    var sel = document.createElement('select'); sel.className = 'ped-cat no-imprimir'; sel.setAttribute('aria-label', 'Elegir el producto de mi catálogo (pedido ' + r + ')');
+    var av = document.createElement('span'); av.className = 'ped-cat-aviso aviso-cal no-imprimir'; av.setAttribute('role', 'status');
+    ped.parentNode.insertBefore(sel, ped); ped.parentNode.appendChild(av); llenarLista(sel);
+    ['focus', 'mousedown'].forEach(function (ev) { sel.addEventListener(ev, function () { llenarLista(sel); }); });
+    sel.addEventListener('change', function () { elegir(r, sel); });
+  }
+  function selectores() { for (var r = 1; r <= T.n; r++) selectorFila(r); }
+  selectores(); document.addEventListener('agenda-guardada', function () { selectores(); });
+  new MutationObserver(function () { selectores(); }).observe(document.getElementById(TABLA), { childList: true });   // pedidos agregados después
 })();

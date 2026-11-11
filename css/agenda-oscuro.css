@@ -988,6 +988,8 @@ html[data-modo="oscuro"] .promo-enlace { background: none; border: 0; color: var
 html[data-modo="oscuro"] .sub-pestana { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: var(--rosa-texto); }
 html[data-modo="oscuro"] .sub-pestana:hover { background: var(--rosa-suave); }
 html[data-modo="oscuro"] .sub-pestana[aria-current="page"] { background: var(--rosa-boton); border-color: var(--rosa-boton); color: var(--sobre-principal); }
+html[data-modo="oscuro"] .ped-cat { background: var(--blanco); border: 1.5px dashed var(--rosa-medio); color: var(--rosa-texto); }
+html[data-modo="oscuro"] .ped-cat:disabled { color: #CAC5CD; }
 /* ---- de <style> de agenda-rosina.html ---- */
 html[data-modo="oscuro"] { --rosa-suave: #3A1B2A; --lila-suave: #151735; --lila-claro: #17193A; --blanco-hueso: #16131A; --tinta: #DEDBE0; --tinta-suave: #CAC5CD; --blanco: #211D27; }
 html[data-modo="oscuro"] body { background: var(--blanco-hueso); color: #DEDBE0; }
