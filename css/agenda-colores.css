@@ -299,6 +299,9 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #agenda .pd-linea { margin: 0; font-size: .92rem; }
 #agenda .pd-lista li.hecho, #agenda .pl-lista li.hecho { color: #2E7D52; }
 #agenda .pd-lista li.falta, #agenda .pl-lista li.falta { color: #B3261E; font-weight: 700; }
+/* Lista de compras → inventario (E34, 12-nov-2026) */
+#agenda td.cp-inv { display: grid; gap: 6px; justify-items: start; }
+#agenda .cp-nota { margin: 0; font-size: .9rem; color: var(--tinta-suave); }
 #agenda .iv-mov-gasto { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; min-height: 44px; padding: 4px 0; cursor: pointer; } #agenda .iv-mov-gasto input { flex: none; width: 22px; height: 22px; accent-color: var(--rosa-boton); }
 
 /* Claro u oscuro (E19, 5-nov-2026): tres botones en Configuración */
