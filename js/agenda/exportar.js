@@ -101,6 +101,7 @@
     a.href = URL.createObjectURL(blob); a.download = 'agenda-para-tejedoras-' + hoy + '.xlsx';
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
     (window.dataLayer = window.dataLayer || []).push({ event: 'resource_use', recurso: 'agenda_excel' });
+    document.dispatchEvent(new CustomEvent('agenda-exportado', { detail: 'excel' }));   // lo anota el resumen de Conexiones e integraciones (etapa 3)
   }
   var b = document.getElementById('agenda-excel');
   if (b) b.addEventListener('click', descargar);

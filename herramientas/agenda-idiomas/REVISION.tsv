@@ -66,6 +66,17 @@ Guardando en tu Drive…	Saving in your Drive…	Salvando no seu Drive…
 Listo: guardé «{n}» en la carpeta «Agenda para tejedoras» de tu Drive.	Done: I saved “{n}” in the “Planner for crocheters” folder of your Drive.	Pronto: salvei «{n}» na pasta «Agenda para crocheteiras» do seu Drive.
 No pudimos guardar en tu Drive ahora. Inténtalo otra vez.	We could not save in your Drive right now. Try again.	Não conseguimos salvar no seu Drive agora. Tente de novo.
 Conectado. Ya puedes guardar tu agenda como hoja de Google o una copia en tu Drive.	Connected. You can now save your planner as a Google Sheet or a backup in your Drive.	Conectado. Agora você pode salvar sua agenda como planilha do Google ou uma cópia no seu Drive.
+Copias y exportaciones	Backups and exports	Cópias e exportações
+Última copia descargada	Last backup downloaded	Última cópia baixada
+Todavía no has descargado una copia.	You have not downloaded a backup yet.	Você ainda não baixou uma cópia.
+Última copia en tu cuenta	Last backup in your account	Última cópia na sua conta
+Versiones anteriores en Drive	Previous versions in Drive	Versões anteriores no Drive
+Última exportación a Excel	Last export to Excel	Última exportação para o Excel
+Últimas fechas al calendario	Last dates sent to a calendar file	Últimas datas para o arquivo de calendário
+Al día	Up to date	Em dia
+Conviene guardar una copia	A backup is a good idea	Convém salvar uma cópia
+Estas fechas son de este aparato.	These dates are from this device.	Estas datas são deste aparelho.
+Guardar una copia ahora	Save a backup now	Salvar uma cópia agora
 Saltar al contenido	Skip to content	Ir para o conteúdo
 Lana Rosa Agenda para tejedoras	Lana Rosa Planner for crocheters	Lana Rosa Agenda para crocheteiras
 Agenda para tejedoras	Planner for crocheters	Agenda para crocheteiras
@@ -396,7 +407,7 @@ Instala la app 📲	Install the app 📲	Instale o app 📲
 📱 iPhone: Compartir → «Añadir a pantalla de inicio».	📱 iPhone: Share → “Add to Home Screen”.	📱 iPhone: Compartilhar → «Adicionar à Tela de Início».
 Pestañas y hojas 📑	Tabs and pages 📑	Abas e páginas 📑
 Al abrir ves «Mi panel» con lo más importante del mes. En el menú (en el celular, la barra de abajo) toca una sección y verás sus hojas.	When you open it you see “My dashboard” with the most important things of the month. In the menu (on the phone, the bar at the bottom) tap a section and you will see its pages.	Ao abrir você vê o «Meu painel» com o mais importante do mês. No menu (no celular, a barra de baixo) toque em uma seção e verá suas páginas.
-💎 7 días gratis con todas las hojas. Después, Mi panel, Mi tablero y Mis proyectos siguen gratis; las demás secciones desde $5.000 al mes.	💎 7 days free with all the pages. After that, My dashboard, My board and My projects stay free; the other sections start at $5,000 COP a month.	💎 7 dias grátis com todas as páginas. Depois, Meu painel, Meu quadro e Meus projetos continuam grátis; as demais seções a partir de $5.000 COP por mês.
+💎 7 días gratis con todas las hojas. Después, Mi panel (con Mi tablero) y Mis proyectos siguen gratis; las demás secciones desde $5.000 al mes.	💎 7 days free with all the pages. After that, My dashboard (with My board) and My projects stay free; the other sections start at $5,000 COP a month.	💎 7 dias grátis com todas as páginas. Depois, Meu painel (com Meu quadro) e Meus projetos continuam grátis; as demais seções a partir de $5.000 COP por mês.
 Escribe como prefieras ✍️	Write however you like ✍️	Escreva como preferir ✍️
 🎤 Dicta con la voz, ✏️ escribe a mano con lápiz o 🔍 busca cualquier texto de tu agenda.	🎤 Dictate with your voice, ✏️ write by hand with a pencil or 🔍 search any text in your planner.	🎤 Dite com a voz, ✏️ escreva à mão com lápis ou 🔍 busque qualquer texto da sua agenda.
 Si te pierdes, pregúntale a Rosina con el botón de ayuda. ¡Y a tejer!	If you get lost, ask Rosina with the help button. And let’s crochet!	Se você se perder, pergunte à Rosina com o botão de ajuda. E vamos tecer!
@@ -490,7 +501,7 @@ Hoja {a#} de {b#}	Page {a} of {b}	Página {a} de {b}
 Ver las {n#} hojas ▾	See all {n} pages ▾	Ver as {n} páginas ▾
 Agenda solo para quienes tienen cuenta	Planner only for people with an account	Agenda somente para quem tem conta
 Prueba la agenda para tejedoras 7 días gratis con tu cuenta	Try the planner for crocheters free for 7 days with your account	Experimente a agenda para crocheteiras 7 dias grátis com a sua conta
-Usa todas las hojas durante 7 días: proyectos, pedidos, lanas, ventas, finanzas, tablero, calendario del año y más. Después, Inicio, Mi tablero y Mis proyectos siguen gratis y el resto es con membresía desde $5.000 al mes. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.	Use all the pages for 7 days: projects, orders, yarns, sales, finances, overview, year calendar and more. After that, Home, My overview and My projects stay free and the rest is with a membership from $5.000 a month. Sign in with your Google account or with a code sent to your email, no passwords.	Use todas as páginas durante 7 dias: projetos, pedidos, lãs, vendas, finanças, resumo, calendário do ano e mais. Depois, Início, Minha visão geral e Meus projetos continuam grátis e o resto é com assinatura a partir de $5.000 por mês. Entre com a sua conta do Google ou com um código enviado ao seu e-mail, sem senhas.
+Usa todas las hojas durante 7 días: proyectos, pedidos, lanas, ventas, finanzas, tablero, calendario del año y más. Después, Inicio y Mis proyectos siguen gratis y el resto es con membresía desde $5.000 al mes. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.	Use all the pages for 7 days: projects, orders, yarns, sales, finances, overview, year calendar and more. After that, Home and My projects stay free and the rest is with a membership from $5.000 a month. Sign in with your Google account or with a code sent to your email, no passwords.	Use todas as páginas durante 7 dias: projetos, pedidos, lãs, vendas, finanças, resumo, calendário do ano e mais. Depois, Início e Meus projetos continuam grátis e o resto é com assinatura a partir de $5.000 por mês. Entre com a sua conta do Google ou com um código enviado ao seu e-mail, sem senhas.
 Continuar con Google	Continue with Google	Continuar com o Google
 o con tu correo	or with your email	ou com o seu e-mail
 Crear mi cuenta gratis	Create my free account	Criar a minha conta grátis
@@ -1941,6 +1952,20 @@ Diseñar un patrón	Design a pattern	Criar uma receita
 Diseñar mi primer patrón	Design my first pattern	Criar minha primeira receita
 Añadir parte	Add part	Adicionar parte
 Subir fotos	Upload photos	Enviar fotos
+Clientas y contactos	Clients and contacts	Clientes e contatos
+Contactos (proveedoras, colegas…)	Contacts (suppliers, colleagues…)	Contatos (fornecedoras, colegas…)
+Elegir de mi catálogo…	Choose from my catalog…	Escolher do meu catálogo…
+Aún no hay productos en tu catálogo	There are no products in your catalog yet	Ainda não há produtos no seu catálogo
+✔ Puse el producto y su precio. Puedes cambiarlos.	✔ I added the product and its price. You can change them.	✔ Coloquei o produto e o preço. Você pode alterá-los.
+✔ Puse el producto. Ese producto no tiene precio en el catálogo: escríbelo tú.	✔ I added the product. It has no price in the catalog: type it yourself.	✔ Coloquei o produto. Ele não tem preço no catálogo: escreva você.
+✔ Agregué el producto al pedido. El precio lo dejé como estaba: ajústalo tú.	✔ I added the product to the order. I left the price as it was: adjust it yourself.	✔ Adicionei o produto ao pedido. Deixei o preço como estava: ajuste você.
+Elegir el producto de mi catálogo (pedido {n#})	Choose the product from my catalog (order {n})	Escolher o produto do meu catálogo (pedido {n})
+Hojas de esta entrada	Pages in this entry	Páginas desta entrada
+Otras compras (por fuera de la agenda)	Other purchases (outside the planner)	Outras compras (fora da agenda)
+Lo que te pide en la agenda sale solo, en «Historial de compras».	What she orders in the planner shows up by itself, in “Purchase history”.	O que ela pede na agenda aparece sozinho, no “Histórico de compras”.
+Pasar a mi lista de compras	Move to my shopping list	Passar para minha lista de compras
+Escribe primero los materiales por comprar.	First write the materials to buy.	Escreva primeiro os materiais a comprar.
+Todo eso ya está en tu lista de compras.	All of that is already on your shopping list.	Tudo isso já está na sua lista de compras.
 Ventas y gastos	Sales and expenses	Vendas e despesas
 Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.	Record all the money of your business here, just once: what you sell, what you spend and what you save. You can write it the way you would say it.	Anote aqui todo o dinheiro do seu negócio, uma só vez: o que você vende, o que gasta e o que poupa. Você pode escrever como falaria.
 Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio	Example (write it in Spanish): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio	Exemplo (escreva em espanhol): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio

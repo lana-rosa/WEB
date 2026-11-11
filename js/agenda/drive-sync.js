@@ -373,5 +373,9 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   if (q === 'conectado') { estado = await llamar('estado'); pintar(); abrirConfig(); caja.scrollIntoView({ block: 'center' }); history.replaceState(null, '', location.pathname + location.hash); await ciclo({ manual: true, forzarAplicar: true }); }
   else if (mensajes[q]) { aviso(mensajes[q]); abrirConfig(); caja.scrollIntoView({ block: 'center' }); history.replaceState(null, '', location.pathname + location.hash); }
   else if (estado.conectado) setTimeout(function () { ciclo({}); }, 1200);
-  window.lrDrive = { ciclo: ciclo, estado: function () { return estado; }, pendiente: function () { return pendiente; } };
+  async function contarVersiones() {   // cuántas «versiones anteriores» hay en el Drive de la persona (lo lee el resumen de Conexiones e integraciones, etapa 3); null si no se puede ver
+    if (!estado || !estado.conectado || !sb) return null;
+    try { return (await buscar("name contains '" + PREFIJO_ANT + "'", 'createdTime desc', 'id')).length; } catch (e) { return null; }
+  }
+  window.lrDrive = { ciclo: ciclo, estado: function () { return estado; }, pendiente: function () { return pendiente; }, versiones: contarVersiones };
 })();

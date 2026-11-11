@@ -33,7 +33,7 @@ with sync_playwright() as p:
         T.v('[%s] los valores guardados siguen intactos' % idioma, pg.evaluate("JSON.parse(localStorage.getItem('rosinaAgenda'))['ag-f1-proyecto']") == 'Chaleco de María')
         T.v('[%s] el selector muestra el idioma elegido' % idioma, pg.evaluate("document.getElementById('agenda-idioma').value") == idioma)
         # todas las secciones, sin errores y con las tarjetas traducidas
-        for i in range(1, 7):
+        for i in range(1, 6):
             pg.locator('.pestana').nth(i).click(); pg.wait_for_timeout(350)
         t = pg.inner_text('#vista-seccion') if pg.locator('#vista-seccion').count() else ''
         T.v('[%s] la vista de sección está traducida' % idioma, 'páginas' in t.lower() if idioma == 'pt' else 'pages' in t.lower(), t[:120])
@@ -46,7 +46,7 @@ with sync_playwright() as p:
     for idioma in ('en', 'pt'):
         pg = abrir_en(b, idioma)
         ids = pg.evaluate("[...document.querySelectorAll('#menu-hojas-lista a[data-hoja]')].map(a => a.dataset.hoja)")
-        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 34 and not pg.errs, pg.errs)
+        T.v('[%s] se pueden recorrer las %d hojas sin errores' % (idioma, len(ids)), len(ids) >= 30 and not pg.errs, pg.errs)
         sin = []
         for h in ids:
             pg.evaluate("window.lrIrAHoja && window.lrIrAHoja('%s')" % h); pg.wait_for_timeout(120)

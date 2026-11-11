@@ -48,7 +48,35 @@
     else { n.estado = 'No activada'; n.clase = ''; n.detalle = [['Opcional: guarda tu agenda en tu cuenta para recuperarla.']]; }
     n.aviso = textoDe('nube-estado');
     out.push(n);
+    out.push(copias());
     return out;
+  }
+  /* Etapa 3 (6-nov-2026): registro de copias y exportaciones de ESTE aparato. La última copia descargada ya la anota la agenda (`rosinaAgendaCopia`); la de la cuenta es `lrNubeBase`
+     (la hora que devolvió el servidor al guardar); Excel y fechas al calendario se anotan aquí al oír `agenda-exportado` (`lrAgendaExport`). Las versiones de Drive se cuentan una vez al conectar. */
+  function ls(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function exportaciones() { try { return JSON.parse(ls('lrAgendaExport')) || {}; } catch (e) { return {}; } }
+  document.addEventListener('agenda-exportado', function (e) { var o = exportaciones(); o[e.detail] = new Date().toISOString(); try { localStorage.setItem('lrAgendaExport', JSON.stringify(o)); } catch (x) {} pronto(); });
+  function soloFecha(s) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || ''); if (!m) return ''; try { return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString(idioma(), { dateStyle: 'medium' }); } catch (e) { return s; } }
+  var versionesDrive = null, pidiendoVersiones = false;
+  function contarVersiones(conectado) {
+    if (!conectado) { versionesDrive = null; return; }
+    if (versionesDrive !== null || pidiendoVersiones || !window.lrDrive || !window.lrDrive.versiones) return;
+    pidiendoVersiones = true; window.lrDrive.versiones().then(function (n) { pidiendoVersiones = false; if (n !== null) { versionesDrive = n; pronto(); } }, function () { pidiendoVersiones = false; });
+  }
+  function copias() {
+    var f = { nombre: 'Copias y exportaciones', clase: '', detalle: [], copia: true }, hoy = Date.now();
+    var ultima = ls('rosinaAgendaCopia'), nube = !!(window.lrNube && window.lrNube.activa), drv = window.lrDrive && window.lrDrive.estado && window.lrDrive.estado(), drive = !!(drv && drv.conectado);
+    var dias = ultima ? Math.floor((hoy - new Date(ultima + 'T12:00:00').getTime()) / 86400000) : null;
+    if (ultima) f.detalle.push(['Última copia descargada:'], [soloFecha(ultima), true]); else f.detalle.push(['Todavía no has descargado una copia.']);
+    if (nube) { var nb = ls('lrNubeBase'); f.detalle.push(['·', true], ['Última copia en tu cuenta:'], [nb ? fechaHora(nb) : '—', true]); }
+    if (drive) { contarVersiones(true); f.detalle.push(['·', true], ['Versiones anteriores en Drive:'], [versionesDrive === null ? '…' : String(versionesDrive), true]); } else contarVersiones(false);
+    var ex = exportaciones();
+    if (ex.excel) f.detalle.push(['·', true], ['Última exportación a Excel:'], [fechaHora(ex.excel), true]);
+    if (ex.ics) f.detalle.push(['·', true], ['Últimas fechas al calendario:'], [fechaHora(ex.ics), true]);
+    var protegida = nube || drive || (dias !== null && dias < 14);
+    f.estado = protegida ? 'Al día' : 'Conviene guardar una copia'; f.clase = protegida ? 'cx-si' : 'cx-alerta';
+    f.nota = 'Estas fechas son de este aparato.';
+    return f;
   }
   function pintar() {
     var previo = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-cx-ir');
@@ -61,7 +89,12 @@
       f.detalle.forEach(function (x, i) { if (i) d.appendChild(document.createTextNode(' ')); d.appendChild(el('span', null, x[0], x[1])); });
       li.appendChild(d);
       if (f.aviso) { var a = el('span', 'cx-error'); a.appendChild(el('span', null, 'Último aviso:')); a.appendChild(document.createTextNode(' ')); a.appendChild(el('span', null, f.aviso)); li.appendChild(a); }
-      if (f.estado !== 'No disponible') {
+      if (f.copia) {
+        li.appendChild(el('span', 'cx-detalle', f.nota));
+        var g = el('button', 'enlace-copia cx-ir', 'Guardar una copia ahora'); g.type = 'button'; g.setAttribute('data-cx-ir', f.nombre);
+        g.addEventListener('click', function () { var d = document.getElementById('agenda-descargar'); if (d) d.click(); setTimeout(pronto, 600); });
+        li.appendChild(g);
+      } else if (f.estado !== 'No disponible') {
         var b = el('button', 'enlace-copia cx-ir', 'Ver y administrar'); b.type = 'button'; b.setAttribute('data-cx-ir', f.nombre);
         b.addEventListener('click', function () {
           var c = document.getElementById(f.idCaja) || document.getElementById('nube-activar');
