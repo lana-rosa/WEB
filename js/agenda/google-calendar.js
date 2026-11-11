@@ -94,7 +94,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
     sincronizar(true, true);
   });
   bDes.addEventListener('click', async function () {
-    if (!confirm('¿Desconectar Google Calendar? Se borrará de tu Google Calendar el calendario «Agenda para tejedoras» con sus fechas. Tu agenda en la web no se toca.')) return;
+    if (!confirm('¿Desconectar Google Calendar? Intentaremos eliminar de tu Google Calendar el calendario «Agenda para tejedoras» con sus eventos y retiraremos el permiso. Si ya habías revocado el permiso desde tu cuenta de Google, quizá no podamos borrarlo y tendrás que eliminarlo tú. Tu agenda en la web no se toca.')) return;
     await llamar('desconectar'); estado = { conectado: false }; retenidos = 0; pintar(); aviso('Desconectado.');
   });
   document.addEventListener('agenda-guardada', function () {     // 4 segundos después del último cambio
