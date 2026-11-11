@@ -8,7 +8,7 @@
   'use strict';
   var N = window.lrAgendaNucleo, hoja = document.getElementById('inventario-lanas');
   if (!N || !hoja || !N.tablas['tabla-lanas']) return;
-  var IT = N.tablas['tabla-lanas'], sugerido = '';
+  var IT = N.tablas['tabla-lanas'], sugerido = '', ultimo = '';
   function el(tag, cls, t) { var e = document.createElement(tag); if (cls) e.className = cls; if (t != null) e.textContent = t; return e; }
   function sin(t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim(); }
   function plata(x) { return '$ ' + Math.round(x).toLocaleString('es-CO'); }
@@ -39,16 +39,26 @@
       var d = N.datos(); d._fin = d._fin || {}; d._fin.movs = d._fin.movs || [];
       d._fin.movs.push({ id: 'g' + id, f: m.f, t: 'g', c: 'Materiales (lanas)', d: 'Lana: ' + nom + ' × ' + num(n), v: Math.round(n * costo), m: '', inv: id }); m.gasto = true;
     }
-    lista().push(m); N.guardar(); return '';
+    lista().push(m); ultimo = id; N.guardar(); return '';
+  }
+  function deshacerEn(i, k) {
+    var l = lista(), m = l[i], actual = cant(v(k, 'ovillos')) || 0;
+    if (k) ponerOvillos(k, m.t === 'c' ? Math.max(0, actual - m.n) : actual + m.n); l.splice(i, 1);
+    var f = N.datos()._fin; if (m.gasto && f && Array.isArray(f.movs)) f.movs = f.movs.filter(function (x) { return x.inv !== m.id; });   // quita el gasto que esa compra había anotado
+    N.guardar();
   }
   function deshacer(k) {
     var nom = sin(nombre(k)), l = lista(), i = -1;
     for (var j = l.length - 1; j >= 0; j--) if (sin(l[j].lana) === nom) { i = j; break; }
     if (i < 0) return;
-    var m = l[i], actual = cant(v(k, 'ovillos')) || 0;
-    ponerOvillos(k, m.t === 'c' ? Math.max(0, actual - m.n) : actual + m.n); l.splice(i, 1);
-    var f = N.datos()._fin; if (m.gasto && f && Array.isArray(f.movs)) f.movs = f.movs.filter(function (x) { return x.inv !== m.id; });   // quita el gasto que esa compra había anotado
-    N.guardar();
+    deshacerEn(i, k);
+  }
+  /* deshace un movimiento puntual por su id (lo usa la Lista de compras: «Comprado» → inventario). Devuelve false si ya no existe */
+  function deshacerId(id) {
+    var l = lista(), i = -1, j; for (j = 0; j < l.length; j++) if (l[j].id === id) { i = j; break; }
+    if (i < 0) return false;
+    var fila = lanas().filter(function (x) { return sin(x.nombre) === sin(l[i].lana); })[0];
+    deshacerEn(i, fila ? fila.k : 0); return true;
   }
 
   function pintarFichas() {
@@ -116,5 +126,5 @@
   var tb = document.getElementById('tabla-lanas'); if (tb) new MutationObserver(function (r) { if (r.some(function (x) { return [].some.call(x.addedNodes, function (n) { return n.nodeName === 'TR'; }); })) programar(); }).observe(tb, { childList: true });
   if (tf) new MutationObserver(programar).observe(tf, { childList: true });
   programar();
-  window.lrInvMov = { resumenMes: resumenMes, registrar: registrar, pintar: pintarFichas, lanas: lanas, descontar: descontar, nombre: nombre };
+  window.lrInvMov = { resumenMes: resumenMes, registrar: registrar, pintar: pintarFichas, lanas: lanas, descontar: descontar, nombre: nombre, deshacerId: deshacerId, ultimoId: function () { return ultimo; } };
 })();
