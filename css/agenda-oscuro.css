@@ -617,19 +617,17 @@ html[data-modo="oscuro"] #agenda .sube-bien { color: #CADFCE; }
 html[data-modo="oscuro"] #agenda .sube-mal { color: #DFBBB9; }
 /* ---- de /css/agenda-colores.css ---- */
 html[data-modo="oscuro"] #agenda { --sec-fg: #ED97C0; --sec-bg: #3A1B2A; }
-html[data-modo="oscuro"] #agenda[data-sec="1"] { --sec-fg: #9093DF; --sec-bg: #17193A; }
-html[data-modo="oscuro"] #agenda[data-sec="2"] { --sec-fg: #EA88B6; --sec-bg: #3F1528; }
-html[data-modo="oscuro"] #agenda[data-sec="3"] { --sec-fg: #8BB3EA; --sec-bg: #162B3E; }
-html[data-modo="oscuro"] #agenda[data-sec="4"] { --sec-fg: #9B9DD4; --sec-bg: #17193A; }
-html[data-modo="oscuro"] #agenda[data-sec="5"] { --sec-fg: #BBD0F4; --sec-bg: #1B2F43; }
-html[data-modo="oscuro"] #agenda[data-sec="6"] { --sec-fg: #E0A3C0; --sec-bg: #3C1827; }
+html[data-modo="oscuro"] #agenda[data-sec="1"] { --sec-fg: #EA88B6; --sec-bg: #3F1528; }
+html[data-modo="oscuro"] #agenda[data-sec="2"] { --sec-fg: #8BB3EA; --sec-bg: #162B3E; }
+html[data-modo="oscuro"] #agenda[data-sec="3"] { --sec-fg: #9B9DD4; --sec-bg: #17193A; }
+html[data-modo="oscuro"] #agenda[data-sec="4"] { --sec-fg: #BBD0F4; --sec-bg: #1B2F43; }
+html[data-modo="oscuro"] #agenda[data-sec="5"] { --sec-fg: #E0A3C0; --sec-bg: #3C1827; }
 html[data-modo="oscuro"] body .pestana:nth-child(1) { --p-fg: #ED97C0; --p-bg: #3A1B2A; }
-html[data-modo="oscuro"] body .pestana:nth-child(2) { --p-fg: #9093DF; --p-bg: #17193A; }
-html[data-modo="oscuro"] body .pestana:nth-child(3) { --p-fg: #EA88B6; --p-bg: #3F1528; }
-html[data-modo="oscuro"] body .pestana:nth-child(4) { --p-fg: #8BB3EA; --p-bg: #162B3E; }
-html[data-modo="oscuro"] body .pestana:nth-child(5) { --p-fg: #9B9DD4; --p-bg: #17193A; }
-html[data-modo="oscuro"] body .pestana:nth-child(6) { --p-fg: #BBD0F4; --p-bg: #1B2F43; }
-html[data-modo="oscuro"] body .pestana:nth-child(7) { --p-fg: #E0A3C0; --p-bg: #3C1827; }
+html[data-modo="oscuro"] body .pestana:nth-child(2) { --p-fg: #EA88B6; --p-bg: #3F1528; }
+html[data-modo="oscuro"] body .pestana:nth-child(3) { --p-fg: #8BB3EA; --p-bg: #162B3E; }
+html[data-modo="oscuro"] body .pestana:nth-child(4) { --p-fg: #9B9DD4; --p-bg: #17193A; }
+html[data-modo="oscuro"] body .pestana:nth-child(5) { --p-fg: #BBD0F4; --p-bg: #1B2F43; }
+html[data-modo="oscuro"] body .pestana:nth-child(6) { --p-fg: #E0A3C0; --p-bg: #3C1827; }
 html[data-modo="oscuro"] body .pestana .ic-lateral { color: var(--p-fg); }
 html[data-modo="oscuro"] body .pestana[aria-selected="true"] { background: var(--p-bg); }
 html[data-modo="oscuro"] #agenda .vs-ic { background: var(--sec-bg); color: var(--sec-fg); }
@@ -987,6 +985,9 @@ html[data-modo="oscuro"] .tienda-plegable > summary { color: var(--rosa-texto); 
 html[data-modo="oscuro"] .herr-plegable > .herr-rosina { border: 0; }
 html[data-modo="oscuro"] .tienda-plegable > .elegir-tienda { background: none; border: 0; }
 html[data-modo="oscuro"] .promo-enlace { background: none; border: 0; color: var(--rosa-texto); }
+html[data-modo="oscuro"] .sub-pestana { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: var(--rosa-texto); }
+html[data-modo="oscuro"] .sub-pestana:hover { background: var(--rosa-suave); }
+html[data-modo="oscuro"] .sub-pestana[aria-current="page"] { background: var(--rosa-boton); border-color: var(--rosa-boton); color: var(--sobre-principal); }
 /* ---- de <style> de agenda-rosina.html ---- */
 html[data-modo="oscuro"] { --rosa-suave: #3A1B2A; --lila-suave: #151735; --lila-claro: #17193A; --blanco-hueso: #16131A; --tinta: #DEDBE0; --tinta-suave: #CAC5CD; --blanco: #211D27; }
 html[data-modo="oscuro"] body { background: var(--blanco-hueso); color: #DEDBE0; }
