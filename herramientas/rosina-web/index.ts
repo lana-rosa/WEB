@@ -1,7 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v80 (11-nov-2026; E30, texto aprobado por Jennifer): GUIA_AGENDA explica el aviso que sale antes de conectar Google Calendar o Drive. SIN DESPLEGAR hasta el sí de Jennifer.
+// v80 (11-nov-2026; E30, texto aprobado por Jennifer): GUIA_AGENDA explica el aviso que sale antes de conectar Google Calendar o Drive. Desplegada (Supabase v80).
 // v79 (11-nov-2026; fases A y B de «9 preguntas», pedido de Jennifer): GUIA_AGENDA sin Índice ni «Mi tablero» como sección aparte: 6 secciones; Mi panel con pestañas Mi panel y Mi tablero; «Proyectos» con pestañas Ficha de proyecto y Proyectos por tejer; gratis: Mi panel y Mis proyectos. Desplegada (Supabase v79).
 // v78 (10-nov-2026, pedido de Jennifer): GUIA_AGENDA distingue «📷 Subir foto» (foto de fondo dentro del dibujo) de «📷 Subir fotos» (fotos del resultado y de los pasos) y aclara que las varias páginas son de la «Hoja de dibujo».
 // v77 (10-nov-2026; PR #640, pedido de Jennifer): GUIA_AGENDA explica el final de las hojas plegado, el dibujo del diseño cerrado («Abrir dibujo»), partes sin límite y fotos en «Diseña tu patrón», y «Patrones que diseñé» en «Mis patrones».
