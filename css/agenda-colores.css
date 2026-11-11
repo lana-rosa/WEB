@@ -294,6 +294,11 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #agenda .pd-nuevo { gap: 6px; }
 #agenda .pd-valor { width: 110px; }
 #agenda .pd-fecha { min-height: 44px; font: inherit; border: 1.5px solid var(--rosa-medio); border-radius: 12px; padding: 4px 8px; background: var(--blanco); color: var(--tinta); }
+/* Pedido y proyecto unidos, lana apartada (E34, 12-nov-2026) */
+#agenda td.pd-proyecto, #agenda td.pp-pedido, #agenda td.iv-apartada { display: grid; gap: 6px; justify-items: start; }
+#agenda .pd-linea { margin: 0; font-size: .92rem; }
+#agenda .pd-lista li.hecho, #agenda .pl-lista li.hecho { color: #2E7D52; }
+#agenda .pd-lista li.falta, #agenda .pl-lista li.falta { color: #B3261E; font-weight: 700; }
 #agenda .iv-mov-gasto { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; min-height: 44px; padding: 4px 0; cursor: pointer; } #agenda .iv-mov-gasto input { flex: none; width: 22px; height: 22px; accent-color: var(--rosa-boton); }
 
 /* Claro u oscuro (E19, 5-nov-2026): tres botones en Configuración */

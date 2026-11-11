@@ -25,7 +25,7 @@ with sync_playwright() as p:
     # no alcanza
     pg.select_option(f + ' select', 'Gamitex · Rojo'); pg.fill(f + ' .pl-n', '5'); pg.click(f + ' button:has-text("Agregar a la lista")'); pg.wait_for_timeout(500)
     pg.click(f + ' button:has-text("Descontar")'); pg.wait_for_timeout(500)
-    T.v('si no alcanzan los ovillos avisa y no descuenta', pg.locator(f + ' .iv-aviso.mal').is_visible() and guardado(pg).get('ag-l2-ovillos') == '1')
+    T.v('si no alcanzan los ovillos avisa y no descuenta', pg.locator(f + ' .iv-aviso.mal[role="alert"]').is_visible() and guardado(pg).get('ag-l2-ovillos') == '1')
     pg.click(f + ' li:not(.hecho) button'); pg.wait_for_timeout(500)
     T.v('se puede quitar una lana de la lista antes de descontarla', len(guardado(pg)['_proyLana']['chaleco de maria']) == 1)
     T.v('sin errores de JavaScript', not pg.errs, pg.errs)
