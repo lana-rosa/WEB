@@ -44,7 +44,7 @@
     filas.forEach(function (f) {
       var td = f.wa.closest('td'); if (!td) return;
       var otros = f.tel && f.nombre ? filas.filter(function (o) { return o.k !== f.k && o.tel === f.tel && o.nombre; }) : [];
-      aviso(td, 'val-wa', otros.length ? 'Ya tienes a «' + otros.map(function (o) { return o.nombre; }).join('», «') + '» con este WhatsApp.' : '');
+      aviso(td, 'val-wa', otros.length ? T('Ya tienes a «' + otros.map(function (o) { return o.nombre; }).join('», «') + '» con este WhatsApp.') : '');
       var p = td.querySelector('.val-wa'); if (p) { p.classList.remove('mal'); p.classList.add('alerta'); p.setAttribute('data-no-traducir', ''); }
     });
   }
