@@ -302,6 +302,16 @@ body.config-sola .pestanas-agenda { display: none !important; }
 /* Lista de compras → inventario (E34, 12-nov-2026) */
 #agenda td.cp-inv { display: grid; gap: 6px; justify-items: start; }
 #agenda .cp-nota { margin: 0; font-size: .9rem; color: var(--tinta-suave); }
+/* Medidas y gustos de la clienta (E34, 12-nov-2026) */
+#agenda td.cl-perfil { display: block; }
+#agenda .cl-p-det { border: 1.5px solid var(--rosa-suave); border-radius: 14px; padding: 0 12px 10px; background: var(--blanco); }
+#agenda .cl-p-sum { cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: 4px; font-weight: 700; color: var(--rosa-texto); list-style-position: inside; }
+#agenda .cl-p-aviso { margin: 0 0 8px; font-size: .88rem; color: var(--tinta-suave); }
+#agenda .cl-p-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; margin-bottom: 8px; }
+#agenda .cl-p-campo { display: grid; gap: 2px; font-size: .78rem; font-weight: 700; color: var(--rosa-texto); text-transform: uppercase; letter-spacing: .02em; }
+#agenda .cl-p-in { font: inherit; font-size: 1rem; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--tinta); min-height: 44px; padding: 6px 2px; border: 0; border-bottom: 1.5px solid var(--rosa-suave); background: transparent; border-radius: 0; resize: vertical; }
+#agenda .cl-p-in:focus { outline: 2px solid var(--rosa-principal); outline-offset: 2px; border-radius: 6px; }
+@media (max-width: 560px) { #agenda .cl-p-grid { grid-template-columns: minmax(0, 1fr); } }
 #agenda .iv-mov-gasto { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; min-height: 44px; padding: 4px 0; cursor: pointer; } #agenda .iv-mov-gasto input { flex: none; width: 22px; height: 22px; accent-color: var(--rosa-boton); }
 
 /* Claro u oscuro (E19, 5-nov-2026): tres botones en Configuración */
