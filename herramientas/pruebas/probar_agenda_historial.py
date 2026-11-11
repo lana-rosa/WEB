@@ -64,7 +64,7 @@ with sync_playwright() as p:
     T.v('en inglés: etiquetas traducidas y nombres de productos intactos', 'Purchase history' in ti and 'Total purchased' in ti and 'Balance due' in ti and 'Osito' in ti and '2 in progress' in ti, ti)
     # pregunta 7 (11-nov-2026): «Qué me ha comprado» ya no se pide a mano; el campo queda para compras por fuera y la nota remite al historial
     pgx = abrir(contexto(b, 1280, 900, datos={'ag-duena': 'Sara', 'ag-cl1-nombre': 'Ana', 'ag-cl1-compras': 'Un gorro que me compró en feria'}, config_abierta=False), 'mis-clientas', 2000, config=False)
-    T.v('el campo de compras a mano se llama «Otras compras (por fuera de la agenda)» y conserva lo ya escrito', 'otras compras' in pgx.inner_text('#mis-clientas').lower() and pgx.evaluate("document.getElementById('ag-cl1-compras').value") == 'Un gorro que me compró en feria')
+    T.v('el campo de compras a mano se llama «Otras compras (por fuera de la agenda)» y conserva lo ya escrito', 'Otras compras' in pgx.evaluate("document.querySelector('#mis-clientas thead').textContent") and pgx.evaluate("document.getElementById('ag-cl1-compras').value") == 'Un gorro que me compró en feria')
     T.v('una nota dice que lo pedido en la agenda sale solo en el historial', pgx.locator('#tabla-clientas tr.ficha[data-fila="1"] .cl-nota-compras').count() == 1)
     b.close()
 T.fin()
