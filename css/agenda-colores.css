@@ -284,6 +284,16 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #agenda .pn-horas-t { margin: 0 0 4px; font-size: 1rem; }
 #agenda .pn-horas-t strong { color: var(--rosa-texto); font-family: 'DynaPuff', sans-serif; font-size: 1.3rem; }
 #agenda .pn-horas-s { margin: 0; font-size: .9rem; color: var(--tinta-suave); }
+/* Pagos de cada pedido (E34, 11-nov-2026) */
+#agenda td.pd-abonos { display: grid; gap: 8px; justify-items: start; }
+#agenda .pd-res { margin: 0; font-weight: 700; color: var(--rosa-texto); }
+#agenda .pd-res.ok { color: #2E7D52; }
+#agenda .pd-res.info { font-weight: 400; color: var(--tinta-suave); }
+#agenda .pd-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: .9rem; width: 100%; }
+#agenda .pd-lista li { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+#agenda .pd-nuevo { gap: 6px; }
+#agenda .pd-valor { width: 110px; }
+#agenda .pd-fecha { min-height: 44px; font: inherit; border: 1.5px solid var(--rosa-medio); border-radius: 12px; padding: 4px 8px; background: var(--blanco); color: var(--tinta); }
 #agenda .iv-mov-gasto { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; min-height: 44px; padding: 4px 0; cursor: pointer; } #agenda .iv-mov-gasto input { flex: none; width: 22px; height: 22px; accent-color: var(--rosa-boton); }
 
 /* Claro u oscuro (E19, 5-nov-2026): tres botones en Configuración */
