@@ -1,4 +1,19 @@
 español	inglés	portugués
+Pagos de este pedido	Payments for this order	Pagamentos deste pedido
+Registrar abono	Record payment	Registrar pagamento
+Poner lo que falta	Fill in the balance	Colocar o que falta
+Quitar este abono	Remove this payment	Remover este pagamento
+Valor del abono	Payment amount	Valor do pagamento
+Fecha del abono	Payment date	Data do pagamento
+Escribe el total de la compra para ver cuánto falta por cobrar.	Enter the purchase total to see how much is left to collect.	Escreva o total da compra para ver quanto falta receber.
+Escribe cuánto abonó (un número mayor que 0).	Enter how much was paid (a number greater than 0).	Escreva quanto foi pago (um número maior que 0).
+Primero escribe el total de la compra.	First enter the purchase total.	Primeiro escreva o total da compra.
+El abono es mayor que el total de la compra: revisa los valores.	The payment is greater than the purchase total: please check the values.	O pagamento é maior que o total da compra: confira os valores.
+Cambiaste el abono a mano y ahora es menor que la suma de los pagos de la lista: revisa los valores.	You changed the paid amount by hand and it is now lower than the sum of the payments in the list: please check the values.	Você alterou o valor pago à mão e agora ele é menor que a soma dos pagamentos da lista: confira os valores.
+Abonado {a} de {b} · Falta {c}	Paid {a} of {b} · {c} left	Pago {a} de {b} · Falta {c}
+Pagado completo · {a}	Paid in full · {a}	Pago por completo · {a}
+Anticipo anotado: {a}	Deposit recorded: {a}	Sinal registrado: {a}
+Ese abono es mayor que lo que falta por cobrar ({a}). Escribe un valor menor o igual.	That payment is greater than what is left to collect ({a}). Enter a smaller or equal amount.	Esse pagamento é maior que o que falta receber ({a}). Escreva um valor menor ou igual.
 Antes de dictar	Before you dictate	Antes de ditar
 La función «Hablar para escribir» utiliza el servicio de reconocimiento de voz disponible en su navegador o dispositivo. El audio puede ser procesado por el proveedor de dicho servicio, de acuerdo con sus propias condiciones y políticas de privacidad. Lana Rosa Crochet no recibe ni almacena directamente las grabaciones de audio. Puede utilizar esta función de manera opcional.	The “Speak to write” feature uses the speech recognition service available in your browser or device. The audio may be processed by the provider of that service, under its own terms and privacy policies. Lana Rosa Crochet does not directly receive or store audio recordings. You may use this feature on an optional basis.	A função “Falar para escrever” usa o serviço de reconhecimento de voz disponível no seu navegador ou dispositivo. O áudio pode ser processado pelo provedor desse serviço, de acordo com suas próprias condições e políticas de privacidade. A Lana Rosa Crochet não recebe nem armazena diretamente as gravações de áudio. Você pode usar esta função de forma opcional.
 Ahora no	Not now	Agora não
