@@ -57,4 +57,8 @@ FILAS = [
  # «Qué me ha comprado» desde los pedidos (pregunta 7, 11-nov-2026)
  ('Otras compras (por fuera de la agenda)', 'Other purchases (outside the planner)', 'Outras compras (fora da agenda)'),
  ('Lo que te pide en la agenda sale solo, en «Historial de compras».', 'What she orders in the planner shows up by itself, in “Purchase history”.', 'O que ela pede na agenda aparece sozinho, no “Histórico de compras”.'),
+ # materiales por comprar → lista de compras (pregunta 8, 11-nov-2026)
+ ('Pasar a mi lista de compras', 'Move to my shopping list', 'Passar para minha lista de compras'),
+ ('Escribe primero los materiales por comprar.', 'First write the materials to buy.', 'Escreva primeiro os materiais a comprar.'),
+ ('Todo eso ya está en tu lista de compras.', 'All of that is already on your shopping list.', 'Tudo isso já está na sua lista de compras.'),
 ]
