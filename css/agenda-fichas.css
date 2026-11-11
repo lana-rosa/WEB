@@ -568,6 +568,18 @@ html.dueno-abierto { overflow: hidden; }
 .dueno-botones button { width: 100%; white-space: normal; }
 .dueno-caja small { display: block; color: var(--tinta-suave, #566); line-height: 1.45; }
 
+/* Vista previa del presupuesto (js/agenda/presupuesto.js, E34, 12-nov-2026) */
+html.pp-abierto { overflow: hidden; }
+.pp-fondo { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(20, 30, 25, 0.72); }
+.pp-caja { max-width: 420px; width: 100%; max-height: 94vh; overflow: auto; background: var(--blanco, #fff); color: var(--tinta, #23332b); border-radius: 18px; padding: 20px 18px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); display: grid; gap: 12px; justify-items: center; }
+.pp-caja h2 { margin: 0; font-size: 1.2rem; justify-self: start; }
+.pp-vista { width: 100%; max-width: 310px; height: auto; border: 1px solid var(--rosa-suave, #FBE4EF); border-radius: 8px; box-shadow: 0 4px 16px rgba(142, 20, 87, 0.15); }
+.pp-botones { display: grid; gap: 10px; width: 100%; }
+.pp-botones button { width: 100%; white-space: normal; min-height: 48px; }
+.pp-msg, .pp-nota { margin: 0; font-size: .9rem; line-height: 1.45; width: 100%; color: var(--tinta-suave, #566); }
+.pp-msg:empty { display: none; }
+td.pd-presup { display: grid; gap: 8px; justify-items: start; }
+
 /* Conexiones entre hojas (js/agenda/conexiones.js, 30-oct-2026) */
 .conexion-aviso { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .conexion-aviso .ca-boton { white-space: normal; }
