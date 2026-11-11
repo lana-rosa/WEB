@@ -148,3 +148,23 @@ Mapa: **Contenido gratis** (Revista, redes, YouTube) → **Herramientas gratis**
 - La agenda no debe crecer en hojas: todo va dentro de las existentes.
 - Patrones, ebook y talleres pagos necesitan sus condiciones legales aprobadas antes de vender.
 - La marca no menciona Navidad ni fechas que no celebra, también en el calendario de temporadas.
+
+---
+## Segunda línea (aprobada por Jennifer, 10-nov-2026): calidad y buenos acabados
+Propuesta de la semana del 9 al 15-nov («De un tejido bonito a un producto bien terminado»). Revisada por el orquestador contra lo que ya existe:
+- **Ya existe, se mejora (no se duplica):** calculadora de consumo de lana y de muestra (`calculadoras-rosina.html`, pestañas «lana» y «muestra»); muestras de lana en la ficha del proyecto y la hoja «Lo que aprendí» (agenda); ficha de cuidados por pieza con QR.
+- **Nuevo y aprobado para empezar:** **Pasaporte de calidad para amigurumis** (PDF, chat 7): producto, hilo y aguja, medidas finales, fotos del proceso, revisión de puntos parejos, relleno y forma, costuras y uniones, detalles y bordados, limpieza y presentación, correcciones y aprobación final. Probarlo con Jennifer y las tejedoras del taller antes de llevarlo a la agenda.
+- **Después:** lista de revisión configurable **dentro de la ficha del proyecto o del pedido** de la agenda (sin módulo nuevo, chat 2); sección de la Revista «El arte de los buenos acabados» con «Prueba y aprende» (chat 6); campaña en redes **después** de la de ROSA para no pisarse (chat 8).
+- **Para el equipo de Lana Rosa:** el control de calidad de la producción va en el **ERP** (ficha técnica y «Mi producción»), no en la agenda.
+- **Con validación previa:** curso «Acabados» de 5 módulos, reto de 5 días, organizador de ganchillos (3 prototipos + preguntar a 10-15 tejedoras), muestrario de puntos. Sin certificado por ahora.
+
+---
+## Tercera propuesta (10-nov-2026): «De tejedora a emprendedora» — cómo se une con lo ya aprobado
+Revisión del orquestador para no abrir un plan nuevo sobre el anterior:
+- **Se adopta como mapa de la Academy** la ruta de 6 etapas (Descubrir, Elegir, Crear, Calcular, Comunicar, Vender y mejorar). **ROSA vive dentro de «Elegir»**; la calidad y los acabados (Pasaporte) dentro de «Crear»; la calculadora y el catálogo dentro de «Calcular».
+- **«Laboratorio de productos» = el mismo plan de la agenda** que ya estaba («¿Lo tejo para vender?» + «Prueba de venta»), con mejor nombre. Versión simple, **dentro de «Mis ideas» y el catálogo, sin hoja nueva**: idea → revisar con ROSA → prototipo (tiempo y materiales reales, fotos) → prueba (interés, pedidos) → decisión (descartar, ajustar, probar otra vez o pasar al catálogo). Usa el cronómetro de E34 para el tiempo real. Prototipo en papel o en el Pasaporte antes de programar.
+- **Curso «De una idea a tu primer producto» = el taller piloto** ya propuesto (presencial primero, después de la apertura).
+- **«Laboratorio beta» de 3 entregables** = tarjeta ROSA + hoja de prueba (chat 7, ya en curso) + Pasaporte de calidad (chat 7, ya en curso). No se agregan descargables nuevos hasta probar estos.
+- **Se dejan para después:** planificador por lotes (para el equipo de Lana Rosa va en el ERP), guía de colecciones, biblioteca de patrones, kits, 5 series de YouTube (se elige **una**: «De la idea al tejido» = «Lo probamos en el taller»), colección educativa para niños (exige revisar seguridad y edad, como pidió la abogada).
+- **Cuidado:** la propuesta traía nombres de sitios ajenos junto a las imágenes (craftiss.com, wildandwoollyyarns.co.nz): no usar imágenes ajenas; todo con fotos propias.
+- **Nombre de las rutas:** la Academy hoy usa «Aprende · Crea · Conecta» (`aprende.html`). Si se cambia a «Aprende · Crea · Emprende», decidirlo con Jennifer y cambiarlo en todo el sitio a la vez (chat 7 y chat 6).

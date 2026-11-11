@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>BORRADOR · Método ROSA y Prueba de 3 a 5 piezas</title>
+<!-- BORRADOR (chat 7, 10-nov-2026): NO está en el sitio ni enlazado. Se publica después de la apertura (14-dic) con el sí de Jennifer.
+     Se ve con: python3 -m http.server 8765 en la raíz y abrir /herramientas/borradores/metodo-rosa/index.html.
+     Textos propios de Lana Rosa; no copian la guía de Quintaesencia. Al publicar: mover a /metodo-rosa.html con el menú del Rincón, GTM y consentimiento, y enlazar desde recursos-rosina.html. -->
+<link rel="stylesheet" href="/css/fuentes.css">
+<style>
+:root { --rosa:#E74E96; --rosa-texto:#C42A78; --rosa-medio:#F28FC0; --rosa-suave:#FBE4EF; --lila:#9EA2F9; --azul:#93C7F9; --tinta:#45454A; --suave:#6B6B72; }
+* { box-sizing: border-box; }
+body { margin:0; background:#F4EEF2; color:var(--tinta); font-family:'Hanken Grotesk',Arial,sans-serif; line-height:1.45; }
+h1,h2,h3 { font-family:'DynaPuff','Hanken Grotesk',sans-serif; font-weight:600; margin:0; }
+.aviso-borrador { background:#FFF4CC; border-bottom:2px solid #E6C84A; padding:10px 16px; font-size:.9rem; text-align:center; }
+.barra { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; padding:16px; }
+.barra button { font:inherit; font-weight:700; border:0; border-radius:999px; padding:10px 22px; background:var(--rosa-texto); color:#fff; cursor:pointer; }
+.hoja { width:210mm; max-width:100%; min-height:297mm; margin:0 auto 24px; background:#fff; padding:14mm 14mm 12mm; box-shadow:0 4px 18px rgba(0,0,0,.12); display:flex; flex-direction:column; }
+.cab { display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:3px solid var(--rosa); padding-bottom:8px; margin-bottom:14px; }
+.cab img.logo { height:42px; width:auto; border-radius:8px; }
+.cab span { font-size:.75rem; font-weight:700; color:var(--rosa-texto); text-align:right; }
+.titulo { display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+.titulo img { width:92px; height:auto; flex:none; }
+.titulo h1 { font-size:2.1rem; color:var(--rosa-texto); line-height:1.1; }
+.titulo p { margin:4px 0 0; color:var(--suave); font-size:.95rem; }
+.letras { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0; }
+.letra { border-radius:18px; padding:12px 14px; display:flex; gap:12px; align-items:flex-start; break-inside:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.letra .l { font-family:'DynaPuff',sans-serif; font-weight:700; font-size:2.6rem; line-height:1; color:#fff; width:54px; height:54px; border-radius:16px; display:grid; place-items:center; flex:none; font-size:2rem; }
+.letra h3 { font-size:1.05rem; margin-bottom:2px; }
+.letra p { margin:0; font-size:.88rem; }
+.letra small { display:block; margin-top:4px; color:var(--suave); font-size:.78rem; }
+.l1 { background:var(--rosa-suave); } .l1 .l { background:var(--rosa); }
+.l2 { background:#E6E7FD; } .l2 .l { background:#6E73E8; }
+.l3 { background:#E3F1FE; } .l3 .l { background:#2F7DE1; }
+.l4 { background:#FFF0DC; } .l4 .l { background:#E6892E; }
+.regla { background:var(--rosa-suave); border:2px dashed var(--rosa-medio); border-radius:18px; padding:12px 16px; margin:8px 0; font-size:.95rem; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.regla b { color:var(--rosa-texto); }
+.calc { margin-top:auto; display:flex; gap:12px; align-items:center; border:2px solid var(--lila); border-radius:18px; padding:10px 14px; font-size:.9rem; }
+.calc strong { color:var(--rosa-texto); }
+.calc a { color:var(--rosa-texto); font-weight:700; word-break:break-all; }
+.pie { border-top:2px solid var(--rosa); margin-top:12px; padding-top:6px; text-align:center; font-size:.72rem; color:var(--suave); }
+.pie strong { color:var(--rosa); }
+/* Hoja 2 */
+table.prueba { width:100%; border-collapse:collapse; margin:10px 0; font-size:.8rem; }
+table.prueba th { background:var(--rosa-suave); color:var(--rosa-texto); font-weight:700; text-align:left; padding:6px 6px; border:1px solid #E6B8D0; font-size:.74rem; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+table.prueba td { border:1px solid #D9D3D8; height:58px; }
+table.prueba td:first-child { width:28px; text-align:center; font-weight:700; color:var(--rosa-texto); }
+.pasos { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:8px 0; font-size:.85rem; }
+.pasos div { display:flex; gap:8px; }
+.pasos i { font-style:normal; width:22px; height:22px; border-radius:50%; background:var(--rosa); color:#fff; font-weight:700; font-size:.75rem; display:grid; place-items:center; flex:none; margin-top:1px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.lectura { border:2px solid var(--lila); border-radius:16px; padding:10px 14px; margin-top:8px; font-size:.85rem; break-inside:avoid; }
+.lectura h3 { font-size:1rem; color:var(--rosa-texto); margin-bottom:4px; }
+.linea { border-bottom:1px solid #C9C2C8; height:30px; }
+@media (max-width:760px) { .tabla-ancha { overflow-x:auto; } table.prueba { min-width:560px; } .hoja { padding:12px; min-height:0; } .letras,.pasos { grid-template-columns:1fr; } table.prueba { font-size:.7rem; } .titulo h1 { font-size:1.6rem; } }
+@media print {
+  @page { size:A4; margin:0; }
+  body { background:#fff; }
+  .aviso-borrador,.barra { display:none !important; }
+  .hoja { box-shadow:none; margin:0; width:210mm; height:297mm; min-height:0; page-break-after:always; overflow:hidden; }
+}
+</style>
+</head>
+<body>
+<div class="aviso-borrador"><strong>BORRADOR</strong> · no está publicado. Así se vería el material gratis del Rincón de Rosina (se publica después del 14-dic con el sí de Jennifer).</div>
+<div class="barra"><button type="button" onclick="window.print()">🖨️ Imprimir las 2 hojas</button></div>
+
+<!-- ===== HOJA 1: TARJETA MÉTODO ROSA ===== -->
+<section class="hoja" aria-label="Tarjeta Método ROSA">
+  <div class="cab"><img class="logo" src="/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" width="1142" height="731"><span>Rincón de Rosina<br>lanarosacrochet.com</span></div>
+  <div class="titulo">
+    <img src="/img/rosina-aprende.webp" alt="" width="300" height="300">
+    <div>
+      <h1>Método ROSA</h1>
+      <p>Cuatro preguntas para saber si lo que tejes puede venderse. Respóndelas antes de gastar lana.</p>
+    </div>
+  </div>
+  <div class="letras">
+    <div class="letra l1"><div class="l">R</div><div><h3>Resuelve algo</h3><p>¿Quién lo va a usar, o a quién se lo van a regalar? ¿Para qué?</p><small>Si no puedes decir para quién es, todavía es una idea.</small></div></div>
+    <div class="letra l2"><div class="l">O</div><div><h3>Optimiza tu tiempo</h3><p>¿Lo puedes repetir sin agotarte y en pocas horas?</p><small>Una pieza que te toma semanas rara vez deja ganancia.</small></div></div>
+    <div class="letra l3"><div class="l">S</div><div><h3>Sostiene su precio</h3><p>El precio que sale de tus costos, ¿es uno que alguien paga?</p><small>Saca la cuenta con la calculadora de costos, no «a ojo».</small></div></div>
+    <div class="letra l4"><div class="l">A</div><div><h3>Te Anima a tejerla</h3><p>¿Te dan ganas de hacerla varias veces?</p><small>Si la tejes con pereza, se nota y se cansa tu mano.</small></div></div>
+  </div>
+  <div class="regla"><b>Cómo leer tus respuestas:</b><br>
+    ✅ <b>Cuatro «sí»</b> → es una pieza para <b>probar</b> (usa la hoja de la vuelta).<br>
+    ⚠️ <b>Un «no»</b> → ajusta algo: el tamaño, el hilo, el diseño o el precio, y vuelve a preguntar.<br>
+    🎁 <b>Dos o más «no»</b> → déjala para <b>regalar, practicar</b> o para más adelante.</div>
+  <div class="regla" style="background:#fff;border-color:var(--lila)"><b>Un ejemplo para practicar:</b> piensa en un llavero. ¿Quién lo compra? (R) ¿Lo haces en una o dos horas? (O) ¿Los materiales, tu hora de trabajo y tu ganancia caben en un precio que la gente paga? (S) ¿Tejerías diez? (A). Si respondes «sí» cuatro veces, pruébalo.</div>
+  <div class="calc"><div style="font-size:1.6rem" aria-hidden="true">💰</div><div><strong>La S necesita números.</strong> Calcula cuánto cobrar con la Calculadora de costos de Rosina, gratis:<br><a href="https://lanarosacrochet.com/calculadoras-rosina.html#costos">lanarosacrochet.com/calculadoras-rosina.html#costos</a></div></div>
+  <div class="pie"><strong>Lana Rosa Crochet</strong> · hecho con cariño en Villamaría, Caldas · Método ROSA © Lana Rosa Crochet</div>
+</section>
+
+<!-- ===== HOJA 2: PRUEBA DE 3 A 5 PIEZAS ===== -->
+<section class="hoja" aria-label="Prueba de 3 a 5 piezas">
+  <div class="cab"><img class="logo" src="/img/logo-lana-rosa.jpg" alt="Lana Rosa Crochet" width="1142" height="731"><span>Rincón de Rosina<br>lanarosacrochet.com</span></div>
+  <div class="titulo">
+    <img src="/img/rosina-checklist.jpg" alt="" width="300" height="300">
+    <div>
+      <h1>Prueba de 3 a 5 piezas</h1>
+      <p>Teje pocas, muéstralas y anota lo que pase. Así decides con datos y no con ganas.</p>
+    </div>
+  </div>
+  <div class="pasos">
+    <div><i>1</i><span>Elige de <b>3 a 5 piezas</b> que pasaron el Método ROSA.</span></div>
+    <div><i>2</i><span>Saca el costo de cada una con la <b>calculadora</b>.</span></div>
+    <div><i>3</i><span>Téjelas y <b>muéstralas</b>: tus redes, WhatsApp, una feria o tu tienda del barrio.</span></div>
+    <div><i>4</i><span>Anota <b>qué preguntan</b> y qué compran, aunque sea poco.</span></div>
+  </div>
+  <div class="tabla-ancha"><table class="prueba">
+    <thead><tr><th>#</th><th>Pieza y colores</th><th>Cuántas tejí</th><th>Dónde la mostré</th><th>Qué me preguntaron</th><th>Vendí</th><th>Costo</th><th>Precio</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+  <div class="lectura">
+    <h3>Cuando termine la prueba (1 o 2 semanas)</h3>
+    <p style="margin:0 0 6px">La pieza que más preguntaron: ______________________ · La que más se vendió: ______________________</p>
+    <p style="margin:0 0 6px">¿El precio que calculé lo pagaron, o me pidieron rebaja? ______________________________________________</p>
+    <p style="margin:0">Mi decisión:&nbsp; ☐ La repito &nbsp; ☐ La cambio &nbsp; ☐ La dejo para regalar &nbsp; ☐ Pruebo otra</p>
+    <div class="linea"></div><div class="linea"></div>
+  </div>
+  <div class="calc"><div style="font-size:1.6rem" aria-hidden="true">📔</div><div><strong>Guarda tus resultados en la Agenda para tejedoras</strong> y calcula tus costos aquí:<br><a href="https://lanarosacrochet.com/calculadoras-rosina.html#costos">lanarosacrochet.com/calculadoras-rosina.html#costos</a></div></div>
+  <div class="pie"><strong>Lana Rosa Crochet</strong> · hecho con cariño en Villamaría, Caldas · Método ROSA © Lana Rosa Crochet</div>
+</section>
+</body>
+</html>
