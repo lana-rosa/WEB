@@ -1,7 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v85 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica el presupuesto en PDF por WhatsApp («Armar presupuesto»). SIN DESPLEGAR hasta el sí de Jennifer.
+// v85 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica el presupuesto en PDF por WhatsApp («Armar presupuesto»). Desplegada (Supabase v85).
 // v84 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica los pagos de cada pedido («Pagos de este pedido», «Registrar abono»). Desplegada (Supabase v84).
 // v83 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica el cronómetro por proyecto («Tiempo tejido») y la tarjeta «Horas tejidas» de Mi panel. Desplegada (Supabase v83).
 // v82 (12-nov-2026; revisión de la abogada): el aviso de Google ya no dice que la app no lee eventos: con Calendar se accede al calendario «Agenda para tejedoras» y sus eventos, no a los otros calendarios; aclara la revocación desde la cuenta de Google. Desplegada (Supabase v82).
