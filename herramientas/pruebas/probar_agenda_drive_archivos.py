@@ -104,7 +104,7 @@ with sync_playwright() as p:
     # vuelta de Google y resumen
     n = Nube(conectada=True); ctx, pg = pagina(b, n, ruta='?driveArchivos=conectado')
     t.v('al volver de Google lo dice y limpia la dirección', 'Conectado' in pg.inner_text('#da-aviso') and 'driveArchivos' not in pg.url, (pg.url, pg.inner_text('#da-aviso')))
-    t.v('el resumen de Conexiones tiene su fila (4 en total)', pg.locator('#cx-resumen li[data-cx="Informes y copias en tu Drive"]').count() == 1 and 'Conectado' in pg.locator('#cx-resumen li[data-cx="Informes y copias en tu Drive"]').inner_text() and pg.locator('#cx-resumen li').count() == 4, pg.locator('#cx-resumen li').count()); ctx.close()
+    t.v('el resumen de Conexiones tiene su fila (5 en total)', pg.locator('#cx-resumen li[data-cx="Informes y copias en tu Drive"]').count() == 1 and 'Conectado' in pg.locator('#cx-resumen li[data-cx="Informes y copias en tu Drive"]').inner_text() and pg.locator('#cx-resumen li').count() == 5, pg.locator('#cx-resumen li').count()); ctx.close()
 
     # inglés y celular
     n = Nube(conectada=True); ctx, pg = pagina(b, n, idioma='en')

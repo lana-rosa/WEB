@@ -24,7 +24,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM, args=['--no-sandbox'])
     ctx, pg = pagina(b)
     f = fila(pg).inner_text()
-    t.v('hay una fila «Copias y exportaciones» (4 filas en total)', fila(pg).count() == 1 and pg.locator('#cx-resumen li').count() == 4)
+    t.v('hay una fila «Copias y exportaciones» (5 filas en total)', fila(pg).count() == 1 and pg.locator('#cx-resumen li').count() == 5)
     t.v('sin copias: lo dice y avisa «Conviene guardar una copia»', 'Todavía no has descargado una copia' in f and 'Conviene guardar una copia' in f and 'Estas fechas son de este aparato' in f, f)
     with pg.expect_download() as d: fila(pg).locator('button').click()
     pg.wait_for_timeout(1200)
