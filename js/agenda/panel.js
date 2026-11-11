@@ -188,6 +188,19 @@
     k.appendChild(tarjeta('Te quedó', fm(vend - gas), vend || gas ? (vend - gas >= 0 ? 'Ganancia del mes' : 'Este mes gastaste más de lo que vendiste') : 'Aparece cuando anotes ventas y gastos', 'k3 ' + (vend - gas > 0 ? 'bien' : vend - gas < 0 ? 'mal' : ''), 'tendencia'));
     k.appendChild(tarjeta('Pedidos activos', String(activos.length), activos.length ? (cobrar ? 'Por cobrar ' + fm(cobrar) : 'Todo cobrado') : 'Anota tu primer pedido', 'k4', 'bolsa'));
     cont.appendChild(k);
+    /* Horas tejidas (cronómetro de «Proyectos», E34): solo se ve cuando ya hay tiempo anotado o un cronómetro en marcha */
+    if (window.lrCrono) {
+      var cr0 = window.lrCrono.resumen();
+      if (cr0.totalSeg > 0 || cr0.enMarcha) {
+        var ch = txt('div', 'pn-card pn-horas'); ch.appendChild(cabecera('Horas tejidas', 'Ver proyectos', 'proyectos-fila'));
+        var chf = txt('p', 'pn-horas-t'), cs = txt('strong', '', window.lrCrono.formato(cr0.semanaSeg)); cs.setAttribute('data-crono-semana', ''); cs.setAttribute('data-no-traducir', '');
+        chf.appendChild(cs); chf.appendChild(document.createTextNode(' esta semana · ')); var ct = txt('strong', '', window.lrCrono.formato(cr0.totalSeg)); ct.setAttribute('data-no-traducir', ''); chf.appendChild(ct); chf.appendChild(document.createTextNode(' en total'));
+        ch.appendChild(chf);
+        if (cr0.enMarcha) ch.appendChild(txt('p', 'pn-horas-s', '⏱ Tejiendo ahora: ' + cr0.enMarcha));
+        else if (cr0.porProyecto.length) ch.appendChild(txt('p', 'pn-horas-s', 'El que más tiempo lleva: ' + cr0.porProyecto[0].nombre + ' (' + window.lrCrono.formato(cr0.porProyecto[0].seg) + ')'));
+        cont.appendChild(ch);
+      }
+    }
 
     /* Punto de equilibrio del mes, en gráfica (solo si ya hay gastos fijos y margen; Plus, 31-oct-2026) */
     if (window.lrGraficas) {

@@ -274,6 +274,16 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #agenda .pl-fila { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 #agenda .pl-sel { flex: 1 1 160px; min-height: 44px; }
 #agenda .pl-n { width: 72px; min-height: 44px; }
+/* Cronómetro por proyecto (E34, 11-nov-2026) */
+#agenda td.pl-tiempo { display: grid; gap: 8px; justify-items: start; }
+#agenda .ct-reloj { margin: 0; font-family: 'DynaPuff', sans-serif; font-size: 1.7rem; line-height: 1.1; color: var(--rosa-texto); font-variant-numeric: tabular-nums; }
+#agenda .ct-reloj.corre { color: #2E7D52; }
+#agenda .ct-ajuste { gap: 6px; }
+#agenda .ct-min { width: 72px; }
+#agenda .ct-min-t { font-size: .85rem; color: var(--tinta-suave); }
+#agenda .pn-horas-t { margin: 0 0 4px; font-size: 1rem; }
+#agenda .pn-horas-t strong { color: var(--rosa-texto); font-family: 'DynaPuff', sans-serif; font-size: 1.3rem; }
+#agenda .pn-horas-s { margin: 0; font-size: .9rem; color: var(--tinta-suave); }
 #agenda .iv-mov-gasto { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; min-height: 44px; padding: 4px 0; cursor: pointer; } #agenda .iv-mov-gasto input { flex: none; width: 22px; height: 22px; accent-color: var(--rosa-boton); }
 
 /* Claro u oscuro (E19, 5-nov-2026): tres botones en Configuración */
