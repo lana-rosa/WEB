@@ -1,7 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
-// v83 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica el cronómetro por proyecto («Tiempo tejido») y la tarjeta «Horas tejidas» de Mi panel. SIN DESPLEGAR hasta el sí de Jennifer.
+// v83 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica el cronómetro por proyecto («Tiempo tejido») y la tarjeta «Horas tejidas» de Mi panel. Desplegada (Supabase v83).
 // v82 (12-nov-2026; revisión de la abogada): el aviso de Google ya no dice que la app no lee eventos: con Calendar se accede al calendario «Agenda para tejedoras» y sus eventos, no a los otros calendarios; aclara la revocación desde la cuenta de Google. Desplegada (Supabase v82).
 // v81 (11-nov-2026; prueba de Jennifer): el aviso de Google aclara qué se borra al desconectar Calendar y Drive. Desplegada (Supabase v81).
 // v80 (11-nov-2026; E30, texto aprobado por Jennifer): GUIA_AGENDA explica el aviso que sale antes de conectar Google Calendar o Drive. Desplegada (Supabase v80).
