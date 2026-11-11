@@ -79,3 +79,15 @@ html body .rc-sug button { color: var(--rosa-texto, #C81B6D); }
 .promo-linea .promo-etq { margin: 0; }
 .promo-enlace { background: none; border: 0; padding: 4px 0; font: inherit; font-weight: 700; font-size: .92rem; color: var(--rosa-texto); text-decoration: underline; cursor: pointer; min-height: 34px; text-align: left; }
 @media print { .herr-plegable, .tienda-plegable { display: none !important; } }
+
+/* Pestañas dentro de una hoja unida (10-nov-2026): Mi panel | Mi tablero y Ficha de proyecto | Proyectos por tejer */
+.sub-pestanas { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.sub-pestana { min-height: 44px; padding: 8px 16px; border: 1.5px solid var(--rosa-medio); border-radius: 999px; background: var(--blanco); color: var(--rosa-texto); font: inherit; font-weight: 700; font-size: .92rem; cursor: pointer; }
+.sub-pestana:hover { background: var(--rosa-suave); }
+.sub-pestana[aria-current="page"] { background: var(--rosa-boton); border-color: var(--rosa-boton); color: var(--sobre-principal); cursor: default; }
+
+/* Pedidos: elegir el producto del catálogo (11-nov-2026) */
+.ped-cat { display: block; width: 100%; max-width: 100%; min-height: 40px; margin: 0 0 6px; padding: 4px 8px; border: 1.5px dashed var(--rosa-medio); border-radius: 10px; background: var(--blanco); color: var(--rosa-texto); font: inherit; font-size: .85rem; font-weight: 600; }
+.ped-cat:disabled { color: var(--tinta-suave); }
+.ped-cat-aviso:empty { display: none; }
+.cl-nota-compras { display: block; margin-top: 4px; font-size: .8rem; color: var(--tinta-suave); }

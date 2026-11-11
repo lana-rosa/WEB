@@ -16,7 +16,7 @@ DATOS = {'ag-duena': 'Sara',
                                                   {'id': '3', 't': 'i', 'f': mes_ant.strftime('%Y-%m-%d'), 'v': '300000', 'c': 'Ventas', 'm': 'Efectivo'}]}}
 T = Prueba()
 def seccion(pg, i):
-    pg.evaluate("document.querySelectorAll('.pestana')[%d].click()" % i); pg.wait_for_timeout(500)
+    pg.evaluate("document.querySelectorAll('.pestana')[%d].click()" % (i - 1 if i >= 2 else i)); pg.wait_for_timeout(500)
     return pg.inner_text('.vs-dash') if pg.locator('.vs-dash').count() else ''
 with sync_playwright() as p:
     b = p.chromium.launch(executable_path=CHROMIUM)

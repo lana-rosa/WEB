@@ -61,3 +61,6 @@
 
 ## Aviso del lápiz (E31, 6-nov-2026) — PUBLICADO el 10-nov-2026 (#642)
 - `voz.js` expone `window.lrAviso({titulo, texto, si, no, foco, alCerrar})` (ventana accesible `.voz-aviso`); `tinta.js` la usa la primera vez que se activa «Lápiz» (`lrTintaAviso`) con un solo botón «Entendido»: informa que los trazos son parte de la agenda y viajan en las copias si se activan. Redacción propia (la abogada solo pidió la idea). Las pruebas del lápiz ponen `lrTintaAviso` antes.
+
+## Hojas unidas con pestañas (fases A y B, 10 y 11-nov-2026)
+- Índice retirado (`hoja-retirada`, alias a Mi panel). Mi tablero y Proyectos por tejer ya no tienen entrada propia en el menú: `js/agenda/pestanas-hoja.js` les pone pestañas dentro de Mi panel y de «Proyectos» (Ficha de proyecto); `EN_MENU` en `agenda-rosina.html` dice a qué entrada pertenecen para marcar la sección. Quedan 6 secciones (`PESTANAS_GRATIS = 2`; colores `data-sec`/`nth-child` renumerados). Los datos y los ids de las hojas no cambian. Para unir otro par: grupo en `GRUPOS`, quitar su enlace del menú y sumarlo a `EN_MENU`.

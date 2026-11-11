@@ -43,4 +43,22 @@ FILAS = [
  ('Diseñar mi primer patrón', 'Design my first pattern', 'Criar minha primeira receita'),
  ('Añadir parte', 'Add part', 'Adicionar parte'),
  ('Subir fotos', 'Upload photos', 'Enviar fotos'),
+ # hojas unidas con pestañas (fase C, 11-nov-2026)
+ ('Clientas y contactos', 'Clients and contacts', 'Clientes e contatos'),
+ ('Contactos (proveedoras, colegas…)', 'Contacts (suppliers, colleagues…)', 'Contatos (fornecedoras, colegas…)'),
+ # pedidos desde el catálogo (pregunta 6, 11-nov-2026)
+ ('Elegir de mi catálogo…', 'Choose from my catalog…', 'Escolher do meu catálogo…'),
+ ('Aún no hay productos en tu catálogo', 'There are no products in your catalog yet', 'Ainda não há produtos no seu catálogo'),
+ ('✔ Puse el producto y su precio. Puedes cambiarlos.', '✔ I added the product and its price. You can change them.', '✔ Coloquei o produto e o preço. Você pode alterá-los.'),
+ ('✔ Puse el producto. Ese producto no tiene precio en el catálogo: escríbelo tú.', '✔ I added the product. It has no price in the catalog: type it yourself.', '✔ Coloquei o produto. Ele não tem preço no catálogo: escreva você.'),
+ ('✔ Agregué el producto al pedido. El precio lo dejé como estaba: ajústalo tú.', '✔ I added the product to the order. I left the price as it was: adjust it yourself.', '✔ Adicionei o produto ao pedido. Deixei o preço como estava: ajuste você.'),
+ ('Elegir el producto de mi catálogo (pedido {n#})', 'Choose the product from my catalog (order {n})', 'Escolher o produto do meu catálogo (pedido {n})'),
+ ('Hojas de esta entrada', 'Pages in this entry', 'Páginas desta entrada'),
+ # «Qué me ha comprado» desde los pedidos (pregunta 7, 11-nov-2026)
+ ('Otras compras (por fuera de la agenda)', 'Other purchases (outside the planner)', 'Outras compras (fora da agenda)'),
+ ('Lo que te pide en la agenda sale solo, en «Historial de compras».', 'What she orders in the planner shows up by itself, in “Purchase history”.', 'O que ela pede na agenda aparece sozinho, no “Histórico de compras”.'),
+ # materiales por comprar → lista de compras (pregunta 8, 11-nov-2026)
+ ('Pasar a mi lista de compras', 'Move to my shopping list', 'Passar para minha lista de compras'),
+ ('Escribe primero los materiales por comprar.', 'First write the materials to buy.', 'Escreva primeiro os materiais a comprar.'),
+ ('Todo eso ya está en tu lista de compras.', 'All of that is already on your shopping list.', 'Tudo isso já está na sua lista de compras.'),
 ]

@@ -1,4 +1,19 @@
 español	inglés	portugués
+Pagos de este pedido	Payments for this order	Pagamentos deste pedido
+Registrar abono	Record payment	Registrar pagamento
+Poner lo que falta	Fill in the balance	Colocar o que falta
+Quitar este abono	Remove this payment	Remover este pagamento
+Valor del abono	Payment amount	Valor do pagamento
+Fecha del abono	Payment date	Data do pagamento
+Escribe el total de la compra para ver cuánto falta por cobrar.	Enter the purchase total to see how much is left to collect.	Escreva o total da compra para ver quanto falta receber.
+Escribe cuánto abonó (un número mayor que 0).	Enter how much was paid (a number greater than 0).	Escreva quanto foi pago (um número maior que 0).
+Primero escribe el total de la compra.	First enter the purchase total.	Primeiro escreva o total da compra.
+El abono es mayor que el total de la compra: revisa los valores.	The payment is greater than the purchase total: please check the values.	O pagamento é maior que o total da compra: confira os valores.
+Cambiaste el abono a mano y ahora es menor que la suma de los pagos de la lista: revisa los valores.	You changed the paid amount by hand and it is now lower than the sum of the payments in the list: please check the values.	Você alterou o valor pago à mão e agora ele é menor que a soma dos pagamentos da lista: confira os valores.
+Abonado {a} de {b} · Falta {c}	Paid {a} of {b} · {c} left	Pago {a} de {b} · Falta {c}
+Pagado completo · {a}	Paid in full · {a}	Pago por completo · {a}
+Anticipo anotado: {a}	Deposit recorded: {a}	Sinal registrado: {a}
+Ese abono es mayor que lo que falta por cobrar ({a}). Escribe un valor menor o igual.	That payment is greater than what is left to collect ({a}). Enter a smaller or equal amount.	Esse pagamento é maior que o que falta receber ({a}). Escreva um valor menor ou igual.
 Antes de dictar	Before you dictate	Antes de ditar
 La función «Hablar para escribir» utiliza el servicio de reconocimiento de voz disponible en su navegador o dispositivo. El audio puede ser procesado por el proveedor de dicho servicio, de acuerdo con sus propias condiciones y políticas de privacidad. Lana Rosa Crochet no recibe ni almacena directamente las grabaciones de audio. Puede utilizar esta función de manera opcional.	The “Speak to write” feature uses the speech recognition service available in your browser or device. The audio may be processed by the provider of that service, under its own terms and privacy policies. Lana Rosa Crochet does not directly receive or store audio recordings. You may use this feature on an optional basis.	A função “Falar para escrever” usa o serviço de reconhecimento de voz disponível no seu navegador ou dispositivo. O áudio pode ser processado pelo provedor desse serviço, de acordo com suas próprias condições e políticas de privacidade. A Lana Rosa Crochet não recebe nem armazena diretamente as gravações de áudio. Você pode usar esta função de forma opcional.
 Ahora no	Not now	Agora não
@@ -18,7 +33,7 @@ Cómo quitarlo	How to remove it	Como remover
 crear un calendario propio llamado «Agenda para tejedoras» y escribir solo en él.	create its own calendar called “Planner for crocheters” and write only in it.	criar uma agenda própria chamada «Agenda para crocheteiras» e escrever somente nela.
 fechas y textos de entregas y envíos de pedidos, proyectos, fichas, fechas especiales, ferias y cumpleaños de clientas.	dates and texts of order deliveries and shipments, projects, cards, special dates, fairs and clients’ birthdays.	datas e textos de entregas e envios de pedidos, projetos, fichas, datas especiais, feiras e aniversários de clientes.
 ver tus otros calendarios o eventos, leer tu correo o tus contactos, ni usar tu cuenta para nada más.	see your other calendars or events, read your email or your contacts, or use your account for anything else.	ver suas outras agendas ou eventos, ler seu e-mail ou seus contatos, nem usar sua conta para mais nada.
-«Desconectar» borra ese calendario y retira el permiso. También puedes revisarlo en	“Disconnect” deletes that calendar and removes the permission. You can also review it in	«Desconectar» apaga essa agenda e retira a permissão. Você também pode revisar em
+«Desconectar» intenta borrar ese calendario con sus eventos y retira el permiso (si antes revocaste el permiso desde tu cuenta de Google, quizá tengas que borrarlo tú). También puedes revisarlo en	“Disconnect” tries to delete that calendar with its events and removes the permission (if you revoked the permission from your Google account first, you may have to delete it yourself). You can also review it in	«Desconectar» tenta apagar essa agenda com seus eventos e retira a permissão (se você revogou a permissão antes pela sua conta do Google, talvez precise apagá-la você mesma). Você também pode revisar em
 tu cuenta de Google	your Google account	sua conta do Google
 usar una carpeta oculta de la app en tu Drive (permiso «appdata»).	use a hidden app folder in your Drive (“appdata” permission).	usar uma pasta oculta do app no seu Drive (permissão «appdata»).
 tu agenda completa, con los dibujos y sus fotos (cada foto en su propio archivo), y las últimas 5 versiones anteriores. Va directo de tu navegador a tu Drive, sin pasar por Lana Rosa.	your whole planner, with the drawings and their photos (each photo in its own file), and the last 5 previous versions. It goes straight from your browser to your Drive, without passing through Lana Rosa.	sua agenda completa, com os desenhos e suas fotos (cada foto em seu próprio arquivo), e as últimas 5 versões anteriores. Vai direto do seu navegador para o seu Drive, sem passar pela Lana Rosa.
@@ -66,6 +81,31 @@ Guardando en tu Drive…	Saving in your Drive…	Salvando no seu Drive…
 Listo: guardé «{n}» en la carpeta «Agenda para tejedoras» de tu Drive.	Done: I saved “{n}” in the “Planner for crocheters” folder of your Drive.	Pronto: salvei «{n}» na pasta «Agenda para crocheteiras» do seu Drive.
 No pudimos guardar en tu Drive ahora. Inténtalo otra vez.	We could not save in your Drive right now. Try again.	Não conseguimos salvar no seu Drive agora. Tente de novo.
 Conectado. Ya puedes guardar tu agenda como hoja de Google o una copia en tu Drive.	Connected. You can now save your planner as a Google Sheet or a backup in your Drive.	Conectado. Agora você pode salvar sua agenda como planilha do Google ou uma cópia no seu Drive.
+Copias y exportaciones	Backups and exports	Cópias e exportações
+Última copia descargada	Last backup downloaded	Última cópia baixada
+Todavía no has descargado una copia.	You have not downloaded a backup yet.	Você ainda não baixou uma cópia.
+Última copia en tu cuenta	Last backup in your account	Última cópia na sua conta
+Versiones anteriores en Drive	Previous versions in Drive	Versões anteriores no Drive
+Última exportación a Excel	Last export to Excel	Última exportação para o Excel
+Últimas fechas al calendario	Last dates sent to a calendar file	Últimas datas para o arquivo de calendário
+Al día	Up to date	Em dia
+Conviene guardar una copia	A backup is a good idea	Convém salvar uma cópia
+Estas fechas son de este aparato.	These dates are from this device.	Estas datas são deste aparelho.
+Guardar una copia ahora	Save a backup now	Salvar uma cópia agora
+Tiempo tejido	Crochet time	Tempo de crochê
+Empezar a tejer	Start crocheting	Começar a crochetar
+Parar	Stop	Parar
+Sumar	Add	Somar
+Restar	Subtract	Subtrair
+min	min	min
+Minutos	Minutes	Minutos
+Horas tejidas	Crochet hours	Horas de crochê
+Ver proyectos	See projects	Ver projetos
+esta semana	this week	esta semana
+en total	in total	no total
+Tejiendo ahora: {n}	Crocheting now: {n}	Crochetando agora: {n}
+El que más tiempo lleva: {n} ({t})	The one with the most time: {n} ({t})	O que tem mais tempo: {n} ({t})
+El cronómetro se paró solo a las 12 horas. Si hace falta, ajusta los minutos.	The timer stopped by itself after 12 hours. If needed, adjust the minutes.	O cronômetro parou sozinho após 12 horas. Se precisar, ajuste os minutos.
 Saltar al contenido	Skip to content	Ir para o conteúdo
 Lana Rosa Agenda para tejedoras	Lana Rosa Planner for crocheters	Lana Rosa Agenda para crocheteiras
 Agenda para tejedoras	Planner for crocheters	Agenda para crocheteiras
@@ -396,7 +436,7 @@ Instala la app 📲	Install the app 📲	Instale o app 📲
 📱 iPhone: Compartir → «Añadir a pantalla de inicio».	📱 iPhone: Share → “Add to Home Screen”.	📱 iPhone: Compartilhar → «Adicionar à Tela de Início».
 Pestañas y hojas 📑	Tabs and pages 📑	Abas e páginas 📑
 Al abrir ves «Mi panel» con lo más importante del mes. En el menú (en el celular, la barra de abajo) toca una sección y verás sus hojas.	When you open it you see “My dashboard” with the most important things of the month. In the menu (on the phone, the bar at the bottom) tap a section and you will see its pages.	Ao abrir você vê o «Meu painel» com o mais importante do mês. No menu (no celular, a barra de baixo) toque em uma seção e verá suas páginas.
-💎 7 días gratis con todas las hojas. Después, Mi panel, Mi tablero y Mis proyectos siguen gratis; las demás secciones desde $5.000 al mes.	💎 7 days free with all the pages. After that, My dashboard, My board and My projects stay free; the other sections start at $5,000 COP a month.	💎 7 dias grátis com todas as páginas. Depois, Meu painel, Meu quadro e Meus projetos continuam grátis; as demais seções a partir de $5.000 COP por mês.
+💎 7 días gratis con todas las hojas. Después, Mi panel (con Mi tablero) y Mis proyectos siguen gratis; las demás secciones desde $5.000 al mes.	💎 7 days free with all the pages. After that, My dashboard (with My board) and My projects stay free; the other sections start at $5,000 COP a month.	💎 7 dias grátis com todas as páginas. Depois, Meu painel (com Meu quadro) e Meus projetos continuam grátis; as demais seções a partir de $5.000 COP por mês.
 Escribe como prefieras ✍️	Write however you like ✍️	Escreva como preferir ✍️
 🎤 Dicta con la voz, ✏️ escribe a mano con lápiz o 🔍 busca cualquier texto de tu agenda.	🎤 Dictate with your voice, ✏️ write by hand with a pencil or 🔍 search any text in your planner.	🎤 Dite com a voz, ✏️ escreva à mão com lápis ou 🔍 busque qualquer texto da sua agenda.
 Si te pierdes, pregúntale a Rosina con el botón de ayuda. ¡Y a tejer!	If you get lost, ask Rosina with the help button. And let’s crochet!	Se você se perder, pergunte à Rosina com o botão de ajuda. E vamos tecer!
@@ -433,7 +473,7 @@ Todavía no has guardado una copia de tu agenda en este dispositivo. Si la borra
 ¿Borrar todo lo que escribiste en la agenda? Se elimina de inmediato y no se puede recuperar. Solo podrás volver a tenerla si guardaste una copia y la cargas después. Como tienes la copia en tu cuenta activada, también quedará vacía en tu cuenta.	Delete everything you wrote in the planner?  It is deleted immediately and cannot be recovered. You will only be able to have it again if you saved a backup and load it later.  Since you have the account backup turned on, it will also be emptied in your account.	Apagar tudo o que você escreveu na agenda?  Ela é eliminada na hora e não pode ser recuperada. Você só poderá tê-la de novo se tiver guardado uma cópia e carregá-la depois.  Como você tem a cópia na conta ativada, ela também ficará vazia na sua conta.
 Tu agenda guardada en tu cuenta (desde otro dispositivo o antes de borrar los datos del navegador) es distinta a la de este dispositivo. Aceptar = usar la de tu cuenta. Cancelar = quedarme con la de este dispositivo y reemplazar la de tu cuenta.	Your planner saved in your account (from another device or from before you cleared the browser data) is different from the one on this device.  OK = use the one from your account. Cancel = keep this device’s one and replace the one in your account.	A sua agenda guardada na conta (de outro dispositivo ou de antes de apagar os dados do navegador) é diferente da deste dispositivo.  OK = usar a da sua conta. Cancelar = ficar com a deste dispositivo e substituir a da sua conta.
 ¿Quitar de tu Google Calendar las {n#} fechas que ya no están en esta agenda? Solo se quitan las que creó la agenda; tus otros eventos no se tocan.	Remove from your Google Calendar the {n} dates that are no longer in this planner? Only the ones created by the planner are removed; your other events are not touched.	Remover do seu Google Agenda as {n} datas que não estão mais nesta agenda? Só são removidas as que a agenda criou; os seus outros eventos não são tocados.
-¿Desconectar Google Calendar? Se borrará de tu Google Calendar el calendario «Agenda para tejedoras» con sus fechas. Tu agenda en la web no se toca.	Disconnect Google Calendar? The “Planner for crocheters” calendar with its dates will be deleted from your Google Calendar. Your planner on the web is not touched.	Desconectar o Google Agenda? A agenda «Agenda para crocheteiras» com as suas datas será apagada do seu Google Agenda. A sua agenda na web não é tocada.
+¿Desconectar Google Calendar? Intentaremos eliminar de tu Google Calendar el calendario «Agenda para tejedoras» con sus eventos y retiraremos el permiso. Si ya habías revocado el permiso desde tu cuenta de Google, quizá no podamos borrarlo y tendrás que eliminarlo tú. Tu agenda en la web no se toca.	Disconnect Google Calendar? The “Planner for crocheters” calendar with its dates will be deleted from your Google Calendar. Your planner on the web is not touched.	Desconectar o Google Agenda? A agenda «Agenda para crocheteiras» com as suas datas será apagada do seu Google Agenda. A sua agenda na web não é tocada.
 Recordatorio de copia de tu agenda	Reminder to back up your planner	Lembrete de cópia da sua agenda
 Protege tu agenda: hoy solo está en este dispositivo.	Protect your planner: today it is only on this device.	Proteja a sua agenda: hoje ela está só neste dispositivo.
 Si borras el historial, cambias de celular o se llena el navegador,	If you clear your history, change phones or the browser gets full,	Se você apagar o histórico, trocar de celular ou o navegador encher,
@@ -490,7 +530,7 @@ Hoja {a#} de {b#}	Page {a} of {b}	Página {a} de {b}
 Ver las {n#} hojas ▾	See all {n} pages ▾	Ver as {n} páginas ▾
 Agenda solo para quienes tienen cuenta	Planner only for people with an account	Agenda somente para quem tem conta
 Prueba la agenda para tejedoras 7 días gratis con tu cuenta	Try the planner for crocheters free for 7 days with your account	Experimente a agenda para crocheteiras 7 dias grátis com a sua conta
-Usa todas las hojas durante 7 días: proyectos, pedidos, lanas, ventas, finanzas, tablero, calendario del año y más. Después, Inicio, Mi tablero y Mis proyectos siguen gratis y el resto es con membresía desde $5.000 al mes. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.	Use all the pages for 7 days: projects, orders, yarns, sales, finances, overview, year calendar and more. After that, Home, My overview and My projects stay free and the rest is with a membership from $5.000 a month. Sign in with your Google account or with a code sent to your email, no passwords.	Use todas as páginas durante 7 dias: projetos, pedidos, lãs, vendas, finanças, resumo, calendário do ano e mais. Depois, Início, Minha visão geral e Meus projetos continuam grátis e o resto é com assinatura a partir de $5.000 por mês. Entre com a sua conta do Google ou com um código enviado ao seu e-mail, sem senhas.
+Usa todas las hojas durante 7 días: proyectos, pedidos, lanas, ventas, finanzas, tablero, calendario del año y más. Después, Inicio y Mis proyectos siguen gratis y el resto es con membresía desde $5.000 al mes. Entra con tu cuenta de Google o con un código que te llega al correo, sin contraseñas.	Use all the pages for 7 days: projects, orders, yarns, sales, finances, overview, year calendar and more. After that, Home and My projects stay free and the rest is with a membership from $5.000 a month. Sign in with your Google account or with a code sent to your email, no passwords.	Use todas as páginas durante 7 dias: projetos, pedidos, lãs, vendas, finanças, resumo, calendário do ano e mais. Depois, Início e Meus projetos continuam grátis e o resto é com assinatura a partir de $5.000 por mês. Entre com a sua conta do Google ou com um código enviado ao seu e-mail, sem senhas.
 Continuar con Google	Continue with Google	Continuar com o Google
 o con tu correo	or with your email	ou com o seu e-mail
 Crear mi cuenta gratis	Create my free account	Criar a minha conta grátis
@@ -1941,6 +1981,20 @@ Diseñar un patrón	Design a pattern	Criar uma receita
 Diseñar mi primer patrón	Design my first pattern	Criar minha primeira receita
 Añadir parte	Add part	Adicionar parte
 Subir fotos	Upload photos	Enviar fotos
+Clientas y contactos	Clients and contacts	Clientes e contatos
+Contactos (proveedoras, colegas…)	Contacts (suppliers, colleagues…)	Contatos (fornecedoras, colegas…)
+Elegir de mi catálogo…	Choose from my catalog…	Escolher do meu catálogo…
+Aún no hay productos en tu catálogo	There are no products in your catalog yet	Ainda não há produtos no seu catálogo
+✔ Puse el producto y su precio. Puedes cambiarlos.	✔ I added the product and its price. You can change them.	✔ Coloquei o produto e o preço. Você pode alterá-los.
+✔ Puse el producto. Ese producto no tiene precio en el catálogo: escríbelo tú.	✔ I added the product. It has no price in the catalog: type it yourself.	✔ Coloquei o produto. Ele não tem preço no catálogo: escreva você.
+✔ Agregué el producto al pedido. El precio lo dejé como estaba: ajústalo tú.	✔ I added the product to the order. I left the price as it was: adjust it yourself.	✔ Adicionei o produto ao pedido. Deixei o preço como estava: ajuste você.
+Elegir el producto de mi catálogo (pedido {n#})	Choose the product from my catalog (order {n})	Escolher o produto do meu catálogo (pedido {n})
+Hojas de esta entrada	Pages in this entry	Páginas desta entrada
+Otras compras (por fuera de la agenda)	Other purchases (outside the planner)	Outras compras (fora da agenda)
+Lo que te pide en la agenda sale solo, en «Historial de compras».	What she orders in the planner shows up by itself, in “Purchase history”.	O que ela pede na agenda aparece sozinho, no “Histórico de compras”.
+Pasar a mi lista de compras	Move to my shopping list	Passar para minha lista de compras
+Escribe primero los materiales por comprar.	First write the materials to buy.	Escreva primeiro os materiais a comprar.
+Todo eso ya está en tu lista de compras.	All of that is already on your shopping list.	Tudo isso já está na sua lista de compras.
 Ventas y gastos	Sales and expenses	Vendas e despesas
 Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.	Record all the money of your business here, just once: what you sell, what you spend and what you save. You can write it the way you would say it.	Anote aqui todo o dinheiro do seu negócio, uma só vez: o que você vende, o que gasta e o que poupa. Você pode escrever como falaria.
 Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio	Example (write it in Spanish): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio	Exemplo (escreva em espanhol): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio

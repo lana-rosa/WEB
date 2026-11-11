@@ -34,7 +34,7 @@ Cada artículo (desde el 17-oct-2026): archivo `herramientas/revista/articulos/<
 
 ## Temas para la Mercería y para Academy (agregados el 6-oct-2026)
 La Revista ya se puede ver por casa (`revista.html?casa=merceria` y `?casa=academy`). Hoy la Mercería tiene 2 artículos y Academy 4; estos temas llenan lo que falta (solo con información real, sin inventar):
-- **Mercería:** cómo elegir la lana para un amigurumi (algodón, acrílico, chenille: qué cambia en el tejido); qué aguja de crochet usar con cada grosor de hilo; cuántos ovillos necesito para un amigurumi de 13 cm; ~~colores que combinan (con las paletas de Rosina)~~ (publicado 14-oct); cómo guardar y cuidar la lana.
+- **Mercería:** cómo elegir la lana para un amigurumi (algodón, acrílico, chenille: qué cambia en el tejido); qué aguja de crochet usar con cada grosor de hilo; cuántos ovillos necesito para un amigurumi de 13 cm; ~~colores que combinan (con las paletas de Rosina)~~ (publicado 14-oct); ~~cómo guardar y cuidar la lana~~ (publicado 11-nov).
 - **Academy:** qué se aprende en el taller "Desconecta para Conectar"; los 5 puntos básicos del crochet; errores comunes de principiantes y cómo arreglarlos; cómo leer un patrón (con el glosario de Rosina).
 
 ## Serie «Tejer para vender» (para después del 14-dic-2026; agregada el 10-nov-2026 por pedido de Jennifer)

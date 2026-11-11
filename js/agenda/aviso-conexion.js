@@ -11,12 +11,12 @@
     calendar: {
       titulo: 'Antes de conectar Google Calendar',
       filas: [
-        ['Qué datos se consultan', 'Solo la dirección de tu cuenta de Google, para mostrarte con qué cuenta conectaste. No leemos tus calendarios, tus eventos ni el contenido de tu correo.'],
+        ['Qué datos se consultan', 'Consultamos la dirección de tu cuenta de Google para mostrarte con qué cuenta conectaste. No consultamos tus otros calendarios ni los eventos que ya tienes en ellos. La aplicación puede acceder al calendario «Agenda para tejedoras» que crea y a los eventos que contiene, para sincronizarlos y mantenerlos actualizados.'],
         ['Qué se crea o se guarda', 'Se crea en tu Google un calendario aparte llamado «Agenda para tejedoras» y se escriben en él las fechas de tu agenda: entregas y envíos de pedidos, proyectos, fichas de proyecto, fechas especiales, ferias y cumpleaños de clientas (con títulos y detalles como cliente, pedido o total). Esos textos pasan por nuestro servidor solo para llegar a Google y no los guardamos. En Lana Rosa guardamos tu permiso de acceso (cifrado), la dirección de tu cuenta de Google, el identificador del calendario y una lista de lo ya enviado para actualizar sin duplicar.'],
         ['Para qué', 'Para que veas tus fechas en tu Google Calendar y recibas el recordatorio, y para actualizarlas sola cuando cambies tu agenda.'],
-        ['Qué permiso pide', 'Crear un calendario propio y escribir solo en él, y ver la dirección de tu cuenta de Google. No puede leer ningún calendario, evento ni mensaje tuyo, ni usar tu cuenta para nada más.'],
+        ['Qué permiso pide', 'Permite crear un calendario secundario propio y ver, crear, modificar y eliminar los eventos de ese calendario. También permite consultar la dirección de tu cuenta de Google. No permite consultar tus otros calendarios ni los eventos que tienes en ellos.'],
         ['Cómo desconectar', 'Cuando quieras, con el botón «Desconectar» de la tarjeta de Google Calendar en ⚙️ Configuración. También puedes quitar el permiso en los permisos de tu cuenta de Google.'],
-        ['Qué pasa después', 'Al desconectar se borra de tu Google el calendario «Agenda para tejedoras» con sus fechas, retiramos el permiso y borramos lo que guardábamos de tu conexión. Tu agenda en la web no se toca.']
+        ['Qué pasa después', 'Al desconectar no solo retiramos el permiso: también intentamos eliminar de tu Google el calendario «Agenda para tejedoras» con todos sus eventos, y borramos lo que guardábamos de tu conexión. Si antes revocas el permiso desde tu cuenta de Google, la aplicación puede perder la capacidad de borrar ese calendario: en ese caso tendrás que eliminarlo tú desde Google Calendar. Tu agenda en la web no se toca.']
       ],
       acepto: 'Entiendo lo anterior y autorizo conectar mi Google Calendar con mi agenda.',
       boton: 'Conectar Google Calendar'
@@ -24,12 +24,12 @@
     drive: {
       titulo: 'Antes de conectar Google Drive',
       filas: [
-        ['Qué datos se consultan', 'Solo la dirección de tu cuenta de Google y el archivo de tu agenda que esta app guardó en su carpeta oculta. No leemos ningún otro archivo de tu Drive.'],
+        ['Qué datos se consultan', 'Consultamos la dirección de tu cuenta de Google y accedemos a los archivos que esta aplicación guarda en su carpeta oculta de datos: tu agenda, las fotos de tus dibujos y las versiones anteriores que se conservan como respaldo. No accedemos a tus otros archivos de Google Drive.'],
         ['Qué se crea o se guarda', 'En una carpeta oculta de tu Drive se guarda un archivo con tu agenda, un archivo aparte por cada foto de tus dibujos y hasta 5 versiones anteriores de la agenda. Los datos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y la dirección de tu cuenta de Google.'],
         ['Para qué', 'Para ver la misma agenda en tu celular, tu tablet y tu computador, con copias para volver atrás si algo se mezcla mal.'],
         ['Qué permiso pide', 'Usar solo la carpeta oculta de esta app en tu Drive. No puede ver, abrir ni borrar tus otros archivos, y tampoco verás esa carpeta para abrirla.'],
         ['Cómo desconectar', 'Cuando quieras, con «Desconectar» (quita el permiso) o «Borrar mi agenda de Drive» (borra la copia y las versiones y desconecta), en la tarjeta de Google Drive de ⚙️ Configuración. También puedes quitar el permiso en los permisos de tu cuenta de Google.'],
-        ['Qué pasa después', 'Con «Desconectar» tu agenda sigue funcionando en este aparato y lo guardado en tu Drive se queda ahí hasta que lo borres. Con «Borrar mi agenda de Drive» se borra todo lo guardado en tu Drive. En ambos casos retiramos el permiso y borramos lo que guardábamos de tu conexión.']
+        ['Qué pasa después', 'Si desconectas la aplicación, retiramos el permiso y borramos los datos de conexión que conservábamos en Lana Rosa. La copia que ya está guardada en la carpeta de datos de la aplicación permanece allí. Para eliminarla, utiliza la opción «Borrar mi agenda de Drive» antes de desconectar. Tu agenda sigue funcionando en este aparato.']
       ],
       acepto: 'Entiendo lo anterior y autorizo guardar mi agenda en la carpeta oculta de mi Google Drive.',
       boton: 'Conectar Google Drive'
@@ -40,11 +40,11 @@
         ['Qué datos se consultan', 'Solo la dirección de tu cuenta de Google, para mostrarte con qué cuenta conectaste. No leemos tus archivos de Drive.'],
         ['Qué se crea o se guarda', 'Solo cuando tú lo pides con un botón: se crea la carpeta «Agenda para tejedoras» en tu Drive y en ella se guarda tu agenda como hoja de cálculo de Google (Google Sheets) o una copia de seguridad (esta puede incluir tus dibujos y sus fotos, y los datos que hayas anotado de tus clientas). Los archivos van directo de tu navegador a tu Drive: no pasan por Lana Rosa. Nunca se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre. En Lana Rosa guardamos solo tu permiso de acceso (cifrado) y la dirección de tu cuenta de Google.'],
         ['Para qué', 'Para que tengas tu agenda como hoja de cálculo de Google, lista para abrir y editar sin descargar nada, y tus copias de seguridad en tu propio Drive, donde tú los puedes abrir, mover y compartir.'],
-        ['Qué permiso pide', 'Crear y ver solo los archivos y la carpeta que esta app crea. No puede ver, abrir ni borrar tus otros archivos o carpetas de Drive.'],
+        ['Qué permiso pide', 'Permite crear y gestionar los archivos y la carpeta que esta aplicación crea en tu Drive. No permite acceder a tus demás archivos o carpetas, salvo aquellos que decidas seleccionar o compartir expresamente con la aplicación.'],
         ['Cómo desconectar', 'Cuando quieras, con el botón «Desconectar» de la tarjeta «Guardar informes y copias en tu Drive» en ⚙️ Configuración. También puedes quitar el permiso en los permisos de tu cuenta de Google.'],
         ['Qué pasa después', 'Al desconectar retiramos el permiso y borramos lo que guardábamos de tu conexión. Lo que ya guardaste en tu carpeta de Drive se queda ahí, es tuyo y lo puedes borrar cuando quieras. Tu agenda en la web no se toca.']
       ],
-      acepto: 'Entiendo lo anterior y autorizo guardar en mi Google Drive, solo cuando yo lo pida, mi agenda como hoja de cálculo de Google y las copias de seguridad.',
+      acepto: 'Entiendo lo anterior y autorizo que, cuando yo lo solicite, la aplicación guarde en mi Google Drive mi agenda como hoja de cálculo y las copias de seguridad que genere.',
       boton: 'Conectar Google Drive'
     }
   };
@@ -54,7 +54,7 @@
     dlg = el('dialog', 'modal-membresia no-imprimir'); dlg.id = 'modal-conexion'; dlg.setAttribute('data-no-traducir', ''); dlg.setAttribute('aria-labelledby', 'mc-titulo');
     var x = el('button', 'mm-cerrar', '✕'); x.type = 'button'; x.id = 'mc-cerrar'; x.setAttribute('aria-label', 'Cerrar');
     var h = el('h2'); h.id = 'mc-titulo';
-    var est = el('p', 'mm-estado', 'Es gratis y opcional: tú decides si lo conectas. Esta autorización es aparte de la que diste al crear tu cuenta.');
+    var est = el('p', 'mm-estado', 'Conectar este servicio es gratis y opcional: tú decides si quieres hacerlo. Esta autorización es independiente de la que otorgaste al crear tu cuenta.');
     var ul = el('ul', 'mn-lista'); ul.id = 'mc-lista';
     var acc = el('p', 'mc-acceso'); acc.id = 'mc-acceso';
     var lab = el('label', 'mm-acepto'), chk = el('input'); chk.type = 'checkbox'; chk.id = 'mc-acepto'; var sp = el('span'); sp.id = 'mc-acepto-texto'; lab.appendChild(chk); lab.appendChild(sp);

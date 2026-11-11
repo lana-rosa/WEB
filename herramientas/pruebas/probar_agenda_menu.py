@@ -18,7 +18,7 @@ with sync_playwright() as p:
     T.v('la elección se recuerda al recargar', est(pg) == 'oculto')
     pg.click('#menu-abrir'); pg.wait_for_timeout(300)
     T.v('al mostrar vuelve al menú abierto', est(pg) == 'abierto' and pg.is_visible('.pestanas-agenda'))
-    T.v('los 7 botones de sección siguen siendo 7', pg.locator('.pestana').count() == 7)
+    T.v('los 6 botones de sección siguen siendo 6', pg.locator('.pestana').count() == 6)
     pg.click('.pestana >> nth=4'); pg.wait_for_timeout(400)
     T.v('el menú sigue funcionando (abre la vista de sección)', pg.evaluate("!document.getElementById('vista-seccion').hidden"))
     T.v('sin errores de JavaScript', not pg.errs, pg.errs)

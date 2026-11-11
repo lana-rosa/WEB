@@ -56,7 +56,7 @@ with sync_playwright() as p:
     pg = abrir(ctx, '', 2000, config=False)
     CON = open(os.path.join(os.path.dirname(__file__), '..', 'agenda-oscuro', 'fotos.py'), encoding='utf-8').read().split('CONTRASTE = r"""')[1].split('"""')[0]
     mal = []
-    for i in range(7):
+    for i in range(6):
         pg.evaluate("document.querySelectorAll('.pestana')[%d].click()" % i); pg.wait_for_timeout(300)
         mal += [(i, x['t'], x['cr']) for x in pg.evaluate(CON)]
     for h in ('panel-agenda', 'control-pedidos', 'fin-resumen', 'inventario-lanas', 'planeador-dia', 'portada-agenda'):
