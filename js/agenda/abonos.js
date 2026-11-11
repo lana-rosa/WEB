@@ -39,14 +39,14 @@
       td.appendChild(el('p', 'pl-t', 'Pagos de este pedido'));
       var res = el('p', 'pd-res'); res.setAttribute('data-no-traducir', '');
       if (tot === null) { res.className = 'pd-res info'; res.removeAttribute('data-no-traducir'); res.textContent = T('Escribe el total de la compra para ver cuánto falta por cobrar.'); }
-      else if (falta <= 0 && tot > 0) { res.className = 'pd-res ok'; res.textContent = '✓ Pagado completo · ' + pesos(abon); }
-      else res.textContent = 'Abonado ' + pesos(abon) + ' de ' + pesos(tot) + ' · Falta ' + pesos(falta);
+      else if (falta <= 0 && tot > 0) { res.className = 'pd-res ok'; res.textContent = T('✓ Pagado completo · ' + pesos(abon)); }
+      else res.textContent = T('Abonado ' + pesos(abon) + ' de ' + pesos(tot) + ' · Falta ' + pesos(falta));
       td.appendChild(res);
       if (tot !== null && abon > tot) { var ex = el('p', 'iv-aviso mal', 'El abono es mayor que el total de la compra: revisa los valores.'); ex.setAttribute('role', 'alert'); td.appendChild(ex); }
       if (suma(k) > abon) { var ds = el('p', 'iv-aviso mal', 'Cambiaste el abono a mano y ahora es menor que la suma de los pagos de la lista: revisa los valores.'); ds.setAttribute('role', 'alert'); td.appendChild(ds); }
       if (base > 0 || items.length) {
         var ul = el('ul', 'pd-lista'); ul.setAttribute('data-no-traducir', '');
-        if (base > 0) { var l0 = el('li'); l0.appendChild(el('span', '', 'Anticipo anotado: ' + pesos(base))); ul.appendChild(l0); }
+        if (base > 0) { var l0 = el('li'); l0.appendChild(el('span', '', T('Anticipo anotado: ' + pesos(base)))); ul.appendChild(l0); }
         items.forEach(function (it) {
           var li = el('li'); li.appendChild(el('span', '', (fechaCorta(it.f) ? fechaCorta(it.f) + ' · ' : '') + pesos(it.v)));
           var q = el('button', 'enlace-copia', '✕'); q.type = 'button'; q.setAttribute('aria-label', T('Quitar este abono'));
