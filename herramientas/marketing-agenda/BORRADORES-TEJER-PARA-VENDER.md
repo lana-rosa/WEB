@@ -15,12 +15,14 @@ Encargo del Orquestador (10-nov). Textos **propios** de Lana Rosa; no se copia l
 Nota de cuidado: ninguna lámina promete que se venda; es una forma de decidir con información.
 
 ## R5 · Reel «Lo que me encanta vs. lo que se vende» (≈25 s, con 2 piezas reales del taller)
-- **0–2 s gancho (pieza A en mano):** «Esta me encanta… pero no es la que más sale.» [Jennifer elige la pieza real]
+Datos que dio Jennifer (11-nov): **Pieza A** = muñecas grandes con muchos detalles y ropa intercambiable: lo que más le encanta tejer, pero por su precio no son las que más salen. **Pieza B** = amigurumis pequeños: lo que más se teje, económicos y de muchos estilos.
+- **0–2 s gancho (muñeca grande en mano):** «Esta es la que más me encanta tejer… y no es la que más sale.»
 - **2–5 s intensificador:** «Y esto me enseñó a hacerme 4 preguntas.»
-- **5–11 s (pieza B):** «Esta, en cambio, la repito cada semana: la usan, la regalan y la puedo hacer en pocas horas.» [confirmar con datos reales del taller; no inventar]
-- **11–19 s:** texto en pantalla con R, O, S, A, una letra por toma.
-- **19–25 s CTA:** «¿Cuál tejerías tú? Cuéntanos.»
-- Pedirle a Jennifer: nombre de las 2 piezas y una frase verdadera de cada una. Sin cifras de ventas.
+- **5–10 s (muñeca, mostrar la ropa intercambiable):** «Muchos detalles, ropa que se cambia. Por su precio, no es la que más se lleva.»
+- **10–15 s (amigurumis pequeños, varios estilos):** «En cambio, estos son los que más tejemos: económicos y de muchos estilos.»
+- **15–21 s:** texto en pantalla R, O, S, A, una letra por toma, sin números de ventas.
+- **21–25 s CTA:** «¿Cuál tejerías tú primero? Cuéntanos.»
+- Cuidado: «no es la que más sale» y «la que más tejemos» vienen de Jennifer; no agregar cifras ni afirmar que «se venden mejor». Falta grabar: foto o video de la muñeca y de 3 o 4 amigurumis pequeños.
 
 ## S5 · Historias con encuesta (3 stories)
 1. Encuesta: «¿Qué te cuesta más: elegir qué tejer, poner el precio o mostrarlo?» (Elegir qué tejer / Poner el precio / Mostrarlo).
@@ -31,4 +33,4 @@ Nota de cuidado: ninguna lámina promete que se venda; es una forma de decidir c
 Del 15-dic en adelante, después de la apertura: C5 (semana del 15-dic), S5 (mismo día) y R5 (semana siguiente). Si algo de la web aún no existe, se publica sin enlace y se dice «muy pronto».
 
 ## Pendiente de Jennifer
-- [ ] Aprobar textos. [ ] Elegir las 2 piezas reales del taller y tomar fotos o video. [ ] Confirmar si la tarjeta ROSA y la calculadora ya estarán en el Rincón.
+- [ ] Aprobar textos. [x] Piezas elegidas (11-nov). [ ] Tomar fotos o video de la muñeca y de los amigurumis pequeños. [ ] Confirmar si la tarjeta ROSA y la calculadora ya estarán en el Rincón.
