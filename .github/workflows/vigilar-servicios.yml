@@ -1,0 +1,47 @@
+# Vigilante de servicios (11-nov-2026): cada 10 minutos revisa que la web responda y, si algo falla dos veces seguidas, avisa por correo a contacto@.
+# Revisa: la página, Rosina (rosina-web), el pago (crear-pago-wompi), el webhook de Wompi y la carga de productos de la tienda.
+# No crea pedidos ni gasta Rosina: usa llamadas de solo consulta. Secreto necesario en GitHub → Settings → Secrets → Actions: ALERTA_TOKEN
+# (el mismo valor que el secreto ALERTA_TOKEN de las Edge Functions de Supabase). Si falla, el flujo queda en rojo y GitHub también avisa a quien tenga activados los correos de Actions.
+name: Vigilar servicios
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vigilar-servicios
+  cancel-in-progress: true
+jobs:
+  vigilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      SB: https://ngjoognzvehwjtpqwrqe.supabase.co
+      KEY: sb_publishable_2TQ_piaHlSMHa79zjmOOXg_6bEwgkKD   # llave pública de Supabase (la misma que usa la web)
+      ALERTA_TOKEN: ${{ secrets.ALERTA_TOKEN }}
+    steps:
+      - name: Revisar servicios
+        shell: bash
+        run: |
+          revisar() {   # imprime «OK» o el motivo del fallo
+            local c
+            c=$(curl -s -o /tmp/s.txt -w '%{http_code}' -m 20 https://lanarosacrochet.com/) ; [ "$c" = "200" ] || echo "Página principal: respondió $c"
+            c=$(curl -s -o /tmp/r.txt -w '%{http_code}' -m 20 -X OPTIONS -H 'Origin: https://lanarosacrochet.com' -H 'Access-Control-Request-Method: POST' "$SB/functions/v1/rosina-web") ; { [ "$c" = "204" ] || [ "$c" = "200" ]; } || echo "Rosina (rosina-web): respondió $c"
+            c=$(curl -s -o /tmp/p.txt -w '%{http_code}' -m 20 -X POST -H 'Content-Type: application/json' -H "apikey: $KEY" -d '{"accion":"estado"}' "$SB/functions/v1/crear-pago-wompi") ; { [ "$c" = "200" ] && grep -q '"modo"' /tmp/p.txt; } || echo "Pago (crear-pago-wompi): respondió $c"
+            c=$(curl -s -o /tmp/w.txt -w '%{http_code}' -m 20 -X POST -H 'Content-Type: application/json' -d '{}' "$SB/functions/v1/wompi-webhook") ; { [ "$c" = "200" ] || [ "$c" = "400" ] || [ "$c" = "401" ]; } || echo "Webhook de Wompi: respondió $c"
+            c=$(curl -s -o /tmp/t.txt -w '%{http_code}' -m 25 -X POST -H 'Content-Type: application/json' -H "apikey: $KEY" -H "Authorization: Bearer $KEY" -d '{}' "$SB/rest/v1/rpc/obtener_tienda_web") ; { [ "$c" = "200" ] && [ "$(wc -c < /tmp/t.txt)" -gt 200 ]; } || echo "Productos de la tienda: respondió $c o vino vacío"
+          }
+          F1=$(revisar)
+          if [ -z "$F1" ]; then echo "Todo respondió bien."; exit 0; fi
+          echo "Primera revisión con fallos:"; echo "$F1"; sleep 90
+          F2=$(revisar)
+          if [ -z "$F2" ]; then echo "Fue un fallo pasajero."; exit 0; fi
+          echo "Segunda revisión con fallos:"; echo "$F2"
+          JSON=$(printf '%s\n' "$F2" | python3 -c 'import sys,json; f=[{"nombre":l.split(": ",1)[0],"detalle":(l.split(": ",1)+[""])[1]} for l in sys.stdin.read().splitlines() if l.strip()]; print(json.dumps({"fallos":f}))')
+          if [ -n "$ALERTA_TOKEN" ]; then
+            curl -s -m 25 -X POST -H 'Content-Type: application/json' -H "apikey: $KEY" -H "x-alerta-token: $ALERTA_TOKEN" -d "$JSON" "$SB/functions/v1/avisar-caida" || true; echo
+          else
+            echo "::warning::Falta el secreto ALERTA_TOKEN: no se pudo mandar el correo (el flujo queda en rojo igual)."
+          fi
+          exit 1
