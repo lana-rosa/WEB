@@ -59,7 +59,7 @@ def main():
                     pg.wait_for_timeout(450)
                     pg.screenshot(path='%s/%s-%s-%s.png' % (out, n, modo, nombre), full_page=completa, clip=None) if False else pg.screenshot(path='%s/%s-%s-%s.png' % (out, n, modo, nombre), full_page=completa)
                     fallas = pg.evaluate(CONTRASTE); resumen.setdefault((modo, nombre), {})[n] = fallas
-                for i in range(7):
+                for i in range(6):
                     pg.evaluate("document.querySelectorAll('.pestana')[%d].click()" % i); foto('seccion%d' % i)
                 for hid in hojas:
                     pg.evaluate("window.lrIrAHoja('%s')" % hid); foto(hid)
