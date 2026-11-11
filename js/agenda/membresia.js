@@ -1,6 +1,6 @@
 /* Agenda para tejedoras: prueba gratis y membresía (29-oct-2026, pedido de Sara).
    · Toda cuenta tiene la agenda completa 7 días gratis (los calcula la base: `mi_membresia()` devuelve `prueba_hasta`).
-   · Pasada la prueba quedan gratis las 3 primeras pestañas (Inicio, Mi tablero y Mis proyectos); las demás hojas se bloquean con un candado
+   · Pasada la prueba quedan gratis las 2 primeras pestañas (Inicio, que incluye Mi tablero, y Mis proyectos); las demás hojas se bloquean con un candado
      hasta que la persona active la membresía: $5.000 al mes o $45.000 al año, pago con Wompi (`crear-pago-wompi`, accion «membresia»; el precio lo fija el servidor).
    · Es un candado de la página (la agenda es estática): sirve para ordenar el servicio, no es una caja fuerte. Lo escrito siempre sigue guardado en el dispositivo.
    · Mientras no se sabe el estado (primera visita sin red) no se bloquea nada. Sin sesión no se hace nada (la agenda ya pide cuenta).
@@ -8,7 +8,7 @@
 import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 (function () {
   var MEMBRESIA_ACTIVA = true;
-  var PESTANAS_GRATIS = 3;                 // Inicio, Mi tablero y Mis proyectos
+  var PESTANAS_GRATIS = 2;                 // Inicio (con Mi tablero dentro) y Mis proyectos (10-nov-2026: Mi tablero ya no es una pestaña aparte)
   var HOJAS_SIEMPRE_GRATIS = ['fin-movimientos'];   // «Ventas y gastos» (decisión de Jennifer, 4-nov-2026): anotar las ventas y los gastos es gratis; el resumen, las gráficas y el informe son de la membresía
   var PRECIO_MES = '$5.000', PRECIO_ANIO = '$45.000';
   var CLAVE = 'lrMembresia';
@@ -47,8 +47,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 
   function textoTarjeta(a) {
     if (a === 'miembro') return '💎 <strong>Tu membresía está activa</strong> hasta el ' + fecha(estado.vence) + '. Tienes toda la agenda.';
-    if (a === 'prueba') return '🎁 <strong>Prueba gratis:</strong> tienes toda la agenda hasta el ' + fecha(estado.prueba_hasta) + ' (' + (diasQue(estado.prueba_hasta) === 1 ? 'último día' : 'quedan ' + diasQue(estado.prueba_hasta) + ' días') + '). Después, Inicio, Mi tablero y Mis proyectos siguen gratis y el resto es con membresía desde ' + PRECIO_MES + ' al mes.';
-    return '🔒 <strong>Tu prueba gratis terminó.</strong> Inicio, Mi tablero y Mis proyectos siguen gratis. Con la membresía recuperas Materiales, Emprendimiento, Finanzas del negocio y Fechas y bienestar desde ' + PRECIO_MES + ' al mes.';
+    if (a === 'prueba') return '🎁 <strong>Prueba gratis:</strong> tienes toda la agenda hasta el ' + fecha(estado.prueba_hasta) + ' (' + (diasQue(estado.prueba_hasta) === 1 ? 'último día' : 'quedan ' + diasQue(estado.prueba_hasta) + ' días') + '). Después, Inicio y Mis proyectos siguen gratis y el resto es con membresía desde ' + PRECIO_MES + ' al mes.';
+    return '🔒 <strong>Tu prueba gratis terminó.</strong> Inicio y Mis proyectos siguen gratis. Con la membresía recuperas Materiales, Emprendimiento, Finanzas del negocio y Fechas y bienestar desde ' + PRECIO_MES + ' al mes.';
   }
   function tarjeta(id, antes) {
     var t = $(id); if (t) return t;
@@ -92,7 +92,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var HTML = '<button type="button" class="mm-cerrar" id="mm-cerrar" aria-label="Cerrar">✕</button>' +
     '<h2 id="mm-titulo">Agenda completa 💎</h2><p class="mm-estado" id="mm-estado"></p>' +
     '<ul class="mm-lista"><li>Mis materiales: inventario de lanas, agujas y lista de compras</li><li>Mi emprendimiento: pedidos con saldos, clientas, ventas, catálogo, ferias y gastos</li><li>Finanzas del negocio: ingresos, gastos, presupuesto, deudas, tarjetas y análisis del negocio</li><li>Fechas y bienestar: calendario del año, fechas especiales, diario y pausas activas</li></ul>' +
-    '<p class="mm-gratis">Siempre gratis con tu cuenta: Inicio, Mi tablero y Mis proyectos.</p>' +
+    '<p class="mm-gratis">Siempre gratis con tu cuenta: Inicio (con Mi tablero) y Mis proyectos.</p>' +
     '<div class="mm-planes" role="radiogroup" aria-label="Plan de la membresía">' +
     '<label class="mm-plan"><input type="radio" name="mm-plan" value="mensual"><span><strong>Mensual</strong><em>' + PRECIO_MES + '</em><small>al mes</small></span></label>' +
     '<label class="mm-plan"><input type="radio" name="mm-plan" value="anual" checked><span><strong>Anual</strong><em>' + PRECIO_ANIO + '</em><small>al año · ahorras $15.000</small><b>3 meses gratis</b></span></label></div>' +

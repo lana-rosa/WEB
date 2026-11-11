@@ -8,7 +8,7 @@
     { t: '¡Bienvenida a tu agenda! 🌿', x: 'Te muestro en un minuto lo más importante. Puedes saltar el tutorial cuando quieras y volver a verlo desde ⚙️ Configuración.' },
     { t: 'Configuración ⚙️', x: 'Aquí pones tu nombre y tu color, y guardas tu agenda: en un archivo, en tu cuenta o en tu Google Drive para verla igual en todos tus aparatos. También puedes conectar Google Calendar. Todo es opcional.', sel: ['#agenda-config'], abrir: true },
     { t: 'Instala la app 📲', x: 'Ábrela desde su propio ícono y también sin internet.\n💻 Computador y Android: «Instalar» en la barra del navegador.\n📱 iPhone: Compartir → «Añadir a pantalla de inicio».', sel: ['#instalar-agenda'] },
-    { t: 'Pestañas y hojas 📑', x: 'Al abrir ves «Mi panel» con lo más importante del mes. En el menú (en el celular, la barra de abajo) toca una sección y verás sus hojas.\n💎 7 días gratis con todas las hojas. Después, Mi panel, Mi tablero y Mis proyectos siguen gratis; las demás secciones desde $5.000 al mes.', sel: ['#pestanas-agenda'] },
+    { t: 'Pestañas y hojas 📑', x: 'Al abrir ves «Mi panel» con lo más importante del mes. En el menú (en el celular, la barra de abajo) toca una sección y verás sus hojas.\n💎 7 días gratis con todas las hojas. Después, Mi panel (con Mi tablero) y Mis proyectos siguen gratis; las demás secciones desde $5.000 al mes.', sel: ['#pestanas-agenda'] },
     { t: 'Escribe como prefieras ✍️', x: '🎤 Dicta con la voz, ✏️ escribe a mano con lápiz o 🔍 busca cualquier texto de tu agenda.\nSi te pierdes, pregúntale a Rosina con el botón de ayuda. ¡Y a tejer!', sel: ['.buscar-fijo'], final: true }
   ];
   var q = new URLSearchParams(location.search).get('tour'), paso = 0, capa, foco, tarjeta, abrioPanel = false, activo = false;
