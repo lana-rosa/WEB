@@ -35,7 +35,7 @@
       if (!td) { td = el('td', 'pd-abonos no-imprimir'); td.setAttribute('data-col', 'pagos'); var ref = tr.querySelector('td[data-col="saldo"]'); tr.insertBefore(td, ref ? ref.nextSibling : tr.querySelector('td.celda-cal')); }
       var ac = document.activeElement; if (ac && ac.tagName === 'INPUT' && td.contains(ac)) return;
       td.textContent = '';
-      var tot = total(k), abon = num(val(k, 'abono')) || 0, falta = tot === null ? null : tot - abon, items = leer(k), base = Math.max(0, abon - suma(k)), clave = 'p' + k;
+      var tot = total(k), abon = Math.max(0, num(val(k, 'abono')) || 0), falta = tot === null ? null : tot - abon, items = leer(k), base = Math.max(0, abon - suma(k)), clave = 'p' + k;
       td.appendChild(el('p', 'pl-t', 'Pagos de este pedido'));
       var res = el('p', 'pd-res'); res.setAttribute('data-no-traducir', '');
       if (tot === null) { res.className = 'pd-res info'; res.removeAttribute('data-no-traducir'); res.textContent = T('Escribe el total de la compra para ver cuánto falta por cobrar.'); }

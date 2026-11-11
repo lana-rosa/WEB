@@ -1,5 +1,5 @@
 /* Agenda para tejedoras: control de pedidos con cuentas (27-oct-2026).
-   Calcula solo el total de la compra (cantidad × valor unidad + envío) y el saldo pendiente, y resume lo que se debe. Desde el 29-oct-2026 «Valor total» no se ve (era lo mismo que «Total compra»):
+   Calcula solo el total de la compra (cantidad × valor unidad + envío) y el saldo pendiente (nunca menos de $0: si el abono supera el total, abonos.js avisa), y resume lo que se debe. Desde el 29-oct-2026 «Valor total» no se ve (era lo mismo que «Total compra»):
    queda oculto en `ag-pN-precio` con el valor de los productos sin envío, para no perder lo ya guardado ni lo que leen el calendario, el tablero y las deudas.
    También pone el enlace de WhatsApp debajo de cada teléfono (pedidos, clientas y contactos).
    Clienta automática (29-oct-2026, pedido de Sara): al terminar de escribir el nombre (o el teléfono) de un pedido, la clienta queda registrada en la hoja de clientas
@@ -27,7 +27,7 @@
       if (sub !== null) cambio = poner(campo(r, 'totalcompra'), pesos(sub + envio)) || cambio;
     }
     var compra = num(campo(r, 'totalcompra').value);
-    if (compra !== null) cambio = poner(campo(r, 'saldo'), pesos(compra - (num(campo(r, 'abono').value) || 0))) || cambio;
+    if (compra !== null) cambio = poner(campo(r, 'saldo'), pesos(Math.max(0, compra - (num(campo(r, 'abono').value) || 0)))) || cambio;
     return cambio;
   }
   function resumen() {
