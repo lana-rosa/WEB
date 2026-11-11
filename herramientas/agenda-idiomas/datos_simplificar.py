@@ -54,4 +54,7 @@ FILAS = [
  ('✔ Agregué el producto al pedido. El precio lo dejé como estaba: ajústalo tú.', '✔ I added the product to the order. I left the price as it was: adjust it yourself.', '✔ Adicionei o produto ao pedido. Deixei o preço como estava: ajuste você.'),
  ('Elegir el producto de mi catálogo (pedido {n#})', 'Choose the product from my catalog (order {n})', 'Escolher o produto do meu catálogo (pedido {n})'),
  ('Hojas de esta entrada', 'Pages in this entry', 'Páginas desta entrada'),
+ # «Qué me ha comprado» desde los pedidos (pregunta 7, 11-nov-2026)
+ ('Otras compras (por fuera de la agenda)', 'Other purchases (outside the planner)', 'Outras compras (fora da agenda)'),
+ ('Lo que te pide en la agenda sale solo, en «Historial de compras».', 'What she orders in the planner shows up by itself, in “Purchase history”.', 'O que ela pede na agenda aparece sozinho, no “Histórico de compras”.'),
 ]

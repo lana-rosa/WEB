@@ -90,3 +90,4 @@ html body .rc-sug button { color: var(--rosa-texto, #C81B6D); }
 .ped-cat { display: block; width: 100%; max-width: 100%; min-height: 40px; margin: 0 0 6px; padding: 4px 8px; border: 1.5px dashed var(--rosa-medio); border-radius: 10px; background: var(--blanco); color: var(--rosa-texto); font: inherit; font-size: .85rem; font-weight: 600; }
 .ped-cat:disabled { color: var(--tinta-suave); }
 .ped-cat-aviso:empty { display: none; }
+.cl-nota-compras { display: block; margin-top: 4px; font-size: .8rem; color: var(--tinta-suave); }
