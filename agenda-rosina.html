@@ -1203,7 +1203,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#lo-que-aprendi" data-hoja="lo-que-aprendi">🌟 Lo que aprendí</a>
           <a href="#recursos-rosina" data-hoja="recursos-rosina">📖 Recursos de Rosina</a>
           <a href="#mis-ideas" data-hoja="mis-ideas">💭 Mis ideas</a>
-          <a href="#disena-patron" data-hoja="disena-patron">✏️ Diseña tu patrón</a>
           <a href="#prendas-medida" data-hoja="prendas-medida">👗 Prendas a medida</a>
           <a href="#hoja-puntos" data-hoja="hoja-puntos">⚫ Hoja de dibujo</a>
           <p class="menu-grupo">Mis materiales</p>
@@ -1212,11 +1211,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#lista-compras" data-hoja="lista-compras">🛍️ Lista de compras</a>
           <p class="menu-grupo">Mi emprendimiento</p>
           <a href="#control-pedidos" data-hoja="control-pedidos">📦 Control de pedidos</a>
-          <a href="#mis-clientas" data-hoja="mis-clientas">💕 Mis clientas</a>
+          <a href="#mis-clientas" data-hoja="mis-clientas">💕 Clientas y contactos</a>
           <a href="#fin-movimientos" data-hoja="fin-movimientos">💰 Ventas y gastos</a>
           <a href="#catalogo-precios" data-hoja="catalogo-precios">🏷️ Mi catálogo de precios</a>
           <a href="#ferias-mercados" data-hoja="ferias-mercados">🎪 Ferias y mercados</a>
-          <a href="#contactos" data-hoja="contactos">📇 Contactos</a>
           <a href="#fin-resumen" data-hoja="fin-resumen">📊 Resumen del negocio</a>
           <p class="menu-grupo">Mis números</p>
           <a href="#fin-presupuesto" data-hoja="fin-presupuesto">🐷 Presupuesto y metas</a>
@@ -4084,7 +4082,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (history.replaceState) history.replaceState(null, '', '#' + id);
     });
     /* hojas que ya no tienen su propia entrada en el menú sino una pestaña dentro de otra (10-nov-2026): Mi tablero va dentro de Mi panel y Proyectos por tejer dentro de Proyectos */
-    var EN_MENU = { 'tablero-agenda': 'panel-agenda', 'proyectos-fila': 'ficha-proyecto' };
+    var EN_MENU = { 'tablero-agenda': 'panel-agenda', 'proyectos-fila': 'ficha-proyecto', 'disena-patron': 'coleccion-patrones', 'contactos': 'mis-clientas' };
     window.lrPintarPestanas = function(idReal) {
       var id = EN_MENU[idReal] || idReal;
       if (window.lrSeccion) window.lrSeccion.cerrar();
@@ -4421,7 +4419,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=32"></script>
 <script src="/js/animaciones.js?v=25" defer></script>
-<script src="/js/agenda/idioma.js?v=36" defer></script>
+<script src="/js/agenda/idioma.js?v=37" defer></script>
 <script src="/js/agenda/modo.js?v=2" defer></script>
 <script src="/js/agenda/config.js?v=18" defer></script>
 <script src="/js/agenda/tour.js?v=7" defer></script>
@@ -4441,7 +4439,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/lupa.js?v=2" defer></script>
 <script src="/js/agenda/patron.js?v=2" defer></script>
 <script src="/js/agenda/patrones-propios.js?v=1" defer></script>
-<script src="/js/agenda/pestanas-hoja.js?v=1" defer></script>
+<script src="/js/agenda/pestanas-hoja.js?v=2" defer></script>
 <script src="/js/agenda/planeador.js?v=3" defer></script>
 <script src="/js/agenda/vacios.js?v=5" defer></script>
 <script src="/js/agenda/panel.js?v=33" defer></script>

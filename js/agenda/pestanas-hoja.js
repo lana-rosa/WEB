@@ -6,7 +6,9 @@
   'use strict';
   var GRUPOS = [
     [['panel-agenda', '🏠 Mi panel'], ['tablero-agenda', '📈 Mi tablero']],
-    [['ficha-proyecto', '📋 Ficha de proyecto'], ['proyectos-fila', '🧵 Proyectos por tejer']]
+    [['ficha-proyecto', '📋 Ficha de proyecto'], ['proyectos-fila', '🧵 Proyectos por tejer']],
+    [['coleccion-patrones', '📚 Mis patrones'], ['disena-patron', '✏️ Diseña tu patrón']],
+    [['mis-clientas', '💕 Mis clientas'], ['contactos', '📇 Contactos (proveedoras, colegas…)']]
   ];
   GRUPOS.forEach(function (g) {
     g.forEach(function (h) {

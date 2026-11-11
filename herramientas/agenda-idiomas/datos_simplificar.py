@@ -43,4 +43,7 @@ FILAS = [
  ('Diseñar mi primer patrón', 'Design my first pattern', 'Criar minha primeira receita'),
  ('Añadir parte', 'Add part', 'Adicionar parte'),
  ('Subir fotos', 'Upload photos', 'Enviar fotos'),
+ # hojas unidas con pestañas (fase C, 11-nov-2026)
+ ('Clientas y contactos', 'Clients and contacts', 'Clientes e contatos'),
+ ('Contactos (proveedoras, colegas…)', 'Contacts (suppliers, colleagues…)', 'Contatos (fornecedoras, colegas…)'),
 ]
