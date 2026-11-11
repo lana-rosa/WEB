@@ -1918,6 +1918,8 @@ window.lrI18n.add("pt", {
 "✔ Agregué el producto al pedido. El precio lo dejé como estaba: ajústalo tú.": "✔ Adicionei o produto ao pedido. Deixei o preço como estava: ajuste você.",
 "Elegir el producto de mi catálogo (pedido {n#})": "Escolher o produto do meu catálogo (pedido {n})",
 "Hojas de esta entrada": "Páginas desta entrada",
+"Otras compras (por fuera de la agenda)": "Outras compras (fora da agenda)",
+"Lo que te pide en la agenda sale solo, en «Historial de compras».": "O que ela pede na agenda aparece sozinho, no “Histórico de compras”.",
 "Ventas y gastos": "Vendas e despesas",
 "Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.": "Anote aqui todo o dinheiro do seu negócio, uma só vez: o que você vende, o que gasta e o que poupa. Você pode escrever como falaria.",
 "Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio": "Exemplo (escreva em espanhol): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio",

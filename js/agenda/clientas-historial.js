@@ -53,6 +53,8 @@
     var hoy = new Date(); hoy = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
     hoja.querySelectorAll('#tabla-clientas tr.ficha').forEach(function (tr) {
       var k = tr.getAttribute('data-fila'), nom = document.getElementById(CL.prefijo + k + '-nombre'), wa = document.getElementById(CL.prefijo + k + '-whatsapp');
+      var tdc = tr.querySelector('td[data-col="compras"]');   // 11-nov-2026 (pregunta 7): lo que compra en la agenda sale solo de los pedidos; este campo queda para lo que compró por fuera
+      if (tdc && !tdc.querySelector('.cl-nota-compras')) { var nota = el('small', 'cl-nota-compras no-imprimir', 'Lo que te pide en la agenda sale solo, en «Historial de compras».'); tdc.appendChild(nota); }
       var td = tr.querySelector('td.cl-historial');
       if (!nom || !nom.value.trim()) { if (td) td.remove(); return; }
       if (!td) { td = el('td', 'cl-historial no-imprimir'); td.setAttribute('data-col', 'historial'); var acc = tr.querySelector('td.celda-cal') || tr.querySelector('td.ficha-acciones'); tr.insertBefore(td, acc); }
