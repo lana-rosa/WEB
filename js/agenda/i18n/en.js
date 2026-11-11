@@ -1899,6 +1899,8 @@ window.lrI18n.add("en", {
 "Diseñar mi primer patrón": "Design my first pattern",
 "Añadir parte": "Add part",
 "Subir fotos": "Upload photos",
+"Clientas y contactos": "Clients and contacts",
+"Contactos (proveedoras, colegas…)": "Contacts (suppliers, colleagues…)",
 "Ventas y gastos": "Sales and expenses",
 "Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.": "Record all the money of your business here, just once: what you sell, what you spend and what you save. You can write it the way you would say it.",
 "Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio": "Example (write it in Spanish): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio",

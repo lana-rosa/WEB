@@ -1899,6 +1899,8 @@ window.lrI18n.add("pt", {
 "Diseñar mi primer patrón": "Criar minha primeira receita",
 "Añadir parte": "Adicionar parte",
 "Subir fotos": "Enviar fotos",
+"Clientas y contactos": "Clientes e contatos",
+"Contactos (proveedoras, colegas…)": "Contatos (fornecedoras, colegas…)",
 "Ventas y gastos": "Vendas e despesas",
 "Aquí anotas todo el dinero de tu negocio, una sola vez: lo que vendes, lo que gastas y lo que ahorras. Puedes escribirlo como lo dirías.": "Anote aqui todo o dinheiro do seu negócio, uma só vez: o que você vende, o que gasta e o que poupa. Você pode escrever como falaria.",
 "Ej.: vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio": "Exemplo (escreva em espanhol): vendí un osito por 85 mil · gasté 50 mil en lana · ahorré 100 mil para el negocio",
