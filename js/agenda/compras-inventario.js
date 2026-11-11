@@ -64,7 +64,7 @@
       td.textContent = '';
       var msg = el('p', 'iv-aviso mal'); msg.setAttribute('role', 'alert'); msg.hidden = true;
       if (hecho) {
-        var p = el('p', 'iv-aviso bien', '✔ Ya entró al inventario: +' + num(hecho.n) + ' de ' + hecho.lana + '.'); p.setAttribute('data-no-traducir', ''); td.appendChild(p);
+        var p = el('p', 'iv-aviso bien', T('✔ Ya entró al inventario: +' + num(hecho.n) + ' de ' + hecho.lana + '.')); p.setAttribute('data-no-traducir', ''); td.appendChild(p);
         var u = el('button', 'enlace-copia', 'Deshacer'); u.type = 'button';
         u.addEventListener('click', function () { window.lrInvMov.deshacerId(hecho.mov); delete mapa()['c' + k]; refrescar(); });
         td.appendChild(u); return;
