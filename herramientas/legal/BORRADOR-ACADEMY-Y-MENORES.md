@@ -40,7 +40,7 @@
 
 **11. Seguridad en el aula.** Se usan agujas y tijeras. Quien asiste debe seguir las indicaciones de la instructora; como por ahora solo asisten personas mayores de 18 años, no aplica el acompañamiento de adultos.
 
-**12. Propiedad de lo creado.** Lo que la participante teje en clase es suyo. Los patrones, textos, fotos y materiales que entrega Lana Rosa Academy son de Lana Rosa y no se pueden reproducir ni vender sin autorización. [POR DEFINIR: si se permite vender lo tejido con el patrón del taller, igual que `venta_piezas` en los patrones].
+**12. Propiedad de lo creado.** Lo que la participante teje en clase es suyo. Los patrones, textos, fotos y materiales que entrega Lana Rosa Academy son de Lana Rosa y no se pueden reproducir ni vender sin autorización. **La participante puede vender lo que teje en el taller** (decisión de Jennifer, 11-nov-2026; no se pidió dar crédito a Lana Rosa). Los patrones, textos y fotos de Lana Rosa Academy siguen siendo de Lana Rosa y no se pueden copiar ni vender.
 
 **13. Datos personales.** Para inscribirse se piden [POR DEFINIR: nombre, teléfono, correo, edad]. Se usan solo para la inscripción, avisos del taller y, si lo autoriza aparte, novedades. Responsable, canal (contacto@lanarosacrochet.com), plazos de consultas (10 días hábiles, +5) y reclamos (15 días hábiles, +8) y derechos: según la política de datos. Autorización de datos y autorización de fotos y videos son **dos casillas separadas** (ver C).
 
@@ -81,7 +81,7 @@ Datos de inscripción: mientras dure la actividad y [POR DEFINIR: plazo]; fotos 
 3. ~~Días calendario o hábiles~~ → **decidido:** solo días hábiles.
 4. ~~Si no se llega al mínimo de 5 personas~~ → **ya no aplica:** se quitó el mínimo; el taller se dicta con quien se inscriba.
 5. ~~Datos del recibo~~ → **decidido (10-nov-2026):** nombre de quien paga, fecha, valor, taller o clase y si es anticipo o pago completo; la contadora puede pedir más. Constancia de asistencia: **sí se entrega**; firma principal Sara, también puede firmar Jennifer (decidido el 10-nov-2026). Datos propuestos en el punto 10. La constancia sí lleva la línea de la certificación SENA de las instructoras (decidido).
-6. Si se permite vender lo tejido con el patrón del taller.
+6. ~~Venta de lo tejido~~ → **decidido (11-nov-2026):** sí se puede vender lo que se teje en el taller, sin pedir crédito. **El borrador queda completo**: solo falta que el chat 6 lo lleve a la abogada.
 
 ## E. Qué falta en el código antes de publicar (no se hizo)
 - Un mensaje o formulario de inscripción que muestre estos términos y guarde la versión aceptada (hoy se reserva por WhatsApp). Las dos casillas separadas (datos / fotos) solo se necesitan cuando haya clases a menores; para adultos basta la autorización de datos y, aparte, la de fotos si se toman.
