@@ -179,6 +179,30 @@ No se publica ningún patrón hasta tener sus condiciones. Propuesta lista (no e
 
 **Preguntas para la abogada:** (a) ¿puede ponerse «®» junto al nombre escrito «Lana Rosa Crochet» en el pie, si lo registrado es una marca mixta (logo con LR y palabras)? (b) ¿«diseño registrado ante la SIC» es la forma correcta de decir el registro de Rosina, que es diseño industrial y no marca? (c) ¿las variantes de casa (Mercería, Academy, Agenda) pueden llevar ®? (d) registrar «Rosina» y el nombre de la agenda como marca (clases 9 y 41) y evaluar la clase 35 (venta de productos). (e) ¿puede el texto de «uso no autorizado» incluir el uso personal libre de los recursos gratuitos? No se ponen números de registro en cada página ni en cada producto.
 
+## 15. Casillas del pago de los amigurumis personalizados (propuesta del chat de pagos, 11-nov-2026)
+
+**Hoy en la web:** al pagar hay una casilla de política de datos y de envíos y cambios, otra para confirmar la dirección y la de cuenta (sin marcar). El chat de pagos tiene preparado, **apagado y sin publicar**, un cambio que las reúne (`herramientas/borradores/casillas-pago.patch`). No se publica hasta su respuesta.
+
+**Propuesta A — del chat de pagos (una sola casilla con desplegable):**
+> ☐ Acepto las condiciones de mi compra: la política de tratamiento de datos, la política de envíos y cambios, que mi amigurumi personalizado no tiene derecho de retracto y que mi dirección de envío es correcta.
+> **Ver el texto completo:** (1) Acepto la política de tratamiento de datos y la política de envíos y cambios. (2) Entiendo que este producto se hace a mi medida y por eso no tiene derecho de retracto; conserva la garantía legal. (3) Confirmo que mi dirección de envío es correcta y, en caso de errores, asumiré los posibles costos de transporte adicionales. Se guarda con el pedido: fecha, hora y versión del texto. Sin marcarla no se puede pagar.
+
+**Propuesta B — recomendación consultada por Jennifer (dos casillas), para que la abogada decida.** Esta redacción **no es de la abogada**: es una opinión que Jennifer recibió y que cita la Ley 1480 (arts. 47 y 50) y la Ley 1581; **no verificamos las citas**, la abogada debe confirmarlas.
+> **Casilla 1 — datos:** ☐ Autorizo el tratamiento de mis datos personales conforme a la [Política de tratamiento de datos personales]. (Junto a ella, la información que exige la Ley 1581: finalidades, derechos de la titular, identificación y contacto del responsable; no basta con un enlace.)
+> **Casilla 2 — condiciones de compra:** ☐ He leído y acepto las condiciones de mi compra, incluida la información sobre la excepción al derecho de retracto para mi amigurumi personalizado y la política de envíos y cambios. Confirmo que mi dirección de envío es correcta.
+> **Ver el texto completo (condiciones de compra):** 1. He leído y acepto la política de envíos y cambios de Lana Rosa Crochet. 2. Entiendo que mi amigurumi se confeccionará conforme a mis especificaciones y que, por tratarse de un producto claramente personalizado, está comprendido en la excepción al derecho de retracto prevista en el numeral 3 del artículo 47 de la Ley 1480 de 2011. 3. Entiendo que esta excepción no afecta la garantía legal ni los demás derechos que me reconoce la legislación de protección al consumidor. 4. Confirmo que la dirección de envío proporcionada es correcta. Si suministro una dirección incorrecta y esto ocasiona un nuevo envío, los costos adicionales de transporte que correspondan podrán ser asumidos por mí, previa información.
+
+**Diferencias entre A y B:** B separa los datos de las condiciones de compra (sigue siendo menos de tres casillas); dice «está comprendido en la excepción» en vez de «no tiene derecho de retracto» (información, no renuncia); limita los costos de transporte al error de dirección de la propia clienta; menciona la excepción también en la frase corta. Evitar expresiones como «renuncio al derecho de retracto», «acepto no tener derecho a reclamar» o «no podré solicitar devoluciones bajo ninguna circunstancia». Coincide con lo que la abogada ya dijo en su respuesta (punto 1: la casilla para personalizados es recomendada, como información y prueba, **sin presentarla como renuncia**; punto 6: casillas separadas para datos y fotos).
+
+**Lo que se guardaría como prueba (propuesta, para que ella lo apruebe):** identificador del pedido, cuenta asociada, fecha y hora, estado de cada casilla (marcada o no), versión exacta de las condiciones, versión de la política de datos y las especificaciones del amigurumi del pedido; conservar las versiones anteriores de los textos. Hoy se guarda fecha, hora y versión; el resto lo implementa el chat de pagos.
+
+**Preguntas para la abogada:**
+1. ¿Dos casillas (datos y condiciones de compra) o una sola con desplegable? Si es una sola, ¿sirve como constancia de la autorización de datos?
+2. ¿El texto del retracto queda como en B («está comprendido en la excepción…») o lo redacta ella?
+3. ¿La frase corta junto a la casilla debe mencionar la excepción al retracto, o basta con el texto completo desplegable? (La opinión consultada dice que sí debe mencionarla.)
+4. ¿El desplegable cumple con la información previa al pago (art. 50 de la Ley 1480)?
+5. ¿Qué otros datos de la prueba de aceptación son necesarios?
+
 ## Lo que necesito de la abogada (resumen)
 1. Aprobación (o ajuste) de los textos marcados «borrador nuestro» de los puntos 2, 3, 4, 6, 7, 8, 10 y 13.
 2. Mecanismo para Supabase en Brasil y países con nivel adecuado (inventario de proveedores).
