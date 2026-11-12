@@ -312,6 +312,26 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #agenda .cl-p-in { font: inherit; font-size: 1rem; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--tinta); min-height: 44px; padding: 6px 2px; border: 0; border-bottom: 1.5px solid var(--rosa-suave); background: transparent; border-radius: 0; resize: vertical; }
 #agenda .cl-p-in:focus { outline: 2px solid var(--rosa-principal); outline-offset: 2px; border-radius: 6px; }
 @media (max-width: 560px) { #agenda .cl-p-grid { grid-template-columns: minmax(0, 1fr); } }
+/* Fotos del proyecto: antes, durante y después (E34, 12-nov-2026) */
+#agenda .fp-titulo { display: block; margin-bottom: 8px; font-weight: 700; color: var(--rosa-texto); }
+#agenda .fp-rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 12px; }
+#agenda .fp-foto { margin: 0; display: grid; gap: 6px; align-content: start; padding: 8px; border: 1.5px solid var(--rosa-suave); border-radius: 14px; background: var(--blanco); }
+#agenda .fp-ver { padding: 0; border: 0; background: transparent; cursor: zoom-in; border-radius: 10px; overflow: hidden; display: block; line-height: 0; }
+#agenda .fp-ver img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
+#agenda .fp-ver:focus-visible, #agenda .fp-chip:focus-visible, #agenda .fp-t:focus-visible { outline: 2px solid var(--rosa-principal); outline-offset: 2px; }
+#agenda .fp-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+#agenda .fp-chip { font: inherit; font-size: .8rem; min-height: 36px; padding: 4px 9px; border-radius: 999px; border: 1.5px solid var(--rosa-medio); background: var(--blanco); color: var(--rosa-texto); cursor: pointer; }
+#agenda .fp-chip.activo { background: var(--rosa-texto); border-color: var(--rosa-texto); color: #fff; }
+#agenda .fp-t { font: inherit; font-size: .9rem; min-height: 40px; padding: 4px 6px; border: 0; border-bottom: 1.5px solid var(--rosa-suave); background: transparent; color: var(--tinta); width: 100%; }
+#agenda .fp-cap { display: none; font-size: .85rem; }
+@media print { #agenda .fp-cap { display: block; } #agenda .fp-rejilla { grid-template-columns: repeat(4, 1fr); } }
+#agenda .fp-quitar { justify-self: start; min-height: 36px; }
+#agenda .fp-barra { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 10px; }
+#agenda .fp-cuenta { font-size: .9rem; color: var(--tinta-suave); }
+#agenda .fp-msg { margin: 6px 0 0; font-size: .9rem; color: var(--tinta-suave); }
+#agenda .fp-msg:empty { display: none; }
+.fp-visor { max-width: 720px; }
+.fp-grande { max-width: 100%; max-height: 70vh; height: auto; border-radius: 10px; object-fit: contain; }
 #agenda .iv-mov-gasto { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; min-height: 44px; padding: 4px 0; cursor: pointer; } #agenda .iv-mov-gasto input { flex: none; width: 22px; height: 22px; accent-color: var(--rosa-boton); }
 
 /* Claro u oscuro (E19, 5-nov-2026): tres botones en Configuración */
