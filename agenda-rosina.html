@@ -711,6 +711,8 @@ body.en-blanco .totales-ventas strong { visibility: hidden; }
 .cx-detalle { grid-column: 1 / -1; font-size: 0.85rem; color: #45454A; }
 .cx-error { grid-column: 1 / -1; font-size: 0.85rem; font-weight: 600; color: #C81B6D; }
 .cx-ir { grid-column: 1 / -1; justify-self: start; }
+.da-mes { font: inherit; font-size: 0.85rem; padding: 6px 8px; border-radius: 10px; border: 1.5px solid #E4D3DC; background: #fff; max-width: 100%; }
+.da-mes[hidden] { display: none; }
 .cx-tipos { margin: 10px 0 0; padding: 8px 12px; border: 1.5px solid #E4D3DC; border-radius: 12px; display: grid; gap: 4px; }
 .cx-tipos[hidden] { display: none; }
 .cx-tipos legend { font-weight: 700; font-size: 0.88rem; padding: 0 6px; color: var(--rosa-texto); }
@@ -1104,6 +1106,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="cs-botones">
         <button type="button" class="boton-primario boton-chico" id="da-conectar" hidden>Conectar con Google Drive</button>
         <button type="button" class="boton-secundario boton-chico" id="da-excel" hidden>Guardar como hoja de Google en mi Drive</button>
+        <select id="da-mes" class="da-mes" aria-label="Mes del informe" hidden><option value="actual">Informe de este mes</option><option value="anterior">Informe del mes pasado</option></select>
+        <button type="button" class="boton-secundario boton-chico" id="da-informe" hidden>Guardar el informe (PDF) en mi Drive</button>
         <button type="button" class="boton-secundario boton-chico" id="da-copia" hidden>Guardar una copia en mi Drive</button>
         <button type="button" class="enlace-copia" id="da-abrir" hidden>Abrir mi carpeta</button>
         <button type="button" class="enlace-copia" id="da-desconectar" hidden>Desconectar</button>
@@ -1113,7 +1117,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <summary>¿Qué permiso pide y qué NO puede hacer?</summary>
         <ul>
           <li><strong>Permiso:</strong> crear y ver solo los archivos y la carpeta que esta app crea en tu Drive (permiso «file»).</li>
-          <li><strong>Qué guarda:</strong> solo cuando tú lo pides, tu agenda como hoja de cálculo de Google (Google Sheets) o una copia de seguridad, en la carpeta «Agenda para tejedoras» de tu Drive. Van directo de tu navegador a tu Drive, sin pasar por Lana Rosa. No se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre.</li>
+          <li><strong>Qué guarda:</strong> solo cuando tú lo pides, tu agenda como hoja de cálculo de Google (Google Sheets), el informe del mes en PDF o una copia de seguridad, en la carpeta «Agenda para tejedoras» de tu Drive. Van directo de tu navegador a tu Drive, sin pasar por Lana Rosa. No se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre.</li>
           <li><strong>Qué NO puede hacer:</strong> ver, abrir ni borrar tus otros archivos o carpetas de Drive.</li>
           <li><strong>Cómo quitarlo:</strong> «Desconectar» retira el permiso y deja lo ya guardado en tu carpeta (es tuyo). También puedes revisarlo en <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">tu cuenta de Google</a>.</li>
         </ul>
@@ -4475,18 +4479,20 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/app.js?v=1" defer></script>
 <script src="/js/agenda/dueno.js?v=5"></script>
 <script type="module" src="/js/agenda/acceso.js?v=4"></script>
-<script src="/js/agenda/aviso-conexion.js?v=5"></script>
+<script src="/js/agenda/aviso-conexion.js?v=6"></script>
 <script type="module" src="/js/agenda/google-calendar.js?v=5"></script>
 <script src="/js/agenda/centro-conexiones.js?v=3" defer></script>
 <script src="/js/agenda/drive-merge.js?v=1" defer></script>
 <script type="module" src="/js/agenda/drive-sync.js?v=6"></script>
-<script type="module" src="/js/agenda/drive-archivos.js?v=2"></script>
+<script type="module" src="/js/agenda/drive-archivos.js?v=3"></script>
 <script type="module" src="/js/agenda/membresia.js?v=9"></script>
 <script src="/js/agenda/ecosistema.js?v=1" defer></script>
 <script src="/js/agenda/dibujo.js?v=15" defer></script>
 <script src="/js/agenda/muestras.js?v=1" defer></script>
 <script src="/js/agenda/xlsx.js?v=2" defer></script>
 <script src="/js/agenda/exportar.js?v=11" defer></script>
+<script src="/js/agenda/pdf-simple.js?v=1" defer></script>
+<script src="/js/agenda/informe-pdf.js?v=1" defer></script>
 <script>
 // «¿Dónde se guardan mis datos?»: dice si hoy la copia en la cuenta está activa (30-oct-2026).
 (function () {

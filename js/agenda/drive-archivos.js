@@ -9,7 +9,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   var caja = document.getElementById('drive-archivos');
   if (!caja || !haySesionGuardada()) return;
   var txt = document.getElementById('da-texto'), av = document.getElementById('da-aviso');
-  var bCon = document.getElementById('da-conectar'), bXls = document.getElementById('da-excel'), bCop = document.getElementById('da-copia'), bAbrir = document.getElementById('da-abrir'), bDes = document.getElementById('da-desconectar');
+  var bCon = document.getElementById('da-conectar'), bXls = document.getElementById('da-excel'), bCop = document.getElementById('da-copia'), bAbrir = document.getElementById('da-abrir'), bDes = document.getElementById('da-desconectar'), bInf = document.getElementById('da-informe'), selMes = document.getElementById('da-mes');
   var API = 'https://www.googleapis.com/drive/v3/files', SUBIR = 'https://www.googleapis.com/upload/drive/v3/files', CARPETA = 'Agenda para tejedoras', MIME_CARPETA = 'application/vnd.google-apps.folder';
   var MAX_MULTIPARTE = 4 * 1024 * 1024, HOJA_GOOGLE = 'application/vnd.google-apps.spreadsheet';
   var sb = null, estado = null, acceso = null, ocupado = false, carpeta = null;
@@ -68,6 +68,11 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
         blob = window.lrExportar && window.lrExportar.crearBlob ? window.lrExportar.crearBlob() : null;
         if (!blob) { aviso('Todavía no hay nada escrito para exportar. Llena alguna hoja de tu agenda y vuelve a intentarlo.'); return; }
         nombre = 'Agenda para tejedoras ' + marca(); tipo = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';   // sin extensión: queda como hoja de Google
+      } else if (que === 'informe') {   // el informe del mes en PDF (este mes o el pasado)
+        var hoy = new Date(), y = hoy.getFullYear(), m = hoy.getMonth() + 1; if (selMes && selMes.value === 'anterior') { m--; if (m < 1) { m = 12; y--; } }
+        blob = window.lrInformePdf && window.lrInformePdf.crearBlob ? window.lrInformePdf.crearBlob(y, m) : null;
+        if (!blob) { aviso('No hay nada anotado en ese mes todavía (o el informe no está disponible con tu plan). Anota tus ventas, ingresos y gastos y vuelve a intentarlo.'); return; }
+        nombre = window.lrInformePdf.nombre(y, m) + ' ' + marca(); tipo = 'application/pdf';
       } else {
         blob = await window.lrAgendaCopia.crear(); nombre = 'agenda-rosina-' + marca() + '.json'; tipo = 'application/json';
       }
@@ -87,9 +92,9 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   }
   function pintar() {
     var c = !!(estado && estado.conectado);
-    bCon.hidden = c; bXls.hidden = !c; bCop.hidden = !c; bAbrir.hidden = !(c && carpeta && carpeta.webViewLink); bDes.hidden = !c;
-    bXls.disabled = bCop.disabled = ocupado;
-    if (!c) txt.textContent = 'Guarda tu agenda como hoja de cálculo de Google (Google Sheets, que se abre y se edita sin descargar nada) y tus copias de seguridad en una carpeta de tu propio Google Drive, que tú puedes abrir, mover y compartir. Solo se guarda cuando tú lo pides. Es gratis y opcional.';
+    bCon.hidden = c; bXls.hidden = !c; bInf.hidden = !c; selMes.hidden = !c; bCop.hidden = !c; bAbrir.hidden = !(c && carpeta && carpeta.webViewLink); bDes.hidden = !c;
+    bXls.disabled = bCop.disabled = bInf.disabled = ocupado;
+    if (!c) txt.textContent = 'Guarda tu agenda como hoja de cálculo de Google (Google Sheets, que se abre y se edita sin descargar nada), el informe del mes en PDF y tus copias de seguridad en una carpeta de tu propio Google Drive, que tú puedes abrir, mover y compartir. Solo se guarda cuando tú lo pides. Es gratis y opcional.';
     else {
       txt.textContent = '';
       [estado.correo ? ('Conectado como ' + estado.correo + '.') : 'Conectado.', estado.ultimo ? ('Último guardado: ' + fechaHora(estado.ultimo)) : 'Todavía no has guardado nada.'].forEach(function (x, i) {
@@ -111,6 +116,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   });
   bXls.addEventListener('click', function () { guardar('excel'); });
   bCop.addEventListener('click', function () { guardar('copia'); });
+  bInf.addEventListener('click', function () { guardar('informe'); });
   bAbrir.addEventListener('click', function () { if (carpeta && carpeta.webViewLink) window.open(carpeta.webViewLink, '_blank', 'noopener'); });
   bDes.addEventListener('click', async function () {
     if (!confirm('¿Desconectar? Dejaremos de poder guardar en tu Drive. Lo que ya guardaste se queda en tu carpeta «' + CARPETA + '» (es tuyo y lo puedes borrar cuando quieras).')) return;
@@ -118,7 +124,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
   });
   var q = new URLSearchParams(location.search).get('driveArchivos');
   var mensajes = { cancelado: 'No se conectó: cancelaste el permiso de Google.', sin_permiso: 'Google no entregó el permiso de Drive. Inténtalo otra vez y deja marcado el acceso a Drive.', error: 'Algo salió mal al conectar con Google. Inténtalo otra vez.', no_configurado: 'El guardado en tu Drive todavía no está activo.' };
-  if (q === 'conectado') { estado = await llamar('estado'); pintar(); abrirConfig(); caja.scrollIntoView({ block: 'center' }); aviso('Conectado. Ya puedes guardar tu agenda como hoja de Google o una copia en tu Drive.'); history.replaceState(null, '', location.pathname + location.hash); }
+  if (q === 'conectado') { estado = await llamar('estado'); pintar(); abrirConfig(); caja.scrollIntoView({ block: 'center' }); aviso('Conectado. Ya puedes guardar tu agenda como hoja de Google, el informe del mes o una copia en tu Drive.'); history.replaceState(null, '', location.pathname + location.hash); }
   else if (mensajes[q]) { aviso(mensajes[q]); abrirConfig(); caja.scrollIntoView({ block: 'center' }); history.replaceState(null, '', location.pathname + location.hash); }
   window.lrDriveArchivos = { estado: function () { return estado; } };
 })();
