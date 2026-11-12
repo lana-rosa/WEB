@@ -3,7 +3,7 @@
    Los datos viven en `datos._proyTiempo[nombre del proyecto sin tildes ni mayúsculas] = { seg: segundos sumados, desde: marca de tiempo (ms) si está corriendo, dias: { 'AAAA-MM-DD': seg } }`
    (empieza con «_»: entra solo en copias, nube y Drive; no son campos `ag-*`). Solo corre un cronómetro a la vez. Una sesión se corta sola a las 12 horas (por si se olvidó parar).
    Si se cambia el nombre del proyecto, el tiempo queda con el nombre viejo (igual que la lana por proyecto).
-   API: window.lrCrono.resumen() → { totalSeg, semanaSeg, enMarcha: nombre|null, porProyecto: [{ nombre, seg }] }, window.lrCrono.formato(seg). */
+   API: window.lrCrono.de(nombre) → { seg, enMarcha, clave }, window.lrCrono.resumen() → { totalSeg, semanaSeg, enMarcha: nombre|null, porProyecto: [{ nombre, seg }] }, window.lrCrono.formato(seg). */
 (function () {
   'use strict';
   var N = window.lrAgendaNucleo, tf = document.getElementById('tabla-fila');
@@ -93,6 +93,8 @@
   new MutationObserver(programar).observe(document.getElementById('proyectos-fila') || tf, { attributes: true, attributeFilter: ['class'] });
   setInterval(tic, 1000);
   programar();
-  window.lrCrono = { resumen: resumen, formato: formato, pintar: pintar };
+  /* tiempo de un proyecto por su nombre (lo usa el pedido unido a ese proyecto) */
+  function de(nom) { var r = datos()[sin(nom)]; if (!r || typeof r !== 'object') return { seg: 0, enMarcha: false, clave: sin(nom) }; return { seg: (r.seg || 0) + corrido(r), enMarcha: !!r.desde, clave: sin(nom) }; }
+  window.lrCrono = { resumen: resumen, formato: formato, pintar: pintar, de: de };
   document.dispatchEvent(new Event('cronometro-listo'));
 })();

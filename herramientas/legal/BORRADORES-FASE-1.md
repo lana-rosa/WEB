@@ -203,6 +203,25 @@ No se publica ningún patrón hasta tener sus condiciones. Propuesta lista (no e
 4. ¿El desplegable cumple con la información previa al pago (art. 50 de la Ley 1480)?
 5. ¿Qué otros datos de la prueba de aceptación son necesarios?
 
+## 16. Medidas del cuerpo y alergias de las clientas en la agenda (aviso del chat de la agenda, 11-nov-2026, PR #725)
+
+**Qué hace la web hoy:** en la hoja de clientas, cada clienta tiene un desplegable «Medidas y gustos» donde la persona puede guardar medidas del cuerpo (busto, cintura, cadera, largo, cabeza), colores que le gustan o evita, fibras, **alergias o cuidados con los materiales** y notas. Esos datos viven en la agenda de la persona, y entran en las copias: el archivo de copia, la copia en la cuenta (Supabase) y la sincronización con Google Drive. **Hoy el único aviso** dentro del desplegable es: «Guarda estos datos solo si tu clienta te dio permiso.»
+
+**Qué dice la política hoy** (`#datos`, apartado 11, «Qué guardamos»): la copia incluye «proyectos, materiales, pedidos, clientas, ventas, finanzas, tarjetas, deudas, metas, entre otros» y «si la persona escribe datos de terceras personas, como el nombre, el WhatsApp o el cumpleaños de sus clientas, es responsable de contar con la autorización para tenerlos». **No** menciona medidas del cuerpo ni alergias, ni que puedan ser datos delicados (de salud).
+
+**Borrador nuestro — aviso en la agenda** (para que lo apruebe o ajuste; puede mostrarse una vez, como el aviso del lápiz):
+> Las medidas del cuerpo y las alergias o cuidados de tu clienta son datos personales delicados. Guárdalos solo si ella te dio permiso, úsalos únicamente para hacer su pedido y bórralos cuando ya no los necesites. Tú eres quien responde por esos datos: Lana Rosa solo los guarda como parte de tu agenda.
+
+**Borrador nuestro — para el apartado 11 de la política** (después de la frase de terceras personas):
+> Si la persona guarda en su agenda datos delicados de otras personas, como medidas del cuerpo o alergias, debe contar con el permiso expreso de esa persona y usarlos solo para atender su pedido. La persona que los guarda es la responsable de esos datos; Lana Rosa Crochet los almacena únicamente como parte de la copia de la agenda de quien los escribió, no los usa para ninguna otra finalidad y no los comparte.
+
+**Preguntas para la abogada:**
+1. ¿Las medidas del cuerpo y las alergias o cuidados son «datos sensibles» según la Ley 1581 (art. 5)? ¿Qué exige guardarlos y qué se debe decir a quien los guarda?
+2. ¿Quién es el responsable y quién el encargado? Nuestra lectura: la tejedora que usa la agenda es la responsable de los datos de sus clientas, y Lana Rosa Crochet solo presta el almacenamiento (copia en la cuenta) como encargada; en Google Drive los datos no pasan por nuestros servidores. ¿Es correcta?
+3. ¿Basta el aviso dentro del desplegable, o debe haber una ventana o casilla la primera vez que se usa (como el aviso del lápiz)?
+4. ¿La política debe decir expresamente que la agenda puede contener datos delicados de terceras personas, como en el borrador?
+5. ¿Hay que ofrecer algo para el borrado de esos datos (por ejemplo, al borrar la clienta se borran sus medidas y alergias)? Hoy borrar el renglón de la clienta las borra con él; está por verificar que también salgan de las copias antiguas (ver punto 7, copias).
+
 ## Lo que necesito de la abogada (resumen)
 1. Aprobación (o ajuste) de los textos marcados «borrador nuestro» de los puntos 2, 3, 4, 6, 7, 8, 10 y 13.
 2. Mecanismo para Supabase en Brasil y países con nivel adecuado (inventario de proveedores).
