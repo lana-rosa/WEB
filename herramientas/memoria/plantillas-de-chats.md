@@ -78,6 +78,8 @@ Tema: Marketing y contenido. Lee CLAUDE.md, herramientas/memoria/estado-actual.m
 **Si una tarea no es tuya:** no la hagas. Dile a Jennifer, en palabras sencillas, a qué chat le toca y dale el texto listo para pegar allá. Si una parte sí es tuya, haz solo esa parte y di qué parte va a otro chat.
 
 ## Reglas para los chats de tema (3-nov-2026, para que las notas no choquen)
+
+0. **Todo pasa por el orquestador (Jennifer, 12-nov-2026; solo chats de la web):** cuando necesites una respuesta, una aprobación, un dato o mostrarle una foto a Jennifer, **no le preguntes en tu chat**: envíale la pregunta al Orquestador con `send_message` a `session_01H2X8gaahfucSR9WM7L1zXM` (corta, de sí o no, con el contexto mínimo y, si es una foto, la ruta del archivo en tu rama). Mientras esperas, sigue con otra cosa. **La respuesta de Jennifer citada textualmente por el Orquestador vale como su aprobación** (también para publicar y para lo 🔴); si aun así algo es demasiado delicado, dile al Orquestador qué debe escribir Jennifer directo en tu chat. Al terminar algo, avísale al Orquestador en una línea.
 1. **Antes de empezar y antes de cada commit:** `git fetch origin main` y traer `main` a la rama (`git merge origin/main`). Nunca trabajar sobre una rama atrasada. **Después de traer `main`, antes de guardar:** `git grep -n -E '^(<<<<<<<|>>>>>>>)'` debe salir vacío (el 3-nov el #569 dejó marcas de choque dentro de `CLAUDE.md`).
 2. **`estado-actual.md`:** cada chat reemplaza solo su renglón de «Por chat» (máx. 3 líneas). No agrega párrafos ni toca los renglones de otros. Lo general lo escribe el orquestador.
 3. **`PENDIENTES.md`:** solo se tocan los renglones del propio tema; lo terminado se pasa a `historial-pendientes.md`.
