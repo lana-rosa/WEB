@@ -2522,7 +2522,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.title = 'Agenda para tejedoras: hojas gratis — Lana Rosa Crochet';
 })();
 </script>
-<script src="/js/agenda/dib-store.js?v=1"></script>
+<script src="/js/agenda/dib-store.js?v=2"></script>
 <script>
 (function() {
   /* ---------- Almacenamiento seguro (solo en este dispositivo) ---------- */
@@ -2892,7 +2892,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.getElementById('agenda-cargar').addEventListener('click', function() { archivo.click(); });
   archivo.addEventListener('change', function() {
     var f = archivo.files && archivo.files[0]; if (!f) return;
-    if (f.size > 5 * 1024 * 1024) { alert('Ese archivo es demasiado grande para ser una copia de la Agenda para tejedoras.'); archivo.value = ''; return; }
+    if (f.size > 120 * 1024 * 1024) { alert('Ese archivo es demasiado grande para ser una copia de la Agenda para tejedoras.'); archivo.value = ''; return; }   /* con fotos una copia puede pasar de 5 MB (tope de fotos: 40 millones de letras) */
     var lector = new FileReader();
     lector.onload = function() {
       try {
