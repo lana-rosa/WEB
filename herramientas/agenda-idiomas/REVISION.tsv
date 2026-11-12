@@ -66,7 +66,7 @@ Envía todos los tipos de fechas.	It sends every type of date.	Envia todos os ti
 Envía	It sends	Envia
 nada por ahora	nothing for now	nada por enquanto
 Guardar informes y copias en tu Drive	Save reports and backups in your Drive	Salvar relatórios e cópias no seu Drive
-Guarda tu agenda como hoja de cálculo de Google (Google Sheets, que se abre y se edita sin descargar nada) y tus copias de seguridad en una carpeta de tu propio Google Drive, que tú puedes abrir, mover y compartir. Solo se guarda cuando tú lo pides. Es gratis y opcional.	Save your planner as a Google Sheet (it opens and can be edited without downloading anything) and your backups in a folder of your own Google Drive, which you can open, move and share. It is only saved when you ask for it. It is free and optional.	Salve sua agenda como planilha do Google (abre e se edita sem baixar nada) e suas cópias de segurança em uma pasta do seu próprio Google Drive, que você pode abrir, mover e compartilhar. Só é salvo quando você pede. É grátis e opcional.
+Guarda tu agenda como hoja de cálculo de Google (Google Sheets, que se abre y se edita sin descargar nada), el informe del mes en PDF y tus copias de seguridad en una carpeta de tu propio Google Drive, que tú puedes abrir, mover y compartir. Solo se guarda cuando tú lo pides. Es gratis y opcional.	Save your planner as a Google Sheet (it opens and can be edited without downloading anything), the monthly report as a PDF and your backups in a folder of your own Google Drive, which you can open, move and share. It is only saved when you ask for it. It is free and optional.	Salve sua agenda como planilha do Google (abre e se edita sem baixar nada), o relatório do mês em PDF e suas cópias de segurança em uma pasta do seu próprio Google Drive, que você pode abrir, mover e compartilhar. Só é salvo quando você pede. É grátis e opcional.
 Guardar como hoja de Google en mi Drive	Save as a Google Sheet in my Drive	Salvar como planilha do Google no meu Drive
 Guardar una copia en mi Drive	Save a backup in my Drive	Salvar uma cópia no meu Drive
 Abrir mi carpeta	Open my folder	Abrir minha pasta
@@ -74,13 +74,13 @@ Abrir mi carpeta	Open my folder	Abrir minha pasta
 Todavía no has guardado nada.	You have not saved anything yet.	Você ainda não salvou nada.
 Informes y copias en tu Drive	Reports and backups in your Drive	Relatórios e cópias no seu Drive
 crear y ver solo los archivos y la carpeta que esta app crea en tu Drive (permiso «file»).	create and see only the files and the folder that this app creates in your Drive (“file” permission).	criar e ver somente os arquivos e a pasta que este app cria no seu Drive (permissão «file»).
-solo cuando tú lo pides, tu agenda como hoja de cálculo de Google (Google Sheets) o una copia de seguridad, en la carpeta «Agenda para tejedoras» de tu Drive. Van directo de tu navegador a tu Drive, sin pasar por Lana Rosa. No se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre.	only when you ask for it, your planner as a Google Sheet or a backup, in the “Planner for crocheters” folder of your Drive. They go straight from your browser to your Drive, without passing through Lana Rosa. Nothing is deleted or replaced: each file has the date and time in its name.	somente quando você pede, sua agenda como planilha do Google ou uma cópia de segurança, na pasta «Agenda para crocheteiras» do seu Drive. Vão direto do seu navegador para o seu Drive, sem passar pela Lana Rosa. Nada é apagado nem substituído: cada arquivo leva a data e a hora no nome.
+solo cuando tú lo pides, tu agenda como hoja de cálculo de Google (Google Sheets), el informe del mes en PDF o una copia de seguridad, en la carpeta «Agenda para tejedoras» de tu Drive. Van directo de tu navegador a tu Drive, sin pasar por Lana Rosa. No se borra ni se reemplaza nada: cada archivo lleva la fecha y la hora en el nombre.	only when you ask for it, your planner as a Google Sheet, the monthly report as a PDF or a backup, in the “Planner for crocheters” folder of your Drive. They go straight from your browser to your Drive, without passing through Lana Rosa. Nothing is deleted or replaced: each file has the date and time in its name.	somente quando você pede, sua agenda como planilha do Google, o relatório do mês em PDF ou uma cópia de segurança, na pasta «Agenda para crocheteiras» do seu Drive. Vão direto do seu navegador para o seu Drive, sem passar pela Lana Rosa. Nada é apagado nem substituído: cada arquivo leva a data e a hora no nome.
 ver, abrir ni borrar tus otros archivos o carpetas de Drive.	see, open or delete your other Drive files or folders.	ver, abrir nem apagar seus outros arquivos ou pastas do Drive.
 «Desconectar» retira el permiso y deja lo ya guardado en tu carpeta (es tuyo). También puedes revisarlo en	“Disconnect” removes the permission and leaves what you already saved in your folder (it is yours). You can also review it in	«Desconectar» retira a permissão e deixa o que você já salvou na sua pasta (é seu). Você também pode revisar em
 Guardando en tu Drive…	Saving in your Drive…	Salvando no seu Drive…
 Listo: guardé «{n}» en la carpeta «Agenda para tejedoras» de tu Drive.	Done: I saved “{n}” in the “Planner for crocheters” folder of your Drive.	Pronto: salvei «{n}» na pasta «Agenda para crocheteiras» do seu Drive.
 No pudimos guardar en tu Drive ahora. Inténtalo otra vez.	We could not save in your Drive right now. Try again.	Não conseguimos salvar no seu Drive agora. Tente de novo.
-Conectado. Ya puedes guardar tu agenda como hoja de Google o una copia en tu Drive.	Connected. You can now save your planner as a Google Sheet or a backup in your Drive.	Conectado. Agora você pode salvar sua agenda como planilha do Google ou uma cópia no seu Drive.
+Conectado. Ya puedes guardar tu agenda como hoja de Google, el informe del mes o una copia en tu Drive.	Connected. You can now save your planner as a Google Sheet, the monthly report or a backup in your Drive.	Conectado. Agora você pode salvar sua agenda como planilha do Google, o relatório do mês ou uma cópia no seu Drive.
 Copias y exportaciones	Backups and exports	Cópias e exportações
 Última copia descargada	Last backup downloaded	Última cópia baixada
 Todavía no has descargado una copia.	You have not downloaded a backup yet.	Você ainda não baixou uma cópia.
@@ -92,6 +92,33 @@ Al día	Up to date	Em dia
 Conviene guardar una copia	A backup is a good idea	Convém salvar uma cópia
 Estas fechas son de este aparato.	These dates are from this device.	Estas datas são deste aparelho.
 Guardar una copia ahora	Save a backup now	Salvar uma cópia agora
+Informe de este mes	Report for this month	Relatório deste mês
+Informe del mes pasado	Report for last month	Relatório do mês passado
+Guardar el informe (PDF) en mi Drive	Save the report (PDF) in my Drive	Salvar o relatório (PDF) no meu Drive
+Mes del informe	Report month	Mês do relatório
+No hay nada anotado en ese mes todavía (o el informe no está disponible con tu plan). Anota tus ventas, ingresos y gastos y vuelve a intentarlo.	There is nothing written for that month yet (or the report is not available with your plan). Write down your sales, income and expenses and try again.	Ainda não há nada anotado nesse mês (ou o relatório não está disponível no seu plano). Anote suas vendas, receitas e despesas e tente de novo.
+Pasar al inventario	Move to inventory	Passar para o inventário
+Esta compra se parece a «{a}». Súmala a esa lana.	This purchase looks like “{a}”. Add it to that yarn.	Esta compra se parece com «{a}». Some à essa lã.
+Si es una lana, pásala al inventario como lana nueva con {n} ovillo(s).	If it is a yarn, move it to the inventory as a new yarn with {n} skein(s).	Se for uma lã, passe para o inventário como lã nova com {n} novelo(s).
+Ya entró al inventario: +{n} de {l}.	Already added to the inventory: +{n} of {l}.	Já entrou no inventário: +{n} de {l}.
+Sumé {n} ovillo(s) a {l} en tu inventario.	I added {n} skein(s) to {l} in your inventory.	Somei {n} novelo(s) a {l} no seu inventário.
+No pude crear la lana. Revisa que el material tenga nombre.	I couldn’t create the yarn. Check that the material has a name.	Não consegui criar a lã. Confira se o material tem nome.
+Medidas y gustos	Measurements and preferences	Medidas e gostos
+Guarda estos datos solo si tu clienta te dio permiso.	Save this information only if your customer gave you permission.	Guarde estes dados somente se a sua cliente deu permissão.
+Medidas	Measurements	Medidas
+Gustos	Preferences	Gostos
+Busto o pecho (cm)	Bust or chest (cm)	Busto ou peito (cm)
+Cintura (cm)	Waist (cm)	Cintura (cm)
+Cadera (cm)	Hip (cm)	Quadril (cm)
+Largo de la prenda (cm)	Garment length (cm)	Comprimento da peça (cm)
+Contorno de la cabeza (cm)	Head circumference (cm)	Contorno da cabeça (cm)
+Colores que le gustan	Colors she likes	Cores de que ela gosta
+Colores que evita	Colors she avoids	Cores que ela evita
+Fibras o lanas que prefiere	Fibers or yarns she prefers	Fibras ou lãs que ela prefere
+Alergias o cuidados con los materiales	Allergies or care with materials	Alergias ou cuidados com os materiais
+Otras notas	Other notes	Outras notas
+{n#} dato	{n} item	{n} dado
+{n#} datos	{n} items	{n} dados
 Tiempo tejido	Crochet time	Tempo de crochê
 Empezar a tejer	Start crocheting	Começar a crochetar
 Parar	Stop	Parar
@@ -1506,6 +1533,31 @@ Claro	Light	Claro
 Oscuro	Dark	Escuro
 Como el celular	Like my phone	Como o celular
 «Como el celular» cambia solo cuando tu celular o tu computador pasa de día a noche. Se guarda en este dispositivo. Al imprimir, la agenda siempre sale en claro, y la hoja de dibujo conserva su papel claro.	“Like my phone” changes by itself when your phone or computer switches between day and night. It is saved on this device. When you print, the agenda always comes out light, and the drawing sheet keeps its light paper.	“Como o celular” muda sozinho quando seu celular ou computador passa do dia para a noite. Fica salvo neste dispositivo. Ao imprimir, a agenda sempre sai clara, e a folha de desenho mantém seu papel claro.
+Proyecto de este pedido	Project for this order	Projeto deste pedido
+Crear proyecto de este pedido	Create a project for this order	Criar projeto deste pedido
+Vincular	Link	Vincular
+Quitar el vínculo	Remove the link	Remover o vínculo
+Ver proyecto	View project	Ver projeto
+Ver pedido	View order	Ver pedido
+Pedido de este proyecto	Order for this project	Pedido deste projeto
+Proyecto que ya tengo	A project I already have	Um projeto que eu já tenho
+Este pedido aún no tiene proyecto. Si lo creas, verás aquí las horas tejidas y la lana apartada.	This order has no project yet. If you create one, you will see the crochet hours and the reserved yarn here.	Este pedido ainda não tem projeto. Se você criar um, verá aqui as horas de crochê e a lã reservada.
+O une uno que ya tienes:	Or link one you already have:	Ou una um que você já tem:
+Aún no apartaste lana. Se elige en el proyecto, en «Lana de este proyecto».	You have not set aside any yarn yet. Choose it in the project, under “Yarn for this project”.	Você ainda não reservou lã. Escolha no projeto, em «Lã deste projeto».
+Anota cuánto vale tu hora en «Mi catálogo de precios» y aquí verás cuánto vale ese tiempo.	Enter how much your hour is worth in “My price catalog” and you will see here what that time is worth.	Anote quanto vale a sua hora em «Meu catálogo de preços» e aqui você verá quanto vale esse tempo.
+Tu lista de proyectos está llena. Libera un renglón e inténtalo de nuevo.	Your project list is full. Free up a row and try again.	Sua lista de projetos está cheia. Libere uma linha e tente de novo.
+Estado: {a}	Status: {a}	Status: {a}
+Último avance: {a}	Latest progress: {a}	Último avanço: {a}
+Ese tiempo vale ≈ {a} (horas × tu valor de la hora)	That time is worth ≈ {a} (hours × your hourly rate)	Esse tempo vale ≈ {a} (horas × o valor da sua hora)
+{n} × {l} · apartada	{n} × {l} · reserved	{n} × {l} · reservada
+{n} × {l} · descontada	{n} × {l} · deducted	{n} × {l} · descontada
+{n} × {l} · ⚠ no alcanza	{n} × {l} · ⚠ not enough	{n} × {l} · ⚠ não alcança
+{n} × {l} · ⚠ faltan {f}	{n} × {l} · ⚠ {f} short	{n} × {l} · ⚠ faltam {f}
+Te faltan {a} ovillo(s) de {l}: tienes {s} y entre tus proyectos tienes apartados {p}.	You are missing {a} skein(s) of {l}: you have {s} and {p} are set aside across your projects.	Faltam {a} novelo(s) de {l}: você tem {s} e há {p} reservados entre os seus projetos.
+Apartados para proyectos: {a} · te faltan {b} ovillo(s).	Set aside for projects: {a} · you are {b} skein(s) short.	Reservados para projetos: {a} · faltam {b} novelo(s).
+Apartados para proyectos: {a} · libres: {b}.	Set aside for projects: {a} · free: {b}.	Reservados para projetos: {a} · livres: {b}.
+Del pedido de {a}	From {a}’s order	Do pedido de {a}
+Del pedido {a#}	From order {a}	Do pedido {a}
 Avisos de hoy	Today's alerts	Avisos de hoje
 Entrega atrasada: {n} · saldo {v}	Late delivery: {n} · balance {v}	Entrega atrasada: {n} · saldo {v}
 Entrega de hoy: {n} · saldo {v}	Delivery today: {n} · balance {v}	Entrega de hoje: {n} · saldo {v}

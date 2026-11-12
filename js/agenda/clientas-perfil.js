@@ -33,7 +33,7 @@
   }
   function marcar(k) {
     var s = hoja.querySelector('tr.ficha[data-fila="' + k + '"] td.cl-perfil summary .cl-p-n'); if (!s) return;
-    var n = llenos(k); s.textContent = n ? ' · ' + n + (n === 1 ? ' dato' : ' datos') : '';
+    var n = llenos(k); s.textContent = n ? T(' · ' + n + (n === 1 ? ' dato' : ' datos')) : '';
   }
   function pintar() {
     limpiar();

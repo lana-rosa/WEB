@@ -75,13 +75,13 @@
         td.appendChild(msg); return;
       }
       var nom = vr(f, 'proyecto'), rs = el('p', 'pd-res'); rs.setAttribute('data-no-traducir', ''); rs.textContent = nom; td.appendChild(rs);
-      var est = el('p', 'pd-linea'); est.setAttribute('data-no-traducir', ''); est.textContent = 'Estado: ' + (vr(f, 'estado') || 'Por empezar'); td.appendChild(est);
-      var av = vr(f, 'avance').split(/\n+/).filter(Boolean).pop(); if (av) { var pa = el('p', 'pd-linea'); pa.setAttribute('data-no-traducir', ''); pa.textContent = 'Último avance: ' + av.slice(0, 120); td.appendChild(pa); }
+      var est = el('p', 'pd-linea'); est.setAttribute('data-no-traducir', ''); est.textContent = T('Estado: ' + (vr(f, 'estado') || 'Por empezar')); td.appendChild(est);
+      var av = vr(f, 'avance').split(/\n+/).filter(Boolean).pop(); if (av) { var pa = el('p', 'pd-linea'); pa.setAttribute('data-no-traducir', ''); pa.textContent = T('Último avance: ' + av.slice(0, 120)); td.appendChild(pa); }
       if (window.lrCrono) {
-        var h = window.lrCrono.de(nom), ph = el('p', 'pd-linea'); ph.setAttribute('data-no-traducir', ''); ph.appendChild(document.createTextNode('Horas tejidas: '));
+        var h = window.lrCrono.de(nom), ph = el('p', 'pd-linea'); ph.setAttribute('data-no-traducir', ''); ph.appendChild(document.createTextNode(T('Horas tejidas: ')));
         var sp = el('strong', '', h.enMarcha ? window.lrCrono.formato(h.seg, true) : window.lrCrono.formato(h.seg)); if (h.enMarcha) sp.setAttribute('data-crono', h.clave); ph.appendChild(sp); td.appendChild(ph);
         var hora = num(((N.datos()._costos || {}).hora)) || 0;
-        if (hora > 0 && h.seg >= 60) { var pv = el('p', 'pd-linea'); pv.setAttribute('data-no-traducir', ''); pv.textContent = 'Ese tiempo vale ≈ ' + pesos(h.seg / 3600 * hora) + ' (horas × tu valor de la hora)'; td.appendChild(pv); }
+        if (hora > 0 && h.seg >= 60) { var pv = el('p', 'pd-linea'); pv.setAttribute('data-no-traducir', ''); pv.textContent = T('Ese tiempo vale ≈ ' + pesos(h.seg / 3600 * hora) + ' (horas × tu valor de la hora)'); td.appendChild(pv); }
         else if (!hora && h.seg >= 60) td.appendChild(el('p', 'pd-res info', 'Anota cuánto vale tu hora en «Mi catálogo de precios» y aquí verás cuánto vale ese tiempo.'));
       }
       if (window.lrProyLana) {
@@ -89,7 +89,7 @@
         if (!le.length) td.appendChild(el('p', 'pd-res info', 'Aún no apartaste lana. Se elige en el proyecto, en «Lana de este proyecto».'));
         else {
           var ul = el('ul', 'pd-lista'); ul.setAttribute('data-no-traducir', '');
-          le.forEach(function (x) { var li = el('li', x.hecho ? 'hecho' : (x.falta > 0 ? 'falta' : '')); li.appendChild(el('span', '', cant(x.n) + ' × ' + x.lana + (x.hecho ? ' · descontada' : x.falta > 0 ? ' · ⚠ faltan ' + cant(x.falta) : ' · apartada'))); ul.appendChild(li); });
+          le.forEach(function (x) { var li = el('li', x.hecho ? 'hecho' : (x.falta > 0 ? 'falta' : '')); li.appendChild(el('span', '', T(cant(x.n) + ' × ' + x.lana + (x.hecho ? ' · descontada' : x.falta > 0 ? ' · ⚠ faltan ' + cant(x.falta) : ' · apartada')))); ul.appendChild(li); });
           td.appendChild(ul);
         }
       }
@@ -109,7 +109,7 @@
       td.textContent = '';
       td.appendChild(el('p', 'pl-t', 'Pedido de este proyecto'));
       var tot = num(vp(k, 'totalcompra')); if (tot === null) tot = num(vp(k, 'precio'));
-      var l1 = el('p', 'pd-res'); l1.setAttribute('data-no-traducir', ''); l1.textContent = (vp(k, 'cliente') ? 'Del pedido de ' + vp(k, 'cliente') : 'Del pedido ' + k); td.appendChild(l1);
+      var l1 = el('p', 'pd-res'); l1.setAttribute('data-no-traducir', ''); l1.textContent = T(vp(k, 'cliente') ? 'Del pedido de ' + vp(k, 'cliente') : 'Del pedido ' + k); td.appendChild(l1);
       var det = []; if (vp(k, 'pedido')) det.push(vp(k, 'pedido')); if (vp(k, 'entrega')) det.push('entrega ' + vp(k, 'entrega'));
       if (tot !== null && tot > 0) { var falta = Math.max(0, tot - (num(vp(k, 'abono')) || 0)); det.push(falta > 0 ? 'falta por cobrar ' + pesos(falta) : 'pagado completo'); }
       if (det.length) { var l2 = el('p', 'pd-linea'); l2.setAttribute('data-no-traducir', ''); l2.textContent = det.join(' · '); td.appendChild(l2); }

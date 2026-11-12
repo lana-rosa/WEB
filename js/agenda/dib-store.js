@@ -126,6 +126,66 @@
   S.guardarBaseDib = async function (dib) { await S.listo; if (!S.activo) return false; try { if (dib && Object.keys(dib).length) await ponerMeta('driveBaseDib', dib); else await borrarMeta('driveBaseDib'); return true; } catch (e) { return false; } };
   S.borrarBaseDib = async function () { await S.listo; if (db) { try { await borrarMeta('driveBaseDib'); } catch (e) {} } };
 
+  /* ---------- galerías de fotos por ficha (12-nov-2026) ----------
+     Las fotos de una galería (hasta 12 por patrón de «Diseña tu patrón», hasta 8 por «Ficha de proyecto») son entradas de `datos._dib` con la clave `<hoja>:<ficha>:f<n>` = { s: [], img, t }
+     (img = foto como dataURL, t = lo que muestra). Viajan igual que los dibujos: IndexedDB, copia de seguridad, copia en la cuenta (sin la imagen si no cabe, pero con `t`) y Google Drive
+     (cada foto en su archivo `foto-<huella>.json`; la mezcla es por clave y por campo). Al borrar la ficha, `formas.js` borra todo lo que empiece con `<hoja>:<ficha>:`.
+     La clave del dibujo de la ficha es `<hoja>:<ficha>` (sin `:f<n>`): no cuenta como foto de la galería. Quien muestre o cambie fotos usa esta API; nada más escribe `_dib` a mano.
+       S.fotos.lista(hoja, ficha)            → [{ clave, n, img, t }] ordenadas por n
+       S.fotos.maximo(hoja)                  → 8 (ficha-proyecto) · 12 (disena-patron) · 12 por defecto
+       S.fotos.puedeAgregar(hoja, ficha, chars) → { ok, motivo: 'maximo' | 'espacio' | 'sin_datos' | null }
+       S.fotos.agregar(hoja, ficha, img, t)  → { ok, clave, motivo }   (respeta el máximo y el espacio total; guarda)
+       S.fotos.etiquetar(clave, t) · S.fotos.quitar(clave) · S.fotos.quitarTodas(hoja, ficha)   (guardan)
+       S.fotos.reducir(archivo)              → Promise<dataURL>  (lado mayor 1600 px —760 sin IndexedDB—, calidad adaptativa para que cada foto pese como mucho TOPE_FOTO letras)
+       S.fotos.TOPE_FOTO                     → 900000 letras (≈ 675 KB) por foto; el total de todas las fotos y dibujos lo limita S.limites().img */
+  var MAX_FOTOS = { 'ficha-proyecto': 8, 'disena-patron': 12 }, TOPE_FOTO = 900000;
+  function dibMem() { var d = obtener(); if (!d) return null; return d._dib || (d._dib = {}); }
+  function esFoto(pre, k, v) { return k.indexOf(pre) === 0 && /^\d+$/.test(k.slice(pre.length)) && v && typeof v.img === 'string' && v.img; }
+  function tras() { if (window.lrAgendaNucleo && window.lrAgendaNucleo.guardar) window.lrAgendaNucleo.guardar(); else S.alGuardar(); }
+  var F = S.fotos = { TOPE_FOTO: TOPE_FOTO };
+  F.prefijo = function (hoja, ficha) { return hoja + ':' + ficha + ':f'; };
+  F.maximo = function (hoja) { return MAX_FOTOS[hoja] || 12; };
+  F.lista = function (hoja, ficha) {
+    var a = dibMem(), pre = F.prefijo(hoja, ficha); if (!a) return [];
+    return Object.keys(a).filter(function (k) { return esFoto(pre, k, a[k]); }).map(function (k) { return { clave: k, n: +k.slice(pre.length), img: a[k].img, t: a[k].t || '' }; }).sort(function (x, y) { return x.n - y.n; });
+  };
+  function totalImg() { var a = dibMem() || {}, n = 0; Object.keys(a).forEach(function (k) { n += ((a[k] && a[k].img) || '').length; }); return n; }
+  F.puedeAgregar = function (hoja, ficha, chars) {
+    if (!dibMem()) return { ok: false, motivo: 'sin_datos' };
+    if (F.lista(hoja, ficha).length >= F.maximo(hoja)) return { ok: false, motivo: 'maximo' };
+    if (totalImg() + (chars || 0) > S.limites().img) return { ok: false, motivo: 'espacio' };
+    return { ok: true, motivo: null };
+  };
+  F.agregar = function (hoja, ficha, img, t) {
+    var c = F.puedeAgregar(hoja, ficha, String(img || '').length); if (!c.ok) return { ok: false, clave: null, motivo: c.motivo };
+    if (typeof img !== 'string' || img.indexOf('data:image/') !== 0) return { ok: false, clave: null, motivo: 'imagen' };
+    var a = dibMem(), pre = F.prefijo(hoja, ficha), n = 1; while (a[pre + n]) n++;
+    a[pre + n] = { s: [], img: img, t: String(t || '').slice(0, 80) }; tras(); return { ok: true, clave: pre + n, motivo: null };
+  };
+  F.etiquetar = function (clave, t) { var a = dibMem(); if (!a || !a[clave]) return false; a[clave].t = String(t || '').slice(0, 80); tras(); return true; };
+  F.quitar = function (clave) { var a = dibMem(); if (!a || !a[clave]) return false; delete a[clave]; tras(); return true; };
+  F.quitarTodas = function (hoja, ficha) { var a = dibMem(), pre = F.prefijo(hoja, ficha), n = 0; if (!a) return 0; Object.keys(a).forEach(function (k) { if (k.indexOf(pre) === 0) { delete a[k]; n++; } }); if (n) tras(); return n; };
+  F.reducir = function (archivo) {
+    return new Promise(function (ok, mal) {
+      var lector = new FileReader(); lector.onerror = function () { mal(new Error('lectura')); };
+      lector.onload = function () {
+        var im = new Image(); im.onerror = function () { mal(new Error('imagen')); };
+        im.onload = function () {
+          var base = S.activo ? 1600 : 760, calidad = S.activo ? 0.82 : 0.62, lado = base, url = '';
+          for (var vuelta = 0; vuelta < 8; vuelta++) {
+            var esc = Math.min(1, lado / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.max(1, Math.round(im.width * esc)); c.height = Math.max(1, Math.round(im.height * esc));
+            var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height);
+            url = c.toDataURL('image/jpeg', calidad); if (url.length <= TOPE_FOTO) break;
+            if (calidad > 0.55) calidad -= 0.1; else lado = Math.round(lado * 0.8);   // primero baja la calidad, después el tamaño
+          }
+          ok(url);
+        };
+        im.src = lector.result;
+      };
+      lector.readAsDataURL(archivo);
+    });
+  };
+
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') S.guardarYa().catch(function () {}); });
   window.addEventListener('pagehide', function () { S.guardarYa().catch(function () {}); });
 })();

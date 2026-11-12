@@ -47,13 +47,13 @@
       if (items.length) {
         var ul = el('ul', 'pl-lista'); ul.setAttribute('data-no-traducir', '');
         items.forEach(function (it) {
-          var es = estados.filter(function (x) { return x.id === it.id; })[0] || {}, li = el('li', it.hecho ? 'hecho' : (es.falta > 0 ? 'falta' : '')); li.appendChild(el('span', '', num(it.n) + ' × ' + it.lana + (it.hecho ? ' · descontada' : es.falta > 0 ? ' · ⚠ no alcanza' : ' · apartada')));
+          var es = estados.filter(function (x) { return x.id === it.id; })[0] || {}, li = el('li', it.hecho ? 'hecho' : (es.falta > 0 ? 'falta' : '')); li.appendChild(el('span', '', T(num(it.n) + ' × ' + it.lana + (it.hecho ? ' · descontada' : es.falta > 0 ? ' · ⚠ no alcanza' : ' · apartada'))));
           if (!it.hecho) { var q = el('button', 'enlace-copia', '✕'); q.type = 'button'; q.setAttribute('aria-label', 'Quitar'); q.addEventListener('click', function () { delete errores[sin(nom)]; var l = lista(nom), i = l.findIndex(function (x) { return x.id === it.id; }); if (i >= 0) { l.splice(i, 1); if (!l.length) delete datos()[sin(nom)]; N.guardar(); } }); li.appendChild(q); }
           ul.appendChild(li);
         });
         td.appendChild(ul);
         var faltan = {}; estados.forEach(function (x) { if (x.falta > 0) faltan[x.lana] = x; });
-        Object.keys(faltan).forEach(function (l) { var x = faltan[l], p = el('p', 'iv-aviso mal', 'Te faltan ' + num(x.falta) + ' ovillo(s) de ' + l + ': tienes ' + num(x.stock) + ' y entre tus proyectos tienes apartados ' + num(x.apartados) + '.'); p.setAttribute('role', 'status'); p.setAttribute('data-no-traducir', ''); td.appendChild(p); });
+        Object.keys(faltan).forEach(function (l) { var x = faltan[l], p = el('p', 'iv-aviso mal', T('Te faltan ' + num(x.falta) + ' ovillo(s) de ' + l + ': tienes ' + num(x.stock) + ' y entre tus proyectos tienes apartados ' + num(x.apartados) + '.')); p.setAttribute('role', 'status'); p.setAttribute('data-no-traducir', ''); td.appendChild(p); });
       }
       var msg = el('p', 'iv-aviso mal'); msg.setAttribute('role', 'alert'); msg.textContent = errores[sin(nom)] || ''; msg.hidden = !msg.textContent;
       if (!lanas.length) {
@@ -100,7 +100,7 @@
       if (!td) { td = el('td', 'iv-apartada no-imprimir'); td.setAttribute('data-col', 'apartada'); var ref = tr.querySelector('td.iv-mov') || tr.querySelector('td.celda-cal') || tr.querySelector('td.ficha-acciones'); tr.insertBefore(td, ref); }
       var st = stockDe(nom) || 0, libres = Math.round((st - tot) * 10) / 10;
       td.textContent = '';
-      var p = el('p', 'iv-aviso ' + (libres < 0 ? 'mal' : 'info'), libres < 0 ? 'Apartados para proyectos: ' + num(tot) + ' · te faltan ' + num(-libres) + ' ovillo(s).' : 'Apartados para proyectos: ' + num(tot) + ' · libres: ' + num(libres) + '.');
+      var p = el('p', 'iv-aviso ' + (libres < 0 ? 'mal' : 'info'), T(libres < 0 ? 'Apartados para proyectos: ' + num(tot) + ' · te faltan ' + num(-libres) + ' ovillo(s).' : 'Apartados para proyectos: ' + num(tot) + ' · libres: ' + num(libres) + '.'));
       p.setAttribute('data-no-traducir', ''); td.appendChild(p);
     });
   }

@@ -1,10 +1,11 @@
 """Prueba «Guardar informes y copias en tu Drive» (etapa 4, js/agenda/drive-archivos.js) con la función `google-drive-archivos` y la API de Drive SIMULADAS.
 Uso: /usr/bin/python3 herramientas/pruebas/probar_agenda_drive_archivos.py   (con un servidor local en el puerto 8765)"""
-import json, re, sys
+import json, re, sys, datetime, os, tempfile
 sys.path.insert(0, __file__.rsplit('/', 1)[0])
 from agenda_util import *
 t = Prueba()
-DATOS = {'ag-p1-cliente': 'Ana', 'ag-p1-pedido': 'Oso', 'ag-p1-entrega': '15/12/2026'}
+_h = datetime.date.today()
+DATOS = {'ag-p1-cliente': 'Ana', 'ag-p1-pedido': 'Oso', 'ag-p1-entrega': '15/12/2026', 'ag-vt1-fecha': _h.strftime('%d/%m/%Y'), 'ag-vt1-producto': 'Oso de apego', 'ag-vt1-precio': '$ 50.000', 'ag-vt1-costo': '$ 20.000', 'ag-duena': 'Sara'}
 
 
 class Nube:
@@ -29,7 +30,7 @@ class Nube:
         if '/upload/' in url and 'uploadType=multipart' in url:
             cuerpo = r.post_data_buffer or b''; txt = cuerpo.decode('latin1')
             meta = json.loads(re.search(r'\r\n\r\n(\{.*?\})\r\n--', txt, re.S).group(1))
-            s.n += 1; fid = 'a%d' % s.n; s.archivos[fid] = {'id': fid, 'name': meta['name'], 'parents': meta.get('parents'), 'bytes': len(cuerpo), 'via': 'multipart', 'mime': meta.get('mimeType')}
+            s.n += 1; fid = 'a%d' % s.n; s.archivos[fid] = {'id': fid, 'name': meta['name'], 'parents': meta.get('parents'), 'bytes': len(cuerpo), 'via': 'multipart', 'mime': meta.get('mimeType'), 'media': (lambda parts: parts[1].split('\r\n\r\n', 1)[1].rsplit('\r\n', 1)[0] if len(parts) > 1 else '')([p for p in txt.split('--' + re.search(r'boundary=(.+)$', r.headers.get('content-type', '')).group(1)) if 'Content-Type' in p])}
             return js({'id': fid, 'name': meta['name']})
         if '/upload/' in url and 'uploadType=resumable' in url:
             if r.method == 'POST':
@@ -86,8 +87,17 @@ with sync_playwright() as p:
     js_ = [a for a in n.archivos.values() if a['name'].endswith('.json')]
     t.v('la copia de seguridad NO se convierte (sigue siendo un .json)', not js_[0].get('mime'))
     t.v('«Guardar una copia»: sube el .json a la misma carpeta (no crea otra)', len(js_) == 1 and len(n.carpetas) == 1 and js_[0]['parents'] == list(n.carpetas) and re.match(r'^agenda-rosina-\d{4}-\d{2}-\d{2}-\d{4}\.json$', js_[0]['name']), [list(n.carpetas), [a['name'] for a in n.archivos.values()]])
+    pg.click('#da-informe'); pg.wait_for_timeout(2500)
+    pdfs = [a for a in n.archivos.values() if a['name'].startswith('Informe ')]
+    t.v('«Guardar el informe (PDF)»: sube un archivo «Informe AAAA-MM …» a la misma carpeta', len(pdfs) == 1 and pdfs[0]['parents'] == list(n.carpetas) and re.match(r'^Informe \d{4}-\d{2} Agenda para tejedoras \d{4}-\d{2}-\d{2}-\d{4}$', pdfs[0]['name']) and not pdfs[0].get('mime'), [(a['name'], a.get('mime')) for a in n.archivos.values()])
+    ruta = os.path.join(tempfile.mkdtemp(), 'i.pdf'); open(ruta, 'wb').write(pdfs[0]['media'].encode('latin1'))
+    import pypdf
+    lector = pypdf.PdfReader(ruta, strict=True); texto = '\n'.join(p.extract_text() for p in lector.pages)
+    t.v('es un PDF válido (se abre con un lector estricto) y trae las cifras del mes', len(lector.pages) >= 1 and 'Informe de' in texto and 'Oso de apego' in texto and '50.000' in texto and 'Sara' in texto, texto[:300])
+    pg.select_option('#da-mes', 'anterior'); pg.click('#da-informe'); pg.wait_for_timeout(1500)
+    t.v('el informe del mes pasado, sin nada anotado, no sube nada y lo explica', len([a for a in n.archivos.values() if a['name'].startswith('Informe ')]) == 1 and 'No hay nada anotado' in pg.inner_text('#da-aviso'), pg.inner_text('#da-aviso'))
     t.v('la función anota el último guardado y la fila de Conexiones lo muestra', 'guardado' in n.llamadas and 'Último guardado' in pg.inner_text('#cx-resumen'), pg.inner_text('#cx-resumen'))
-    t.v('«Desconectar» avisa a la función y vuelve a «Conectar» (lo guardado se queda en su Drive)', (pg.click('#da-desconectar'), pg.wait_for_timeout(800))[1] is None and 'desconectar' in n.llamadas and pg.locator('#da-conectar').is_visible() and len(n.archivos) == 2)
+    t.v('«Desconectar» avisa a la función y vuelve a «Conectar» (lo guardado se queda en su Drive)', (pg.click('#da-desconectar'), pg.wait_for_timeout(800))[1] is None and 'desconectar' in n.llamadas and pg.locator('#da-conectar').is_visible() and len(n.archivos) == 3)
     t.v('sin errores de JavaScript', not pg.errs, pg.errs); ctx.close()
 
     # una copia grande va por partes
