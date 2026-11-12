@@ -332,6 +332,11 @@ body.config-sola .pestanas-agenda { display: none !important; }
 #agenda .fp-msg:empty { display: none; }
 .fp-visor { max-width: 720px; }
 .fp-grande { max-width: 100%; max-height: 70vh; height: auto; border-radius: 10px; object-fit: contain; }
+/* Patrones terminados: aviso y casilla «Dar por terminado» (12-nov-2026) */
+#agenda .pt-aviso { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 12px; padding: 10px 14px; border-radius: 12px; background: var(--rosa-suave); color: var(--rosa-texto); font-size: .95rem; }
+#agenda .pt-aviso.ok { background: #E7F4EA; color: #1F5E2E; }
+#agenda .pt-aviso[hidden] { display: none; }
+#agenda .dp-terminar { margin-top: 10px; padding: 10px 12px; border: 1.5px dashed var(--rosa-medio); border-radius: 12px; }
 #agenda .iv-mov-gasto { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; min-height: 44px; padding: 4px 0; cursor: pointer; } #agenda .iv-mov-gasto input { flex: none; width: 22px; height: 22px; accent-color: var(--rosa-boton); }
 
 /* Claro u oscuro (E19, 5-nov-2026): tres botones en Configuración */

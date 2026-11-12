@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/css/agenda-panel.css?v=16">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
 <link rel="stylesheet" href="/css/agenda-editorial.css?v=19">
-<link rel="stylesheet" href="/css/agenda-colores.css?v=57">
+<link rel="stylesheet" href="/css/agenda-colores.css?v=58">
 <link rel="stylesheet" href="/css/agenda-frambuesa.css?v=11">
 <link rel="stylesheet" href="/css/agenda-panel-vida.css?v=31">
 <link rel="stylesheet" href="/css/agenda-movil.css?v=18">
@@ -910,7 +910,7 @@ main > :first-child { padding-top: 40px !important; }
 }
 </style>
 <script>try{var m=localStorage.getItem("lrAgendaModo");if(m==="oscuro"||(m!=="claro"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.setAttribute("data-modo","oscuro")}catch(e){}</script>
-<link rel="stylesheet" href="/css/agenda-oscuro.css?v=19">
+<link rel="stylesheet" href="/css/agenda-oscuro.css?v=20">
 <!-- ICONOS:INICIO (generado) -->
 <link rel="icon" type="image/png" href="/img/favicon-agenda-256.png?v=8">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon-agenda.png?v=8">
@@ -2262,11 +2262,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <fieldset class="dp-paso dp-vista-paso" data-paso="7" data-titulo="Vista previa">
             <legend>Paso 7 · Así queda tu patrón</legend>
             <div class="dp-vista" id="dp-vista" aria-live="polite"></div>
+            <div class="linea ancha no-imprimir dp-terminar"><label class="check-linea"><input type="checkbox" id="ag-dp-terminado" data-guardar aria-label="Patrón terminado"> ✅ Dar por terminado: guárdalo en «Patrones que diseñé»</label></div>
             <p class="no-imprimir dp-acciones"><button type="button" class="boton-primario" id="dp-imprimir">🖨️ Imprimir mi patrón</button> <button type="button" class="boton-secundario" id="dp-txt">⬇️ Descargar como texto</button></p>
             <p class="tip-agenda no-imprimir">💡 <strong>Rosina dice:</strong> los patrones que diseñas son tuyos. Si los compartes o los vendes, escribe tu nombre como autora y cuida las imágenes que uses.</p>
           </fieldset>
           <div class="dp-nav no-imprimir"><button type="button" class="boton-secundario boton-chico" id="dp-atras">← Atrás</button><span id="dp-cuenta" aria-live="polite"></span><button type="button" class="boton-primario boton-chico" id="dp-sig">Siguiente →</button></div>
         </div>
+      </article>
+      <article class="hoja-agenda" id="patrones-disenados">
+        <header>
+          <img class="avatar-sticker" src="/img/stickers/rosina-11-computador.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="512" height="512">
+          <div><h3>Patrones que diseñé</h3><p>Los patrones que diste por terminados en «Diseña tu patrón».</p></div>
+        </header>
       </article>
         <div class="acciones-hoja acciones-hoja-abajo no-imprimir">
           <button type="button" class="boton-secundario boton-chico" data-imprimir-hoja="llena">🖨️ Imprimir esta hoja</button>
@@ -4088,7 +4095,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (history.replaceState) history.replaceState(null, '', '#' + id);
     });
     /* hojas que ya no tienen su propia entrada en el menú sino una pestaña dentro de otra (10-nov-2026): Mi tablero va dentro de Mi panel y Proyectos por tejer dentro de Proyectos */
-    var EN_MENU = { 'tablero-agenda': 'panel-agenda', 'proyectos-fila': 'ficha-proyecto', 'disena-patron': 'coleccion-patrones', 'contactos': 'mis-clientas' };
+    var EN_MENU = { 'tablero-agenda': 'panel-agenda', 'proyectos-fila': 'ficha-proyecto', 'disena-patron': 'coleccion-patrones', 'patrones-disenados': 'coleccion-patrones', 'contactos': 'mis-clientas' };
     window.lrPintarPestanas = function(idReal) {
       var id = EN_MENU[idReal] || idReal;
       if (window.lrSeccion) window.lrSeccion.cerrar();
@@ -4430,7 +4437,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/config.js?v=18" defer></script>
 <script src="/js/agenda/tour.js?v=7" defer></script>
 <script src="/js/agenda/fichas.js?v=3" defer></script>
-<script src="/js/agenda/formas.js?v=4" defer></script>
+<script src="/js/agenda/formas.js?v=5" defer></script>
 <script src="/js/agenda/merceria.js?v=1" defer></script>
 <script src="/js/agenda/meses.js?v=1" defer></script>
 <script src="/js/agenda/dinero.js?v=3" defer></script>
@@ -4444,8 +4451,8 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 <script src="/js/agenda/herramientas-abajo.js?v=2" defer></script>
 <script src="/js/agenda/lupa.js?v=2" defer></script>
 <script src="/js/agenda/patron.js?v=2" defer></script>
-<script src="/js/agenda/patrones-propios.js?v=1" defer></script>
-<script src="/js/agenda/pestanas-hoja.js?v=2" defer></script>
+<script src="/js/agenda/patrones-propios.js?v=4" defer></script>
+<script src="/js/agenda/pestanas-hoja.js?v=3" defer></script>
 <script src="/js/agenda/compras-semana.js?v=1" defer></script>
 <script src="/js/agenda/planeador.js?v=3" defer></script>
 <script src="/js/agenda/vacios.js?v=5" defer></script>

@@ -52,7 +52,9 @@
     'disena-patron': {
       nuevo: '➕ Diseñar otro patrón', unidad: 'patrón', vacio: 'Patrón sin nombre',
       nombre: function (c) { return String(c['ag-dp-nombre'] || '').trim() || 'Patrón sin nombre'; },
-      chips: function (c) { var x = []; if (c['ag-dp-nivel']) x.push([c['ag-dp-nivel'], '']); if (c['ag-dp-probado']) x.push(['✓ Probado', 'ok']); return x; },
+      chips: function (c) { var x = []; if (c['ag-dp-nivel']) x.push([c['ag-dp-nivel'], '']); if (c['ag-dp-probado']) x.push(['✓ Probado', 'ok']); if (c['ag-dp-terminado']) x.push(['✅ Terminado', 'ok']); return x; },
+      /* los patrones terminados no se apilan en «Diseña tu patrón»: viven en la pestaña «Patrones que diseñé» (patrones-propios.js); solo se ve el que está abierto */
+      oculta: function (c) { return !!c['ag-dp-terminado']; },
       inicial: function () { return {}; }, siguiente: function () { return {}; }
     },
     'prendas-medida': {
@@ -106,6 +108,7 @@
     lista.textContent = '';
     V.orden.forEach(function (k) {
       var abierta = k === V.actual, c = abierta ? captura(id) : (V.v[k] || {});
+      if (!abierta && H.oculta && H.oculta(c)) return;
       var it = document.createElement('section'); it.className = 'vers-item' + (abierta ? ' abierta' : ''); it.dataset.k = k;
       var b = document.createElement('button'); b.type = 'button'; b.className = 'ficha-cab vers-cab'; b.setAttribute('aria-expanded', abierta ? 'true' : 'false');
       b.innerHTML = '<span class="ficha-flecha" aria-hidden="true">▸</span><span class="ficha-titulo"></span><span class="ficha-meta"></span>';
