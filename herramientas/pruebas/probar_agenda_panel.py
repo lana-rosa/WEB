@@ -37,7 +37,7 @@ with sync_playwright() as p:
     # sección
     pg.evaluate("document.querySelectorAll('.pestana')[3].click()"); pg.wait_for_timeout(400)
     T.v('al tocar «Mi emprendimiento» se ve la vista de sección', pg.evaluate("!document.getElementById('vista-seccion').hidden"))
-    T.v('la vista muestra 7 hojas como tarjetas', pg.locator('.vs-hoja').count() == 7, pg.locator('.vs-hoja').count())
+    T.v('la vista muestra 6 hojas como tarjetas (pedidos, clientas y contactos, ventas y gastos, catálogo, ferias y resumen; desde la Fase C «Clientas y contactos» es una sola)', pg.locator('.vs-hoja').count() == 6, pg.locator('.vs-hoja').count())
     T.v('ninguna hoja queda abierta detrás', pg.evaluate("document.querySelectorAll('#agenda .hoja-agenda.abierta').length") == 0)
     T.v('el título de la vista recibe el foco', pg.evaluate("document.activeElement.id") == 'vs-titulo', pg.evaluate("document.activeElement.id"))
     T.v('la sección queda marcada en el menú', pg.evaluate("document.querySelectorAll('.pestana')[3].getAttribute('aria-selected')") == 'true')

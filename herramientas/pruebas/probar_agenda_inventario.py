@@ -40,7 +40,7 @@ with sync_playwright() as p:
     pg.close()
     # tablero de Mis materiales
     pg = abrir(contexto(b, 1280, 1000, datos=DATOS, config_abierta=False), '', 2400, config=False)
-    pg.evaluate("document.querySelectorAll('.pestana')[3].click()"); pg.wait_for_timeout(800)
+    pg.evaluate("document.querySelectorAll('.pestana')[2].click()"); pg.wait_for_timeout(800)   # «Mis materiales» es la tercera pestaña (índice 2)
     d = pg.inner_text('.vs-dash') if pg.locator('.vs-dash').count() else ''
     T.v('tablero de Mis materiales muestra «Dinero en lana» $ 52.000 y «Por acabarse»', 'Dinero en lana' in d and '$ 52.000' in d and 'Por acabarse' in d, d)
     pg.close()
