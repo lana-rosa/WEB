@@ -5,7 +5,8 @@
    En celular apaisado la barra de abajo pasa a un riel lateral. Al imprimir no se aplica nada de esto. */
 @font-face { font-family: 'Fraunces'; font-weight: 500; font-display: swap; src: url(/fonts/fraunces-500.woff2) format('woff2'); }
 @font-face { font-family: 'Fraunces'; font-weight: 600; font-display: swap; src: url(/fonts/fraunces-600.woff2) format('woff2'); }
-html:root { --marfil: #FEF2F7; --crema: #FBE4EF; --papel: #FFFFFF; --salvia: #7F9C80; --salvia-osc: #3F6B47; --salvia-suave: #E2EBDF; --serif: 'Emoji Lana', 'DynaPuff', sans-serif; --fuente-hoja: 'Emoji Lana', 'DynaPuff', sans-serif; --fuente-titulo: 'Hanken Grotesk', sans-serif; }
+html:root { --marfil: #FFFFFF; --crema: #FBE4EF; --papel: #FFFFFF; --salvia: #7F9C80; --salvia-osc: #3F6B47; --salvia-suave: #E2EBDF; --serif: 'Emoji Lana', 'DynaPuff', sans-serif; --fuente-hoja: 'Emoji Lana', 'DynaPuff', sans-serif; --fuente-titulo: 'Hanken Grotesk', sans-serif; }
+/* 13-nov-2026 (Jennifer: «está todo en rosado, se ve sobresaturado; me gustaría el fondo blanco que usamos en la web»): el fondo general de la agenda es el blanco de la web (--marfil = #FFFFFF); el rosa queda como acento (bordes, títulos, botones, íconos y el color de cada sección). El modo oscuro no cambia: su fondo se fija en manual.css. */
 body, #agenda.seccion-suave, #agenda { background: var(--marfil) !important; }
 #agenda .contenedor { max-width: 1360px; }
 
