@@ -1,4 +1,5 @@
--- Migración 45 (13-nov-2026) — PREPARADA, SIN APLICAR (🔴 seguridad de la base; espera el sí de Jennifer y la coordinación con el chat del ERP).
+-- Migración 45 (13-nov-2026) — APLICADA el 14-nov-2026 por el Orquestador WEB (con el sí de Jennifer y de Sara; nombre «migracion_45_cerrar_politicas_abiertas»).
+-- Verificado por el chat 5 el 14-nov con consulta a pg_policies: las 4 políticas nuevas están y las abiertas ya no existen. Pruebas simuladas (clienta, visitante, administradora, cajera, Personaliza): PENDIENTES.
 -- Problema (verificado con consultas el 13-nov-2026): 4 tablas tienen una política «ALL … USING true» que deja entrar a cuentas que no son del ERP:
 --   · oportunidades_venta (2 filas: solicitudes de Personaliza con nombre, teléfono, correo y enlaces de fotos): cualquier clienta con sesión las ve y las puede cambiar.
 --   · fe_config_proyecto (1 fila) y fe_metas_mensuales_produccion (12 filas): igual, para cualquier cuenta con sesión.
