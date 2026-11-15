@@ -47,3 +47,9 @@ html[data-modo="oscuro"] .dib-caja { background-color: #fff; }
 html[data-modo="oscuro"] .dib-fondo-puntos { background-image: radial-gradient(circle, #8a8a92 1.3px, transparent 1.6px); }
 /* buscador: el borde redondo se resalta al enfocar (en oscuro, en rosa claro) */
 html[data-modo="oscuro"] body .buscar-agenda:focus-within { border-color: #F28FC0; box-shadow: 0 0 0 3px #F28FC0; }
+/* 13-nov-2026: en modo claro --marfil (fondo general de la agenda) pasó a blanco; en oscuro conserva su tono de siempre */
+html[data-modo="oscuro"]:root { --marfil: #331421; }
+/* 13-nov-2026: la franja del selector de hojas en el celular pasó a blanco en claro; en oscuro conserva su tono de siempre */
+@media (max-width: 820px) {
+  html[data-modo="oscuro"] body #agenda .fila-hojas, html[data-modo="oscuro"] body #agenda .fila-hojas:not(:has(.selector-hoja[hidden])), html[data-modo="oscuro"] body #agenda .selector-hoja:not([hidden]) { background: rgba(51, 20, 33, 0.96) !important; }
+}
