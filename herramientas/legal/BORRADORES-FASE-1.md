@@ -222,6 +222,21 @@ No se publica ningún patrón hasta tener sus condiciones. Propuesta lista (no e
 4. ¿La política debe decir expresamente que la agenda puede contener datos delicados de terceras personas, como en el borrador?
 5. ¿Hay que ofrecer algo para el borrado de esos datos (por ejemplo, al borrar la clienta se borran sus medidas y alergias)? Hoy borrar el renglón de la clienta las borra con él; está por verificar que también salgan de las copias antiguas (ver punto 7, copias).
 
+## 17. Mensaje posventa con encuesta de satisfacción (propuesta del CRM, 15-nov-2026)
+
+**Qué quiere hacer el CRM:** después de cada compra, enviar a **todas** las clientas un mensaje con agradecimiento, una encuesta corta de satisfacción y la invitación a calificar en la web y en Google, **sin dar nada a cambio** (sin descuento ni regalo).
+**Qué dice la política hoy** (`#datos`, apartado 3): las finalidades incluyen enviar comprobantes y avisos del pedido, el recordatorio de carrito (solo con casilla) y «información comercial, promociones, novedades…» solo si la persona autorizó (casilla aparte y opcional, con baja). **No hay** una finalidad de «encuesta de satisfacción posventa».
+
+**Borrador nuestro — finalidad para la política (apartado 3):**
+> Enviar, después de la compra, un mensaje de agradecimiento con una encuesta corta de satisfacción y la invitación a calificar nuestro servicio en la web y en Google. Es opcional responderla, no implica ningún beneficio ni condición y no se usa con fines publicitarios.
+
+**Preguntas para la abogada:**
+1. ¿Este mensaje es **comunicación del servicio** (posventa, se puede enviar sin la casilla de novedades) o **comunicación comercial** (solo a quien la aceptó, con enlace de baja)? Nuestra lectura: si solo agradece, pregunta por la experiencia y pide calificar, sin ofrecer nada ni promocionar productos, es del servicio; si incluye ofertas, descuentos o novedades, es comercial.
+2. ¿Aunque sea del servicio conviene incluir una forma sencilla de no recibir más estos mensajes?
+3. ¿La invitación a calificar en Google, sin dar nada a cambio, es correcta, o hay riesgo con las reglas de reseñas de Google o con la publicidad (por ejemplo, pedir calificar solo a quienes quedaron satisfechas)?
+4. ¿Qué datos de la clienta se guardan de la encuesta y por cuánto tiempo (conservación)?
+5. ¿Hay que informar la finalidad antes de la compra (por ejemplo, en la política de datos y en el pago) además del texto del mensaje?
+
 ## Lo que necesito de la abogada (resumen)
 1. Aprobación (o ajuste) de los textos marcados «borrador nuestro» de los puntos 2, 3, 4, 6, 7, 8, 10 y 13.
 2. Mecanismo para Supabase en Brasil y países con nivel adecuado (inventario de proveedores).
