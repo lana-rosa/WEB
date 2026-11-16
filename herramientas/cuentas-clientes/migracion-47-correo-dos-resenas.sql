@@ -1,4 +1,4 @@
--- Migración 47 (16-nov-2026) — PREPARADA, SIN APLICAR (🔴 base de datos; espera el sí de Jennifer sobre la imagen del correo).
+-- Migración 47 (16-nov-2026) — APLICADA el 16-nov-2026 (nombre «migracion_47_correo_simple_dos_resenas»; sí de Jennifer a la imagen y enlace de Google nuevo …_XEAI confirmado por el Orquestador WEB, que es el que Sara mandó al CRM). Verificada por consulta el 16-nov.
 -- Pedido de Jennifer (16-nov): el correo de gracias de cada compra web (fn_correo_compra_web, migración 6) debe ofrecer DOS opciones para dejar reseña (en la página y en Google)
 -- y verse MÁS SIMPLE («se ve sobre saturado»). Esta versión: un solo botón lleno «Entrar a mi cuenta» y debajo enlaces de texto pequeños: «Cómo cuidar tu tejido» ·
 -- «Deja tu reseña en la página» (https://lanarosacrochet.com/cuenta.html#resenas) · «Deja tu reseña en Google» (https://g.page/r/Cae2iIji5j_XEAI/review, enlace nuevo de Sara).
@@ -6,7 +6,7 @@
 -- no responsable de IVA y cómo pedir factura electrónica (solo con letra más pequeña y sin caja). Se conservan subtotal, descuento, envío y total (en tamaño pequeño), el medio de pago
 -- y el texto «Ya estamos preparando tu pedido con mucho cariño.», que la función reemplaza en los patrones digitales.
 -- Solo reemplaza la plantilla del correo dentro de la definición actual de la función (no cambia argumentos, permisos ni envío) y falla sin cambiar nada si no la encuentra.
--- PARA CONFIRMAR ANTES DE APLICAR: el correo de hoy usa https://g.page/r/Cae2iIji5j_XEAE/review (termina en «E»); el nuevo termina en «I». Sara debe confirmar cuál abre la ventana de reseña.
+-- Enlace de Google: antes usaba …_XEAE/review; ahora …_XEAI/review (el de Sara y del CRM).
 -- Reversa: volver a aplicar la definición anterior (migración 6 con el enlace anterior).
 do $mig$
 declare d text; i int; j int; resto text; tpl text; ini text := 'v_html := format($h$'; fin text := '$h$,';
