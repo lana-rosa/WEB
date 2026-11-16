@@ -47,6 +47,7 @@ Sitio estático en HTML/CSS/JS publicado con GitHub Pages desde la rama `main` (
 | SEO, Revista, cookies, fuentes, medición | `sitio-seo-revista-cookies.md` |
 | Generadores de `herramientas/`, íconos y fondos, app instalable (PWA) | `generadores-y-pwa.md` |
 | Textos para abrir chats nuevos por tema | `plantillas-de-chats.md` |
+| Orquestador general (uno solo para WEB, ERP, CRM y SO) y cuándo escribirle | `orquestador-general.md` |
 | **En qué estamos ahora (leer primero en un chat nuevo)** | `estado-actual.md` |
 | Lo pendiente (abierto) | `PENDIENTES.md` en la raíz |
 | Lo ya hecho, cómo y cuándo | `historial-pendientes.md` |
