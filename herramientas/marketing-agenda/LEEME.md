@@ -11,6 +11,7 @@ Documentos de trabajo (internos: no se publican en el sitio). Se actualizan a me
 | `CALENDARIO-APERTURA-11NOV-14DIC.md` | Calendario de Instagram y Facebook del 11-nov al 14-dic (encargo E10). |
 | `GUIONES-APERTURA-SEMANAS-1-Y-2.md` | Guiones de las piezas del 11 al 24-nov. |
 | `BORRADORES-TEJER-PARA-VENDER.md` | Carrusel, Reel y encuesta del Método ROSA para publicar desde el 14-dic. |
+| `GUIONES-APERTURA-SEMANAS-3-Y-4.md` | Guiones de las piezas del 25-nov al 8-dic. |
 
 Reglas comunes: enseñar antes de vender; no prometer ingresos ni resultados garantizados; no hacer afirmaciones médicas; anunciar solo lo que existe; distinguir hechos de interpretaciones; no celebrar Navidad, San Valentín ni Halloween.
 
@@ -24,3 +25,4 @@ Reglas comunes: enseñar antes de vender; no prometer ingresos ni resultados gar
 - **10-nov-2026 (Método ROSA):** borradores del carrusel «¿Lo tejo para vender?», el Reel «Lo que me encanta vs. lo que se vende» y la encuesta, en `BORRADORES-TEJER-PARA-VENDER.md`. Falta aprobación de Jennifer y las 2 piezas reales del taller.
 - **11-nov-2026:** Jennifer eligió las piezas del Reel ROSA (muñeca grande con ropa intercambiable vs. amigurumis pequeños); guion actualizado. Falta grabarlas y que apruebe.
 - **12-nov-2026:** Jennifer aceptó grabar las tomas del Reel ROSA; lista de 5 tomas guardada en `BORRADORES-TEJER-PARA-VENDER.md`. Los pedidos a Jennifer pasan por el Orquestador de la Web.
+- **17-nov-2026:** guiones de las semanas 3 y 4 de la apertura en `GUIONES-APERTURA-SEMANAS-3-Y-4.md` (borrador). Falta dirección, hora y programa de la inauguración, existencias de la Mercería y capturas de la agenda. Faltan los guiones del 9 al 14-dic.
