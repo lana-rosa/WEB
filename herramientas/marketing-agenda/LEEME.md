@@ -26,3 +26,4 @@ Reglas comunes: enseñar antes de vender; no prometer ingresos ni resultados gar
 - **11-nov-2026:** Jennifer eligió las piezas del Reel ROSA (muñeca grande con ropa intercambiable vs. amigurumis pequeños); guion actualizado. Falta grabarlas y que apruebe.
 - **12-nov-2026:** Jennifer aceptó grabar las tomas del Reel ROSA; lista de 5 tomas guardada en `BORRADORES-TEJER-PARA-VENDER.md`. Los pedidos a Jennifer pasan por el Orquestador de la Web.
 - **17-nov-2026:** guiones de las semanas 3 y 4 de la apertura en `GUIONES-APERTURA-SEMANAS-3-Y-4.md` (borrador). Falta dirección, hora y programa de la inauguración, existencias de la Mercería y capturas de la agenda. Faltan los guiones del 9 al 14-dic.
+- **17-nov-2026:** plan B de la Mercería aceptado (sin existencias el 13-dic: «pronto» + «Avísame cuando abra», sin fecha; pieza «Ya está la Mercería» de reserva). Calendario y guiones de semanas 3 y 4 ajustados.

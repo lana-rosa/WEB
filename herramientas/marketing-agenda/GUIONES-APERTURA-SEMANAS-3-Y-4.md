@@ -1,6 +1,6 @@
 # Guiones de la apertura · semanas 3 y 4 (25-nov a 8-dic-2026) — borrador
 
-Calendario en `CALENDARIO-APERTURA-11NOV-14DIC.md`. Tono inclusivo. Sin Navidad, santos ni Halloween; diciembre se nombra por la apertura. La agenda se llama «la agenda de Lana Rosa» (el nombre «CrochetLab» está en pausa). Textos [entre corchetes] se confirman antes de publicar. No prometer fechas exactas de entrega ni ingresos.
+Calendario en `CALENDARIO-APERTURA-11NOV-14DIC.md`. Tono inclusivo. Sin Navidad, santos ni Halloween; diciembre se nombra por la apertura. La agenda se llama «la agenda de Lana Rosa» (el nombre «CrochetLab» está en pausa). **Mercería (plan B, 17-nov):** decir siempre «pronto» + «Avísame cuando abra», sin fecha; las frases con existencias quedan como reserva. Textos [entre corchetes] se confirman antes de publicar. No prometer fechas exactas de entrega ni ingresos.
 
 ## R6 · mié 25-nov · «Lleva solo lo que necesitas» (Mercería, ≈22 s)
 - Gancho: «Compraste 5 ovillos y solo usaste 2. ¿Te pasó?»
@@ -43,3 +43,6 @@ Toma continua vertical: entrada → Tienda → Mercería → Taller → Academy.
 
 ## Pendiente de Jennifer
 Dirección, hora y programa de la inauguración; si la Mercería tendrá existencias; permiso de una tejedora para R7; qué capturas de la agenda mostrar en R8 y S8.
+
+## Pieza de reserva · «Ya está la Mercería» (solo cuando haya existencias)
+Reel de 20 s: ovillos en estante → mano eligiendo → «Ya llegó la Mercería: lanas e hilos por ovillo.» CTA: «¿Qué color te llevas primero?» Se publica el día que Jennifer confirme existencias.
