@@ -64,6 +64,7 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 .campo input[type="text"],
 .campo input[type="tel"],
 .campo input[type="email"],
+.campo input[type="date"],
 .campo select,
 .campo textarea {
   width: 100%; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--rosa-suave);
@@ -96,23 +97,9 @@ form.tarjeta { background: var(--blanco); border-radius: var(--radio-suave); pad
 #mensaje-estado { margin-top: 18px; padding: 16px; border-radius: 12px; display: none; font-size: 0.95rem; }
 .banner-personalizado { background: var(--rosa-suave); border-radius: var(--radio-suave); padding: 14px 18px; margin: 0 0 16px; max-width: 780px; display: flex; gap: 14px; align-items: center; }
 .banner-personalizado[hidden], .pago-personalizado[hidden] { display: none; }
-.elige-modo { border: 0; margin: 0 0 22px; padding: 0; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: stretch; }
-.elige-modo legend { font-weight: 700; margin-bottom: 10px; padding: 0; font-size: 1.05rem; }
-.elige-modo[hidden] { display: none; }
-.modo { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border: 2px solid var(--rosa-medio); border-radius: 16px; cursor: pointer; background: #fff; }
-.modo:hover { background: var(--rosa-suave); }
-.modo:has(input:checked) { background: var(--rosa-suave); border-color: var(--rosa-principal); }
-.modo:has(input:focus-visible) { outline: 3px solid var(--lila); outline-offset: 2px; }
-.modo input { margin-top: 3px; width: 20px; height: 20px; accent-color: var(--rosa-principal); flex: none; }
-.modo-texto strong { display: block; color: var(--rosa-texto); }
-.modo-texto small { display: block; color: var(--tinta-suave); margin-top: 2px; line-height: 1.35; font-size: 0.86rem; }
-.modo-o { align-self: center; font-weight: 700; color: var(--tinta-suave); }
-@media (max-width: 680px) { .elige-modo { grid-template-columns: minmax(0, 1fr); } .modo-o { display: none; } }
 .campos-directos { border: 0; margin: 0; padding: 0; min-width: 0; }
-.campos-directos[hidden], #modo-guiado[hidden] { display: none; }
 .solo-lectores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .titulo-bloque { font-size: 1.1rem; margin: 26px 0 14px; padding-top: 18px; border-top: 1px solid rgba(69,69,74,0.1); color: var(--rosa-texto); }
-#modo-guiado .uc-form { background: transparent; box-shadow: none; padding: 0; }
 .banner-personalizado img { width: 64px; height: 80px; object-fit: cover; border-radius: 10px; flex: none; }
 .banner-personalizado p { margin: 0; font-size: 0.92rem; }
 .banner-personalizado strong { color: var(--rosa-texto); }
@@ -406,14 +393,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <p class="enlace-resenas"><a href="https://share.google/0JoGMBgdPvaKHMRCu" target="_blank" rel="noopener">Ver reseñas en Google →</a></p>
 
-  <h2 class="titulo-proceso">Así funciona</h2>
-  <ol class="proceso-personaliza" tabindex="0" aria-label="Pasos para personalizar tu amigurumi">
-    <li><span>1</span><strong>Tu idea</strong><small>Nos envías fotos y detalles</small></li>
-    <li><span>2</span><strong>Cotización</strong><small>Analizamos y te enviamos el precio</small></li>
-    <li><span>3</span><strong>Confirmación</strong><small>Apruebas y confirmas el pago</small></li>
-    <li><span>4</span><strong>Tejido</strong><small>Lo tejemos a mano</small></li>
-    <li><span>5</span><strong>Aprobación y entrega</strong><small>Te enviamos una foto del producto terminado para tu aprobación y luego lo despachamos</small></li>
-  </ol>
 
   <details class="det-tamanos"><summary>📏 Ver tamaños de referencia (13, 15 y 20 cm)</summary>
   <p class="nota-tamanos">Precio base de una pieza con detalles como los de la imagen de muestra; si quieres más detalle, se cotiza aparte. También tejemos de 10 cm, llaveros y peluches.</p>
@@ -443,16 +422,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="banner-personalizado" id="banner-personalizado" hidden></div>
   <form class="tarjeta" id="form-personalizado">
-    <fieldset class="elige-modo" id="elige-modo">
-      <legend>¿Cómo prefieres pedirlo?</legend>
-      <label class="modo"><input type="radio" name="modo" value="guiado" checked><span class="modo-texto"><strong>🐑 Rosina te ayuda a crear</strong><small>Te guía paso a paso: qué quieres, tamaño, detalles y colores.</small></span></label>
-      <span class="modo-o" aria-hidden="true">o</span>
-      <label class="modo"><input type="radio" name="modo" value="formulario"><span class="modo-texto"><strong>📝 Diligencia el formulario</strong><small>Si ya sabes lo que quieres, cuéntanoslo directamente.</small></span></label>
-    </fieldset>
-
-    <div id="modo-guiado"><div id="guia-raiz"><p class="uc-cargando" role="status">Cargando a Rosina…</p></div></div>
-
-    <fieldset class="campos-directos" id="modo-formulario" hidden disabled>
+    <fieldset class="campos-directos" id="modo-formulario">
       <legend class="solo-lectores">Tu idea</legend>
     <div class="fila-doble">
       <div class="campo">
@@ -478,11 +448,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="campo">
       <label for="descripcion">¿Qué quieres que tejamos?*</label>
       <textarea id="descripcion" name="descripcion" required placeholder="Ej: Un amigurumi de mi perrita, con su collar rojo y las orejas caídas, tamaño de 10 cm."></textarea>
+      <div class="ayuda">Cuéntanos los detalles que quieras incluir: gafas, ropa específica, color de ojos, accesorios o cabello.</div>
+    </div>
+
+    <div class="campo">
+      <label for="colores">Colores importantes (opcional)</label>
+      <input type="text" id="colores" name="colores" maxlength="160" placeholder="Ej: cabello castaño, camiseta azul, zapatos blancos">
+      <div class="ayuda">Si los colores no se ven bien en tus fotos, cuéntanos cuáles son.</div>
     </div>
 
     <div class="campo">
       <label for="mensaje">Detalles adicionales, ocasión o mensaje para la tarjeta</label>
-      <textarea id="mensaje" name="mensaje" placeholder="Ej: Es un regalo de cumpleaños para mi mamá, sería genial tenerlo antes del 20 de este mes."></textarea>
+      <textarea id="mensaje" name="mensaje" placeholder="Ej: Es un regalo de cumpleaños para mi mamá. Mensaje de la tarjeta: «Feliz cumpleaños, mamá»."></textarea>
+      <div class="ayuda">Tu pedido incluye una tarjeta con el mensaje que quieras.</div>
+    </div>
+
+    <div class="campo">
+      <label for="fecha">¿Para qué fecha lo necesitas? (opcional)</label>
+      <input type="date" id="fecha" name="fecha">
+      <div class="ayuda">Te confirmamos si alcanzamos esa fecha antes de empezar; no prometemos plazos sin ver tu diseño.</div>
     </div>
     </fieldset>
 
@@ -536,6 +520,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div id="mensaje-estado"></div>
   </form>
   <div class="pago-personalizado" id="pago-personalizado" hidden></div>
+
+  <h2 class="titulo-proceso">Así funciona</h2>
+  <ol class="proceso-personaliza" tabindex="0" aria-label="Pasos para personalizar tu amigurumi">
+    <li><span>1</span><strong>Tu idea</strong><small>Nos envías fotos y detalles</small></li>
+    <li><span>2</span><strong>Cotización</strong><small>Analizamos y te enviamos el precio</small></li>
+    <li><span>3</span><strong>Confirmación</strong><small>Apruebas y confirmas el pago</small></li>
+    <li><span>4</span><strong>Tejido</strong><small>Lo tejemos a mano</small></li>
+    <li><span>5</span><strong>Aprobación y entrega</strong><small>Te enviamos una foto del producto terminado para tu aprobación y luego lo despachamos</small></li>
+  </ol>
 
   <details class="como-se-paga">
     <summary><span aria-hidden="true">💳</span><h2>¿Cómo se paga?</h2><span class="flecha-paga" aria-hidden="true">▾</span></summary>
@@ -786,67 +779,6 @@ const form = document.getElementById('form-personalizado');
 const boton = document.getElementById('boton-enviar');
 const mensajeEstado = document.getElementById('mensaje-estado');
 
-// ---- Dos formas de pedir: «Rosina te ayuda a crear» (asistente guiado) o diligenciar el formulario directo ----
-// Solo cambia la parte «tu idea»: las fotos y los datos de contacto se piden una sola vez, abajo.
-const eligeModo = document.getElementById('elige-modo');
-const bloqueGuia = document.getElementById('modo-guiado');
-const bloqueDirecto = document.getElementById('modo-formulario');
-const campoDesc = document.getElementById('descripcion');
-const campoMsj = document.getElementById('mensaje');
-let modo = 'formulario';
-let guia = null;
-let guiaDescartada = false;
-// Si el asistente tarda más de 6 s en cargar, la persona no se queda esperando: se le muestra el formulario directo.
-setTimeout(() => { if (!guia) { guiaDescartada = true; eligeModo.hidden = true; aplicarModo('formulario'); } }, 6000);
-let ultimoGuia = { tipo: '', tamano: '', idea: '' };
-function bannerSegunModo() {
-  const t = modo === 'guiado' ? ultimoGuia.tipo : selectTipo.value;
-  const z = modo === 'guiado' ? ultimoGuia.tamano : selectTamano.value;
-  listoPers.then(() => pintarBannerPers(t === 'Amigurumi' ? z : ''));
-}
-function aplicarModo(m) {
-  if (modo === 'guiado' && m === 'formulario' && guia) {
-    // Al pasar al formulario directo se lleva lo ya elegido (sin pisar lo que la persona haya escrito allá).
-    const f = guia.ficha();
-    if (f.tipo) {
-      selectTipo.value = f.tipo; selectTipo.dispatchEvent(new Event('change'));
-      if ([...selectTamano.options].some((o) => o.value === f.tamano)) selectTamano.value = f.tamano;
-      selectTamano.dispatchEvent(new Event('change'));
-      if (!campoDesc.value) campoDesc.value = f.descripcion;
-      const msj = f.mensaje.replace(/\n?\(Ficha armada con[^)]*\)/, '').trim();
-      if (!campoMsj.value && msj) campoMsj.value = msj;
-    }
-  }
-  modo = m;
-  bloqueGuia.hidden = m !== 'guiado';
-  bloqueDirecto.hidden = m === 'guiado';
-  bloqueDirecto.disabled = m === 'guiado';   // sus campos obligatorios no se validan mientras está oculto
-  eligeModo.querySelectorAll('input[name="modo"]').forEach((r) => { r.checked = r.value === m; });
-  bannerSegunModo();
-}
-const quiereDirecto = parametros.get('modo') === 'formulario' || parametros.get('producto') || parametros.get('tipo') || parametros.get('tamano') || inspiracion;
-aplicarModo(parametros.get('modo') === 'guiado' ? 'guiado' : (quiereDirecto ? 'formulario' : 'guiado'));
-eligeModo.addEventListener('change', (ev) => {
-  if (ev.target.name !== 'modo') return;
-  aplicarModo(ev.target.value);
-  (window.dataLayer = window.dataLayer || []).push({ event: 'crear_modo', modo: ev.target.value });
-});
-(async () => {
-  try {
-    const [mc, cc] = await Promise.all([import('/js/universo/crear.js'), import('/js/universo/config.js')]);
-    if (!cc.CONFIG.CREAR_ACTIVO) throw new Error('apagado');
-    if (guiaDescartada) return;
-    guia = mc.montarGuia(document.getElementById('guia-raiz'), { alCambiar: (e) => { ultimoGuia = e; if (modo === 'guiado') bannerSegunModo(); } });
-    const ideaUrl = parametros.get('idea');
-    if (ideaUrl) guia.preseleccionar(ideaUrl);
-    listoPers.then(() => guia.fijarPrecios(Object.fromEntries(Object.entries(productosPers).map(([k, v]) => [k, Number(v.precio)]))));
-  } catch (err) {
-    // Sin el asistente (apagado o sin conexión al módulo) la página queda como siempre: solo el formulario.
-    guia = null; eligeModo.hidden = true; aplicarModo('formulario');
-  }
-})();
-boton.addEventListener('click', (ev) => { if (modo === 'guiado' && !(guia && guia.validar())) ev.preventDefault(); });
-
 form.addEventListener('submit', async (evento) => {
   evento.preventDefault();
   mensajeEstado.className = '';
@@ -883,16 +815,20 @@ form.addEventListener('submit', async (evento) => {
       fotosUrls.push(urlPublica.publicUrl);
     }
 
-    const fGuia = (modo === 'guiado' && guia) ? guia.ficha() : null;
-    const tipoProducto = fGuia ? fGuia.tipo : (selectTipo.value === 'Otro'
+    const tipoProducto = selectTipo.value === 'Otro'
       ? (inputTipoOtro.value.trim() || 'Otro (sin especificar)')
-      : selectTipo.value);
-    const tamanoSeleccionado = fGuia ? fGuia.tamano : (document.getElementById('tamano').value === 'Otro'
+      : selectTipo.value;
+    const tamanoSeleccionado = document.getElementById('tamano').value === 'Otro'
       ? (document.getElementById('tamano-otro').value || 'Otro (sin especificar)')
-      : document.getElementById('tamano').value);
+      : document.getElementById('tamano').value;
 
     const tamanoPago = (tipoProducto === 'Amigurumi') ? tamanoSeleccionado : '';
-    const descripcionCompleta = `[${tipoProducto} — ${tamanoSeleccionado}] ${fGuia ? fGuia.descripcion : document.getElementById('descripcion').value}`;
+    // Colores y fecha son opcionales: se anotan en la solicitud con las mismas frases que usaba la ficha de Rosina.
+    const coloresTxt = (document.getElementById('colores').value || '').trim();
+    const fechaVal = document.getElementById('fecha').value;
+    const fechaTxt = fechaVal ? new Date(fechaVal + 'T12:00:00').toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+    const descripcionCompleta = `[${tipoProducto} — ${tamanoSeleccionado}] ${document.getElementById('descripcion').value}` + (coloresTxt ? `\nColores importantes: ${coloresTxt}.` : '');
+    const mensajeCompleto = [(document.getElementById('mensaje').value || '').trim(), fechaTxt ? `Fecha en la que lo necesito: ${fechaTxt} (confírmenme si es posible).` : ''].filter(Boolean).join('\n');
 
     // El servidor vuelve a exigir las autorizaciones, guarda la constancia (fecha, versión y qué autorizó) y la anota en la solicitud.
     const { data, error } = await supabase.rpc('crear_solicitud_personalizada_v2', {
@@ -902,7 +838,7 @@ form.addEventListener('submit', async (evento) => {
       p_descripcion: descripcionCompleta,
       p_ciudad: (selectCiudad.value === 'Otro (nacional)' ? inputCiudadOtra.value.trim() : selectCiudad.value) || null,
       p_fotos_urls: fotosUrls.length > 0 ? fotosUrls : null,
-      p_mensaje: (fGuia ? fGuia.mensaje : (document.getElementById('mensaje').value || '')).trim(),
+      p_mensaje: mensajeCompleto,
       p_acepta_datos: document.getElementById('acepto-datos').checked,
       p_acepta_fotos: archivos.length > 0 && aceptoFotos.checked,
       p_version_texto: VERSION_FOTOS
@@ -921,11 +857,9 @@ form.addEventListener('submit', async (evento) => {
     enlaceWa.textContent = '¿Quieres adelantar la conversación? Escríbenos por WhatsApp';
     mensajeEstado.appendChild(document.createElement('br'));
     mensajeEstado.appendChild(enlaceWa);
-    (window.dataLayer = window.dataLayer || []).push({ event: 'crear_solicitud', modo: fGuia ? 'guiado' : 'formulario', tipo: tipoProducto, tamano: tamanoSeleccionado, n_detalles: fGuia ? guia.nDetalles() : 0 });
+    (window.dataLayer = window.dataLayer || []).push({ event: 'crear_solicitud', modo: 'formulario', tipo: tipoProducto, tamano: tamanoSeleccionado, n_detalles: 0 });
     await listoPers; ofrecerPago(data, tamanoPago);
     form.reset();
-    if (guia) guia.reiniciar();
-    aplicarModo(modo);
     alternarOtro(selectCiudad, 'Otro (nacional)', inputCiudadOtra);
     selectTipo.dispatchEvent(new Event('change'));
     inputFoto.dispatchEvent(new Event('change'));   // form.reset() no avisa: esconde la casilla de fotos y limpia la vista previa
