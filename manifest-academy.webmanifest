@@ -6,7 +6,7 @@
   "lang": "es-CO",
   "dir": "ltr",
   "start_url": "/academy/?origen=app",
-  "scope": "/",
+  "scope": "/academy/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#2F7DE1",

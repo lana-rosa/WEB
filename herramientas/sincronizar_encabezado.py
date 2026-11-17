@@ -265,7 +265,7 @@ def encabezado(pagina):
         return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<script>try{sessionStorage.setItem("lrCasa","' + casa + '");localStorage.setItem("lrCasa","' + casa + '")}catch(e){}</script>\n'
                 + _encabezado(casa) + '<!-- CASAS:FIN -->')
     return ('<!-- CASAS:INICIO (generado por herramientas/sincronizar_encabezado.py) -->\n<div id="encabezado-casa" style="display:contents">\n'
-            + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=3"></script>\n<!-- CASAS:FIN -->')
+            + _encabezado('crochet') + '</div>\n<script src="/js/casa-menu.js?v=4"></script>\n<!-- CASAS:FIN -->')
 
 
 # Casa Agenda en páginas comunes (E24, 4-nov-2026): sin botones de arriba ni engranaje; las tres rayitas muestran solo lo de «Mi cuenta».
@@ -300,6 +300,7 @@ def js_casa_menu():
             '  var cont = document.getElementById("encabezado-casa");\n'
             '  if (!cont || !B[c] || c === "crochet") return;\n'
             '  cont.innerHTML = B[c];\n'
+            '  window.lrCasaActiva = c;\n'
             + AGENDA_COMUN_JS +
             '  var m = document.querySelector("main[id]"), a = cont.querySelector(".saltar-contenido");\n'
             '  if (m && a) a.setAttribute("href", "#" + m.id);\n'

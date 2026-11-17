@@ -143,6 +143,10 @@
     if ('serviceWorker' in navigator) window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
     var bi = document.querySelector('[data-instalar]');
     var enApp = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone;
+    // Cada página ofrece instalar SOLO su app y solo dentro del territorio (scope) de esa app; en las páginas comunes (contacto, cuenta, etc.) vistas desde otra casa no se ofrece la app de la Tienda.
+    var TERRITORIO = { 'manifest-agenda': '/agenda-rosina.html', 'manifest-merceria': '/merceria/', 'manifest-academy': '/academy/', 'manifest-crochet': '/' };
+    var lm = document.querySelector('link[rel="manifest"]'), mk = lm && /manifest-[a-z]+/.exec(lm.getAttribute('href') || ''), terr = mk && TERRITORIO[mk[0]];
+    if (bi && ((terr && location.pathname.indexOf(terr) !== 0) || (window.lrCasaActiva && window.lrCasaActiva !== 'crochet' && mk && mk[0] === 'manifest-crochet'))) { bi.hidden = true; bi = null; }
     if (bi && !enApp) {
       var ayudaIn = document.querySelector('.instalar-ayuda'), ofrecido = null, dlI = (window.dataLayer = window.dataLayer || []);
       window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); ofrecido = e; bi.hidden = false; });
