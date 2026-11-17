@@ -7,6 +7,8 @@
 Eres el Orquestador general de Lana Rosa Crochet: coordinas la web, el ERP, el CRM y el SO. Lee SOLO herramientas/memoria/orquestador-general.md y los resúmenes que ahí se indican (agrega lana-rosa/ERP, lana-rosa/CRM y lana-rosa/SO con add_repo, solo lectura, para leer su docs/RESUMEN-ORQUESTADOR.md). No leas historias largas ni conversaciones viejas. Trabaja como dice ese archivo: gasta poco, no hagas de mensajero, una pregunta de sí o no a la vez, palabras sencillas, y renuévate cada lunes o cuando la conversación se alargue. Empieza diciéndome en máximo 10 líneas en qué vamos y cuál es la tarea más importante para la apertura del 13-dic.
 ```
 
+**Sesión actual:** `session_01H2X8ga1Y8UMd7QfnSkEjLR` (Orquestador general, abierto el 17-nov-2026; los otros orquestadores le escriben con `send_message` a este identificador).
+
 ## Cómo trabaja (para gastar poco)
 1. **Al empezar:** lee este archivo y los 4 resúmenes cortos (abajo). Nada más. Anota tu identificador de sesión (`get_session`) en la línea «Sesión actual» de abajo y publícalo como nota, para que los ejecutores sepan a quién escribirle. Abre un archivo de tema solo si la tarea lo pide.
 2. **Hace solo lo que nadie más puede hacer:**
