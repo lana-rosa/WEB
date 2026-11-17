@@ -49,4 +49,4 @@ Fuente: sección 2.2 de `herramientas/marketing-agenda/ESTRATEGIA-TEJER-PARA-VEN
 - [ ] 8. Familias de productos: cómo una sola pieza se vuelve un set para regalar
 Antes de escribir: revisar los datos con Jennifer (qué piezas y precios reales se pueden mostrar) y el nombre de la agenda, que está en pausa (ver `PENDIENTES.md`).
 
-- **Borrador sin publicar (18-nov-2026):** «Cómo rellenar un amigurumi: cuánto relleno y cómo repartirlo» (Academy) está escrito en `herramientas/revista/borradores/rellenar-amigurumi.html`; espera el sí de Jennifer. Para publicarlo: copiarlo a `herramientas/revista/articulos/`, poner `rellenar-amigurumi` al principio de `ORDEN` en `generar_revista.py` y correr `generar_revista.py` y `sincronizar_encabezado.py`.
+- [x] Cómo rellenar un amigurumi: cuánto relleno y cómo repartirlo (crochet, Academy) — 18-nov-2026
