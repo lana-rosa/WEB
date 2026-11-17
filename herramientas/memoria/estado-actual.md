@@ -20,10 +20,8 @@
 - **4 · Tienda y Mercería:** hecho: tienda con categorías, avisos, 31 piezas «inspirado en»; preparado sin aplicar: carga de la Mercería (lanas a gramo, fotos WebP), lista de Merchant Center, envíos y plan B. Espera: Excel y 34 fotos, sí de Jennifer al plan B y envíos, abogada («inspirado en»).
 - **5 · Base de datos y pagos:** E4 (Tienda) hecho: pago, ERP y CRM verificados (pedido `LRW-2026-0018-C8F5`). E28 guías privadas hechas; casillas del pago apagadas en `herramientas/borradores/casillas-pago.patch`. A medias: correo de recibo (captura), ovillo de la Mercería, ERP con enlaces firmados, resto de E28.
 - **6 · Sitio, SEO y Revista:** publicado: retracto, pie con ®, Sobre nosotras, plan B de la Mercería, apps instalables con territorio propio (#771). A medias: prueba de instalación real en celular; borrador de «Cómo rellenar un amigurumi» (espera sí); legal espera a la abogada.
-- **7 · Universo de Rosina y Academy:** avisos de personajes publicados (#628); E33 borrador de términos de la Academy y autorizaciones de menores COMPLETO (11-nov): solo falta que el chat 6 lo lleve a la abogada.
-  E34 (10-nov): borrador «Método ROSA» + «Prueba de 3 a 5 piezas» en `herramientas/borradores/metodo-rosa/index.html`; Jennifer aprobó cómo se ve (10-nov); se publica después del 14-dic con su sí final.
-  E35 (10-nov): borrador del «Pasaporte de calidad para amigurumis» (1 página) en `herramientas/borradores/pasaporte-calidad/index.html`; Jennifer aprobó el contenido tal cual (10-nov); falta la prueba con las tejedoras y su sí para publicar.
-  A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas.
+- **7 · Universo de Rosina y Academy:** Academy (términos y menores) COMPLETO, lo lleva el chat 6 a la abogada. Método ROSA y Pasaporte de calidad: borradores aprobados en `herramientas/borradores/`, se publican después del 14-dic (Pasaporte: tras la prueba con las tejedoras).
+  17-nov: quitado «Rosina te ayuda a crear» del hub de la Tienda («Pide el tuyo» / «Personaliza el tuyo»); listo en la rama, espera el sí de Jennifer para publicar. A medias: actualizar `plantilla-rincon.html`; borrar `crear.js` y `probar_crear.py` (sin uso).
 - **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, nombre «CrochetLab» en pausa (10-nov): decir «la agenda de Lana Rosa»; carrito mixto = sí (a construir, chats 4 y 5). Guiones de la línea 1 listos (borrador). 10-nov: calendario, guiones de 2 semanas y borradores del Método ROSA listos para aprobar (E10).
 
 ## Pendiente de Jennifer

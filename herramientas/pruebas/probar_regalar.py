@@ -398,13 +398,13 @@ def main():
         verificar('está en el sitemap', 'https://lanarosacrochet.com/universo-rosina.html' in open(os.path.join(RAIZ, 'sitemap.xml'), encoding='utf-8').read())
         verificar('el pie de la página enlaza al universo con ruta absoluta', page.locator('footer a[href="/universo-rosina.html"]').count() == 1)
         verificar('usa las fuentes propias (ningún pedido a Google Fonts)', page.evaluate('!document.documentElement.outerHTML.includes("fonts.googleapis")'))
-        verificar('los 3 recorridos de la Tienda están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido:not([hidden])', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html'])
+        verificar('los 3 recorridos de la Tienda están y llevan a rutas absolutas', page.eval_on_selector_all('.recorrido:not([hidden])', 'els => els.map(e => e.getAttribute("href"))') == ['#regalar', '/personaliza.html#pide-el-tuyo', '/revista.html'])
         verificar('un solo h1', page.locator('h1').count() == 1)
         # El Universo muestra solo lo de la casa desde donde se llega
         for casa, no_debe, si_debe, regalar in (
-                ('crochet', ['/academy/', '/aventuras-de-rosina/', '/calculadoras-rosina.html#lana'], ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/revista.html?casa=crochet'], True),
-                ('academy', ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/calculadoras-rosina.html#lana'], ['/academy/empieza-aqui/', '/aventuras-de-rosina/', '/revista.html?casa=academy'], False),
-                ('merceria', ['#regalar', '/personaliza.html?modo=guiado#pide-el-tuyo', '/academy/', '/aventuras-de-rosina/'], ['/calculadoras-rosina.html#lana', '/revista.html?casa=merceria'], False)):
+                ('crochet', ['/academy/', '/aventuras-de-rosina/', '/calculadoras-rosina.html#lana'], ['#regalar', '/personaliza.html#pide-el-tuyo', '/revista.html?casa=crochet'], True),
+                ('academy', ['#regalar', '/personaliza.html#pide-el-tuyo', '/calculadoras-rosina.html#lana'], ['/academy/empieza-aqui/', '/aventuras-de-rosina/', '/revista.html?casa=academy'], False),
+                ('merceria', ['#regalar', '/personaliza.html#pide-el-tuyo', '/academy/', '/aventuras-de-rosina/'], ['/calculadoras-rosina.html#lana', '/revista.html?casa=merceria'], False)):
             ph, eh = abrir(pc, base, CATALOGO, ruta='/universo-rosina.html?casa=' + casa, espera='.recorridos')
             hrefs = ph.eval_on_selector_all('.recorrido', 'els => els.map(e => e.getAttribute("href"))')
             verificar('Universo desde %s: solo sus recorridos (%s)' % (casa, ', '.join(hrefs)), all(h in hrefs for h in si_debe) and not any(h in hrefs for h in no_debe), hrefs)
