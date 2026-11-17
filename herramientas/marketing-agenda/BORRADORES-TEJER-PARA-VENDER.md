@@ -24,6 +24,9 @@ Datos que dio Jennifer (11-nov): **Pieza A** = muñecas grandes con muchos detal
 - **21–25 s CTA:** «¿Cuál tejerías tú primero? Cuéntanos.»
 - Cuidado: «no es la que más sale» y «la que más tejemos» vienen de Jennifer; no agregar cifras ni afirmar que «se venden mejor». Falta grabar: foto o video de la muñeca y de 3 o 4 amigurumis pequeños.
 
+### Lista de tomas para grabar (enviada a Jennifer vía el Orquestador, 12-nov; ella dijo que sí)
+Todo vertical (9:16), luz natural de ventana, fondo liso y claro, sin precios ni cifras en pantalla. (1) Muñeca grande en la mano, 4 s. (2) Primer plano girando para ver detalles, 5 s. (3) Cambiarle la ropa, 6 s. (4) Varios amigurumis pequeños juntos, 4 s. (5) Mano tomando 3 o 4 amigurumis, uno por uno, 6 s. Total ≈ 25 s; grabar cada toma dos veces.
+
 ## S5 · Historias con encuesta (3 stories)
 1. Encuesta: «¿Qué te cuesta más: elegir qué tejer, poner el precio o mostrarlo?» (Elegir qué tejer / Poner el precio / Mostrarlo).
 2. Con el resultado: «Ganó [X]. Esta semana hablamos de eso.» (la respuesta decide el siguiente contenido).
