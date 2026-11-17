@@ -85,3 +85,4 @@ Los repositorios que no están en la sesión se agregan con `add_repo` (solo lec
 
 ## En qué vamos (lo reescribe cada orquestador al renovarse)
 - 17-nov: los resúmenes del ERP, el CRM y el SO ya están en `docs/RESUMEN-ORQUESTADOR.md` de cada repositorio. Este orquestador WEB se archiva; abrir el general con el texto de arriba.
+- 17-nov (Jennifer decidió): **fecha límite del Excel y las 34 fotos de la Mercería = viernes 27-nov** (ideal el Excel el 20-nov). Si no llegan, el plan B del chat 4 (Mercería en «Muy pronto» con lista de espera + Tienda de amigurumis completa) pasa a ser el plan oficial y la Mercería se carga después de la apertura. Existencias cargadas antes del conteo físico (7-9 dic). Tarea más importante: venta de prueba real de punta a punta.
