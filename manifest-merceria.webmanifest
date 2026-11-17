@@ -6,7 +6,7 @@
   "lang": "es-CO",
   "dir": "ltr",
   "start_url": "/merceria/?origen=app",
-  "scope": "/",
+  "scope": "/merceria/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#7C4DDB",
