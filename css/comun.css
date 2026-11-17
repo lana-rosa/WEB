@@ -377,3 +377,7 @@ main:focus { outline: none; }
 html[data-casa="agenda"] { --tinte: #FEF2F7; --rosa-principal: #E74E96; --rosa-medio: #F28FC0; --rosa-suave: #FBE4EF; --rosa-hover: #B0356F; --rosa-rgb: 231, 78, 150; --rosa-texto: #C81B6D; --rosa-boton: #E01E79; --rosa-boton-hover: #B0356F; --sobre-principal: #fff; --casa-t1: #FEF2F7; --casa-t2: #FBE4EF; --lila: #9EA2F9; --azul-acero: #93C7F9; }
 .nav-principal li.g-agenda a { background: #FBE4EF; color: #C81B6D; }
 .nav-principal li.g-agenda a:hover { background: #E01E79; color: #fff; }
+
+/* Pie mínimo de la agenda: la línea de la marca registrada es larga y debe partirse en renglones, no ensanchar la página (12-nov-2026). */
+.pie-minimo .pie-legal { flex-wrap: wrap; }
+html body .pie-minimo .pie-legal .derechos { white-space: normal !important; flex: 1 1 100%; min-width: 0; overflow-wrap: anywhere; }

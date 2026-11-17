@@ -39,7 +39,7 @@
 @media (max-width: 820px) {
   body #agenda > .contenedor, body #agenda .contenedor { padding-left: 8px; padding-right: 8px; }
   body #agenda .hoja-agenda { border-radius: 18px; }
-  html body #agenda .fila-hojas, html body #agenda .fila-hojas:not(:has(.selector-hoja[hidden])), html body #agenda .selector-hoja:not([hidden]) { background: rgba(254, 242, 247, 0.96) !important; }
+  html body #agenda .fila-hojas, html body #agenda .fila-hojas:not(:has(.selector-hoja[hidden])), html body #agenda .selector-hoja:not([hidden]) { background: rgba(255, 255, 255, 0.96) !important; }   /* 13-nov-2026: igual que el fondo general de la agenda (blanco) */
 }
 
 /* 3-nov-2026 (revisión de tamaños): letra de al menos 12 px y más ancho de toque en los días del Planeador */

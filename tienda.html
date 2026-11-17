@@ -49,7 +49,7 @@ window.__rpcLR = {};
 <link rel="stylesheet" href="/css/fuentes.css?v=3">
 
 
-<link rel="stylesheet" href="/css/comun.css?v=43">
+<link rel="stylesheet" href="/css/comun.css?v=54">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
 <style>
 :root {
@@ -122,6 +122,15 @@ h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .volver-categorias:hover { text-decoration: underline; }
 body.vista-categoria .volver-categorias { display: inline-flex; }
 body.vista-categoria .categoria-seccion:not(.categoria-activa) { display: none !important; }
+/* Inicio de la tienda (14-nov-2026, pedido de Jennifer): al entrar solo se ven las categorías; al elegir una se ven sus productos. La búsqueda (body.buscando) muestra los resultados. */
+html[data-vista="inicio"] .categoria-seccion, body.vista-inicio:not(.buscando) .categoria-seccion { display: none !important; }
+html[data-vista="inicio"] .categorias-visual, body.vista-inicio .categorias-visual { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 18px; overflow: visible; padding: 4px 0 12px; margin-top: 26px; }
+html[data-vista="inicio"] .categorias-visual a, body.vista-inicio .categorias-visual a { width: auto; }
+html[data-vista="inicio"] .categorias-visual span, body.vista-inicio .categorias-visual span { font-size: 1rem; margin-top: 9px; }
+@media (max-width: 700px) {
+  html[data-vista="inicio"] .categorias-visual, body.vista-inicio .categorias-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  html[data-vista="inicio"] .categorias-visual span, body.vista-inicio .categorias-visual span { font-size: 0.92rem; }
+}
 html[data-cat] .categorias-visual, html[data-cat] .ver-mas-categorias, body.vista-categoria .categorias-visual, body.vista-categoria .ver-mas-categorias, body.vista-categoria .puentes-cinco, body.vista-categoria .banda-personaliza, body.vista-categoria .banda-rosina { display: none !important; }
 .categoria-seccion { padding: 20px 0 48px; scroll-margin-top: 130px; }
 @media (max-width: 700px) { .categoria-seccion { scroll-margin-top: 180px; } }
@@ -395,7 +404,16 @@ html.producto-abierto { overflow: hidden; }
 <script>
 // Si se llega con una categoría en la dirección (p. ej. #peluches), se esconden desde el primer momento los cuadros de categorías
 // (así sus fotos no se descargan ni compiten con las de los productos).
-(function () { try { var h = decodeURIComponent(location.hash.slice(1)); if (['amigurumis','peluches','llaveros','macetas','flores','separadores-de-libros','bolsos','complementos'].indexOf(h) > -1) document.documentElement.setAttribute('data-cat', h); } catch (e) {} })();
+(function () { try {
+  var cats = ['amigurumis','peluches','llaveros','macetas','flores','separadores-de-libros','bolsos','complementos'];
+  var u = new URLSearchParams(location.search);
+  // ?cat=peluches (enlace para compartir) se convierte en #peluches, que es lo que maneja la vista de categoría y el botón atrás
+  var c = u.get('cat');
+  if (c && cats.indexOf(c) > -1 && !location.hash) { u.delete('cat'); var qs = u.toString(); history.replaceState(history.state, '', location.pathname + (qs ? '?' + qs : '') + '#' + c); }
+  var h = decodeURIComponent(location.hash.slice(1));
+  if (cats.indexOf(h) > -1) document.documentElement.setAttribute('data-cat', h);
+  else if (!u.get('buscar')) document.documentElement.setAttribute('data-vista', 'inicio');   // inicio: solo categorías (14-nov-2026)
+} catch (e) {} })();
 </script>
 
 <!-- Google Tag Manager (noscript) -->
@@ -737,7 +755,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/politicas.html#cookies" data-abrir-cookies>Configurar cookies</a>
     <button type="button" class="boton-instalar" data-instalar hidden aria-label="Instalar la app de Lana Rosa Crochet"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Instalar app</button>
     <span class="instalar-ayuda" role="status" hidden>En iPhone: toca el botón Compartir y luego «Agregar a pantalla de inicio».</span>
-    <span class="derechos">© 2026 Lana Rosa Crochet</span>
+    <span class="derechos">© 2026 Lana Rosa Crochet®. Marca registrada ante la SIC. El diseño de Rosina está registrado ante la SIC.</span>
   </div>
 </footer>
 <!-- PIE:FIN -->
@@ -1090,6 +1108,7 @@ function inicializarBuscadorTienda() {
     if (mensajeSinResultados) {
       mensajeSinResultados.style.display = (filtroActivo && totalVisible === 0) ? 'block' : 'none';
     }
+    document.body.classList.toggle('buscando', filtroActivo);
     var botonQuitar = document.getElementById('quitar-filtros');
     if (botonQuitar) botonQuitar.hidden = !filtroActivo;
   }
@@ -1908,6 +1927,8 @@ formResena.addEventListener('submit', async (evento) => {
     var grupo = [id];
     document.querySelectorAll('.categoria-seccion').forEach(function (s) { s.classList.toggle('categoria-activa', !!sec && grupo.indexOf(s.id) > -1); });
     document.body.classList.toggle('vista-categoria', !!sec);
+    document.documentElement.removeAttribute('data-vista');
+    document.body.classList.toggle('vista-inicio', !sec);
     if (selector) selector.value = sec ? '#' + id : '';
     if (irArriba) {
       var destino = sec ? document.getElementById('volver-categorias') : null;

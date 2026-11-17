@@ -162,12 +162,12 @@ No se publica ningún patrón hasta tener sus condiciones. Propuesta lista (no e
 ## 14. Registros ante la SIC: ® y textos de propiedad intelectual (propuesta de Jennifer, 10-nov-2026)
 
 **Soportes que Jennifer envió:** (1) marca mixta «LR Lana Rosa Crochet», certificado n.º 804997, resolución 102668 del 4-dic-2025, vigente hasta el 21-ene-2036, clases 24, 25, 28 y 41, titular Sara Loaiza Muñoz. (2) Rosina: **diseño industrial «Personaje»** (no es marca), resolución 82895, vigente del 29-jul-2025 al 29-jul-2035.
-**Decidido por Jennifer:** el ® va solo en el logo registrado «LR Lana Rosa Crochet», no en las variantes de Mercería, Academy ni en el logo animado, y nunca junto a Rosina. **Duda técnica abierta:** el logo que hoy tiene la web (ovejita con «Lana Rosa Crochet») no muestra las letras LR de la marca mixta; Jennifer debe confirmar si es el mismo.
+**Decidido por Jennifer:** el ® va solo en el logo registrado «LR Lana Rosa Crochet», no en las variantes de Mercería, Academy ni en el logo animado, y nunca junto a Rosina. **Aclarado por Jennifer (12-nov, decisión final):** la ovejita que está en el logo de la web **no es la ovejita registrada ante la SIC** (esa es Rosina, diseño industrial): **el dibujo del logo no tiene registro, ni como marca ni como diseño**. El **nombre escrito «Lana Rosa Crochet» sí tiene registro de marca** (marca mixta «LR Lana Rosa Crochet»), y Jennifer decidió poner el ® junto al nombre escrito, no en el dibujo de la ovejita y no en cada mención: basta en el pie y, si se quiere, en la primera mención de «Sobre nosotras». **Recomendación para la abogada:** registrar como marca el logo con esa ovejita y la palabra «Rosina».
 
 **Borrador nuestro 1 — pie de todas las páginas (junto al ©):**
-> © 2026 Lana Rosa Crochet®. Marca registrada. El diseño de Rosina está registrado ante la SIC.
+> © 2026 Lana Rosa Crochet®. Marca registrada ante la SIC. El diseño de Rosina está registrado ante la SIC.
 
-(Decidido por Jennifer, 10-nov: esta es la versión final del pie, sin el nombre de la titular y sin «ante la SIC» después de «Marca registrada». En la sección de políticas la titular queda como recomendó la abogada.)
+(Decisión de Jennifer, 12-nov: el ® va junto al nombre escrito «Lana Rosa Crochet», no en el dibujo de la ovejita del logo; sin el nombre de la titular. En la sección de políticas la titular queda como recomendó la abogada. **Publicado el 12-nov-2026 por decisión de Jennifer, antes de la confirmación de la abogada** (pie de todas las páginas, incluida la agenda): la abogada debe confirmar el uso del ® junto al nombre.)
 
 **Borrador nuestro 2 — sección nueva en las políticas «Propiedad intelectual y marcas registradas»:**
 > **Marcas y diseños registrados.** La marca mixta «LR Lana Rosa Crochet» está registrada ante la Superintendencia de Industria y Comercio (SIC) a nombre de Sara Loaiza Muñoz: certificado n.º 804997, resolución 102668 del 4 de diciembre de 2025, vigente hasta el 21 de enero de 2036, en las clases 24, 25, 28 y 41. El diseño de Rosina está registrado ante la SIC como diseño industrial «Personaje»: resolución 82895, vigente del 29 de julio de 2025 al 29 de julio de 2035.
@@ -177,7 +177,7 @@ No se publica ningún patrón hasta tener sus condiciones. Propuesta lista (no e
 **Borrador nuestro 3 — nota pequeña en «Conoce a Rosina»:**
 > Rosina es un diseño original de Lana Rosa Crochet, registrado ante la SIC.
 
-**Preguntas para la abogada:** (a) ¿puede ponerse «®» junto al nombre escrito «Lana Rosa Crochet» en el pie, si lo registrado es una marca mixta (logo con LR y palabras)? (b) ¿«diseño registrado ante la SIC» es la forma correcta de decir el registro de Rosina, que es diseño industrial y no marca? (c) ¿las variantes de casa (Mercería, Academy, Agenda) pueden llevar ®? (d) registrar «Rosina» y el nombre de la agenda como marca (clases 9 y 41) y evaluar la clase 35 (venta de productos). (e) ¿puede el texto de «uso no autorizado» incluir el uso personal libre de los recursos gratuitos? No se ponen números de registro en cada página ni en cada producto.
+**Preguntas para la abogada:** (a) Confirmación: Jennifer decidió poner «®» junto al texto «Lana Rosa Crochet» en el pie, siendo la registrada una marca mixta (logo con LR y palabras). ¿Lo confirma? (a2) Recomendación: registrar como marca el logo con la ovejita que usa la web («Lana Rosa») y la palabra «Rosina», porque hoy ese dibujo no tiene registro. (b) ¿«diseño registrado ante la SIC» es la forma correcta de decir el registro de Rosina, que es diseño industrial y no marca? (c) ¿las variantes de casa (Mercería, Academy, Agenda) pueden llevar ®? (d) registrar «Rosina» y el nombre de la agenda como marca (clases 9 y 41) y evaluar la clase 35 (venta de productos). (e) ¿puede el texto de «uso no autorizado» incluir el uso personal libre de los recursos gratuitos? No se ponen números de registro en cada página ni en cada producto.
 
 ## 15. Casillas del pago de los amigurumis personalizados (propuesta del chat de pagos, 11-nov-2026)
 
@@ -221,6 +221,21 @@ No se publica ningún patrón hasta tener sus condiciones. Propuesta lista (no e
 3. ¿Basta el aviso dentro del desplegable, o debe haber una ventana o casilla la primera vez que se usa (como el aviso del lápiz)?
 4. ¿La política debe decir expresamente que la agenda puede contener datos delicados de terceras personas, como en el borrador?
 5. ¿Hay que ofrecer algo para el borrado de esos datos (por ejemplo, al borrar la clienta se borran sus medidas y alergias)? Hoy borrar el renglón de la clienta las borra con él; está por verificar que también salgan de las copias antiguas (ver punto 7, copias).
+
+## 17. Mensaje posventa con encuesta de satisfacción (propuesta del CRM, 15-nov-2026)
+
+**Qué quiere hacer el CRM:** después de cada compra, enviar a **todas** las clientas un mensaje con agradecimiento, una encuesta corta de satisfacción y la invitación a calificar en la web y en Google, **sin dar nada a cambio** (sin descuento ni regalo).
+**Qué dice la política hoy** (`#datos`, apartado 3): las finalidades incluyen enviar comprobantes y avisos del pedido, el recordatorio de carrito (solo con casilla) y «información comercial, promociones, novedades…» solo si la persona autorizó (casilla aparte y opcional, con baja). **No hay** una finalidad de «encuesta de satisfacción posventa».
+
+**Borrador nuestro — finalidad para la política (apartado 3):**
+> Enviar, después de la compra, un mensaje de agradecimiento con una encuesta corta de satisfacción y la invitación a calificar nuestro servicio en la web y en Google. Es opcional responderla, no implica ningún beneficio ni condición y no se usa con fines publicitarios.
+
+**Preguntas para la abogada:**
+1. ¿Este mensaje es **comunicación del servicio** (posventa, se puede enviar sin la casilla de novedades) o **comunicación comercial** (solo a quien la aceptó, con enlace de baja)? Nuestra lectura: si solo agradece, pregunta por la experiencia y pide calificar, sin ofrecer nada ni promocionar productos, es del servicio; si incluye ofertas, descuentos o novedades, es comercial.
+2. ¿Aunque sea del servicio conviene incluir una forma sencilla de no recibir más estos mensajes?
+3. ¿La invitación a calificar en Google, sin dar nada a cambio, es correcta, o hay riesgo con las reglas de reseñas de Google o con la publicidad (por ejemplo, pedir calificar solo a quienes quedaron satisfechas)?
+4. ¿Qué datos de la clienta se guardan de la encuesta y por cuánto tiempo (conservación)?
+5. ¿Hay que informar la finalidad antes de la compra (por ejemplo, en la política de datos y en el pago) además del texto del mensaje?
 
 ## Lo que necesito de la abogada (resumen)
 1. Aprobación (o ajuste) de los textos marcados «borrador nuestro» de los puntos 2, 3, 4, 6, 7, 8, 10 y 13.
