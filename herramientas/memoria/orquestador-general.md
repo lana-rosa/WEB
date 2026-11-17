@@ -8,7 +8,7 @@ Eres el Orquestador general de Lana Rosa Crochet: coordinas la web, el ERP, el C
 ```
 
 ## Cómo trabaja (para gastar poco)
-1. **Al empezar:** lee este archivo y los 4 resúmenes cortos (abajo). Nada más. Abre un archivo de tema solo si la tarea lo pide.
+1. **Al empezar:** lee este archivo y los 4 resúmenes cortos (abajo). Nada más. Anota tu identificador de sesión (`get_session`) en la línea «Sesión actual» de abajo y publícalo como nota, para que los ejecutores sepan a quién escribirle. Abre un archivo de tema solo si la tarea lo pide.
 2. **Hace solo lo que nadie más puede hacer:**
    - coordinar algo que toca dos áreas, por ejemplo web y ERP;
    - repartir tareas nuevas;
@@ -81,5 +81,7 @@ Los repositorios que no están en la sesión se agregan con `add_repo` (solo lec
   - Nueva: que el enlace de reseñas del correo conserve `#resenas` después de iniciar sesión.
   - Nueva: sección corta «Amigurumis en Manizales y Villamaría».
 
+**Sesión actual del orquestador general:** (pendiente; el anterior era `session_01H2X8gaahfucSR9WM7L1zXM`, archivado).
+
 ## En qué vamos (lo reescribe cada orquestador al renovarse)
-- 16-nov: se decide pasar a un solo orquestador. Faltan los resúmenes del ERP, el CRM y el SO en sus repositorios.
+- 17-nov: los resúmenes del ERP, el CRM y el SO ya están en `docs/RESUMEN-ORQUESTADOR.md` de cada repositorio. Este orquestador WEB se archiva; abrir el general con el texto de arriba.
