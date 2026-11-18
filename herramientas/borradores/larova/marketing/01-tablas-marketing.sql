@@ -5,30 +5,30 @@
 -- Tablas nuevas y aisladas: no tienen llaves hacia ninguna tabla existente (ventas, pedidos, inventario…)
 -- y nadie existente las lee. Solo las ven y las cambian las administradoras (rol «administrador» activo,
 -- con la función que ya existe public.fn_rol_actual()). No se crea ninguna función nueva.
--- Los campos son PROPUESTA: los confirma el chat «Web Chat 8. Marketing y contenido».
+-- Campos según herramientas/memoria/marketing-programacion-esquema.md (chat 8, 18-nov-2026).
 
 create table if not exists public.mkt_piezas (
   id               uuid primary key default gen_random_uuid(),
-  marca            text not null check (marca in ('lana_rosa_crochet', 'lana_rosa_academy')),
-  titulo           text not null check (length(trim(titulo)) between 1 and 200),
-  tipo             text not null check (tipo in ('reel', 'carrusel', 'historia', 'video_youtube')),
+  marca            text not null check (marca in ('crochet', 'academy')),          -- siempre separadas
   plataformas      text[] not null default '{}'
-                   check (plataformas <@ array['instagram', 'facebook', 'tiktok', 'youtube']::text[]),
+                   check (plataformas <@ array['instagram', 'facebook', 'tiktok', 'pinterest', 'youtube']::text[]),
+  fecha            date,                                                          -- día de publicación (America/Bogota)
+  tipo_publicacion text not null check (tipo_publicacion in ('reel', 'carrusel', 'stories', 'video_youtube', 'foto')),
+  angulo           text not null check (length(trim(angulo)) between 1 and 300), -- idea de la pieza en una frase
+  objetivos        text[] not null default '{}'
+                   check (objetivos <@ array['alcance', 'confianza', 'conversion', 'formacion', 'lista_espera', 'comunidad']::text[]),
+  guion            text not null default '',                                      -- gancho, desarrollo, CTA
+  copy             text not null default '',                                      -- texto de la publicación
   estado           text not null default 'idea'
                    check (estado in ('idea', 'aprobado', 'grabado', 'editado', 'publicado')),
-  fecha_publicacion timestamptz,                 -- día y hora en que sale (puede quedar vacía en «idea»)
-  guion            text not null default '',     -- guion completo (tomas, gancho, cierre)
-  copy             text not null default '',     -- texto de la publicación (con hashtags)
-  linea_contenido  text,                         -- ej. «Apertura», «El crochet tiene historia»
-  codigo           text,                         -- ej. R2, C3, S4 (el del calendario del chat 8)
-  enlace_publicado text check (enlace_publicado is null or enlace_publicado ~ '^https://'),
-  notas            text not null default '',
+  bloque_grabacion date,                                                          -- sábado de grabación en bloque
+  notas            text not null default '',                                      -- pendientes (fotos, permisos)
   creado_por       uuid default auth.uid(),
   creado_en        timestamptz not null default now(),
   actualizado_en   timestamptz not null default now()
 );
 
-create index if not exists mkt_piezas_fecha_idx on public.mkt_piezas (fecha_publicacion);
+create index if not exists mkt_piezas_fecha_idx on public.mkt_piezas (fecha);
 create index if not exists mkt_piezas_marca_estado_idx on public.mkt_piezas (marca, estado);
 
 alter table public.mkt_piezas enable row level security;
@@ -45,4 +45,4 @@ create policy mkt_piezas_solo_admin on public.mkt_piezas
   with check ((select public.fn_rol_actual())::text = 'administrador');
 
 comment on table public.mkt_piezas is
-  'LAROVA Marketing: piezas de contenido (guion, copy, estado, tipo, plataformas, fecha). Solo administradoras. Aislada: sin llaves a otras tablas.';
+  'LAROVA Marketing: programación de contenido (esquema del chat 8). Solo administradoras. Aislada: sin llaves a otras tablas.';

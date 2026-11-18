@@ -316,7 +316,7 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 
 ## 📣 LAROVA · Marketing y comunicación (chat «Marketing en LAROVA», 18-nov-2026)
 - [ ] Borrador listo y probado con base simulada en `herramientas/borradores/larova/marketing/` (tabla `mkt_piezas` solo administradoras, prueba con rollback, pantalla `marketing.html` con lista, calendario y filtros). Nada aplicado.
-- [ ] Falta: (1) chat 8 confirma los campos; (2) sí de Jennifer para la base (🔴), fuera del 12-13 dic y de sábados 9 a. m.–7 p. m.; (3) correr la prueba con rollback, aplicar y asesor de seguridad; (4) pasar `marketing.html` al repo ERP (esta sesión no tiene permiso de escritura allá) y apuntar la tarjeta de `larova.html`; (5) opcional: cargar el calendario de apertura.
+- [ ] Falta: (1) ~~campos del chat 8~~ hecho 18-nov; (2) sí de Jennifer para la base (🔴), fuera del 12-13 dic y de sábados 9 a. m.–7 p. m.; (3) correr la prueba con rollback, aplicar y asesor de seguridad; (4) pasar `marketing.html` al repo ERP (esta sesión no tiene permiso de escritura allá) y apuntar la tarjeta de `larova.html`; (5) opcional: cargar el calendario de apertura.
 
 ## 💡 Ideas para después (guardadas por el orquestador, 10-nov-2026; no se hacen antes de la apertura salvo que Jennifer lo pida)
 Detalle en `herramientas/marketing-agenda/ESTRATEGIA-TEJER-PARA-VENDER.md`, `herramientas/agenda-auditoria/IDEAS-DE-OTRAS-AGENDAS-2026-11.md`, `herramientas/agenda-auditoria/COMPARACION-TEJEDORA-ARTESANA-PRO.md` y `herramientas/memoria/encargos.md`.

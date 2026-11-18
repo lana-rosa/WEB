@@ -49,7 +49,7 @@
   .celda .n{font-size:11px;font-weight:700}
   .mini{font-size:11px;line-height:1.2;border-radius:6px;padding:2px 4px;background:var(--c);color:#fff;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:0;text-align:left;font-weight:500}
   .sin-fecha{margin-top:14px}
-  dialog{border:0;border-radius:18px;padding:0;width:min(720px,calc(100vw - 24px));max-height:calc(100vh - 24px)}
+  dialog{margin:auto;border:0;border-radius:18px;padding:0;width:min(720px,calc(100vw - 24px));max-height:calc(100vh - 24px)}
   dialog::backdrop{background:rgba(58,44,53,.45)}
   .dlg{padding:18px;display:grid;gap:10px}
   .dlg h2{font-size:18px;color:var(--rosa)}
@@ -99,24 +99,21 @@
 <dialog id="dlg">
   <form class="dlg" id="form" method="dialog">
     <h2 id="dlg-titulo">Pieza</h2>
-    <label>Título <input name="titulo" required maxlength="200"></label>
+    <label>Ángulo (la idea de la pieza en una frase) <input name="angulo" required maxlength="300"></label>
     <div class="fila">
       <label>Marca <select name="marca" required></select></label>
       <label>Tipo de publicación <select name="tipo" required></select></label>
     </div>
     <div class="fila">
       <label>Estado <select name="estado" required></select></label>
-      <label>Fecha y hora de publicación <input type="datetime-local" name="fecha"></label>
+      <label>Fecha de publicación <input type="date" name="fecha"></label>
     </div>
     <label>Dónde se publica <span class="plats" id="plats"></span></label>
+    <label>Objetivo <span class="plats" id="objs"></span></label>
     <label>Guion completo <textarea name="guion" placeholder="Gancho, tomas, frases y cierre"></textarea></label>
     <label>Copy (texto de la publicación) <textarea name="copy" placeholder="Texto, llamado a la acción y hashtags"></textarea></label>
-    <div class="fila">
-      <label>Línea de contenido <input name="linea" placeholder="Ej.: Apertura"></label>
-      <label>Código del calendario <input name="codigo" placeholder="Ej.: R2"></label>
-    </div>
-    <label>Enlace de la publicación (cuando ya salió) <input type="url" name="enlace" placeholder="https://"></label>
-    <label>Notas <textarea name="notas" style="min-height:60px"></textarea></label>
+    <label>Sábado de grabación en bloque <input type="date" name="bloque"></label>
+    <label>Notas (datos pendientes: fotos, permisos) <textarea name="notas" style="min-height:60px"></textarea></label>
     <p class="error" id="dlg-error" hidden></p>
     <div class="acciones">
       <button type="button" class="borrar" id="borrar" hidden>Borrar</button>
@@ -133,9 +130,10 @@
   var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5nam9vZ256dmVod2p0cHF3cnFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3MDAzMDYsImV4cCI6MjA5NzI3NjMwNn0.2BNYuaQOTh-lU8GZcYhJAnZPBiJvT5PwB9MYZwNHTUE';
   var TABLA = 'mkt_piezas';
 
-  var MARCAS = { lana_rosa_crochet: 'Lana Rosa Crochet', lana_rosa_academy: 'Lana Rosa Academy' };
-  var TIPOS = { reel: 'Reel', carrusel: 'Carrusel', historia: 'Historia', video_youtube: 'Video de YouTube' };
-  var PLATS = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', youtube: 'YouTube' };
+  var MARCAS = { crochet: 'Lana Rosa Crochet', academy: 'Lana Rosa Academy' };
+  var TIPOS = { reel: 'Reel', carrusel: 'Carrusel', stories: 'Stories', video_youtube: 'Video de YouTube', foto: 'Foto' };
+  var PLATS = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', pinterest: 'Pinterest', youtube: 'YouTube' };
+  var OBJS = { alcance: 'Alcance', confianza: 'Confianza', conversion: 'Conversión', formacion: 'Formación', lista_espera: 'Lista de espera', comunidad: 'Comunidad' };
   var ESTADOS = { idea: 'Idea', aprobado: 'Aprobado', grabado: 'Grabado', editado: 'Editado', publicado: 'Publicado' };
 
   var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -150,9 +148,10 @@
     Object.keys(mapa).forEach(function (k) { var o = document.createElement('option'); o.value = k; o.textContent = mapa[k]; sel.appendChild(o); });
   }
   function colorEstado(e) { return 'var(--' + (ESTADOS[e] ? e : 'idea') + ')'; }
-  function fechaLarga(iso) {
-    if (!iso) return 'Sin fecha';
-    return new Date(iso).toLocaleString('es-CO', { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
+  function aFecha(d) { var p = String(d).split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fechaLarga(d) {
+    if (!d) return 'Sin fecha';
+    return aFecha(d).toLocaleDateString('es-CO', { weekday: 'short', day: 'numeric', month: 'short' });
   }
   function claveDia(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
   function bloquear(html) { $('#app').hidden = true; var b = $('#bloqueo'); b.hidden = false; b.innerHTML = html; }
@@ -166,11 +165,13 @@
 
   function tarjeta(x) {
     var plats = (x.plataformas || []).map(function (p) { return '<span class="chip">' + esc(PLATS[p] || p) + '</span>'; }).join('');
+    var objs = (x.objetivos || []).map(function (o) { return OBJS[o] || o; }).join(' · ');
     return '<article class="pieza" tabindex="0" data-id="' + esc(x.id) + '" style="--c:' + colorEstado(x.estado) + '">' +
-      '<h3>' + (x.codigo ? esc(x.codigo) + ' · ' : '') + esc(x.titulo) + '</h3>' +
+      '<h3>' + esc(x.angulo) + '</h3>' +
       '<div class="meta"><span class="chip est">' + esc(ESTADOS[x.estado] || x.estado) + '</span>' +
-      '<span class="chip">' + esc(TIPOS[x.tipo] || x.tipo) + '</span>' + plats +
-      '<span>' + esc(MARCAS[x.marca] || x.marca) + '</span><span>· ' + esc(fechaLarga(x.fecha_publicacion)) + '</span></div>' +
+      '<span class="chip">' + esc(TIPOS[x.tipo_publicacion] || x.tipo_publicacion) + '</span>' + plats +
+      '<span>' + esc(MARCAS[x.marca] || x.marca) + '</span><span>· ' + esc(fechaLarga(x.fecha)) + '</span>' +
+      (objs ? '<span>· ' + esc(objs) + '</span>' : '') + '</div>' +
       '</article>';
   }
 
@@ -178,7 +179,7 @@
     if (!lista.length) { $('#v-lista').innerHTML = '<p class="aviso">No hay piezas con estos filtros.</p>'; return; }
     var html = '<div class="lista">', ultimo = null;
     lista.forEach(function (x) {
-      var g = x.fecha_publicacion ? new Date(x.fecha_publicacion).toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' }) : 'Sin fecha';
+      var g = x.fecha ? aFecha(x.fecha).toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' }) : 'Sin fecha';
       if (g !== ultimo) { html += '<p class="dia-grupo">' + esc(g) + '</p>'; ultimo = g; }
       html += tarjeta(x);
     });
@@ -189,8 +190,8 @@
     var porDia = {};
     var sinFecha = [];
     lista.forEach(function (x) {
-      if (!x.fecha_publicacion) { sinFecha.push(x); return; }
-      var k = claveDia(new Date(x.fecha_publicacion)); (porDia[k] = porDia[k] || []).push(x);
+      if (!x.fecha) { sinFecha.push(x); return; }
+      var k = x.fecha; (porDia[k] = porDia[k] || []).push(x);
     });
     var ini = new Date(mes); var dSem = (ini.getDay() + 6) % 7; ini.setDate(ini.getDate() - dSem);
     var hoy = claveDia(new Date());
@@ -203,7 +204,7 @@
       var k = claveDia(d);
       html += '<div class="celda' + (d.getMonth() !== mes.getMonth() ? ' fuera' : '') + (k === hoy ? ' hoy' : '') + '"><span class="n">' + d.getDate() + '</span>';
       (porDia[k] || []).forEach(function (x) {
-        html += '<button type="button" class="mini" data-id="' + esc(x.id) + '" style="--c:' + colorEstado(x.estado) + '" title="' + esc(x.titulo) + '">' + esc((TIPOS[x.tipo] || '').charAt(0) + ' · ' + x.titulo) + '</button>';
+        html += '<button type="button" class="mini" data-id="' + esc(x.id) + '" style="--c:' + colorEstado(x.estado) + '" title="' + esc(x.angulo) + '">' + esc((TIPOS[x.tipo_publicacion] || '').charAt(0) + ' · ' + x.angulo) + '</button>';
       });
       html += '</div>';
       if (i === 34 && d.getMonth() !== mes.getMonth()) break;
@@ -222,12 +223,6 @@
     if (vista === 'lista') pintarLista(lista); else pintarCalendario(lista);
   }
 
-  function aLocal(iso) {
-    if (!iso) return '';
-    var d = new Date(iso); d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-    return d.toISOString().slice(0, 16);
-  }
-
   function abrir(x) {
     editando = x || null;
     var f = $('#form');
@@ -235,14 +230,13 @@
     $('#dlg-error').hidden = true;
     $('#dlg-titulo').textContent = x ? 'Editar pieza' : 'Nueva pieza';
     $('#borrar').hidden = !x;
-    x = x || { marca: $('#f-marca').value || 'lana_rosa_crochet', tipo: 'reel', estado: 'idea', plataformas: ['instagram'] };
-    f.titulo.value = x.titulo || '';
-    f.marca.value = x.marca; f.tipo.value = x.tipo; f.estado.value = x.estado;
-    f.fecha.value = aLocal(x.fecha_publicacion);
-    f.guion.value = x.guion || ''; f.copy.value = x.copy || '';
-    f.linea.value = x.linea_contenido || ''; f.codigo.value = x.codigo || '';
-    f.enlace.value = x.enlace_publicado || ''; f.notas.value = x.notas || '';
+    x = x || { marca: $('#f-marca').value || 'crochet', tipo_publicacion: 'reel', estado: 'idea', plataformas: ['instagram'], objetivos: [] };
+    f.angulo.value = x.angulo || '';
+    f.marca.value = x.marca; f.tipo.value = x.tipo_publicacion; f.estado.value = x.estado;
+    f.fecha.value = x.fecha || ''; f.bloque.value = x.bloque_grabacion || '';
+    f.guion.value = x.guion || ''; f.copy.value = x.copy || ''; f.notas.value = x.notas || '';
     document.querySelectorAll('#plats input').forEach(function (c) { c.checked = (x.plataformas || []).indexOf(c.value) >= 0; });
+    document.querySelectorAll('#objs input').forEach(function (c) { c.checked = (x.objetivos || []).indexOf(c.value) >= 0; });
     $('#dlg').showModal();
   }
 
@@ -250,16 +244,14 @@
     ev.preventDefault();
     var f = $('#form');
     var fila = {
-      titulo: f.titulo.value.trim(), marca: f.marca.value, tipo: f.tipo.value, estado: f.estado.value,
-      fecha_publicacion: f.fecha.value ? new Date(f.fecha.value).toISOString() : null,
-      plataformas: Array.prototype.map.call(document.querySelectorAll('#plats input:checked'), function (c) { return c.value; }),
-      guion: f.guion.value, copy: f.copy.value,
-      linea_contenido: f.linea.value.trim() || null, codigo: f.codigo.value.trim() || null,
-      enlace_publicado: f.enlace.value.trim() || null, notas: f.notas.value,
+      angulo: f.angulo.value.trim(), marca: f.marca.value, tipo_publicacion: f.tipo.value, estado: f.estado.value,
+      fecha: f.fecha.value || null, bloque_grabacion: f.bloque.value || null,
+      plataformas: marcadas('#plats'), objetivos: marcadas('#objs'),
+      guion: f.guion.value, copy: f.copy.value, notas: f.notas.value,
       actualizado_en: new Date().toISOString()
     };
-    if (!fila.titulo) return;
-    if (fila.estado === 'publicado' && !fila.fecha_publicacion) { mostrarError('Una pieza publicada necesita su fecha.'); return; }
+    if (!fila.angulo) return;
+    if (fila.estado === 'publicado' && !fila.fecha) { mostrarError('Una pieza publicada necesita su fecha.'); return; }
     $('#guardar').disabled = true;
     var r = editando ? await sb.from(TABLA).update(fila).eq('id', editando.id).select().single()
                      : await sb.from(TABLA).insert(fila).select().single();
@@ -268,10 +260,11 @@
     $('#dlg').close();
     await cargar();
   }
+  function marcadas(sel) { return Array.prototype.map.call(document.querySelectorAll(sel + ' input:checked'), function (c) { return c.value; }); }
   function mostrarError(t) { var e = $('#dlg-error'); e.textContent = t; e.hidden = false; }
 
   async function borrar() {
-    if (!editando || !confirm('¿Borrar la pieza «' + editando.titulo + '»? No se puede deshacer.')) return;
+    if (!editando || !confirm('¿Borrar la pieza «' + editando.angulo + '»? No se puede deshacer.')) return;
     var r = await sb.from(TABLA).delete().eq('id', editando.id);
     if (r.error) { mostrarError('No se pudo borrar: ' + r.error.message); return; }
     $('#dlg').close();
@@ -279,7 +272,7 @@
   }
 
   async function cargar() {
-    var r = await sb.from(TABLA).select('*').order('fecha_publicacion', { ascending: true, nullsFirst: false }).order('creado_en');
+    var r = await sb.from(TABLA).select('*').order('fecha', { ascending: true, nullsFirst: false }).order('creado_en');
     if (r.error) { bloquear('No se pudieron cargar las piezas: ' + esc(r.error.message)); return; }
     piezas = r.data || [];
     pintar();
@@ -289,7 +282,8 @@
     opciones($('#f-marca'), MARCAS); opciones($('#f-plat'), PLATS); opciones($('#f-estado'), ESTADOS);
     var f = $('#form');
     opciones(f.marca, MARCAS); opciones(f.tipo, TIPOS); opciones(f.estado, ESTADOS);
-    $('#plats').innerHTML = Object.keys(PLATS).map(function (k) { return '<label><input type="checkbox" value="' + k + '"> ' + PLATS[k] + '</label>'; }).join('');
+    function casillas(mapa) { return Object.keys(mapa).map(function (k) { return '<label><input type="checkbox" value="' + k + '"> ' + mapa[k] + '</label>'; }).join(''); }
+    $('#plats').innerHTML = casillas(PLATS); $('#objs').innerHTML = casillas(OBJS);
 
     var s = await sb.auth.getSession();
     if (!s.data || !s.data.session) {
