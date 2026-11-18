@@ -405,4 +405,4 @@ html body .pie-minimo .pie-legal .derechos { white-space: normal !important; fle
 html body .nav-movil-panel button.grupo-boton { background: transparent; border-left: 0; margin: 0; padding: 14px 24px; border-bottom: 1px solid rgba(69,69,74,0.1); }
 html body .nav-movil-panel button.grupo-boton:first-of-type { margin: 0; }
 /* Títulos en negrita y gris oscuro, sin el color de la casa (pedido de Jennifer, 19-nov-2026). */
-html body .nav-movil-panel button.grupo-boton { color: var(--tinta); font-weight: 800; }
+html body .nav-movil-panel button.grupo-boton { color: var(--tinta); font-weight: 800; text-transform: none; letter-spacing: 0; font-size: 1rem; }
