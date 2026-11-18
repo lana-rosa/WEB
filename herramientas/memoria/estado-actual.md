@@ -25,6 +25,7 @@
   E35 (10-nov): borrador del «Pasaporte de calidad para amigurumis» (1 página) en `herramientas/borradores/pasaporte-calidad/index.html`; Jennifer aprobó el contenido tal cual (10-nov); falta la prueba con las tejedoras y su sí para publicar.
   A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas.
 - **8 · Marketing y contenido:** 18-nov: calendario de dos marcas (19-nov a 14-dic) y guiones de la semana 1 aprobados por Jennifer; 7 ayudantes creados; bloques y recordatorios de la semana 1 en el calendario de Sara. Falta: semana 2, proyecto de Academy del 20-nov, hora de apertura.
+- **Marketing en LAROVA (ERP, 18-nov):** tabla `mkt_piezas` CREADA en la base con el sí de Jennifer (solo administradoras, probada, asesor sin avisos nuevos); pantalla aprobada en `herramientas/borradores/larova/marketing/marketing.html`. Falta llevarla al repo ERP (este chat no tiene permiso de escritura allá).
 
 ## Pendiente de Jennifer
 - Google Cloud en **Producción**; prueba real de Drive (dos aparatos) y Calendar; preguntas reales a Rosina.
