@@ -24,5 +24,12 @@ Política de uso del sitio, apartado 4 «Medios de pago» (`politicas.html#uso`)
 
 Preguntas para la abogada: (a) ¿basta esta adición al apartado 4, o hace falta decir algo en la política de envíos (apartado de tiempos de preparación)? (b) ¿debe indicarse que los datos del comprobante (nombre, número) se tratan según la política de datos? (c) ¿se recomienda un aviso de «revisa que el nombre coincida» como medida contra fraudes?
 
+## Respuesta del ERP (chat 2, Pedidos y anticipos, 18-nov-2026)
+- **No hace falta un estado nuevo:** la web ya tiene `pedidos_web.estado = 'pendiente_pago'` y el pedido no pasa al ERP hasta que esté 'pagado'. En el ERP el equivalente es `esperando_pago`.
+- **Cómo registra la administradora el pago:** en el ERP, Punto de venta → Pedidos Web/Redes → «Cobrar anticipo», eligiendo el medio (Transferencia). **No se debe marcar el pedido web como 'pagado' a mano**: se registraría como pago de Wompi, con su comisión, y sería incorrecto.
+- **Sin código nuevo:** se puede crear el pedido por el formulario de pedidos de redes, desmarcar «Cobrar el anticipo ahora» y cobrarlo cuando llegue el comprobante. Límites: el pedido del ERP no queda enlazado a la referencia del pedido web, y el selector no trae «Nequi» ni «Bre-B» por separado.
+- **Texto sugerido por el ERP para la web:** «Paga por Nequi o Bre-B al 320 507 2801 y envíanos el comprobante por WhatsApp; confirmamos tu pago y empezamos tu pedido».
+- **Solo con código (si Jennifer lo aprueba):** agregar «Nequi» y «Bre-B» al selector de medios y un botón «Confirmar pago manual» para pedidos web pendientes.
+
 ## Cosas que no decide la web
-El estado «pendiente de confirmación» del pedido y dónde se guardan los pedidos por transferencia lo define el ERP (el medio «directo» ya existe); se consulta con el chat de pagos / orquestador.
+El estado del pedido y dónde se guardan los pagos por transferencia lo define el ERP (arriba). La web solo dice «queda pendiente hasta que confirmemos el pago».
