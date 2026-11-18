@@ -314,6 +314,10 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 - [ ] **Plataformas de envío (encargo del Orquestador, 10-nov-2026; solo investigación):** borrador parcial en `herramientas/envios/COMPARACION-PLATAFORMAS.md`. Las páginas oficiales no se abrieron desde la sesión (red restringida): **ningún precio está confirmado**. Falta: permitir esos sitios en la red de la sesión o pedir cotización directa; confirmar «99envíos» (¿99minutos?); conexión real solo después del 13-dic y con peso y medidas en el ERP.
 
 
+## 📣 LAROVA · Marketing y comunicación (chat «Marketing en LAROVA», 18-nov-2026)
+- [ ] Borrador listo y probado con base simulada en `herramientas/borradores/larova/marketing/` (tabla `mkt_piezas` solo administradoras, prueba con rollback, pantalla `marketing.html` con lista, calendario y filtros). Nada aplicado.
+- [ ] Falta: (1) chat 8 confirma los campos; (2) sí de Jennifer para la base (🔴), fuera del 12-13 dic y de sábados 9 a. m.–7 p. m.; (3) correr la prueba con rollback, aplicar y asesor de seguridad; (4) pasar `marketing.html` al repo ERP (esta sesión no tiene permiso de escritura allá) y apuntar la tarjeta de `larova.html`; (5) opcional: cargar el calendario de apertura.
+
 ## 💡 Ideas para después (guardadas por el orquestador, 10-nov-2026; no se hacen antes de la apertura salvo que Jennifer lo pida)
 Detalle en `herramientas/marketing-agenda/ESTRATEGIA-TEJER-PARA-VENDER.md`, `herramientas/agenda-auditoria/IDEAS-DE-OTRAS-AGENDAS-2026-11.md`, `herramientas/agenda-auditoria/COMPARACION-TEJEDORA-ARTESANA-PRO.md` y `herramientas/memoria/encargos.md`.
 - **Las 3 propuestas de Jennifer del 10-nov están aquí** (unidas en `ESTRATEGIA-TEJER-PARA-VENDER.md`): (1) «Tejer para vender» → Método ROSA, tarjeta, prueba de 3 a 5 piezas, taller piloto, ebook, calendario de temporadas; (2) «Calidad y buenos acabados» → Pasaporte de calidad, revisión de calidad en la agenda, sección de la Revista, curso de acabados, organizador de ganchillos, muestrario; (3) «De tejedora a emprendedora» → mapa de 6 etapas, Laboratorio de productos, curso «De una idea a tu primer producto», una sola serie de YouTube.
