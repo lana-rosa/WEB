@@ -160,6 +160,26 @@
     }
   } catch (e) {}
 
+  // Menú de las tres rayitas (todas las casas): los títulos de grupo (Tienda, Rosina, Ayuda…) son listas desplegables, cerradas por defecto; se abre sola la del grupo donde está la persona. Los enlaces sueltos de arriba (Inicio, Mi cuenta) quedan a la vista. Sin JavaScript el menú se ve completo.
+  try {
+    var panelMenu = document.getElementById('nav-movil-panel');
+    if (panelMenu && !panelMenu.getAttribute('data-plegable')) {
+      panelMenu.setAttribute('data-plegable', '1');
+      var titulos = [].slice.call(panelMenu.querySelectorAll(':scope > p.grupo-nav'));
+      titulos.forEach(function (p, i) {
+        var lista = document.createElement('div'); lista.className = 'grupo-lista'; lista.id = 'grupo-lista-' + i; lista.hidden = true;
+        var sig = p.nextElementSibling;
+        while (sig && !(sig.matches && sig.matches('p.grupo-nav'))) { var s = sig.nextElementSibling; lista.appendChild(sig); sig = s; }
+        var b = document.createElement('button'); b.type = 'button'; b.className = p.className + ' grupo-boton'; b.textContent = p.textContent;
+        b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-controls', lista.id);
+        var aqui = [].slice.call(lista.querySelectorAll('a')).some(function (a) { try { return a.pathname.replace(/index\.html$/, '') === location.pathname.replace(/index\.html$/, '') && a.pathname !== '/'; } catch (e) { return false; } });
+        if (aqui) { lista.hidden = false; b.setAttribute('aria-expanded', 'true'); b.classList.add('abierto'); }
+        b.addEventListener('click', function () { var abre = lista.hidden; lista.hidden = !abre; b.setAttribute('aria-expanded', abre ? 'true' : 'false'); b.classList.toggle('abierto', abre); });
+        p.parentNode.replaceChild(b, p); b.parentNode.insertBefore(lista, b.nextSibling);
+      });
+    }
+  } catch (e) {}
+
   // Pie en el celular (≤ 600 px): los títulos «Tienda», «Lana Rosa» y «Contáctanos» se vuelven listas desplegables. Sin JavaScript o en pantallas grandes las listas se ven completas.
   try {
     var mqPie = window.matchMedia ? window.matchMedia('(max-width: 600px)') : null;
