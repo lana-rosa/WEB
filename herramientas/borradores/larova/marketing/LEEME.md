@@ -8,6 +8,9 @@ Encargo del Orquestador general (aprobado por Jennifer el 18-nov). Construido y 
 | `02-prueba-con-rollback.sql` | Prueba que se deshace sola: la administradora crea y ve; valores raros se rechazan; otra cuenta no ve ni escribe; anon no lee. |
 | `marketing.html` | Pantalla aparte para la raíz del repo ERP (junto a `larova.html`): lista y calendario del mes, filtros por marca, plataforma y estado; cada pieza abre su ficha con guion completo, copy, estado, tipo, dónde se publica y fecha. Usa la sesión del ERP; si la cuenta no es administradora, muestra un aviso. No cambia `index.html`. |
 
+## Decisiones de Jennifer
+- 18-nov-2026: aprobó cómo se ve la pantalla (fotos de lista, calendario y ficha con datos de ejemplo).
+
 ## Campos propuestos (los confirma el chat 8 «Marketing y contenido»)
 marca (Lana Rosa Crochet / Lana Rosa Academy) · título · tipo (reel, carrusel, historia, video de YouTube) · plataformas (Instagram, Facebook, TikTok, YouTube; varias) · estado (idea → aprobado → grabado → editado → publicado) · fecha y hora · guion completo · copy · línea de contenido · código del calendario (R2, C3…) · enlace de la publicación · notas.
 
