@@ -160,6 +160,36 @@
     }
   } catch (e) {}
 
+  // Pie en el celular (≤ 600 px): los títulos «Tienda», «Lana Rosa» y «Contáctanos» se vuelven listas desplegables. Sin JavaScript o en pantallas grandes las listas se ven completas.
+  try {
+    var mqPie = window.matchMedia ? window.matchMedia('(max-width: 600px)') : null;
+    var colsPie = [].slice.call(document.querySelectorAll('.pie-grid .pie-col'));
+    var armarPie = function () {
+      colsPie.forEach(function (col, i) {
+        var h = col.querySelector('.pie-h3'), ul = col.querySelector('ul');
+        if (!h || !ul) return;
+        if (mqPie && mqPie.matches) {
+          if (col.classList.contains('pie-plegable')) return;
+          col.classList.add('pie-plegable'); ul.id = ul.id || 'pie-lista-' + i;
+          h.setAttribute('role', 'button'); h.setAttribute('tabindex', '0'); h.setAttribute('aria-expanded', 'false'); h.setAttribute('aria-controls', ul.id);
+        } else {
+          col.classList.remove('pie-plegable', 'abierto');
+          h.removeAttribute('role'); h.removeAttribute('tabindex'); h.removeAttribute('aria-expanded'); h.removeAttribute('aria-controls');
+        }
+      });
+    };
+    var alternarPie = function (h) {
+      var col = h.closest('.pie-col'); if (!col || !col.classList.contains('pie-plegable')) return;
+      var abierto = col.classList.toggle('abierto'); h.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    };
+    if (colsPie.length) {
+      armarPie();
+      if (mqPie && mqPie.addEventListener) mqPie.addEventListener('change', armarPie);
+      document.addEventListener('click', function (ev) { var h = ev.target.closest && ev.target.closest('.pie-grid .pie-h3[role="button"]'); if (h) alternarPie(h); });
+      document.addEventListener('keydown', function (ev) { if (ev.key !== 'Enter' && ev.key !== ' ') return; var h = ev.target.closest && ev.target.closest('.pie-grid .pie-h3[role="button"]'); if (h) { ev.preventDefault(); alternarPie(h); } });
+    }
+  } catch (e) {}
+
   // botones "Hablar con Rosina": abren el chat; si no cargó, siguen el enlace
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest && ev.target.closest('[data-abrir-rosina]');
