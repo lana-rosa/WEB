@@ -38,7 +38,6 @@ alter table public.mkt_piezas force row level security;
 revoke all on public.mkt_piezas from public, anon;
 grant select, insert, update, delete on public.mkt_piezas to authenticated;
 
-drop policy if exists mkt_piezas_solo_admin on public.mkt_piezas;
 create policy mkt_piezas_solo_admin on public.mkt_piezas
   for all to authenticated
   using ((select public.fn_rol_actual())::text = 'administrador')

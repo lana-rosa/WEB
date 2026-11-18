@@ -25,7 +25,7 @@
   E35 (10-nov): borrador del «Pasaporte de calidad para amigurumis» (1 página) en `herramientas/borradores/pasaporte-calidad/index.html`; Jennifer aprobó el contenido tal cual (10-nov); falta la prueba con las tejedoras y su sí para publicar.
   A medias: actualizar `plantilla-rincon.html` antes de regenerar glosario y paletas.
 - **8 · Marketing y contenido:** Jennifer decidió (3-nov): tono inclusivo, nombre «CrochetLab» en pausa (10-nov): decir «la agenda de Lana Rosa»; carrito mixto = sí (a construir, chats 4 y 5). Guiones de la línea 1 listos (borrador). 10-nov: calendario, guiones de 2 semanas y borradores del Método ROSA listos para aprobar (E10).
-- **Marketing en LAROVA (ERP, 18-nov):** borrador probado y aspecto aprobado por Jennifer (tabla solo administradoras + pantalla lista/calendario/filtros) en `herramientas/borradores/larova/marketing/`; nada en la base ni en el ERP. Campos del chat 8 ya aplicados al borrador. Espera: sí de Jennifer para la base y permiso de escritura al repo ERP.
+- **Marketing en LAROVA (ERP, 18-nov):** tabla `mkt_piezas` CREADA en la base con el sí de Jennifer (solo administradoras, probada, asesor sin avisos nuevos); pantalla aprobada en `herramientas/borradores/larova/marketing/marketing.html`. Falta llevarla al repo ERP (este chat no tiene permiso de escritura allá).
 
 ## Pendiente de Jennifer
 - Google Cloud en **Producción**; prueba real de Drive (dos aparatos) y Calendar; preguntas reales a Rosina.

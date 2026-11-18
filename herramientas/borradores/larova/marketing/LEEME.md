@@ -1,6 +1,6 @@
 # LAROVA · Marketing y comunicación (borrador, 18-nov-2026)
 
-Encargo del Orquestador general (aprobado por Jennifer el 18-nov). Construido y probado sin tocar la base ni el ERP. **Nada está aplicado ni publicado.**
+Encargo del Orquestador general (aprobado por Jennifer el 18-nov). **Tabla APLICADA en la base el 18-nov-2026 con el sí de Jennifer** (migración `larova_marketing_mkt_piezas`). La pantalla todavía NO está en el ERP.
 
 | Archivo | Qué es |
 |---|---|
@@ -9,6 +9,7 @@ Encargo del Orquestador general (aprobado por Jennifer el 18-nov). Construido y 
 | `marketing.html` | Pantalla aparte para la raíz del repo ERP (junto a `larova.html`): lista y calendario del mes, filtros por marca, plataforma y estado; cada pieza abre su ficha con guion completo, copy, estado, tipo, dónde se publica y fecha. Usa la sesión del ERP; si la cuenta no es administradora, muestra un aviso. No cambia `index.html`. |
 
 ## Decisiones de Jennifer
+- 18-nov-2026: dijo SÍ a crear la tabla. Prueba con rollback: «PRUEBA OK» (admin crea y ve, valor raro rechazado, otra cuenta no ve ni escribe, anon sin permiso). Verificado después: RLS forzado, una sola política, anon sin SELECT, 0 filas, sin llaves a otras tablas; asesor de seguridad: ningún aviso de `mkt_piezas` (los 4 avisos que da ya existían). Ojo: el primer intento con `drop policy if exists` se colgó (sin dejar nada); se quitó esa línea.
 - 18-nov-2026: aprobó cómo se ve la pantalla (fotos de lista, calendario y ficha con datos de ejemplo).
 
 ## Campos (los definió el chat 8, `herramientas/memoria/marketing-programacion-esquema.md`, 18-nov-2026)
@@ -16,8 +17,7 @@ marca (crochet / academy, siempre separadas) · plataformas (Instagram, Facebook
 
 ## Pasos que faltan (en orden)
 1. ~~Chat 8 confirma los campos~~ hecho (18-nov).
-2. Sí de Jennifer para tocar la base (🔴). Fuera del 12 y 13-dic y de sábados 9 a. m.–7 p. m.
-3. Correr `02` (con `01` pegado dentro) → debe terminar en «PRUEBA OK». Luego aplicar `01` y correr el asesor de seguridad.
+2. ~~Sí de Jennifer, prueba con rollback, aplicar y asesor~~ hecho 18-nov.
 4. Llevar `marketing.html` al repo ERP (esta sesión no tiene permiso de escritura allá: lo hace un chat del ERP o se da el permiso), cambiar la tarjeta «Marketing y comunicación» de `larova.html` a `./marketing.html` y subir `CACHE_NAME` de `sw.js` si la página entra al caché.
 5. Cargar las piezas del calendario de apertura (`herramientas/marketing-agenda/CALENDARIO-APERTURA-11NOV-14DIC.md`) — opcional, con sí de Jennifer.
 
