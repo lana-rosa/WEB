@@ -81,7 +81,7 @@ Los repositorios que no están en la sesión se agregan con `add_repo` (solo lec
   - Nueva: que el enlace de reseñas del correo conserve `#resenas` después de iniciar sesión.
   - Nueva: sección corta «Amigurumis en Manizales y Villamaría».
 
-**Sesión actual del orquestador general:** `session_01H2X8ga1Y8UMd7QfnSkEjLR` (abierto el 17-nov-2026; los otros orquestadores le escriben con `send_message` a este identificador). El anterior era `session_01H2X8gaahfucSR9WM7L1zXM`, archivado.
+**Sesión actual del orquestador general:** `session_01H2X8gXS7uC83GnxwoHrZoj` (abierto el 18-nov-2026; los otros orquestadores le escriben con `send_message` a este identificador). El anterior era `session_01H2X8ga1Y8UMd7QfnSkEjLR`, para archivar.
 
 ## En qué vamos (reescrito el 18-nov-2026 al renovar el orquestador; máx. 15 líneas)
 - **Fechas:** tienda física abre dom 13-dic; no tocar la base del ERP sáb 9 a. m.–7 p. m. ni el 12 y 13-dic. Reunión con el contador nuevo vie 20-nov (hoja en el chat de Jennifer; pregunta 17 = bancos). Excel y 34 fotos de la Mercería: ideal 20-nov, límite vie 27-nov; si no llegan, plan B (Mercería «Muy pronto» + Tienda de amigurumis completa, aceptado).
