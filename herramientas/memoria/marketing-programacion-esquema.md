@@ -16,3 +16,4 @@ Origen: tabla provisional `herramientas/marketing-agenda/CALENDARIO-DOS-MARCAS-1
 | bloque_grabacion | fecha del sábado de grabación en bloque |
 | notas | datos pendientes (fotos, permisos) |
 Reglas: nada de Navidad, santos, San Valentín ni Halloween; las dos marcas no se mezclan.
+Ajustes del 18-nov (ver `herramientas/borradores/larova/marketing/LEEME.md`): plataforma incluye Pinterest; tipo incluye «foto»; campos extra: código del calendario, línea de contenido y enlace de la publicación.

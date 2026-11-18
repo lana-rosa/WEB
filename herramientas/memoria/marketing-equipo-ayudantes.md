@@ -13,3 +13,5 @@ Se usan solo cuando Jennifer lo pida o lo confirme en este chat. Cada ayudante r
 | 7 | Agenda | Google Calendar (America/Bogota) | Bloques de grabación y publicación; **antes de crear, preguntar de quién es el calendario** |
 
 Flujo con aprobación de Jennifer en cada paso: 1) calendario, 2) guiones y copys por semana y marca, 3) bloques en Calendar. Esquema de campos para LAROVA: `marketing-programacion-esquema.md`.
+
+**Estado (18-nov-2026):** Jennifer pidió crear los 7 y se invocaron con la herramienta Agent. Primera ronda entregada: planificador, guionista de Reels (vs IA), de Carruseles (vie 20), de Historias, de YouTube (video 1), redactor de copys y agente de agenda (solo lectura). Resultados en `herramientas/marketing-agenda/GUIONES-SEMANA-1-V2-AYUDANTES.md` y `GUION-YOUTUBE-1-EMPEZAR-A-TEJER.md`. Calendario de Google: el de Sara (`saralmunoz1301@gmail.com`); no se crea ningún bloque hasta que Jennifer apruebe los guiones. Los textos de los ayudantes se revisan antes de pasarlos: cuidar que no inventen pasos del proceso ni datos.
