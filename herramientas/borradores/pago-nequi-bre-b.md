@@ -31,5 +31,9 @@ Preguntas para la abogada: (a) ¿basta esta adición al apartado 4, o hace falta
 - **Texto sugerido por el ERP para la web:** «Paga por Nequi o Bre-B al 320 507 2801 y envíanos el comprobante por WhatsApp; confirmamos tu pago y empezamos tu pedido».
 - **Solo con código (si Jennifer lo aprueba):** agregar «Nequi» y «Bre-B» al selector de medios y un botón «Confirmar pago manual» para pedidos web pendientes.
 
+## Actualización del ERP (chat 2, 18-nov-2026, PR #167 del ERP publicado)
+- El pago manual de pedidos web ya existe: Punto de venta → Pedidos Web/Redes → «Pedidos de la web esperando pago manual»; se elige el medio, se escribe el N.° de referencia del comprobante y se confirma; el pedido pasa a preparación (queda quién y cuándo), sin comisión Wompi. Solo para pedidos en pesos colombianos.
+- **«Nequi» y «Bre-B» están bloqueados en el ERP** hasta que Contabilidad les asigne cuenta (decisión con el contador el 20-nov); mientras tanto solo se confirma como «Transferencia». **El texto de la web no debe prometer «confirmación inmediata»:** usar «envíanos el comprobante por WhatsApp y confirmamos tu pago» (ya es lo que dicen los borradores de arriba).
+
 ## Cosas que no decide la web
 El estado del pedido y dónde se guardan los pagos por transferencia lo define el ERP (arriba). La web solo dice «queda pendiente hasta que confirmemos el pago».
