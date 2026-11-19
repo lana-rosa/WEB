@@ -381,3 +381,28 @@ html[data-casa="agenda"] { --tinte: #FEF2F7; --rosa-principal: #E74E96; --rosa-m
 /* Pie mínimo de la agenda: la línea de la marca registrada es larga y debe partirse en renglones, no ensanchar la página (12-nov-2026). */
 .pie-minimo .pie-legal { flex-wrap: wrap; }
 html body .pie-minimo .pie-legal .derechos { white-space: normal !important; flex: 1 1 100%; min-width: 0; overflow-wrap: anywhere; }
+
+/* Pie en el celular: los títulos de las columnas son listas desplegables (js/animaciones.js; sin JavaScript se ven abiertas). */
+@media (max-width: 600px) {
+  .pie-grid { grid-template-columns: 1fr; gap: 0; }
+  .pie-col.pie-plegable { border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .pie-col.pie-plegable .pie-h3 { display: flex; align-items: center; justify-content: space-between; margin: 0; padding: 14px 0; min-height: 44px; cursor: pointer; }
+  .pie-col.pie-plegable .pie-h3::after { content: "▾"; font-size: 1rem; transition: transform .2s; }
+  .pie-col.pie-plegable.abierto .pie-h3::after { transform: rotate(180deg); }
+  .pie-col.pie-plegable .pie-h3:focus-visible { outline: 3px solid var(--blanco-hueso); outline-offset: 2px; }
+  .pie-col.pie-plegable ul { display: none; padding-bottom: 14px; }
+  .pie-col.pie-plegable.abierto ul { display: flex; }
+}
+
+/* Menú de las tres rayitas: títulos de grupo como listas desplegables (js/animaciones.js). */
+.nav-movil-panel button.grupo-boton { display: flex; align-items: center; justify-content: space-between; width: 100%; box-sizing: border-box; border: 0; border-left: 5px solid var(--rosa-principal); text-align: left; cursor: pointer; font-family: inherit; min-height: 44px; }
+.nav-movil-panel button.grupo-boton::after { content: "▾"; font-size: 1rem; transition: transform .2s; }
+.nav-movil-panel button.grupo-boton.abierto::after { transform: rotate(180deg); }
+.nav-movil-panel button.grupo-boton:focus-visible { outline: 3px solid var(--lila); outline-offset: -3px; }
+.nav-movil-panel .grupo-lista[hidden] { display: none; }
+.nav-movil-panel .grupo-lista:not([hidden]) { display: flex; flex-direction: column; }
+/* Sin resaltado de fondo ni barra de color en los títulos plegables (pedido de Jennifer, 19-nov-2026): solo el título y una línea fina. */
+html body .nav-movil-panel button.grupo-boton { background: transparent; border-left: 0; margin: 0; padding: 14px 24px; border-bottom: 1px solid rgba(69,69,74,0.1); }
+html body .nav-movil-panel button.grupo-boton:first-of-type { margin: 0; }
+/* Títulos en negrita y gris oscuro, sin el color de la casa (pedido de Jennifer, 19-nov-2026). */
+html body .nav-movil-panel button.grupo-boton { color: var(--tinta); font-weight: 800; text-transform: none; letter-spacing: 0; font-size: 1rem; }

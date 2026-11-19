@@ -50,3 +50,4 @@ Fuente: sección 2.2 de `herramientas/marketing-agenda/ESTRATEGIA-TEJER-PARA-VEN
 Antes de escribir: revisar los datos con Jennifer (qué piezas y precios reales se pueden mostrar) y el nombre de la agenda, que está en pausa (ver `PENDIENTES.md`).
 
 - [x] Cómo rellenar un amigurumi: cuánto relleno y cómo repartirlo (crochet, Academy) — 18-nov-2026
+- [x] Cómo cambiar de color en crochet sin que se note (crochet, Academy) — 19-nov-2026

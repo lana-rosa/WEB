@@ -237,6 +237,9 @@ No se publica ningún patrón hasta tener sus condiciones. Propuesta lista (no e
 4. ¿Qué datos de la clienta se guardan de la encuesta y por cuánto tiempo (conservación)?
 5. ¿Hay que informar la finalidad antes de la compra (por ejemplo, en la política de datos y en el pago) además del texto del mensaje?
 
+## 18. Pago por transferencia Nequi / Bre-B (propuesta de Jennifer, 18-nov-2026)
+Adición propuesta al apartado 4 «Medios de pago» de `politicas.html#uso` y 3 preguntas: ver `herramientas/borradores/pago-nequi-bre-b.md` (sección «Texto legal»). No se publica sin su aprobación escrita ni antes de que Jennifer confirme la transferencia de prueba, la llave Bre-B y el nombre exacto de la titular.
+
 ## Lo que necesito de la abogada (resumen)
 1. Aprobación (o ajuste) de los textos marcados «borrador nuestro» de los puntos 2, 3, 4, 6, 7, 8, 10 y 13.
 2. Mecanismo para Supabase en Brasil y países con nivel adecuado (inventario de proveedores).
