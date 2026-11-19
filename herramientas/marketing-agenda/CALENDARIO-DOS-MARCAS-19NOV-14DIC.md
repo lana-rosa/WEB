@@ -49,6 +49,13 @@ Reemplaza como guía al calendario diario anterior (`CALENDARIO-APERTURA-11NOV-1
 
 **Cambios del 18-nov (pedidos por Jennifer):** «Así funciona tu personalizado, en 5 pasos» queda de reserva (sugerida: vie 18-dic, tras la apertura); el glosario de Academy pasa para después del 15-dic; el calendario de Google es el de Sara.
 
+## Cambios de Jennifer del 19-nov (valen para todo el calendario)
+- **Colores distintos por marca:** Lana Rosa Crochet en rosados de marca (`#E74E96`, `#FBE4EF`) y Lana Rosa Academy en azules (`#1F6FDB`, `#E8F1FF`), igual que las casas de la web. Propuesta mía: Jennifer puede cambiarlos.
+- **Stories diarias y simples:** todos los días, solo foto de un producto con una pregunta al final. Sin guiones largos de stories.
+- **Reel «Lana Rosa vs IA»:** se muestra el proceso de tejido con una imagen de IA como referencia y se cuenta qué hubo que resolver (si se destejió, etc.). Aplica al 24-nov, 1-dic y 8-dic. Hay que grabar mientras se teje.
+- **Academy, tutoriales:** sin guion; Jennifer explica lo que le sale mientras edita. El 20-nov es la parte 2 del Tutorial de Pingüino (reel).
+- **Crochet 21-nov:** carrusel aprobado; Jennifer tiene varias imágenes de pedidos.
+
 ## Datos que faltan (no se inventan)
 Concepto de «Lana Rosa vs IA» para el 1 y el 8-dic (el 24-nov ya es el llavero de dinosaurio); nombre y detalle del proyecto de Academy del 20-nov; fotos de personalizados y piezas terminadas; si TikTok y Pinterest ya tienen cuenta activa; dirección, hora y programa de la inauguración; formato y cupos de la Academy; permiso de la tejedora (R7).
 
