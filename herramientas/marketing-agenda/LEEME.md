@@ -17,6 +17,7 @@ Documentos de trabajo (internos: no se publican en el sitio). Se actualizan a me
 | `GUIONES-SEMANA-1-V2-AYUDANTES.md` | Semana 1 con los cambios de Jennifer (idea nueva del 20-nov, reel del llavero de dinosaurio, textos ajustados, stories). |
 | `GUION-YOUTUBE-1-EMPEZAR-A-TEJER.md` | Video 1 de YouTube de Academy (3-dic). |
 | `GUIONES-SEMANA-2-DOS-MARCAS.md` | Guiones, textos y stories del 26-nov al 2-dic para Crochet y Academy. |
+| `generar_mkt_piezas.py` y `cargar_mkt_piezas.sql` | Generan y contienen la carga de 33 piezas (19-nov a 14-dic) para la tabla `public.mkt_piezas` de LAROVA. Solo insertan; se corren con el sí de Jennifer. |
 
 Reglas comunes: enseñar antes de vender; no prometer ingresos ni resultados garantizados; no hacer afirmaciones médicas; anunciar solo lo que existe; distinguir hechos de interpretaciones; no celebrar Navidad, San Valentín ni Halloween.
 
@@ -38,3 +39,5 @@ Reglas comunes: enseñar antes de vender; no prometer ingresos ni resultados gar
 - **18-nov-2026:** Jennifer aprobó los guiones de la semana 1. Paso 3 hecho para esa semana: en el calendario de Sara se crearon 4 bloques de grabación (21 y 28-nov de 2 a 5 p. m.; 5 y 12-dic de 10:45 a 1:45) y 7 recordatorios de publicación a las 8:00 a. m. (19 al 25-nov, sin invitados). Faltan los recordatorios del 26-nov en adelante cuando se aprueben sus guiones.
 - **18-nov-2026:** guiones de la semana 2 escritos con los ayudantes (`GUIONES-SEMANA-2-DOS-MARCAS.md`), en espera de aprobación; recordatorios del 26-nov al 2-dic aún no creados en el calendario de Sara. Pendientes: permiso de tejedora, objeto del «vs IA» del 1-dic, botón «Avísame cuando abra».
 - **18-nov-2026:** Jennifer aprobó los guiones de la semana 2; creados 7 recordatorios de publicación (26-nov al 2-dic, 8:00 a. m.) en el calendario de Sara. Siguiente: guiones de la semana 3 (3 al 9-dic).
+- **19-nov-2026:** Jennifer pidió ver las publicaciones programadas con sus guiones en el calendario de LAROVA. Preparada la carga de 33 piezas (14 aprobadas con guion y texto; el resto como «idea» con ángulo). Validada contra las reglas de la tabla; falta el sí de Jennifer para insertarlas.
+- **19-nov-2026:** con el sí de Jennifer se cargaron 33 piezas (14 aprobadas con guion y texto; 19 como «idea») en `public.mkt_piezas` de LAROVA (19-nov a 14-dic; 25 de Crochet y 8 de Academy). Verificado con un conteo. Solo se insertaron filas; la tabla estaba vacía. Al aprobar nuevos guiones hay que actualizar o agregar sus filas (no volver a correr `cargar_mkt_piezas.sql`: duplicaría).
