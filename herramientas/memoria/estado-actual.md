@@ -23,7 +23,7 @@
 - **7 · Universo de Rosina y Academy:** Academy (términos y menores) COMPLETO, lo lleva el chat 6 a la abogada. Método ROSA y Pasaporte de calidad: borradores aprobados en `herramientas/borradores/`, se publican después del 14-dic (Pasaporte: tras la prueba con las tejedoras).
   19-nov: quitado «Rosina te ayuda a crear» del hub de la Tienda («Pide el tuyo» / «Personaliza el tuyo»), con el sí de Jennifer. A medias: actualizar `plantilla-rincon.html`; borrar `crear.js` y `probar_crear.py` (sin uso).
 - **8 · Marketing y contenido:** 19-nov: guiones de semanas 1 y 2 aprobados; recordatorios en el calendario de Sara; 33 piezas cargadas en `mkt_piezas` de LAROVA (14 aprobadas). Falta: semana 3, proyecto de Academy del 20-nov, hora de apertura.
-- **Marketing en LAROVA (ERP, 18-nov):** tabla `mkt_piezas` CREADA en la base con el sí de Jennifer (solo administradoras, probada, asesor sin avisos nuevos); pantalla aprobada en `herramientas/borradores/larova/marketing/marketing.html`. Falta llevarla al repo ERP (este chat no tiene permiso de escritura allá).
+- **Marketing en LAROVA (ERP, 18-19 nov):** tabla `mkt_piezas` creada (solo administradoras) y pantalla en LAROVA; 19-nov: color por marca aprobado por Jennifer en `herramientas/borradores/larova/marketing/marketing.html`, falta que un chat del ERP lo copie (este chat no escribe en el repo ERP).
 
 ## Pendiente de Jennifer
 - Google Cloud en **Producción**; prueba real de Drive (dos aparatos) y Calendar; preguntas reales a Rosina.
