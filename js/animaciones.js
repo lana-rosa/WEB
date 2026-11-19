@@ -143,6 +143,10 @@
     if ('serviceWorker' in navigator) window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
     var bi = document.querySelector('[data-instalar]');
     var enApp = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone;
+    // Cada página ofrece instalar SOLO su app y solo dentro del territorio (scope) de esa app; en las páginas comunes (contacto, cuenta, etc.) vistas desde otra casa no se ofrece la app de la Tienda.
+    var TERRITORIO = { 'manifest-agenda': '/agenda-rosina.html', 'manifest-merceria': '/merceria/', 'manifest-academy': '/academy/', 'manifest-crochet': '/' };
+    var lm = document.querySelector('link[rel="manifest"]'), mk = lm && /manifest-[a-z]+/.exec(lm.getAttribute('href') || ''), terr = mk && TERRITORIO[mk[0]];
+    if (bi && ((terr && location.pathname.indexOf(terr) !== 0) || (window.lrCasaActiva && window.lrCasaActiva !== 'crochet' && mk && mk[0] === 'manifest-crochet'))) { bi.hidden = true; bi = null; }
     if (bi && !enApp) {
       var ayudaIn = document.querySelector('.instalar-ayuda'), ofrecido = null, dlI = (window.dataLayer = window.dataLayer || []);
       window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); ofrecido = e; bi.hidden = false; });
@@ -153,6 +157,56 @@
         if (ofrecido) { ofrecido.prompt(); ofrecido.userChoice.then(function () { ofrecido = null; bi.hidden = true; }); }
         else if (ayudaIn) ayudaIn.hidden = !ayudaIn.hidden;
       });
+    }
+  } catch (e) {}
+
+  // Menú de las tres rayitas (todas las casas): los títulos de grupo (Tienda, Rosina, Ayuda…) son listas desplegables, cerradas por defecto; se abre sola la del grupo donde está la persona. Los enlaces sueltos de arriba (Inicio, Mi cuenta) quedan a la vista. Sin JavaScript el menú se ve completo.
+  try {
+    var panelMenu = document.getElementById('nav-movil-panel');
+    if (panelMenu && !panelMenu.getAttribute('data-plegable')) {
+      panelMenu.setAttribute('data-plegable', '1');
+      var titulos = [].slice.call(panelMenu.querySelectorAll(':scope > p.grupo-nav'));
+      titulos.forEach(function (p, i) {
+        var lista = document.createElement('div'); lista.className = 'grupo-lista'; lista.id = 'grupo-lista-' + i; lista.hidden = true;
+        var sig = p.nextElementSibling;
+        while (sig && !(sig.matches && sig.matches('p.grupo-nav'))) { var s = sig.nextElementSibling; lista.appendChild(sig); sig = s; }
+        var b = document.createElement('button'); b.type = 'button'; b.className = p.className + ' grupo-boton'; b.textContent = p.textContent;
+        b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-controls', lista.id);
+        var aqui = [].slice.call(lista.querySelectorAll('a')).some(function (a) { try { return a.pathname.replace(/index\.html$/, '') === location.pathname.replace(/index\.html$/, '') && a.pathname !== '/'; } catch (e) { return false; } });
+        if (aqui) { lista.hidden = false; b.setAttribute('aria-expanded', 'true'); b.classList.add('abierto'); }
+        b.addEventListener('click', function () { var abre = lista.hidden; lista.hidden = !abre; b.setAttribute('aria-expanded', abre ? 'true' : 'false'); b.classList.toggle('abierto', abre); });
+        p.parentNode.replaceChild(b, p); b.parentNode.insertBefore(lista, b.nextSibling);
+      });
+    }
+  } catch (e) {}
+
+  // Pie en el celular (≤ 600 px): los títulos «Tienda», «Lana Rosa» y «Contáctanos» se vuelven listas desplegables. Sin JavaScript o en pantallas grandes las listas se ven completas.
+  try {
+    var mqPie = window.matchMedia ? window.matchMedia('(max-width: 600px)') : null;
+    var colsPie = [].slice.call(document.querySelectorAll('.pie-grid .pie-col'));
+    var armarPie = function () {
+      colsPie.forEach(function (col, i) {
+        var h = col.querySelector('.pie-h3'), ul = col.querySelector('ul');
+        if (!h || !ul) return;
+        if (mqPie && mqPie.matches) {
+          if (col.classList.contains('pie-plegable')) return;
+          col.classList.add('pie-plegable'); ul.id = ul.id || 'pie-lista-' + i;
+          h.setAttribute('role', 'button'); h.setAttribute('tabindex', '0'); h.setAttribute('aria-expanded', 'false'); h.setAttribute('aria-controls', ul.id);
+        } else {
+          col.classList.remove('pie-plegable', 'abierto');
+          h.removeAttribute('role'); h.removeAttribute('tabindex'); h.removeAttribute('aria-expanded'); h.removeAttribute('aria-controls');
+        }
+      });
+    };
+    var alternarPie = function (h) {
+      var col = h.closest('.pie-col'); if (!col || !col.classList.contains('pie-plegable')) return;
+      var abierto = col.classList.toggle('abierto'); h.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    };
+    if (colsPie.length) {
+      armarPie();
+      if (mqPie && mqPie.addEventListener) mqPie.addEventListener('change', armarPie);
+      document.addEventListener('click', function (ev) { var h = ev.target.closest && ev.target.closest('.pie-grid .pie-h3[role="button"]'); if (h) alternarPie(h); });
+      document.addEventListener('keydown', function (ev) { if (ev.key !== 'Enter' && ev.key !== ' ') return; var h = ev.target.closest && ev.target.closest('.pie-grid .pie-h3[role="button"]'); if (h) { ev.preventDefault(); alternarPie(h); } });
     }
   } catch (e) {}
 

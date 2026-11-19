@@ -7,6 +7,7 @@
   var cont = document.getElementById("encabezado-casa");
   if (!cont || !B[c] || c === "crochet") return;
   cont.innerHTML = B[c];
+  window.lrCasaActiva = c;
   if (c === "agenda") {
     var pb = cont.querySelector(".nav-principal"); if (pb && pb.parentNode) pb.parentNode.removeChild(pb);
     var cg = cont.querySelector("#agenda-config-btn"); if (cg && cg.parentNode) cg.parentNode.removeChild(cg);

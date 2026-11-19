@@ -1,0 +1,8 @@
+# YouTube Academy · video 1 · jueves 3-dic-2026 (borrador del ayudante de YouTube)
+
+Título: «Cómo empezar a tejer crochet desde cero: lo esencial» (alternativas: «Tu primer día tejiendo: lo único que necesitas saber» · «Aprende crochet desde cero: aguja, nudo, cadeneta y punto bajo»). Duración 6:30 a 7:30. Es formación: la Mercería se menciona una sola vez, sin precios.
+- **0:00 Gancho** (manos desde arriba, sin saludo): «Para empezar a tejer no necesitas veinte materiales ni talento especial. Necesitas tres cosas y cuatro movimientos, y casi todas las personas se equivocan en uno al principio. Te aviso cuál es.»
+- **0:15 Qué lograremos:** una tira de punto bajo propia. **0:45 Lo que necesitas:** aguja de tamaño medio (4 a 5 mm, confirmar con la etiqueta), lana de grosor medio, clara y lisa, y tijeras. **2:00 Nudo corredizo. 3:00 Cadeneta** (el lazo de la aguja no se cuenta). **4:00 Punto bajo** (despacio, con pausas en «2 lazos» y «1 lazo»). **5:30 Errores comunes:** tejer apretado (el error prometido), perder o ganar puntos en los bordes, contar mal la cadeneta inicial; deshacer es parte de tejer. **6:45 Cierre:** practicar unos 10 minutos al día (sugerencia, no promesa).
+- **Pregunta final:** «¿En qué paso te trabaste más: el nudo, la cadeneta o el punto bajo?»
+- **Descripción:** «Aprende desde cero lo esencial del crochet, paso a paso en español. Tejer es para todas las personas, sin importar la edad ni la experiencia.» + capítulos con tiempos.
+- Inclusivo: decir «la mano que teje» y mencionar una vez que quienes son zurdas pueden hacerlo en espejo. Confirmar vocabulario con `glosario-rosina.html`.
