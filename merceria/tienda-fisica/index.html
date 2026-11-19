@@ -422,6 +422,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><span aria-hidden="true">📍</span> Calle 10 #5-37, barrio Centro, Villamaría, Caldas</li>
         <li><span aria-hidden="true">🕒</span> <span><strong>Lunes a viernes:</strong> 8:30 a.m. a 12:30 p.m. y 2:30 a 6:00 p.m.</span></li>
         <li><span aria-hidden="true">🕒</span> <span><strong>Sábados:</strong> 8:30 a.m. a 1:00 p.m.</span></li>
+<<<<<<< HEAD
+=======
+        <li><span aria-hidden="true">🕒</span> <span><strong>Domingos y festivos:</strong> sin atención ordinaria</span></li>
+>>>>>>> origin/main
       </ul>
       <div class="visita-botones">
         <a class="boton-primario" href="https://www.google.com/maps/search/?api=1&amp;query=Lana+Rosa+Crochet+Calle+10+5-37+Villamar%C3%ADa+Caldas" target="_blank" rel="noopener">Cómo llegar</a>
@@ -483,7 +487,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul>
         <li><a href="https://wa.me/573205072801" target="_blank" rel="noopener">WhatsApp 320 507 2801</a></li>
         <li><a href="mailto:contacto@lanarosacrochet.com">contacto@lanarosacrochet.com</a></li>
-        <li>Calle 10 #5-37, Villamaría, Caldas · <a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver en Google ↗</a></li><li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>
+        <li>Calle 10 #5-37, Villamaría, Caldas · <a href="https://share.google/GkcZvd8av8NjmRPPM" target="_blank" rel="noopener">Ver en Google ↗</a></li><li>Lun a vie 8:30 a.m. a 12:30 p.m. y 2:30 a 6:00 p.m. · Sáb 8:30 a.m. a 1:00 p.m.</li>
       </ul>
     </div>
   </div>
@@ -710,7 +714,7 @@ document.addEventListener('click', function (e) {
     var hoy = Date.UTC(c.getUTCFullYear(), c.getUTCMonth(), c.getUTCDate());
     if (hoy < Date.UTC(2026, 11, 14)) return;
     var d = c.getUTCDay(), m = c.getUTCHours() * 60 + c.getUTCMinutes();
-    var abierto = (d >= 1 && d <= 5 && m >= 450 && m < 1095) || (d === 6 && m >= 480 && m < 720);
+    var abierto = (d >= 1 && d <= 5 && ((m >= 510 && m < 750) || (m >= 870 && m < 1080))) || (d === 6 && m >= 510 && m < 780);
     el.textContent = abierto ? 'Abierto ahora' : 'Cerrado ahora';
   } catch (e) {}
 })();
