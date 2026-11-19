@@ -18,6 +18,7 @@ Documentos de trabajo (internos: no se publican en el sitio). Se actualizan a me
 | `GUION-YOUTUBE-1-EMPEZAR-A-TEJER.md` | Video 1 de YouTube de Academy (3-dic). |
 | `GUIONES-SEMANA-2-DOS-MARCAS.md` | Guiones, textos y stories del 26-nov al 2-dic para Crochet y Academy. |
 | `generar_mkt_piezas.py` y `cargar_mkt_piezas.sql` | Generan y contienen la carga de 33 piezas (19-nov a 14-dic) para la tabla `public.mkt_piezas` de LAROVA. Solo insertan; se corren con el sí de Jennifer. |
+| `GUIONES-SEMANA-3-DOS-MARCAS.md` | Resumen de los guiones de la semana 3 (3 al 9-dic); el texto completo está en `mkt_piezas`. |
 
 Reglas comunes: enseñar antes de vender; no prometer ingresos ni resultados garantizados; no hacer afirmaciones médicas; anunciar solo lo que existe; distinguir hechos de interpretaciones; no celebrar Navidad, San Valentín ni Halloween.
 
@@ -42,3 +43,4 @@ Reglas comunes: enseñar antes de vender; no prometer ingresos ni resultados gar
 - **19-nov-2026:** Jennifer pidió ver las publicaciones programadas con sus guiones en el calendario de LAROVA. Preparada la carga de 33 piezas (14 aprobadas con guion y texto; el resto como «idea» con ángulo). Validada contra las reglas de la tabla; falta el sí de Jennifer para insertarlas.
 - **19-nov-2026:** con el sí de Jennifer se cargaron 33 piezas (14 aprobadas con guion y texto; 19 como «idea») en `public.mkt_piezas` de LAROVA (19-nov a 14-dic; 25 de Crochet y 8 de Academy). Verificado con un conteo. Solo se insertaron filas; la tabla estaba vacía. Al aprobar nuevos guiones hay que actualizar o agregar sus filas (no volver a correr `cargar_mkt_piezas.sql`: duplicaría).
 - **19-nov-2026 (cambios de Jennifer):** colores distintos para Crochet (rosados) y Academy (azules); stories diarias solo con foto de producto y una pregunta; el reel «vs IA» muestra el proceso de tejido con una imagen de IA como referencia; los tutoriales de Academy no llevan guion (el 20-nov es la parte 2 del Tutorial de Pingüino); carrusel del 21-nov aprobado. Actualizadas las filas de `mkt_piezas` correspondientes sin tocar sus otras ediciones. Detalle en `CALENDARIO-DOS-MARCAS-19NOV-14DIC.md`.
+- **19-nov-2026:** Jennifer confirmó los colores (Crochet rosados, Academy azules). Guiones y textos de la semana 3 escritos con los ayudantes y guardados en `mkt_piezas` (estado «idea» hasta su aprobación). Pidió también bloques de EDICIÓN en el calendario de Sara (propuesta pendiente de su sí).
