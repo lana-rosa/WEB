@@ -20,13 +20,13 @@ HORARIO = "Nuestra tienda física atiende de lunes a viernes de 8:30 a.m. a 12:3
 
 CAMBIOS = [
     ("merceria/preguntas-frecuentes/index.html",
-     "La inauguración está prevista para el domingo 13 de diciembre de 2026. Mira la página de la tienda para la dirección, el horario y cómo llegar.\"",
+     "La inauguración está prevista para el domingo 13 de diciembre de 2026, de 2:00 p.m. a 6:00 p.m. y la atención normal empieza el lunes 14. Mira la página de la tienda para la dirección, el horario y cómo llegar.\"",
      "Ya estamos abiertas. Mira la página de la tienda para la dirección, el horario y cómo llegar.\""),
     ("llms.txt",
-     "Inauguración prevista: domingo 13 de diciembre de 2026.",
+     "Inauguración prevista: domingo 13 de diciembre de 2026, de 2:00 p.m. a 6:00 p.m. Atención normal desde el lunes 14.",
      "Tienda abierta al público desde el 14 de diciembre de 2026."),
     ("merceria/tienda-fisica/index.html",
-     "id=\"visita-estado\">Inauguración prevista: domingo 13 de diciembre de 2026</p>",
+     "id=\"visita-estado\">Inauguración prevista: domingo 13 de diciembre de 2026, de 2:00 p.m. a 6:00 p.m. Atención normal desde el lunes 14.</p>",
      "id=\"visita-estado\">Ya estamos abiertas</p>"),
 ]
 
