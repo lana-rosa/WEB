@@ -81,7 +81,7 @@ PIE = {
                  [('Catálogo', 'merceria/catalogo/'), ('Paleta de colores', 'merceria/paleta-de-colores/'),
                   ('Tienda física', 'merceria/tienda-fisica/'), ('Cómo comprar y envíos', 'merceria/como-comprar/'),
                   ('Términos de venta', 'merceria/terminos-de-venta/'), ('Cambios y devoluciones', 'merceria/cambios-y-devoluciones/'),
-                  ('Lun a vie 7:30 a.m. a 6:15 p.m.', None), ('Sáb 8:00 a.m. a 12:00 m.', None)]),
+                  ('Lun a vie 8:30 a.m. a 12:30 p.m. y 2:30 a 6:00 p.m.', None), ('Sáb 8:30 a.m. a 1:00 p.m.', None)]),
     'academy': ('Lana Rosa Academy, academia de crochet: aprende a tejer paso a paso, sin experiencia y sin tecnicismos.', 'Academy',
                 [('Inicio de Academy', 'academy/'), ('Talleres y clases', 'academy/talleres/'), ('Agenda para tejedoras', 'agenda-rosina.html'), ('Sobre Academy', 'academy/sobre-academy/'),
                  ('Empieza aquí', 'academy/empieza-aqui/'), ('Tutoriales', 'aprende.html#crea'), ('Rosina: tutoriales y material gratis', 'academy/rosina/'), ('Glosario', 'glosario-rosina.html'),
@@ -312,7 +312,7 @@ PIE_REVISTA = {'crochet': 'revista.html?casa=crochet', 'merceria': 'revista.html
 PIE_COMUN = ('Tres casas, una sola familia: amigurumis, mercería y academia de crochet en Manizales / Villamaría, Colombia.', 'Nuestras casas',
              [('Tienda de amigurumis', 'tienda.html'), ('Personaliza el tuyo', 'personaliza.html'), ('Mercería', 'merceria/'),
               ('Lana Rosa Academy', 'academy/'), ('Revista', 'revista.html')])
-PIE_HORARIO = ('Lun a vie 7:30 a.m. a 6:15 p.m.', 'Sáb 8:00 a.m. a 12:00 m.')
+PIE_HORARIO = ('Lun a vie 8:30 a.m. a 12:30 p.m. y 2:30 a 6:00 p.m.', 'Sáb 8:30 a.m. a 1:00 p.m.')
 
 # Pie simple (8-oct-2026): marca + casas con iconos pequeños, tres columnas cortas, una línea de pagos/apoyo y una de legales.
 PIE_SIMPLE = {
@@ -368,7 +368,7 @@ def pie_casa(modelo, casa, pagina=None):
     rev = PIE_REVISTA.get(casa, 'revista.html')
     # en Mercería y Academy el universo de Rosina ya está en la columna de la casa: no se repite
     universo_li = '' if casa in ('merceria', 'academy') else f'<li><a href="{universo_href}">{"Rosina: tutoriales y recursos" if casa == "agenda" else "Rosina: regalos e ideas"}</a></li>'
-    horario = '<li>Lun a vie 7:30 a.m. a 6:15 p.m. · Sáb 8:00 a.m. a 12:00 m.</li>' if casa == 'merceria' else ''
+    horario = '<li>Lun a vie 8:30 a.m. a 12:30 p.m. y 2:30 a 6:00 p.m. · Sáb 8:30 a.m. a 1:00 p.m.</li>' if casa == 'merceria' else ''
     nombre_app = APP.get(casa, APP_BASE)[1]
     return f'''<footer class="pie-rico">
   <div class="contenedor pie-top">
