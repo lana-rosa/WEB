@@ -356,7 +356,7 @@
   var metricas = [], frec = {}, conMetricas = false, archFilas = [], archCab = [];
   var CAMPOS = [['alcance', 'Alcance'], ['impresiones', 'Impresiones'], ['vistas', 'Vistas'], ['interacciones', 'Interacciones'],
     ['me_gusta', 'Me gusta'], ['comentarios', 'Comentarios'], ['guardados', 'Guardados'], ['compartidos', 'Compartidos'],
-    ['clics', 'Clics'], ['seguidores_ganados', 'Seguidores ganados'], ['retencion_pct', 'Retención %'], ['tiempo_visto_seg', 'Tiempo visto (s)']];
+    ['clics', 'Clics'], ['visitas_perfil', 'Visitas al perfil'], ['respuestas', 'Respuestas (stories)'], ['seguidores_ganados', 'Seguidores ganados'], ['retencion_pct', 'Retención %'], ['tiempo_visto_seg', 'Tiempo visto (s)']];
   var DECIMALES = { retencion_pct: 1, tiempo_visto_seg: 1 };
   var PISTAS = {
     fecha: ['fecha de publicacion', 'hora de publicacion', 'publish time', 'publication date', 'fecha', 'date', 'published'],
@@ -364,13 +364,20 @@
     vistas: ['visualizaciones', 'reproducciones', 'vistas', 'views', 'plays'], interacciones: ['interacciones', 'interactions', 'engagement'],
     me_gusta: ['me gusta', 'likes', 'reacciones', 'reactions'], comentarios: ['comentarios', 'comments'],
     guardados: ['guardados', 'guardado', 'saves', 'saved'], compartidos: ['compart', 'shares'], clics: ['clic', 'click'],
+    visitas_perfil: ['visitas al perfil', 'profile visits', 'profile views'], respuestas: ['respuestas', 'replies', 'votos'],
     seguidores_ganados: ['seguidores', 'follows', 'followers', 'suscriptores', 'subscribers'],
     retencion_pct: ['retencion', 'retention', 'porcentaje medio'], tiempo_visto_seg: ['duracion media', 'average view duration', 'tiempo medio', 'watch time']
   };
   function dias(tipo, plat) {
     var d = frec[tipo + '|' + plat];
     if (d && d.length) return d;
-    return tipo === 'stories' ? [1] : tipo === 'video_youtube' ? [7, 28, 90] : tipo === 'foto' ? [1, 7] : [1, 7, 28];
+    // Valores del chat 8 (marketing-estadisticas.md); los de la base mandan.
+    if (tipo === 'stories') return [1];
+    if (plat === 'pinterest') return [30];
+    if (plat === 'youtube') return [7, 28];
+    if (tipo === 'foto') return [1, 7];
+    if (tipo === 'carrusel' && (plat === 'instagram' || plat === 'facebook')) return [7];
+    return [2, 7];
   }
   function sumarDias(iso, n) { var d = aFecha(iso); d.setDate(d.getDate() + n); return claveDia(d); }
   function sinTilde(t) { return String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim(); }
@@ -442,7 +449,7 @@
         return { marca: c[0], plat: c[1], tipo: c[2], n: a.length, alc: prom(a, function (m) { return m.alcance; }), vis: prom(a, function (m) { return m.vistas; }),
           gua: prom(a, function (m) { return m.guardados; }), com: prom(a, function (m) { return m.compartidos; }), tasa: prom(a, tasa) };
       }).sort(function (a, b) { return (b.tasa || -1) - (a.tasa || -1); });
-      html += '<h3>¿Qué rindió mejor?</h3><p class="ayuda">Promedio de la última medición de cada publicación. Interacción % = interacciones ÷ alcance. La fila verde es la que mejor rindió.</p>' +
+      html += '<h3>¿Qué rindió mejor?</h3><p class="ayuda">Promedio de la última medición de cada publicación. Interacción % = interacciones ÷ alcance. La fila verde es la que mejor rindió. Para decidir, miren primero guardados y compartidos (no los «me gusta» solos).</p>' +
         '<div class="tabla-env"><table><thead><tr><th>Marca</th><th>Plataforma</th><th>Tipo</th><th class="num">Publicaciones</th><th class="num">Alcance</th><th class="num">Vistas</th><th class="num">Guardados</th><th class="num">Compartidos</th><th class="num">Interacción %</th></tr></thead><tbody>' +
         g.map(function (x, i) {
           return '<tr' + (i === 0 && x.tasa != null ? ' class="mejor"' : '') + '><td>' + esc(MARCAS[x.marca]) + '</td><td>' + esc(PLATS[x.plat]) + '</td><td>' + esc(TIPOS[x.tipo]) +

@@ -20,6 +20,8 @@ create table if not exists public.mkt_metricas (
   guardados          integer check (guardados >= 0),
   compartidos        integer check (compartidos >= 0),
   clics              integer check (clics >= 0),
+  visitas_perfil     integer check (visitas_perfil >= 0),
+  respuestas         integer check (respuestas >= 0),                       -- stories: votos y respuestas a la caja
   seguidores_ganados integer,
   retencion_pct      numeric(5,2) check (retencion_pct between 0 and 100),   -- reels y videos
   tiempo_visto_seg   numeric(10,1) check (tiempo_visto_seg >= 0),            -- promedio por vista
@@ -40,11 +42,14 @@ create table if not exists public.mkt_frecuencia_metricas (
   primary key (tipo_publicacion, plataforma)
 );
 insert into public.mkt_frecuencia_metricas (tipo_publicacion, plataforma, dias_despues)
+-- Días según el chat 8 (herramientas/memoria/marketing-estadisticas.md, 19-nov-2026).
 select t, p, case
     when t = 'stories' then '{1}'::int[]
-    when t = 'video_youtube' then '{7,28,90}'::int[]
+    when p = 'pinterest' then '{30}'::int[]
+    when p = 'youtube' then '{7,28}'::int[]
     when t = 'foto' then '{1,7}'::int[]
-    else '{1,7,28}'::int[] end
+    when t = 'carrusel' and p in ('instagram', 'facebook') then '{7}'::int[]
+    else '{2,7}'::int[] end
 from unnest(array['reel','carrusel','stories','video_youtube','foto']) t,
      unnest(array['instagram','facebook','tiktok','pinterest','youtube']) p
 on conflict do nothing;
@@ -54,7 +59,7 @@ create or replace view public.mkt_resultados with (security_invoker = true) as
 select m.id, p.marca, m.plataforma, p.tipo_publicacion, p.fecha as fecha_publicacion, m.fecha_medicion,
        (m.fecha_medicion - p.fecha) as dias_despues, p.angulo, p.objetivos,
        m.alcance, m.impresiones, m.vistas, m.interacciones, m.me_gusta, m.comentarios, m.guardados,
-       m.compartidos, m.clics, m.seguidores_ganados, m.retencion_pct, m.tiempo_visto_seg, m.notas,
+       m.compartidos, m.clics, m.visitas_perfil, m.respuestas, m.seguidores_ganados, m.retencion_pct, m.tiempo_visto_seg, m.notas,
        case when m.alcance > 0 then round(100.0 * coalesce(m.interacciones,
               coalesce(m.me_gusta,0) + coalesce(m.comentarios,0) + coalesce(m.guardados,0) + coalesce(m.compartidos,0)) / m.alcance, 2) end
          as tasa_interaccion_pct,
