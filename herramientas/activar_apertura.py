@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-HORARIO = "Nuestra tienda física atiende de lunes a viernes de 7:30 a.m. a 6:15 p.m. y los sábados de 8:00 a.m. a 12:00 m."
+HORARIO = "Nuestra tienda física atiende de lunes a viernes de 8:30 a.m. a 12:30 p.m. y de 2:30 a 6:00 p.m., y los sábados de 8:30 a.m. a 1:00 p.m. Domingos y festivos no hay atención ordinaria."
 
 CAMBIOS = [
     ("merceria/preguntas-frecuentes/index.html",
