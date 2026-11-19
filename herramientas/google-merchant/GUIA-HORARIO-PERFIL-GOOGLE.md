@@ -14,7 +14,7 @@ Los textos del perfil (descripción, categoría, etc.) los dejó revisados el ch
 5. Copia el mismo horario del lunes a martes, miércoles, jueves y viernes (si aparece «Aplicar a todos los días de la semana», úsalo y luego corrige el sábado).
 6. Sábado: **Abierto 8:30 a. m. – 1:00 p. m.** (un solo tramo).
 7. Domingo: **Cerrado**.
-8. **Muy importante:** Google no deja programar el horario normal desde una fecha futura. Mientras la tienda no haya abierto, deja el horario **sin publicar** o pon el negocio como **«Cerrado temporalmente / Abre próximamente»**, y publica el horario regular el **lunes 14-dic**. Para el **domingo 13-dic** usa **«Horario especial»** (Perfil → Horario → «Horarios especiales») solo cuando Jennifer confirme la hora de la inauguración. **No inventar esa hora.**
+8. **Muy importante:** Google no deja programar el horario normal desde una fecha futura. Mientras la tienda no haya abierto, deja el horario **sin publicar** o pon el negocio como **«Cerrado temporalmente / Abre próximamente»**, y publica el horario regular el **lunes 14-dic**. Para el **domingo 13-dic** usa **«Horario especial»** (Perfil → Horario → «Horarios especiales»): la inauguración es de **2:00 p. m. a 6:00 p. m.** (dato de Jennifer, 19-nov-2026).
 9. Guardar y esperar unas horas: Google puede tardar hasta un día en mostrarlo en Maps y en la búsqueda.
 10. Revisión: buscar «Lana Rosa Crochet Villamaría» desde el celular y comprobar que dice el horario nuevo.
 
