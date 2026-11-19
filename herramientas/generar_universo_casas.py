@@ -75,7 +75,7 @@ CTA = {
     'academy': (('Talleres y clases', '/academy/talleres/'), ('Tutoriales gratis', '/aprende.html')),
 }
 CIERRE = {
-    'crochet': ('¿Prefieres que Rosina te ayude a crear el tuyo?', 'Cuéntale tu idea y la tejemos a mano.', ('Crear con Rosina', '/personaliza.html?modo=guiado#pide-el-tuyo'), ('Ver la tienda', '/tienda.html')),
+    'crochet': ('¿Quieres un amigurumi hecho a tu idea?', 'Cuéntanos tu idea y la tejemos a mano.', ('Personaliza el tuyo', '/personaliza.html#pide-el-tuyo'), ('Ver la tienda', '/tienda.html')),
     'merceria': ('¿Ya sabes qué vas a tejer?', 'Elige tus lanas e hilos en el catálogo o calcula cuánta lana necesitas.', ('Ver el catálogo', '/merceria/catalogo/'), ('Calcula tu lana', '/calculadoras-rosina.html#lana')),
     'academy': ('¿Quieres aprender en persona?', 'Únete a la lista de espera del próximo taller «Desconecta para Conectar»: te avisamos apenas tengamos la fecha.', ('Unirme a la lista de espera', 'https://wa.me/573205072801?text=Hola!%20Quiero%20que%20me%20avisen%20de%20la%20pr%C3%B3xima%20fecha%20del%20taller%20Desconecta%20para%20Conectar', 'lista'), ('Ver talleres y clases', '/academy/talleres/')),
 }
