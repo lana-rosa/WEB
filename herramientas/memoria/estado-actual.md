@@ -22,7 +22,7 @@
 - **6 · Sitio, SEO y Revista:** publicado: retracto, pie con ®, Sobre nosotras, plan B de la Mercería, apps instalables con territorio propio (#771). A medias: prueba de instalación real en celular; borrador de «Cómo rellenar un amigurumi» (espera sí); legal espera a la abogada.
 - **7 · Universo de Rosina y Academy:** Academy (términos y menores) COMPLETO, lo lleva el chat 6 a la abogada. Método ROSA y Pasaporte de calidad: borradores aprobados en `herramientas/borradores/`, se publican después del 14-dic (Pasaporte: tras la prueba con las tejedoras).
   19-nov: quitado «Rosina te ayuda a crear» del hub de la Tienda («Pide el tuyo» / «Personaliza el tuyo»), con el sí de Jennifer. A medias: actualizar `plantilla-rincon.html`; borrar `crear.js` y `probar_crear.py` (sin uso).
-- **8 · Marketing y contenido:** 18-nov: calendario de dos marcas (19-nov a 14-dic) y guiones de la semana 1 aprobados por Jennifer; 7 ayudantes creados; bloques y recordatorios de la semana 1 en el calendario de Sara. Falta: semana 2, proyecto de Academy del 20-nov, hora de apertura.
+- **8 · Marketing y contenido:** 19-nov: guiones de semanas 1 y 2 aprobados; recordatorios en el calendario de Sara; 33 piezas cargadas en `mkt_piezas` de LAROVA (14 aprobadas). Falta: semana 3, proyecto de Academy del 20-nov, hora de apertura.
 - **Marketing en LAROVA (ERP, 18-nov):** tabla `mkt_piezas` CREADA en la base con el sí de Jennifer (solo administradoras, probada, asesor sin avisos nuevos); pantalla aprobada en `herramientas/borradores/larova/marketing/marketing.html`. Falta llevarla al repo ERP (este chat no tiene permiso de escritura allá).
 
 ## Pendiente de Jennifer
