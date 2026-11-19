@@ -40,7 +40,7 @@
 
   function termino(t) {
     var d = el('details', 'rr-termino'); d.dataset.cat = t.cat;
-    var sim = t.simbolo ? '<svg viewBox="0 0 60 60" width="46" height="46" aria-hidden="true" focusable="false">' + t.simbolo + '</svg>' : (t.icono ? '<span class="rr-emoji" aria-hidden="true">' + esc(t.icono) + '</span>' : '');
+    var sim = t.simbolo ? '<svg viewBox="0 0 60 60" width="46" height="46" aria-hidden="true" focusable="false">' + t.simbolo + '</svg>' : (t.icono ? '<span class="rr-emoji" aria-hidden="true">' + (/^<svg[\s>]/.test(t.icono) ? t.icono : esc(t.icono)) + '</span>' : '');
     var h = '<summary><span class="rr-sim">' + sim + '</span><span class="rr-nom"><b>' + esc(t.nombre) + '</b>' + (t.en ? '<small>' + esc(t.en) + '</small>' : '') + '</span>' + (t.abrev ? '<span class="rr-abrev">' + esc(t.abrev) + '</span>' : '') + '</summary><div class="rr-cuerpo">';
     if (t.otros) h += '<p class="rr-otros">' + esc(t.otros) + '</p>';
     h += '<p>' + esc(t.definicion) + '</p>';
