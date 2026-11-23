@@ -355,3 +355,20 @@ html body .buscar-agenda:focus-within { border-color: var(--rosa-boton); box-sha
 .ct-ciclo { position: fixed; left: 12px; right: 12px; bottom: 84px; z-index: 60; max-width: 520px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; padding: 12px 14px; border-radius: 16px; background: #E6E7FD; border: 2px solid var(--lila); color: #2B2B33; box-shadow: 0 6px 18px rgba(0,0,0,.18); font-weight: 700; }
 .ct-ciclo[hidden] { display: none; }
 @media print { .ct-ciclo { display: none; } }
+
+/* Pausa guiada (23-nov-2026) */
+#agenda .pg-tarjeta { margin: 0 0 14px; padding: 12px 14px; border-radius: 14px; background: #E6E7FD; border: 1.5px solid var(--lila); }
+#agenda .pg-tarjeta-t { margin: 0; font-weight: 800; }
+#agenda .pg-tarjeta-s { margin: 2px 0 10px; color: var(--tinta-suave); font-size: .92rem; }
+.pg-fondo { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 14px; background: rgba(40,30,50,.55); }
+.pg-caja { position: relative; width: 100%; max-width: 440px; max-height: 100%; overflow: auto; padding: 20px 18px 16px; border-radius: 20px; background: #fff; color: #2B2B33; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+.pg-x { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; border: none; background: transparent; font-size: 1.1rem; cursor: pointer; color: #5B5B63; }
+.pg-tit { margin: 0 0 6px; font-weight: 800; color: #C81B6D; }
+.pg-cont { margin: 0; font-size: .85rem; color: #5B5B63; }
+.pg-ic { margin: 4px 0; font-size: 2.6rem; line-height: 1.1; }
+.pg-t { margin: 0 0 6px; font-family: 'DynaPuff', sans-serif; font-size: 1.4rem; }
+.pg-tx { margin: 0 0 8px; line-height: 1.45; }
+.pg-reloj { margin: 6px 0 12px; font-family: 'DynaPuff', sans-serif; font-size: 2rem; color: #7A3FD6; }
+.pg-bot { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.pg-aviso { margin: 14px 0 0; font-size: .8rem; color: #5B5B63; }
+@media print { .pg-fondo, .pg-tarjeta { display: none; } }
