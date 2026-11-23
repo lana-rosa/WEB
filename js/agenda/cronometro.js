@@ -57,7 +57,7 @@
       var k = +tr.getAttribute('data-fila'), nom = v(k, 'proyecto'), td = tr.querySelector('td.pl-tiempo');
       if (!nom) { if (td) td.remove(); return; }
       if (!td) { td = el('td', 'pl-tiempo no-imprimir'); td.setAttribute('data-col', 'tiempo'); var ant = tr.querySelector('td.pl-lana') || tr.querySelector('td.celda-cal') || tr.querySelector('td.ficha-acciones'); tr.insertBefore(td, ant); }
-      var ac = document.activeElement; if (ac && ac.tagName === 'INPUT' && td.contains(ac)) return;
+      var ac = document.activeElement, eraCk = !!(ac && ac.classList && ac.classList.contains('ct-ck') && td.contains(ac)); if (ac && ac.tagName === 'INPUT' && !eraCk && td.contains(ac)) return;
       td.textContent = '';
       var r = reg(nom), corre = !!r.desde, clave = sin(nom);
       td.appendChild(el('p', 'pl-t', 'Tiempo tejido'));
@@ -74,11 +74,56 @@
       mas.addEventListener('click', function () { var n = leer(); if (n) ajustar(nom, n); });
       menos.addEventListener('click', function () { var n = leer(); if (n) ajustar(nom, -n); });
       f.appendChild(c); f.appendChild(el('span', 'ct-min-t', 'min')); f.appendChild(mas); f.appendChild(menos); td.appendChild(f);
+      var cc = ciclos(), fc = el('div', 'pl-fila ct-ciclos'), lab = el('label', 'ct-ciclos-l'), ck = el('input'); ck.type = 'checkbox'; ck.className = 'ct-ck'; ck.checked = !!cc.on; lab.appendChild(ck); lab.appendChild(el('span', '', 'Tejer en ciclos'));
+      ck.addEventListener('change', function () { cc.on = ck.checked; N.guardar(); });
+      fc.appendChild(lab);
+      if (cc.on) {
+        [['trabajo', 'Tejer (min)', 1, 120], ['pausa', 'Pausa (min)', 1, 60]].forEach(function (x) {
+          var l = el('label', 'ct-ciclos-n'), i = el('input', 'pl-n ct-cic'); i.type = 'number'; i.min = x[2]; i.max = x[3]; i.inputMode = 'numeric'; i.value = cc[x[0]]; l.appendChild(el('span', '', x[1])); l.appendChild(i);
+          i.addEventListener('change', function () { var n = Math.round(parseFloat(i.value)); if (n >= x[2] && n <= x[3]) { cc[x[0]] = n; N.guardar(); } else i.value = cc[x[0]]; }); fc.appendChild(l);
+        });
+        fc.appendChild(el('small', 'ct-nota', ciclosHoy() + ' ' + T(ciclosHoy() === 1 ? 'ciclo hoy' : 'ciclos hoy')));
+      }
+      td.appendChild(fc);
+      if (eraCk) ck.focus();
     });
+  }
+  /* Ciclos de tejido (23-nov-2026): «Tejer en ciclos» corta el cronómetro al terminar los minutos de tejer (25 por defecto), cuenta una pausa (5) y avisa al terminar.
+     Datos: datos._ciclos = { on, trabajo, pausa, hechos: { 'AAAA-MM-DD': n }, pausaHasta: ms, proy: clave }. Solo funciona con la agenda abierta (si se cierra, no suena). */
+  function ciclos() {
+    var d = N.datos(), c = d._ciclos; if (!c || typeof c !== 'object' || Array.isArray(c)) c = d._ciclos = {};
+    if (!(c.trabajo > 0)) c.trabajo = 25; if (!(c.pausa > 0)) c.pausa = 5; if (!c.hechos || typeof c.hechos !== 'object') c.hechos = {}; return c;
+  }
+  function ciclosHoy() { return ciclos().hechos[hoyTxt()] || 0; }
+  var barra = null;
+  function aviso(txt, botones) {
+    if (!barra) { barra = el('div', 'ct-ciclo no-imprimir'); barra.setAttribute('role', 'status'); barra.setAttribute('aria-live', 'polite'); document.body.appendChild(barra); }
+    barra.textContent = ''; barra.hidden = false; barra.__pausa = false; var t = el('span', 'ct-ciclo-t'); t.textContent = txt; barra.appendChild(t); barra.__t = t;
+    (botones || []).forEach(function (b) { var x = el('button', 'boton-chico ' + (b[2] || 'boton-secundario'), T(b[0])); x.type = 'button'; x.addEventListener('click', b[1]); barra.appendChild(x); });
+    return t;
+  }
+  function cerrarAviso() { if (barra) { barra.hidden = true; barra.__pausa = false; } }
+  function mmss(ms) { var s = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(s / 60) + ':' + dos(s % 60); }
+  function pitar() { try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {} }
+  function pasoCiclo() {
+    var c = ciclos(), d = datos(), ahora = Date.now();
+    if (c.on) Object.keys(d).forEach(function (k) {
+      var r = d[k]; if (!r || !r.desde || ahora - r.desde < c.trabajo * 60000) return;
+      r.desde = ahora - c.trabajo * 60000; parar(r); c.hechos[hoyTxt()] = (c.hechos[hoyTxt()] || 0) + 1; c.pausaHasta = ahora + c.pausa * 60000; c.proy = k; N.guardar(); pitar();
+    });
+    if (!c.pausaHasta) return;
+    if (ahora >= c.pausaHasta) {
+      var nom = nombreDe(c.proy); c.pausaHasta = 0; N.guardar(); pitar();
+      aviso(T('¡Terminó tu pausa! ¿Seguimos con otro ciclo?'), [['Otro ciclo', function () { cerrarAviso(); empezar(nom); }, 'boton-primario'], ['Cerrar', cerrarAviso]]);
+      return;
+    }
+    var msg = T('Pausa') + ' ' + mmss(c.pausaHasta - ahora) + ' · ' + T('estira tus manos, muñecas y cuello');
+    if (barra && !barra.hidden && barra.__pausa) barra.__t.textContent = msg;
+    else { aviso(msg, [['Saltar la pausa', function () { c.pausaHasta = 0; N.guardar(); cerrarAviso(); }]]); barra.__pausa = true; }
   }
   /* cada segundo solo cambia el texto del reloj que está corriendo (sin repintar la hoja) */
   function tic() {
-    var d = datos();
+    pasoCiclo(); var d = datos();
     Object.keys(d).forEach(function (k) {
       var r = d[k]; if (!r || !r.desde) return;
       if (Date.now() - r.desde >= TOPE) { parar(r); avisos[k] = T('El cronómetro se paró solo a las 12 horas. Si hace falta, ajusta los minutos.'); N.guardar(); }
@@ -95,6 +140,6 @@
   programar();
   /* tiempo de un proyecto por su nombre (lo usa el pedido unido a ese proyecto) */
   function de(nom) { var r = datos()[sin(nom)]; if (!r || typeof r !== 'object') return { seg: 0, enMarcha: false, clave: sin(nom) }; return { seg: (r.seg || 0) + corrido(r), enMarcha: !!r.desde, clave: sin(nom) }; }
-  window.lrCrono = { resumen: resumen, formato: formato, pintar: pintar, de: de };
+  window.lrCrono = { ciclosHoy: ciclosHoy, resumen: resumen, formato: formato, pintar: pintar, de: de };
   document.dispatchEvent(new Event('cronometro-listo'));
 })();

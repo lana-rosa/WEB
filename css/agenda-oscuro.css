@@ -779,6 +779,7 @@ html[data-modo="oscuro"] .am-op:has(input:focus-visible) { outline: 3px solid va
 html[data-modo="oscuro"] body .buscar-agenda input:focus,
 html[data-modo="oscuro"] body .buscar-agenda input:focus-visible { outline: none !important; }
 html[data-modo="oscuro"] body .buscar-agenda:focus-within { border-color: var(--rosa-boton); }
+html[data-modo="oscuro"] .ct-ciclo { background: #17193A; border: 2px solid var(--lila); color: #EEECEE; }
 /* ---- de /css/agenda-frambuesa.css ---- */
 html[data-modo="oscuro"]:root { --marfil: #211D27; --papel: #211D27; --rosa-claro: #331421; }
 html[data-modo="oscuro"] #agenda .hoja-agenda::after { background: linear-gradient(90deg, var(--sec-fg) 0 70%, var(--frambuesa)); }

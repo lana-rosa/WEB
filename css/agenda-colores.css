@@ -347,3 +347,11 @@ body.config-sola .pestanas-agenda { display: none !important; }
 /* Buscador (5-nov-2026, pedido de Jennifer): un solo recuadro, el redondo. El campo de adentro no dibuja otro rectángulo al enfocarse; el foco se ve en el borde redondo (anillo grueso, visible para quien usa el teclado) */
 html body .buscar-agenda input:focus, html body .buscar-agenda input:focus-visible { outline: none !important; box-shadow: none; }
 html body .buscar-agenda:focus-within { border-color: var(--rosa-boton); box-shadow: 0 0 0 3px var(--rosa-boton); }
+
+/* Ciclos de tejido (23-nov-2026) */
+#agenda .ct-ciclos { gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+#agenda .ct-ciclos-l, #agenda .ct-ciclos-n { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; }
+#agenda .ct-ciclos-l input { width: 20px; height: 20px; accent-color: var(--rosa-principal); }
+.ct-ciclo { position: fixed; left: 12px; right: 12px; bottom: 84px; z-index: 60; max-width: 520px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; padding: 12px 14px; border-radius: 16px; background: #E6E7FD; border: 2px solid var(--lila); color: #2B2B33; box-shadow: 0 6px 18px rgba(0,0,0,.18); font-weight: 700; }
+.ct-ciclo[hidden] { display: none; }
+@media print { .ct-ciclo { display: none; } }
