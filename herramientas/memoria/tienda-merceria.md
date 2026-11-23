@@ -54,3 +54,4 @@
 - **23-nov-2026, Personaliza simplificado (en la rama, sin publicar):** `personaliza.html` sin `#aviso-persona` y con etiquetas/ejemplos más cortos y 5 ayudas menos (se mantienen aviso de envío, ayuda de la fecha y casillas legales). Envío simulado a `crear_solicitud_personalizada_v2` con los mismos 10 parámetros antes y después. La frase quitada sigue en `tienda.html`, `rosina-chat.js` y `regalar.js` (no tocados). Revisión semanal de Google del 23-nov: 0 productos sin clasificar (46 + 31 = 77).
 - **23-nov-2026:** Personaliza simplificado publicado con el sí de Jennifer.
 - **23-nov-2026, ficha de personalizados (en la rama, sin publicar):** `tienda.html` sin `#modal-aviso-persona` (párrafo y su línea en el JS); queda el aviso de fotos de referencia. Probado en 390 y 1280 px con el personalizado de 13 cm (0 errores). Espera el sí de Jennifer a la captura.
+- **23-nov-2026:** ficha de personalizados sin el aviso de persona publicada con el sí de Jennifer.
