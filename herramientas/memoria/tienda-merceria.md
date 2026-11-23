@@ -55,3 +55,4 @@
 - **23-nov-2026:** Personaliza simplificado publicado con el sí de Jennifer.
 - **23-nov-2026, ficha de personalizados (en la rama, sin publicar):** `tienda.html` sin `#modal-aviso-persona` (párrafo y su línea en el JS); queda el aviso de fotos de referencia. Probado en 390 y 1280 px con el personalizado de 13 cm (0 errores). Espera el sí de Jennifer a la captura.
 - **23-nov-2026:** ficha de personalizados sin el aviso de persona publicada con el sí de Jennifer.
+- **23-nov-2026, decisión de Jennifer:** la compra de la Mercería sigue sin hacerse; fecha de decisión martes 1-dic: sin compra para entonces, plan B confirmado para el 13-dic; si llega antes, carga antes del 4-dic.
