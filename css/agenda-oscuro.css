@@ -780,6 +780,15 @@ html[data-modo="oscuro"] body .buscar-agenda input:focus,
 html[data-modo="oscuro"] body .buscar-agenda input:focus-visible { outline: none !important; }
 html[data-modo="oscuro"] body .buscar-agenda:focus-within { border-color: var(--rosa-boton); }
 html[data-modo="oscuro"] .ct-ciclo { background: #17193A; border: 2px solid var(--lila); color: #EEECEE; }
+html[data-modo="oscuro"] #agenda .pg-tarjeta { background: #17193A; border: 1.5px solid var(--lila); }
+html[data-modo="oscuro"] #agenda .pg-tarjeta-s { color: #CAC5CD; }
+html[data-modo="oscuro"] .pg-fondo { background: rgba(40,30,50,.55); }
+html[data-modo="oscuro"] .pg-caja { background: #211D27; color: #EEECEE; }
+html[data-modo="oscuro"] .pg-x { background: transparent; border: none; color: #CFCBD1; }
+html[data-modo="oscuro"] .pg-tit { color: #ED97C0; }
+html[data-modo="oscuro"] .pg-cont { color: #CFCBD1; }
+html[data-modo="oscuro"] .pg-reloj { color: #A985E0; }
+html[data-modo="oscuro"] .pg-aviso { color: #CFCBD1; }
 /* ---- de /css/agenda-frambuesa.css ---- */
 html[data-modo="oscuro"]:root { --marfil: #211D27; --papel: #211D27; --rosa-claro: #331421; }
 html[data-modo="oscuro"] #agenda .hoja-agenda::after { background: linear-gradient(90deg, var(--sec-fg) 0 70%, var(--frambuesa)); }
