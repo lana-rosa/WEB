@@ -52,13 +52,32 @@
     });
     el('pl-vacio').hidden = evs.length > 0;
   }
+  /* Matriz de Eisenhower (23-nov-2026): cada tarea puede llevar q = 'a' hacer ahora, 'b' programar, 'c' delegar, 'd' eliminar (sin q = sin clasificar). Se ve como lista o como 4 cuadros. */
+  var CUADROS = [['a', 'Hacer ahora', 'Urgente e importante'], ['b', 'Programar', 'Importante, no urgente'], ['c', 'Delegar', 'Urgente, no importante'], ['d', 'Eliminar', 'Ni urgente ni importante']];
+  function T(t) { return window.lrI18n && window.lrI18n.t ? window.lrI18n.t(t) : t; }
+  function vistaMatriz() { try { return localStorage.getItem('lrPlMatriz') === '1'; } catch (e) { return false; } }
+  function fichaTarea(x, i) {
+    var li = document.createElement('li'), lab = document.createElement('label'), cb = document.createElement('input'), tx = document.createElement('span'), del = document.createElement('button'), sel = document.createElement('select');
+    cb.type = 'checkbox'; cb.checked = !!x.ok; cb.dataset.i = i; tx.textContent = x.x; lab.appendChild(cb); lab.appendChild(tx); li.className = x.ok ? 'hecha' : '';
+    sel.className = 'pl-q no-imprimir'; sel.dataset.i = i; sel.setAttribute('aria-label', T('Prioridad de la tarea') + ': ' + x.x);
+    [['', 'Sin prioridad']].concat(CUADROS.map(function (c) { return [c[0], c[1]]; })).forEach(function (o) { var op = document.createElement('option'); op.value = o[0]; op.textContent = T(o[1]); sel.appendChild(op); });
+    sel.value = x.q || '';
+    del.type = 'button'; del.className = 'pl-borrar no-imprimir'; del.dataset.i = i; del.setAttribute('aria-label', 'Borrar la tarea ' + x.x); del.textContent = '✕';
+    li.appendChild(lab); li.appendChild(sel); li.appendChild(del); return li;
+  }
   function pintarTareas() {
-    var ul = el('pl-tareas'), r = registro(false); ul.textContent = '';
-    (r.t || []).forEach(function (x, i) {
-      var li = document.createElement('li'), lab = document.createElement('label'), cb = document.createElement('input'), tx = document.createElement('span'), del = document.createElement('button');
-      cb.type = 'checkbox'; cb.checked = !!x.ok; cb.dataset.i = i; tx.textContent = x.x; lab.appendChild(cb); lab.appendChild(tx); li.className = x.ok ? 'hecha' : '';
-      del.type = 'button'; del.className = 'pl-borrar no-imprimir'; del.dataset.i = i; del.setAttribute('aria-label', 'Borrar la tarea ' + x.x); del.textContent = '✕';
-      li.appendChild(lab); li.appendChild(del); ul.appendChild(li);
+    var ul = el('pl-tareas'), mz = el('pl-matriz'), r = registro(false), ver = vistaMatriz(), tareas = r.t || [];
+    ul.textContent = ''; mz.textContent = ''; ul.hidden = ver; mz.hidden = !ver;
+    el('pl-ver-lista').setAttribute('aria-pressed', ver ? 'false' : 'true'); el('pl-ver-matriz').setAttribute('aria-pressed', ver ? 'true' : 'false');
+    if (!ver) { tareas.forEach(function (x, i) { ul.appendChild(fichaTarea(x, i)); }); return; }
+    CUADROS.concat([['', 'Sin clasificar', 'Elige una prioridad en cada tarea']]).forEach(function (c) {
+      var box = document.createElement('section'), h = document.createElement('h5'), sm = document.createElement('small'), l = document.createElement('ul'), n = 0;
+      box.className = 'pl-cuadro pl-cuadro-' + (c[0] || 'x'); h.textContent = T(c[1]); sm.textContent = T(c[2]); l.className = 'pl-tareas';
+      tareas.forEach(function (x, i) { if ((x.q || '') === c[0]) { l.appendChild(fichaTarea(x, i)); n++; } });
+      if (c[0] === '' && !n) return;
+      if (!n) { var v = document.createElement('p'); v.className = 'pl-cuadro-vacio'; v.textContent = T('Nada por aquí'); box.appendChild(h); box.appendChild(sm); box.appendChild(v); }
+      else { box.appendChild(h); box.appendChild(sm); box.appendChild(l); }
+      mz.appendChild(box);
     });
   }
   function pintarDia() {
@@ -111,9 +130,14 @@
     e.preventDefault(); var i = el('pl-tarea'), t = i.value.trim(); if (!t) return;
     registro(true).t.push({ x: t, ok: false }); i.value = ''; guardar(); pintarTareas(); pintarSemana(); i.focus();
   });
-  el('pl-tareas').addEventListener('change', function (e) { var cb = e.target.closest('input[type=checkbox]'); if (!cb) return; registro(true).t[+cb.dataset.i].ok = cb.checked; guardar(); pintarTareas(); pintarSemana(); });
-  el('pl-tareas').addEventListener('click', function (e) {
-    var b = e.target.closest('.pl-borrar'); if (!b) return; registro(true).t.splice(+b.dataset.i, 1); limpiarVacio(); guardar(); pintarTareas(); pintarSemana();
+  var zonaT = el('pl-tareas').parentNode;
+  zonaT.addEventListener('change', function (e) {
+    var q = e.target.closest('select.pl-q'); if (q) { var t = registro(true).t[+q.dataset.i]; if (q.value) t.q = q.value; else delete t.q; guardar(); pintarTareas(); return; }
+    var cb = e.target.closest('input[type=checkbox]'); if (!cb) return; registro(true).t[+cb.dataset.i].ok = cb.checked; guardar(); pintarTareas(); pintarSemana();
+  });
+  zonaT.addEventListener('click', function (e) {
+    var b = e.target.closest('.pl-borrar'); if (b) { registro(true).t.splice(+b.dataset.i, 1); limpiarVacio(); guardar(); pintarTareas(); pintarSemana(); return; }
+    var v = e.target.closest('.pl-ver'); if (v) { try { localStorage.setItem('lrPlMatriz', v.id === 'pl-ver-matriz' ? '1' : '0'); } catch (x) {} pintarTareas(); }
   });
   el('pl-notas').addEventListener('input', function (e) { registro(true).n = e.target.value; limpiarVacio(); guardar(); });
   hoja.addEventListener('click', function (e) { var a = e.target.closest('.pl-abrir'); if (a) { e.preventDefault(); location.hash = a.getAttribute('href'); } });
