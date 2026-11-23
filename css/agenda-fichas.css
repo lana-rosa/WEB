@@ -681,3 +681,13 @@ body.dib-bloqueo { overflow: hidden; }
 @media (min-width: 720px) { .pl-matriz { grid-template-columns: 1fr 1fr; } .pl-cuadro-x { grid-column: 1 / -1; } }
 @media (max-width: 480px) { .pl-tareas li { flex-wrap: wrap; } .pl-tareas label { flex: 1 1 100%; } .pl-q { max-width: none; flex: 1; } }
 @media print { .pl-vistas { display: none; } }
+
+/* Hojas con menos botones (23-nov-2026, pedido de Jennifer): sin «Hoja anterior» (el selector de hojas ya sirve), «Siguiente hoja» delgado y los dos botones de imprimir dentro de «Más». */
+#agenda .hojas-pasos .paso-ant { display: none; }
+#agenda .hojas-pasos:not(:has(.paso-sig)) { display: none; }
+#agenda .hojas-pasos { margin-top: 12px; }
+#agenda .hojas-pasos .paso-sig { flex: none; max-width: 100%; flex-direction: row; align-items: center; gap: 8px; padding: 8px 14px; min-height: 44px; }
+#agenda .mas-acciones { display: block; margin: 10px 0; text-align: right; }
+#agenda .mas-acciones > summary { display: inline-flex; align-items: center; cursor: pointer; list-style: none; }
+#agenda .mas-acciones > summary::-webkit-details-marker { display: none; }
+#agenda .mas-acciones .mas-lista { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 8px; }

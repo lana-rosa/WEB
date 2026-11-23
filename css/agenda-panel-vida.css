@@ -222,3 +222,17 @@
 
 #agenda .cs-ic { width: 24px; height: 24px; vertical-align: -6px; margin-right: 4px; }
 #agenda .gr-fiesta { display: block; width: 56px; height: 56px; margin: 8px auto 0; }
+
+/* Panel más compacto en celular (23-nov-2026, pedido de Jennifer: interfaz más limpia): bienvenida de 2 líneas sin mascota (la frase se queda), y consejo más delgado; así las cifras suben a la primera pantalla. */
+@media (max-width: 520px) {
+  #agenda .pn-hero { padding: 16px 18px 18px; border-radius: 22px; }
+  #agenda .pn-hero h4 { font-size: 1.4rem; margin-bottom: 4px; }
+  #agenda .pn-hero p { font-size: .92rem; }
+  #agenda .pn-rosina { display: none; }
+  #agenda .pn-frase { margin-top: 8px; padding: 5px 12px; font-size: .85rem; }
+  #agenda .pn-avisos, #agenda .pn-consejo { margin-top: 10px; }
+  #agenda .pn-consejo { padding: 10px 12px; }
+  #agenda .pn-consejo-img { display: none; }
+  #agenda .pn-consejo p { margin: 2px 0 8px; font-size: .92rem; }
+  #agenda .pn-consejo .pn-accion { min-height: 40px; padding: 6px 12px; }
+}
