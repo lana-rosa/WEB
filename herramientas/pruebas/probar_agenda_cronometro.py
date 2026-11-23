@@ -48,5 +48,22 @@ with sync_playwright() as p:
     # sin tiempo: no hay tarjeta
     pg2 = abrir(contexto(b, 390, 800, datos={'ag-f1-proyecto': 'Otro'}, config_abierta=False), 'panel-agenda', 2200, config=False)
     T.v('sin tiempo anotado, Mi panel no muestra la tarjeta', pg2.locator('.pn-horas').count() == 0)
+    # ciclos de tejido (23-nov-2026)
+    pg3 = abrir(contexto(b, 390, 900, datos=DATOS, config_abierta=False), 'proyectos-fila', 2200, config=False); abrir_fichas(pg3)
+    g1 = '#tabla-fila tr.ficha[data-fila="1"] td.pl-tiempo'
+    pg3.check(g1 + ' .ct-ciclos-l input'); pg3.wait_for_timeout(600)
+    T.v('«Tejer en ciclos» muestra 25 y 5 por defecto', pg3.input_value(g1 + ' .ct-ciclos-n >> nth=0 >> input') == '25' and pg3.input_value(g1 + ' .ct-ciclos-n >> nth=1 >> input') == '5')
+    pg3.click(g1 + ' button:has-text("Empezar")'); pg3.wait_for_timeout(600)
+    pg3.evaluate("(() => { const d = window.lrAgendaNucleo.datos()._proyTiempo['chaleco de maria']; d.desde -= 26 * 60000; })()"); pg3.wait_for_timeout(1600)
+    gg = guardado(pg3); r = gg['_proyTiempo']['chaleco de maria']
+    T.v('a los 25 min el cronómetro se corta solo y suma 25 min', r['desde'] == 0 and 1499 <= r['seg'] <= 1502, r)
+    T.v('cuenta 1 ciclo y empieza la pausa', sum(gg['_ciclos']['hechos'].values()) == 1 and gg['_ciclos']['pausaHasta'] > 0 and 'Pausa' in pg3.inner_text('.ct-ciclo'))
+    pg3.screenshot(path='/tmp/claude-0/-home-user-WEB/d3a728b3-2481-58cf-994a-d9a13cd33565/scratchpad/cap/ciclo-pausa-390.png')
+    pg3.evaluate("window.lrAgendaNucleo.datos()._ciclos.pausaHasta = Date.now() - 1000"); pg3.wait_for_timeout(1600)
+    T.v('al acabar la pausa avisa y ofrece otro ciclo', 'Terminó tu pausa' in pg3.inner_text('.ct-ciclo') and pg3.locator('.ct-ciclo button:has-text("Otro ciclo")').count() == 1)
+    pg3.click('.ct-ciclo button:has-text("Otro ciclo")'); pg3.wait_for_timeout(600)
+    T.v('«Otro ciclo» vuelve a poner a correr el cronómetro', guardado(pg3)['_proyTiempo']['chaleco de maria']['desde'] > 0)
+    T.v('sin desplazamiento horizontal', pg3.evaluate('document.documentElement.scrollWidth <= innerWidth'))
+    T.v('sin errores de JavaScript', not pg3.errs, pg3.errs)
     b.close()
 T.fin()
