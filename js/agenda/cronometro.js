@@ -119,7 +119,7 @@
     }
     var msg = T('Pausa') + ' ' + mmss(c.pausaHasta - ahora) + ' · ' + T('estira tus manos, muñecas y cuello');
     if (barra && !barra.hidden && barra.__pausa) barra.__t.textContent = msg;
-    else { aviso(msg, [['Saltar la pausa', function () { c.pausaHasta = 0; N.guardar(); cerrarAviso(); }]]); barra.__pausa = true; }
+    else { aviso(msg, (window.lrPausas ? [['Pausa guiada', function () { window.lrPausas.abrir(); }, 'boton-primario']] : []).concat([['Saltar la pausa', function () { c.pausaHasta = 0; N.guardar(); cerrarAviso(); }]])); barra.__pausa = true; }
   }
   /* cada segundo solo cambia el texto del reloj que está corriendo (sin repintar la hoja) */
   function tic() {
