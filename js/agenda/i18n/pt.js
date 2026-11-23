@@ -1543,6 +1543,7 @@ window.lrI18n.add("pt", {
 "{n#} años": "{n} anos",
 "{n#} mes": "{n} mês",
 "Concepto": "Item",
+"Más ⋯": "Mais ⋯",
 "Claro u oscuro": "Claro ou escuro",
 "Cómo se ve tu agenda": "Como sua agenda aparece",
 "Claro": "Claro",
