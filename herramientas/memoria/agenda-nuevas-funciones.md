@@ -33,3 +33,6 @@ Los de la agenda y la marca (`--rosa-principal #E74E96`, `--rosa-medio #F28FC0`,
 - ¿Cuántas pestañas gratis quedan hoy realmente (2 en el código; CLAUDE/estado hablan de 3)? Confirmar antes de decidir gratis/Plus.
 - ¿Los recordatorios del temporizador pueden sonar con la pestaña cerrada? (en celular probablemente no; probar).
 - Diseño del «solo en el aparato» (c) y qué decide la abogada.
+
+## Avance 23-nov-2026 · #1 Eisenhower HECHA en la rama (sin publicar; Jennifer dijo sí a empezar por ella)
+`planeador.js` v4: cada tarea guarda `q` ('a' ahora, 'b' programar, 'c' delegar, 'd' eliminar) dentro de `_dias[fecha].t`; botones «Lista / Por prioridad»; vista recordada en `localStorage.lrPlMatriz`. Textos EN/PT en `datos_eisenhower.py` (provisionales) + `generar.py`; modo oscuro regenerado (`agenda-oscuro.css?v=22`). Prueba: `probar_agenda_planeador.py` (22 bien; la 1 que falla, «primera hoja del grupo Inicio», ya fallaba antes). **Falta:** visto bueno de Jennifer con foto; desplegar `rosina-web` (línea nueva en `GUIA_AGENDA`, 🔴 pregunta aparte) y comparar.
