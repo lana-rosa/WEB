@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="stylesheet" href="/css/comun.css?v=59">
 <link rel="stylesheet" href="/css/animaciones.css?v=4">
-<link rel="stylesheet" href="/css/agenda-fichas.css?v=45">
+<link rel="stylesheet" href="/css/agenda-fichas.css?v=46">
 <link rel="stylesheet" href="/css/agenda-diseno.css?v=20">
 <link rel="stylesheet" href="/css/agenda-panel.css?v=16">
 <link rel="stylesheet" href="/css/agenda-responsive.css?v=15">
@@ -2270,10 +2270,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="dp-nav no-imprimir"><button type="button" class="boton-secundario boton-chico" id="dp-atras">← Atrás</button><span id="dp-cuenta" aria-live="polite"></span><button type="button" class="boton-primario boton-chico" id="dp-sig">Siguiente →</button></div>
         </div>
       </article>
-        <div class="acciones-hoja acciones-hoja-abajo no-imprimir">
-          <button type="button" class="boton-secundario boton-chico" data-imprimir-hoja="llena">🖨️ Imprimir esta hoja</button>
-          <button type="button" class="boton-secundario boton-chico" data-imprimir-hoja="blanco">📄 Imprimir en blanco</button>
-        </div>
+        <details class="acciones-hoja acciones-hoja-abajo mas-acciones no-imprimir">
+          <summary class="boton-secundario boton-chico">Más ⋯</summary>
+          <div class="mas-lista">
+            <button type="button" class="boton-secundario boton-chico" data-imprimir-hoja="llena">🖨️ Imprimir esta hoja</button>
+            <button type="button" class="boton-secundario boton-chico" data-imprimir-hoja="blanco">📄 Imprimir en blanco</button>
+          </div>
+        </details>
       </div>
       </div>
       </div>
@@ -4220,7 +4223,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       actualizarOpciones();
     }
   });
-  document.querySelectorAll('[data-imprimir-hoja]').forEach(function(b) { b.addEventListener('click', function() { imprimirHoja(b.dataset.imprimirHoja === 'blanco'); }); });
+  document.querySelectorAll('[data-imprimir-hoja]').forEach(function(b) { b.addEventListener('click', function() { var d = b.closest('details'); if (d) d.open = false; imprimirHoja(b.dataset.imprimirHoja === 'blanco'); }); });
   window.addEventListener('beforeprint', function() { hojas.forEach(function(h) { h.classList.add('imprimiendo-hoja'); }); });
   window.addEventListener('afterprint', function() { hojas.forEach(function(h) { h.classList.remove('imprimiendo-hoja'); }); });
 })();
@@ -4427,7 +4430,7 @@ import { haySesionGuardada, obtenerCliente } from '/js/cuenta.js';
 </script>
 <script type="module" src="/js/pago.js?v=32"></script>
 <script src="/js/animaciones.js?v=28" defer></script>
-<script src="/js/agenda/idioma.js?v=48" defer></script>
+<script src="/js/agenda/idioma.js?v=49" defer></script>
 <script src="/js/agenda/modo.js?v=2" defer></script>
 <script src="/js/agenda/config.js?v=18" defer></script>
 <script src="/js/agenda/tour.js?v=7" defer></script>
