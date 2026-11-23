@@ -372,3 +372,34 @@ html body .buscar-agenda:focus-within { border-color: var(--rosa-boton); box-sha
 .pg-bot { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
 .pg-aviso { margin: 14px 0 0; font-size: .8rem; color: #5B5B63; }
 @media print { .pg-fondo, .pg-tarjeta { display: none; } }
+
+/* Mis hábitos y agua (23-nov-2026) */
+#agenda .hb-raiz { margin: 18px 0 0; }
+#agenda .hb-h { margin: 0 0 10px; font-size: 1.15rem; }
+#agenda .hb-tarjeta { margin: 0 0 12px; padding: 12px 14px; border-radius: 16px; background: #E3F1FD; border: 1.5px solid var(--azul-acero); }
+#agenda .hb-t { margin: 0 0 8px; font-size: 1rem; }
+#agenda .hb-vasos { display: flex; flex-wrap: wrap; gap: 6px; }
+#agenda .hb-vaso { width: 44px; height: 44px; font-size: 1.4rem; line-height: 1; border-radius: 12px; border: 1.5px solid var(--azul-acero); background: #fff; cursor: pointer; opacity: .45; }
+#agenda .hb-vaso.lleno { opacity: 1; background: var(--azul-acero); }
+#agenda .hb-pie { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+#agenda .hb-cuenta { font-weight: 800; }
+#agenda .hb-meta { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; }
+#agenda .hb-meta input { width: 64px; font: inherit; padding: 8px; min-height: 40px; border: 1.5px solid var(--azul-acero); border-radius: 10px; background: #fff; color: var(--tinta); }
+#agenda .hb-mes { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; }
+#agenda .hb-flecha { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--rosa-medio); background: #fff; font-size: 1.3rem; cursor: pointer; color: var(--rosa-texto, #C81B6D); }
+#agenda .hb-vacio { margin: 4px 0 8px; color: var(--tinta-suave); font-style: italic; }
+#agenda .hb-fila { margin: 0 0 10px; padding: 8px 10px; border-radius: 12px; background: #fff; border: 1.5px solid var(--rosa-suave); }
+#agenda .hb-nombre { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+#agenda .hb-n { flex: 1; font-weight: 800; overflow-wrap: anywhere; }
+#agenda .hb-c { font-size: .85rem; color: var(--tinta-suave); }
+#agenda .hb-quitar { width: 40px; height: 40px; border: none; background: transparent; color: #C81B6D; cursor: pointer; font-size: 1rem; }
+#agenda .hb-dias { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 4px; }
+#agenda .hb-dia { min-height: 34px; border-radius: 8px; border: 1.5px solid var(--rosa-medio); background: #fff; color: var(--tinta); font: inherit; font-size: .8rem; cursor: pointer; }
+#agenda .hb-dia.on { background: var(--rosa-principal); border-color: var(--rosa-principal); color: #fff; font-weight: 800; }
+#agenda .hb-dia.hoy { box-shadow: 0 0 0 2px var(--lila); }
+#agenda .hb-dia:disabled { opacity: .35; cursor: default; }
+#agenda .hb-nuevo { display: flex; gap: 8px; margin-top: 6px; }
+#agenda .hb-nuevo input { flex: 1; min-width: 0; font: inherit; padding: 10px 12px; min-height: 44px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: #fff; color: var(--tinta); }
+#agenda .hb-sug { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+#agenda .hb-chip { font: inherit; font-size: .85rem; padding: 8px 12px; min-height: 40px; border-radius: 999px; border: 1.5px solid var(--lila); background: #E6E7FD; color: #2B2B33; cursor: pointer; }
+@media print { .hb-raiz { display: none; } }
