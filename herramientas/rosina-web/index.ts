@@ -1,6 +1,7 @@
 // Rosina en la web: ayuda y asesora a visitantes de lanarosacrochet.com.
 // Solo conoce el texto PÚBLICO de las páginas y el catálogo público de la web.
 // La llave de Anthropic vive solo en los secretos de Supabase (ANTHROPIC_API_KEY).
+// v87 (24-nov-2026; Jennifer dio el sí): GUIA_AGENDA conoce Mi brújula (rueda, metas SMART, Ikigai y carta de fin de año), Mis hábitos y agua, la pausa guiada, los ciclos de tejido y la matriz de Eisenhower, y que Bienestar es de la membresía tras los 7 días de prueba. PENDIENTE de desplegar (Supabase sigue en v86; lo hace el chat 3).
 // v86 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica pedido y proyecto unidos (horas tejidas y lana apartada), la lista de compras que pasa al inventario y las medidas y gustos de la clienta. Desplegada (Supabase v86).
 // v85 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica el presupuesto en PDF por WhatsApp («Armar presupuesto»). Desplegada (Supabase v85).
 // v84 (12-nov-2026; E34, pedido de Jennifer): GUIA_AGENDA explica los pagos de cada pedido («Pagos de este pedido», «Registrar abono»). Desplegada (Supabase v84).
