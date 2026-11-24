@@ -195,6 +195,14 @@ html[data-modo="oscuro"] main:focus { outline: none; }
 html[data-modo="oscuro"][data-casa="agenda"] { --tinte: #331421; --rosa-suave: #3A1B2A; --rosa-texto: #ED97C0; --casa-t1: #331421; --casa-t2: #3A1B2A; }
 html[data-modo="oscuro"] .nav-principal li.g-agenda a { background: #3A1B2A; color: #ED97C0; }
 html[data-modo="oscuro"] .nav-principal li.g-agenda a:hover { background: #E01E79; color: #fff; }
+@media (max-width: 600px) {
+html[data-modo="oscuro"] .pie-col.pie-plegable { border-bottom: 1px solid rgba(255,255,255,0.15); }
+html[data-modo="oscuro"] .pie-col.pie-plegable .pie-h3:focus-visible { outline: 3px solid var(--blanco-hueso); }
+}
+html[data-modo="oscuro"] .nav-movil-panel button.grupo-boton { border: 0; border-left: 5px solid var(--rosa-principal); }
+html[data-modo="oscuro"] .nav-movil-panel button.grupo-boton:focus-visible { outline: 3px solid var(--lila); }
+html[data-modo="oscuro"] body .nav-movil-panel button.grupo-boton { background: transparent; border-left: 0; border-bottom: 1px solid rgba(239, 233, 241, 0.1); }
+html[data-modo="oscuro"] body .nav-movil-panel button.grupo-boton { color: #DEDBE0; }
 /* ---- de /css/animaciones.css ---- */
 html[data-modo="oscuro"] .saludo-rosina { background: var(--blanco, #fff); border: 1px solid rgba(var(--rosa-rgb),0.25); color: #DEDBE0; }
 html[data-modo="oscuro"] .saludo-rosina img { background: var(--rosa-suave, var(--rosa-suave)); }
@@ -470,6 +478,18 @@ html[data-modo="oscuro"] .dr-punto { border: 3px solid #3B3444; }
 html[data-modo="oscuro"] .dr-etq { color: #ED97C0; }
 html[data-modo="oscuro"] .dr-color { background: #E74E96; border: 2px solid #3B3444; }
 html[data-modo="oscuro"] .dib-rueda .dr-agregar { background: #E01E79; color: #fff; border: 0; }
+html[data-modo="oscuro"] .pl-vistas { border: 1.5px solid var(--rosa-medio); }
+html[data-modo="oscuro"] .pl-ver { background: var(--blanco); border: none; color: #DEDBE0; }
+html[data-modo="oscuro"] .pl-ver[aria-pressed="true"] { background: var(--rosa-principal); color: #fff; }
+html[data-modo="oscuro"] .pl-q { background: var(--blanco); border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
+html[data-modo="oscuro"] .pl-cuadro { background: var(--rosa-suave); border: 1.5px solid var(--rosa-suave); }
+html[data-modo="oscuro"] .pl-cuadro-a { background: #3A1B2A; border-color: var(--rosa-principal); }
+html[data-modo="oscuro"] .pl-cuadro-b { background: #17193A; border-color: var(--lila); }
+html[data-modo="oscuro"] .pl-cuadro-c { background: #182B3C; border-color: var(--azul-acero); }
+html[data-modo="oscuro"] .pl-cuadro-d,
+html[data-modo="oscuro"] .pl-cuadro-x { background: #28222A; border-color: #413945; }
+html[data-modo="oscuro"] .pl-cuadro > small { color: #CAC5CD; }
+html[data-modo="oscuro"] .pl-cuadro-vacio { color: #CAC5CD; }
 /* ---- de /css/agenda-diseno.css ---- */
 html[data-modo="oscuro"]:root { --rosa-emp: #4E2539; --tinta-ayuda: #CAC5CD; --linea-diseno: #6B3B52; }
 html[data-modo="oscuro"] .hoja-agenda > header h3 { color: #ED97C0; }
@@ -759,6 +779,40 @@ html[data-modo="oscuro"] .am-op:has(input:focus-visible) { outline: 3px solid va
 html[data-modo="oscuro"] body .buscar-agenda input:focus,
 html[data-modo="oscuro"] body .buscar-agenda input:focus-visible { outline: none !important; }
 html[data-modo="oscuro"] body .buscar-agenda:focus-within { border-color: var(--rosa-boton); }
+html[data-modo="oscuro"] .ct-ciclo { background: #17193A; border: 2px solid var(--lila); color: #EEECEE; }
+html[data-modo="oscuro"] #agenda .pg-tarjeta { background: #17193A; border: 1.5px solid var(--lila); }
+html[data-modo="oscuro"] #agenda .pg-tarjeta-s { color: #CAC5CD; }
+html[data-modo="oscuro"] .pg-fondo { background: rgba(40,30,50,.55); }
+html[data-modo="oscuro"] .pg-caja { background: #211D27; color: #EEECEE; }
+html[data-modo="oscuro"] .pg-x { background: transparent; border: none; color: #CFCBD1; }
+html[data-modo="oscuro"] .pg-tit { color: #ED97C0; }
+html[data-modo="oscuro"] .pg-cont { color: #CFCBD1; }
+html[data-modo="oscuro"] .pg-reloj { color: #A985E0; }
+html[data-modo="oscuro"] .pg-aviso { color: #CFCBD1; }
+html[data-modo="oscuro"] #agenda .hb-tarjeta { background: #182B3C; border: 1.5px solid var(--azul-acero); }
+html[data-modo="oscuro"] #agenda .hb-vaso { background: #211D27; border: 1.5px solid var(--azul-acero); }
+html[data-modo="oscuro"] #agenda .hb-vaso.lleno { background: var(--azul-acero); }
+html[data-modo="oscuro"] #agenda .hb-meta input { background: #211D27; border: 1.5px solid var(--azul-acero); color: #DEDBE0; }
+html[data-modo="oscuro"] #agenda .hb-flecha { background: #211D27; border: 1.5px solid var(--rosa-medio); color: var(--rosa-texto, #C81B6D); }
+html[data-modo="oscuro"] #agenda .hb-vacio { color: #CAC5CD; }
+html[data-modo="oscuro"] #agenda .hb-fila { background: #211D27; border: 1.5px solid var(--rosa-suave); }
+html[data-modo="oscuro"] #agenda .hb-c { color: #CAC5CD; }
+html[data-modo="oscuro"] #agenda .hb-quitar { background: transparent; border: none; color: #ED97C0; }
+html[data-modo="oscuro"] #agenda .hb-dia { background: #211D27; border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
+html[data-modo="oscuro"] #agenda .hb-dia.on { background: var(--rosa-principal); border-color: var(--rosa-principal); color: #fff; }
+html[data-modo="oscuro"] #agenda .hb-nuevo input { background: #211D27; border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
+html[data-modo="oscuro"] #agenda .hb-chip { background: #17193A; border: 1.5px solid var(--lila); color: #EEECEE; }
+html[data-modo="oscuro"] #agenda .bj-tarjeta { background: #17193A; border: 1.5px solid var(--lila); }
+html[data-modo="oscuro"] #agenda .bj-s { color: #CAC5CD; }
+html[data-modo="oscuro"] #agenda .bj-svg { background: #211D27; }
+html[data-modo="oscuro"] #agenda .bj-vacio { color: #CAC5CD; }
+html[data-modo="oscuro"] #agenda .bj-meta { background: #211D27; border: 1.5px solid var(--rosa-suave); }
+html[data-modo="oscuro"] #agenda .bj-meta-l.vencida { color: #ECA8A4; }
+html[data-modo="oscuro"] #agenda .bj-quitar { background: transparent; border: none; color: #ED97C0; }
+html[data-modo="oscuro"] #agenda .bj-campo input { background: #211D27; border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
+html[data-modo="oscuro"] #agenda .bj-campo textarea { background: #211D27; border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
+html[data-modo="oscuro"] #agenda .bj-ayuda { color: #CAC5CD; }
+html[data-modo="oscuro"] #agenda .bj-vieja { background: #211D27; border: 1.5px solid var(--rosa-suave); }
 /* ---- de /css/agenda-frambuesa.css ---- */
 html[data-modo="oscuro"]:root { --marfil: #211D27; --papel: #211D27; --rosa-claro: #331421; }
 html[data-modo="oscuro"] #agenda .hoja-agenda::after { background: linear-gradient(90deg, var(--sec-fg) 0 70%, var(--frambuesa)); }

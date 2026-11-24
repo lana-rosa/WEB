@@ -418,7 +418,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="titulo-formulario" id="pide-el-tuyo">
     <h2>Pide el tuyo aquí</h2>
     <p>Cuéntanos tu idea y te enviamos la cotización.</p>
-    <p class="nota-tamanos" id="aviso-persona">Pieza artesanal personalizada, tejida a mano e inspirada en una persona. Cada creación se elabora de manera individual y puede presentar variaciones en sus características, proporciones y detalles.</p>
   </div>
   <div class="banner-personalizado" id="banner-personalizado" hidden></div>
   <form class="tarjeta" id="form-personalizado">
@@ -426,45 +425,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <legend class="solo-lectores">Tu idea</legend>
     <div class="fila-doble">
       <div class="campo">
-        <label for="tipo-producto">Tipo de producto*</label>
+        <label for="tipo-producto">Tipo*</label>
         <select id="tipo-producto" name="tipo-producto" required>
-          <option value="">Selecciona una opción</option>
+          <option value="">Elige</option>
           <option value="Amigurumi">Amigurumi</option>
           <option value="Llavero">Llavero</option>
           <option value="Peluche">Peluche</option>
           <option value="Otro">Otro</option>
         </select>
-        <input type="text" id="tipo-otro" name="tipo-otro" placeholder="Escribe qué tipo de producto quieres" style="display:none; margin-top:10px;">
+        <input type="text" id="tipo-otro" name="tipo-otro" placeholder="¿Qué tipo?" style="display:none; margin-top:10px;">
       </div>
       <div class="campo">
         <label for="tamano">Tamaño*</label>
         <select id="tamano" name="tamano" required disabled>
           <option value="">Primero elige el tipo de producto</option>
         </select>
-        <input type="text" id="tamano-otro" name="tamano-otro" placeholder="Escribe el tamaño que quieres" style="display:none; margin-top:10px;">
+        <input type="text" id="tamano-otro" name="tamano-otro" placeholder="¿Qué tamaño?" style="display:none; margin-top:10px;">
       </div>
     </div>
 
     <div class="campo">
-      <label for="descripcion">¿Qué quieres que tejamos?*</label>
-      <textarea id="descripcion" name="descripcion" required placeholder="Ej: Un amigurumi de mi perrita, con su collar rojo y las orejas caídas, tamaño de 10 cm."></textarea>
-      <div class="ayuda">Cuéntanos los detalles que quieras incluir: gafas, ropa específica, color de ojos, accesorios o cabello.</div>
+      <label for="descripcion">¿Qué quieres tejer?*</label>
+      <textarea id="descripcion" name="descripcion" required placeholder="Ej: mi perrita, con su collar rojo y las orejas caídas"></textarea>
     </div>
 
     <div class="campo">
-      <label for="colores">Colores importantes (opcional)</label>
-      <input type="text" id="colores" name="colores" maxlength="160" placeholder="Ej: cabello castaño, camiseta azul, zapatos blancos">
-      <div class="ayuda">Si los colores no se ven bien en tus fotos, cuéntanos cuáles son.</div>
+      <label for="colores">Colores (opcional)</label>
+      <input type="text" id="colores" name="colores" maxlength="160" placeholder="Ej: cabello castaño, camiseta azul">
     </div>
 
     <div class="campo">
-      <label for="mensaje">Detalles adicionales, ocasión o mensaje para la tarjeta</label>
-      <textarea id="mensaje" name="mensaje" placeholder="Ej: Es un regalo de cumpleaños para mi mamá. Mensaje de la tarjeta: «Feliz cumpleaños, mamá»."></textarea>
-      <div class="ayuda">Tu pedido incluye una tarjeta con el mensaje que quieras.</div>
+      <label for="mensaje">Mensaje para la tarjeta o detalles (opcional)</label>
+      <textarea id="mensaje" name="mensaje" placeholder="Ej: «Feliz cumpleaños, mamá»"></textarea>
     </div>
 
     <div class="campo">
-      <label for="fecha">¿Para qué fecha lo necesitas? (opcional)</label>
+      <label for="fecha">Fecha que lo necesitas (opcional)</label>
       <input type="date" id="fecha" name="fecha">
       <div class="ayuda">Te confirmamos si alcanzamos esa fecha antes de empezar; no prometemos plazos sin ver tu diseño.</div>
     </div>
@@ -472,14 +468,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <h3 class="titulo-bloque">Tus fotos y tus datos</h3>
     <div class="campo">
-      <label for="foto">Fotos de referencia</label>
+      <label for="foto">Fotos de referencia (opcional)</label>
       <label class="zona-foto" for="foto">
-        <span class="texto-zona">Toca aquí para subir tus fotos</span>
-        <div class="subtexto">Hasta 6 fotos — JPG, PNG o WEBP, cada una hasta 8 MB</div>
+        <span class="texto-zona">Toca para subir tus fotos</span>
+        <div class="subtexto">Hasta 6 fotos, 8 MB cada una</div>
         <input type="file" id="foto" name="foto" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
       </label>
       <div id="previsualizacion" class="previsualizacion-grid"></div>
-      <div class="ayuda">Si no tienes foto a la mano, puedes dejarlo en blanco y enviarla luego por WhatsApp.</div>
     </div>
 
     <div class="fila-doble">
@@ -488,7 +483,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <input type="text" id="nombre" name="nombre" required>
       </div>
       <div class="campo">
-        <label for="telefono">Teléfono / WhatsApp*</label>
+        <label for="telefono">WhatsApp*</label>
         <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 3001234567">
       </div>
     </div>
@@ -501,7 +496,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="campo">
         <label for="ciudad">Ciudad de envío</label>
         <select id="ciudad" name="ciudad">
-          <option value="">Selecciona tu ciudad</option>
+          <option value="">Elige</option>
           <option value="Manizales">Manizales</option>
           <option value="Villamaría">Villamaría</option>
           <option value="Chinchiná">Chinchiná</option>
@@ -509,7 +504,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <option value="Neira">Neira</option>
           <option value="Otro (nacional)">Otra ciudad de Colombia</option>
         </select>
-        <input type="text" id="ciudad-otra" name="ciudad-otra" placeholder="Escribe tu ciudad o municipio" autocomplete="address-level2" style="display:none; margin-top:10px;">
+        <input type="text" id="ciudad-otra" name="ciudad-otra" placeholder="¿Cuál ciudad?" autocomplete="address-level2" style="display:none; margin-top:10px;">
         <p class="ayuda" style="font-weight:600; color: var(--rosa-texto);">📦 El precio del artículo no incluye gastos de envío.</p>
       </div>
     </div>

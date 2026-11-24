@@ -347,3 +347,95 @@ body.config-sola .pestanas-agenda { display: none !important; }
 /* Buscador (5-nov-2026, pedido de Jennifer): un solo recuadro, el redondo. El campo de adentro no dibuja otro rectángulo al enfocarse; el foco se ve en el borde redondo (anillo grueso, visible para quien usa el teclado) */
 html body .buscar-agenda input:focus, html body .buscar-agenda input:focus-visible { outline: none !important; box-shadow: none; }
 html body .buscar-agenda:focus-within { border-color: var(--rosa-boton); box-shadow: 0 0 0 3px var(--rosa-boton); }
+
+/* Ciclos de tejido (23-nov-2026) */
+#agenda .ct-ciclos { gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+#agenda .ct-ciclos-l, #agenda .ct-ciclos-n { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; }
+#agenda .ct-ciclos-l input { width: 20px; height: 20px; accent-color: var(--rosa-principal); }
+.ct-ciclo { position: fixed; left: 12px; right: 12px; bottom: 84px; z-index: 60; max-width: 520px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; padding: 12px 14px; border-radius: 16px; background: #E6E7FD; border: 2px solid var(--lila); color: #2B2B33; box-shadow: 0 6px 18px rgba(0,0,0,.18); font-weight: 700; }
+.ct-ciclo[hidden] { display: none; }
+@media print { .ct-ciclo { display: none; } }
+
+/* Pausa guiada (23-nov-2026) */
+#agenda .pg-tarjeta { margin: 0 0 14px; padding: 12px 14px; border-radius: 14px; background: #E6E7FD; border: 1.5px solid var(--lila); }
+#agenda .pg-tarjeta-t { margin: 0; font-weight: 800; }
+#agenda .pg-tarjeta-s { margin: 2px 0 10px; color: var(--tinta-suave); font-size: .92rem; }
+.pg-fondo { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 14px; background: rgba(40,30,50,.55); }
+.pg-caja { position: relative; width: 100%; max-width: 440px; max-height: 100%; overflow: auto; padding: 20px 18px 16px; border-radius: 20px; background: #fff; color: #2B2B33; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+.pg-x { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; border: none; background: transparent; font-size: 1.1rem; cursor: pointer; color: #5B5B63; }
+.pg-tit { margin: 0 0 6px; font-weight: 800; color: #C81B6D; }
+.pg-cont { margin: 0; font-size: .85rem; color: #5B5B63; }
+.pg-ic { margin: 4px 0; font-size: 2.6rem; line-height: 1.1; }
+.pg-t { margin: 0 0 6px; font-family: 'DynaPuff', sans-serif; font-size: 1.4rem; }
+.pg-tx { margin: 0 0 8px; line-height: 1.45; }
+.pg-reloj { margin: 6px 0 12px; font-family: 'DynaPuff', sans-serif; font-size: 2rem; color: #7A3FD6; }
+.pg-bot { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.pg-aviso { margin: 14px 0 0; font-size: .8rem; color: #5B5B63; }
+@media print { .pg-fondo, .pg-tarjeta { display: none; } }
+
+/* Mis hábitos y agua (23-nov-2026) */
+#agenda .hb-raiz { margin: 18px 0 0; }
+#agenda .hb-h { margin: 0 0 10px; font-size: 1.15rem; }
+#agenda .hb-tarjeta { margin: 0 0 12px; padding: 12px 14px; border-radius: 16px; background: #E3F1FD; border: 1.5px solid var(--azul-acero); }
+#agenda .hb-t { margin: 0 0 8px; font-size: 1rem; }
+#agenda .hb-vasos { display: flex; flex-wrap: wrap; gap: 6px; }
+#agenda .hb-vaso { width: 44px; height: 44px; font-size: 1.4rem; line-height: 1; border-radius: 12px; border: 1.5px solid var(--azul-acero); background: #fff; cursor: pointer; opacity: .45; }
+#agenda .hb-vaso.lleno { opacity: 1; background: var(--azul-acero); }
+#agenda .hb-pie { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+#agenda .hb-cuenta { font-weight: 800; }
+#agenda .hb-meta { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; }
+#agenda .hb-meta input { width: 64px; font: inherit; padding: 8px; min-height: 40px; border: 1.5px solid var(--azul-acero); border-radius: 10px; background: #fff; color: var(--tinta); }
+#agenda .hb-mes { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; }
+#agenda .hb-flecha { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--rosa-medio); background: #fff; font-size: 1.3rem; cursor: pointer; color: var(--rosa-texto, #C81B6D); }
+#agenda .hb-vacio { margin: 4px 0 8px; color: var(--tinta-suave); font-style: italic; }
+#agenda .hb-fila { margin: 0 0 10px; padding: 8px 10px; border-radius: 12px; background: #fff; border: 1.5px solid var(--rosa-suave); }
+#agenda .hb-nombre { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+#agenda .hb-n { flex: 1; font-weight: 800; overflow-wrap: anywhere; }
+#agenda .hb-c { font-size: .85rem; color: var(--tinta-suave); }
+#agenda .hb-quitar { width: 40px; height: 40px; border: none; background: transparent; color: #C81B6D; cursor: pointer; font-size: 1rem; }
+#agenda .hb-dias { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 4px; }
+#agenda .hb-dia { min-height: 34px; border-radius: 8px; border: 1.5px solid var(--rosa-medio); background: #fff; color: var(--tinta); font: inherit; font-size: .8rem; cursor: pointer; }
+#agenda .hb-dia.on { background: var(--rosa-principal); border-color: var(--rosa-principal); color: #fff; font-weight: 800; }
+#agenda .hb-dia.hoy { box-shadow: 0 0 0 2px var(--lila); }
+#agenda .hb-dia:disabled { opacity: .35; cursor: default; }
+#agenda .hb-nuevo { display: flex; gap: 8px; margin-top: 6px; }
+#agenda .hb-nuevo input { flex: 1; min-width: 0; font: inherit; padding: 10px 12px; min-height: 44px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: #fff; color: var(--tinta); }
+#agenda .hb-sug { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+#agenda .hb-chip { font: inherit; font-size: .85rem; padding: 8px 12px; min-height: 40px; border-radius: 999px; border: 1.5px solid var(--lila); background: #E6E7FD; color: #2B2B33; cursor: pointer; }
+@media print { .hb-raiz { display: none; } }
+
+/* Mi brújula (23-nov-2026) */
+#agenda .bj-raiz { margin: 4px 0 0; }
+#agenda .bj-tarjeta { margin: 0 0 14px; padding: 14px; border-radius: 16px; background: #E6E7FD; border: 1.5px solid var(--lila); }
+#agenda .bj-t { margin: 0 0 4px; font-size: 1.05rem; }
+#agenda .bj-s { margin: 0 0 10px; color: var(--tinta-suave); font-size: .92rem; }
+#agenda .bj-rueda { display: grid; grid-template-columns: 1fr; gap: 12px; align-items: center; }
+#agenda .bj-svg { width: 100%; max-width: 300px; height: auto; margin: 0 auto; background: #fff; border-radius: 16px; }
+#agenda .bj-areas { display: grid; gap: 4px; }
+#agenda .bj-area { display: grid; grid-template-columns: 1fr 120px 28px; align-items: center; gap: 8px; min-height: 40px; }
+#agenda .bj-nm { font-weight: 700; font-size: .92rem; }
+#agenda .bj-area input[type=range] { width: 100%; accent-color: var(--rosa-principal); }
+#agenda .bj-v { font-weight: 800; text-align: right; }
+#agenda .bj-lectura { margin: 10px 0 0; font-weight: 700; }
+#agenda .bj-vacio { color: var(--tinta-suave); font-style: italic; margin: 4px 0 8px; }
+#agenda .bj-meta { position: relative; margin: 0 0 10px; padding: 10px 44px 10px 12px; border-radius: 12px; background: #fff; border: 1.5px solid var(--rosa-suave); }
+#agenda .bj-meta.ok { opacity: .75; }
+#agenda .bj-meta.ok .bj-meta-t { text-decoration: line-through; }
+#agenda .bj-meta-cab { display: flex; align-items: center; gap: 10px; min-height: 40px; cursor: pointer; font-weight: 800; }
+#agenda .bj-meta-cab input { width: 22px; height: 22px; accent-color: var(--rosa-principal); flex: none; }
+#agenda .bj-meta-t { overflow-wrap: anywhere; }
+#agenda .bj-meta-l { margin: 2px 0 0 32px; font-size: .9rem; overflow-wrap: anywhere; }
+#agenda .bj-meta-l.vencida { color: #B3261E; }
+#agenda .bj-quitar { position: absolute; top: 4px; right: 4px; width: 40px; height: 40px; border: none; background: transparent; color: #C81B6D; cursor: pointer; font-size: 1rem; }
+#agenda .bj-form { display: grid; gap: 8px; margin-top: 8px; }
+#agenda .bj-campo { display: grid; gap: 4px; font-weight: 700; font-size: .9rem; }
+#agenda .bj-campo input { font: inherit; font-weight: 400; padding: 10px 12px; min-height: 44px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: #fff; color: var(--tinta); }
+@media (min-width: 720px) { #agenda .bj-rueda { grid-template-columns: 300px 1fr; } }
+@media (max-width: 420px) { #agenda .bj-area { grid-template-columns: 1fr 96px 24px; } }
+@media print { #agenda .bj-form { display: none; } }
+#agenda .bj-campo textarea { font: inherit; font-weight: 400; padding: 10px 12px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: #fff; color: var(--tinta); resize: vertical; }
+#agenda .bj-ayuda { font-weight: 400; color: var(--tinta-suave); }
+#agenda .bj-tarjeta .bj-campo { margin-bottom: 10px; }
+#agenda .bj-vieja { margin-top: 8px; padding: 8px 12px; border-radius: 12px; background: #fff; border: 1.5px solid var(--rosa-suave); }
+#agenda .bj-vieja summary { cursor: pointer; font-weight: 800; min-height: 40px; display: flex; align-items: center; }
+#agenda .bj-vieja-t { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }

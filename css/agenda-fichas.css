@@ -663,3 +663,31 @@ body.dib-bloqueo { overflow: hidden; }
 .dr-color { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1.5px rgba(69, 69, 74, .25); background: #E74E96; }
 .dib-barra .dib-mio { width: 28px; height: 28px; }
 .dib-rueda .dr-agregar { min-height: 44px; background: #E01E79; color: #fff; border: 0; border-radius: 999px; padding: 8px 18px; font: 700 .9rem 'Hanken Grotesk', sans-serif; cursor: pointer; }
+
+/* Matriz de Eisenhower en el planeador (23-nov-2026) */
+.pl-vistas { display: inline-flex; gap: 0; margin: 0 0 10px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; overflow: hidden; }
+.pl-ver { font: inherit; font-weight: 700; border: none; background: var(--blanco); color: var(--tinta); padding: 8px 14px; min-height: 40px; cursor: pointer; }
+.pl-ver[aria-pressed="true"] { background: var(--rosa-principal); color: #fff; }
+.pl-q { font: inherit; font-size: 0.85rem; max-width: 130px; min-height: 40px; border: 1.5px solid var(--rosa-medio); border-radius: 10px; background: var(--blanco); color: var(--tinta); flex: none; }
+.pl-matriz { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.pl-cuadro { border: 1.5px solid var(--rosa-suave); border-radius: 14px; padding: 10px; background: var(--rosa-suave); }
+.pl-cuadro-a { background: #FBE4EF; border-color: var(--rosa-principal); }
+.pl-cuadro-b { background: #E6E7FD; border-color: var(--lila); }
+.pl-cuadro-c { background: #E3F1FD; border-color: var(--azul-acero); }
+.pl-cuadro-d, .pl-cuadro-x { background: #F4F4F6; border-color: #D8D8DE; }
+.pl-cuadro h5 { margin: 0; font-size: 1rem; }
+.pl-cuadro > small { display: block; margin: 0 0 8px; color: var(--tinta-suave); font-weight: 600; }
+.pl-cuadro-vacio { margin: 0; color: var(--tinta-suave); font-style: italic; }
+@media (min-width: 720px) { .pl-matriz { grid-template-columns: 1fr 1fr; } .pl-cuadro-x { grid-column: 1 / -1; } }
+@media (max-width: 480px) { .pl-tareas li { flex-wrap: wrap; } .pl-tareas label { flex: 1 1 100%; } .pl-q { max-width: none; flex: 1; } }
+@media print { .pl-vistas { display: none; } }
+
+/* Hojas con menos botones (23-nov-2026, pedido de Jennifer): sin «Hoja anterior» (el selector de hojas ya sirve), «Siguiente hoja» delgado y los dos botones de imprimir dentro de «Más». */
+#agenda .hojas-pasos .paso-ant { display: none; }
+#agenda .hojas-pasos:not(:has(.paso-sig)) { display: none; }
+#agenda .hojas-pasos { margin-top: 12px; }
+#agenda .hojas-pasos .paso-sig { flex: none; max-width: 100%; flex-direction: row; align-items: center; gap: 8px; padding: 8px 14px; min-height: 44px; }
+#agenda .mas-acciones { display: block; margin: 10px 0; text-align: right; }
+#agenda .mas-acciones > summary { display: inline-flex; align-items: center; cursor: pointer; list-style: none; }
+#agenda .mas-acciones > summary::-webkit-details-marker { display: none; }
+#agenda .mas-acciones .mas-lista { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 8px; }
