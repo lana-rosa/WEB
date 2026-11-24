@@ -802,6 +802,14 @@ html[data-modo="oscuro"] #agenda .hb-dia { background: #211D27; border: 1.5px so
 html[data-modo="oscuro"] #agenda .hb-dia.on { background: var(--rosa-principal); border-color: var(--rosa-principal); color: #fff; }
 html[data-modo="oscuro"] #agenda .hb-nuevo input { background: #211D27; border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
 html[data-modo="oscuro"] #agenda .hb-chip { background: #17193A; border: 1.5px solid var(--lila); color: #EEECEE; }
+html[data-modo="oscuro"] #agenda .bj-tarjeta { background: #17193A; border: 1.5px solid var(--lila); }
+html[data-modo="oscuro"] #agenda .bj-s { color: #CAC5CD; }
+html[data-modo="oscuro"] #agenda .bj-svg { background: #211D27; }
+html[data-modo="oscuro"] #agenda .bj-vacio { color: #CAC5CD; }
+html[data-modo="oscuro"] #agenda .bj-meta { background: #211D27; border: 1.5px solid var(--rosa-suave); }
+html[data-modo="oscuro"] #agenda .bj-meta-l.vencida { color: #ECA8A4; }
+html[data-modo="oscuro"] #agenda .bj-quitar { background: transparent; border: none; color: #ED97C0; }
+html[data-modo="oscuro"] #agenda .bj-campo input { background: #211D27; border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
 /* ---- de /css/agenda-frambuesa.css ---- */
 html[data-modo="oscuro"]:root { --marfil: #211D27; --papel: #211D27; --rosa-claro: #331421; }
 html[data-modo="oscuro"] #agenda .hoja-agenda::after { background: linear-gradient(90deg, var(--sec-fg) 0 70%, var(--frambuesa)); }
