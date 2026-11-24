@@ -810,6 +810,9 @@ html[data-modo="oscuro"] #agenda .bj-meta { background: #211D27; border: 1.5px s
 html[data-modo="oscuro"] #agenda .bj-meta-l.vencida { color: #ECA8A4; }
 html[data-modo="oscuro"] #agenda .bj-quitar { background: transparent; border: none; color: #ED97C0; }
 html[data-modo="oscuro"] #agenda .bj-campo input { background: #211D27; border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
+html[data-modo="oscuro"] #agenda .bj-campo textarea { background: #211D27; border: 1.5px solid var(--rosa-medio); color: #DEDBE0; }
+html[data-modo="oscuro"] #agenda .bj-ayuda { color: #CAC5CD; }
+html[data-modo="oscuro"] #agenda .bj-vieja { background: #211D27; border: 1.5px solid var(--rosa-suave); }
 /* ---- de /css/agenda-frambuesa.css ---- */
 html[data-modo="oscuro"]:root { --marfil: #211D27; --papel: #211D27; --rosa-claro: #331421; }
 html[data-modo="oscuro"] #agenda .hoja-agenda::after { background: linear-gradient(90deg, var(--sec-fg) 0 70%, var(--frambuesa)); }

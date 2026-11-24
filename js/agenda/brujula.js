@@ -1,7 +1,9 @@
-/* Agenda para tejedoras: «Mi brújula», entrega 1 (23-nov-2026): rueda de la vida y metas SMART. (Falta la entrega 2: Ikigai y carta de fin de año.)
+/* Agenda para tejedoras: «Mi brújula», (entrega 1, 23-nov-2026: rueda de la vida y metas SMART; entrega 2, 24-nov-2026: Ikigai y carta de fin de año).
    · Rueda de la vida: 8 áreas con un valor de 1 a 10 y un gráfico de telaraña en SVG (los nombres van en HTML porque el traductor no entra en los svg; en el gráfico solo números).
    · Metas SMART: hasta 6; cada una con qué quiero lograr (específica), cómo lo mediré, qué haré (y si es realista) y para cuándo; se marcan cumplidas.
-   Datos: datos._brujula = { rueda: { clave: 1..10 }, ruedaFecha: 'AAAA-MM-DD', metas: [{ id, q, m, h, f, ok }] } (empieza con «_»: entra solo en copias, nube y Drive). */
+   · Ikigai: 4 listas (lo que amo, en lo que soy buena, lo que el mundo necesita, por lo que me pagarían) y una frase propia; se guardan al salir de cada casilla.
+   · Carta de fin de año: una carta por año para releer en diciembre (antes de diciembre queda «sellada»; se puede editar).
+   Datos: datos._brujula = { ikigai: { ama, buena, necesita, pagan, mi }, cartas: { 'AAAA': { t, f } }, rueda: { clave: 1..10 }, ruedaFecha: 'AAAA-MM-DD', metas: [{ id, q, m, h, f, ok }] } (empieza con «_»: entra solo en copias, nube y Drive). */
 (function () {
   'use strict';
   var N = window.lrAgendaNucleo, hoja = document.getElementById('mi-brujula'); if (!N || !hoja) return;
@@ -69,9 +71,45 @@
     } else tarj.appendChild(el('p', 'bj-vacio', T('Ya tienes 6 metas: cumple o quita una para agregar otra.')));
     cont.appendChild(tarj);
   }
+  var IKI = [['ama', 'Lo que amo hacer', 'Lo que te hace perder la noción del tiempo'], ['buena', 'En lo que soy buena', 'Lo que los demás te reconocen'], ['necesita', 'Lo que el mundo necesita', 'A quién ayudas con lo que haces'], ['pagan', 'Por lo que me pueden pagar', 'Lo que ya vendes o podrías vender']];
+  function pintarIkigai(cont) {
+    var b = B(), ik = b.ikigai && typeof b.ikigai === 'object' ? b.ikigai : (b.ikigai = {}), tarj = el('div', 'bj-tarjeta');
+    tarj.appendChild(el('h4', 'bj-t', '🌸 ' + T('Mi Ikigai')));
+    tarj.appendChild(el('p', 'bj-s', T('Ikigai es tu razón de ser: donde se cruzan lo que amas, lo que haces bien, lo que el mundo necesita y lo que te puede dar ingresos. Escribe una idea por renglón.')));
+    function campo(clave, etq, ayuda, filas) {
+      var l = el('label', 'bj-campo'), t = el('textarea'); t.rows = filas || 3; t.maxLength = 600; t.id = 'bj-ik-' + clave; t.value = ik[clave] || ''; t.setAttribute('aria-describedby', 'bj-ik-' + clave + '-a');
+      var a = el('small', 'bj-ayuda', T(ayuda)); a.id = 'bj-ik-' + clave + '-a';
+      t.addEventListener('change', function () { var v = t.value.trim(); if (v) ik[clave] = v; else delete ik[clave]; guardar(); });
+      l.appendChild(el('span', '', T(etq))); l.appendChild(a); l.appendChild(t); tarj.appendChild(l);
+    }
+    IKI.forEach(function (x) { campo(x[0], x[1], x[2]); });
+    campo('mi', 'Mi Ikigai en una frase', 'Junta lo que escribiste en un solo renglón', 2);
+    cont.appendChild(tarj);
+  }
+  var abrirCarta = false;
+  function pintarCarta(cont) {
+    var b = B(), cartas = b.cartas && typeof b.cartas === 'object' ? b.cartas : (b.cartas = {}), anio = String(new Date().getFullYear()), mesAct = new Date().getMonth(), tarj = el('div', 'bj-tarjeta'), c = cartas[anio];
+    tarj.appendChild(el('h4', 'bj-t', '💌 ' + T('Carta de fin de año')));
+    tarj.appendChild(el('p', 'bj-s', T('Escríbete una carta para leerla en diciembre: cómo quieres que haya sido tu año y qué quieres recordar.')));
+    var sellada = c && c.t && mesAct < 11 && !abrirCarta;
+    if (sellada) {
+      tarj.appendChild(el('p', 'bj-lectura', '🔒 ' + T('Tu carta de este año está guardada. Se abre en diciembre.')));
+      var e = el('button', 'boton-secundario boton-chico', T('Editar mi carta')); e.type = 'button'; e.addEventListener('click', function () { abrirCarta = true; pintar(); }); tarj.appendChild(e);
+    }
+    if (!sellada) {
+      var l = el('label', 'bj-campo'), t = el('textarea'); t.rows = 7; t.maxLength = 3000; t.id = 'bj-carta'; t.value = c && c.t || ''; t.placeholder = T('Querida yo de diciembre:');
+      t.addEventListener('change', function () { var v = t.value.trim(); if (v) cartas[anio] = { t: v, f: hoyTxt() }; else delete cartas[anio]; guardar(); });
+      l.appendChild(el('span', '', T('Mi carta') + ' ' + anio)); l.appendChild(t); tarj.appendChild(l);
+    }
+    Object.keys(cartas).filter(function (k) { return k < anio && cartas[k] && cartas[k].t; }).sort().reverse().forEach(function (k) {
+      var d = el('details', 'bj-vieja'), sm = el('summary', '', T('Mi carta') + ' ' + k), p = el('p', 'bj-vieja-t', cartas[k].t); sm.setAttribute('data-no-traducir', ''); p.setAttribute('data-no-traducir', ''); d.appendChild(sm); d.appendChild(p); tarj.appendChild(d);
+    });
+    cont.appendChild(tarj);
+  }
   function pintar() {
-    var ac = document.activeElement, guardado = {}; if (ac && raiz.contains(ac) && ac.closest('.bj-form')) raiz.querySelectorAll('.bj-form input').forEach(function (i) { guardado[i.id] = i.value; });
-    raiz.textContent = ''; pintarRueda(raiz); pintarMetas(raiz);
+    var ac = document.activeElement, guardado = {}; if (ac && raiz.contains(ac) && ac.tagName === 'TEXTAREA') return;
+    if (ac && raiz.contains(ac) && ac.closest('.bj-form')) raiz.querySelectorAll('.bj-form input').forEach(function (i) { guardado[i.id] = i.value; });
+    raiz.textContent = ''; pintarRueda(raiz); pintarMetas(raiz); pintarIkigai(raiz); pintarCarta(raiz);
     Object.keys(guardado).forEach(function (k) { var i = document.getElementById(k); if (i) i.value = guardado[k]; });
   }
   document.addEventListener('agenda-guardada', function () { if (hoja.classList.contains('abierta') && !raiz.contains(document.activeElement)) pintar(); });
