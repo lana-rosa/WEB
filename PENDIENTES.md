@@ -321,6 +321,7 @@ Hoy UCP no funciona desde Colombia (ver `herramientas/innovacion/12-IA-COMERCIO-
 
 
 ## 📣 LAROVA · Marketing y comunicación (chat «Marketing en LAROVA», 18-nov-2026)
+- [ ] **Guionista de carruseles (24-nov-2026):** revisión en `herramientas/marketing-agenda/revision-guionista-carruseles.md` y carrusel del 20-nov corregido en `carrusel-2026-11-20-corregido.md`. Abierto: ¿hay permiso de la persona del pedido para mostrar su historia en el carrusel del 21-nov? (sin eso no se escribe ni publica); fotos reales de L3, L4, L6 y L7 del 20-nov; aplicar la regla «idea de imagen por lámina» a los demás carruseles solo cuando Jennifer lo pida.
 - [ ] Borrador listo y probado con base simulada en `herramientas/borradores/larova/marketing/` (tabla `mkt_piezas` solo administradoras, prueba con rollback, pantalla `marketing.html` con lista, calendario y filtros). Tabla aplicada el 18-nov; la pantalla aún no está en el ERP.
 - [ ] Falta: (1) ~~campos del chat 8~~ hecho 18-nov; (2)-(3) ~~tabla `mkt_piezas` creada con el sí de Jennifer, prueba con rollback OK y asesor sin avisos nuevos~~ hecho 18-nov; (4) pasar `marketing.html` al repo ERP (esta sesión no tiene permiso de escritura allá) y apuntar la tarjeta de `larova.html`; (5) opcional: cargar el calendario de apertura.
 
