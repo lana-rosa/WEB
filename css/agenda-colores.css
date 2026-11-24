@@ -403,3 +403,39 @@ html body .buscar-agenda:focus-within { border-color: var(--rosa-boton); box-sha
 #agenda .hb-sug { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 #agenda .hb-chip { font: inherit; font-size: .85rem; padding: 8px 12px; min-height: 40px; border-radius: 999px; border: 1.5px solid var(--lila); background: #E6E7FD; color: #2B2B33; cursor: pointer; }
 @media print { .hb-raiz { display: none; } }
+
+/* Mi brújula (23-nov-2026) */
+#agenda .bj-raiz { margin: 4px 0 0; }
+#agenda .bj-tarjeta { margin: 0 0 14px; padding: 14px; border-radius: 16px; background: #E6E7FD; border: 1.5px solid var(--lila); }
+#agenda .bj-t { margin: 0 0 4px; font-size: 1.05rem; }
+#agenda .bj-s { margin: 0 0 10px; color: var(--tinta-suave); font-size: .92rem; }
+#agenda .bj-rueda { display: grid; grid-template-columns: 1fr; gap: 12px; align-items: center; }
+#agenda .bj-svg { width: 100%; max-width: 300px; height: auto; margin: 0 auto; background: #fff; border-radius: 16px; }
+#agenda .bj-areas { display: grid; gap: 4px; }
+#agenda .bj-area { display: grid; grid-template-columns: 1fr 120px 28px; align-items: center; gap: 8px; min-height: 40px; }
+#agenda .bj-nm { font-weight: 700; font-size: .92rem; }
+#agenda .bj-area input[type=range] { width: 100%; accent-color: var(--rosa-principal); }
+#agenda .bj-v { font-weight: 800; text-align: right; }
+#agenda .bj-lectura { margin: 10px 0 0; font-weight: 700; }
+#agenda .bj-vacio { color: var(--tinta-suave); font-style: italic; margin: 4px 0 8px; }
+#agenda .bj-meta { position: relative; margin: 0 0 10px; padding: 10px 44px 10px 12px; border-radius: 12px; background: #fff; border: 1.5px solid var(--rosa-suave); }
+#agenda .bj-meta.ok { opacity: .75; }
+#agenda .bj-meta.ok .bj-meta-t { text-decoration: line-through; }
+#agenda .bj-meta-cab { display: flex; align-items: center; gap: 10px; min-height: 40px; cursor: pointer; font-weight: 800; }
+#agenda .bj-meta-cab input { width: 22px; height: 22px; accent-color: var(--rosa-principal); flex: none; }
+#agenda .bj-meta-t { overflow-wrap: anywhere; }
+#agenda .bj-meta-l { margin: 2px 0 0 32px; font-size: .9rem; overflow-wrap: anywhere; }
+#agenda .bj-meta-l.vencida { color: #B3261E; }
+#agenda .bj-quitar { position: absolute; top: 4px; right: 4px; width: 40px; height: 40px; border: none; background: transparent; color: #C81B6D; cursor: pointer; font-size: 1rem; }
+#agenda .bj-form { display: grid; gap: 8px; margin-top: 8px; }
+#agenda .bj-campo { display: grid; gap: 4px; font-weight: 700; font-size: .9rem; }
+#agenda .bj-campo input { font: inherit; font-weight: 400; padding: 10px 12px; min-height: 44px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: #fff; color: var(--tinta); }
+@media (min-width: 720px) { #agenda .bj-rueda { grid-template-columns: 300px 1fr; } }
+@media (max-width: 420px) { #agenda .bj-area { grid-template-columns: 1fr 96px 24px; } }
+@media print { #agenda .bj-form { display: none; } }
+#agenda .bj-campo textarea { font: inherit; font-weight: 400; padding: 10px 12px; border: 1.5px solid var(--rosa-medio); border-radius: 12px; background: #fff; color: var(--tinta); resize: vertical; }
+#agenda .bj-ayuda { font-weight: 400; color: var(--tinta-suave); }
+#agenda .bj-tarjeta .bj-campo { margin-bottom: 10px; }
+#agenda .bj-vieja { margin-top: 8px; padding: 8px 12px; border-radius: 12px; background: #fff; border: 1.5px solid var(--rosa-suave); }
+#agenda .bj-vieja summary { cursor: pointer; font-weight: 800; min-height: 40px; display: flex; align-items: center; }
+#agenda .bj-vieja-t { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }

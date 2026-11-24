@@ -224,11 +224,10 @@ def main():
             nota = page.locator('.ur-pj-nota').count()
             hay_pj = any(x['es_personaje'] and x['categoria_web'] == 'Amigurumis' and x['en_existencia'] and not x['personalizable_base'] for x in CATALOGO)
             AV_PJ = 'Pieza artesanal tejida a mano, inspirada en un personaje de ficción.'
-            AV_PE = 'Pieza artesanal personalizada, tejida a mano e inspirada en una persona.'
             notas_sec = [[n.inner_text() for n in sec.locator('.ur-pj-nota').all()] for sec in page.locator('.ur-seccion').all()]
             todas = [t for lst in notas_sec for t in lst]
             verificar('los avisos de personajes, figuras públicas y personas salen con el texto aprobado y una sola vez por sección',
-                      all(len(lst) == len(set(lst)) for lst in notas_sec) and all(t.startswith((AV_PJ, AV_PE, 'Pieza artesanal tejida a mano, inspirada en una figura pública.')) for t in todas)
+                      all(len(lst) == len(set(lst)) for lst in notas_sec) and all(t.startswith((AV_PJ, 'Pieza artesanal tejida a mano, inspirada en una figura pública.')) for t in todas)
                       and (any(t.startswith(AV_PJ) for t in todas) == hay_pj) and page.locator('.ur-card .ur-pj').count() == 0, notas_sec)
             verificar('sin scroll horizontal tras filtrar', sin_scroll_horizontal(page))
             if CAPTURAS:
