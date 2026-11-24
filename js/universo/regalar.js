@@ -4,17 +4,15 @@ import { CONFIG, OCASIONES, DESTINATARIOS, TIPOS, PRESUPUESTOS, TAMANOS, DISPONI
 import { cargarCatalogo, cargarColores } from './datos.js';
 import { COLORES, puntajeColor, perfilDeArchivo } from './colores.js';
 
-// Avisos de las piezas inspiradas en personajes, figuras públicas y personas (textos de Jennifer, 5-nov-2026; los mismos de la ficha de tienda.html).
-// Una pieza nueva de figura pública se agrega a IDS_FIGURA_PUBLICA (Messi y Michael Jackson hoy); los «Amigurumi personalizado» se reconocen por el nombre.
+// Avisos de las piezas inspiradas en personajes, figuras públicas (textos de Jennifer, 5-nov-2026; los mismos de la ficha de tienda.html).
+// Una pieza nueva de figura pública se agrega a IDS_FIGURA_PUBLICA (Messi y Michael Jackson hoy). Los «Amigurumi personalizado» ya no llevan aviso (Jennifer, 23-nov-2026).
 const IDS_FIGURA_PUBLICA = ['f4e20b3c-666a-4ec2-a4c8-656f46ee7604', 'efc61b6c-66fc-4307-8e33-c0728aff61ef'];
 const AVISOS = {
   personaje: 'Pieza artesanal tejida a mano, inspirada en un personaje de ficción. Debido a su proceso de elaboración manual, cada pieza puede presentar variaciones en sus formas, proporciones, colores y detalles. No es un producto oficial ni está patrocinada o vinculada comercialmente con los titulares del personaje.',
   figura: 'Pieza artesanal tejida a mano, inspirada en una figura pública. Es una creación artesanal independiente, no es un producto oficial ni está patrocinada o respaldada por la persona representada.',
-  persona: 'Pieza artesanal personalizada, tejida a mano e inspirada en una persona. Cada creación se elabora de manera individual y puede presentar variaciones en sus características, proporciones y detalles.',
 };
 function tipoAviso(p) {
   if (IDS_FIGURA_PUBLICA.indexOf(p.id) !== -1) return 'figura';
-  if (/^Amigurumi personalizado \d+ cm$/.test(String(p.nombre))) return 'persona';
   return p.es_personaje ? 'personaje' : '';
 }
 
@@ -135,7 +133,7 @@ export async function iniciarRegalar(raiz) {
     sec.append(nodo('h3', null, titulo + ' (' + items.length + ')'), nodo('p', 'ur-nota', nota));
     // Avisos de piezas inspiradas en personajes, figuras públicas y personas: una vez por sección y solo los que apliquen.
     const tipos = new Set(items.map(tipoAviso));
-    ['figura', 'personaje', 'persona'].forEach((t) => { if (tipos.has(t)) sec.append(nodo('p', 'ur-nota ur-pj-nota', AVISOS[t])); });
+    ['figura', 'personaje'].forEach((t) => { if (tipos.has(t)) sec.append(nodo('p', 'ur-nota ur-pj-nota', AVISOS[t])); });
     const grid = nodo('div', 'ur-grid');
     const limite = verMas[clave] ? items.length : CONFIG.RESULTADOS_POR_SECCION;
     items.slice(0, limite).forEach((p) => grid.append(tarjeta(p, clave, esIdea)));

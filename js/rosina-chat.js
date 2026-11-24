@@ -68,15 +68,13 @@
   var pesos = function (n) { return '$' + Math.round(Number(n) || 0).toLocaleString('es-CO'); };
   // Tarjetas de producto: el servidor solo manda ids que existen en el catálogo; aquí se arma todo con textContent (nada se inserta como HTML)
   // y el enlace se construye con el id, no con una dirección que venga en la respuesta.
-  // Avisos de las piezas inspiradas en personajes, figuras públicas y personas (textos de Jennifer, 5-nov-2026; los mismos de la ficha de tienda.html).
-  // Una pieza nueva de figura pública se agrega a IDS_FIGURA_PUBLICA (Messi y Michael Jackson hoy); los «Amigurumi personalizado» se reconocen por el nombre.
+  // Avisos de las piezas inspiradas en personajes, figuras públicas (textos de Jennifer, 5-nov-2026; los mismos de la ficha de tienda.html).
+  // Una pieza nueva de figura pública se agrega a IDS_FIGURA_PUBLICA (Messi y Michael Jackson hoy). Los «Amigurumi personalizado» ya no llevan aviso (Jennifer, 23-nov-2026).
   var IDS_FIGURA_PUBLICA = ['f4e20b3c-666a-4ec2-a4c8-656f46ee7604', 'efc61b6c-66fc-4307-8e33-c0728aff61ef'];
   var AVISO_PERSONAJE = 'Pieza artesanal tejida a mano, inspirada en un personaje de ficción. Debido a su proceso de elaboración manual, cada pieza puede presentar variaciones en sus formas, proporciones, colores y detalles. No es un producto oficial ni está patrocinada o vinculada comercialmente con los titulares del personaje.';
   var AVISO_FIGURA = 'Pieza artesanal tejida a mano, inspirada en una figura pública. Es una creación artesanal independiente, no es un producto oficial ni está patrocinada o respaldada por la persona representada.';
-  var AVISO_PERSONA = 'Pieza artesanal personalizada, tejida a mano e inspirada en una persona. Cada creación se elabora de manera individual y puede presentar variaciones en sus características, proporciones y detalles.';
   function avisoDe(p) {
     if (IDS_FIGURA_PUBLICA.indexOf(p.id) !== -1) return AVISO_FIGURA;
-    if (/^Amigurumi personalizado \d+ cm$/.test(String(p.nombre))) return AVISO_PERSONA;
     return p.personaje ? AVISO_PERSONAJE : '';
   }
   function tarjetas(lista) {
