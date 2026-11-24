@@ -69,3 +69,6 @@ Capturas del ANTES (390 y 1280 px; Mi panel, Planeador, Proyectos, Control de pe
 
 ## 24-nov-2026 · Despliegue de Rosina pasa al chat 3 (decisión de Jennifer)
 `GUIA_AGENDA` v87 (5 funciones nuevas + «Bienestar es de la membresía») está en `main`; `rosina-web` en Supabase sigue en v86 (proyecto `ngjoognzvehwjtpqwrqe`). Lo despliega el chat 3 (🔴, con `nucleo.ts` e `index.ts` COMPLETOS y comparando; probar Eisenhower, ciclos 25/5 y Mi brújula, y que no mencione medicamentos). La nota de la línea 4 de `index.ts` dice «PENDIENTE de desplegar» en la rama `claude/rosina-v87-comentario`: el chat 3 la cambia a «Desplegada» al terminar. Bienestar = Plus ya es lo que hace el código (`PESTANAS_GRATIS = 2`); no hay candado nuevo.
+
+## 24-nov-2026 · `rosina-web` v87 DESPLEGADA (la hizo el Orquestador general; verificado aquí con la lista de funciones de Supabase: versión 87, `verify_jwt` false)
+Según el Orquestador, `index.ts` y `nucleo.ts` completos de `main` quedaron idénticos a lo desplegado (80.972 y 7.025 caracteres). **Falta la prueba en vivo** (la red de esos chats bloquea supabase.co): preguntarle a Rosina en la agenda «¿cómo uso los ciclos de tejido?», «¿qué es la matriz de Eisenhower?» y «¿qué es Mi brújula?», y confirmar que no menciona medicamentos. Solo cambió el comentario de la línea 4 de `index.ts` (ya dice «Desplegada»).
