@@ -25,7 +25,7 @@
     tarj.appendChild(el('h4', 'hb-t', '💧 ' + T('Agua de hoy')));
     var fila = el('div', 'hb-vasos'); fila.setAttribute('role', 'group'); fila.setAttribute('aria-label', T('Vasos de agua de hoy'));
     for (var i = 1; i <= h.meta; i++) (function (i) {
-      var b = el('button', 'hb-vaso' + (i <= n ? ' lleno' : ''), '🥛'); b.type = 'button'; b.setAttribute('aria-pressed', i <= n ? 'true' : 'false'); b.setAttribute('aria-label', T('Vaso') + ' ' + i);
+      var b = el('button', 'hb-vaso' + (i <= n ? ' lleno' : ''), '🥛'); b.type = 'button'; b.setAttribute('aria-pressed', i <= n ? 'true' : 'false'); b.setAttribute('aria-label', T('Vaso') + ' ' + i); b.setAttribute('data-no-traducir', '');
       b.addEventListener('click', function () { h.agua[HOY] = (i === n) ? i - 1 : i; if (!h.agua[HOY]) delete h.agua[HOY]; guardar(); pintar(); }); fila.appendChild(b);
     })(i);
     tarj.appendChild(fila);
