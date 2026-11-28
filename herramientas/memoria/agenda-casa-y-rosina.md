@@ -43,3 +43,13 @@
 - **Guía de pedido y proyecto unidos (E34, 12-nov-2026):** `GUIA_AGENDA` v86 explica «Proyecto de este pedido» (Crear / Vincular / Quitar el vínculo), horas tejidas y valor del tiempo, lana apartada con aviso si no alcanza y «Apartados para proyectos» en el inventario. En el repositorio, **sin desplegar** hasta el sí de Jennifer (🔴).
 - **Guía v86 ampliada (12-nov-2026):** además de pedido y proyecto unidos, `GUIA_AGENDA` explica la lista de compras que pasa al inventario y «Medidas y gustos» de la clienta. (El primer intento de subirla quedó sin aprobar; la subida buena fue la segunda.) **Desplegada** (Supabase v86, sí de Jennifer 12-nov), comparada: `nucleo.ts` idéntico; `index.ts` idéntico salvo el historial v16–v77 del encabezado. Falta que Jennifer pruebe las tres funciones en el chat y en inglés.
 - **Ícono de «Aguja lanera» en Recursos de Rosina (14-nov-2026; error visible que vio Jennifer; ella dio el sí con fotos):** en la agenda el dibujo de «Aguja lanera» salía como código (`<svg class="ic-aguja"…`) porque `js/agenda/recursos.js` escapaba todo `icono`; desde la v9 un ícono que empieza con `<svg` se pone como dibujo (los datos son propios, generados por `herramientas/glosario_datos.py`). Era el único de todo el glosario. Prueba: `herramientas/pruebas/probar_agenda_recursos_iconos.py` (12/12).
+
+## Texto de arranque para un chat NUEVO de «Agenda · Rosina e idiomas» (28-nov-2026)
+```
+Tema: Agenda · Rosina e idiomas. Lee CLAUDE.md, herramientas/memoria/estado-actual.md, agenda-casa-y-rosina.md, agenda-idiomas.md y mi sección «Agenda · Rosina e idiomas» de PENDIENTES.md.
+Reglas: traducciones = filas (ES, EN, PT) en herramientas/agenda-idiomas/datos_*.py + `python3 herramientas/agenda-idiomas/generar.py`, y subir el ?v= de js/agenda/idioma.js y de agenda-rosina.html. Textos con datos dentro de bloques data-no-traducir: pasarlos por T() en el .js.
+Guía de Rosina: GUIA_AGENDA en herramientas/rosina-web/index.ts; desplegar nucleo.ts e index.ts COMPLETOS en una sola llamada y comparar con get_edge_function (mi error repetido: archivos incompletos).
+Tarea: 1) rescata la rama claude/idiomas-validaciones-pendiente (validaciones EN/PT + guía); 2) revisa los EN/PT provisionales de Eisenhower, ciclos, pausas, hábitos, brújula y Bienestar Plus.
+Con Jennifer: palabras sencillas, una pregunta de sí o no, y cada respuesta termina con la tarea sugerida y su esfuerzo (bajo, medio, alto, extra o max).
+```
+
