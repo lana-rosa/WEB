@@ -81,7 +81,7 @@ Los repositorios que no están en la sesión se agregan con `add_repo` (solo lec
   - Nueva: que el enlace de reseñas del correo conserve `#resenas` después de iniciar sesión.
   - Nueva: sección corta «Amigurumis en Manizales y Villamaría».
 
-**Sesión actual del orquestador general:** `session_01H2X8gXS7uC83GnxwoHrZoj` (abierto el 18-nov-2026; se renueva el 28-nov, el nuevo debe reemplazar este identificador; los otros orquestadores le escriben con `send_message` a este identificador). El anterior era `session_01H2X8ga1Y8UMd7QfnSkEjLR`, para archivar.
+**Sesión actual del orquestador general:** `session_01H2X8gXuqWXjZzVn7wNCcPe` (abierto el 28-nov-2026; se renueva el lun 30-nov o si la conversación se alarga; los otros chats le escriben con `send_message` a este identificador). El anterior era `session_01H2X8gXS7uC83GnxwoHrZoj`, para archivar.
 
 ## En qué vamos (actualizado el 28-nov-2026; máx. 15 líneas)
 - **Fechas:** tienda abre dom 13-dic 2:00–6:00 p. m.; horario normal desde el 14-dic (L–V 8:30–12:30 y 2:30–6:00, sáb 8:30–1:00). Base del ERP congelada sáb 9 a. m.–7 p. m. y 12–13-dic. LAROVA: plazo duro 4-dic. SENA: primer informe contable vie 4-dic; alertas ≥2 días antes.
