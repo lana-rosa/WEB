@@ -81,17 +81,18 @@ Los repositorios que no están en la sesión se agregan con `add_repo` (solo lec
   - Nueva: que el enlace de reseñas del correo conserve `#resenas` después de iniciar sesión.
   - Nueva: sección corta «Amigurumis en Manizales y Villamaría».
 
-**Sesión actual del orquestador general:** `session_01H2X8gXS7uC83GnxwoHrZoj` (abierto el 18-nov-2026; los otros orquestadores le escriben con `send_message` a este identificador). El anterior era `session_01H2X8ga1Y8UMd7QfnSkEjLR`, para archivar.
+**Sesión actual del orquestador general:** `session_01H2X8gXS7uC83GnxwoHrZoj` (abierto el 18-nov-2026; se renueva el 28-nov, el nuevo debe reemplazar este identificador; los otros orquestadores le escriben con `send_message` a este identificador). El anterior era `session_01H2X8ga1Y8UMd7QfnSkEjLR`, para archivar.
 
-## En qué vamos (actualizado el 24-nov-2026; máx. 15 líneas)
-- **Fechas:** tienda abre dom 13-dic 2:00–6:00 p. m.; horario normal desde el 14-dic: L–V 8:30–12:30 y 2:30–6:00, sáb 8:30–1:00 (en la web, #801). Base del ERP congelada sáb 9 a. m.–7 p. m. y 12–13-dic. LAROVA: plazo duro 4-dic. SENA: primer informe contable vie 4-dic; bimestral nov+dic hacia el 2-ene (proponer 4-ene); alertas ≥2 días antes (chat ERP 3).
-- **Pagos:** Wompi sigue ENCENDIDO (Fondo Emprender pide la cuenta en ceros al desembolso; Wompi aún no confirma el cambio a Nequi puente/Davivienda; Jennifer confirma el 25-nov; el ERP 7 tiene la alerta de vaciar la cuenta). Pago directo Nequi/Bre-B en la web sin publicar (falta transferencia de prueba de $1.000).
-- **Ventas/caja:** venta de prueba hecha el 24-nov. Defecto abierto: anular una venta no devuelve el saldo a la caja departamental (+$16.000), espera el sí de Sara. Nequi/Bre-B agregado a la venta; falta probar con el Worker real.
-- **Marketing:** 57 piezas en mkt_piezas (26 historias LRC); colores por marca, filtro Stories y estadísticas (mkt_metricas) publicados en LAROVA; chats por rol creados (solo revisan). Pendientes: fecha y archivo del logo nuevo, permiso de la persona del pedido para mostrar su historia, calendario de Google.
-- **Gestión Colaboradores (ERP chat 9):** diseño final; muro, onboarding, centro de cumplimiento y «Mi ficha» publicados; migraciones que solo agregan: autorización permanente de Jennifer. Falta abogada (RIT, firma, salud), Oscar y plan de Supabase para archivos. Delta en docs/temas/gestion-colaboradores-delta.md.
-- **LAROVA OS / SO:** chat «SO · Fase 0»: Fase 0 publicada; Fase 1 aprobada por Jennifer; espera su sí para la migración de documentos inmutables. Dirección = Jennifer y Sara.
-- **Asistente financiero** activo en Contabilidad (sin revisión de abogada y contador; medir costo). **DIAN:** software propio confirmado por el contador; auditoría etapa A (ERP 4); 9 facturas por emitir ($831.500). Informes del contador: catálogo de cuentas, gastos y compras por fecha y facturas de compras publicados.
-- **Agenda:** funciones nuevas y Rosina web v87 publicadas y probadas; Bienestar = Plus (candado espera el sí de Jennifer 🔴); medicamentos con la abogada; EN/PT pendiente. Rosina de LAROVA: revisión pedida a ERP chat 8.
-- **Seguridad:** 111 funciones de la base con candado por rol; la protección de contraseñas filtradas pide Supabase Pro (decisión de Jennifer).
-- **Chats:** largos (>60 %): orquestador, Web 4, Web 8; ERP 7 y 8 ~45 %. Ya se les pidió dejar notas y un texto de arranque. Proponer archivar (cuando Jennifer diga sí): Prueba de voz, Categorías, Web 1, Web 2, Web 5 (reemplazar si hace falta), CRM 4 y los chats por rol de Marketing ya integrados. Regla: los ejecutores piden sí/no a Jennifer en su propio chat, no por el orquestador.
-- **Orquestador:** conviene renovarlo pronto (~65 %); texto de arranque arriba.
+## En qué vamos (actualizado el 28-nov-2026; máx. 15 líneas)
+- **Fechas:** tienda abre dom 13-dic 2:00–6:00 p. m.; horario normal desde el 14-dic (L–V 8:30–12:30 y 2:30–6:00, sáb 8:30–1:00). Base del ERP congelada sáb 9 a. m.–7 p. m. y 12–13-dic. LAROVA: plazo duro 4-dic. SENA: primer informe contable vie 4-dic; alertas ≥2 días antes.
+- **Pagos:** Wompi sigue ENCENDIDO hasta que confirme el cambio de cuenta (Fondo Emprender pide cuenta en ceros). Pago directo Nequi/Bre-B en la web sin publicar (falta transferencia de prueba).
+- **Ventas/caja:** defecto abierto: anular una venta no devuelve saldo a la caja departamental; espera el sí de Sara. Arreglo de venta sin internet (ERP chat 1) pendiente. Worker (Sara): revisar registros, orígenes permitidos, token y actualización diaria de caché.
+- **CRM:** recuperación de contraseña con error de origen (CORS): falta el sí de Jennifer para el arreglo (agregar `larova.lanarosacrochet.com` y la URL de redirección en Supabase). Decisiones pendientes del embudo: 15 días cotización perdida, 10 oportunidad dormida (notas en `docs/RESUMEN-ORQUESTADOR.md` del CRM).
+- **Marketing:** calendario y estadísticas en LAROVA; falta sí/no para cargar ediciones del calendario y anuncio del logo 1-dic. Permiso `mkt-marketing` por persona.
+- **Gestión Colaboradores (ERP 9):** publicada solo para Sara y Jennifer; falta abogada laboralista (RIT, firma, salud), 22 preguntas a Oscar y plan de Supabase para archivos. SENA: Excel Anexo 2 en chat Compras SENA; informe de Producción para Fondo Emprender el 4-dic (Jennifer adjunta el formato).
+- **SO:** Fase 0 publicada, Fase 1 aprobada; espera sí para migración de documentos inmutables.
+- **Asistente financiero** activo sin revisión de abogada y contador. **DIAN:** software propio; 9 facturas por emitir ($831.500).
+- **Agenda/Rosina:** Rosina web v87 publicada; Bienestar = Plus (candado 🔴 espera sí); EN/PT en rama `claude/idiomas-validaciones-pendiente` (abrir chat de idiomas o aplazar).
+- **Seguridad:** contraseñas filtradas pide Supabase Pro (decisión de Jennifer). Tienda y Mercería: Excel y 34 fotos de la Mercería.
+- **Chats:** ya archivados todos los viejos (incluidos CRM 1 y 3, ERP 2/5/6, Web 3/7). Los activos son los nuevos por tema. Regla: los ejecutores piden sí/no a Jennifer en su propio chat; si un chat no acepta un «sí» reenviado, Jennifer lo escribe allá.
+- **Orquestador:** renovado el 28-nov; el nuevo anota su sesión arriba y archiva este.
